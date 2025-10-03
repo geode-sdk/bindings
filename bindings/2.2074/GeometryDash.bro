@@ -6199,15 +6199,64 @@ class EnterEffectInstance {
     // EnterEffectInstance(EnterEffectInstance const&);
     // EnterEffectInstance(EnterEffectInstance&&);
     // Sabe: idk why but this makes it so my mod works :shrug:
-    EnterEffectInstance() = android64 inline, android32 inline {}
-    EnterEffectInstance(EnterEffectObject*, int, int, int, int, int, int);
+    EnterEffectInstance() {}
+    EnterEffectInstance(EnterEffectObject* object, int targetID, int centerID, int, int targetGroupIndex, int easeIndexCount, int controlID) = win 0x1ff0b0, ios 0x20cab0 {
+        m_gameObject = object;
+        m_reversed = false;
+        m_targetID = targetID;
+        m_centerID = centerID;
+        m_unkFloat3 = p3;
+        m_easeIndex = 0;
+        m_paused = false;
+        m_paused2 = false;
+        m_unkBool4 = false;
+        m_targetGroupIndex = targetGroupIndex;
+        m_controlID = controlID;
+        if (easeIndexCount > 0) m_easeIndices.resize(easeIndexCount);
+        this->loadValuesFromObject(m_gameObject);
+    }
 
-    void animateValue(int, float, float, float, int, float, int) = win 0x1378e0;
-    float getValue(int);
-    void loadTransitions(EnterEffectObject*, float) = win 0x136d00;
-    void loadValuesFromObject(EnterEffectObject*) = win 0x136b60;
-    void setValue(int, float) = win 0x137d00;
-    void updateTransitions(float, GJBaseGameLayer*) = win 0x137ad0, imac 0x5bb680, m1 0x4f1338;
+    void animateValue(int key, float value, float distance, float duration, int easingType, float easingRate, int easingBuffer) = win 0x1378e0, m1 0x4f1048, imac 0x5bb330, ios 0x4f900;
+    float getValue(int key) = win inline, m1 0x4f14b8, imac 0x5bb830, ios inline {
+        switch (key) {
+            case 0: return m_length;
+            case 1: return m_lengthVariance;
+            case 2: return m_offset;
+            case 3: return m_offsetVariance;
+            case 4: return m_modFront;
+            case 5: return m_modBack;
+            case 6: return m_deadzone;
+            case 7: return m_moveDistance;
+            case 8: return m_moveDistanceVariance;
+            case 9: return m_moveAngle;
+            case 10: return m_moveAngleVariance;
+            case 11: return m_moveX;
+            case 12: return m_moveXVariance;
+            case 13: return m_moveY;
+            case 14: return m_moveYVariance;
+            case 15: return m_scaleX;
+            case 16: return m_scaleXVariance;
+            case 17: return m_scaleY;
+            case 18: return m_scaleYVariance;
+            case 19: return m_rotation;
+            case 20: return m_rotationVariance;
+            case 21: return m_tint;
+            case 22: return m_unk074;
+            case 23: return m_toOpacity;
+            case 24: return m_fromOpacity;
+            case 25: return m_offsetY;
+            case 26: return m_offsetYVariance;
+            case 27: return m_relativeFade;
+            case 28: return m_hue;
+            case 29: return m_saturation;
+            case 30: return m_value;
+            default: return 0;
+        }
+    }
+    void loadTransitions(EnterEffectObject* object, float time) = win 0x136d00, m1 0x4f0958, imac 0x5ba960, ios 0x4f2dc;
+    void loadValuesFromObject(EnterEffectObject* object) = win 0x136b60, m1 0x4f0888, imac 0x5ba850, ios 0x4f21c;
+    void setValue(int key, float value) = win 0x137d00, m1 0x4f121c, imac 0x5bb4d0, ios 0x4f9c0;
+    void updateTransitions(float dt, GJBaseGameLayer* layer) = win 0x137ad0, imac 0x5bb680, m1 0x4f1338, ios 0x4fadc;
 
     gd::map<int,EnterEffectAnimValue> m_enterEffectAnimMap;
     float m_length;
@@ -6243,16 +6292,16 @@ class EnterEffectInstance {
     float m_saturation;
     float m_value;
     EnterEffectObject* m_gameObject;
-    bool m_unkBool1;
+    bool m_reversed;
     int m_targetID;
     int m_centerID;
-    float m_unkFloat3;
-    float m_unkFloat4;
-    bool m_unkBool2;
-    bool m_unkBool3;
+    int m_unkFloat3;
+    int m_easeIndex;
+    bool m_paused;
+    bool m_paused2;
     bool m_unkBool4;
-    int m_unkFloat5;
-    gd::vector<int> m_unkVecInt;
+    int m_targetGroupIndex;
+    gd::vector<int> m_easeIndices;
     int m_controlID;
 }
 
@@ -10589,7 +10638,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
     TodoReturn reparentObject(cocos2d::CCNode*, cocos2d::CCNode*);
     void resetActiveEnterEffects() = ios 0x1e3a30, win 0x209060, imac 0x10d800, m1 0xed248;
-    int resetAreaObjectValues(GameObject*, bool) = win 0x222950;
+    bool resetAreaObjectValues(GameObject*, bool) = win 0x222950;
     void resetAudio() = ios 0x2009f8, win 0x231fc0, m1 0x119004, imac 0x141e50;
     void resetCamera() = ios 0x2048f8, win 0x239570, m1 0x11e7d4, imac 0x148d80;
     void resetGradientLayers() = win 0x21bbf0;
@@ -12189,7 +12238,7 @@ class GJGameState {
     int m_currentProgress;
     int m_unkUint4;
     int m_unkUint5;
-    float m_unkUint6;
+    int m_unkUint6;
     float m_unkUint7;
     GameObject* m_lastActivatedPortal1;
     GameObject* m_lastActivatedPortal2;
@@ -12234,16 +12283,16 @@ class GJGameState {
     gd::unordered_map<int, EnhancedGameObject*> m_stateObjects;
     gd::map<std::pair<GJGameEvent, int>, gd::vector<EventTriggerInstance>> m_unkMapPairGJGameEventIntVectorEventTriggerInstance;
     gd::map<std::pair<GJGameEvent, int>, int> m_unkMapPairGJGameEventIntInt;
-    gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors1;
-    gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_unorderedMapEnterEffectInstanceVectors2;
+    gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_enterEffectInstanceVectors;
+    gd::unordered_map<int, gd::vector<EnterEffectInstance>> m_exitEffectInstanceVectors;
     gd::vector<int> m_enterChannelMap;
     gd::vector<int> m_exitChannelMap;
-    gd::vector<EnterEffectInstance> m_enterEffectInstances1;
-    gd::vector<EnterEffectInstance> m_enterEffectInstances2;
-    gd::vector<EnterEffectInstance> m_enterEffectInstances3;
-    gd::vector<EnterEffectInstance> m_enterEffectInstances4;
-    gd::vector<EnterEffectInstance> m_enterEffectInstances5;
-    gd::unordered_set<int> m_unkUnorderedSet1;
+    gd::vector<EnterEffectInstance> m_moveEffectInstances;
+    gd::vector<EnterEffectInstance> m_rotateEffectInstances;
+    gd::vector<EnterEffectInstance> m_scaleEffectInstances;
+    gd::vector<EnterEffectInstance> m_fadeEffectInstances;
+    gd::vector<EnterEffectInstance> m_tintEffectInstances;
+    gd::unordered_set<int> m_unsortedAreaEffects;
     bool m_unkBool27;
     gd::vector<AdvancedFollowInstance> m_advanceFollowInstances;
     gd::vector<DynamicObjectAction> m_dynamicObjActions1;
