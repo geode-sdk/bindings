@@ -185,10 +185,10 @@ class GJPointDouble {
 
 class SavedObjectStateRef {
 	GameObject* m_gameObject;
-	double m_unkDouble1;
-	double m_unkDouble2;
-	float m_unkFloat1;
-	float m_unkFloat2;
+	double m_positionX;
+	double m_positionY;
+	float m_rotationXOffset;
+	float m_rotationYOffset;
 	float m_addToCustomScaleX;
 	float m_addToCustomScaleY;
 	float m_unkFloat3;
@@ -197,8 +197,8 @@ class SavedObjectStateRef {
 
 class SavedActiveObjectState {
 	GameObject* m_gameObject;
-	bool m_unkBool1;
-	bool m_unkBool2;
+	bool m_activatedByPlayer1;
+	bool m_activatedByPlayer2;
 }
 
 class SavedSpecialObjectState {

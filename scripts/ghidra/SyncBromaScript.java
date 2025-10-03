@@ -267,7 +267,9 @@ public class SyncBromaScript extends GhidraScript {
         if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
             status = status.promoted(SignatureImport.ADDED);
         }
-        data.getSymbol().setName(name, SourceType.USER_DEFINED);
+        if (currentProgram.getSymbolTable().getSymbol(name, addr, data.getParentNamespace()) == null) {
+            data.getSymbol().setName(name, SourceType.USER_DEFINED);
+        }
         if (className != null) {
             try {
                 data.setParentNamespace(wrapper.addOrGetNamespace(className));

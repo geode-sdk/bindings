@@ -1855,7 +1855,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 	virtual void keyBackClicked();
 	virtual void keyDown(cocos2d::enumKeyCodes) = win 0x3f570;
 	virtual void customSetup() = win 0x3e3d0;
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3f480;
 
 	bool m_exiting;
 	CCMenuItemSpriteExtra* m_audioOnBtn;
@@ -1879,7 +1879,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void colorSelectClosed(cocos2d::ccColor3B);
 	void constrainGameLayerPosition() = win 0x4c8c0;
 	void constrainGameLayerPosition(float, float) = win 0x41e60;
-	void copyObjects(cocos2d::CCArray*) = win 0x48fc0;
+	gd::string copyObjects(cocos2d::CCArray*) = win 0x48fc0;
 	void createMoveMenu() = win 0x49d20;
 	void createUndoSelectObject(bool) = win 0x48240;
 	void deactivateRotationControl();
@@ -2002,7 +2002,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	TodoReturn updateEditMenu();
 	void updateGridNodeSize() = win 0x41ae0;
 	void updateGridNodeSize(int);
-	TodoReturn updateGroupIDLabel();
+	void updateGroupIDLabel() {
+		int currentGroup = this->m_editorLayer->m_groupIDFilter;
+		if (currentGroup < 0) {
+			this->m_currentLayerLabel->setString("All");
+		}
+		else {
+			this->m_currentLayerLabel->setString(cocos2d::CCString::createWithFormat("%i", currentGroup)->getCString());
+		}
+	}
 	TodoReturn updatePercentLabel();
 	void updatePlaybackBtn() = win 0x487c0;
 	TodoReturn updateSlider();
@@ -2016,7 +2024,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void zoomIn(cocos2d::CCObject*) = win 0x48b70;
 	void zoomOut(cocos2d::CCObject*) = win 0x48bd0;
 
-	virtual void draw();
+	virtual void draw() = win 0x4cbb0;
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4d5e0;
 	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4da20;
 	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4de40;
@@ -3306,7 +3314,7 @@ class GameplayDelegate {
 
 [[link(android)]]
 class GameRateDelegate {
-	virtual TodoReturn updateRate();
+	virtual void updateRate() {}
 }
 
 [[link(android)]]
@@ -3973,7 +3981,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	void onBack(cocos2d::CCObject* sender);
 	void onBallIcon(cocos2d::CCObject* sender);
 	void onBirdIcon(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
+	void onInfo(cocos2d::CCObject* sender) = win 0x7d290;
 	void onPlayerColor1(cocos2d::CCObject* sender) = win 0x7e990;
 	void onPlayerColor2(cocos2d::CCObject* sender) = win 0x7ea80;
 	void onPlayerIcon(cocos2d::CCObject* sender) = win 0x7e070;
@@ -4002,16 +4010,16 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 	}
 
 	virtual bool init() = win 0x7c5c0;
-	virtual void keyBackClicked();
-	virtual void textInputOpened(CCTextInputNode*);
-	virtual void textInputClosed(CCTextInputNode*);
-	virtual void textChanged(CCTextInputNode*);
-	virtual void listButtonBarSwitchedPage(ListButtonBar*, int);
-	virtual TodoReturn updateRate();
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
-	virtual cocos2d::CCSprite* getRateSprite() const;
-	virtual void setRateSprite(cocos2d::CCSprite*);
-	virtual bool getDoSelect() const;
+	virtual void keyBackClicked() = win 0x2d9d0;
+	virtual void textInputOpened(CCTextInputNode*) = win 0x7d3f0;
+	virtual void textInputClosed(CCTextInputNode*) = win 0x7d580;
+	virtual void textChanged(CCTextInputNode*) = win 0x374f0;
+	virtual void listButtonBarSwitchedPage(ListButtonBar*, int) = win 0x7ed00;
+	virtual void updateRate() = win 0x7f610;
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x7f540;
+	virtual cocos2d::CCSprite* getRateSprite() const = win 0xf710;
+	virtual void setRateSprite(cocos2d::CCSprite*) = win 0x53ed0;
+	virtual bool getDoSelect() const = win 0x7c2e0;
 
 	CCTextInputNode* m_nameInput;
 	SimplePlayer* m_playerPreview;
@@ -4160,24 +4168,32 @@ class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
 }
 
 [[link(android)]]
-class GJRotationControl {
+class GJRotationControl : cocos2d::CCLayer {
 	// virtual ~GJRotationControl();
 	// GJRotationControl();
 
-	static GJRotationControl* create();
+	static GJRotationControl* create() = win 0x4fc40;
 
-	TodoReturn finishTouch();
+	void finishTouch() = win 0x4ff70;
 	TodoReturn getDelegate();
 	void setAngle(float);
-	TodoReturn updateSliderPosition(cocos2d::CCPoint);
+	void updateSliderPosition(cocos2d::CCPoint) = win 0x4fdf0;
 
-	virtual bool init();
-	virtual void draw();
-	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
-	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual bool init() = win 0x4fce0;
+	virtual void draw() = win 0x50140;
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x4ffd0;
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x500b0;
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x50120;
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x1ca60;
 	virtual void setDelegate(GJRotationControlDelegate*);
+
+	cocos2d::CCPoint m_cursorDifference;
+    cocos2d::CCPoint m_controlPosition;
+    cocos2d::CCSprite* m_controlSprite;
+    float m_startingRotation;
+    float m_currentRotation;
+    int m_touchID;
+    GJRotationControlDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -4736,7 +4752,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	TodoReturn validGroup(GameObject*);
 
 	virtual void update(float) = win 0x91620;
-	virtual void draw();
+	virtual void draw() = win 0x926b0;
 	virtual void levelSettingsUpdated();
 	virtual void flipGravity(PlayerObject*, bool, bool) = win 0x905b0;
 	virtual int getGroupIDFilter() const;
@@ -5353,7 +5369,7 @@ class LocalLevelManager : GManager {
 	static LocalLevelManager* sharedState() = win 0xac180;
 
 	TodoReturn getAllLevelsInDict();
-	TodoReturn getAllLevelsWithName(gd::string);
+	cocos2d::CCArray* getAllLevelsWithName(gd::string) = win 0xac700;
 	TodoReturn getLevelsInNameGroups();
 	gd::string getMainLevelString(int) = win 0xac310;
 	TodoReturn markLevelsAsUnmodified();
