@@ -4728,7 +4728,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	TodoReturn removeAllObjects();
 	TodoReturn removeAllObjectsOfType(int);
 	TodoReturn removeBackground();
-	TodoReturn removeObject(GameObject*, bool);
+	void removeObject(GameObject*, bool) = win 0x8e180;
 	TodoReturn removeObjectFromSection(GameObject*);
 	TodoReturn removePlayer2();
 	void removeSpecial(GameObject*) = win 0x8ee30;
