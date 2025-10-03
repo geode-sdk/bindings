@@ -4984,7 +4984,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void deactivateTransformControl() = win 0x113ad0, m1 0xd5dc, imac 0xc200, ios 0x3bf614;
     void deleteObject(GameObject* object, bool noUndo) = win inline, m1 0x325f8, imac 0x32f70, ios 0x3e1e9c {
         if (!object) return;
-        object->m_unk45c = object->m_isSelected;
+        object->m_wasSelected = object->m_isSelected;
         m_editorLayer->removeObject(object, noUndo);
         this->deactivateRotationControl();
         this->deactivateScaleControl();
@@ -8440,15 +8440,15 @@ class GameObject : CCSpritePlus {
 
     // property 511
     bool m_hasExtendedCollision;
-    cocos2d::ccColor3B m_maybeGroupColor;
-    bool m_unk280;
-    bool m_unk281;
-    float m_blackChildRelated;
-    bool m_unk288;
+    cocos2d::ccColor3B m_lighterColor;
+    bool m_isColorSpriteBlack;
+    bool m_isObjectBlack;
+    float m_childOpacity;
+    bool m_childOpacityLocked;
     bool m_editorEnabled;
     bool m_isGroupDisabled;
     bool m_unk28B;
-    bool m_unk28c;
+    bool m_unk28c; // true for animated objs, collectibles, and keyholes?
 
     // somehow related to property 155 and 156 if anyone wants to reverse engineer
     int m_activeMainColorID;
@@ -8571,7 +8571,7 @@ class GameObject : CCSpritePlus {
     bool m_ignoreFade;
     // true for object IDs 207-213 and 693-694
     bool m_isSolidColorBlock;
-    bool m_baseOrDetailBlending;
+    bool m_unk3FD;
     bool m_customSpriteColor;
 
     // property 497
@@ -8608,7 +8608,7 @@ class GameObject : CCSpritePlus {
     GJSpriteColor* m_baseColor;
     // property 22, also used with 42 and 44
     GJSpriteColor* m_detailColor;
-    bool m_unk448;
+    bool m_baseOrDetailBlending;
     ZLayer m_defaultZLayer;
     bool m_zFixedZLayer;
 
@@ -8616,12 +8616,12 @@ class GameObject : CCSpritePlus {
     ZLayer m_zLayer;
     // property 25
     int m_zOrder;
-    bool m_unk45c;
+    bool m_wasSelected;
     bool m_isSelected;
     float m_unk460;
     cocos2d::CCPoint m_unk464;
-    bool m_shouldUpdateColorSprite;
-    bool m_unk46d;
+    bool m_updateParents;
+    bool m_updateEditorColor;
 
     // property 34
     bool m_hasGroupParent;
@@ -10053,7 +10053,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int resetAreaObjectValues(GameObject*, bool) = win 0x222950;
     void resetAudio() = ios 0x2009f8, win 0x231fc0, m1 0x119004, imac 0x141e50;
     void resetCamera() = ios 0x2048f8, win 0x239570, m1 0x11e7d4, imac 0x148d80;
-    void resetGradientLayers() = win 0x21bbf0;
+    void resetGradientLayers() = win 0x21bbf0, ios 0x1f17d8;
     void resetGroupCounters(bool) = ios 0x1fe998, imac 0x13e800, m1 0x1164a0;
     void resetLevelVariables() = ios 0x2040bc, win 0x234ab0, imac 0x147d80, m1 0x11dcf0;
     TodoReturn resetMoveOptimizedValue();
@@ -10164,7 +10164,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn triggerAreaEffectAnimation(EnterEffectObject*);
     TodoReturn triggerDynamicMoveCommand(EffectGameObject*);
     TodoReturn triggerDynamicRotateCommand(EnhancedTriggerObject*);
-    void triggerGradientCommand(GradientTriggerObject*) = win 0x21a3a0, imac 0x128bc0, m1 0x104294;
+    void triggerGradientCommand(GradientTriggerObject*) = win 0x21a3a0, imac 0x128bc0, m1 0x104294, ios 0x1f14dc;
     TodoReturn triggerGravityChange(EffectGameObject*, int);
     void triggerMoveCommand(EffectGameObject*) = win 0x219690;
     TodoReturn triggerRotateCommand(EnhancedTriggerObject*);
@@ -15349,7 +15349,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     }
     void applyAttributeState(GameObject*, GameObject*) = win inline {
         p0->duplicateAttributes(p1);
-        p0->m_shouldUpdateColorSprite = true;
+        p0->m_updateParents = true;
     }
     void applyGroupState(GameObject* dest, GameObject* src) = win 0x2d8d60;
     TodoReturn breakApartTextObject(TextGameObject*) = win 0x2d6c10;
