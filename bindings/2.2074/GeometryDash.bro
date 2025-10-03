@@ -16115,7 +16115,7 @@ class LevelCell : TableViewCell {
     void loadFromLevel(GJGameLevel*) = ios 0x105c2c, win 0xad940, imac 0x232d00, m1 0x1e2d4c;
     void loadLocalLevelCell() = ios 0x10edd4, win 0xb05f0, imac 0x23cc80, m1 0x1ec8ac;
     void onClick(cocos2d::CCObject* sender) = ios 0x111c5c, win 0xb1080, imac 0x240090, m1 0x1ef99c;
-    void onToggle(cocos2d::CCObject* sender) = win 0x0adb00, m1 0x1ef984, imac 0x240070, ios 0x111c44;
+    void onToggle(cocos2d::CCObject* sender) = win 0xadb00, m1 0x1ef984, imac 0x240070, ios 0x111c44;
     void onViewProfile(cocos2d::CCObject* sender) = ios 0x111d94, win 0xb12a0, imac 0x2401f0, m1 0x1efb00;
     void updateBGColor(int index) = win inline, m1 0x1e2f08, imac 0x232ec0, ios 0x105dc0 {
         m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });
@@ -23923,7 +23923,7 @@ class SetupStaticCameraPopup : SetupTriggerPopup {
 class SetupStopTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupStopTriggerPopup();
 
-    static SetupStopTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x0459f80;
+    static SetupStopTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x459f80;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x45a820, imac 0x56f820, m1 0x4c4118, ios 0x409a2c;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x45a770, imac 0x56f7b0, m1 0x4c40a0, ios 0x4099b4;
@@ -25940,7 +25940,7 @@ class SongOptionsLayer : FLAlertLayer {
     bool init(CustomSongDelegate*) = win 0xc3880, m1 0x1b9c60, imac 0x204b20;
     void onClose(cocos2d::CCObject* sender) = win 0xc47b0;
     void onFadeIn(cocos2d::CCObject* sender) = win 0xc42a0;
-    void onFadeOut(cocos2d::CCObject* sender) = win 0x0c42f0;
+    void onFadeOut(cocos2d::CCObject* sender) = win 0xc42f0;
     void onInfo(cocos2d::CCObject* sender) = win 0xc4650, m1 0x1ba820, imac 0x2057b0;
     void onPlayback(cocos2d::CCObject* sender) = win 0xc4390;
     void onSongPersistent(cocos2d::CCObject* sender) = win 0xc4340;
