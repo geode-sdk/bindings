@@ -22098,17 +22098,72 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 
 [[link(android)]]
 class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
-    // virtual ~SetGroupIDLayer();
-    //SetGroupIDLayer() = ios 0x48054;
+    SetGroupIDLayer() = ios 0x45790 {
+        m_targetObject = nullptr;
+        m_targetObjects = nullptr;
+        m_editorLayerInput = nullptr;
+        m_editorLayer2Input = nullptr;
+        m_zOrderInput = nullptr;
+        m_groupIDInput = nullptr;
+        m_orderInput = nullptr;
+        m_channelInput = nullptr;
+        m_showChannelOrder = false;
+        m_channelValue = 0;
+        m_channelUpdated = false;
+        m_groupIDValue = 0;
+        m_editorLayerValue = 0;
+        m_editorLayer2Value = 0;
+        m_zOrderValue = -1000;
+        m_zLayerValue = ZLayer::Default;
+        m_orderValue = 0;
+        m_channelOrderEdited = false;
+        m_editorLayerEdited = false;
+        m_removeGroupsLock = false;
+        m_addedGroup = false;
+        m_reverseChanged = false;
+        m_unk2ff = false;
+        m_unk300 = false;
+        m_nextFreeID = 0;
+        m_parentGroups = nullptr;
+    }
+    ~SetGroupIDLayer() = win inline, m1 0x2964d4, imac 0x2fe2c0, ios 0x3efbc {
+        CC_SAFE_RELEASE(m_targetObjects);
+        CC_SAFE_RELEASE(m_zLayerButtons);
+        CC_SAFE_RELEASE(m_groupIDObjects);
+        CC_SAFE_RELEASE(m_parentGroups);
+    }
 
-    static SetGroupIDLayer* create(GameObject*, cocos2d::CCArray*) = imac 0x2fe420, m1 0x2965a4;
+    static SetGroupIDLayer* create(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x2fe420, m1 0x2965a4, ios 0x3f08c {
+        auto ret = new SetGroupIDLayer();
+        if (ret->init(object, objects)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void keyBackClicked() = win 0x3e62e0, imac 0x303620, m1 0x29b16c, ios 0x42db0;
     virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x29aa40, imac 0x302ea0, ios 0x42820;
     virtual void textChanged(CCTextInputNode*) = win 0x3e4400, imac 0x302ee0, m1 0x29aa5c, ios 0x4283c;
 
-    TodoReturn addGroupID(int);
-    void callRemoveFromGroup(float) = win 0x3e5000, m1 0x29af14, imac 0x3033c0, ios 0x42b94;
+    void addGroupID(int id) = win inline, m1 0x29b068, imac 0x303510, ios 0x42ccc {
+        m_addedGroup = true;
+        if (m_targetObject) {
+            if (m_targetObject->addToGroup(id) == 1) {
+                GameManager::sharedState()->m_levelEditorLayer->addToGroup(m_targetObject, id, false);
+            }
+        }
+        else {
+            for (int i = 0; i < m_targetObjects->count(); ++i) {
+                auto obj = static_cast<GameObject*>(m_targetObjects->objectAtIndex(i));
+                if (obj->addToGroup(id) == 1) {
+                    GameManager::sharedState()->m_levelEditorLayer->addToGroup(obj, id, false);
+                }
+            }
+        }
+    }
+    void callRemoveFromGroup(float dt) = win 0x3e5000, m1 0x29af14, imac 0x3033c0, ios 0x42b94;
     CCTextInputNode* createTextInput(cocos2d::CCPoint, int, int, gd::string, float, int) = win 0x3e34b0, m1 0x298718, imac 0x300800, ios 0x40d5c;
     void determineStartValues() = win 0x3e3b50, m1 0x298e08, imac 0x300ef0, ios 0x41334;
     bool init(GameObject* obj, cocos2d::CCArray* objs) = ios 0x3f110, win 0x3e1260, imac 0x2fe5f0, m1 0x296704;
@@ -22128,12 +22183,12 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onNextGroupID1(cocos2d::CCObject* sender) = ios 0x411d4, win 0x3e48d0, m1 0x298c40, imac 0x300d00;
     void onPaste(cocos2d::CCObject* sender) = win 0x3e3f30, ios 0x420a8, imac 0x3021d0, m1 0x299f48;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = ios 0x42ac8, win 0x3e51e0, m1 0x29ae48, imac 0x3032f0;
-    void onSmoothEase(cocos2d::CCObject* sender);
+    void onSmoothEase(cocos2d::CCObject* sender) = m1 0x29b154, imac 0x303600;
     void onToggleGuide(cocos2d::CCObject* sender) = win 0x3e3380, m1 0x29a0a8, imac 0x302350, ios 0x4219c;
     void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x3e3410, m1 0x29a0d4, imac 0x302380, ios 0x421c8;
     void onZLayer(cocos2d::CCObject* sender) = win 0x3e5520, m1 0x298d00, imac 0x300dd0, ios 0x41294;
     void onZLayerShift(cocos2d::CCObject* sender) = win 0x3e55e0, m1 0x2990e8, imac 0x3012f0, ios 0x41614;
-    void removeGroupID(int id) = win inline {
+    void removeGroupID(int id) = win inline, m1 0x29af8c, imac 0x303440, ios 0x42c00 {
         m_addedGroup = true;
         if (m_targetObject) {
             m_targetObject->removeFromGroup(id);
@@ -22150,16 +22205,16 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     }
     void updateEditorLabel() = win 0x3e5920, m1 0x299640, imac 0x301850, ios 0x41964;
     void updateEditorLabel2() = win 0x3e59b0, m1 0x299774, imac 0x301980, ios 0x41a04;
-    void updateEditorLayerID();
-    void updateEditorLayerID2();
-    void updateEditorOrder();
-    void updateEditorOrderLabel();
+    void updateEditorLayerID() = win 0x3e56b0, m1 0x29a4bc, imac 0x3027f0, ios 0x423c4;
+    void updateEditorLayerID2() = win 0x3e5730, m1 0x29a52c, imac 0x302870, ios 0x4242c;
+    void updateEditorOrder() = win 0x3e5e90, m1 0x29a59c, imac 0x3028f0, ios 0x42494;
+    void updateEditorOrderLabel() = win 0x3e5b60, m1 0x2991a4, imac 0x3013b0, ios 0x416d0;
     void updateGroupIDButtons() = win 0x3e4940, m1 0x299a60, imac 0x301c70, ios 0x41bd8;
     void updateGroupIDLabel() = ios 0x418c4, win 0x3e5ad0, m1 0x29950c, imac 0x301720;
-    void updateOrderChannel();
-    void updateOrderChannelLabel();
+    void updateOrderChannel() = win 0x3e5dc0, m1 0x29a644, imac 0x3029a0, ios 0x42534;
+    void updateOrderChannelLabel() = win 0x3e5c10, m1 0x2992f8, imac 0x301500, ios 0x417ac;
     void updateZLayerButtons() = win 0x3e5d30, m1 0x2999d0, imac 0x301be0, ios 0x41b48;
-    void updateZOrder() = win 0x3e5890;
+    void updateZOrder() = win 0x3e5890, m1 0x29a6ec, imac 0x302a50, ios 0x425d4;
     void updateZOrderLabel() = win 0x3e5a40, m1 0x2998a8, imac 0x301ab0, ios 0x41aa4;
 
     GameObject* m_targetObject;
