@@ -22133,7 +22133,21 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x3e3410, m1 0x29a0d4, imac 0x302380, ios 0x421c8;
     void onZLayer(cocos2d::CCObject* sender) = win 0x3e5520, m1 0x298d00, imac 0x300dd0, ios 0x41294;
     void onZLayerShift(cocos2d::CCObject* sender) = win 0x3e55e0, m1 0x2990e8, imac 0x3012f0, ios 0x41614;
-    void removeGroupID(int) = win 0x3e4940;
+    void removeGroupID(int id) = win inline {
+        m_addedGroup = true;
+        if (m_targetObject) {
+            m_targetObject->removeFromGroup(id);
+            GameManager::sharedState()->m_levelEditorLayer->removeFromGroup(m_targetObject, id);
+        }
+        else {
+            for (int i = 0; i < m_targetObjects->count(); i++) {
+                auto obj = static_cast<GameObject*>(m_targetObjects->objectAtIndex(i));
+                obj->removeFromGroup(id);
+                GameManager::sharedState()->m_levelEditorLayer->removeFromGroup(obj, id);
+            }
+        }
+        this->updateGroupIDButtons();
+    }
     void updateEditorLabel() = win 0x3e5920, m1 0x299640, imac 0x301850, ios 0x41964;
     void updateEditorLabel2() = win 0x3e59b0, m1 0x299774, imac 0x301980, ios 0x41a04;
     void updateEditorLayerID();
