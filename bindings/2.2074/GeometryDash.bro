@@ -27448,12 +27448,12 @@ class UploadActionPopup : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x28e320, m1 0x239564, imac 0x291070, ios 0x2d86e0;
 
-    void closePopup() = win inline {
+    void closePopup() = win inline, m1 0x239528, imac 0x291040, ios 0x2d86a4 {
         this->setKeypadEnabled(false);
         this->removeFromParentAndCleanup(true);
     }
     bool init(UploadPopupDelegate* delegate, gd::string str) = win 0x28dc60, imac 0x2908c0, m1 0x238df0, ios 0x2d80e0;
-    void onClose(cocos2d::CCObject* sender) = win 0x28e2d0;
+    void onClose(cocos2d::CCObject* sender) = win 0x28e2d0, m1 0x23920c, imac 0x290d20, ios 0x2d8478;
     void showFailMessage(gd::string message) = win 0x28e1d0, m1 0x2393d4, imac 0x290ee0, ios 0x2d85c8;
     void showSuccessMessage(gd::string message) = win 0x28e0c0, m1 0x23926c, imac 0x290d70, ios 0x2d84d8;
 
