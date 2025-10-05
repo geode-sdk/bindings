@@ -8599,8 +8599,14 @@ class GameObject : CCSpritePlus {
     void determineSlopeDirection() = ios 0x25c100, win 0x199340, m1 0x4e0550, imac 0x5a6120;
     bool didScaleXChange();
     bool didScaleYChange();
-    void dirtifyObjectPos();
-    void dirtifyObjectRect();
+    inline void dirtifyObjectPos() {
+        m_isObjectPosDirty = true;
+        m_isUnmodifiedPosDirty = true;
+    }
+    inline void dirtifyObjectRect() {
+        m_isObjectRectDirty = true;
+        m_isOrientedBoxDirty = true;
+    }
     void disableObject() = m1 0x4df648, imac 0x5a5400;
     bool dontCountTowardsLimit();
     void duplicateAttributes(GameObject*) = win 0x19ed00;
@@ -8708,7 +8714,10 @@ class GameObject : CCSpritePlus {
     void removeGlow() = m1 0x4d834c, imac 0x58cb90;
     void reorderColorSprite();
     void resetColorGroups();
-    void resetGroupDisabled() = imac 0x591eb0, m1 0x4d9220;
+    void resetGroupDisabled() = imac 0x591eb0, m1 0x4d9220, win inline {
+        m_enabledGroupsCounter = 0;
+        m_isGroupDisabled = false;
+    }
     void resetGroups() = imac 0x5a66a0, m1 0x4e0b1c;
     void resetMainColorMode();
     void resetMID();
@@ -10385,7 +10394,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         return 270.f;
     }
     cocos2d::CCArray* getGroup(int) = ios 0x1e39cc, imac 0x10d760, m1 0xed194, win 0x21eed0;
-    TodoReturn getGroupParent(int);
+    GameObject* getGroupParent(int groupId) {
+        return static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupId));
+    }
     TodoReturn getGroupParentsString(GameObject*);
     double getItemValue(int, int) = win 0x22ea60;
     float getMaxPortalY() = ios 0x1e8750, imac 0x114f30, m1 0xf4544, win 0x20e2b0;
@@ -10471,7 +10482,30 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
     void moveObject(GameObject*, double, double, bool);
     void moveObjects(cocos2d::CCArray*, double, double, bool) = win 0x228a70, m1 0x111020, imac 0x137c20, ios 0x1fb324;
-    void moveObjectsSilent(int, double, double);
+    void moveObjectsSilent(int groupId, double dx, double dy) {
+        auto group = this->getGroup(groupId);
+        if (group != nullptr) {
+            size_t count = group->count();
+
+            // no ccarrayext in bindings :(
+
+            for (size_t i = 0; i < count; i++) {
+                auto obj = static_cast<GameObject*>(group->objectAtIndex(i));
+
+                if (!obj->m_tempOffsetXRelated) {
+                    obj->m_positionX += dx;
+                }
+                obj->m_positionY += dy;
+                obj->dirtifyObjectRect();
+                obj->dirtifyObjectPos();
+                this->updateObjectSection(obj);
+                obj->m_lastPosition.x = obj->m_positionX;
+                obj->m_lastPosition.y = obj->m_positionY;
+            }
+        }
+
+        m_effectManager->saveCompletedMove(groupId, dx, dy);
+    }
     void moveObjectToStaticGroup(GameObject*) = win 0x22c060, m1 0x1133c0, imac 0x13ac40, ios 0x1fc900;
     TodoReturn objectIntersectsCircle(GameObject*, GameObject*);
     GJGameEvent objectTypeToGameEvent(int) = ios 0x1e804c, win 0x22ce10, m1 0xf3c84, imac 0x1144d0;
@@ -11625,7 +11659,7 @@ class GJEffectManager : cocos2d::CCNode {
     GroupCommandObject2* createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&) = win 0x255980;
     void createMoveCommand(cocos2d::CCPoint pt, int groupID, float duration, int easingType, float easingRate, bool lockPlayerX, bool lockPlayerY, bool lockCameraX, bool lockCameraY, float moveModX, float moveModY, int uniqueID, int controlID) = win 0x255370;
     void createPlayerFollowCommand(float, float, int, float, float, int, int, int) = win 0x255860;
-    TodoReturn createRotateCommand(float, float, int, int, int, float, bool, bool, bool, int, int);
+    void createRotateCommand(float, float, int, int, int, float, bool, bool, bool, int, int) = win 0x255620;
     TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
     cocos2d::CCArray* getAllColorActions() = win 0x253f40;
     TodoReturn getAllColorSprites();
@@ -11692,7 +11726,11 @@ class GJEffectManager : cocos2d::CCNode {
     PulseEffectAction* runPulseEffect(int, bool, float, float, float, PulseEffectType, cocos2d::ccColor3B, cocos2d::ccHSVValue, int, bool, bool, bool, bool, int, int) = win 0x2598b0;
     TodoReturn runTimerTrigger(int, double, bool, int, gd::vector<int> const&, int, int);
     TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int);
-    TodoReturn saveCompletedMove(int, double, double);
+    inline void saveCompletedMove(int groupId, double dx, double dy) {
+        auto& entry = m_unkMap578[groupId];
+        entry.first += dx;
+        entry.second += dy;
+    }
     void saveToState(EffectManagerState&) = win 0x25c520;
     void setColorAction(ColorAction*, int) = win 0x254a90, m1 0x26e4cc, imac 0x2cb570;
     void setFollowing(int, int, bool);
@@ -15222,7 +15260,7 @@ class GroupCommandObject2 {
     float m_gameObjectRotation;
     gd::vector<int> m_remapKeys;
     bool m_someInterpValue2RelatedTrue;
-    float m_unkFloat204;
+    int m_unkInt204;
 }
 
 [[link(android)]]
@@ -22095,7 +22133,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
     void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x3e3410, m1 0x29a0d4, imac 0x302380, ios 0x421c8;
     void onZLayer(cocos2d::CCObject* sender) = win 0x3e5520, m1 0x298d00, imac 0x300dd0, ios 0x41294;
     void onZLayerShift(cocos2d::CCObject* sender) = win 0x3e55e0, m1 0x2990e8, imac 0x3012f0, ios 0x41614;
-    TodoReturn removeGroupID(int);
+    void removeGroupID(int) = win 0x3e4940;
     void updateEditorLabel() = win 0x3e5920, m1 0x299640, imac 0x301850, ios 0x41964;
     void updateEditorLabel2() = win 0x3e59b0, m1 0x299774, imac 0x301980, ios 0x41a04;
     void updateEditorLayerID();
