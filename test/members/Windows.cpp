@@ -1009,7 +1009,7 @@ GEODE_MEMBER_CHECK(GroupCommandObject2, m_gameObject, 0x1d8);
 GEODE_MEMBER_CHECK(GroupCommandObject2, m_gameObjectRotation, 0x1e0);
 GEODE_MEMBER_CHECK(GroupCommandObject2, m_remapKeys, 0x1e8);
 GEODE_MEMBER_CHECK(GroupCommandObject2, m_someInterpValue2RelatedTrue, 0x200);
-GEODE_MEMBER_CHECK(GroupCommandObject2, m_unkFloat204, 0x204);
+GEODE_MEMBER_CHECK(GroupCommandObject2, m_unkInt204, 0x204);
 
 GEODE_SIZE_CHECK(TimerItem, 0x58);
 GEODE_MEMBER_CHECK(TimerItem, m_itemID, 0x0);

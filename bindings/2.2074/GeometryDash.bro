@@ -15260,7 +15260,7 @@ class GroupCommandObject2 {
     float m_gameObjectRotation;
     gd::vector<int> m_remapKeys;
     bool m_someInterpValue2RelatedTrue;
-    int m_unkInt204;
+    int m_unkInt204; // formerly m_unkFloat204
 }
 
 [[link(android)]]
