@@ -4570,37 +4570,37 @@ class KeybindingsManager {
 
 [[link(android)]]
 class LeaderboardManagerDelegate {
-	virtual TodoReturn updateUserScoreFinished();
-	virtual TodoReturn updateUserScoreFailed();
-	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadLeaderboardFailed(char const*);
+	virtual void updateUserScoreFinished();
+	virtual void updateUserScoreFailed();
+	virtual void loadLeaderboardFinished(cocos2d::CCArray*, char const*);
+	virtual void loadLeaderboardFailed(char const*);
 }
 
 [[link(android)]]
 class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate {
 	// virtual ~LeaderboardsLayer();
 
-	static LeaderboardsLayer* create(LeaderboardState);
+	static LeaderboardsLayer* create(LeaderboardState) = win 0x87f20;
 	static cocos2d::CCScene* scene(LeaderboardState);
 
-	bool init(LeaderboardState);
-	bool isCorrect(char const*);
+	bool init(LeaderboardState) = win 0x87fc0;
+	bool isCorrect(char const*) = win 0x88f60;
 	void onBack(cocos2d::CCObject* sender);
-	void onCreators(cocos2d::CCObject* sender);
-	void onGlobal(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onTop(cocos2d::CCObject* sender);
-	void onWeek(cocos2d::CCObject* sender);
+	void onCreators(cocos2d::CCObject* sender) = win 0x88b50;
+	void onGlobal(cocos2d::CCObject* sender) = win 0x88b30;
+	void onInfo(cocos2d::CCObject* sender) = win 0x89110;
+	void onTop(cocos2d::CCObject* sender) = win 0x88af0;
+	void onWeek(cocos2d::CCObject* sender) = win 0x88b10;
 	void selectLeaderboard(LeaderboardState) = win 0x88b70;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x889e0;
 	void setupTabs() = win 0x884f0;
 	void toggleTabButtons() = win 0x88ca0;
 
 	virtual void keyBackClicked();
-	virtual TodoReturn updateUserScoreFinished();
-	virtual TodoReturn updateUserScoreFailed();
-	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadLeaderboardFailed(char const*);
+	virtual void updateUserScoreFinished() = win 0x88e80;
+	virtual void updateUserScoreFailed() = win 0x88ea0;
+	virtual void loadLeaderboardFinished(cocos2d::CCArray*, char const*) = win 0x88eb0;
+	virtual void loadLeaderboardFailed(char const*) = win 0x88f20;
 }
 
 [[link(android)]]
