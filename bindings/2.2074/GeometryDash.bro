@@ -6962,8 +6962,8 @@ class FMODAudioEngine : cocos2d::CCNode {
     float stopAndGetFade(FMOD::Channel*) = win 0x58a20, m1 0x35a2bc, imac 0x3d3cc0, ios 0x13fa54;
     void stopAndRemoveMusic(int) = win 0x5ca80, imac 0x3d7a20, m1 0x35d624, ios 0x141c7c;
     void stopChannel(FMOD::Channel*, bool, float) = win 0x58810;
-    void stopChannel(int, AudioTargetType, bool, float) = win 0x58540;
-    void stopChannel(int id) = win inline {
+    void stopChannel(int, AudioTargetType, bool, float) = win 0x58540, imac 0x3d33c0, m1 0x359c14, ios 0x13f654;
+    void stopChannel(int id) = win inline, imac inline, m1 inline, ios inline {
         this->stopChannel(id, AudioTargetType::SFXChannel, false, 0.f);
     }
     void stopChannelTween(int id, AudioTargetType target, AudioModType mod) {
