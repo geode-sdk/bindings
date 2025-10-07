@@ -8268,8 +8268,8 @@ class GameManager : GManager {
     TodoReturn videoAdHidden();
     TodoReturn videoAdShowed();
 
-    cocos2d::CCDictionary* m_unkAnimationDict;
-    cocos2d::CCDictionary* m_unkAnimationDict2;
+    cocos2d::CCDictionary* m_mainFramesForAnimation;
+    cocos2d::CCDictionary* m_detailFramesForAnimation;
     cocos2d::CCDictionary* m_frameTimeForAnimation;
     cocos2d::CCDictionary* m_framesForAnimation;
     cocos2d::CCDictionary* m_defaultFrames;
@@ -9223,7 +9223,7 @@ class GameObject : CCSpritePlus {
     // property 146
     bool m_particleUseObjectColor;
     bool m_hasColorSprite;
-    cocos2d::CCPoint m_unk31c;
+    cocos2d::CCPoint m_particleOffset;
     bool m_isSomeSpriteScalable;
     cocos2d::CCRect m_textureRect;
     bool m_isDirty;
@@ -9330,8 +9330,8 @@ class GameObject : CCSpritePlus {
     // property 53
     int m_property53;
     bool m_isInvisibleBlock;
-    bool m_customGlowColor;
     bool m_glowColorIsLBG;
+    bool m_customGlowColor;
     bool m_cantColorGlow;
     float m_opacityMod;
     bool m_slopeUphill;
@@ -9451,7 +9451,7 @@ class GameObject : CCSpritePlus {
     int m_unk52C;
     bool m_unk530;
     bool m_isUIObject;
-    bool m_unk532;
+    bool m_greenDebugDraw;
 }
 
 [[link(android)]]
