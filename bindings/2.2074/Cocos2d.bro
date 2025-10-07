@@ -5075,7 +5075,7 @@ class cocos2d {
     static void CCProfilingBeginTimingBlock(char const*);
     static void CCProfilingEndTimingBlock(char const*);
     static void CCProfilingResetTimingBlock(char const*);
-    static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
+    static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&) = m1 0x1df2a8, imac 0x22e5b0, ios 0x40b268;
     static cocos2d::CCRect CCRectFromString(char const*) = m1 0x4a7204, imac 0x54fcc0, ios 0x1a93ec;
     static cocos2d::CCSize CCSizeFromString(char const*) = m1 0x4a7fec, imac 0x550bb0, ios 0x1a9d4c;
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = m1 0x4f1f3c, imac 0x5bc460, ios 0x2f8b04;

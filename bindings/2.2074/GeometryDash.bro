@@ -8434,8 +8434,9 @@ class GameManager : GManager {
 
 [[link(android)]]
 class GameObject : CCSpritePlus {
-    // virtual ~GameObject();
     GameObject() = win 0x135ba0, m1 0x199f78, imac 0x1e2350, ios 0x22ee90;
+    ~GameObject() = win 0x188730, m1 0x4d72e4, imac 0x585600, ios 0x2534cc;
+
     static GameObject* createWithFrame(char const* name) = ios 0x253d3c, win 0x18aca0, imac 0x58a280, m1 0x4d7884;
     static GameObject* createWithKey(int key) = ios 0x253594, win 0x188850, imac 0x585720, m1 0x4d73bc;
     static GameObject* objectFromVector(gd::vector<gd::string>& propValues, gd::vector<void*>& propIsPresent, GJBaseGameLayer* gameLayer, bool lowDetail) = win 0x19a260, imac 0x5a7da0, m1 0x4e2090, ios 0x25d1e4;
@@ -8526,50 +8527,123 @@ class GameObject : CCSpritePlus {
     virtual void setType(GameObjectType) = win 0x136050, m1 0x1999e4, imac 0x1e1bc0, ios 0x22ea94;
     virtual cocos2d::CCPoint getStartPos() const = win 0x136060, imac 0x1e1bd0, m1 0x1999ec, ios 0x22ea9c;
 
-    void addColorSprite(gd::string) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00, ios 0x254690;
-    void addColorSpriteToParent(bool) = imac 0x592300, m1 0x4d95b8, win 0x199040, ios 0x2555a8;
+    void addColorSprite(gd::string frame) = win 0x18b830, m1 0x4d83b4, imac 0x58cc00, ios 0x254690;
+    void addColorSpriteToParent(bool reorder) = imac 0x592300, m1 0x4d95b8, win 0x199040, ios 0x2555a8;
     void addColorSpriteToSelf() = win 0x199240, m1 0x4e045c, imac 0x5a6020, ios 0x25c010;
-    cocos2d::CCSprite* addCustomBlackChild(gd::string, float, bool) = imac 0x5a30a0, m1 0x4dd4c0;
+    cocos2d::CCSprite* addCustomBlackChild(gd::string frame, float opacity, bool color) = win inline, imac 0x5a30a0, m1 0x4dd4c0, ios inline {
+        if (color) {
+            return this->addCustomColorChild(frame);
+        }
+        else {
+            auto ret = this->addCustomChild(frame, { 0.f, 0.f }, -2);
+            ret->setColor({ 0, 0, 0 });
+            m_blackChildOpacity = opacity;
+            ret->setOpacity(opacity * 255);
+            m_unk280 = true;
+            return ret;
+        }
+    }
     cocos2d::CCSprite* addCustomChild(gd::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x194330, m1 0x4dd6a8, imac 0x5a3240, ios 0x259a28;
-    cocos2d::CCSprite* addCustomColorChild(gd::string) = win 0x1943f0, m1 0x4dd750, imac 0x5a32e0, ios 0x259ad0;
+    cocos2d::CCSprite* addCustomColorChild(gd::string frame) = win 0x1943f0, m1 0x4dd750, imac 0x5a32e0, ios 0x259ad0;
     void addEmptyGlow() = win 0x18b6e0, m1 0x4d825c, imac 0x58ca90, ios 0x2545d8;
-    void addGlow(gd::string) = win 0x18af60, imac 0x58a5c0, m1 0x4d7bd0, ios 0x254034;
+    void addGlow(gd::string frame) = win 0x18af60, imac 0x58a5c0, m1 0x4d7bd0, ios 0x254034;
     cocos2d::CCSprite* addInternalChild(cocos2d::CCSprite* parent, gd::string frame, cocos2d::CCPoint offset, int zOrder) = win inline, imac 0x5a3480, m1 0x4dd8ec, ios inline {
         auto spr = cocos2d::CCSprite::createWithSpriteFrameName(frame.c_str());
         spr->setPosition(parent->convertToNodeSpace({0.f, 0.f}) + offset);
         parent->addChild(spr, zOrder);
         return spr;
     }
-    cocos2d::CCSprite* addInternalCustomColorChild(gd::string, cocos2d::CCPoint, int) = win 0x194530, m1 0x4dd828, imac 0x5a33d0, ios 0x259b68;
-    cocos2d::CCSprite* addInternalGlowChild(gd::string, cocos2d::CCPoint) = win 0x194600, imac 0x5a3510, m1 0x4dd990, ios 0x259c18;
-    void addNewSlope01(bool);
-    void addNewSlope01Glow(bool);
-    void addNewSlope02(bool);
-    void addNewSlope02Glow(bool);
-    void addRotation(float, float);
-    void addRotation(float) = win 0x194d50;
-    void addToColorGroup(int);
-    void addToCustomScaleX(float) = win inline, m1 0x4dea20, imac 0x5a4620, ios 0x25aa34 {
+    cocos2d::CCSprite* addInternalCustomColorChild(gd::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x194530, m1 0x4dd828, imac 0x5a33d0, ios 0x259b68;
+    cocos2d::CCSprite* addInternalGlowChild(gd::string frame, cocos2d::CCPoint offset) = win 0x194600, imac 0x5a3510, m1 0x4dd990, ios 0x259c18;
+    void addNewSlope01(bool dontDraw) = win inline, m1 0x4ebae0, imac 0x5b3230, ios 0x261a74 {
+        if (dontDraw) this->setDontDraw(true);
+        auto sprite = this->addCustomChild("blockOutline_14new_001.png", { 0.f, 0.f }, 2);
+        sprite->setRotation(-45.f);
+    }
+    void addNewSlope01Glow(bool dontDraw) = win inline, m1 0x4ebbe8, imac 0x5b3320, ios 0x261b20 {
+        if (!m_glowSprite) return;
+        if (dontDraw) m_glowSprite->setDontDraw(true);
+        auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(this->getGlowFrame("blockOutline_14new_001.png").c_str());
+        sprite->setRotation(-45.f);
+        m_glowSprite->addChild(sprite);
+        sprite->setPosition(m_glowSprite->convertToNodeSpace({ 0.f, 0.f }));
+    }
+    void addNewSlope02(bool dontDraw) = win inline, m1 0x4ebd2c, imac 0x5b3460, ios 0x261c38 {
+        if (dontDraw) this->setDontDraw(true);
+        auto sprite = this->addCustomChild("blockOutline_15new_001.png", { 0.f, 0.f }, 2);
+        sprite->setRotation(-26.5f);
+    }
+    void addNewSlope02Glow(bool dontDraw) = win inline, m1 0x4ebe34, imac 0x5b3550, ios 0x261ce4 {
+        if (!m_glowSprite) return;
+        if (dontDraw) m_glowSprite->setDontDraw(true);
+        auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(this->getGlowFrame("blockOutline_15new_001.png").c_str());
+        sprite->setRotation(-26.5f);
+        m_glowSprite->addChild(sprite);
+        sprite->setPosition(m_glowSprite->convertToNodeSpace({ 0.f, 0.f }));
+    }
+    void addRotation(float rotationX, float rotationY) = win inline, m1 0x4de2a8, imac 0x5a3ef0, ios inline {
+        this->setRotationX(this->getRotationX() + rotationX);
+        this->setRotationY(this->getRotationY() + rotationY);
+    }
+    void addRotation(float rotation) = win 0x194d50, m1 0x4de21c, imac 0x5a3e70, ios 0x25a334;
+    void addToColorGroup(int group) = win 0x199a50, m1 0x4e0c78, imac 0x5a6800, ios 0x25c714;
+    void addToCustomScaleX(float scale) = win inline, m1 0x4dea20, imac 0x5a4620, ios 0x25aa34 {
         m_isDirty = true;
         m_isObjectRectDirty = true;
-        m_scaleXOffset += p0;
-        m_scaleX += p0;
+        m_scaleXOffset += scale;
+        m_scaleX += scale;
     }
-    void addToCustomScaleY(float) = win inline, m1 0x4dea48, imac 0x5a4660, ios 0x25aa5c {
+    void addToCustomScaleY(float scale) = win inline, m1 0x4dea48, imac 0x5a4660, ios 0x25aa5c {
         m_isDirty = true;
         m_isObjectRectDirty = true;
-        m_scaleYOffset += p0;
-        m_scaleY += p0;
+        m_scaleYOffset += scale;
+        m_scaleY += scale;
     }
-    void addToOpacityGroup(int);
-    void addToTempOffset(double, double);
-    void assignUniqueID() = m1 0x4d7bb4, imac 0x58a5a0;
-    bool belongsToGroup(int);
-    void calculateOrientedBox();
-    bool canChangeCustomColor();
-    bool canChangeMainColor();
-    bool canChangeSecondaryColor();
-    bool canRotateFree() = m1 0x4e0904, imac 0x5a64b0, win inline {
+    void addToOpacityGroup(int group) = win inline, m1 0x4e0db4, imac 0x5a6950, ios 0x25c7e0 {
+        if (m_opacityGroupCount < 10 && group > 0 && group < 10000) {
+            this->createOpacityGroupContainer(10);
+            if (m_opacityGroupCount > 0) {
+                for (int i = 0; i < m_opacityGroupCount; i++) {
+                    if ((*m_opacityGroups)[i] == group) return;
+                }
+            }
+            (*m_opacityGroups)[m_opacityGroupCount] = group;
+            m_opacityGroupCount++;
+        }
+    }
+    void addToTempOffset(double offsetX, double offsetY) = win inline, m1 0x4ddfdc, imac 0x5a3bc0, ios 0x25a164 {
+        if (!m_tempOffsetXRelated) m_positionX += offsetX;
+        m_positionY += offsetY;
+    }
+    void assignUniqueID() = win inline, m1 0x4d7bb4, imac 0x58a5a0, ios 0x254018 {
+        auto uniqueID = reinterpret_cast<int*>(geode::base::get() + 0x69c158);
+        m_uniqueID = *uniqueID;
+        m_unknown5 = *uniqueID;
+        (*uniqueID)++;
+    }
+    bool belongsToGroup(int group) = win inline, m1 0x4e0bbc, imac 0x5a6740, ios 0x25c6b8 {
+        if (m_groupCount > 0) {
+            for (int i = 0; i < m_groupCount; i++) {
+                if ((*m_groups)[i] == group) return true;
+            }
+        }
+        return false;
+    }
+    void calculateOrientedBox() = win inline, m1 0x4ea3cc, imac 0x5b1560, ios 0x260a3c {
+        m_shouldUseOuterOb = true;
+        this->updateOrientedBox();
+        this->getObjectRect();
+    }
+    bool canChangeCustomColor() = win inline, m1 0x4ea888, imac 0x5b1a40, ios 0x260e70 {
+        return this->canChangeMainColor() || this->canChangeSecondaryColor();
+    }
+    bool canChangeMainColor() = win inline, m1 0x4ea8bc, imac 0x5b1a70, ios 0x260ea4 {
+        return m_baseColor->m_defaultColorID != 0;
+    }
+    bool canChangeSecondaryColor() = win inline, m1 0x4ea8d0, imac 0x5b1a90, ios 0x260eb8 {
+        return m_detailColor && m_detailColor->m_defaultColorID != 0;
+    }
+    bool canRotateFree() = ios 0x25c49c, m1 0x4e0904, imac 0x5a64b0, win inline {
         auto type = m_objectType;
         return (
             type != GameObjectType::Solid
@@ -8577,117 +8651,283 @@ class GameObject : CCSpritePlus {
             && type != GameObjectType::Slope
         ) || m_isNoTouch;
     }
-    cocos2d::ccColor3B colorForMode(int, bool) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
+    cocos2d::ccColor3B colorForMode(int id, bool mainColor) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
     void commonInteractiveSetup() = win 0x193e00, imac 0x59d6a0, m1 0x4dc750, ios 0x25893c;
-    void commonSetup() = win 0x18ad70, m1 0x4d7950, imac 0x58a320;
-    void copyGroups(GameObject*) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0;
-    cocos2d::CCParticleSystemQuad* createAndAddParticle(int p0, char const* plistName, int p2, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810, ios 0x2589ec;
-    void createColorGroupContainer(int);
+    void commonSetup() = win 0x18ad70, m1 0x4d7950, imac 0x58a320, ios 0x253dfc;
+    void copyGroups(GameObject* object) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0, ios 0x25c644;
+    cocos2d::CCParticleSystemQuad* createAndAddParticle(int objectType, char const* plistName, int tag, cocos2d::tCCPositionType positionType) = win 0x195ba0, imac 0x59d770, m1 0x4dc810, ios 0x2589ec;
+    void createColorGroupContainer(int size) = win inline, m1 0x4e0c18, imac 0x5a67a0, ios inline {
+        if (!m_colorGroups) {
+            m_colorGroups = new std::array<short, 10>();
+            for (int i = 0; i < size; i++) {
+                (*m_colorGroups)[i] = 0;
+            }
+        }
+    }
     void createGlow(gd::string frame) = win 0x18b750, imac 0x58c9f0, m1 0x4d81c8, ios 0x254544;
-    void createGroupContainer(int size) = win 0x199740;
-    void createOpacityGroupContainer(int);
-    void createSpriteColor(int) = imac 0x58a4e0, m1 0x4d7afc;
-    void deselectObject() = win inline {
+    void createGroupContainer(int size) = win 0x199740, m1 0x4e0958, imac 0x5a6510, ios inline {
+        if (!m_groups) {
+            m_groups = new std::array<short, 10>();
+            for (int i = 0; i < size; i++) {
+                (*m_groups)[i] = 0;
+            }
+        }
+    }
+    void createOpacityGroupContainer(int size) = win inline, m1 0x4e0d54, imac 0x5a68f0, ios inline {
+        if (!m_opacityGroups) {
+            m_opacityGroups = new std::array<short, 10>();
+            for (int i = 0; i < size; i++) {
+                (*m_opacityGroups)[i] = 0;
+            }
+        }
+    }
+    void createSpriteColor(int type) = win inline, imac 0x58a4e0, m1 0x4d7afc, ios 0x253f74 {
+        if (type == 2) {
+            if (!m_detailColor) m_detailColor = new GJSpriteColor();
+        }
+        else {
+            if (!m_baseColor) m_baseColor = new GJSpriteColor();
+        }
+    }
+    void deselectObject() = win inline, m1 0x4e9d48, imac 0x5b0ef0, ios 0x260768 {
         m_isSelected = false;
         this->updateObjectEditorColor();
     }
-    inline void destroyObject() { // what ? not inline, imac 0x5a5340
+    void destroyObject() = win inline, m1 0x4df5e0, imac 0x5a5340, ios 0x25b428 {
         m_isDisabled = true;
         m_isDisabled2 = true;
-        setOpacity(0);
+        this->setOpacity(0);
     }
     void determineSlopeDirection() = ios 0x25c100, win 0x199340, m1 0x4e0550, imac 0x5a6120;
-    bool didScaleXChange();
-    bool didScaleYChange();
-    inline void dirtifyObjectPos() {
+    bool didScaleXChange() = win inline, m1 0x4dea70, imac 0x5a46a0, ios inline {
+        return (int)(m_scaleX * 10000) != (int)(m_customScaleX * 10000);
+    }
+    bool didScaleYChange() = win inline, m1 0x4deaa0, imac 0x5a46d0, ios inline {
+        return (int)(m_scaleY * 10000) != (int)(m_customScaleY * 10000);
+    }
+    void dirtifyObjectPos() = win inline, m1 0x4ddad0, imac 0x5a3650, ios 0x259ce0 {
         m_isObjectPosDirty = true;
         m_isUnmodifiedPosDirty = true;
     }
-    inline void dirtifyObjectRect() {
+    void dirtifyObjectRect() = win inline, m1 0x4ddac4, imac 0x5a3640, ios 0x259cd4 {
         m_isObjectRectDirty = true;
         m_isOrientedBoxDirty = true;
     }
-    void disableObject() = m1 0x4df648, imac 0x5a5400;
-    bool dontCountTowardsLimit();
-    void duplicateAttributes(GameObject*) = win 0x19ed00;
-    void duplicateColorMode(GameObject*);
-    void duplicateValues(GameObject*) = win 0x19ee40, ios 0x2610c4, m1 0x4eab88, imac 0x5b1e40;
-    cocos2d::ccColor3B editorColorForCustomMode(int);
-    cocos2d::ccColor3B editorColorForMode(int) = win 0x19e0a0;
-    void fastRotateObject(float);
-    cocos2d::ccColor3B getActiveColorForMode(int, bool) = win 0x19f140, m1 0x4eb568, imac 0x5b28b0, ios 0x26151c;
-    char* getBallFrame(int) = m1 0x4e937c, imac 0x5b05a0;
-    cocos2d::CCRect getBoundingRect();
-    cocos2d::CCPoint getBoxOffset();
-    gd::string getColorFrame(gd::string) = win 0x18d450;
-    int getColorIndex();
-    gd::string getColorKey(bool isMainColor, bool) = win 0x199db0, m1 0x4e1704, imac 0x5a7190, ios 0x25ccd4;
-    ZLayer getCustomZLayer();
-    gd::string getGlowFrame(gd::string);
-    bool getGroupDisabled();
+    void disableObject() = win inline, m1 0x4df648, imac 0x5a5400, ios 0x25b490 {
+        m_isDisabled = true;
+        m_isDisabled2 = true;
+        this->setOpacity(0);
+        this->triggerActivated(0.f);
+    }
+    bool dontCountTowardsLimit() = win inline, m1 0x4dca58, imac 0x59de70, ios inline {
+        return m_objectID == 31;
+    }
+    void duplicateAttributes(GameObject* object) = win 0x19ed00, m1 0x4eaae4, imac 0x5b1d50, ios 0x261040;
+    void duplicateColorMode(GameObject* object) = win 0x19ec20, m1 0x4eaa44, imac 0x5b1c80, ios 0x260fa0;
+    void duplicateValues(GameObject* object) = win 0x19ee40, ios 0x2610c4, m1 0x4eab88, imac 0x5b1e40;
+    cocos2d::ccColor3B editorColorForCustomMode(int id) = win inline, m1 0x4e9c68, imac 0x5b0e30, ios 0x2606a0 {
+        auto index = (id < 5 ? id : id - 5) % 12;
+        switch (index) {
+            case 0: return { 210, 255, 167 };
+            case 1: return { 167, 255, 167 };
+            case 2: return { 165, 255, 209 };
+            case 3: return { 167, 255, 255 };
+            case 4: return { 166, 209, 255 };
+            case 5: return { 167, 167, 255 };
+            case 6: return { 209, 166, 255 };
+            case 7: return { 255, 167, 255 };
+            case 8: return { 255, 166, 209 };
+            case 9: return { 255, 167, 167 };
+            case 10: return { 255, 209, 166 };
+            case 11: return { 255, 255, 167 };
+            default: return { 255, 255, 255 };
+        }
+    }
+    cocos2d::ccColor3B editorColorForMode(int id) = win 0x19e0a0, m1 0x4e9ad8, imac 0x5b0cc0, ios 0x2605e0;
+    void fastRotateObject(float rotation) = win inline, m1 0x4ea650, imac 0x5b1830, ios 0x260cac {
+        m_rotationXOffset += rotation;
+        m_rotationYOffset += rotation;
+        this->addRotation(rotation);
+        if (m_objectType != GameObjectType::Decoration && !m_shouldUseOuterOb) {
+            this->calculateOrientedBox();
+        }
+    }
+    cocos2d::ccColor3B const& getActiveColorForMode(int id, bool mainColor) = win 0x19f140, m1 0x4eb568, imac 0x5b28b0, ios 0x26151c;
+    const char* getBallFrame(int index) = win inline, m1 0x4e937c, imac 0x5b05a0, ios 0x25ff00 {
+        return cocos2d::CCString::createWithFormat("rod_ball_%02d_001.png", std::clamp(index, 0, 3))->getCString();
+    }
+    cocos2d::CCRect getBoundingRect() = win inline, m1 0x4dda60, imac 0x5a35d0, ios inline {
+        return cocos2d::CCRectApplyAffineTransform({ 0.f, 0.f, m_width, m_height }, this->nodeToParentTransform());
+    }
+    cocos2d::CCPoint const& getBoxOffset() = win 0x19e850, m1 0x4ddc60, imac 0x5a3830, ios 0x259e70;
+    gd::string getColorFrame(gd::string frame) = win 0x18d450, m1 0x4d8c0c, imac 0x591800, ios 0x254dac;
+    int getColorIndex() = win inline, m1 0x4eb928, imac 0x5b3070, ios 0x2618bc {
+        switch (m_objectID) {
+            case 29: return 1000;
+            case 30: return 1001;
+            case 105: return 1004;
+            case 744: return 1003;
+            case 899: return m_targetColor;
+            case 900: return 1009;
+            case 915: return 1002;
+            default: return 0;
+        }
+    }
+    gd::string getColorKey(bool isMainColor, bool colorGroups) = win 0x199db0, m1 0x4e1704, imac 0x5a7190, ios 0x25ccd4;
+    ZLayer getCustomZLayer() = win inline, m1 0x4e093c, imac 0x5a64e0, ios 0x25c4d4 {
+        return m_zLayer;
+    }
+    gd::string getGlowFrame(gd::string frame) = win 0x18d510, m1 0x4d8d54, imac 0x591950, ios 0x254e60;
+    bool getGroupDisabled() = win inline, m1 0x4e0e60, imac 0x5a69f0, ios 0x25c87c {
+        return m_isGroupDisabled;
+    }
     int getGroupID(int index) = win inline, m1 0x4e0b24, imac 0x5a66b0, ios 0x25c624 {
         if (index < 10 && m_groups) {
             return m_groups->at(index);
         }
         return 0;
     }
-    gd::string getGroupString();
+    gd::string getGroupString() = win inline, m1 0x4e0e9c, imac 0x5a6a40, ios 0x25c8b8 {
+        gd::string ret;
+        auto first = true;
+        for (int i = 0; i < 10; i++) {
+            auto group = (*m_groups)[i];
+            if (group > 0) {
+                if (!first) ret += '.';
+                ret += std::to_string(group);
+                first = false;
+            }
+        }
+        return ret;
+    }
     cocos2d::CCPoint const& getLastPosition() = win inline, m1 0x4eb730, imac 0x5b2a90, ios 0x261674 {
         return m_lastPosition;
     }
-    GJSpriteColor* getMainColor();
-    int getMainColorMode();
-    int getObjectDirection() = win 0x1995a0;
-    float getObjectRadius();
-    cocos2d::CCRect* getObjectRectPointer();
-    ZLayer getObjectZLayer() = win inline {
+    GJSpriteColor* getMainColor() = win inline, m1 0x4ea878, imac 0x5b1a20, ios 0x260e60 {
+        return m_baseColor;
+    }
+    int getMainColorMode() = win inline, m1 0x4e2048, imac 0x5a7d40, ios 0x25d19c {
+        if (auto color = this->getMainColor()) return color->getColorMode();
+        return 0;
+    }
+    int getObjectDirection() = win 0x1995a0, m1 0x4e07b0, imac 0x5a6360, ios 0x25c360;
+    float getObjectRadius() = win inline, m1 0x4eba3c, imac 0x5b3170, ios 0x2619d0 {
+        return m_scaleX == 1.f && m_scaleY == 1.f ? m_objectRadius : m_objectRadius * (std::max)(m_scaleX, m_scaleY);
+    }
+    cocos2d::CCRect* getObjectRectPointer() = win inline, m1 0x4ddb20, imac 0x5a36a0, ios 0x259d30 {
+        if (m_isObjectRectDirty) this->getObjectRect();
+        return &m_objectRect;
+    }
+    ZLayer getObjectZLayer() = win inline, m1 0x4d95a0, imac 0x5922e0, ios 0x255590 {
         return m_zLayer != ZLayer::Default ? m_zLayer : m_defaultZLayer;
     }
-    int getObjectZOrder() = win inline {
+    int getObjectZOrder() = win inline, m1 0x4e0444, imac 0x5a6000, ios 0x25bff8 {
         return m_zOrder != 0 ? m_zOrder : m_defaultZOrder;
     }
-    cocos2d::CCRect getOuterObjectRect();
-    int getParentMode() = m1 0x4df4f0, imac 0x5a5250, win 0x197bb0;
-    GJSpriteColor* getRelativeSpriteColor(int) = win 0x19eb30, imac 0x5b1ab0, m1 0x4ea8f0, ios 0x260ed8;
+    cocos2d::CCRect getOuterObjectRect() = win inline, m1 0x4dddd4, imac 0x5a39c0, ios inline {
+        if (m_isOrientedBoxDirty) this->updateOrientedBox();
+        return m_orientedBox->getBoundingRect();
+    }
+    int getParentMode() = ios 0x25b36c, m1 0x4df4f0, imac 0x5a5250, win 0x197bb0;
+    GJSpriteColor* getRelativeSpriteColor(int type) = win 0x19eb30, imac 0x5b1ab0, m1 0x4ea8f0, ios 0x260ed8;
     cocos2d::CCPoint getScalePosDelta() = win 0x199620, m1 0x4e07fc, imac 0x5a63a0, ios 0x25c3a4;
-    GJSpriteColor* getSecondaryColor();
-    int getSecondaryColorMode();
-    float getSlopeAngle() {
+    GJSpriteColor* getSecondaryColor() = win inline, m1 0x4ea880, imac 0x5b1a30, ios 0x260e68 {
+        return m_detailColor;
+    }
+    int getSecondaryColorMode() = win inline, m1 0x4e206c, imac 0x5a7d70, ios 0x25d1c0 {
+        if (auto color = this->getSecondaryColor()) return color->getColorMode();
+        return 0;
+    }
+    float getSlopeAngle() = win inline, m1 0x4e0774, imac 0x5a6320, ios 0x25c324 {
         cocos2d::CCRect rect = getObjectRect();
         return atanf(rect.size.height / rect.size.width);
     }
-    cocos2d::CCPoint getUnmodifiedPosition();
-    cocos2d::ccColor3B groupColor(cocos2d::ccColor3B const&, bool);
+    cocos2d::CCPoint getUnmodifiedPosition() = win inline, m1 0x4de010, imac 0x5a3c10, ios 0x25a188 {
+        return { (float)(m_positionX - m_positionXOffset), (float)(m_positionY - m_positionYOffset) };
+    }
+    cocos2d::ccColor3B const& groupColor(cocos2d::ccColor3B const& color, bool mainColor) = win inline, m1 0x4eb658, imac 0x5b29a0, ios 0x2615f0 {
+        m_groupColor = color;
+        if (m_groupCount > 0) {
+            for (int i = 0; i < m_groupCount; i++) {
+                m_groupColor = m_goEffectManager->colorForGroupID((*m_groups)[i], color, mainColor);
+            }
+        }
+        return m_groupColor;
+    }
     float groupOpacityMod() = win 0x199d30, imac 0x5a7040, m1 0x4e157c, ios 0x25cb6c;
-    void groupWasDisabled() = m1 0x4e0e84, imac 0x5a6a20;
-    void groupWasEnabled();
-    bool hasSecondaryColor() = win inline {
+    void groupWasDisabled() = win inline, m1 0x4e0e84, imac 0x5a6a20, ios 0x25c8a0 {
+        m_enabledGroupsCounter--;
+        m_isGroupDisabled = m_enabledGroupsCounter < 1;
+    }
+    void groupWasEnabled() = win inline, m1 0x4e0e68, imac 0x5a6a00, ios 0x25c884 {
+        m_enabledGroupsCounter++;
+        m_isGroupDisabled = m_enabledGroupsCounter < 1;
+    }
+    bool hasSecondaryColor() = win inline, m1 0x4eaa34, imac 0x5b1c60, ios 0x260f90 {
         return m_colorSprite;
     }
-    bool ignoreEditorDuration() = win 0x1a0180;
-    bool ignoreEnter();
-    bool ignoreFade();
+    bool ignoreEditorDuration() = win 0x1a0180, m1 0x4dcd64, imac 0x59e530, ios 0x258fdc;
+    bool ignoreEnter() = win inline, m1 0x4dda58, imac 0x5a35c0, ios 0x259ccc {
+        return m_ignoreEnter;
+    }
+    bool ignoreFade() = win inline, m1 0x4dda50, imac 0x5a35b0, ios 0x259cc4 {
+        return m_ignoreFade;
+    }
     bool init(char const* frame) = win inline, m1 0x4d7914, imac 0x58a2f0, ios 0x253dc0 {
         if (!CCSpritePlus::initWithSpriteFrameName(frame)) return false;
         this->commonSetup();
         m_bUnkBool2 = true;
         return true;
     }
-    bool isBasicEnterEffect(int);
-    bool isBasicTrigger();
-    bool isColorObject();
-    bool isColorTrigger() = m1 0x4eb8d4, imac 0x5b3020;
-    bool isConfigurablePortal();
-    bool isEditorSpawnableTrigger();
+    static bool isBasicEnterEffect(int id) = win inline, m1 0x4ec080, imac 0x5b3790, ios 0x261f04 {
+        return (id > 21 && id < 29) || (id > 54 || id < 60) || id == 1915;
+    }
+    bool isBasicTrigger() = win 0x1a0670, m1 0x4ebf90, imac 0x5b36b0, ios 0x261e14;
+    bool isColorObject() = win inline, m1 0x4ea96c, imac 0x5b1b30, ios 0x260f30 {
+        if (m_customColorType == 0) {
+            if (m_maybeNotColorable) return false;
+        }
+        else if (m_customColorType == 1) return false;
+        if (this->hasSecondaryColor()) return false;
+        auto defaultColorID = m_baseColor->m_defaultColorID;
+        return defaultColorID != 1004 && defaultColorID != 0;
+    }
+    bool isColorTrigger() = win inline, m1 0x4eb8d4, imac 0x5b3020, ios 0x261868 {
+        return m_objectID == 29 || m_objectID == 30 || m_objectID == 105 || m_objectID == 744 || m_objectID == 899 || m_objectID == 900 || m_objectID == 915;
+    }
+    bool isConfigurablePortal() = win inline, m1 0x4ec004, imac 0x5b3720, ios 0x261e88 {
+        auto id = m_objectID;
+        return id == 12 || id == 13 || id == 47 || id == 111 || id == 286 || id == 287 || id == 660 || id == 745 || id == 1331 || id == 1933;
+    }
+    bool isEditorSpawnableTrigger() = win inline, m1 0x4dcef8, imac 0x59f080, ios 0x259230 {
+        auto id = m_objectID;
+        return id == 29 || id == 30 || id == 105 || id == 744 || id == 899 || id == 900 || id == 901 || id == 915 || id == 1006 || id == 1007 || id == 1049 || id == 1268 || id == 1346 ||
+            id == 1347 || id == 1585 || id == 1595 || id == 1611 || id == 1612 || id == 1613 || id == 1616 || id == 1811 || id == 1814 || id == 1815 || id == 1817 || id == 1912 ||
+            id == 1913 || id == 1914 || id == 1916 || id == 1917 || id == 1932 || id == 1934 || id == 1935 || id == 2015 || id == 2062 || id == 2066 || id == 2067 || id == 2068 ||
+            id == 2899 || id == 2900 || id == 2901 || id == 2903 || id == 2904 || id == 2905 || id == 2907 || id == 2909 || id == 2910 || id == 2911 || id == 2912 || id == 2913 ||
+            id == 2914 || id == 2915 || id == 2916 || id == 2917 || id == 2919 || id == 2920 || id == 2921 || id == 2922 || id == 2923 || id == 2924 || id == 2925 || id == 2999 ||
+            id == 3006 || id == 3007 || id == 3008 || id == 3009 || id == 3010 || id == 3011 || id == 3012 || id == 3013 || id == 3014 || id == 3015 || id == 3016 || id == 3022 ||
+            id == 3024 || id == 3029 || id == 3030 || id == 3031 || id == 3033 || id == 3602 || id == 3603 || id == 3604 || id == 3605 || id == 3606 || id == 3607 || id == 3608 ||
+            id == 3609 || id == 3612 || id == 3613 || id == 3614 || id == 3615 || id == 3617 || id == 3618 || id == 3619 || id == 3620 || id == 3640 || id == 3641 || id == 3655 ||
+            id == 3660 || id == 3661 || id == 3662;
+    }
     bool isFacingDown() = win 0x19e990, m1 0x4ea740, imac 0x5b1910, ios 0x260d28;
     bool isFacingLeft() = win 0x19ea50, m1 0x4ea7d0, imac 0x5b1990, ios 0x260db8;
     bool isSettingsObject() = win inline, imac 0x5b3690, m1 0x4ebf78, ios 0x261dfc {
         return m_objectID == 3662 || m_objectID == 3613;
     }
     bool isSpawnableTrigger() = win 0x19f730, m1 0x4eb740, imac 0x5b2ac0, ios 0x261684;
-    bool isSpecialObject();
-    bool isSpeedObject() = m1 0x4eb9b4, imac 0x5b30f0;
-    bool isStoppableTrigger();
+    bool isSpecialObject() = win 0x19fb40, m1 0x4eba68, imac 0x5b31c0, ios 0x2619fc;
+    bool isSpeedObject() = win inline, m1 0x4eb9b4, imac 0x5b30f0, ios 0x261948 {
+        auto id = m_objectID;
+        return id == 200 || id == 201 || id == 202 || id == 203 || id == 1334 || id == 1917 || id == 1934 || id == 1935 || id == 2900 || id == 2902 || id == 3022 || id == 3027;
+    }
+    bool isStoppableTrigger() = win inline, m1 0x4dcc08, imac 0x59e3f0, ios 0x258e80 {
+        auto id = m_objectID;
+        return id == 29 || id == 30 || id == 105 || id == 744 || id == 899 || id == 900 || id == 901 || id == 915 || id == 1006 || id == 1007 || id == 1268 || id == 1346 || id == 1347 ||
+            id == 1595 || id == 1611 || id == 1615 || id == 1812 || id == 1814 || id == 1815 || id == 1913 || id == 1916 || id == 2015 || id == 2067 || id == 2903 || id == 2999 ||
+            id == 3006 || id == 3007 || id == 3008 || id == 3009 || id == 3010 || id == 3016 || id == 3033 || id == 3602 || id == 3604 || id == 3614 || id == 3615;
+    }
     bool isTrigger() = win 0x19f2c0, m1 0x4dca68, imac 0x59de80, ios 0x258c90;
     void loadGroupsFromString(gd::string groupList) = win 0x199b50, imac 0x5a6d00, m1 0x4e1100, ios 0x25c9f8;
     void makeInvisible() = win inline, ios 0x25b45c, imac 0x5a53a0, m1 0x4df614 {
@@ -8695,86 +8935,167 @@ class GameObject : CCSpritePlus {
         m_isInvisible = true;
         this->setOpacity(0);
     }
-    TodoReturn makeVisible();
-    float opacityModForMode(int, bool);
+    void makeVisible() = win inline, m1 0x4df630, imac 0x5a53d0, ios 0x25b478 {
+        m_isDisabled2 = false;
+        m_isInvisible = false;
+        this->setOpacity(255);
+    }
+    float opacityModForMode(int id, bool mainColor) = win inline, m1 0x4eb240, imac 0x5b2590, ios 0x261430 {
+        auto ret = 1.f;
+        if (id > 0) {
+            auto actionSprite = mainColor ? m_mainActionSprite : m_detailActionSprite;
+            uint8_t opacity = actionSprite->m_opacity;
+            if (opacity < 250) ret = opacity / 255.f;
+        }
+        if (m_opacityGroupCount > 0) ret *= this->groupOpacityMod();
+        return ret;
+    }
     cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode) = win 0x198f60, imac 0x592280, m1 0x4d953c, ios 0x25552c;
-    gd::string perspectiveColorFrame(char const*, int);
-    gd::string perspectiveFrame(char const*, int);
-    void playDestroyObjectAnim(GJBaseGameLayer*) = ios 0x349078, win 0x1a7520, m1 0x1f9910, imac 0x24c560;
-    void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float, float, float, float, float, bool, float, float) = win 0x1a7040;
-    void playPickupAnimation(cocos2d::CCSprite*, float, float, float, float) = win 0x1a6f50;
+    gd::string perspectiveColorFrame(char const* prefix, int index) = win 0x1abf50, m1 0x3ab24c, imac 0x4304d0, ios 0x2ad68c;
+    gd::string perspectiveFrame(char const* prefix, int index) = win 0x1abe10, m1 0x3aaf40, imac 0x430160, ios 0x2ad570;
+    void playDestroyObjectAnim(GJBaseGameLayer* layer) = ios 0x349078, win 0x1a7520, m1 0x1f9910, imac 0x24c560;
+    void playPickupAnimation(cocos2d::CCSprite* target, float xOffset, float yOffset, float controlYOffset1, float controlYOffset2, float endYOffset, float duration, float fadeDelay, float fadeDuration, bool rotate, float randomValue1, float randomValue2) = win 0x1a7040, m1 0x1f9498, imac 0x24c0f0, ios 0x348c30;
+    void playPickupAnimation(cocos2d::CCSprite* target, float offset, float duration, float randomValue1, float randomValue2) = win 0x1a6f50, m1 0x1f9410, imac 0x24c060, ios inline {
+        this->playPickupAnimation(target, offset * 50.f, offset * 60.f, offset * 90.f, offset * 180.f, offset * 20.f, duration * .75f, duration * .5f, duration * .25f, false, randomValue1, randomValue2);
+    }
     void playShineEffect() = ios 0x25b4d8, win 0x196430, imac 0x5a5440, m1 0x4df690;
     void quickUpdatePosition() = win inline, m1 0x4de084, imac 0x5a3cd0, ios 0x25a1d0 {
         auto pos = ccp(m_positionX, m_positionY);
         cocos2d::CCSprite::setPosition(pos);
         if (m_colorSprite && !m_colorSpriteLocked) m_colorSprite->setPosition(pos);
     }
-    void quickUpdatePosition2();
-    void removeColorSprite();
-    void removeGlow() = m1 0x4d834c, imac 0x58cb90;
-    void reorderColorSprite();
-    void resetColorGroups();
-    void resetGroupDisabled() = imac 0x591eb0, m1 0x4d9220, win inline {
+    void quickUpdatePosition2() = win inline, m1 0x4de0fc, imac 0x5a3d40, ios inline {
+        m_obPosition.x = m_positionX;
+        m_obPosition.y = m_positionY;
+    }
+    void removeColorSprite() = win inline, m1 0x4d8388, imac 0x58cbd0, ios inline {
+        if (m_colorSprite) {
+            m_colorSprite->release();
+            m_colorSprite = nullptr;
+        }
+    }
+    void removeGlow() = win inline, m1 0x4d834c, imac 0x58cb90, ios 0x254654 {
+        if (m_glowSprite) {
+            m_glowSprite->removeMeAndCleanup();
+            m_glowSprite = nullptr;
+        }
+    }
+    void reorderColorSprite() = win inline, m1 0x4e054c, imac 0x5a6110, ios inline {}
+    void resetColorGroups() = win inline, m1 0x4e0d24, imac 0x5a68a0, ios 0x25c7b0 {
+        if (m_colorGroupCount > 0) {
+            for (int i = 0; i < m_colorGroupCount; i++) {
+                (*m_colorGroups)[i] = 0;
+            }
+        }
+        m_colorGroupCount = 0;
+    }
+    void resetGroupDisabled() = ios 0x255290, imac 0x591eb0, m1 0x4d9220, win inline {
         m_enabledGroupsCounter = 0;
         m_isGroupDisabled = false;
     }
-    void resetGroups() = imac 0x5a66a0, m1 0x4e0b1c;
-    void resetMainColorMode();
-    void resetMID();
-    void resetMoveOffset();
-    void resetRScaleForced() = win inline {
+    void resetGroups() = win inline, imac 0x5a66a0, m1 0x4e0b1c, ios 0x25c61c {
+        m_groupCount = 0;
+    }
+    void resetMainColorMode() = win inline, m1 0x4ea9ec, imac 0x5b1be0, ios inline {
+        if (auto color = this->getMainColor()) {
+            color->m_defaultColorID = std::clamp(color->m_defaultColorID, 0, 1101);
+            color->m_colorID = 0;
+        }
+    }
+    static void resetMID() = win inline, m1 0x4d72d4, imac 0x5855f0, ios 0x2534bc {
+        *reinterpret_cast<int*>(geode::base::get() + 0x69c158) = 10;
+    }
+    void resetMoveOffset() = win inline, m1 0x4d944c, imac 0x592180, ios 0x25543c {
+        m_positionX = m_startPosition.x;
+        m_positionY = m_startPosition.y;
+    }
+    void resetRScaleForced() = win inline, m1 0x4de970, imac 0x5a4580, ios inline {
         m_fScaleX = 0.f;
         m_fScaleY = 0.f;
-        setRScaleX(1.f);
-        setRScaleY(1.f);
+        this->setRScaleX(1.f);
+        this->setRScaleY(1.f);
     }
-    void resetSecondaryColorMode();
-    void setAreaOpacity(float, float, int);
-    void setCustomZLayer(int zLayer) = win inline {
+    void resetSecondaryColorMode() = win inline, m1 0x4eaa10, imac 0x5b1c20, ios inline {
+        if (auto color = this->getSecondaryColor()) {
+            color->m_defaultColorID = std::clamp(color->m_defaultColorID, 0, 1101);
+            color->m_colorID = 0;
+        }
+    }
+    void setAreaOpacity(float step, float value, int index) = win 0x1957f0, m1 0x4dead0, imac 0x5a4700, ios 0x25aa84;
+    void setCustomZLayer(int zLayer) = win inline, m1 0x4e0944, imac 0x5a64f0, ios 0x25c4dc {
         if (m_zFixedZLayer) return;
         m_zLayer = static_cast<ZLayer>(zLayer);
     }
-    void setDefaultMainColorMode(int);
-    void setDefaultSecondaryColorMode(int);
-    void setGlowOpacity(unsigned char);
-    void setLastPosition(cocos2d::CCPoint const&) = win inline, ios 0x26167c, imac 0x5b2aa0, m1 0x4eb738 {
-        m_lastPosition = p0;
-    }
-    void setMainColorMode(int);
-    void setSecondaryColorMode(int);
-    void setupColorSprite(int, bool);
-    void setupPixelScale();
-    void setupSpriteSize();
-    bool shouldBlendColor(GJSpriteColor*, bool) = win 0x18dd00;
-    bool shouldLockX();
-    bool shouldNotHideAnimFreeze();
-    bool shouldShowPickupEffects() = m1 0x1f96ac, imac 0x24c330;
-    bool slopeFloorTop() {
-        switch (m_slopeDirection) {
-        case 1:
-        case 3:
-        case 5:
-        case 6:
-            return true;
-        default:
-            return false;
+    void setDefaultMainColorMode(int id) = win inline, m1 0x4dc730, imac 0x59d670, ios 0x25891c {
+        if (auto color = this->getMainColor()) {
+            color->m_defaultColorID = std::clamp(id, 0, 1101);
+            color->m_colorID = 0;
         }
     }
-    bool slopeWallLeft();
-    double slopeYPos(cocos2d::CCRect) = win inline, m1 0x4ea200, imac 0x5b1380, ios 0x26087c {
+    void setDefaultSecondaryColorMode(int id) = win inline, m1 0x4d8d34, imac 0x591920, ios 0x254e40 {
+        if (auto color = this->getSecondaryColor()) {
+            color->m_defaultColorID = std::clamp(id, 0, 1101);
+            color->m_colorID = 0;
+        }
+    }
+    void setGlowOpacity(unsigned char opacity) = win inline, m1 0x4ded7c, imac 0x5a4a20, ios 0x25acf8 {
+        if (m_glowSprite) {
+            auto glowOpacity = opacity * m_opacityMod;
+            m_glowSprite->setOpacity(glowOpacity);
+            m_glowSprite->setChildOpacity(glowOpacity);
+        }
+    }
+    void setLastPosition(cocos2d::CCPoint const& position) = win inline, ios 0x26167c, imac 0x5b2aa0, m1 0x4eb738 {
+        m_lastPosition = position;
+    }
+    void setMainColorMode(int id) = win inline, m1 0x4ea9ac, imac 0x5b1b80, ios 0x260f70 {
+        if (auto color = this->getMainColor()) {
+            color->m_colorID = std::clamp(id, 0, 1101);
+        }
+    }
+    void setSecondaryColorMode(int id) = win inline, m1 0x4ea9cc, imac 0x5b1bb0, ios inline {
+        if (auto color = this->getSecondaryColor()) {
+            color->m_colorID = std::clamp(id, 0, 1101);
+        }
+    }
+    void setupColorSprite(int id, bool mainColor) = win inline, m1 0x4e9530, imac 0x5b0760, ios inline {
+        if (mainColor) m_mainActionSprite = m_goEffectManager->getColorSprite(id);
+        else m_detailActionSprite = m_goEffectManager->getColorSprite(id);
+    }
+    void setupPixelScale() = win 0x1c0380, m1 0x3cb20c, imac 0x457620, ios 0x2ca594;
+    void setupSpriteSize() = win 0x1a0720, m1 0x4dd088, imac 0x59f3e0, ios 0x2593e0;
+    bool shouldBlendColor(GJSpriteColor* color, bool mainColor) = win 0x18dd00, m1 0x4d98f0, imac 0x592610, ios 0x2558d4;
+    bool shouldLockX() = win 0x193ec0, m1 0x4dc8e0, imac 0x59d840, ios 0x258abc;
+    bool shouldNotHideAnimFreeze() = win inline, m1 0x1f93b8, imac 0x24bff0, ios inline {
+        return m_objectID == 1855;
+    }
+    bool shouldShowPickupEffects() = win inline, m1 0x1f96ac, imac 0x24c330, ios 0x348e3c {
+        if (!m_hasNoEffects && !m_isInvisible) {
+            if (this->getOpacity() != 0) return true;
+            if (m_colorSprite && m_colorSprite->getOpacity() != 0) return true;
+        }
+        return false;
+    }
+    bool slopeFloorTop() = win inline, m1 0x4ea144, imac 0x5b12f0, ios 0x260860 {
+        return m_slopeDirection == 1 || m_slopeDirection == 3 || m_slopeDirection == 5 || m_slopeDirection == 6;
+    }
+    bool slopeWallLeft() = win inline, m1 0x4ea128, imac 0x5b12d0, ios 0x260844 {
+        return m_slopeDirection == 2 || m_slopeDirection == 3 || m_slopeDirection == 4 || m_slopeDirection == 6;
+    }
+    double slopeYPos(cocos2d::CCRect rect) = win inline, m1 0x4ea200, imac 0x5b1380, ios 0x26087c {
         auto floorTop = this->slopeFloorTop();
         if (m_slopeUphill) {
-            return this->slopeYPos(floorTop ? p0.getMaxX() : p0.getMinX());
+            return this->slopeYPos(floorTop ? rect.getMaxX() : rect.getMinX());
         }
         else {
-            return this->slopeYPos(floorTop ? p0.getMinX() : p0.getMaxX());
+            return this->slopeYPos(floorTop ? rect.getMinX() : rect.getMaxX());
         }
     }
-    double slopeYPos(float) = win 0x19e430, m1 0x4ea270, imac 0x5b13d0, ios 0x2608e0;
-    double slopeYPos(GameObject*) = win inline, m1 0x4ea160, imac 0x5b1310, ios inline {
-        return this->slopeYPos(p0->getObjectRect());
+    double slopeYPos(float x) = win 0x19e430, m1 0x4ea270, imac 0x5b13d0, ios 0x2608e0;
+    double slopeYPos(GameObject* object) = win inline, m1 0x4ea160, imac 0x5b1310, ios inline {
+        return this->slopeYPos(object->getObjectRect());
     }
-    void spawnDefaultPickupParticle(GJBaseGameLayer*) = m1 0x1f9738, imac 0x24c390;
+    void spawnDefaultPickupParticle(GJBaseGameLayer* layer) = win 0x1a72e0, m1 0x1f9738, imac 0x24c390, ios 0x348ea8;
     void updateBlendMode() = win inline, m1 0x4e01f4, imac 0x5a5dd0, ios 0x25be2c {
         auto shouldBlend = this->shouldBlendColor(m_baseColor, true);
         m_shouldBlendBase = shouldBlend;
@@ -8784,22 +9105,68 @@ class GameObject : CCSpritePlus {
         }
         m_shouldBlendDetail = m_detailColor->getColorMode() != 1012 ? this->shouldBlendColor(m_detailColor, false) : shouldBlend;
     }
-    void updateCustomColorType(short);
-    void updateCustomScaleX(float) = ios 0x25529c, win 0x1956d0, m1 0x4d922c, imac 0x591ed0;
-    void updateCustomScaleY(float) = ios 0x2552fc, win 0x195760, m1 0x4d928c, imac 0x591f50;
-    void updateHSVState();
+    void updateCustomColorType(short type) = win inline, m1 0x4eb6dc, imac 0x5b2a30, ios inline {
+        m_customColorType = type;
+        m_customSpriteColor = this->getRelativeSpriteColor(1) == nullptr;
+    }
+    void updateCustomScaleX(float scaleX) = ios 0x25529c, win 0x1956d0, m1 0x4d922c, imac 0x591ed0;
+    void updateCustomScaleY(float scaleY) = ios 0x2552fc, win 0x195760, m1 0x4d928c, imac 0x591f50;
+    void updateHSVState() = win inline, m1 0x4e1614, imac 0x5a70d0, ios 0x25cbe4 {
+        if (auto color = m_baseColor) {
+            color->m_usesHSV = color->m_hsv.h != 0.f || color->m_hsv.s != 1.f || color->m_hsv.v != 1.f || color->m_hsv.absoluteSaturation || color->m_hsv.absoluteBrightness;
+        }
+        if (auto color = m_detailColor) {
+            color->m_usesHSV = color->m_hsv.h != 0.f || color->m_hsv.s != 1.f || color->m_hsv.v != 1.f || color->m_hsv.absoluteSaturation || color->m_hsv.absoluteBrightness;
+        }
+    }
     void updateIsOriented() = ios 0x260be4, win 0x19e7b0, imac 0x5b1730, m1 0x4ea58c;
-    void updateMainColor();
-    void updateMainColorOnly();
-    void updateMainOpacity();
+    void updateMainColor() = win inline, m1 0x4eae30, imac 0x5b2170, ios 0x2612dc {
+        this->updateMainColor(this->colorForMode(m_activeMainColorID, true));
+        this->updateMainOpacity();
+    }
+    void updateMainColorOnly() = win inline, m1 0x4eb1e4, imac 0x5b2530, ios inline {
+        if (m_activeMainColorID != 0 && m_colorGroupCount != 0 && m_opacityGroupCount != 0) {
+            this->updateMainColor(this->colorForMode(m_activeMainColorID, true));
+        }
+    }
+    void updateMainOpacity() = win inline, m1 0x4eb10c, imac 0x5b2460, ios inline {
+        m_baseColor->m_opacity = this->opacityModForMode(m_activeMainColorID, true);
+    }
     void updateObjectEditorColor() = win 0x19e370, ios 0x260770, imac 0x5b0f10, m1 0x4e9d50;
-    void updateSecondaryColor();
-    void updateSecondaryColorOnly();
-    void updateSecondaryOpacity();
+    void updateSecondaryColor() = win inline, m1 0x4eb338, imac 0x5b2680, ios 0x2614b0 {
+        if (this->hasSecondaryColor() && m_activeDetailColorID != 0 && m_groupCount != 0) {
+            this->updateSecondaryColor(this->colorForMode(m_activeDetailColorID, false));
+            this->updateSecondaryOpacity();
+        }
+    }
+    void updateSecondaryColorOnly() = win inline, m1 0x4eb50c, imac 0x5b2860, ios inline {
+        if (this->hasSecondaryColor() && m_activeDetailColorID != 0 && m_groupCount != 0) {
+            this->updateSecondaryColor(this->colorForMode(m_activeDetailColorID, false));
+        }
+    }
+    void updateSecondaryOpacity() = win inline, m1 0x4eb434, imac 0x5b2790, ios inline {
+        m_detailColor->m_opacity = this->opacityModForMode(m_activeDetailColorID, false);
+    }
     void updateStartPos() = imac 0x591af0, m1 0x4d8ef8, win 0x18d670, ios 0x254f70;
-    void updateUnmodifiedPositions();
-    void usesFreezeAnimation();
-    void usesSpecialAnimation();
+    void updateUnmodifiedPositions() = win inline, m1 0x4de040, imac 0x5a3c60, ios inline {
+        if (m_isDisabled) {
+            m_isDisabled = false;
+            m_unmodifiedPositionX = m_positionX - m_positionXOffset;
+            m_unmodifiedPositionY = m_positionY - m_positionYOffset;
+        }
+    }
+    bool usesFreezeAnimation() = win inline, m1 0x1f9338, imac 0x24bc50, ios 0x348b4c {
+        auto id = m_objectID;
+        return id == 921 || id == 1519 || id == 1618 || id == 1851 || id == 1852 || id == 1854 || id == 1855 || id == 1856 || id == 1860 || id == 2020 || id == 2021 || id == 2022 ||
+            id == 2024 || id == 2025 || id == 2026 || id == 2027 || id == 2028 || id == 2029 || id == 2030 || id == 2031 || id == 2033 || id == 2035 || id == 2036 || id == 2037 ||
+            id == 2038 || id == 2039 || id == 2040 || id == 2043 || id == 2044 || id == 2045 || id == 2046 || id == 2047 || id == 2048 || id == 2049 || id == 2050 || id == 2051 ||
+            id == 2052 || id == 2053 || id == 2054 || id == 2055 || id == 2867 || id == 2868 || id == 2869 || id == 2870 || id == 2871 || id == 2872 || id == 2875 || id == 2876 ||
+            id == 2877 || id == 2878 || id == 2880 || id == 2882 || id == 2883 || id == 2885 || id == 2886 || id == 2887;
+    }
+    bool usesSpecialAnimation() = win inline, m1 0x1f93c8, imac 0x24c010, ios inline {
+        auto id = m_objectID;
+        return id == 1591 || id == 1593 || id == 1839 || id == 1840 || id == 1841 || id == 1842 || id == 2892 || id == 2893;
+    }
 
     int m_someOtherIndex;
     int m_innerSectionIndex;
@@ -8808,10 +9175,10 @@ class GameObject : CCSpritePlus {
 
     // property 511
     bool m_hasExtendedCollision;
-    cocos2d::ccColor3B m_maybeGroupColor;
+    cocos2d::ccColor3B m_groupColor;
     bool m_unk280;
     bool m_unk281;
-    float m_blackChildRelated;
+    float m_blackChildOpacity;
     bool m_unk288;
     bool m_editorEnabled;
     bool m_isGroupDisabled;
@@ -9039,8 +9406,8 @@ class GameObject : CCSpritePlus {
 
     // property 103
     bool m_isHighDetail;
-    ColorActionSprite* m_unk4E0;
-    ColorActionSprite* m_unk4E8;
+    ColorActionSprite* m_mainActionSprite;
+    ColorActionSprite* m_detailActionSprite;
     GJEffectManager* m_goEffectManager;
     bool m_unk4F8;
     bool m_isDecoration;
@@ -9079,8 +9446,8 @@ class GameObject : CCSpritePlus {
     // property 156
     int m_detailColorKeyIndex;
     uint8_t m_areaOpacityRelated;
-    float m_areaOpacityRelated2;
-    int m_areaOpacityRelated3;
+    float m_areaOpacityValue;
+    int m_areaOpacityIndex;
     int m_unk52C;
     bool m_unk530;
     bool m_isUIObject;
@@ -10708,7 +11075,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         FMODAudioEngine::sharedEngine()->m_system->update();
     }
     void rotateAreaObjects(GameObject*, cocos2d::CCArray*, float, bool) = win 0x224e20;
-    TodoReturn rotateObject(GameObject*, float);
+    void rotateObject(GameObject*, float) = win 0x226e20, m1 0x110b6c, imac 0x1376d0, ios 0x1faee4;
     void rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, cocos2d::CCPoint, bool, bool) = win 0x226ec0;
     void setGroupParent(GameObject* object, int groupID) = win 0x21f2d0, m1 0x10842c, imac 0x12d370, ios 0x1f4398;
     void setStartPosObject(StartPosObject* startPos) = ios 0x1e7374, win inline, imac 0x112ed0, m1 0xf2870 {
@@ -14535,7 +14902,22 @@ class GJSpiderSprite : GJRobotSprite {
 
 [[link(android)]]
 class GJSpriteColor {
-    // GJSpriteColor();
+    GJSpriteColor() {
+        m_colorID = 0;
+        m_defaultColorID = 0;
+        m_opacity = 1.f;
+        m_baseOpacity = 1.f;
+        m_hsv.h = 0.f;
+        m_hsv.s = 1.f;
+        m_hsv.v = 1.f;
+        m_hsv.absoluteSaturation = false;
+        m_hsv.absoluteBrightness = false;
+        m_usesHSV = false;
+        m_usesCustomBlend = false;
+        m_customColor.r = 255;
+        m_customColor.g = 255;
+        m_customColor.b = 255;
+    }
 
     int getColorMode() {
         return m_defaultColorID == m_colorID || m_colorID != 0 ? m_colorID : m_defaultColorID;
