@@ -7911,7 +7911,7 @@ class GameManager : GManager {
     int activeIconForType(IconType) = ios 0x31781c, win 0x17ea70, imac 0x36d480, m1 0x2feb3c;
     TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
     TodoReturn addDuplicateLastFrame(int);
-    void addGameAnimation(int, int, float, gd::string, gd::string, int) = win 0x1aba70;
+    void addGameAnimation(int objectID, int frames, float frameTime, gd::string mainAnimFrame, gd::string detailAnimFrame, int defaultFrame) = win 0x1aba70, m1 0x201188, imac 0x254220, ios 0x34ed6c;
     TodoReturn addIconDelegate(cocos2d::CCObject*, int);
     void addNewCustomObject(gd::string str) = win 0x1807d0, m1 0x302400, imac 0x370fd0, ios 0x319548;
     TodoReturn addToGJLog(cocos2d::CCString*);
@@ -8268,8 +8268,8 @@ class GameManager : GManager {
     TodoReturn videoAdHidden();
     TodoReturn videoAdShowed();
 
-    cocos2d::CCDictionary* m_unkAnimationDict;
-    cocos2d::CCDictionary* m_unkAnimationDict2;
+    cocos2d::CCDictionary* m_mainFramesForAnimation;
+    cocos2d::CCDictionary* m_detailFramesForAnimation;
     cocos2d::CCDictionary* m_frameTimeForAnimation;
     cocos2d::CCDictionary* m_framesForAnimation;
     cocos2d::CCDictionary* m_defaultFrames;
@@ -9223,7 +9223,7 @@ class GameObject : CCSpritePlus {
     // property 146
     bool m_particleUseObjectColor;
     bool m_hasColorSprite;
-    cocos2d::CCPoint m_unk31c;
+    cocos2d::CCPoint m_particleOffset;
     bool m_isSomeSpriteScalable;
     cocos2d::CCRect m_textureRect;
     bool m_isDirty;
@@ -9330,8 +9330,8 @@ class GameObject : CCSpritePlus {
     // property 53
     int m_property53;
     bool m_isInvisibleBlock;
-    bool m_customGlowColor;
     bool m_glowColorIsLBG;
+    bool m_customGlowColor;
     bool m_cantColorGlow;
     float m_opacityMod;
     bool m_slopeUphill;
@@ -9451,7 +9451,7 @@ class GameObject : CCSpritePlus {
     int m_unk52C;
     bool m_unk530;
     bool m_isUIObject;
-    bool m_unk532;
+    bool m_greenDebugDraw;
 }
 
 [[link(android)]]
