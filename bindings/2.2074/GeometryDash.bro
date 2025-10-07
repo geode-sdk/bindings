@@ -4262,7 +4262,7 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
     void onMusicBrowser(cocos2d::CCObject* sender) = win 0xc31a0, imac 0x203e50, m1 0x1b902c;
     void onNCSBrowser(cocos2d::CCObject* sender) = m1 0x1b9010, imac 0x203e30;
     void onNewgroundsBrowser(cocos2d::CCObject* sender) = win 0xc3300;
-    void onOptions(cocos2d::CCObject* sender) = imac 0x203f00, m1 0x1b90cc;
+    void onOptions(cocos2d::CCObject* sender) = imac 0x203f00, m1 0x1b90cc, ios 0x147de8;
     void onSearch(cocos2d::CCObject* sender) = win 0xc2c80, m1 0x1b90ec, imac 0x203f20;
     void onSongBrowser(cocos2d::CCObject* sender) = ios 0x147cc8, win 0xc3120, m1 0x1b8fac, imac 0x203dd0;
     void showNewgroundsMessage() = m1 0x1b9264, imac 0x204090;
@@ -26283,9 +26283,9 @@ class SmartTemplateCell : TableViewCell {
     virtual bool init() = win 0x3c7f0, m1 0x1f57a0, imac 0x246ed0, ios 0x1158f0;
     virtual void draw() = win 0xad710, imac 0x246fa0, m1 0x1f585c, ios 0x1159a0;
 
-    void loadFromObject(GJSmartTemplate*) = win 0xbd8c0, m1 0x1eb3d4, imac 0x23b400;
-    void onClick(cocos2d::CCObject* sender) = win 0xbdda0;
-    void updateBGColor(int) = win 0xbdcb0;
+    void loadFromObject(GJSmartTemplate*) = win 0xbd8c0, m1 0x1eb3d4, imac 0x23b400, ios 0x10de08;
+    void onClick(cocos2d::CCObject* sender) = win 0xbdda0, ios 0x1158fc;
+    void updateBGColor(int) = win 0xbdcb0, ios 0x10e11c;
 
     GJSmartTemplate* m_smartTemplate;
 }
@@ -26414,7 +26414,7 @@ class SongOptionsLayer : FLAlertLayer {
         m_delegate = nullptr;
     }
 
-    static SongOptionsLayer* create(CustomSongDelegate*) = win inline {
+    static SongOptionsLayer* create(CustomSongDelegate*) = win inline, ios 0x147f88 {
         auto ret = new SongOptionsLayer();
         if (ret->init(p0)) {
             ret->autorelease();
@@ -26426,14 +26426,14 @@ class SongOptionsLayer : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0xc4920, imac 0x205a20, m1 0x1baab4, ios 0x1491e0;
 
-    bool init(CustomSongDelegate*) = win 0xc3880, m1 0x1b9c60, imac 0x204b20;
-    void onClose(cocos2d::CCObject* sender) = win 0xc47b0;
-    void onFadeIn(cocos2d::CCObject* sender) = win 0xc42a0;
-    void onFadeOut(cocos2d::CCObject* sender) = win 0xc42f0;
-    void onInfo(cocos2d::CCObject* sender) = win 0xc4650, m1 0x1ba820, imac 0x2057b0;
-    void onPlayback(cocos2d::CCObject* sender) = win 0xc4390;
-    void onSongPersistent(cocos2d::CCObject* sender) = win 0xc4340;
-    void updatePlaybackBtn() = win inline {
+    bool init(CustomSongDelegate*) = win 0xc3880, m1 0x1b9c60, imac 0x204b20, ios 0x1484fc;
+    void onClose(cocos2d::CCObject* sender) = win 0xc47b0, ios 0x148ed0;
+    void onFadeIn(cocos2d::CCObject* sender) = win 0xc42a0, ios 0x148dec;
+    void onFadeOut(cocos2d::CCObject* sender) = win 0xc42f0, ios 0x148e38;
+    void onInfo(cocos2d::CCObject* sender) = win 0xc4650, m1 0x1ba820, imac 0x2057b0, ios 0x148fe0;
+    void onPlayback(cocos2d::CCObject* sender) = win 0xc4390, ios 0x149078;
+    void onSongPersistent(cocos2d::CCObject* sender) = win 0xc4340, ios 0x148e84;
+    void updatePlaybackBtn() = win inline, ios 0x149174 {
         auto playbackSprite = static_cast<cocos2d::CCSprite*>(m_playbackButton->getNormalImage());
         if (FMODAudioEngine::sharedEngine()->isMusicPlaying(0)) {
             playbackSprite->setDisplayFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("GJ_stopMusicBtn_001.png"));
