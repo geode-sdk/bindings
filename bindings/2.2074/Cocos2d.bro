@@ -5062,13 +5062,17 @@ class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
 
 [[link(win, android)]]
 class cocos2d {
-    static cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-    static bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&);
-    static cocos2d::CCAffineTransform CCAffineTransformInvert(cocos2d::CCAffineTransform const&);
-    static cocos2d::CCAffineTransform CCAffineTransformMakeIdentity();
-    static cocos2d::CCAffineTransform CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float);
-    static cocos2d::CCAffineTransform CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float);
-    static cocos2d::CCAffineTransform CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float);
+    static cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&) = m1 0x1df550, imac 0x22e910, ios 0x40b448;
+    static bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&) = m1 0x1df5a8, imac 0x22e980, ios inline {
+        return p0.a == p1.a && p0.b == p1.b && p0.c == p1.c && p0.d == p1.d && p0.tx == p1.tx && p0.ty == p1.ty;
+    }
+    static cocos2d::CCAffineTransform CCAffineTransformInvert(cocos2d::CCAffineTransform const&) = m1 0x1df614, imac 0x22e9e0, ios 0x40b4a8;
+    static cocos2d::CCAffineTransform CCAffineTransformMakeIdentity() = m1 0x1df294, imac 0x22e590, ios 0x40b254;
+    static cocos2d::CCAffineTransform CCAffineTransformRotate(cocos2d::CCAffineTransform const&, float) = m1 0x1df50c, imac 0x22e8c0, ios 0x40b404;
+    static cocos2d::CCAffineTransform CCAffineTransformScale(cocos2d::CCAffineTransform const&, float, float) = m1 0x1df4ec, imac 0x22e8a0, ios inline {
+        return CCAffineTransformMake(p0.a * p1, p0.b * p1, p0.c * p2, p0.d * p2, p0.tx, p0.ty);
+    }
+    static cocos2d::CCAffineTransform CCAffineTransformTranslate(cocos2d::CCAffineTransform const&, float, float) = m1 0x1df4c0, imac 0x22e860, ios 0x40b3d8;
     static void CCLuaLog(char const*);
     static void CCMessageBox(char const*, char const*);
     static cocos2d::CCPoint CCPointFromString(char const*) = m1 0x4a7ec0, imac 0x550ab0, ios 0x1a9c78;
@@ -5080,9 +5084,11 @@ class cocos2d {
     static cocos2d::CCSize CCSizeFromString(char const*) = m1 0x4a7fec, imac 0x550bb0, ios 0x1a9d4c;
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = m1 0x4f1f3c, imac 0x5bc460, ios 0x2f8b04;
     static void FNTConfigRemoveCache();
-    static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float);
+    static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float) = m1 0x1df1d8, imac 0x22e490, ios 0x40b1e8;
     static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = m1 0x1df1e8, imac 0x22e4c0, ios 0x40b1f8;
-    static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&) = m1 0x1df244, imac 0x22e530;
+    static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&) = m1 0x1df244, imac 0x22e530, ios inline {
+        return { p1.a * p0.width + p1.c * p0.height, p1.b * p0.width + p1.d * p0.height };
+    }
     static cocos2d::CCPoint ccCardinalSplineAt(cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, cocos2d::CCPoint&, float, float);
     static void ccDrawCardinalSpline(cocos2d::CCPointArray*, float, unsigned int);
     static void ccDrawCatmullRom(cocos2d::CCPointArray*, unsigned int);
