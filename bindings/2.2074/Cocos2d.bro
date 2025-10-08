@@ -2129,7 +2129,12 @@ class cocos2d::CCNode : cocos2d::CCObject {
     cocos2d::CCAffineTransform getTransformTemp();
     bool getUseChildIndex();
 
-    void setAdditionalTransform(cocos2d::CCAffineTransform const&);
+    void setAdditionalTransform(cocos2d::CCAffineTransform const& additionalTransform) = m1 0x20e760, imac 0x262a30, ios inline {
+        m_sAdditionalTransform = additionalTransform;
+        m_bTransformDirty = true;
+        // m_bAdditionalTransformDirty is broken
+        *reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(&m_bVisible) - 1) = true;
+    } 
     void setUseChildIndex(bool) = m1 0x20d228, imac 0x261460, ios 0x23b978;
 
     cocos2d::CCRect boundingBox() = imac 0x260cd0, m1 0x20ca74, ios 0x23b390;
