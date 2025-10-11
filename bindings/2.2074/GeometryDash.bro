@@ -15353,7 +15353,7 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     void updateSubject(gd::string subject) = win 0x293260, ios 0x2dc928, m1 inline, imac inline {
         this->updateText(subject, 0);
     }
-    void updateText(gd::string, int) = win 0x293330, , m1 0x23ef14, imac 0x296f50, ios 0x2dce50;
+    void updateText(gd::string, int) = win 0x293330, m1 0x23ef14, imac 0x296f50, ios 0x2dce50;
 
     int m_unk298;
     int m_messageID;
