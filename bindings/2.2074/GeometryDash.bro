@@ -15346,10 +15346,14 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     void onClearBody(cocos2d::CCObject* sender) = win 0x292d50, m1 0x23e900, imac 0x2968a0, ios 0x2dca40;
     void onClose(cocos2d::CCObject* sender) = win 0x292ee0, m1 0x23e4d8, imac 0x296440, ios 0x2dc67c;
     void onSend(cocos2d::CCObject* sender) = win 0x292a80, m1 0x23e4e0, imac 0x296450, ios 0x2dc684;
-    void updateBody(gd::string) = win 0x2932c0, m1 0x23ef14, imac 0x296f50, ios 0x2dc9b4;
-    void updateCharCountLabel(int);
-    void updateSubject(gd::string) = win 0x293260, m1 0x23ef14, imac 0x296f50, ios 0x2dc928;
-    void updateText(gd::string, int) = win 0x293330, ios 0x2dce50;
+    void updateBody(gd::string body) = win 0x2932c0, ios 0x2dc9b4, m1 inline, imac inline {
+        this->updateText(body, 1);
+    }
+    void updateCharCountLabel(int) = m1 0x23f188, imac 0x2971d0, ios 0x2dd044;
+    void updateSubject(gd::string subject) = win 0x293260, ios 0x2dc928, m1 inline, imac inline {
+        this->updateText(subject, 0);
+    }
+    void updateText(gd::string, int) = win 0x293330, , m1 0x23ef14, imac 0x296f50, ios 0x2dce50;
 
     int m_unk298;
     int m_messageID;
