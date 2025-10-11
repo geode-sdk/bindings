@@ -15327,7 +15327,7 @@ class GJWorldNode : cocos2d::CCNode {
 class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
     // virtual ~GJWriteMessagePopup();
 
-    static GJWriteMessagePopup* create(int, int) = win 0x291a50, m1 0x23cc88, imac 0x294a70;
+    static GJWriteMessagePopup* create(int, int) = win 0x291a50, m1 0x23cc88, imac 0x294a70, ios 0x2db258;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x23ebbc, imac 0x296b90, ios 0x2dccd0;
     virtual void keyBackClicked() = win 0x2930d0, imac 0x296b60, m1 0x23eba8, ios 0x2dccbc;
@@ -15342,14 +15342,18 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, imac 0x2977e0, m1 0x23f848, ios 0x2dd3f8;
 
     void closeMessagePopup(bool) = win 0x292ef0;
-    bool init(int, int) = win 0x291be0, m1 0x23d718, imac 0x295560;
-    void onClearBody(cocos2d::CCObject* sender) = win 0x292d50, m1 0x23e900, imac 0x2968a0;
-    void onClose(cocos2d::CCObject* sender) = win 0x292ee0;
-    void onSend(cocos2d::CCObject* sender) = win 0x292a80, m1 0x23e4e0, imac 0x296450;
-    void updateBody(gd::string) = win 0x2932c0;
-    void updateCharCountLabel(int);
-    void updateSubject(gd::string) = win 0x293260;
-    void updateText(gd::string, int) = win 0x293330;
+    bool init(int, int) = win 0x291be0, m1 0x23d718, imac 0x295560, ios 0x2db95c;
+    void onClearBody(cocos2d::CCObject* sender) = win 0x292d50, m1 0x23e900, imac 0x2968a0, ios 0x2dca40;
+    void onClose(cocos2d::CCObject* sender) = win 0x292ee0, m1 0x23e4d8, imac 0x296440, ios 0x2dc67c;
+    void onSend(cocos2d::CCObject* sender) = win 0x292a80, m1 0x23e4e0, imac 0x296450, ios 0x2dc684;
+    void updateBody(gd::string body) = win 0x2932c0, ios 0x2dc9b4, m1 inline, imac inline {
+        this->updateText(body, 1);
+    }
+    void updateCharCountLabel(int) = m1 0x23f188, imac 0x2971d0, ios 0x2dd044;
+    void updateSubject(gd::string subject) = win 0x293260, ios 0x2dc928, m1 inline, imac inline {
+        this->updateText(subject, 0);
+    }
+    void updateText(gd::string, int) = win 0x293330, m1 0x23ef14, imac 0x296f50, ios 0x2dce50;
 
     int m_unk298;
     int m_messageID;
@@ -20997,28 +21001,28 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     bool isOnWatchlist(int);
     void loadPage(int) = win 0x3aee30;
     void loadPageFromUserInfo(GJUserScore*) = ios 0x19b0d8, win 0x3a9240, m1 0x6b662c, imac 0x7a4660;
-    void onBlockUser(cocos2d::CCObject* sender) = win 0x3ad200, m1 0x6b9f98, imac 0x7a8690;
+    void onBlockUser(cocos2d::CCObject* sender) = win 0x3ad200, m1 0x6b9f98, imac 0x7a8690, ios 0x19e298;
     void onClose(cocos2d::CCObject* sender) = ios 0x19a8dc, win 0x3adfd0, m1 0x6b5db8, imac 0x7a3d60;
-    void onComment(cocos2d::CCObject* sender) = win 0x3acc50, m1 0x6ba888, imac 0x7a8fa0;
+    void onComment(cocos2d::CCObject* sender) = win 0x3acc50, m1 0x6ba888, imac 0x7a8fa0, ios 0x19e770;
     void onCommentHistory(cocos2d::CCObject* sender) = ios 0x19d948, win 0x3acbc0, imac 0x7a7830, m1 0x6b92c8;
     void onCopyName(cocos2d::CCObject* sender) = win 0x3ac290, m1 0x6b9908, imac 0x7a7fa0, ios 0x19ddd8;
     void onFollow(cocos2d::CCObject* sender) = win 0x3ad450, m1 0x6b6028, imac 0x7a3fe0;
     void onFriend(cocos2d::CCObject* sender) = ios 0x19e02c, win 0x3ace10, imac 0x7a82f0, m1 0x6b9c54;
-    void onFriends(cocos2d::CCObject* sender) = win 0x3aeae0;
+    void onFriends(cocos2d::CCObject* sender) = win 0x3aeae0, ios 0x19e708;
     void onInfo(cocos2d::CCObject* sender) = m1 0x6b9300, imac 0x7a7870, win 0x3ac4c0;
-    void onMessages(cocos2d::CCObject* sender) = win 0x3aeab0;
+    void onMessages(cocos2d::CCObject* sender) = win 0x3aeab0, ios 0x19e6e4;
     void onMyLevels(cocos2d::CCObject* sender) = win 0x3ac8b0, imac 0x7a8a10, m1 0x6ba314, ios 0x19e44c;
     void onMyLists(cocos2d::CCObject* sender) = win 0x3aca60, imac 0x7a8bf0, m1 0x6ba4e8, ios 0x19e58c;
     void onNextPage(cocos2d::CCObject* sender) = win 0x3af530;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x3af540;
     void onRequests(cocos2d::CCObject* sender) = win 0x3aeb10, m1 0x6ba7dc, imac 0x7a8ef0, ios 0x19e72c;
-    void onSendMessage(cocos2d::CCObject* sender) = win 0x3acc00, m1 0x6b9b4c, imac 0x7a81e0;
-    void onSettings(cocos2d::CCObject* sender) = win 0x3ae900, m1 0x6ba868, imac 0x7a8f80;
+    void onSendMessage(cocos2d::CCObject* sender) = win 0x3acc00, m1 0x6b9b4c, imac 0x7a81e0, ios 0x19dfdc;
+    void onSettings(cocos2d::CCObject* sender) = win 0x3ae900, m1 0x6ba868, imac 0x7a8f80, ios 0x19e750;
     void onStatInfo(cocos2d::CCObject* sender) = win 0x3ac0c0, m1 0x6b89e4, imac 0x7a6f70, ios 0x19d1a0;
-    void onTwitch(cocos2d::CCObject* sender) = win 0x3ae760, m1 0x6b9124, imac 0x7a76a0;
-    void onTwitter(cocos2d::CCObject* sender) = win 0x3ae5d0, m1 0x6b8f6c, imac 0x7a74f0;
-    void onUpdate(cocos2d::CCObject* sender) = win 0x3a8bb0, m1 0x6b6288, imac 0x7a4270;
-    void onYouTube(cocos2d::CCObject* sender) = win 0x3ae440, m1 0x6b8dbc, imac 0x7a7350;
+    void onTwitch(cocos2d::CCObject* sender) = win 0x3ae760, m1 0x6b9124, imac 0x7a76a0, ios 0x19d7ec;
+    void onTwitter(cocos2d::CCObject* sender) = win 0x3ae5d0, m1 0x6b8f6c, imac 0x7a74f0, ios 0x19d690;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x3a8bb0, m1 0x6b6288, imac 0x7a4270, ios 0x19ad38;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x3ae440, m1 0x6b8dbc, imac 0x7a7350, ios 0x19d534;
     void setupComments() = m1 0x6b5e30, imac 0x7a3de0;
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3af120, m1 0x6b64fc, imac 0x7a4520, ios 0x19afa8;
     void showNoAccountError() = win 0x3ae060, m1 0x6bb250, imac 0x7a99e0;
