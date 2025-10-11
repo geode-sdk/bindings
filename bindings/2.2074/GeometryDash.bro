@@ -15327,7 +15327,7 @@ class GJWorldNode : cocos2d::CCNode {
 class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
     // virtual ~GJWriteMessagePopup();
 
-    static GJWriteMessagePopup* create(int, int) = win 0x291a50, m1 0x23cc88, imac 0x294a70;
+    static GJWriteMessagePopup* create(int, int) = win 0x291a50, m1 0x23cc88, imac 0x294a70, ios 0x2db258;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x23ebbc, imac 0x296b90, ios 0x2dccd0;
     virtual void keyBackClicked() = win 0x2930d0, imac 0x296b60, m1 0x23eba8, ios 0x2dccbc;
@@ -15342,7 +15342,7 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, imac 0x2977e0, m1 0x23f848, ios 0x2dd3f8;
 
     void closeMessagePopup(bool) = win 0x292ef0;
-    bool init(int, int) = win 0x291be0, m1 0x23d718, imac 0x295560;
+    bool init(int, int) = win 0x291be0, m1 0x23d718, imac 0x295560, ios 0x2db95c;
     void onClearBody(cocos2d::CCObject* sender) = win 0x292d50, m1 0x23e900, imac 0x2968a0, ios 0x2dca40;
     void onClose(cocos2d::CCObject* sender) = win 0x292ee0, m1 0x23e4d8, imac 0x296440, ios 0x2dc67c;
     void onSend(cocos2d::CCObject* sender) = win 0x292a80, m1 0x23e4e0, imac 0x296450, ios 0x2dc684;
