@@ -7707,7 +7707,7 @@ class GameLevelManager : cocos2d::CCNode {
     void readFriendRequest(int) = win 0x15ec90, m1 0x498000, imac 0x53edd0, ios 0xac4b0;
     void removeDelimiterChars(gd::string, bool) = win 0x167f10;
     void removeDLFromActive(char const*) = m1 0x47e944, imac 0x5229d0, win 0x147ae0, ios 0x9d340;
-    void removeFriend(int) = win 0x15efa0, m1 0x498490, imac 0x53f2b0, ios 0xac6e0;
+    bool removeFriend(int) = win 0x15efa0, m1 0x498490, imac 0x53f2b0, ios 0xac6e0;
     void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
     void removeUserFromList(int, UserListType);
     void reportLevel(int) = win 0x167830, m1 0x49cd30, imac 0x543d30, ios 0xaefa4;
@@ -15341,18 +15341,41 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x7b5c0, imac 0x297720, m1 0x23f778, ios 0x2dd38c;
     virtual void textInputReturn(CCTextInputNode*) = win 0x7b620, imac 0x2977e0, m1 0x23f848, ios 0x2dd3f8;
 
-    void closeMessagePopup(bool) = win 0x292ef0;
+    void closeMessagePopup(bool) = win 0x292ef0, m1 0x23e9f4, imac 0x296990, ios 0x2dcb10;
     bool init(int, int) = win 0x291be0, m1 0x23d718, imac 0x295560, ios 0x2db95c;
     void onClearBody(cocos2d::CCObject* sender) = win 0x292d50, m1 0x23e900, imac 0x2968a0, ios 0x2dca40;
     void onClose(cocos2d::CCObject* sender) = win 0x292ee0, m1 0x23e4d8, imac 0x296440, ios 0x2dc67c;
     void onSend(cocos2d::CCObject* sender) = win 0x292a80, m1 0x23e4e0, imac 0x296450, ios 0x2dc684;
-    void updateBody(gd::string body) = win 0x2932c0, ios 0x2dc9b4, m1 inline, imac inline {
-        this->updateText(body, 1);
+    void updateBody(gd::string body) = win 0x2932c0, ios 0x2dc9b4, m1 0x23e864, imac 0x296820;
+    void updateCharCountLabel(int type) = win inline, m1 0x23f188, imac 0x2971d0, ios 0x2dd044 {
+        cocos2d::CCLabelBMFont* label;
+        int count;
+        int maxCount;
+        if (type == 0) {
+            label = m_subjectCountLabel;
+            count = m_subjectText.size();
+            maxCount = 35;
+        }
+        else {
+            label = m_messageCountLabel;
+            count = m_messageText.size();
+            maxCount = 200;
+        }
+        if (maxCount * .9f <= count) {
+            label->setOpacity(255);
+            label->setColor({ 255, 0, 0 });
+        }
+        else if (maxCount * .7f <= count) {
+            label->setOpacity(255);
+            label->setColor({ 255, 255, 255 });
+        }
+        else {
+            label->setOpacity(100);
+            label->setColor({ 255, 255, 255 });
+        }
+        label->setString(cocos2d::CCString::createWithFormat("%i", maxCount - count)->getCString());
     }
-    void updateCharCountLabel(int) = m1 0x23f188, imac 0x2971d0, ios 0x2dd044;
-    void updateSubject(gd::string subject) = win 0x293260, ios 0x2dc928, m1 inline, imac inline {
-        this->updateText(subject, 0);
-    }
+    void updateSubject(gd::string subject) = win 0x293260, ios 0x2dc928, m1 0x23e7c8, imac 0x2967a0;
     void updateText(gd::string, int) = win 0x293330, m1 0x23ef14, imac 0x296f50, ios 0x2dce50;
 
     int m_unk298;
@@ -20995,26 +21018,31 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     virtual void uploadActionFinished(int, int) = win 0x3add60, imac 0x7a9e00, m1 0x6bb614, ios 0x19f16c;
     virtual void uploadActionFailed(int, int) = win 0x3adf20, imac 0x7a9fe0, m1 0x6bb80c, ios 0x19f280;
 
-    void blockUser();
+    void blockUser() = win inline, m1 0x6bb31c, imac 0x7a9ac0, ios 0x19eec8 {
+        if (GameLevelManager::sharedState()->blockUser(m_score->m_accountID)) {
+            m_popupDelegate = UploadActionPopup::create(this, "Blocking user...");
+            m_popupDelegate->show();
+        }
+    }
     bool init(int accountID, bool ownProfile) = ios 0x199ea8, win 0x3a7c00, m1 0x6b5370, imac 0x7a3290;
-    bool isCorrect(char const* key) = win 0x3aed00;
-    bool isOnWatchlist(int);
-    void loadPage(int) = win 0x3aee30;
+    bool isCorrect(char const* key) = win 0x3aed00, m1 0x6bc440, imac 0x7aac10, ios 0x19f8f0;
+    bool isOnWatchlist(int) = win inline, m1 0x6b5db0, imac 0x7a3d50, ios inline { return false; }
+    void loadPage(int) = win 0x3aee30, m1 0x6bbf48, imac 0x7aa720, ios 0x19f644;
     void loadPageFromUserInfo(GJUserScore*) = ios 0x19b0d8, win 0x3a9240, m1 0x6b662c, imac 0x7a4660;
     void onBlockUser(cocos2d::CCObject* sender) = win 0x3ad200, m1 0x6b9f98, imac 0x7a8690, ios 0x19e298;
     void onClose(cocos2d::CCObject* sender) = ios 0x19a8dc, win 0x3adfd0, m1 0x6b5db8, imac 0x7a3d60;
     void onComment(cocos2d::CCObject* sender) = win 0x3acc50, m1 0x6ba888, imac 0x7a8fa0, ios 0x19e770;
     void onCommentHistory(cocos2d::CCObject* sender) = ios 0x19d948, win 0x3acbc0, imac 0x7a7830, m1 0x6b92c8;
     void onCopyName(cocos2d::CCObject* sender) = win 0x3ac290, m1 0x6b9908, imac 0x7a7fa0, ios 0x19ddd8;
-    void onFollow(cocos2d::CCObject* sender) = win 0x3ad450, m1 0x6b6028, imac 0x7a3fe0;
+    void onFollow(cocos2d::CCObject* sender) = win 0x3ad450, m1 0x6b6028, imac 0x7a3fe0, ios 0x19ab48;
     void onFriend(cocos2d::CCObject* sender) = ios 0x19e02c, win 0x3ace10, imac 0x7a82f0, m1 0x6b9c54;
-    void onFriends(cocos2d::CCObject* sender) = win 0x3aeae0, ios 0x19e708;
-    void onInfo(cocos2d::CCObject* sender) = m1 0x6b9300, imac 0x7a7870, win 0x3ac4c0;
-    void onMessages(cocos2d::CCObject* sender) = win 0x3aeab0, ios 0x19e6e4;
+    void onFriends(cocos2d::CCObject* sender) = win 0x3aeae0, m1 0x6ba750, imac 0x7a8e60, ios 0x19e708;
+    void onInfo(cocos2d::CCObject* sender) = ios 0x19d980, m1 0x6b9300, imac 0x7a7870, win 0x3ac4c0;
+    void onMessages(cocos2d::CCObject* sender) = win 0x3aeab0, m1 0x6ba6c4, imac 0x7a8dd0, ios 0x19e6e4;
     void onMyLevels(cocos2d::CCObject* sender) = win 0x3ac8b0, imac 0x7a8a10, m1 0x6ba314, ios 0x19e44c;
     void onMyLists(cocos2d::CCObject* sender) = win 0x3aca60, imac 0x7a8bf0, m1 0x6ba4e8, ios 0x19e58c;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x3af530;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x3af540;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x3af530, m1 0x6bb3c8, imac 0x7a9b80, ios 0x19ef6c;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x3af540, m1 0x6bb3bc, imac 0x7a9b60, ios 0x19ef60;
     void onRequests(cocos2d::CCObject* sender) = win 0x3aeb10, m1 0x6ba7dc, imac 0x7a8ef0, ios 0x19e72c;
     void onSendMessage(cocos2d::CCObject* sender) = win 0x3acc00, m1 0x6b9b4c, imac 0x7a81e0, ios 0x19dfdc;
     void onSettings(cocos2d::CCObject* sender) = win 0x3ae900, m1 0x6ba868, imac 0x7a8f80, ios 0x19e750;
@@ -21023,13 +21051,45 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onTwitter(cocos2d::CCObject* sender) = win 0x3ae5d0, m1 0x6b8f6c, imac 0x7a74f0, ios 0x19d690;
     void onUpdate(cocos2d::CCObject* sender) = win 0x3a8bb0, m1 0x6b6288, imac 0x7a4270, ios 0x19ad38;
     void onYouTube(cocos2d::CCObject* sender) = win 0x3ae440, m1 0x6b8dbc, imac 0x7a7350, ios 0x19d534;
-    void setupComments() = m1 0x6b5e30, imac 0x7a3de0;
+    void setupComments() = win inline, m1 0x6b5e30, imac 0x7a3de0, ios 0x19a954 {
+        auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+        auto leftSprite = cocos2d::CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
+        leftSprite->setScale(.8f);
+        m_leftArrow = CCMenuItemSpriteExtra::create(leftSprite, this, menu_selector(ProfilePage::onPrevPage));
+        m_buttonMenu->addChild(m_leftArrow);
+        m_leftArrow->setPosition(m_buttonMenu->convertToNodeSpace(winSize / 2.f + cocos2d::CCPoint { -195.f, -53.f }));
+        m_leftArrow->setSizeMult(2.f);
+        auto rightSprite = cocos2d::CCSprite::createWithSpriteFrameName("GJ_arrow_01_001.png");
+        rightSprite->setFlipX(true);
+        rightSprite->setScale(.8f);
+        m_rightArrow = CCMenuItemSpriteExtra::create(rightSprite, this, menu_selector(ProfilePage::onNextPage));
+        m_buttonMenu->addChild(m_rightArrow);
+        m_rightArrow->setPosition(m_buttonMenu->convertToNodeSpace(winSize / 2.f + cocos2d::CCPoint { 195.f, -53.f }));
+        m_rightArrow->setSizeMult(2.f);
+        m_leftArrow->setVisible(false);
+        m_rightArrow->setVisible(false);
+    }
     void setupCommentsBrowser(cocos2d::CCArray*) = win 0x3af120, m1 0x6b64fc, imac 0x7a4520, ios 0x19afa8;
-    void showNoAccountError() = win 0x3ae060, m1 0x6bb250, imac 0x7a99e0;
-    void toggleMainPageVisibility(bool);
+    void showNoAccountError() = win 0x3ae060, m1 0x6bb250, imac 0x7a99e0, ios 0x19ee30;
+    void toggleMainPageVisibility(bool visible) = win inline, m1 0x6bbcec, imac 0x7aa4c0, ios inline {
+        CCObject* obj;
+        CCARRAY_FOREACH(m_arrayWithUsernameLabel, obj) {
+            static_cast<cocos2d::CCNode*>(obj)->setVisible(visible);
+        }
+        CCARRAY_FOREACH(m_buttons, obj) {
+            static_cast<cocos2d::CCNode*>(obj)->setVisible(visible);
+        }
+        if (m_list) m_list->setVisible(visible);
+        if (visible) this->updatePageArrows();
+        m_rightArrow->setVisible(false);
+        m_leftArrow->setVisible(false);
+    }
     void toggleShip(cocos2d::CCObject* sender) = ios 0x19d480, win 0x3ac010, imac 0x7a72a0, m1 0x6b8cfc;
-    void updateLevelsLabel();
-    void updatePageArrows() = win 0x3af4c0;
+    void updateLevelsLabel() = win inline, m1 0x6bcc28, imac 0x7ab450, ios inline {}
+    void updatePageArrows() = win 0x3af4c0, m1 0x6bbe2c, imac 0x7aa610, ios inline {
+        m_leftArrow->setVisible(m_pageStartIdx != 0);
+        m_rightArrow->setVisible(m_itemCount > m_pageEndIdx + m_pageStartIdx);
+    }
 
     GJUserScore* m_score;
     int m_accountID;
