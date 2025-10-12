@@ -4575,13 +4575,13 @@ class DemonFilterSelectLayer : FLAlertLayer {
 class DemonInfoPopup : FLAlertLayer {
     // ~DemonInfoPopup();
 
-    static DemonInfoPopup* create(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x3afc90, imac 0x7aba80, m1 0x6bd1f0;
-    static DemonInfoPopup* createFromString(gd::string) = win 0x3af8c0, imac 0x7a9640, m1 0x6baf10;
+    static DemonInfoPopup* create(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x3afc90, imac 0x7aba80, m1 0x6bd1f0, ios 0x1a0188;
+    static DemonInfoPopup* createFromString(gd::string str) = win 0x3af8c0, imac 0x7a9640, m1 0x6baf10, ios 0x19ec08;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x6bdcdc, imac 0x7ac5b0, ios 0x1a0b9c;
 
     bool init(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = ios 0x1a02a8, win 0x3afdf0, imac 0x7abc10, m1 0x6bd34c;
-    void onClose(cocos2d::CCObject* sender) = win 0x84620;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x6bdca0, imac 0x7ac580, ios 0x1a0b60;
 }
 
 [[link(android)]]
@@ -26840,14 +26840,14 @@ class SpritePartDelegate {
 class StarInfoPopup : FLAlertLayer {
     // virtual ~StarInfoPopup();
 
-    static StarInfoPopup* create(int, int, int, int, int, int, int, int, int, bool) = win 0x3b0cb0, imac 0x7ac620, m1 0x6bdd58, ios 0x1a0c18;
-    static StarInfoPopup* createFromString(gd::string) = win 0x3b0720, m1 0x6baa6c, imac 0x7a9160, ios 0x19e8c8;
-    static StarInfoPopup* createFromStringMoons(gd::string) = win 0x3b0a00, m1 0x6bacd4, imac 0x7a93f0, ios 0x19ea78;
+    static StarInfoPopup* create(int autos, int easies, int normals, int hards, int harders, int insanes, int dailies, int gauntlets, int maps, bool platformer) = win 0x3b0cb0, imac 0x7ac620, m1 0x6bdd58, ios 0x1a0c18;
+    static StarInfoPopup* createFromString(gd::string str) = win 0x3b0720, m1 0x6baa6c, imac 0x7a9160, ios 0x19e8c8;
+    static StarInfoPopup* createFromStringMoons(gd::string str) = win 0x3b0a00, m1 0x6bacd4, imac 0x7a93f0, ios 0x19ea78;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x6be87c, imac 0x7ad0e0, ios 0x1a1584;
 
-    bool init(int, int, int, int, int, int, int, int, int, bool) = ios 0x1a0d34, win 0x3b0df0, imac 0x7ac7b0, m1 0x6bdeb0;
-    void onClose(cocos2d::CCObject* sender);
+    bool init(int autos, int easies, int normals, int hards, int harders, int insanes, int dailies, int gauntlets, int maps, bool platformer) = ios 0x1a0d34, win 0x3b0df0, imac 0x7ac7b0, m1 0x6bdeb0;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x6be840, imac 0x7ad0b0, ios 0x1a1548;
 }
 
 [[link(android)]]
