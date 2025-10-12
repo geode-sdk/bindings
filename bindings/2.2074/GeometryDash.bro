@@ -7366,9 +7366,7 @@ class GameLevelManager : cocos2d::CCNode {
     virtual bool init() = win 0x142230, m1 0x473374, imac 0x515dc0, ios 0x95d68;
 
     void acceptFriendRequest(int, int) = win 0x15e780, imac 0x53e840, m1 0x497a7c, ios 0xac1c4;
-    int accountIDForUserID(int userID) = win inline, imac 0x518ae0, m1 0x475c08, ios 0x975a8 {
-        return m_userIDtoAccountIDDict->valueForKey(userID)->intValue();
-    }
+    int accountIDForUserID(int userID) = win 0x144350, imac 0x518ae0, m1 0x475c08, ios 0x975a8;
     void addDLToActive(char const*) = win 0x147a20, imac 0x5228d0, m1 0x47e834;
     bool areGauntletsLoaded();
     void banUser(int);
