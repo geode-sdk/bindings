@@ -3407,7 +3407,7 @@ class CommentUploadDelegate {
 class CommunityCreditNode : cocos2d::CCNode {
     // virtual ~CommunityCreditNode();
 
-    static CommunityCreditNode* create(int, int, int, gd::string) = win 0x93ec0, ios 0x1a3508;
+    static CommunityCreditNode* create(int unlockType, int iconID, int unknown, gd::string author) = win 0x93ec0, m1 0x2a1050, imac 0x309ef0, ios 0x1a3508;
 
     bool init(int unlockType, int iconID, int unknown, gd::string author) = win inline, imac 0x30a010, m1 0x2a1170, ios inline {
         if (!CCNode::init()) return false;
