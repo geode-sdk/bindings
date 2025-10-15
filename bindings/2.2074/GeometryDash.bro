@@ -18037,8 +18037,15 @@ class LocalLevelManager : GManager {
     virtual void dataLoaded(DS_Dictionary*) = win 0x31bb40, imac 0x5e0670, m1 0x512fac, ios 0x1ca030;
     virtual void firstLoad() = win 0x31ba50, m1 0x512ed8, imac 0x5e0580, ios 0x1c9fa0;
 
-    cocos2d::CCDictionary* getAllLevelsInDict() = win 0x31b4e0;
-    TodoReturn getAllLevelsWithName(gd::string);
+    cocos2d::CCDictionary* getAllLevelsInDict() = win 0x31b4e0, m1 0x5123d8, imac 0x5df9a0, ios 0x1c978c;
+    cocos2d::CCArray* getAllLevelsWithName(gd::string name) = win inline, m1 0x5125d0, imac 0x5dfbd0, ios 0x1c98c0 {
+        auto ret = cocos2d::CCArray::create();
+        for (int i = 0; i < m_localLevels->count(); i++) {
+            auto level = static_cast<GJGameLevel*>(m_localLevels->objectAtIndex(i));
+            if (level->m_levelName == name) ret->addObject(level);
+        }
+        return ret;
+    }
     cocos2d::CCArray* getCreatedLevels(int folder) = win inline, m1 0x512cdc, imac 0x5e0390, ios 0x1c9dbc {
         if (folder < 1) return m_localLevels;
         auto ret = cocos2d::CCArray::create();
@@ -18059,11 +18066,44 @@ class LocalLevelManager : GManager {
         }
         return ret;
     }
-    cocos2d::CCDictionary* getLevelsInNameGroups();
-    gd::string getMainLevelString(int) = win 0x31b3d0, m1 0x512100, imac 0x5df620, ios 0x1c9594;
-    TodoReturn markLevelsAsUnmodified();
-    TodoReturn moveLevelToTop(GJGameLevel*);
-    TodoReturn reorderLevels();
+    cocos2d::CCDictionary* getLevelsInNameGroups() = win inline, m1 0x512288, imac 0x5df820, ios 0x1c9644 {
+        auto dict = cocos2d::CCDictionary::create();
+        for (int i = 0; i < m_localLevels->count(); i++) {
+            auto level = static_cast<GJGameLevel*>(m_localLevels->objectAtIndex(i));
+            auto key = level->m_levelName;
+            auto arr = static_cast<cocos2d::CCArray*>(dict->objectForKey(key));
+            if (!arr) {
+                arr = cocos2d::CCArray::create();
+                dict->setObject(arr, key);
+            }
+            arr->addObject(level);
+        }
+        return dict;
+    }
+    gd::string getMainLevelString(int id) = win 0x31b3d0, m1 0x512100, imac 0x5df620, ios 0x1c9594;
+    void markLevelsAsUnmodified() = win inline, m1 0x512c3c, imac 0x5e02f0, ios 0x1c9d1c {
+        for (int i = 0; i < m_localLevels->count(); i++) {
+            static_cast<GJGameLevel*>(m_localLevels->objectAtIndex(i))->m_hasBeenModified = false;
+        }
+    }
+    void moveLevelToTop(GJGameLevel* level) = win inline, m1 0x512afc, imac 0x5e01a0, ios 0x1c9c30 {
+        if (level && m_localLevels->containsObject(level)) {
+            level->retain();
+            m_localLevels->removeObject(level);
+            m_localLevels->insertObject(level, 0);
+            level->release();
+            this->updateLevelOrder();
+        }
+    }
+    void reorderLevels() = win inline, m1 0x512c8c, imac 0x5e0340, ios 0x1c9d6c {
+        if (m_localLevels->count() != 0) {
+            qsort(m_localLevels->data->arr, m_localLevels->data->num, sizeof(GJGameLevel*), [](void const* a, void const* b) {
+                auto la = *static_cast<GJGameLevel* const*>(a);
+                auto lb = *static_cast<GJGameLevel* const*>(b);
+                return lb->m_levelIndex - la->m_levelIndex;
+            });
+        }
+    }
     void reorderLists() = win inline, m1 0x512df8, imac 0x5e04a0, ios 0x1c9ec4 {
         if (m_localLists->count() != 0) {
             qsort(m_localLists->data->arr, m_localLists->data->num, sizeof(GJLevelList*), [](void const* a, void const* b) {
@@ -18073,10 +18113,16 @@ class LocalLevelManager : GManager {
             });
         }
     }
-    void tryLoadMainLevelString(int) = m1 0x511d80, imac 0x5df200, win 0x31b150;
+    void tryLoadMainLevelString(int id) = ios 0x1c9408, m1 0x511d80, imac 0x5df200, win 0x31b150;
     int updateLevelOrder() = win 0x31b9d0, m1 0x512bb0, imac 0x5e0270, ios 0x1c9ca0;
     void updateLevelRevision() = win 0x31b640, m1 0x512700, imac 0x5dfd20, ios 0x1c99a0;
-    TodoReturn updateListOrder();
+    int updateListOrder() = win inline, m1 0x512d6c, imac 0x5e0420, ios 0x1c9e48 {
+        int i = 0;
+        for (; i < m_localLists->count(); i++) {
+            static_cast<GJLevelList*>(m_localLists->objectAtIndex(m_localLists->count() - 1 - i))->m_listOrder = i;
+        }
+        return i;
+    }
 
     cocos2d::CCArray* m_localLevels;
     cocos2d::CCArray* m_localLists;
