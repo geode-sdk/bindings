@@ -8147,13 +8147,15 @@ class GameManager : GManager {
     gd::string iconKey(int, IconType) = win 0x1792b0, m1 0x2f7060, imac 0x364400, ios 0x3129e8;
     UnlockType iconTypeToUnlockType(IconType) = ios 0x312cb0, win 0x1795c0, m1 0x2f7498, imac 0x364990;
     bool isColorUnlocked(int, UnlockType) = ios 0x312fb8, win 0x1798c0, imac 0x364f40, m1 0x2f78a8;
-    bool isIconLoaded(int, int) = m1 0x2fec84, imac 0x36d8f0;
+    bool isIconLoaded(int id, int type) = win inline, m1 0x2fec84, imac 0x36d8f0, ios 0x3179a4 {
+        return m_iconLoadCounts[this->keyForIcon(id, type)] > 0;
+    }
     bool isIconUnlocked(int, IconType) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
     TodoReturn itemPurchased(char const*);
     void joinDiscord() = m1 0x2fe8f4, imac 0x36d250, ios 0x3175f4;
     void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670;
     int keyForIcon(int iconIdx, int iconEnum) {
-        return m_keyStartForIcon.at(iconEnum) + iconIdx - 1;
+        return m_keyStartForIcon[iconEnum] + iconIdx - 1;
     }
     TodoReturn levelIsPremium(int, int);
     void likeFacebook() = m1 0x2fe6f4, imac 0x36d090, ios 0x317404;
