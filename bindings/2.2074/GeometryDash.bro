@@ -15393,12 +15393,11 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 
 [[link(android)]]
 class GManager : cocos2d::CCNode {
-    GManager() {
+    GManager() = win 0x515d0 {
         m_setup = false;
         m_saved = false;
         m_quickSave = false;
     }
-    // virtual ~GManager();
 
     virtual bool init() = win 0x6a7c0, imac 0x498f00, m1 0x404d70, ios 0x249774;
     virtual void setup() = win 0x6a7d0, imac 0x498f20, m1 0x404d80, ios 0x249784;
@@ -15407,15 +15406,39 @@ class GManager : cocos2d::CCNode {
     virtual void firstLoad() = m1 0x4058c0, imac 0x499ac0, ios 0x24a000 {}
 
     gd::string getCompressedSaveString() = win 0x6a7f0, m1 0x404e1c, imac 0x498ff0, ios 0x249818;
-    TodoReturn getSaveString();
-    TodoReturn load();
-    void loadDataFromFile(gd::string const&) = win 0x6aa90, imac 0x499410, m1 0x405284;
-    void loadFromCompressedString(gd::string&);
-    void loadFromString(gd::string&);
+    gd::string getSaveString() = win inline, m1 0x404d98, imac 0x498f60, ios 0x249794 {
+        auto dict = new DS_Dictionary();
+        this->encodeDataTo(dict);
+        auto str = dict->saveRootSubDictToString();
+        delete dict;
+        return str;
+    }
+    void load() = win inline, m1 0x404d90, imac 0x498f40, ios inline {
+        this->loadDataFromFile(m_fileName);
+    }
+    void loadDataFromFile(gd::string const& filename) = win 0x6aa90, imac 0x499410, m1 0x405284, ios 0x249bbc;
+    void loadFromCompressedString(gd::string& str) = win 0x6a8c0, m1 0x404f44, imac 0x499110, ios 0x249930;
+    void loadFromString(gd::string& str) = win inline, m1 0x404e98, imac 0x499060, ios 0x249884 {
+        auto dict = new DS_Dictionary();
+        auto loaded = dict->loadRootSubDictFromString(str.c_str());
+        str.clear();
+        if (loaded) this->dataLoaded(dict);
+        delete dict;
+    }
     void save() = ios 0x2499c4, win 0x6a9a0, imac 0x499190, m1 0x404fe8;
-    TodoReturn saveData(DS_Dictionary*, gd::string);
-    void saveGMTo(gd::string);
-    TodoReturn tryLoadData(DS_Dictionary*, gd::string const&);
+    void saveData(DS_Dictionary* dict, gd::string filename) = win inline, m1 0x4051f4, imac 0x499390, ios 0x249b3c {
+        dict->saveRootSubDictToCompressedFile(filename.c_str());
+    }
+    void saveGMTo(gd::string filename) = win inline, m1 0x405090, imac 0x499230, ios 0x249a5c {
+        auto dict = new DS_Dictionary();
+        this->encodeDataTo(dict);
+        this->saveData(dict, filename);
+        m_saved = false;
+        delete dict;
+    }
+    bool tryLoadData(DS_Dictionary* dict, gd::string const& filename) = win inline, m1 0x405530, imac 0x499680, ios 0x249d4c {
+        return dict->loadRootSubDictFromCompressedFile(filename.c_str());
+    }
 
     gd::string m_fileName;
     bool m_setup;
