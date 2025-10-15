@@ -16824,9 +16824,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void handleAction(bool, cocos2d::CCArray*) = ios 0x35b654, win 0x2cde30, imac 0xe3140, m1 0xca1b0;
     bool hasAction(bool);
     bool init(GJGameLevel*, bool) = ios 0x35643c, win 0x2c96e0, m1 0xc3124, imac 0xdb280;
-    bool isLayerLocked(int layer) {
+    bool isLayerLocked(int layer) = win inline, m1 0xcf8d4, imac 0xe9c20, ios 0x35d62c {
         if (layer < 10000 && m_layerLockingEnabled) {
-            return m_lockedLayers.at(layer);
+            return m_lockedLayers[layer];
         }
         return false;
     }
