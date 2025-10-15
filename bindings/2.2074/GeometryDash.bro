@@ -5632,9 +5632,9 @@ class EffectGameObject : EnhancedGameObject {
     // virtual ~EffectGameObject();
     EffectGameObject() = win 0x47d040, m1 0x199d84, imac 0x1e2030, ios 0x3925fc;
 
-    static EffectGameObject* create(char const*) = win inline, m1 0x16a0d4, imac 0x1a8150, ios 0x37de80 {
+    static EffectGameObject* create(char const* frame) = win inline, m1 0x16a0d4, imac 0x1a8150, ios 0x37de80 {
         auto ret = new EffectGameObject();
-        if (ret->init(p0)) {
+        if (ret->init(frame)) {
             ret->autorelease();
             return ret;
         }
@@ -5660,25 +5660,41 @@ class EffectGameObject : EnhancedGameObject {
     virtual void setObjectLabel(cocos2d::CCLabelBMFont*) = win 0x47d2c0, m1 0x199b18, imac 0x1e1d30, ios 0x3922c8;
     virtual void stateSensitiveOff(GJBaseGameLayer*) = win 0x48fcd0, imac 0x1a9f90, m1 0x16b578, ios 0x37f260;
 
-    int getTargetColorIndex();
-    bool init(char const*) = win 0x48d1a0, m1 0x1405bc, imac 0x174830, ios inline {
-        if (!EnhancedGameObject::init(p0)) return false;
-        m_classType = (GameObjectClassType)1;
-        m_triggerTargetColor = {255,255,255};
+    int getTargetColorIndex() = win inline, m1 0x16b618, imac 0x1aa040, ios 0x37f300 {
+        switch (m_objectID) {
+            case 29: return 1000;
+            case 30: return 1001;
+            case 105: return 1004;
+            case 744: return 1003;
+            case 900: return 1009;
+            case 915: return 1002;
+            default: return m_targetColor;
+        }
+    }
+    bool init(char const* frame) = win 0x48d1a0, m1 0x1405bc, imac 0x174830, ios inline {
+        if (!EnhancedGameObject::init(frame)) return false;
+        m_classType = GameObjectClassType::Effect;
+        m_triggerTargetColor.r = 255;
+        m_triggerTargetColor.g = 255;
+        m_triggerTargetColor.b = 255;
         m_legacyHSV = true;
-        m_duration = 0.5;
+        m_duration = .5f;
         return true;
     }
     void playTriggerEffect() = win 0x48d2b0, imac 0x1a8220, m1 0x16a198, ios 0x37df38;
-    void resetSpawnTrigger();
+    void resetSpawnTrigger() = win inline, m1 0x16b8a8, imac 0x1aa2a0, ios 0x37f560 {
+        m_activatedByPlayer1 = false;
+        m_activatedByPlayer2 = false;
+        m_spawnXPosition = this->getPosition().x;
+    }
     void setTargetID(int id) = win inline, m1 0x157c40, imac 0x192130, ios 0x3756ec {
         m_targetGroupID = std::clamp(id, 0, 9999);
     }
     void setTargetID2(int id) = win inline, m1 0x157c58, imac 0x192150, ios 0x375704 {
         m_centerGroupID = std::clamp(id, 0, 9999);
     }
-    void triggerEffectFinished() = win 0x48d780;
-    void updateInteractiveHover(float) = win 0x48fe30;
+    void triggerEffectFinished() = win 0x48d780, m1 0x16a468, imac 0x1a8540, ios 0x37e128;
+    void updateInteractiveHover(float offset) = win 0x48fe30, m1 0x16b704, imac 0x1aa110, ios 0x37f3ec;
     void updateSpecialColor() = win 0x48fdb0, m1 0x16b68c, imac 0x1aa0b0, ios 0x37f374;
     void updateSpeedModType() = win 0x493010, m1 0x16b8f4, imac 0x1aa2f0, ios 0x37f5ac;
 
