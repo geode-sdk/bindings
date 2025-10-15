@@ -6074,7 +6074,15 @@ class EnhancedGameObject : GameObject {
         m_hasUniqueCoin = false;
     }
 
-    static EnhancedGameObject* create(char const*);
+    static EnhancedGameObject* create(char const* frame) = win inline, m1 0x4d7780, imac 0x58a150, ios 0x253cc8 {
+        auto ret = new EnhancedGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customSetup() = win 0x1a1ff0, imac 0x5b42e0, m1 0x4ec86c, ios 0x262680;
     virtual void resetObject() = win 0x1a19b0, imac 0x5b3b10, m1 0x4ec1fc, ios 0x2620bc;
@@ -6098,22 +6106,48 @@ class EnhancedGameObject : GameObject {
     virtual void updateSyncedAnimation(float, int) = win 0x1a4e30, imac 0x2499e0, m1 0x1f7c7c, ios 0x347598;
     virtual void updateAnimateOnTrigger(bool) = win 0x1a6af0, imac 0x24b920, m1 0x1f903c, ios 0x348938;
 
-    void createRotateAction(float angle, int clockwiseDirection) = win 0x1a4300, m1 0x4ef08c, ios 0x263ed8, imac 0x5b8de0;
-    bool init(char const*) = win 0x1a1800, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
-    TodoReturn previewAnimateOnTrigger();
-    TodoReturn refreshRotateAction();
-    TodoReturn resetSyncedAnimation();
-    TodoReturn resumeAudio();
-    TodoReturn resumeAudioDelayed();
-    void setupAnimationVariables() = win 0x1a6bf0;
-    TodoReturn triggerAnimation();
-    TodoReturn updateRotateAction(float);
+    void createRotateAction(float angle, int clockwiseDirection) = win 0x1a4300, m1 0x4ec7f4, imac 0x5b4240, ios 0x262608;
+    bool init(char const* frame) = win 0x1a1800, m1 0x4ec0c4, imac 0x5b37d0, ios 0x261f48;
+    void previewAnimateOnTrigger() = win inline, m1 0x1f9130, imac 0x24ba20, ios 0x3489fc {
+        m_animateOnTrigger = false;
+        m_isDisabled2 = false;
+        this->updateSyncedAnimation(0.f, -1);
+        m_animateOnTrigger = true;
+    }
+    void refreshRotateAction() = win inline, m1 0x4ef08c, imac 0x5b8de0, ios 0x263ed8 {
+        this->createRotateAction(m_rotationAngle, 0);
+    }
+    void resetSyncedAnimation() = win inline, m1 0x1f9170, imac 0x24ba60, ios 0x348a3c {
+        m_unk544 = 0.f;
+        m_animationStart = m_unk548 ? -1.f : 0.f;
+        m_unkAnimationInt = 0;
+        this->updateSyncedAnimation(-m_animationRandomizedStartValue, -1);
+    }
+    void setupAnimationVariables() = win 0x1a6bf0, m1 0x1f91a4, imac 0x24bab0, ios 0x348a70;
+    void triggerAnimation() = win inline, m1 0x1f8fe0, imac 0x24b8c0, ios 0x3488dc {
+        if (!m_animateOnlyWhenActive || m_isActivated) {
+            m_animationTriggered = true;
+            m_isDisabled2 = false;
+            m_maybeAnimationVariableXInt = -1;
+            this->updateSyncedAnimation(0.f, -1);
+            m_animationRandomizedStartValue = 0;
+        }
+    }
+    void updateRotateAction(float dt) = win 0x1a4390, m1 0x4ef108, imac 0x5b8e60, ios 0x263ee4;
     void updateState(int state) = win inline, m1 0x4ec2d8, imac 0x5b3c30, ios 0x262198 {
         if (m_state < state) m_poweredOn = false;
         if (!m_poweredOn) this->powerOffObject();
     }
     void updateUserCoin() = ios 0x25e724, win 0x1a3970, imac 0x5a9770, m1 0x4e3b94;
-    TodoReturn waitForAnimationTrigger();
+    void waitForAnimationTrigger() = win inline, m1 0x1f8e84, imac 0x24b7a0, ios 0x3487a4 {
+        m_animationTriggered = false;
+        m_isDisabled2 = true;
+        m_animationRandomizedStartValue = 0;
+        m_animationStart = 0.f;
+        m_unk540 = 0.f;
+        m_unk544 = 0.f;
+        this->setOpacity(0);
+    }
 
     bool m_poweredOn;
     int m_state;
