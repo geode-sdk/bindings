@@ -1538,6 +1538,96 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     virtual cocos2d::_ccBlendFunc getBlendFunc() = m1 0x6c64b0, imac 0x7b5dc0, ios 0x199984;
     virtual cocos2d::CCTexture2D* getTexture() = m1 0x6c618c, imac 0x7b5850, ios 0x199678;
     virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x7b5710, m1 0x6c604c, ios 0x1995a8;
+
+    gd::string m_sPlistFile;
+    float m_fElapsed;
+    cocos2d::CCPoint modeA_gravity;
+    float modeA_speed;
+    float modeA_speedVar;
+    float modeA_tangentialAccel;
+    float modeA_tangentialAccelVar;
+    float modeA_radialAccel;
+    float modeA_radialAccelVar;
+    bool modeA_rotationIsDir;
+    float modeB_startRadius;
+    float modeB_startRadiusVar;
+    float modeB_endRadius;
+    float modeB_endRadiusVar;
+    float modeB_rotatePerSecond;
+    float modeB_rotatePerSecondVar;
+    cocos2d::sCCParticle* m_pParticles;
+    float m_fEmitCounter;
+    uint32_t m_uParticleIdx;
+    cocos2d::CCParticleBatchNode* m_pBatchNode;
+    uint32_t m_uAtlasIndex;
+    bool m_bTransformSystemDirty;
+    uint32_t m_uAllocatedParticles;
+    bool m_bIsActive;
+    uint32_t m_uParticleCount;
+    float m_fDuration;
+    cocos2d::CCPoint m_tSourcePosition;
+    cocos2d::CCPoint m_tPosVar;
+    float m_fLife;
+    float m_fLifeVar;
+    float m_fAngle;
+    float m_fAngleVar;
+    float m_fFadeInTime;
+    float m_fFadeInTimeVar;
+    float m_fFadeOutTime;
+    float m_fFadeOutTimeVar;
+    float m_fFrictionPos;
+    float m_fFrictionPosVar;
+    float m_fFrictionSize;
+    float m_fFrictionSizeVar;
+    float m_fFrictionRot;
+    float m_fFrictionRotVar;
+    float m_fRespawn;
+    float m_fRespawnVar;
+    bool m_bStartSpinEqualToEnd;
+    bool m_bStartSizeEqualToEnd;
+    bool m_bStartRadiusEqualToEnd;
+    bool m_bDynamicRotationIsDir;
+    bool m_bOrderSensitive;
+    bool m_bStartRGBVarSync;
+    bool m_bEndRGBVarSync;
+    bool m_bWasRemoved;
+    bool m_bUsingSchedule;
+    float m_fStartSize;
+    float m_fStartSizeVar;
+    float m_fEndSize;
+    float m_fEndSizeVar;
+    cocos2d::ccColor4F m_tStartColor;
+    cocos2d::ccColor4F m_tStartColorVar;
+    cocos2d::ccColor4F m_tEndColor;
+    cocos2d::ccColor4F m_tEndColorVar;
+    float m_fStartSpin;
+    float m_fStartSpinVar;
+    float m_fEndSpin;
+    float m_fEndSpinVar;
+    float m_fEmissionRate;
+    uint32_t m_uTotalParticles;
+    cocos2d::CCTexture2D* m_pTexture;
+    cocos2d::ccBlendFunc m_tBlendFunc;
+    bool m_bOpacityModifyRGB;
+    bool m_bIsBlendAdditive;
+    cocos2d::tCCPositionType m_ePositionType;
+    bool m_bIsAutoRemoveOnFinish;
+    bool m_bDontCleanupOnFinish;
+    int m_nEmitterMode;
+    bool m_bWorldPosUninitialized;
+    cocos2d::CCPoint m_tWorldPos;
+    cocos2d::ccColor4F m_tUniformColor;
+    cocos2d::ccColor4F m_tUniformDeltaColor;
+    bool m_bUseUniformColorMode;
+    float m_fDefaultStartSize;
+    float m_fDefaultStartSizeVar;
+    float m_fDefaultEndSize2;
+    float m_fDefaultEndSize;
+    float m_fDefaultAngle;
+    float m_fDefaultModeASpeed;
+    float m_fDefaultModeASpeedVar;
+    cocos2d::CCPoint m_tDefaultPosVar;
+    int m_nCustomParticleIndex;
 }
 
 [[link(win, android)]]
@@ -1897,6 +1987,17 @@ class cocos2d::CCParticleSystemQuad : cocos2d::CCParticleSystem {
     virtual void postStep() = imac 0x5ebab0, m1 0x51cd20, ios 0x2530e0;
 
     virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x5eb5b0, m1 0x51c86c, ios 0x252d6c;
+
+    cocos2d::ccV3F_C4B_T2F_Quad* m_pQuads;
+    uint16_t* m_pIndices;
+    mac, ios {
+        uint32_t m_uVAOname;
+    }
+    std::array<uint32_t, 2> m_pBuffersVBO;
+    cocos2d::CCRect m_tTextureRect;
+    cocos2d::ccColor4B m_tQuadColor;
+    uint16_t m_uParticleIdx;
+    uint8_t m_uOpacity;
 }
 
 [[link(win, android)]]
@@ -2643,6 +2744,13 @@ class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     }
     void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = m1 0x4b0b8c, imac 0x55a380, ios 0x2fe44c;
     void removeDelegate(cocos2d::CCMouseDelegate*) = m1 0x4b0ad4, imac 0x55a2e0, ios 0x2fe404;
+
+    cocos2d::CCArray* m_pMouseHandlers;
+    bool m_bLocked;
+    bool m_bToAdd;
+    bool m_bToRemove;
+    cocos2d::ccCArray* m_pHandlersToAdd;
+    cocos2d::ccCArray* m_pHandlersToRemove;
 }
 
 [[link(win, android)]]
@@ -2659,6 +2767,9 @@ class cocos2d::CCTargetedTouchHandler : cocos2d::CCTouchHandler {
     // CCTargetedTouchHandler(cocos2d::CCTargetedTouchHandler const&);
     // CCTargetedTouchHandler();
     bool isSwallowsTouches();
+
+    bool m_bSwallowsTouches;
+    cocos2d::CCSet* m_pClaimedTouches;
 }
 
 [[link(win, android)]]
@@ -2814,6 +2925,12 @@ class cocos2d::CCTouch : cocos2d::CCObject {
     cocos2d::CCPoint getDelta() const = ios inline, m1 0x4f7c4, imac 0x59ba0 {
     	return getLocation() - getPreviousLocation();
     }
+
+    int m_nId;
+    bool m_startPointCaptured;
+    cocos2d::CCPoint m_startPoint;
+    cocos2d::CCPoint m_point;
+    cocos2d::CCPoint m_prevPoint;
 }
 
 [[link(win, android)]]
@@ -2872,6 +2989,19 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4b9880, m1 0x42156c, ios 0x152d94;
     virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4b98c0, m1 0x421598, ios 0x152dc0;
     virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4b9900, m1 0x4215c4, ios 0x152dec;
+
+    cocos2d::CCArray* m_pTargetedHandlers;
+    cocos2d::CCArray* m_pStandardHandlers;
+    bool m_bLocked;
+    bool m_bToAdd;
+    bool m_bToRemove;
+    cocos2d::CCArray* m_pHandlersToAdd;
+    cocos2d::ccCArray* m_pHandlersToRemove;
+    bool m_bToQuit;
+    bool m_bDispatchEvents;
+    int m_targetPrio;
+    cocos2d::CCDictionary* m_pForcePrioDict;
+    int m_forcePrio;
 }
 
 [[link(win, android)]]
@@ -2895,6 +3025,10 @@ class cocos2d::CCTouchHandler : cocos2d::CCObject {
     // CCTouchHandler();
 
     virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int) = m1 0x3dd620, imac 0x46e330, ios 0x103d4;
+
+    cocos2d::CCTouchDelegate* m_pDelegate;
+    int m_nPriority;
+    int m_nEnabledSelectors;
 }
 
 [[link(win, android)]]
@@ -2913,6 +3047,8 @@ class cocos2d::CCMouseHandler : cocos2d::CCObject {
     }
 
     virtual bool initWithDelegate(cocos2d::CCMouseDelegate*) = m1 0x21dbb0, imac 0x272b90, ios 0x88870;
+
+    cocos2d::CCMouseDelegate* m_pDelegate;
 }
 
 [[link(win, android)]]
@@ -3055,6 +3191,18 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x1f1aa0, m1 0x1a82e0;
     void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1f1600, m1 0x1a7e48; // ios 0x239884
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x1f1a70, m1 0x1a82c8;
+
+    cocos2d::CCArray* m_pDelegates;
+    bool m_bLocked;
+    bool m_bToAdd;
+    bool m_bToRemove;
+    cocos2d::ccCArray* m_pHandlersToAdd;
+    cocos2d::ccCArray* m_pHandlersToRemove;
+    bool m_bShiftPressed;
+    bool m_bControlPressed;
+    bool m_bAltPressed;
+    bool m_bCommandPressed;
+    bool m_bBlockRepeat;
 }
 
 [[link(win, android)]]
@@ -3067,6 +3215,13 @@ class cocos2d::CCKeypadDispatcher : cocos2d::CCObject {
     void forceAddDelegate(cocos2d::CCKeypadDelegate*) = m1 0x5145e8, imac 0x5e1f50, ios 0x1b0bfc;
     void forceRemoveDelegate(cocos2d::CCKeypadDelegate*) = m1 0x5144fc, imac 0x5e1e70, ios 0x1b0b20;
     void removeDelegate(cocos2d::CCKeypadDelegate*) = m1 0x514444, imac 0x5e1dd0, ios 0x1b0ad8;
+
+    cocos2d::CCArray* m_pDelegates;
+    bool m_bLocked;
+    bool m_bToAdd;
+    bool m_bToRemove;
+    cocos2d::ccCArray* m_pHandlersToAdd;
+    cocos2d::ccCArray* m_pHandlersToRemove;
 }
 
 [[link(win, android)]]
