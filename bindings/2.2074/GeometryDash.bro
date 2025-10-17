@@ -1437,9 +1437,9 @@ class CCAnimatedSprite : cocos2d::CCSprite {
     }
     ~CCAnimatedSprite() = win 0x41140, m1 0x2d3784, imac 0x33d360, ios 0x2fe214;
 
-    static CCAnimatedSprite* createWithType(char const*, cocos2d::CCTexture2D*, bool) = win inline, imac 0x33c020, m1 0x2d24c0 {
+    static CCAnimatedSprite* createWithType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win inline, imac 0x33c020, m1 0x2d24c0, ios 0x2fd4b8 {
         auto ret = new CCAnimatedSprite();
-        if (ret->initWithType(p0, p1, p2)) {
+        if (ret->initWithType(definition, texture, useTexture)) {
             ret->autorelease();
             return ret;
         }
@@ -1452,19 +1452,37 @@ class CCAnimatedSprite : cocos2d::CCSprite {
     virtual void animationFinished(char const*) = win 0x41050, imac 0x33d1d0, m1 0x2d360c, ios 0x2fe13c;
     virtual void animationFinishedO(cocos2d::CCObject*) = win 0x41010, m1 0x2d35d8, imac 0x33d1a0, ios 0x2fe108;
 
-    void cleanupSprite() = imac 0x33ca60, m1 0x2d2ebc;
-    bool initWithType(char const*, cocos2d::CCTexture2D*, bool) = win 0x3ffc0, imac 0x33c100, m1 0x2d2594;
-    void loadType(char const*, cocos2d::CCTexture2D*, bool) = win 0x401e0, m1 0x2d2790, imac 0x33c2f0;
-    void runAnimation(gd::string) = win 0x40c80, m1 0x2d3058, imac 0x33cc20, ios 0x2fdcf0;
-    void runAnimationForced(gd::string) = win inline, m1 0x2d30f0, imac 0x33cca0 {
-        m_animationManager->overridePrio();
-        m_animationManager->runAnimation(p0);
+    void cleanupSprite() = win inline, imac 0x33ca60, m1 0x2d2ebc, ios 0x2fdb54 {
+        if (m_paSprite) m_paSprite->cleanup();
+        if (m_fbfSprite) m_fbfSprite->cleanup();
+        if (m_animationManager) m_animationManager->doCleanup();
+        if (m_fbfSprite) m_fbfSprite->removeFromParentAndCleanup(true);
+        if (m_paSprite) m_paSprite->removeFromParentAndCleanup(true);
+        m_animationManager = nullptr;
+        m_sprite = nullptr;
+        m_fbfSprite = nullptr;
+        m_paSprite = nullptr;
+        m_spriteMode = (spriteMode)0;
     }
-    void stopTween() = m1 0x2d359c, imac 0x33d160;
-    void switchToMode(spriteMode) = win 0x40b10, imac 0x33cb00, m1 0x2d2f4c;
-    void tweenToAnimation(gd::string, float) = win 0x40cf0, imac 0x33cd60, m1 0x2d31c4, ios 0x2fde3c;
-    void tweenToAnimationFinished() = win 0x40fc0;
-    void willPlayAnimation() = m1 0x2d3194, imac 0x33cd30;
+    bool initWithType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win 0x3ffc0, imac 0x33c100, m1 0x2d2594, ios 0x2fd57c;
+    void loadType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win 0x401e0, m1 0x2d2790, imac 0x33c2f0, ios 0x2fd6e0;
+    void runAnimation(gd::string animation) = win 0x40c80, m1 0x2d3058, imac 0x33cc20, ios 0x2fdcf0;
+    void runAnimationForced(gd::string animation) = win inline, m1 0x2d30f0, imac 0x33cca0, ios 0x2fdd78 {
+        m_animationManager->overridePrio();
+        m_animationManager->runAnimation(animation);
+    }
+    void stopTween() = win inline, m1 0x2d359c, imac 0x33d160, ios 0x2fe0cc {
+        m_paSprite->stopAllActions();
+        this->stopActionByTag(1);
+        m_activeTween = "";
+    }
+    void switchToMode(spriteMode mode) = win 0x40b10, imac 0x33cb00, m1 0x2d2f4c, ios 0x2fdbe4;
+    void tweenToAnimation(gd::string animation, float duration) = win 0x40cf0, imac 0x33cd60, m1 0x2d31c4, ios 0x2fde3c;
+    void tweenToAnimationFinished() = win 0x40fc0, m1 0x2d3480, imac 0x33d050, ios 0x2fe030;
+    void willPlayAnimation() = win inline, m1 0x2d3194, imac 0x33cd30, ios 0x2fde0c {
+        this->stopActionByTag(1);
+        m_activeTween = "";
+    }
 
     gd::string m_unkString1;
     gd::string m_activeTween;
