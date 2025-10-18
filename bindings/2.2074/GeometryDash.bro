@@ -2127,17 +2127,21 @@ class CCNodeContainer : cocos2d::CCNode {
 
 [[link(android)]]
 class CCPartAnimSprite : cocos2d::CCSprite {
-    // virtual ~CCPartAnimSprite();
-    CCPartAnimSprite() {
+    CCPartAnimSprite() = ios 0x83808 {
         m_spritePartIDs = nullptr;
         m_spriteFrame = nullptr;
         m_hasChanged = false;
         m_spriteParts = nullptr;
     }
+    ~CCPartAnimSprite() = win inline, m1 0x2f50a0, imac 0x362190, ios 0x836e0 {
+        CC_SAFE_RELEASE(m_spritePartIDs);
+        CC_SAFE_RELEASE(m_spriteFrame);
+        CC_SAFE_RELEASE(m_spriteParts);
+    }
 
-    static CCPartAnimSprite* createWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool) = win inline {
+    static CCPartAnimSprite* createWithAnimDesc(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win inline, m1 0x2f346c, imac 0x360430, ios 0x8255c {
         auto ret = new CCPartAnimSprite();
-        if (ret->initWithAnimDesc(p0, p1, p2)) {
+        if (ret->initWithAnimDesc(definition, texture, useTexture)) {
             ret->autorelease();
             return ret;
         }
@@ -2154,17 +2158,73 @@ class CCPartAnimSprite : cocos2d::CCSprite {
     virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame*) = win 0x46330, imac 0x3619b0, m1 0x2f4814, ios 0x831c0;
     virtual cocos2d::CCSpriteFrame* displayFrame() = win 0x46350, m1 0x2f482c, imac 0x3619d0, ios 0x831d8;
 
-    void changeTextureOfID(char const*, char const*);
-    int countParts();
-    void dirtify();
-    cocos2d::CCSprite* getSpriteForKey(char const*);
-    bool initWithAnimDesc(char const*, cocos2d::CCTexture2D*, bool) = win 0x45910;
-    void setColor(cocos2d::ccColor3B) = win 0x467c0;
-    void setFlipX(bool);
-    void setFlipY(bool);
-    void transformSprite(SpriteDescription*);
-    void tweenSpriteTo(SpriteDescription*, float);
-    void tweenToFrame(cocos2d::CCSpriteFrame*, float) = win 0x46360;
+    void changeTextureOfID(char const* key, char const* frame) = win inline, m1 0x02f431c, imac 0x3614b0, ios inline {
+        if (auto spritePart = static_cast<CCSpritePart*>(m_spritePartIDs->objectForKey(key))) {
+            if (frame) spritePart->updateDisplayFrame(frame);
+            else spritePart->resetTextureRect();
+        }
+    }
+    int countParts() = win inline, m1 0x2f4fb8, imac 0x3620c0, ios inline {
+        return this->getChildren()->count();
+    }
+    void dirtify() = win inline, m1 0x2f4fd4, imac 0x3620e0, ios inline {
+        CCObject* obj;
+        CCARRAY_FOREACH(this->getChildren(), obj) {
+            static_cast<cocos2d::CCSprite*>(obj)->setDirty(true);
+        }
+    }
+    CCSpritePart* getSpriteForKey(char const* key) = win inline, m1 0x2f45c8, imac 0x361750, ios 0x83028 {
+        return static_cast<CCSpritePart*>(m_spritePartIDs->objectForKey(key));
+    }
+    bool initWithAnimDesc(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win 0x45910, m1 0x2f3558, imac 0x360510, ios 0x825e8;
+    void setColor(cocos2d::ccColor3B color) = win 0x467c0, m1 0x2f4d18, imac 0x361e60, ios 0x8351c;
+    void setFlipX(bool flipX) = win inline, m1 0x2f4a48, imac 0x361bf0, ios 0x83370 {
+        auto currentFlipX = this->isFlipX();
+        if (currentFlipX != flipX) this->setScaleX(currentFlipX ? 0.f : 1.f);
+        CCSprite::setFlipX(flipX);
+        m_hasChanged = true;
+    }
+    void setFlipY(bool flipY) = win inline, m1 0x2f4aa0, imac 0x361c40, ios inline {
+        this->setScaleY(this->isFlipY() ? 0.f : 1.f);
+        CCSprite::setFlipY(flipY);
+        m_hasChanged = true;
+    }
+    void transformSprite(SpriteDescription* description) = win inline, m1 0x2f3ee0, imac 0x361050, ios 0x82c44 {
+        auto spritePart = static_cast<CCSpritePart*>(m_spriteParts->objectAtIndex(description->m_tag));
+        spritePart->stopAllActions();
+        spritePart->setPosition(description->m_position);
+        auto scaleX = description->m_scale.x;
+        if (description->m_flipped.x) scaleX = -scaleX;
+        auto scaleY = description->m_scale.y;
+        if (description->m_flipped.y) scaleY = -scaleY;
+        spritePart->setScaleX(scaleX);
+        spritePart->setScaleY(scaleY);
+        spritePart->setRotation(description->m_rotation);
+        if (description->m_usesCustomTag) {
+            spritePart->setDisplayFrame(description->m_texture);
+            spritePart->frameChanged(description->m_texture->getFrameName());
+        }
+    }
+    void tweenSpriteTo(SpriteDescription* description, float duration) = win inline, m1 0x2f4178, imac 0x361300, ios 0x82e84 {
+        auto spritePart = static_cast<CCSpritePart*>(m_spriteParts->objectAtIndex(description->m_tag));
+        spritePart->stopAllActions();
+        auto scaleX = description->m_scale.x;
+        if (description->m_flipped.x) scaleX = -scaleX;
+        auto scaleY = description->m_scale.y;
+        if (description->m_flipped.y) scaleY = -scaleY;
+        spritePart->runAction(cocos2d::CCMoveTo::create(duration, description->m_position));
+        spritePart->runAction(cocos2d::CCScaleTo::create(duration, scaleX, scaleY));
+        spritePart->runAction(cocos2d::CCRotateTo::create(duration, description->m_rotation));
+        if (description->m_usesCustomTag) {
+            spritePart->setDisplayFrame(description->m_texture);
+            spritePart->frameChanged(description->m_texture->getFrameName());
+        }
+        auto zValue = description->m_zValue;
+        if (spritePart->getZOrder() != zValue) {
+            this->reorderChild(spritePart, zValue);
+        }
+    }
+    void tweenToFrame(cocos2d::CCSpriteFrame* frame, float duration) = win 0x46360, m1 0x2f4834, imac 0x3619e0, ios 0x831e0;
 
     cocos2d::CCDictionary* m_spritePartIDs;
     cocos2d::CCSpriteFrame* m_spriteFrame;
@@ -2309,19 +2369,52 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 [[link(android)]]
 class CCSpritePart : CCSpritePlus {
     // virtual ~CCSpritePart();
+    CCSpritePart() = win 0x45820 {
+        m_isBeingUsed = false;
+        m_delegate = nullptr;
+    }
 
-    static CCSpritePart* create(cocos2d::CCTexture2D*);
+    static CCSpritePart* create(cocos2d::CCTexture2D* texture) = win inline, m1 0x2f3e2c, imac 0x360fa0, ios 0x82b9c {
+        auto ret = new CCSpritePart();
+        if (ret->initWithTexture(texture)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void setVisible(bool) = win 0x46a30, imac 0x362320, m1 0x2f51d8, ios 0x8375c;
 
-    static CCSpritePart* createWithSpriteFrameName(char const*);
-    void frameChanged(gd::string) = win 0x46980;
-    TodoReturn getBeingUsed();
-    TodoReturn hideInactive();
-    TodoReturn markAsNotBeingUsed();
-    TodoReturn resetTextureRect();
-    void setBeingUsed(bool);
-    TodoReturn updateDisplayFrame(gd::string);
+    static CCSpritePart* createWithSpriteFrameName(char const* frame) = win inline, m1 0x2f3cbc, imac 0x360e20, ios 0x82aa4 {
+        auto ret = new CCSpritePart();
+        if (ret->initWithSpriteFrameName(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    void frameChanged(gd::string frame) = win 0x46980, m1 0x2f4060, imac 0x3611d0, ios 0x82dc4;
+    bool getBeingUsed() = win inline, m1 0x2f51d0, imac 0x362310, ios inline {
+        return m_isBeingUsed;
+    }
+    void hideInactive() = win inline, m1 0x2f47f8, imac 0x361990, ios inline {
+        if (!m_isBeingUsed) this->setVisible(false);
+    }
+    void markAsNotBeingUsed() = win inline, m1 0x2f47f0, imac 0x361980, ios inline {
+        m_isBeingUsed = false;
+    }
+    void resetTextureRect() = win inline, m1 0x2f44f0, imac 0x361680, ios inline {
+        this->setTextureRect({ 0.f, 0.f, 0.f, 0.f });
+    }
+    void setBeingUsed(bool beingUsed) = win inline, m1 0x2f4170, imac 0x3612f0, ios inline {
+        m_isBeingUsed = beingUsed;
+    }
+    void updateDisplayFrame(gd::string frame) = win inline, m1 0x2f4504, imac 0x3616a0, ios inline {
+        this->frameChanged(frame);
+        this->setDisplayFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frame.c_str()));
+    }
 
     bool m_isBeingUsed;
     gd::string m_spriteFrameName;
