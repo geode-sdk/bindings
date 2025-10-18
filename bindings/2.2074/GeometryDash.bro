@@ -4030,7 +4030,7 @@ class CurrencySprite : CCSpritePlus {
         CC_SAFE_RELEASE(m_burstSprite);
     }
 
-    static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, imac 0x792020, m1 0x6a56c4 {
+    static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, imac 0x792020, m1 0x6a56c4, ios inline {
         auto ret = new CurrencySprite();
         if (ret->init(type, burst)) {
             ret->autorelease();
