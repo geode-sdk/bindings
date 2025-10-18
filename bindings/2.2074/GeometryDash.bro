@@ -11110,7 +11110,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processItems() = ios 0x1eb7a4, imac 0x118f50, m1 0xf7d44, win 0x210db0;
     void processMoveActions() = win 0x2282d0, m1 0x10ffa0, imac 0x136810, ios 0x1fa624;
     void processMoveActionsStep(float, bool) = ios 0x1f9088, win 0x2262f0, m1 0x10e5b8, imac 0x1347b0;
-    void processOptionsTrigger(GameOptionsTrigger*) = win 0x21e9a0, imac 0x12c930, m1 0x107a5c;
+    void processOptionsTrigger(GameOptionsTrigger*) = win 0x21e9a0, imac 0x12c930, m1 0x107a5c, ios 0x1f3d50;
     void processPlayerFollowActions(float) = win 0x228bf0, m1 0x110124, imac 0x1369f0, ios 0x1fa734;
     void processQueuedAudioTriggers() = ios 0x204bdc, win 0x235550, m1 0x11eb60, imac 0x1491f0;
     void processQueuedButtons() = ios 0x1fcb04, win 0x22c7f0, imac 0x13af40, m1 0x113650;
@@ -11317,7 +11317,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void toggleDualMode(GameObject*, bool, PlayerObject*, bool) = ios 0x1e76c4, win 0x2113f0, imac 0x113770, m1 0xf2fe8;
     void toggleFlipped(bool, bool) = ios 0x1ea9b8, win 0x240240, m1 0xf6954, imac 0x117af0;
     void toggleGroup(int, bool) = win 0x21e810, m1 0x1078c4, imac 0x12c780;
-    void toggleLockPlayer(bool disable, bool p2) = win inline, imac 0x12cbe0, m1 0x107cb0 {
+    void toggleLockPlayer(bool disable, bool p2) = win inline, imac 0x12cbe0, m1 0x107cb0, ios inline {
         auto player = p2 ? m_player2 : m_player1;
         if (disable) player->disablePlayerControls();
         else player->enablePlayerControls();
@@ -20120,14 +20120,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void disableCustomGlowColor() {
         m_hasCustomGlowColor = false;
     }
-    void disablePlayerControls() = win 0x389620, imac 0x409140, m1 0x386af4;
+    void disablePlayerControls() = win 0x389620, imac 0x409140, m1 0x386af4, ios 0x22d13c;
     void disableSwingFire() = ios 0x2286b8, win 0x385170, m1 0x3807b8, imac 0x402500;
     void doReversePlayer(bool) = ios 0x21dd68, win 0x3826e0, imac 0x3f0850, m1 0x371620;
     inline void enableCustomGlowColor(cocos2d::ccColor3B const& color) {
         m_hasCustomGlowColor = true;
         m_glowColor = color;
     }
-    void enablePlayerControls() = win 0x389770, imac 0x4091a0, m1 0x386b50;
+    void enablePlayerControls() = win 0x389770, imac 0x4091a0, m1 0x386b50, ios 0x22d198;
     void exitPlatformerAnimateJump() = win 0x3771a0, m1 0x371834, imac 0x3f09f0, ios 0x21de6c;
     void fadeOutStreak2(float) = ios 0x22861c, win 0x38a400, imac 0x402470, m1 0x38071c;
     void flashPlayer(float, float, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win inline, m1 0x37c04c, imac 0x3fd3f0, ios inline {
