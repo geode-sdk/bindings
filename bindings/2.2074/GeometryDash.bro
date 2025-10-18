@@ -3926,14 +3926,14 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
     // virtual ~CurrencyRewardLayer();
     // CurrencyRewardLayer();
 
-    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float, float time) = win 0x9f500, imac 0x78ff00, m1 0x6a36f8, ios 0x31e9b4;
+    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float yOffset, float time) = win 0x9f500, imac 0x78ff00, m1 0x6a36f8, ios 0x31e9b4;
 
     virtual void update(float) = win 0xa2230, imac 0x792fd0, m1 0x6a64a8, ios 0x3212a4;
 
     void createObjects(CurrencySpriteType type, int count, cocos2d::CCPoint position, float time) = win inline, imac 0x792130, m1 0x6a57c0, ios 0x3206cc {
         this->createObjectsFull(type, count, nullptr, position, time);
     }
-    void createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0xa1520, imac 0x7921d0, m1 0x6a5884, ios 0x320790;
+    void createObjectsFull(CurrencySpriteType type, int count, cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win 0xa1520, imac 0x7921d0, m1 0x6a5884, ios 0x320790;
     void createUnlockObject(cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win inline, imac 0x792180, m1 0x6a5828, ios 0x320734 {
         this->createObjectsFull(CurrencySpriteType::Icon, 1, sprite, position, time);
     }
@@ -3943,7 +3943,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
         this->pulseSprite(m_orbsSprite);
         m_orbsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    void incrementDiamondsCount(int count) = win inline, m1 0x6a6f08, imac 0x793b50 {
+    void incrementDiamondsCount(int count) = win inline, m1 0x6a6f08, imac 0x793b50, ios 0x321b84 {
         if (m_diamondsLabel == nullptr) return;
         m_diamonds += count;
         this->pulseSprite(m_diamondsSprite);
@@ -3973,8 +3973,8 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
         this->pulseSprite(m_starsSprite);
         m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    bool init(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float, float time) = win 0x9f750, imac 0x78ffe0, m1 0x6a3800, ios 0x31eabc;
-    void pulseSprite(cocos2d::CCSprite*) = win 0xa2c00, imac 0x793fa0, m1 0x6a72f8, ios 0x321ea8;
+    bool init(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float yOffset, float time) = win 0x9f750, imac 0x78ffe0, m1 0x6a3800, ios 0x31eabc;
+    void pulseSprite(cocos2d::CCSprite* sprite) = win 0xa2c00, imac 0x793fa0, m1 0x6a72f8, ios 0x321ea8;
 
     CurrencyRewardDelegate* m_delegate;
     cocos2d::CCArray* m_objects;
@@ -4040,11 +4040,28 @@ class CurrencySprite : CCSpritePlus {
         return nullptr;
     }
 
-    static CurrencySprite* createWithSprite(cocos2d::CCSprite*) = win 0xa44b0, m1 0x6a63c0, imac 0x792ed0, ios 0x321230;
-    static CurrencySpriteType rewardToSpriteType(int);
-    static gd::string spriteTypeToStat(CurrencySpriteType) = win 0xa4780, m1 0x6a5574, imac 0x791f20;
-    bool init(CurrencySpriteType, bool) = win 0xa2cd0, m1 0x6a74c0, imac 0x794180, ios 0x321fe4;
-    bool initWithSprite(cocos2d::CCSprite*) = m1 0x6a7dc8, imac 0x794ad0, ios 0x3228ac; // inlined on windows
+    static CurrencySprite* createWithSprite(cocos2d::CCSprite* sprite) = win 0xa44b0, m1 0x6a63c0, imac 0x792ed0, ios 0x321230;
+    static CurrencySpriteType rewardToSpriteType(int rewardType) = win 0xa46d0, m1 0x6a7f80, imac 0x794c80, ios 0x322a60;
+    static gd::string spriteTypeToStat(CurrencySpriteType type) = win 0xa4780, m1 0x6a5574, imac 0x791f20, ios 0x320618;
+    bool init(CurrencySpriteType type, bool burst) = win 0xa2cd0, m1 0x6a74c0, imac 0x794180, ios 0x321fe4;
+    bool initWithSprite(cocos2d::CCSprite* sprite) = win inline, m1 0x6a7dc8, imac 0x794ad0, ios 0x3228ac {
+        if (!cocos2d::CCSprite::init()) return false;
+        this->addChild(sprite);
+        sprite->setPosition({ 0.f, 0.f });
+        m_burstSprite = cocos2d::CCSprite::createWithSpriteFrameName("shineBurst_001.png");
+        m_burstSprite->retain();
+        auto factor = (float)rand() / (float)RAND_MAX > .5f ? 1.f : -1.f;
+        m_burstSprite->runAction(cocos2d::CCRepeatForever::create(cocos2d::CCRotateBy::create(1.f, 90.f * factor)));
+        m_burstSprite->setScale(2.f);
+        m_burstSprite->setColor({ 255, 255, 255 });
+        auto shineBurst = cocos2d::CCSprite::createWithSpriteFrameName("shineBurst_001.png");
+        m_burstSprite->addChild(shineBurst);
+        shineBurst->setPosition(m_burstSprite->convertToNodeSpace({ 0.f, 0.f }));
+        shineBurst->setScale(.8f);
+        shineBurst->setColor({ 255, 255, 255 });
+        shineBurst->runAction(cocos2d::CCRepeatForever::create(cocos2d::CCRotateBy::create(1.f, -180.f * factor)));
+        return true;
+    }
 
     float m_unkFloat1;
     float m_unkFloat2;
@@ -6055,10 +6072,35 @@ class EffectManagerState {
 
 [[link(android)]]
 class EndLevelLayer : GJDropDownLayer {
-    // virtual ~EndLevelLayer();
-    // EndLevelLayer();
+    EndLevelLayer() = m1 0x419328, imac 0x4b06d0, ios 0x2f8988 {
+        m_playLayer = nullptr;
+        m_notLocal = false;
+        m_coinsVerified = false;
+        m_unknown3 = false;
+        m_exiting = false;
+        m_animateCoins = false;
+        m_endEffectPlayed = false;
+        m_sideMenu = nullptr;
+        m_coinsToAnimate = nullptr;
+        m_orbs = 0;
+        m_stars = 0;
+        m_moons = 0;
+        m_diamonds = 0;
+        m_hidden = false;
+    }
+    ~EndLevelLayer() = win inline, m1 0x415a0c, imac 0x4ac950, ios 0x2f55b0 {
+        CC_SAFE_RELEASE(m_coinsToAnimate);
+    }
 
-    static EndLevelLayer* create(PlayLayer* playLayer);
+    static EndLevelLayer* create(PlayLayer* playLayer) = win inline, m1 0x41595c, imac 0x4ac8a0, ios 0x2f5528 {
+        auto ret = new EndLevelLayer();
+        if (ret->init(playLayer)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void keyBackClicked() = win 0x133aa0, imac 0x4afe70, m1 0x418b0c, ios 0x2f81f4;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0x135140, imac 0x4b0620, m1 0x4192a4, ios 0x2f893c;
@@ -6067,28 +6109,31 @@ class EndLevelLayer : GJDropDownLayer {
     virtual void enterAnimFinished() = m1 0x418a60, imac 0x4afd90, ios 0x2f8174 {}
     virtual void keyUp(cocos2d::enumKeyCodes) = m1 0x419320, imac 0x4b06b0, ios 0x2f8980 {}
 
-    void coinEnterFinished(cocos2d::CCPoint) = win 0x134230, m1 0x418e98, imac 0x4b0230, ios 0x2f8550;
-    void coinEnterFinishedO(cocos2d::CCObject*) = win 0x1341f0, m1 0x418e4c, imac 0x4b01f0;
+    void coinEnterFinished(cocos2d::CCPoint position) = win 0x134230, m1 0x418e98, imac 0x4b0230, ios 0x2f8550;
+    void coinEnterFinishedO(cocos2d::CCObject* sender) = win 0x1341f0, m1 0x418e4c, imac 0x4b01f0, ios 0x2f8504;
     void currencyEnterFinished() = win 0x1348e0, m1 0x4190b0, imac 0x4b0420, ios 0x2f8750;
     void diamondEnterFinished() = win 0x134d70, m1 0x4191a8, imac 0x4b0520, ios 0x2f8844;
     gd::string getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840, ios 0x2f6d38;
     const char* getEndText() = win 0x135190, m1 0x41770c, imac 0x4aea80, ios 0x2f6f00;
     void goEdit() = win 0x1336e0, m1 0x418a68, imac 0x4afdb0, ios 0x2f8178;
-    bool init(PlayLayer* playLayer);
+    bool init(PlayLayer* playLayer) = win inline, m1 0x4159f0, imac 0x4ac920, ios inline {
+        m_playLayer = playLayer;
+        return GJDropDownLayer::init(" ", 230.f, true);
+    }
     void onEdit(cocos2d::CCObject* sender) = win 0x1335e0, m1 0x417a1c, imac 0x4aed20, ios 0x2f71c0;
-    void onEveryplay(cocos2d::CCObject* sender);
+    void onEveryplay(cocos2d::CCObject* sender) = win inline, m1 0x418a64, imac 0x4afda0, ios inline {}
     void onHideLayer(cocos2d::CCObject* sender) = win 0x1337b0, imac 0x4aef70, m1 0x417c94, ios 0x2f7420;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x132c30, m1 0x417c20, imac 0x4aef00, ios 0x2f73ac;
     void onMenu(cocos2d::CCObject* sender) = win 0x133460, m1 0x417918, imac 0x4aec30, ios 0x2f70d4;
     void onReplay(cocos2d::CCObject* sender) = win 0x133250, m1 0x4177f4, imac 0x4aeb30, ios 0x2f6fc8;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x133890, m1 0x417ab8, imac 0x4aedb0, ios 0x2f725c;
-    void playCoinEffect(float) = win 0x133fb0, m1 0x41825c, imac 0x4af550, ios 0x2f7998;
-    void playCurrencyEffect(float) = win 0x134560, m1 0x4183f0, imac 0x4af6f0, ios 0x2f7b1c;
-    void playDiamondEffect(float) = win 0x1349f0, m1 0x418728, imac 0x4afa40, ios 0x2f7e48;
+    void playCoinEffect(float duration) = win 0x133fb0, m1 0x41825c, imac 0x4af550, ios 0x2f7998;
+    void playCurrencyEffect(float duration) = win 0x134560, m1 0x4183f0, imac 0x4af6f0, ios 0x2f7b1c;
+    void playDiamondEffect(float duration) = win 0x1349f0, m1 0x418728, imac 0x4afa40, ios 0x2f7e48;
     void playEndEffect() = win 0x134e80, m1 0x418c38, imac 0x4affd0, ios 0x2f831c;
-    void playStarEffect(float) = win 0x133ab0, m1 0x417f0c, imac 0x4af1f0, ios 0x2f7658;
+    void playStarEffect(float duration) = win 0x133ab0, m1 0x417f0c, imac 0x4af1f0, ios 0x2f7658;
     void starEnterFinished() = win 0x133e50, m1 0x418b18, imac 0x4afea0, ios 0x2f8200;
-    void tryShowBanner(float);
+    void tryShowBanner(float) = m1 0x417d4c, imac 0x4af030;
 
     PlayLayer* m_playLayer;
     bool m_notLocal;

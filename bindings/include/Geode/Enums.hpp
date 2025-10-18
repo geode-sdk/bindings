@@ -658,11 +658,13 @@ enum class CurrencySpriteType {
     MetalShard = 12,
     LightShard = 13,
     SoulShard = 14,
-    Moon = 15
+    Moon = 15,
+    GoldKey = 16
 };
 
 enum class CurrencyRewardType {
-    // todo
+    Default = 0,
+    Treasure = 1
 };
 
 enum class MenuAnimationType {
