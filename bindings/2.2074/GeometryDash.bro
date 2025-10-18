@@ -4030,7 +4030,7 @@ class CurrencySprite : CCSpritePlus {
         CC_SAFE_RELEASE(m_burstSprite);
     }
 
-    static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, imac 0x792020, m1 0x6a56c4, ios inline {
+    static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, imac 0x792020, m1 0x6a56c4, ios 0x320648 {
         auto ret = new CurrencySprite();
         if (ret->init(type, burst)) {
             ret->autorelease();
@@ -4040,11 +4040,11 @@ class CurrencySprite : CCSpritePlus {
         return nullptr;
     }
 
-    static CurrencySprite* createWithSprite(cocos2d::CCSprite*) = win 0xa44b0, m1 0x6a63c0, imac 0x792ed0;
+    static CurrencySprite* createWithSprite(cocos2d::CCSprite*) = win 0xa44b0, m1 0x6a63c0, imac 0x792ed0, ios 0x321230;
     static CurrencySpriteType rewardToSpriteType(int);
     static gd::string spriteTypeToStat(CurrencySpriteType) = win 0xa4780, m1 0x6a5574, imac 0x791f20;
-    bool init(CurrencySpriteType, bool) = win 0xa2cd0, m1 0x6a74c0, imac 0x794180;
-    bool initWithSprite(cocos2d::CCSprite*) = m1 0x6a7dc8, imac 0x794ad0;
+    bool init(CurrencySpriteType, bool) = win 0xa2cd0, m1 0x6a74c0, imac 0x794180, ios 0x321fe4;
+    bool initWithSprite(cocos2d::CCSprite*) = m1 0x6a7dc8, imac 0x794ad0, ios 0x3228ac; // inlined on windows
 
     float m_unkFloat1;
     float m_unkFloat2;
