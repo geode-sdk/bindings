@@ -11322,7 +11322,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         if (disable) player->disablePlayerControls();
         else player->enablePlayerControls();
     }
-    void togglePlayerStreakBlend(bool) = imac 0x12cb50, m1 0x107c3c;
+    void togglePlayerStreakBlend(bool blend) = win inline, imac 0x12cb50, m1 0x107c3c, ios 0x1f3ef0 {
+        if (blend != m_gameState.m_playerStreakBlend) {
+            m_gameState.m_playerStreakBlend = blend;
+            m_player1->updateStreakBlend(blend);
+            m_player2->updateStreakBlend(blend);
+        }
+    }
     void togglePlayerVisibility(bool visible, bool player1) = win inline, m1 0x107c88, imac 0x12cba0, ios inline {
         if (player1)
             this->m_player1->toggleVisibility(visible);
