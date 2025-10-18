@@ -6069,11 +6069,11 @@ class EndLevelLayer : GJDropDownLayer {
 
     void coinEnterFinished(cocos2d::CCPoint) = win 0x134230, m1 0x418e98, imac 0x4b0230, ios 0x2f8550;
     void coinEnterFinishedO(cocos2d::CCObject*) = win 0x1341f0, m1 0x418e4c, imac 0x4b01f0;
-    void currencyEnterFinished();
-    void diamondEnterFinished();
-    gd::string getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840;
-    const char* getEndText() = win 0x135190, m1 0x41770c, imac 0x4aea80;
-    void goEdit() = win 0x1336e0;
+    void currencyEnterFinished() = win 0x1348e0, m1 0x4190b0, imac 0x4b0420, ios 0x2f8750;
+    void diamondEnterFinished() = win 0x134d70, m1 0x4191a8, imac 0x4b0520, ios 0x2f8844;
+    gd::string getCoinString() = win 0x132d30, m1 0x4174b8, imac 0x4ae840, ios 0x2f6d38;
+    const char* getEndText() = win 0x135190, m1 0x41770c, imac 0x4aea80, ios 0x2f6f00;
+    void goEdit() = win 0x1336e0, m1 0x418a68, imac 0x4afdb0, ios 0x2f8178;
     bool init(PlayLayer* playLayer);
     void onEdit(cocos2d::CCObject* sender) = win 0x1335e0, m1 0x417a1c, imac 0x4aed20, ios 0x2f71c0;
     void onEveryplay(cocos2d::CCObject* sender);
@@ -6083,11 +6083,11 @@ class EndLevelLayer : GJDropDownLayer {
     void onReplay(cocos2d::CCObject* sender) = win 0x133250, m1 0x4177f4, imac 0x4aeb30, ios 0x2f6fc8;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x133890, m1 0x417ab8, imac 0x4aedb0, ios 0x2f725c;
     void playCoinEffect(float) = win 0x133fb0, m1 0x41825c, imac 0x4af550, ios 0x2f7998;
-    void playCurrencyEffect(float) = win 0x134560;
+    void playCurrencyEffect(float) = win 0x134560, m1 0x4183f0, imac 0x4af6f0, ios 0x2f7b1c;
     void playDiamondEffect(float) = win 0x1349f0, m1 0x418728, imac 0x4afa40, ios 0x2f7e48;
     void playEndEffect() = win 0x134e80, m1 0x418c38, imac 0x4affd0, ios 0x2f831c;
-    void playStarEffect(float) = win 0x133ab0;
-    void starEnterFinished() = win 0x133e50;
+    void playStarEffect(float) = win 0x133ab0, m1 0x417f0c, imac 0x4af1f0, ios 0x2f7658;
+    void starEnterFinished() = win 0x133e50, m1 0x418b18, imac 0x4afea0, ios 0x2f8200;
     void tryShowBanner(float);
 
     PlayLayer* m_playLayer;
