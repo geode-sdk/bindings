@@ -3930,14 +3930,14 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 
     virtual void update(float) = win 0xa2230, imac 0x792fd0, m1 0x6a64a8, ios 0x3212a4;
 
-    void createObjects(CurrencySpriteType type, int count, cocos2d::CCPoint position, float time) = win inline, imac 0x792130, m1 0x6a57c0 {
+    void createObjects(CurrencySpriteType type, int count, cocos2d::CCPoint position, float time) = win inline, imac 0x792130, m1 0x6a57c0, ios 0x3206cc {
         this->createObjectsFull(type, count, nullptr, position, time);
     }
     void createObjectsFull(CurrencySpriteType, int, cocos2d::CCSprite*, cocos2d::CCPoint, float) = win 0xa1520, imac 0x7921d0, m1 0x6a5884, ios 0x320790;
     void createUnlockObject(cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win inline, imac 0x792180, m1 0x6a5828, ios 0x320734 {
         this->createObjectsFull(CurrencySpriteType::Icon, 1, sprite, position, time);
     }
-    void incrementCount(int count) = win inline, m1 0x6a6b18, imac 0x793700 {
+    void incrementCount(int count) = win inline, m1 0x6a6b18, imac 0x793700, ios 0x321860 {
         if (m_orbsLabel == nullptr) return;
         m_orbs += count;
         this->pulseSprite(m_orbsSprite);
@@ -3949,32 +3949,32 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
         this->pulseSprite(m_diamondsSprite);
         m_diamondsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    void incrementMoonsCount(int count) = win inline, m1 0x6a6db8, imac 0x7939e0 {
+    void incrementMoonsCount(int count) = win inline, m1 0x6a6db8, imac 0x7939e0, ios 0x321a78 {
         if (m_moonsLabel == nullptr) return;
         m_moons += count;
         this->pulseSprite(m_moonsSprite);
         m_moonsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    void incrementSpecialCount1(int count) = win inline, m1 0x6a71a8, imac 0x793e30 {
+    void incrementSpecialCount1(int count) = win inline, m1 0x6a71a8, imac 0x793e30, ios 0x321d9c {
         if (m_keysLabel == nullptr) return;
         m_keys += count;
         this->pulseSprite(m_keysSprite);
         m_keysLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    void incrementSpecialCount2(int count) = win inline, m1 0x6a7058, imac 0x793cc0 {
+    void incrementSpecialCount2(int count) = win inline, m1 0x6a7058, imac 0x793cc0, ios 0x321c90 {
         if (m_shardsLabel == nullptr) return;
         m_shards += count;
         this->pulseSprite(m_shardsSprite);
         m_shardsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
-    void incrementStarsCount(int count) = win inline, m1 0x6a6c68, imac 0x793870 {
+    void incrementStarsCount(int count) = win inline, m1 0x6a6c68, imac 0x793870, ios 0x32196c {
         if (m_starsLabel == nullptr) return;
         m_stars += count;
         this->pulseSprite(m_starsSprite);
         m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
     }
     bool init(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float, float time) = win 0x9f750, imac 0x78ffe0, m1 0x6a3800, ios 0x31eabc;
-    void pulseSprite(cocos2d::CCSprite*) = win 0xa2c00, imac 0x793fa0, m1 0x6a72f8;
+    void pulseSprite(cocos2d::CCSprite*) = win 0xa2c00, imac 0x793fa0, m1 0x6a72f8, ios 0x321ea8;
 
     CurrencyRewardDelegate* m_delegate;
     cocos2d::CCArray* m_objects;
