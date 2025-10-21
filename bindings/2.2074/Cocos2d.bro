@@ -4885,7 +4885,7 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     }
     bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = imac 0x3445a0, m1 0x2d9a18, ios 0x24d2dc;
 
-    cocos2d::CCPoint const& getOffset();
+    cocos2d::CCPoint const& getOffset() = m1 0x2d9f70, imac 0x344c50, ios 0x24d5e4;
     cocos2d::CCPoint const& getOffsetInPixels();
     cocos2d::CCSize const& getOriginalSize();
     cocos2d::CCSize const& getOriginalSizeInPixels();
