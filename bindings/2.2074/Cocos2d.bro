@@ -4886,19 +4886,31 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     bool initWithTextureFilename(char const*, cocos2d::CCRect const&, bool, cocos2d::CCPoint const&, cocos2d::CCSize const&) = imac 0x3445a0, m1 0x2d9a18, ios 0x24d2dc;
 
     cocos2d::CCPoint const& getOffset() = m1 0x2d9f70, imac 0x344c50, ios 0x24d5e4;
-    cocos2d::CCPoint const& getOffsetInPixels();
+    cocos2d::CCPoint const& getOffsetInPixels() = m1 0x2d9fe4, imac 0x344cf0, ios 0x24d5ec;
     cocos2d::CCSize const& getOriginalSize();
     cocos2d::CCSize const& getOriginalSizeInPixels();
     cocos2d::CCRect const& getRect();
     cocos2d::CCRect const& getRectInPixels();
     cocos2d::CCTexture2D* getTexture() = imac 0x344d90, m1 0x2da058, ios 0x24d5f4;
 
-    void setOffset(cocos2d::CCPoint const&) = imac 0x344c60, m1 0x2d9f78;
-    void setOffsetInPixels(cocos2d::CCPoint const&) = imac 0x344d00, m1 0x2d9fec;
+    void setOffset(cocos2d::CCPoint const&) = imac 0x344c60, m1 0x2d9f78, ios inline {
+        m_obOffset = p0;
+        m_obOffsetInPixels = CC_POINT_POINTS_TO_PIXELS(m_obOffset);
+    }
+    void setOffsetInPixels(cocos2d::CCPoint const&) = imac 0x344d00, m1 0x2d9fec, ios inline {
+        m_obOffsetInPixels = p0;
+        m_obOffset = CC_POINT_PIXELS_TO_POINTS(m_obOffsetInPixels);
+    }
     void setOriginalSize(cocos2d::CCSize const&);
     void setOriginalSizeInPixels(cocos2d::CCSize const&);
-    void setRect(cocos2d::CCRect const&) = imac 0x344a90, m1 0x2d9e34;
-    void setRectInPixels(cocos2d::CCRect const&) = imac 0x344b70, m1 0x2d9ed0;
+    void setRect(cocos2d::CCRect const&) = imac 0x344a90, m1 0x2d9e34, ios inline {
+        m_obRect = p0;
+        m_obRectInPixels = CC_RECT_POINTS_TO_PIXELS(m_obRect);
+    }
+    void setRectInPixels(cocos2d::CCRect const&) = imac 0x344b70, m1 0x2d9ed0, ios inline {
+        m_obRectInPixels = p0;
+        m_obRect = CC_RECT_PIXELS_TO_POINTS(p0);
+    }
     void setRotated(bool);
     void setTexture(cocos2d::CCTexture2D*) = imac 0x344a50, m1 0x2d9df0, ios 0x24d5a0;
 
