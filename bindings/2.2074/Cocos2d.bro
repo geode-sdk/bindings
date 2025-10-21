@@ -2469,7 +2469,7 @@ class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCA
     static cocos2d::CCLayer* create() = imac 0x49d570, m1 0x408478, ios 0x14bd1c;
 
     // CCLayer(cocos2d::CCLayer const&);
-    CCLayer() = imac 0x49cfb0, m1 0x408108, ios 0x14bb5c;
+    CCLayer() = imac 0x49cfb0, m1 0x40805c, ios 0x14bb5c;
     virtual ~CCLayer() = imac 0x49d170, m1 0x4081b4, ios 0x14bc08;
 
     cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
