@@ -5198,7 +5198,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSelectAllLeft(cocos2d::CCObject* sender) = ios 0x396ea4, win 0xdb9a0, m1 0x22ba48, imac 0x2820b0;
     void onSelectAllRight(cocos2d::CCObject* sender) = ios 0x396eb4, win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
     void onSong(cocos2d::CCObject* sender) = win 0xdbfe0;
-    void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdb720;
+    void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdb720, imac 0x281f30, m1 0x22b950, ios 0x396dac;
     void playStep2() = win 0xdca20, m1 0x22c6d0, imac 0x282e10, ios 0x3974d0;
     void playStep3() = win 0xdcb50, m1 0x22c7a0, imac 0x282ee0, ios 0x3975a0;
     void saveLevel() = ios 0x3970b4, win 0xdc310, m1 0x22c274, imac 0x282980;
@@ -5220,7 +5220,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     TodoReturn toggleRecordOrder(cocos2d::CCObject*);
     void toggleSelectFilter(cocos2d::CCObject* sender) = win 0xdbf90;
     void toggleShowObjectInfo(cocos2d::CCObject* sender) = win 0xdbf30;
-    void uncheckAllPortals(cocos2d::CCObject* sender) = imac 0x281d60, m1 0x22b784, win 0xdb4e0;
+    void uncheckAllPortals(cocos2d::CCObject* sender) = imac 0x281d60, m1 0x22b784, win 0xdb4e0, ios 0x396c2c;
     void updateSongButton() = win 0xdc090;
 
     bool m_saved;
@@ -17105,7 +17105,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn resetPlayback();
     TodoReturn resetToggledGroups();
     void resetToggledGroupsAndObjects() = ios 0x361304, imac 0xef070, m1 0xd429c, win 0x2d5c80;
-    void resetUnusedColorChannels() = win 0x2d2b80;
+    void resetUnusedColorChannels() = win 0x2d2b80, imac 0xecd80, m1 0xd263c, ios 0x35fb90;
     TodoReturn reverseKeyframeAnimationOrder(int);
     TodoReturn reverseObjectChanged(EffectGameObject*);
     float rotationForSlopeNearObject(GameObject*) = win 0x2cc7b0, m1 0xc83a0, imac 0xe1170, ios 0x35a114;
@@ -17135,7 +17135,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void undoLastAction() = win inline, m1 0xca930, imac 0xe3a40, ios 0x35bcac {
         return this->handleAction(true, m_undoObjects);
     }
-    void unlockAllLayers() = m1 0xcf914, imac 0xe9c60;
+    void unlockAllLayers() = m1 0xcf914, imac 0xe9c60, ios 0x35d66c;
     void updateAnimateOnTriggerObjects(bool) = win 0x2d8e30, m1 0xc6698, imac 0xdf200, ios 0x358b20;
     TodoReturn updateArt(float);
     void updateBlendValues() = ios 0x360b9c, imac 0xee5d0, m1 0xd38fc, win 0x2d5d20;
