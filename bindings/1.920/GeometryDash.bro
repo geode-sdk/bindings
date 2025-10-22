@@ -1933,7 +1933,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void moveObject(GameObject*, cocos2d::CCPoint) = win 0x4b410;
 	void moveObjectCall(cocos2d::CCObject*) = win 0x4b2a0;
 	void moveObjectCall(EditCommand) = win 0x4b2c0;
-	cocos2d::CCPoint* offsetForKey(int) = win 0x4efe0;
+	cocos2d::CCPoint offsetForKey(int) = win 0x4efe0; // awesome func
 	void onCopy(cocos2d::CCObject* sender) = win 0x490c0;
 	void onCreate() = win 0x47690;
 	void onCreateButton(cocos2d::CCObject* sender) = win 0x47400;
@@ -2976,7 +2976,7 @@ class GameObject : CCSpritePlus {
 	}
 	void createAndAddParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x72bd0;
 	void createObject(char const*) = win 0x6d420;
-	void createRotateAction(float) = win 0x72230;
+	cocos2d::CCRepeatForever* createRotateAction(float) = win 0x72230;
 	TodoReturn customScaleMod(char const*);
 	void customSetup() = win 0x6ee50;
 	void deselectObject() = win 0x75780;
@@ -3572,7 +3572,7 @@ class GJAccountManager : cocos2d::CCNode {
 	TodoReturn handleItDelayed(bool, gd::string, gd::string, GJHttpType);
 	TodoReturn handleItND(cocos2d::CCNode*, void*);
 	bool isDLActive(char const*) = win 0x7a180;
-	TodoReturn linkToAccount(gd::string, gd::string, int, int);
+	void linkToAccount(gd::string, gd::string, int, int) = win 0x7b540;
 	void loginAccount(gd::string, gd::string) = win 0x7a5f0;
 	void onBackupAccountCompleted(gd::string, gd::string) = win 0x7af00;
 	void onLoginAccountCompleted(gd::string, gd::string) = win 0x7a910;
@@ -4570,37 +4570,37 @@ class KeybindingsManager {
 
 [[link(android)]]
 class LeaderboardManagerDelegate {
-	virtual TodoReturn updateUserScoreFinished();
-	virtual TodoReturn updateUserScoreFailed();
-	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadLeaderboardFailed(char const*);
+	virtual void updateUserScoreFinished();
+	virtual void updateUserScoreFailed();
+	virtual void loadLeaderboardFinished(cocos2d::CCArray*, char const*);
+	virtual void loadLeaderboardFailed(char const*);
 }
 
 [[link(android)]]
 class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate {
 	// virtual ~LeaderboardsLayer();
 
-	static LeaderboardsLayer* create(LeaderboardState);
+	static LeaderboardsLayer* create(LeaderboardState) = win 0x87f20;
 	static cocos2d::CCScene* scene(LeaderboardState);
 
-	bool init(LeaderboardState);
-	bool isCorrect(char const*);
+	bool init(LeaderboardState) = win 0x87fc0;
+	bool isCorrect(char const*) = win 0x88f60;
 	void onBack(cocos2d::CCObject* sender);
-	void onCreators(cocos2d::CCObject* sender);
-	void onGlobal(cocos2d::CCObject* sender);
-	void onInfo(cocos2d::CCObject* sender);
-	void onTop(cocos2d::CCObject* sender);
-	void onWeek(cocos2d::CCObject* sender);
+	void onCreators(cocos2d::CCObject* sender) = win 0x88b50;
+	void onGlobal(cocos2d::CCObject* sender) = win 0x88b30;
+	void onInfo(cocos2d::CCObject* sender) = win 0x89110;
+	void onTop(cocos2d::CCObject* sender) = win 0x88af0;
+	void onWeek(cocos2d::CCObject* sender) = win 0x88b10;
 	void selectLeaderboard(LeaderboardState) = win 0x88b70;
 	void setupLevelBrowser(cocos2d::CCArray*) = win 0x889e0;
 	void setupTabs() = win 0x884f0;
 	void toggleTabButtons() = win 0x88ca0;
 
 	virtual void keyBackClicked();
-	virtual TodoReturn updateUserScoreFinished();
-	virtual TodoReturn updateUserScoreFailed();
-	virtual TodoReturn loadLeaderboardFinished(cocos2d::CCArray*, char const*);
-	virtual TodoReturn loadLeaderboardFailed(char const*);
+	virtual void updateUserScoreFinished() = win 0x88e80;
+	virtual void updateUserScoreFailed() = win 0x88ea0;
+	virtual void loadLeaderboardFinished(cocos2d::CCArray*, char const*) = win 0x88eb0;
+	virtual void loadLeaderboardFailed(char const*) = win 0x88f20;
 }
 
 [[link(android)]]
@@ -4728,7 +4728,7 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	TodoReturn removeAllObjects();
 	TodoReturn removeAllObjectsOfType(int);
 	TodoReturn removeBackground();
-	TodoReturn removeObject(GameObject*, bool);
+	void removeObject(GameObject*, bool) = win 0x8e180;
 	TodoReturn removeObjectFromSection(GameObject*);
 	TodoReturn removePlayer2();
 	void removeSpecial(GameObject*) = win 0x8ee30;
@@ -7748,8 +7748,8 @@ class UndoObject : cocos2d::CCObject {
 
 	static UndoObject* create(GameObject*, UndoCommand);
 
-	TodoReturn createWithArray(cocos2d::CCArray*, UndoCommand);
-	TodoReturn createWithTransformObjects(cocos2d::CCArray*, UndoCommand);
+	static UndoObject* createWithArray(cocos2d::CCArray*, UndoCommand) = win 0x92970;
+	static UndoObject* createWithTransformObjects(cocos2d::CCArray*, UndoCommand) = win 0x92770;
 	bool init(cocos2d::CCArray*, UndoCommand);
 	bool init(GameObject*, UndoCommand);
 	TodoReturn initWithTransformObjects(cocos2d::CCArray*, UndoCommand);
