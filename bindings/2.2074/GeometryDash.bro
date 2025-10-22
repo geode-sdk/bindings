@@ -8803,9 +8803,9 @@ class GameObject : CCSpritePlus {
         else {
             auto ret = this->addCustomChild(frame, { 0.f, 0.f }, -2);
             ret->setColor({ 0, 0, 0 });
-            m_blackChildOpacity = opacity;
+            m_childOpacity = opacity;
             ret->setOpacity(opacity * 255);
-            m_unk280 = true;
+            m_childOpacityLocked = true;
             return ret;
         }
     }
@@ -9479,7 +9479,7 @@ class GameObject : CCSpritePlus {
     bool m_isRingPoweredOn;
     float m_width;
     float m_height;
-    bool m_hasSpecialChild;
+    bool m_addToNodeContainer;
     bool m_isActivated;
     bool m_isDisabled2;
     cocos2d::CCParticleSystemQuad* m_particle;
