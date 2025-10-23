@@ -8190,7 +8190,7 @@ class GameManager : GManager {
     cocos2d::ccColor3B colorForIdx(int) = ios 0x316f24, win 0x17e330, imac 0x36c520, m1 0x2fdae8;
     TodoReturn colorForPos(int);
     gd::string colorKey(int, UnlockType) = win 0x179790, m1 0x2f766c, imac 0x364cb0, ios 0x312e84;
-    void completedAchievement(gd::string) = win 0x17a1d0, m1 0x2f8464, imac 0x365aa0;
+    void completedAchievement(gd::string) = win 0x17a1d0, m1 0x2f8464, imac 0x365aa0, ios 0x31383c;
     int countForType(IconType) = ios 0x3178fc, win 0x17ebe0, m1 0x2febfc, imac 0x36d6f0;
     TodoReturn defaultFrameForAnimation(int);
     TodoReturn defaultYOffsetForBG2(int);
@@ -8408,8 +8408,12 @@ class GameManager : GManager {
     void loadMiddleground(int) = win 0x17f9e0, m1 0x301148, imac 0x36fe10, ios 0x3187ac;
     void loadMiddlegroundAsync(int);
     void loadVideoSettings() = m1 0x306228, imac 0x375a90;
-    TodoReturn lockColor(int, UnlockType);
-    TodoReturn lockIcon(int, IconType);
+    void lockColor(int id, UnlockType type) = win inline, m1 0x2f7a20, imac 0x365080, ios 0x3130f4 {
+        m_valueKeeper->removeObjectForKey(this->colorKey(id, type));
+    }
+    void lockIcon(int id, IconType type) = win inline, m1 0x2f75f8, imac 0x364c50, ios 0x312e20 {
+        m_valueKeeper->removeObjectForKey(this->iconKey(id, type));
+    }
     TodoReturn logLoadedIconInfo();
     void openEditorGuide();
     void playMenuMusic() = win 0x178810, m1 0x2f66b4, imac 0x3639a0, ios 0x312208;
@@ -8433,7 +8437,7 @@ class GameManager : GManager {
     TodoReturn reorderKey(int, bool);
     void reportAchievementWithID(char const*, int, bool) = ios 0x313e4c, win 0x17afd0, imac 0x366830, m1 0x2f9160;
     void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = ios 0x313a44, win 0x17a5f0, m1 0x2f87b4, imac 0x365da0;
-    void resetAchievement(gd::string) = win 0x17a390, m1 0x2f8614, imac 0x365c30;
+    void resetAchievement(gd::string) = win 0x17a390, m1 0x2f8614, imac 0x365c30, ios 0x313930;
     TodoReturn resetAdTimer();
     TodoReturn resetAllIcons();
     void resetCoinUnlocks() = win 0x17db50;
@@ -8521,9 +8525,13 @@ class GameManager : GManager {
     TodoReturn unloadBackground();
     void unloadIcon(int, int, int) = ios 0x317ea4, win 0x17f050, m1 0x30016c, imac 0x36ee80;
     void unloadIcons(int) = win 0x17f310, m1 0x3008e4, imac 0x36f5c0, ios 0x3181c0;
-    TodoReturn unlockColor(int, UnlockType);
+    void unlockColor(int id, UnlockType type) = win inline, m1 0x2f7974, imac 0x364ff0, ios 0x31305c {
+        m_valueKeeper->setObject(cocos2d::CCString::create("1"), this->colorKey(id, type));
+    }
     TodoReturn unlockedPremium();
-    void unlockIcon(int, IconType);
+    void unlockIcon(int id, IconType type) = win inline, m1 0x2f754c, imac 0x364bc0, ios 0x312d88 {
+        m_valueKeeper->setObject(cocos2d::CCString::create("1"), this->iconKey(id, type));
+    }
     IconType unlockTypeToIconType(int) = ios 0x312d64, win 0x1796e0, imac 0x364ba0, m1 0x2f7528;
     void updateCustomFPS() = win 0x187cc0, m1 0x3099c4, imac 0x379480;
     TodoReturn updateMusic();
@@ -9982,7 +9990,7 @@ class GameStatsManager : cocos2d::CCNode {
     char const* getMapPackKey(int);
     TodoReturn getNextGoldChestID();
     TodoReturn getNextVideoAdReward();
-    gd::string getPathRewardKey(int) = win 0x1e7330;
+    gd::string getPathRewardKey(int) = win 0x1e7330, m1 0x60000, imac 0x6c480, ios 0x3302fc;
     GJChallengeItem* getQueuedChallenge(int) = ios 0x333d78, win 0x1def40, m1 0x66b94, imac 0x73100;
     GJRewardItem* getRewardForSecretChest(int id) = win inline, m1 0x7f8cc, imac 0x8bc30, ios inline {
         return static_cast<GJRewardItem*>(m_allTreasureRoomChests->objectForKey(id));
@@ -10103,26 +10111,34 @@ class GameStatsManager : cocos2d::CCNode {
     void tryFixPathBug() = win 0x1d1810, m1 0x5f61c, imac 0x6ba70;
     void trySelectActivePath() = m1 0x5f0c4, imac 0x6b5e0;
     void uncompleteLevel(GJGameLevel*) = win 0x1dbbc0;
-    void unlockGauntletChest(int);
-    GJRewardItem* unlockGoldChest(int) = win inline, m1 0x7f8d8, imac 0x8bc50, ios 0x33e16c {
-        if (!this->isSecretChestUnlocked(p0)) {
-            if (auto reward = this->getRewardForSecretChest(p0)) {
+    GJRewardItem* unlockGauntletChest(int id) = win inline, m1 0x6ba10, imac 0x78110, ios 0x3369b8 {
+        if (auto reward = this->unlockSpecialChest(this->getGauntletRewardKey(id))) {
+            this->incrementStat("40");
+            return reward;
+        }
+        return nullptr;
+    }
+    GJRewardItem* unlockGoldChest(int id) = win inline, m1 0x7f8d8, imac 0x8bc50, ios 0x33e16c {
+        if (!this->isSecretChestUnlocked(id)) {
+            if (auto reward = this->getRewardForSecretChest(id)) {
                 auto keys = this->getStat("43");
                 if (keys > 0) {
                     this->setStat("43", keys - 1);
                     this->preProcessReward(reward);
                     this->registerRewardsFromItem(reward);
-                    m_treasureRoomChests->setObject(reward, cocos2d::CCString::createWithFormat("%i", p0)->getCString());
+                    m_treasureRoomChests->setObject(reward, cocos2d::CCString::createWithFormat("%i", id)->getCString());
                     return reward;
                 }
             }
         }
         return nullptr;
     }
-    void unlockOnlineChest(gd::string) = win 0x1e7410;
-    TodoReturn unlockPathChest(int);
-    GJRewardItem* unlockSecretChest(int) = win 0x1e75a0, m1 0x7f6f4, imac 0x8ba60, ios 0x33e00c;
-    GJRewardItem* unlockSpecialChest(gd::string) = win 0x1e7250, m1 0x6b8c8, imac 0x77ff0, ios 0x336884;
+    GJRewardItem* unlockOnlineChest(gd::string key) = win 0x1e7410, m1 0x67e84, imac 0x742e0, ios 0x3348c4;
+    GJRewardItem* unlockPathChest(int id) = win inline, m1 0x6bc08, imac 0x782b0, ios 0x336b50 {
+        return this->unlockSpecialChest(this->getPathRewardKey(id));
+    }
+    GJRewardItem* unlockSecretChest(int id) = win 0x1e75a0, m1 0x7f6f4, imac 0x8ba60, ios 0x33e00c;
+    GJRewardItem* unlockSpecialChest(gd::string key) = win 0x1e7250, m1 0x6b8c8, imac 0x77ff0, ios 0x336884;
     TodoReturn updateActivePath(StatKey);
     gd::string usernameForAccountID(int);
     void verifyPathAchievements() = win 0x1d1f80, m1 0x601c0, imac 0x6c680;
@@ -10136,8 +10152,8 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_allTreasureRoomChestItems;
     cocos2d::CCDictionary* m_allSpecialChests;
     cocos2d::CCDictionary* m_allSpecialChestItems;
-    gd::unordered_map<int, gd::string> m_specialRewardDescriptions;
-    gd::unordered_map<int, gd::string> m_createSpecialChestItemsMap;
+    gd::unordered_map<gd::string, gd::string> m_specialRewardDescriptions;
+    gd::unordered_map<gd::string, gd::string> m_createSpecialChestItemsMap;
     cocos2d::CCDictionary* m_specialChestsLite;
     cocos2d::CCArray* m_storeItemArray;
     cocos2d::CCDictionary* m_rewardItems;
