@@ -7708,7 +7708,7 @@ class GameLevelManager : cocos2d::CCNode {
     char const* getDeleteMessageKey(int, bool) = m1 0x492778, imac 0x538ed0;
     gd::string getDemonLevelsString() = win 0x1459f0;
     char const* getDescKey(int) = m1 0x494610, imac 0x53af60;
-    gd::string getDifficultyStr(bool, bool, bool, bool, bool, bool, bool, bool);
+    gd::string getDifficultyStr(bool, bool, bool, bool, bool, bool, bool, bool) = win 0x14b3b0, m1 0x483c50, imac 0x5284f0, ios 0xa0924;
     char const* getDiffKey(int) = m1 0x49d290, imac 0x544280;
     bool getDiffVal(int);
     gd::string getFolderName(int, bool) = win 0x148910, imac 0x5245e0, m1 0x4803b8, ios 0x9e158;
@@ -7728,7 +7728,7 @@ class GameLevelManager : cocos2d::CCNode {
         return m_searchFilters->valueForKey(key)->intValue();
     }
     void getLeaderboardScores(char const*) = win 0x1554b0, m1 0x48e540, imac 0x5347a0, ios 0xa69ac;
-    gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = imac 0x528ae0, m1 0x4841e8;
+    gd::string getLengthStr(bool, bool, bool, bool, bool, bool) = win 0x14b660, imac 0x528ae0, m1 0x4841e8, ios 0xa0b44;
     const char* getLenKey(int len) = m1 0x49d4f4, imac 0x5444d0;
     bool getLenVal(int);
     void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = ios 0xa94a8, win 0x159870, imac 0x5392d0, m1 0x492b0c;
@@ -17777,16 +17777,16 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
         CC_SAFE_RELEASE(m_lengthSprites);
     }
 
-    static LevelSearchLayer* create(int) = win inline, ios 0x54d78, imac 0x610ff0, m1 0x53d2e0 {
+    static LevelSearchLayer* create(int type) = win inline, ios 0x54d78, imac 0x610ff0, m1 0x53d2e0 {
         auto ret = new LevelSearchLayer();
-        if (ret->init(p0)) {
+        if (ret->init(type)) {
             ret->autorelease();
             return ret;
         }
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(int) = win 0x2f75f0, m1 0x53d1e8, imac 0x610eb0, ios 0x54d2c;
+    static cocos2d::CCScene* scene(int type) = win 0x2f75f0, m1 0x53d1e8, imac 0x610eb0, ios 0x54d2c;
 
     virtual void keyBackClicked() = win 0x2fdcc0, m1 0x542290, imac 0x615fa0, ios 0x588e4;
     virtual void textInputOpened(CCTextInputNode*) = win 0x2fad00, m1 0x5417d0, imac 0x6154f0, ios 0x58198;
@@ -17795,46 +17795,69 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x2facc0, imac 0x615480, m1 0x541738, ios 0x58100;
     virtual void demonFilterSelectClosed(int) = win 0x2f97f0, imac 0x614f70, m1 0x541280, ios 0x57db8;
 
-    bool checkDiff(int);
-    bool checkTime(int);
-    void clearFilters() = win 0x2f9ca0, m1 0x54146c, imac 0x6151b0;
-    void confirmClearFilters(cocos2d::CCObject*) = m1 0x53f9d8, imac 0x6136c0;
-    inline char const* getDiffKey(int diff) {
+    bool checkDiff(int diff) = win 0x2fd2e0, m1 0x542058, imac 0x615d60, ios 0x587d4;
+    bool checkTime(int time) = win 0x2fd8a0, m1 0x542160, imac 0x615e70, ios 0x5885c;
+    void clearFilters() = win 0x2f9ca0, m1 0x54146c, imac 0x6151b0, ios 0x57f4c;
+    void confirmClearFilters(cocos2d::CCObject* sender) = win 0x2f9b80, m1 0x53f9d8, imac 0x6136c0, ios 0x56990;
+    char const* getDiffKey(int diff) = win inline, m1 0x541154, imac 0x614e00, ios inline {
         return cocos2d::CCString::createWithFormat("D%i", diff)->getCString();
     }
-    gd::string getLevelLenKey() = win 0x14b660;
-    gd::string getSearchDiffKey() = m1 0x541e38, imac 0x615b40;
-    GJSearchObject* getSearchObject(SearchType, gd::string) = win 0x2fb290, m1 0x541ae4, imac 0x615780, ios 0x58384;
-    inline char const* getTimeKey(int time) {
+    gd::string getLevelLenKey() = win inline, m1 0x541f30, imac 0x615c30, ios 0x58718 {
+        return GameLevelManager::sharedState()->getLengthStr(
+            this->checkTime(0),
+            this->checkTime(1),
+            this->checkTime(2),
+            this->checkTime(3),
+            this->checkTime(4),
+            this->checkTime(5)
+        );
+    }
+    gd::string getSearchDiffKey() = win inline, m1 0x541e38, imac 0x615b40, ios 0x58620 {
+        return GameLevelManager::sharedState()->getDifficultyStr(
+            this->checkDiff(0),
+            this->checkDiff(1),
+            this->checkDiff(2),
+            this->checkDiff(3),
+            this->checkDiff(4),
+            this->checkDiff(5),
+            this->checkDiff(6),
+            this->checkDiff(7)
+        );
+    }
+    GJSearchObject* getSearchObject(SearchType type, gd::string query) = win 0x2fb290, m1 0x541ae4, imac 0x615780, ios 0x58384;
+    char const* getTimeKey(int time) = win inline, m1 0x542268, imac 0x615f80, ios inline {
         return cocos2d::CCString::createWithFormat("T%i", time)->getCString();
     }
-    bool init(int) = ios 0x54e44, win 0x2f7740, imac 0x611100, m1 0x53d3b8;
+    bool init(int type) = ios 0x54e44, win 0x2f7740, imac 0x611100, m1 0x53d3b8;
     void onBack(cocos2d::CCObject* sender) = win 0x2fd040, ios 0x57a90, imac 0x614a90, m1 0x540dc8;
-    void onClearFreeSearch(cocos2d::CCObject* sender) = win 0x2fd000, imac 0x613e40, m1 0x540128;
-    void onClose(cocos2d::CCObject* sender) = win inline {
+    void onClearFreeSearch(cocos2d::CCObject* sender) = win 0x2fd000, imac 0x613e40, m1 0x540128, ios 0x56f18;
+    void onClose(cocos2d::CCObject* sender) = win inline, m1 0x541ad0, imac 0x615760, ios inline {
         m_searchInput->onClickTrackNode(false);
     }
-    void onFollowed(cocos2d::CCObject* sender) = win 0x2fcac0;
-    void onFriends(cocos2d::CCObject* sender) = win 0x2fca00;
-    void onLatestStars(cocos2d::CCObject* sender) = win 0x2fc940;
-    void onMagic(cocos2d::CCObject* sender) = win 0x2fc7c0;
-    void onMoreOptions(cocos2d::CCObject* sender) = win 0x2f9a80, m1 0x53fab8, imac 0x6137a0;
-    void onMostDownloaded(cocos2d::CCObject* sender) = win 0x2fc4c0;
-    void onMostLikes(cocos2d::CCObject* sender) = win 0x2fc580;
+    void onFollowed(cocos2d::CCObject* sender) = win 0x2fcac0, m1 0x540568, imac 0x614260, ios 0x574c8;
+    void onFriends(cocos2d::CCObject* sender) = win 0x2fca00, m1 0x5405d4, imac 0x6142d0, ios 0x5756c;
+    void onLatestStars(cocos2d::CCObject* sender) = win 0x2fc940, m1 0x5404fc, imac 0x6141f0, ios 0x57424;
+    void onMagic(cocos2d::CCObject* sender) = win 0x2fc7c0, m1 0x540490, imac 0x614180, ios 0x57380;
+    void onMoreOptions(cocos2d::CCObject* sender) = win 0x2f9a80, m1 0x53fab8, imac 0x6137a0, ios 0x56a44;
+    void onMostDownloaded(cocos2d::CCObject* sender) = win 0x2fc4c0, m1 0x540274, imac 0x613f50, ios 0x5704c;
+    void onMostLikes(cocos2d::CCObject* sender) = win 0x2fc580, m1 0x5402e0, imac 0x613fc0, ios 0x570f0;
     void onMostRecent(cocos2d::CCObject* sender) = win 0x2fc880, m1 0x540424, imac 0x614110, ios 0x572dc;
     void onSearch(cocos2d::CCObject* sender) = ios 0x56c98, win 0x2fcb80, m1 0x53fe68, imac 0x613ba0;
     void onSearchMode(cocos2d::CCObject* sender) = win 0x2f9a30, imac 0x6137c0, m1 0x53fad4;
     void onSearchUser(cocos2d::CCObject* sender) = ios 0x56ddc, win 0x2fcdc0, m1 0x53fff0, imac 0x613d10;
-    void onSpecialDemon(cocos2d::CCObject* sender) = win 0x2f9690, m1 0x540b44, imac 0x614830;
-    void onStarAward(cocos2d::CCObject* sender);
+    void onSpecialDemon(cocos2d::CCObject* sender) = win 0x2f9690, m1 0x540b44, imac 0x614830, ios 0x5789c;
+    void onStarAward(cocos2d::CCObject* sender) = win inline, m1 0x541fec, imac 0x615cf0, ios inline {
+        this->onClose(nullptr);
+        cocos2d::CCDirector::sharedDirector()->pushScene(cocos2d::CCTransitionFade::create(.5f, LevelBrowserLayer::scene(this->getSearchObject(SearchType::Sends, ""))));
+    }
     void onSuggested(cocos2d::CCObject* sender) = win 0x2fc640, m1 0x54034c, imac 0x614030, ios 0x57194;
-    void onTrending(cocos2d::CCObject* sender) = win 0x2fc700;
-    void toggleDifficulty(cocos2d::CCObject*) = win 0x2fd3c0, imac 0x614340, m1 0x540640, ios 0x57610;
-    void toggleDifficultyNum(int, bool) = win 0x2fd720, imac 0x614ae0, m1 0x540e20, ios 0x57ae8;
-    void toggleStar(cocos2d::CCObject*) = win 0x2fd0b0, m1 0x540d30, imac 0x614a10, ios 0x579f8;
-    void toggleTime(cocos2d::CCObject*);
-    void toggleTimeNum(int, bool) = win 0x2fdb30, imac 0x614c70, m1 0x540fb4, ios 0x57bec;
-    void updateSearchLabel(char const*) = win 0x2faf20;
+    void onTrending(cocos2d::CCObject* sender) = win 0x2fc700, m1 0x5403b8, imac 0x6140a0, ios 0x57238;
+    void toggleDifficulty(cocos2d::CCObject* sender) = win 0x2fd3c0, imac 0x614340, m1 0x540640, ios 0x57610;
+    void toggleDifficultyNum(int diff, bool enabled) = win 0x2fd720, imac 0x614ae0, m1 0x540e20, ios 0x57ae8;
+    void toggleStar(cocos2d::CCObject* sender) = win 0x2fd0b0, m1 0x540d30, imac 0x614a10, ios 0x579f8;
+    void toggleTime(cocos2d::CCObject* sender) = win 0x2fd980, m1 0x540b80, imac 0x614870, ios 0x578d8;
+    void toggleTimeNum(int time, bool enabled) = win 0x2fdb30, imac 0x614c70, m1 0x540fb4, ios 0x57bec;
+    void updateSearchLabel(char const* label) = win 0x2faf20, m1 0x53fb18, imac 0x613810, ios 0x56aa4;
 
     int m_type;
     CCTextInputNode* m_searchInput;
