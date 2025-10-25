@@ -1,3 +1,5 @@
+#include win <sys/timeb.h>
+
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() {
@@ -4784,8 +4786,53 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     virtual void fadeInTextFinished(TextArea*) = win 0xd2bd0, m1 0x3409fc, imac 0x3b5420, ios 0x8b548;
 
     void addToMainScene() = win 0xd2a70, m1 0x340748, imac 0x3b5140, ios 0x8b3c4;
-    void animateIn(DialogAnimationType) = ios 0x8b61c, imac 0x3b5560, m1 0x340b4c;
-    void animateInDialog() = m1 0x340d68, imac 0x3b57a0;
+    void animateIn(DialogAnimationType type) = win inline, ios 0x8b61c, imac 0x3b5560, m1 0x340b4c {
+        __timeb64 current;
+        _ftime64(&current);
+        m_animateTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        auto director = cocos2d::CCDirector::sharedDirector();
+        switch (type) {
+            case DialogAnimationType::FromCenter: {
+                m_mainLayer->setScale(.1f);
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCScaleTo::create(.5f, 1.f), .6f));
+                break;
+            }
+            case DialogAnimationType::FromLeft: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ -191.f, position.y });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            case DialogAnimationType::FromRight: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ director->getScreenRight() + 191.f, position.y });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            case DialogAnimationType::FromTop: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ position.x, director->getScreenTop() + 51.f });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            case DialogAnimationType::FromTop2: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ position.x, director->getScreenTop() - 51.f });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            default: break;
+        }
+
+        auto opacity = this->getOpacity();
+        if (opacity > 0) {
+            this->setOpacity(0);
+            this->runAction(cocos2d::CCFadeTo::create(.14f, opacity));
+        }
+    }
+    void animateInDialog() = win inline, m1 0x340d68, imac 0x3b57a0, ios inline {
+        this->animateIn(m_animationType);
+    }
     void animateInRandomSide() = ios 0x8b5c4, win 0xd2c40, m1 0x340aec, imac 0x3b5510;
     void displayDialogObject(DialogObject*) = win 0xd2570, m1 0x33ffc8, imac 0x3b4980, ios 0x8add0;
     void displayNextObject() = win 0xd2510, m1 0x33ff28, imac 0x3b48d0, ios 0x8ad70;
