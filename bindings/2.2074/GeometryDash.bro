@@ -4721,7 +4721,7 @@ class DemonFilterSelectLayer : FLAlertLayer {
         CC_SAFE_RELEASE(m_demons);
     }
 
-    static DemonFilterSelectLayer* create() = win inline {
+    static DemonFilterSelectLayer* create() = win inline, m1 0x54117c, imac 0x614e20, ios 0x57cfc {
         auto ret = new DemonFilterSelectLayer();
         if (ret->init()) {
             ret->autorelease();
@@ -4734,7 +4734,7 @@ class DemonFilterSelectLayer : FLAlertLayer {
     virtual bool init() = win 0x302da0, imac 0x618b50, m1 0x5449e8, ios 0x5a968;
     virtual void keyBackClicked() = win 0x3034f0, m1 0x544fc8, imac 0x619140, ios 0x5aebc;
 
-    void onClose(cocos2d::CCObject* sender) = win 0x3034a0;
+    void onClose(cocos2d::CCObject* sender) = win 0x3034a0, m1 0x544f68, imac 0x6190f0, ios 0x5ae5c;
     void selectRating(cocos2d::CCObject* sender) = win 0x3033e0, m1 0x544ea0, imac 0x619030, ios 0x5ad94;
 
     cocos2d::CCArray* m_demons;
