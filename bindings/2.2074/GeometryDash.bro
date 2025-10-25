@@ -11197,7 +11197,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCPoint positionForShaderTarget(int) = win 0x21e1a0, m1 0x107208, imac 0x12c0b0, ios 0x1f360c;
     void positionUIObjects() = ios 0x1e2c9c, win 0x220d90, imac 0x10bbf0, m1 0xebbe0;
     void prepareSavePositionObjects() = ios 0x1e13c4, imac 0x107450, m1 0xe89ec, win 0x2142d0;
-    void prepareTransformParent(bool rotateNode) = win inline {
+    void prepareTransformParent(bool rotateNode) = win inline, m1 0x10e178, imac 0x1342f0, ios 0x1f8c84 {
         m_areaTransformNode2->retain();
         m_areaTransformNode2->removeFromParentAndCleanup(false);
 
