@@ -18795,25 +18795,31 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 
     void audioNext(cocos2d::CCObject* sender) = win 0x301c60, imac 0x618230, m1 0x5441d0, ios 0x5a488;
     void audioPrevious(cocos2d::CCObject* sender) = win 0x301d80, imac 0x6181c0, m1 0x54415c, ios 0x5a444;
-    void createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint) = win 0x302730;
+    CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler callback, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win 0x302730, m1 0x543a44, imac 0x617af0, ios 0x59d34;
     void onClose(cocos2d::CCObject* sender) = ios 0x59c50, win 0x302990, imac 0x617a10, m1 0x543960;
-    void onCoins(cocos2d::CCObject* sender);
-    void onCompleted(cocos2d::CCObject* sender);
-    void onEpic(cocos2d::CCObject* sender);
-    void onFeatured(cocos2d::CCObject* sender);
-    void onFollowed(cocos2d::CCObject* sender);
-    void onFriends(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender) = win 0x3025e0, m1 0x54423c, imac 0x6182a0;
-    void onLegendary(cocos2d::CCObject* sender);
-    void onMythic(cocos2d::CCObject* sender);
-    void onNoStar(cocos2d::CCObject* sender);
-    void onOriginal(cocos2d::CCObject* sender);
+    void onCoins(cocos2d::CCObject* sender) = win 0x3010c0, m1 0x543d7c, imac 0x617dd0, ios 0x5a058;
+    void onCompleted(cocos2d::CCObject* sender) = win 0x300060, m1 0x543cfc, imac 0x617d50, ios 0x59fd8;
+    void onEpic(cocos2d::CCObject* sender) = win 0x300490, m1 0x543f4c, imac 0x617fb0, ios 0x5a228;
+    void onFeatured(cocos2d::CCObject* sender) = win 0x300280, m1 0x543f0c, imac 0x617f70, ios 0x5a1e8;
+    void onFollowed(cocos2d::CCObject* sender) = win inline, m1 0x544314, imac 0x618350, ios inline {
+        auto glm = GameLevelManager::sharedState();
+        glm->setBoolForKey(!glm->getBoolForKey("follow_filter"), "follow_filter");
+    }
+    void onFriends(cocos2d::CCObject* sender) = win inline, m1 0x544354, imac 0x618390, ios inline {
+        auto glm = GameLevelManager::sharedState();
+        glm->setBoolForKey(!glm->getBoolForKey("friend_filter"), "friend_filter");
+    }
+    void onInfo(cocos2d::CCObject* sender) = win 0x3025e0, m1 0x54423c, imac 0x6182a0, ios 0x5a4d0;
+    void onLegendary(cocos2d::CCObject* sender) = win 0x300690, m1 0x543f8c, imac 0x617ff0, ios 0x5a268;
+    void onMythic(cocos2d::CCObject* sender) = win 0x3008b0, m1 0x543fcc, imac 0x618030, ios 0x5a2a8;
+    void onNoStar(cocos2d::CCObject* sender) = win 0x300ec0, m1 0x543ecc, imac 0x617f30, ios 0x5a1a8;
+    void onOriginal(cocos2d::CCObject* sender) = win 0x300ab0, m1 0x543d3c, imac 0x617d90, ios 0x5a018;
     void onSongFilter(cocos2d::CCObject* sender) = ios 0x5a0d8, win 0x3012c0, imac 0x617e50, m1 0x543dfc;
     void onSongMode(cocos2d::CCObject* sender) = ios 0x5a2e8, win 0x301fe0, imac 0x618070, m1 0x54400c;
-    void onTwoPlayer(cocos2d::CCObject* sender);
-    void onUncompleted(cocos2d::CCObject* sender);
+    void onTwoPlayer(cocos2d::CCObject* sender) = win 0x300cc0, m1 0x543dbc, imac 0x617e10, ios 0x5a098;
+    void onUncompleted(cocos2d::CCObject* sender) = win 0x2ffe30, m1 0x543cbc, imac 0x617d10, ios 0x59f98;
     void selectSong(int songID) = win 0x301ea0, imac 0x618510, m1 0x544498, ios 0x5a66c;
-    void toggleSongNodes(bool, bool) = win 0x3024a0, imac 0x6183d0, m1 0x544394;
+    void toggleSongNodes(bool custom, bool disable) = win 0x3024a0, imac 0x6183d0, m1 0x544394, ios 0x5a568;
     void updateAudioLabel() = win 0x3019a0, m1 0x5444e0, imac 0x618560, ios 0x5a6b4;
     
     virtual bool init() = win 0x2fe020, imac 0x616620, m1 0x542794, ios 0x58bc4;
