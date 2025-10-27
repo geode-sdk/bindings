@@ -29,7 +29,22 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     void onReLogin(cocos2d::CCObject* sender) = win 0x7f9d0, imac 0xcef40, m1 0xb7b80, ios 0x16a9e8;
     void onUnlink(cocos2d::CCObject* sender) = m1 0xb7cc4, imac 0xcf070, win 0x7fb20, ios 0x16ab14;
     void updatePage() = m1 0xb7e88, imac 0xcf230, win 0x7fcd0, ios 0x16ac58;
-    void verifyUnlink() = m1 0xb81d4, imac 0xcf580, ios 0x16af54;
+    void verifyUnlink() = win inline, m1 0xb81d4, imac 0xcf580, ios 0x16af54 {
+        auto alert = FLAlertLayer::create(
+            this,
+            "Warning",
+            "This will <cr>delete</c> ALL <cl>save data</c>.\nDo you want to continue?\n<cy>(You cannot undo this action)</c>",
+            "Cancel",
+            "DELETE",
+            300.f,
+            false,
+            0.f,
+            1.f
+        );
+        alert->setTag(4);
+        alert->m_button2->updateBGImage("GJ_button_06.png");
+        alert->show();
+    }
 
     cocos2d::CCLabelBMFont* m_loginStatusLabel;
     TextArea* m_textArea;
@@ -2279,8 +2294,8 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
-    // virtual ~CCScrollLayerExt() = win 0x46210, ios 0x311ab8;
     CCScrollLayerExt(cocos2d::CCRect) = win 0x46a50, imac 0x41b380, m1 0x396eb8, ios 0x300a10;
+    ~CCScrollLayerExt() = win 0x47090, m1 0x39766c, imac 0x41bb30, ios 0x3010ec;
 
     virtual void visit() = win 0x47ad0, imac 0x41c710, m1 0x3980f4, ios 0x3019ec;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x47580, imac 0x41c0b0, m1 0x397afc, ios 0x301428;
@@ -5597,7 +5612,21 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void showLiveColorSelectForMode(int);
     void showLiveColorSelectForModeSpecial(int);
     void showMaxBasicError() = win 0x1112a0, m1 0x34474, imac 0x34ec0, ios 0x3e340c;
-    void showMaxCoinError() = m1 0x345f0, imac 0x35020, ios 0x3e34f0;
+    void showMaxCoinError() = win inline, m1 0x345f0, imac 0x35020, ios 0x3e34f0 {
+        auto alert = FLAlertLayer::create(
+            this,
+            "Max Coins",
+            "You cannot add more than <cy>3</c> <cg>coins</c> in a single level.",
+            "OK",
+            nullptr,
+            300.f,
+            false,
+            0.f,
+            1.f
+        );
+        alert->setTag(122);
+        alert->show();
+    }
     void showMaxError() = win 0x111170, m1 0x342fc, imac 0x34d70, ios 0x3e332c;
     void showUI(bool) = ios 0x3e6770, win 0x110200, m1 0x388f4, imac 0x3de00;
     void sliderChanged(cocos2d::CCObject*) = ios 0x3bf328, win 0xe13a0, imac 0xbd50, m1 0xd16c;
@@ -16573,8 +16602,7 @@ class LeaderboardManagerDelegate {
 
 [[link(android)]]
 class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
-    // virtual ~LeaderboardsLayer();
-    inline LeaderboardsLayer() {
+    LeaderboardsLayer() {
         m_list = nullptr;
         m_userScores = nullptr;
         m_state = LeaderboardState::Default;
@@ -16584,7 +16612,10 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
         m_friendsBtn = nullptr;
         m_circle = nullptr;
         m_noInternet = nullptr;
-        m_tabs = nullptr;
+    }
+    ~LeaderboardsLayer() = win inline, m1 0x45bbb8, imac 0x4fbef0, ios 0x3a902c {
+        auto glm = GameLevelManager::sharedState();
+        if (glm->m_leaderboardManagerDelegate == this) glm->m_leaderboardManagerDelegate = nullptr;
     }
 
     static LeaderboardsLayer* create(LeaderboardState state) = ios 0x3a9128, win inline, imac 0x4fc3a0, m1 0x45bf64 {
@@ -16598,6 +16629,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     }
     static cocos2d::CCScene* scene(LeaderboardState state) = win inline, m1 0x45be78, imac 0x4fc270, ios 0x3a90dc {
         auto scene = cocos2d::CCScene::create();
+        AppDelegate::get()->m_runningScene = scene;
         auto layer = LeaderboardsLayer::create(state);
         scene->addChild(layer);
         return scene;
@@ -18139,7 +18171,14 @@ class LevelTools {
         return *reinterpret_cast<float*>(geode::base::get() + 0x69c198);
     }
     static GJGameLevel* getLevel(int, bool) = win 0x310320, imac 0x4e8620, m1 0x44a514, ios 0x1aa160;
-    static gd::unordered_set<int> getLevelList() = m1 0x44a138, imac 0x4e82b0;
+    static gd::unordered_set<int> getLevelList() = win inline, m1 0x44a138, imac 0x4e82b0, ios 0x1aa0d4 {
+        auto levelStart = reinterpret_cast<int*>(geode::base::get() + 0x608580);
+        auto levelList = std::unordered_set<int>(levelStart, levelStart + 40);
+        levelList.insert(5002);
+        levelList.insert(5003);
+        levelList.insert(5004);
+        return levelList;
+    }
     static SongInfoObject* getSongObject(int id) = win inline, m1 0x44f694, imac 0x4ee330, ios 0x1ac488 {
         auto artistID = artistForAudio(id);
         return SongInfoObject::create(id, getAudioTitle(id), nameForArtist(artistID), artistID, 0.f, "", "", "", 0, "", false, 0, -1);
@@ -19189,7 +19228,16 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
         m_songPriority = 0;
     }
     gd::string generateCustomContentURL(gd::string) = win 0x32e2e0, m1 0x4ccfdc, imac 0x5796c0, ios 0x15ad00;
-    void generateResourceAssetList() = m1 0x4c7b90, imac 0x573a70, ios 0x157764;
+    void generateResourceAssetList() = win inline, m1 0x4c7b90, imac 0x573a70, ios 0x157764 {
+        auto sfxStart = reinterpret_cast<int*>(geode::base::get() + 0x608140);
+        m_resourceSfxUnorderedSet.clear();
+        m_resourceSfxUnorderedSet.insert(sfxStart, sfxStart + 260);
+
+        auto songStart = reinterpret_cast<int*>(geode::base::get() + 0x608660);
+        m_resourceSongUnorderedSet.clear();
+        m_resourceSongUnorderedSet.insert(songStart, songStart + 8);
+        m_resourceSongUnorderedSet.insert(10006555);
+    }
     cocos2d::CCArray* getAllMusicArtists(OptionsObjectDelegate*) = win inline, m1 0x4cfd44, imac 0x57cb90, ios 0x15cbe8 {
         auto ret = cocos2d::CCArray::createWithCapacity(m_musicArtists->count());
         cocos2d::CCDictElement* element;
@@ -19726,13 +19774,11 @@ class OptionsCell : TableViewCell {
 [[link(android)]]
 class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     // virtual ~OptionsLayer();
-    inline OptionsLayer() {
+    OptionsLayer() {
         m_optionsMenu = nullptr;
         m_unknown = nullptr;
         m_layerChoice = 0;
         m_recordReplays = false;
-        m_musicSlider = nullptr;
-        m_sfxSlider = nullptr;
         m_lastVaultDialog = -1;
     }
 
@@ -26368,9 +26414,7 @@ class SimpleObject : cocos2d::CCObject {
 
 [[link(android)]]
 class SimplePlayer : cocos2d::CCSprite {
-    // virtual ~SimplePlayer();
-
-    inline SimplePlayer() {
+    SimplePlayer() {
         m_firstLayer = nullptr;
         m_secondLayer = nullptr;
         m_birdDome = nullptr;
@@ -26384,6 +26428,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_hasCustomGlowColor = false;
         m_iconLoaded = false;
     }
+    ~SimplePlayer() = win 0x271900, m1 0x2efc74, imac 0x35c880, ios 0x307200;
 
     static SimplePlayer* create(int) = ios 0x303450, win 0x271ac0, imac 0x357600, m1 0x2ead40;
 
@@ -27354,11 +27399,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
 [[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
-    // virtual ~TableView() = ios 0x30f51c;
     inline TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
-        m_touchStartPosition2 = cocos2d::CCPointMake(0.f, 0.f);
-        m_lastCellPos = cocos2d::CCPointMake(0.f, 0.f);
-        m_touchPosition2 = cocos2d::CCPointMake(0.f, 0.f);
         m_tableDelegate = nullptr;
         m_dataSource = nullptr;
         m_cellDelegate = nullptr;
@@ -27380,6 +27421,15 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
         m_touchLastY = 0.f;
         m_cancellingTouches = false;
         m_idk2 = false;
+    }
+    ~TableView() = win inline, m1 0x536e74, imac 0x609cf0, ios 0x2feb48 {
+        CCNode::removeAllChildrenWithCleanup(true);
+        m_cellRemovedArray->removeAllObjects();
+        CC_SAFE_DELETE(m_cellRemovedArray);
+        m_cellArray->removeAllObjects();
+        CC_SAFE_DELETE(m_cellArray);
+        m_indexPathArray->removeAllObjects();
+        CC_SAFE_DELETE(m_indexPathArray);
     }
 
     static TableView* create(TableViewDelegate* tvd, TableViewDataSource* tvds, TableViewCellDelegate* tvcd, cocos2d::CCRect rect) = win inline, imac 0x609ab0, m1 0x536c94, ios 0x2fe96c {
