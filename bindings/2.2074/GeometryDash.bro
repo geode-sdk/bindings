@@ -7735,7 +7735,7 @@ class GameLevelManager : cocos2d::CCNode {
     double getDailyTimer(GJTimedLevelType) = imac 0x543a00, m1 0x49ca04;
     char const* getDeleteCommentKey(int, int, int) = m1 0x494660, imac 0x53afa0;
     char const* getDeleteMessageKey(int, bool) = m1 0x492778, imac 0x538ed0;
-    gd::string getDemonLevelsString() = win 0x1459f0;
+    gd::string getDemonLevelsString() = win 0x1459f0, m1 0x47b64c, imac 0x51f160, ios 0x9b474;
     char const* getDescKey(int) = m1 0x494610, imac 0x53af60;
     gd::string getDifficultyStr(bool, bool, bool, bool, bool, bool, bool, bool) = win 0x14b3b0, m1 0x483c50, imac 0x5284f0, ios 0xa0924;
     char const* getDiffKey(int) = m1 0x49d290, imac 0x544280;
@@ -7817,7 +7817,7 @@ class GameLevelManager : cocos2d::CCNode {
         return nullptr;
     }
     int getSplitIntFromKey(char const*, int) = win 0x15b010, m1 0x48bed4, imac 0x531620, ios 0xa530c;
-    gd::string getStarLevelsString() = win 0x145bf0;
+    gd::string getStarLevelsString() = win 0x145bf0, m1 0x47b940, imac 0x51f510, ios 0x9b640;
     cocos2d::CCArray* getStoredLevelComments(char const*) = win 0x15b420, imac 0x53b2f0, m1 0x494a28;
     cocos2d::CCArray* getStoredOnlineLevels(char const*) = ios 0x9d020, win 0x147780, imac 0x5223c0, m1 0x47e2d8;
     cocos2d::CCArray* getStoredUserList(UserListType) = win 0x1606b0, m1 0x498928, imac 0x53f790, ios 0xac918;
