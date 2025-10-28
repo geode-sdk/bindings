@@ -7713,19 +7713,45 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCArray* getAllSmartTemplates();
     cocos2d::CCDictionary* getAllUsedSongIDs();
     GJLevelList* getAllUsedSongIDs(int);
-    gd::string getBasePostString() = win 0x14a4b0, m1 0x4826c4, imac 0x526da0;
+    gd::string getBasePostString() = win 0x14a4b0, m1 0x4826c4, imac 0x526da0, ios 0x9fb78;
     bool getBoolForKey(char const* key) = ios 0xaf64c, win inline, m1 0x49da8c, imac 0x544a30 {
         return m_searchFilters->valueForKey(key)->boolValue();
     }
     gd::string getCommentKey(int ID, int page, int mode, CommentKeyType keytype) = m1 0x492fb4, imac 0x5397d0 {
         return cocos2d::CCString::createWithFormat("comment_%i_%i_%i_%i", ID, page, mode, (int) keytype)->getCString();
     }
-    int getCompletedDailyLevels() = win 0x1466c0;
-    int getCompletedEventLevels(int, int) = win 0x1468c0;
-    int getCompletedGauntletDemons();
-    int getCompletedGauntletLevels();
-    cocos2d::CCArray* getCompletedLevels(bool) = ios 0x9b350, win 0x145860, imac 0x51ef80, m1 0x47b4a4;
-    int getCompletedWeeklyLevels() = win 0x1464b0;
+    int getCompletedDailyLevels() = win 0x1466c0, m1 0x47cdd0, imac 0x520d70, ios 0x9c1f8;
+    int getCompletedEventLevels(int minStars, int maxStars) = win 0x1468c0, m1 0x47cfa8, imac 0x520f70, ios 0x9c360;
+    int getCompletedGauntletDemons() = win inline, m1 0x47d194, imac 0x521180, ios 0x9c4d4 {
+        auto completed = 0;
+        auto gsm = GameStatsManager::get();
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_gauntletLevels->m_pElements, element, temp) {
+            if (auto level = geode::cast::typeinfo_cast<GJGameLevel*>(element->getObject())) {
+                if (level->m_stars.value() == 10 && level->m_normalPercent.value() == 100 && gsm->hasCompletedLevel(level)) {
+                    completed++;
+                }
+            }
+        }
+        return completed;
+    }
+    int getCompletedGauntletLevels() = win inline, m1 0x47d26c, imac 0x521240, ios 0x9c58c {
+        auto completed = 0;
+        auto gsm = GameStatsManager::get();
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_gauntletLevels->m_pElements, element, temp) {
+            if (auto level = geode::cast::typeinfo_cast<GJGameLevel*>(element->getObject())) {
+                if (level->m_stars.value() < 10 && level->m_normalPercent.value() == 100 && gsm->hasCompletedLevel(level)) {
+                    completed++;
+                }
+            }
+        }
+        return completed;
+    }
+    cocos2d::CCArray* getCompletedLevels(bool useOrbCompletion) = ios 0x9b350, win 0x145860, imac 0x51ef80, m1 0x47b4a4;
+    int getCompletedWeeklyLevels() = win 0x1464b0, m1 0x47cbf0, imac 0x520b60, ios 0x9c088;
     int getDailyID(GJTimedLevelType type) = win inline, m1 0x49c99c, imac 0x5439a0, ios 0xaef08 {
         if (type == GJTimedLevelType::Daily) return m_dailyID;
         if (type == GJTimedLevelType::Weekly) return m_weeklyID;
@@ -7998,7 +8024,7 @@ class GameLevelManager : cocos2d::CCNode {
     void rateDemon(int, int, bool) = m1 0x48c020, imac 0x531730, win 0x152e80, ios 0xa53a8;
     void rateStars(int, int) = win 0x151930, m1 0x48a7c8, imac 0x52fd00, ios 0xa4674;
     void readFriendRequest(int) = win 0x15ec90, m1 0x498000, imac 0x53edd0, ios 0xac4b0;
-    void removeDelimiterChars(gd::string, bool) = win 0x167f10;
+    void removeDelimiterChars(gd::string, bool) = win 0x167f10, m1 0x483a50, imac 0x5282c0, ios 0xa07f0;
     void removeDLFromActive(char const*) = m1 0x47e944, imac 0x5229d0, win 0x147ae0, ios 0x9d340;
     bool removeFriend(int) = win 0x15efa0, m1 0x498490, imac 0x53f2b0, ios 0xac6e0;
     void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary*);
