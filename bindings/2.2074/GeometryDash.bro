@@ -9915,36 +9915,68 @@ class GameStatsManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x1ce140, imac 0x5a940, m1 0x50450, ios 0x3259a0;
 
-    int accountIDForIcon(int, UnlockType) = m1 0x2acc74, imac 0x3171d0;
-    void addSimpleSpecialChestReward(gd::string, UnlockType, int, bool) = win 0x1e6d10;
-    void addSpecialRewardDescription(gd::string, gd::string);
-    void addStoreItem(int, int, int, int, ShopType) = ios 0x32bb90, win 0x1d1000, imac 0x660d0, m1 0x5a758;
+    int accountIDForIcon(int id, UnlockType type) = win inline, m1 0x2acc74, imac 0x3171d0, ios 0x69318 {
+        if (auto it = m_accountIDForIcon.find({ id, type }); it != m_accountIDForIcon.end()) {
+            return it->second;
+        }
+        return 0;
+    }
+    void addSimpleSpecialChestReward(gd::string key, UnlockType type, int id, bool) = win 0x1e6d10, m1 0x6b220, imac 0x77930, ios 0x336588;
+    void addSpecialRewardDescription(gd::string key, gd::string description) = win 0x1e6f20, m1 0x6b1d4, imac 0x778f0, ios inline {
+        m_specialRewardDescriptions[key] = description;
+    }
+    void addStoreItem(int index, int id, int unlockType, int price, ShopType shopType) = ios 0x32bb90, win 0x1d1000, imac 0x660d0, m1 0x5a758;
     bool areChallengesLoaded() = win inline, m1 0x663dc, imac 0x729b0, ios 0x3339d0 {
         return m_challengeTime > 0;
     }
     bool areRewardsLoaded() = win inline, m1 0x6599c, imac 0x71f60, ios 0x3333c4 {
         return m_rewardItems->objectForKey(1) != nullptr;
     }
-    void awardCurrencyForLevel(GJGameLevel*) = win 0x1dd990, imac 0x70c90, m1 0x64700, ios 0x33282c;
-    void awardDiamondsForLevel(GJGameLevel*) = win 0x1de170, m1 0x64e84, imac 0x71470, ios 0x332ce4;
+    void awardCurrencyForLevel(GJGameLevel* level) = win 0x1dd990, imac 0x70c90, m1 0x64700, ios 0x33282c;
+    void awardDiamondsForLevel(GJGameLevel* level) = win 0x1de170, m1 0x64e84, imac 0x71470, ios 0x332ce4;
     bool awardSecretKey() = win 0x1ee660, m1 0x7fba8, imac 0x8bf50, ios 0x33e2ec;
-    TodoReturn canItemBeUnlocked(int, UnlockType);
-    void checkAchievement(char const*) = win 0x1d2470, m1 0x5b28c, imac 0x66d20;
-    void checkCoinAchievement(GJGameLevel*) = ios 0x33052c, win 0x1da830, imac 0x6c8d0, m1 0x60414;
-    void checkCoinsForLevel(GJGameLevel*) = imac 0x6f9a0, m1 0x633a0;
-    TodoReturn claimListReward(GJLevelList*);
-    void collectReward(GJRewardType, GJRewardItem*) = win inline, m1 0x65c74, imac 0x72270, ios 0x333564 {
-        if (!p1 || this->hasRewardBeenCollected(p0, p1->m_chestID)) return;
-        this->registerRewardsFromItem(p1);
-        m_dailyChests->setObject(p1, this->getRewardKey(p0, p1->m_chestID));
+    bool canItemBeUnlocked(int id, UnlockType type) = win inline, m1 0x6ac50, imac 0x773b0, ios inline { return true; }
+    void checkAchievement(char const* statKey) = win 0x1d2470, m1 0x5b28c, imac 0x66d20, ios 0x32c2ec;
+    void checkCoinAchievement(GJGameLevel* level) = ios 0x33052c, win 0x1da830, imac 0x6c8d0, m1 0x60414;
+    void checkCoinsForLevel(GJGameLevel* level) = win inline, imac 0x6f9a0, m1 0x633a0, ios 0x331ddc {
+        if (level->m_coins > 0 && level->m_coinsVerified.value() == 1) {
+            for (int i = 1; i < 4; i++) {
+                auto coinKey = level->getCoinKey(i);
+                if (this->hasPendingUserCoin(coinKey)) {
+                    if (!this->hasUserCoin(coinKey)) {
+                        this->storeUserCoin(coinKey);
+                        this->incrementStat("12");
+                    }
+                    m_pendingUserCoins->removeObjectForKey(coinKey);
+                }
+            }
+        }
     }
-    TodoReturn collectVideoReward(int);
-    void completedChallenge(GJChallengeItem*) = m1 0x67008, imac 0x734a0;
-    GJRewardItem* completedDailyLevel(GJGameLevel*) = win 0x1dfe10, imac 0x73c90, m1 0x67884;
-    void completedDemonLevel(GJGameLevel*) = m1 0x613f8, imac 0x6d7f0, ios 0x330e60, win 0x1db530;
-    void completedLevel(GJGameLevel*) = ios 0x330d54, imac 0x6d6b0, m1 0x6129c, win 0x1db3e0;
-    void completedMapPack(GJMapPack*) = win 0x1dbe30;
-    void completedStarLevel(GJGameLevel*) = m1 0x61598, imac 0x6d990, ios 0x330f2c, win 0x1db7a0;
+    bool claimListReward(GJLevelList* list) = win inline, m1 0x673d4, imac 0x737e0, ios 0x3341c4 {
+        if (list->m_diamonds > 0 && list->m_levelsToClaim > 0 && list->completedLevels() >= list->m_levelsToClaim && !this->hasClaimedListReward(list)) {
+            m_completedLists->setObject(cocos2d::CCString::createWithFormat("%i", list->m_diamonds), this->getListRewardKey(list));
+            return true;
+        }
+        return false;
+    }
+    void collectReward(GJRewardType type, GJRewardItem* item) = win inline, m1 0x65c74, imac 0x72270, ios 0x333564 {
+        if (!item || this->hasRewardBeenCollected(type, item->m_chestID)) return;
+        this->registerRewardsFromItem(item);
+        m_dailyChests->setObject(item, this->getRewardKey(type, item->m_chestID));
+    }
+    void collectVideoReward(int orbs) = m1 0x7fc54, imac 0x8c010;
+    void completedChallenge(GJChallengeItem* item) = win inline, m1 0x67008, imac 0x734a0, ios 0x333fb4 {
+        if (item->m_canClaim && !this->hasCompletedChallenge(item)) {
+            auto reward = item->m_reward.value();
+            m_challengeDiamonds->setObject(cocos2d::CCString::createWithFormat("%i", reward), this->getChallengeKey(item));
+            this->incrementStat("13", reward);
+        }
+    }
+    GJRewardItem* completedDailyLevel(GJGameLevel* level) = win 0x1dfe10, imac 0x73c90, m1 0x67884, ios 0x334440;
+    void completedDemonLevel(GJGameLevel* level) = m1 0x613f8, imac 0x6d7f0, ios 0x330e60, win 0x1db530;
+    void completedLevel(GJGameLevel* level) = ios 0x330d54, imac 0x6d6b0, m1 0x6129c, win 0x1db3e0;
+    void completedMapPack(GJMapPack* pack) = win 0x1dbe30, m1 0x61e20, imac 0x6e1e0, ios 0x331258;
+    void completedStarLevel(GJGameLevel* level) = m1 0x61598, imac 0x6d990, ios 0x330f2c, win 0x1db7a0;
     int countSecretChests(GJRewardType rewardType) = win inline, imac 0x8bdd0, m1 0x7fa48, ios 0x33e264 {
         using namespace cocos2d;
         if (!m_allTreasureRoomChests) {
@@ -9981,17 +10013,36 @@ class GameStatsManager : cocos2d::CCNode {
         }
         return count;
     }
-    GJRewardItem* createReward(GJRewardType, int, gd::string) = ios 0x332fb4, imac 0x71940, m1 0x65374, win 0x1de620;
-    void createSecretChestItems() = imac 0x5d080, m1 0x5243c;
-    void createSecretChestRewards() = win 0x1e7760;
-    void createSpecialChestItems() = m1 0x52580, imac 0x5d1d0, win 0x1e2c90;
+    GJRewardItem* createReward(GJRewardType type, int id, gd::string str) = ios 0x332fb4, imac 0x71940, m1 0x65374, win 0x1de620;
+    void createSecretChestItems() = win inline, imac 0x5d080, m1 0x5243c, ios 0x3279b4 {
+        if (m_allTreasureRoomChestItems) return;
+        m_allTreasureRoomChestItems = cocos2d::CCDictionary::create();
+        m_allTreasureRoomChestItems->retain();
+        m_allTreasureRoomChests = cocos2d::CCDictionary::create();
+        m_allTreasureRoomChests->retain();
+        this->createSecretChestRewards();
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_allTreasureRoomChests->m_pElements, element, temp) {
+            if (auto rewardItem = static_cast<GJRewardItem*>(element->getObject())) {
+                auto rewardObjects = rewardItem->m_rewardObjects;
+                for (int i = 0; i < rewardObjects->count(); i++) {
+                    auto rewardObject = static_cast<GJRewardObject*>(rewardObjects->objectAtIndex(i));
+                    auto rewardKey = this->getItemKey(rewardObject->m_itemID, (int)rewardObject->m_unlockType);
+                    m_allTreasureRoomChestItems->setObject(cocos2d::CCString::createWithFormat("%i", rewardItem->m_chestID), rewardKey);
+                }
+            }
+        }
+    }
+    void createSecretChestRewards() = win 0x1e7760, m1 0x6c06c, imac 0x78740, ios 0x336d08;
+    void createSpecialChestItems() = ios 0x327af0, m1 0x52580, imac 0x5d1d0, win 0x1e2c90;
     void createStoreItems() = ios 0x325a70, win 0x1ce830, m1 0x504f8, imac 0x5a9f0;
-    void dataLoaded(DS_Dictionary*) = win 0x1ef0b0, m1 0x808bc, imac 0x8cee0, ios 0x33f030;
-    void encodeDataTo(DS_Dictionary*) = ios 0x33ec78, imac 0x8c9c0, m1 0x803f4, win 0x1eedd0;
-    void firstSetup();
-    void generateItemUnlockableData() = imac 0x651f0, m1 0x59b18, win 0x1ce340;
-    int getAwardedCurrencyForLevel(GJGameLevel*) = ios 0x3326e0, win 0x1dd750, imac 0x70ab0, m1 0x6450c;
-    int getAwardedDiamondsForLevel(GJGameLevel*) = imac 0x712a0, win 0x1ddf40, m1 0x64cb4, ios 0x332bac;
+    void dataLoaded(DS_Dictionary* dict) = win 0x1ef0b0, m1 0x808bc, imac 0x8cee0, ios 0x33f030;
+    void encodeDataTo(DS_Dictionary* dict) = ios 0x33ec78, imac 0x8c9c0, m1 0x803f4, win 0x1eedd0;
+    void firstSetup() = win 0x1ee720, m1 0x7fdd4, imac 0x8c180, ios 0x33e398;
+    void generateItemUnlockableData() = ios 0x32b6a8, imac 0x651f0, m1 0x59b18, win 0x1ce340;
+    int getAwardedCurrencyForLevel(GJGameLevel* level) = ios 0x3326e0, win 0x1dd750, imac 0x70ab0, m1 0x6450c;
+    int getAwardedDiamondsForLevel(GJGameLevel* level) = imac 0x712a0, win 0x1ddf40, m1 0x64cb4, ios 0x332bac;
     int getBaseCurrency(int stars, bool mainLevel, int levelID) = win inline, m1 0x64264, imac 0x70870, ios 0x332558 {
         if (mainLevel) {
             return levelID == 14 || levelID == 18 || levelID == 20 ? 400 : (stars + 1) * 20;
@@ -10011,20 +10062,26 @@ class GameStatsManager : cocos2d::CCNode {
             }
         }
     }
-    int getBaseCurrencyForLevel(GJGameLevel*) = ios 0x3325b8, win 0x1dd4b0, imac 0x708c0, m1 0x642c4;
-    void getBaseDiamonds(int) = imac 0x71240, m1 0x64c64;
-    int getBonusDiamonds(int) = imac 0x71260, m1 0x64c78;
-    GJChallengeItem* getChallenge(int) = ios 0x333cf4, win 0x1dee70, m1 0x66a90, imac 0x73000;
+    int getBaseCurrencyForLevel(GJGameLevel* level) = ios 0x3325b8, win 0x1dd4b0, imac 0x708c0, m1 0x642c4;
+    int getBaseDiamonds(int stars) = win inline, imac 0x71240, m1 0x64c64, ios 0x332b5c {
+        return stars > 2 && stars < 11 ? stars + 2 : 0;
+    }
+    int getBonusDiamonds(int stars) = win inline, imac 0x71260, m1 0x64c78, ios 0x332b70 {
+        return stars > 2 && stars < 11 ? stars == 10 ? 20 : this->getBaseDiamonds(stars) / 2.f : 0;
+    }
+    GJChallengeItem* getChallenge(int id) = ios 0x333cf4, win 0x1dee70, m1 0x66a90, imac 0x73000;
     gd::string getChallengeKey(GJChallengeItem* chal) = win inline, m1 0x66e24, imac 0x73370, ios 0x333efc {
         return cocos2d::CCString::createWithFormat("c%i%i", chal->m_position, chal->m_timeLeft)->getCString();
     }
-    int getCollectedCoinsForLevel(GJGameLevel*) = win 0x1dabd0, m1 0x608b4, imac 0x6cd40, ios 0x330730;
+    int getCollectedCoinsForLevel(GJGameLevel* level) = win 0x1dabd0, m1 0x608b4, imac 0x6cd40, ios 0x330730;
     cocos2d::CCArray* getCompletedMapPacks() = win 0x1dc180, imac 0x6e6c0, m1 0x6230c, ios 0x331520;
-    gd::string getCurrencyKey(GJGameLevel* level) = win inline, m1 0x64184, imac 0x70790 {
+    gd::string getCurrencyKey(GJGameLevel* level) = win inline, m1 0x64184, imac 0x70790, ios 0x3324fc {
         auto dailyID = level->m_dailyID.value();
         return cocos2d::CCString::createWithFormat("%i", dailyID > 0 ? dailyID : level->m_levelID.value())->getCString();
     }
-    TodoReturn getDailyLevelKey(int);
+    gd::string getDailyLevelKey(int dailyID) = win inline, m1 0x67684, imac 0x73a90, ios 0x33434c {
+        return cocos2d::CCString::createWithFormat("d%i", dailyID)->getCString();
+    }
     const char* getDemonLevelKey(GJGameLevel* level) = win inline, m1 0x60c5c, imac 0x6d140, ios 0x330994 {
         auto dailyID = level->m_dailyID.value();
         if (dailyID > 0) return cocos2d::CCString::createWithFormat("ddemon_%i", dailyID)->getCString();
@@ -10032,36 +10089,62 @@ class GameStatsManager : cocos2d::CCNode {
         if (level->m_gauntletLevel) return cocos2d::CCString::createWithFormat("gdemon_%i", levelID)->getCString();
         return cocos2d::CCString::createWithFormat("demon_%i", levelID)->getCString();
     }
-    TodoReturn getEventRewardKey(int);
-    gd::string getGauntletRewardKey(int) = win 0x1e6e40, imac 0x77710, m1 0x6b024, ios 0x33648c;
-    gd::string getItemKey(int, int) = win 0x1de9b0, m1 0x5a52c, imac 0x65e50, ios 0x32ba84;
+    gd::string getEventRewardKey(int id) = win inline, m1 0x6bcf8, imac 0x78370, ios inline {
+        return "o_event_" + std::to_string(id);
+    }
+    gd::string getGauntletRewardKey(int id) = win 0x1e6e40, imac 0x77710, m1 0x6b024, ios 0x33648c;
+    gd::string getItemKey(int id, int type) = win 0x1de9b0, m1 0x5a52c, imac 0x65e50, ios 0x32ba84;
     int getItemUnlockState(int itemID, UnlockType unlockType) = ios 0x336148, win 0x1e2b30, m1 0x6a898, imac 0x77010;
-    int getItemUnlockStateLite(int, UnlockType);
-    gd::string getLevelKey(GJGameLevel* level) = win inline {
+    int getItemUnlockStateLite(int id, UnlockType type) = m1 0x6a990, imac 0x770d0;
+    gd::string getLevelKey(GJGameLevel* level) = win inline, m1 0x60a38, imac 0x6cec0, ios 0x330814 {
         return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Main, level->m_dailyID > 0, level->m_gauntletLevel, level->m_dailyID > 200000);
     }
-    gd::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x1dad50;
-    gd::string getListRewardKey(GJLevelList*) = m1 0x671f8, imac 0x73610;
-    char const* getMapPackKey(int);
-    TodoReturn getNextGoldChestID();
-    TodoReturn getNextVideoAdReward();
-    gd::string getPathRewardKey(int) = win 0x1e7330, m1 0x60000, imac 0x6c480, ios 0x3302fc;
-    GJChallengeItem* getQueuedChallenge(int) = ios 0x333d78, win 0x1def40, m1 0x66b94, imac 0x73100;
+    gd::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x1dad50, m1 0x60a7c, imac 0x6cf30, ios 0x330858;
+    gd::string getListRewardKey(GJLevelList* list) = win inline, m1 0x671f8, imac 0x73610, ios 0x334110 {
+        return cocos2d::CCString::createWithFormat("lr_%i", list->m_listID)->getCString();
+    }
+    const char* getMapPackKey(int id) = win inline, m1 0x61df8, imac 0x6e1c0, ios inline {
+        return cocos2d::CCString::createWithFormat("pack_%i", id)->getCString();
+    }
+    int getNextGoldChestID() = win inline, m1 0x7f544, imac 0x8b830, ios 0x33dfb4 {
+        for (int i = 6001; i < 6021; i++) {
+            if (!this->isSecretChestUnlocked(i)) return i;
+        }
+        return 0;
+    }
+    gd::string getNextVideoAdReward() = m1 0x6b5f0, imac 0x77cd0;
+    gd::string getPathRewardKey(int id) = win 0x1e7330, m1 0x60000, imac 0x6c480, ios 0x3302fc;
+    GJChallengeItem* getQueuedChallenge(int id) = ios 0x333d78, win 0x1def40, m1 0x66b94, imac 0x73100;
     GJRewardItem* getRewardForSecretChest(int id) = win inline, m1 0x7f8cc, imac 0x8bc30, ios inline {
         return static_cast<GJRewardItem*>(m_allTreasureRoomChests->objectForKey(id));
     }
-    TodoReturn getRewardForSpecialChest(gd::string);
-    GJRewardItem* getRewardItem(GJRewardType) = win inline, m1 0x65990, imac 0x71f40, ios 0x3333b8 {
-        return static_cast<GJRewardItem*>(m_rewardItems->objectForKey((int)p0));
+    GJRewardItem* getRewardForSpecialChest(gd::string key) = win inline, m1 0x6b8c0, imac 0x77fd0, ios 0x33687c {
+        return static_cast<GJRewardItem*>(m_allSpecialChests->objectForKey(key));
     }
-    gd::string getRewardKey(GJRewardType, int) = win 0x1de9b0, m1 0x659c0, imac 0x71f80, ios 0x3333e8;
-    GJChallengeItem* getSecondaryQueuedChallenge(int) = m1 0x66c98, imac 0x73200, win 0x1df010;
-    TodoReturn getSecretChestForItem(int, UnlockType);
-    char const* getSecretCoinKey(char const*) = m1 0x63ad4, imac 0x700d0;
-    gd::string getSecretOnlineRewardKey(int) = m1 0x6beb0, imac 0x78550;
-    TodoReturn getSpecialChestKeyForItem(int, UnlockType);
-    TodoReturn getSpecialRewardDescription(gd::string, bool);
-    gd::string getSpecialUnlockDescription(int, UnlockType, bool) = win 0x1e6fb0, m1 0x6b4a4, imac 0x77bb0, ios 0x336794;
+    GJRewardItem* getRewardItem(GJRewardType type) = win inline, m1 0x65990, imac 0x71f40, ios 0x3333b8 {
+        return static_cast<GJRewardItem*>(m_rewardItems->objectForKey((int)type));
+    }
+    gd::string getRewardKey(GJRewardType type, int id) = win 0x1de9b0, m1 0x659c0, imac 0x71f80, ios 0x3333e8;
+    GJChallengeItem* getSecondaryQueuedChallenge(int id) = ios 0x333dfc, m1 0x66c98, imac 0x73200, win 0x1df010;
+    int getSecretChestForItem(int id, UnlockType type) = win inline, m1 0x5a428, imac 0x65d70, ios 0x32b9a8 {
+        return m_allTreasureRoomChestItems->valueForKey(this->getItemKey(id, (int)type))->intValue();
+    }
+    const char* getSecretCoinKey(char const* key) = win inline, m1 0x63ad4, imac 0x700d0, ios inline {
+        return cocos2d::CCString::createWithFormat("unique_%s", key)->getCString();
+    }
+    gd::string getSecretOnlineRewardKey(int id) = win inline, m1 0x6beb0, imac 0x78550, ios 0x336c0c {
+        return "o_secret_" + std::to_string(id);
+    }
+    cocos2d::CCString* getSpecialChestKeyForItem(int id, UnlockType type) = win inline, m1 0x5a4ac, imac 0x65de0, ios 0x32ba18 {
+        return static_cast<cocos2d::CCString*>(m_allSpecialChestItems->objectForKey(this->getItemKey(id, (int)type)));
+    }
+    gd::string getSpecialRewardDescription(gd::string key, bool) = win inline, m1 0x6b438, imac 0x77b50, ios 0x336724 {
+        if (auto it = m_specialRewardDescriptions.find(key); it != m_specialRewardDescriptions.end()) {
+            return it->second;
+        }
+        return "";
+    }
+    gd::string getSpecialUnlockDescription(int id, UnlockType type, bool) = win 0x1e6fb0, m1 0x6b4a4, imac 0x77bb0, ios 0x336794;
     char const* getStarLevelKey(GJGameLevel* level) = win inline, m1 0x60ce4, imac 0x6d1a0, ios 0x330a04 {
         int dailyID = level->m_dailyID.value();
         if (dailyID > 0) return cocos2d::CCString::createWithFormat("dstar_%i",dailyID)->getCString();
@@ -10069,64 +10152,92 @@ class GameStatsManager : cocos2d::CCNode {
         if (level->m_gauntletLevel) return cocos2d::CCString::createWithFormat("gstar_%i",levelID)->getCString();
         return cocos2d::CCString::createWithFormat("star_%i",levelID)->getCString();
     }
-    int getStat(char const*) = ios 0x32bf54, win 0x1d21e0, imac 0x66610, m1 0x5aca0;
+    int getStat(char const* key) = ios 0x32bf54, win 0x1d21e0, imac 0x66610, m1 0x5aca0;
     int getStatFromKey(StatKey key) = ios 0x33027c, m1 0x5ff6c, imac 0x6c410, win inline {
         return this->getStat(GameToolbox::intToString((int)key).c_str());
     }
-    TodoReturn getStoreItem(int, int);
-    TodoReturn getStoreItem(int);
+    GJStoreItem* getStoreItem(int id, int type) = win inline, m1 0x5a3a8, imac 0x65d00, ios 0x32b93c {
+        return static_cast<GJStoreItem*>(m_allStoreItems->objectForKey(this->getItemKey(id, type)));
+    }
+    GJStoreItem* getStoreItem(int index) = win inline, m1 0x5a96c, imac 0x662c0, ios 0x32bd1c {
+        return static_cast<GJStoreItem*>(m_storeItems->objectForKey(index));
+    }
     int getTotalCollectedCurrency() = ios 0x3349f0, win 0x1e08b0, imac 0x743f0, m1 0x67fc4;
-    int getTotalCollectedDiamonds() = win 0x1e1180, imac 0x751c0, m1 0x68c58;
-    bool hasClaimedListReward(GJLevelList*) = ios 0x334154, win 0x1dfc30, imac 0x736d0, m1 0x672c8;
-    bool hasCompletedChallenge(GJChallengeItem*) = win 0x1df870, m1 0x66ef8, imac 0x73430, ios 0x333f44;
-    bool hasCompletedDailyLevel(int) = win 0x1dfd10, imac 0x73b50, m1 0x67750;
-    bool hasCompletedDemonLevel(GJGameLevel*);
-    bool hasCompletedGauntletLevel(int) = win 0x1db1a0, m1 0x60f64, imac 0x6d3b0;
+    int getTotalCollectedDiamonds() = win 0x1e1180, imac 0x751c0, m1 0x68c58, ios 0x334fa8;
+    bool hasClaimedListReward(GJLevelList* list) = ios 0x334154, win 0x1dfc30, imac 0x736d0, m1 0x672c8;
+    bool hasCompletedChallenge(GJChallengeItem* item) = win 0x1df870, m1 0x66ef8, imac 0x73430, ios 0x333f44;
+    bool hasCompletedDailyLevel(int dailyID) = win 0x1dfd10, imac 0x73b50, m1 0x67750, ios 0x33438c;
+    bool hasCompletedDemonLevel(GJGameLevel* level) = win inline, m1 0x60ffc, imac 0x6d430, ios 0x330c64 {
+        return m_completedLevels->objectForKey(this->getDemonLevelKey(level)) != nullptr;
+    }
+    bool hasCompletedGauntletLevel(int id) = win 0x1db1a0, m1 0x60f64, imac 0x6d3b0, ios 0x330be4;
     bool hasCompletedLevel(GJGameLevel* level) = ios 0x330af4, win 0x1dafb0, imac 0x6d280, m1 0x60e04;
     bool hasCompletedMainLevel(int levelID) = ios 0x330a74, win 0x1dae80, m1 0x60d6c, imac 0x6d200;
-    bool hasCompletedMapPack(int);
-    bool hasCompletedOnlineLevel(int) = ios 0x330b64, win 0x1db070, m1 0x60ecc, imac 0x6d330;
-    bool hasCompletedStarLevel(GJGameLevel*) = m1 0x6114c, imac 0x6d570;
-    bool hasPendingUserCoin(char const*) = ios 0x331ee0, win 0x1dce90, m1 0x636cc, imac 0x6fcf0;
-    bool hasRewardBeenCollected(GJRewardType, int) = win 0x1deaa0, m1 0x65bec, imac 0x72200, ios 0x3334f4;
-    bool hasSecretCoin(char const*) = ios 0x33078c, win 0x1dcf50, imac 0x6cdc0, m1 0x60930;
-    bool hasUserCoin(char const*) = ios 0x331f50, win 0x1dcd10, m1 0x637c4, imac 0x6fde0;
-    TodoReturn incrementActivePath(int);
+    bool hasCompletedMapPack(int id) = win 0x1dbfc0, m1 0x61fcc, imac 0x6e390, ios 0x331370;
+    bool hasCompletedOnlineLevel(int id) = ios 0x330b64, win 0x1db070, m1 0x60ecc, imac 0x6d330;
+    bool hasCompletedStarLevel(GJGameLevel* level) = win 0x1db2d0, m1 0x6114c, imac 0x6d570, ios 0x330cdc;
+    bool hasPendingUserCoin(char const* key) = ios 0x331ee0, win 0x1dce90, m1 0x636cc, imac 0x6fcf0;
+    bool hasRewardBeenCollected(GJRewardType type, int id) = win 0x1deaa0, m1 0x65bec, imac 0x72200, ios 0x3334f4;
+    bool hasSecretCoin(char const* key) = ios 0x33078c, win 0x1dcf50, imac 0x6cdc0, m1 0x60930;
+    bool hasUserCoin(char const* key) = ios 0x331f50, win 0x1dcd10, m1 0x637c4, imac 0x6fde0;
+    void incrementActivePath(int amount) = win inline, m1 0x5edb0, imac 0x6b310, ios 0x32facc {
+        this->trySelectActivePath();
+        if (m_activePath < 30 || m_activePath > 39) return;
+        this->incrementStat(GameToolbox::intToString(m_activePath).c_str(), amount);
+    }
     void incrementChallenge(GJChallengeType type, int amount) = win 0x1df0f0, m1 0x5eb10, imac 0x6b0c0, ios 0x32f8b4;
     void incrementStat(char const* key, int amount) = ios 0x32c170, win 0x1d1500, imac 0x66960, m1 0x5afdc;
     void incrementStat(char const* key) = win inline, m1 0x5afd4, imac 0x66950, ios 0x32c168 {
         this->incrementStat(key, 1);
     }
-    bool isGauntletChestUnlocked(int);
+    bool isGauntletChestUnlocked(int id) = win inline, m1 0x6a59c, imac 0x76d50, ios 0x335f88 {
+        return this->isSpecialChestUnlocked(this->getGauntletRewardKey(id));
+    }
     bool isItemEnabled(UnlockType type, int id) = ios 0x336220, win inline, imac 0x773c0, m1 0x6ac58 {
         return this->isItemUnlocked(type, id) && m_enabledItems->valueForKey(this->getItemKey(id, (int)type))->boolValue();
     }
-    bool isItemUnlocked(UnlockType, int) = ios 0x32fb64, win 0x1e2850, m1 0x5ee84, imac 0x6b3b0;
+    bool isItemUnlocked(UnlockType type, int id) = ios 0x32fb64, win 0x1e2850, m1 0x5ee84, imac 0x6b3b0;
     bool isPathChestUnlocked(int path) = win inline, ios 0x336a94, m1 0x6bb18, imac 0x781f0 {
         return this->isSpecialChestUnlocked(this->getPathRewardKey(path));
     }
-    bool isPathUnlocked(StatKey);
-    bool isSecretChestUnlocked(int) = win 0x1e74d0, imac 0x76e10, m1 0x6a68c, ios 0x336044;
-    bool isSecretCoin(gd::string) = m1 0x63c18, imac 0x70200;
-    bool isSecretCoinValid(gd::string);
-    bool isSpecialChestLiteUnlockable(gd::string);
-    bool isSpecialChestUnlocked(gd::string) = win 0x1e7160, imac 0x76f10, m1 0x6a794, ios 0x3360cc;
-    bool isStoreItemUnlocked(int) = win 0x1d1210, imac 0x662e0, m1 0x5a978, ios 0x32bd28;
-    int keyCostForSecretChest(int) = m1 0x6a2a4, imac 0x76a40;
-    TodoReturn linkSpecialChestUnlocks(GJRewardItem*, gd::string);
-    TodoReturn logCoins();
-    TodoReturn markLevelAsCompletedAndClaimed(GJGameLevel*);
-    void postLoadGameStats() = win 0x1f0460;
-    void preProcessReward(GJRewardItem*) = win 0x1deb00;
-    void preSaveGameStats() = win 0x1f0630;
+    bool isPathUnlocked(StatKey key) = win inline, m1 0x5ee5c, imac 0x6b390, ios inline {
+        return this->isItemUnlocked(UnlockType::GJItem, (int)key - 24);
+    }
+    bool isSecretChestUnlocked(int id) = win 0x1e74d0, imac 0x76e10, m1 0x6a68c, ios 0x336044;
+    bool isSecretCoin(gd::string key) = win inline, m1 0x63c18, imac 0x70200, ios inline {
+        return key.starts_with("unique_");
+    }
+    bool isSecretCoinValid(gd::string key) = win 0x1dd0f0, m1 0x63c48, imac 0x70230, ios 0x33211c;
+    bool isSpecialChestLiteUnlockable(gd::string key) = win inline, m1 0x6ac2c, imac 0x77380, ios inline {
+        return m_specialChestsLite && m_specialChestsLite->objectForKey(key) != nullptr;
+    }
+    bool isSpecialChestUnlocked(gd::string key) = win 0x1e7160, imac 0x76f10, m1 0x6a794, ios 0x3360cc;
+    bool isStoreItemUnlocked(int index) = win 0x1d1210, imac 0x662e0, m1 0x5a978, ios 0x32bd28;
+    int keyCostForSecretChest(int id) = win inline, m1 0x6a2a4, imac 0x76a40, ios 0x335d40 {
+        if (id < 1001) return 1;
+        if (id < 2001) return 5;
+        if (id < 3001) return 10;
+        if (id < 4001) return 25;
+        if (id < 5001) return 50;
+        if (id < 6001) return 100;
+        return 1;
+    }
+    void linkSpecialChestUnlocks(GJRewardItem* item, gd::string key) = win 0x1e6c00, m1 0x6b31c, imac 0x77a20, ios 0x336610;
+    void logCoins() = m1 0x81e88, imac 0x8e700;
+    void markLevelAsCompletedAndClaimed(GJGameLevel* level) = win 0x1db940, m1 0x6177c, imac 0x6db70, ios 0x33103c;
+    void postLoadGameStats() = win 0x1f0460, m1 0x81a60, imac 0x8e280, ios 0x33fadc;
+    void preProcessReward(GJRewardItem* item) = win 0x1deb00, m1 0x65e18, imac 0x72410, ios 0x3336bc;
+    void preSaveGameStats() = win 0x1f0630, m1 0x80674, imac 0x8cc80, ios 0x33eef8;
     void processChallengeQueue(int position) = win 0x1df950, m1 0x67160, imac 0x73590, ios 0x334078;
-    TodoReturn processOnlineChests();
-    bool purchaseItem(int) = win 0x1d12e0, m1 0x5aa80, imac 0x663e0, ios 0x32bdb0;
+    void processOnlineChests() = win 0x1f0120, m1 0x81cc4, imac 0x8e510, ios 0x33fbf8;
+    bool purchaseItem(int index) = win 0x1d12e0, m1 0x5aa80, imac 0x663e0, ios 0x32bdb0;
     void recountSpecialStats() = win 0x1e1480, ios 0x3351a4, imac 0x75760, m1 0x69188;
-    TodoReturn recountUserCoins(bool);
-    void registerRewardsFromItem(GJRewardItem*) = win 0x1ee170, m1 0x65d58, imac 0x72340, ios 0x333604;
-    void removeChallenge(int songID) = m1 0x6650c, imac 0x72ae0;
-    void removeErrorFromSpecialChests() = win 0x1f0310;
+    void recountUserCoins(bool force) = win 0x1dc3f0, m1 0x62994, imac 0x6ed90, ios 0x3318c0;
+    void registerRewardsFromItem(GJRewardItem* item) = win 0x1ee170, m1 0x65d58, imac 0x72340, ios 0x333604;
+    void removeChallenge(int position) = win inline, m1 0x6650c, imac 0x72ae0, ios 0x333a68 {
+        m_activeChallenges->removeObjectForKey(cocos2d::CCString::createWithFormat("%i", position)->getCString());
+    }
+    void removeErrorFromSpecialChests() = win 0x1f0310, m1 0x6a0b0, imac 0x76840, ios 0x335bf0;
     void removeQueuedChallenge(int position) = win inline, m1 0x66740, imac 0x72cf0, ios 0x333b6c {
         m_upcomingChallenges->removeObjectForKey(cocos2d::CCString::createWithFormat("%i", position)->getCString());
     }
@@ -10136,36 +10247,63 @@ class GameStatsManager : cocos2d::CCNode {
     void resetChallengeTimer() = win inline, imac 0x72990, m1 0x663d4, ios 0x3339c8 {
         m_challengeTime = 0;
     }
-    TodoReturn resetPreSync();
-    TodoReturn resetSpecialChest(gd::string);
+    void resetPreSync() = win inline, m1 0x81e80, imac 0x8e6e0, ios inline {}
+    void resetSpecialChest(gd::string key) = win inline, m1 0x601b8, imac 0x6c660, ios inline {
+        m_miscChests->removeObjectForKey(key);
+    }
     void resetSpecialStatAchievements() = win 0x1e22e0, imac 0x76aa0, m1 0x6a2f8, ios 0x335d94;
-    TodoReturn resetUserCoins();
-    TodoReturn restorePostSync();
-    void setAwardedBonusKeys(int);
-    void setStarsForMapPack(int, int) = win 0x1dc090;
-    void setStat(char const*, int) = ios 0x32c038, win 0x1d2300, imac 0x66770, m1 0x5ae04;
-    void setStatIfHigher(char const*, int);
-    void setupIconCredits() = win 0x1c1190, m1 0x2acd6c, imac 0x3172c0;
-    TodoReturn shopTypeForItemID(int);
-    TodoReturn shouldAwardSecretKey();
-    TodoReturn starsForMapPack(int);
+    void resetUserCoins() = win inline, m1 0x6295c, imac 0x6ed50, ios inline {
+        this->setStat("12", 0);
+        m_verifiedUserCoins->removeAllObjects();
+        m_pendingUserCoins->removeAllObjects();
+    }
+    void restorePostSync() = win inline, m1 0x81e84, imac 0x8e6f0, ios inline {}
+    void setAwardedBonusKeys(int keys) {
+        m_bonusKey = keys;
+    }
+    void setStarsForMapPack(int id, int stars) = win 0x1dc090, m1 0x620d4, imac 0x6e490, ios 0x3313f8;
+    void setStat(char const* key, int value) = ios 0x32c038, win 0x1d2300, imac 0x66770, m1 0x5ae04;
+    void setStatIfHigher(char const* key, int value) = win inline, m1 0x603c0, imac 0x6c890, ios inline {
+        if (value > this->getStat(key)) this->setStat(key, value);
+    }
+    void setupIconCredits() = win 0x1c1190, m1 0x2acd6c, imac 0x3172c0, ios 0x693e4;
+    ShopType shopTypeForItemID(int index) = win inline, m1 0x5afb0, imac 0x66920, ios inline {
+        if (auto item = this->getStoreItem(index)) {
+            return item->m_shopType;
+        }
+        return ShopType::Normal;
+    }
+    bool shouldAwardSecretKey() = win inline, m1 0x7fb54, imac 0x8bf00, ios inline {
+        return m_bonusKey.value() < this->getStat("22") / 500.f;
+    }
+    int starsForMapPack(int id) = win inline, m1 0x62204, imac 0x6e5b0, ios 0x331498 {
+        return m_completedMappacks->valueForKey(this->getMapPackKey(id))->intValue();
+    }
     void storeChallenge(int position, GJChallengeItem* challenge) = win inline, m1 0x663ec, imac 0x729d0, ios 0x3339e0 {
         m_activeChallenges->setObject(challenge, cocos2d::CCString::createWithFormat("%i", position)->getCString());
     }
-    void storeChallengeTime(int) = m1 0x66370, imac 0x72930;
-    TodoReturn storeEventChest(int, GJRewardItem*);
-    TodoReturn storeOnlineChest(gd::string, GJRewardItem*);
-    TodoReturn storePendingUserCoin(char const*);
+    void storeChallengeTime(int remaining) = m1 0x66370, imac 0x72930, ios 0x333968;
+    void storeEventChest(int eventID, GJRewardItem* item) = win inline, m1 0x67564, imac 0x73980, ios 0x3342c4 {
+        if (item) m_eventChest->setObject(item, this->getDailyLevelKey(eventID));
+    }
+    void storeOnlineChest(gd::string key, GJRewardItem* item) = win inline, m1 0x67e68, imac 0x742c0, ios 0x3348a8 {
+        if (item) m_allSpecialChests->setObject(item, key);
+    }
+    void storePendingUserCoin(char const* key) = win inline, m1 0x639c8, imac 0x6ffd0, ios 0x33202c {
+        m_pendingUserCoins->setObject(m_trueString, key);
+    }
     void storeQueuedChallenge(int position, GJChallengeItem* challenge) = m1 0x66620, imac 0x72be0, win 0x1ded90, ios 0x333ae4;
-    TodoReturn storeRewardState(GJRewardType, int, int, gd::string);
-    TodoReturn storeSecondaryQueuedChallenge(int, GJChallengeItem*);
-    TodoReturn storeSecretCoin(char const*);
-    void storeUserCoin(char const*) = win 0x1dcdd0;
-    TodoReturn tempClear();
-    void toggleEnableItem(UnlockType, int, bool) = win 0x1e2c00, imac 0x77450, m1 0x6ad1c, ios 0x3362b8;
-    void tryFixPathBug() = win 0x1d1810, m1 0x5f61c, imac 0x6ba70;
-    void trySelectActivePath() = m1 0x5f0c4, imac 0x6b5e0;
-    void uncompleteLevel(GJGameLevel*) = win 0x1dbbc0;
+    void storeRewardState(GJRewardType type, int id, int remaining, gd::string str) = win 0x1de910, m1 0x6579c, imac 0x71d60, ios 0x3331cc;
+    void storeSecondaryQueuedChallenge(int position, GJChallengeItem* challenge) = win inline, m1 0x66854, imac 0x72df0, ios 0x333be8 {
+        m_upcomingChallenges->setObject(challenge, cocos2d::CCString::createWithFormat("%i", position + 100)->getCString());
+    }
+    void storeSecretCoin(char const* key) = win 0x1dd020, m1 0x63afc, imac 0x700f0, ios 0x332098;
+    void storeUserCoin(char const* key) = win 0x1dcdd0, m1 0x638bc, imac 0x6fed0, ios 0x331fc0;
+    void tempClear() = win inline, m1 0x64180, imac 0x70780, ios inline {}
+    void toggleEnableItem(UnlockType type, int id, bool enabled) = win 0x1e2c00, imac 0x77450, m1 0x6ad1c, ios 0x3362b8;
+    void tryFixPathBug() = win 0x1d1810, m1 0x5f61c, imac 0x6ba70, ios 0x32fdc4;
+    void trySelectActivePath() = win 0x1d1690, m1 0x5f0c4, imac 0x6b5e0, ios 0x32fc80;
+    void uncompleteLevel(GJGameLevel* level) = win 0x1dbbc0, m1 0x61ac8, imac 0x6deb0, ios 0x331154;
     GJRewardItem* unlockGauntletChest(int id) = win inline, m1 0x6ba10, imac 0x78110, ios 0x3369b8 {
         if (auto reward = this->unlockSpecialChest(this->getGauntletRewardKey(id))) {
             this->incrementStat("40");
@@ -10194,10 +10332,17 @@ class GameStatsManager : cocos2d::CCNode {
     }
     GJRewardItem* unlockSecretChest(int id) = win 0x1e75a0, m1 0x7f6f4, imac 0x8ba60, ios 0x33e00c;
     GJRewardItem* unlockSpecialChest(gd::string key) = win 0x1e7250, m1 0x6b8c8, imac 0x77ff0, ios 0x336884;
-    TodoReturn updateActivePath(StatKey);
-    gd::string usernameForAccountID(int);
-    void verifyPathAchievements() = win 0x1d1f80, m1 0x601c0, imac 0x6c680;
-    void verifyUserCoins() = win 0x1dcc30;
+    void updateActivePath(StatKey key) = win inline, m1 0x5f0b0, imac 0x6b5c0, ios 0x32fc6c {
+        m_activePath = key >= StatKey::FirePath && key <= StatKey::SoulPath ? (int)key : 0;
+    }
+    gd::string usernameForAccountID(int id) = win inline, m1 0x2accf8, imac 0x317240, ios 0x6936c {
+        if (auto it = m_usernameForAccountID.find(id); it != m_usernameForAccountID.end()) {
+            return it->second;
+        }
+        return "";
+    }
+    void verifyPathAchievements() = win 0x1d1f80, m1 0x601c0, imac 0x6c680, ios 0x3303f8;
+    void verifyUserCoins() = win 0x1dcc30, m1 0x62ed8, imac 0x6f440, ios 0x331cfc;
 
     bool m_usePlayerStatsCCDictionary;
     cocos2d::CCString* m_trueString;
@@ -10239,7 +10384,7 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_weeklyChest;
     cocos2d::CCDictionary* m_eventChest;
     cocos2d::CCDictionary* m_treasureRoomChests;
-    geode::SeedValueSRV m_bonusKey;
+    geode::SeedValueRSV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
     cocos2d::CCDictionary* m_enabledItems;
     cocos2d::CCDictionary* m_wraithChests;
