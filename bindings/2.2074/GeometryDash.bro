@@ -10401,14 +10401,52 @@ class GameStatsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameToolbox {
-    static void addBackButton(cocos2d::CCLayer*, cocos2d::CCMenuItem*) = ios 0x4829c, win 0x65010, imac 0x4dc890, m1 0x43f944;
-    static void addRThumbScrollButton(cocos2d::CCLayer*) = ios 0x48380, win 0x650f0, m1 0x43fa2c, imac 0x4dc960;
-    static void alignItemsHorisontally(cocos2d::CCArray*, float, cocos2d::CCPoint, bool) = win 0x64110, m1 0x43e460, imac 0x4db280, ios 0x47414;
-    static void alignItemsVertically(cocos2d::CCArray*, float, cocos2d::CCPoint);
-    static TodoReturn bounceTime(float);
-    static TodoReturn colorToSepia(cocos2d::ccColor3B, float);
-    static cocos2d::CCRect contentScaleClipRect(cocos2d::CCRect&);
-    static TodoReturn createHashString(gd::string const&, int);
+    static void addBackButton(cocos2d::CCLayer* parent, cocos2d::CCMenuItem* menuItem) = ios 0x4829c, win 0x65010, imac 0x4dc890, m1 0x43f944;
+    static void addRThumbScrollButton(cocos2d::CCLayer* parent) = ios 0x48380, win 0x650f0, m1 0x43fa2c, imac 0x4dc960;
+    static void alignItemsHorisontally(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position, bool skipSize) = win 0x64110, m1 0x43e460, imac 0x4db280, ios 0x47414;
+    static void alignItemsVertically(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position) = win inline, m1 0x43e718, imac 0x4db5b0, ios 0x475dc {
+        using cocos2d::CCObject;
+
+        CCObject* obj;
+        auto y = -gap;
+        CCARRAY_FOREACH(items, obj) {
+            auto node = static_cast<cocos2d::CCNode*>(obj);
+            y += node->getScaleY() * node->getContentSize().height + gap;
+        }
+
+        y = -y / 2.f;
+        CCARRAY_FOREACH(items, obj) {
+            auto node = static_cast<cocos2d::CCNode*>(obj);
+            auto size = node->getContentSize();
+            auto scale = node->getScaleY();
+            node->setPosition({ 0.f, scale * size.height / 2.f + y });
+            node->setPosition(node->getPosition() + position);
+            y += scale * size.height + gap;
+        }
+    }
+    static float bounceTime(float time) = win 0x68a90, m1 0x445a40, imac 0x4e3750, ios 0x4b750;
+    static cocos2d::ccColor3B colorToSepia(cocos2d::ccColor3B color, float factor) = win inline, m1 0x43fe84, imac 0x4dce00, ios inline {
+        cocos2d::ccColor3B sepia;
+        sepia.r = std::min<uint8_t>(255, color.r * 0.393 + color.g * 0.769 + color.b * 0.189);
+        sepia.g = std::min<uint8_t>(255, color.r * 0.349 + color.g * 0.686 + color.b * 0.168);
+        sepia.b = std::min<uint8_t>(255, color.r * 0.272 + color.g * 0.534 + color.b * 0.131);
+        return factor < 1.f ? GameToolbox::multipliedColorValue(color, sepia, factor) : sepia;
+    }
+    static void contentScaleClipRect(cocos2d::CCRect& rect) = win inline, m1 0x43edd4, imac 0x4dbd00, ios inline {}
+    static gd::string createHashString(gd::string const& str, int length) = win inline, m1 0x44138c, imac 0x4de560, ios inline {
+        std::string ret;
+        if (length > 0) {
+            auto strSize = str.size();
+            if (length > strSize) ret = str;
+            else {
+                int increment = (float)strSize / (float)length;
+                for (int i = 0; i < length; i += increment) {
+                    ret += str[i];
+                }
+            }
+        }
+        return ret;
+    }
     static CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) = win inline, m1 0x43ee18, imac 0x4dbd60, ios 0x47a98 {
         return GameToolbox::createToggleButton(label, selector, state, menu, position, parent, labelParent, .7f, .5f, 80.f, { 8.f, 0.f }, "bigFont.fnt", false, 0, container);
     }
@@ -10428,56 +10466,169 @@ class GameToolbox {
     static float fast_rand_minus1_1() = win inline, m1 0x4418ac, imac 0x4deac0, ios 0x49578 {
         return GameToolbox::fast_rand_0_1() * 2.f - 1.f;
     }
-    static void fast_srand(uint64_t) = win inline, ios 0x49534, m1 0x441830, imac 0x4dea30 {
-        *reinterpret_cast<uint64_t*>(geode::base::get() + 0x6a4e20) = p0;
+    static void fast_srand(uint64_t seed) = win inline, ios 0x49534, m1 0x441830, imac 0x4dea30 {
+        *reinterpret_cast<uint64_t*>(geode::base::get() + 0x6a4e20) = seed;
     }
-    static gd::string gen_random(int) = m1 0x464058, imac 0x504920;
-    static TodoReturn getDropActionWDelay(float, float, float, cocos2d::CCNode*, cocos2d::SEL_CallFunc);
-    static TodoReturn getDropActionWEnd(float, float, float, cocos2d::CCAction*, float);
-    static cocos2d::CCActionEase* getEasedAction(cocos2d::CCActionInterval*, int, float) = imac 0x4de7b0, m1 0x4415e8;
-    static float getEasedValue(float, int, float) = win 0x68b40;
+    static gd::string gen_random(int length) = win 0x66040, m1 0x4416a4, imac 0x4de8e0, ios 0x49450;
+    static cocos2d::CCSequence* getDropActionWDelay(float delay, float duration, float scale, cocos2d::CCNode* target, cocos2d::SEL_CallFunc selector) = win inline, m1 0x43e300, imac 0x4db110, ios inline {
+        auto scaleAndFade = cocos2d::CCSpawn::create(
+            cocos2d::CCEaseExponentialIn::create(cocos2d::CCScaleTo::create(duration, scale)),
+            cocos2d::CCEaseExponentialIn::create(cocos2d::CCFadeIn::create(duration)),
+            nullptr
+        );
+        auto delayTime = cocos2d::CCDelayTime::create(delay);
+        if (target) {
+            return cocos2d::CCSequence::create(delayTime, scaleAndFade, cocos2d::CCCallFunc::create(target, selector), nullptr);
+        }
+        else {
+            return cocos2d::CCSequence::create(delayTime, scaleAndFade, nullptr);
+        }
+    }
+    static cocos2d::CCSequence* getDropActionWEnd(float delay, float duration, float scale, cocos2d::CCAction* action, float actionDelay) = win inline, m1 0x43e3c0, imac 0x4db1e0, ios inline {
+        return cocos2d::CCSequence::create(
+            GameToolbox::getDropActionWDelay(delay, duration, scale, nullptr, nullptr),
+            cocos2d::CCDelayTime::create(actionDelay),
+            action,
+            nullptr
+        );
+    }
+    static cocos2d::CCActionInterval* getEasedAction(cocos2d::CCActionInterval* action, int easingType, float easingRate) = win inline, imac 0x4de7b0, m1 0x4415e8, ios inline {
+        if (easingType == 0) return action;
+        if (easingRate <= 0.f) easingRate = 2.f;
+        switch (easingType) {
+            case 1: return cocos2d::CCEaseInOut::create(action, easingRate);
+            case 2: return cocos2d::CCEaseIn::create(action, easingRate);
+            case 3: return cocos2d::CCEaseOut::create(action, easingRate);
+            case 4: return cocos2d::CCEaseElasticInOut::create(action, easingRate);
+            case 5: return cocos2d::CCEaseElasticIn::create(action, easingRate);
+            case 6: return cocos2d::CCEaseElasticOut::create(action, easingRate);
+            case 7: return cocos2d::CCEaseBounceInOut::create(action);
+            case 8: return cocos2d::CCEaseBounceIn::create(action);
+            case 9: return cocos2d::CCEaseBounceOut::create(action);
+            case 10: return cocos2d::CCEaseExponentialInOut::create(action);
+            case 11: return cocos2d::CCEaseExponentialIn::create(action);
+            case 12: return cocos2d::CCEaseExponentialOut::create(action);
+            case 13: return cocos2d::CCEaseSineInOut::create(action);
+            case 14: return cocos2d::CCEaseSineIn::create(action);
+            case 15: return cocos2d::CCEaseSineOut::create(action);
+            case 16: return cocos2d::CCEaseBackInOut::create(action);
+            case 17: return cocos2d::CCEaseBackIn::create(action);
+            case 18: return cocos2d::CCEaseBackOut::create(action);
+            default: return action;
+        }
+    }
+    static float getEasedValue(float value, int easingType, float easingRate) = win 0x68b40, m1 0x445b28, imac 0x4e3810, ios 0x4b800;
     static uint64_t getfast_srand() = win inline, m1 0x44183c, imac 0x4dea40, ios inline {
         return *reinterpret_cast<uint64_t*>(geode::base::get() + GEODE_WINDOWS(0x6a4e20) GEODE_IOS(0x85d890));
     }
-    static TodoReturn getInvertedEasing(int);
-    static TodoReturn getLargestMergedIntDicts(cocos2d::CCDictionary*, cocos2d::CCDictionary*);
-    static TodoReturn getMultipliedHSV(cocos2d::ccHSVValue const&, float);
-    static cocos2d::CCPoint getRelativeOffset(GameObject*, cocos2d::CCPoint) = win 0x64970, m1 0x43f1f4, imac 0x4dc100, ios 0x47e70;
-    static gd::string getResponse(cocos2d::extension::CCHttpResponse*) = win 0x64310, imac 0x4dba00, m1 0x43eb40;
-    static gd::string getTimeString(int, bool) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
+    static int getInvertedEasing(int easingType) = win inline, m1 0x441668, imac 0x4de8a0, ios inline {
+        switch (easingType) {
+            case 2: return 3;
+            case 3: return 2;
+            case 5: return 6;
+            case 6: return 5;
+            case 8: return 9;
+            case 9: return 8;
+            case 11: return 12;
+            case 12: return 11;
+            case 14: return 15;
+            case 15: return 14;
+            case 17: return 18;
+            case 18: return 17;
+            default: return easingType;
+        }
+    }
+    static cocos2d::CCDictionary* getLargestMergedIntDicts(cocos2d::CCDictionary* dict1, cocos2d::CCDictionary* dict2) = win inline, m1 0x43f3ec, imac 0x4dc320, ios inline {
+        if (dict2->count() > dict1->count()) {
+            GameToolbox::mergeDictsSaveLargestInt(dict2, dict1);
+            return dict2;
+        }
+        else {
+            GameToolbox::mergeDictsSaveLargestInt(dict1, dict2);
+            return dict1;
+        }
+    }
+    static cocos2d::ccHSVValue getMultipliedHSV(cocos2d::ccHSVValue const& value, float factor) = win inline, m1 0x440010, imac 0x4dcf90, ios 0x48790 {
+        cocos2d::ccHSVValue ret;
+        ret.h = value.h * factor;
+        ret.s = value.absoluteSaturation ? value.s * factor : value.s * factor + (1.f - factor);
+        ret.v = value.absoluteBrightness ? value.v * factor : value.v * factor + (1.f - factor);
+        ret.absoluteSaturation = value.absoluteSaturation;
+        ret.absoluteBrightness = value.absoluteBrightness;
+        return ret;
+    }
+    static cocos2d::CCPoint getRelativeOffset(GameObject* object, cocos2d::CCPoint offset) = win 0x64970, m1 0x43f1f4, imac 0x4dc100, ios 0x47e70;
+    static gd::string getResponse(cocos2d::extension::CCHttpResponse* response) = win 0x64310, imac 0x4dba00, m1 0x43eb40, ios 0x47854;
+    static gd::string getTimeString(int seconds, bool noSeconds) = win 0x65e20, imac 0x4de620, m1 0x44145c, ios 0x49338;
     static cocos2d::ccHSVValue hsvFromString(gd::string const& str, char const* delim) = win 0x654e0, m1 0x44007c, imac 0x4dd030, ios 0x487fc; // on windows, 2nd param is ignored and assumed to be "a"
-    static gd::string intToShortString(int) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
-    static gd::string intToString(int) = win 0x69060, imac 0x4e3f30, m1 0x446284, ios 0x4bc24;
-    static bool isIOS();
-    static bool isRateEasing(int);
-    static void mergeDictsSaveLargestInt(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = win 0x64b70, m1 0x43f440, imac 0x4dc370, ios 0x48050;
-    static void mergeDictsSkipConflict(cocos2d::CCDictionary*, cocos2d::CCDictionary*) = win 0x64dd0, m1 0x43f6d0, imac 0x4dc610, ios 0x48188;
+    static gd::string intToShortString(int value) = win 0x69120, imac 0x4e4250, m1 0x4465bc, ios 0x4bd08;
+    static gd::string intToString(int value) = win 0x69060, imac 0x4e3f30, m1 0x446284, ios 0x4bc24;
+    static bool isIOS() = win inline, m1 0x43ea10, imac 0x4db8d0, ios inline {
+        #ifdef GEODE_IS_IOS
+        return true;
+        #else
+        return false;
+        #endif
+    }
+    static bool isRateEasing(int easingType) = win inline, m1 0x441694, imac 0x4de8d0, ios 0x49440 {
+        return easingType > 0 && easingType < 7;
+    }
+    static void mergeDictsSaveLargestInt(cocos2d::CCDictionary* toDict, cocos2d::CCDictionary* fromDict) = win 0x64b70, m1 0x43f440, imac 0x4dc370, ios 0x48050;
+    static void mergeDictsSkipConflict(cocos2d::CCDictionary* toDict, cocos2d::CCDictionary* fromDict) = win 0x64dd0, m1 0x43f6d0, imac 0x4dc610, ios 0x48188;
     static gd::string msToTimeString(int milliseconds, int formattingMode) = win 0x69630, m1 0x446c04, imac 0x4e48b0, ios 0x4c158;
-    static TodoReturn multipliedColorValue(cocos2d::ccColor3B, cocos2d::ccColor3B, float);
-    static TodoReturn openAppPage();
-    static TodoReturn openRateURL(gd::string, gd::string) = m1 0x43ea18, imac 0x4db8e0;
-    static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool p2) = win inline, imac 0x4e2ed0, m1 0x4451a0, ios 0x4b190 {
+    static cocos2d::ccColor3B multipliedColorValue(cocos2d::ccColor3B minColor, cocos2d::ccColor3B maxColor, float factor) = win inline, m1 0x43fdb0, imac 0x4dcd30, ios 0x486dc {
+        if (factor < 1.f) {
+            if (factor > 0.f) {
+                cocos2d::ccColor3B ret;
+                ret.r = (maxColor.r - minColor.r) * factor + minColor.r;
+                ret.g = (maxColor.g - minColor.g) * factor + minColor.g;
+                ret.b = (maxColor.b - minColor.b) * factor + minColor.b;
+                return ret;
+            }
+            else return minColor;
+        }
+        else return maxColor;
+    }
+    static void openAppPage() = win inline, m1 0x43eb1c, imac 0x4db9e0, ios 0x47850 {
+        cocos2d::CCApplication::sharedApplication()->openURL("https://store.steampowered.com/recommended/recommendgame/322170");
+    }
+    static void openRateURL(gd::string str1, gd::string str2) = m1 0x43ea18, imac 0x4db8e0;
+    static cocos2d::CCParticleSystemQuad* particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool dontUpdate) = win inline, imac 0x4e2ed0, m1 0x4451a0, ios 0x4b190 {
         cocos2d::ParticleStruct ret;
         GameToolbox::particleStringToStruct(str, ret);
-        return GameToolbox::particleFromStruct(ret, system, p2);
+        return GameToolbox::particleFromStruct(ret, system, dontUpdate);
     }
-    static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const&, cocos2d::CCParticleSystemQuad*, bool) = ios 0x4b264, win 0x68000, imac 0x4e2fe0, m1 0x44528c;
-    static void particleStringToStruct(gd::string const&, cocos2d::ParticleStruct&) = win 0x67540, imac 0x4e1f80, m1 0x444354, ios 0x4a7fc;
-    static gd::string pointsToString(int) = win 0x69760, m1 0x446d4c, imac 0x4e49f0;
+    static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const& particleStruct, cocos2d::CCParticleSystemQuad* system, bool dontUpdate) = ios 0x4b264, win 0x68000, imac 0x4e2fe0, m1 0x44528c;
+    static void particleStringToStruct(gd::string const& str, cocos2d::ParticleStruct& particleStruct) = win 0x67540, imac 0x4e1f80, m1 0x444354, ios 0x4a7fc;
+    static gd::string pointsToString(int points) = win 0x69760, m1 0x446d4c, imac 0x4e49f0, ios 0x4c2a0;
     static void postClipVisit() = win inline, m1 0x43ee10, imac 0x4dbd50, ios 0x47a90 {
         glDisable(GL_SCISSOR_TEST);
     }
-    static void preVisitWithClippingRect(cocos2d::CCNode*, cocos2d::CCRect) = ios 0x479ac, win 0x645c0, imac 0x4dbc50, m1 0x43ed28;
-    static TodoReturn preVisitWithClipRect(cocos2d::CCRect);
-    static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad*) = win 0x662d0, imac 0x4deb00, m1 0x4418f4, ios 0x495bc;
-    static TodoReturn saveStringToFile(gd::string const&, gd::string const&);
-    static gd::string stringFromHSV(cocos2d::ccHSVValue, char const*) = win 0x656f0;
-    static cocos2d::CCDictionary* stringSetupToDict(gd::string const&, char const*) = win 0x65c30, m1 0x440d54, imac 0x4dded0, ios 0x48f84;
-    static void stringSetupToMap(gd::string const&, char const*, gd::map<gd::string, gd::string>&) = win 0x65890;
-    static TodoReturn strongColor(cocos2d::ccColor3B);
-    static TodoReturn timestampToHumanReadable(long) = m1 0x4469a4, imac 0x4e4690;
-    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, cocos2d::ccHSVValue) = ios 0x4854c, win 0x65290, m1 0x43fbfc, imac 0x4dcb20;
-    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const&, float, float, float) = m1 0x43fbe0, imac 0x4dcaf0;
+    static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = ios 0x479ac, win 0x645c0, imac 0x4dbc50, m1 0x43ed28;
+    static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, m1 0x43edd8, imac 0x4dbd10, ios 0x47a58 {
+        glEnable(GL_SCISSOR_TEST);
+        GameToolbox::contentScaleClipRect(rect);
+        cocos2d::CCDirector::sharedDirector()->getOpenGLView()->setScissorInPoints(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    }
+    static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x662d0, imac 0x4deb00, m1 0x4418f4, ios 0x495bc;
+    static bool saveStringToFile(gd::string const& path, gd::string const& content) = m1 0x446430, imac 0x4e4100;
+    static gd::string stringFromHSV(cocos2d::ccHSVValue value, char const* separator) = win 0x656f0, m1 0x440568, imac 0x4dd560, ios 0x48b84;
+    static cocos2d::CCDictionary* stringSetupToDict(gd::string const& str, char const* separator) = win 0x65c30, m1 0x440d54, imac 0x4dded0, ios 0x48f84;
+    static void stringSetupToMap(gd::string const& str, char const* separator, gd::map<gd::string, gd::string>& setup) = win 0x65890, m1 0x440a60, imac 0x4ddb60, ios 0x48d50;
+    static cocos2d::ccColor3B strongColor(cocos2d::ccColor3B color) = win inline, m1 0x4412f4, imac 0x4de4c0, ios 0x492a0 {
+        if (color.r != 255 && color.b != 255 && color.g != 255) {
+            auto factor = (std::min)(1.5f, 255.f / (std::max)({ color.r, color.g, color.b }));
+            color.r *= factor;
+            color.g *= factor;
+            color.b *= factor;
+        }
+        return color;
+    }
+    static gd::string timestampToHumanReadable(time_t timestamp) = win 0x692c0, m1 0x4469a4, imac 0x4e4690, ios 0x4bf44;
+    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const& color, cocos2d::ccHSVValue hsv) = ios 0x4854c, win 0x65290, m1 0x43fbfc, imac 0x4dcb20;
+    static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const& color, float h, float s, float v) = win inline, m1 0x43fbe0, imac 0x4dcaf0, ios 0x48530 {
+        return GameToolbox::transformColor(color, { h, s, v, true, true });
+    }
 }
 
 [[link(android)]]
