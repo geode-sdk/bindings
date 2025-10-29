@@ -10611,7 +10611,13 @@ class GameToolbox {
         cocos2d::CCDirector::sharedDirector()->getOpenGLView()->setScissorInPoints(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     }
     static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x662d0, imac 0x4deb00, m1 0x4418f4, ios 0x495bc;
-    static bool saveStringToFile(gd::string const& path, gd::string const& content) = m1 0x446430, imac 0x4e4100;
+    static bool saveStringToFile(gd::string const& path, gd::string const& content) = win inline, m1 0x446430, imac 0x4e4100, ios inline {
+        auto file = fopen((cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath() + path).c_str(), "w");
+        if (!file) return false;
+        auto result = fwrite(content.c_str(), 1, content.size(), file);
+        fclose(file);
+        return result == content.size();
+    }
     static gd::string stringFromHSV(cocos2d::ccHSVValue value, char const* separator) = win 0x656f0, m1 0x440568, imac 0x4dd560, ios 0x48b84;
     static cocos2d::CCDictionary* stringSetupToDict(gd::string const& str, char const* separator) = win 0x65c30, m1 0x440d54, imac 0x4dded0, ios 0x48f84;
     static void stringSetupToMap(gd::string const& str, char const* separator, gd::map<gd::string, gd::string>& setup) = win 0x65890, m1 0x440a60, imac 0x4ddb60, ios 0x48d50;
