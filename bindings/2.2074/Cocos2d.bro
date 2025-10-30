@@ -5941,10 +5941,21 @@ class cocos2d::ZipUtils {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlUtils {
-    static cocos2d::CCSprite* addSpriteToTargetWithPosAndAnchor(char const*, cocos2d::CCNode*, cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x3247f0, imac 0x396590;
-    static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA) = m1 0x324868, imac 0x3965f0;
-    static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV) = m1 0x324914, imac 0x3966e0;
-    static cocos2d::CCRect CCRectUnion(cocos2d::CCRect const&, cocos2d::CCRect const&) = m1 0x324a34, imac 0x396830;
+    static cocos2d::CCSprite* addSpriteToTargetWithPosAndAnchor(char const*, cocos2d::CCNode*, cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x3247f0, imac 0x396590, ios 0x1d4c08;
+    static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA) = m1 0x324868, imac 0x3965f0, ios 0x1d4c80;
+    static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV) = m1 0x324914, imac 0x3966e0, ios 0x1d4d28;
+    static cocos2d::CCRect CCRectUnion(cocos2d::CCRect const&, cocos2d::CCRect const&) = m1 0x324a34, imac 0x396830, ios inline {
+        CCRect result;
+        auto x1 = std::min(p0.getMinX(), p1.getMinX());
+        auto x2 = std::max(p0.getMaxX(), p1.getMaxX());
+        auto y1 = std::min(p0.getMinY(), p1.getMinY());
+        auto y2 = std::max(p0.getMaxY(), p1.getMaxY());
+        result.origin.x = x1;
+        result.origin.y = x2;
+        result.size.width = x2 - x1;
+        result.size.height = y2 - y1;
+        return result;
+    }
 }
 
 [[link(win, android)]]
