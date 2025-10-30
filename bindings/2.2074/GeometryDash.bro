@@ -1758,26 +1758,43 @@ class CCCounterLabel : cocos2d::CCLabelBMFont {
         return nullptr;
     }
 
-    void calculateStepSize(int);
-    void disableCounter();
-    void enableCounter();
-    void fastUpdateCounter() = win inline {
+    void calculateStepSize(int steps) = win inline, m1 0x45b618, imac 0x4fb890, ios inline {
+        auto diff = m_targetCount - m_currentCount;
+        m_stepSize = diff / std::min<float>(std::abs(diff), steps);
+    }
+    void disableCounter() = win inline, m1 0x45b588, imac 0x4fb7e0, ios inline {
+        if (m_counterEnabled) {
+            m_counterEnabled = false;
+            if (!m_dontSchedule) {
+                this->unscheduleAllSelectors();
+            }
+        }
+    }
+    void enableCounter() = win inline, m1 0x45b4d0, imac 0x4fb720, ios inline {
+        if (!m_counterEnabled) {
+            m_counterEnabled = true;
+            if (!m_dontSchedule) {
+                this->schedule(schedule_selector(CCCounterLabel::updateCounter), 1.f / 30.f);
+            }
+        }
+    }
+    void fastUpdateCounter() = win inline, m1 0x45b4c4, imac 0x4fb700, ios inline {
         m_currentCount = m_targetCount;
         this->updateString();
     }
-    int getTargetCount() = win inline {
+    int getTargetCount() = win inline, m1 0x45b654, imac 0x4fb8e0, ios inline {
         return m_targetCount;
     }
-    bool init(int count, char const* font, FormatterType type) = win inline {
+    bool init(int count, char const* font, FormatterType type) = win inline, m1 0x45b43c, imac 0x4fb670, ios 0x3ecf4 {
         if (!cocos2d::CCLabelBMFont::initWithString(" ", font)) return false;
         m_formatterType = type;
         m_targetCount = count;
         this->fastUpdateCounter();
         return true;
     }
-    void setTargetCount(int) = win 0x43130;
-    void updateCounter(float) = win 0x431c0;
-    void updateString() = win 0x43240;
+    void setTargetCount(int count) = win 0x43130, m1 0x45b5a4, imac 0x4fb810, ios 0x3edec;
+    void updateCounter(float dt) = win 0x431c0, m1 0x45b508, imac 0x4fb760, ios 0x3ed7c;
+    void updateString() = win 0x43240, m1 0x45b65c, imac 0x4fb8f0, ios 0x3ee5c;
 
     int m_stepSize;
     int m_targetCount;
@@ -14210,23 +14227,23 @@ class GJOptionsLayer : SetupTriggerPopup {
 class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
     // virtual ~GJPathPage();
 
-    static GJPathPage* create(int, GJPathsLayer*) = win 0x27db80, imac 0x2ea7c0, m1 0x284d30, ios 0x3b0e84;
+    static GJPathPage* create(int path, GJPathsLayer* layer) = win 0x27db80, imac 0x2ea7c0, m1 0x284d30, ios 0x3b0e84;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x288950, imac 0x2ee860, ios 0x3b3c68;
     virtual void keyBackClicked() = win 0x281710, m1 0x2887ec, imac 0x2ee720, ios 0x3b3c5c;
     virtual void show() = win 0x867a0, m1 0x288988, imac 0x2ee8a0, ios 0x3b3ca0;
     virtual void didPurchaseItem(GJStoreItem*) = win 0x27fb40, m1 0x286f08, imac 0x2ecb40, ios 0x3b2b2c;
 
-    bool init(int, GJPathsLayer*) = win 0x27dcb0, m1 0x285220, imac 0x2eada0, ios 0x3b1208;
-    void onActivatePath(cocos2d::CCObject* sender) = win 0x27f8e0, imac 0x2ecb10, m1 0x286ee0;
-    void onBack(cocos2d::CCObject* sender) = win 0x281670;
-    void onIconInfo(cocos2d::CCObject* sender) = win 0x27f950;
-    void onUnlock(cocos2d::CCObject* sender) = win 0x27fb50, imac 0x2eca20, m1 0x286dd4;
-    void playUnlockAnimation() = win 0x280400, m1 0x286f0c, imac 0x2ecb50;
-    void showCantAffordMessage(GJStoreItem*) = win 0x27fd30, m1 0x2874bc, imac 0x2ed200;
-    void unlockAnimationFinished() = win 0x281540, imac 0x2edb90, m1 0x287dd0;
-    void unlockAnimationStep2() = win 0x280a50, m1 0x287b88, imac 0x2ed8b0;
-    void unlockAnimationStep3() = win 0x280cd0, imac 0x2edcf0, m1 0x287f2c;
+    bool init(int path, GJPathsLayer* layer) = win 0x27dcb0, m1 0x285220, imac 0x2eada0, ios 0x3b1208;
+    void onActivatePath(cocos2d::CCObject* sender) = win 0x27f8e0, imac 0x2ecb10, m1 0x286ee0, ios 0x3b2b04;
+    void onBack(cocos2d::CCObject* sender) = win 0x281670, m1 0x286b60, imac 0x2ec7e0, ios 0x3b285c;
+    void onIconInfo(cocos2d::CCObject* sender) = win 0x27f950, m1 0x286c10, imac 0x2ec870, ios 0x3b28fc;
+    void onUnlock(cocos2d::CCObject* sender) = win 0x27fb50, imac 0x2eca20, m1 0x286dd4, ios 0x3b2a14;
+    void playUnlockAnimation() = win 0x280400, m1 0x286f0c, imac 0x2ecb50, ios 0x3b2b30;
+    void showCantAffordMessage(GJStoreItem* item) = win 0x27fd30, m1 0x2874bc, imac 0x2ed200, ios 0x3b2f64;
+    void unlockAnimationFinished() = win 0x281540, imac 0x2edb90, m1 0x287dd0, ios 0x3b3610;
+    void unlockAnimationStep2() = win 0x280a50, m1 0x287b88, imac 0x2ed8b0, ios 0x3b34b8;
+    void unlockAnimationStep3() = win 0x280cd0, imac 0x2edcf0, m1 0x287f2c, ios 0x3b36a0;
 
     GJPathsLayer* m_pathsLayer;
     int m_pathNumber;
@@ -14241,9 +14258,9 @@ class GJPathRewardPopup : FLAlertLayer {
         m_pathNumber = 0;
     }
 
-    static GJPathRewardPopup* create(int p0) = m1 0x284e5c, imac 0x2ea940, ios 0x3b0f64, win inline {
+    static GJPathRewardPopup* create(int path) = m1 0x284e5c, imac 0x2ea940, ios 0x3b0f64, win inline {
         auto ret = new GJPathRewardPopup();
-        if (ret->init(p0)) {
+        if (ret->init(path)) {
             ret->autorelease();
             return ret;
         }
@@ -14253,8 +14270,8 @@ class GJPathRewardPopup : FLAlertLayer {
 
     virtual void keyBackClicked() = m1 0x289388, imac 0x2ef260, ios 0x3b45c0 {}
 
-    void closePopup() = win 0x27dac0;
-    bool init(int) = win 0x2825f0, imac 0x2eec40, m1 0x288d28, ios 0x3b3fb4;
+    void closePopup() = win 0x27dac0, m1 0x289320, imac 0x2ef200, ios 0x3b4558;
+    bool init(int path) = win 0x2825f0, imac 0x2eec40, m1 0x288d28, ios 0x3b3fb4;
     void onClaim(cocos2d::CCObject* sender) = win 0x282ad0, m1 0x2891c4, imac 0x2ef0d0, ios 0x3b4448;
 
     int m_pathNumber;
@@ -14264,8 +14281,8 @@ class GJPathRewardPopup : FLAlertLayer {
 class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
     // virtual ~GJPathsLayer();
 
-    static GJPathsLayer* create() = win 0x27d1d0, m1 0x28446c, imac 0x2e9ed0;
-    static gd::string nameForPath(int) = win 0x27cf60, imac 0x2e9d30, m1 0x2842bc, ios 0x3b068c;
+    static GJPathsLayer* create() = win 0x27d1d0, m1 0x28446c, imac 0x2e9ed0, ios 0x3b06f4;
+    static gd::string nameForPath(int path) = win 0x27cf60, imac 0x2e9d30, m1 0x2842bc, ios 0x3b068c;
 
     virtual bool init() = win 0x27d2d0, m1 0x28456c, imac 0x2ea020, ios 0x3b07ac;
     virtual void onExit() = win 0x27d830, m1 0x284c94, imac 0x2ea730, ios 0x3b0e34;
@@ -14273,7 +14290,9 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
     virtual void keyBackClicked() = win 0x27db20, m1 0x284f58, imac 0x2eaa80, ios 0x3b1018;
     virtual void show() = win 0x867a0, m1 0x285060, imac 0x2eab90, ios 0x3b105c;
 
-    void darkenButtons(bool) = imac 0x2ea780, m1 0x284ce4;
+    void darkenButtons(bool darken) = win inline, imac 0x2ea780, m1 0x284ce4, ios inline {
+        m_closeSprite->setColor(darken ? cocos2d::ccColor3B { 75, 75, 75 } : cocos2d::ccColor3B { 255, 255, 255 });
+    }
     void onClose(cocos2d::CCObject* sender) = win 0x27dac0, imac 0x2ea530, m1 0x284a6c, ios 0x3b0c18;
     void onPath(cocos2d::CCObject* sender) = win 0x27d880, imac 0x2ea6b0, m1 0x284c04, ios 0x3b0da4;
 
@@ -15239,7 +15258,6 @@ class GJShaderState {
 
 [[link(android)]]
 class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, RewardedVideoDelegate {
-    // virtual ~GJShopLayer();
     GJShopLayer() {
         m_closing = false;
         m_currencyLabel = nullptr;
@@ -15269,7 +15287,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(ShopType) = win 0x2a1ef0, m1 0x2a5268, imac 0x30e850, ios 0x14dc40;
+    static cocos2d::CCScene* scene(ShopType type) = win 0x2a1ef0, m1 0x2a5268, imac 0x30e850, ios 0x14dc40;
 
     virtual void onExit() = win 0x2a4160, m1 0x2a7074, imac 0x310710, ios 0x14f518;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x2a7290, imac 0x312d20, m1 0x2a91d0, ios 0x150e28;
@@ -15283,15 +15301,15 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
     virtual void dialogClosed(DialogLayer*) = win 0x2a6f60, imac 0x312b60, m1 0x2a8fec, ios 0x150c68;
 
     void exitVideoAdItems() = imac 0x310960, m1 0x2a7298;
-    bool init(ShopType) = win 0x2a2070, imac 0x30eaa0, m1 0x2a5450, ios 0x14dd64;
+    bool init(ShopType type) = win 0x2a2070, imac 0x30eaa0, m1 0x2a5450, ios 0x14dd64;
     void onBack(cocos2d::CCObject* sender) = win 0x2a56b0, imac 0x310450, m1 0x2a6d78, ios 0x14f27c;
     void onCommunityCredits(cocos2d::CCObject* sender) = win 0x2a43e0, m1 0x2a6d00, imac 0x3103d0, ios 0x14f250;
-    void onPlushies(cocos2d::CCObject* sender);
+    void onPlushies(cocos2d::CCObject* sender) = win inline, m1 0x2a6cfc, imac 0x3103c0, ios 0x14f24c {}
     void onSelectItem(cocos2d::CCObject* sender) = win 0x2a45f0, imac 0x310600, m1 0x2a6f30, ios 0x14f408;
     void onVideoAd(cocos2d::CCObject* sender) = imac 0x310400, m1 0x2a6d2c;
-    void showCantAffordMessage(GJStoreItem*) = m1 0x2a744c, imac 0x310b20, ios 0x14f74c, win 0x2a4800;
-    void showReactMessage() = win 0x2a58e0, m1 0x2a7f4c, imac 0x311740;
-    void updateCurrencyCounter() = m1 0x2a73bc, imac 0x310a80, win 0x2a4580;
+    void showCantAffordMessage(GJStoreItem* item) = m1 0x2a744c, imac 0x310b20, ios 0x14f74c, win 0x2a4800;
+    void showReactMessage() = win 0x2a58e0, m1 0x2a7f4c, imac 0x311740, ios 0x150048;
+    void updateCurrencyCounter() = m1 0x2a73bc, imac 0x310a80, win 0x2a4580, ios 0x14f710;
 
     bool m_closing;
     CCCounterLabel* m_currencyLabel;
@@ -21936,11 +21954,11 @@ class PurchaseItemPopup : FLAlertLayer {
     // virtual ~PurchaseItemPopup();
     // PurchaseItemPopup();
 
-    static PurchaseItemPopup* create(GJStoreItem*) = win 0x2a74d0, m1 0x2a77d0, imac 0x310ed0, ios 0x14fa80;
+    static PurchaseItemPopup* create(GJStoreItem* item) = win 0x2a74d0, m1 0x2a77d0, imac 0x310ed0, ios 0x14fa80;
 
     virtual void keyBackClicked() = win 0x84650, m1 0x2aa32c, imac 0x3140d0, ios 0x151c10;
 
-    bool init(GJStoreItem*) = win 0x2a75c0, m1 0x2a9818, imac 0x3134b0, ios 0x151228;
+    bool init(GJStoreItem* item) = win 0x2a75c0, m1 0x2a9818, imac 0x3134b0, ios 0x151228;
     void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x2aa27c, imac 0x314030, ios 0x151b60;
     void onPurchase(cocos2d::CCObject* sender) = win 0x2a8470, m1 0x2aa2b8, imac 0x314060, ios 0x151b9c;
 
