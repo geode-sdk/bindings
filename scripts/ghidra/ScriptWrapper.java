@@ -522,7 +522,7 @@ public class ScriptWrapper {
         if (type.getName().startsWith("CCPoint") || type.getName().startsWith("CCSize") || type.getName().startsWith("CCRect")) {
             return true;
         }
-        if (type.getLength() > 10) {
+        if (type.getLength() > 16) {
             return true;
         }
         return false;
