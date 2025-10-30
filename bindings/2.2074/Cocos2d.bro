@@ -5674,17 +5674,21 @@ class CCContentManager : cocos2d::CCObject {
 
     cocos2d::CCDictionary* addDict(char const*, bool) = m1 0x140068, imac 0x1742a0, ios 0x40a764;
     cocos2d::CCDictionary* addDictDS(char const*) = m1 0x14022c, imac 0x174470;
-    void clearCache() = m1 0x14042c, imac 0x174670;
-    bool init() = m1 0x13ff84, imac 0x1741b0;
+    void clearCache() = m1 0x14042c, imac 0x174670, ios 0x40a83c;
+    bool init() = m1 0x13ff84, imac 0x1741b0, ios inline {
+        m_pDictCache = cocos2d::CCDictionary::create();
+        m_pDictCache->retain();
+        return true;
+    }
 }
 
 [[link(win, android)]]
 class ObjectDecoder : cocos2d::CCNode {
     // virtual ~ObjectDecoder();
 
-    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
+    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040, ios 0x235830;
 
-    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
+    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0, ios 0x23589c;
 
     virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
 }

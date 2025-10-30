@@ -14145,7 +14145,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
 class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
     // virtual ~GJObjectDecoder();
 
-    static GJObjectDecoder* sharedDecoder() = win 0x27c690, m1 0x62d42c, imac 0x70e4e0;
+    static GJObjectDecoder* sharedDecoder() = win 0x27c690, m1 0x62d42c, imac 0x70e4e0, ios 0x2176e8;
 
     virtual bool init() = win 0x77db0, m1 0x62d4d4, imac 0x70e560, ios 0x217784;
     virtual cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = win 0x27c730, imac 0x70e570, m1 0x62d4d8, ios 0x217788;
