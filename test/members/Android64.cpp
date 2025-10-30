@@ -170,7 +170,7 @@ GEODE_MEMBER_CHECK(TextArea, m_shakeElapsed, 0x2b0);
 GEODE_SIZE_CHECK(TableViewCell, 0x218);
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
-GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x1f0);
+GEODE_MEMBER_CHECK(TableViewCell, m_cellIdentifier, 0x1f0);
 GEODE_MEMBER_CHECK(TableViewCell, m_width, 0x1f8);
 GEODE_MEMBER_CHECK(TableViewCell, m_height, 0x1fc);
 GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x208);

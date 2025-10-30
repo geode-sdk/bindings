@@ -635,7 +635,7 @@ GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x530);
 
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
-GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x1f0);
+GEODE_MEMBER_CHECK(TableViewCell, m_cellIdentifier, 0x1f0);
 GEODE_MEMBER_CHECK(TableViewCell, m_mainLayer, 0x220);
 
 GEODE_MEMBER_CHECK(CCScrollLayerExt, m_verticalScrollbar, 0x1c0);

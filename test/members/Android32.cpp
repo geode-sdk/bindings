@@ -62,7 +62,7 @@ GEODE_MEMBER_CHECK(FLAlertLayer, m_buttonMenu, 0x1b8);
 GEODE_MEMBER_CHECK(FLAlertLayer, m_mainLayer, 0x1c8);
 GEODE_MEMBER_CHECK(TableView, m_cellArray, 0x1b0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x144);
-GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x184);
+GEODE_MEMBER_CHECK(TableViewCell, m_cellIdentifier, 0x184);
 GEODE_MEMBER_CHECK(TableViewCell, m_backgroundLayer, 0x190);
 GEODE_SIZE_CHECK(CCBlockLayer, 0x1bc);
 
