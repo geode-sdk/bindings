@@ -520,7 +520,7 @@ public class ScriptWrapper {
             return true;
         }
         if (type.getName().startsWith("RGBA") || type.getName().startsWith("HSV")) {
-            return false;
+            return platform == Platform.MAC_INTEL;
         }
         if (type.getName().startsWith("CCPoint") || type.getName().startsWith("CCSize") || type.getName().startsWith("CCRect")) {
             return true;
