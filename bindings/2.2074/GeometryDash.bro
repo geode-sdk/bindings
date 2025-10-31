@@ -10681,7 +10681,12 @@ class GameToolbox {
     }
     static gd::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x662d0, imac 0x4deb00, m1 0x4418f4, ios 0x495bc;
     static bool saveStringToFile(gd::string const& path, gd::string const& content) = win inline, m1 0x446430, imac 0x4e4100, ios inline {
+        #ifdef GEODE_IS_WINDOWS
+        FILE* file = nullptr;
+        fopen_s(&file, (cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath() + path).c_str(), "w");
+        #else
         auto file = fopen((cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath() + path).c_str(), "w");
+        #endif
         if (!file) return false;
         auto result = fwrite(content.c_str(), 1, content.size(), file);
         fclose(file);
