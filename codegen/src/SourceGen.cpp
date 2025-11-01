@@ -7,7 +7,7 @@ namespace { namespace format_strings {
 #include <Geode/utils/addresser.hpp>
 #include <Geode/modify/Traits.hpp>
 #include <Geode/loader/Tulip.hpp>
-
+{includes}
 using namespace geode;
 using namespace geode::modifier;
 
@@ -31,13 +31,13 @@ cocos2d::CCDestructor::~CCDestructor() {{
 }}
 #endif
 
-auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadata) {
+auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadata) {{
 	auto wrapped = geode::hook::createWrapper(reinterpret_cast<void*>(address), metadata);
 	if (wrapped.isErr()) {{
 		throw std::runtime_error(wrapped.unwrapErr());
 	}}
 	return wrapped.unwrap();
-}
+}}
 )GEN";
 
 	constexpr char const* declare_member = R"GEN(
@@ -203,7 +203,9 @@ bool areSuperclassesEmpty(Class const& c) {
 }
 
 std::string generateBindingSource(Root const& root, bool skipPugixml) {
-	std::string output(format_strings::source_start);
+	std::string output = fmt::format(format_strings::source_start,
+		fmt::arg("includes", codegen::getIncludes(root))
+	);
 
 	for (auto& f : root.functions) {
         if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
