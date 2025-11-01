@@ -4191,7 +4191,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     // virtual ~CustomizeObjectLayer();
     //CustomizeObjectLayer() = ios 0x577b8;
 
-    static CustomizeObjectLayer* create(GameObject*, cocos2d::CCArray*) = win 0xa4b60, m1 0x19a864, imac 0x1e2f30, ios 0x50f20;
+    static CustomizeObjectLayer* create(GameObject* object, cocos2d::CCArray* objects) = win 0xa4b60, m1 0x19a864, imac 0x1e2f30, ios 0x50f20;
 
     virtual void keyBackClicked() = win 0xa99e0, imac 0x1e7730, m1 0x19eb58, ios 0x546e4;
     virtual void textInputOpened(CCTextInputNode*) = win 0xa8f70, imac 0x1e7380, m1 0x19e79c, ios 0x543f4;
@@ -4201,48 +4201,75 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     virtual void colorSelectClosed(cocos2d::CCNode*) = win 0xa8030, imac 0x1e6ed0, m1 0x19e36c, ios 0x541fc;
     virtual void colorSetupClosed(int) = win 0xa7c90, imac 0x1e6a60, m1 0x19df5c, ios 0x53ed8;
 
-    TodoReturn createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
-    TodoReturn determineStartValues();
-    int getActiveMode(bool) = ios 0x53ad0, win 0xa8cb0, imac 0x1e63e0, m1 0x19d9c0;
-    ButtonSprite* getButtonByTag(int) = win 0xa9520, m1 0x19e2d4, imac 0x1e6e30, ios 0x5417c;
-    TodoReturn getHSV();
-    void highlightSelected(ButtonSprite*) = ios 0x54060, win 0xa97d0, m1 0x19e1b8, imac 0x1e6d00;
-    bool init(GameObject*, cocos2d::CCArray*) = ios 0x50fa4, win 0xa4d00, imac 0x1e3120, m1 0x19a9d0;
+    CCMenuItemToggler* createToggleButton(gd::string text, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win inline, m1 0x19e378, imac 0x1e6f00, ios inline {
+        auto onSprite = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
+        onSprite->setScale(.8f);
+        auto offSprite = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
+        offSprite->setScale(.8f);
+        auto toggler = CCMenuItemToggler::create(offSprite, onSprite, this, selector);
+        toggler->toggle(toggled);
+        menu->addChild(toggler);
+        toggler->setPosition(menu->convertToNodeSpace(position));
+        toggler->setSizeMult(1.5f);
+        m_detailTabNodes->addObject(toggler);
+        auto label = cocos2d::CCLabelBMFont::create(text.c_str(), "bigFont.fnt");
+        m_mainLayer->addChild(label);
+        label->setAnchorPoint({ .0f, .5f });
+        label->setPosition(m_mainLayer->convertToNodeSpace(position + cocos2d::CCPoint { onSprite->getContentSize().width * .5f + 5.6f, 0.f }));
+        label->setScale(.5f);
+        m_detailTabNodes->addObject(label);
+        return toggler;
+    }
+    void determineStartValues() = win 0xa8040, m1 0x19ca0c, imac 0x1e53c0, ios 0x52ea0;
+    int getActiveMode(bool ignoreDefault) = ios 0x53ad0, win 0xa8cb0, imac 0x1e63e0, m1 0x19d9c0;
+    ButtonSprite* getButtonByTag(int tag) = win 0xa9520, m1 0x19e2d4, imac 0x1e6e30, ios 0x5417c;
+    cocos2d::ccHSVValue getHSV() = win inline, m1 0x19e594, imac 0x1e7100, ios inline {
+        return ConfigureHSVWidget::getHSV(m_targetObject, m_targetObjects, m_selectedMode);
+    }
+    void highlightSelected(ButtonSprite* sprite) = ios 0x54060, win 0xa97d0, m1 0x19e1b8, imac 0x1e6d00;
+    bool init(GameObject* object, cocos2d::CCArray* objects) = ios 0x50fa4, win 0xa4d00, imac 0x1e3120, m1 0x19a9d0;
     void onBreakApart(cocos2d::CCObject* sender) = win 0xa9410, m1 0x19d61c, imac 0x1e6010, ios 0x53868;
-    void onBrowse(cocos2d::CCObject* sender);
+    void onBrowse(cocos2d::CCObject* sender) = win 0xa7c00, m1 0x19d97c, imac 0x1e6390, ios 0x53a8c;
     void onClear(cocos2d::CCObject* sender) = win 0xa9380, m1 0x19d6d4, imac 0x1e60e0, ios 0x538a8;
     void onClose(cocos2d::CCObject* sender) = ios 0x52e0c, win 0xa9900, m1 0x19c978, imac 0x1e5320;
-    void onCopy(cocos2d::CCObject* sender) = win 0xa7900;
+    void onCopy(cocos2d::CCObject* sender) = win 0xa7900, m1 0x19d8b0, imac 0x1e62c0, ios 0x53a08;
     void onEditColor(cocos2d::CCObject* sender) = win 0xa7d70, imac 0x1e5d20, m1 0x19d354, ios 0x53640;
     void onHSV(cocos2d::CCObject* sender) = ios 0x53190, win 0xa8470, m1 0x19cd5c, imac 0x1e5740;
-    void onLiveEdit(cocos2d::CCObject* sender) = m1 0x19d3a8, imac 0x1e5d80;
+    void onLiveEdit(cocos2d::CCObject* sender) = win 0xa7800, m1 0x19d3a8, imac 0x1e5d80, ios 0x53694;
     void onNextColorChannel(cocos2d::CCObject* sender) = win 0xa87d0, m1 0x19d788, imac 0x1e6190, ios 0x53974;
-    void onPaste(cocos2d::CCObject* sender) = win 0xa7960;
+    void onPaste(cocos2d::CCObject* sender) = win 0xa7960, m1 0x19d8d8, imac 0x1e62f0, ios 0x53a30;
     void onSelectColor(cocos2d::CCObject* sender) = ios 0x534a4, win 0xa95a0, imac 0x1e5a90, m1 0x19d08c;
     void onSelectMode(cocos2d::CCObject* sender) = win 0xa88e0, imac 0x1e5500, m1 0x19cb14, ios 0x52f90;
-    void onSettings(cocos2d::CCObject* sender) = win 0xa7ab0;
+    void onSettings(cocos2d::CCObject* sender) = win 0xa7ab0, m1 0x19cd34, imac 0x1e5710, ios 0x53168;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = ios 0x53524, win 0xa8ea0, imac 0x1e5b40, m1 0x19d154;
-    TodoReturn recreateLayer();
-    void sliderChanged(cocos2d::CCObject*) = win 0xa77b0, imac 0x1e5e50, m1 0x19d45c, ios 0x536d4;
+    void recreateLayer() = win inline, m1 0x19de48, imac 0x1e6930, ios 0x53e38 {
+        CC_SAFE_RETAIN(m_targetObject);
+        CC_SAFE_RETAIN(m_targetObjects);
+        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
+        this->onClose(nullptr);
+        CustomizeObjectLayer::create(m_targetObject, m_targetObjects)->show();
+        CC_SAFE_RELEASE(m_targetObject);
+        CC_SAFE_RELEASE(m_targetObjects);
+    }
+    void sliderChanged(cocos2d::CCObject* sender) = win 0xa77b0, imac 0x1e5e50, m1 0x19d45c, ios 0x536d4;
     void toggleVisible() = ios 0x542c0, win 0xa8af0, imac 0x1e7220, m1 0x19e668;
     void updateChannelLabel(int channel) = ios 0x53ce0, win inline, imac 0x1e6680, m1 0x19dc40 {
         if (channel > 999) {
             m_selectedColorLabel->setString(GJSpecialColorSelect::textForColorIdx(channel));
         }
         else if (channel > 0) {
-            // Technically not identical to RobTop impl which uses `CCString::createWithFormat`
-            m_selectedColorLabel->setString(std::to_string(channel).c_str());
+            m_selectedColorLabel->setString(cocos2d::CCString::createWithFormat("%i", channel)->getCString());
         }
         else {
             m_selectedColorLabel->setString(" ");
         }
     }
     void updateColorSprite() = ios 0x53c10, win 0xa7e20, imac 0x1e65b0, m1 0x19db70;
-    void updateCurrentSelection();
+    void updateCurrentSelection() = win 0xa8e40, m1 0x19daa8, imac 0x1e64f0, ios 0x53bb0;
     void updateCustomColorLabels() = ios 0x535ac, win 0xa9490, imac 0x1e5c10, m1 0x19d228;
     void updateHSVButtons() = win 0xa8270, imac 0x1e58e0, m1 0x19cf30, ios 0x53348;
     void updateKerningLabel() = win 0xa7600, m1 0x19d4a8, imac 0x1e5ec0, ios 0x53720;
-    void updateSelected(int) = ios 0x53f4c, win 0xa9660, imac 0x1e6b70, m1 0x19e070;
+    void updateSelected(int id) = ios 0x53f4c, win 0xa9660, imac 0x1e6b70, m1 0x19e070;
 
     GameObject* m_targetObject;
     cocos2d::CCArray* m_targetObjects;
@@ -4253,8 +4280,8 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     cocos2d::CCArray* m_detailTabNodes;
     int m_selectedMode;
     int m_customColorChannel;
-    bool m_unk0x200;
-    bool m_unk0x201;
+    bool m_hasBaseColor;
+    bool m_hasDetailColor;
     bool m_glowDisabled;
     CCMenuItemSpriteExtra* m_baseButton;
     CCMenuItemSpriteExtra* m_detailButton;
@@ -4284,14 +4311,14 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
 [[link(android)]]
 class CustomizeObjectSettingsPopup : SetupTriggerPopup {
     // virtual ~CustomizeObjectSettingsPopup();
-    CustomizeObjectSettingsPopup() = win inline {
+    CustomizeObjectSettingsPopup() {
         m_customizeLayer = nullptr;
         m_settingsChanged = false;
     }
 
-    static CustomizeObjectSettingsPopup* create(GameObject*, cocos2d::CCArray*, CustomizeObjectLayer*) = win inline {
+    static CustomizeObjectSettingsPopup* create(GameObject* object, cocos2d::CCArray* objects, CustomizeObjectLayer* layer) = win inline, m1 0x19dcb0, imac 0x1e66e0, ios 0x53d50 {
         auto ret = new CustomizeObjectSettingsPopup();
-        if (ret->init(p0, p1, p2)) {
+        if (ret->init(object, objects, layer)) {
             ret->autorelease();
             return ret;
         }
@@ -4302,7 +4329,7 @@ class CustomizeObjectSettingsPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0xa9e50, imac 0x1e7d20, m1 0x19f0d4, ios 0x54abc;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0xa9da0, imac 0x1e7cb0, m1 0x19f054, ios 0x54a3c;
 
-    bool init(GameObject*, cocos2d::CCArray*, CustomizeObjectLayer*) = win 0xa99f0, m1 0x19ec84, imac 0x1e7880;
+    bool init(GameObject* object, cocos2d::CCArray* objects, CustomizeObjectLayer* layer) = win 0xa99f0, m1 0x19ec84, imac 0x1e7880, ios 0x546f0;
     
     CustomizeObjectLayer* m_customizeLayer;
     bool m_settingsChanged;
