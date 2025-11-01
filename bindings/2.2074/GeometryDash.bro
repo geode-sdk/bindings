@@ -4191,7 +4191,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     // virtual ~CustomizeObjectLayer();
     //CustomizeObjectLayer() = ios 0x577b8;
 
-    static CustomizeObjectLayer* create(GameObject*, cocos2d::CCArray*) = win 0xa4b60;
+    static CustomizeObjectLayer* create(GameObject*, cocos2d::CCArray*) = win 0xa4b60, m1 0x19a864, imac 0x1e2f30, ios 0x50f20;
 
     virtual void keyBackClicked() = win 0xa99e0, imac 0x1e7730, m1 0x19eb58, ios 0x546e4;
     virtual void textInputOpened(CCTextInputNode*) = win 0xa8f70, imac 0x1e7380, m1 0x19e79c, ios 0x543f4;
