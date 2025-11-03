@@ -3557,7 +3557,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void reshapeProjection(cocos2d::CCSize const&);
     void resume() = m1 0x3e06bc, imac 0x471910, ios 0x179ac8;
     void runWithScene(cocos2d::CCScene*) = m1 0x3dff70, imac 0x471190, ios 0x179554;
-    int sceneCount();
+    int sceneCount() = m1 0x3e04c0, imac 0x4716b0, ios 0x179924;
     void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
     void showFPSLabel() = imac 0x470510, m1 0x3df4dc;
     void showStats();
