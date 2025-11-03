@@ -4197,7 +4197,9 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
     void removeObjectsForKeys(cocos2d::CCArray*);
     cocos2d::CCString const* valueForKey(gd::string const&) = imac 0x2fa030, m1 0x2927ec, ios 0x41a868;
     cocos2d::CCString const* valueForKey(intptr_t) = imac 0x2fa570, m1 0x292cd4, ios 0x41acdc;
-    bool writeToFile(char const*);
+    bool writeToFile(char const*) = m1 0x294628, imac 0x2fc1c0, ios inline {
+        return CCFileUtils::sharedFileUtils()->writeToFile(this, p0);
+    }
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x2fbcf0, m1 0x294174, ios 0x41bfa4;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x2945e8, imac 0x2fc180, ios 0x41c1c8;
