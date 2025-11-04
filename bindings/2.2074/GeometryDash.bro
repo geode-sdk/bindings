@@ -7150,20 +7150,32 @@ class FMODAudioEngine : cocos2d::CCNode {
 
     virtual void update(float) = win 0x55390, imac 0x3cc160, m1 0x3542a0, ios 0x13becc;
 
-    void activateQueuedMusic(int);
-    FMOD::Channel* channelForChannelID(int) = win 0x58480, imac 0x3cd8a0, m1 0x355668;
-    FMOD::Channel* channelForUniqueID(int id) = win inline {
+    void activateQueuedMusic(int channel) = win inline, m1 0x35cf98, imac 0x3d71c0, ios 0x1418d8 {
+        if (m_audioState.m_queuedMusicForChannels2.count(channel) != 0) {
+            this->triggerQueuedMusic(m_audioState.m_queuedMusicForChannels2[channel]);
+            m_audioState.m_queuedMusicForChannels2.erase(channel);
+        }
+        else if (m_audioState.m_queuedMusicForChannels1.count(channel) != 0) {
+            m_audioState.m_queuedMusicForChannels1[channel].m_noPrepare = true;
+        }
+    }
+    FMOD::Channel* channelForChannelID(int id) = win 0x58480, imac 0x3cd8a0, m1 0x355668, ios 0x13cbc4;
+    FMOD::Channel* channelForUniqueID(int id) = win inline, m1 0x359bec, imac 0x3d33a0, ios inline {
         return this->channelForChannelID(this->channelIDForUniqueID(id));
     }
-    int channelIDForUniqueID(int) = win 0x583c0;
-    void channelLinkSound(int, FMODSound*);
-    void channelStopped(FMOD::Channel*, bool) = win 0x580b0;
-    void channelUnlinkSound(int) = win 0x57e20;
+    int channelIDForUniqueID(int id) = win 0x583c0, m1 0x358e08, imac 0x3d2210, ios 0x13ee60;
+    void channelLinkSound(int id, FMODSound* sound) = win inline, m1 0x359230, imac 0x3d2760, ios 0x13f084 {
+        sound->m_playCount++;
+        sound->m_playIndex = (*reinterpret_cast<int*>(geode::base::get() + 0x6a4e04))++;
+        m_channelIDToSoundPath[id] = sound->m_filePath;
+    }
+    void channelStopped(FMOD::Channel* channel, bool remove) = win 0x580b0, m1 0x359858, imac 0x3d2f00, ios 0x13f468;
+    void channelUnlinkSound(int id) = win 0x57e20, m1 0x35967c, imac 0x3d2ca0, ios 0x13f354;
     void clearAllAudio() = win 0x552e0, imac 0x3cb330, m1 0x353b90, ios 0x13bbd4;
-    int countActiveEffects() {
+    int countActiveEffects() = win inline, m1 0x357a48, imac 0x3d0a40, ios 0x13e2ec {
         return m_channelIDToChannel.size() - countActiveMusic();
     }
-    int countActiveMusic() {
+    int countActiveMusic() = win inline, m1 0x357b0c, imac 0x3d0b20, ios 0x13e310 {
         int count = 0;
         for (auto& music : m_fmodMusic) {
             if (music.second.m_channelID > 0) {
@@ -7172,7 +7184,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         }
         return count;
     }
-    FMOD::Sound* createStream(gd::string) = win 0x5cb70;
+    FMOD::Sound* createStream(gd::string path) = win 0x5cb70, m1 0x35da84, imac 0x3d7fe0, ios 0x141f68;
     void disableMetering() = win inline, m1 0x358054, imac 0x3d1090, ios 0x13e688 {
         this->m_metering = false;
     }
@@ -7187,10 +7199,10 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_backgroundMusicFade = value;
         m_musicFadeStart = -1.f;
     }
-    void fadeInMusic(float, int) = ios 0x1406b8, win 0x5c3c0, m1 0x35b38c, imac 0x3d4f80;
-    void fadeMusic(float, int, float, float) = win 0x5c640;
-    void fadeOutMusic(float, int) = ios 0x141e24, win 0x5c500, m1 0x35d940, imac 0x3d7e20;
-    gd::string getActiveMusic(int id) {
+    void fadeInMusic(float duration, int channel) = ios 0x1406b8, win 0x5c3c0, m1 0x35b38c, imac 0x3d4f80;
+    void fadeMusic(float duration, int channel, float startVolume, float endVolume) = win 0x5c640, m1 0x35d9dc, imac 0x3d7f00, ios 0x141ec0;
+    void fadeOutMusic(float duration, int channel) = ios 0x141e24, win 0x5c500, m1 0x35d940, imac 0x3d7e20;
+    gd::string getActiveMusic(int id) = win inline, m1 0x35afbc, imac 0x3d4b10, ios 0x140430 {
         if (m_fmodMusic.count(id) == 0) return "";
         return m_fmodMusic[id].m_filePath;
     }
@@ -7201,25 +7213,27 @@ class FMODAudioEngine : cocos2d::CCNode {
     float getBackgroundMusicVolume() = ios 0x140278, win inline, imac 0x3d4880, m1 0x35ad68 {
         return m_musicVolume;
     }
-    FMOD::ChannelGroup* getChannelGroup(int, bool) = win 0x56b20, m1 0x358208, imac 0x3d1240;
-    float getEffectsVolume() {
+    FMOD::ChannelGroup* getChannelGroup(int id, bool reverb) = win 0x56b20, m1 0x358208, imac 0x3d1240, ios 0x13e7e0;
+    float getEffectsVolume() = win inline, m1 0x35ad88, imac 0x3d48c0, ios 0x140298 {
         return m_sfxVolume;
     }
-    gd::string getFMODStatus(int) = win 0x5cdb0, imac 0x3d82b0, m1 0x35dce4;
-    float getMeteringValue() = imac 0x3d10a0, m1 0x35805c {
+    gd::string getFMODStatus(int) = win 0x5cdb0, imac 0x3d82b0, m1 0x35dce4, ios 0x14212c;
+    float getMeteringValue() = win inline, imac 0x3d10a0, m1 0x35805c, ios 0x13e690 {
         return m_pulse1;
     }
-    int getMusicChannelID(int musicID) {
+    int getMusicChannelID(int musicID) = win inline, m1 0x358a44, imac 0x3d1d70, ios 0x13ec10 {
         if (m_fmodMusic.count(musicID) == 0) return 0;
         return m_fmodMusic[musicID].m_channelID;
     }
     unsigned int getMusicLengthMS(int channel) = win 0x5c330, m1 0x35d400, imac 0x3d7750, ios 0x141b44;
-    float getMusicTime(int channel) {
+    float getMusicTime(int channel) = win inline, m1 0x35d37c, imac 0x3d76d0, ios 0x141b20 {
         return this->getMusicTimeMS(channel) / 1000.f;
     }
     unsigned int getMusicTimeMS(int channel) = win 0x5c2d0, m1 0x35d310, imac 0x3d7660, ios 0x141ab4;
-    int getNextChannelID();
-    gd::map<std::pair<int, int>, FMODSoundTween>& getTweenContainer(AudioTargetType type) {
+    int getNextChannelID() = win inline, m1 0x3592a4, imac 0x3d27c0, ios inline {
+        return (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x69c0e4) GEODE_IOS(0x83ef50)))++;
+    }
+    gd::map<std::pair<int, int>, FMODSoundTween>& getTweenContainer(AudioTargetType type) = win inline, m1 0x357bc4, imac 0x3d0be0, ios inline {
         switch (type) {
             case AudioTargetType::SFXGroup:
                 return m_audioState.m_tweensForEffectGroups;
@@ -7229,31 +7243,31 @@ class FMODAudioEngine : cocos2d::CCNode {
                 return m_audioState.m_tweensForEffectChannels;
         }
     }
-    bool isAnyPersistentPlaying() {
+    bool isAnyPersistentPlaying() = win inline, m1 0x35c024, imac 0x3d5dd0, ios 0x1410d4 {
         for (auto& [id, music] : m_fmodMusic) {
             if (music.m_dontReset) return true;
         }
         return false;
     }
-    bool isChannelStopping(int channel) {
+    bool isChannelStopping(int channel) = win inline, m1 0x358f2c, imac 0x3d23c0, ios inline {
         return m_stoppedChannels.count(channel) != 0;
     }
-    bool isEffectLoaded(gd::string path) {
+    bool isEffectLoaded(gd::string path) = win inline, m1 0x358b68, imac 0x3d1f20, ios inline {
         return m_fmodSounds.count(path) != 0;
     }
-    bool isMusicPlaying(gd::string path, int musicID) = win 0x59ee0, imac 0x3d4a20, m1 0x35aeb0;
+    bool isMusicPlaying(gd::string path, int musicID) = win 0x59ee0, imac 0x3d4a20, m1 0x35aeb0, ios 0x140398;
     bool isMusicPlaying(int musicID) = ios 0x1402b4, win 0x59d00, imac 0x3d48f0, m1 0x35ada4;
-    bool isPersistentMatchPlaying(gd::string, int) = win 0x5ad50;
-    bool isSoundReady(FMOD::Sound* sound) {
+    bool isPersistentMatchPlaying(gd::string path, int musicID) = win 0x5ad50, m1 0x35b4e4, imac 0x3d50f0, ios 0x1407fc;
+    bool isSoundReady(FMOD::Sound* sound) = win inline, m1 0x35c044, imac 0x3d5e00, ios inline {
         FMOD_OPENSTATE state;
         m_lastResult = sound->getOpenState(&state, nullptr, nullptr, nullptr);
         return state == FMOD_OPENSTATE_READY || state == FMOD_OPENSTATE_ERROR || state == FMOD_OPENSTATE_PLAYING;
     }
-    int lengthForSound(gd::string path) = win 0x599d0;
-    void loadAndPlayMusic(gd::string, unsigned int, int) = win 0x5a010;
-    void loadAudioState(FMODAudioState&) = win 0x55f20;
+    int lengthForSound(gd::string path) = win 0x599d0, m1 0x35aa38, imac 0x3d44d0, ios 0x140070;
+    void loadAndPlayMusic(gd::string path, unsigned int time, int musicID) = win 0x5a010, m1 0x35b128, imac 0x3d4cf0, ios 0x1404d8;
+    void loadAudioState(FMODAudioState& state) = win 0x55f20, m1 0x355930, imac 0x3cdcc0, ios 0x13cdc8;
     void loadMusic(gd::string path, float speed, float, float volume, bool shouldLoop, int musicID, int channelID, bool dontReset) = win 0x5a280, imac 0x3ced40, m1 0x356464, ios 0x13d3f4;
-    void loadMusic(gd::string path) {
+    void loadMusic(gd::string path) = win inline, m1 0x35b424, imac 0x3d5060, ios 0x140750 {
         this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0, false);
     }
     void pauseAllAudio() = win inline, imac 0x3cb290, m1 0x353afc, ios 0x13bb40 {
@@ -7262,7 +7276,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_backgroundMusicChannel->setPaused(true);
         m_globalChannel->setPaused(true);
     }
-    void pauseAllEffects() {
+    void pauseAllEffects() = win inline, m1 0x35aa20, imac 0x3d4490, ios 0x140058 {
         m_globalChannel->setPaused(true);
     }
     void pauseAllMusic(bool force) = ios 0x1402f0, win inline, imac 0x3d4930, m1 0x35ade0 {
@@ -7273,34 +7287,38 @@ class FMODAudioEngine : cocos2d::CCNode {
             }
         }
     }
-    void pauseEffect(unsigned int) {}
+    void pauseEffect(unsigned int) = win inline, m1 0x35aa18, imac 0x3d4470, ios inline {}
     void pauseMusic(int musicChannel) = win inline, m1 0x35d91c, imac 0x3d7e00, ios inline {
         auto* channel = this->getActiveMusicChannel(musicChannel);
         if (channel)
             channel->setPaused(true);
     }
-    static float pitchForIdx(int) = ios 0x13e698, imac 0x3d10c0, m1 0x358068, win 0x569b0;
+    static float pitchForIdx(int index) = ios 0x13e698, imac 0x3d10c0, m1 0x358068, win 0x569b0;
     int playEffect(gd::string path, float speed, float, float volume) = win 0x56e10, imac 0x3d1ba0, m1 0x358870, ios 0x13ea50;
     int playEffect(gd::string path) = win 0x56d90, m1 0x3587c0, imac 0x3d1b10, ios 0x13e9b4;
     int playEffectAdvanced(gd::string path, float speed, float, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int effectID, bool override, bool noPreload, int channelID, int uniqueID, float minInterval, int sfxGroup) = win 0x56f00, imac 0x3cf550, m1 0x356ac0, ios 0x13d8c4;
-    int playEffectAsync(gd::string path) {
+    int playEffectAsync(gd::string path) = win inline, m1 0x35895c, imac 0x3d1c90, ios 0x13eb3c {
         return this->playEffectAdvanced(path, 1.f, 0.f, 1.f, 0.f, false, false, 0, 0, 0, 0, false, 0, false, true, 0, 0, 0.f, 0);
     }
     void playMusic(gd::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x5a110, imac 0x3d4dc0, m1 0x35b20c, ios 0x1405b0;
     FMODSound* preloadEffect(gd::string path) = win 0x59260, m1 0x3531c4, imac 0x3ca980, ios 0x13b644;
-    FMOD::Sound* preloadEffectAsync(gd::string path) = win 0x59650;
+    FMOD::Sound* preloadEffectAsync(gd::string path) = win 0x59650, m1 0x3592b8, imac 0x3d27e0, ios 0x13f0f8;
     FMOD::Sound* preloadMusic(gd::string path, bool noRelease, int musicID) = win 0x5c790, imac 0x3d5220, m1 0x35b618, ios 0x1408d0;
-    void printResult(FMOD_RESULT) {}
-    void queuedEffectFinishedLoading(gd::string) = win 0x5b070;
-    int queuePlayEffect(gd::string audioFilename, float speed, float, float volume, float pitch, bool fastFourierTransform, bool reverb, int start, int end, int fadeIn, int fadeOut, bool loop, int effectID, bool override, int uniqueID, float minInterval, int group) = win 0x57920;
+    void printResult(FMOD_RESULT result) = win inline, m1 0x35df28, imac 0x3d8510, ios inline {}
+    void queuedEffectFinishedLoading(gd::string path) = win 0x5b070, m1 0x35c0a0, imac 0x3d5e50, ios 0x1410f4;
+    int queuePlayEffect(gd::string audioFilename, float speed, float, float volume, float pitch, bool fastFourierTransform, bool reverb, int start, int end, int fadeIn, int fadeOut, bool loop, int effectID, bool override, int uniqueID, float minInterval, int group) = win 0x57920, m1 0x358b88, imac 0x3d1f40, ios 0x13ec70;
     void queueStartMusic(gd::string audioFilename, float pitch, float, float volume, bool loop, int start, int end, int fadeIn, int fadeOut, int musicID, bool, int channelID, bool noPrepare, bool dontReset) = win 0x5aa70, imac 0x3d5af0, m1 0x35bdb8, ios 0x140e60;
-    int registerChannel(FMOD::Channel*, int, int) = win 0x57af0;
-    void releaseRemovedSounds() = win inline {
-        for (auto it = m_removedSounds.begin(); it != m_removedSounds.end();) {
+    int registerChannel(FMOD::Channel* channel, int channelID, int effectID) = win 0x57af0, m1 0x3590b4, imac 0x3d25d0, ios 0x13ef08;
+    void releaseRemovedSounds() = win inline, m1 0x354bb4, imac 0x3ccb00, ios 0x13c3ac {
+        for (int i = 0; i < m_removedSounds.size();) {
+            auto sound = m_removedSounds[i];
             FMOD_OPENSTATE state;
-            m_lastResult = (*it)->getOpenState(&state, nullptr, nullptr, nullptr);
-            if (state == FMOD_OPENSTATE_READY || state == FMOD_OPENSTATE_ERROR) it = m_removedSounds.erase(it);
-            else ++it;
+            m_lastResult = sound->getOpenState(&state, nullptr, nullptr, nullptr);
+            if (state == FMOD_OPENSTATE_READY || state == FMOD_OPENSTATE_ERROR) {
+                sound->release();
+                m_removedSounds.erase(m_removedSounds.begin() + i);
+            }
+            else i++;
         }
     }
     void resumeAllAudio() = ios 0x13bb8c, win inline, imac 0x3cb2e0, m1 0x353b48 {
@@ -7313,35 +7331,35 @@ class FMODAudioEngine : cocos2d::CCNode {
         m_globalChannel->setPaused(false);
     }
     void resumeAllMusic() = ios 0x14034c, win 0x59e80, imac 0x3d49c0, m1 0x35ae5c;
-    void resumeAudio() = win inline, imac 0x3cb150, m1 0x3539c0 {
+    void resumeAudio() = win inline, imac 0x3cb150, m1 0x3539c0, ios 0x13ba3c {
         this->start();
     }
-    void resumeEffect(unsigned int) {}
-    void resumeMusic(int musicChannel) = win inline {
+    void resumeEffect(unsigned int) = win inline, m1 0x35aa1c, imac 0x3d4480, ios inline {}
+    void resumeMusic(int musicChannel) = win inline, m1 0x356960, imac 0x3cf370, ios 0x13d82c {
         auto* channel = this->getActiveMusicChannel(musicChannel);
         if (channel)
             channel->setPaused(false);
     }
-    static gd::string reverbToString(FMODReverbPreset) = win 0x54cc0, m1 0x353648, imac 0x3caea0, win 0x54cc0;
-    void saveAudioState(FMODAudioState&) = win 0x558f0;
+    static gd::string reverbToString(FMODReverbPreset preset) = win 0x54cc0, m1 0x353648, imac 0x3caea0, ios 0x13ba10;
+    void saveAudioState(FMODAudioState& state) = win 0x558f0, m1 0x3553d4, imac 0x3cd450, ios 0x13ca68;
     void setBackgroundMusicVolume(float volume) = win inline, imac 0x3d4890, m1 0x35ad70, ios 0x140280 {
         m_musicVolume = volume;
         m_musicFadeStart = 0.f;
         if (m_backgroundMusicChannel) m_backgroundMusicChannel->setVolume(volume);
     }
-    void setChannelPitch(int, AudioTargetType, float) = win 0x59150, m1 0x357f14, imac 0x3d0f40, ios 0x13e554;
-    void setChannelVolume(int, AudioTargetType, float) = win 0x58db0, m1 0x357d38, imac 0x3d0d50, ios 0x13e378;
-    void setChannelVolumeMod(int, AudioTargetType, float) = win 0x58f80;
+    void setChannelPitch(int id, AudioTargetType type, float pitch) = win 0x59150, m1 0x357f14, imac 0x3d0f40, ios 0x13e554;
+    void setChannelVolume(int id, AudioTargetType type, float volume) = win 0x58db0, m1 0x357d38, imac 0x3d0d50, ios 0x13e378;
+    void setChannelVolumeMod(int id, AudioTargetType type, float volumeMod) = win 0x58f80, m1 0x35a6f8, imac 0x3d4160, ios 0x13fcf8;
     void setEffectsVolume(float volume) = win inline, imac 0x3d48d0, m1 0x35ad90, ios 0x1402a0 {
         m_sfxVolume = volume;
         if (m_globalChannel) m_globalChannel->setVolume(volume);
     }
-    void setMusicTimeMS(unsigned int, bool, int) = ios 0x13e06c, win 0x5c190, imac 0x3d0290, m1 0x357488;
+    void setMusicTimeMS(unsigned int time, bool dontWait, int musicID) = ios 0x13e06c, win 0x5c190, imac 0x3d0290, m1 0x357488;
     void setup() = win 0x53bc0, m1 0x352b4c, imac 0x3ca220, ios 0x13b128;
     void setupAudioEngine() = win 0x540a0, m1 0x352f40, imac 0x3ca670, ios 0x13b3b4;
-    void start() = win 0x55280;
+    void start() = win 0x55280, m1 0x353a28, imac 0x3cb1c0, ios 0x13ba78;
     void startMusic(int start, int end, int fadeIn, int fadeOut, bool loop, int musicID, bool noResume, bool dontReset) = win 0x5a5f0, m1 0x35b940, imac 0x3d5570, ios 0x140b64;
-    void stop() {
+    void stop() = win inline, m1 0x353ab0, imac 0x3cb240, ios 0x13baf4 {
         if (m_stopped) return;
         m_stopped = true;
         m_system->mixerSuspend();
@@ -7349,25 +7367,25 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->pauseSchedulerAndActions();
     }
     void stopAllEffects() = ios 0x13bc58, win 0x598b0, m1 0x353c3c, imac 0x3cb410;
-    void stopAllMusic(bool) = ios 0x13bd04, win 0x59d70, imac 0x3cbbf0, m1 0x353f28;
-    float stopAndGetFade(FMOD::Channel*) = win 0x58a20, m1 0x35a2bc, imac 0x3d3cc0, ios 0x13fa54;
-    void stopAndRemoveMusic(int) = win 0x5ca80, imac 0x3d7a20, m1 0x35d624, ios 0x141c7c;
-    void stopChannel(FMOD::Channel*, bool, float) = win 0x58810, m1 0x35a188, imac 0x3d3b10, ios 0x13f920;
-    void stopChannel(int, AudioTargetType, bool, float) = win 0x58540, imac 0x3d33c0, m1 0x359c14, ios 0x13f654;
+    void stopAllMusic(bool clear) = ios 0x13bd04, win 0x59d70, imac 0x3cbbf0, m1 0x353f28;
+    float stopAndGetFade(FMOD::Channel* channel) = win 0x58a20, m1 0x35a2bc, imac 0x3d3cc0, ios 0x13fa54;
+    void stopAndRemoveMusic(int id) = win 0x5ca80, imac 0x3d7a20, m1 0x35d624, ios 0x141c7c;
+    void stopChannel(FMOD::Channel* channel, bool loop, float delay) = win 0x58810, m1 0x35a188, imac 0x3d3b10, ios 0x13f920;
+    void stopChannel(int id, AudioTargetType type, bool loop, float delay) = win 0x58540, imac 0x3d33c0, m1 0x359c14, ios 0x13f654;
     void stopChannel(int id) = win inline, imac 0x3d2550, m1 0x359028, ios 0x13eec0 {
         this->stopChannel(id, AudioTargetType::SFXChannel, false, 0.f);
     }
-    void stopChannelTween(int id, AudioTargetType target, AudioModType mod) {
+    void stopChannelTween(int id, AudioTargetType target, AudioModType mod) = win inline, m1 0x357be4, imac 0x3d0c10, ios inline {
         this->getTweenContainer(target).erase({ id, (int)mod });
     }
-    void stopChannelTweens(int id, AudioTargetType target) {
+    void stopChannelTweens(int id, AudioTargetType target) = win inline, m1 0x357cf4, imac 0x3d0d10, ios inline {
         this->stopChannelTween(id, target, AudioModType::Volume);
         this->stopChannelTween(id, target, AudioModType::Pitch);
     }
     void stopMusic(int id) = win inline, imac 0x3d6260, m1 0x35c3cc, ios 0x141318 {
         this->stopAndRemoveMusic(id);
     }
-    void stopMusicNotInSet(gd::unordered_set<int>& musicIDs) = win inline {
+    void stopMusicNotInSet(gd::unordered_set<int>& musicIDs) = win inline, m1 0x35d480, imac 0x3d77e0, ios 0x141bc4 {
         std::unordered_set<int> totalIDs;
         for (auto& [id, _] : m_fmodMusic) {
             totalIDs.insert(id);
@@ -7378,22 +7396,54 @@ class FMODAudioEngine : cocos2d::CCNode {
             }
         }
     }
-    FMODSound* storeEffect(FMOD::Sound* sound, gd::string path) = win 0x59510;
-    void swapMusicIndex(int, int) = win 0x5bce0;
-    void testFunction(int) {}
-    void triggerQueuedMusic(FMODQueuedMusic) = win 0x5b9a0;
+    FMODSound* storeEffect(FMOD::Sound* sound, gd::string path) = win 0x59510, m1 0x35a8d4, imac 0x3d4350, ios 0x13fed4;
+    void swapMusicIndex(int musicID, int channelID) = win 0x5bce0, m1 0x35c3d0, imac 0x3d6270, ios 0x14131c;
+    void testFunction(int) = win inline, m1 0x358064, imac 0x3d10b0, ios inline {}
+    void triggerQueuedMusic(FMODQueuedMusic music) = win 0x5b9a0, m1 0x3575b8, imac 0x3d03b0, ios 0x13e164;
     void unloadAllEffects() = ios 0x1400c8, win 0x59aa0, imac 0x3d4540, m1 0x35aa94;
-    void unloadEffect(gd::string path) {}
-    void unregisterChannel(int) = win 0x57c20;
-    void updateBackgroundFade();
+    void unloadEffect(gd::string path) = win inline, m1 0x35aa90, imac 0x3d4530, ios inline {}
+    void unregisterChannel(int id) = win 0x57c20, m1 0x3594f0, imac 0x3d2a80, ios 0x13f29c;
+    void updateBackgroundFade() = win inline, m1 0x355000, imac 0x3cd020, ios 0x13c72c {
+        if (m_musicFadeStart == 0.f) return;
+        if (m_musicFadeStart < 0.f) m_musicFadeStart = m_audioState.m_elapsed;
+        auto backgroundFade = m_backgroundMusicFade;
+        auto fade = m_audioState.m_elapsed - m_musicFadeStart;
+        if (backgroundFade <= 0.f || fade / backgroundFade > 1.f) backgroundFade = 1.f;
+        else if (fade / backgroundFade >= 0.f) backgroundFade = fade / backgroundFade;
+        else backgroundFade = 0.f;
+        backgroundFade *= m_musicVolume;
+        m_backgroundMusicChannel->setVolume(backgroundFade);
+        if (m_backgroundMusicFade <= fade) m_musicFadeStart = 0.f;
+    }
     void updateChannel(int channel, AudioTargetType target, AudioModType mod, float duration, float value) = win 0x58b60, m1 0x35a3b8, imac 0x3d3e10, ios 0x13fb50;
-    void updateChannelTweens(float) = win 0x567c0, m1 0x3551f4, imac 0x3cd220, ios 0x13c8dc;
-    void updateMetering();
-    void updateQueuedEffects() = win 0x5aec0;
-    void updateQueuedMusic() = win 0x5b6a0;
-    void updateReverb(FMODReverbPreset, bool) = win 0x54400, imac 0x3cac50, m1 0x353444;
+    void updateChannelTweens(float dt) = win 0x567c0, m1 0x3551f4, imac 0x3cd220, ios 0x13c8dc;
+    void updateMetering() = win inline, m1 0x35508c, imac 0x3cd0d0, ios 0x13c7b8 {
+        FMOD_DSP_METERING_INFO info{};
+        m_mainDSP->getMeteringInfo(nullptr, &info);
+        auto peak = info.numchannels == 2 ? (info.peaklevel[0] + info.peaklevel[1]) / 2.f : info.peaklevel[0];
+        auto volume = m_musicVolume;
+        if (volume > 0.f) peak /= volume;
+        peak += .1f;
+        m_pulse1 = peak;
+        auto counter = m_pulseCounter;
+        if (counter < 3 || peak < m_pulse2 * 1.1f || (peak < m_pulse3 * .95f && peak > m_pulse3 * .2f)) {
+            peak = m_pulse2 * .93f;
+        }
+        else {
+            m_pulse3 = peak;
+            peak *= 1.1f;
+            counter = 0;
+        }
+        m_pulse1 = peak;
+        if (peak <= .1f) m_pulse3 = 0.f;
+        m_pulse2 = peak;
+        m_pulseCounter = counter + 1;
+    }
+    void updateQueuedEffects() = win 0x5aec0, m1 0x3546f0, imac 0x3cc630, ios 0x13c098;
+    void updateQueuedMusic() = win 0x5b6a0, m1 0x354c8c, imac 0x3ccbe0, ios 0x13c470;
+    void updateReverb(FMODReverbPreset preset, bool force) = win 0x54400, imac 0x3cac50, m1 0x353444, ios 0x13b81c;
     void updateTemporaryEffects() = win 0x5b410, m1 0x354898, imac 0x3cc820, ios 0x13c208;
-    FMOD_OPENSTATE waitUntilSoundReady(FMOD::Sound* sound) {
+    FMOD_OPENSTATE waitUntilSoundReady(FMOD::Sound* sound) = win inline, m1 0x35d278, imac 0x3d75c0, ios 0x141a1c {
         if (!sound) return FMOD_OPENSTATE_ERROR;
         FMOD_OPENSTATE state;
         m_lastResult = sound->getOpenState(&state, nullptr, nullptr, nullptr);
