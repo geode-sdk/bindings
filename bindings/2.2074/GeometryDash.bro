@@ -19468,11 +19468,11 @@ class MenuGameLayer : cocos2d::CCLayer {
     float m_deltaCount;
     bool m_isDestroyingPlayer;
     int m_initCount;
-    cocos2d::CCPoint m_unused1;
+    cocos2d::CCPoint m_realBackgroundPosition;
     PlayerObject* m_playerObject;
     cocos2d::CCSprite* m_backgroundSprite;
     GJGroundLayer* m_groundLayer;
-    float m_backgroundSpeed;
+    float m_backgroundWrapPosition;
 }
 
 [[link(android)]]
