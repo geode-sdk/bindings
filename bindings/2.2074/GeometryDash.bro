@@ -19431,7 +19431,7 @@ class MenuGameLayer : cocos2d::CCLayer {
         m_playerObject = nullptr;
         m_backgroundSprite = nullptr;
         m_groundLayer = nullptr;
-        m_backgroundSpeed = 0.f;
+        m_backgroundWrapPosition = 0.f;
     }
 
     static MenuGameLayer* create() = win inline, m1 0x4486c4, imac 0x4e65f0, ios 0x39325c {
