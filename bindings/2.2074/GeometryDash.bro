@@ -12906,7 +12906,7 @@ class GJEffectManager : cocos2d::CCNode {
         key += '_';
         key += mainColor ? '1' : '0';
         auto str = new char[key.size() + 1];
-        std::strncpy(str, key.c_str(), key.size() + 1);
+        std::memcpy(str, key.c_str(), key.size() + 1);
         return str;
     }
     void loadFromState(EffectManagerState& state) = win 0x25cb40, m1 0x27a3c0, imac 0x2da290, ios 0x1af0c;
