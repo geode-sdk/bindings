@@ -3751,6 +3751,19 @@ class ConfigureValuePopupDelegate {
 [[link(android)]]
 class CountTriggerAction {
     // CountTriggerAction(CountTriggerAction&&);
+    CountTriggerAction() {}
+    CountTriggerAction(int targetID, int targetCount, bool activateGroup, bool multiActivate, int itemID, int previousCount, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+        m_disabled = false;
+        m_previousCount = previousCount;
+        m_targetCount = targetCount;
+        m_targetGroupID = targetID;
+        m_activateGroup = activateGroup;
+        m_triggerUniqueID = uniqueID;
+        m_controlID = controlID;
+        m_itemID = itemID;
+        m_multiActivate = multiActivate;
+        m_remapKeys = remapKeys;
+    }
 
     bool m_disabled;
     int m_previousCount;
@@ -12746,69 +12759,185 @@ class GJEffectManager : cocos2d::CCNode {
     // virtual ~GJEffectManager();
     // GJEffectManager();
 
-    static GJEffectManager* create() = win 0x2538f0;
+    static GJEffectManager* create() = win 0x2538f0, m1 0x26c768, imac 0x2c8bf0, ios 0x12574;
 
     virtual bool init() = win 0x253950, imac 0x2c8f30, m1 0x26c924, ios 0x125e8;
 
-    cocos2d::ccColor3B activeColorForIndex(int) = m1 0x26d510, imac 0x2ca350;
-    float activeOpacityForIndex(int) = m1 0x26d668, imac 0x2ca4b0;
-    TodoReturn addAllInheritedColorActions(cocos2d::CCArray*);
+    cocos2d::ccColor3B activeColorForIndex(int index) = win inline, m1 0x26d510, imac 0x2ca350, ios 0x12bf8 {
+        if (index == 1010) return { 0, 0, 0 };
+        else if (index == 0 || index == 1011) return { 255, 255, 255 };
+        else {
+            if (auto sprite = this->getColorSprite(index)) return sprite->m_color;
+            else return { 255, 255, 255 };
+        }
+    }
+    float activeOpacityForIndex(int index) = win inline, m1 0x26d668, imac 0x2ca4b0, ios 0x12ccc {
+        if (auto sprite = this->getColorSprite(index)) return sprite->m_opacity;
+        else return 1.f;
+    }
+    void addAllInheritedColorActions(cocos2d::CCArray* actions) = win inline, m1 0x26dfa8, imac 0x2cb040, ios inline {
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_unkObject148->m_pElements, element, temp) {
+            auto action = static_cast<ColorAction*>(element->getObject());
+            if (action->m_copyID > 0) {
+                if (!actions) actions = cocos2d::CCArray::create();
+                actions->addObject(action);
+            }
+        }
+    }
     void addCountToItem(int itemId, int value) = win inline, m1 0x2778a8, imac 0x2d6aa0, ios 0x196d4 {
         itemId = std::clamp(itemId, 0, 9999);
         this->updateCountForItem(itemId, value + m_itemCountMap[itemId]);
     }
-    TodoReturn addMoveCalculation(CCMoveCNode*, cocos2d::CCPoint, GameObject*);
-    void calculateBaseActiveColors() = win 0x2540d0;
-    void calculateInheritedColor(int, ColorAction*) = win 0x2544b0;
-    void calculateLightBGColor(cocos2d::ccColor3B) = win 0x25c090, m1 0x2792bc, imac 0x2d8f40, ios 0x1a4e8;
-    TodoReturn checkCollision(int const&, int const&);
-    void colorActionChanged(ColorAction*) = m1 0x26e59c, imac 0x2cb670;
-    bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640, ios 0x13770 {
-        return m_colorActionVector[(std::min)((std::max)(col, 0), 1101)] != nullptr;
+    void addMoveCalculation(CCMoveCNode* node, cocos2d::CCPoint offset, GameObject* object) = win inline, m1 0x275470, imac 0x2d3f50, ios 0x17fc4 {
+        node->m_unk0d1 = true;
+        m_unkVector708.push_back({
+            .m_moveNode = node,
+            .m_offset = offset,
+            .m_gameObject = object
+        });
     }
-    TodoReturn colorForEffect(cocos2d::ccColor3B, cocos2d::ccHSVValue);
-    cocos2d::ccColor3B colorForGroupID(int, cocos2d::ccColor3B const&, bool) = win 0x25a780, m1 0x2767c0, imac 0x2d5730, ios 0x18ca8;
-    TodoReturn colorForIndex(int);
-    cocos2d::ccColor3B colorForPulseEffect(cocos2d::ccColor3B const&, PulseEffectAction*) = win 0x25a3d0, ios 0x13580, imac 0x2cb400, m1 0x26e320;
-    void controlActionsForControlID(int, GJActionCommand) = win 0x2566c0;
-    void controlActionsForTrigger(EffectGameObject*, GJActionCommand) = win 0x257020;
-    int countForItem(int) = win 0x25b060, imac 0x2d6930, m1 0x2777b8, ios 0x19694;
-    TodoReturn createFollowCommand(float, float, float, int, int, int, int);
-    GroupCommandObject2* createKeyframeCommand(int, cocos2d::CCArray*, GameObject*, int, int, bool, float, float, float, float, float, float, gd::vector<int> const&) = win 0x255980;
-    void createMoveCommand(cocos2d::CCPoint pt, int groupID, float duration, int easingType, float easingRate, bool lockPlayerX, bool lockPlayerY, bool lockCameraX, bool lockCameraY, float moveModX, float moveModY, int uniqueID, int controlID) = win 0x255370;
-    void createPlayerFollowCommand(float, float, int, float, float, int, int, int) = win 0x255860;
-    void createRotateCommand(float, float, int, int, int, float, bool, bool, bool, int, int) = win 0x255620;
-    TodoReturn createTransformCommand(double, double, double, double, bool, float, int, int, int, float, bool, bool, int, int);
-    cocos2d::CCArray* getAllColorActions() = win 0x253f40;
-    TodoReturn getAllColorSprites();
-    ColorAction* getColorAction(int) = ios 0x12b80, win 0x254870, imac 0x2ca1e0, m1 0x26d3c4;
-    ColorActionSprite* getColorSprite(int) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0, ios 0x12c50;
-    TodoReturn getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>&);
+    void calculateBaseActiveColors() = win 0x2540d0, m1 0x26d824, imac 0x2ca6b0, ios 0x12d64;
+    void calculateInheritedColor(int id, ColorAction* action) = win 0x2544b0, m1 0x26e0c8, imac 0x2cb180, ios 0x1332c;
+    void calculateLightBGColor(cocos2d::ccColor3B color) = win 0x25c090, m1 0x2792bc, imac 0x2d8f40, ios 0x1a4e8;
+    bool checkCollision(int const& blockAID, int const& blockBID) = win inline, m1 0x26eef4, imac 0x2cc1c0, ios 0x13c3c {
+        auto key = (std::min)(blockAID, blockBID) * 10000 + (std::max)(blockAID, blockBID) + 10000000;
+        return m_unkMap288.count(key) != 0;
+    }
+    void colorActionChanged(ColorAction* action) = win inline, m1 0x26e59c, imac 0x2cb670, ios 0x13794 {
+        if (action->m_copyID > 0) m_colorActionDict->setObject(action, action->m_colorID);
+        else m_colorActionDict->removeObjectForKey(action->m_colorID);
+    }
+    bool colorExists(int col) = win inline, m1 0x26e578, imac 0x2cb640, ios 0x13770 {
+        return m_colorActionVector[std::clamp(col, 0, 1101)] != nullptr;
+    }
+    cocos2d::ccColor3B colorForEffect(cocos2d::ccColor3B color, cocos2d::ccHSVValue hsv) = win inline, m1 0x26ee60, imac 0x2cc130, ios 0x13c08 {
+        return GameToolbox::transformColor(color, hsv);
+    }
+    cocos2d::ccColor3B colorForGroupID(int id, cocos2d::ccColor3B const& color, bool mainColor) = win 0x25a780, m1 0x2767c0, imac 0x2d5730, ios 0x18ca8;
+    cocos2d::ccColor3B colorForIndex(int index) = win inline, m1 0x26d394, imac 0x2ca1b0, ios inline {
+        if (auto colorAction = this->getColorAction(index)) return colorAction->m_toColor;
+        else return { 255, 255, 255 };
+    }
+    cocos2d::ccColor3B colorForPulseEffect(cocos2d::ccColor3B const& color, PulseEffectAction* action) = win 0x25a3d0, ios 0x13580, imac 0x2cb400, m1 0x26e320;
+    void controlActionsForControlID(int id, GJActionCommand command) = win 0x2566c0, m1 0x271034, imac 0x2cecf0, ios 0x15410;
+    void controlActionsForTrigger(EffectGameObject* object, GJActionCommand command) = win 0x257020, m1 0x271ac0, imac 0x2cf7c0, ios 0x15b10;
+    int countForItem(int id) = win 0x25b060, imac 0x2d6930, m1 0x2777b8, ios 0x19694;
+    void createFollowCommand(float xMod, float yMod, float duration, int targetID, int centerID, int uniqueID, int controlID) = win 0x255750, m1 0x26f934, imac 0x2ccdf0, ios 0x143c0;
+    GroupCommandObject2* createKeyframeCommand(int targetID, cocos2d::CCArray* group, GameObject* object, int uniqueID, int controlID, bool temporary, float posXMod, float posYMod, float rotMod, float scaleXMod, float scaleYMod, float timeMod, gd::vector<int> const& remapKeys) = win 0x255980, m1 0x26fbc4, imac 0x2cd0b0, ios 0x14618;
+    void createMoveCommand(cocos2d::CCPoint pt, int groupID, float duration, int easingType, float easingRate, bool lockPlayerX, bool lockPlayerY, bool lockCameraX, bool lockCameraY, float moveModX, float moveModY, int uniqueID, int controlID) = win 0x255370, m1 0x26f604, imac 0x2cca40, ios 0x14090;
+    void createPlayerFollowCommand(float delay, float speed, int offset, float maxSpeed, float duration, int targetID, int uniqueID, int controlID) = win 0x255860, m1 0x26f9ec, imac 0x2cced0, ios 0x14478;
+    void createRotateCommand(float offset, float duration, int targetID, int centerID, int easingType, float easingRate, bool lockRotation, bool player1, bool player2, int uniqueID, int controlID) = win 0x255620, m1 0x26f754, imac 0x2ccba0, ios 0x141e0;
+    void createTransformCommand(double scaleX, double scaleY, double property450, double property451, bool onlyMove, float duration, int targetID, int centerID, int easingType, float easingRate, bool, bool relativeRotation, int uniqueID, int controlID) = win inline, m1 0x26f83c, imac 0x2cccb0, ios 0x142c8 {
+        auto& command = m_unkVector560.emplace_back();
+        command.m_targetScaleX = scaleX;
+        command.m_targetScaleY = scaleY;
+        command.m_transformTriggerProperty450 = property450;
+        command.m_transformTriggerProperty451 = property451;
+        command.m_onlyMove = onlyMove;
+        command.m_duration = duration;
+        command.m_targetGroupID = targetID;
+        command.m_centerGroupID = centerID;
+        command.m_easingType = (EasingType)easingType;
+        command.m_easingRate = easingRate;
+        command.m_transformRelatedFalse = p10;
+        command.m_relativeRotation = relativeRotation;
+        command.m_triggerUniqueID = uniqueID;
+        command.m_controlID = controlID;
+        command.m_actionValue1 = 1.0;
+        command.m_commandType = 4;
+        command.m_actionType1 = 4;
+    }
+    cocos2d::CCArray* getAllColorActions() = win 0x253f40, m1 0x26d2a8, imac 0x2ca090, ios 0x12ae8;
+    cocos2d::CCArray* getAllColorSprites() = win inline, m1 0x26d2f8, imac 0x2ca0f0, ios inline {
+        auto arr = cocos2d::CCArray::create();
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_unkDict150->m_pElements, element, temp) {
+            arr->addObject(element->getObject());
+        }
+        return arr;
+    }
+    ColorAction* getColorAction(int index) = ios 0x12b80, win 0x254870, imac 0x2ca1e0, m1 0x26d3c4;
+    ColorActionSprite* getColorSprite(int index) = win 0x254930, m1 0x26d56c, imac 0x2ca3a0, ios 0x12c50;
+    void getLoadedMoveOffset(gd::unordered_map<int, std::pair<double, double>>& offsets) = win 0x2595c0, m1 0x275ac8, imac 0x2d46d0, ios 0x18408;
     static cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = win inline, imac 0x2d90d0, m1 0x279460, ios 0x1a5d4 {
         auto r = color1.r * ratio + color2.r * (1.f - ratio);
         auto g = color1.g * ratio + color2.g * (1.f - ratio);
         auto b = color1.b * ratio + color2.b * (1.f - ratio);
         return { std::clamp<uint8_t>(r, 0, 255), std::clamp<uint8_t>(g, 0, 255), std::clamp<uint8_t>(b, 0, 255) };
     }
-    CCMoveCNode* getMoveCommandNode(GroupCommandObject2*) = win 0x257c40;
-    CCMoveCNode* getMoveCommandObject() = win 0x257b40;
-    TodoReturn getOpacityActionForGroup(int);
-    gd::string getSaveString() = m1 0x279654, imac 0x2d9360;
-    GroupCommandObject2* getTempGroupCommand() = win 0x257ee0;
-    void handleObjectCollision(bool, int, int) = win 0x2551b0;
-    TodoReturn hasActiveDualTouch();
-    bool hasBeenTriggered(int, int) = m1 0x276f60, imac 0x2d5fd0;
-    TodoReturn hasPulseEffectForGroupID(int);
-    bool isGroupEnabled(int);
-    TodoReturn keyForGroupIDColor(int, cocos2d::ccColor3B const&, bool);
-    void loadFromState(EffectManagerState&) = win 0x25cb40, m1 0x27a3c0, imac 0x2da290;
-    void objectsCollided(int, int) = m1 0x26f310, imac 0x2cc680;
-    void onRewardedVideo(cocos2d::CCObject* sender);
-    TodoReturn opacityForIndex(int);
-    TodoReturn opacityModForGroup(int);
-    TodoReturn pauseTimer(int);
-    void playerButton(bool, bool) = win 0x25ae00, imac 0x2d61b0, m1 0x277110, ios 0x1921c;
-    void playerDied();
+    CCMoveCNode* getMoveCommandNode(GroupCommandObject2* command) = win 0x257c40, m1 0x270d30, imac 0x2ce950, ios 0x15230;
+    CCMoveCNode* getMoveCommandObject() = win 0x257b40, m1 0x272694, imac 0x2d03c0, ios 0x16378;
+    OpacityEffectAction* getOpacityActionForGroup(int id) = win inline, m1 0x275c1c, imac 0x2d4840, ios 0x1855c {
+        if (auto it = m_opacityEffectMap.find(id); it != m_opacityEffectMap.end()) {
+            return &it->second;
+        }
+        return nullptr;
+    }
+    gd::string getSaveString() = m1 0x279654, imac 0x2d9360, ios 0x1a6f4;
+    GroupCommandObject2* getTempGroupCommand() = win 0x257ee0, m1 0x2727fc, imac 0x2d0570, ios 0x16458;
+    void handleObjectCollision(bool triggerOnExit, int blockAID, int blockBID) = win 0x2551b0, m1 0x26f104, imac 0x2cc460, ios 0x13d58;
+    bool hasActiveDualTouch() = win inline, m1 0x2770cc, imac 0x2d6160, ios 0x191d8 {
+        for (auto& action : m_unkVector1e0) {
+            if (action.m_dualMode && !action.m_disabled) return true;
+        }
+        return false;
+    }
+    bool hasBeenTriggered(int objectUniqueID, int playerUniqueID) = win inline, m1 0x276f60, imac 0x2d5fd0, ios 0x190d4 {
+        auto bound = m_unkMap498.lower_bound(std::make_pair(objectUniqueID, playerUniqueID));
+        return bound != m_unkMap498.end() && *bound <= std::make_pair(objectUniqueID, playerUniqueID);
+    }
+    bool hasPulseEffectForGroupID(int id) = win inline, m1 0x2766d8, imac 0x2d55a0, ios inline {
+        if (auto it = m_pulseEffectMap.find(id); it != m_pulseEffectMap.end()) return !it->second.empty();
+        return false;
+    }
+    bool isGroupEnabled(int id) = win inline, m1 0x276fa4, imac 0x2d6010, ios 0x19118 {
+        return m_unkVector438[std::clamp(id, 0, 9999)];
+    }
+    const char* keyForGroupIDColor(int id, cocos2d::ccColor3B const& color, bool mainColor) = win inline, m1 0x276494, imac 0x2d5300, ios inline {
+        std::string key;
+        key += std::to_string(id);
+        key += '_';
+        key += std::to_string(color.r);
+        key += std::to_string(color.g);
+        key += std::to_string(color.b);
+        key += '_';
+        key += mainColor ? '1' : '0';
+        auto str = new char[key.size() + 1];
+        std::strncpy(str, key.c_str(), key.size() + 1);
+        return str;
+    }
+    void loadFromState(EffectManagerState& state) = win 0x25cb40, m1 0x27a3c0, imac 0x2da290, ios 0x1af0c;
+    void objectsCollided(int blockAID, int blockBID) = win inline, m1 0x26f310, imac 0x2cc680, ios 0x13eb0 {
+        auto key = (std::min)(blockAID, blockBID) * 10000 + (std::max)(blockAID, blockBID) + 10000000;
+        if (auto it = m_unkMap288.find(key); it != m_unkMap288.end()) {
+            it->second = true;
+        }
+        else {
+            this->handleObjectCollision(true, blockAID, blockBID);
+            m_unkMap288[key] = true;
+        }
+    }
+    float opacityForIndex(int index) = win inline, m1 0x26d4e8, imac 0x2ca330, ios inline {
+        if (auto colorAction = this->getColorAction(index)) return colorAction->m_toOpacity;
+        else return 1.f;
+    }
+    float opacityModForGroup(int id) = win 0x2597f0, m1 0x275ebc, imac 0x2d4c00, ios 0x18694;
+    void pauseTimer(int id) = win inline, m1 0x2784dc, imac 0x2d7bd0, ios 0x19d20 {
+        if (m_timerItemMap.count(id) != 0) m_timerItemMap[id].m_active = false;
+    }
+    void playerButton(bool down, bool player1) = win 0x25ae00, imac 0x2d61b0, m1 0x277110, ios 0x1921c;
+    void playerDied() = win inline, m1 0x277434, imac 0x2d6510, ios 0x19454 {
+        if (m_triggerEffectDelegate) {
+            for (int i = 0; i < m_unkVector248.size(); i++) {
+                auto& action = m_unkVector248[i];
+                if (action.m_disabled) continue;
+                m_triggerEffectDelegate->toggleGroupTriggered(action.m_targetGroupID, action.m_activateGroup, action.m_remapKeys, action.m_triggerUniqueID, action.m_controlID);
+            }
+        }
+    }
     void postCollisionCheck() = ios 0x13cbc, win 0x254f50, m1 0x26f040, imac 0x2cc390;
     void postMoveActions() = win 0x259470, m1 0x275628, imac 0x2d4110, ios 0x180fc;
     void preCollisionCheck() = win inline, ios 0x13ca4, imac 0x2cc370, m1 0x26f028 {
@@ -12816,73 +12945,208 @@ class GJEffectManager : cocos2d::CCNode {
             pair.second = false;
         }
     }
-    void prepareMoveActions(float, bool) = win 0x258060, m1 0x27353c, imac 0x2d16c0, ios 0x16a74;
+    void prepareMoveActions(float dt, bool intermediate) = win 0x258060, m1 0x27353c, imac 0x2d16c0, ios 0x16a74;
     void processColors() = ios 0x12d30, win 0x253fb0, m1 0x26d6d0, imac 0x2ca520;
-    void processCopyColorPulseActions() = m1 0x26dc58, imac 0x2cabf0;
-    void processInheritedColors() = m1 0x26d980, imac 0x2ca840, win 0x254190;
-    TodoReturn processMoveCalculations();
-    TodoReturn processPulseActions();
-    TodoReturn registerCollisionTrigger(int, int, int, bool, bool, gd::vector<int> const&, int, int);
-    TodoReturn registerRotationCommand(GroupCommandObject2*, bool);
-    TodoReturn removeAllPulseActions();
-    TodoReturn removeColorAction(int);
+    void processCopyColorPulseActions() = win 0x25a180, m1 0x26dc58, imac 0x2cabf0, ios 0x13098;
+    void processInheritedColors() = ios 0x12eb4, m1 0x26d980, imac 0x2ca840, win 0x254190;
+    void processMoveCalculations() = win inline, m1 0x2759b0, imac 0x2d45a0, ios 0x182f4 {
+        for (auto& calc : m_unkVector708) {
+            auto angle = -calc.m_gameObject->m_rotationXOffset * M_PI / 180.f;
+            cocos2d::CCPoint position;
+            position.x = calc.m_offset.x * cosf(angle) - calc.m_offset.y * sinf(angle);
+            position.y = calc.m_offset.x * sinf(angle) + calc.m_offset.y * cosf(angle);
+            auto diff = position - calc.m_offset;
+            calc.m_moveNode->m_unk038 += diff.x;
+            calc.m_moveNode->m_unk040 += diff.y;
+            calc.m_moveNode->m_unk090 += diff.x;
+            calc.m_moveNode->m_unk098 += diff.y;
+            calc.m_moveNode->m_unk0d1 = false;
+        }
+        m_unkVector708.clear();
+    }
+    void processPulseActions() = win inline, m1 0x26d8bc, imac 0x2ca770, ios 0x12df8 {
+        for (int i = 0; i < m_pulseEffectVector.size(); i++) {
+            auto& action = m_pulseEffectVector[i];
+            auto colorAction = this->getColorAction(action.m_targetGroupID);
+            if (action.m_colorIndex == 0 && (!colorAction || colorAction->m_copyID == 0)) {
+                colorAction->m_colorSprite->m_copyColor = this->colorForPulseEffect(colorAction->m_colorSprite->m_copyColor, &action);
+            }
+        }
+    }
+    void registerCollisionTrigger(int targetID, int blockAID, int blockBID, bool triggerOnExit, bool activateGroup, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win 0x2550a0, m1 0x26f478, imac 0x2cc880, ios 0x13f74;
+    void registerRotationCommand(GroupCommandObject2* object, bool clear) = win 0x257de0, m1 0x272d90, imac 0x2d0d70, ios 0x166ac;
+    void removeAllPulseActions() = win inline, m1 0x26ec1c, imac 0x2cbdb0, ios 0x13ad4 {
+        m_pulseEffectVector.clear();
+        m_unkVector2f0.clear();
+    }
+    void removeColorAction(int id) = win inline, m1 0x26e530, imac 0x2cb5e0, ios 0x13728 {
+        id = std::clamp(id, 0, 1101);
+        m_unkObject148->removeObjectForKey(id);
+        m_colorActionVector[id] = nullptr;
+        m_colorActionDict->removeObjectForKey(id);
+    }
     void removePersistentFromAllItems() = win inline, ios 0x19ab4, imac 0x2d7520, m1 0x2780a0 {
         m_persistentItemCountMap.clear();
     }
-    TodoReturn removePersistentFromAllTimers();
+    void removePersistentFromAllTimers() = win inline, m1 0x278144, imac 0x2d7650, ios 0x19af4 {
+        m_persistentTimerItemSet.clear();
+    }
     void removeTriggeredID(int objectUniqueID, int playerUniqueID) = win 0x25ad50, imac 0x2d5ef0, m1 0x276e68, ios 0x190a4;
     void reset() = ios 0x128dc, win 0x253d10, imac 0x2c9190, m1 0x26cb18;
     void resetEffects() = ios 0x12994, win 0x254c90, m1 0x26cc10, imac 0x2c93a0;
-    TodoReturn resetMoveActions();
-    TodoReturn resetTempGroupCommands(bool);
-    TodoReturn resetToggledGroups();
-    TodoReturn resetTriggeredIDs();
-    TodoReturn resumeTimer(int);
-    TodoReturn runCountTrigger(int, int, bool, int, bool, gd::vector<int> const&, int, int);
-    TodoReturn runDeathTrigger(int, bool, gd::vector<int> const&, int, int);
-    TodoReturn runOpacityActionOnGroup(int, float, float, int, int);
-    PulseEffectAction* runPulseEffect(int, bool, float, float, float, PulseEffectType, cocos2d::ccColor3B, cocos2d::ccHSVValue, int, bool, bool, bool, bool, int, int) = win 0x2598b0;
-    TodoReturn runTimerTrigger(int, double, bool, int, gd::vector<int> const&, int, int);
-    TodoReturn runTouchTriggerCommand(int, bool, TouchTriggerType, TouchTriggerControl, bool, gd::vector<int> const&, int, int);
-    inline void saveCompletedMove(int groupId, double dx, double dy) {
+    void resetMoveActions() = win inline, m1 0x26d1e8, imac 0x2c9eb0, ios 0x12a7c {
+        m_unkVector560.clear();
+        m_unkMap578.clear();
+        m_unkMap618.clear();
+        m_unkVector6c0.clear();
+    }
+    void resetTempGroupCommands(bool noRemove) = win 0x257f70, m1 0x27320c, imac 0x2d12c0, ios 0x168ec;
+    void resetToggledGroups() = win inline, m1 0x26ecdc, imac 0x2cbf10, ios 0x13b34 {
+        m_unkVector438.assign(m_unkVector438.size(), true);
+        m_unkMap460.clear();
+    }
+    void resetTriggeredIDs() = win inline, m1 0x26ee28, imac 0x2cc0f0, ios inline {
+        m_unkMap498.clear();
+    }
+    void resumeTimer(int id) = win inline, m1 0x2785fc, imac 0x2d7d80, ios 0x19d80 {
+        if (m_timerItemMap.count(id) != 0) m_timerItemMap[id].m_active = true;
+    }
+    void runCountTrigger(int id, int targetCount, bool multiActivate, int targetID, bool activateGroup, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, m1 0x27756c, imac 0x2d6680, ios 0x19548 {
+        m_countTriggerActions[id].emplace_back(targetID, targetCount, activateGroup, multiActivate, id, this->countForItem(id), remapKeys, uniqueID, controlID);
+    }
+    void runDeathTrigger(int targetID, bool activateGroup, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, m1 0x277358, imac 0x2d6430, ios 0x193dc {
+        m_unkVector248.emplace_back(targetID, activateGroup, remapKeys, uniqueID, controlID);
+    }
+    OpacityEffectAction* runOpacityActionOnGroup(int targetID, float duration, float opacity, int uniqueID, int controlID) = win 0x2596e0, m1 0x275cfc, imac 0x2d49d0, ios 0x18590;
+    PulseEffectAction* runPulseEffect(int targetID, bool targetGroup, float fadeInDuration, float holdDuration, float fadeOutDuration, PulseEffectType effectType, cocos2d::ccColor3B targetColor, cocos2d::ccHSVValue targetHSV, int copyID, bool mainOnly, bool detailOnly, bool exclusive, bool legacyHSV, int uniqueID, int controlID) = win 0x2598b0, m1 0x276070, imac 0x2d4e40, ios 0x18720;
+    void runTimerTrigger(int id, double targetTime, bool multiActivate, int targetID, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, m1 0x278720, imac 0x2d7f30, ios 0x19de4 {
+        m_unkMap3f8[id].emplace_back(targetID, targetTime, multiActivate, id, remapKeys, uniqueID, controlID);
+    }
+    void runTouchTriggerCommand(int targetID, bool holdMode, TouchTriggerType touchType, TouchTriggerControl touchControl, bool dualMode, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, m1 0x276fd0, imac 0x2d6050, ios 0x19144 {
+        m_unkVector1e0.emplace_back(targetID, holdMode, touchType, touchControl, dualMode, remapKeys, uniqueID, controlID);
+    }
+    void saveCompletedMove(int groupId, double dx, double dy) = win inline, m1 0x275914, imac 0x2d4510, ios 0x18258 {
         auto& entry = m_unkMap578[groupId];
         entry.first += dx;
         entry.second += dy;
     }
-    void saveToState(EffectManagerState&) = win 0x25c520;
-    void setColorAction(ColorAction*, int) = win 0x254a90, m1 0x26e4cc, imac 0x2cb570;
-    void setFollowing(int, int, bool);
-    void setupFromString(gd::string) = win 0x25c290;
-    bool shouldBlend(int) = m1 0x26d69c, imac 0x2ca4e0;
-    void spawnGroup(int, float, bool, gd::vector<int> const&, int, int) = win 0x25a920, m1 0x275528, imac 0x2d3ff0, ios 0x18068;
-    TodoReturn spawnObject(GameObject*, float, gd::vector<int> const&, int, int);
-    void startTimer(int, double, double, bool, bool, bool, float, bool, int, gd::vector<int> const&, int, int) = win 0x25b5f0;
+    void saveToState(EffectManagerState& state) = win 0x25c520, m1 0x279fd4, imac 0x2d9dc0, ios 0x1ab90;
+    void setColorAction(ColorAction* action, int id) = win 0x254a90, m1 0x26e4cc, imac 0x2cb570, ios 0x136c4;
+    void setFollowing(int targetID, int targetPosID, bool following) = win inline, m1 0x279508, imac 0x2d9190, ios 0x1a67c {
+        auto key = targetID * 2000 + targetPosID;
+        if (following) m_unkMap4c8.insert(key);
+        else m_unkMap4c8.erase(key);
+    }
+    void setupFromString(gd::string str) = win 0x25c290, m1 0x27990c, imac 0x2d9680, ios 0x1a878;
+    bool shouldBlend(int id) = win inline, m1 0x26d69c, imac 0x2ca4e0, ios 0x12cfc {
+        auto action = m_colorActionVector[std::clamp(id, 0, 1101)];
+        return action && action->m_blending;
+    }
+    void spawnGroup(int targetID, float delay, bool spawnOrdered, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win 0x25a920, m1 0x275528, imac 0x2d3ff0, ios 0x18068;
+    void spawnObject(GameObject* object, float delay, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, m1 0x276990, imac 0x2d5970, ios 0x18d8c {
+        m_spawnTriggerActions.emplace_back(object, delay, remapKeys, uniqueID, controlID);
+    }
+    void startTimer(int id, double startTime, double targetTime, bool stopTime, bool active, bool dontOverride, float timeMod, bool ignoreTimewarp, int targetID, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win 0x25b5f0, m1 0x2781a8, imac 0x2d7740, ios 0x19afc;
     void storeTriggeredID(int objectUniqueID, int playerUniqueID) = win 0x25ac60, m1 0x276d94, imac 0x2d5e20, ios 0x19070;
-    double timeForItem(int) = win 0x25bfd0, m1 0x2791cc, imac 0x2d8de0, ios 0x1a4a0;
-    TodoReturn timerExists(int);
-    TodoReturn toggleGroup(int, bool);
-    void toggleItemPersistent(int, bool);
-    void toggleTimerPersistent(int, bool);
-    TodoReturn transferPersistentItems();
-    TodoReturn traverseInheritanceChain(InheritanceNode*);
-    CCMoveCNode* tryGetMoveCommandNode(int) = win inline, m1 0x272cb0, imac 0x2d0bd0, ios 0x1667c {
-        auto it = m_unkMap618.find(p0);
+    double timeForItem(int id) = win 0x25bfd0, m1 0x2791cc, imac 0x2d8de0, ios 0x1a4a0;
+    bool timerExists(int id) = win 0x25b7b0, m1 0x2783e0, imac 0x2d7a40, ios 0x19cf0;
+    void toggleGroup(int id, bool activate) = win inline, m1 0x26f580, imac 0x2cc9c0, ios 0x14018 {
+        id = std::clamp(id, 0, 9999);
+        if (activate) {
+            m_unkVector438[id] = true;
+            m_unkMap460.erase(id);
+        }
+        else {
+            m_unkVector438[id] = false;
+            m_unkMap460.insert(id);
+        }
+    }
+    void toggleItemPersistent(int id, bool persistent) = win inline, m1 0x277f30, imac 0x2d7320, ios 0x19a08 {
+        if (persistent) m_persistentItemCountMap[id] = m_itemCountMap.count(id) != 0 ? m_itemCountMap[id] : 0;
+        else m_persistentItemCountMap.erase(id);
+    }
+    void toggleTimerPersistent(int id, bool persistent) = win inline, m1 0x278104, imac 0x2d7610, ios 0x19abc {
+        if (persistent) m_persistentTimerItemSet.insert(id);
+        else m_persistentTimerItemSet.erase(id);
+    }
+    void transferPersistentItems() = win 0x25b570, m1 0x26ed94, imac 0x2cc050, ios 0x13b7c;
+    void traverseInheritanceChain(InheritanceNode* node) = win inline, m1 0x26e044, imac 0x2cb0e0, ios 0x132a8 {
+        while (node) {
+            m_unkArray430->addObject(node);
+            node = node->m_inheritanceNode;
+        }
+        CCObject* obj;
+        CCARRAY_FOREACH(m_unkArray430, obj) {
+            auto currentNode = static_cast<InheritanceNode*>(obj);
+            this->calculateInheritedColor(currentNode->m_colorID, currentNode->m_colorAction);
+        }
+        m_unkArray430->removeAllObjects();
+    }
+    CCMoveCNode* tryGetMoveCommandNode(int id) = win inline, m1 0x272cb0, imac 0x2d0bd0, ios 0x1667c {
+        auto it = m_unkMap618.find(id);
         return it != m_unkMap618.end() ? it->second : nullptr;
     }
-    TodoReturn updateActiveOpacityEffects();
-    TodoReturn updateColorAction(ColorAction*);
-    void updateColorEffects(float) = imac 0x2cb7d0, m1 0x26e6c0;
-    void updateColors(cocos2d::ccColor3B, cocos2d::ccColor3B);
-    void updateCountForItem(int, int) = win 0x25b120, imac 0x2d6b10, m1 0x27791c, ios 0x19748;
-    void updateEffects(float) = ios 0x137b4, win 0x254b10, imac 0x2cb6a0, m1 0x26e5bc;
-    void updateOpacityAction(OpacityEffectAction*);
-    void updateOpacityEffects(float);
-    void updatePulseEffects(float) = win 0x259e30, imac 0x2cb9a0, m1 0x26e850;
-    void updateSpawnTriggers(float) = ios 0x18e14, imac 0x2d5a80, m1 0x276a7c, win 0x25aa10;
-    void updateTimer(int, double) = win 0x25b850;
-    void updateTimers(float, float) = win 0x25b9e0, m1 0x2789fc, imac 0x2d82a0, ios 0x19fcc;
-    TodoReturn wasFollowing(int, int);
-    bool wouldCreateLoop(InheritanceNode*, int) = win 0x254850;
+    void updateActiveOpacityEffects() = win inline, m1 0x275ff0, imac 0x2d4da0, ios inline {
+        for (auto it = m_opacityEffectMap.begin(); it != m_opacityEffectMap.end();) {
+            auto& action = it->second;
+            if (action.m_finished && action.m_currentValue >= 1.f) it = m_opacityEffectMap.erase(it);
+            else ++it;
+        }
+    }
+    void updateColorAction(ColorAction* action) = win inline, m1 0x275be4, imac 0x2d4800, ios 0x18524 {
+        if (action->m_copyID == 0) {
+            action->m_colorSprite->m_color = action->m_color;
+            action->m_colorSprite->m_opacity = action->m_currentOpacity * 255.f;
+        }
+    }
+    void updateColorEffects(float dt) = win inline, imac 0x2cb7d0, m1 0x26e6c0, ios 0x137f4 {
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_unkObject148->m_pElements, element, temp) {
+            auto action = static_cast<ColorAction*>(element->getObject());
+            action->step(dt);
+            if (action->m_copyID == 0) {
+                action->m_colorSprite->m_color = action->m_color;
+                action->m_colorSprite->m_opacity = action->m_currentOpacity * 255.f;
+            }
+        }
+    }
+    void updateColors(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2) = win inline, m1 0x26d348, imac 0x2ca150, ios 0x12b38 {
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_unkObject148->m_pElements, element, temp) {
+            auto action = static_cast<ColorAction*>(element->getObject());
+            if (action->m_playerColor == 1) action->m_fromColor = color1;
+            else if (action->m_playerColor == 2) action->m_fromColor = color2;
+        }
+    }
+    void updateCountForItem(int id, int count) = win 0x25b120, imac 0x2d6b10, m1 0x27791c, ios 0x19748;
+    void updateEffects(float dt) = ios 0x137b4, win 0x254b10, imac 0x2cb6a0, m1 0x26e5bc;
+    void updateOpacityAction(OpacityEffectAction* action) = win inline, m1 0x275fac, imac 0x2d4d60, ios 0x186dc {
+        if (action->m_finished && action->m_currentValue >= 1.f) m_opacityEffectMap.erase(action->m_targetGroupID);
+    }
+    void updateOpacityEffects(float dt) = win inline, m1 0x26eb34, imac 0x2cbcb0, ios 0x13a60 {
+        for (auto it = m_opacityEffectMap.begin(); it != m_opacityEffectMap.end();) {
+            auto& action = it->second;
+            action.step(dt);
+            if (action.m_finished && action.m_currentValue >= 1.f) it = m_opacityEffectMap.erase(it);
+            else ++it;
+        }
+    }
+    void updatePulseEffects(float dt) = win 0x259e30, imac 0x2cb9a0, m1 0x26e850, ios 0x13880;
+    void updateSpawnTriggers(float dt) = ios 0x18e14, imac 0x2d5a80, m1 0x276a7c, win 0x25aa10;
+    void updateTimer(int id, double time) = win 0x25b850, m1 0x27885c, imac 0x2d8080, ios 0x19ee4;
+    void updateTimers(float dt, float timeWarp) = win 0x25b9e0, m1 0x2789fc, imac 0x2d82a0, ios 0x19fcc;
+    bool wasFollowing(int targetID, int targetPosID) = win inline, m1 0x279550, imac 0x2d91d0, ios 0x1a6bc {
+        return m_unkMap4c8.count(targetID * 2000 + targetPosID) != 0;
+    }
+    bool wouldCreateLoop(InheritanceNode* node, int id) = win 0x254850, m1 0x26e014, imac 0x2cb0b0, ios inline {
+        while (node) {
+            if (node->m_colorID == id) return true;
+            node = node->m_inheritanceNode;
+        }
+        return false;
+    }
 
     TriggerEffectDelegate* m_triggerEffectDelegate;
     cocos2d::CCDictionary* m_unkObject148;
@@ -12909,7 +13173,7 @@ class GJEffectManager : cocos2d::CCNode {
     cocos2d::CCArray* m_unkArray430;
     gd::vector<bool> m_unkVector438;
     gd::unordered_set<int> m_unkMap460;
-    gd::map<int, int> m_unkMap498;
+    gd::set<std::pair<int, int>> m_unkMap498;
     gd::unordered_set<int> m_unkMap4c8;
     gd::vector<SpawnTriggerAction> m_spawnTriggerActions;
     gd::vector<GroupCommandObject2*> m_unkVector518;
@@ -16439,7 +16703,7 @@ class GravityEffectSprite : cocos2d::CCSprite {
 [[link(android), depends(KeyframeObject)]]
 class GroupCommandObject2 {
     // ~GroupCommandObject2();
-    // GroupCommandObject2();
+    GroupCommandObject2() = win 0x2506c0, m1 0x43d350, imac 0x4d9be0, ios 0xe8a4;
     // GroupCommandObject2(GroupCommandObject2 const&);
 
     TodoReturn reset();
@@ -20308,7 +20572,20 @@ class OnlineListDelegate {
 
 [[link(android)]]
 class OpacityEffectAction {
-    void step(float delta);
+    void step(float delta) = win inline, m1 0x268d54, imac 0x2c4e70, ios 0x10dc8 {
+        if (m_disabled || m_finished) return;
+
+        m_deltaTime += delta;
+        auto currentTime = m_deltaTime + m_deltaTimeRelated;
+        float factor;
+        if (currentTime < m_duration) {
+            if (currentTime > 0.f) factor = currentTime / m_duration;
+            else factor = 0.f;
+        }
+        else factor = 1.f;
+        m_finished = currentTime >= m_duration;
+        m_currentValue = (m_toValue - m_fromValue) * factor + m_fromValue;
+    }
 
     float m_duration;
     float m_fromValue;
@@ -27625,6 +27902,32 @@ class SpawnParticleGameObject : EffectGameObject {
 
 [[link(android)]]
 class SpawnTriggerAction {
+    SpawnTriggerAction() {}
+    SpawnTriggerAction(int targetID, float delay, bool spawnOrdered, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+        m_finished = false;
+        m_disabled = false;
+        m_duration = delay;
+        m_deltaTime = 0.0;
+        m_targetGroupID = targetID;
+        m_triggerUniqueID = uniqueID;
+        m_controlID = controlID;
+        m_spawnOrdered = spawnOrdered;
+        m_gameObject = nullptr;
+        m_remapKeys = remapKeys;
+    }
+    SpawnTriggerAction(GameObject* object, float delay, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+        m_finished = false;
+        m_disabled = false;
+        m_duration = delay;
+        m_deltaTime = 0.0;
+        m_targetGroupID = 0;
+        m_triggerUniqueID = uniqueID;
+        m_controlID = controlID;
+        m_spawnOrdered = false;
+        m_gameObject = object;
+        m_remapKeys = remapKeys;
+    }
+
     bool isFinished();
     TodoReturn step(float);
 
@@ -28337,6 +28640,19 @@ class TextStyleSection : cocos2d::CCObject {
 
 [[link(android)]]
 class TimerTriggerAction {
+    TimerTriggerAction() {}
+    TimerTriggerAction(int targetID, float targetTime, bool multiActivate, int itemID, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+        m_disabled = false;
+        m_time = 0.f;
+        m_targetTime = targetTime;
+        m_targetGroupID = targetID;
+        m_triggerUniqueID = uniqueID;
+        m_controlID = controlID;
+        m_itemID = itemID;
+        m_multiActivate = multiActivate;
+        m_remapKeys = remapKeys;
+    }
+
     bool m_disabled;
     float m_time;
     float m_targetTime;
@@ -28382,6 +28698,16 @@ class TimerTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class ToggleTriggerAction {
+    ToggleTriggerAction() {}
+    ToggleTriggerAction(int targetID, bool activateGroup, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+        m_disabled = false;
+        m_targetGroupID = targetID;
+        m_activateGroup = activateGroup;
+        m_triggerUniqueID = uniqueID;
+        m_controlID = controlID;
+        m_remapKeys = remapKeys;
+    }
+
     bool m_disabled;
     int m_targetGroupID;
     bool m_activateGroup;
@@ -28468,6 +28794,19 @@ class TOSPopup : FLAlertLayer {
 
 [[link(android)]]
 class TouchToggleAction {
+    TouchToggleAction() {}
+    TouchToggleAction(int targetID, bool holdMode, TouchTriggerType touchType, TouchTriggerControl touchControl, bool dualMode, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+        m_disabled = false;
+        m_targetGroupID = targetID;
+        m_holdMode = holdMode;
+        m_touchTriggerType = touchType;
+        m_touchTriggerControl = touchControl;
+        m_triggerUniqueID = uniqueID;
+        m_controlID = controlID;
+        m_dualMode = dualMode;
+        m_remapKeys = remapKeys;
+    }
+
     bool m_disabled;
     int m_targetGroupID;
     bool m_holdMode;

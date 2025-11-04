@@ -1014,7 +1014,7 @@ GEODE_MEMBER_CHECK(GroupCommandObject2, m_unkInt204, 0x204);
 GEODE_SIZE_CHECK(TimerItem, 0x58);
 GEODE_MEMBER_CHECK(TimerItem, m_itemID, 0x0);
 GEODE_MEMBER_CHECK(TimerItem, m_time, 0x8);
-GEODE_MEMBER_CHECK(TimerItem, m_paused, 0x10);
+GEODE_MEMBER_CHECK(TimerItem, m_active, 0x10);
 GEODE_MEMBER_CHECK(TimerItem, m_timeMod, 0x14);
 GEODE_MEMBER_CHECK(TimerItem, m_ignoreTimeWarp, 0x18);
 GEODE_MEMBER_CHECK(TimerItem, m_targetTime, 0x20);

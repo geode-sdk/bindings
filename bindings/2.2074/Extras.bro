@@ -276,7 +276,7 @@ class FMODSoundState {
 class TimerItem {
 	int m_itemID;
 	double m_time;
-	bool m_paused;
+	bool m_active;
 	float m_timeMod;
 	bool m_ignoreTimeWarp;
 	double m_targetTime;
