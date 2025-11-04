@@ -1,4 +1,4 @@
-#include win <sys/timeb.h>
+#import win <sys/timeb.h>
 
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {

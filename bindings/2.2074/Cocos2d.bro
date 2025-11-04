@@ -1,4 +1,4 @@
-#include ios <Geode/cocos/particle_nodes/firePngData.h>
+#import ios <Geode/cocos/particle_nodes/firePngData.h>
 
 [[link(win, android)]]
 class cocos2d::CCEGLViewProtocol {
