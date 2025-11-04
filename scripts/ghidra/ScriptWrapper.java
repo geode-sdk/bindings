@@ -519,10 +519,13 @@ public class ScriptWrapper {
         if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
             return true;
         }
+        if (type.getName().startsWith("RGBA") || type.getName().startsWith("HSV")) {
+            return platform == Platform.MAC_INTEL;
+        }
         if (type.getName().startsWith("CCPoint") || type.getName().startsWith("CCSize") || type.getName().startsWith("CCRect")) {
             return true;
         }
-        if (type.getLength() > 10) {
+        if (type.getLength() > 16) {
             return true;
         }
         return false;
@@ -880,6 +883,27 @@ public class ScriptWrapper {
         ccHSVValue.add(ByteDataType.dataType, 0x1, "brightnessChecked", "");
         ccHSVValue.setPackingEnabled(true);
         manager.addDataType(ccHSVValue, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::extension::RGBA
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "extension", "RGBA"));
+        var rgba = new StructureDataType(cat, cat.getName(), 0x0);
+        rgba.add(DoubleDataType.dataType, 0x8, "r", "Red component");
+        rgba.add(DoubleDataType.dataType, 0x8, "g", "Green component");
+        rgba.add(DoubleDataType.dataType, 0x8, "b", "Blue component");
+        rgba.add(DoubleDataType.dataType, 0x8, "a", "Alpha component");
+        rgba.setPackingEnabled(true);
+        manager.addDataType(rgba, DataTypeConflictHandler.REPLACE_HANDLER);
+
+        // cocos2d::extension::HSV
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "extension", "HSV"));
+        var hsv = new StructureDataType(cat, cat.getName(), 0x0);
+        hsv.add(DoubleDataType.dataType, 0x8, "h", "Hue");
+        hsv.add(DoubleDataType.dataType, 0x8, "s", "Saturation");
+        hsv.add(DoubleDataType.dataType, 0x8, "v", "Value");
+        hsv.setPackingEnabled(true);
+        manager.addDataType(hsv, DataTypeConflictHandler.REPLACE_HANDLER);
 
         // cocos2d::SEL_MenuHandler
 

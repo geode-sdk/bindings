@@ -603,7 +603,9 @@ enum class CommentType {
     Level = 0,
     Account = 1,
     FriendRequest = 2,
+    Multiplayer = 3,
     ListDescription = 4,
+    ListDescription2 = 5
 };
 
 enum class BoomListType {
@@ -847,8 +849,7 @@ enum class GJLevelType {
     SearchResult = 4
 };
 
-enum class GJRewardType
-{
+enum class GJRewardType {
     Unknown = 0x0,
     Small = 0x1,
     Large = 0x2,

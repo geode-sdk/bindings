@@ -62,7 +62,7 @@ GEODE_MEMBER_CHECK(FLAlertLayer, m_buttonMenu, 0x1b8);
 GEODE_MEMBER_CHECK(FLAlertLayer, m_mainLayer, 0x1c8);
 GEODE_MEMBER_CHECK(TableView, m_cellArray, 0x1b0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x144);
-GEODE_MEMBER_CHECK(TableViewCell, m_unknownString, 0x184);
+GEODE_MEMBER_CHECK(TableViewCell, m_cellIdentifier, 0x184);
 GEODE_MEMBER_CHECK(TableViewCell, m_backgroundLayer, 0x190);
 GEODE_SIZE_CHECK(CCBlockLayer, 0x1bc);
 
@@ -1016,7 +1016,7 @@ GEODE_MEMBER_CHECK(GroupCommandObject2, m_unkInt204, 0x1e0);
 GEODE_SIZE_CHECK(TimerItem, 0x48);
 GEODE_MEMBER_CHECK(TimerItem, m_itemID, 0x0);
 GEODE_MEMBER_CHECK(TimerItem, m_time, 0x8);
-GEODE_MEMBER_CHECK(TimerItem, m_paused, 0x10);
+GEODE_MEMBER_CHECK(TimerItem, m_active, 0x10);
 GEODE_MEMBER_CHECK(TimerItem, m_timeMod, 0x14);
 GEODE_MEMBER_CHECK(TimerItem, m_ignoreTimeWarp, 0x18);
 GEODE_MEMBER_CHECK(TimerItem, m_targetTime, 0x20);

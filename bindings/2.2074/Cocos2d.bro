@@ -3366,7 +3366,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void reshapeProjection(cocos2d::CCSize const&);
     void resume() = m1 0x3e06bc, imac 0x471910, ios 0x179ac8;
     void runWithScene(cocos2d::CCScene*) = m1 0x3dff70, imac 0x471190, ios 0x179554;
-    int sceneCount();
+    int sceneCount() = m1 0x3e04c0, imac 0x4716b0, ios 0x179924;
     void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
     void showFPSLabel() = imac 0x470510, m1 0x3df4dc;
     void showStats();
@@ -4006,7 +4006,9 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
     void removeObjectsForKeys(cocos2d::CCArray*);
     cocos2d::CCString const* valueForKey(gd::string const&) = imac 0x2fa030, m1 0x2927ec, ios 0x41a868;
     cocos2d::CCString const* valueForKey(intptr_t) = imac 0x2fa570, m1 0x292cd4, ios 0x41acdc;
-    bool writeToFile(char const*);
+    bool writeToFile(char const*) = m1 0x294628, imac 0x2fc1c0, ios inline {
+        return CCFileUtils::sharedFileUtils()->writeToFile(this, p0);
+    }
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x2fbcf0, m1 0x294174, ios 0x41bfa4;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = m1 0x2945e8, imac 0x2fc180, ios 0x41c1c8;
@@ -5315,7 +5317,7 @@ class cocos2d {
     static void ccDrawPoly(cocos2d::CCPoint const*, unsigned int, bool);
     static void ccDrawQuadBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int);
     static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x1ac234, imac 0x1f6710, ios 0x24b4e8;
-    static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = ios 0x24b5b0;
+    static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::_ccColor4F) = imac 0x1f68b0, m1 0x1ac3d0, ios 0x24b5b0;
     static void ccDrawSolidRect(cocos2d::CCPoint origin, cocos2d::CCPoint destination, cocos2d::_ccColor4F color) = imac 0x1f6800, m1 0x1ac2fc, ios inline {
     	CCPoint vertices[] = {
     		origin,
@@ -5366,14 +5368,14 @@ class cocos2d {
     static cocos2d::CCPoint ccpCompMult(cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpDistance(cocos2d::CCPoint const&, cocos2d::CCPoint const&) = m1 0x2d8278, imac 0x342880, ios 0x1b1dec;
     static cocos2d::CCPoint ccpForAngle(float);
-    static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const& size) = ios inline {
+    static cocos2d::CCPoint ccpFromSize(cocos2d::CCSize const& size) = m1 0x2d83dc, imac 0x342a90, ios inline {
         return size;
     }
     static bool ccpFuzzyEqual(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static cocos2d::CCPoint ccpIntersectPoint(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpLength(cocos2d::CCPoint const&);
     static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float) = m1 0x2d830c, imac 0x342960, ios 0x1b1e78;
-    static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*) = ios 0x1b1f4c;
+    static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*) = m1 0x2d8538, imac 0x342c70, ios 0x1b1f4c;
     static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x3428c0, m1 0x2d82a8, ios 0x1b1e1c;
     static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
@@ -5483,17 +5485,21 @@ class CCContentManager : cocos2d::CCObject {
 
     cocos2d::CCDictionary* addDict(char const*, bool) = m1 0x140068, imac 0x1742a0, ios 0x40a764;
     cocos2d::CCDictionary* addDictDS(char const*) = m1 0x14022c, imac 0x174470;
-    void clearCache() = m1 0x14042c, imac 0x174670;
-    bool init() = m1 0x13ff84, imac 0x1741b0;
+    void clearCache() = m1 0x14042c, imac 0x174670, ios 0x40a83c;
+    bool init() = m1 0x13ff84, imac 0x1741b0, ios inline {
+        m_pDictCache = cocos2d::CCDictionary::create();
+        m_pDictCache->retain();
+        return true;
+    }
 }
 
 [[link(win, android)]]
 class ObjectDecoder : cocos2d::CCNode {
     // virtual ~ObjectDecoder();
 
-    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040;
+    static ObjectDecoder* sharedDecoder() = m1 0x690e28, imac 0x77c040, ios 0x235830;
 
-    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0;
+    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = m1 0x690ea0, imac 0x77c0c0, ios 0x23589c;
 
     virtual bool init() = m1 0x690e9c, imac 0x77c0b0, ios 0x235898;
 }
@@ -5750,10 +5756,21 @@ class cocos2d::ZipUtils {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlUtils {
-    static cocos2d::CCSprite* addSpriteToTargetWithPosAndAnchor(char const*, cocos2d::CCNode*, cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x3247f0, imac 0x396590;
-    static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA) = m1 0x324868, imac 0x3965f0;
-    static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV) = m1 0x324914, imac 0x3966e0;
-    static cocos2d::CCRect CCRectUnion(cocos2d::CCRect const&, cocos2d::CCRect const&) = m1 0x324a34, imac 0x396830;
+    static cocos2d::CCSprite* addSpriteToTargetWithPosAndAnchor(char const*, cocos2d::CCNode*, cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x3247f0, imac 0x396590, ios 0x1d4c08;
+    static cocos2d::extension::HSV HSVfromRGB(cocos2d::extension::RGBA) = m1 0x324868, imac 0x3965f0, ios 0x1d4c80;
+    static cocos2d::extension::RGBA RGBfromHSV(cocos2d::extension::HSV) = m1 0x324914, imac 0x3966e0, ios 0x1d4d28;
+    static cocos2d::CCRect CCRectUnion(cocos2d::CCRect const&, cocos2d::CCRect const&) = m1 0x324a34, imac 0x396830, ios inline {
+        CCRect result;
+        auto x1 = std::min(p0.getMinX(), p1.getMinX());
+        auto x2 = std::max(p0.getMaxX(), p1.getMaxX());
+        auto y1 = std::min(p0.getMinY(), p1.getMinY());
+        auto y2 = std::max(p0.getMaxY(), p1.getMaxY());
+        result.origin.x = x1;
+        result.origin.y = x2;
+        result.size.width = x2 - x1;
+        result.size.height = y2 - y1;
+        return result;
+    }
 }
 
 [[link(win, android)]]
