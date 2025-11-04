@@ -18439,7 +18439,7 @@ class LevelListCell : TableViewCell {
     virtual bool init() = m1 0x1f5bc0, imac 0x247460, ios 0x115ae0 { return true; }
     virtual void draw() = win 0xad710, imac 0x2475a0, m1 0x1f5cd8, ios 0x115bf8;
 
-    void loadFromList(GJLevelList*) = ios 0x10698c, win 0xbdf90, imac 0x233ae0, m1 0x1e3af4;
+    void loadFromList(GJLevelList* list) = ios 0x10698c, win 0xbdf90, imac 0x233ae0, m1 0x1e3af4;
     void onClick(cocos2d::CCObject* sender) = ios 0x115ae8, win 0xbf3c0, imac 0x247470, m1 0x1f5bc8;
     void onListInfo(cocos2d::CCObject* sender) = win 0xbf4d0, m1 0x1f5cc8, imac 0x247580, ios 0x115be8;
     void onViewProfile(cocos2d::CCObject* sender) = ios 0x115bb0, imac 0x247550, m1 0x1f5c90, win 0xbf4f0;
