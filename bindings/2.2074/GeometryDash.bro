@@ -8384,28 +8384,91 @@ class GameManager : GManager {
     void accountStatusChanged() = win inline, m1 0x302bd8, imac 0x3717e0, ios 0x3198f0 {
         if (m_menuLayer) m_menuLayer->updateUserProfileButton();
     }
-    int activeIconForType(IconType) = ios 0x31781c, win 0x17ea70, imac 0x36d480, m1 0x2feb3c;
-    TodoReturn addCustomAnimationFrame(int, int, gd::string, gd::string);
-    TodoReturn addDuplicateLastFrame(int);
+    int activeIconForType(IconType type) = ios 0x31781c, win 0x17ea70, imac 0x36d480, m1 0x2feb3c;
+    void addCustomAnimationFrame(int objectID, int frameIndex, gd::string mainFrame, gd::string detailFrame) = win 0x1abbe0, m1 0x2013fc, imac 0x2544a0, ios 0x34ef18;
+    void addDuplicateLastFrame(int objectID) = win inline, m1 0x201524, imac 0x2545d0, ios inline {
+        auto frames = this->framesForAnimation(objectID);
+        auto mainFrame = static_cast<cocos2d::CCArray*>(m_mainFramesForAnimation->objectForKey(objectID))->stringAtIndex(frames - 1)->getCString();
+        auto detailFrame = static_cast<cocos2d::CCArray*>(m_detailFramesForAnimation->objectForKey(objectID))->stringAtIndex(frames - 1)->getCString();
+        this->addCustomAnimationFrame(objectID, frames, mainFrame, detailFrame);
+        m_framesForAnimation->setObject(cocos2d::CCInteger::create(frames + 1), objectID);
+    }
     void addGameAnimation(int objectID, int frames, float frameTime, gd::string mainAnimFrame, gd::string detailAnimFrame, int defaultFrame) = win 0x1aba70, m1 0x201188, imac 0x254220, ios 0x34ed6c;
-    TodoReturn addIconDelegate(cocos2d::CCObject*, int);
+    void addIconDelegate(cocos2d::CCObject* delegate, int key) = m1 0x2ff458, imac 0x36e180;
     void addNewCustomObject(gd::string str) = win 0x1807d0, m1 0x302400, imac 0x370fd0, ios 0x319548;
-    TodoReturn addToGJLog(cocos2d::CCString*);
-    void applicationDidEnterBackground();
+    void addToGJLog(cocos2d::CCString* str) = win inline, m1 0x30439c, imac 0x3735e0, ios inline {}
+    void applicationDidEnterBackground() = win inline, m1 0x308b44, imac 0x378620, ios 0x31d688 {}
     void applicationWillEnterForeground() = win 0x186cd0, m1 0x308b48, imac 0x378630, ios 0x31d68c;
-    void calculateBaseKeyForIcons() = m1 0x2f6240, imac 0x363550, ios 0x311f24;
-    TodoReturn canShowRewardedVideo();
-    void checkSteamAchievementUnlock() = win 0x17b1a0;
+    void calculateBaseKeyForIcons() = win inline, m1 0x2f6240, imac 0x363550, ios 0x311f24 {
+        m_keyStartForIcon.resize(9);
+        m_keyStartForIcon[0] = 0;
+        m_keyStartForIcon[1] = 485;
+        m_keyStartForIcon[2] = 654;
+        m_keyStartForIcon[3] = 772;
+        m_keyStartForIcon[4] = 921;
+        m_keyStartForIcon[5] = 1017;
+        m_keyStartForIcon[6] = 1085;
+        m_keyStartForIcon[7] = 1154;
+        m_keyStartForIcon[8] = 1197;
+        for (int i = 0; i < 1205; i++) {
+            m_iconLoadCounts[i] = 0;
+        }
+    }
+    bool canShowRewardedVideo() = m1 0x2fe234, imac 0x36cc40;
+    void checkSteamAchievementUnlock() = win 0x17b1a0, m1 0x2f9288, imac 0x366960, ios inline {}
     void checkUsedIcons() = ios 0x316a40, win 0x1811b0, m1 0x2fcce8, imac 0x36b860;
-    TodoReturn claimItemsResponse(gd::string);
-    TodoReturn clearGJLog();
-    cocos2d::ccColor3B colorForIdx(int) = ios 0x316f24, win 0x17e330, imac 0x36c520, m1 0x2fdae8;
-    TodoReturn colorForPos(int);
-    gd::string colorKey(int, UnlockType) = win 0x179790, m1 0x2f766c, imac 0x364cb0, ios 0x312e84;
-    void completedAchievement(gd::string) = win 0x17a1d0, m1 0x2f8464, imac 0x365aa0, ios 0x31383c;
-    int countForType(IconType) = ios 0x3178fc, win 0x17ebe0, m1 0x2febfc, imac 0x36d6f0;
-    TodoReturn defaultFrameForAnimation(int);
-    TodoReturn defaultYOffsetForBG2(int);
+    void claimItemsResponse(gd::string str) = win inline, m1 0x2fdae4, imac 0x36c510, ios inline {}
+    void clearGJLog() = win inline, m1 0x3043a4, imac 0x373600, ios 0x31a848 {
+        m_gjLog->removeAllObjects();
+    }
+    cocos2d::ccColor3B colorForIdx(int index) = ios 0x316f24, win 0x17e330, imac 0x36c520, m1 0x2fdae8;
+    int colorForPos(int pos) = win inline, m1 0x2fdfb4, imac 0x36c970, ios inline {
+        switch (pos) {
+            case 4: return 16;
+            case 5: return 4;
+            case 6: return 5;
+            case 7: return 6;
+            case 8: return 13;
+            case 9: return 7;
+            case 10: return 8;
+            case 11: return 9;
+            case 12: return 29;
+            case 13: return 10;
+            case 15: return 11;
+            case 16: return 12;
+            case 19: return 15;
+            case 20: return 27;
+            case 21: return 32;
+            case 22: return 28;
+            case 23: return 38;
+            case 24: return 20;
+            case 25: return 33;
+            case 26: return 21;
+            case 27: return 34;
+            case 28: return 22;
+            case 29: return 39;
+            case 30: return 23;
+            case 31: return 35;
+            case 32: return 24;
+            case 33: return 36;
+            case 34: return 25;
+            case 35: return 37;
+            case 36: return 30;
+            case 37: return 26;
+            case 38: return 31;
+            case 39: return 19;
+            default: return pos;
+        }
+    }
+    gd::string colorKey(int id, UnlockType type) = win 0x179790, m1 0x2f766c, imac 0x364cb0, ios 0x312e84;
+    void completedAchievement(gd::string key) = win 0x17a1d0, m1 0x2f8464, imac 0x365aa0, ios 0x31383c;
+    int countForType(IconType type) = ios 0x3178fc, win 0x17ebe0, m1 0x2febfc, imac 0x36d6f0;
+    int defaultFrameForAnimation(int objectID) = win inline, m1 0x1f9100, imac 0x24b9f0, ios inline {
+        if (auto frame = static_cast<cocos2d::CCInteger*>(m_defaultFrames->objectForKey(objectID))) {
+            return frame->getValue();
+        }
+        return 1;
+    }
     void didExitPlayscene() = win inline, imac 0x378540, m1 0x308a38, ios 0x31d618 {
         if (this->m_unkBool8) {
             this->m_unkBool8 = false;
@@ -8414,49 +8477,62 @@ class GameManager : GManager {
             }
         }
     }
-    void doQuickSave();
-    gd::string dpadConfigToString(UIButtonConfig&) = win 0x183540, imac 0x374330, m1 0x304e14, ios 0x31ac2c;
-    TodoReturn eventUnlockFeature(char const*);
+    void doQuickSave() = win inline, m1 0x308a0c, imac 0x378510, ios 0x31d5ec {
+        m_quickSave = true;
+        this->save();
+        m_quickSave = false;
+    }
+    gd::string dpadConfigToString(UIButtonConfig& config) = win 0x183540, imac 0x374330, m1 0x304e14, ios 0x31ac2c;
+    void eventUnlockFeature(char const*) = win inline, m1 0x2fdad0, imac 0x36c4d0, ios inline {}
     void fadeInMenuMusic() = ios 0x312450, win 0x178a90, imac 0x363ca0, m1 0x2f6a1c;
-    void fadeInMusic(gd::string) = win 0x178b80, m1 0x2f6b18, imac 0x363d80, ios 0x3124e0;
-    TodoReturn finishedLoadingBGAsync(cocos2d::CCObject*);
-    TodoReturn finishedLoadingGAsync(int);
-    TodoReturn finishedLoadingGAsync1(cocos2d::CCObject*);
-    TodoReturn finishedLoadingGAsync2(cocos2d::CCObject*);
-    TodoReturn finishedLoadingIconAsync(cocos2d::CCObject*);
-    TodoReturn finishedLoadingMGAsync(int);
-    TodoReturn finishedLoadingMGAsync1(cocos2d::CCObject*);
-    TodoReturn finishedLoadingMGAsync2(cocos2d::CCObject*);
+    void fadeInMusic(gd::string path) = win 0x178b80, m1 0x2f6b18, imac 0x363d80, ios 0x3124e0;
+    void finishedLoadingBGAsync(cocos2d::CCObject* obj) = win 0x17f930, m1 0x3010ac, imac 0x36fd80, ios 0x318710;
+    void finishedLoadingGAsync(int index) = win 0x17fdd0, m1 0x301740, imac 0x3703c0, ios 0x318d94;
+    void finishedLoadingGAsync1(cocos2d::CCObject* obj) = win 0x17fd50, m1 0x3016a0, imac 0x370340, ios 0x318cf4;
+    void finishedLoadingGAsync2(cocos2d::CCObject* obj) = win 0x17fd90, m1 0x3016f0, imac 0x370380, ios 0x318d44;
+    void finishedLoadingIconAsync(cocos2d::CCObject* obj) = m1 0x2ff670, imac 0x36e3e0;
+    void finishedLoadingMGAsync(int index) = win 0x17fb70, m1 0x3013d8, imac 0x370070, ios 0x318a3c;
+    void finishedLoadingMGAsync1(cocos2d::CCObject* obj) = win 0x17faf0, m1 0x301338, imac 0x36fff0, ios 0x31899c;
+    void finishedLoadingMGAsync2(cocos2d::CCObject* obj) = win 0x17fb30, m1 0x301388, imac 0x370030, ios 0x3189ec;
     void followTwitch() = m1 0x2fe874, imac 0x36d1e0, ios 0x317578;
     void followTwitter() = m1 0x2fe774, imac 0x36d100, ios 0x317480;
-    TodoReturn framesForAnimation(int);
-    TodoReturn frameTimeForAnimation(int);
-    TodoReturn generateSecretNumber();
+    int framesForAnimation(int objectID) = win inline, m1 0x1f92d8, imac 0x24bbf0, ios inline {
+        if (auto frames = static_cast<cocos2d::CCInteger*>(m_framesForAnimation->objectForKey(objectID))) {
+            return frames->getValue();
+        }
+        return 1;
+    }
+    float frameTimeForAnimation(int objectID) = win inline, m1 0x1f9308, imac 0x24bc20, ios inline {
+        if (auto time = static_cast<cocos2d::CCFloat*>(m_frameTimeForAnimation->objectForKey(objectID))) {
+            return time->getValue();
+        }
+        return 1.f;
+    }
+    int generateSecretNumber() = win 0x182da0, m1 0x304174, imac 0x3732e0, ios 0x31a7a0;
 
-    const char* getBGTexture(int id) = ios 0x318e30, win inline, imac 0x370460, m1 0x3017dc {
-        return cocos2d::CCString::createWithFormat(
-            "game_bg_%02d_001.png",
-            std::clamp(id, 1, 59)
-        )->getCString();
+    const char* getBGTexture(int index) = ios 0x318e30, win inline, imac 0x370460, m1 0x3017dc {
+        index = std::clamp(index, 0, 59);
+        this->loadBackground(index);
+        return cocos2d::CCString::createWithFormat("game_bg_%02d_001.png", index)->getCString();
     }
 
     LevelEditorLayer* getEditorLayer() {
         return m_levelEditorLayer;
     }
 
-    const char* getFontFile(int) = win inline, ios 0x318378, imac 0x36fa00, m1 0x300d14 {
-        p0 = std::clamp(p0, 0, 59);
-        this->loadFont(p0);
-        if (p0 != 0) {
-            return cocos2d::CCString::createWithFormat("gjFont%02d.fnt", p0)->getCString();
+    const char* getFontFile(int index) = win inline, ios 0x318378, imac 0x36fa00, m1 0x300d14 {
+        index = std::clamp(index, 0, 59);
+        this->loadFont(index);
+        if (index != 0) {
+            return cocos2d::CCString::createWithFormat("gjFont%02d.fnt", index)->getCString();
         }
         return "bigFont.fnt";
     }
-    const char* getFontTexture(int) = win inline, m1 0x300d7c, imac 0x36fa60, ios 0x3183e0 {
-        p0 = std::clamp(p0, 0, 59);
-        this->loadFont(p0);
-        if (p0 != 0) {
-            return cocos2d::CCString::createWithFormat("gjFont%02d.png", p0)->getCString();
+    const char* getFontTexture(int index) = win inline, m1 0x300d7c, imac 0x36fa60, ios 0x3183e0 {
+        index = std::clamp(index, 0, 59);
+        this->loadFont(index);
+        if (index != 0) {
+            return cocos2d::CCString::createWithFormat("gjFont%02d.png", index)->getCString();
         }
         return "bigFont.png";
     }
@@ -8464,7 +8540,7 @@ class GameManager : GManager {
     GJBaseGameLayer* getGameLayer() {
         return m_gameLayer;
     }
-    bool getGameVariable(char const*) = ios 0x312374, win 0x1800f0, imac 0x363b40, m1 0x2f6894;
+    bool getGameVariable(char const* key) = ios 0x312374, win 0x1800f0, imac 0x363b40, m1 0x2f6894;
     bool getGameVariableDefault(const char* key, bool defaultValue) {
         //helper function
         auto object = static_cast<cocos2d::CCString*>(m_valueKeeper->objectForKey(std::string("gv_") + key));
@@ -8472,11 +8548,15 @@ class GameManager : GManager {
             return defaultValue;
         return object->boolValue();
     }
-    char const* getGTexture(int) = m1 0x301874, imac 0x370500;
-    int getIconRequestID() = ios 0x3182c0 {
+    const char* getGTexture(int index) = win inline, m1 0x301874, imac 0x370500, ios 0x318ec8 {
+        index = std::clamp(index, 0, 22);
+        this->loadGround(index);
+        return cocos2d::CCString::createWithFormat("groundSquare_%02d_001.png", index)->getCString();
+    }
+    int getIconRequestID() = win inline, m1 0x300b78, imac 0x36f850, ios 0x3182c0 {
         return m_iconRequestID++;
     }
-    int getIntGameVariable(char const*) = ios 0x319324, win 0x1806f0, imac 0x370ca0, m1 0x3020bc;
+    int getIntGameVariable(char const* key) = ios 0x319324, win 0x1806f0, imac 0x370ca0, m1 0x3020bc;
     int getIntGameVariableDefault(const char* key, int defaultValue) {
         //helper function
         auto object = static_cast<cocos2d::CCString*>(m_valueKeeper->objectForKey(std::string("gv_") + key));
@@ -8485,9 +8565,34 @@ class GameManager : GManager {
         return object->intValue();
     }
     gd::string getMenuMusicFile() = win 0x178700, m1 0x2f63c0, imac 0x3636f0, ios 0x312078;
-    TodoReturn getMGTexture(int);
-    TodoReturn getNextUniqueObjectKey();
-    TodoReturn getNextUsedKey(int, bool);
+    const char* getMGTexture(int index) = win inline, m1 0x301828, imac 0x3704b0, ios 0x318e7c {
+        index = std::clamp(index, 0, 3);
+        this->loadMiddleground(index);
+        return cocos2d::CCString::createWithFormat("fg_%02d_001.png", index)->getCString();
+    }
+    int getNextUniqueObjectKey() = win inline, m1 0x3021d0, imac 0x370db0, ios 0x3193b8 {
+        auto customKeys = this->getOrderedCustomObjectKeys();
+        auto result = -1;
+        CCObject* obj;
+        CCARRAY_FOREACH(customKeys, obj) {
+            auto key = static_cast<cocos2d::CCString*>(obj)->intValue();
+            if (key < result) result = key;
+        }
+        return result;
+    }
+    int getNextUsedKey(int index, bool up) = win inline, m1 0x3022cc, imac 0x370e90, ios 0x319474 {
+        auto previous = 0;
+        auto customKeys = this->getOrderedCustomObjectKeys();
+        for (int i = 0; i < customKeys->count(); i++) {
+            auto key = customKeys->stringAtIndex(i)->intValue();
+            if (key == index) {
+                if (up) return previous;
+                else return i + 1 < customKeys->count() ? customKeys->stringAtIndex(i + 1)->intValue() : 0;
+            }
+            previous = key;
+        }
+        return 0;
+    }
     cocos2d::CCArray* getOrderedCustomObjectKeys() = win inline, ios 0x319428, imac 0x370e40, m1 0x302280 {
         auto keys = m_customObjectDict->allKeys();
         if (keys->count() != 0) {
@@ -8566,27 +8671,48 @@ class GameManager : GManager {
         }
         return "StayInsideMe.mp3";
     }
-    bool getUGV(char const*) = ios 0x319198, win 0x180480, imac 0x370a10, m1 0x301df0;
-    void getUnlockForAchievement(gd::string, int&, UnlockType&) = win 0x179980, m1 0x2f7a94, imac 0x3650e0, ios 0x313158;
-    TodoReturn groundHasSecondaryColor(int);
-    TodoReturn iconAndTypeForKey(int, int&, int&);
-    gd::string iconKey(int, IconType) = win 0x1792b0, m1 0x2f7060, imac 0x364400, ios 0x3129e8;
-    UnlockType iconTypeToUnlockType(IconType) = ios 0x312cb0, win 0x1795c0, m1 0x2f7498, imac 0x364990;
-    bool isColorUnlocked(int, UnlockType) = ios 0x312fb8, win 0x1798c0, imac 0x364f40, m1 0x2f78a8;
+    bool getUGV(char const* key) = ios 0x319198, win 0x180480, imac 0x370a10, m1 0x301df0;
+    void getUnlockForAchievement(gd::string key, int& id, UnlockType& type) = win 0x179980, m1 0x2f7a94, imac 0x3650e0, ios 0x313158;
+    bool groundHasSecondaryColor(int index) = win inline, m1 0x301474, imac 0x370110, ios inline {
+        return index == 8 || index == 9 || index == 10 || index == 11;
+    }
+    void iconAndTypeForKey(int key, int& id, int& type) = win inline, m1 0x2ffa3c, imac 0x36e780, ios inline {
+        for (int i = 0; i < 8; i++) {
+            if (key < m_keyStartForIcon[i + 1]) {
+                id = key - m_keyStartForIcon[i] + 1;
+                type = i;
+                return;
+            }
+        }
+    }
+    gd::string iconKey(int id, IconType type) = win 0x1792b0, m1 0x2f7060, imac 0x364400, ios 0x3129e8;
+    UnlockType iconTypeToUnlockType(IconType type) = ios 0x312cb0, win 0x1795c0, m1 0x2f7498, imac 0x364990;
+    bool isColorUnlocked(int id, UnlockType type) = ios 0x312fb8, win 0x1798c0, imac 0x364f40, m1 0x2f78a8;
     bool isIconLoaded(int id, int type) = win inline, m1 0x2fec84, imac 0x36d8f0, ios 0x3179a4 {
         return m_iconLoadCounts[this->keyForIcon(id, type)] > 0;
     }
-    bool isIconUnlocked(int, IconType) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
-    TodoReturn itemPurchased(char const*);
+    bool isIconUnlocked(int id, IconType type) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
+    void itemPurchased(char const* key) = win inline, m1 0x2fdad8, imac 0x36c4f0, ios inline {}
     void joinDiscord() = m1 0x2fe8f4, imac 0x36d250, ios 0x3175f4;
     void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670;
-    int keyForIcon(int iconIdx, int iconEnum) {
-        return m_keyStartForIcon[iconEnum] + iconIdx - 1;
+    int keyForIcon(int id, int type) = win inline, m1 0x2fed5c, imac 0x36d9d0, ios inline {
+        return m_keyStartForIcon[type] + id - 1;
     }
-    TodoReturn levelIsPremium(int, int);
+    bool levelIsPremium(int, int) = win inline, m1 0x2fdadc, imac 0x36c500, ios inline { return false; }
     void likeFacebook() = m1 0x2fe6f4, imac 0x36d090, ios 0x317404;
-    void loadBackground(int) = win 0x17f880, m1 0x300f5c, imac 0x36fc40, ios 0x3185c0;
-    void loadBackgroundAsync(int);
+    void loadBackground(int index) = win 0x17f880, m1 0x300f5c, imac 0x36fc40, ios 0x3185c0;
+    void loadBackgroundAsync(int index) = win inline, m1 0x301000, imac 0x36fcf0, ios 0x318664 {
+        index = std::clamp(index, 0, 59);
+        if (m_loadingBG || m_loadedBgID == index) return;
+        m_loadingBG = true;
+        cocos2d::CCTextureCache::sharedTextureCache()->addImageAsync(
+            cocos2d::CCString::createWithFormat("game_bg_%02d_001.png", index)->getCString(),
+            this,
+            callfuncO_selector(GameManager::finishedLoadingBGAsync),
+            index,
+            cocos2d::kCCTexture2DPixelFormat_RGBA8888
+        );
+    }
 
     void loadDeathEffect(int id) = ios 0x318448, win inline, imac 0x36fac0, m1 0x300de4 {
         if (id < 1) id = 1;
@@ -8610,64 +8736,164 @@ class GameManager : GManager {
         }
     }
 
-    gd::string loadDpadFromString(UIButtonConfig&, gd::string) = win 0x183830, imac 0x375010, m1 0x305914, ios 0x31b20c;
-    TodoReturn loadDPadLayout(int, bool);
-    void loadFont(int) = m1 0x300c70, imac 0x36f960, win 0x17f7d0;
-    void loadGround(int) = win 0x17fc30, m1 0x301484, imac 0x370120, ios 0x318ad8;
-    void loadGroundAsync(int);
-    cocos2d::CCTexture2D* loadIcon(int, int, int) = ios 0x317bac, win 0x17ecf0, imac 0x36e7f0, m1 0x2ffaf4;
-    TodoReturn loadIconAsync(int, int, int, cocos2d::CCObject*);
-    void loadMiddleground(int) = win 0x17f9e0, m1 0x301148, imac 0x36fe10, ios 0x3187ac;
-    void loadMiddlegroundAsync(int);
-    void loadVideoSettings() = m1 0x306228, imac 0x375a90;
+    gd::string loadDpadFromString(UIButtonConfig& config, gd::string str) = win 0x183830, imac 0x375010, m1 0x305914, ios 0x31b20c;
+    void loadDPadLayout(int index, bool dual) = win 0x183290, m1 0x305514, imac 0x374bd0, ios 0x31af14;
+    void loadFont(int index) = ios 0x3182d4, m1 0x300c70, imac 0x36f960, win 0x17f7d0;
+    void loadGround(int index) = win 0x17fc30, m1 0x301484, imac 0x370120, ios 0x318ad8;
+    void loadGroundAsync(int index) = win inline, m1 0x301598, imac 0x370240, ios 0x318bec {
+        index = std::clamp(index, 0, 22);
+        if (m_loadingG || m_loadedGroundID == index) return;
+        m_loadingG = true;
+        auto hasSecondary = this->groundHasSecondaryColor(index);
+        m_finishedLoadingG1 = false;
+        m_finishedLoadingG2 = !hasSecondary;
+        cocos2d::CCTextureCache::sharedTextureCache()->addImageAsync(
+            cocos2d::CCString::createWithFormat("groundSquare_%02d_001.png", index)->getCString(),
+            this,
+            callfuncO_selector(GameManager::finishedLoadingGAsync1),
+            index,
+            cocos2d::kCCTexture2DPixelFormat_RGBA8888
+        );
+        if (!hasSecondary) return;
+        cocos2d::CCTextureCache::sharedTextureCache()->addImageAsync(
+            cocos2d::CCString::createWithFormat("groundSquare_%02d_2_001.png", index)->getCString(),
+            this,
+            callfuncO_selector(GameManager::finishedLoadingGAsync2),
+            index,
+            cocos2d::kCCTexture2DPixelFormat_RGBA8888
+        );
+    }
+    cocos2d::CCTexture2D* loadIcon(int id, int type, int requestID) = ios 0x317bac, win 0x17ecf0, imac 0x36e7f0, m1 0x2ffaf4;
+    void loadIconAsync(int id, int type, int requestID, cocos2d::CCObject* delegate) = m1 0x2fed70, imac 0x36d9f0;
+    void loadMiddleground(int index) = win 0x17f9e0, m1 0x301148, imac 0x36fe10, ios 0x3187ac;
+    void loadMiddlegroundAsync(int index) = win inline, m1 0x301244, imac 0x36ff10, ios 0x3188a8 {
+        index = std::clamp(index, 0, 3);
+        if (m_loadingG1 || m_loadedMG == index) return;
+        m_loadingG1 = true;
+        m_finishedLoadingMG1 = false;
+        m_finishedLoadingMG2 = false;
+        cocos2d::CCTextureCache::sharedTextureCache()->addImageAsync(
+            cocos2d::CCString::createWithFormat("fg_%02d_001.png", index)->getCString(),
+            this,
+            callfuncO_selector(GameManager::finishedLoadingMGAsync1),
+            index,
+            cocos2d::kCCTexture2DPixelFormat_RGBA8888
+        );
+        cocos2d::CCTextureCache::sharedTextureCache()->addImageAsync(
+            cocos2d::CCString::createWithFormat("fg_%02d_2_001.png", index)->getCString(),
+            this,
+            callfuncO_selector(GameManager::finishedLoadingMGAsync2),
+            index,
+            cocos2d::kCCTexture2DPixelFormat_RGBA8888
+        );
+    }
+    void loadVideoSettings() = win inline, m1 0x306228, imac 0x375a90, ios 0x31b65c {
+        auto application = cocos2d::CCApplication::sharedApplication();
+        application->toggleVerticalSync(this->getGameVariable("0030"));
+        application->setForceTimer(this->getGameVariable("0032"));
+        application->setSmoothFix(this->getGameVariable("0023"));
+    }
     void lockColor(int id, UnlockType type) = win inline, m1 0x2f7a20, imac 0x365080, ios 0x3130f4 {
         m_valueKeeper->removeObjectForKey(this->colorKey(id, type));
     }
     void lockIcon(int id, IconType type) = win inline, m1 0x2f75f8, imac 0x364c50, ios 0x312e20 {
         m_valueKeeper->removeObjectForKey(this->iconKey(id, type));
     }
-    TodoReturn logLoadedIconInfo();
-    void openEditorGuide();
+    void logLoadedIconInfo() = m1 0x300b8c, imac 0x36f870;
+    void openEditorGuide() = win inline, m1 0x2fe9f4, imac 0x36d330, ios 0x3176ec {
+        m_showedEditorGuide = true;
+        cocos2d::CCApplication::sharedApplication()->openURL("https://www.boomlings.com/GDEditor");
+    }
     void playMenuMusic() = win 0x178810, m1 0x2f66b4, imac 0x3639a0, ios 0x312208;
-    int playSFXTrigger(SFXTriggerGameObject*) = ios 0x31260c, imac 0x363ea0, m1 0x2f6c50, win 0x178ca0;
-    void prepareDPadSettings() = imac 0x375340, m1 0x305c54, win 0x183aa0;
-    TodoReturn printGJLog();
-    void queueReloadMenu() = m1 0x3092fc, imac 0x378db0;
-    TodoReturn rateGame();
-    void recountUserStats(gd::string) = ios 0x319eac, m1 0x3032cc, imac 0x372010, win 0x181ba0;
+    int playSFXTrigger(SFXTriggerGameObject* object) = ios 0x31260c, imac 0x363ea0, m1 0x2f6c50, win 0x178ca0;
+    void prepareDPadSettings() = ios 0x31b454, imac 0x375340, m1 0x305c54, win 0x183aa0;
+    void printGJLog() = win inline, m1 0x3043a0, imac 0x3735f0, ios 0x31a844 {}
+    void queueReloadMenu() = win inline, m1 0x3092fc, imac 0x378db0, ios 0x31db1c {
+        m_pActionManager->addAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(.1f),
+            cocos2d::CCCallFunc::create(this, callfunc_selector(GameManager::reloadMenu)),
+            nullptr
+        ), this, false);
+    }
+    void rateGame() = win inline, m1 0x2fe6c0, imac 0x36d060, ios 0x3173d0 {
+        if (GameToolbox::doWeHaveInternet()) {
+            GameToolbox::openAppPage();
+            m_ratedGame = true;
+            m_hasRatedGame = true;
+        }
+    }
+    void recountUserStats(gd::string str) = ios 0x319eac, m1 0x3032cc, imac 0x372010, win 0x181ba0;
     void reloadAll(bool switchingModes, bool toFullscreen, bool borderless, bool fix, bool unused) = ios 0x31dbbc, win 0x187490, imac 0x378ee0, m1 0x309444;
     void reloadAll(bool switchingModes, bool toFullscreen, bool unused) {
         return this->reloadAll(switchingModes, toFullscreen, false, false, unused);
     }
     void reloadAllStep2() = ios 0x31dc60, win 0x187540, imac 0x378f90, m1 0x3094e8;
-    void reloadAllStep3() = win 0x1876a0;
-    void reloadAllStep4() = win 0x1877b0;
+    void reloadAllStep3() = win 0x1876a0, m1 0x3095d0, imac 0x3790a0, ios 0x31dd48;
+    void reloadAllStep4() = win 0x1877b0, m1 0x309654, imac 0x379120, ios 0x31ddcc;
     void reloadAllStep5() = win 0x187850, imac 0x379180, m1 0x3096c0, ios 0x31de38;
-    void reloadMenu() = win 0x187460, m1 0x309370, imac 0x378e10;
-    TodoReturn removeCustomObject(int);
-    TodoReturn removeIconDelegate(int);
-    TodoReturn reorderKey(int, bool);
-    void reportAchievementWithID(char const*, int, bool) = ios 0x313e4c, win 0x17afd0, imac 0x366830, m1 0x2f9160;
+    void reloadMenu() = win 0x187460, m1 0x309370, imac 0x378e10, ios 0x31db8c;
+    void removeCustomObject(int key) = win inline, m1 0x302ac0, imac 0x3716e0, ios 0x319870 {
+        m_customObjectDict->removeObjectForKey(cocos2d::CCString::createWithFormat("%i", key)->getCString());
+    }
+    void removeIconDelegate(int requestID) = win inline, m1 0x3007f0, imac 0x36f4d0, ios 0x3180e4 {
+        for (auto it = m_iconDelegates.begin(); it != m_iconDelegates.end(); it++) {
+            auto& delegates = it->second;
+            for (int i = 0; i < delegates.size();) {
+                if (static_cast<SimplePlayer*>(delegates[i])->m_iconRequestID == requestID) {
+                    delegates.erase(delegates.begin() + i);
+                }
+                else i++;
+            }
+        }
+    }
+    int reorderKey(int index, bool up) = win 0x180aa0, m1 0x302740, imac 0x371320, ios 0x31969c;
+    void reportAchievementWithID(char const* key, int percent, bool dontNotify) = ios 0x313e4c, win 0x17afd0, imac 0x366830, m1 0x2f9160;
     void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = ios 0x313a44, win 0x17a5f0, m1 0x2f87b4, imac 0x365da0;
-    void resetAchievement(gd::string) = win 0x17a390, m1 0x2f8614, imac 0x365c30, ios 0x313930;
-    TodoReturn resetAdTimer();
-    TodoReturn resetAllIcons();
-    void resetCoinUnlocks() = win 0x17db50;
-    TodoReturn resetDPadSettings(bool);
-    cocos2d::CCSize resolutionForKey(int) = win 0x187890, m1 0x309710, imac 0x3791c0, ios 0x31de78;
-    TodoReturn resumeAudio();
-    TodoReturn resumeAudioDelayed();
-    void returnToLastScene(GJGameLevel*) = ios 0x31d818, win 0x187030, m1 0x308f8c, imac 0x3789d0;
-    TodoReturn rewardedVideoAdFinished(int);
-    TodoReturn rewardedVideoHidden();
-    TodoReturn rewardedVideoHiddenDelayed();
+    void resetAchievement(gd::string key) = win 0x17a390, m1 0x2f8614, imac 0x365c30, ios 0x313930;
+    void resetAdTimer() = win inline, m1 0x2fdfd8, imac 0x36c9a0, ios inline {
+        m_adTimer = 0.0;
+    }
+    void resetAllIcons() = win 0x180e80, m1 0x302be8, imac 0x371800, ios 0x319900;
+    void resetCoinUnlocks() = win 0x17db50, m1 0x2fc45c, imac 0x36afa0, ios 0x316408;
+    void resetDPadSettings(bool dual) = win inline, m1 0x305fb4, imac 0x375730, ios 0x31b610 {
+        if (dual) {
+            m_dpad2.reset();
+            m_dpad3.reset();
+            m_dpad4.resetOneBtn();
+            m_dpad5.resetOneBtn();
+        }
+        else m_dpad1.reset();
+    }
+    cocos2d::CCSize resolutionForKey(int key) = win 0x187890, m1 0x309710, imac 0x3791c0, ios 0x31de78;
+    void resumeAudio() = win inline, m1 0x2fe204, imac 0x36cc00, ios inline {
+        auto engine = FMODAudioEngine::sharedEngine();
+        engine->resumeAudio();
+        engine->resumeAllAudio();
+        AppDelegate::get()->resumeSound();
+        engine->m_system->update();
+    }
+    void resumeAudioDelayed() = win inline, m1 0x2fe180, imac 0x36cb90, ios inline {
+        auto action = cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(.05f),
+            cocos2d::CCCallFunc::create(this, callfunc_selector(GameManager::resumeAudio)),
+            nullptr
+        );
+        action->setTag(11);
+        m_pActionManager->addAction(action, this, false);
+    }
+    void returnToLastScene(GJGameLevel* level) = ios 0x31d818, win 0x187030, m1 0x308f8c, imac 0x3789d0;
+    void rewardedVideoAdFinished(int) = m1 0x2fe2b8, imac 0x36cc90;
+    void rewardedVideoHidden() = m1 0x2fe3fc, imac 0x36cdb0;
+    void rewardedVideoHiddenDelayed() = m1 0x2fe378, imac 0x36cd40;
     // partially inlined on windows
     bool safePopScene() = ios 0x31dab8, win 0x1873e0, m1 0x309298, imac 0x378d40;
-    TodoReturn saveAdTimer();
-    TodoReturn saveDPadLayout(int, bool);
-    void setGameVariable(char const*, bool) = ios 0x318f14, win 0x17fe90, imac 0x370550, m1 0x3018c0;
-    void setHasRatingPower(int);
-    void setIntGameVariable(char const*, int) = ios 0x319274, win 0x1805f0, imac 0x370b70, m1 0x301f7c;
+    void saveAdTimer() = m1 0x2fdff4, imac 0x36c9e0;
+    void saveDPadLayout(int index, bool dual) = win 0x182ed0, m1 0x3043ac, imac 0x373620, ios 0x31a850;
+    void setGameVariable(char const* key, bool value) = ios 0x318f14, win 0x17fe90, imac 0x370550, m1 0x3018c0;
+    void setHasRatingPower(int hasRP) {
+        m_hasRP = hasRP;
+    }
+    void setIntGameVariable(char const* key, int value) = ios 0x319274, win 0x1805f0, imac 0x370b70, m1 0x301f7c;
     void setPlayerBall(int id) {
         m_playerBall = id;
     }
@@ -8716,43 +8942,115 @@ class GameManager : GManager {
     void setPlayerSwing(int id) {
         m_playerSwing = id;
     }
-    void setPlayerUserID(int);
-    void setUGV(char const*, bool) = ios 0x3190a8, win 0x180320, m1 0x301c3c, imac 0x370890;
+    void setPlayerUserID(int id) {
+        m_playerUserID = id;
+    }
+    void setUGV(char const* key, bool value) = ios 0x3190a8, win 0x180320, m1 0x301c3c, imac 0x370890;
     void setupGameAnimations() = win 0x1a8870, m1 0x1fa990, imac 0x24d5f0, ios 0x349e78;
-    gd::string sheetNameForIcon(int, int) = win 0x17f470, imac 0x36dcb0, m1 0x2ff040, ios 0x317a00;
-    TodoReturn shortenAdTimer(float);
-    TodoReturn shouldShowInterstitial(int, int, int);
-    void showInterstitial();
-    void showInterstitialForced();
-    void showMainMenuAd();
-    void startUpdate() = m1 0x2f6378, imac 0x3636a0;
+    gd::string sheetNameForIcon(int id, int type) = win 0x17f470, imac 0x36dcb0, m1 0x2ff040, ios 0x317a00;
+    void shortenAdTimer(float time) = win inline, m1 0x2fdfe0, imac 0x36c9c0, ios inline {
+        m_adTimer -= time;
+    }
+    bool shouldShowInterstitial(int, int, int) = win inline, m1 0x2fe050, imac 0x36ca40, ios inline { return false; }
+    bool showInterstitial() = win inline, m1 0x2fe058, imac 0x36ca50, ios inline { return true; }
+    bool showInterstitialForced() = win inline, m1 0x2fe104, imac 0x36cb00, ios inline { return false; }
+    bool showMainMenuAd() = win inline, m1 0x2fdfd0, imac 0x36c990, ios inline { return false; }
+    void startUpdate() = win inline, m1 0x2f6378, imac 0x3636a0, ios 0x312030 {
+        cocos2d::CCDirector::sharedDirector()->getScheduler()->scheduleSelector(
+            schedule_selector(GameManager::update), this, 0.f, kCCRepeatForever, 0.f, false);
+    }
     gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0, ios 0x3195f0;
     void subYouTube() = m1 0x2fe7f4, imac 0x36d170, ios 0x3174fc;
-    TodoReturn switchCustomObjects(int, int);
-    TodoReturn switchScreenMode(bool, bool, bool, bool);
-    void syncPlatformAchievements();
-    bool toggleGameVariable(char const*) = ios 0x319068, win 0x180270, imac 0x3707d0, m1 0x301b54;
-    TodoReturn tryCacheAd();
-    TodoReturn tryShowInterstitial(int, int, int);
-    TodoReturn unloadBackground();
-    void unloadIcon(int, int, int) = ios 0x317ea4, win 0x17f050, m1 0x30016c, imac 0x36ee80;
-    void unloadIcons(int) = win 0x17f310, m1 0x3008e4, imac 0x36f5c0, ios 0x3181c0;
+    void switchCustomObjects(int key1, int key2) = win 0x180ba0, m1 0x30278c, imac 0x371360, ios 0x3196e8;
+    void switchScreenMode(bool fullscreen, bool borderless, bool fix, bool) = win inline, m1 0x3093a0, imac 0x378e40, ios inline {
+        this->reloadAll(true, fullscreen, borderless, fix, p3);
+    }
+    void syncPlatformAchievements() = win inline, m1 0x2fea20, imac 0x36d360, ios 0x317718 {}
+    bool toggleGameVariable(char const* key) = ios 0x319068, win 0x180270, imac 0x3707d0, m1 0x301b54;
+    void tryCacheAd() = m1 0x2fe060, imac 0x36ca60;
+    void tryShowInterstitial(int, int, int) = win inline, m1 0x2fe04c, imac 0x36ca30, ios inline {}
+    void unloadBackground() = win inline, m1 0x300ec4, imac 0x36fba0, ios 0x318528 {
+        if (m_loadedBgID == 0) return;
+        cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(
+            cocos2d::CCString::createWithFormat("game_bg_%02d_001.png", m_loadedBgID)->getCString());
+        m_loadedBgID = 0;
+        auto fileUtils = cocos2d::CCFileUtils::sharedFileUtils();
+        for (int i = 1; i < 60; i++) {
+            fileUtils->removeFullPath(cocos2d::CCString::createWithFormat("game_bg_%02d_001.png", i)->getCString());
+        }
+    }
+    void unloadIcon(int id, int type, int requestID) = ios 0x317ea4, win 0x17f050, m1 0x30016c, imac 0x36ee80;
+    void unloadIcons(int requestID) = win 0x17f310, m1 0x3008e4, imac 0x36f5c0, ios 0x3181c0;
     void unlockColor(int id, UnlockType type) = win inline, m1 0x2f7974, imac 0x364ff0, ios 0x31305c {
         m_valueKeeper->setObject(cocos2d::CCString::create("1"), this->colorKey(id, type));
     }
-    TodoReturn unlockedPremium();
+    void unlockedPremium() = win inline, m1 0x2fdad4, imac 0x36c4e0, ios inline {}
     void unlockIcon(int id, IconType type) = win inline, m1 0x2f754c, imac 0x364bc0, ios 0x312d88 {
         m_valueKeeper->setObject(cocos2d::CCString::create("1"), this->iconKey(id, type));
     }
-    IconType unlockTypeToIconType(int) = ios 0x312d64, win 0x1796e0, imac 0x364ba0, m1 0x2f7528;
-    void updateCustomFPS() = win 0x187cc0, m1 0x3099c4, imac 0x379480;
-    TodoReturn updateMusic();
-    void verifyAchievementUnlocks() = m1 0x2f93b0, imac 0x366a80;
-    void verifyCoinUnlocks() = win 0x17b580;
-    TodoReturn verifyStarUnlocks();
-    TodoReturn verifySyncedCoins();
-    TodoReturn videoAdHidden();
-    TodoReturn videoAdShowed();
+    IconType unlockTypeToIconType(int type) = ios 0x312d64, win 0x1796e0, imac 0x364ba0, m1 0x2f7528;
+    void updateCustomFPS() = win 0x187cc0, m1 0x3099c4, imac 0x379480, ios 0x31e020;
+    void updateMusic() = win inline, m1 0x2fe67c, imac 0x36d010, ios 0x31738c {
+        auto engine = FMODAudioEngine::sharedEngine();
+        engine->setBackgroundMusicVolume(m_bgVolume);
+        engine->setEffectsVolume(m_sfxVolume);
+        engine->m_musicOffset = m_timeOffset;
+    }
+    void verifyAchievementUnlocks() = win inline, m1 0x2f93b0, imac 0x366a80, ios 0x313ef4 {
+        auto achievementManager = AchievementManager::sharedState();
+        auto allAchievements = achievementManager->getAllAchievements();
+        for (int i = 0; i < allAchievements->count(); i++) {
+            auto achievement = static_cast<cocos2d::CCDictionary*>(allAchievements->objectAtIndex(i));
+            auto key = static_cast<cocos2d::CCString*>(achievement->objectForKey("identifier"))->getCString();
+            if (achievementManager->isAchievementEarned(key)) this->completedAchievement(key);
+        }
+    }
+    void verifyCoinUnlocks() = win 0x17b580, m1 0x2f95c8, imac 0x366ca0, ios 0x31405c;
+    void verifyStarUnlocks() = win inline, m1 0x2f9568, imac 0x366c40, ios 0x314004 {
+        auto glm = GameLevelManager::sharedState();
+        auto gsm = GameStatsManager::sharedState();
+        for (int i = 1; i < 23; i++) {
+            auto level = glm->getMainLevel(i, false);
+            if (gsm->hasCompletedLevel(level)) gsm->completedStarLevel(level);
+        }
+    }
+    void verifySyncedCoins() = win inline, m1 0x2fd758, imac 0x36c110, ios inline {
+        auto coins = 0;
+        auto glm = GameLevelManager::sharedState();
+        auto gsm = GameStatsManager::sharedState();
+        for (int i = 1; i < 23; i++) {
+            auto level = glm->getMainLevel(i, false);
+            if (gsm->hasCompletedLevel(level)) {
+                if (gsm->hasSecretCoin(level->getCoinKey(1))) coins++;
+                if (gsm->hasSecretCoin(level->getCoinKey(2))) coins++;
+                if (gsm->hasSecretCoin(level->getCoinKey(3))) coins++;
+            }
+        }
+        for (int i = 5001; i < 5005; i++) {
+            auto level = glm->getMainLevel(i, false);
+            if (gsm->hasCompletedLevel(level)) {
+                if (gsm->hasSecretCoin(level->getCoinKey(1))) coins++;
+                if (gsm->hasSecretCoin(level->getCoinKey(2))) coins++;
+                if (gsm->hasSecretCoin(level->getCoinKey(3))) coins++;
+            }
+        }
+        if (gsm->hasSecretCoin("secret04")) coins++;
+        if (gsm->hasSecretCoin("secret06")) coins++;
+        if (gsm->hasSecretCoin("secretB03")) coins++;
+        gsm->setStatIfHigher("8", coins);
+    }
+    void videoAdHidden() = win inline, m1 0x2fe150, imac 0x36cb60, ios inline {
+        if (m_musicPaused) FMODAudioEngine::sharedEngine()->resumeAllMusic();
+        m_musicPaused = false;
+    }
+    void videoAdShowed() = win inline, m1 0x2fe10c, imac 0x36cb10, ios inline {
+        auto engine = FMODAudioEngine::sharedEngine();
+        if (engine->isMusicPlaying(0)) {
+            engine->pauseAllMusic(true);
+            m_musicPaused = true;
+        }
+        else m_musicPaused = false;
+    }
 
     cocos2d::CCDictionary* m_mainFramesForAnimation;
     cocos2d::CCDictionary* m_detailFramesForAnimation;
@@ -8806,7 +9104,7 @@ class GameManager : GManager {
     bool m_clickedDiscord;
     bool m_clickedReddit;
     double m_socialsDuration;
-    bool m_showedAd; //didPauseBGMusic
+    bool m_musicPaused; //didPauseBGMusic
     bool m_wasHigh;
     bool m_editorEnabled;
     int m_sceneEnum;
@@ -8860,7 +9158,7 @@ class GameManager : GManager {
     bool m_loadingG;
     bool m_loadingG1;
     bool m_finishedLoadingG1;
-    bool m_shouldLoadG1;
+    bool m_finishedLoadingG2;
     bool m_finishedLoadingMG1;
     bool m_finishedLoadingMG2;
     int m_sessionAttempts;
@@ -8894,7 +9192,7 @@ class GameManager : GManager {
     gd::vector<int> m_keyStartForIcon;
     gd::map<int, gd::vector<cocos2d::CCObject*>> m_iconDelegates;
     int m_iconRequestID;
-    cocos2d::CCArray* m_unkArray;
+    cocos2d::CCArray* m_gjLog;
     RewardedVideoDelegate* m_rewardedVideoDelegate;
     SearchType m_localSearchType;
     SearchType m_savedSearchType;
@@ -9649,7 +9947,7 @@ class GameObject : CCSpritePlus {
             id == 2052 || id == 2053 || id == 2054 || id == 2055 || id == 2867 || id == 2868 || id == 2869 || id == 2870 || id == 2871 || id == 2872 || id == 2875 || id == 2876 ||
             id == 2877 || id == 2878 || id == 2880 || id == 2882 || id == 2883 || id == 2885 || id == 2886 || id == 2887;
     }
-    bool usesSpecialAnimation() = win inline, m1 0x1f93c8, imac 0x24c010, ios inline {
+    bool usesSpecialAnimation() = win inline, m1 0x1f93c8, imac 0x24c010, ios 0x348be8 {
         auto id = m_objectID;
         return id == 1591 || id == 1593 || id == 1839 || id == 1840 || id == 1841 || id == 1842 || id == 2892 || id == 2893;
     }
@@ -28959,8 +29257,29 @@ class TutorialPopup : FLAlertLayer {
 
 [[link(android)]]
 class UIButtonConfig {
-    void reset() = win 0x1779e0;
-    void resetOneBtn() = win 0x177a50;
+    void reset() = win 0x1779e0, ios 0x31b4e8 {
+        m_width = 280;
+        m_height = 120;
+        m_deadzone = 0.f;
+        m_scale = 1.f;
+        m_opacity = 255;
+        m_radius = 10.f;
+        m_modeB = false;
+        m_position.x = 95.f;
+        m_position.y = 36.f;
+        m_oneButton = false;
+        m_player2 = false;
+        m_snap = false;
+        m_split = false;
+    }
+    void resetOneBtn() = win 0x177a50, ios 0x31b560 {
+        this->reset();
+        m_width = 200;
+        m_height = 200;
+        m_position.x = 95.f;
+        m_position.y = 196.f;
+        m_oneButton = true;
+    }
 
     int m_width;
     int m_height;
