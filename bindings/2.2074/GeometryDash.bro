@@ -16967,28 +16967,29 @@ class GraphicsReloadLayer : cocos2d::CCLayer {
     // virtual ~GraphicsReloadLayer();
     GraphicsReloadLayer() {}
 
-    static GraphicsReloadLayer* create(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool windowed, bool borderless, bool fix, bool changedResolution) = win inline {
+    static GraphicsReloadLayer* create(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool fullscreen, bool borderless, bool fix, bool changedResolution) = win inline, m1 0x6a2b68, imac 0x78f1f0, ios inline {
         auto ret = new GraphicsReloadLayer();
-        if (ret->init(quality, resolution, windowed, borderless, fix, changedResolution)) {
+        if (ret->init(quality, resolution, fullscreen, borderless, fix, changedResolution)) {
             ret->autorelease();
             return ret;
         }
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool windowed, bool borderless, bool fix, bool changedResolution) = win inline {
+    static cocos2d::CCScene* scene(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool fullscreen, bool borderless, bool fix, bool changedResolution) = win inline, m1 0x6a2ac8, imac 0x78f170, ios inline {
         auto scene = cocos2d::CCScene::create();
-        auto layer = GraphicsReloadLayer::create(quality, resolution, windowed, borderless, fix, changedResolution);
+        AppDelegate::get()->m_runningScene = scene;
+        auto layer = GraphicsReloadLayer::create(quality, resolution, fullscreen, borderless, fix, changedResolution);
         scene->addChild(layer);
         return scene;
     }
 
-    bool init(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool windowed, bool borderless, bool fix, bool changedResolution) = win inline {
+    bool init(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool fullscreen, bool borderless, bool fix, bool changedResolution) = win inline, m1 0x6a2ccc, imac 0x78f390, ios inline {
         if (!CCLayer::init()) return false;
         m_quality = quality;
         m_resolution = resolution;
         m_changedResolution = changedResolution;
-        m_windowed = windowed;
+        m_fullscreen = fullscreen;
         m_borderless = borderless;
         m_fix = fix;
         this->runAction(cocos2d::CCSequence::create(
@@ -16998,11 +16999,31 @@ class GraphicsReloadLayer : cocos2d::CCLayer {
         ));
         return true;
     }
-    void performReload() = win 0x366490;
+    void performReload() = win 0x366490, m1 0x6a2d90, imac 0x78f470, ios inline {
+        auto director = cocos2d::CCDirector::sharedDirector();
+        director->replaceScene(cocos2d::CCScene::create());
+        auto oldQuality = director->getLoadedTextureQuality();
+        director->updateContentScale(m_quality);
+        auto newQuality = director->getLoadedTextureQuality();
+        auto gameManager = GameManager::sharedState();
+        if (gameManager->getGameVariable("0025") == m_fullscreen) {
+            gameManager->setGameVariable("0025", !m_fullscreen);
+            gameManager->setGameVariable("0170", m_borderless);
+            gameManager->setGameVariable("0175", m_fix);
+            gameManager->switchScreenMode(m_fullscreen, m_borderless, m_fix, true);
+        }
+        else if (!m_fullscreen || m_borderless == gameManager->getGameVariable("0170") || m_fix == gameManager->getGameVariable("0175")) {
+            gameManager->setGameVariable("0170", m_borderless);
+            gameManager->setGameVariable("0175", m_fix);
+            if (oldQuality == newQuality) gameManager->queueReloadMenu();
+            else gameManager->reloadAll(false, false, false, false, true);
+        }
+        if (gameManager->getGameVariable("0115")) director->toggleShowFPS(1, "chatFont.fnt", { 0.f, 0.f });
+    }
 
     cocos2d::TextureQuality m_quality;
     cocos2d::CCSize m_resolution;
-    bool m_windowed;
+    bool m_fullscreen;
     bool m_borderless;
     bool m_fix;
     bool m_changedResolution;
@@ -29864,7 +29885,7 @@ class VideoOptionsLayer : FLAlertLayer {
     cocos2d::CCLabelBMFont* m_borderlessLabel;
     CCMenuItemToggler* m_fixToggle;
     cocos2d::CCLabelBMFont* m_fixLabel;
-    bool m_windowed;
+    bool m_fullscreen;
     bool m_borderless;
     bool m_fix;
     int m_currentResolution;
