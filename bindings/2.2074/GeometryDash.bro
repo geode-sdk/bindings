@@ -643,11 +643,60 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
     virtual void animationFinished(char const*) = win 0x48b6f0, imac 0x1a65c0, m1 0x168758, ios 0x37cec0;
     virtual void displayFrameChanged(cocos2d::CCObject*, gd::string) = win 0x48c9d0, imac 0x1a7930, m1 0x169858, ios 0x37d924;
 
-    static gd::string animationForID(int, int) = win 0x48cca0, m1 0x169d08, imac 0x1a7df0, ios 0x37dd48;
-    static float getTweenTime(int, int) = win inline, m1 0x169ff4, imac 0x1a8050, ios inline { return .05f; }
-    bool init(int) = win 0x48a360, m1 0x16773c, imac 0x1a5560, ios 0x37c0a4;
-    void playAnimation(int) = win 0x48cb20, m1 0x169b90, imac 0x1a7c90, ios 0x37dbe8;
-    void setupAnimatedSize(int) = m1 0x1678d8, imac 0x1a5700, ios 0x37c240;
+    static gd::string animationForID(int type, int id) = win 0x48cca0, m1 0x169d08, imac 0x1a7df0, ios 0x37dd48;
+    static float getTweenTime(int type, int id) = win inline, m1 0x169ff4, imac 0x1a8050, ios inline { return .05f; }
+    bool init(int id) = win 0x48a360, m1 0x16773c, imac 0x1a5560, ios 0x37c0a4;
+    void playAnimation(int type) = win 0x48cb20, m1 0x169b90, imac 0x1a7c90, ios 0x37dbe8;
+    void setupAnimatedSize(int id) = win inline, m1 0x1678d8, imac 0x1a5700, ios 0x37c240 {
+        auto width = 10.f;
+        auto height = 10.f;
+        switch (id) {
+            case 918:
+                m_hasContentSize = true;
+                m_objectRadius = 24.f;
+                m_lastSize.width = 80.f;
+                m_lastSize.height = 80.f;
+                width = 48.f;
+                height = 48.f;
+                break;
+            case 919:
+                width = 25.f;
+                height = 6.f;
+                break;
+            case 1327:
+                m_hasContentSize = true;
+                m_lastSize.width = 35.f;
+                m_lastSize.height = 30.f;
+                width = 8.f;
+                height = 8.f;
+                break;
+            case 1328:
+                m_hasContentSize = true;
+                m_lastSize.width = 35.f;
+                m_lastSize.height = 40.f;
+                width = 8.f;
+                height = 15.f;
+                break;
+            case 1584:
+                m_hasContentSize = true;
+                m_lastSize.width = 60.f;
+                m_lastSize.height = 80.f;
+                width = 8.f;
+                height = 8.f;
+                break;
+            case 2012:
+                m_hasContentSize = true;
+                m_objectRadius = 15.f;
+                m_lastSize.width = 45.f;
+                m_lastSize.height = 45.f;
+                width = 8.f;
+                height = 8.f;
+                break;
+        }
+        m_width = width * m_scaleX;
+        m_height = height * m_scaleY;
+        this->setContentSize({ width, height });
+    }
     void setupChildSprites() = win 0x48a8f0, m1 0x167a68, imac 0x1a58c0, ios 0x37c3e4;
     void updateChildSpriteColor(cocos2d::ccColor3B color) = win inline, m1 0x16834c, imac 0x1a6160, ios 0x37cadc {
         if (!m_childSprite) return;
@@ -19041,7 +19090,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateObjectColors(cocos2d::CCArray* gameObjects) = ios 0x35ea84, win 0x2d1790, imac 0xeb700, m1 0xd102c;
     void updateOptions() = ios 0x357150, win 0x2ca8f0, m1 0xc4394, imac 0xdc880;
     void updatePreviewAnim();
-    void updatePreviewParticle(ParticleGameObject*) = imac 0x1a1820, m1 0x1642bc, win 0x2d8fd0;
+    void updatePreviewParticle(ParticleGameObject*) = win 0x2d8fd0, m1 0xcfd28, imac 0xea0a0, ios 0x35da6c;
     void updatePreviewParticles() = ios 0x35fd34, win 0x2d8ec0, m1 0xd2838, imac 0xecfe0;
     void updateToggledGroups() = win 0x2d5b50;
     TodoReturn validGroup(GameObject*, bool);
@@ -21782,8 +21831,17 @@ class ParentalOptionsLayer : FLAlertLayer {
 [[link(android)]]
 class ParticleGameObject : EnhancedGameObject {
     // virtual ~ParticleGameObject();
+    ParticleGameObject() {
+        m_updatedParticleData = false;
+        m_hasUniformObjectColor = false;
+        m_popupPage = 0;
+        m_shouldQuickStart = false;
+        m_respawnResult = -1.f;
+        m_startingRespawn = false;
+        m_notPreviewing = false;
+    }
 
-    static ParticleGameObject* create() = win 0x487420;
+    static ParticleGameObject* create() = win 0x487420, m1 0x163240, imac 0x1a06e0, ios 0x379970;
 
     virtual bool init() = win 0x487540, m1 0x1633a0, imac 0x1a08c0, ios 0x379a74;
     virtual void setScaleX(float) = win 0x488900, m1 0x164424, imac 0x1a1960, ios 0x37a8d4;
@@ -21811,15 +21869,26 @@ class ParticleGameObject : EnhancedGameObject {
     virtual void updateSyncedAnimation(float, int) = win 0x488e60, imac 0x1a1df0, m1 0x16489c, ios 0x37acd4;
     virtual void updateAnimateOnTrigger(bool) = win 0x488fd0, imac 0x1a1f40, m1 0x1649d8, ios 0x37adfc;
 
-    void applyParticleSettings(cocos2d::CCParticleSystemQuad*) = win 0x487b50;
-    TodoReturn createAndAddCustomParticle();
-    void createParticlePreviewArt() = win 0x4882e0, m1 0x164140, imac 0x1a16c0;
-    void setParticleString(gd::string) = win 0x4880b0, imac 0x1a14a0, m1 0x163f24, ios 0x37a4ac;
+    void applyParticleSettings(cocos2d::CCParticleSystemQuad* particle) = win 0x487b50, m1 0x1638e0, imac 0x1a0ec0, ios 0x379f4c;
+    void createAndAddCustomParticle() = win inline, m1 0x163584, imac 0x1a0b20, ios 0x379bfc {
+        if (!m_particleData.empty()) {
+            m_hasParticles = true;
+            this->updateParticleStruct();
+            m_hasParticles = true;
+        }
+    }
+    void createParticlePreviewArt() = win 0x4882e0, m1 0x164140, imac 0x1a16c0, ios 0x37a648;
+    void setParticleString(gd::string str) = win 0x4880b0, imac 0x1a14a0, m1 0x163f24, ios 0x37a4ac;
     void updateParticle() = win 0x488140, imac 0x1a1530, m1 0x163fb8, ios 0x37a4f8;
-    void updateParticleAngle(float, cocos2d::CCParticleSystemQuad*) = win 0x4887d0, m1 0x163c2c, imac 0x1a11d0;
-    void updateParticlePreviewArtOpacity(float) = win 0x488470;
-    void updateParticleScale(float);
-    void updateParticleStruct() = m1 0x16375c, imac 0x1a0d10, win inline {
+    void updateParticleAngle(float angle, cocos2d::CCParticleSystemQuad* particle) = win 0x4887d0, m1 0x163c2c, imac 0x1a11d0, ios 0x37a280;
+    void updateParticlePreviewArtOpacity(float opacity) = win 0x488470, m1 0x1642bc, imac 0x1a1820, ios 0x37a76c;
+    void updateParticleScale(float scale) = win inline, m1 0x1640e0, imac 0x1a1660, ios 0x37a5e8 {
+        if (m_particle) {
+            this->updateParticleAngle(this->getRotation(), m_particle);
+            m_particle->loadScaledDefaults(std::abs(scale));
+        }
+    }
+    void updateParticleStruct() = ios 0x379dc8, m1 0x16375c, imac 0x1a0d10, win inline {
         if (!m_updatedParticleData) return;
         m_updatedParticleData = false;
         GameToolbox::particleStringToStruct(m_particleData, m_particleStruct);
@@ -28624,7 +28693,7 @@ class SmartGameObject : GameObject {
         m_referenceOnly = false;
     }
 
-    static SmartGameObject* create(char const* frame) = win inline {
+    static SmartGameObject* create(char const* frame) = win inline, m1 0x16299c, imac 0x19fd60, ios 0x379590 {
         auto ret = new SmartGameObject();
         if (ret->init(frame)) {
             ret->autorelease();
@@ -28637,7 +28706,7 @@ class SmartGameObject : GameObject {
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4873d0, imac 0x1a0680, m1 0x1631f0, ios 0x379920;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x487260, m1 0x162cf4, imac 0x1a00c0, ios 0x37978c;
 
-    bool init(char const* frame) = win inline {
+    bool init(char const* frame) = win inline, m1 0x162a64, imac 0x19fe30, ios 0x379634 {
         if (!GameObject::init(frame)) return false;
         m_baseFrame = frame;
         m_classType = GameObjectClassType::Smart;
@@ -29005,8 +29074,20 @@ class SpawnTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class SpecialAnimGameObject : EnhancedGameObject {
     // virtual ~SpecialAnimGameObject();
+    SpecialAnimGameObject() {
+        m_skipMainColorUpdate = false;
+        m_skipSecondaryColorUpdate = false;
+    }
 
-    static SpecialAnimGameObject* create(char const*);
+    static SpecialAnimGameObject* create(char const* frame) = win inline, m1 0x1653e4, imac 0x1a2b50, ios 0x37b0f0 {
+        auto ret = new SpecialAnimGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void resetObject() = win 0x489380, m1 0x165528, imac 0x1a2cd0, ios 0x37b1ac;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x489390, m1 0x165534, imac 0x1a2cf0, ios 0x37b1b8;
@@ -29015,7 +29096,11 @@ class SpecialAnimGameObject : EnhancedGameObject {
     virtual void updateSecondaryColor(cocos2d::ccColor3B const&) = win 0x489360, imac 0x1a2cb0, m1 0x165518, ios 0x37b19c;
     virtual void updateSyncedAnimation(float, int) = win 0x1a69c0, imac 0x24b7d0, m1 0x1f8eac, ios 0x3487cc;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x1654e0, imac 0x1a2c70, ios inline {
+        if (!EnhancedGameObject::init(frame)) return false;
+        m_bUnkBool2 = false;
+        return true;
+    }
 
     bool m_skipMainColorUpdate;
     bool m_skipSecondaryColorUpdate;
@@ -29596,16 +29681,21 @@ class TextAreaDelegate {
 [[link(android)]]
 class TextGameObject : GameObject {
     // virtual ~TextGameObject();
+    TextGameObject() {
+        m_kerning = 0;
+    }
 
-    static TextGameObject* create(cocos2d::CCTexture2D*) = win 0x1a4530;
+    static TextGameObject* create(cocos2d::CCTexture2D* texture) = win 0x1a4530, m1 0x4d76cc, imac 0x58a0b0, ios 0x253c20;
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x1a49c0, imac 0x5b92a0, m1 0x4ef584, ios 0x264288;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x1a4b80, imac 0x5b93d0, m1 0x4ef6f0, ios 0x2643c8;
     virtual void updateTextKerning(int) = win 0x1a4610, m1 0x4ef2d0, imac 0x5b9020, ios 0x263fd0;
     virtual int getTextKerning() = win 0x1886d0, m1 0x4efef4, imac 0x5b9d90, ios 0x264718;
 
-    bool init(cocos2d::CCTexture2D*);
-    void updateTextObject(gd::string, bool) = win 0x1a4620, m1 0x4ef2d8, imac 0x5b9030, ios 0x263fd8;
+    bool init(cocos2d::CCTexture2D* texture) = win inline, m1 0x4ef29c, imac 0x5b8ff0, ios inline {
+        return GameObject::initWithTexture(texture);
+    }
+    void updateTextObject(gd::string text, bool defaultFont) = win 0x1a4620, m1 0x4ef2d8, imac 0x5b9030, ios 0x263fd8;
 
     // property 31
     gd::string m_text;
