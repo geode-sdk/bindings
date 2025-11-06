@@ -437,13 +437,30 @@ class AdToolbox {
 [[link(android)]]
 class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
     // virtual ~AdvancedFollowEditObject();
+    AdvancedFollowEditObject() {
+        m_modX = 1.f;
+        m_modXVariance = 0.f;
+        m_modY = 1.f;
+        m_modYVariance = 0.f;
+        m_redirectDirection = false;
+    }
 
-    static AdvancedFollowEditObject* create(char const*);
+    static AdvancedFollowEditObject* create(char const* frame) = win inline, m1 0x15fd88, imac 0x19c6f0, ios 0x378548 {
+        auto ret = new AdvancedFollowEditObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x486470, imac 0x19d870, m1 0x160b78, ios 0x378a1c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x486080, imac 0x19c8a0, m1 0x15fef0, ios 0x37865c;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x15fea8, imac 0x19c850, ios inline {
+        return AdvancedFollowTriggerObject::init(frame);
+    }
 
     // property 566
     float m_modX;
@@ -460,15 +477,95 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 [[link(android)]]
 class AdvancedFollowTriggerObject : EffectGameObject {
     // virtual ~AdvancedFollowTriggerObject();
-    // AdvancedFollowTriggerObject();
+    AdvancedFollowTriggerObject() = win 0x47d510 {
+        m_delay = 0.f;
+        m_delayVariance = 0.f;
+        m_startSpeed = 0.f;
+        m_startSpeedVariance = 0.f;
+        m_startSpeedReference = 0;
+        m_startDirection = 0.f;
+        m_startDirectionVariance = 0.f;
+        m_startDirectionReference = 0;
+        m_maxSpeed = 0.f;
+        m_maxSpeedVariance = 0.f;
+        m_xOnly = false;
+        m_yOnly = false;
+        m_maxRange = 0.f;
+        m_maxRangeVariance = 0.f;
+        m_property310 = 0.f;
+        m_property311 = 0.f;
+        m_acceleration = 0.f;
+        m_accelerationVariance = 0.f;
+        m_property312 = 0.f;
+        m_property313 = 0.f;
+        m_property314 = 0.f;
+        m_property315 = 0.f;
+        m_steerForce = 0.f;
+        m_steerForceVariance = 0.f;
+        m_steerForceLowEnabled = false;
+        m_steerForceLow = 0.f;
+        m_steerForceLowVariance = 0.f;
+        m_steerForceHighEnabled = false;
+        m_steerForceHigh = 0.f;
+        m_steerFroceHighVariance = 0.f;
+        m_speedRangeLow = 0.f;
+        m_speedRangeLowVariance = 0.f;
+        m_speedRangeHigh = 0.f;
+        m_speedRangeHighVariance = 0.f;
+        m_breakForce = 0.f;
+        m_breakForceVariance = 0.f;
+        m_breakAngle = 0.f;
+        m_breakAngleVariance = 0.f;
+        m_breakSteerForce = 0.f;
+        m_breakSteerForceVariance = 0.f;
+        m_breakSteerSpeedLimit = 0.f;
+        m_breakSteerSpeedLimitVariance = 0.f;
+        m_targetDirection = false;
+        m_ignoreDisabled = false;
+        m_rotateDirection = false;
+        m_rotationOffset = 0.f;
+        m_nearAcceleration = 0.f;
+        m_nearAccelerationVariance = 0.f;
+        m_nearDistance = 0.f;
+        m_nearDistanceVariance = 0.f;
+        m_nearFriction = 0.f;
+        m_nearFrictionVariance = 0.f;
+        m_friction = 0.f;
+        m_frictionVariance = 0.f;
+        m_easing = 0.f;
+        m_easingVariance = 0.f;
+        m_rotateEasing = 0.f;
+        m_rotateDeadZ = 0.f;
+        m_priority = 0;
+        m_unk7fc = 0;
+        m_maxRangeReference = 0;
+        m_followMode = 0;
+        m_exclusive = false;
+        m_startMode = 0;
+    }
 
-    static AdvancedFollowTriggerObject* create(char const*);
+    static AdvancedFollowTriggerObject* create(char const* frame) = win inline, m1 0x157c70, imac 0x192170, ios 0x37571c {
+        auto ret = new AdvancedFollowTriggerObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x485150, imac 0x19b5d0, m1 0x15ee0c, ios 0x377698;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x482f50, imac 0x192350, m1 0x157e00, ios 0x375858;
 
-    int getAdvancedFollowID();
-    bool init(char const*);
+    int getAdvancedFollowID() = win inline, m1 0x157dc8, imac 0x192310, ios 0x375820 {
+        if (m_targetPlayer1) return -1;
+        if (m_targetPlayer2) return -2;
+        if (m_followCPP) return -3;
+        else return m_centerGroupID;
+    }
+    bool init(char const* frame) = win inline, m1 0x157d80, imac 0x1922c0, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 292
     float m_delay;
@@ -839,14 +936,27 @@ class ArtistCell : TableViewCell {
 [[link(android)]]
 class ArtTriggerGameObject : EffectGameObject {
     // virtual ~ArtTriggerGameObject();
+    ArtTriggerGameObject() {
+        m_artIndex = 0;
+    }
 
-    static ArtTriggerGameObject* create(char const*);
+    static ArtTriggerGameObject* create(char const* frame) = win inline, m1 0x194014, imac 0x1db150, ios 0x38fd84 {
+        auto ret = new ArtTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a98a0, imac 0x1db7e0, m1 0x194614, ios 0x390034;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a9820, imac 0x1db780, m1 0x19459c, ios 0x38ffcc;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a96b0, imac 0x1db260, m1 0x194120, ios 0x38fe3c;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x1940d8, imac 0x1db210, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 533
     int m_artIndex;
@@ -945,8 +1055,22 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class AudioLineGuideGameObject : EffectGameObject {
     // virtual ~AudioLineGuideGameObject();
+    AudioLineGuideGameObject() {
+        m_beatsPerMinute = 100;
+        m_beatsPerBar = 1;
+        m_speed = Speed::Normal;
+        m_disabled = false;
+    }
 
-    static AudioLineGuideGameObject* create();
+    static AudioLineGuideGameObject* create() = win inline, m1 0x192144, imac 0x1d8c70, ios 0x38efd0 {
+        auto ret = new AudioLineGuideGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4a8900, m1 0x19221c, imac 0x1d8d50, ios 0x38f09c;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a8cc0, imac 0x1d9ac0, m1 0x192cf8, ios 0x38f408;
@@ -1510,13 +1634,23 @@ class CameraTriggerGameObject : EffectGameObject {
         m_previewOpacity = 1.f;
     }
 
-    static CameraTriggerGameObject* create(char const*);
+    static CameraTriggerGameObject* create(char const* frame) = win inline, m1 0x188114, imac 0x1cc2b0, ios 0x38b814 {
+        auto ret = new CameraTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a4cd0, imac 0x1cc3f0, m1 0x18823c, ios 0x38b8e8;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a5f70, imac 0x1d0760, m1 0x18b600, ios 0x38c820;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a5030, imac 0x1cc650, m1 0x1883f8, ios 0x38baa4;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x1881f4, imac 0x1cc3a0, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 110
     bool m_exitStatic;
@@ -3029,11 +3163,22 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
 [[link(android), depends(ChanceObject)]]
 class ChanceTriggerGameObject : EffectGameObject {
     // virtual ~ChanceTriggerGameObject();
+    ChanceTriggerGameObject() {}
 
-    void editChanceObject(int, int);
-    bool init(char const*);
-    void remapChanceObjects(gd::unordered_map<int, int> const*) = win 0x49b580;
-    void revertChanceRemap();
+    void editChanceObject(int oldID, int newID) = win inline, m1 0x171e60, imac 0x1b1a40, ios 0x382420 {
+        for (auto& obj : m_chanceObjects) {
+            if (obj.m_groupID == oldID) obj.m_groupID = newID;
+        }
+    }
+    bool init(char const* frame) = win inline, m1 0x171c94, imac 0x1b1890, ios inline {
+        return EffectGameObject::init(frame);
+    }
+    void remapChanceObjects(gd::unordered_map<int, int> const* remap) = win 0x49b580, m1 0x171cdc, imac 0x1b18e0, ios 0x3823a8;
+    void revertChanceRemap() = win inline, m1 0x171ddc, imac 0x1b1a10, ios 0x382400 {
+        for (auto& obj : m_chanceObjects) {
+            obj.m_groupID = obj.m_oldGroupID;
+        }
+    }
 
     // property 435
     gd::vector<ChanceObject> m_chanceObjects;
@@ -3109,8 +3254,20 @@ class CharacterColorPage : FLAlertLayer {
 [[link(android)]]
 class CheckpointGameObject : EffectGameObject {
     // virtual ~CheckpointGameObject();
+    CheckpointGameObject() {
+        m_checkpointActivated = false;
+        m_respawnID = 0;
+    }
 
-    static CheckpointGameObject* create();
+    static CheckpointGameObject* create() = win inline, m1 0x180cdc, imac 0x1c35e0, ios 0x388548 {
+        auto ret = new CheckpointGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4a1240, m1 0x180db0, imac 0x1c36c0, ios 0x388610;
     virtual void setupCustomSprites(gd::string) = win 0x4a1680, imac 0x1c3b10, m1 0x1811f0, ios 0x3889e4;
@@ -3122,8 +3279,22 @@ class CheckpointGameObject : EffectGameObject {
     virtual void restoreObject() = win 0x4a2680, imac 0x1c5190, m1 0x1825c4, ios 0x389574;
     virtual void updateSyncedAnimation(float, int) = win 0x4a1d20, imac 0x1c40f0, m1 0x181770, ios 0x388de8;
 
-    void resetCheckpoint() = win 0x4a24f0;
-    void updateCheckpointSpriteVisibility();
+    void resetCheckpoint() = win 0x4a24f0, m1 0x1825bc, imac 0x1c5170, ios inline {
+        m_checkpointActivated = false;
+        this->updateCheckpointSpriteVisibility();
+    }
+    void updateCheckpointSpriteVisibility() = win inline, m1 0x181060, imac 0x1c3980, ios 0x388854 {
+        this->getChildByTag(1125)->setVisible(!m_checkpointActivated);
+        this->getChildByTag(1126)->setVisible(!m_checkpointActivated);
+        this->getChildByTag(1127)->setVisible(!m_checkpointActivated);
+        this->getChildByTag(1128)->setVisible(m_checkpointActivated);
+        m_colorSprite->getChildByTag(1125)->setVisible(!m_checkpointActivated);
+        m_colorSprite->getChildByTag(1126)->setVisible(!m_checkpointActivated);
+        m_colorSprite->getChildByTag(1127)->setVisible(!m_checkpointActivated);
+        m_colorSprite->getChildByTag(1128)->setVisible(m_checkpointActivated);
+        if (m_checkpointActivated) this->setObjectColor({ 255, 255, 255 });
+        m_unk280 = m_checkpointActivated;
+    }
 
     bool m_checkpointActivated;
     // property 448
@@ -3829,14 +4000,31 @@ class CountTriggerAction {
 [[link(android)]]
 class CountTriggerGameObject : EffectGameObject {
     // virtual ~CountTriggerGameObject();
+    CountTriggerGameObject() {
+        m_pickupCount = 0;
+        m_pickupTriggerMode = 0;
+        m_multiActivate = false;
+        m_isOverride = false;
+        m_pickupTriggerMultiplier = 1.f;
+    }
 
-    static CountTriggerGameObject* create(char const*);
+    static CountTriggerGameObject* create(char const* frame) = win inline, m1 0x1825fc, imac 0x1c51d0, ios 0x3895ac {
+        auto ret = new CountTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a26c0, imac 0x1c52f0, m1 0x182718, ios 0x389674;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a2b30, imac 0x1c5570, m1 0x182950, ios 0x38981c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a2e90, imac 0x1c59a0, m1 0x182cdc, ios 0x389b1c;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x1826d0, imac 0x1c52a0, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 77
     int m_pickupCount;
@@ -4841,12 +5029,22 @@ class DashRingObject : RingObject {
         m_stopSlide = false;
     }
 
-    static DashRingObject* create(char const*);
+    static DashRingObject* create(char const* frame) = win inline, m1 0x166734, imac 0x1a41f0, ios 0x37b9f8 {
+        auto ret = new DashRingObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x489db0, imac 0x1a4340, m1 0x166864, ios 0x37bacc;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x489ff0, imac 0x1a44b0, m1 0x1669bc, ios 0x37bc10;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x166814, imac 0x1a42e0, ios inline {
+        return RingObject::init(frame);
+    }
 
     // property 586
     float m_dashSpeed;
@@ -6419,8 +6617,21 @@ class EndPortalObject : GameObject {
 [[link(android)]]
 class EndTriggerGameObject : EffectGameObject {
     // virtual ~EndTriggerGameObject();
+    EndTriggerGameObject() {
+        m_noEffects = false;
+        m_noSFX = false;
+        m_instant = false;
+    }
 
-    static EndTriggerGameObject* create();
+    static EndTriggerGameObject* create() = win inline, m1 0x1863f8, imac 0x1ca070, ios 0x38ac50 {
+        auto ret = new EndTriggerGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4a4110, m1 0x1864c4, imac 0x1ca130, ios 0x38ad10;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a4180, imac 0x1ca180, m1 0x186514, ios 0x38ad60;
@@ -6615,13 +6826,29 @@ class EnhancedGameObject : GameObject {
 [[link(android)]]
 class EnhancedTriggerObject : EffectGameObject {
     // virtual ~EnhancedTriggerObject();
+    EnhancedTriggerObject() {
+        m_minXID = 0;
+        m_minYID = 0;
+        m_maxXID = 0;
+        m_maxYID = 0;
+    }
 
-    static EnhancedTriggerObject* create(char const*);
+    static EnhancedTriggerObject* create(char const* frame) = win inline, m1 0x16cae4, imac 0x1ab7b0, ios 0x37fe18 {
+        auto ret = new EnhancedTriggerObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x499340, imac 0x1ac3b0, m1 0x16d4e8, ios 0x38017c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x499070, imac 0x1ab8c0, m1 0x16cbf8, ios 0x37fed8;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x16cbb0, imac 0x1ab870, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 516
     int m_minXID;
@@ -6750,7 +6977,7 @@ class EnterEffectObject : EffectGameObject {
     // virtual ~EnterEffectObject();
 
     // make every member zero
-    EnterEffectObject() {
+    EnterEffectObject() = m1 0x199ca4, imac 0x1e1f00, ios 0x39251c {
         m_enterType = 0;
         m_length = 0;
         m_lengthVariance = 0;
@@ -6767,7 +6994,6 @@ class EnterEffectObject : EffectGameObject {
         m_moveAngle = 0;
         m_moveAngleVariance = 0;
         m_startAngle = false;
-        m_anglePosition = cocos2d::CCPoint{0, 0};
         m_relative = false;
         m_relativeFade = 0.0f;
         m_easingInType = EasingType::None;
@@ -6803,21 +7029,61 @@ class EnterEffectObject : EffectGameObject {
         m_unk7d8 = 0;
         m_enterChannel = 0;
         m_useEffectID = false;
-        m_unk7e4 = cocos2d::CCPoint{0, 0};
-        m_unk7ec = cocos2d::CCPoint{0, 0};
         m_negativeTargetX = false;
         m_areaRange = 0;
         m_unk7fc = 0;
     }
 
-    static EnterEffectObject* create(char const*);
+    static EnterEffectObject* create(char const* frame) = win inline, m1 0x140498, imac 0x1746e0, ios 0x369b7c {
+        auto ret = new EnterEffectObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customSetup() = win 0x47fbf0, imac 0x186570, m1 0x14e030, ios 0x36ffc0;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x47fd50, imac 0x1868b0, m1 0x14e368, ios 0x370254;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x47df50, imac 0x174880, m1 0x140604, ios 0x369c38;
 
-    bool init(char const*);
-    void resetEnterAnimValues();
+    bool init(char const* frame) = win inline, m1 0x140548, imac 0x174780, ios inline {
+        if (!EffectGameObject::init(frame)) return false;
+        m_objectType = GameObjectType::EnterEffectObject;
+        m_unk390 = 45;
+        return true;
+    }
+    void resetEnterAnimValues() = win inline, m1 0x14e32c, imac 0x186840, ios 0x370218 {
+        m_length = -99;
+        m_lengthVariance = -99;
+        m_offset = -99;
+        m_offsetVariance = -99;
+        m_offsetY = -99;
+        m_offsetYVariance = -99;
+        m_modFront = -99.f;
+        m_modBack = -99.f;
+        m_deadzone = -99.f;
+        m_moveDistance = -99;
+        m_moveDistanceVariance = -99;
+        m_moveAngle = -99;
+        m_moveAngleVariance = -99;
+        m_moveX = -99;
+        m_moveXVariance = -99;
+        m_moveY = -99;
+        m_moveYVariance = -99;
+        m_areaScaleX = -99.f;
+        m_areaScaleXVariance = -99.f;
+        m_areaScaleY = -99.f;
+        m_areaScaleYVariance = -99.f;
+        m_areaRotation = -99.f;
+        m_areaRotationVariance = -99.f;
+        m_areaTint = -99.f;
+        m_property285 = -99.f;
+        m_toOpacity = -99.f;
+        m_fromOpacity = -99.f;
+        m_relativeFade = -99.f;
+    }
 
     // property 217
     int m_enterType;
@@ -6928,8 +7194,21 @@ class EnterEffectObject : EffectGameObject {
 [[link(android)]]
 class EventLinkTrigger : EffectGameObject {
     // virtual ~EventLinkTrigger();
+    EventLinkTrigger() {
+        m_resetRemap = false;
+        m_extraID = 0;
+        m_extraID2 = 0;
+    }
 
-    static EventLinkTrigger* create();
+    static EventLinkTrigger* create() = win inline, m1 0x17db78, imac 0x1bfcf0, ios 0x386d54 {
+        auto ret = new EventLinkTrigger();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x49fce0, m1 0x17dc54, imac 0x1bfdd0, ios 0x386e24;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x49fd50, imac 0x1bfe20, m1 0x17dca4, ios 0x386e74;
@@ -7676,14 +7955,32 @@ class FontObject : cocos2d::CCObject {
 [[link(android)]]
 class ForceBlockGameObject : EffectGameObject {
     // virtual ~ForceBlockGameObject();
+    ForceBlockGameObject() {
+        m_force = 0.f;
+        m_minForce = 0.f;
+        m_maxForce = 0.f;
+        m_relativeForce = false;
+        m_forceRange = false;
+        m_forceID = 0;
+    }
 
-    static ForceBlockGameObject* create(char const*);
+    static ForceBlockGameObject* create(char const* frame) = win inline, m1 0x192e60, imac 0x1d9c20, ios 0x38f53c {
+        auto ret = new ForceBlockGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a91e0, imac 0x1dacc0, m1 0x193bfc, ios 0x38f9a8;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a8e00, imac 0x1d9d40, m1 0x192f78, ios 0x38f600;
 
-    cocos2d::CCPoint calculateForceToTarget(GameObject*) = win 0x4a9370;
-    bool init(char const*);
+    cocos2d::CCPoint calculateForceToTarget(GameObject* target) = win 0x4a9370, m1 0x193d8c, imac 0x1dae90, ios 0x38fb18;
+    bool init(char const* frame) = win inline, m1 0x192f30, imac 0x1d9cf0, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 149
     float m_force;
@@ -10695,13 +10992,39 @@ class GameOptionsLayer : GJOptionsLayer {
 [[link(android)]]
 class GameOptionsTrigger : EffectGameObject {
     // virtual ~GameOptionsTrigger();
+    GameOptionsTrigger() {
+        m_streakAdditive = GameOptionsSetting::Disabled;
+        m_unlinkDualGravity = GameOptionsSetting::Disabled;
+        m_hideGround = GameOptionsSetting::Disabled;
+        m_hideP1 = GameOptionsSetting::Disabled;
+        m_hideP2 = GameOptionsSetting::Disabled;
+        m_disableP1Controls = GameOptionsSetting::Disabled;
+        m_disableP2Controls = GameOptionsSetting::Disabled;
+        m_hideMG = GameOptionsSetting::Disabled;
+        m_hideAttempts = GameOptionsSetting::Disabled;
+        m_editRespawnTime = GameOptionsSetting::Disabled;
+        m_respawnTime = 0.f;
+        m_audioOnDeath = GameOptionsSetting::Disabled;
+        m_noDeathSFX = GameOptionsSetting::Disabled;
+        m_boostSlide = GameOptionsSetting::Disabled;
+    }
 
-    static GameOptionsTrigger* create(char const*);
+    static GameOptionsTrigger* create(char const* frame) = win inline, m1 0x160cec, imac 0x19da10, ios 0x378b90 {
+        auto ret = new GameOptionsTrigger();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x486d70, imac 0x19fa20, m1 0x162644, ios 0x3792b0;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x486600, imac 0x19db40, m1 0x160e08, ios 0x378c58;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x160dc0, imac 0x19daf0, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 159
     GameOptionsSetting m_streakAdditive;
@@ -17634,7 +17957,7 @@ class GradientTriggerObject : EffectGameObject {
         m_previewOpacity = 1.f;
     }
 
-    static GradientTriggerObject* create() = win inline, m1 0x151ee4, imac 0x18ab00 {
+    static GradientTriggerObject* create() = win inline, m1 0x151ee4, imac 0x18ab00, ios 0x3735a8 {
         auto ret = new GradientTriggerObject();
         if (ret->init()) {
             ret->autorelease();
@@ -18134,7 +18457,7 @@ class ItemInfoPopup : FLAlertLayer {
 [[link(android)]]
 class ItemTriggerGameObject : EffectGameObject {
     // virtual ~ItemTriggerGameObject();
-    inline ItemTriggerGameObject() {
+    ItemTriggerGameObject() {
         m_item1Mode = 0;
         m_item2Mode = 0;
         m_targetItemMode = 1;
@@ -18154,14 +18477,24 @@ class ItemTriggerGameObject : EffectGameObject {
         m_timer = false;
     }
 
-    static ItemTriggerGameObject* create(char const*);
+    static ItemTriggerGameObject* create(char const* frame) = win inline, m1 0x18da24, imac 0x1d3510, ios 0x38d8fc {
+        auto ret = new ItemTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customSetup() = win 0x4a7160, imac 0x1d3670, m1 0x18db5c, ios 0x38d9e0;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a71a0, imac 0x1d36b0, m1 0x18db94, ios 0x38da18;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a8280, imac 0x1d83a0, m1 0x1916e0, ios 0x38e954;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a7300, imac 0x1d3800, m1 0x18dce4, ios 0x38db00;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x18db14, imac 0x1d3620, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 476
     int m_item1Mode;
@@ -18299,7 +18632,15 @@ class KeyframeAnimTriggerObject : EffectGameObject {
         m_scaleYMod = 1.0f;
     }
 
-    static KeyframeAnimTriggerObject* create();
+    static KeyframeAnimTriggerObject* create() = win inline, m1 0x16bb54, imac 0x1aa480, ios 0x37f774 {
+        auto ret = new KeyframeAnimTriggerObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x498a40, m1 0x16bc30, imac 0x1aa550, ios 0x37f844;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x498eb0, imac 0x1ab5c0, m1 0x16c950, ios 0x37fc84;
@@ -18321,8 +18662,6 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 
 [[link(android)]]
 class KeyframeGameObject : EffectGameObject {
-    // virtual ~KeyframeGameObject();
-
     KeyframeGameObject() {
         m_shadowObjects = nullptr;
         m_previewSprite = nullptr;
@@ -18342,15 +18681,26 @@ class KeyframeGameObject : EffectGameObject {
         m_revolutions = 0;
         m_lineOpacity = 1.0f;
     }
+    ~KeyframeGameObject() = win inline, m1 0x174f1c, imac 0x1b5200, ios 0x383b24 {
+        CC_SAFE_RELEASE(m_shadowObjects);
+    }
 
-    static KeyframeGameObject* create();
+    static KeyframeGameObject* create() = win inline, m1 0x175004, imac 0x1b5320, ios 0x383b88 {
+        auto ret = new KeyframeGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x49c8e0, m1 0x1750f4, imac 0x1b5420, ios 0x383c34;
     virtual void setOpacity(unsigned char) = win 0x49cba0, imac 0x1b5700, m1 0x1753e0, ios 0x383ef8;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49cc60, imac 0x1b5860, m1 0x17552c, ios 0x383fa4;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49d0a0, imac 0x1b5dd0, m1 0x1759d4, ios 0x3843ac;
 
-    void updateShadowObjects(GJBaseGameLayer*, EditorUI*) = win 0x49c970, ios 0x383c98, imac 0x1b5490, m1 0x175158;
+    void updateShadowObjects(GJBaseGameLayer* layer, EditorUI* ui) = win 0x49c970, ios 0x383c98, imac 0x1b5490, m1 0x175158;
 
     cocos2d::CCArray* m_shadowObjects;
     cocos2d::CCSprite* m_previewSprite;
@@ -18418,8 +18768,27 @@ class KeyframeObject {
 [[link(android)]]
 class LabelGameObject : EffectGameObject {
     // virtual ~LabelGameObject();
+    LabelGameObject() {
+        m_label = nullptr;
+        m_labelDirty = false;
+        m_labelColorLocked = false;
+        m_alignment = 0;
+        m_showSecondsOnly = false;
+        m_shownSpecial = 0;
+        m_isTimeCounter = false;
+        m_kerning = 0;
+        m_updateLabel = false;
+    }
 
-    static LabelGameObject* create();
+    static LabelGameObject* create() = win inline, m1 0x17026c, imac 0x1afaa0, ios 0x3815a8 {
+        auto ret = new LabelGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x49a900, m1 0x17033c, imac 0x1afb90, ios 0x38166c;
     virtual void setOpacity(unsigned char) = win 0x49ac60, m1 0x170758, imac 0x1affb0, ios 0x38198c;
@@ -18432,13 +18801,22 @@ class LabelGameObject : EffectGameObject {
     virtual void updateTextKerning(int) = win 0x49ad20, imac 0x1b0030, m1 0x1707dc, ios 0x381a10;
     virtual int getTextKerning() = win 0x47d930, m1 0x199b20, imac 0x1e1d40, ios 0x3922d0;
 
-    void createLabel(gd::string) = win 0x49a9e0;
-    void queueUpdateLabel(gd::string);
-    void removeLabel() = win 0x49ab80;
-    void unlockLabelColor();
-    void updateLabel(float);
-    void updateLabel(gd::string) = win 0x49af00, m1 0x170ba0, imac 0x1b04c0, ios 0x381d10;
-    void updateLabelAlign(int) = win 0x49aca0;
+    void createLabel(gd::string text) = win 0x49a9e0, m1 0x170464, imac 0x1afc80, ios 0x38177c;
+    void queueUpdateLabel(gd::string text) = win inline, m1 0x170718, imac 0x1aff70, ios 0x381958 {
+        if (!m_updateLabel) {
+            m_labelString = text;
+            m_labelDirty = true;
+        }
+    }
+    void removeLabel() = win 0x49ab80, m1 0x170574, imac 0x1afda0, ios 0x381848;
+    void unlockLabelColor() = win inline, m1 0x171c84, imac 0x1b1860, ios inline {
+        m_labelColorLocked = false;
+    }
+    void updateLabel(float value) = win inline, m1 0x170bfc, imac 0x1b0520, ios inline {
+        this->updateLabel(GameToolbox::intToString(value));
+    }
+    void updateLabel(gd::string text) = win 0x49af00, m1 0x170ba0, imac 0x1b04c0, ios 0x381d10;
+    void updateLabelAlign(int alignment) = win 0x49aca0, m1 0x1706a8, imac 0x1afef0, ios 0x3818e8;
     void updateLabelIfDirty() = win inline, m1 0x170cac, imac 0x1b05c0, ios 0x381d60 {
         if (m_labelDirty) updateLabel(m_labelString);
     }
@@ -21595,8 +21973,17 @@ class OBB2D : cocos2d::CCNode {
 [[link(android)]]
 class ObjectControlGameObject : EffectGameObject {
     // virtual ~ObjectControlGameObject();
+    ObjectControlGameObject() {}
 
-    static ObjectControlGameObject* create();
+    static ObjectControlGameObject* create() = win inline, m1 0x1954dc, imac 0x1dca20, ios 0x390654 {
+        auto ret = new ObjectControlGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4aa210, m1 0x19559c, imac 0x1dcad0, ios 0x390708;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aa3f0, imac 0x1dd030, m1 0x195a5c, ios 0x3908e8;
@@ -22121,8 +22508,22 @@ class PlayerCheckpoint : cocos2d::CCNode {
 [[link(android)]]
 class PlayerControlGameObject : EffectGameObject {
     // virtual ~PlayerControlGameObject();
+    PlayerControlGameObject() {
+        m_stopJump = false;
+        m_stopMove = false;
+        m_stopRotation = false;
+        m_stopSlide = false;
+    }
 
-    static PlayerControlGameObject* create();
+    static PlayerControlGameObject* create() = win inline, m1 0x194664, imac 0x1db840, ios 0x390084 {
+        auto ret = new PlayerControlGameObject();
+        if (ret && ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4a9c60, m1 0x194730, imac 0x1db900, ios 0x390144;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aa090, imac 0x1dc830, m1 0x195378, ios 0x3904f0;
@@ -23567,16 +23968,39 @@ class PurchaseItemPopup : FLAlertLayer {
 [[link(android)]]
 class RandTriggerGameObject : ChanceTriggerGameObject {
     // virtual ~RandTriggerGameObject();
+    RandTriggerGameObject() {}
 
-    static RandTriggerGameObject* create();
+    static RandTriggerGameObject* create() = win inline, m1 0x17207c, imac 0x1b1a80, ios 0x38244c {
+        auto ret = new RandTriggerGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x49b670, m1 0x172148, imac 0x1b1b50, ios 0x38250c;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x49b690, imac 0x1b1de0, m1 0x1723c4, ios 0x382630;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49b860, imac 0x1b2040, m1 0x17260c, ios 0x382708;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49ba60, imac 0x1b2680, m1 0x172bc0, ios 0x382b10;
 
-    int getRandomGroupID();
-    int getTotalChance();
+    int getRandomGroupID() = win inline, m1 0x172260, imac 0x1b1c80, ios 0x382590 {
+        int num = this->getTotalChance() * GameToolbox::fast_rand_0_1();
+        auto chance = 0;
+        for (auto& obj : m_chanceObjects) {
+            chance += obj.m_chance;
+            if (num <= chance) return obj.m_groupID;
+        }
+        return 0;
+    }
+    int getTotalChance() = win inline, m1 0x172198, imac 0x1b1ba0, ios 0x38255c {
+        auto total = 0;
+        for (auto& obj : m_chanceObjects) {
+            total += obj.m_chance;
+        }
+        return total;
+    }
 }
 
 [[link(android)]]
@@ -23839,7 +24263,7 @@ class RingObject : EffectGameObject {
         m_isSpawnOnly = false;
     }
 
-    static RingObject* create(char const*) = win 0x489570, m1 0x165a10, imac 0x1a3270, ios 0x37b3a8;
+    static RingObject* create(char const* frame) = win 0x489570, m1 0x165a10, imac 0x1a3270, ios 0x37b3a8;
 
     virtual void setScale(float) = win 0x4898f0, m1 0x165ca8, imac 0x1a3520, ios 0x37b5e4;
     virtual void setRotation(float) = win 0x38c9f0, m1 0x165d08, imac 0x1a3580, ios 0x37b634;
@@ -23851,8 +24275,8 @@ class RingObject : EffectGameObject {
     virtual bool shouldDrawEditorHitbox() = win 0x4899a0, imac 0x1a3590, m1 0x165d0c, ios 0x37b638;
     virtual void powerOnObject(int) = win 0x489630, m1 0x165b3c, imac 0x1a33b0, ios 0x37b478;
 
-    bool init(char const* p0) = win inline, m1 0x165ae0, imac 0x1a3340, ios inline {
-        if (!EffectGameObject::init(p0)) return false;
+    bool init(char const* frame) = win inline, m1 0x165ae0, imac 0x1a3340, ios inline {
+        if (!EffectGameObject::init(frame)) return false;
         m_customGlowColor = true;
         m_isTouchTriggered = true;
         return true;
@@ -23867,15 +24291,72 @@ class RingObject : EffectGameObject {
 [[link(android)]]
 class RotateGameplayGameObject : EffectGameObject {
     // virtual ~RotateGameplayGameObject();
+    RotateGameplayGameObject() {
+        m_moveDirection = 0;
+        m_groundDirection = 0;
+        m_editVelocity = false;
+        m_overrideVelocity = false;
+        m_velocityModX = 1.f;
+        m_velocityModY = 1.f;
+        m_changeChannel = false;
+        m_channelOnly = false;
+        m_targetChannelID = 0;
+        m_instantOffset = false;
+        m_dontSlide = false;
+    }
 
-    static RotateGameplayGameObject* create();
+    static RotateGameplayGameObject* create() = win inline, m1 0x197f78, imac 0x1dfc00, ios 0x3917e8 {
+        auto ret = new RotateGameplayGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4ab3a0, m1 0x198058, imac 0x1dfcf0, ios 0x3918bc;
     virtual void updateStartValues() = win 0x4abcc0, m1 0x199834, imac 0x1e1a10, ios 0x392124;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aba30, imac 0x1e1690, m1 0x199544, ios 0x391e68;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4ab410, imac 0x1dfd40, m1 0x1980a8, ios 0x39190c;
 
-    void updateGameplayRotation();
+    void updateGameplayRotation() = win inline, m1 0x1997c4, imac 0x1e19b0, ios 0x3920c8 {
+        this->determineSlopeDirection();
+        switch (m_slopeDirection) {
+            case 1:
+                m_moveDirection = 1;
+                m_groundDirection = 4;
+                break;
+            case 2:
+                m_moveDirection = 2;
+                m_groundDirection = 3;
+                break;
+            case 3:
+                m_moveDirection = 1;
+                m_groundDirection = 3;
+                break;
+            case 4:
+                m_moveDirection = 3;
+                m_groundDirection = 2;
+                break;
+            case 5:
+                m_moveDirection = 4;
+                m_groundDirection = 1;
+                break;
+            case 6:
+                m_moveDirection = 3;
+                m_groundDirection = 1;
+                break;
+            case 7:
+                m_moveDirection = 4;
+                m_groundDirection = 2;
+                break;
+            default:
+                m_moveDirection = 2;
+                m_groundDirection = 4;
+                break;
+        }
+    }
 
     // property 166
     int m_moveDirection;
@@ -24858,8 +25339,24 @@ class SelectSFXSortLayer : FLAlertLayer {
 [[link(android)]]
 class SequenceTriggerGameObject : ChanceTriggerGameObject {
     // virtual ~SequenceTriggerGameObject();
+    SequenceTriggerGameObject() {
+        m_sequenceMode = 0;
+        m_minInt = 0.f;
+        m_resetMode = 0;
+        m_reset = 0.f;
+        m_sequenceTotalCount = 0;
+        m_uniqueRemap = false;
+    }
 
-    static SequenceTriggerGameObject* create();
+    static SequenceTriggerGameObject* create() = win inline, m1 0x173354, imac 0x1b2f90, ios 0x382d68 {
+        auto ret = new SequenceTriggerGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x49bcd0, m1 0x173448, imac 0x1b30a0, ios 0x382e50;
     virtual void resetObject() = win 0x49bcf0, m1 0x173498, imac 0x1b30f0, ios 0x382ea0;
@@ -24867,11 +25364,43 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49c140, imac 0x1b3930, m1 0x173a9c, ios 0x383188;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49c470, imac 0x1b3dd0, m1 0x173ec8, ios 0x3834d8;
 
-    void addCount(int, int);
-    void addTarget(int, int);
-    void deleteTarget(int);
-    bool reorderTarget(int, bool);
-    void updateSequenceTotalCount();
+    void addCount(int index, int count) = win inline, m1 0x174ed0, imac 0x1b51b0, ios 0x383ad8 {
+        if (index < 0 || index >= m_chanceObjects.size()) return;
+        auto& object = m_chanceObjects[index];
+        object.m_chance = (std::max)(object.m_chance + count, 1);
+        m_sequenceTotalCount = -1;
+    }
+    void addTarget(int groupID, int count) = win inline, m1 0x174ca4, imac 0x1b4f40, ios 0x3838e0 {
+        count = (std::max)(count, 1);
+        m_chanceObjects.emplace_back(groupID, count);
+        m_sequenceTotalCount = -1;
+    }
+    void deleteTarget(int index) = win inline, m1 0x174e58, imac 0x1b5130, ios 0x383a60 {
+        if (index < 0 || index >= m_chanceObjects.size()) return;
+        m_chanceObjects.erase(m_chanceObjects.begin() + index);
+        m_sequenceTotalCount = -1;
+    }
+    bool reorderTarget(int index, bool left) = win inline, m1 0x174dd8, imac 0x1b50b0, ios 0x3839ec {
+        int size = m_chanceObjects.size();
+        if (index >= size) return false;
+        if (left) {
+            if (index == 0) return false;
+            std::swap(m_chanceObjects[index], m_chanceObjects[index - 1]);
+            return true;
+        }
+        else {
+            if (index == size - 1) return false;
+            std::swap(m_chanceObjects[index], m_chanceObjects[index + 1]);
+            return true;
+        }
+    }
+    void updateSequenceTotalCount() = win inline, m1 0x173548, imac 0x1b32b0, ios inline {
+        auto total = 0;
+        for (auto& obj : m_chanceObjects) {
+            total += obj.m_chance;
+            m_sequenceTotalCount = total;
+        }
+    }
 
     gd::unordered_map<int, float> m_sequenceTimes;
     gd::unordered_map<int, int> m_sequenceIndices;
@@ -27453,16 +27982,73 @@ class SFXSearchResult : MusicSearchResult {
 [[link(android)]]
 class SFXTriggerGameObject : EffectGameObject {
     // virtual ~SFXTriggerGameObject();
-    // SFXTriggerGameObject();
+    SFXTriggerGameObject() = win 0x47dc30, ios 0x3928a8 {
+        m_soundID = 0;
+        m_pitch = 0.f;
+        m_speed = 0;
+        m_pitchIndex = 0;
+        m_fadeIn = 0;
+        m_end = 0;
+        m_fadeOut = 0;
+        m_reverb = false;
+        m_fastFourierTransform = false;
+        m_loop = false;
+        m_stopLoop = false;
+        m_dontReset = false;
+        m_unique = false;
+        m_override = false;
+        m_sfxUniqueID = 0;
+        m_minDistNear = 0;
+        m_minDistMedium = 0;
+        m_minDistFar = 0;
+        m_proximityMode = 0;
+        m_cameraDistance = false;
+        m_preload = false;
+        m_ignoreVolumeTest = false;
+        m_minInterval = 0.f;
+        m_sfxGroup = 0;
+        m_stop = false;
+        m_changeSpeed = false;
+        m_changeVolume = false;
+        m_groupID = 0;
+        m_unk788 = 0;
+        m_reverbPreset = FMODReverbPreset::Generic;
+        m_reverbEnabled = false;
+        m_soundDuration = 0.f;
+        m_applyDisabled = false;
+        m_speedVariance = 0;
+        m_pitchVariance = 0;
+        m_volumeVariance = 0.f;
+        m_pitchSteps = false;
+        m_volume = 1.f;
+        m_start = 0;
+        m_volumeNear = 1.f;
+        m_volumeMedium = .5f;
+        m_volumeFar = 0.f;
+    }
 
-    static SFXTriggerGameObject* create(char const*);
+    static SFXTriggerGameObject* create(char const* frame) = win inline, m1 0x17797c, imac 0x1b8640, ios 0x384c20 {
+        auto ret = new SFXTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49efd0, imac 0x1be340, m1 0x17c1dc, ios 0x385ed0;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49da70, imac 0x1b8850, m1 0x177b40, ios 0x384d08;
 
-    int getSFXRefID();
-    int getUniqueSFXID();
-    bool init(char const*);
+    int getSFXRefID() = win inline, m1 0x177b20, imac 0x1b8830, ios 0x384ce8 {
+        return m_sfxUniqueID > 0 ? m_sfxUniqueID : m_uniqueID;
+    }
+    int getUniqueSFXID() = win inline, m1 0x177af0, imac 0x1b8800, ios 0x384cb8 {
+        return m_unique ? this->getSFXRefID() : 0;
+    }
+    bool init(char const* frame) = win inline, m1 0x177aa8, imac 0x1b87b0, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     gd::string m_soundPath;
     // property 392
@@ -27552,7 +28138,7 @@ class SFXTriggerGameObject : EffectGameObject {
 class ShaderGameObject : EffectGameObject {
     // virtual ~ShaderGameObject();
 
-    ShaderGameObject() {
+    ShaderGameObject() = ios 0x3927a0 {
         m_speed = 1.f;
         m_strength = 1.f;
         m_outer = 1.f;
@@ -27582,13 +28168,23 @@ class ShaderGameObject : EffectGameObject {
         m_editorDisabled = false;
     }
 
-    static ShaderGameObject* create(char const*);
+    static ShaderGameObject* create(char const* frame) = win inline, m1 0x153694, imac 0x18c840, ios 0x373e94 {
+        auto ret = new ShaderGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customSetup() = win 0x481460, imac 0x18c9a0, m1 0x1537ec, ios 0x373f2c;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4826e0, imac 0x191760, m1 0x1573c4, ios 0x374f24;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4814c0, imac 0x18ca10, m1 0x153844, ios 0x373f7c;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x1537a4, imac 0x18c950, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 175
     float m_speed;
@@ -28956,13 +29552,29 @@ class SongsLayer : GJDropDownLayer {
 [[link(android)]]
 class SongTriggerGameObject : SFXTriggerGameObject {
     // virtual ~SongTriggerGameObject();
+    SongTriggerGameObject() {
+        m_unk7a9 = false;
+        m_prep = false;
+        m_loadPrep = false;
+        m_songChannel = 0;
+    }
 
-    static SongTriggerGameObject* create(char const*);
+    static SongTriggerGameObject* create(char const* frame) = win inline, m1 0x17d0d0, imac 0x1bf020, ios 0x3868e8 {
+        auto ret = new SongTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x49fc00, imac 0x1bfaf0, m1 0x17d9bc, ios 0x386bf0;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x49f9a0, imac 0x1bf1f0, m1 0x17d250, ios 0x3869a8;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x17d208, imac 0x1bf1a0, ios inline {
+        return SFXTriggerGameObject::init(frame);
+    }
 
     bool m_unk7a9;
     // property 399
@@ -28976,8 +29588,23 @@ class SongTriggerGameObject : SFXTriggerGameObject {
 [[link(android)]]
 class SpawnParticleGameObject : EffectGameObject {
     // virtual ~SpawnParticleGameObject();
+    SpawnParticleGameObject() = ios 0x392944 {
+        m_matchRotation = false;
+        m_rotation = 0.f;
+        m_rotationVariance = 0.f;
+        m_scale = 1.f;
+        m_scaleVariance = 0.f;
+    }
 
-    static SpawnParticleGameObject* create();
+    static SpawnParticleGameObject* create() = win inline, m1 0x19661c, imac 0x1ddd70, ios 0x390e74 {
+        auto ret = new SpawnParticleGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4aa9e0, m1 0x1966f0, imac 0x1dde40, ios 0x390ee8;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4ab0b0, imac 0x1df8e0, m1 0x197cb4, ios 0x391524;
@@ -29045,18 +29672,46 @@ class SpawnTriggerAction {
 [[link(android), depends(ChanceObject)]]
 class SpawnTriggerGameObject : EffectGameObject {
     // virtual ~SpawnTriggerGameObject();
+    SpawnTriggerGameObject() {
+        m_remapKey = 0;
+        m_currentDelay = 0.0;
+        m_spawnDelay = 0.f;
+        m_delayRange = 0.f;
+        m_resetRemap = false;
+    }
 
-    static SpawnTriggerGameObject* create();
+    static SpawnTriggerGameObject* create() = win inline, m1 0x17f018, imac 0x1c1480, ios 0x387698 {
+        auto ret = new SpawnTriggerGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4a0530, m1 0x17f0fc, imac 0x1c1560, ios 0x387770;
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a06a0, imac 0x1c1900, m1 0x17f408, ios 0x3879b8;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a0a10, imac 0x1c1de0, m1 0x17f980, ios 0x387d78;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a0d50, imac 0x1c2240, m1 0x17fd34, ios 0x3880cc;
 
-    void addRemap(int, int);
-    void changeRemap(int, int, bool);
-    void removeRemap(int, int);
-    void updateRemapKeys(gd::vector<int> const&) = win 0x4a05a0;
+    void addRemap(int oldID, int newID) = win inline, m1 0x17f4a8, imac 0x1c19c0, ios 0x387a58 {
+        for (auto& obj : m_remapObjects) {
+            if (obj.m_groupID == oldID && obj.m_chance == newID) return;
+        }
+        m_remapObjects.emplace_back(oldID, newID);
+    }
+    void changeRemap(int oldID, int newID, bool reverse) = win 0x4a07c0, m1 0x17f6c4, imac 0x1c1be0, ios 0x387c24;
+    void removeRemap(int oldID, int newID) = win inline, m1 0x17f624, imac 0x1c1b50, ios 0x387b90 {
+        for (int i = 0; i < m_remapObjects.size(); i++) {
+            auto& obj = m_remapObjects[i];
+            if (obj.m_groupID == oldID && obj.m_chance == newID) {
+                m_remapObjects.erase(m_remapObjects.begin() + i);
+                return;
+            }
+        }
+    }
+    void updateRemapKeys(gd::vector<int> const& remapKeys) = win 0x4a05a0, m1 0x17f14c, imac 0x1c15b0, ios 0x3877c0;
 
     // property 442
     gd::vector<ChanceObject> m_remapObjects;
@@ -29276,16 +29931,29 @@ class StarInfoPopup : FLAlertLayer {
 
 [[link(android)]]
 class StartPosObject : EffectGameObject {
-    // virtual ~StartPosObject();
+    StartPosObject() {
+        m_startSettings = nullptr;
+    }
+    ~StartPosObject() = win inline, m1 0x16d614, imac 0x1ac4c0, ios 0x380280 {
+        CC_SAFE_RELEASE(m_startSettings);
+    }
 
-    static StartPosObject* create();
+    static StartPosObject* create() = win inline, m1 0x16d6fc, imac 0x1ac5e0, ios 0x3802e4 {
+        auto ret = new StartPosObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x499450, m1 0x16d800, imac 0x1ac6e0, ios 0x380370;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4995b0, imac 0x1ac830, m1 0x16d93c, ios 0x38046c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4995c0, imac 0x1ac840, m1 0x16d940, ios 0x380470;
 
     void loadSettingsFromString(gd::string objectString) = win 0x499510, imac 0x1ac7d0, m1 0x16d8dc, ios 0x380430;
-    void setSettings(LevelSettingsObject* settings) = win inline {
+    void setSettings(LevelSettingsObject* settings) = win inline, m1 0x16d894, imac 0x1ac780, ios 0x3803e8 {
         if (settings == m_startSettings) return;
         CC_SAFE_RETAIN(settings);
         CC_SAFE_RELEASE(m_startSettings);
@@ -29537,8 +30205,28 @@ class TableViewDelegate {
 [[link(android)]]
 class TeleportPortalObject : RingObject {
     // virtual ~TeleportPortalObject();
+    TeleportPortalObject() = ios 0x392810 {
+        m_orangePortal = nullptr;
+        m_isYellowPortal = false;
+        m_teleportYOffset = 0.f;
+        m_teleportEase = false;
+        m_staticForceEnabled = false;
+        m_staticForce = 0;
+        m_redirectForceEnabled = false;
+        m_redirectForceMod = 1.f;
+        m_redirectForceMin = 0.f;
+        m_redirectForceMax = 0.f;
+        m_saveOffset = false;
+        m_ignoreX = false;
+        m_ignoreY = false;
+        m_gravityMode = 0;
+        m_staticForceAdditive = false;
+        m_instantCamera = false;
+        m_snapGround = false;
+        m_redirectDash = false;
+    }
 
-    static TeleportPortalObject* create(char const*, bool) = win 0x499670, imac 0x1ac900, m1 0x16da24, ios 0x38052c;
+    static TeleportPortalObject* create(char const* frame, bool trigger) = win 0x499670, imac 0x1ac900, m1 0x16da24, ios 0x38052c;
 
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x499850, imac 0x1acca0, m1 0x16dd84, ios 0x380764;
     virtual void setRotation(float) = win 0x4999d0, imac 0x1acd50, m1 0x16de2c, ios 0x38080c;
@@ -29551,10 +30239,18 @@ class TeleportPortalObject : RingObject {
     virtual void addToGroup2(int) = win 0x499a60, m1 0x16dea0, imac 0x1acdc0, ios 0x380880;
     virtual void removeFromGroup2(int) = win 0x499a70, m1 0x16dea4, imac 0x1acdd0, ios 0x380884;
 
-    float getTeleportXOff(cocos2d::CCNode*) = win 0x4998f0, m1 0x16dcb0, imac 0x1acbd0, ios 0x38069c;
-    bool init(char const*, bool);
-    void setPositionOverride(cocos2d::CCPoint);
-    void setStartPosOverride(cocos2d::CCPoint);
+    float getTeleportXOff(cocos2d::CCNode* parent) = win 0x4998f0, m1 0x16dcb0, imac 0x1acbd0, ios 0x38069c;
+    bool init(char const* frame, bool trigger) = win inline, m1 0x16db5c, imac 0x1aca60, ios inline {
+        if (!EffectGameObject::init(frame)) return false;
+        if (!trigger) m_isTouchTriggered = true;
+        return true;
+    }
+    void setPositionOverride(cocos2d::CCPoint position) = win inline, m1 0x16dbe8, imac 0x1acaf0, ios inline {
+        return GameObject::setPosition(position);
+    }
+    void setStartPosOverride(cocos2d::CCPoint position) = win inline, m1 0x16dbb0, imac 0x1acac0, ios inline {
+        return GameObject::setStartPos(position);
+    }
 
     TeleportPortalObject* m_orangePortal;
     bool m_isYellowPortal;
@@ -29787,14 +30483,35 @@ class TimerTriggerAction {
 [[link(android)]]
 class TimerTriggerGameObject : EffectGameObject {
     // virtual ~TimerTriggerGameObject();
+    TimerTriggerGameObject() {
+        m_startTime = 0.0;
+        m_targetTime = 0.0;
+        m_stopTimeEnabled = false;
+        m_dontOverride = false;
+        m_ignoreTimeWarp = false;
+        m_timeMod = 1.f;
+        m_startPaused = false;
+        m_multiActivate = false;
+        m_controlType = 0;
+    }
 
-    static TimerTriggerGameObject* create(char const*);
+    static TimerTriggerGameObject* create(char const* frame) = win inline, m1 0x18bca0, imac 0x1d1100, ios 0x38ce58 {
+        auto ret = new TimerTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a6690, imac 0x1d1230, m1 0x18bdc8, ios 0x38cf2c;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a6e70, imac 0x1d3110, m1 0x18d660, ios 0x38d63c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a67a0, imac 0x1d1340, m1 0x18bed0, ios 0x38cfdc;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x18bd80, imac 0x1d11e0, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 467
     double m_startTime;
@@ -29941,14 +30658,35 @@ class TouchToggleAction {
 [[link(android)]]
 class TransformTriggerGameObject : EffectGameObject {
     // virtual ~TransformTriggerGameObject();
+    TransformTriggerGameObject() {
+        m_objectScaleX = 1.f;
+        m_objectScaleY = 1.f;
+        m_property450 = 0.f;
+        m_property451 = 0.f;
+        m_onlyMove = false;
+        m_divideX = false;
+        m_divideY = false;
+        m_relativeRotation = false;
+        m_relativeScale = false;
+    }
 
-    static TransformTriggerGameObject* create(char const*);
+    static TransformTriggerGameObject* create(char const* frame) = win inline, m1 0x1846b4, imac 0x1c7b60, ios 0x38a1f4 {
+        auto ret = new TransformTriggerGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4a3630, imac 0x1c7c90, m1 0x1847d4, ios 0x38a2c0;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a3650, imac 0x1c7cc0, m1 0x1847f8, ios 0x38a2e4;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4a3950, imac 0x1c80a0, m1 0x184ac0, ios 0x38a574;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x18478c, imac 0x1c7c40, ios inline {
+        return EffectGameObject::init(frame);
+    }
 
     // property 150
     float m_objectScaleX;
@@ -29973,14 +30711,28 @@ class TransformTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class TriggerControlGameObject : EffectGameObject {
     // virtual ~TriggerControlGameObject();
+    TriggerControlGameObject() {
+        m_customTriggerValue = GJActionCommand::Stop;
+    }
 
-    static TriggerControlGameObject* create(char const*);
+    static TriggerControlGameObject* create(char const* frame) = win inline, m1 0x195acc, imac 0x1dd0b0, ios 0x390958 {
+        auto ret = new TriggerControlGameObject();
+        if (ret->init(frame)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void triggerObject(GJBaseGameLayer*, int, gd::vector<int> const*) = win 0x4aa7d0, imac 0x1ddd40, m1 0x1965fc, ios 0x390e54;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4aa6e0, imac 0x1ddaf0, m1 0x1963a4, ios 0x390c9c;
     virtual gd::string getSaveString(GJBaseGameLayer*) = win 0x4aa480, imac 0x1dd1f0, m1 0x195c04, ios 0x390a54;
 
-    bool init(char const*);
+    bool init(char const* frame) = win inline, m1 0x195ba8, imac 0x1dd190, ios 0x3909f8 {
+        m_triggerControlFrame = frame;
+        return EffectGameObject::init(frame);
+    }
     void updateTriggerControlFrame() = win 0x4aa800, m1 0x196494, imac 0x1ddbe0, ios 0x390d78;
 
     gd::string m_triggerControlFrame;
@@ -30330,8 +31082,22 @@ class UISaveLoadLayer : SetupTriggerPopup {
 [[link(android)]]
 class UISettingsGameObject : EffectGameObject {
     // virtual ~UISettingsGameObject();
+    UISettingsGameObject() {
+        m_xRef = 0;
+        m_yRef = 0;
+        m_xRelative = false;
+        m_yRelative = false;
+    }
 
-    static UISettingsGameObject* create();
+    static UISettingsGameObject* create() = win inline, m1 0x187208, imac 0x1cb0e0, ios 0x38b230 {
+        auto ret = new UISettingsGameObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x4a4720, m1 0x1872d4, imac 0x1cb1b0, ios 0x38b2f0;
     virtual void customObjectSetup(gd::vector<gd::string>&, gd::vector<void*>&) = win 0x4a4b40, imac 0x1cc0f0, m1 0x187f74, ios 0x38b69c;
