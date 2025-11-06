@@ -13940,85 +13940,144 @@ class GJFriendRequest : cocos2d::CCNode {
 
 [[link(android)]]
 class GJGameLevel : cocos2d::CCNode {
-    /*inline static GJGameLevel* createWithCoder(DS_Dictionary* dict) {
-        //inlined on windows
-        auto level = GJGameLevel::create();
-        level->dataLoaded(dict);
-        return level;
-    }*/
-    // virtual ~GJGameLevel();
-    GJGameLevel() = win 0x13f6d0;
+    GJGameLevel() = win 0x13f6d0, m1 0x4a5694, imac 0x54d630, ios 0xb5b54;
+    ~GJGameLevel() = win inline, m1 0x49dc80, imac 0x544c30, ios 0xaf820 {
+        CC_SAFE_RELEASE(m_lastBuildSave);
+    }
 
     static GJGameLevel* create() = ios 0x9637c, win 0x169b40, imac 0x5168e0, m1 0x473d34;
-    static GJGameLevel* create(cocos2d::CCDictionary*, bool) = win 0x1683e0, m1 0x4760f0, imac 0x519030, ios 0x978ec;
+    static GJGameLevel* create(cocos2d::CCDictionary* dict, bool download) = win 0x1683e0, m1 0x4760f0, imac 0x519030, ios 0x978ec;
     static gd::string lengthKeyToString(int key) = win 0x16a0d0, imac 0x5457e0, m1 0x49e59c, ios 0xb0008;
 
     virtual void encodeWithCoder(DS_Dictionary*) = win 0x16c090, imac 0x5482f0, m1 0x4a0bd0, ios 0xb2118;
     virtual bool canEncode() = m1 0x4a1674, imac 0x548e40, ios 0xb2bb0 { return true; }
     virtual bool init() = win 0x169ba0, imac 0x544f30, m1 0x49de78, ios 0xaf984;
 
-    bool areCoinsVerified();
-    void copyLevelInfo(GJGameLevel*) = win 0x16aaa0, m1 0x49f54c, imac 0x5468b0, ios 0xb0cf8;
+    bool areCoinsVerified() = win 0x16d030, m1 0x4a167c, imac 0x548e50, ios 0xb2bb8;
+    void copyLevelInfo(GJGameLevel* level) = win 0x16aaa0, m1 0x49f54c, imac 0x5468b0, ios 0xb0cf8;
     static GJGameLevel* createWithCoder(DS_Dictionary* dict) = win inline, ios 0xb12c4, m1 0x49fcbc, imac 0x547250 {
         auto level = GJGameLevel::create();
         level->dataLoaded(dict);
         return level;
     }
-    void dataLoaded(DS_Dictionary*) = ios 0xb12f4, win 0x16b150, imac 0x5472c0, m1 0x49fd40;
-    int demonIconForDifficulty(DemonDifficultyType) = imac 0x548f50, m1 0x4a1794;
-    TodoReturn generateSettingsString();
+    void dataLoaded(DS_Dictionary* dict) = ios 0xb12f4, win 0x16b150, imac 0x5472c0, m1 0x49fd40;
+    int demonIconForDifficulty(DemonDifficultyType type) = win inline, imac 0x548f50, m1 0x4a1794, ios 0xb2cc4 {
+        switch (type) {
+            case DemonDifficultyType::EasyDemon: return 7;
+            case DemonDifficultyType::MediumDemon: return 8;
+            case DemonDifficultyType::InsaneDemon: return 9;
+            case DemonDifficultyType::ExtremeDemon: return 10;
+            default: return 6;
+        }
+    }
+    gd::string generateSettingsString() = win inline, m1 0x49eb00, imac 0x545d00, ios inline { return ""; }
     gd::string getAudioFileName() = win 0x16a3f0, imac 0x545b00, m1 0x49e8d8, ios 0xb0188;
     int getAverageDifficulty() = win 0x16a230, imac 0x545880, m1 0x49e674, ios 0xb0034;
     char const* getCoinKey(int coinNumber) = win 0x16a2a0, imac 0x535eb0, m1 0x48f96c, ios 0xa76cc;
-    int getLastBuildPageForTab(int) = win 0x16a320, ios 0xb0060, imac 0x5458d0, m1 0x49e6a0;
-    const char* getLengthKey(int length, bool platformer) = imac 0x5457a0, m1 0x49e560;
-    GJGameLevel* getListSnapshot() = win 0x16adc0;
-    int getNormalPercent();
-    TodoReturn getSongName();
+    int getLastBuildPageForTab(int tab) = win 0x16a320, ios 0xb0060, imac 0x5458d0, m1 0x49e6a0;
+    int getLengthKey(int length, bool platformer) = win inline, imac 0x5457a0, m1 0x49e560, ios 0xaffcc {
+        if (platformer) return 5;
+        if (length < 10) return 0;
+        if (length < 30) return 1;
+        if (length < 60) return 2;
+        if (length < 120) return 3;
+        return 4;
+    }
+    GJGameLevel* getListSnapshot() = win 0x16adc0, m1 0x49f990, imac 0x546ea0, ios 0xb0fdc;
+    int getNormalPercent() = win inline, m1 0x474674, imac 0x5172a0, ios 0x96988 {
+        return m_normalPercent.value();
+    }
+    gd::string getSongName() = win 0x16a4b0, m1 0x49ea14, imac 0x545c30, ios 0xb0228;
     gd::string getUnpackedLevelDescription() = win 0x16d150, m1 0x4a16d8, imac 0x548eb0, ios 0xb2c14;
-    void handleStatsConflict(GJGameLevel*) = ios 0x9f82c, win 0x16cc80, imac 0x526870, m1 0x482228;
-    inline bool isPlatformer() {
+    void handleStatsConflict(GJGameLevel* level) = ios 0x9f82c, win 0x16cc80, imac 0x526870, m1 0x482228;
+    bool isPlatformer() = win inline, m1 0x47cbe0, imac 0x520b50, ios 0x9c078 {
         return m_levelLength == 5;
     }
-    void levelWasAltered() = m1 0x49e000, imac 0x545150;
-    TodoReturn levelWasSubmitted();
-    TodoReturn parseSettingsString(gd::string);
-    void saveNewScore(int, int) = win inline, m1 0x49ebbc, imac 0x545dc0, ios 0xb0314 {
-        if (p1 == 0) {
-            if (p0 > 0 && (m_bestTime > p0 || m_bestTime == 0)) m_bestTime = p0;
+    void levelWasAltered() = win inline, m1 0x49e000, imac 0x545150, ios 0xafb34 {
+        m_hasBeenModified = true;
+        m_isVerifiedRaw = false;
+        m_isVerified = false;
+        this->unverifyCoins();
+        m_capacityString = "";
+        if (m_isUploaded) {
+            m_isUploaded = false;
+            m_levelVersion++;
+        }
+    }
+    void levelWasSubmitted() = win inline, m1 0x483c44, imac 0x5284e0, ios inline {
+        m_isUploaded = true;
+    }
+    void parseSettingsString(gd::string str) = win inline, m1 0x49de74, imac 0x544f20, ios inline {}
+    void saveNewScore(int value, int type) = win inline, m1 0x49ebbc, imac 0x545dc0, ios 0xb0314 {
+        if (type == 0) {
+            if (value > 0 && (m_bestTime > value || m_bestTime == 0)) m_bestTime = value;
         }
         else {
-            if (m_bestPoints < p0 || m_bestPoints == 0) m_bestPoints = p0;
+            if (m_bestPoints < value || m_bestPoints == 0) m_bestPoints = value;
         }
         uint32_t seed = (((m_bestTime + 7890) % 34567) * 601 + ((abs(m_bestPoints) + 3456) % 78901) * 967 + 94819) % 94433;
         m_platformerSeed = (int)(((int)seed >> 16 ^ seed) * 829) % 77849;
-        storeNewLocalScore(p0, p1);
+        storeNewLocalScore(value, type);
     }
     void savePercentage(int percent, bool isPracticeMode, int clicks, int attempts, bool isChkValid) = ios 0xafc44, win 0x169db0, m1 0x49e170, imac 0x545320;
-    void scoreStringToVector(gd::string&, gd::vector<int>&) = win 0x16a910;
-    TodoReturn scoreVectorToString(gd::vector<int>&, int);
-    void setAccountID(int);
-    void setAttempts(int);
-    void setAttemptTime(int);
-    void setClicks(int);
-    void setCoinsVerified(int);
-    void setDailyID(int);
-    void setDemon(int);
-    void setJumps(int);
-    void setLastBuildPageForTab(int, int);
-    void setLevelID(int);
-    void setNewNormalPercent(int);
-    void setNewNormalPercent2(int);
-    void setNormalPercent(int);
-    void setObjectCount(int);
-    void setOriginalLevel(int);
-    void setPassword(int);
-    void setStars(int);
+    void scoreStringToVector(gd::string& str, gd::vector<int>& vec) = win 0x16a910, m1 0x49efa4, imac 0x546220, ios 0xb0644;
+    gd::string scoreVectorToString(gd::vector<int>& vec, int type) = m1 0x49f258, imac 0x546550, ios 0xb085c;
+    void setAccountID(int id) {
+        m_accountID = id;
+    }
+    void setAttempts(int attempts) {
+        m_attempts = attempts;
+    }
+    void setAttemptTime(int time) {
+        m_attemptTime = time;
+    }
+    void setClicks(int clicks) {
+        m_clicks = clicks;
+    }
+    void setCoinsVerified(int coinsVerified) {
+        m_coinsVerified = coinsVerified;
+    }
+    void setDailyID(int id) {
+        m_dailyID = id;
+    }
+    void setDemon(int demon) {
+        m_demon = demon;
+    }
+    void setJumps(int jumps) {
+        m_jumps = jumps;
+    }
+    void setLastBuildPageForTab(int tab, int page) = win inline, m1 0x49e7a8, imac 0x5459e0, ios 0xb00e8 {
+        m_lastBuildSave->setObject(cocos2d::CCString::createWithFormat("%i", page), cocos2d::CCString::createWithFormat("%i", tab)->getCString());
+    }
+    void setLevelID(int levelID) {
+        m_levelID = levelID;
+    }
+    void setNewNormalPercent(int percent) {
+        m_orbCompletion = percent;
+    }
+    void setNewNormalPercent2(int percent) {
+        m_newNormalPercent2 = percent;
+    }
+    void setNormalPercent(int percent) = win inline, m1 0x475d64, imac 0x518c70, ios inline {
+        m_normalPercent = percent;
+    }
+    void setObjectCount(int count) {
+        m_objectCount = count;
+    }
+    void setOriginalLevel(int id) {
+        m_originalLevel = id;
+    }
+    void setPassword(int password) {
+        m_password = password;
+    }
+    void setStars(int stars) {
+        m_stars = stars;
+    }
     bool shouldCheatReset() = win inline, m1 0x475d1c, imac 0x518c30, ios inline {
         return m_stars.value() > 7 && m_jumps.value() < 50 && m_clicks.value() < 50;
     }
-    void storeNewLocalScore(int, int) = win 0x16a690, m1 0x49ed44, imac 0x545f50, ios 0xb049c;
-    TodoReturn unverifyCoins();
+    void storeNewLocalScore(int value, int type) = win 0x16a690, m1 0x49ed44, imac 0x545f50, ios 0xb049c;
+    void unverifyCoins() = win 0x16d090, m1 0x49e0e0, imac 0x545270, ios 0xafbb4;
 
     cocos2d::CCDictionary* m_lastBuildSave;
     geode::SeedValueRSV m_levelID;
