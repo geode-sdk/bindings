@@ -8161,8 +8161,20 @@ class GameLevelManager : cocos2d::CCNode {
     void getUsers(GJSearchObject* object) = ios 0xa79b0, win 0x1571c0, m1 0x48fdec, imac 0x536320;
     void gotoLevelPage(GJGameLevel* level) = win 0x1473c0, m1 0x47dd44, imac 0x521e70, ios 0x9cd20;
     void handleIt(bool success, gd::string response, gd::string tag, GJHttpType type) = win 0x140e00, m1 0x46479c, imac 0x505160, ios 0x8c0bc;
-    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = m1 0x4669d0, imac 0x507fb0;
-    void handleItND(cocos2d::CCNode* node, void* data) = m1 0x466ce4, imac 0x5082a0;
+    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, m1 0x4669d0, imac 0x507fb0, ios inline {
+        auto result = GJHttpResult::create(true, response, tag, type);
+        result->retain();
+        m_pActionManager->addAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(.1f),
+            cocos2d::CCCallFuncND::create(this, callfuncND_selector(GJMultiplayerManager::handleItND), result),
+            nullptr
+        ), this, false);
+    }
+    void handleItND(cocos2d::CCNode* node, void* data) = win inline, m1 0x466ce4, imac 0x5082a0, ios inline {
+        auto result = static_cast<GJHttpResult*>(data);
+        this->handleIt(result->m_success, result->m_response, result->m_requestTag, result->m_httpType);
+        result->release();
+    }
     bool hasDailyStateBeenLoaded(GJTimedLevelType type) = win inline, imac 0x543960, m1 0x49c950, ios 0xaeecc {
         if (type == GJTimedLevelType::Daily) return m_dailyTimeLeft > 0;
         if (type == GJTimedLevelType::Weekly) return m_weeklyTimeLeft > 0;
@@ -11723,8 +11735,20 @@ class GJAccountManager : cocos2d::CCNode {
     }
     gd::string getShaPassword(gd::string password) = win 0x1feee0, m1 0xbcf34, imac 0xd48f0, ios 0x39a6e4;
     void handleIt(bool success, gd::string response, gd::string tag, GJHttpType type) = win 0x1fb2c0, m1 0xb8918, imac 0xcfd00, ios 0x397ad0;
-    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = m1 0xb8f70, imac 0xd0500;
-    void handleItND(cocos2d::CCNode* node, void* data) = m1 0xb90dc, imac 0xd0640;
+    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, m1 0xb8f70, imac 0xd0500, ios inline {
+        auto result = GJHttpResult::create(true, response, tag, type);
+        result->retain();
+        m_pActionManager->addAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(.1f),
+            cocos2d::CCCallFuncND::create(this, callfuncND_selector(GJMultiplayerManager::handleItND), result),
+            nullptr
+        ), this, false);
+    }
+    void handleItND(cocos2d::CCNode* node, void* data) = win inline, m1 0xb90dc, imac 0xd0640, ios inline {
+        auto result = static_cast<GJHttpResult*>(data);
+        this->handleIt(result->m_success, result->m_response, result->m_requestTag, result->m_httpType);
+        result->release();
+    }
     bool isDLActive(char const* tag) = win inline, m1 0xbabc4, imac 0xd2370, ios inline {
         return this->getDLObject(tag) != nullptr;
     }
@@ -13283,10 +13307,38 @@ class GJColorSetupLayer : FLAlertLayer, ColorSelectDelegate, FLAlertLayerProtoco
 
 [[link(android)]]
 class GJComment : cocos2d::CCNode {
-    // virtual ~GJComment();
+    GJComment() {
+        m_commentID = 0;
+        m_userID = 0;
+        m_likeCount = 0;
+        m_levelID = 0;
+        m_isSpam = false;
+        m_accountID = 0;
+        m_commentDeleted = false;
+        m_percentage = 0;
+        m_modBadge = 0;
+        m_color.r = 255;
+        m_color.g = 255;
+        m_color.b = 255;
+        m_hasLevelID = false;
+        m_unkMultiplayerBool = false;
+        m_canDelete = false;
+        m_userScore = nullptr;
+    }
+    ~GJComment() = win inline, m1 0x4a3378, imac 0x54afc0, ios 0xb40c0 {
+        CC_SAFE_RELEASE(m_userScore);
+    }
 
-    static GJComment* create();
-    static GJComment* create(cocos2d::CCDictionary*) = win 0x172290;
+    static GJComment* create() = win inline, m1 0x4a341c, imac 0x54b080, ios 0xb4144 {
+        auto ret = new GJComment();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static GJComment* create(cocos2d::CCDictionary* dict) = win 0x172290, m1 0x493d1c, imac 0x53a5a0, ios 0xa9fb4;
 
     virtual bool init() = win 0x172e30, imac 0x54b160, m1 0x4a34d4, ios 0xb41fc;
 
@@ -13305,6 +13357,7 @@ class GJComment : cocos2d::CCNode {
     cocos2d::ccColor3B m_color;
     bool m_hasLevelID;
     bool m_unkMultiplayerBool;
+    bool m_canDelete;
     GJUserScore* m_userScore;
 }
 
@@ -13926,7 +13979,7 @@ class GJFriendRequest : cocos2d::CCNode {
         delete ret;
         return nullptr;
     }
-    static GJFriendRequest* create(cocos2d::CCDictionary*) = win 0x16fc70, m1 0x490504, imac 0x536a90, ios 0xa7da4;
+    static GJFriendRequest* create(cocos2d::CCDictionary* dict) = win 0x16fc70, m1 0x490504, imac 0x536a90, ios 0xa7da4;
 
     virtual bool init() = win 0x77db0, m1 0x4a2484, imac 0x549d80, ios 0xb34b8;
 
@@ -13940,7 +13993,96 @@ class GJFriendRequest : cocos2d::CCNode {
 
 [[link(android)]]
 class GJGameLevel : cocos2d::CCNode {
-    GJGameLevel() = win 0x13f6d0, m1 0x4a5694, imac 0x54d630, ios 0xb5b54;
+    GJGameLevel() = win 0x13f6d0, m1 0x4a5694, imac 0x54d630, ios 0xb5b54 {
+        m_lastBuildSave = nullptr;
+        m_levelID = { 0, 0 };
+        m_userID = { 0, 0 };
+        m_accountID = { 0, 0 };
+        m_difficulty = GJDifficulty::Auto;
+        m_audioTrack = 0;
+        m_songID = 0;
+        m_levelRev = 0;
+        m_unlisted = false;
+        m_friendsOnly = false;
+        m_objectCount = { 0, 0 };
+        m_levelIndex = 0;
+        m_ratings = 0;
+        m_ratingsSum = 0;
+        m_downloads = 0;
+        m_isEditable = false;
+        m_gauntletLevel = false;
+        m_gauntletLevel2 = false;
+        m_workingTime = 0;
+        m_workingTime2 = 0;
+        m_lowDetailMode = false;
+        m_lowDetailModeToggled = false;
+        m_disableShakeToggled = false;
+        m_selected = false;
+        m_localOrSaved = false;
+        m_isVerified = { 0, 0 };
+        m_isVerifiedRaw = false;
+        m_isUploaded = false;
+        m_hasBeenModified = false;
+        m_levelVersion = 0;
+        m_gameVersion = 0;
+        m_attempts = { 0, 0 };
+        m_jumps = { 0, 0 };
+        m_clicks = { 0, 0 };
+        m_attemptTime = { 0, 0 };
+        m_isChkValid = false;
+        m_isCompletionLegitimate = false;
+        m_normalPercent = { 0, 0 };
+        m_orbCompletion = { 0, 0 };
+        m_newNormalPercent2 = { 0, 0 };
+        m_practicePercent = 0;
+        m_likes = 0;
+        m_dislikes = 0;
+        m_levelLength = 0;
+        m_featured = 0;
+        m_isEpic = 0;
+        m_levelFavorited = false;
+        m_levelFolder = 0;
+        m_dailyID = { 0, 0 };
+        m_demon = { 0, 0 };
+        m_demonDifficulty = 4;
+        m_stars = { 0, 0 };
+        m_autoLevel = false;
+        m_coins = 0;
+        m_coinsVerified = { 0, 0 };
+        m_password = { 0, 0 };
+        m_originalLevel = { 0, 0 };
+        m_twoPlayerMode = false;
+        m_failedPasswordAttempts = 0;
+        m_firstCoinVerified = { 0, 0 };
+        m_secondCoinVerified = { 0, 0 };
+        m_thirdCoinVerified = { 0, 0 };
+        m_starsRequested = 0;
+        m_showedSongWarning = false;
+        m_starRatings = 0;
+        m_starRatingsSum = 0;
+        m_maxStarRatings = 0;
+        m_minStarRatings = 0;
+        m_demonVotes = 0;
+        m_rateStars = 0;
+        m_rateFeature = false;
+        m_dontSave = false;
+        m_levelNotDownloaded = false;
+        m_requiredCoins = 0;
+        m_isUnlocked = false;
+        m_lastEditorZoom = 0.f;
+        m_lastBuildTab = 0;
+        m_lastBuildPage = 0;
+        m_lastBuildGroupID = 0;
+        m_levelType = GJLevelType::Default;
+        m_M_ID = 0;
+        m_highObjectsEnabled = false;
+        m_unlimitedObjectsEnabled = false;
+        m_timestamp = 0;
+        m_listPosition = 0;
+        m_54 = 0;
+        m_bestTime = 0;
+        m_bestPoints = 0;
+    }
     ~GJGameLevel() = win inline, m1 0x49dc80, imac 0x544c30, ios 0xaf820 {
         CC_SAFE_RELEASE(m_lastBuildSave);
     }
@@ -14163,7 +14305,7 @@ class GJGameLevel : cocos2d::CCNode {
     int m_minStarRatings;
     int m_demonVotes;
     int m_rateStars;
-    int m_rateFeature;
+    bool m_rateFeature;
     gd::string m_rateUser;
     bool m_dontSave;
     bool m_levelNotDownloaded;
@@ -14696,10 +14838,29 @@ class GJGroundLayer : cocos2d::CCLayer {
 [[link(android)]]
 class GJHttpResult : cocos2d::CCNode {
     // virtual ~GJHttpResult();
+    GJHttpResult() {
+        m_success = false;
+        m_httpType = (GJHttpType)0;
+    }
 
-    static GJHttpResult* create(bool, gd::string, gd::string, GJHttpType);
+    static GJHttpResult* create(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, m1 0x466b3c, imac 0x5080f0, ios inline {
+        auto ret = new GJHttpResult();
+        if (ret->init(success, response, tag, type)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(bool, gd::string, gd::string, GJHttpType);
+    bool init(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, m1 0x4a3648, imac 0x54b2a0, ios inline {
+        if (!cocos2d::CCNode::init()) return false;
+        m_success = success;
+        m_response = response;
+        m_requestTag = tag;
+        m_httpType = type;
+        return true;
+    }
 
     bool m_success;
     gd::string m_response;
@@ -14763,9 +14924,34 @@ class GJItemIcon : cocos2d::CCSprite {
 [[link(android)]]
 class GJLevelList : cocos2d::CCNode {
     // virtual ~GJLevelList();
+    GJLevelList() {
+        m_listID = 0;
+        m_listVersion = 0;
+        m_downloads = 0;
+        m_likes = 0;
+        m_difficulty = -1;
+        m_accountID = 0;
+        m_folder = 0;
+        m_listRevision = 0;
+        m_listOrder = 0;
+        m_original = 0;
+        m_diamonds = 0;
+        m_levelsToClaim = 0;
+        m_isEditable = false;
+        m_unlisted = false;
+        m_friendsOnly = false;
+        m_uploaded = false;
+        m_favorite = false;
+        m_featured = false;
+        m_onlineLevelsLoaded = false;
+        m_modified = false;
+        m_levelsDict = nullptr;
+        m_listType = GJLevelType::Default;
+        m_M_ID = 0;
+    }
 
     static GJLevelList* create() = win 0x173760, imac 0x517750, m1 0x474a98, ios 0x96cac;
-    static GJLevelList* create(cocos2d::CCDictionary*) = win 0x172e70, imac 0x51bac0, m1 0x478394, ios 0x99114;
+    static GJLevelList* create(cocos2d::CCDictionary* dict) = win 0x172e70, imac 0x51bac0, m1 0x478394, ios 0x99114;
 
     virtual void encodeWithCoder(DS_Dictionary*) = win 0x174ff0, imac 0x54d230, m1 0x4a5298, ios 0xb5668;
     virtual bool canEncode() = m1 0x4a54d0, imac 0x54d4a0, ios 0xb58a0 { return true; }
@@ -14778,8 +14964,13 @@ class GJLevelList : cocos2d::CCNode {
         ret->dataLoaded(dict);
         return ret;
     }
-    void dataLoaded(DS_Dictionary*) = ios 0xb536c, win 0x174cd0, imac 0x54cef0, m1 0x4a4f68;
-    TodoReturn duplicateListLevels(GJLevelList*);
+    void dataLoaded(DS_Dictionary* dict) = ios 0xb536c, win 0x174cd0, imac 0x54cef0, m1 0x4a4f68;
+    void duplicateListLevels(GJLevelList* list) = win inline, m1 0x4a3a8c, imac 0x54b710, ios 0xb4558 {
+        auto levels = list->getListLevelsArray(nullptr);
+        for (int i = 0; i < levels->count(); i++) {
+            this->addLevelToList(static_cast<GJGameLevel*>(levels->objectAtIndex(i)));
+        }
+    }
     static gd::string frameForListDifficulty(int diff, DifficultyIconType type) = win inline, imac 0x54d4b0, m1 0x4a54d8, ios 0xb58a8 {
         if (diff == 0) return type == DifficultyIconType::NoText ? "diffIcon_auto_btn_001.png" : "difficulty_auto_btn_001.png";
 
@@ -14800,20 +14991,41 @@ class GJLevelList : cocos2d::CCNode {
             return cocos2d::CCString::createWithFormat("difficulty_%02d_btn_001.png", diff)->getCString();
         }
     }
-    cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray*) = win 0x174160;
+    cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray* levels) = win 0x174160, m1 0x4a3af8, imac 0x54b780, ios 0xb45c4;
     gd::string getUnpackedDescription() = win 0x173b80, imac 0x54b670, m1 0x4a39d0, ios 0xb44a8;
-    void handleStatsConflict(GJLevelList*) = imac 0x54b4a0, m1 0x4a37fc;
-    bool hasMatchingLevels(GJLevelList*) = ios 0xb4390, win 0x173970, imac 0x54b4c0, m1 0x4a3814;
-    TodoReturn orderForLevel(int);
-    void parseListLevels(gd::string) = win 0x173c40, imac 0x52ca10, m1 0x487a60, ios 0xa2ab4;
-    TodoReturn removeLevelFromList(int);
-    void reorderLevel(int levelID, int newPosition) = win 0x174070, m1 0x4a44e0, imac 0x54c400;
-    TodoReturn reorderLevelStep(int, bool);
+    void handleStatsConflict(GJLevelList* list) = win inline, imac 0x54b4a0, m1 0x4a37fc, ios 0xb4378 {
+        m_listOrder = (std::max)(m_listOrder, list->m_listOrder);
+    }
+    bool hasMatchingLevels(GJLevelList* list) = ios 0xb4390, win 0x173970, imac 0x54b4c0, m1 0x4a3814;
+    int orderForLevel(int id) = win inline, m1 0x4a44a8, imac 0x54c3c0, ios 0xb4c10 {
+        auto index = 0;
+        for (auto levelID : m_levels) {
+            if (levelID == id) return index;
+            index++;
+        }
+        return index;
+    }
+    void parseListLevels(gd::string str) = win 0x173c40, imac 0x52ca10, m1 0x487a60, ios 0xa2ab4;
+    void removeLevelFromList(int id) = win inline, m1 0x4a43cc, imac 0x54c2e0, ios 0xb4b34 {
+        for (auto it = m_levels.begin(); it != m_levels.end(); ++it) {
+            if (*it == id) {
+                m_levels.erase(it);
+                this->updateLevelsString();
+                break;
+            }
+        }
+        m_levelsDict->removeObjectForKey(GameToolbox::intToString(id));
+        m_modified = true;
+    }
+    void reorderLevel(int levelID, int newPosition) = win 0x174070, m1 0x4a44e0, imac 0x54c400, ios 0xb4c48;
+    void reorderLevelStep(int id, bool up) = win inline, m1 0x4a4934, imac 0x54c8f0, ios 0xb4f50 {
+        this->reorderLevel(id, this->orderForLevel(id) + (up ? -1 : 1));
+    }
     void showListInfo() = ios 0xb4ff8, win 0x174900, imac 0x54ca50, m1 0x4a4aac;
     int totalLevels() = win inline, imac 0x54c9e0, m1 0x4a4a38, ios 0xb4f94 {
         return m_levels.size();
     }
-    TodoReturn updateLevelsString();
+    void updateLevelsString() = win 0x174750, m1 0x4a41dc, imac 0x54c080, ios 0xb49f4;
 
     gd::vector<int> m_levels;
     int m_listID;
@@ -14835,6 +15047,7 @@ class GJLevelList : cocos2d::CCNode {
     bool m_favorite;
     bool m_featured;
     bool m_onlineLevelsLoaded;
+    bool m_modified;
     gd::string m_creatorName;
     gd::string m_listName;
     gd::string m_unkString;
@@ -15249,8 +15462,20 @@ class GJMultiplayerManager : cocos2d::CCNode {
         return 0;
     }
     void handleIt(bool success, gd::string response, gd::string tag, GJHttpType type) = win 0x27b180, m1 0x56b860, imac 0x642da0, ios 0x1cf554;
-    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = m1 0x56bc4c, imac 0x6431e0;
-    void handleItND(cocos2d::CCNode* node, void* data) = m1 0x56bdb8, imac 0x643320;
+    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, m1 0x56bc4c, imac 0x6431e0, ios inline {
+        auto result = GJHttpResult::create(true, response, tag, type);
+        result->retain();
+        m_pActionManager->addAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(.1f),
+            cocos2d::CCCallFuncND::create(this, callfuncND_selector(GJMultiplayerManager::handleItND), result),
+            nullptr
+        ), this, false);
+    }
+    void handleItND(cocos2d::CCNode* node, void* data) = win inline, m1 0x56bdb8, imac 0x643320, ios inline {
+        auto result = static_cast<GJHttpResult*>(data);
+        this->handleIt(result->m_success, result->m_response, result->m_requestTag, result->m_httpType);
+        result->release();
+    }
     bool isDLActive(char const* tag) = win inline, m1 0x56ca04, imac 0x644060, ios inline {
         return this->getDLObject(tag) != nullptr;
     }
@@ -17002,9 +17227,17 @@ class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, Upl
 [[link(android)]]
 class GJUserMessage : cocos2d::CCNode {
     // virtual ~GJUserMessage();
+    GJUserMessage() {
+        m_messageID = 0;
+        m_accountID = 0;
+        m_userID = 0;
+        m_read = false;
+        m_outgoing = false;
+        m_toggled = false;
+    }
 
     static GJUserMessage* create() = win 0x170ec0, imac 0x549f70, m1 0x4a264c, ios 0xb3540;
-    static GJUserMessage* create(cocos2d::CCDictionary*) = win 0x170380, m1 0x490df0, imac 0x537410, ios 0xa8330;
+    static GJUserMessage* create(cocos2d::CCDictionary* dict) = win 0x170380, m1 0x490df0, imac 0x537410, ios 0xa8330;
 
     virtual bool init() = win 0x77db0, m1 0x4a26e8, imac 0x54a010, ios 0xb35d0;
 
@@ -17022,11 +17255,52 @@ class GJUserMessage : cocos2d::CCNode {
 
 [[link(android)]]
 class GJUserScore : cocos2d::CCNode {
-    GJUserScore() = win 0x1401d0;
-    static GJUserScore* create(cocos2d::CCDictionary*) = ios 0x99f28, win 0x16e1a0, m1 0x479a1c, imac 0x51d290;
+    GJUserScore() = win 0x1401d0, ios 0xb6538 {
+        m_scoreType = 0;
+        m_userID = 0;
+        m_accountID = 0;
+        m_stars = 0;
+        m_moons = 0;
+        m_diamonds = 0;
+        m_demons = 0;
+        m_playerRank = 0;
+        m_creatorPoints = 0;
+        m_secretCoins = 0;
+        m_iconID = 0;
+        m_color1 = 0;
+        m_color2 = 0;
+        m_special = 0;
+        m_iconType = IconType::Cube;
+        m_messageState = 0;
+        m_friendStatus = 0;
+        m_commentHistoryStatus = 0;
+        m_glowEnabled = false;
+        m_modBadge = 0;
+        m_globalRank = 0;
+        m_friendReqStatus = 0;
+        m_newMsgCount = 0;
+        m_friendReqCount = 0;
+        m_newFriendCount = 0;
+        m_newFriendRequest = false;
+        m_toggled = false;
+        m_playerCube = 1;
+        m_playerShip = 1;
+        m_playerBall = 1;
+        m_playerUfo = 1;
+        m_playerWave = 1;
+        m_playerRobot = 1;
+        m_playerSpider = 1;
+        m_playerSwing = 1;
+        m_playerStreak = 1;
+        m_unkInt = 0;
+        m_unkInt2 = 0;
+        m_levelMode = 0;
+        m_leaderboardMode = LevelLeaderboardMode::Time;
+    }
+    static GJUserScore* create(cocos2d::CCDictionary* dict) = ios 0x99f28, win 0x16e1a0, m1 0x479a1c, imac 0x51d290;
     // virtual ~GJUserScore();
 
-    static GJUserScore* create() = win inline, m1 0x4a205c, imac 0x549900, ios 0xb3264 { // ?
+    static GJUserScore* create() = win inline, m1 0x4a205c, imac 0x549900, ios 0xb3264 {
         auto ret = new GJUserScore();
         if (ret->init()) {
             ret->autorelease();
@@ -17040,7 +17314,14 @@ class GJUserScore : cocos2d::CCNode {
     virtual bool init() = win 0x16fb40, m1 0x4a2144, imac 0x549a60, ios 0xb32d8;
 
     bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8, imac 0x549af0, ios 0xb3320;
-    TodoReturn mergeWithScore(GJUserScore*);
+    void mergeWithScore(GJUserScore* score) = win inline, m1 0x4a218c, imac 0x549ab0, ios inline {
+        m_stars = (std::max)(m_stars, score->m_stars);
+        m_moons = (std::max)(m_moons, score->m_moons);
+        m_diamonds = (std::max)(m_diamonds, score->m_diamonds);
+        m_demons = (std::max)(m_demons, score->m_demons);
+        m_creatorPoints = (std::max)(m_creatorPoints, score->m_creatorPoints);
+        m_secretCoins = (std::max)(m_secretCoins, score->m_secretCoins);
+    }
 
     gd::string m_userName;
     gd::string m_userUDID;
@@ -20941,8 +21222,20 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
         return ++m_songPriority;
     }
     void handleIt(bool success, gd::string response, gd::string tag, GJHttpType type) = win 0x327ca0, imac 0x572fd0, m1 0x4c7150, ios 0x157254;
-    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = m1 0x4c7340, imac 0x5731a0;
-    void handleItND(cocos2d::CCNode* node, void* data) = m1 0x4c74ac, imac 0x5732e0;
+    void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, m1 0x4c7340, imac 0x5731a0, ios inline {
+        auto result = GJHttpResult::create(true, response, tag, type);
+        result->retain();
+        m_pActionManager->addAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(.1f),
+            cocos2d::CCCallFuncND::create(this, callfuncND_selector(GJMultiplayerManager::handleItND), result),
+            nullptr
+        ), this, false);
+    }
+    void handleItND(cocos2d::CCNode* node, void* data) = win inline, m1 0x4c74ac, imac 0x5732e0, ios inline {
+        auto result = static_cast<GJHttpResult*>(data);
+        this->handleIt(result->m_success, result->m_response, result->m_requestTag, result->m_httpType);
+        result->release();
+    }
     void incrementPriorityForSong(int id) = win inline, ios 0x157b18, imac 0x574000, m1 0x4c8154 {
         if (auto songObject = this->getSongInfoObject(id)) {
             songObject->m_priority = this->getSongPriority();
