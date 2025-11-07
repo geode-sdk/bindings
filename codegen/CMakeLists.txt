@@ -4,7 +4,7 @@ project(Codegen LANGUAGES C CXX)
 include(../cmake/CPM.cmake)
 
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
-CPMAddPackage("gh:hiimjasmine00/Broma#1b8a6c2")
+CPMAddPackage("gh:geode-sdk/Broma#24d7b5c")
 CPMAddPackage("gh:geode-sdk/json@3.2.1")
 
 target_compile_definitions(fmt PUBLIC -DFMT_CONSTEVAL=)
