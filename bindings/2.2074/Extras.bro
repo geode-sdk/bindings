@@ -75,6 +75,14 @@ class SFXTriggerState {
 }
 
 class ChanceObject {
+	ChanceObject() {}
+	ChanceObject(int groupID, int chance) {
+		m_groupID = groupID;
+		m_oldGroupID = groupID;
+		m_chance = chance;
+		m_unk00c = 0;
+	}
+
 	int m_groupID;
 	int m_oldGroupID;
 	int m_chance;
