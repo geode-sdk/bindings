@@ -14168,7 +14168,11 @@ class GJEffectManager : cocos2d::CCNode {
     bool isGroupEnabled(int id) = win inline, m1 0x276fa4, imac 0x2d6010, ios 0x19118 {
         return m_unkVector438[std::clamp(id, 0, 9999)];
     }
-    const char* keyForGroupIDColor(int id, cocos2d::ccColor3B const& color, bool mainColor) = m1 0x276494, imac 0x2d5300;
+    const char* keyForGroupIDColor(int id, cocos2d::ccColor3B const& color, bool mainColor) = win inline, m1 0x276494, imac 0x2d5300, ios inline {
+        fmt::memory_buffer out;
+        fmt::format_to(std::back_inserter(out), "{}_{}{}{}_{}", id, color.r, color.g, color.b, (int)mainColor);
+        return out.data();
+    }
     void loadFromState(EffectManagerState& state) = win 0x25cb40, m1 0x27a3c0, imac 0x2da290, ios 0x1af0c;
     void objectsCollided(int blockAID, int blockBID) = win inline, m1 0x26f310, imac 0x2cc680, ios 0x13eb0 {
         auto key = (std::min)(blockAID, blockBID) * 10000 + (std::max)(blockAID, blockBID) + 10000000;
