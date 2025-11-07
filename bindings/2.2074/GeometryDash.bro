@@ -9532,7 +9532,7 @@ class GameManager : GManager {
         }
     }
 
-    gd::string loadDpadFromString(UIButtonConfig& config, gd::string str) = win 0x183830, imac 0x375010, m1 0x305914, ios 0x31b20c;
+    void loadDpadFromString(UIButtonConfig& config, gd::string str) = win 0x183830, imac 0x375010, m1 0x305914, ios 0x31b20c;
     void loadDPadLayout(int index, bool dual) = win 0x183290, m1 0x305514, imac 0x374bd0, ios 0x31af14;
     void loadFont(int index) = ios 0x3182d4, m1 0x300c70, imac 0x36f960, win 0x17f7d0;
     void loadGround(int index) = win 0x17fc30, m1 0x301484, imac 0x370120, ios 0x318ad8;
