@@ -1155,3 +1155,35 @@ namespace GameVar {
     constexpr auto IgnoreDamageLevel = "0173";
     constexpr auto HidePlaytestText = "0174";
 }
+
+namespace GameStatsVar {
+    constexpr auto Jumps = "1";
+    constexpr auto Attempts = "2";
+    constexpr auto CustomLevels = "4";
+    constexpr auto Demons = "5";
+    constexpr auto Stars = "6";
+    constexpr auto MapPacks = "7";
+    constexpr auto Coins = "8";
+    constexpr auto DestroyedPlayers = "9";
+    constexpr auto LikedLevels = "10";
+    constexpr auto RatedLevels = "11";
+    constexpr auto UserCoins = "12";
+    constexpr auto Diamonds = "13";
+    constexpr auto Orbs = "14";
+    constexpr auto DailyLevels = "15";
+    constexpr auto ShadowShards = "16";
+    constexpr auto PoisonShards = "17";
+    constexpr auto FireShards = "18";
+    constexpr auto IceShards = "19";
+    constexpr auto LavaShards = "20";
+    constexpr auto Keys = "21";
+    constexpr auto EarthShards = "23";
+    constexpr auto BloodShards = "24";
+    constexpr auto MetalShards = "25";
+    constexpr auto LightShards = "26";
+    constexpr auto SoulShards = "27";
+    constexpr auto Moons = "28";
+    constexpr auto Gauntlets = "40";
+    constexpr auto ListsRewards = "41";
+    constexpr auto Insanes = "42";
+}
