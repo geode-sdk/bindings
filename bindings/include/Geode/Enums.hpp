@@ -466,6 +466,32 @@ enum class LevelLeaderboardMode {
     Points = 1
 };
 enum class StatKey {
+    Jumps = 1,
+    Attempts = 2,
+    CustomLevels = 4,
+    Demons = 5,
+    Stars = 6,
+    MapPacks = 7,
+    Coins = 8,
+    DestroyedPlayers = 9,
+    LikedLevels = 10,
+    RatedLevels = 11,
+    UserCoins = 12,
+    Diamonds = 13,
+    Orbs = 14,
+    DailyLevels = 15,
+    ShadowShards = 16,
+    PoisonShards = 17,
+    FireShards = 18,
+    IceShards = 19,
+    LavaShards = 20,
+    Keys = 21,
+    EarthShards = 23,
+    BloodShards = 24,
+    MetalShards = 25,
+    LightShards = 26,
+    SoulShards = 27,
+    Moons = 28,
     FirePath = 30,
     IcePath = 31,
     PoisonPath = 32,
@@ -475,7 +501,10 @@ enum class StatKey {
     BloodPath = 36,
     MetalPath = 37,
     LightPath = 38,
-    SoulPath = 39
+    SoulPath = 39,
+    Gauntlets = 40,
+    ListsRewards = 41,
+    Insanes = 42,
 };
 enum class TextStyleType {
     Colored = 1,
@@ -1154,36 +1183,4 @@ namespace GameVar {
     constexpr auto DisableShake = "0172";
     constexpr auto IgnoreDamageLevel = "0173";
     constexpr auto HidePlaytestText = "0174";
-}
-
-namespace GameStatsVar {
-    constexpr auto Jumps = "1";
-    constexpr auto Attempts = "2";
-    constexpr auto CustomLevels = "4";
-    constexpr auto Demons = "5";
-    constexpr auto Stars = "6";
-    constexpr auto MapPacks = "7";
-    constexpr auto Coins = "8";
-    constexpr auto DestroyedPlayers = "9";
-    constexpr auto LikedLevels = "10";
-    constexpr auto RatedLevels = "11";
-    constexpr auto UserCoins = "12";
-    constexpr auto Diamonds = "13";
-    constexpr auto Orbs = "14";
-    constexpr auto DailyLevels = "15";
-    constexpr auto ShadowShards = "16";
-    constexpr auto PoisonShards = "17";
-    constexpr auto FireShards = "18";
-    constexpr auto IceShards = "19";
-    constexpr auto LavaShards = "20";
-    constexpr auto Keys = "21";
-    constexpr auto EarthShards = "23";
-    constexpr auto BloodShards = "24";
-    constexpr auto MetalShards = "25";
-    constexpr auto LightShards = "26";
-    constexpr auto SoulShards = "27";
-    constexpr auto Moons = "28";
-    constexpr auto Gauntlets = "40";
-    constexpr auto ListsRewards = "41";
-    constexpr auto Insanes = "42";
 }
