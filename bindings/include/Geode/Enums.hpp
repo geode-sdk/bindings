@@ -1250,4 +1250,5 @@ namespace GameVar {
     constexpr auto DisableShake = "0172";
     constexpr auto IgnoreDamageLevel = "0173";
     constexpr auto HidePlaytestText = "0174";
+    constexpr auto BorderlessFix = "0175";
 }
