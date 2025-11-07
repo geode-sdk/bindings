@@ -1764,7 +1764,22 @@ class CCAnimateFrameCache : cocos2d::CCObject {
     static CCAnimateFrameCache* sharedSpriteFrameCache() = win 0x41450, m1 0x4ab09c, imac 0x5542d0, ios 0x1b44d8;
 
     void addCustomSpriteFramesWithFile(char const* filename) = m1 0x4ab2a0, imac 0x554510;
-    cocos2d::CCDictionary* addDict(cocos2d::CCDictionary* dict, char const* filename) = m1 0x4abdb0, imac 0x5551e0, ios 0x1b45f4;
+    cocos2d::CCDictionary* addDict(cocos2d::CCDictionary* dict, char const* filename) = win inline, m1 0x4abdb0, imac 0x5551e0, ios 0x1b45f4 {
+        m_animateDescriptions->setObject(dict, filename);
+        auto container = static_cast<cocos2d::CCDictionary*>(dict->objectForKey("animationContainer"));
+        auto keys = container->allKeys();
+        for (int i = 0; i < keys->count(); i++) {
+            auto key = static_cast<cocos2d::CCString*>(keys->objectAtIndex(i))->getCString();
+            auto animation = static_cast<cocos2d::CCDictionary*>(container->objectForKey(key));
+            auto frames = cocos2d::CCArray::create();
+            m_animateFrames->setObject(frames, key);
+            for (int i = 0; i < animation->count(); i++) {
+                auto frame = animation->objectForKey(cocos2d::CCString::createWithFormat("sprite_%i", i)->getCString());
+                frames->addObject(SpriteDescription::createDescription(static_cast<cocos2d::CCDictionary*>(frame)));
+            }
+        }
+        return dict;
+    }
     cocos2d::CCDictionary* addDict(DS_Dictionary* dict, char const* filename) = win 0x41670, m1 0x4ac488, imac 0x5558b0;
     cocos2d::CCDictionary* addSpriteFramesWithFile(char const* filename) = win 0x414e0, m1 0x4ac224, imac 0x555650, ios 0x1b47ec;
     bool init() = win inline, m1 0x4ab130, imac 0x554370, ios 0x1b4544 {
@@ -8897,7 +8912,24 @@ class GameLevelManager : cocos2d::CCNode {
         return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(4))->getCString()) : 0;
     }
     void storeCommentsResult(cocos2d::CCArray* comments, gd::string pageInfo, char const* key) = win 0x15b220, m1 0x491640, imac 0x537d50, ios 0xa88b0;
-    void storeDailyLevelState(int id, int remaining, GJTimedLevelType type) = m1 0x49c7e4, imac 0x543800, ios 0xaed8c;
+    void storeDailyLevelState(int id, int remaining, GJTimedLevelType type) = win inline, m1 0x49c7e4, imac 0x543800, ios 0xaed8c {
+        if (type != GJTimedLevelType::Daily && type != GJTimedLevelType::Weekly && type != GJTimedLevelType::Event) return;
+        __timeb64 current;
+        _ftime64(&current);
+        auto currentTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        if (type == GJTimedLevelType::Daily) {
+            m_dailyID = id;
+            m_dailyTimeLeft = currentTime + remaining;
+        }
+        else if (type == GJTimedLevelType::Weekly) {
+            m_weeklyID = id;
+            m_weeklyTimeLeft = currentTime + remaining;
+        }
+        else if (type == GJTimedLevelType::Event) {
+            m_eventID = id;
+            m_eventTimeLeft = currentTime + remaining;
+        }
+    }
     void storeFriendRequest(GJFriendRequest* request) = win inline, m1 0x4909e8, imac 0x536f90, ios inline {
         if (request && request->m_accountID > 0) m_friendRequests->setObject(request, request->m_accountID);
     }
@@ -9218,8 +9250,24 @@ class GameManager : GManager {
     void finishedLoadingMGAsync(int index) = win 0x17fb70, m1 0x3013d8, imac 0x370070, ios 0x318a3c;
     void finishedLoadingMGAsync1(cocos2d::CCObject* obj) = win 0x17faf0, m1 0x301338, imac 0x36fff0, ios 0x31899c;
     void finishedLoadingMGAsync2(cocos2d::CCObject* obj) = win 0x17fb30, m1 0x301388, imac 0x370030, ios 0x3189ec;
-    void followTwitch() = m1 0x2fe874, imac 0x36d1e0, ios 0x317578;
-    void followTwitter() = m1 0x2fe774, imac 0x36d100, ios 0x317480;
+    void followTwitch() = win inline, m1 0x2fe874, imac 0x36d1e0, ios 0x317578 {
+        if (GameToolbox::doWeHaveInternet()) {
+            cocos2d::CCApplication::sharedApplication()->openURL("https://www.twitch.tv/directory/category/geometry-dash");
+            m_clickedTwitch = true;
+            __timeb64 current;
+            _ftime64(&current);
+            m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        }
+    }
+    void followTwitter() = win inline, m1 0x2fe774, imac 0x36d100, ios 0x317480 {
+        if (GameToolbox::doWeHaveInternet()) {
+            cocos2d::CCApplication::sharedApplication()->openURL("https://twitter.com/robtopgames");
+            m_clickedTwitter = true;
+            __timeb64 current;
+            _ftime64(&current);
+            m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        }
+    }
     int framesForAnimation(int objectID) = win inline, m1 0x1f92d8, imac 0x24bbf0, ios inline {
         if (auto frames = static_cast<cocos2d::CCInteger*>(m_framesForAnimation->objectForKey(objectID))) {
             return frames->getValue();
@@ -9417,13 +9465,37 @@ class GameManager : GManager {
     }
     bool isIconUnlocked(int id, IconType type) = ios 0x312be8, win 0x1794e0, imac 0x3648d0, m1 0x2f7388;
     void itemPurchased(char const* key) = win inline, m1 0x2fdad8, imac 0x36c4f0, ios inline {}
-    void joinDiscord() = m1 0x2fe8f4, imac 0x36d250, ios 0x3175f4;
-    void joinReddit() = m1 0x2fe974, imac 0x36d2c0, ios 0x317670;
+    void joinDiscord() = win inline, m1 0x2fe8f4, imac 0x36d250, ios 0x3175f4 {
+        if (GameToolbox::doWeHaveInternet()) {
+            cocos2d::CCApplication::sharedApplication()->openURL("https://discord.com/invite/geometrydash");
+            m_clickedDiscord = true;
+            __timeb64 current;
+            _ftime64(&current);
+            m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        }
+    }
+    void joinReddit() = win inline, m1 0x2fe974, imac 0x36d2c0, ios 0x317670 {
+        if (GameToolbox::doWeHaveInternet()) {
+            cocos2d::CCApplication::sharedApplication()->openURL("https://www.reddit.com/r/geometrydash/");
+            m_clickedReddit = true;
+            __timeb64 current;
+            _ftime64(&current);
+            m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        }
+    }
     int keyForIcon(int id, int type) = win inline, m1 0x2fed5c, imac 0x36d9d0, ios inline {
         return m_keyStartForIcon[type] + id - 1;
     }
     bool levelIsPremium(int, int) = win inline, m1 0x2fdadc, imac 0x36c500, ios inline { return false; }
-    void likeFacebook() = m1 0x2fe6f4, imac 0x36d090, ios 0x317404;
+    void likeFacebook() = win inline, m1 0x2fe6f4, imac 0x36d090, ios 0x317404 {
+        if (GameToolbox::doWeHaveInternet()) {
+            cocos2d::CCApplication::sharedApplication()->openURL("https://www.facebook.com/geometrydash");
+            m_clickedFacebook = true;
+            __timeb64 current;
+            _ftime64(&current);
+            m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        }
+    }
     void loadBackground(int index) = win 0x17f880, m1 0x300f5c, imac 0x36fc40, ios 0x3185c0;
     void loadBackgroundAsync(int index) = win inline, m1 0x301000, imac 0x36fcf0, ios 0x318664 {
         index = std::clamp(index, 0, 59);
@@ -9684,7 +9756,15 @@ class GameManager : GManager {
             schedule_selector(GameManager::update), this, 0.f, kCCRepeatForever, 0.f, false);
     }
     gd::string stringForCustomObject(int customObjectID) = win 0x180950, imac 0x371170, m1 0x3025a0, ios 0x3195f0;
-    void subYouTube() = m1 0x2fe7f4, imac 0x36d170, ios 0x3174fc;
+    void subYouTube() = win inline, m1 0x2fe7f4, imac 0x36d170, ios 0x3174fc {
+        if (GameToolbox::doWeHaveInternet()) {
+            cocos2d::CCApplication::sharedApplication()->openURL("https://www.youtube.com/user/RobTopGames");
+            m_clickedYouTube = true;
+            __timeb64 current;
+            _ftime64(&current);
+            m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        }
+    }
     void switchCustomObjects(int key1, int key2) = win 0x180ba0, m1 0x30278c, imac 0x371360, ios 0x3196e8;
     void switchScreenMode(bool fullscreen, bool borderless, bool fix, bool) = win inline, m1 0x3093a0, imac 0x378e40, ios inline {
         this->reloadAll(true, fullscreen, borderless, fix, p3);
@@ -11487,7 +11567,11 @@ class GameStatsManager : cocos2d::CCNode {
     void storeChallenge(int position, GJChallengeItem* challenge) = win inline, m1 0x663ec, imac 0x729d0, ios 0x3339e0 {
         m_activeChallenges->setObject(challenge, cocos2d::CCString::createWithFormat("%i", position)->getCString());
     }
-    void storeChallengeTime(int remaining) = m1 0x66370, imac 0x72930, ios 0x333968;
+    void storeChallengeTime(int remaining) = win inline, m1 0x66370, imac 0x72930, ios 0x333968 {
+        __timeb64 current;
+        _ftime64(&current);
+        m_challengeTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+    }
     void storeEventChest(int eventID, GJRewardItem* item) = win inline, m1 0x67564, imac 0x73980, ios 0x3342c4 {
         if (item) m_eventChest->setObject(item, this->getDailyLevelKey(eventID));
     }
@@ -14015,7 +14099,56 @@ class GJEffectManager : cocos2d::CCNode {
         }
         return nullptr;
     }
-    gd::string getSaveString() = m1 0x279654, imac 0x2d9360, ios 0x1a6f4;
+    gd::string getSaveString() = win inline, m1 0x279654, imac 0x2d9360, ios 0x1a6f4 {
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        fmt::memory_buffer out;
+        HASH_ITER(hh, m_unkDict150->m_pElements, element, temp) {
+            auto action = static_cast<ColorAction*>(element->getObject());
+            if (
+                action->m_colorID < 1000 && action->m_fromColor.r == 255 && action->m_fromColor.g == 255 && action->m_fromColor.b == 255 &&
+                !action->m_blending && action->m_fromOpacity == 1.f && action->m_copyID == 0 && action->m_playerColor < 1
+            ) {
+                continue;
+            }
+
+            fmt::format_to(std::back_inserter(out), "1_{}_2_{}_3_{}_", action->m_fromColor.r, action->m_fromColor.g, action->m_fromColor.b);
+            if (action->m_paused) {
+                fmt::format_to(std::back_inserter(out), "19_1_");
+            }
+            if (action->m_toColor.r != 0 || action->m_toColor.g != 0 || action->m_toColor.b != 0) {
+                fmt::format_to(std::back_inserter(out), "11_{}_12_{}_13_{}_", action->m_toColor.r, action->m_toColor.g, action->m_toColor.b);
+            }
+            if (action->m_playerColor != 0) {
+                fmt::format_to(std::back_inserter(out), "4_{}_", action->m_playerColor);
+            }
+            if (action->m_duration != 0.f) {
+                fmt::format_to(std::back_inserter(out), "16_{}_", action->m_duration);
+            }
+            fmt::format_to(std::back_inserter(out), "6_{}_", action->m_colorID);
+            if (action->m_blending) {
+                fmt::format_to(std::back_inserter(out), "5_1_");
+            }
+            fmt::format_to(std::back_inserter(out), "7_{}_15_{}_", action->m_fromOpacity, action->m_toOpacity);
+            if (action->m_copyOpacity) {
+                fmt::format_to(std::back_inserter(out), "17_1_");
+            }
+            if (action->m_copyID != 0) {
+                fmt::format_to(std::back_inserter(out), "9_{}_", action->m_copyID);
+            }
+            if (
+                action->m_copyHSV.h != 0.f || action->m_copyHSV.s != 1.f || action->m_copyHSV.v != 1.f ||
+                action->m_copyHSV.absoluteSaturation || action->m_copyHSV.absoluteBrightness
+            ) {
+                fmt::format_to(std::back_inserter(out), "10_{}_", GameToolbox::stringFromHSV(action->m_copyHSV, "a"));
+            }
+            if (action->m_deltaTime > 0.f) {
+                fmt::format_to(std::back_inserter(out), "14_{}_", action->m_deltaTime);
+            }
+            fmt::format_to(std::back_inserter(out), "18_{}_8_1|", action->m_uniqueID);
+        }
+        return fmt::to_string(out);
+    }
     GroupCommandObject2* getTempGroupCommand() = win 0x257ee0, m1 0x2727fc, imac 0x2d0570, ios 0x16458;
     void handleObjectCollision(bool triggerOnExit, int blockAID, int blockBID) = win 0x2551b0, m1 0x26f104, imac 0x2cc460, ios 0x13d58;
     bool hasActiveDualTouch() = win inline, m1 0x2770cc, imac 0x2d6160, ios 0x191d8 {
@@ -14582,7 +14715,16 @@ class GJGameLevel : cocos2d::CCNode {
     }
     void savePercentage(int percent, bool isPracticeMode, int clicks, int attempts, bool isChkValid) = ios 0xafc44, win 0x169db0, m1 0x49e170, imac 0x545320;
     void scoreStringToVector(gd::string& str, gd::vector<int>& vec) = win 0x16a910, m1 0x49efa4, imac 0x546220, ios 0xb0644;
-    gd::string scoreVectorToString(gd::vector<int>& vec, int type) = m1 0x49f258, imac 0x546550, ios 0xb085c;
+    gd::string scoreVectorToString(gd::vector<int>& vec, int type) = win inline, m1 0x49f258, imac 0x546550, ios 0xb085c {
+        if (type == 1) std::sort(vec.begin(), vec.end(), std::greater<int>());
+        else std::sort(vec.begin(), vec.end(), std::less<int>());
+        fmt::memory_buffer out;
+        for (int i = 0; i < vec.size(); ++i) {
+            if (i > 0) fmt::format_to(std::back_inserter(out), ",");
+            fmt::format_to(std::back_inserter(out), "{}", vec[i]);
+        }
+        return fmt::to_string(out);
+    }
     void setAccountID(int id) {
         m_accountID = id;
     }
@@ -23065,7 +23207,27 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateCheckpointMode(bool) = win inline, m1 0x36cbb8, imac 0x3eaeb0, ios 0x21a034 {
         m_quickCheckpointMode = p0;
     }
-    void updateCheckpointTest() = m1 0x371e70, imac 0x3f10a0, ios 0x21e288;
+    void updateCheckpointTest() = win inline, m1 0x371e70, imac 0x3f10a0, ios 0x21e288 {
+        if (m_canPlaceCheckpoint) {
+            this->tryPlaceCheckpoint();
+            m_canPlaceCheckpoint = false;
+        }
+        if (this->isFlying() && m_uniqueID == 1) {
+            if (m_onFlyCheckpointTries + 1 < 20) {
+                m_onFlyCheckpointTries++;
+            }
+            else {
+                m_onFlyCheckpointTries = 0;
+                this->tryPlaceCheckpoint();
+            }
+        }
+        if (m_checkpointTimeout) {
+            __timeb64 current;
+            _ftime64(&current);
+            auto currentTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+            if (currentTime - m_lastCheckpointTime > .1f) m_checkpointTimeout = false;
+        }
+    }
     void updateCollide(PlayerCollisionDirection, GameObject*) = ios 0x224768, win 0x37e1c0, imac 0x3faae0, m1 0x379b88;
     void updateCollideBottom(float, GameObject*) = win inline, m1 0x37aa04, imac 0x3fba70, ios 0x225244 {
         auto id = p1 ? p1->m_uniqueID : 0;
