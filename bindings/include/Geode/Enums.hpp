@@ -1097,6 +1097,7 @@ enum class GameObjectClassType {
 };
 
 namespace GameVar {
+    constexpr auto FollowPlayer = "0001";
     constexpr auto PlaytestMusic = "0002";
     constexpr auto Swipe = "0003";
     constexpr auto FreeMove = "0004";
@@ -1113,6 +1114,8 @@ namespace GameVar {
     constexpr auto FlipPauseButton = "0015";
     constexpr auto ShownMusicTOS = "0016";
     constexpr auto NoSongLimit = "0018";
+    constexpr auto SongsInMemory = "0019";
+    constexpr auto HigherAudioQuality = "0022";
     constexpr auto SmoothFix = "0023";
     constexpr auto ShowCursor = "0024";
     constexpr auto WindowedMode = "0025";
@@ -1124,6 +1127,7 @@ namespace GameVar {
     constexpr auto ForceTimer = "0032";
     constexpr auto ChangeCustomSongsLocation = "0033";
     constexpr auto EnableGameCenter = "0034";
+    constexpr auto SmallGridStep = "0035";
     constexpr auto PreviewMode = "0036";
     constexpr auto ShowGround = "0037";
     constexpr auto ShowGrid = "0038";
@@ -1143,6 +1147,7 @@ namespace GameVar {
     constexpr auto FastReset = "0052";
     constexpr auto ShownMoreGames = "0053";
     constexpr auto CheckIfServerOnline = "0055";
+    constexpr auto DisableObjectAlert = "0056";
     constexpr auto HoldToSwipe = "0057";
     constexpr auto DurationLines = "0058";
     constexpr auto SwipeCycleMode = "0059";
@@ -1151,18 +1156,22 @@ namespace GameVar {
     constexpr auto SwitchDashFireCol = "0062";
     constexpr auto ShownCoinDisclaimer = "0063";
     constexpr auto SelectFilter = "0064";
+    constexpr auto EnableMoveOptimization = "0065";
     constexpr auto IncreaseDrawCapacity = "0066";
+    constexpr auto IncreaseStartPosAccuracy = "0067";
     constexpr auto QuickCheckpoints = "0068";
     constexpr auto SortCommentsByLikes = "0069";
     constexpr auto ShownUnlistedDisclaimer = "0070";
     constexpr auto HidePracticeButtons = "0071";
     constexpr auto DisableGravityEffect = "0072";
     constexpr auto NewCompletedFilter = "0073";
+    constexpr auto ShowRestartButton = "0074";
     constexpr auto DisableComments = "0075";
     constexpr auto DisableAccountComments = "0076";
     constexpr auto OnlyAllowFeatured = "0077";
     constexpr auto HideBackground = "0078";
     constexpr auto PlaytestNoGrid = "0079";
+    constexpr auto DisableShakeOld = "0081";
     constexpr auto DisableHighObjectAlert = "0082";
     constexpr auto DisableSongAlert = "0083";
     constexpr auto ManualLevelOrder = "0084";
@@ -1179,11 +1188,15 @@ namespace GameVar {
     constexpr auto LeaderboardType = "0098";
     constexpr auto ShowLeaderboardPercentage = "0099";
     constexpr auto EnableDeathEffect = "0100";
+    constexpr auto ForceSmoothFix = "0101";
     constexpr auto PlaytestSmoothFix = "0102";
     constexpr auto LayerLocking = "0103";
     constexpr auto RecordOrder = "0104";
+    constexpr auto StartPosPlayback = "0105";
+    constexpr auto ShowMeltdownPromo = "0106";
     constexpr auto LowDetail = "0108";
     constexpr auto ShowInfoLabel = "0109";
+    constexpr auto FastEditorPreview = "0110";
     constexpr auto IncreaseScale = "0112";
     constexpr auto JumpL = "0113";
     constexpr auto ShowFPS = "0115";
@@ -1192,7 +1205,7 @@ namespace GameVar {
     constexpr auto PreviewAnimations = "0118";
     constexpr auto DisableLevelSaving = "0119";
     constexpr auto HideInvisible = "0121";
-    constexpr auto MenuMusic = "0122";
+    constexpr auto DisableMenuMusic = "0122";
     constexpr auto NormalMusicInEditor = "0125";
     constexpr auto PercentageDecimals = "0126";
     constexpr auto SaveGauntlets = "0127";
