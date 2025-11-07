@@ -1,3 +1,5 @@
+#import win <sys/timeb.h>
+
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() {
@@ -5144,10 +5146,55 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     virtual void fadeInTextFinished(TextArea*) = win 0xd2bd0, m1 0x3409fc, imac 0x3b5420, ios 0x8b548;
 
     void addToMainScene() = win 0xd2a70, m1 0x340748, imac 0x3b5140, ios 0x8b3c4;
-    void animateIn(DialogAnimationType) = ios 0x8b61c, imac 0x3b5560, m1 0x340b4c;
-    void animateInDialog() = m1 0x340d68, imac 0x3b57a0;
+    void animateIn(DialogAnimationType type) = win inline, ios 0x8b61c, imac 0x3b5560, m1 0x340b4c {
+        __timeb64 current;
+        _ftime64(&current);
+        m_animateTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        auto director = cocos2d::CCDirector::sharedDirector();
+        switch (type) {
+            case DialogAnimationType::FromCenter: {
+                m_mainLayer->setScale(.1f);
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCScaleTo::create(.5f, 1.f), .6f));
+                break;
+            }
+            case DialogAnimationType::FromLeft: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ -191.f, position.y });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            case DialogAnimationType::FromRight: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ director->getScreenRight() + 191.f, position.y });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            case DialogAnimationType::FromTop: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ position.x, director->getScreenTop() + 51.f });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            case DialogAnimationType::FromTop2: {
+                auto position = m_mainLayer->getPosition();
+                m_mainLayer->setPosition({ position.x, director->getScreenTop() - 51.f });
+                m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
+                break;
+            }
+            default: break;
+        }
+
+        auto opacity = this->getOpacity();
+        if (opacity > 0) {
+            this->setOpacity(0);
+            this->runAction(cocos2d::CCFadeTo::create(.14f, opacity));
+        }
+    }
+    void animateInDialog() = win inline, m1 0x340d68, imac 0x3b57a0, ios inline {
+        this->animateIn(m_animationType);
+    }
     void animateInRandomSide() = ios 0x8b5c4, win 0xd2c40, m1 0x340aec, imac 0x3b5510;
-    void displayDialogObject(DialogObject*) = win 0xd2570, m1 0x33ffc8, imac 0x3b4980, ios 0x8add0;
+    void displayDialogObject(DialogObject* object) = win 0xd2570, m1 0x33ffc8, imac 0x3b4980, ios 0x8add0;
     void displayNextObject() = win 0xd2510, m1 0x33ff28, imac 0x3b48d0, ios 0x8ad70;
     void finishCurrentAnimation() = win inline, imac 0x3b4ff0, m1 0x340620, ios 0x8b2dc {
         m_animating = false;
@@ -5161,7 +5208,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
         this->updateNavButtonFrame();
     }
     void handleDialogTap() = win 0xd2940, m1 0x3404c4, imac 0x3b4eb0, ios 0x8b214;
-    bool init(DialogObject*, cocos2d::CCArray*, int) = win 0xd20b0, imac 0x3b43e0, m1 0x33fa48, ios 0x8a944;
+    bool init(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0xd20b0, imac 0x3b43e0, m1 0x33fa48, ios 0x8a944;
     void onClose() = win 0xd2ae0, m1 0x3406b8, imac 0x3b50b0, ios 0x8b334;
     void updateChatPlacement(DialogChatPlacement placement) = ios 0x8b158, win inline, m1 0x340408, imac 0x3b4de0 {
         auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
