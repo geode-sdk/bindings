@@ -14659,7 +14659,7 @@ class GJGameLevel : cocos2d::CCNode {
         return level;
     }
     void dataLoaded(DS_Dictionary* dict) = ios 0xb12f4, win 0x16b150, imac 0x5472c0, m1 0x49fd40;
-    int demonIconForDifficulty(DemonDifficultyType type) = win inline, imac 0x548f50, m1 0x4a1794, ios 0xb2cc4 {
+    static int demonIconForDifficulty(DemonDifficultyType type) = win inline, imac 0x548f50, m1 0x4a1794, ios 0xb2cc4 {
         switch (type) {
             case DemonDifficultyType::EasyDemon: return 7;
             case DemonDifficultyType::MediumDemon: return 8;
@@ -14673,7 +14673,7 @@ class GJGameLevel : cocos2d::CCNode {
     int getAverageDifficulty() = win 0x16a230, imac 0x545880, m1 0x49e674, ios 0xb0034;
     char const* getCoinKey(int coinNumber) = win 0x16a2a0, imac 0x535eb0, m1 0x48f96c, ios 0xa76cc;
     int getLastBuildPageForTab(int tab) = win 0x16a320, ios 0xb0060, imac 0x5458d0, m1 0x49e6a0;
-    int getLengthKey(int length, bool platformer) = win inline, imac 0x5457a0, m1 0x49e560, ios 0xaffcc {
+    static int getLengthKey(int length, bool platformer) = win inline, imac 0x5457a0, m1 0x49e560, ios 0xaffcc {
         if (platformer) return 5;
         if (length < 10) return 0;
         if (length < 30) return 1;
