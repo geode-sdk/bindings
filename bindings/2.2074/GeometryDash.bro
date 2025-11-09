@@ -19235,8 +19235,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     }
     ~LevelBrowserLayer() = win 0x2c07c0, m1 0x3e63f8, imac 0x477f30, ios 0x40bffc;
 
-    static LevelBrowserLayer* create(GJSearchObject*) = ios 0x40c184, win 0x2c09f0, imac 0x478170, m1 0x3e6590;
-    static cocos2d::CCScene* scene(GJSearchObject* search) = ios 0x40c138, win 0x2c09a0, imac 0x478130, m1 0x3e6544;
+    static LevelBrowserLayer* create(GJSearchObject* object) = ios 0x40c184, win 0x2c09f0, imac 0x478170, m1 0x3e6590;
+    static cocos2d::CCScene* scene(GJSearchObject* object) = ios 0x40c138, win 0x2c09a0, imac 0x478130, m1 0x3e6544;
 
     virtual void onEnter() = win 0x2c78b0, imac 0x47ee70, m1 0x3ecc44, ios 0x4116d8;
     virtual void onEnterTransitionDidFinish() = win 0x242b20, imac 0x47f010, m1 0x3ece38, ios 0x411808;
@@ -19258,7 +19258,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     virtual cocos2d::CCArray* updateResultArray(cocos2d::CCArray*) = win 0x2c0770, m1 0x3ecf38, imac 0x47f180, ios 0x411900;
     virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x2c7950, imac 0x47eef0, m1 0x3eccf0, ios 0x411764;
 
-    void createNewLevel(cocos2d::CCObject*) = ios 0x411048, win inline, m1 0x3ec4a8, imac 0x47e640 {
+    void createNewLevel(cocos2d::CCObject* sender) = ios 0x411048, win inline, m1 0x3ec4a8, imac 0x47e640 {
         this->setKeypadEnabled(false);
         this->setKeyboardEnabled(false);
         GameLevelManager* glm = GameLevelManager::sharedState();
@@ -19266,40 +19266,86 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
         glm->m_returnToLocalLevels = true;
         cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(0.5f, EditLevelLayer::scene(newLevel)));
     }
-    void createNewList(cocos2d::CCObject*) = m1 0x3ec348, imac 0x47e520;
-    TodoReturn createNewSmartTemplate(cocos2d::CCObject*);
-    TodoReturn deleteSelected();
-    TodoReturn exitLayer(cocos2d::CCObject*);
-    cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray*, gd::string, GJSearchObject*) = win 0x2c6b80, m1 0x3eabe4, imac 0x47ca90, ios 0x40fbbc;
+    void createNewList(cocos2d::CCObject* sender) = win inline, m1 0x3ec348, imac 0x47e520, ios 0x410f04 {
+        if (m_isOverlay) {
+            auto layer = ShareCommentLayer::create("List Name", 25, CommentType::ListName, 0, {});
+            layer->m_delegate = this;
+            layer->show();
+        }
+        else {
+            this->setKeypadEnabled(false);
+            this->setKeyboardEnabled(false);
+            auto glm = GameLevelManager::sharedState();
+            auto list = glm->createNewLevelList();
+            glm->m_returnToLocalLevels = true;
+            cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(0.5f, LevelListLayer::scene(list)));
+        }
+    }
+    void createNewSmartTemplate(cocos2d::CCObject* sender) = win inline, m1 0x3ec2e0, imac 0x47e4c0, ios 0x410e9c {
+        this->setKeypadEnabled(false);
+        this->setKeyboardEnabled(false);
+        auto glm = GameLevelManager::sharedState();
+        auto smartTemplate = glm->createSmartTemplate();
+        glm->m_returnToLocalLevels = true;
+        SetupSmartTemplateLayer::create(smartTemplate)->show();
+        this->onBack(nullptr);
+    }
+    void deleteSelected() = win inline, m1 0x3ec6a8, imac 0x47e860, ios 0x4111dc {
+        auto selected = cocos2d::CCArray::create();
+        CCObject* obj;
+        CCARRAY_FOREACH(m_levels, obj) {
+            auto level = static_cast<GJGameLevel*>(obj);
+            if (level->m_selected) selected->addObject(level);
+        }
+        if (selected->count() == 0) return;
+        auto glm = GameLevelManager::sharedState();
+        CCARRAY_FOREACH(selected, obj) {
+            glm->deleteLevel(static_cast<GJGameLevel*>(obj));
+        }
+        m_allSelected = false;
+        m_allObjectsToggler->toggle(false);
+        this->loadPage(m_searchObject);
+    }
+    void exitLayer(cocos2d::CCObject* sender) = win inline, m1 0x3ec19c, imac 0x47e340, ios 0x410d84 {
+        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
+        this->removeFromParentAndCleanup(true);
+    }
+    cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray* items, gd::string query, GJSearchObject* object) = win 0x2c6b80, m1 0x3eabe4, imac 0x47ca90, ios 0x40fbbc;
     gd::string getSearchTitle() = win 0x2c39e0, m1 0x3eb248, imac 0x47d170, ios 0x4101ac;
-    bool init(GJSearchObject*) = ios 0x40c1f8, win 0x2c0a60, m1 0x3e66c8, imac 0x478340;
-    bool isCorrect(char const*) = win 0x2c2370;
-    void loadPage(GJSearchObject*) = ios 0x40ed84, win 0x2c2540, imac 0x47b5e0, m1 0x3e99f0;
-    void onClearSearch(cocos2d::CCObject* sender) = win 0x2c67a0, m1 0x3e9974, imac 0x47b560;
-    void onDeleteAll(cocos2d::CCObject* sender) = win 0x2c61f0, imac 0x47a900, m1 0x3e8c88;
+    bool init(GJSearchObject* object) = ios 0x40c1f8, win 0x2c0a60, m1 0x3e66c8, imac 0x478340;
+    bool isCorrect(char const* key) = win 0x2c2370, m1 0x3eaa0c, imac 0x47c8b0, ios 0x40fac4;
+    void loadPage(GJSearchObject* object) = ios 0x40ed84, win 0x2c2540, imac 0x47b5e0, m1 0x3e99f0;
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x2c67a0, m1 0x3e9974, imac 0x47b560, ios 0x40ed00;
+    void onDeleteAll(cocos2d::CCObject* sender) = win 0x2c61f0, imac 0x47a900, m1 0x3e8c88, ios 0x40e3bc;
     void onDeleteSelected(cocos2d::CCObject* sender) = ios 0x40ddb4, win 0x2c6f10, imac 0x479fc0, m1 0x3e82d8;
-    void onFavorites(cocos2d::CCObject* sender) = win 0x2c6030;
-    void onGoToFolder(cocos2d::CCObject* sender) = win 0x2c47c0, m1 0x3e95b4, imac 0x47b1a0;
-    void onGoToLastPage(cocos2d::CCObject* sender) = win 0x2c4640;
+    void onFavorites(cocos2d::CCObject* sender) = win 0x2c6030, m1 0x3e8f80, imac 0x47abd0, ios 0x40e60c;
+    void onGoToFolder(cocos2d::CCObject* sender) = win 0x2c47c0, m1 0x3e95b4, imac 0x47b1a0, ios 0x40ea34;
+    void onGoToLastPage(cocos2d::CCObject* sender) = win 0x2c4640, m1 0x3e967c, imac 0x47b250, ios 0x40eaf4;
     void onGoToPage(cocos2d::CCObject* sender) = ios 0x40dcb0, win 0x2c46b0, imac 0x479eb0, m1 0x3e81a8;
-    void onHelp(cocos2d::CCObject* sender);
+    void onHelp(cocos2d::CCObject* sender) = win inline, m1 0x3ec2dc, imac 0x47e4b0, ios inline {}
     void onInfo(cocos2d::CCObject* sender) = ios 0x40e7a0, win 0x2c4df0, imac 0x47ae20, m1 0x3e91dc;
-    void onLocalMode(cocos2d::CCObject* sender) = win 0x2c5c70;
-    void onMyOnlineLevels(cocos2d::CCObject* sender) = win 0x2c5e60, m1 0x3e8768, imac 0x47a430;
+    void onLocalMode(cocos2d::CCObject* sender) = win 0x2c5c70, m1 0x3e8a44, imac 0x47a6e0, ios 0x40e1e0;
+    void onMyOnlineLevels(cocos2d::CCObject* sender) = win 0x2c5e60, m1 0x3e8768, imac 0x47a430, ios 0x40e044;
     void onNew(cocos2d::CCObject* sender) = win 0x2c57c0, imac 0x47a340, ios 0x40e01c, m1 0x3e8664;
     void onNextPage(cocos2d::CCObject* sender) = win 0x2c4ba0, m1 0x3e8068, imac 0x479d50, ios 0x40db78;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2c4c20, m1 0x3e8034, imac 0x479d10, ios 0x40db44;
     void onRefresh(cocos2d::CCObject* sender) = win 0x2c6660, m1 0x3e909c, imac 0x47acf0, ios 0x40e6f8;
-    void onRemoveAllFavorites(cocos2d::CCObject* sender) = m1 0x3e8b28, imac 0x47a7c0, win 0x2c6390;
+    void onRemoveAllFavorites(cocos2d::CCObject* sender) = ios 0x40e290, m1 0x3e8b28, imac 0x47a7c0, win 0x2c6390;
     void onSaved(cocos2d::CCObject* sender) = win 0x2c6110, m1 0x3e8e64, imac 0x47aab0, ios 0x40e520;
-    void onSavedMode(cocos2d::CCObject* sender) = win 0x2c5b90;
+    void onSavedMode(cocos2d::CCObject* sender) = win 0x2c5b90, m1 0x3e8d80, imac 0x47a9d0, ios 0x40e470;
     void onSearch(cocos2d::CCObject* sender) = win 0x2c6840, m1 0x3e96b4, imac 0x47b290, ios 0x40eb2c;
-    void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2c7250, m1 0x3e85dc, imac 0x47a2b0;
-    void reloadAllObjects() {
+    void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2c7250, m1 0x3e85dc, imac 0x47a2b0, ios 0x40df94;
+    void reloadAllObjects() = win inline, m1 0x3ec798, imac 0x47e960, ios inline {
         static_cast<CustomListView*>(m_list->m_listView)->reloadAll();
     }
-    void setSearchObject(GJSearchObject*);
-    void setupLevelBrowser(cocos2d::CCArray*) = ios 0x40ff18, win 0x2c36d0, imac 0x47ce70, m1 0x3eafb8;
+    void setSearchObject(GJSearchObject* object) = win inline, m1 0x3e7fec, imac 0x479cc0, ios 0x40dafc {
+        if (m_searchObject != object) {
+            CC_SAFE_RETAIN(object);
+            CC_SAFE_RELEASE(m_searchObject);
+            m_searchObject = object;
+        }
+    }
+    void setupLevelBrowser(cocos2d::CCArray* items) = ios 0x40ff18, win 0x2c36d0, imac 0x47ce70, m1 0x3eafb8;
     void show() = ios 0x41185c, win 0x2c7a60, m1 0x3ece8c, imac 0x47f080;
     void updateLevelsLabel() = win inline, m1 0x3ebf84, imac 0x47e100, ios 0x410bb8 {
         auto end = m_pageEndIdx + m_pageStartIdx;
