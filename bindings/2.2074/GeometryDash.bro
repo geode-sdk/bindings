@@ -29092,7 +29092,7 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
         m_descText = desc;
         this->updateCharCountLabel();
     }
-    void updatePercentLabel() = win 0x475cb0, imac 0x5c8ab0, m1 0x4fd33c;
+    void updatePercentLabel() = win 0x475cb0, imac 0x5c8ab0, m1 0x4fd33c, ios 0x1d6134;
 
     int m_charLimit;
     int m_itemID;
@@ -29133,20 +29133,20 @@ class ShareLevelLayer : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x84650, m1 0x21ae64, imac 0x26fa70, ios 0x275560;
 
-    CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler callback, cocos2d::CCMenu* menu, float scale) = win inline {
+    CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, m1 0x21aa18, imac 0x26f5b0, ios 0x2751a4 {
         auto btnSpr = ButtonSprite::create(cocos2d::CCString::createWithFormat("%i", btnID)->getCString(), 20, 0, .5f, true, "bigFont.fnt", "GJ_button_01.png", 30.f);
-        auto btn = CCMenuItemSpriteExtra::create(btnSpr, this, callback);
+        auto btn = CCMenuItemSpriteExtra::create(btnSpr, this, selector);
         btn->setScale(scale);
         btn->m_baseScale = scale;
         if (menu) menu->addChild(btn);
         return btn;
     }
     bool init(GJGameLevel* level) = ios 0x274118, win 0x4769e0, m1 0x2194cc, imac 0x26e2c0;
-    void onClose(cocos2d::CCObject* sender) = win 0x84620;
-    void onSettings(cocos2d::CCObject* sender) = win 0x477c40;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x21a7b0, imac 0x26f390, ios 0x274fbc;
+    void onSettings(cocos2d::CCObject* sender) = win 0x477c40, m1 0x21a9d8, imac 0x26f570, ios 0x275164;
     void onShare(cocos2d::CCObject* sender) = ios 0x274ff8, win 0x477d90, imac 0x26f3c0, m1 0x21a7ec;
-    void selectRating(cocos2d::CCObject*) = win 0x477ab0, m1 0x21aae0, imac 0x26f680, ios 0x27526c;
-    void setupStars() = win 0x4776a0, m1 0x21a0b8, imac 0x26f010;
+    void selectRating(cocos2d::CCObject* sender) = win 0x477ab0, m1 0x21aae0, imac 0x26f680, ios 0x27526c;
+    void setupStars() = win 0x4776a0, m1 0x21a0b8, imac 0x26f010, ios 0x274ce0;
 
     GJGameLevel* m_level;
     int m_starsRequested;
@@ -29171,11 +29171,11 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
 
     virtual void keyBackClicked() = win 0x4799c0, m1 0x21c6d0, imac 0x271520, ios 0x276b68;
 
-    bool init(GJGameLevel*) = win 0x478c00, imac 0x270760, m1 0x21b9b8, ios 0x27603c;
-    void onClose(cocos2d::CCObject* sender) = win 0x479940;
-    void onUnlisted(cocos2d::CCObject* sender) = win 0x479620, imac 0x271250, m1 0x21c440;
-    void onUnlistedFriendsOnly(cocos2d::CCObject* sender);
-    void updateSettingsState();
+    bool init(GJGameLevel* level) = win 0x478c00, imac 0x270760, m1 0x21b9b8, ios 0x27603c;
+    void onClose(cocos2d::CCObject* sender) = win 0x479940, m1 0x21c3bc, imac 0x2711d0, ios 0x276924;
+    void onUnlisted(cocos2d::CCObject* sender) = win 0x479620, imac 0x271250, m1 0x21c440, ios 0x2769a8;
+    void onUnlistedFriendsOnly(cocos2d::CCObject* sender) = win 0x479840, m1 0x21c5fc, imac 0x271440, ios 0x276a94;
+    void updateSettingsState() = win 0x479860, m1 0x21c610, imac 0x271460, ios 0x276aa8;
 
     cocos2d::CCLabelBMFont* m_passwordLabel;
     GJGameLevel* m_level;
@@ -29194,7 +29194,7 @@ class ShareListLayer : FLAlertLayer {
         CC_SAFE_RELEASE(m_list);
     }
 
-    static ShareListLayer* create(GJLevelList* list) = win inline, m1 0x2e16e4, imac 0x34cec0 {
+    static ShareListLayer* create(GJLevelList* list) = win inline, m1 0x2e16e4, imac 0x34cec0, ios 0x246044 {
         auto ret = new ShareListLayer();
         if (ret->init(list)) {
             ret->autorelease();
@@ -29206,12 +29206,12 @@ class ShareListLayer : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x84650, m1 0x2e43a4, imac 0x34fe60, ios 0x24836c;
 
-    bool init(GJLevelList*) = win 0x2f50d0, m1 0x2e2da0, imac 0x34e6b0;
-    void onClose(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender) = win 0x2f6270, m1 0x2e4024, imac 0x34faa0;
-    void onShare(cocos2d::CCObject* sender) = win 0x2f6530, m1 0x2e3f10, imac 0x34f9a0;
-    void onUnlisted(cocos2d::CCObject* sender) = win 0x2f63e0, imac 0x34fb50, m1 0x2e40dc;
-    void updateUnlistedF() = imac 0x34fc50, m1 0x2e41dc, win 0x2f6450;
+    bool init(GJLevelList* list) = win 0x2f50d0, m1 0x2e2da0, imac 0x34e6b0, ios 0x247060;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x2e3ed4, imac 0x34f970, ios 0x247fc0;
+    void onInfo(cocos2d::CCObject* sender) = win 0x2f6270, m1 0x2e4024, imac 0x34faa0, ios 0x2480ec;
+    void onShare(cocos2d::CCObject* sender) = win 0x2f6530, m1 0x2e3f10, imac 0x34f9a0, ios 0x247ffc;
+    void onUnlisted(cocos2d::CCObject* sender) = win 0x2f63e0, imac 0x34fb50, m1 0x2e40dc, ios 0x248184;
+    void updateUnlistedF() = ios 0x2481ec, imac 0x34fc50, m1 0x2e41dc, win 0x2f6450;
 
     GJLevelList* m_list;
     CCMenuItemToggler* m_friendsOnlyToggler;
@@ -31533,9 +31533,9 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
         if (glm->m_listUploadDelegate == this) glm->m_listUploadDelegate = nullptr;
     }
 
-    static UploadListPopup* create(GJLevelList*) = win inline {
+    static UploadListPopup* create(GJLevelList* list) = win inline, m1 0x2e429c, imac 0x34fd10, ios 0x2482ac {
         auto ret = new UploadListPopup();
-        if (ret->init(p0)) {
+        if (ret->init(list)) {
             ret->autorelease();
             return ret;
         }
@@ -31548,10 +31548,10 @@ class UploadListPopup : FLAlertLayer, ListUploadDelegate {
     virtual void listUploadFinished(GJLevelList*) = win 0x2f6cc0, imac 0x350750, m1 0x2e4b64, ios 0x24893c;
     virtual void listUploadFailed(GJLevelList*, int) = win 0x2f6e90, imac 0x350970, m1 0x2e4d68, ios 0x248b30;
 
-    bool init(GJLevelList*) = win 0x2f6780, m1 0x2e46b4, imac 0x350240;
-    void onBack(cocos2d::CCObject* sender) = win 0x2f7280;
-    void onClose(cocos2d::CCObject* sender) = win 0x84620;
-    void onReturnToList(cocos2d::CCObject* sender) = win 0x2f71d0;
+    bool init(GJLevelList* list) = win 0x2f6780, m1 0x2e46b4, imac 0x350240, ios 0x2484b0;
+    void onBack(cocos2d::CCObject* sender) = win 0x2f7280, m1 0x2e4b18, imac 0x350700, ios 0x2488f0;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x2e501c, imac 0x350c00, ios 0x248da0;
+    void onReturnToList(cocos2d::CCObject* sender) = win 0x2f71d0, m1 0x2e4d14, imac 0x350900, ios 0x248adc;
 
     GJLevelList* m_levelList;
     TextArea* m_textArea;
@@ -31579,9 +31579,9 @@ class UploadPopup : FLAlertLayer, LevelUploadDelegate {
         if (glm->m_levelUploadDelegate == this) glm->m_levelUploadDelegate = nullptr;
     }
 
-    static UploadPopup* create(GJGameLevel*) = win inline {
+    static UploadPopup* create(GJGameLevel* level) = win inline, m1 0x21ad5c, imac 0x26f920, ios 0x2754a0 {
         auto ret = new UploadPopup();
-        if (ret->init(p0)) {
+        if (ret->init(level)) {
             ret->autorelease();
             return ret;
         }
@@ -31594,10 +31594,10 @@ class UploadPopup : FLAlertLayer, LevelUploadDelegate {
     virtual void levelUploadFinished(GJGameLevel*) = win 0x478710, imac 0x2701e0, m1 0x21b4e4, ios 0x275ba0;
     virtual void levelUploadFailed(GJGameLevel*) = win 0x4788e0, imac 0x270430, m1 0x21b71c, ios 0x275dc8;
 
-    bool init(GJGameLevel*) = win 0x478140, m1 0x21afc4, imac 0x26fc40;
-    void onBack(cocos2d::CCObject* sender) = win 0x478bb0;
-    void onClose(cocos2d::CCObject* sender) = win 0x84620;
-    void onReturnToLevel(cocos2d::CCObject* sender) = win 0x478ac0;
+    bool init(GJGameLevel* level) = win 0x478140, m1 0x21afc4, imac 0x26fc40, ios 0x2756b0;
+    void onBack(cocos2d::CCObject* sender) = win 0x478bb0, m1 0x21b498, imac 0x270190, ios 0x275b54;
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x21b8d0, imac 0x2705f0, ios 0x275f58;
+    void onReturnToLevel(cocos2d::CCObject* sender) = win 0x478ac0, m1 0x21b694, imac 0x270390, ios 0x275d40;
 
     GJGameLevel* m_level;
     TextArea* m_textArea;
