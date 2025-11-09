@@ -214,6 +214,7 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     boolean overwriteAll = false;
+    boolean mergeAll = false;
 
     private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean skipTodo) throws Exception {
         final var name = fun.getName();
@@ -246,13 +247,17 @@ public class SyncBromaScript extends GhidraScript {
             !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName)) &&
             !overwriteAll
         ) {
-            int choice = askContinueConflict(
+            int choice = mergeAll ? 0 : askContinueConflict(
                 "Function has a different name",
-                List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all"),
+                List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all", "Merge all"),
                 "The function {0} at {1} from Broma already has the name " + 
                 "{2} in Ghidra - is this function merged with that?",
                 fullName, Long.toHexString(addr.getOffset()), data.getName(true)
             );
+            if (choice == 3) {
+                choice = 0;
+                mergeAll = true;
+            }
             if (choice == 0) {
                 data.setComment(
                     (data.getComment() != null ? (data.getComment() + "\n") : "") + 
