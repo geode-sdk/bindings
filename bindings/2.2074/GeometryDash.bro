@@ -20135,7 +20135,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(GJLevelList*) = win 0x2ee9c0, m1 0x2dcfac, imac 0x348410, ios 0x242140;
+    static cocos2d::CCScene* scene(GJLevelList* list) = win 0x2ee9c0, m1 0x2dcfac, imac 0x348410, ios 0x242140;
 
     virtual void onEnter() = win 0x2f0680, m1 0x2e01ec, imac 0x34b870, ios 0x2450b4;
     virtual void onExit() = win 0x2f06b0, m1 0x2e0224, imac 0x34b8a0, ios 0x2450ec;
@@ -20155,28 +20155,46 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     virtual void textInputClosed(CCTextInputNode*) = win 0x2f3f30, imac 0x34d200, m1 0x2e19c4, ios 0x246290;
     virtual void textChanged(CCTextInputNode*) = win 0x2f4320, imac 0x34d4e0, m1 0x2e1ce0, ios 0x2464f0;
 
-    void cloneList() = win 0x2f3790;
-    void confirmClone(cocos2d::CCObject*) = win 0x2f36a0, imac 0x34a2e0, m1 0x2decc4;
-    void confirmDelete(cocos2d::CCObject*) = win 0x2f3a20, m1 0x2def6c, imac 0x34a590;
-    void confirmOwnerDelete(cocos2d::CCObject*) = win 0x2f3b50, imac 0x34a470, m1 0x2dee64;
-    bool init(GJLevelList*) = ios 0x242200, win 0x2eebf0, m1 0x2dd0cc, imac 0x348500;
+    void cloneList() = win 0x2f3790, m1 0x2e119c, imac 0x34c8c0, ios 0x245c28;
+    void confirmClone(cocos2d::CCObject* sender) = win 0x2f36a0, imac 0x34a2e0, m1 0x2decc4, ios 0x243d1c;
+    void confirmDelete(cocos2d::CCObject* sender) = win 0x2f3a20, m1 0x2def6c, imac 0x34a590, ios 0x243f44;
+    void confirmOwnerDelete(cocos2d::CCObject* sender) = win 0x2f3b50, imac 0x34a470, m1 0x2dee64, ios 0x243e88;
+    bool init(GJLevelList* list) = ios 0x242200, win 0x2eebf0, m1 0x2dd0cc, imac 0x348500;
     void onClaimReward(cocos2d::CCObject* sender) = ios 0x245114, win 0x2f1650, m1 0x2e024c, imac 0x34b8c0;
-    void onDelete();
-    void onDescription(cocos2d::CCObject* sender) = imac 0x34a680, m1 0x2df064;
+    void onDelete() = win inline, m1 0x2e1144, imac 0x34c870, ios 0x245bd0 {
+        m_buttonMenu->setEnabled(false);
+        GameLevelManager::sharedState()->deleteLevelList(m_levelList);
+        this->onBack(nullptr);
+        m_exiting = true;
+    }
+    void onDescription(cocos2d::CCObject* sender) = win 0x2f2e10, imac 0x34a680, m1 0x2df064, ios 0x244000;
     void onFavorite(cocos2d::CCObject* sender) = ios 0x243dd8, win 0x2f2ce0, imac 0x34a3c0, m1 0x2dedb4;
-    void onInfo(cocos2d::CCObject* sender) = win 0x2f2fe0, m1 0x2dec1c, imac 0x34a230;
+    void onInfo(cocos2d::CCObject* sender) = win 0x2f2fe0, m1 0x2dec1c, imac 0x34a230, ios 0x243c74;
     void onLike(cocos2d::CCObject* sender) = win 0x2f3020, m1 0x2dec54, imac 0x34a260, ios 0x243cac;
-    void onListInfo(cocos2d::CCObject* sender);
+    void onListInfo(cocos2d::CCObject* sender) = win 0x2f0670, m1 0x2df32c, imac 0x34a940, ios 0x244238;
     void onRefreshLevelList(cocos2d::CCObject* sender) = ios 0x243b6c, win 0x2f1cc0, m1 0x2deb14, imac 0x34a110;
-    void onSelectIcon(cocos2d::CCObject* sender) = win 0x2f3260, m1 0x2df1ac, imac 0x34a7b0;
-    void onShare(cocos2d::CCObject* sender) = win 0x2f33d0, imac 0x34a800, m1 0x2df1f8;
-    void onToggleEditMode(cocos2d::CCObject* sender) = win 0x2f3660, imac 0x34a770, m1 0x2df184;
-    void onViewProfile(cocos2d::CCObject* sender) = win 0x2f2ca0, imac 0x34a0e0, m1 0x2deadc;
-    void ownerDelete();
-    void updateEditMode();
-    void updateSideButtons() = win 0x2f3160, imac 0x34a960, m1 0x2df334;
+    void onSelectIcon(cocos2d::CCObject* sender) = win 0x2f3260, m1 0x2df1ac, imac 0x34a7b0, ios 0x2440fc;
+    void onShare(cocos2d::CCObject* sender) = win 0x2f33d0, imac 0x34a800, m1 0x2df1f8, ios 0x244148;
+    void onToggleEditMode(cocos2d::CCObject* sender) = win 0x2f3660, imac 0x34a770, m1 0x2df184, ios 0x2440d4;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x2f2ca0, imac 0x34a0e0, m1 0x2deadc, ios 0x243b34;
+    void ownerDelete() = win inline, m1 0x2e1384, imac 0x34cab0, ios 0x245dd4 {
+        auto glm = GameLevelManager::sharedState();
+        glm->m_levelListDeleteDelegate = this;
+        glm->deleteServerLevelList(m_levelList->m_listID);
+        m_circle->setVisible(true);
+    }
+    void updateEditMode() = win inline, m1 0x2e09d0, imac 0x34c090, ios inline {
+        if (!m_list) return;
+        auto listView = static_cast<CustomListView*>(m_list->m_listView);
+        listView->m_cellMode = m_editMode;
+        listView->reloadAll();
+    }
+    void updateSideButtons() = win 0x2f3160, imac 0x34a960, m1 0x2df334, ios 0x244240;
     void updateStatsArt() = ios 0x2442d4, win 0x2f06d0, m1 0x2df3c8, imac 0x34a9f0;
-    void verifyListName();
+    void verifyListName() = win inline, m1 0x2e0e7c, imac 0x34c5b0, ios 0x2459ac {
+        if (!m_levelList->m_listName.empty()) return;
+        m_levelList->m_listName = m_levelList->m_unkString.empty() ? "Unknown" : m_levelList->m_unkString;
+    }
 
     cocos2d::CCMenu* m_buttonMenu;
     gd::string m_searchKey1;
@@ -25458,7 +25476,7 @@ class SelectListIconLayer : FLAlertLayer {
         CC_SAFE_RELEASE(m_difficulties);
     }
 
-    static SelectListIconLayer* create(int difficulty) = win inline, m1 0x2e15b8, imac 0x34cd20 {
+    static SelectListIconLayer* create(int difficulty) = win inline, m1 0x2e15b8, imac 0x34cd20, ios 0x245f60 {
         auto ret = new SelectListIconLayer();
         if (ret->init(difficulty)) {
             ret->autorelease();
@@ -25470,9 +25488,9 @@ class SelectListIconLayer : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x2f5080, m1 0x2e2acc, imac 0x34e2e0, ios 0x246fb0;
 
-    bool init(int) = win 0x2f4790, m1 0x2e241c, imac 0x34dcc0;
-    void onClose(cocos2d::CCObject* sender);
-    void onSelect(cocos2d::CCObject* sender) = win 0x2f4f80, m1 0x2e297c, imac 0x34e1d0;
+    bool init(int difficulty) = win 0x2f4790, m1 0x2e241c, imac 0x34dcc0, ios 0x2469c0;
+    void onClose(cocos2d::CCObject* sender) = win 0x2f5040, m1 0x2e2a74, imac 0x34e290, ios 0x246f58;
+    void onSelect(cocos2d::CCObject* sender) = win 0x2f4f80, m1 0x2e297c, imac 0x34e1d0, ios 0x246e78;
 
     cocos2d::CCArray* m_difficulties;
     int m_currentDifficulty;
