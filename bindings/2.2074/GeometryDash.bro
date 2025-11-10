@@ -5812,9 +5812,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool editButton2Usable() = win 0x118b40, m1 0x4238c, imac 0x492e0, ios 0x3ed220;
     bool editButtonUsable() = win 0x1182f0, imac 0x48580, m1 0x41e60, ios 0x3eccac;
     void editColor() = win 0x11d3b0, m1 0x37aac, imac 0x3ceb0, ios 0x3e5e58;
-    bool editColorButtonUsable() {
-        if (m_selectedObject) return true;
-        return m_selectedObjects->count() > 0;
+    bool editColorButtonUsable() = win inline, m1 0x43054, imac 0x4a0f0, ios inline {
+        return m_selectedObject || m_selectedObjects->count() != 0;
     }
     void editGroup(cocos2d::CCObject*) = win 0x11d880, imac 0x2c8f0, m1 0x2c4d0;
     void editHSV() = win 0x11d630, m1 0x37c00, imac 0x3d050, ios 0x3e5f7c;
@@ -5859,7 +5858,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         return this->getLimitedPosition(ccp((xVal + 0.5) * size, (yVal + 0.5) * size));
     }
     cocos2d::CCPoint getGroupCenter(cocos2d::CCArray* objs, bool) = win 0x121190, m1 0x36e28, imac 0x3c1b0, ios 0x3e5280;
-    void getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) = win inline, imac inline, m1 inline, ios 0x3ed108 {
+    void getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) = win inline, imac 0x49190, m1 0x42274, ios 0x3ed108 {
         objectID = classType = objectType = -1;
         if (selectedObject) {
             objectID = selectedObject->m_objectID;
@@ -6058,7 +6057,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     static int smartTypeForKey(int) = win 0x12b890;
     cocos2d::CCSprite* spriteFromObjectString(gd::string str, bool, bool, int objLimit, cocos2d::CCArray*, cocos2d::CCArray*, GameObject*) = win 0x10c790, imac 0x344a0, m1 0x33ab0, ios 0x3e2af4;
     TodoReturn toggleDuplicateButton();
-    void toggleEditObjectButton() = win 0x118f10, ios 0x3de59c;
+    void toggleEditObjectButton() = win 0x118f10, m1 0x2d198, imac 0x2d710, ios 0x3de59c;
     void toggleEnableRotate(cocos2d::CCObject*) = ios 0x3bf870, win 0x10eb00, imac 0xc5b0, m1 0xd994;
     void toggleFreeMove(cocos2d::CCObject*) = ios 0x3bf790, win 0x10e980, m1 0xd8b4, imac 0xc4c0;
     TodoReturn toggleLockUI(bool);
