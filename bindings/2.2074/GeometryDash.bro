@@ -5867,10 +5867,18 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         } else if (selectedObjects) {
             for (int i = 0; i < selectedObjects->count(); i++) {
                 auto obj = static_cast<GameObject*>(selectedObjects->objectAtIndex(i));
-                if (objectID != 0 && objectID != obj->m_objectID) objectID = objectID == -1 ? obj->m_objectID : 0;
-                if (classType != 0 && classType != (int)obj->m_classType) classType = classType == -1 ? (int)obj->m_classType : 0;
-                if (objectType != 0 && objectType != (int)obj->m_savedObjectType) objectType = objectType == -1 ? (int)obj->m_savedObjectType : 0;
-                if (objectID == 0 && classType == 0 && objectType == 0) return;
+                if (objectID != 0) {
+                    if (objectID == -1) objectID = obj->m_objectID;
+                    else if (objectID != obj->m_objectID) objectID = 0;
+                }
+                if (classType != 0) {
+                    if (classType == -1) classType = (int)obj->m_classType;
+                    else if (classType != (int)obj->m_classType) classType = 0;
+                }
+                if (objectType != 0) {
+                    if (objectType == -1) objectType = (int)obj->m_savedObjectType;
+                    else if (objectType != (int)obj->m_savedObjectType) objectType = 0;
+                }
             }
         }
     }
