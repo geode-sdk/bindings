@@ -5856,7 +5856,22 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         return this->getLimitedPosition(ccp((xVal + 0.5) * size, (yVal + 0.5) * size));
     }
     cocos2d::CCPoint getGroupCenter(cocos2d::CCArray* objs, bool) = win 0x121190, m1 0x36e28, imac 0x3c1b0, ios 0x3e5280;
-    void getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) = win inline, imac inline, m1 inline, ios 0x3ed108;
+    void getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) = win inline, imac inline, m1 inline, ios 0x3ed108 {
+        objectID = classType = objectType = -1;
+        if (selectedObject) {
+            objectID = selectedObject->m_objectID;
+            classType = (int)selectedObject->m_classType;
+            objectType = (int)selectedObject->m_savedObjectType;
+        } else if (selectedObjects) {
+            for (int i = 0; i < selectedObjects->count(); i++) {
+                auto obj = static_cast<GameObject*>(selectedObjects->objectAtIndex(i));
+                if (objectID != 0 && objectID != obj->m_objectID) objectID = objectID == -1 ? obj->m_objectID : 0;
+                if (classType != 0 && classType != (int)obj->m_classType) classType = classType == -1 ? (int)obj->m_classType : 0;
+                if (objectType != 0 && objectType != (int)obj->m_savedObjectType) objectType = objectType == -1 ? (int)obj->m_savedObjectType : 0;
+                if (objectID == 0 && classType == 0 && objectType == 0) return;
+            }
+        }
+    }
     cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint) = win 0x11e6f0, m1 0x43aa4, imac 0x4acf0, ios 0x3ee478;
     CCMenuItemSpriteExtra* getModeBtn(char const*, int);
     cocos2d::CCNode* getNeighbor(int, cocos2d::CCPoint, GJSmartDirection, cocos2d::CCArray*) = win 0x116f30;
