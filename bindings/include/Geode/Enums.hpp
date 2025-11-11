@@ -224,7 +224,8 @@ enum class AccountError {
 };
 enum class GJSongError {
     DownloadSongFailed = 1,
-    DownloadSFXFailed = 2
+    DownloadSFXFailed = 2,
+    DownloadCancelled = 3
 };
 enum class GJSongType {
     Music = -1,
