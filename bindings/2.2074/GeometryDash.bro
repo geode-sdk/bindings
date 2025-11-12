@@ -5735,8 +5735,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void checkDiffAfterTransformAnchor(cocos2d::CCPoint, cocos2d::CCArray*) = win 0x1140e0, m1 0x3bd78, imac 0x41740, ios 0x3e8ae8;
     void checkLiveColorSelect() = win 0x10ef50;
     void clickOnPosition(cocos2d::CCPoint) = ios 0x3dea18, win 0xe1040, imac 0x2dfa0, m1 0x2d9d4;
-    TodoReturn closeLiveColorSelect();
-    TodoReturn closeLiveHSVSelect();
+    void closeLiveColorSelect() = win 0x11d5c0, m1 0x37a7c, imac 0x3ce80;
+    void closeLiveHSVSelect() = win 0x11d810, m1 0x37bd0, imac 0x3d020;
     void colorSelectClosed(cocos2d::ccColor3B);
     void constrainGameLayerPosition();
     void constrainGameLayerPosition(float, float) = ios 0x3dc880, win 0x120dd0, imac 0x2afb0, m1 0x2b208;
@@ -25066,7 +25066,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         CC_SAFE_RELEASE(m_messageThreads);
     }
 
-    static SecretLayer4* create() = win inline {
+    static SecretLayer4* create() = win inline, m1 0x32ac5c, imac 0x39da50, ios 0x353734 {
         auto ret = new SecretLayer4();
         if (ret->init()) {
             ret->autorelease();
@@ -25075,7 +25075,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win inline {
+    static cocos2d::CCScene* scene() = win inline, m1 0x32ac18, imac 0x39da10, ios 0x3536f0 {
         auto scene = cocos2d::CCScene::create();
         AppDelegate::get()->m_runningScene = scene;
         auto layer = SecretLayer4::create();
