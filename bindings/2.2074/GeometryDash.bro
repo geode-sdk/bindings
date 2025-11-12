@@ -3608,7 +3608,7 @@ class ColorSelectLiveOverlay : FLAlertLayer {
     virtual void keyBackClicked() = win 0x8d1b0, m1 0x4aa894, imac 0x553950, ios 0xf9668;
     virtual void show() = win 0x8ba30, m1 0x4aa94c, imac 0x553a00, ios 0xf967c;
 
-    void closeColorSelect(cocos2d::CCObject* sender) = win 0x8d020;
+    void closeColorSelect(cocos2d::CCObject* sender) = win 0x8d020, m1 0x4aa080, imac 0x553090, ios 0xf919c;
     void colorValueChanged(cocos2d::ccColor3B);
     CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCMenu*, cocos2d::CCPoint);
     void determineStartValues();
@@ -5735,8 +5735,18 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void checkDiffAfterTransformAnchor(cocos2d::CCPoint, cocos2d::CCArray*) = win 0x1140e0, m1 0x3bd78, imac 0x41740, ios 0x3e8ae8;
     void checkLiveColorSelect() = win 0x10ef50;
     void clickOnPosition(cocos2d::CCPoint) = ios 0x3dea18, win 0xe1040, imac 0x2dfa0, m1 0x2d9d4;
-    void closeLiveColorSelect() = win 0x11d5c0, m1 0x37a7c, imac 0x3ce80;
-    void closeLiveHSVSelect() = win 0x11d810, m1 0x37bd0, imac 0x3d020;
+    void closeLiveColorSelect() = win 0x11d5c0, m1 0x37a7c, imac 0x3ce80, ios inline {
+        if (m_colorOverlay) {
+            m_colorOverlay->closeColorSelect(nullptr);
+            m_colorOverlay = nullptr;
+        }
+    }
+    void closeLiveHSVSelect() = win 0x11d810, m1 0x37bd0, imac 0x3d020, ios inline {
+        if (m_hsvOverlay) {
+            m_hsvOverlay->closeColorSelect(nullptr);
+            m_hsvOverlay = nullptr;
+        }
+    }
     void colorSelectClosed(cocos2d::ccColor3B);
     void constrainGameLayerPosition();
     void constrainGameLayerPosition(float, float) = ios 0x3dc880, win 0x120dd0, imac 0x2afb0, m1 0x2b208;
@@ -18504,7 +18514,7 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
     virtual void show() = win 0x8ba30, m1 0x205af8, imac 0x259130, ios 0x1a3318;
     virtual void hsvChanged(ConfigureHSVWidget*) = win 0x2b2c00, imac 0x259200, m1 0x205bac, ios 0x1a3364;
 
-    void closeColorSelect(cocos2d::CCObject* sender);
+    void closeColorSelect(cocos2d::CCObject* sender) = win 0x2b2990, m1 0x205754, imac 0x258d80, ios 0x1a302c;
     void createHSVWidget(int) = win 0x2b2a10, imac 0x258f00, m1 0x2058e0;
     void determineStartValues() = win 0x2b2790, imac 0x258dd0, m1 0x2057b4;
     bool init(GameObject*, cocos2d::CCArray*) = win 0x2b22f0, imac 0x258980, m1 0x205364, ios 0x1a2c40;
