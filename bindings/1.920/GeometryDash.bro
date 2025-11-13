@@ -3000,7 +3000,7 @@ class GameObject : CCSpritePlus {
 	bool isFacingDown();
 	TodoReturn objectFromString(gd::string);
 	TodoReturn perspectiveFrame(char const*, int);
-	TodoReturn playShineEffect();
+	void playShineEffect();
 	TodoReturn removeColorSprite();
 	TodoReturn removeGlow();
 	TodoReturn reorderColorSprite();
