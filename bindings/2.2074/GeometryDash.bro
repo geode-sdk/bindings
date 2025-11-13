@@ -22155,7 +22155,7 @@ class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
     void onChanges(cocos2d::CCObject* sender) = m1 0x1bb3ac, imac 0x206360;
     void onClose(cocos2d::CCObject* sender);
     void onGuidelines(cocos2d::CCObject* sender) = m1 0x1bb364, imac 0x206320;
-    void onInfo(cocos2d::CCObject* sender) = m1 0x1bb488, imac 0x206420;
+    void onInfo(cocos2d::CCObject* sender) = win 0xc53e0, m1 0x1bb488, imac 0x206420, ios 0x149b64;
     void onNewgrounds(cocos2d::CCObject* sender) = m1 0x1bb340, imac 0x206300;
     void onSupporter(cocos2d::CCObject* sender) = m1 0x1bb388, imac 0x206340;
 }
