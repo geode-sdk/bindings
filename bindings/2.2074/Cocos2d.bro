@@ -3408,7 +3408,7 @@ class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     }
 
     // CCNodeRGBA(cocos2d::CCNodeRGBA const&);
-    CCNodeRGBA() = imac 0x262fc0, m1 0x20ec74, ios 0x23CE40;
+    CCNodeRGBA() = imac 0x262fc0, m1 0x20ec74, ios 0x23ce40;
     virtual ~CCNodeRGBA() = imac 0x263060, m1 0x20ecd4, ios 0x23ce70;
 
     virtual bool init() = imac 0x2630a0, m1 0x20ecf0, ios 0x23ce8c;

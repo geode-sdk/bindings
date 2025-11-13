@@ -8195,7 +8195,7 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
     bool init(UserListType type) = ios 0x1d9ba0, win 0x13e160, imac 0x641910, m1 0x56a498;
     void onBlocked(cocos2d::CCObject* sender) = win 0x13ef50, m1 0x56abb8, imac 0x6420b0;
     void onClose(cocos2d::CCObject* sender) = ios 0x1da1f8, win 0x13efe0, m1 0x56ab00, imac 0x641ff0;
-    void onUpdate(cocos2d::CCObject* sender) = win 0x13EE30, m1 0x56ac44, imac 0x642140;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x13ee30, m1 0x56ac44, imac 0x642140;
     void setupUsersBrowser(cocos2d::CCArray* users, UserListType type) = ios 0x1da3a0, win 0x13e870, imac 0x6421b0, m1 0x56aca8;
 
     UserListType m_type;
@@ -23715,7 +23715,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android), depends(DynamicBitset), depends(SavedActiveObjectState), depends(SavedObjectStateRef), depends(SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-    PlayLayer() = ios 0x12633c, win 0x38DF50, m1 0xae588, imac 0xbfcd0;
+    PlayLayer() = ios 0x12633c, win 0x38df50, m1 0xae588, imac 0xbfcd0;
     ~PlayLayer() = win 0x38e920, m1 0x9c9c4, imac 0xab980, ios 0x1184d4;
 
     static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win inline, ios 0x118740, imac 0xabda0, m1 0x9ccd0 {
