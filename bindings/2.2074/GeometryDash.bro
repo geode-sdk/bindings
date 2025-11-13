@@ -2037,6 +2037,7 @@ class CCIndexPath : cocos2d::CCObject {
         auto ret = new CCIndexPath();
         ret->m_row = row;
         ret->m_section = section;
+        ret->autorelease();
         return ret;
     }
 
