@@ -3422,7 +3422,7 @@ class ColorAction : cocos2d::CCObject {
     TodoReturn getCopy();
     bool init(cocos2d::ccColor3B, cocos2d::ccColor3B, float, double, bool, int, float, float);
     bool isInUse();
-    void loadFromState(CAState& state) = win inline, m1 0x2693fc, imac 0x2c55f0, ios 0x11154 {
+    void loadFromState(CAState& state) = win inline, m1 0x269488, imac 0x2c5690, ios 0x11154 {
         m_fromColor = state.m_fromColor;
         m_toColor = state.m_toColor;
         m_color = state.m_color;
@@ -3442,7 +3442,7 @@ class ColorAction : cocos2d::CCObject {
         m_copyHSV = state.m_copyHSV;
     }
     TodoReturn resetAction();
-    void saveToState(CAState& state) = win inline, m1 0x269224, imac 0x2c5420, ios 0x110c8 {
+    void saveToState(CAState& state) = win inline, m1 0x2693fc, imac 0x2c55f0, ios 0x110c8 {
         state.m_fromColor = m_fromColor;
         state.m_toColor = m_toColor;
         state.m_color = m_color;
