@@ -13304,7 +13304,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
     void updateTimerLabels() = ios 0x1fe480, win 0x22fae0, m1 0x115c94, imac 0x13dda0;
     void updateZoom(float zoom, float duration, int easing, float rate, int uniqueID, int controlID) = win 0x230590, m1 0x116b6c, imac 0x13f010, ios 0x1fef38;
-    void visitWithColorFlash() = win 0x241d30, m1 0x127f6c, imac 0x154340;
+    void visitWithColorFlash() = win 0x241d30, m1 0x127f6c, imac 0x154340, ios 0x20b260;
     float volumeForProximityEffect(SFXTriggerInstance&) = win 0x23c060;
 
     PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
@@ -16162,7 +16162,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     void goToPage(int);
     void incrementCountForPage(int) = win 0x288b80;
     const char* infoKey(int);
-    bool init(int) = win 0x288130, imac 0x289e50, m1 0x232c90;
+    bool init(int) = win 0x288130, imac 0x289e50, m1 0x232c90, ios 0x2d3610;
     cocos2d::CCLayer* layerForPage(int) = m1 0x233acc, imac 0x28ada0, win 0x288e10;
     const char* layerKey(int);
     cocos2d::CCPoint nextPosition(int) = imac 0x28aca0, m1 0x2339d4;
