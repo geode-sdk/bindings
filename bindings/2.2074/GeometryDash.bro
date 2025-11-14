@@ -30319,7 +30319,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
 [[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
-    inline TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
+    TableView(cocos2d::CCRect rect) = win inline, m1 0x536d4c, imac 0x27b200, ios 0x2701c : CCScrollLayerExt(rect) {
         m_tableDelegate = nullptr;
         m_dataSource = nullptr;
         m_cellDelegate = nullptr;
