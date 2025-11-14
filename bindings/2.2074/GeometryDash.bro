@@ -2541,10 +2541,10 @@ class CCScrollLayerExt : cocos2d::CCLayer {
 
     TodoReturn constraintContent();
     void doConstraintContent(bool) = win 0x47110;
-    inline float getMaxY() {
+    float getMaxY() = win inline, m1 0x3974d0, imac 0x41b9a0, ios 0x300fa4 {
         return m_scrollLimitBottom;
     }
-    inline float getMinY() {
+    float getMinY() = win inline, m1 0x3974d8, imac 0x41b9b0, ios inline {
         return this->getContentSize().height - m_contentLayer->getContentSize().height - m_scrollLimitTop;
     }
     void moveToTop() = ios 0x301054, win 0x47000, imac 0x41baa0, m1 0x3975d4;
@@ -20887,7 +20887,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
         m_fade = fade;
     }
 
-    inline void setParentLayer(cocos2d::CCLayer* layer) {
+    void setParentLayer(cocos2d::CCLayer* layer) {
         m_parentLayer = layer;
     }
     void show() = ios 0x392dd0, win 0x6ba20, m1 0x415078, imac 0x4abfb0;
@@ -20948,7 +20948,7 @@ class LoadingLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class LocalLevelManager : GManager {
-    inline static LocalLevelManager* get() {
+    static LocalLevelManager* get() {
         return LocalLevelManager::sharedState();
     }
     // virtual ~LocalLevelManager();
@@ -22968,7 +22968,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void disablePlayerControls() = win 0x389620, imac 0x409140, m1 0x386af4, ios 0x22d13c;
     void disableSwingFire() = ios 0x2286b8, win 0x385170, m1 0x3807b8, imac 0x402500;
     void doReversePlayer(bool) = ios 0x21dd68, win 0x3826e0, imac 0x3f0850, m1 0x371620;
-    inline void enableCustomGlowColor(cocos2d::ccColor3B const& color) {
+    void enableCustomGlowColor(cocos2d::ccColor3B const& color) {
         m_hasCustomGlowColor = true;
         m_glowColor = color;
     }
@@ -29301,7 +29301,7 @@ class SimplePlayer : cocos2d::CCSprite {
         m_hasCustomGlowColor = false;
     }
 
-    inline void disableGlowOutline() {
+    void disableGlowOutline() {
         disableCustomGlowColor();
         m_hasGlowOutline = false;
         updateColors();
@@ -29342,7 +29342,7 @@ class SimplePlayer : cocos2d::CCSprite {
     }
     void setFrames(char const*, char const*, char const*, char const*, char const*) = ios 0x307878, win 0x272c40, imac 0x35d470, m1 0x2f0704;
 
-    inline void setGlowOutline(cocos2d::ccColor3B color) {
+    void setGlowOutline(cocos2d::ccColor3B color) {
         enableCustomGlowColor(color);
         m_hasGlowOutline = true;
         updateColors();
