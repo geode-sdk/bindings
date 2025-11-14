@@ -245,7 +245,9 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 [[link(android)]]
 class AchievementCell : TableViewCell {
     // virtual ~AchievementCell();
-    AchievementCell(char const* identifier, float width, float height) = m1 0x1ec5d4, imac 0x23c8c0;
+    AchievementCell(char const* identifier, float width, float height) = win inline, m1 0x1ec5d4, imac 0x23c8c0, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = m1 0x1ec614, imac 0x23c930, ios 0x10ebb4 { return true; }
     virtual void draw() = win 0xad710, imac 0x23c940, m1 0x1ec61c, ios 0x10ebbc;
@@ -917,7 +919,9 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 [[link(android)]]
 class ArtistCell : TableViewCell {
     // virtual ~ArtistCell();
-    ArtistCell(char const* identifier, float width, float height) = m1 0x1f1afc, imac 0x242690;
+    ArtistCell(char const* identifier, float width, float height) = win inline, m1 0x1f1afc, imac 0x242690, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0x3c7f0, m1 0x1f1b40, imac 0x242700, ios 0x113428;
     virtual void draw() = win 0xad710, imac 0x2428c0, m1 0x1f1d04, ios 0x1135cc;
@@ -3792,7 +3796,9 @@ class ColorSetupDelegate {
 
 [[link(android)]]
 class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
-    CommentCell(char const* identifier, float width, float height) = win 0xb53c0, m1 0x1f1fcc, imac 0x242cc0;
+    CommentCell(char const* identifier, float width, float height) = win 0xb53c0, m1 0x1f1fcc, imac 0x242cc0, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
     ~CommentCell() = win inline, m1 0x1f1db0, imac 0x242990, ios 0x113678 {
         CC_SAFE_RELEASE(m_comment);
     }
@@ -4631,7 +4637,9 @@ class CustomMusicCell : CustomSongCell {
 [[link(android)]]
 class CustomSFXCell : TableViewCell, CustomSFXDelegate {
     // virtual ~CustomSFXCell();
-    CustomSFXCell(char const* identifier, float width, float height) = win 0xb4380, m1 0x1f1798, imac 0x242110;
+    CustomSFXCell(char const* identifier, float width, float height) = win 0xb4380, m1 0x1f1798, imac 0x242110, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0xb4410, imac 0x2421a0, m1 0x1f17e8, ios 0x11316c;
     virtual void draw() = win 0xad710, imac 0x2422a0, m1 0x1f188c, ios 0x113210;
@@ -4729,7 +4737,9 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 [[link(android)]]
 class CustomSongCell : TableViewCell, CustomSongDelegate {
     // virtual ~CustomSongCell();
-    CustomSongCell(char const* identifier, float width, float height) = win 0xb3e80, m1 0x1f14e0, imac 0x241d20;
+    CustomSongCell(char const* identifier, float width, float height) = win 0xb3e80, m1 0x1f14e0, imac 0x241d20, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0xb3f00, m1 0x1f152c, imac 0x241da0, ios 0x112efc;
     virtual void draw() = win 0xad710, imac 0x241fb0, m1 0x1f16b0, ios 0x113088;
@@ -8207,7 +8217,9 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
 [[link(android)]]
 class GameCell : TableViewCell {
     // virtual ~GameCell();
-    GameCell(char const* identifier, float width, float height) = m1 0x291d14, imac 0x2f94a0;
+    GameCell(char const* identifier, float width, float height) = win inline, m1 0x291d14, imac 0x2f94a0, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0x3c7f0, m1 0x291d60, imac 0x2f9520, ios 0x1d1424;
     virtual void draw() = win 0x3cbf0, imac 0x2f95e0, m1 0x291e34, ios 0x1d1468;
@@ -15661,7 +15673,9 @@ class GJLevelList : cocos2d::CCNode {
 [[link(android)]]
 class GJLevelScoreCell : TableViewCell {
     // virtual ~GJLevelScoreCell();
-    GJLevelScoreCell(char const* identifier, float width, float height) = m1 0x1f2de0, imac 0x243d70;
+    GJLevelScoreCell(char const* identifier, float width, float height) = win inline, m1 0x1f2de0, imac 0x243d70, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0x3c7f0, m1 0x1f2e24, imac 0x243de0, ios 0x11405c;
     virtual void draw() = win 0xad710, imac 0x243e30, m1 0x1f2e6c, ios 0x1140a4;
@@ -15690,7 +15704,9 @@ class GJListLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class GJLocalLevelScoreCell : TableViewCell {
     // virtual ~GJLocalLevelScoreCell();
-    GJLocalLevelScoreCell(char const* identifier, float width, float height) = m1 0x1f2ca8, imac 0x243b80;
+    GJLocalLevelScoreCell(char const* identifier, float width, float height) = win inline, m1 0x1f2ca8, imac 0x243b80, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0x3c7f0, m1 0x1f2cec, imac 0x243bf0, ios 0x113f6c;
     virtual void draw() = win 0xad710, imac 0x243c10, m1 0x1f2cf8, ios 0x113f78;
@@ -15824,7 +15840,9 @@ class GJMapPack : cocos2d::CCNode {
 
 [[link(android)]]
 class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, UploadActionDelegate {
-    GJMessageCell(char const* identifier, float width, float height) = m1 0x1f4e18, imac 0x246400;
+    GJMessageCell(char const* identifier, float width, float height) = win inline, m1 0x1f4e18, imac 0x246400, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
     ~GJMessageCell() = win inline, m1 0x1f4b94, imac 0x246020, ios 0x115238 {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_uploadActionDelegate == this) glm->m_uploadActionDelegate = nullptr;
@@ -16352,7 +16370,9 @@ class GJPurchaseDelegate {
 
 [[link(android)]]
 class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, UploadActionDelegate {
-    GJRequestCell(char const* identifier, float width, float height) = m1 0x1f42e4, imac 0x245640;
+    GJRequestCell(char const* identifier, float width, float height) = win inline, m1 0x1f42e4, imac 0x245640, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
     ~GJRequestCell() = win inline, m1 0x1f4060, imac 0x245260, ios 0x114b5c {
         auto glm = GameLevelManager::sharedState();
         if (glm->m_uploadActionDelegate == this) glm->m_uploadActionDelegate = nullptr;
@@ -16814,7 +16834,9 @@ class GJScaleControlDelegate {
 [[link(android)]]
 class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
     // virtual ~GJScoreCell();
-    GJScoreCell(char const* identifier, float width, float height) = m1 0x1f28c4, imac 0x2436d0;
+    GJScoreCell(char const* identifier, float width, float height) = win inline, m1 0x1f28c4, imac 0x2436d0, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0xb3f00, m1 0x1f2910, imac 0x243750, ios 0x113ce4;
     virtual void draw() = win 0xad710, imac 0x243a20, m1 0x1f2bc0, ios 0x113e88;
@@ -17784,7 +17806,9 @@ class GJUnlockableItem : cocos2d::CCObject {
 
 [[link(android)]]
 class GJUserCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, UploadActionDelegate {
-    GJUserCell(char const* identifier, float width, float height) = m1 0x1f3198, imac 0x244300;
+    GJUserCell(char const* identifier, float width, float height) = win inline, m1 0x1f3198, imac 0x244300, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
     ~GJUserCell() = win inline, m1 0x1f2f18, imac 0x243f00, ios 0x114150 {
         if (m_uploadPopup) m_uploadPopup->m_delegate = nullptr;
         CC_SAFE_RELEASE(m_userScore);
@@ -20101,12 +20125,16 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 
 [[link(android)]]
 class LevelListCell : TableViewCell {
-    LevelListCell(char const* identifier, float width, float height) = win 0xbdf10, m1 0x1f5b78, imac 0x2473e0;
+    LevelListCell(char const* identifier, float width, float height) = win 0xbdf10, m1 0x1f5b78, imac 0x2473e0, ios inline : TableViewCell(identifier, width, height) {
+        m_levelList = nullptr;
+        m_addingLevel = false;
+        this->init();
+    }
     ~LevelListCell() = win inline, m1 0x1f5908, imac 0x247070, ios 0x115a4c {
         CC_SAFE_RELEASE(m_levelList);
     }
 
-    static LevelListCell* create(float width, float height) = win inline, m1 0x1f5adc, imac 0x247310 {
+    static LevelListCell* create(float width, float height) = win inline, m1 0x1f5adc, imac 0x247310, ios inline {
         auto ret = new LevelListCell(" ", width, height);
         if (ret->init()) {
             ret->autorelease();
@@ -20843,7 +20871,9 @@ class ListButtonPage : cocos2d::CCLayer {
 [[link(android)]]
 class ListCell : TableViewCell {
     // virtual ~ListCell();
-    ListCell(char const* identifier, float width, float height) = m1 0x291c50, imac 0x2f9380;
+    ListCell(char const* identifier, float width, float height) = win inline, m1 0x291c50, imac 0x2f9380, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = m1 0x291c48, imac 0x2f9370, ios 0x1d139c { return true; }
     virtual void draw() = win 0x3c6f0, imac 0x2f9400, m1 0x291c94, ios 0x1d13a4;
@@ -21052,7 +21082,9 @@ class LocalLevelManager : GManager {
 
 [[link(android)]]
 class MapPackCell : TableViewCell {
-    MapPackCell(char const* identifier, float width, float height) = m1 0x1efe1c, imac 0x240600, ios 0x111f28;
+    MapPackCell(char const* identifier, float width, float height) = win inline, m1 0x1efe1c, imac 0x240600, ios 0x111f28 : TableViewCell(identifier, width, height) {
+        this->init();
+    }
     ~MapPackCell() = win inline, m1 0x1efc04, imac 0x2402f0, ios 0x111e88 {
         CC_SAFE_RELEASE(m_rewardLabels);
         CC_SAFE_RELEASE(m_rewardSprites);
@@ -22361,7 +22393,10 @@ class OpacityEffectAction {
 [[link(android)]]
 class OptionsCell : TableViewCell {
     // virtual ~OptionsCell();
-    OptionsCell(char const* identifier, float width, float height) = m1 0x1f19fc, imac 0x242510, ios 0x11332c;
+    OptionsCell(char const* identifier, float width, float height) = win inline, m1 0x1f19fc, imac 0x242510, ios 0x11332c : TableViewCell(identifier, width, height) {
+        m_optionsObject = nullptr;
+        this->init();
+    }
 
     void loadFromObject(OptionsObject* object) = win 0xb49f0, m1 0x1e26f8, imac 0x232740, ios 0x1055fc;
     void onToggleOption(cocos2d::CCObject* sender) = win 0xb4d90, m1 0x1f1a68, imac 0x2425a0, ios 0x113398;
@@ -29645,7 +29680,9 @@ class SmartGameObject : GameObject {
 [[link(android)]]
 class SmartTemplateCell : TableViewCell {
     // virtual ~SmartTemplateCell();
-    SmartTemplateCell(char const* identifier, float width, float height) = m1 0x1f575c, imac 0x246e60;
+    SmartTemplateCell(char const* identifier, float width, float height) = win inline, m1 0x1f575c, imac 0x246e60, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0x3c7f0, m1 0x1f57a0, imac 0x246ed0, ios 0x1158f0;
     virtual void draw() = win 0xad710, imac 0x246fa0, m1 0x1f585c, ios 0x1159a0;
@@ -29660,7 +29697,9 @@ class SmartTemplateCell : TableViewCell {
 [[link(android)]]
 class SongCell : TableViewCell {
     // virtual ~SongCell();
-    SongCell(char const* identifier, float width, float height) = m1 0x1f1384, imac 0x241b10;
+    SongCell(char const* identifier, float width, float height) = win inline, m1 0x1f1384, imac 0x241b10, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0x3c7f0, m1 0x1f13c8, imac 0x241b80, ios 0x112de8;
     virtual void draw() = win 0xad710, imac 0x241bc0, m1 0x1f13f8, ios 0x112e18;
@@ -30291,7 +30330,9 @@ class StartPosObject : EffectGameObject {
 [[link(android)]]
 class StatsCell : TableViewCell {
     // virtual ~StatsCell();
-    StatsCell(char const* identifier, float width, float height) = m1 0x1f0598, imac 0x240dd0;
+    StatsCell(char const* identifier, float width, float height) = win inline, m1 0x1f0598, imac 0x240dd0, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = m1 0x1f05d8, imac 0x240e40, ios 0x112528 { return true; }
     virtual void draw() = win 0xad710, imac 0x241930, m1 0x1f1224, ios 0x112c98;
@@ -30378,7 +30419,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
 [[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
-    inline TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
+    TableView(cocos2d::CCRect rect) = win inline, m1 0x536d4c, imac 0x27b200, ios 0x2701c : CCScrollLayerExt(rect) {
         m_tableDelegate = nullptr;
         m_dataSource = nullptr;
         m_cellDelegate = nullptr;
@@ -31661,7 +31702,9 @@ class UploadPopupDelegate {
 [[link(android)]]
 class URLCell : TableViewCell {
     // virtual ~URLCell();
-    URLCell(char const* identifier, float width, float height) = m1 0x1f5d84, imac 0x247670;
+    URLCell(char const* identifier, float width, float height) = win inline, m1 0x1f5d84, imac 0x247670, ios inline : TableViewCell(identifier, width, height) {
+        this->init();
+    }
 
     virtual bool init() = win 0x3c7f0, m1 0x1f5dc8, imac 0x2476e0, ios 0x115ca4;
     virtual void draw() = win 0xad710, imac 0x247750, m1 0x1f5e38, ios 0x115d00;
