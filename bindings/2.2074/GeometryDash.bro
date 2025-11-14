@@ -2302,12 +2302,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     void setClickable(bool on) {
         m_notClickable = !on;
     }
-    void setSizeMult(float mult) = ios 0x1948ac, win inline, m1 0x4fe70, imac 0x5a1f0 {
-        m_offButton->setSizeMult(mult);
-        m_onButton->setSizeMult(mult);
-
-        this->toggle(this->m_toggled);
-    }
+    void setSizeMult(float mult) = ios 0x1948ac, win 0x45410, m1 0x4fe70, imac 0x5a1f0;
     void toggle(bool) = ios 0x1947d4, win 0x455c0, imac 0x5a120, m1 0x4fd98;
     void toggleWithCallback(bool on) {
         this->activate();
@@ -5934,7 +5929,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void moveObjectCall(cocos2d::CCObject*) = win 0x11dfd0, m1 0x42a38, imac 0x49970, ios 0x3ed6f4;
     void moveObjectCall(EditCommand) = ios 0x3ee190, win 0x11e000, imac 0x4a9d0, m1 0x437a8;
     cocos2d::CCPoint offsetForKey(int) = win 0x124bf0, m1 0x35208, imac 0x35d10, ios 0x3e3d3c;
-    TodoReturn onAssignNewGroupID();
+    void onAssignNewGroupID() = win 0x1209d0;
     void onColorFilter(cocos2d::CCObject* sender) = win 0xe5bd0, m1 0x31b94, imac 0x324d0, ios 0x3e1690;
     void onCopy(cocos2d::CCObject* sender) = win 0x1118f0;
     void onCopyState(cocos2d::CCObject* sender) = win 0x112ac0, imac 0x2c960, m1 0x2c538, ios 0x3ddb38;
@@ -6052,7 +6047,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         return (int)p0->getRotation() % 90 == 0;
     }
     void showDeleteConfirmation() = m1 0x32b90, imac 0x33560;
-    void showLiveColorSelectForMode(int);
+    void showLiveColorSelectForMode(int) = win 0x11d500;
     void showLiveColorSelectForModeSpecial(int);
     void showMaxBasicError() = win 0x1112a0, m1 0x34474, imac 0x34ec0, ios 0x3e340c;
     void showMaxCoinError() = win inline, m1 0x345f0, imac 0x35020, ios 0x3e34f0 {
@@ -12540,7 +12535,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activateSongTrigger(SongTriggerGameObject*) = win 0x23b030, m1 0x11ec1c, imac 0x1492c0;
     void activateTimerTrigger(TimerTriggerGameObject*, gd::vector<int> const&) = win 0x22f700;
     void addAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJAreaActionType) = win 0x2221a0;
-    void addCustomEnterEffect(EnterEffectObject*, bool);
+    void addCustomEnterEffect(EnterEffectObject*, bool) = win 0x2090d0;
     bool addGuideArt(GameObject*) = win 0x23f940, imac 0x151740, m1 0x125938, ios 0x2097dc;
     void addObjectCounter(LabelGameObject*);
     TodoReturn addPickupTrigger(CountTriggerGameObject*);
@@ -12594,7 +12589,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn atlasValue(int);
     void bumpPlayer(PlayerObject*, EffectGameObject*) = ios 0x1eab1c, win 0x2124f0, imac 0x117ce0, m1 0xf6b04;
     TodoReturn buttonIDToButton(int);
-    TodoReturn calculateColorGroups();
+    void calculateColorGroups() = win 0x208d80;
     
     void cameraMoveX(float value, float duration, float rate, bool) = win inline, m1 0x120430, imac 0x14aff0, ios inline {
         float x = m_gameState.m_cameraPosition.x;
@@ -12615,7 +12610,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool canProcessSFX(SFXTriggerState&, gd::unordered_map<int, int>&, gd::unordered_map<int, float>&, gd::vector<SFXTriggerState>&) = win 0x23cc10, m1 0x12379c, imac 0x14e7d0, ios 0x20811c;
     TodoReturn canTouchObject(GameObject*);
     void checkCameraLimitAfterTeleport(PlayerObject*, float) = ios 0x1e5b9c, win 0x2340b0, imac 0x110df0, m1 0xf0a1c;
-    TodoReturn checkCollision(int, int);
+    bool checkCollision(int, int) = win 0x213bb0;
     void checkCollisionBlocks(EffectGameObject*, gd::vector<EffectGameObject*>*, int) = win 0x2139e0;
     int checkCollisions(PlayerObject*, float, bool) = ios 0x1e87c8, win 0x20e330, imac 0x114fe0, m1 0xf45f0;
     void checkRepellPlayer() = ios 0x201988, win 0x233de0, m1 0x11a550, imac 0x143830;
@@ -12634,12 +12629,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
     void collisionCheckObjects(PlayerObject*, gd::vector<GameObject*>*, int, float) = win 0x20f480, imac 0x116130, m1 0xf5554, ios 0x1e9420;
     TodoReturn controlAdvancedFollowCommand(AdvancedFollowTriggerObject*, int, GJActionCommand);
-    TodoReturn controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand);
-    TodoReturn controlAreaEffectWithID(int, int, GJActionCommand);
+    void controlAreaEffect(EnterEffectObject*, gd::vector<EnterEffectInstance>*, GJActionCommand) = win 0x222710;
+    void controlAreaEffectWithID(int, int, GJActionCommand) = win 0x222510;
     TodoReturn controlDynamicCommand(EffectGameObject*, int, gd::vector<DynamicObjectAction>&, GJActionCommand);
     TodoReturn controlDynamicMoveCommand(EffectGameObject*, int, GJActionCommand);
     TodoReturn controlDynamicRotateCommand(EffectGameObject*, int, GJActionCommand);
-    TodoReturn controlEventLink(int, int, GJActionCommand);
+    void controlEventLink(int, int, GJActionCommand) = win 0x22cc30;
     TodoReturn controlGradientTrigger(GradientTriggerObject*, GJActionCommand);
     void controlTriggersInGroup(int, GJActionCommand) = win 0x218de0;
     void controlTriggersWithControlID(int, GJActionCommand) = win 0x219370;
@@ -12648,7 +12643,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void createGroundLayer(int, int) = ios 0x1def60, win 0x206920, imac 0x103660, m1 0xe5410;
     void createMiddleground(int) = ios 0x1df0e8, win 0x2067a0, imac 0x103870, m1 0xe55f4;
     TodoReturn createNewKeyframeAnim();
-    cocos2d::CCParticleSystemQuad* createParticle(int, char const*, int, cocos2d::tCCPositionType) = win 0x23a060, imac 0x14c650, m1 0x12165c, ios 0x2068c0;
+    cocos2d::CCParticleSystemQuad* createParticle(int objectType, char const* plistName, int tag, cocos2d::tCCPositionType positionType) = win 0x23a060, imac 0x14c650, m1 0x12165c, ios 0x2068c0;
     void createPlayer() = ios 0x1de6e4, win 0x205fd0, m1 0xe4b94, imac 0x102d80;
     void createPlayerCollisionBlock() = ios 0x1ec548, win 0x212e90, m1 0xf9014, imac 0x11a410;
     void createTextLayers() = ios 0x1e4644, win 0x209960, imac 0x10f2e0, m1 0xee828;
@@ -12676,7 +12671,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void generateTargetGroups() = ios 0x1e219c, win 0x21fab0, m1 0xea698, imac 0x109d00;
     void generateVisibilityGroups() = ios 0x1e306c, imac 0x10c170, m1 0xec074, win 0x22c1e0;
     TodoReturn getActiveOrderSpawnObjects();
-    float getAreaObjectValue(EnterEffectInstance*, GameObject*, cocos2d::CCPoint&, bool&) = win 0x222d90;
+    float getAreaObjectValue(EnterEffectInstance* instance, GameObject* object, cocos2d::CCPoint& position, bool& show) = win 0x222d90;
     float getBumpMod(PlayerObject* player, int type) = win inline, m1 0xf87c4, imac 0x119a80, ios 0x1ec028 {
         if (static_cast<GameObjectType>(type) == GameObjectType::PinkJumpPad) {
             if (player->m_isShip) return .35f;
@@ -12725,7 +12720,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn getCapacityString();
     TodoReturn getCenterGroupObject(int, int);
     TodoReturn getCustomEnterEffects(int, bool);
-    float getEasedAreaValue(GameObject*, EnterEffectInstance*, float, bool, int) = win 0x222f80;
+    float getEasedAreaValue(GameObject* object, EnterEffectInstance* instance, float value, bool show, int index) = win 0x222f80;
     TodoReturn getEnterEasingKey(int, float);
     TodoReturn getEnterEasingValue(float, int, float, int);
     cocos2d::CCPoint getFollowSpeedVal(GameObject*, int, int, float, float) = win 0x229670;
@@ -12771,8 +12766,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         return group;
     }
     PlayerObject* getOtherPlayer(PlayerObject*) = m1 0xf228c, imac 0x1128b0;
-    TodoReturn getParticleKey(int, char const*, int, cocos2d::tCCPositionType);
-    TodoReturn getParticleKey2(gd::string);
+    gd::string getParticleKey(int, char const*, int, cocos2d::tCCPositionType) = win 0x239e30;
+    gd::string getParticleKey2(gd::string) = win 0x239fb0;
     TodoReturn getPlayerButtonID(int, bool);
     TodoReturn getPlayTimerFullSeconds();
     TodoReturn getPlayTimerMilli();
@@ -13106,7 +13101,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         m_gameState.m_cameraShakeEnabled = false;
         m_gameState.m_cameraShakeFactor = 0.f;
     }
-    TodoReturn stopCustomEnterEffect(EnterEffectObject*, bool);
+    void stopCustomEnterEffect(EnterEffectObject*, bool) = win 0x209430;
     TodoReturn stopCustomEnterEffect(EnterEffectObject*);
     TodoReturn stopSFXTrigger(SFXTriggerGameObject*);
     TodoReturn swapBackground(int);
@@ -13226,7 +13221,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn updateMGArtSpeed(float, float);
     void updateMGOffsetY(float, float, int, float, int, int) = win 0x230950;
     TodoReturn updateOBB2(cocos2d::CCRect);
-    void updateParticles(float);
+    void updateParticles(float) = win 0x23adb0;
     void updatePlatformerTime() = ios 0x203714, imac 0x146740, m1 0x11c8ac, win 0x233bd0;
     void updatePlayerCollisionBlocks() = win 0x2130c0;
     void updateProximityVolumeEffects() = ios 0x2035d4, win 0x23bd90, imac 0x1465c0, m1 0x11c754;
@@ -14996,7 +14991,7 @@ class GJGameState {
     // ~GJGameState();
     // GJGameState();
 
-    TodoReturn controlTweenAction(int, int, GJActionCommand);
+    void controlTweenAction(int, int, GJActionCommand) = win 0x200200;
     GameObjectPhysics& getGameObjectPhysics(GameObject*) = win 0x200400;
     void processStateTriggers() = ios 0x1dacdc, imac 0xfd2b0, m1 0xdff70, win 0x200290;
     void stopTweenAction(int action) = win inline, m1 0xdfb0c, imac 0xfcd00, ios inline {
@@ -18327,7 +18322,7 @@ class GroupCommandObject2 {
     GroupCommandObject2() = win 0x2506c0, m1 0x43d350, imac 0x4d9be0, ios 0xe8a4;
     // GroupCommandObject2(GroupCommandObject2 const&);
 
-    TodoReturn reset();
+    void reset() = win 0x250730;
     TodoReturn resetDelta(bool);
     TodoReturn runFollowCommand(double, double, double);
     TodoReturn runMoveCommand(cocos2d::CCPoint, double, int, double, bool, bool, bool, bool, double, double);
@@ -21627,7 +21622,7 @@ class MultiTriggerPopup : SetupTriggerPopup {
 class MusicArtistObject : cocos2d::CCObject {
     // virtual ~MusicArtistObject();
 
-    static MusicArtistObject* create(int id, gd::string name, gd::string url, gd::string youtube);
+    static MusicArtistObject* create(int id, gd::string name, gd::string url, gd::string youtube) = win 0x331da0;
 
     bool init(int id, gd::string name, gd::string url, gd::string youtube);
 
@@ -24819,8 +24814,8 @@ class SearchSFXPopup : SetTextPopup {
 
     static SearchSFXPopup* create(gd::string);
 
-    bool init(gd::string) = m1 0x3a7c94, imac 0x42cf70;
-    void onSearchFolders(cocos2d::CCObject* sender);
+    bool init(gd::string) = m1 0x3a7c94, imac 0x42cf70, win 0x468840;
+    void onSearchFolders(cocos2d::CCObject* sender) = win 0x468b00;
 }
 
 [[link(android)]]
@@ -28044,7 +28039,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void toggleBG(bool);
     void toggleCustomEaseRateVisibility(int, int) = win 0x465910;
     void toggleDisableButtons(bool) = win 0x45e820;
-    void toggleEaseRateVisibility();
+    void toggleEaseRateVisibility() = win 0x4649b0;
     void toggleLimitValue(int, bool);
     void togglePageArrows(bool);
     void triggerArrowChanged(int property, bool isRight) = win 0x45daa0, m1 0x1d9244, imac 0x227840, ios 0x133fc8;
@@ -29723,7 +29718,7 @@ class SongInfoObject : cocos2d::CCNode {
     TodoReturn containsTag(int);
     static SongInfoObject* createWithCoder(DS_Dictionary*) = win 0x330690, m1 0x4d2740, imac 0x57f980, ios 0x15ebf0;
     TodoReturn getArtistNames(int);
-    TodoReturn getTagsString(bool);
+    gd::string getTagsString(bool) = win 0x331140;
     bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x3302f0, m1 0x4d2334, imac 0x57f4d0, ios 0x15e928;
     TodoReturn updateArtists(gd::string);
 
