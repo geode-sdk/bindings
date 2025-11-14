@@ -5584,9 +5584,9 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
         m_editorLayer = nullptr;
     }
 
-    static EditorPauseLayer* create(LevelEditorLayer*) = win inline, m1 0x228ae4, imac 0x27f120, ios 0x394884 {
+    static EditorPauseLayer* create(LevelEditorLayer* layer) = win inline, m1 0x228ae4, imac 0x27f120, ios 0x394884 {
         auto ret = new EditorPauseLayer();
-        if (ret && ret->init(p0)) {
+        if (ret && ret->init(layer)) {
             ret->autorelease();
             return ret;
         }
@@ -5599,25 +5599,36 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     virtual void customSetup() = win 0xd9020, imac 0x27fa70, m1 0x2296c0, ios 0x394ef0;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xdcfa0, imac 0x282f80, m1 0x22c834, ios 0x397610;
 
-    void doResetUnused();
-    bool init(LevelEditorLayer*) = ios 0x394950, win 0xd8990, imac 0x27f220, m1 0x228bbc;
+    void doResetUnused() = win inline, m1 0x22bc74, imac 0x282350, ios inline {
+        m_editorLayer->resetUnusedColorChannels();
+    }
+    bool init(LevelEditorLayer* layer) = ios 0x394950, win 0xd8990, imac 0x27f220, m1 0x228bbc;
     void onAlignX(cocos2d::CCObject* sender) = win 0xdb9e0, m1 0x22b9d4, imac 0x282020, ios 0x396e30;
     void onAlignY(cocos2d::CCObject* sender) = win 0xdba10, m1 0x22ba08, imac 0x282050, ios 0x396e64;
-    void onBuildHelper(cocos2d::CCObject* sender) = win 0xdb7b0, m1 0x22b9a8, imac 0x281fc0;
-    void onCopyWColor(cocos2d::CCObject* sender) = win 0xdb7f0;
-    void onCreateExtras(cocos2d::CCObject* sender) = win 0xdb760;
+    void onBuildHelper(cocos2d::CCObject* sender) = win 0xdb7b0, m1 0x22b9a8, imac 0x281fc0, ios 0x396e04;
+    void onCopyWColor(cocos2d::CCObject* sender) = win 0xdb7f0, m1 0x22b998, imac 0x281fa0, ios 0x396df4;
+    void onCreateExtras(cocos2d::CCObject* sender) = win 0xdb760, m1 0x22b958, imac 0x281f50, ios 0x396db4;
     void onCreateLoop(cocos2d::CCObject* sender) = win 0xdb7d0, m1 0x22b9b8, imac 0x281fe0, ios 0x396e14;
-    void onCreateTemplate(cocos2d::CCObject* sender);
+    void onCreateTemplate(cocos2d::CCObject* sender) = win inline, m1 0x22bc7c, imac 0x282370, ios inline {
+        auto objects = cocos2d::CCArray::create();
+        auto lel = GameManager::sharedState()->m_levelEditorLayer;
+        if (auto selectedObject = lel->m_editorUI->m_selectedObject) {
+            objects->addObject(selectedObject);
+        }
+        else if (auto selectedObjects = lel->m_editorUI->getSelectedObjects()) {
+            objects->addObjectsFromArray(selectedObjects);
+        }
+    }
     void onExitEditor(cocos2d::CCObject* sender) = ios 0x3975d8, win 0xdcd60, m1 0x22c7fc, imac 0x282f40;
     void onExitNoSave(cocos2d::CCObject* sender) = ios 0x396a80, win 0xdce30, imac 0x281ad0, m1 0x22b51c;
-    void onHelp(cocos2d::CCObject* sender) = win 0xdd050;
+    void onHelp(cocos2d::CCObject* sender) = win 0xdd050, m1 0x22b6f0, imac 0x281cc0, ios 0x396b98;
     void onKeybindings(cocos2d::CCObject* sender) = imac 0x282310, m1 0x22bc3c, win 0xdba40;
     void onNewGroupX(cocos2d::CCObject* sender) = win 0xdb830, m1 0x22ba68, imac 0x2820f0, ios 0x396ec4;
     void onNewGroupY(cocos2d::CCObject* sender) = win 0xdb850, m1 0x22ba78, imac 0x282110, ios 0x396ed4;
-    void onOptions(cocos2d::CCObject* sender) = win 0xdb390;
-    void onPasteWColor(cocos2d::CCObject* sender) = win 0xdb810;
-    void onReGroup(cocos2d::CCObject* sender) = win 0xdb790;
-    void onResetUnusedColors(cocos2d::CCObject* sender) = imac 0x281e30, m1 0x22b850, win 0xdb5c0;
+    void onOptions(cocos2d::CCObject* sender) = win 0xdb390, m1 0x22bc58, imac 0x282330, ios 0x397098;
+    void onPasteWColor(cocos2d::CCObject* sender) = win 0xdb810, m1 0x22b988, imac 0x281f80, ios 0x396de4;
+    void onReGroup(cocos2d::CCObject* sender) = win 0xdb790, m1 0x22b9c4, imac 0x282000, ios 0x396e20;
+    void onResetUnusedColors(cocos2d::CCObject* sender) = ios 0x396cf0, imac 0x281e30, m1 0x22b850, win 0xdb5c0;
     void onResume(cocos2d::CCObject* sender) = ios 0x396874, win 0xdc140, m1 0x22b2c4, imac 0x2818a0;
     void onSave(cocos2d::CCObject* sender) = win 0xdcbf0, m1 0x22b42c, imac 0x2819f0, ios 0x3969c4;
     void onSaveAndExit(cocos2d::CCObject* sender) = ios 0x396970, win 0xdcd20, imac 0x281980, m1 0x22b3c0;
@@ -5625,31 +5636,49 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onSelectAll(cocos2d::CCObject* sender) = ios 0x396e98, win 0xdb870, m1 0x22ba3c, imac 0x282090;
     void onSelectAllLeft(cocos2d::CCObject* sender) = ios 0x396ea4, win 0xdb9a0, m1 0x22ba48, imac 0x2820b0;
     void onSelectAllRight(cocos2d::CCObject* sender) = ios 0x396eb4, win 0xdb9c0, m1 0x22ba58, imac 0x2820d0;
-    void onSong(cocos2d::CCObject* sender) = win 0xdbfe0;
-    void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdb720;
+    void onSong(cocos2d::CCObject* sender) = win 0xdbfe0, m1 0x22b658, imac 0x281c20, ios 0x396b60;
+    void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdb720, m1 0x22b950, imac 0x281f30, ios 0x396dac;
     void playStep2() = win 0xdca20, m1 0x22c6d0, imac 0x282e10, ios 0x3974d0;
     void playStep3() = win 0xdcb50, m1 0x22c7a0, imac 0x282ee0, ios 0x3975a0;
     void saveLevel() = ios 0x3970b4, win 0xdc310, m1 0x22c274, imac 0x282980;
-    void toggleDebugDraw(cocos2d::CCObject* sender) = win 0xdbdd0;
-    void toggleEditorBackground(cocos2d::CCObject*);
-    TodoReturn toggleEditorColorMode(cocos2d::CCObject*);
-    void toggleEditorGrid(cocos2d::CCObject* sender) = win 0xdbee0;
-    void toggleEditorGround(cocos2d::CCObject* sender) = win 0xdbe20;
-    TodoReturn toggleEffectDuration(cocos2d::CCObject*);
-    TodoReturn toggleEffectLines(cocos2d::CCObject*);
-    TodoReturn toggleFollowPlayer(cocos2d::CCObject*);
-    TodoReturn toggleGridOnTop(cocos2d::CCObject*);
-    void toggleHideInvisible(cocos2d::CCObject* sender) = win 0xdbb10;
-    void toggleIgnoreDamage(cocos2d::CCObject* sender) = win 0xdba60;
-    void togglePlaytestMusic(cocos2d::CCObject* sender);
+    void toggleDebugDraw(cocos2d::CCObject* sender) = win 0xdbdd0, m1 0x22bc20, imac 0x2822f0, ios 0x39707c;
+    void toggleEditorBackground(cocos2d::CCObject* sender) = win inline, m1 0x22c19c, imac 0x282890, ios inline {
+        auto gameManager = GameManager::sharedState();
+        gameManager->toggleGameVariable("0078");
+        m_editorLayer->toggleBackground(!gameManager->getGameVariable("0078"));
+    }
+    void toggleEditorColorMode(cocos2d::CCObject* sender) = win 0xdbab0, m1 0x22bbd4, imac 0x2822a0, ios 0x397030;
+    void toggleEditorGrid(cocos2d::CCObject* sender) = win 0xdbee0, m1 0x22bac0, imac 0x282170, ios 0x396f1c;
+    void toggleEditorGround(cocos2d::CCObject* sender) = win 0xdbe20, m1 0x22bb10, imac 0x2821d0, ios 0x396f6c;
+    void toggleEffectDuration(cocos2d::CCObject* sender) = win inline, m1 0x22c164, imac 0x282850, ios inline {
+        GameManager::sharedState()->toggleGameVariable("0058");
+    }
+    void toggleEffectLines(cocos2d::CCObject* sender) = win inline, m1 0x22c180, imac 0x282870, ios inline {
+        GameManager::sharedState()->toggleGameVariable("0043");
+    }
+    void toggleFollowPlayer(cocos2d::CCObject* sender) = win inline, m1 0x22c12c, imac 0x282810, ios inline {
+        GameManager::sharedState()->toggleGameVariable("0001");
+    }
+    void toggleGridOnTop(cocos2d::CCObject* sender) = win inline, m1 0x22c1e4, imac 0x2828e0, ios inline {
+        auto gameManager = GameManager::sharedState();
+        gameManager->toggleGameVariable("0039");
+        m_editorLayer->m_drawGridLayer->getParent()->reorderChild(m_editorLayer->m_drawGridLayer, gameManager->getGameVariable("0039") ? 1399 : -1599);
+    }
+    void toggleHideInvisible(cocos2d::CCObject* sender) = win 0xdbb10, m1 0x22bc04, imac 0x2822d0, ios 0x397060;
+    void toggleIgnoreDamage(cocos2d::CCObject* sender) = win 0xdba60, m1 0x22ba88, imac 0x282130, ios 0x396ee4;
+    void togglePlaytestMusic(cocos2d::CCObject* sender) = win inline, m1 0x22c148, imac 0x282830, ios inline {
+        GameManager::sharedState()->toggleGameVariable("0002");
+    }
     void togglePreviewAnim(cocos2d::CCObject* sender) = ios 0x397000, win 0xdbc10, m1 0x22bba4, imac 0x282270;
-    void togglePreviewParticles(cocos2d::CCObject* sender) = win 0xdbb60;
-    void togglePreviewShaders(cocos2d::CCObject* sender) = win 0xdbbc0;
-    TodoReturn toggleRecordOrder(cocos2d::CCObject*);
-    void toggleSelectFilter(cocos2d::CCObject* sender) = win 0xdbf90;
-    void toggleShowObjectInfo(cocos2d::CCObject* sender) = win 0xdbf30;
-    void uncheckAllPortals(cocos2d::CCObject* sender) = imac 0x281d60, m1 0x22b784, win 0xdb4e0;
-    void updateSongButton() = win 0xdc090;
+    void togglePreviewParticles(cocos2d::CCObject* sender) = win 0xdbb60, m1 0x22bb74, imac 0x282240, ios 0x396fd0;
+    void togglePreviewShaders(cocos2d::CCObject* sender) = win 0xdbbc0, m1 0x22bb58, imac 0x282220, ios 0x396fb4;
+    void toggleRecordOrder(cocos2d::CCObject* sender) = win inline, m1 0x22c258, imac 0x282960, ios inline {
+        GameManager::sharedState()->toggleGameVariable("0104");
+    }
+    void toggleSelectFilter(cocos2d::CCObject* sender) = win 0xdbf90, m1 0x22baa4, imac 0x282150, ios 0x396f00;
+    void toggleShowObjectInfo(cocos2d::CCObject* sender) = win 0xdbf30, m1 0x22badc, imac 0x282190, ios 0x396f38;
+    void uncheckAllPortals(cocos2d::CCObject* sender) = ios 0x396c2c, imac 0x281d60, m1 0x22b784, win 0xdb4e0;
+    void updateSongButton() = win 0xdc090, m1 0x22b704, imac 0x281ce0, ios 0x396bac;
 
     bool m_saved;
     CCMenuItemSpriteExtra* m_guidelinesOffButton;
@@ -19719,7 +19748,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn resetPlayback();
     TodoReturn resetToggledGroups();
     void resetToggledGroupsAndObjects() = ios 0x361304, imac 0xef070, m1 0xd429c, win 0x2d5c80;
-    void resetUnusedColorChannels() = win 0x2d2b80;
+    void resetUnusedColorChannels() = win 0x2d2b80, m1 0xd263c, imac 0xecd80, ios 0x35fb90;
     TodoReturn reverseKeyframeAnimationOrder(int);
     TodoReturn reverseObjectChanged(EffectGameObject*);
     float rotationForSlopeNearObject(GameObject*) = win 0x2cc7b0, m1 0xc83a0, imac 0xe1170, ios 0x35a114;
@@ -19734,7 +19763,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn stopPlayback();
     void stopTriggersInGroup(int, float) = win 0x2d51f0;
     TodoReturn timeObjectChanged();
-    TodoReturn toggleBackground(bool);
+    void toggleBackground(bool visible) = win inline, m1 0xd2964, imac 0xed100, ios inline {
+        if (m_background) m_background->setVisible(visible);
+    }
     TodoReturn toggleGrid(bool);
     void toggleGround(bool enable) = win inline, m1 0xc6720, imac 0xdf280, ios 0x358ba0 {
         m_hideGround = !enable;
@@ -30419,7 +30450,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
 [[link(android), depends(CCIndexPath)]]
 class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
-    TableView(cocos2d::CCRect rect) = win inline, m1 0x536d4c, imac 0x27b200, ios 0x2701c : CCScrollLayerExt(rect) {
+    TableView(cocos2d::CCRect rect) = win inline, m1 0x536d4c, imac 0x609b70, ios 0x2fea20 : CCScrollLayerExt(rect) {
         m_tableDelegate = nullptr;
         m_dataSource = nullptr;
         m_cellDelegate = nullptr;
