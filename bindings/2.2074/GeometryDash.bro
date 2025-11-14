@@ -5414,7 +5414,9 @@ class DungeonBarsSprite : cocos2d::CCNode {
 
 [[link(android)]]
 class DynamicBitset {
-    void resize(size_t) = win 0x38deb0;
+    void resize(size_t size) = win 0x38deb0, ios 0x126dd8 {
+        m_bits.resize(size / 32 + 1);
+    }
 
     gd::vector<unsigned int> m_bits;
 }
@@ -12547,7 +12549,16 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void addRemapTargets(gd::set<int>&) = m1 0xe7178, imac 0x105880, win 0x2088a0;
     void addToGroupParents(GameObject*) = m1 0x108628, imac 0x12d580;
     void addToGroups(GameObject*, bool) = win 0x21eb90, imac 0x12cc30, m1 0x107cdc, ios 0x1f3f3c;
-    TodoReturn addToObjectsToShow(GameObject*);
+    void addToObjectsToShow(GameObject* object) = win inline, m1 0x118b7c, imac 0x141900, ios inline, android64 inline {
+        if (m_activeObjectsCount < m_activeObjectsIndex) {
+            m_activeObjects[m_activeObjectsIndex] = object;
+        }
+        else {
+            m_activeObjects.push_back(object);
+            m_activeObjectsIndex++;
+        }
+        m_activeObjectsCount++;
+    }
     void addUIObject(GameObject*) = win 0x220c70;
     void animateInDualGroundNew(GameObject*, float, bool, float) = win 0x20deb0, m1 0xf3ca8, imac 0x1144f0;
     TodoReturn animateInGroundNew(bool, float, bool);
@@ -13766,7 +13777,9 @@ class GJChallengeItem : cocos2d::CCObject {
     }
     void incrementCount(int add);
     bool init(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName);
-    void setCount(int value);
+    void setCount(int value) {
+        m_count = value;
+    }
 
     GJChallengeType m_challengeType;
     geode::SeedValueRSV m_count;
@@ -19693,7 +19706,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     float rotationForSlopeNearObject(GameObject*) = win 0x2cc7b0, m1 0xc83a0, imac 0xe1170, ios 0x35a114;
     ColorAction* runColorEffect(EffectGameObject*, int, float, float, bool) = win 0x2d4ee0;
     void saveEditorPosition(cocos2d::CCPoint&, int) = m1 0xcf4d8, imac 0xe9730;
-    void setObjectCount(int);
+    void setObjectCount(int count) {
+        m_objectCount = count;
+    }
     bool shouldBlend(int) = win 0x2cafe0;
     TodoReturn sortBatchnodeChildren(float);
     void spawnGroupPreview(int, float, float, float, float, float, bool, bool) = win 0x2d55b0;
@@ -19974,7 +19989,6 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onLevelLeaderboard(cocos2d::CCObject* sender) = ios 0x2c85c, win 0x2e54d0, imac 0x2adde0, m1 0x253d3c;
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x2ea3c0;
     void onLike(cocos2d::CCObject* sender) = win 0x2e9e60, m1 0x253da8, imac 0x2ade50, ios 0x2c8c8;
-    void onLowDetailMode(cocos2d::CCObject* sender);
     void onOwnerDelete(cocos2d::CCObject* sender) = win inline, m1 0x256cf0, imac 0x2b0dd0, ios 0x2ef7c {
         if (m_isBusy) return;
         auto glm = GameLevelManager::sharedState();
@@ -23795,7 +23809,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
         return !m_isPlatformer && m_endPortal && !m_platformerEndTrigger ? m_endPortal->getPosition() : m_endPosition;
     }
     TodoReturn getLastCheckpoint();
-    TodoReturn getRelativeMod(cocos2d::CCPoint, float, float, float);
+    float getRelativeMod(cocos2d::CCPoint, float, float, float) = m1 0xa93f4, imac 0xb9e50;
     TodoReturn getRelativeModNew(cocos2d::CCPoint, float, float, bool, bool);
     double getTempMilliTime();
     TodoReturn gravityEffectFinished();
@@ -23889,8 +23903,33 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
         }
     }
     void scanDynamicSaveObjects() = win 0x3a1180, m1 0x9f780, imac 0xaec20, ios 0x11a878;
-    void screenFlipObject(GameObject*) = win 0x399880;
-    void setDamageVerifiedIdx(int);
+    void screenFlipObject(GameObject* object) = win 0x399880, m1 0xa9178, imac 0xb9ba0, ios 0x1219f0, android64 inline {
+        auto factor = m_gameState.m_levelFlipping;
+        if (m_cameraFlip == -1.f) factor = 1.f - factor;
+        auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+        auto objectPos = object->getPosition();
+        auto xDiff = objectPos.x - m_gameState.m_cameraPosition.x;
+        object->setPosition(objectPos + cocos2d::CCPoint { (winSize.width / m_gameState.m_cameraZoom - (xDiff + xDiff)) * factor, 0.f });
+        auto angle = std::abs(object->getRotation());
+        auto rotated = angle == 90.f || angle == 270.f;
+        auto flip = m_cameraFlip;
+        auto flipping = m_gameState.m_levelFlipping;
+        if ((flip != 1.f && flipping > .5f) || (flip == 1.f && flipping < .5f)) {
+            if (!m_gameState.m_unkBool11) return;
+            auto sign = flip == 1.f ? 1 : -1;
+            if (rotated) object->setFlipY(object->m_startFlipY * sign != 0);
+            else object->setFlipX(object->m_startFlipX * sign != 0);
+            if ((int)angle % 90 != 0) object->setRotation(object->m_startRotationX * sign);
+        }
+        else {
+            if (rotated) object->setFlipY(!object->m_startFlipY);
+            else object->setFlipX(!object->m_startFlipX);
+            if ((int)angle % 90 != 0) object->setRotation(-object->m_startRotationX);
+        }
+    }
+    void setDamageVerifiedIdx(int idx) {
+        m_damageVerifiedIndex = idx;
+    }
     void setupHasCompleted() = ios 0x119a3c, win 0x38f9c0, imac 0xadac0, m1 0x9e66c;
     TodoReturn shouldBlend(int);
     void showCompleteEffect() = ios 0x11e048, win 0x391fd0, imac 0xb4c70, m1 0xa4af4;
@@ -23931,7 +23970,32 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateAttempts() = win 0x3a2c70, imac 0xbeeb0, m1 0xad858, ios 0x1258d4;
     void updateEffectPositions() = m1 0xaa9fc, imac 0xbb690;
     void updateInfoLabel() = ios 0x11b150, win 0x39bb90, imac 0xafdc0, m1 0xa0770;
-    void updateInvisibleBlock(GameObject* object, float rightFadeBound, float leftFadeBound, float rightFadeWidth, float leftFadeWidth, cocos2d::ccColor3B const& lbgColor) = win 0x3994e0, imac 0xb8a10, m1 0xa8264, ios 0x120b50;
+    void updateInvisibleBlock(GameObject* object, float rightFadeBound, float leftFadeBound, float rightFadeWidth, float leftFadeWidth, cocos2d::ccColor3B const& lbgColor) = win 0x3994e0, imac 0xb8a10, m1 0xa8264, ios 0x120b50, android64 inline {
+        auto realPosition = object->getRealPosition();
+        if (realPosition.x > m_cameraUnzoomedX) realPosition.x -= object->m_fadeMargin;
+        else realPosition.x += object->m_fadeMargin;
+        auto relativeMod = this->getRelativeMod(realPosition, .02f, 1.f / 70.f, .0f) * 255.f;
+        auto cameraX = m_gameState.m_cameraPosition2.x;
+        float factor;
+        if (realPosition.x > cameraX + rightFadeBound) {
+            factor = realPosition.x - cameraX - rightFadeBound;
+        }
+        else {
+            factor = factor + leftFadeBound - realPosition.x;
+            rightFadeWidth = leftFadeWidth;
+        }
+        rightFadeWidth = std::max(rightFadeWidth, 1.f);
+        factor = std::clamp(factor / rightFadeWidth, 0.f, 1.f);
+        object->setOpacity(std::min(relativeMod, (factor * .95f + .05f) * 255.f));
+        object->setGlowOpacity(std::min(relativeMod, (factor * .85f + .15f) * 255.f));
+        auto opacity = object->getOpacity() / 255.f;
+        if (opacity > 0.8f) {
+            object->setGlowColor(GJEffectManager::getMixedColor(m_lightBGColor, lbgColor, (1.f - (opacity - .8f) / .2f) * .3f + .7f));
+        }
+        else {
+            object->setGlowColor(m_lightBGColor);
+        }
+    }
     void updateProgressbar() = ios 0x11bb80, win 0x39b4f0, m1 0xa2124, imac 0xb1c20;
     void updateScreenRotation(int, bool, bool, float, int, float, int, int);
     void updateTestModeLabel() = ios 0x11d4e8, win 0x390b40, imac 0xb3d10, m1 0xa3d38;
