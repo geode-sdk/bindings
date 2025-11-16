@@ -5300,16 +5300,41 @@ class DownloadMessageDelegate {
 class DrawGridLayer : cocos2d::CCLayer {
     // virtual ~DrawGridLayer();
 
-    static DrawGridLayer* create(cocos2d::CCNode*, LevelEditorLayer*) = win 0x2db1f0, m1 0xc4b04, imac 0xdd0d0, ios 0x3575ac;
+    static DrawGridLayer* create(cocos2d::CCNode* parent, LevelEditorLayer* layer) = win 0x2db1f0, m1 0xc4b04, imac 0xdd0d0, ios 0x3575ac;
 
     virtual void update(float) = win 0x2db6f0, imac 0xf5c30, m1 0xd9cd8, ios 0x3657b8;
     virtual void draw() = win 0x2db8f0, imac 0xf5dc0, m1 0xd9de8, ios 0x3658c8;
 
-    void addAudioLineObject(AudioLineGuideGameObject*);
-    void addToEffects(EffectGameObject*);
-    void addToGuides(GameObject*);
-    void addToSpeedObjects(EffectGameObject*);
-    cocos2d::CCPoint getPortalMinMax(GameObject*);
+    void addAudioLineObject(AudioLineGuideGameObject* object) = win inline, m1 0xcffa0, imac 0xea2b0, ios inline {
+        m_audioLineObjects[object->m_uniqueID] = object;
+    }
+    void addToEffects(EffectGameObject* object) = win inline, m1 0xcfdec, imac 0xea130, ios 0x35db10 {
+        if (!m_effectGameObjects->containsObject(object)) {
+            m_effectGameObjects->addObject(object);
+            m_sortEffects = true;
+        }
+    }
+    void addToGuides(GameObject* object) = win inline, m1 0xd024c, imac 0xea8a0, ios 0x35de88 {
+        if (!m_guideObjects->containsObject(object)) {
+            m_guideObjects->addObject(object);
+        }
+    }
+    void addToSpeedObjects(EffectGameObject* object) = win inline, m1 0xd02d8, imac 0xea920, ios 0x35df14 {
+        if (!m_speedObjects->containsObject(object)) {
+            m_speedObjects->addObject(object);
+            m_updateSpeedObjects = true;
+            object->updateSpeedModType();
+        }
+    }
+    cocos2d::CCPoint getPortalMinMax(GameObject* object) = win inline, m1 0xd9c0c, imac 0xf5b50, ios 0x3656f8 {
+        auto objectType = object->getType();
+        float height;
+        if (objectType == GameObjectType::BallPortal) height = 240.f;
+        else if (objectType == GameObjectType::SpiderPortal) height = 270.f;
+        else height = 300.f;
+        auto minimum = (std::max)((int)((object->getPosition().y - height * .5f) / 30.f) * 30.f, 90.f);
+        return { minimum, minimum + height };
+    }
     bool init(cocos2d::CCNode* parent, LevelEditorLayer* layer) = win inline, m1 0xd9aa0, imac 0xf59b0, ios 0x3655bc {
         if (!cocos2d::CCLayer::init()) return false;
         m_objectLayer = parent;
@@ -5332,21 +5357,46 @@ class DrawGridLayer : cocos2d::CCLayer {
         m_pointArray3 = new std::array<cocos2d::CCPoint, 400>();
         return true;
     }
-    void loadTimeMarkers(gd::string) = win 0x2db3d0, m1 0xc6aa4, imac 0xdf600, ios 0x358dbc;
+    void loadTimeMarkers(gd::string markers) = win 0x2db3d0, m1 0xc6aa4, imac 0xdf600, ios 0x358dbc;
     cocos2d::CCPoint posForTime(float time) = win inline, m1 0xd449c, imac 0xef340, ios inline {
         return LevelTools::posForTime(time, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, m_editorLayer->m_levelSettings->m_platformerMode, m_editorLayer->m_gameState.m_rotateChannel);
     }
-    void postUpdate();
-    void removeAudioLineObject(AudioLineGuideGameObject*);
-    void removeFromEffects(EffectGameObject*);
-    void removeFromGuides(GameObject*);
-    void removeFromSpeedObjects(EffectGameObject*);
-    void sortSpeedObjects();
+    void postUpdate() = win inline, m1 0xd9ccc, imac 0xf5c10, ios inline {
+        m_oldPlaybackTime = m_playbackTime;
+    }
+    void removeAudioLineObject(AudioLineGuideGameObject* object) = win inline, m1 0xd0214, imac 0xea850, ios inline {
+        m_audioLineObjects.erase(object->m_uniqueID);
+    }
+    void removeFromEffects(EffectGameObject* object) = win inline, m1 0xd01e4, imac 0xea820, ios inline {
+        m_effectGameObjects->removeObject(object);
+        m_sortEffects = true;
+    }
+    void removeFromGuides(GameObject* object) = win inline, m1 0xd0240, imac 0xea880, ios 0x35de7c {
+        m_guideObjects->removeObject(object);
+    }
+    void removeFromSpeedObjects(EffectGameObject* object) = win inline, m1 0xd028c, imac 0xea8e0, ios 0x35dec8 {
+        if (m_speedObjects->containsObject(object)) {
+            m_speedObjects->removeObject(object);
+            m_updateSpeedObjects = true;
+        }
+    }
+    void sortSpeedObjects() = win inline, m1 0xd9bfc, imac 0xf5b30, ios inline {
+        LevelTools::sortSpeedObjects(m_speedObjects, m_editorLayer);
+    }
     float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, bool ignoreWarp, bool ignoreRotate, int id) = win inline, m1 0xd2ce4, imac 0xed530, ios 0x360104 {
         return LevelTools::timeForPos(position, m_speedObjects, (int)m_editorLayer->m_levelSettings->m_startSpeed, order, channel, songTriggers, m_editorLayer->m_levelSettings->m_platformerMode, ignoreWarp, ignoreRotate, id);
     }
-    void updateMusicGuideTime(float);
-    void updateTimeMarkers();
+    void updateMusicGuideTime(float time) = win inline, m1 0xd9dd8, imac 0xf5da0, ios 0x3658b8 {
+        m_musicTime = time;
+        m_playbackTime = time;
+        m_oldPlaybackTime = time;
+    }
+    void updateTimeMarkers() = win inline, m1 0xd2c38, imac 0xed490, ios 0x360068 {
+        m_updateTimeMarkers = true;
+        m_updateSpeedObjects = false;
+        this->sortSpeedObjects();
+        this->loadTimeMarkers(m_timeMarkerString);
+    }
 
     std::array<cocos2d::CCPoint, 400>* m_pointArray1;
     std::array<cocos2d::CCPoint, 400>* m_pointArray2;
@@ -20773,17 +20823,56 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelTools {
-    static int artistForAudio(int) = win 0x314320, m1 0x44d108, imac 0x4eb660, ios 0x1ab81c;
-    static gd::string base64DecodeString(gd::string);
-    static gd::string base64EncodeString(gd::string str) = win inline, imac 0x4ee880, m1 0x44fd1c, ios 0x1ac7f4 {
-        return str.empty() ? "" : cocos2d::ZipUtils::base64URLEncode(str);
+    static int artistForAudio(int id) = win 0x314320, m1 0x44d108, imac 0x4eb660, ios 0x1ab81c;
+    static gd::string base64DecodeString(gd::string str) = win inline, m1 0x44fd54, imac 0x4ee8d0, ios 0x1ac82c {
+        return str.empty() ? str : cocos2d::ZipUtils::base64URLDecode(str);
     }
-    static cocos2d::CCDictionary* createStarPackDict() = m1 0x44fd8c, imac 0x4ee920;
-    static gd::string fbURLForArtist(int) = win 0x316430, m1 0x44df44, imac 0x4ec970, ios 0x1ab8f4;
-    static int getAudioBPM(int);
-    static gd::string getAudioFileName(int) = win 0x313750, imac 0x4eb120, m1 0x44ca9c, ios 0x1ab7f0;
-    static gd::string getAudioString(int) = win 0x316950, imac 0x4ecd10, m1 0x44e26c, ios 0x1ab920;
-    static gd::string getAudioTitle(int) = win 0x312bd0, imac 0x4eab80, m1 0x44c364, ios 0x1ab7c0;
+    static gd::string base64EncodeString(gd::string str) = win inline, imac 0x4ee880, m1 0x44fd1c, ios 0x1ac7f4 {
+        return str.empty() ? str : cocos2d::ZipUtils::base64URLEncode(str);
+    }
+    static cocos2d::CCDictionary* createStarPackDict() = win inline, m1 0x44fd8c, imac 0x4ee920, ios 0x1ac864 {
+        auto dict = cocos2d::CCDictionary::create();
+        std::string packs = "1,3,2,4,3,4,5,5,6,6,7,6,8,7,9,8,10,8,11,9,19,10,20,10,21,10,22,10,26,"
+                            "10,27,10,28,10,29,10,30,10,31,10,32,4,33,5,34,6,35,8,36,8,37,5,38,5,39,"
+                            "6,40,7,41,8,42,8,43,8,44,9,45,6,46,10,47,10,48,10,49,10,50,10,52,4,53,3,"
+                            "54,4,55,4,56,5,57,6,58,7,59,8,60,8,61,8,62,9,63,9,64,10,65,10,66,10";
+        auto parts = cocos2d::CCArray::create();
+        auto start = 0;
+        auto index = packs.find_first_of(",");
+        auto size = packs.size();
+        while (index != std::string::npos) {
+            auto str = packs.substr(start, index - start);
+            if (!str.empty() || start != size) {
+                parts->addObject(cocos2d::CCString::create(str));
+            }
+            start = index + 1;
+            index = packs.find_first_of(",", start);
+        }
+        for (int i = 1; i < parts->count(); i += 2) {
+            dict->setObject(parts->stringAtIndex(i), parts->stringAtIndex(i - 1)->intValue());
+        }
+        return dict;
+    }
+    static gd::string fbURLForArtist(int id) = win 0x316430, m1 0x44df44, imac 0x4ec970, ios 0x1ab8f4;
+    static int getAudioBPM(int id) = win inline, m1 0x44e24c, imac 0x4eccf0, ios inline {
+        switch (id) {
+            case 0: return 160;
+            case 1: return 142;
+            case 2: return 163;
+            case 3: return 145;
+            case 4: return 142;
+            case 5: return 170;
+            case 6: return 178;
+            case 7: return 143;
+            case 8: return 140;
+            case 10: return 140;
+            case 12: return 170;
+            default: return 130;
+        }
+    }
+    static gd::string getAudioFileName(int id) = win 0x313750, imac 0x4eb120, m1 0x44ca9c, ios 0x1ab7f0;
+    static gd::string getAudioString(int id) = win 0x316950, imac 0x4ecd10, m1 0x44e26c, ios 0x1ab920;
+    static gd::string getAudioTitle(int id) = win 0x312bd0, imac 0x4eab80, m1 0x44c364, ios 0x1ab7c0;
     static bool getLastGameplayReversed() = win inline, m1 0x44f67c, imac 0x4ee310, ios inline {
         return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x6a4c06) GEODE_IOS(0x85f0c0));
     }
@@ -20793,7 +20882,7 @@ class LevelTools {
     static float getLastTimewarp() = win inline, m1 0x44f670, imac 0x4ee300, ios 0x1ac470 {
         return *reinterpret_cast<float*>(geode::base::get() + 0x69c198);
     }
-    static GJGameLevel* getLevel(int, bool) = win 0x310320, imac 0x4e8620, m1 0x44a514, ios 0x1aa160;
+    static GJGameLevel* getLevel(int id, bool noString) = win 0x310320, imac 0x4e8620, m1 0x44a514, ios 0x1aa160;
     static gd::unordered_set<int> getLevelList() = win inline, m1 0x44a138, imac 0x4e82b0, ios 0x1aa0d4 {
         auto levelStart = reinterpret_cast<int*>(geode::base::get() + 0x608580);
         auto levelList = std::unordered_set<int>(levelStart, levelStart + 40);
@@ -20806,22 +20895,32 @@ class LevelTools {
         auto artistID = artistForAudio(id);
         return SongInfoObject::create(id, getAudioTitle(id), nameForArtist(artistID), artistID, 0.f, "", "", "", 0, "", false, 0, -1);
     }
-    static TodoReturn moveTriggerObjectsToArray(cocos2d::CCArray*, cocos2d::CCDictionary*, int);
-    static gd::string nameForArtist(int) = win 0x3143f0, m1 0x44d12c, imac 0x4eb680, ios 0x1ab840;
-    static gd::string ngURLForArtist(int) = win 0x315a10, m1 0x44d960, imac 0x4ec2c0, ios 0x1ab89c;
-    static TodoReturn offsetBPMForTrack(int);
+    static void moveTriggerObjectsToArray(cocos2d::CCArray* objects, cocos2d::CCDictionary* objectsDict, int index) = win 0x318720, m1 0x4501a8, imac 0x4eed80, ios 0x1acadc;
+    static gd::string nameForArtist(int id) = win 0x3143f0, m1 0x44d12c, imac 0x4eb680, ios 0x1ab840;
+    static gd::string ngURLForArtist(int id) = win 0x315a10, m1 0x44d960, imac 0x4ec2c0, ios 0x1ab89c;
+    static float offsetBPMForTrack(int id) = win inline, m1 0x44e814, imac 0x4ed330, ios inline {
+        return id == 11 ? .1f : id == 13 ? .07f : .0f;
+    }
     static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& rotateChannel) = win inline, m1 0x44f1bc, imac 0x4edd00, ios 0x1abfb4 {
         return posForTimeInternal(time, objects, speed, platformer, false, false, rotateChannel, 0);
     }
     static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* objects, int speed, bool platformer, bool ignoreMinorAxis, bool ignoreWarp, int& rotateChannel, int) = win 0x317ea0, m1 0x44f1cc, imac 0x4edd30, ios 0x1abfc4;
-    static void sortChannelOrderObjects(cocos2d::CCArray*, cocos2d::CCDictionary*, bool) = win 0x3187f0;
-    static void sortSpeedObjects(cocos2d::CCArray*, GJBaseGameLayer*) = win 0x318a70, m1 0x450524, imac 0x4ef100;
+    static void sortChannelOrderObjects(cocos2d::CCArray* objects, cocos2d::CCDictionary* objectsDict, bool moveObjects) = win 0x3187f0, m1 0x45025c, imac 0x4eee30, ios 0x1acb90;
+    static void sortSpeedObjects(cocos2d::CCArray* objects, GJBaseGameLayer* layer) = win 0x318a70, m1 0x450524, imac 0x4ef100, ios 0x1ace00;
     static float timeForPos(cocos2d::CCPoint position, cocos2d::CCArray* objects, int speed, int order, int channel, bool songTriggers, bool platformer, bool ignoreWarp, bool ignoreRotate, int id) = win 0x3174c0, m1 0x44e860, imac 0x4ed380, ios 0x1ab94c;
-    static TodoReturn toggleDebugLogging(bool);
-    static gd::string urlForAudio(int) = win 0x3146f0, m1 0x44d310, imac 0x4eb7f0, ios 0x1ab86c;
-    static TodoReturn valueForSpeedMod(int);
-    static bool verifyLevelIntegrity(gd::string, int) = win 0x318500, imac 0x4ee730, m1 0x44fb5c, ios 0x1ac6e8;
-    static gd::string ytURLForArtist(int) = win 0x315eb0, m1 0x44dc2c, imac 0x4ec5c0, ios 0x1ab8c8;
+    static void toggleDebugLogging(bool enabled) = win inline, m1 0x44a134, imac 0x4e82a0, ios inline {}
+    static gd::string urlForAudio(int id) = win 0x3146f0, m1 0x44d310, imac 0x4eb7f0, ios 0x1ab86c;
+    static float valueForSpeedMod(int speed) = win inline, m1 0x44e834, imac 0x4ed350, ios inline {
+        switch (speed) {
+            case 1: return 251.16008f;
+            case 2: return 387.42014f;
+            case 3: return 468.00015f;
+            case 4: return 576.00018f;
+            default: return 311.5801f;
+        }
+    }
+    static bool verifyLevelIntegrity(gd::string str, int id) = win 0x318500, imac 0x4ee730, m1 0x44fb5c, ios 0x1ac6e8;
+    static gd::string ytURLForArtist(int id) = win 0x315eb0, m1 0x44dc2c, imac 0x4ec5c0, ios 0x1ab8c8;
 }
 
 [[link(android)]]
