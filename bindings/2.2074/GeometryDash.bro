@@ -28080,8 +28080,18 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     }
     ~SetupTriggerPopup() = win 0x45b6e0, m1 0x1d5b60, imac 0x222a30, ios 0x1313a4;
 
-    static SetupTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*, float, float, int);
-    static SetupTriggerPopup* create(float, float);
+    static SetupTriggerPopup* create(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background) = win inline, m1 0x1d5d08, imac 0x222cd0, ios inline {
+        auto ret = new SetupTriggerPopup();
+        if (ret->init(trigger, triggers, width, height, background)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static SetupTriggerPopup* create(float width, float height) = win inline, m1 0x1d6148, imac 0x223260, ios inline {
+        return SetupTriggerPopup::create(nullptr, nullptr, width, height, 1);
+    }
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x465a80, m1 0x1df150, imac 0x22e3e0, ios 0x13803c;
     virtual void keyBackClicked() = win 0x44f1d0, m1 0x1d8cf8, imac 0x227290, ios 0x133bfc;
@@ -28109,27 +28119,41 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) {}
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x464c00, imac 0x22d4e0, m1 0x1de14c, ios 0x13733c;
 
-    void addCloseButton(gd::string) = win 0x45c590, m1 0x1d6d74, imac 0x223f40, ios 0x13216c;
-    void addHelpButton(gd::string, gd::string, float) = win 0x45c6a0, m1 0x1d6df4, imac 0x223fc0, ios 0x1321e8;
-    void addInfoLabel(gd::string, float, cocos2d::CCPoint, int, int) = win 0x45ee90;
-    void addObjectsToGroup(cocos2d::CCArray*, int);
-    void addObjectsToPage(cocos2d::CCArray*, int);
-    void addObjectToGroup(cocos2d::CCObject*, int);
-    void addObjectToPage(cocos2d::CCObject*, int) = win 0x45c400, m1 0x1d6a04, imac 0x223b70, ios 0x131fd8;
-    void addTitle(gd::string) = win 0x45c490, m1 0x1d6cac, imac 0x223e70, ios 0x1320a4;
-    void closeInputNodes();
-    void createCustomButton(int, gd::string, gd::string, cocos2d::CCPoint, float, float, bool, int, int) = win 0x45f110;
-    void createCustomEasingControls(gd::string, cocos2d::CCPoint, float, int, int, int, int) = win 0x464cc0;
-    void createCustomToggleValueControl(int, bool, bool, gd::string, cocos2d::CCPoint, bool, int, int) = win 0x45ec10;
-    void createEasingControls(cocos2d::CCPoint, float, int, int) = win 0x463da0, imac 0x22c970, m1 0x1dd5b4, ios 0x1368fc;
-    void createMultiTriggerItems(cocos2d::CCPoint touchPos, cocos2d::CCPoint spawnPos, cocos2d::CCPoint multiPos) = win 0x45cd50, imac 0x2243a0, m1 0x1d71b0;
-    void createMultiTriggerItemsCorner() = win 0x45ca40;
-    void createMultiTriggerItemsDefault() = win 0x45c930, imac 0x224290, m1 0x1d70d0;
-    void createMultiTriggerItemsDefaultHorizontal() = win 0x45cc40;
-    void createMultiTriggerItemsDefaultVertical() = win 0x45cb40;
-    void createPageButtons(float, int) = win 0x45bc80;
-    void createPlusButton(int, cocos2d::CCPoint, float, gd::string, int, int) = win 0x45ef70;
-    CCMenuItemToggler* createToggleButton(gd::string, cocos2d::SEL_MenuHandler, bool, cocos2d::CCPoint) = win 0x45c800;
+    void addCloseButton(gd::string text) = win 0x45c590, m1 0x1d6d74, imac 0x223f40, ios 0x13216c;
+    void addHelpButton(gd::string title, gd::string desc, float scale) = win 0x45c6a0, m1 0x1d6df4, imac 0x223fc0, ios 0x1321e8;
+    void addInfoLabel(gd::string text, float scale, cocos2d::CCPoint position, int page, int group) = win 0x45ee90, m1 0x1dace8, imac 0x2292c0, ios 0x135400;
+    void addObjectsToGroup(cocos2d::CCArray* objects, int group) = win inline, m1 0x1d6bc8, imac 0x223d70, ios 0x13207c {
+        this->getGroupContainer(group)->addObjectsFromArray(objects);
+    }
+    void addObjectsToPage(cocos2d::CCArray* objects, int page) = win inline, m1 0x1d6a74, imac 0x223bf0, ios 0x132000 {
+        this->getPageContainer(page)->addObjectsFromArray(objects);
+    }
+    void addObjectToGroup(cocos2d::CCObject* object, int group) = win inline, m1 0x1d6b58, imac 0x223cf0, ios 0x132054 {
+        this->getGroupContainer(group)->addObject(object);
+    }
+    void addObjectToPage(cocos2d::CCObject* object, int page) = win 0x45c400, m1 0x1d6a04, imac 0x223b70, ios 0x131fd8;
+    void addTitle(gd::string title) = win 0x45c490, m1 0x1d6cac, imac 0x223e70, ios 0x1320a4;
+    void closeInputNodes() = win inline, m1 0x1d8cac, imac 0x227240, ios inline {
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_inputNodes->m_pElements, element, temp) {
+            auto inputNode = static_cast<CCTextInputNode*>(element->getObject());
+            inputNode->m_delegate = nullptr;
+            inputNode->onClickTrackNode(false);
+        }
+    }
+    void createCustomButton(int tag, gd::string text, gd::string frame, cocos2d::CCPoint position, float buttonScale, float labelScale, bool vertical, int page, int group) = win 0x45f110, m1 0x1dafec, imac 0x2295c0, ios 0x13562c;
+    void createCustomEasingControls(gd::string text, cocos2d::CCPoint position, float scale, int typeProperty, int rateProperty, int page, int group) = win 0x464cc0, m1 0x1de34c, imac 0x22d6f0, ios 0x1374b8;
+    cocos2d::CCArray* createCustomToggleValueControl(int property, bool toggled, bool notClickable, gd::string text, cocos2d::CCPoint position, bool vertical, int page, int group) = win 0x45ec10, m1 0x1da9f0, imac 0x228fe0, ios 0x1351fc;
+    void createEasingControls(cocos2d::CCPoint position, float scale, int page, int group) = win 0x463da0, imac 0x22c970, m1 0x1dd5b4, ios 0x1368fc;
+    void createMultiTriggerItems(cocos2d::CCPoint touchPos, cocos2d::CCPoint spawnPos, cocos2d::CCPoint multiPos) = win 0x45cd50, imac 0x2243a0, m1 0x1d71b0, ios 0x132574;
+    void createMultiTriggerItemsCorner() = win 0x45ca40, m1 0x1d74e0, imac 0x224720, ios 0x132800;
+    void createMultiTriggerItemsDefault() = win 0x45c930, imac 0x224290, m1 0x1d70d0, ios 0x132494;
+    void createMultiTriggerItemsDefaultHorizontal() = win 0x45cc40, m1 0x1d7680, imac 0x224920, ios 0x1329a0;
+    void createMultiTriggerItemsDefaultVertical() = win 0x45cb40, m1 0x1d75b0, imac 0x224820, ios 0x1328d0;
+    void createPageButtons(float offset, int arrow) = win 0x45bc80, m1 0x1d61a4, imac 0x2232d0, ios 0x13182c;
+    CCMenuItemSpriteExtra* createPlusButton(int tag, cocos2d::CCPoint position, float scale, gd::string frame, int page, int group) = win 0x45ef70, m1 0x1dae28, imac 0x229410, ios 0x1354d8;
+    CCMenuItemToggler* createToggleButton(gd::string text, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCPoint position) = win 0x45c800, m1 0x1d6fa0, imac 0x224160, ios 0x13236c;
     cocos2d::CCArray* createToggleValueControl(int property, gd::string label, cocos2d::CCPoint position, bool vertical, int page, int group, float scale) = win 0x45e900, imac 0x228c00, m1 0x1da5ec, ios 0x134e78;
     cocos2d::CCArray* createToggleValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, bool vertical, int page, int group, float buttonScale, float labelScale, float labelWidth, cocos2d::CCPoint offset) = win inline, imac 0x228d30, m1 0x1da73c, ios 0x134fb8 {
         auto pageContainer = this->getPageContainer(page);
@@ -28146,19 +28170,33 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
         if (group > 0) groupContainer->addObjectsFromArray(nodes);
         return nodes;
     }
-    cocos2d::CCArray* createValueControl(int, gd::string, cocos2d::CCPoint, float, float, float) = win 0x45db40;
+    void createValueControl(int property, gd::string label, cocos2d::CCPoint position, float scale, float sliderMin, float sliderMax) = win 0x45db40, m1 0x1d9464, imac 0x227a40, ios 0x134118;
     cocos2d::CCArray* createValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, float scale, bool noSlider, InputValueType valueType, int length, bool arrows, float sliderMin, float sliderMax, int page, int group, GJInputStyle inputStyle, int decimalPlaces, bool allowDisable) = win 0x45dc30, m1 0x1d9550, imac 0x227b30, ios 0x134204;
-    cocos2d::CCArray* createValueControlWArrows(int, gd::string, cocos2d::CCPoint, float);
-    cocos2d::CCArray* getGroupContainer(int group) = win 0x45c2a0, m1 0x1d6870, imac 0x2239e0, ios 0x131e94;
-    float getMaxSliderValue(int);
-    float getMinSliderValue(int);
-    cocos2d::CCArray* getObjects();
-    cocos2d::CCArray* getPageContainer(int page) = win inline, m1 0x1d66f0, imac 0x223830, ios 0x131d50 {
-        for (int i = m_pageContainers->count(); i <= page; i++) {
-            m_pageContainers->addObject(cocos2d::CCArray::create());
-        }
-        return static_cast<cocos2d::CCArray*>(m_pageContainers->objectAtIndex(page));
+    void createValueControlWArrows(int property, gd::string label, cocos2d::CCPoint position, float scale) = win inline, m1 0x1da104, imac 0x228770, ios inline {
+        this->createValueControlAdvanced(property, label, position, scale, true, InputValueType::Int, 6, true, 0.f, 0.f, 0, 0, GJInputStyle::GoldLabel, 2, false);
     }
+    cocos2d::CCArray* getGroupContainer(int group) = win 0x45c2a0, m1 0x1d6870, imac 0x2239e0, ios 0x131e94;
+    float getMaxSliderValue(int property) = win inline, m1 0x1dd448, imac 0x22c810, ios inline {
+        if (auto value = static_cast<cocos2d::CCFloat*>(m_maxSliderValues->objectForKey(property))) {
+            return value->getValue();
+        }
+        return 1.f;
+    }
+    float getMinSliderValue(int property) = win inline, m1 0x1dd418, imac 0x22c7e0, ios inline {
+        if (auto value = static_cast<cocos2d::CCFloat*>(m_minSliderValues->objectForKey(property))) {
+            return value->getValue();
+        }
+        return 0.f;
+    }
+    cocos2d::CCArray* getObjects() = win inline, m1 0x1d7904, imac 0x224be0, ios 0x132c00 {
+        if (m_gameObject) {
+            auto arr = cocos2d::CCArray::create();
+            arr->addObject(m_gameObject);
+            return arr;
+        }
+        return m_gameObjects;
+    }
+    cocos2d::CCArray* getPageContainer(int page) = win 0x45bfa0, m1 0x1d66f0, imac 0x223830, ios 0x131d50;
     float getTriggerValue(int property, GameObject* object) = win 0x4620f0, imac 0x229d20, m1 0x1db6b4, ios 0x135bc8;
     float getTruncatedValue(float value, int decimals) = win 0x45f750, m1 0x1d7e10, imac 0x2251a0, ios inline {
         if (decimals < 1) return value;
@@ -28171,21 +28209,23 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
         }
         return value;
     }
-    void goToPage(int, bool) = win 0x45c010, m1 0x1d6540, imac 0x223650, ios 0x131bac;
-    void hideAll();
+    void goToPage(int page, bool hideAll) = win 0x45c010, m1 0x1d6540, imac 0x223650, ios 0x131bac;
+    void hideAll() = win inline, m1 0x1d6754, imac 0x223890, ios 0x131dac {
+        this->goToPage(0, true);
+    }
     bool init(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background) = win 0x45b900, imac 0x222f20, m1 0x1d5eb4, ios 0x13154c;
-    void onCustomEaseArrow(int, bool) = win 0x465590;
-    void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x465560;
-    void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x465530;
-    void onCustomEaseRate(cocos2d::CCObject* sender) = win 0x465420;
-    void onDisableValue(cocos2d::CCObject* sender) = win 0x45e7f0;
-    void onEase(cocos2d::CCObject* sender) = win 0x464ac0;
-    void onEaseRate(cocos2d::CCObject* sender) = win 0x464b30;
-    void onMultiTrigger(cocos2d::CCObject* sender);
+    void onCustomEaseArrow(int property, bool up) = win 0x465590, m1 0x1df0ac, imac 0x22e340, ios 0x137f98;
+    void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x465560, m1 0x1ded7c, imac 0x22e080, ios 0x137d18;
+    void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x465530, m1 0x1decc8, imac 0x22dfe0, ios 0x137ce0;
+    void onCustomEaseRate(cocos2d::CCObject* sender) = win 0x465420, m1 0x1deb8c, imac 0x22df00, ios 0x137bbc;
+    void onDisableValue(cocos2d::CCObject* sender) = win 0x45e7f0, m1 0x1da2f8, imac 0x228960, ios 0x134c6c;
+    void onEase(cocos2d::CCObject* sender) = win 0x464ac0, m1 0x1ddde8, imac 0x22d1b0, ios 0x137088;
+    void onEaseRate(cocos2d::CCObject* sender) = win 0x464b30, m1 0x1ddce4, imac 0x22d0f0, ios 0x136f9c;
+    void onMultiTrigger(cocos2d::CCObject* sender) = win 0x45d450, m1 0x1d7814, imac 0x224ad0, ios 0x132b14;
     void onPage(cocos2d::CCObject* sender) = win 0x45bf30, m1 0x1d6454, imac 0x223570, ios 0x131ac0;
-    void onSpawnedByTrigger(cocos2d::CCObject* sender) = win 0x45d2d0;
+    void onSpawnedByTrigger(cocos2d::CCObject* sender) = win 0x45d2d0, m1 0x1d77bc, imac 0x224a80, ios 0x132acc;
     void onToggleTriggerValue(cocos2d::CCObject* sender) = win 0x45f6c0, m1 0x1da960, imac 0x228f60, ios 0x13516c;
-    void onTouchTriggered(cocos2d::CCObject* sender) = win 0x45d1e0;
+    void onTouchTriggered(cocos2d::CCObject* sender) = win 0x45d1e0, m1 0x1d7764, imac 0x224a30, ios 0x132a84;
     void postSetup() = win inline, m1 0x1db304, imac 0x2298f0, ios 0x1358c8 {
         this->updateDefaultTriggerValues();
         m_disableTextDelegate = false;
@@ -28194,38 +28234,83 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
         m_disableTextDelegate = true;
         this->determineStartValues();
     }
-    void refreshGroupVisibility();
-    void removeObjectFromGroup(cocos2d::CCObject*, int);
-    void removeObjectFromPage(cocos2d::CCObject*, int);
-    void resetDisabledValues();
-    void setMaxSliderValue(float, int);
-    void setMinSliderValue(float, int);
-    bool shouldLimitValue(int);
-    void toggleBG(bool);
-    void toggleCustomEaseRateVisibility(int, int) = win 0x465910;
-    void toggleDisableButtons(bool) = win 0x45e820;
-    void toggleEaseRateVisibility() = win 0x4649b0;
-    void toggleLimitValue(int, bool);
-    void togglePageArrows(bool);
+    void refreshGroupVisibility() = win inline, m1 0x1d6760, imac 0x2238b0, ios 0x131db8 {
+        for (int i = 0; i < m_groupContainers->count(); i++) {
+            auto groupContainer = static_cast<cocos2d::CCArray*>(m_groupContainers->objectAtIndex(i));
+            auto tag = groupContainer->getTag();
+            for (int j = 0; j < groupContainer->count(); j++) {
+                auto node = static_cast<cocos2d::CCNode*>(groupContainer->objectAtIndex(j));
+                if (node->isVisible() && tag == 0) node->setVisible(false);
+            }
+        }
+    }
+    void removeObjectFromGroup(cocos2d::CCObject* object, int group) = win inline, m1 0x1d6c38, imac 0x223df0, ios inline {
+        this->getGroupContainer(group)->removeObject(object);
+    }
+    void removeObjectFromPage(cocos2d::CCObject* object, int page) = win inline, m1 0x1d6ae4, imac 0x223c70, ios 0x132028 {
+        this->getPageContainer(page)->removeObject(object);
+    }
+    void resetDisabledValues() = win inline, m1 0x1da3f8, imac 0x228a40, ios 0x134d20 {
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, m_inputNodes->m_pElements, element, temp) {
+            auto property = element->getObject()->getTag();
+            if (this->getValue(property) == -909190.f) this->updateValue(property, 0.f);
+        }
+    }
+    void setMaxSliderValue(float value, int property) = win inline, m1 0x1da278, imac 0x2288e0, ios 0x134c3c {
+        m_maxSliderValues->setObject(cocos2d::CCFloat::create(value), property);
+    }
+    void setMinSliderValue(float value, int property) = win inline, m1 0x1da1f8, imac 0x228860, ios inline {
+        m_minSliderValues->setObject(cocos2d::CCFloat::create(value), property);
+    }
+    bool shouldLimitValue(int property) = win inline, m1 0x1dd1c4, imac 0x22c5a0, ios inline {
+        return m_shouldLimitValues[property];
+    }
+    void toggleBG(bool visible) = win inline, m1 0x1d6158, imac 0x223280, ios 0x1317e0 {
+        if (auto background = m_mainLayer->getChildByTag(1)) background->setVisible(visible);
+    }
+    void toggleCustomEaseRateVisibility(int property, int tag) = win 0x465910, m1 0x1def70, imac 0x22e220, ios 0x137e80;
+    void toggleDisableButtons(bool visible) = win 0x45e820, m1 0x1da4d4, imac 0x228b00, ios 0x134dbc;
+    void toggleEaseRateVisibility() = win 0x4649b0, m1 0x1de0ac, imac 0x22d430, ios 0x13729c;
+    void toggleLimitValue(int property, bool limit) = win inline, m1 0x1dd350, imac 0x22c710, ios 0x1367a8 {
+        m_shouldLimitValues[property] = limit;
+    }
+    void togglePageArrows(bool visible) = win inline, m1 0x1d64c8, imac 0x2235e0, ios 0x131b34 {
+        if (m_prevButton) {
+            m_prevButton->setVisible(visible);
+            m_prevButton->setEnabled(visible);
+            m_nextButton->setVisible(visible);
+            m_nextButton->setEnabled(visible);
+        }
+    }
     void triggerArrowChanged(int property, bool isRight) = win 0x45daa0, m1 0x1d9244, imac 0x227840, ios 0x133fc8;
-    void triggerArrowLeft(cocos2d::CCObject*) = win 0x45da40, m1 0x1d91ac, imac 0x2277b0, ios 0x133f90;
-    void triggerArrowRight(cocos2d::CCObject*) = win 0x45da70, m1 0x1d92d8, imac 0x2278c0, ios 0x13405c;
-    void triggerSliderChanged(cocos2d::CCObject*) = win 0x45d980, m1 0x1d9054, imac 0x227610, ios 0x133e84;
-    void updateCustomEaseLabel(int, int) = win 0x465630;
-    void updateCustomEaseRateLabel(int, float) = win 0x465800, ios 0x1373fc, imac 0x22d590, m1 0x1de210;
-    void updateCustomToggleTrigger(int, bool);
-    void updateEaseLabel();
+    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x45da40, m1 0x1d91ac, imac 0x2277b0, ios 0x133f90;
+    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x45da70, m1 0x1d92d8, imac 0x2278c0, ios 0x13405c;
+    void triggerSliderChanged(cocos2d::CCObject* sender) = win 0x45d980, m1 0x1d9054, imac 0x227610, ios 0x133e84;
+    void updateCustomEaseLabel(int property, int easingType) = win 0x465630, m1 0x1dee30, imac 0x22e120, ios 0x137d50;
+    void updateCustomEaseRateLabel(int property, float easingRate) = win 0x465800, ios 0x1373fc, imac 0x22d590, m1 0x1de210;
+    void updateCustomToggleTrigger(int tag, bool toggled) = win inline, m1 0x1dac44, imac 0x229230, ios 0x1353c4 {
+        if (auto toggle = static_cast<CCMenuItemToggler*>(m_customValueToggles->objectForKey(tag))) {
+            toggle->toggle(toggled);
+        }
+    }
+    void updateEaseLabel() = win 0x464620, m1 0x1dde54, imac 0x22d220, ios 0x1370f4;
     void updateEaseRateLabel() = ios 0x1371dc, imac 0x22d2f0, m1 0x1ddf50, win 0x4647d0;
     void updateEditorLabel() = win 0x45d160, m1 0x1d7a48, imac 0x224d40, ios 0x132cf4;
-    void updateInputNodeLabel(int, gd::string) = win 0x463be0;
-    void updateLabel(int, gd::string);
-    void updateMultiTriggerBtn() = win 0x45d3c0;
+    void updateInputNodeLabel(int property, gd::string text) = win 0x463be0, m1 0x1dd288, imac 0x22c660, ios 0x1366f8;
+    void updateLabel(int property, gd::string text) = win inline, m1 0x1dac80, imac 0x229270, ios inline {
+        if (auto label = static_cast<cocos2d::CCLabelBMFont*>(m_inputLabels->objectForKey(property))) {
+            label->setString(text.c_str());
+        }
+    }
+    void updateMultiTriggerBtn() = win 0x45d3c0, m1 0x1d7888, imac 0x224b60, ios 0x132b88;
     void updateSlider(int property, float value) = win inline, m1 0x1d8b30, imac 0x227070, ios 0x133adc {
         if (auto slider = static_cast<Slider*>(m_valueControls->objectForKey(property))) slider->setValue(value);
     }
-    void updateSlider(int);
-    void updateSpawnedByTrigger() = win 0x45d320;
-    void updateTouchTriggered() = win 0x45d230;
+    void updateSlider(int property) = win 0x45fb90, m1 0x1dcf74, imac 0x22c370, ios 0x136540;
+    void updateSpawnedByTrigger() = win 0x45d320, m1 0x1d7ac0, imac 0x224dc0, ios 0x132d6c;
+    void updateTouchTriggered() = win 0x45d230, m1 0x1d7b8c, imac 0x224eb0, ios 0x132ddc;
     void updateValue(int property, float value) = win 0x463b50, m1 0x1da380, imac 0x2289d0, ios 0x134ca8;
     void updateValueControls(int property, float value) = ios 0x134094, win 0x45f7c0, imac 0x227950, m1 0x1d9370;
     void valueChanged(int property, float value) = ios 0x132fa0, win 0x45fd90, imac 0x225210, m1 0x1d7e68;
