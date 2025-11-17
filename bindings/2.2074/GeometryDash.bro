@@ -26330,15 +26330,29 @@ class SetIDPopupDelegate {
 [[link(android)]]
 class SetItemIDLayer : SetupTriggerPopup {
     // virtual ~SetItemIDLayer();
+    SetItemIDLayer() {}
 
-    static SetItemIDLayer* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetItemIDLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x8ea18, imac 0x9bba0, ios 0x411a08 {
+        auto ret = new SetItemIDLayer();
+        if (ret->init(object, objects)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x3e9ed0, imac 0x9c7f0, m1 0x8f4a0, ios 0x4122e8;
     virtual void valueDidChange(int, float) = win 0x3e9de0, imac 0x9c700, m1 0x8f3ac, ios 0x4121f4;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x3e9c40, imac 0x9c5e0, m1 0x8f2a4, ios 0x4120ec;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3e94e0, m1 0x8eba0, imac 0x9bdd0, ios 0x411ae0;
-    void updateEditorLabel();
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x3e94e0, m1 0x8eba0, imac 0x9bdd0, ios 0x411ae0;
+    void updateEditorLabel() = win inline, m1 0x8f450, imac 0x9c7a0, ios 0x412298 {
+        auto objects = this->getObjects();
+        for (int i = 0; i < objects->count(); i++) {
+            static_cast<LabelGameObject*>(objects->objectAtIndex(i))->updatePreviewLabel();
+        }
+    }
 }
 
 [[link(android)]]
@@ -26368,12 +26382,12 @@ class SetLevelOrderPopup : SetIDPopup {
 class SetTargetIDLayer : SetupTriggerPopup {
     // virtual ~SetTargetIDLayer();
 
-    static SetTargetIDLayer* create(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea050, m1 0x24cf04, imac 0x2a66f0, ios 0x213dfc;
+    static SetTargetIDLayer* create(EffectGameObject* object, cocos2d::CCArray* objects, gd::string title, gd::string label, int minimum, int maximum, int objectID) = win 0x3ea050, m1 0x24cf04, imac 0x2a66f0, ios 0x213dfc;
 
     virtual void determineStartValues() = win 0x287910, imac 0x2a6e20, m1 0x24d528, ios 0x2142c0;
     virtual void valueDidChange(int, float) = win 0x3ea680, imac 0x2a6e30, m1 0x24d52c, ios 0x2142c4;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, gd::string, gd::string, int, int, int) = win 0x3ea1e0, m1 0x24d190, imac 0x2a6a20, ios 0x213fc0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, gd::string title, gd::string label, int minimum, int maximum, int objectID) = win 0x3ea1e0, m1 0x24d190, imac 0x2a6a20, ios 0x213fc0;
 
     int m_objectID;
     int m_minimumID;
@@ -27357,8 +27371,6 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
         m_nonStickY = false;
         m_extraSticky = false;
         m_dontBoostY = false;
-        m_dontBoostX = false;
-        m_noAudioScale = false;
         m_scaleStick = false;
         m_highDetail = false;
         m_groupParent = false;
