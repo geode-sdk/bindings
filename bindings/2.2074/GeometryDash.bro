@@ -30966,7 +30966,7 @@ class TeleportPortalObject : RingObject {
         m_teleportYOffset = 0.f;
         m_teleportEase = false;
         m_staticForceEnabled = false;
-        m_staticForce = 0;
+        m_staticForce = 0.f;
         m_redirectForceEnabled = false;
         m_redirectForceMod = 1.f;
         m_redirectForceMin = 0.f;
@@ -31015,7 +31015,7 @@ class TeleportPortalObject : RingObject {
     // property 345
     bool m_staticForceEnabled;
     // property 346
-    int m_staticForce;
+    float m_staticForce;
     // property 347
     bool m_redirectForceEnabled;
     // property 350
