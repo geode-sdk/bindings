@@ -1220,7 +1220,7 @@ namespace GameVar {
     constexpr auto HideAttemptsNormal = "0135";
     constexpr auto ExtraLDM = "0136";
     constexpr auto HideParticleIcons = "0137";
-    constexpr auto DisableParticleEffects = "0139";
+    constexpr auto ColorIDFilter = "0139";
     constexpr auto DisableOrbScale = "0140";
     constexpr auto DisableTriggerOrbScale = "0141";
     constexpr auto ReduceAudioQuality = "0142";

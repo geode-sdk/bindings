@@ -7553,12 +7553,23 @@ class FindBPMLayer : CreateGuidelinesLayer {
 [[link(android)]]
 class FindObjectPopup : SetIDPopup {
     // virtual ~FindObjectPopup();
+    FindObjectPopup() = ios 0x2e64a0 {
+        m_unknownBool = false;
+    }
 
-    static FindObjectPopup* create();
+    static FindObjectPopup* create() = win inline, m1 0x2419f4, imac 0x299e50, ios 0x2de974 {
+        auto ret = new FindObjectPopup();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x294db0, imac 0x299fd0, m1 0x241b10, ios 0x2de9e8;
 
-    void onFindObjectID(cocos2d::CCObject* sender) = win inline {
+    void onFindObjectID(cocos2d::CCObject* sender) = win inline, m1 0x241c30, imac 0x29a0b0, ios inline {
         m_unknownBool = !m_unknownBool;
     }
 
@@ -25106,11 +25117,20 @@ class SearchButton : cocos2d::CCSprite {
 [[link(android)]]
 class SearchSFXPopup : SetTextPopup {
     // virtual ~SearchSFXPopup();
+    SearchSFXPopup() {}
 
-    static SearchSFXPopup* create(gd::string);
+    static SearchSFXPopup* create(gd::string query) = win inline, m1 0x3a77fc, imac 0x42ca60, ios 0x16dd28 {
+        auto ret = new SearchSFXPopup();
+        if (ret->init(query)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(gd::string) = m1 0x3a7c94, imac 0x42cf70, win 0x468840;
-    void onSearchFolders(cocos2d::CCObject* sender) = win 0x468b00;
+    bool init(gd::string query) = ios 0x16dfc0, m1 0x3a7c94, imac 0x42cf70, win 0x468840;
+    void onSearchFolders(cocos2d::CCObject* sender) = win 0x468b00, m1 0x3a7f5c, imac 0x42d230, ios 0x16e228;
 }
 
 [[link(android)]]
@@ -26078,9 +26098,9 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
     // virtual ~SetColorIDPopup();
     SetColorIDPopup() = ios 0x2e6420 {}
 
-    static SetColorIDPopup* create(int) = win inline, m1 0x24125c, imac 0x299530, ios 0x2de58c {
+    static SetColorIDPopup* create(int id) = win inline, m1 0x24125c, imac 0x299530, ios 0x2de58c {
         auto ret = new SetColorIDPopup();
-        if (ret->init(p0)) {
+        if (ret->init(id)) {
             ret->autorelease();
             return ret;
         }
@@ -26090,7 +26110,7 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
 
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x294cf0, imac 0x299980, m1 0x24164c, ios 0x2de844;
 
-    bool init(int) = win 0x294aa0, m1 0x241384, imac 0x2996b0, ios 0x2de600;
+    bool init(int id) = win 0x294aa0, m1 0x241384, imac 0x2996b0, ios 0x2de600;
     void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x294c80, m1 0x2415e8, imac 0x299930, ios 0x2de7e0;
 }
 
@@ -26277,7 +26297,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
     }
     ~SetIDPopup() = win 0x293b10, m1 0x23fcfc, imac 0x297d70, ios 0x2dd760;
 
-    static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293bb0, m1 0x23ff3c, imac 0x2980c0, ios 0x2dd808;
+    static SetIDPopup* create(int current, int begin, int end, gd::string title, gd::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows) = win 0x293bb0, m1 0x23ff3c, imac 0x2980c0, ios 0x2dd808;
 
     virtual void keyBackClicked() = win 0x294a90, m1 0x240ee8, imac 0x2990b0, ios 0x2de548;
     virtual void show() = win 0x2948c0, m1 0x240e64, imac 0x299030, ios 0x2de4cc;
@@ -26285,7 +26305,7 @@ class SetIDPopup : FLAlertLayer, TextInputDelegate {
     virtual void textChanged(CCTextInputNode*) = win 0x294710, imac 0x298f10, m1 0x240d0c, ios 0x2de42c;
     virtual void valueChanged() = m1 0x240e60, imac 0x299020, ios 0x2de4c8 {}
 
-    bool init(int current, int begin, int end, gd::string title, gd::string button, bool, int, float, bool, bool) = win 0x293ce0, imac 0x298360, m1 0x240198, ios 0x2dd9fc;
+    bool init(int current, int begin, int end, gd::string title, gd::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows) = win 0x293ce0, imac 0x298360, m1 0x240198, ios 0x2dd9fc;
     void onCancel(cocos2d::CCObject* sender) = win 0x294950, imac 0x298cf0, m1 0x240b14, ios 0x2de348;
     void onClose(cocos2d::CCObject* sender) = win 0x2949f0, m1 0x240a14, imac 0x298bf0, ios 0x2de248;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x2946a0, m1 0x240ab8, imac 0x298ca0, ios 0x2de2ec;
@@ -26324,7 +26344,7 @@ class SetItemIDLayer : SetupTriggerPopup {
 [[link(android)]]
 class SetLevelOrderPopup : SetIDPopup {
     // virtual ~SetLevelOrderPopup();
-    SetLevelOrderPopup() {
+    SetLevelOrderPopup() = ios 0x249030 {
         m_levelID = 0;
     }
 
@@ -26362,16 +26382,22 @@ class SetTargetIDLayer : SetupTriggerPopup {
 
 [[link(android)]]
 class SetTextPopup : FLAlertLayer, TextInputDelegate {
-    // virtual ~SetTextPopup();
+    SetTextPopup() = win 0x286370 {
+        m_input = nullptr;
+        m_disableDelegate = false;
+        m_cancelled = false;
+        m_delegate = nullptr;
+    }
+    ~SetTextPopup() = win 0x295720, m1 0x2429d0, imac 0x29b030, ios 0x2df3ec;
 
-    static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float) = win 0x2957d0, m1 0x242618, imac 0x29abf0, ios 0x2df0cc;
+    static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float offset) = win 0x2957d0, m1 0x242618, imac 0x29abf0, ios 0x2df0cc;
 
     virtual void keyBackClicked() = win 0x296490, imac 0x29bf80, m1 0x2437e4, ios 0x2dfde0;
     virtual void show() = win 0x8ba30, m1 0x243798, imac 0x29bf20, ios 0x2dfd94;
     virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x24365c, imac 0x29bdf0, ios 0x2dfcf0;
     virtual void textChanged(CCTextInputNode*) = win 0x296280, imac 0x29be30, m1 0x243678, ios 0x2dfd0c;
 
-    bool init(gd::string, gd::string, int, gd::string, gd::string, bool, float) = win 0x295940, m1 0x242cc0, imac 0x29b3e0, ios 0x2df4a4;
+    bool init(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float offset) = win 0x295940, m1 0x242cc0, imac 0x29b3e0, ios 0x2df4a4;
     void onCancel(cocos2d::CCObject* sender) = win 0x296370, m1 0x2435a0, imac 0x29bd30, ios 0x2dfc48;
     void onClose(cocos2d::CCObject* sender) = win 0x296400, m1 0x2433ec, imac 0x29bba0, ios 0x2dfb30;
     void onResetValue(cocos2d::CCObject* sender) = win 0x296220, m1 0x2434d4, imac 0x29bc80, ios 0x2dfc18;
@@ -26383,6 +26409,7 @@ class SetTextPopup : FLAlertLayer, TextInputDelegate {
 
     CCTextInputNode* m_input;
     bool m_disableDelegate;
+    bool m_cancelled;
     gd::string m_value;
     SetTextPopupDelegate* m_delegate;
 }
