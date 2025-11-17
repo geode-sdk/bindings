@@ -3268,18 +3268,48 @@ class CharacterColorPage : FLAlertLayer {
     virtual void show() = win 0x867a0, m1 0x570c80, imac 0x648690, ios 0x12d674;
 
     int activeColorForMode(int mode) = win 0x89440, m1 0x570bac, imac 0x6485e0, ios 0x12d5b4;
-    TodoReturn checkColor(int, UnlockType);
-    int colorForIndex(int) = imac 0x648300, m1 0x5708e4, win 0x8a050;
+    bool checkColor(int id, UnlockType type) = win inline, m1 0x570c1c, imac 0x648640, ios 0x12d610 {
+        auto result = GameManager::sharedState()->isColorUnlocked(id, type);
+        if (!result && m_delegate) {
+            m_delegate->showUnlockPopup(id, type);
+        }
+        return result;
+    }
+    int colorForIndex(int index) = ios 0x12d358, imac 0x648300, m1 0x5708e4, win 0x8a050;
     void createColorMenu() = ios 0x12cc88, win 0x88e50, m1 0x56ffac, imac 0x6479b0;
-    void FLAlert_Clicked(FLAlertLayer*, bool);
-    cocos2d::CCPoint offsetForIndex(int) = m1 0x570b58, imac 0x648570;
+    void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win inline, m1 0x570e04, imac 0x648810, ios inline {}
+    cocos2d::CCPoint offsetForIndex(int index) = win inline, m1 0x570b58, imac 0x648570, ios 0x12d568 {
+        float x;
+        float y;
+        if (index > 53 && index < 136) y = -.8f;
+        else if (index > 135) y = .4f;
+        else y = 0.f;
+        switch (index) {
+            case 4: case 5: case 6: case 7: case 13: case 14: case 15: case 16: case 22: case 23:
+            case 24: case 25: case 31: case 32: case 33: case 34: case 40: case 41: case 42: case 43:
+            case 49: case 50: case 51: case 52: case 58: case 59: case 60: case 61: case 67: case 68:
+            case 69: case 70: case 76: case 77: case 78: case 79: case 85: case 86: case 87: case 88:
+            case 94: case 95: case 96: case 97: case 103: case 104: case 105: case 106: case 112: case 113:
+            case 114: case 115: case 136: case 137: case 138: case 139: case 140: case 141: case 142:
+                x = 1.f;
+                break;
+            default:
+                x = 0.f;
+                break;
+        }
+        return { x, y };
+    }
     void onClose(cocos2d::CCObject* sender) = win 0x8a760, m1 0x56fb64, imac 0x647590, ios 0x12c8b0;
     void onMode(cocos2d::CCObject* sender) = ios 0x12c9c8, win 0x89550, imac 0x647690, m1 0x56fc80;
     void onPlayerColor(cocos2d::CCObject* sender) = ios 0x12d378, win 0x89d60, m1 0x570904, imac 0x648320;
-    void toggleGlow(cocos2d::CCObject*) = ios 0x12cfe8, win 0x88da0, imac 0x647d80, m1 0x570384;
-    TodoReturn toggleGlowItems(bool);
-    void toggleShip(cocos2d::CCObject*) = ios 0x12c904, win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
-    void updateColorMode(int) = win 0x897f0, m1 0x5703bc, imac 0x647dc0, ios 0x12d020;
+    void toggleGlow(cocos2d::CCObject* sender) = ios 0x12cfe8, win 0x88da0, imac 0x647d80, m1 0x570384;
+    void toggleGlowItems(bool visible) = win inline, m1 0x570890, imac 0x6482b0, ios inline {
+        m_glowToggler->setEnabled(visible);
+        m_glowToggler->setVisible(visible);
+        m_glowLabel->setVisible(visible);
+    }
+    void toggleShip(cocos2d::CCObject* sender) = ios 0x12c904, win 0x88c80, imac 0x6475e0, m1 0x56fbb8;
+    void updateColorMode(int mode) = win 0x897f0, m1 0x5703bc, imac 0x647dc0, ios 0x12d020;
     void updateIconColors() = ios 0x12cb4c, win 0x8a540, m1 0x56fe6c, imac 0x647850;
 
     int m_colorMode;
@@ -29834,12 +29864,12 @@ class SimplePlayer : cocos2d::CCSprite {
     }
     ~SimplePlayer() = win 0x271900, m1 0x2efc74, imac 0x35c880, ios 0x307200;
 
-    static SimplePlayer* create(int) = ios 0x303450, win 0x271ac0, imac 0x357600, m1 0x2ead40;
+    static SimplePlayer* create(int id) = ios 0x303450, win 0x271ac0, imac 0x357600, m1 0x2ead40;
 
     virtual void setOpacity(unsigned char) = win 0x272e70, m1 0x2f092c, imac 0x35d690, ios 0x307a98;
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x272320, imac 0x35d330, m1 0x2f05c0, ios 0x307734;
 
-    void asyncLoadIcon(int, IconType) = m1 0x2f0394, imac 0x35d120;
+    void asyncLoadIcon(int id, IconType type) = m1 0x2f0394, imac 0x35d120;
     void createRobotSprite(int frame) = win inline, imac 0x3576c0, m1 0x2eadfc, ios 0x303500 {
         if (m_robotSprite) return;
         auto robotSprite = GJRobotSprite::create(frame);
@@ -29847,7 +29877,7 @@ class SimplePlayer : cocos2d::CCSprite {
         addChild(robotSprite);
         m_robotSprite->setVisible(false);
     }
-    void createSpiderSprite(int) = win 0x272290, imac 0x357720, m1 0x2eae5c, ios 0x303560;
+    void createSpiderSprite(int frame) = win 0x272290, imac 0x357720, m1 0x2eae5c, ios 0x303560;
     void disableCustomGlowColor() = win inline, m1 0x2eecac, imac 0x35b7e0, ios 0x306728 {
         m_hasCustomGlowColor = false;
     }
@@ -29870,28 +29900,28 @@ class SimplePlayer : cocos2d::CCSprite {
         if (m_robotSprite) m_robotSprite->setVisible(false);
         if (m_spiderSprite) m_spiderSprite->setVisible(false);
     }
-    void hideSecondary() = win inline, imac 0x35d3c0, m1 0x2f0650 {
+    void hideSecondary() = win inline, imac 0x35d3c0, m1 0x2f0650, ios 0x3077c4 {
         m_secondLayer->setVisible(false);
         m_birdDome->setVisible(false);
         m_detailSprite->setVisible(false);
         m_outlineSprite->setVisible(false);
         if (m_robotSprite) {
             m_robotSprite->hideSecondary();
-            m_robotSprite->m_glowSprite->setVisible(false);
+            m_robotSprite->hideGlow();
         }
         if (m_spiderSprite) {
             m_spiderSprite->hideSecondary();
-            m_spiderSprite->m_glowSprite->setVisible(false);
+            m_spiderSprite->hideGlow();
         }
     }
-    void iconFinishedLoading(int, IconType) = m1 0x2f0570, imac 0x35d2e0;
-    bool init(int) = ios 0x307278, win 0x271bb0, m1 0x2efd98, imac 0x35ca00;
+    void iconFinishedLoading(int id, IconType type) = m1 0x2f0570, imac 0x35d2e0;
+    bool init(int id) = ios 0x307278, win 0x271bb0, m1 0x2efd98, imac 0x35ca00;
     void setColors(cocos2d::ccColor3B const& color1, cocos2d::ccColor3B const& color2) = win inline, ios inline, imac 0x35b770, m1 0x2eec44 {
         m_firstLayer->setColor(color1);
         m_secondLayer->setColor(color2);
         updateColors();
     }
-    void setFrames(char const*, char const*, char const*, char const*, char const*) = ios 0x307878, win 0x272c40, imac 0x35d470, m1 0x2f0704;
+    void setFrames(char const* firstFrame, char const* secondFrame, char const* ufoFrame, char const* glowFrame, char const* extraFrame) = ios 0x307878, win 0x272c40, imac 0x35d470, m1 0x2f0704;
 
     void setGlowOutline(cocos2d::ccColor3B color) {
         enableCustomGlowColor(color);
@@ -29903,7 +29933,7 @@ class SimplePlayer : cocos2d::CCSprite {
         updateColors();
     }
     void updateColors() = ios 0x3062ec, win 0x272350, imac 0x35b230, m1 0x2ee780;
-    void updatePlayerFrame(int, IconType) = ios 0x303714, win 0x272710, imac 0x3578d0, m1 0x2eb020;
+    void updatePlayerFrame(int id, IconType type) = ios 0x303714, win 0x272710, imac 0x3578d0, m1 0x2eb020;
 
     cocos2d::CCSprite* m_firstLayer;
     cocos2d::CCSprite* m_secondLayer;
