@@ -7578,7 +7578,7 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-    FLAlertLayer() { // ios 0xa7ec : this seems too small?
+    FLAlertLayer() = win 0x516b0, ios 0xe7b0 {
         m_buttonMenu = nullptr;
         m_controlConnected = -1;
         m_mainLayer = nullptr;
@@ -27323,11 +27323,11 @@ class SetupObjectControlPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupObjectOptions2Popup : SetupTriggerPopup {
     // virtual ~SetupObjectOptions2Popup();
-    SetupObjectOptions2Popup() = win inline {}
+    SetupObjectOptions2Popup() {}
 
-    static SetupObjectOptions2Popup* create(GameObject*, cocos2d::CCArray*) = win inline {
+    static SetupObjectOptions2Popup* create(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x29a8b8, imac 0x302c70, ios 0x42748 {
         auto ret = new SetupObjectOptions2Popup();
-        if (ret->init(p0, p1)) {
+        if (ret->init(object, objects)) {
             ret->autorelease();
             return ret;
         }
@@ -27337,7 +27337,7 @@ class SetupObjectOptions2Popup : SetupTriggerPopup {
 
     virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x3e9380, imac 0x307200, m1 0x29e2d8, ios 0x45758;
 
-    bool init(GameObject*, cocos2d::CCArray*) = win 0x3e8e80, m1 0x29de30, imac 0x306cd0;
+    bool init(GameObject* object, cocos2d::CCArray* objects) = win 0x3e8e80, m1 0x29de30, imac 0x306cd0, ios 0x4536c;
 }
 
 [[link(android)]]
@@ -27377,9 +27377,9 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
         CC_SAFE_RELEASE(m_gameObjects);
     }
 
-    static SetupObjectOptionsPopup* create(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win inline, m1 0x29a778, imac 0x302ae0, ios 0x42654 {
+    static SetupObjectOptionsPopup* create(GameObject* object, cocos2d::CCArray* objects, SetGroupIDLayer* layer) = win inline, m1 0x29a778, imac 0x302ae0, ios 0x42654 {
         auto ret = new SetupObjectOptionsPopup();
-        if (ret->init(p0, p1, p2)) {
+        if (ret->init(object, objects, layer)) {
             ret->autorelease();
             return ret;
         }
@@ -27392,31 +27392,31 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
     virtual void determineStartValues() = win 0x3e7cd0, imac 0x306760, m1 0x29da98, ios 0x450a4;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x29ddb8, imac 0x306c10, ios 0x452f8;
 
-    bool init(GameObject*, cocos2d::CCArray*, SetGroupIDLayer*) = win 0x3e62f0, m1 0x29b3ac, imac 0x3039a0, ios 0x42e7c;
-    void onAlwaysHide(cocos2d::CCObject* sender) = win 0x3e8500;
-    void onApplyScaleStick(cocos2d::CCObject* sender) = win 0x3e88f0;
-    void onCenterEffect(cocos2d::CCObject* sender) = win 0x3e8dd0;
-    void onDisableGlow(cocos2d::CCObject* sender) = win 0x3e83e0;
-    void onDisableObject(cocos2d::CCObject* sender) = win 0x3e8230;
-    void onDontBoost(cocos2d::CCObject* sender) = win 0x3e8740;
-    void onDontBoostX(cocos2d::CCObject* sender) = win 0x3e87d0;
-    void onDontEnter(cocos2d::CCObject* sender) = win 0x3e8080;
-    void onDontFade(cocos2d::CCObject* sender) = win 0x3e7ff0;
-    void onExtendedCollision(cocos2d::CCObject* sender) = win 0x3e8b30;
-    void onExtraSticky(cocos2d::CCObject* sender) = win 0x3e86b0;
-    void onGripSlope(cocos2d::CCObject* sender) = win 0x3e8350;
-    void onHideEffects(cocos2d::CCObject* sender) = win 0x3e8110;
-    void onHighDetail(cocos2d::CCObject* sender) = win 0x3e8aa0;
-    void onIceBlock(cocos2d::CCObject* sender) = win 0x3e7f60;
-    void onNoAudioScale(cocos2d::CCObject* sender) = win 0x3e8860;
-    void onNonStickX(cocos2d::CCObject* sender) = win 0x3e8590;
-    void onNonStickY(cocos2d::CCObject* sender) = win 0x3e8620;
-    void onNoParticle(cocos2d::CCObject* sender) = win 0x3e81a0;
-    void onPassable(cocos2d::CCObject* sender) = win 0x3e8470;
-    void onReverse(cocos2d::CCObject* sender) = win 0x3e8c60;
-    void onSinglePlayerTouch(cocos2d::CCObject* sender) = win 0x3e8d20;
-    void onToggleAreaParent(cocos2d::CCObject* sender) = win 0x3e8a10;
-    void onToggleGroupParent(cocos2d::CCObject* sender) = win 0x3e8980;
+    bool init(GameObject* object, cocos2d::CCArray* objects, SetGroupIDLayer* layer) = win 0x3e62f0, m1 0x29b3ac, imac 0x3039a0, ios 0x42e7c;
+    void onAlwaysHide(cocos2d::CCObject* sender) = win 0x3e8500, m1 0x29d418, imac 0x305fd0, ios 0x44a84;
+    void onApplyScaleStick(cocos2d::CCObject* sender) = win 0x3e88f0, m1 0x29d908, imac 0x3065a0, ios 0x44f2c;
+    void onCenterEffect(cocos2d::CCObject* sender) = win 0x3e8dd0, m1 0x29d620, imac 0x306240, ios 0x44c74;
+    void onDisableGlow(cocos2d::CCObject* sender) = win 0x3e83e0, m1 0x29d7a0, imac 0x3063f0, ios 0x44ddc;
+    void onDisableObject(cocos2d::CCObject* sender) = win 0x3e8230, m1 0x29d260, imac 0x305e10, ios 0x44934;
+    void onDontBoost(cocos2d::CCObject* sender) = win 0x3e8740, m1 0x29d068, imac 0x305bd0, ios 0x4475c;
+    void onDontBoostX(cocos2d::CCObject* sender) = win 0x3e87d0, m1 0x29d0e0, imac 0x305c60, ios 0x447cc;
+    void onDontEnter(cocos2d::CCObject* sender) = win 0x3e8080, m1 0x29ce88, imac 0x305990, ios 0x4459c;
+    void onDontFade(cocos2d::CCObject* sender) = win 0x3e7ff0, m1 0x29ce10, imac 0x305900, ios 0x4452c;
+    void onExtendedCollision(cocos2d::CCObject* sender) = win 0x3e8b30, m1 0x29d580, imac 0x306180, ios 0x44bd4;
+    void onExtraSticky(cocos2d::CCObject* sender) = win 0x3e86b0, m1 0x29d508, imac 0x3060f0, ios 0x44b64;
+    void onGripSlope(cocos2d::CCObject* sender) = win 0x3e8350, m1 0x29d728, imac 0x306360, ios 0x44d6c;
+    void onHideEffects(cocos2d::CCObject* sender) = win 0x3e8110, m1 0x29cf00, imac 0x305a20, ios 0x4460c;
+    void onHighDetail(cocos2d::CCObject* sender) = win 0x3e8aa0, m1 0x29d1e8, imac 0x305d80, ios 0x448c4;
+    void onIceBlock(cocos2d::CCObject* sender) = win 0x3e7f60, m1 0x29d6b0, imac 0x3062d0, ios 0x44cfc;
+    void onNoAudioScale(cocos2d::CCObject* sender) = win 0x3e8860, m1 0x29d980, imac 0x306630, ios 0x44f9c;
+    void onNonStickX(cocos2d::CCObject* sender) = win 0x3e8590, m1 0x29d490, imac 0x306060, ios 0x44af4;
+    void onNonStickY(cocos2d::CCObject* sender) = win 0x3e8620, m1 0x29d890, imac 0x306510, ios 0x44ebc;
+    void onNoParticle(cocos2d::CCObject* sender) = win 0x3e81a0, m1 0x29d818, imac 0x306480, ios 0x44e4c;
+    void onPassable(cocos2d::CCObject* sender) = win 0x3e8470, m1 0x29d3a0, imac 0x305f40, ios 0x44a14;
+    void onReverse(cocos2d::CCObject* sender) = win 0x3e8c60, m1 0x29d9f8, imac 0x3066c0, ios 0x4500c;
+    void onSinglePlayerTouch(cocos2d::CCObject* sender) = win 0x3e8d20, m1 0x29d158, imac 0x305cf0, ios 0x4483c;
+    void onToggleAreaParent(cocos2d::CCObject* sender) = win 0x3e8a10, m1 0x29cff0, imac 0x305b40, ios 0x446ec;
+    void onToggleGroupParent(cocos2d::CCObject* sender) = win 0x3e8980, m1 0x29cf78, imac 0x305ab0, ios 0x4467c;
 
     GameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;

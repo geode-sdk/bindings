@@ -2709,7 +2709,7 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
     }
 
     // CCLayerColor(cocos2d::CCLayerColor const&);
-    CCLayerColor() = imac 0x49f1a0, m1 0x409f38, ios 0x14cf2c;
+    CCLayerColor() = imac 0x49f1a0, m1 0x409e3c, ios 0x14cf2c;
     virtual ~CCLayerColor() = imac 0x49f480, m1 0x40a034, ios 0x14cf90;
 
     void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
