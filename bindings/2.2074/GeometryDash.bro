@@ -26689,14 +26689,14 @@ class SetupCameraOffsetTrigger : SetupTriggerPopup {
 class SetupCameraRotatePopup : SetupTriggerPopup {
     // virtual ~SetupCameraRotatePopup();
 
-    static SetupCameraRotatePopup* create(EffectGameObject*, cocos2d::CCArray*) = ios 0x4fdac;
+    static SetupCameraRotatePopup* create(EffectGameObject*, cocos2d::CCArray*);
 
     virtual void determineStartValues() = m1 0x414080, imac 0x4aad80;
     virtual void onClose(cocos2d::CCObject* sender) = m1 0x414790, imac 0x4ab540;
     virtual void textChanged(CCTextInputNode*) = imac 0x4ab2d0, m1 0x414568;
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = m1 0x4142ec, imac 0x4ab000;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x412998, imac 0x4a9690, ios 0x4fe88;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x412998, imac 0x4a9690;
     void onEasing(cocos2d::CCObject* sender);
     void onEasingRate(cocos2d::CCObject* sender);
     void sliderChanged(cocos2d::CCObject* sender);
@@ -26728,9 +26728,9 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
 class SetupCameraRotatePopup2 : SetupTriggerPopup {
     // virtual ~SetupCameraRotatePopup2();
 
-    static SetupCameraRotatePopup2* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3ffd20;
+    static SetupCameraRotatePopup2* create(EffectGameObject*, cocos2d::CCArray*) = win 0x3ffd20, ios 0x4fdac;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3ffe30, m1 0x414974, imac 0x4ab7d0;
+    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x3ffe30, m1 0x414974, imac 0x4ab7d0, ios 0x4fe88;
 }
 
 [[link(android)]]
