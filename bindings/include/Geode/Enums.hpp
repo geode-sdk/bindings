@@ -245,7 +245,8 @@ enum class CommentError {
 };
 enum class BackupAccountError {
     BackupOrSyncFailed = -3,
-    LoginFailed = -2
+    LoginFailed = -2,
+    GenericError = -1
 };
 enum class GJMusicAction {
     DownloadOrUpdate = 2,
