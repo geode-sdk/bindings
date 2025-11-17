@@ -5556,7 +5556,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
         CC_SAFE_DELETE(ret);
         return nullptr;
     }
-    static cocos2d::CCScene* scene(GJGameLevel*) = win 0xd3d80, m1 0x19f774, imac 0x1e8510, ios 0xebdb0;
+    static cocos2d::CCScene* scene(GJGameLevel* level) = win 0xd3d80, m1 0x19f774, imac 0x1e8510, ios 0xebdb0;
 
     virtual void keyBackClicked() = win 0xd8570, m1 0x1a3824, imac 0x1ec740, ios 0xef59c;
     virtual void keyDown(cocos2d::enumKeyCodes) = win 0xd8580, imac 0x1ec770, m1 0x1a3830, ios 0xef5a8;
@@ -5569,31 +5569,52 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     virtual void uploadActionFailed(int, int) = win 0xd8730, imac 0x1ec9c0, m1 0x1a3a6c, ios 0xef70c;
     virtual void onClosePopup(UploadActionPopup*) = win 0xd85b0, imac 0x1ec7c0, m1 0x1a3864, ios 0xef5c8;
 
-    void closeTextInputs() = win 0xd5f60;
-    void confirmClone(cocos2d::CCObject*);
-    void confirmDelete(cocos2d::CCObject*) = ios 0xee16c, imac 0x1ead40, m1 0x1a1e40, win 0xd75d0;
-    void confirmMoveToTop(cocos2d::CCObject*) = m1 0x1a20d8, imac 0x1eafd0, win 0xd7e90;
-    bool init(GJGameLevel*) = ios 0xebed4, win 0xd3f10, imac 0x1e87a0, m1 0x19f95c;
+    void closeTextInputs() = win 0xd5f60, m1 0x1a27d0, imac 0x1eb6c0, ios 0xee8ac;
+    void confirmClone(cocos2d::CCObject* sender) = win 0xd7d70, m1 0x1a2000, imac 0x1eaf00, ios 0xee2d4;
+    void confirmDelete(cocos2d::CCObject* sender) = ios 0xee16c, imac 0x1ead40, m1 0x1a1e40, win 0xd75d0;
+    void confirmMoveToTop(cocos2d::CCObject* sender) = ios 0xee388, m1 0x1a20d8, imac 0x1eafd0, win 0xd7e90;
+    bool init(GJGameLevel* level) = ios 0xebed4, win 0xd3f10, imac 0x1e87a0, m1 0x19f95c;
     void onBack(cocos2d::CCObject* sender) = ios 0xee518, win 0xd80e0, imac 0x1eb1a0, m1 0x1a22a4;
-    void onClone() = m1 0x1a3618, imac 0x1ec500;
-    void onDelete() = m1 0x1a3328, imac 0x1ec220;
+    void onClone() = win inline, m1 0x1a3618, imac 0x1ec500, ios 0xef430 {
+        auto director = cocos2d::CCDirector::sharedDirector();
+        if (director->getIsTransitioning() || m_exiting) return;
+        this->setKeypadEnabled(false);
+        m_exiting = true;
+        GameManager::sharedState()->m_sceneEnum = 2;
+        auto level = GameLevelManager::sharedState()->createNewLevel();
+        level->copyLevelInfo(m_level);
+        this->verifyLevelName();
+        level->m_originalLevel = m_level->m_originalLevel;
+        director->replaceScene(cocos2d::CCTransitionFade::create(.5f, EditLevelLayer::scene(level)));
+    }
+    void onDelete() = win inline, m1 0x1a3328, imac 0x1ec220, ios 0xef160 {
+        m_buttonMenu->setEnabled(false);
+        GameLevelManager::sharedState()->deleteLevel(m_level);
+        this->onBack(nullptr);
+    }
     void onEdit(cocos2d::CCObject* sender) = win 0xd6d80, imac 0x1e9db0, m1 0x1a0ec4, ios 0xed344;
-    void onGuidelines(cocos2d::CCObject* sender) = win 0xd52e0, m1 0x1a26f4, imac 0x1eb5e0;
-    void onHelp(cocos2d::CCObject* sender) = m1 0x1a1f28, imac 0x1eae30, win 0xd7c50;
+    void onGuidelines(cocos2d::CCObject* sender) = win 0xd52e0, m1 0x1a26f4, imac 0x1eb5e0, ios 0xee7f0;
+    void onHelp(cocos2d::CCObject* sender) = ios 0xee220, m1 0x1a1f28, imac 0x1eae30, win 0xd7c50;
     void onLevelInfo(cocos2d::CCObject* sender) = ios 0xee63c, win 0xd5500, m1 0x1a2420, imac 0x1eb320;
-    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xd5450;
-    void onLevelOptions(cocos2d::CCObject* sender) = win 0xd54d0;
-    void onMoveToTop();
+    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xd5450, m1 0x1a2260, imac 0x1eb150, ios 0xee4d4;
+    void onLevelOptions(cocos2d::CCObject* sender) = win 0xd54d0, m1 0x1a27b0, imac 0x1eb6a0, ios 0xee88c;
+    void onMoveToTop() = win inline, m1 0x1a36f8, imac 0x1ec5f0, ios inline {
+        LocalLevelManager::sharedState()->moveLevelToTop(m_level);
+    }
     void onPlay(cocos2d::CCObject* sender) = win 0xd6920, m1 0x1a100c, imac 0x1e9f10, ios 0xed444;
     void onSetFolder(cocos2d::CCObject* sender) = ios 0xee43c, win 0xd7fc0, imac 0x1eb0b0, m1 0x1a21b8;
     void onShare(cocos2d::CCObject* sender) = ios 0xed54c, win 0xd6f20, m1 0x1a1164, imac 0x1ea050;
-    void onTest(cocos2d::CCObject* sender) = m1 0x1a3298, imac 0x1ec180;
-    void onUpdateDescription(cocos2d::CCObject* sender) = m1 0x1a1d60, imac 0x1eac60;
+    void onTest(cocos2d::CCObject* sender) = win inline, m1 0x1a3298, imac 0x1ec180, ios inline {
+        this->closeTextInputs();
+        GameManager::sharedState()->m_sceneEnum = 3;
+        cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, false, false)));
+    }
+    void onUpdateDescription(cocos2d::CCObject* sender) = win 0xd6c50, m1 0x1a1d60, imac 0x1eac60, ios 0xee0b8;
     void playStep2() = win 0xd6ae0, m1 0x1a3184, imac 0x1ec070, ios 0xef04c;
     void playStep3() = win 0xd6bc0, m1 0x1a3248, imac 0x1ec130, ios 0xef110;
-    void setupLevelInfo() = win 0xd5720, m1 0x1a1540, imac 0x1ea490;
-    void updateDescText(char const*);
-    void verifyLevelName() = win 0xd8290;
+    void setupLevelInfo() = win 0xd5720, m1 0x1a1540, imac 0x1ea490, ios 0xed880;
+    void updateDescText(char const* text) = win inline, m1 0x1a0ec0, imac 0x1e9da0, ios inline {}
+    void verifyLevelName() = win 0xd8290, m1 0x1a2e3c, imac 0x1ebd00, ios 0xeed9c;
 
     cocos2d::CCMenu* m_buttonMenu;
     GJGameLevel* m_level;
@@ -20094,11 +20115,11 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x2e53a0, m1 0x254fdc, imac 0x2aefd0, ios 0x2d7c8;
     virtual void onEnterTransitionDidFinish() = win 0x2e7bb0, m1 0x256564, imac 0x2b0660, ios 0x2ea38;
 
-    void confirmClone(cocos2d::CCObject*) = ios 0x2ce7c, win 0x2e9000, imac 0x2ae480, m1 0x2543fc;
-    void confirmDelete(cocos2d::CCObject*) = win 0x2e9170, m1 0x253af0, imac 0x2adbc0;
-    void confirmMoveToBottom(cocos2d::CCObject*) = win 0x2ea8a0, m1 0x254bb0, imac 0x2aec10;
-    void confirmMoveToTop(cocos2d::CCObject*) = win 0x2ea760, imac 0x2aeb30, m1 0x254ac0;
-    void confirmOwnerDelete(cocos2d::CCObject*) = m1 0x2541c0, imac 0x2ae280, win 0x2e92b0;
+    void confirmClone(cocos2d::CCObject* sender) = ios 0x2ce7c, win 0x2e9000, imac 0x2ae480, m1 0x2543fc;
+    void confirmDelete(cocos2d::CCObject* sender) = win 0x2e9170, m1 0x253af0, imac 0x2adbc0, ios 0x2c6e0;
+    void confirmMoveToBottom(cocos2d::CCObject* sender) = win 0x2ea8a0, m1 0x254bb0, imac 0x2aec10, ios 0x2d46c;
+    void confirmMoveToTop(cocos2d::CCObject* sender) = win 0x2ea760, imac 0x2aeb30, m1 0x254ac0, ios 0x2d3b0;
+    void confirmOwnerDelete(cocos2d::CCObject* sender) = ios 0x2ccb4, m1 0x2541c0, imac 0x2ae280, win 0x2e92b0;
     void downloadLevel() = ios 0x2b0ec, win 0x2e5770, m1 0x2523a0, imac 0x2ac410;
     void incrementDislikes() = win inline, m1 0x256f44, imac 0x2b1020, ios inline {
         m_level->m_dislikes++;
@@ -20135,13 +20156,13 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
         this->onBack(nullptr);
         m_isBusy = true;
     }
-    void onFavorite(cocos2d::CCObject* sender) = win 0x2e5430, imac 0x2aeab0, m1 0x254a40;
-    void onFeatured(cocos2d::CCObject* sender);
+    void onFavorite(cocos2d::CCObject* sender) = win 0x2e5430, imac 0x2aeab0, m1 0x254a40, ios 0x2d330;
+    void onFeatured(cocos2d::CCObject* sender) = win inline, m1 0x256ca0, imac 0x2b0d70, ios inline {}
     void onGarage(cocos2d::CCObject* sender) = ios 0x2d2e4, win 0x2e55b0, m1 0x2549e8, imac 0x2aea50;
-    void onInfo(cocos2d::CCObject* sender) = win 0x2e8b60, m1 0x253d04, imac 0x2addb0;
+    void onInfo(cocos2d::CCObject* sender) = win 0x2e8b60, m1 0x253d04, imac 0x2addb0, ios 0x2c824;
     void onLevelInfo(cocos2d::CCObject* sender) = ios 0x2d0f8, win 0x2ea510, m1 0x254704, imac 0x2ae750;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = ios 0x2c85c, win 0x2e54d0, imac 0x2adde0, m1 0x253d3c;
-    void onLevelOptions(cocos2d::CCObject* sender) = win 0x2ea3c0;
+    void onLevelOptions(cocos2d::CCObject* sender) = win 0x2ea3c0, m1 0x254ca4, imac 0x2aecf0, ios 0x2d528;
     void onLike(cocos2d::CCObject* sender) = win 0x2e9e60, m1 0x253da8, imac 0x2ade50, ios 0x2c8c8;
     void onOwnerDelete(cocos2d::CCObject* sender) = win inline, m1 0x256cf0, imac 0x2b0dd0, ios 0x2ef7c {
         if (m_isBusy) return;
@@ -20151,25 +20172,52 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
         m_circle->setVisible(true);
     }
     void onPlay(cocos2d::CCObject* sender) = ios 0x2a9d0, win 0x2e7bd0, m1 0x251bc4, imac 0x2abca0;
-    void onPlayReplay(cocos2d::CCObject* sender);
+    void onPlayReplay(cocos2d::CCObject* sender) = win inline, m1 0x2567fc, imac 0x2b0900, ios inline {
+        if (m_isBusy) return;
+        if (this->shouldDownloadLevel()) {
+            this->downloadLevel();
+        }
+        else {
+            auto audioEngine = FMODAudioEngine::sharedEngine();
+            audioEngine->stopAllMusic(true);
+            audioEngine->playEffect("playSound_01.ogg", 1.f, 0.f, .3f);
+            GameManager::sharedState()->m_sceneEnum = 3;
+            cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, true, false)));
+        }
+    }
     void onRate(cocos2d::CCObject* sender) = win 0x2e96e0, m1 0x256d54, imac 0x2b0e40, ios 0x2efe0;
-    void onRateDemon(cocos2d::CCObject* sender) = win 0x2e9ce0, imac 0x2ae030, m1 0x253f84;
+    void onRateDemon(cocos2d::CCObject* sender) = win 0x2e9ce0, imac 0x2ae030, m1 0x253f84, ios 0x2ca78;
     void onRateStars(cocos2d::CCObject* sender) = win 0x2e99c0, m1 0x253e20, imac 0x2aded0, ios 0x2c940;
-    void onRateStarsMod(cocos2d::CCObject* sender) = win 0x2e9c80, imac 0x2ae230, m1 0x254168;
-    void onSetFolder(cocos2d::CCObject* sender) = win 0x2e5300, imac 0x2aeda0, m1 0x254d6c;
+    void onRateStarsMod(cocos2d::CCObject* sender) = win 0x2e9c80, imac 0x2ae230, m1 0x254168, ios 0x2cc5c;
+    void onSetFolder(cocos2d::CCObject* sender) = win 0x2e5300, imac 0x2aeda0, m1 0x254d6c, ios 0x2d5c8;
     void onUpdate(cocos2d::CCObject* sender) = win 0x2ea280, m1 0x253bec, imac 0x2adcb0, ios 0x2c79c;
     void onViewProfile(cocos2d::CCObject* sender) = ios 0x2a958, win 0x2ea460, imac 0x2abc20, m1 0x251b4c;
-    void playStep2() = win 0x2e8850;
+    void playStep2() = win 0x2e8850, m1 0x25658c, imac 0x2b0680, ios 0x2ea60;
     void playStep3() = ios 0x2eb24, imac 0x2b0740, m1 0x256650, win 0x2e8930;
     void playStep4() = win 0x2e8ab0, m1 0x25678c, imac 0x2b0880, ios 0x2ec60;
-    void setupLevelInfo() = win 0x2e65c0, m1 0x252478, imac 0x2ac500;
+    void setupLevelInfo() = win 0x2e65c0, m1 0x252478, imac 0x2ac500, ios 0x2b1c4;
     void setupPlatformerStats() = ios 0x2bc9c, win 0x2e5a80, m1 0x252fc8, imac 0x2ad140;
     void setupProgressBars() = ios 0x2bff8, win 0x2e5eb0, m1 0x25336c, imac 0x2ad480;
     bool shouldDownloadLevel() = win 0x2e5640, m1 0x2550dc, imac 0x2af0d0, ios 0x2d84c;
-    void showSongWarning() = imac 0x2b0590, m1 0x25646c;
-    void showUpdateAlert(UpdateResponse) = win 0x2e7710, imac 0x2b00d0, m1 0x255ffc;
-    void tryCloneLevel(cocos2d::CCObject*) = ios 0x2cf6c, win 0x2e8ba0, imac 0x2ae5b0, m1 0x254548;
-    TodoReturn tryShowAd();
+    void showSongWarning() = win inline, imac 0x2b0590, m1 0x25646c, ios 0x2e984 {
+        auto alert = FLAlertLayer::create(
+            this,
+            "No Song",
+            "This level uses a <cl>custom song</c> that has not been <cg>downloaded</c> yet.\n"
+            "Do you want to play without music?\n"
+            "<cy>Download by using the bar below</c>",
+            "Cancel",
+            "Play",
+            300.f
+        );
+        alert->setTag(9);
+        alert->show();
+    }
+    void showUpdateAlert(UpdateResponse type) = win 0x2e7710, imac 0x2b00d0, m1 0x255ffc, ios 0x2e670;
+    void tryCloneLevel(cocos2d::CCObject* sender) = ios 0x2cf6c, win 0x2e8ba0, imac 0x2ae5b0, m1 0x254548;
+    void tryShowAd() = win inline, m1 0x254e64, imac 0x2aee80, ios inline {
+        GameManager::sharedState()->tryShowInterstitial(120, 140, 0);
+    }
     void updateLabelValues() = ios 0x2d910, win 0x2ea9d0, imac 0x2af160, m1 0x25517c;
     void updateSideButtons() = win 0x2e9fc0, m1 0x253fd8, imac 0x2ae090, ios 0x2cacc;
 
