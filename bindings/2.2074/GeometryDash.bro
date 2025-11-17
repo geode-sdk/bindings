@@ -30531,63 +30531,84 @@ class SpriteAnimationManager : cocos2d::CCNode {
         CC_SAFE_RELEASE(m_animateDict);
     }
 
-    void animationFinished() = win 0x745f0;
-    void callAnimationFinished() = win 0x74640;
-    static void createAnimations(gd::string) = win 0x72fa0, m1 0x62a3ac, imac 0x70af50;
-    static SpriteAnimationManager* createWithOwner(CCAnimatedSprite*, gd::string) = win inline {
+    static void createAnimations(gd::string definition) = win 0x72fa0, m1 0x62a3ac, imac 0x70af50, ios 0x322f24;
+    static SpriteAnimationManager* createWithOwner(CCAnimatedSprite* sprite, gd::string definition) = win inline, m1 0x62a098, imac 0x70ac30, ios 0x322c38 {
         auto ret = new SpriteAnimationManager();
-        if (ret->initWithOwner(p0, p1)) {
+        if (ret->initWithOwner(sprite, definition)) {
             ret->autorelease();
             return ret;
         }
         delete ret;
         return nullptr;
     }
+
+    void animationFinished() = win 0x745f0, m1 0x62bc74, imac 0x70cbd0, ios 0x323e30;
+    void callAnimationFinished() = win 0x74640, m1 0x62ce00, imac 0x70de80, ios 0x324830;
     void doCleanup() = win inline, m1 0x62d2cc, imac 0x70e340, ios 0x324994 {
         m_frameDict->removeAllObjects();
         this->release();
     }
-    void executeAnimation(gd::string) = win 0x73f30;
-    void finishAnimation(gd::string);
-    int getAnimType(gd::string) = win inline {
-        return m_typeDict->valueForKey(p0)->intValue();
+    void executeAnimation(gd::string animation) = win 0x73f30, m1 0x62c758, imac 0x70d770, ios 0x324468;
+    void finishAnimation(gd::string animation) = win inline, m1 0x62cf14, imac 0x70df80, ios inline {
+        if (m_queuedAnimation == animation) m_queuedAnimation = "not_used";
+        if (m_currentAnimation == animation) this->runQueuedAnimation();
     }
-    int getPrio(gd::string) = win 0x74720;
-    bool initWithOwner(CCAnimatedSprite*, gd::string) = win 0x72360;
-    void loadAnimations(gd::string) = win 0x725d0, m1 0x62b214, imac 0x70bf30;
-    void offsetCurrentAnimation(float) = win inline, m1 0x62d020, imac 0x70e0d0 {
+    spriteMode getAnimType(gd::string animation) = win inline, m1 0x62cb14, imac 0x70dba0, ios 0x324748 {
+        return (spriteMode)m_typeDict->valueForKey(animation)->intValue();
+    }
+    int getPrio(gd::string animation) = win 0x74720, m1 0x62c56c, imac 0x70d580, ios 0x324344;
+    bool initWithOwner(CCAnimatedSprite* sprite, gd::string definition) = win 0x72360, m1 0x62a180, imac 0x70ad30, ios 0x322d20;
+    void loadAnimations(gd::string definition) = win 0x725d0, m1 0x62b214, imac 0x70bf30, ios 0x323838;
+    void offsetCurrentAnimation(float dt) = win inline, m1 0x62d020, imac 0x70e0d0, ios 0x32491c {
         if (auto action = static_cast<cocos2d::CCActionInterval*>(m_sprite->m_sprite->getActionByTag(1))) {
-            //if (action->m_bFirstTick) action->step(0.f);
-            action->step(p0);
+            if (action->m_bFirstTick) action->step(0.f);
+            action->step(dt);
         }
     }
-    void overridePrio() = win 0x74420, m1 0x62cb2c, imac 0x70dbc0;
-    void playSound(gd::string);
-    void playSoundForAnimation(gd::string);
-    void queueAnimation(gd::string) = win 0x74510;
-    void resetAnimState() = win inline {
+    void overridePrio() = win 0x74420, m1 0x62cb2c, imac 0x70dbc0, ios 0x324760;
+    void playSound(gd::string sound) = win inline, m1 0x62c1e4, imac 0x70d180, ios inline {}
+    void playSoundForAnimation(gd::string animation) = win inline, m1 0x62bff0, imac 0x70cf80, ios 0x324058 {
+        if (auto sound = static_cast<cocos2d::CCString*>(m_soundDict->objectForKey(animation))) {
+            auto delay = static_cast<cocos2d::CCString*>(m_soundDict->objectForKey(cocos2d::CCString::createWithFormat("%s%s", animation.c_str(), "delay")->getCString()))->floatValue();
+            if (delay == 0.f) this->playSound(sound->getCString());
+        }
+    }
+    void queueAnimation(gd::string animation) = win 0x74510, m1 0x62c594, imac 0x70d5b0, ios 0x32436c;
+    void resetAnimState() = win inline, m1 0x62d098, imac 0x70e130, ios inline {
         m_queuedAnimation = "not_used";
         m_nextAnimation = "not_used";
     }
-    void runAnimation(gd::string) = win 0x73dd0, m1 0x62c1e8, imac 0x70d190;
-    void runQueuedAnimation();
-    void stopAnimations() = win inline, m1 0x62cd30, imac 0x70ddb0 {
+    void runAnimation(gd::string animation) = win 0x73dd0, m1 0x62c1e8, imac 0x70d190, ios 0x324144;
+    void runQueuedAnimation() = win inline, m1 0x62cbdc, imac 0x70dc60, ios inline {
+        if (m_queuedAnimation != "not_used") {
+            this->executeAnimation(m_queuedAnimation);
+            m_queuedAnimation = "not_used";
+        }
+    }
+    void stopAnimations() = win inline, m1 0x62cd30, imac 0x70ddb0, ios 0x3247e8 {
         this->overridePrio();
         if (m_sprite->m_paSprite) m_sprite->m_paSprite->stopAllActions();
         if (m_sprite->m_fbfSprite) m_sprite->m_fbfSprite->stopAllActions();
     }
-    void storeAnimation(cocos2d::CCAnimate* action, cocos2d::CCAnimate* frames, gd::string name, int priority, spriteMode type, cocos2d::CCSpriteFrame* first) = win 0x73b60;
-    void storeSoundForAnimation(cocos2d::CCString*, gd::string, float) = win inline {
-        m_soundDict->setObject(p0, p1);
-        m_soundDict->setObject(cocos2d::CCString::createWithFormat("%f", p2), p1);
+    void storeAnimation(cocos2d::CCAnimate* action, cocos2d::CCAnimate* frames, gd::string name, int priority, spriteMode type, cocos2d::CCSpriteFrame* first) = win 0x73b60, m1 0x62bcd8, imac 0x70cc30, ios 0x323e94;
+    void storeSoundForAnimation(cocos2d::CCString* sound, gd::string animation, float delay) = win inline, m1 0x62bc14, imac 0x70cb70, ios 0x323dd0 {
+        m_soundDict->setObject(sound, animation);
+        m_soundDict->setObject(cocos2d::CCString::createWithFormat("%f", delay), animation);
     }
-    void switchToFirstFrameOfAnimation(gd::string);
-    void updateAnimationSpeed(float) = win inline, m1 0x62bfac, imac 0x70cf30 {
+    void switchToFirstFrameOfAnimation(gd::string animation) = win inline, m1 0x62d0d0, imac 0x70e170, ios inline {
+        if (m_frameDict->objectForKey(animation)->getObjType() == (cocos2d::CCObjectType)0) {
+            m_sprite->switchToMode(this->getAnimType(animation));
+            auto frame = static_cast<cocos2d::CCSpriteFrame*>(m_frameDict->objectForKey(cocos2d::CCString::createWithFormat("%s_first", animation.c_str())->getCString()));
+            auto type = (int)frame->getObjType();
+            if (type == 1 || type == 2) m_sprite->m_sprite->setDisplayFrame(frame);
+        }
+    }
+    void updateAnimationSpeed(float speed) = win inline, m1 0x62bfac, imac 0x70cf30, ios 0x324010 {
         cocos2d::CCDictElement* element;
         cocos2d::CCDictElement* temp;
         if (m_animateDict) HASH_ITER(hh, m_animateDict->m_pElements, element, temp) {
             if (element->getObject()->getObjType() == (cocos2d::CCObjectType)0) {
-                static_cast<cocos2d::CCAnimate*>(element->getObject())->setSpeedMod(p0);
+                static_cast<cocos2d::CCAnimate*>(element->getObject())->setSpeedMod(speed);
             }
         }
     }
@@ -30617,7 +30638,7 @@ class SpriteDescription : cocos2d::CCObject {
         CC_SAFE_RELEASE(m_texture);
     }
 
-    static SpriteDescription* createDescription(cocos2d::CCDictionary* dict) = win inline, m1 0x4ac3e8, imac 0x555800 {
+    static SpriteDescription* createDescription(cocos2d::CCDictionary* dict) = win inline, m1 0x4ac3e8, imac 0x555800, ios 0x1b48c4 {
         auto ret = new SpriteDescription();
         if (ret->initDescription(dict)) {
             ret->autorelease();
@@ -30635,7 +30656,7 @@ class SpriteDescription : cocos2d::CCObject {
         delete ret;
         return nullptr;
     }
-    bool initDescription(cocos2d::CCDictionary* dict) = win inline, m1 0x4acfc4, imac 0x5563d0 {
+    bool initDescription(cocos2d::CCDictionary* dict) = win inline, m1 0x4acfc4, imac 0x5563d0, ios 0x1b49b8 {
         m_position = cocos2d::CCPointFromString(dict->valueForKey("position")->getCString());
         m_scale = cocos2d::CCPointFromString(dict->valueForKey("scale")->getCString());
         m_flipped = cocos2d::CCPointFromString(dict->valueForKey("flipped")->getCString());
