@@ -1262,10 +1262,10 @@ class BitmapFontCache : cocos2d::CCObject {
 class BonusDropdown : cocos2d::CCNode {
     // virtual ~BonusDropdown();
 
-    static BonusDropdown* create(gd::string, int);
+    static BonusDropdown* create(gd::string text, int price) = m1 0x3ee28c, imac 0x4801b0;
 
-    bool init(gd::string, int) = m1 0x3ee364, imac 0x480290;
-    void show();
+    bool init(gd::string text, int price) = m1 0x3ee364, imac 0x480290;
+    void show() = m1 0x3ee618, imac 0x480530;
 
     cocos2d::CCLayerColor* m_layerColor;
     float m_yPosition;
@@ -1276,9 +1276,9 @@ class BonusDropdown : cocos2d::CCNode {
 class BoomListLayer : cocos2d::CCLayerColor {
     // virtual ~BoomListLayer();
 
-    static BoomListLayer* create(BoomListView*, char const*);
+    static BoomListLayer* create(BoomListView* listView, char const* title) = m1 0x3cc480, imac 0x45b4b0;
 
-    bool init(BoomListView*, char const*) = m1 0x3cc55c, imac 0x45b5a0;
+    bool init(BoomListView* listView, char const* title) = m1 0x3cc55c, imac 0x45b5a0;
 }
 
 [[link(android)]]
@@ -1547,9 +1547,9 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
         m_templatePage = 0;
     }
 
-    static BrowseSmartKeyLayer* create(GJSmartTemplate*, gd::string) = win inline {
+    static BrowseSmartKeyLayer* create(GJSmartTemplate* smartTemplate, gd::string prefabKey) = win inline, m1 0x43b190, imac 0x4d7860, ios 0x7674c {
         auto ret = new BrowseSmartKeyLayer();
-        if (ret->init(p0, p1)) {
+        if (ret->init(smartTemplate, prefabKey)) {
             ret->autorelease();
             return ret;
         }
@@ -1559,14 +1559,44 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
 
     virtual void onBack(cocos2d::CCObject* sender) = win 0x4441b0, m1 0x43c764, imac 0x4d9020, ios 0x779e0;
 
-    void addChanceToSelected(int, bool);
-    void createTemplateObjects();
-    void deletedSelectedItems();
-    cocos2d::CCArray* getAllSelectedBlocks() = win 0x443ed0;
-    bool init(GJSmartTemplate*, gd::string) = win 0x4430d0, m1 0x43b4bc, imac 0x4d7c90;
-    void onButton(cocos2d::CCObject* sender) = win 0x443ab0;
-    void onPrefabObject(cocos2d::CCObject* sender) = win 0x4440d0;
-    void updateChanceValues() = win 0x443fa0;
+    void addChanceToSelected(int chance, bool zero) = win inline, m1 0x43c2fc, imac 0x4d8b90, ios 0x77644 {
+        auto blocks = this->getAllSelectedBlocks();
+        for (int i = 0; i < blocks->count(); i++) {
+            if (auto prefab = m_template->getPrefabWithID(m_prefabKey, blocks->objectAtIndex(i)->getTag())) {
+                if (zero) prefab->m_prefabChance = 0;
+                else prefab->m_prefabChance += chance;
+            }
+        }
+        this->updateChanceValues();
+    }
+    void createTemplateObjects() = win inline, m1 0x43bf4c, imac 0x4d8840, ios 0x77348 {
+        auto blocks = this->getAllSelectedBlocks();
+        if (blocks->count() == 0) return;
+        for (int i = 0; i < blocks->count(); i++) {
+            this->createPrefab(m_prefabKey, blocks->objectAtIndex(i)->getTag());
+        }
+        this->addChild(TextAlertPopup::create("Added to editor", .5f, .6f, 150, ""), 100);
+    }
+    void deletedSelectedItems() = win inline, m1 0x43c17c, imac 0x4d89e0, ios 0x774e0 {
+        for (int i = 0; i < m_pages->count(); i++) {
+            auto page = static_cast<cocos2d::CCArray*>(m_pages->objectAtIndex(i));
+            for (int j = 0; j < page->count();) {
+                auto button = static_cast<CCMenuItemSpriteExtra*>(page->objectAtIndex(j));
+                auto block = static_cast<GJSmartBlockPreview*>(button->getNormalImage());
+                if (block->m_selected) {
+                    m_template->removePrefab(m_prefabKey, block->getTag());
+                    page->removeObjectAtIndex(j);
+                }
+                else j++;
+            }
+        }
+        this->updateChanceValues();
+    }
+    cocos2d::CCArray* getAllSelectedBlocks() = win 0x443ed0, m1 0x43c4d0, imac 0x4d8d70, ios 0x77770;
+    bool init(GJSmartTemplate* smartTemplate, gd::string prefabKey) = win 0x4430d0, m1 0x43b4bc, imac 0x4d7c90, ios 0x76980;
+    void onButton(cocos2d::CCObject* sender) = win 0x443ab0, m1 0x43beac, imac 0x4d87b0, ios 0x772b0;
+    void onPrefabObject(cocos2d::CCObject* sender) = win 0x4440d0, m1 0x43be80, imac 0x4d8780, ios 0x77284;
+    void updateChanceValues() = win 0x443fa0, m1 0x43c594, imac 0x4d8e40, ios 0x77828;
 
     gd::string m_prefabKey;
     int m_templatePage;
@@ -1584,9 +1614,9 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
     }
     ~BrowseSmartTemplateLayer() = win 0x441980, m1 0x439728, imac 0x4d5be0, ios 0x7523c;
 
-    static BrowseSmartTemplateLayer* create(GJSmartTemplate*, SmartBrowseFilter) = win inline {
+    static BrowseSmartTemplateLayer* create(GJSmartTemplate* smartTemplate, SmartBrowseFilter browseFilter) = win inline, m1 0x439194, imac 0x4d5650, ios 0x74d98 {
         auto ret = new BrowseSmartTemplateLayer();
-        if (ret->init(p0, p1)) {
+        if (ret->init(smartTemplate, browseFilter)) {
             ret->autorelease();
             return ret;
         }
@@ -1597,17 +1627,43 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x443040, m1 0x43b324, imac 0x4d7a20, ios 0x76884;
     virtual void onBack(cocos2d::CCObject* sender) = win 0x443060, imac 0x4d7a60, m1 0x43b348, ios 0x768a8;
 
-    void addObjectToPage(cocos2d::CCObject*, int) = win 0x4424b0;
-    void addPrefabMenuItem(SmartPrefabResult, int) = win 0x4420b0;
-    void baseSetup() = win 0x442540;
-    void createDots();
-    void createPrefab(gd::string, int) = win 0x442c60;
-    void goToPage(int) = win 0x442af0;
-    bool init(GJSmartTemplate*, SmartBrowseFilter) = win 0x441a40, m1 0x439948, imac 0x4d5f10;
-    void onClick(cocos2d::CCObject* sender) = win 0x442ff0;
-    void onClose(cocos2d::CCObject* sender);
-    void onTemplateObject(cocos2d::CCObject* sender) = win 0x442d30;
-    void updateDots();
+    void addObjectToPage(cocos2d::CCObject* object, int page) = win 0x4424b0, m1 0x43ad40, imac 0x4d7430, ios 0x76324;
+    void addPrefabMenuItem(SmartPrefabResult result, int index) = win 0x4420b0, m1 0x43a394, imac 0x4d6a80, ios 0x75b80;
+    void baseSetup() = win 0x442540, m1 0x43a074, imac 0x4d6740, ios 0x75858;
+    void createDots() = win inline, m1 0x43ae30, imac 0x4d7500, ios 0x763fc {
+        auto batchNode = cocos2d::CCSpriteBatchNode::create("smallDot.png");
+        m_mainLayer->addChild(batchNode, 5);
+        m_dotsArray = cocos2d::CCArray::create();
+        m_dotsArray->retain();
+        for (int i = 0; i < m_pages->count(); i++) {
+            auto dot = cocos2d::CCSprite::create("smallDot.png");
+            dot->setScale(.8f);
+            batchNode->addChild(dot);
+            m_dotsArray->addObject(dot);
+        }
+    }
+    void createPrefab(gd::string key, int id) = win 0x442c60, m1 0x43b078, imac 0x4d7760, ios 0x76648;
+    void goToPage(int page) = win 0x442af0, m1 0x43a848, imac 0x4d6fa0, ios 0x75f9c;
+    bool init(GJSmartTemplate* smartTemplate, SmartBrowseFilter browseFilter) = win 0x441a40, m1 0x439948, imac 0x4d5f10, ios 0x752f8;
+    void onClick(cocos2d::CCObject* sender) = win 0x442ff0, m1 0x43adbc, imac 0x4d74b0, ios 0x7639c;
+    void onClose(cocos2d::CCObject* sender) = win inline, m1 0x43b138, imac 0x4d7810, ios 0x766f4 {
+        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
+        this->setKeypadEnabled(false);
+        this->removeFromParentAndCleanup(true);
+    }
+    void onTemplateObject(cocos2d::CCObject* sender) = win 0x442d30, m1 0x43aa1c, imac 0x4d7190, ios 0x760dc;
+    void updateDots() = win inline, m1 0x43af04, imac 0x4d75d0, ios 0x764d8 {
+        if (!m_dotsArray) this->createDots();
+        auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+        auto count = m_pages->count();
+        for (int i = 0; i < count; i++) {
+            if (i < m_dotsArray->count()) {
+                auto dot = static_cast<cocos2d::CCSprite*>(m_dotsArray->objectAtIndex(i));
+                dot->setPosition(winSize * .5f + cocos2d::CCPoint { (i - (count - 1) * .5f) * 16.f, -125.f });
+                dot->setColor(i == m_page ? cocos2d::ccColor3B { 255, 255, 255 } : cocos2d::ccColor3B { 125, 125, 125 });
+            }
+        }
+    }
 
     GJSmartTemplate* m_template;
     cocos2d::CCArray* m_pages;
@@ -1622,9 +1678,9 @@ class ButtonPage : cocos2d::CCLayer {
     // virtual ~ButtonPage();
     ButtonPage() {}
 
-    static ButtonPage* create(cocos2d::CCArray*, cocos2d::CCPoint, int, float) = win inline, m1 0x4fe9b4, imac 0x5ca160, ios 0x419250 {
+    static ButtonPage* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) = win inline, m1 0x4fe9b4, imac 0x5ca160, ios 0x419250 {
         auto ret = new ButtonPage();
-        if (ret->init(p0, p1, p2, p3)) {
+        if (ret->init(objects, position, rows, spacing)) {
             ret->autorelease();
             return ret;
         }
@@ -1632,21 +1688,21 @@ class ButtonPage : cocos2d::CCLayer {
         return nullptr;
     }
 
-    bool init(cocos2d::CCArray*, cocos2d::CCPoint, int, float) = win inline, m1 0x4feb6c, imac 0x5ca350, ios 0x419398 {
+    bool init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) = win inline, m1 0x4feb6c, imac 0x5ca350, ios 0x419398 {
         if (!cocos2d::CCLayer::init()) return false;
 
         auto menu = cocos2d::CCMenu::create();
         this->addChild(menu);
 
-        auto x = p1.x;
-        auto y = p1.y;
-        for (int i = 0; i < p0->count(); i++) {
-            auto row = p2 != 0 ? (int)(i / p2) : 0;
-            auto node = static_cast<cocos2d::CCNode*>(p0->objectAtIndex(i));
+        auto x = position.x;
+        auto y = position.y;
+        for (int i = 0; i < objects->count(); i++) {
+            auto row = rows != 0 ? (int)(i / rows) : 0;
+            auto node = static_cast<cocos2d::CCNode*>(objects->objectAtIndex(i));
             menu->addChild(node);
             node->setPosition(menu->convertToNodeSpace({
-                (i % p2) + (p3 + 4.f) * (p3 * .5f + x - p2 * p3 * .5f - (p2 - 1) * 2.f),
-                (y - p3 * .5f) - row * (p3 + 4.f)
+                (i % rows) + (spacing + 4.f) * (spacing * .5f + x - rows * spacing * .5f - (rows - 1) * 2.f),
+                (y - spacing * .5f) - row * (spacing + 4.f)
             }));
         }
 
@@ -1713,7 +1769,7 @@ class ButtonSprite : cocos2d::CCSprite {
     static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg) {
         return ButtonSprite::create(caption, width, p2, scale, absolute, font, bg, .0f);
     }
-    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) = ios 0x62f74 {
+    static ButtonSprite* create(char const* caption, int width, int p2, float scale, bool absolute) {
         return ButtonSprite::create(caption, width, p2, scale, absolute, "goldFont.fnt", "GJ_button_01.png", .0f);
     }
     static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute) {
@@ -1724,7 +1780,7 @@ class ButtonSprite : cocos2d::CCSprite {
     }
 
     bool init(char const* caption, int width, int p2, float scale, bool absolute, char const* font, char const* bg, float height) = ios 0x63060, win 0x3f220, imac 0x92790, m1 0x858d8;
-    bool init(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3eef0, imac 0x91f00, m1 0x85114;
+    bool init(cocos2d::CCSprite* topSprite, int width, int unused, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3eef0, imac 0x91f00, m1 0x85114, ios 0x62944;
     void setColor(cocos2d::ccColor3B color) = win inline, m1 0x86044, imac 0x92f70, ios 0x63784 {
         // i love inlined funcs
         if (m_label) m_label->setColor(color);
@@ -1732,9 +1788,9 @@ class ButtonSprite : cocos2d::CCSprite {
         if (m_subBGSprite) m_subBGSprite->setColor(color);
         if (m_BGSprite) m_BGSprite->setColor(color);
     }
-    void setString(char const*) = win 0x3fae0, imac 0x92a40, m1 0x85b60, ios 0x632ac;
-    void updateBGImage(char const*) = win 0x3f520, imac 0x92e20, m1 0x85f00, ios 0x6364c;
-    void updateSpriteBGSize() = win 0x3f660, imac 0x92190, m1 0x85368;
+    void setString(char const* text) = win 0x3fae0, imac 0x92a40, m1 0x85b60, ios 0x632ac;
+    void updateBGImage(char const* filename) = win 0x3f520, imac 0x92e20, m1 0x85f00, ios 0x6364c;
+    void updateSpriteBGSize() = win 0x3f660, imac 0x92190, m1 0x85368, ios 0x62b98;
     void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x92f40, m1 0x8601c, ios 0x6375c {
         m_spritePosition = offset;
         this->updateSpriteBGSize();
@@ -17753,7 +17809,18 @@ class GJSmartTemplate : cocos2d::CCObject {
     static cocos2d::CCPoint offsetForDir(GJSmartDirection, int) = win 0x2abe90;
     static cocos2d::CCPoint offsetForObject(SmartGameObject*);
     static cocos2d::CCPoint offsetForType(SmartBlockType) = win 0x2abf90, m1 0x38fa8c, imac 0x413df0, ios 0xb754;
-    void removePrefab(gd::string, int);
+    void removePrefab(gd::string prefabKey, int prefabID) = win inline, m1 0x38f5b4, imac 0x413960, ios 0xb334 {
+        if (prefabID <= 0) return;
+        auto prefabArray = static_cast<cocos2d::CCArray*>(m_prefabArrays->objectForKey(prefabKey));
+        if (!prefabArray || prefabArray->count() == 0) return;
+        for (int i = 0; i < prefabArray->count(); i++) {
+            auto prefab = static_cast<GJSmartPrefab*>(prefabArray->objectAtIndex(i));
+            if (prefab->m_prefabID == prefabID) {
+                prefabArray->removeObjectAtIndex(i);
+                break;
+            }
+        }
+    }
     void resetScannedPrefabs();
     static SmartBlockType rotateBlockType(SmartBlockType, int) = win 0x2ac840;
     static SmartBlockType rotateBlockType90(SmartBlockType);
