@@ -515,19 +515,19 @@ class AchievementsLayer : GJDropDownLayer {
 
 [[link(android)]]
 class AdToolbox {
-    TodoReturn cacheInterstitial();
-    TodoReturn cacheRewardedVideo();
-    TodoReturn disableBanner();
-    TodoReturn enableBanner();
-    TodoReturn enableBannerNoRefresh();
-    TodoReturn hasCachedInterstitial();
-    TodoReturn hasCachedRewardedVideo();
-    bool isShowingAd();
-    void queueRefreshBanner();
-    void setupAds();
-    void showDebug();
-    void showInterstitial();
-    void showRewardedVideo();
+    static void cacheInterstitial() = m1 0xb4ff0, imac 0xcc000;
+    static void cacheRewardedVideo() = m1 0xb5000, imac 0xcc030;
+    static void disableBanner() = m1 0xb4fe8, imac 0xcbfe0;
+    static void enableBanner() = m1 0xb4fe4, imac 0xcbfd0;
+    static void enableBannerNoRefresh() = m1 0xb4fe0, imac 0xcbfc0;
+    static bool hasCachedInterstitial() = m1 0xb4ff4, imac 0xcc010;
+    static bool hasCachedRewardedVideo() = m1 0xb5004, imac 0xcc040;
+    static bool isShowingAd() = m1 0xb5010, imac 0xcc060;
+    static void queueRefreshBanner() = m1 0xb4fdc, imac 0xcbfb0;
+    static void setupAds() = win inline, m1 0xb4fd8, imac 0xcbfa0, ios 0x2f8a9c {}
+    static void showDebug() = m1 0xb500c, imac 0xcc050;
+    static void showInterstitial() = m1 0xb4fec, imac 0xcbff0;
+    static void showRewardedVideo() = m1 0xb4ffc, imac 0xcc020;
 }
 
 [[link(android)]]
@@ -986,17 +986,22 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     float bgScale() = win inline, m1 0x56e730, imac 0x645f90, ios 0x268554 {
         return cocos2d::CCDirector::sharedDirector()->getScreenScaleFactorMax();
     }
-    void checkSound();
-    void hideLoadingCircle();
-    void loadingIsFinished();
+    void checkSound() = win inline, m1 0x56eb84, imac 0x646440, ios inline {
+        if (this->musicTest()) FMODAudioEngine::sharedEngine()->pauseAllMusic(true);
+    }
+    void hideLoadingCircle() = win inline, m1 0x56ed20, imac 0x6465f0, ios 0x2689a0 {}
+    void loadingIsFinished() = win inline, m1 0x56e748, imac 0x645fc0, ios 0x26856c {
+        m_loadingFinished = true;
+        PlatformToolbox::reportLoadingFinished();
+    }
     bool musicTest() = win 0x83370, m1 0x56eb00, imac 0x6463d0, ios 0x2687e8;
-    void pauseGame() = win 0x82ff0;
-    void pauseSound() = win 0x830d0;
-    void platformShutdown() = win 0x82560;
+    void pauseGame() = win 0x82ff0, m1 0x56e7d0, imac 0x646060, ios 0x268590;
+    void pauseSound() = win 0x830d0, m1 0x56e928, imac 0x6461d0, ios 0x268660;
+    void platformShutdown() = win 0x82560, m1 0x56e4fc, imac 0x645d60, ios inline {}
     void resumeSound() = win 0x83270, m1 0x56ea64, imac 0x646320, ios 0x26879c;
-    void setIdleTimerDisabled(bool);
-    void setupGLView() = win 0x82580;
-    void showLoadingCircle(bool, bool, bool);
+    void setIdleTimerDisabled(bool disabled) = win inline, m1 0x56ea60, imac 0x646310, ios inline {}
+    void setupGLView() = win 0x82580, m1 0x56e500, imac 0x645d70, ios 0x268328;
+    void showLoadingCircle(bool, bool, bool) = win inline, m1 0x56ed1c, imac 0x6465e0, ios 0x26899c {}
 
     bool m_glViewSetup;
     bool m_gamePaused;
@@ -1066,11 +1071,12 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
         m_songInfoObjects = nullptr;
         m_songList = nullptr;
         m_pageIndicatorLabel = nullptr;
-        m_songsIds = {};
-        m_sfxIds = {};
         m_loadingCircle = nullptr;
     }
-    // virtual ~AudioAssetsBrowser();
+    ~AudioAssetsBrowser() = win inline, m1 0x6b0d10, imac 0x79e6b0, ios 0x1d217c {
+        MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
+        CC_SAFE_RELEASE(m_songInfoObjects);
+    }
 
     static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = win inline, m1 0x6b0df0, imac 0x79e830, ios 0x1d225c {
         auto ret = new AudioAssetsBrowser();
@@ -1091,12 +1097,22 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
     virtual int getCellDelegateType() = m1 0x6b1d44, imac 0x79f990, ios 0x1d3070 { return 1; }
 
     bool init(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = win 0x83760, m1 0x6b0f20, imac 0x79e9b0, ios 0x1d2340;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x84620, m1 0x6b1458, imac 0x79ef30, ios 0x1d2860;
     void onInfo(cocos2d::CCObject* sender) = win 0x83f70, m1 0x6b1494, imac 0x79ef60, ios 0x1d289c;
-    void onPage(cocos2d::CCObject* sender);
-    TodoReturn setupList();
-    TodoReturn trySetupAudioBrowser();
-    TodoReturn updatePageLabel();
+    void onPage(cocos2d::CCObject* sender) = win inline, m1 0x6b1d20, imac 0x79f940, ios inline {}
+    void setupList() = win 0x83d90, m1 0x6b1ad0, imac 0x79f680, ios 0x1d2e1c;
+    void trySetupAudioBrowser() = win inline, m1 0x6b1c64, imac 0x79f840, ios 0x1d2fac {
+        auto mdm = MusicDownloadManager::sharedState();
+        if (mdm->m_sfxObjects) {
+            if (mdm->m_customContentURL.empty()) mdm->getCustomContentURL();
+            this->setupList();
+        }
+        else {
+            if (mdm->m_customContentURL.empty()) mdm->getCustomContentURL();
+            else mdm->downloadSFXLibrary();
+        }
+    }
+    void updatePageLabel() = win inline, m1 0x6b1d54, imac 0x79f9b0, ios inline {}
 
     cocos2d::CCArray* m_songInfoObjects;
     GJCommentListLayer* m_songList;
@@ -1108,7 +1124,6 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 
 [[link(android)]]
 class AudioEffectsLayer : cocos2d::CCLayerColor {
-    // virtual ~AudioEffectsLayer();
     AudioEffectsLayer() {
         m_batchNode = nullptr;
         m_unk1bc = nullptr;
@@ -1118,6 +1133,10 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
         m_goingDown = false;
         m_audioScale = 0;
         m_unk1d4 = false;
+    }
+    ~AudioEffectsLayer() = win inline, m1 0x4070ac, imac 0x49bdd0, ios 0x3bc798 {
+        CC_SAFE_RELEASE(m_unk1bc);
+        CC_SAFE_RELEASE(m_unk1c0);
     }
 
     static AudioEffectsLayer* create(gd::string audioString) = win inline, imac 0x49c150, m1 0x407314, ios 0x3bc848 {
@@ -1133,12 +1152,31 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
     virtual void draw() = m1 0x407cdc, imac 0x49cba0, ios 0x3bcf70 {}
     virtual void updateTweenAction(float, char const*) = win 0x84fb0, imac 0x49ca70, m1 0x407ba0, ios 0x3bce70;
 
-    void audioStep(float) = win 0x84d80, imac 0x49c860, m1 0x407970, ios 0x3bcc5c;
-    TodoReturn getBGSquare();
-    TodoReturn goingDown();
-    bool init(gd::string) = win 0x84b90;
+    void audioStep(float dt) = win 0x84d80, imac 0x49c860, m1 0x407970, ios 0x3bcc5c;
+    cocos2d::CCSprite* getBGSquare() = m1 0x407ce0, imac 0x49cbb0;
+    void goingDown() = win 0x85120, m1 0x407b94, imac 0x49ca60, ios 0x3bce64;
+    bool init(gd::string audioString) = win 0x84b90, m1 0x407444, imac 0x49c2a0, ios 0x3bc968;
     void resetAudioVars() = imac 0x49c800, m1 0x407928, win 0x84d20, ios 0x3bcc14;
-    void triggerEffect(float) = m1 0x407a2c, imac 0x49c930;
+    void triggerEffect(float pulse) = win inline, m1 0x407a2c, imac 0x49c930, ios 0x3bcd18 {
+        float scale;
+        if (pulse == 1.f) scale = .8f;
+        else if (pulse == .9f) scale = .6f;
+        else if (pulse == .8f) scale = .4f;
+        else scale = pulse * .2f;
+        auto pulseMod = (std::min)(scale + m_audioScale, 1.1f);
+        if (!m_goingDown && m_audioPulseMod > pulseMod) return;
+        m_audioPulseMod = pulseMod;
+        m_goingDown = false;
+        this->stopActionByTag(0);
+        auto action = cocos2d::CCSequence::create(
+            cocos2d::CCActionTween::create(.05f, "audioScale", m_audioScale, pulseMod),
+            cocos2d::CCCallFunc::create(this, callfunc_selector(AudioEffectsLayer::goingDown)),
+            cocos2d::CCActionTween::create(.2f, "audioScale", pulseMod, .1f),
+            nullptr
+        );
+        action->setTag(0);
+        this->runAction(action);
+    }
 
     cocos2d::CCSpriteBatchNode* m_batchNode;
     cocos2d::CCArray* m_unk1bc;
@@ -23194,7 +23232,7 @@ class PlatformToolbox {
     static void platformShutdown() = m1 0x41a1d4, imac 0x4b1950;
     static TodoReturn refreshWindow();
     static void reportAchievementWithID(char const*, int) = m1 0x4195f8, imac 0x4b0ae0, ios 0x16ef50;
-    static TodoReturn reportLoadingFinished();
+    static void reportLoadingFinished() = win inline, m1 0x4195b4, imac 0x4b0a00, ios 0x16ef1c {}
     static void resizeWindow(float width, float height);
     static TodoReturn saveAndEncryptStringToFile(gd::string&, char const*, char const*);
     static void sendMail(char const* title, char const* content, char const* address) = win inline, m1 0x41962c, imac 0x4b0b20, ios 0x16ef58 {}
