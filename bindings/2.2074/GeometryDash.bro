@@ -144,7 +144,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegate, FLAlertLayerProtocol {
     // virtual ~AccountLoginLayer();
 
-    static AccountLoginLayer* create(gd::string) = win 0x7b730, m1 0x3f313c, imac 0x485b00, ios 0x87068;
+    static AccountLoginLayer* create(gd::string username) = win 0x7b730, m1 0x3f313c, imac 0x485b00, ios 0x87068;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, imac 0x487a60, m1 0x3f4ff4, ios 0x88580;
     virtual void keyBackClicked() = win 0x7cfa0, m1 0x3f4ea4, imac 0x487920, ios 0x88494;
@@ -155,21 +155,34 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     virtual void loginAccountFinished(int, int) = win 0x7c740, m1 0x3f45bc, imac 0x4870a0, ios 0x87ee8;
     virtual void loginAccountFailed(AccountError) = win 0x7c990, imac 0x487430, m1 0x3f493c, ios 0x880f8;
 
-    TodoReturn createTextBackground(cocos2d::CCPoint, char const*, cocos2d::CCSize);
-    TodoReturn createTextInput(cocos2d::CCPoint, cocos2d::CCSize, char const*, int);
-    TodoReturn createTextLabel(cocos2d::CCPoint, char const*, cocos2d::CCSize);
-    void disableNodes();
-    void hideLoadingUI();
-    bool init(gd::string) = win 0x7b8d0, m1 0x3f32c0, imac 0x485ce0, ios 0x871a0;
+    cocos2d::extension::CCScale9Sprite* createTextBackground(cocos2d::CCPoint position, char const* text, cocos2d::CCSize size) = win 0x7c4b0, m1 0x3f42dc, imac 0x486de0, ios 0x87c10;
+    CCTextInputNode* createTextInput(cocos2d::CCPoint position, cocos2d::CCSize size, char const* text, int tag) = win 0x7c650, m1 0x3f4488, imac 0x486f80, ios 0x87db8;
+    cocos2d::CCLabelBMFont* createTextLabel(cocos2d::CCPoint position, char const* text, cocos2d::CCSize size) = win 0x7c570, m1 0x3f43a0, imac 0x486ea0, ios 0x87cd4;
+    void disableNodes() = win inline, m1 0x3f4dac, imac 0x487840, ios inline {
+        m_usernameInput->onClickTrackNode(false);
+        m_passwordInput->onClickTrackNode(false);
+    }
+    void hideLoadingUI() = win inline, m1 0x3f48a4, imac 0x487380, ios inline {
+        this->toggleUI(true);
+        m_loadingCircle->setVisible(false);
+    }
+    bool init(gd::string username) = win 0x7b8d0, m1 0x3f32c0, imac 0x485ce0, ios 0x871a0;
     void onClose(cocos2d::CCObject* sender) = win 0x7cf50, imac 0x486990, m1 0x3f3e60, ios 0x878e4;
     void onForgotPassword(cocos2d::CCObject* sender) = imac 0x487080, win 0x7c490, ios 0x87ec4, m1 0x3f4598;
     void onForgotUser(cocos2d::CCObject* sender) = imac 0x487060, win 0x7c470, ios 0x87ea0, m1 0x3f4574;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7cbc0, imac 0x4869f0, m1 0x3f3ec8, ios 0x8794c;
-    void resetLabel(int);
-    void resetLabels();
-    void showLoadingUI();
-    void toggleUI(bool) = win 0x7d000;
-    void updateLabel(AccountError) = m1 0x3f49d0, imac 0x4874c0, ios 0x88134, win 0x7c9d0;
+    void resetLabel(int tag) = win 0x7cad0, m1 0x3f4c10, imac 0x4876f0, ios 0x8831c;
+    void resetLabels() = win inline, m1 0x3f4b98, imac 0x487680, ios 0x882a4 {
+        this->resetLabel(1);
+        this->resetLabel(2);
+    }
+    void showLoadingUI() = win inline, m1 0x3f4dec, imac 0x487880, ios 0x88434 {
+        this->disableNodes();
+        this->toggleUI(false);
+        m_loadingCircle->setVisible(true);
+    }
+    void toggleUI(bool enable) = win 0x7d000, m1 0x3f4f78, imac 0x4879f0, ios 0x88504;
+    void updateLabel(AccountError type) = m1 0x3f49d0, imac 0x4874c0, ios 0x88134, win 0x7c9d0;
 
     CCTextInputNode* m_usernameInput;
     CCTextInputNode* m_passwordInput;
@@ -182,9 +195,33 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 
 [[link(android)]]
 class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterDelegate, FLAlertLayerProtocol {
-    // virtual ~AccountRegisterLayer();
+    AccountRegisterLayer() = ios 0x886f8 {
+        m_usernameField = nullptr;
+        m_passwordField = nullptr;
+        m_confirmPasswordField = nullptr;
+        m_emailField = nullptr;
+        m_usernameLabel = nullptr;
+        m_passwordLabel = nullptr;
+        m_confirmPasswordLabel = nullptr;
+        m_emailLabel = nullptr;
+        m_loadingCircle = nullptr;
+        m_lockInput = false;
+    }
+    ~AccountRegisterLayer() = win inline, m1 0x3efb7c, imac 0x481da0, ios 0x84e8c {
+        auto gjam = GJAccountManager::sharedState();
+        if (gjam->m_accountRegisterDelegate == this) gjam->m_accountRegisterDelegate = nullptr;
+        CC_SAFE_RELEASE(m_loadingCircle);
+    }
 
-    static AccountRegisterLayer* create();
+    static AccountRegisterLayer* create() = win inline, m1 0x3efe38, imac 0x4821c0, ios 0x84f64 {
+        auto ret = new AccountRegisterLayer();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x78a70, imac 0x482340, m1 0x3eff58, ios 0x84fd8;
     virtual void registerWithTouchDispatcher() = win 0x425d0, imac 0x484e70, m1 0x3f2690, ios 0x868d0;
@@ -199,21 +236,50 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
     virtual void registerAccountFinished() = win 0x79c90, imac 0x484040, m1 0x3f1894, ios 0x86168;
     virtual void registerAccountFailed(AccountError) = win 0x79eb0, m1 0x3f1a3c, imac 0x4841f0, ios 0x86298;
 
-    cocos2d::extension::CCScale9Sprite* createTextBackground(cocos2d::CCPoint, cocos2d::CCSize);
-    CCTextInputNode* createTextInput(cocos2d::CCPoint, cocos2d::CCSize, gd::string, int);
-    cocos2d::CCLabelBMFont* createTextLabel(cocos2d::CCPoint, gd::string, cocos2d::CCSize);
-    void disableNodes();
-    void hideLoadingUI();
-    void onClose(cocos2d::CCObject* sender);
-    void onSubmit(cocos2d::CCObject* sender);
-    void resetLabel(int) = imac 0x484700, m1 0x3f1f50;
-    void resetLabels() = imac 0x4845e0, m1 0x3f1e20;
-    void showLoadingUI();
-    void toggleUI(bool);
-    void updateLabel(AccountError) = win 0x79ef0, m1 0x3f1b0c, imac 0x4842c0, ios 0x862d4;
-    bool validEmail(gd::string);
-    bool validPassword(gd::string);
-    bool validUser(gd::string);
+    cocos2d::extension::CCScale9Sprite* createTextBackground(cocos2d::CCPoint position, cocos2d::CCSize size) = win 0x79990, m1 0x3f15dc, imac 0x483da0, ios 0x85eb8;
+    CCTextInputNode* createTextInput(cocos2d::CCPoint position, cocos2d::CCSize size, gd::string text, int tag) = win 0x79b60, m1 0x3f1794, imac 0x483f50, ios 0x8606c;
+    cocos2d::CCLabelBMFont* createTextLabel(cocos2d::CCPoint position, gd::string text, cocos2d::CCSize size) = win 0x79a50, m1 0x3f16a0, imac 0x483e60, ios 0x85f7c;
+    void disableNodes() = win 0x7ac30, m1 0x3f21dc, imac 0x484950, ios 0x866d4;
+    void hideLoadingUI() = win inline, m1 0x3f1c7c, imac 0x484440, ios inline {
+        this->toggleUI(true);
+        m_loadingCircle->setVisible(false);
+    }
+    void onClose(cocos2d::CCObject* sender) = win 0x7abc0, m1 0x3f0de0, imac 0x483470, ios 0x85a54;
+    void onSubmit(cocos2d::CCObject* sender) = win 0x7a250, m1 0x3f0e84, imac 0x483500, ios 0x85a98;
+    void resetLabel(int tag) = win 0x7a0f0, imac 0x484700, m1 0x3f1f50, ios 0x86564;
+    void resetLabels() = win inline, imac 0x4845e0, m1 0x3f1e20, ios 0x86488 {
+        this->resetLabel(1);
+        this->resetLabel(2);
+        this->resetLabel(3);
+        this->resetLabel(4);
+        this->resetLabel(5);
+    }
+    void showLoadingUI() = win inline, m1 0x3f235c, imac 0x484b90, ios 0x86750 {
+        this->disableNodes();
+        this->toggleUI(false);
+        m_loadingCircle->setVisible(true);
+    }
+    void toggleUI(bool enable) = win 0x7aca0, m1 0x3f25d8, imac 0x484dd0, ios 0x86818;
+    void updateLabel(AccountError type) = win 0x79ef0, m1 0x3f1b0c, imac 0x4842c0, ios 0x862d4;
+    bool validEmail(gd::string email) = win 0x7b680, m1 0x3f22a8, imac 0x484a20, ios inline {
+        if (!email.c_str()) return false;
+        auto first = email[0];
+        if (first < 'A' || (first > 'Z' && first < 'a') || first > 'z') return false;
+        auto len = strlen(email.c_str());
+        auto atPos = -1;
+        auto dotPos = -1;
+        for (int i = 0; i < len; i++) {
+            if (email[i] == '@') atPos = i;
+            else if (email[i] == '.') dotPos = i;
+        }
+        return atPos != -1 && dotPos != -1 && atPos <= dotPos && dotPos < len - 1;
+    }
+    bool validPassword(gd::string password) = win inline, m1 0x3f2280, imac 0x4849f0, ios inline {
+        return password.size() > 5;
+    }
+    bool validUser(gd::string username) = win inline, m1 0x3f2258, imac 0x4849c0, ios inline {
+        return username.size() > 2;
+    }
 
     CCTextInputNode* m_usernameField;
     CCTextInputNode* m_passwordField;
