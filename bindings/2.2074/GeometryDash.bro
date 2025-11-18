@@ -5188,9 +5188,9 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
         CC_SAFE_RELEASE(m_level);
     }
 
-    static DailyLevelNode* create(GJGameLevel*, DailyLevelPage*, bool) = win inline, imac 0x2201c0, m1 0x1d30c0, ios 0x1bc7c8 {
+    static DailyLevelNode* create(GJGameLevel* level, DailyLevelPage* page, bool isNew) = win inline, imac 0x2201c0, m1 0x1d30c0, ios 0x1bc7c8 {
         auto ret = new DailyLevelNode();
-        if (ret->init(p0, p1, p2)) {
+        if (ret->init(level, page, isNew)) {
             ret->autorelease();
             return ret;
         }
@@ -5200,11 +5200,13 @@ class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
 
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xd1c30, imac 0x2216d0, m1 0x1d4660, ios 0x1bda58;
 
-    bool init(GJGameLevel*, DailyLevelPage*, bool) = ios 0x1bcd9c, win 0xd0c90, imac 0x2209a0, m1 0x1d3884;
+    bool init(GJGameLevel* level, DailyLevelPage* page, bool isNew) = ios 0x1bcd9c, win 0xd0c90, imac 0x2209a0, m1 0x1d3884;
     void onClaimReward(cocos2d::CCObject* sender) = win 0xd18f0, imac 0x221400, m1 0x1d4358, ios 0x1bd830;
     void onSkipLevel(cocos2d::CCObject* sender) = win 0xd1a10, m1 0x1d4470, imac 0x221500, ios 0x1bd928;
-    void showSkipButton() = win 0xd1890;
-    void updateTimeLabel(gd::string);
+    void showSkipButton() = win 0xd1890, m1 0x1d2c5c, imac 0x21fd50, ios 0x1bc434;
+    void updateTimeLabel(gd::string text) = win inline, m1 0x1d2b04, imac 0x21fbe0, ios inline {
+        if (m_timeLabel) m_timeLabel->setString(text.c_str());
+    }
 
     GJGameLevel* m_level;
     DailyLevelPage* m_page;
@@ -5220,7 +5222,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     // virtual ~DailyLevelPage();
     //DailyLevelPage() = ios 0x1c66c0;
 
-    static DailyLevelPage* create(GJTimedLevelType) = ios 0x1baec4, win 0xccfd0, m1 0x1d0d8c, imac 0x21e2b0;
+    static DailyLevelPage* create(GJTimedLevelType type) = ios 0x1baec4, win 0xccfd0, m1 0x1d0d8c, imac 0x21e2b0;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x1d3438, imac 0x220540, ios 0x1bca50;
     virtual void keyBackClicked() = win 0x86980, imac 0x2204b0, m1 0x1d339c, ios 0x1bca44;
@@ -5231,20 +5233,34 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     virtual void levelDownloadFinished(GJGameLevel*) = win 0xceb90, imac 0x220030, m1 0x1d2f0c, ios 0x1bc67c;
     virtual void levelDownloadFailed(int) = win 0xcebf0, imac 0x2200f0, m1 0x1d2fec, ios 0x1bc6f4;
 
-    void claimLevelReward(DailyLevelNode*, GJGameLevel*, cocos2d::CCPoint) = win 0xd06b0, m1 0x1d3470, imac 0x220580;
-    void createDailyNode(GJGameLevel*, bool, float, bool) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700, ios 0x1bbfc4;
+    void claimLevelReward(DailyLevelNode* node, GJGameLevel* level, cocos2d::CCPoint position) = win 0xd06b0, m1 0x1d3470, imac 0x220580, ios 0x1bca88;
+    void createDailyNode(GJGameLevel* level, bool instant, float delay, bool isNew) = win 0xcee40, imac 0x21f7b0, m1 0x1d2700, ios 0x1bbfc4;
     void createNodeIfLoaded() = win 0xced50, m1 0x1d302c, imac 0x220130, ios 0x1bc734;
     void downloadAndCreateNode() = win 0xceca0, m1 0x1d2bec, imac 0x21fce0, ios 0x1bc3c4;
-    void exitDailyNode(DailyLevelNode*, float) = ios 0x1bc310, imac 0x21fc20, m1 0x1d2b34, win 0xcf130;
-    int getDailyTime() = m1 0x1d3198, imac 0x2202a0;
+    void exitDailyNode(DailyLevelNode* node, float delay) = ios 0x1bc310, imac 0x21fc20, m1 0x1d2b34, win 0xcf130;
+    int getDailyTime() = win inline, m1 0x1d3198, imac 0x2202a0, ios 0x1bc854 {
+        __timeb64 current;
+        _ftime64(&current);
+        auto currentTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+        return std::max<int>(GameLevelManager::sharedState()->getDailyTimer(m_type) - currentTime, 0);
+    }
     gd::string getDailyTimeString(int timeLeft) = win 0xcf200, imac 0x21f120, m1 0x1d1e6c, ios 0x1bbb24;
-    bool init(GJTimedLevelType) = ios 0x1baf38, win 0xcd110, imac 0x21e440, m1 0x1d0ebc;
+    bool init(GJTimedLevelType type) = ios 0x1baf38, win 0xcd110, imac 0x21e440, m1 0x1d0ebc;
     void onClose(cocos2d::CCObject* sender) = win 0x86940, imac 0x21f070, m1 0x1d1db4, ios 0x1bba6c;
     void onTheSafe(cocos2d::CCObject* sender) = win 0xd0bb0, m1 0x1d1e00, imac 0x21f0b0, ios 0x1bbab8;
-    void refreshDailyPage();
-    void skipDailyLevel(DailyLevelNode*, GJGameLevel*) = win 0xd0980, m1 0x1d3620, imac 0x220700, ios 0x1bcbdc;
-    void tryGetDailyStatus() = win 0xcec10;
-    callback void updateTimers(float) = ios 0x1bbe2c, win 0xd0360, imac 0x21f570, m1 0x1d24a8;
+    void refreshDailyPage() = win inline, m1 0x1d3710, imac 0x2207f0, ios 0x1bcccc {
+        if (auto dailyNode = m_dailyNode) {
+            if (dailyNode->m_needsDownloading) return;
+            if (auto level = dailyNode->m_level) {
+                m_dailyNode = nullptr;
+                this->createDailyNode(level, true, 0.f, false);
+                dailyNode->removeMeAndCleanup();
+            }
+        }
+    }
+    void skipDailyLevel(DailyLevelNode* node, GJGameLevel* level) = win 0xd0980, m1 0x1d3620, imac 0x220700, ios 0x1bcbdc;
+    void tryGetDailyStatus() = win 0xcec10, m1 0x1d2ea0, imac 0x21ffb0, ios 0x1bc610;
+    callback void updateTimers(float dt) = ios 0x1bbe2c, win 0xd0360, imac 0x21f570, m1 0x1d24a8;
 
     cocos2d::CCLabelBMFont* m_timeLabel;
     LoadingCircle* m_timeCircle;
@@ -5490,7 +5506,7 @@ class DialogObject : cocos2d::CCObject {
 
     static DialogObject* create(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win 0xd1da0, m1 0x33f4ac, imac 0x3b3d20, ios 0x8a650;
 
-    bool init(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win inline, imac 0x3b3eb0, m1 0x33f664 {
+    bool init(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win inline, imac 0x3b3eb0, m1 0x33f664, ios inline {
         m_character = character;
         m_text = text;
         m_characterFrame = characterFrame;
@@ -5652,7 +5668,7 @@ class DungeonBarsSprite : cocos2d::CCNode {
         m_barsSprite = nullptr;
     }
 
-    static DungeonBarsSprite* create() = win inline {
+    static DungeonBarsSprite* create() = win inline, m1 0x3fe754, imac 0x491b30, ios 0x30f054 {
         auto ret = new DungeonBarsSprite();
         if (ret->init()) {
             ret->autorelease();
@@ -5665,7 +5681,7 @@ class DungeonBarsSprite : cocos2d::CCNode {
     virtual bool init() = win 0x3d8470, m1 0x401c4c, imac 0x495430, ios 0x3119ac;
     virtual void visit() = win 0x3d84f0, imac 0x4954b0, m1 0x401ccc, ios 0x311a2c;
 
-    void animateOutBars() = win inline {
+    void animateOutBars() = win inline, m1 0x4007d4, imac 0x493e00, ios 0x310a68 {
         auto a1 = cocos2d::CCMoveBy::create(0.08, { -1.5f, 0.0f });
         auto a2 = cocos2d::CCMoveBy::create(0.08, { 1.5f, 0.0f });
         auto a3 = cocos2d::CCMoveBy::create(0.08, { -1.5f, 0.0f });
@@ -5740,10 +5756,19 @@ class EditButtonBar : cocos2d::CCNode {
 [[link(android)]]
 class EditGameObjectPopup : SetupTriggerPopup {
     // virtual ~EditGameObjectPopup();
+    EditGameObjectPopup() {}
 
-    static EditGameObjectPopup* create(EffectGameObject*, cocos2d::CCArray*, bool);
+    static EditGameObjectPopup* create(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win inline, m1 0x23f93c, imac 0x297920, ios 0x2dd490 {
+        auto ret = new EditGameObjectPopup();
+        if (ret->init(object, objects, platformer)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x2938e0, m1 0x23facc, imac 0x297b50;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x2938e0, m1 0x23facc, imac 0x297b50, ios 0x2dd570;
 }
 
 [[link(android)]]
@@ -6612,12 +6637,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 class EditTriggersPopup : SetupTriggerPopup {
     // virtual ~EditTriggersPopup();
 
-    static EditTriggersPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x2874a0;
+    static EditTriggersPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x2874a0, m1 0x231b4c, imac 0x2888b0, ios 0x2d2b2c;
 
     virtual void determineStartValues() = win 0x287910, imac 0x288da0, m1 0x231fb4, ios 0x2d2e64;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x287920, imac 0x288db0, m1 0x231fb8, ios 0x2d2e68;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x2875b0, m1 0x231cd4, imac 0x288ae0, ios 0x2d2c04;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x2875b0, m1 0x231cd4, imac 0x288ae0, ios 0x2d2c04;
 }
 
 [[link(android)]]
@@ -7023,15 +7048,28 @@ class EndLevelLayer : GJDropDownLayer {
 [[link(android)]]
 class EndPortalObject : GameObject {
     // virtual ~EndPortalObject();
+    EndPortalObject() {
+        m_gradientBar = nullptr;
+        m_flippedX = false;
+        m_startPosHeightRelated = false;
+    }
 
-    static EndPortalObject* create() = m1 0x318990, imac 0x3891b0;
+    static EndPortalObject* create() = win inline, m1 0x318990, imac 0x3891b0, ios 0x3f6620 {
+        auto ret = new EndPortalObject();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x136110, imac 0x389250, m1 0x318a2c, ios 0x3f66b0;
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x136620, m1 0x318ec4, imac 0x389750, ios 0x3f6b38;
     virtual void setVisible(bool) = win 0x136780, imac 0x389860, m1 0x318fbc, ios 0x3f6c30;
 
-    cocos2d::CCPoint getSpawnPos() = win 0x136560, m1 0x318e60, imac 0x3896d0;
-    void triggerObject(GJBaseGameLayer*) = win inline, ios 0x3f6a50, imac 0x389640, m1 0x318dcc {
+    cocos2d::CCPoint getSpawnPos() = win 0x136560, m1 0x318e60, imac 0x3896d0, ios 0x3f6ad4;
+    void triggerObject(GJBaseGameLayer* layer) = win inline, ios 0x3f6a50, imac 0x389640, m1 0x318dcc {
         auto playLayer = GameManager::sharedState()->m_playLayer;
         if (!playLayer->m_player1->m_isDead) {
             playLayer->m_levelEndAnimationStarted = true;
@@ -7039,8 +7077,14 @@ class EndPortalObject : GameObject {
             playLayer->playEndAnimationToPos(this->getStartPos());
         }
     }
-    TodoReturn updateColors(cocos2d::ccColor3B);
-    void updateEndPos(bool) = win 0x1367d0, m1 0x319020, imac 0x3898c0, ios 0x3f6c94;
+    void updateColors(cocos2d::ccColor3B color) = win inline, m1 0x318d00, imac 0x389580, ios 0x3f6984 {
+        if (m_particle) {
+            m_particle->setStartColor({ color.r / 255.f, color.g / 255.f, color.b / 255.f, 1.f });
+            m_particle->setEndColor({ color.r / 255.f, color.g / 255.f, color.b / 255.f, 1.f });
+        }
+        m_gradientBar->setColor(color);
+    }
+    void updateEndPos(bool updateParticle) = win 0x1367d0, m1 0x319020, imac 0x3898c0, ios 0x3f6c94;
 
     cocos2d::CCSprite* m_gradientBar;
     bool m_flippedX;
@@ -7662,16 +7706,16 @@ class EventLinkTrigger : EffectGameObject {
 class ExplodeItemNode : cocos2d::CCNode {
     // virtual ~ExplodeItemNode();
 
-    static ExplodeItemNode* create(cocos2d::CCRenderTexture*) = win 0x36e780, m1 0x1b6f88, imac 0x201ac0, ios 0x6031c;
+    static ExplodeItemNode* create(cocos2d::CCRenderTexture* texture) = win 0x36e780, m1 0x1b6f88, imac 0x201ac0, ios 0x6031c;
 
     virtual void update(float) = win 0x36f1f0, imac 0x202b30, m1 0x1b7f14, ios 0x6105c;
 
-    void createSprites(int, int, float, float, float, float, float, float, cocos2d::ccColor4F, cocos2d::ccColor4F, bool) = win 0x36e840, m1 0x1b703c, imac 0x201b70, ios 0x603a8;
-    bool init(cocos2d::CCRenderTexture*) = win inline, m1 0x1b7e18, imac 0x202a40, ios 0x60f6c {
+    void createSprites(int countX, int countY, float xVel, float xVar, float yVel, float yVar, float dur, float durVar, cocos2d::ccColor4F startColor, cocos2d::ccColor4F endColor, bool noParticles) = win 0x36e840, m1 0x1b703c, imac 0x201b70, ios 0x603a8;
+    bool init(cocos2d::CCRenderTexture* texture) = win inline, m1 0x1b7e18, imac 0x202a40, ios 0x60f6c {
         if (!cocos2d::CCNode::init()) return false;
         m_floorHeight = 90.f;
-        m_renderTexture = p0;
-        p0->retain();
+        m_renderTexture = texture;
+        texture->retain();
         m_sprites = cocos2d::CCArray::create();
         m_sprites->retain();
         return true;
@@ -7687,8 +7731,24 @@ class ExplodeItemNode : cocos2d::CCNode {
 [[link(android)]]
 class ExplodeItemSprite : cocos2d::CCSprite {
     // virtual ~ExplodeItemSprite();
+    ExplodeItemSprite() {
+        m_xVelocity = 0.f;
+        m_yVelocity = 0.f;
+        m_timeRemaining = 0.f;
+        m_fadeOutTime = 0.f;
+        m_rotVelocity = 0.f;
+        m_particles = nullptr;
+    }
 
-    static ExplodeItemSprite* create();
+    static ExplodeItemSprite* create() = win inline, m1 0x1b7e70, imac 0x202aa0, ios 0x60fc4 {
+        auto ret = new ExplodeItemSprite();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual bool init() = win 0x36f5c0, imac 0x202eb0, m1 0x1b8200, ios 0x6132c;
 
