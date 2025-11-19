@@ -3144,7 +3144,7 @@ class cocos2d::CCEGLView {
     // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool, GLFWvidmode const&, GLFWmonitor*);
     // [[missing(android, mac, ios)]]
     // static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
-    // sharedOpenGLView() = ios 0x130f38, imac 0x50df50
+    static cocos2d::CCEGLView* sharedOpenGLView() = m1 0x45119c, imac 0x4effd0, ios 0x12dad8;
 }
 
 [[link(win, android)]]
