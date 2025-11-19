@@ -5237,6 +5237,22 @@ class cocos2d::CCDelayTime : cocos2d::CCActionInterval {
 }
 
 [[link(win, android)]]
+class cocos2d::CCActionTween {
+    static cocos2d::CCActionTween* create(float, int, float, float) = m1 0x6a3064, imac 0x78f760;
+    static cocos2d::CCActionTween* create(float, char const*, float, float) = m1 0x6a314c, imac 0x78f860, ios 0x3a1a4c;
+
+    bool initWithDuration(float, char const*, float, float) = m1 0x6a322c, imac 0x78f960;
+
+    // CCActionTween(cocos2d::CCActionTween const&);
+    // CCActionTween();
+    void updateTargetValue(float) = m1 0x6a32b4, imac 0x78f9f0;
+
+    virtual void update(float) = m1 0x6a32c4, imac 0x78fa10, ios 0x3a1b58;
+    virtual void startWithTarget(cocos2d::CCNode*) = m1 0x6a3288, imac 0x78f9c0, ios 0x3a1b2c;
+    virtual cocos2d::CCActionInterval* reverse() = m1 0x6a3318, imac 0x78fa80, ios 0x3a1ba0;
+}
+
+[[link(win, android)]]
 class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
     CCTextFieldTTF() = m1 0x2154a4, imac 0x269d00, ios 0x1cbd3c;
     virtual ~CCTextFieldTTF() = m1 0x21557c, imac 0x269e20, ios 0x1cbe04;
