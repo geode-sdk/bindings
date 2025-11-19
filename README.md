@@ -1,6 +1,6 @@
 # Bindings
 
-Addresses and bindings for Geometry Dash, for use with the Geode mod loader.
+Addresses and bindings for [Geometry Dash](https://store.steampowered.com/app/322170/Geometry_Dash), for use with the [Geode](https://github.com/geode-sdk/geode) mod loader.
 
 ## Contributing
 
