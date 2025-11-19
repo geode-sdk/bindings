@@ -23080,17 +23080,27 @@ class ObjectManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x6e460, m1 0x69410c, imac 0x77f750, ios 0x24c270;
 
-    bool animLoaded(char const* anim);
+    bool animLoaded(char const* anim) = win inline, m1 0x695c1c, imac 0x7813d0, ios 0x24cf3c {
+        return m_loadedAnimations->objectForKey(anim) != nullptr;
+    }
     cocos2d::CCDictionary* getDefinition(char const* definitionKey) = win 0x6f870, m1 0x695a18, imac 0x7811e0, ios 0x24ce50;
     cocos2d::CCDictionary* getGlobalAnimCopy(char const* anim) = win inline, m1 0x694ce4, imac 0x780300, ios 0x24c8ec {
         return static_cast<cocos2d::CCDictionary*>(static_cast<cocos2d::CCDictionary*>(m_objectDefinitions->objectForKey("GlobalAnimations"))->objectForKey(anim));
     }
     void loadCopiedAnimations() = win 0x6e800, m1 0x69415c, imac 0x77f7b0, ios 0x24c2c0;
     void loadCopiedSets() = win 0x6ed50, m1 0x6945cc, imac 0x77fb60, ios 0x24c4d4;
-    void purgeObjectManager();
-    static cocos2d::CCDictionary* replaceAllOccurencesOfString(cocos2d::CCString*, cocos2d::CCString*, cocos2d::CCDictionary*) = win 0x6f1a0;
-    void setLoaded(char const* objectName);
-    void setup() = win 0x6e4c0, imac 0x77ff10, m1 0x694934;
+    void purgeObjectManager() = win inline, m1 0x6940e0, imac 0x77f720, ios 0x24c244 {
+        auto objectManager = reinterpret_cast<ObjectManager**>(geode::base::get() + 0x6a4e30);
+        if (*objectManager) {
+            (*objectManager)->release();
+            *objectManager = nullptr;
+        }
+    }
+    static cocos2d::CCDictionary* replaceAllOccurencesOfString(cocos2d::CCString* target, cocos2d::CCString* replacement, cocos2d::CCDictionary* dict) = win 0x6f1a0, m1 0x694e14, imac 0x780420, ios 0x24c994;
+    void setLoaded(char const* objectName) = win inline, m1 0x695b0c, imac 0x7812d0, ios 0x24cebc {
+        m_loadedAnimations->setObject(cocos2d::CCNode::create(), objectName);
+    }
+    void setup() = win 0x6e4c0, imac 0x77ff10, m1 0x694934, ios 0x24c6dc;
 
     cocos2d::CCDictionary* m_objectDefinitions;
     cocos2d::CCDictionary* m_loadedAnimations;
@@ -23104,7 +23114,9 @@ class ObjectToolbox : cocos2d::CCNode {
 
     virtual bool init() = win 0x333050, m1 0x57b5d0, imac 0x6541c0, ios 0x276cbc;
 
-    cocos2d::CCArray* allKeys() = m1 0x6281e0, imac 0x704010;
+    cocos2d::CCArray* allKeys() = win inline, m1 0x6281e0, imac 0x704010, ios inline {
+        return nullptr;
+    }
     float gridNodeSizeForKey(int key) = ios 0x2aa858, win 0x35ae80, imac 0x704100, m1 0x6282d0;
     const char* intKeyToFrame(int key) = win 0x35ae50, m1 0x6281e8, imac 0x704020, ios 0x2aa804;
     const char* perspectiveBlockFrame(int key) = win 0x35b8a0, m1 0x6283a4, imac 0x707ac0, ios 0x2aab98;
@@ -23261,10 +23273,16 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
 class OptionsObject : cocos2d::CCObject {
     // virtual ~OptionsObject();
 
-    static OptionsObject* create(int id, bool enabled, gd::string name, OptionsObjectDelegate* delegate) = win 0x297040;
+    static OptionsObject* create(int id, bool enabled, gd::string name, OptionsObjectDelegate* delegate) = win 0x297040, m1 0x2445e8, imac 0x29ce60, ios 0x2e0a80;
 
-    bool init(int id, bool enabled, gd::string name, OptionsObjectDelegate* delegate);
-    void toggleState() = win inline {
+    bool init(int id, bool enabled, gd::string name, OptionsObjectDelegate* delegate) = win inline, m1 0x2446e4, imac 0x29cf60, ios inline {
+        m_optionID = id;
+        m_enabled = enabled;
+        m_name = name;
+        m_delegate = delegate;
+        return true;
+    }
+    void toggleState() = win inline, m1 0x244720, imac 0x29cf90, ios 0x2e0b7c {
         m_enabled = !m_enabled;
         if (m_delegate) m_delegate->stateChanged(this);
     }
@@ -23285,16 +23303,44 @@ class OptionsObjectDelegate {
 class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
     // virtual ~OptionsScrollLayer();
 
-    static OptionsScrollLayer* create(cocos2d::CCArray*, bool, int) = win 0x325ca0;
+    static OptionsScrollLayer* create(cocos2d::CCArray* objects, bool recreate, int minimum) = win 0x325ca0, m1 0x5277ec, imac 0x5f84a0, ios 0x3baf9c;
 
     virtual void registerWithTouchDispatcher() = win 0x425d0, m1 0x5282bc, imac 0x5f90f0, ios 0x3bb598;
     virtual void keyBackClicked() = win 0x326150, m1 0x528198, imac 0x5f8fc0, ios 0x3bb58c;
     virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x326160, imac 0x5f9130, m1 0x5282f4, ios 0x3bb5d0;
 
-    cocos2d::CCArray* getRelevantObjects(cocos2d::CCArray*);
-    bool init(cocos2d::CCArray*, bool, int);
-    void onClose(cocos2d::CCObject* sender) = win 0x3260c0;
-    void setupList(cocos2d::CCArray*) = win 0x325ef0;
+    cocos2d::CCArray* getRelevantObjects(cocos2d::CCArray* objects) = win inline, m1 0x52810c, imac 0x5f8f40, ios 0x3bb508 {
+        auto relevantObjects = cocos2d::CCArray::create();
+        CCObject* obj;
+        CCARRAY_FOREACH(objects, obj) {
+            auto object = static_cast<OptionsObject*>(obj);
+            if (object->m_count > m_minCount || object->m_enabled) {
+                relevantObjects->addObject(object);
+            }
+        }
+        return relevantObjects;
+    }
+    bool init(cocos2d::CCArray* objects, bool recreate, int minimum) = win inline, m1 0x527d80, imac 0x5f8b90, ios 0x3bb1dc {
+        if (!FLAlertLayer::init(150)) return false;
+        m_noElasticity = true;
+        m_recreateList = recreate;
+        m_minCount = minimum;
+        if (objects) {
+            m_optionObjects = objects;
+            objects->retain();
+        }
+        auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+        m_buttonMenu = cocos2d::CCMenu::create();
+        m_mainLayer->addChild(m_buttonMenu, 10);
+        m_joystickConnected = -1;
+        auto closeButton = CCMenuItemSpriteExtra::create(cocos2d::CCSprite::createWithSpriteFrameName("GJ_closeBtn_001.png"), this, menu_selector(OptionsScrollLayer::onClose));
+        closeButton->setSizeMult(1.6f);
+        closeButton->setPosition(m_buttonMenu->convertToNodeSpace(winSize * .5f + cocos2d::CCPoint { -210.f, 135.f }));
+        this->setupList(m_optionObjects);
+        return true;
+    }
+    void onClose(cocos2d::CCObject* sender) = win 0x3260c0, m1 0x527eec, imac 0x5f8d10, ios 0x3bb344;
+    void setupList(cocos2d::CCArray* objects) = win 0x325ef0, m1 0x527f7c, imac 0x5f8da0, ios 0x3bb3d4;
 
     cocos2d::CCArray* m_optionObjects;
     GJCommentListLayer* m_listLayer;
