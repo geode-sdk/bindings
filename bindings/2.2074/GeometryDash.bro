@@ -23843,68 +23843,108 @@ class PlatformDownloadDelegate {
 
 [[link(android)]]
 class PlatformToolbox {
-    static void activateGameCenter();
-    static TodoReturn copyToClipboard(gd::string);
-    static TodoReturn doesFileExist(gd::string);
-    static TodoReturn downloadAndSavePromoImage(gd::string, gd::string);
+    static void activateGameCenter() = win inline, m1 0x4195dc, imac 0x4b0a90, ios 0x16ef3c {}
+    static bool copyToClipboard(gd::string str) = win 0x78760, m1 0x41a040, imac 0x4b1700, ios 0x16f414;
+    static bool doesFileExist(gd::string path) = win inline, m1 0x419940, imac 0x4b0f10, ios 0x16f2d0 {
+        return false;
+    }
+    static void downloadAndSavePromoImage(gd::string, gd::string) = win inline, m1 0x4199f8, imac 0x4b1000, ios inline {}
     static void gameDidSave() = win inline, m1 0x41a0c4, imac 0x4b17a0, ios 0x16f388 {
         cocos2d::CCApplication::sharedApplication()->gameDidSave();
     }
-    static TodoReturn getDeviceRefreshRate();
-    static cocos2d::CCSize getDisplaySize() = win 0x786d0, imac 0x4b18f0, m1 0x41a190;
-    static TodoReturn getRawPath(char const*);
-    static TodoReturn getUniqueUserID();
-    static TodoReturn getUserID();
+    static float getDeviceRefreshRate() = win inline, m1 inline, imac inline, ios inline {
+        return 60.f;
+    }
+    static cocos2d::CCSize getDisplaySize() = win 0x786d0, imac 0x4b18f0, m1 0x41a190, ios 0x16f394;
+    static gd::string getRawPath(char const* path) = win inline, m1 0x419f4c, imac 0x4b15e0 {
+        return "";
+    }
+    static gd::string getUniqueUserID() = win 0x784e0, m1 0x4194b8, imac 0x4b08e0, ios 0x16ee0c;
+    static gd::string getUserID() = win inline, m1 0x4195a0, imac 0x4b09c0, ios 0x16ee74 {
+        return PlatformToolbox::getUniqueUserID();
+    }
     static void hideCursor() = ios 0x16f40c, win inline, imac 0x4b0b30, m1 0x419630 {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(false);
     }
     static bool isControllerConnected() = ios 0x16f3d8, win inline, imac 0x4b1a30, m1 0x41a254 {
         return cocos2d::CCApplication::sharedApplication()->getControllerConnected();
     }
-    static bool isHD();
-    static bool isLocalPlayerAuthenticated();
-    static bool isLowMemoryDevice();
-    static bool isNetworkAvailable();
+    static bool isHD() = win inline, m1 0x41991c, imac 0x4b0ee0, ios 0x16f2ac {
+        return false;
+    }
+    static bool isLocalPlayerAuthenticated() = win inline, m1 0x4195e0, imac 0x4b0aa0, ios 0x16ef40 {
+        return false;
+    }
+    static bool isLowMemoryDevice() = win inline, m1 0x4195ac, imac 0x4b09f0, ios 0x16ef14 {
+        return false;
+    }
+    static bool isNetworkAvailable() = win inline, m1 0x4195a4, imac 0x4b09e0, ios 0x16eee8 {
+        return true;
+    }
     static bool isSignedInGooglePlay() = win inline, m1 0x4195e8, imac 0x4b0ab0, ios 0x16ef48 {
         return false;
     }
-    static TodoReturn loadAndDecryptFileToString(char const*, char const*, gd::string&);
+    static void loadAndDecryptFileToString(char const* dirPath, char const* fileName, gd::string& str) = m1 0x4197ec, imac 0x4b0d70, ios 0x16f188;
     static void logEvent(char const* event) = win inline, m1 0x4195d8, imac 0x4b0a80, ios 0x16ef38 {}
-    static TodoReturn onGameLaunch();
-    static void onNativePause();
-    static TodoReturn onNativeResume();
-    static TodoReturn onToggleKeyboard();
-    static TodoReturn openAppPage();
+    static void onGameLaunch() = win inline, m1 0x4195c8, imac 0x4b0a50, ios inline {}
+    static void onNativePause() = win inline, m1 0x4195b8, imac 0x4b0a10, ios 0x16ef20 {}
+    static void onNativeResume() = win inline, m1 0x4195bc, imac 0x4b0a20, ios 0x16ef24 {}
+    static void onToggleKeyboard() = win inline, m1 0x4195c0, imac 0x4b0a30, ios 0x16ef28 {}
+    static void openAppPage() = win inline, m1 0x419664, imac 0x4b0b80, ios 0x16f024 {}
     static void platformShutdown() = m1 0x41a1d4, imac 0x4b1950;
-    static TodoReturn refreshWindow();
-    static void reportAchievementWithID(char const*, int) = m1 0x4195f8, imac 0x4b0ae0, ios 0x16ef50;
+    static void refreshWindow() = m1 0x41a2a8, imac 0x4b1ae0;
+    static void reportAchievementWithID(char const* key, int percent) = m1 0x4195f8, imac 0x4b0ae0, ios 0x16ef50;
     static void reportLoadingFinished() = win inline, m1 0x4195b4, imac 0x4b0a00, ios 0x16ef1c {}
-    static void resizeWindow(float width, float height);
-    static TodoReturn saveAndEncryptStringToFile(gd::string&, char const*, char const*);
+    static void resizeWindow(float width, float height) = win inline, m1 0x41a148, imac 0x4b1860, ios 0x16f390 {
+        auto view = cocos2d::CCEGLView::sharedOpenGLView();
+        view->resizeWindow(width, height);
+        view->centerWindow();
+    }
+    static void saveAndEncryptStringToFile(gd::string& str, char const* dirPath, char const* fileName) = m1 0x419668, imac 0x4b0b90, ios 0x16f044;
     static void sendMail(char const* title, char const* content, char const* address) = win inline, m1 0x41962c, imac 0x4b0b20, ios 0x16ef58 {}
-    static void setBlockBackButton(bool);
-    static void setKeyboardState(bool);
-    static TodoReturn shouldResumeSound();
+    static void setBlockBackButton(bool block) = win inline, m1 0x4195cc, imac 0x4b0a60, ios inline {}
+    static void setKeyboardState(bool state) = win inline, m1 0x4195c4, imac 0x4b0a40, ios 0x16ef2c {}
+    static bool shouldResumeSound() = win inline, m1 0x4195d0, imac 0x4b0a70, ios 0x16ef30 {
+        return true;
+    }
     static void showAchievements() = win inline, m1 0x419628, imac 0x4b0b10, ios 0x16ef54 {}
     static void showCursor() = ios 0x16f410, win inline, imac 0x4b0b50, m1 0x419648 {
         cocos2d::CCEGLView::sharedOpenGLView()->showCursor(true);
     }
     static void signInGooglePlay() = win inline, m1 0x4195f0, imac 0x4b0ac0, ios inline {}
     static void signOutGooglePlay() = win inline, m1 0x4195f4, imac 0x4b0ad0, ios inline {}
-    static TodoReturn spriteFromSavedFile(gd::string);
-    static void toggleCallGLFinish(bool);
-    static void toggleCPUSleepMode(bool);
-    static void toggleForceTimer(bool);
-    static void toggleFullScreen(bool, bool, bool);
+    static cocos2d::CCSprite* spriteFromSavedFile(gd::string path) = m1 0x4199fc, imac 0x4b1010;
+    static void toggleCallGLFinish(bool enable) = win inline, m1 0x41a27c, imac 0x4b1aa0, ios inline {}
+    static void toggleCPUSleepMode(bool enable) = win inline, m1 0x41a274, imac 0x4b1a80, ios inline {}
+    static void toggleForceTimer(bool enable) = win inline, m1 0x41a280, imac 0x4b1ab0, ios 0x16f3e4 {
+        cocos2d::CCApplication::sharedApplication()->setForceTimer(enable);
+    }
+    static void toggleFullScreen(bool fullscreen, bool borderless, bool fix) = win inline, m1 0x41a0f4, imac 0x4b17f0, ios 0x16f38c {
+        cocos2d::CCEGLView::sharedOpenGLView()->toggleFullScreen(fullscreen, borderless, fix);
+    }
     static void toggleLockCursor(bool isLocked) = win inline, ios 0x16f41c, m1 0x41a144, imac 0x4b1850 {
         cocos2d::CCEGLView::sharedOpenGLView()->toggleLockCursor(isLocked);
     }
-    static void toggleMouseControl(bool);
-    static void toggleSmoothFix(bool);
-    static void toggleVerticalSync(bool);
-    static void tryShowRateDialog(gd::string) = win inline, m1 0x419660, imac 0x4b0b70, ios 0x16efe4 {}
-    static TodoReturn updateMouseControl();
-    static TodoReturn updateWindowedSize(float, float);
+    static void toggleMouseControl(bool enable) = win inline, m1 0x41a224, imac 0x4b19e0, ios 0x16f3d4 {
+        cocos2d::CCApplication::sharedApplication()->toggleMouseControl(enable);
+    }
+    static void toggleSmoothFix(bool enable) = win inline, m1 0x41a284, imac 0x4b1ac0, ios 0x16f3e8 {
+        cocos2d::CCDirector::sharedDirector()->setSmoothFix(enable);
+    }
+    static void toggleVerticalSync(bool enable) = win inline, m1 0x41a278, imac 0x4b1a90, ios 0x16f3e0 {
+        cocos2d::CCApplication::sharedApplication()->toggleVerticalSync(enable);
+    }
+    static void tryShowRateDialog(gd::string gameName) = win inline, m1 0x419660, imac 0x4b0b70, ios 0x16efe4 {}
+    static void updateMouseControl() = win inline, m1 0x41a204, imac 0x4b19a0, ios inline {
+        #ifdef GEODE_IS_WINDOWS
+        cocos2d::CCApplication::sharedApplication()->updateMouseControl();
+        #endif
+    }
+    static void updateWindowedSize(float width, float height) = win inline, m1 0x41a18c, imac 0x4b18e0, ios inline {
+        #ifdef GEODE_IS_WINDOWS
+        cocos2d::CCEGLView::sharedOpenGLView()->setWindowedSize({ width, height });
+        #endif
+    }
 }
 
 class PlayerButtonCommand {
