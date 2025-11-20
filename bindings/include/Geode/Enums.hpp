@@ -337,7 +337,8 @@ enum class GJTimedLevelType {
 };
 enum class SongSelectType {
     Default = 0,
-    Custom = 1
+    Custom = 1,
+    Default2 = 2
 };
 enum class AudioTargetType {
     SFXChannel = 0,
@@ -822,6 +823,7 @@ enum class SelectArtType {
     Background = 0,
     Ground = 1,
     Middleground = 2,
+    Premade = 3
 };
 
 enum class UndoCommand {
