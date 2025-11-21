@@ -4633,12 +4633,12 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate, SliderDelegate {
     // virtual ~CreateParticlePopup();
 
-    static CreateParticlePopup* create(gd::string) = win inline, m1 0x3ccc68, imac 0x45bde0, ios inline {
-        return CreateParticlePopup::create(nullptr, nullptr, p0);
+    static CreateParticlePopup* create(gd::string str) = win inline, m1 0x3ccc68, imac 0x45bde0, ios inline {
+        return CreateParticlePopup::create(nullptr, nullptr, str);
     }
-    static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*, gd::string) = win 0x414180, m1 0x3cca7c, imac 0x45bb70, ios 0x2cae0c;
-    static CreateParticlePopup* create(ParticleGameObject*, cocos2d::CCArray*) = win inline, m1 0x3cca54, imac 0x45bb50, ios 0x2cad90 {
-        return CreateParticlePopup::create(p0, p1, "");
+    static CreateParticlePopup* create(ParticleGameObject* object, cocos2d::CCArray* objects, gd::string str) = win 0x414180, m1 0x3cca7c, imac 0x45bb70, ios 0x2cae0c;
+    static CreateParticlePopup* create(ParticleGameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x3cca54, imac 0x45bb50, ios 0x2cad90 {
+        return CreateParticlePopup::create(object, objects, "");
     }
 
     virtual void update(float) = win 0x41a520, imac 0x463940, m1 0x3d3a48, ios 0x2d0d74;
@@ -4655,54 +4655,103 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x3d3b8c, imac 0x463ab0, ios 0x2d0ea8;
     virtual void textChanged(CCTextInputNode*) = win 0x41a6b0, imac 0x463af0, m1 0x3d3ba8, ios 0x2d0ec4;
 
-    TodoReturn centerAlignParticle(cocos2d::CCObject*);
-    void createParticleSlider(gjParticleValue value, int page, bool centerLabel, cocos2d::CCPoint position, cocos2d::CCArray* displayNodes) = win 0x4188d0;
-    TodoReturn getPage(int);
-    TodoReturn getPageButton(int);
-    TodoReturn getPageContainer(int);
-    TodoReturn getPageInputNodes(int);
-    TodoReturn getPageMenu(int);
-    TodoReturn getPageSliders(int);
-    bool init(ParticleGameObject*, cocos2d::CCArray*, gd::string) = win 0x414370, m1 0x3ccd08, imac 0x45be60, ios 0x2caef4;
-    TodoReturn maxSliderValueForType(gjParticleValue);
-    TodoReturn minSliderValueForType(gjParticleValue);
-    void onAnimateActiveOnly(cocos2d::CCObject* sender);
-    void onAnimateOnTrigger(cocos2d::CCObject* sender);
-    void onCalcEmission(cocos2d::CCObject* sender);
+    void centerAlignParticle(cocos2d::CCObject* sender) = win 0x41a2d0, m1 0x3d0ee4, imac 0x4608c0, ios 0x2ce59c;
+    void createParticleSlider(gjParticleValue value, int page, bool centerLabel, cocos2d::CCPoint position, cocos2d::CCArray* displayNodes) = win 0x4188d0, m1 0x3d15e0, imac 0x460fa0, ios 0x2cec5c;
+    cocos2d::CCNode* getPage(int page) = win inline, m1 0x3d12d8, imac 0x460c80, ios inline {
+        return static_cast<cocos2d::CCNode*>(m_pageNodes->objectAtIndex(page - 1));
+    }
+    CCMenuItemSpriteExtra* getPageButton(int page) = win inline, m1 0x3d2510, imac 0x461fd0, ios inline {
+        return static_cast<CCMenuItemSpriteExtra*>(m_pageButtons->objectAtIndex(page - 1));
+    }
+    cocos2d::CCArray* getPageContainer(int page) = win inline, m1 0x3d12e4, imac 0x460ca0, ios inline {
+        return static_cast<cocos2d::CCArray*>(m_pageObjectArrays->objectAtIndex(page - 1));
+    }
+    cocos2d::CCDictionary* getPageInputNodes(int page) = win inline, m1 0x3d15d0, imac 0x460f60, ios inline {
+        return static_cast<cocos2d::CCDictionary*>(m_inputDicts->objectAtIndex(page));
+    }
+    cocos2d::CCMenu* getPageMenu(int page) = win inline, m1 0x3d12d0, imac 0x460c70, ios inline {
+        return m_buttonMenu;
+    }
+    cocos2d::CCDictionary* getPageSliders(int page) = win inline, m1 0x3d15d8, imac 0x460f80, ios inline {
+        return static_cast<cocos2d::CCDictionary*>(m_sliderDicts->objectAtIndex(page));
+    }
+    bool init(ParticleGameObject* object, cocos2d::CCArray* objects, gd::string str) = win 0x414370, m1 0x3ccd08, imac 0x45be60, ios 0x2caef4;
+    float maxSliderValueForType(gjParticleValue type) = win 0x41b8a0, m1 0x3d421c, imac 0x4641b0, ios 0x2d13b4;
+    float minSliderValueForType(gjParticleValue type) = win 0x41b970, m1 0x3d41fc, imac 0x464190, ios 0x2d1394;
+    void onAnimateActiveOnly(cocos2d::CCObject* sender) = win 0x4194b0, m1 0x3d20d0, imac 0x461ad0, ios 0x2cf6fc;
+    void onAnimateOnTrigger(cocos2d::CCObject* sender) = win 0x419420, m1 0x3d205c, imac 0x461a40, ios 0x2cf688;
+    void onCalcEmission(cocos2d::CCObject* sender) = win 0x41a8a0, m1 0x3d2d8c, imac 0x4628b0, ios 0x2d00cc;
     void onClose(cocos2d::CCObject* sender) = ios 0x2ce250, win 0x41cf20, imac 0x460450, m1 0x3d0ad8;
-    void onCopySettings(cocos2d::CCObject* sender);
-    void onDuplicateColor(cocos2d::CCObject* sender);
-    void onDurationForever(cocos2d::CCObject* sender);
-    void onDynamicColor(cocos2d::CCObject* sender);
-    void onDynamicRotation(cocos2d::CCObject* sender);
-    void onEmitterMode(cocos2d::CCObject* sender);
-    void onEndRGBVarSync(cocos2d::CCObject* sender);
-    void onMaxEmission(cocos2d::CCObject* sender);
-    void onMode(cocos2d::CCObject* sender) = win 0x41a0c0;
-    void onOrderSensitive(cocos2d::CCObject* sender);
-    void onPage(cocos2d::CCObject* sender) = win 0x41a320;
-    void onPasteSettings(cocos2d::CCObject* sender);
-    void onPosType(cocos2d::CCObject* sender);
-    void onQuickStart(cocos2d::CCObject* sender);
-    void onSelectColor(cocos2d::CCObject* sender);
-    void onSelectParticleTexture(cocos2d::CCObject* sender);
-    void onStartRGBVarSync(cocos2d::CCObject* sender);
-    void onToggleBlending(cocos2d::CCObject* sender);
-    void onToggleStartRadiusEqualToEnd(cocos2d::CCObject* sender);
-    void onToggleStartRotationIsDir(cocos2d::CCObject* sender);
-    void onToggleStartSizeEqualToEnd(cocos2d::CCObject* sender);
-    void onToggleStartSpinEqualToEnd(cocos2d::CCObject* sender);
-    void onUniformColor(cocos2d::CCObject* sender);
-    bool particleValueIsInt(gjParticleValue) = win 0x41c920;
-    void sliderChanged(cocos2d::CCObject* sender);
-    gd::string titleForParticleValue(gjParticleValue) = m1 0x3d2930, imac 0x462430;
-    void toggleGravityMode(bool) = win 0x41cc40;
-    TodoReturn updateColorSprite(int);
-    void updateInputNodeStringForType(gjParticleValue) = win 0x41c990, m1 0x3d295c, imac 0x462470, ios 0x2cfd58;
-    void updateParticleValueForType(float, gjParticleValue, cocos2d::CCParticleSystemQuad*) = win 0x41ba90, m1 0x3d2e28, imac 0x462960, ios 0x2d0168;
-    void updateSliderForType(gjParticleValue) = win 0x41c700, m1 0x3d2c3c, imac 0x462740, ios 0x2cff7c;
-    float valueForParticleValue(gjParticleValue) = win 0x41b210;
-    void willClose();
+    void onCopySettings(cocos2d::CCObject* sender) = win 0x419a30, m1 0x3d0c6c, imac 0x460620, ios 0x2ce394;
+    void onDuplicateColor(cocos2d::CCObject* sender) = win 0x419900, m1 0x3d1484, imac 0x460e30, ios 0x2ceb10;
+    void onDurationForever(cocos2d::CCObject* sender) = win 0x41a800, m1 0x3d2cfc, imac 0x462810, ios 0x2d003c;
+    void onDynamicColor(cocos2d::CCObject* sender) = win 0x4195d0, m1 0x3d21b8, imac 0x461bf0, ios 0x2cf7e4;
+    void onDynamicRotation(cocos2d::CCObject* sender) = win 0x419360, m1 0x3d2038, imac 0x461a00, ios 0x2cf664;
+    void onEmitterMode(cocos2d::CCObject* sender) = win 0x41cbc0, m1 0x3d12f0, imac 0x460cc0, ios 0x2ce97c;
+    void onEndRGBVarSync(cocos2d::CCObject* sender) = win 0x4193f0, m1 0x3d238c, imac 0x461e60, ios 0x2cf9b4;
+    void onMaxEmission(cocos2d::CCObject* sender) = win 0x41a850, m1 0x3d2d44, imac 0x462860, ios 0x2d0084;
+    void onMode(cocos2d::CCObject* sender) = win 0x41a0c0, m1 0x3d0e2c, imac 0x460800, ios 0x2ce4e4;
+    void onOrderSensitive(cocos2d::CCObject* sender) = win 0x419390, m1 0x3d2344, imac 0x461de0, ios 0x2cf96c;
+    void onPage(cocos2d::CCObject* sender) = win 0x41a320, m1 0x3d1044, imac 0x4609f0, ios 0x2ce6fc;
+    void onPasteSettings(cocos2d::CCObject* sender) = win 0x419c80, m1 0x3d0d84, imac 0x460740, ios 0x2ce484;
+    void onPosType(cocos2d::CCObject* sender) = win 0x41cb40, m1 0x3d1240, imac 0x460bf0, ios 0x2ce8ec;
+    void onQuickStart(cocos2d::CCObject* sender) = win 0x419540, m1 0x3d2144, imac 0x461b60, ios 0x2cf770;
+    void onSelectColor(cocos2d::CCObject* sender) = win 0x4197d0, m1 0x3d0f34, imac 0x460910, ios 0x2ce5ec;
+    void onSelectParticleTexture(cocos2d::CCObject* sender) = win 0x41a1a0, m1 0x3d23b0, imac 0x461ea0, ios 0x2cf9d8;
+    void onStartRGBVarSync(cocos2d::CCObject* sender) = win 0x4193c0, m1 0x3d2368, imac 0x461e20, ios 0x2cf990;
+    void onToggleBlending(cocos2d::CCObject* sender) = win 0x419250, m1 0x3d1f4c, imac 0x4618c0, ios 0x2cf578;
+    void onToggleStartRadiusEqualToEnd(cocos2d::CCObject* sender) = win 0x4192c0, m1 0x3d1fd4, imac 0x461980, ios 0x2cf600;
+    void onToggleStartRotationIsDir(cocos2d::CCObject* sender) = win 0x419320, m1 0x3d1ff8, imac 0x4619c0, ios 0x2cf624;
+    void onToggleStartSizeEqualToEnd(cocos2d::CCObject* sender) = win 0x419290, m1 0x3d1f8c, imac 0x461900, ios 0x2cf5b8;
+    void onToggleStartSpinEqualToEnd(cocos2d::CCObject* sender) = win 0x4192f0, m1 0x3d1fb0, imac 0x461940, ios 0x2cf5dc;
+    void onUniformColor(cocos2d::CCObject* sender) = win 0x4196f0, m1 0x3d2284, imac 0x461cf0, ios 0x2cf8ac;
+    bool particleValueIsInt(gjParticleValue type) = win 0x41c920, m1 0x3d436c, imac 0x464300, ios inline {
+        switch (type) {
+            case gjParticleValue::MaxParticles: case gjParticleValue::Emission:
+            case gjParticleValue::Angle: case gjParticleValue::AngleVar:
+            case gjParticleValue::Speed: case gjParticleValue::SpeedVar:
+            case gjParticleValue::PosVarX: case gjParticleValue::PosVarY:
+            case gjParticleValue::GravityX: case gjParticleValue::GravityY:
+            case gjParticleValue::AccelRad: case gjParticleValue::AccelRadVar:
+            case gjParticleValue::AccelTan: case gjParticleValue::AccelTanVar:
+            case gjParticleValue::StartSize: case gjParticleValue::StartSizeVar:
+            case gjParticleValue::EndSize: case gjParticleValue::EndSizeVar:
+            case gjParticleValue::StartSpin: case gjParticleValue::StartSpinVar:
+            case gjParticleValue::EndSpin: case gjParticleValue::EndSpinVar:
+            case gjParticleValue::StartRad: case gjParticleValue::StartRadVar:
+            case gjParticleValue::EndRad: case gjParticleValue::EndRadVar:
+            case gjParticleValue::RotSec: case gjParticleValue::RotSecVar:
+                return true;
+            default:
+                return false;
+        }
+    }
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x41c870, m1 0x3d2b6c, imac 0x462650, ios 0x2cfeac;
+    gd::string titleForParticleValue(gjParticleValue type) = win 0x41a960, m1 0x3d2930, imac 0x462430, ios 0x2cfd2c;
+    void toggleGravityMode(bool gravityMode) = win 0x41cc40, m1 0x3d251c, imac 0x461ff0, ios 0x2cfb38;
+    void updateColorSprite(int tag) = win inline, m1 0x3d1370, imac 0x460d40, ios 0x2ce9fc {
+        if (tag == 1) {
+            auto color = m_particle->getStartColor();
+            m_startColorSprite->setColor({ (uint8_t)(color.r * 255.f), (uint8_t)(color.g * 255.f), (uint8_t)(color.b * 255.f) });
+        }
+        else if (tag == 2) {
+            auto color = m_particle->getEndColor();
+            m_endColorSprite->setColor({ (uint8_t)(color.r * 255.f), (uint8_t)(color.g * 255.f), (uint8_t)(color.b * 255.f) });
+        }
+    }
+    void updateInputNodeStringForType(gjParticleValue type) = win 0x41c990, m1 0x3d295c, imac 0x462470, ios 0x2cfd58;
+    void updateParticleValueForType(float value, gjParticleValue type, cocos2d::CCParticleSystemQuad* particle) = win 0x41ba90, m1 0x3d2e28, imac 0x462960, ios 0x2d0168;
+    void updateSliderForType(gjParticleValue type) = win 0x41c700, m1 0x3d2c3c, imac 0x462740, ios 0x2cff7c;
+    float valueForParticleValue(gjParticleValue type) = win 0x41b210, m1 0x3d3ca8, imac 0x463bd0, ios 0x2d0fac;
+    void willClose() = win inline, m1 0x3d376c, imac 0x463640, ios 0x2d0aa8 {
+        auto nodes = this->getPageInputNodes(0);
+        cocos2d::CCDictElement* element;
+        cocos2d::CCDictElement* temp;
+        HASH_ITER(hh, nodes->m_pElements, element, temp) {
+            static_cast<CCTextInputNode*>(element->m_pObject)->onClickTrackNode(false);
+        }
+        this->setKeypadEnabled(false);
+    }
 
     ParticleGameObject* m_targetObject;
     cocos2d::CCArray* m_targetObjects;
