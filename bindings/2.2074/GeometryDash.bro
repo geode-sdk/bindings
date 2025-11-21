@@ -9089,11 +9089,11 @@ class GameCell : TableViewCell {
 class GameEffectsManager : cocos2d::CCNode {
     // virtual ~GameEffectsManager();
 
-    static GameEffectsManager* create(PlayLayer*);
+    static GameEffectsManager* create(PlayLayer* playLayer) = m1 0x1a6888, imac 0x1f00f0;
 
-    void addParticleEffect(cocos2d::CCParticleSystemQuad*, int);
-    bool init(PlayLayer*);
-    void scaleParticle(cocos2d::CCParticleSystemQuad*, float);
+    void addParticleEffect(cocos2d::CCParticleSystemQuad* particle, int) = m1 0x1a6a98, imac 0x1f02a0;
+    bool init(PlayLayer* playLayer) = m1 0x1a68e4, imac 0x1f0150;
+    void scaleParticle(cocos2d::CCParticleSystemQuad* particle, float scale) = m1 0x1a68f0, imac 0x1f0160;
 
     PlayLayer* m_playLayer;
 }
@@ -11978,7 +11978,7 @@ class GameObjectCopy : cocos2d::CCObject {
 
 [[link(android)]]
 class GameObjectEditorState {
-    void loadValues(GameObject* obj) = win inline, m1 0xaa8c, imac 0x9370 {
+    void loadValues(GameObject* obj) = win inline, m1 0xaa8c, imac 0x9370, ios 0x3bd188 {
         m_position = obj->getPosition();
         m_scaleX = obj->m_scaleX / obj->m_pixelScaleX;
         m_scaleY = obj->m_scaleY / obj->m_pixelScaleY;
@@ -13048,25 +13048,25 @@ class GhostTrailEffect : cocos2d::CCNode {
     // virtual ~GhostTrailEffect();
     //GhostTrailEffect() = ios 0x305d20;
 
-    static GhostTrailEffect* create() = win 0x69fd0, m1 0x5148f0, imac 0x5e22a0;
+    static GhostTrailEffect* create() = win 0x69fd0, m1 0x5148f0, imac 0x5e22a0, ios 0x2f4e78;
 
     virtual bool init() = win 0x6a0b0, imac 0x5e2370, m1 0x5149c0, ios 0x2f4eec;
     virtual void draw() = m1 0x514f28, imac 0x5e2920, ios 0x2f5450 {}
 
-    void doBlendAdditive() = win inline, m1 0x514f18, imac 0x5e2900 {
+    void doBlendAdditive() = win inline, m1 0x514f18, imac 0x5e2900, ios 0x2f5440 {
         m_blendFunc.src = GL_SRC_ALPHA;
         m_blendFunc.dst = GL_ONE;
     }
-    void runWithTarget(cocos2d::CCSprite*, float, float, float, float, bool) = win inline, m1 0x514a1c, imac 0x5e23d0, ios 0x2f4f48 {
-        m_iconSprite = p0;
-        m_snapshotInterval = p1;
-        m_fadeInterval = p2;
-        if (p4 <= .1f) p4 = .1f;
-        m_scaleTwice = p5;
-        m_ghostScale = p4;
-        this->schedule(schedule_selector(GhostTrailEffect::trailSnapshot), p1);
-        if (p3 > 0.f) this->runAction(cocos2d::CCSequence::create(
-            cocos2d::CCDelayTime::create(p3),
+    void runWithTarget(cocos2d::CCSprite* sprite, float snapshotInterval, float fadeInterval, float duration, float ghostScale, bool scaleTwice) = win inline, m1 0x514a1c, imac 0x5e23d0, ios 0x2f4f48 {
+        m_iconSprite = sprite;
+        m_snapshotInterval = snapshotInterval;
+        m_fadeInterval = fadeInterval;
+        if (ghostScale <= .1f) ghostScale = .1f;
+        m_scaleTwice = scaleTwice;
+        m_ghostScale = ghostScale;
+        this->schedule(schedule_selector(GhostTrailEffect::trailSnapshot), snapshotInterval);
+        if (duration > 0.f) this->runAction(cocos2d::CCSequence::create(
+            cocos2d::CCDelayTime::create(duration),
             cocos2d::CCCallFunc::create(this, callfunc_selector(GhostTrailEffect::stopTrail)),
             nullptr
         ));
@@ -13076,7 +13076,7 @@ class GhostTrailEffect : cocos2d::CCNode {
         this->stopAllActions();
         this->removeMeAndCleanup();
     }
-    void trailSnapshot(float) = win 0x6a110, m1 0x514ad0, imac 0x5e2470, ios 0x2f4ff8;
+    void trailSnapshot(float dt) = win 0x6a110, m1 0x514ad0, imac 0x5e2470, ios 0x2f4ff8;
 
     float m_snapshotInterval;
     float m_fadeInterval;
@@ -14976,18 +14976,13 @@ class GJEffectManager : cocos2d::CCNode {
         command.m_transformTriggerProperty450 = property450;
         command.m_transformTriggerProperty451 = property451;
         command.m_onlyMove = onlyMove;
-        command.m_duration = duration;
         command.m_targetGroupID = targetID;
         command.m_centerGroupID = centerID;
-        command.m_easingType = (EasingType)easingType;
-        command.m_easingRate = easingRate;
         command.m_transformRelatedFalse = p10;
         command.m_relativeRotation = relativeRotation;
         command.m_triggerUniqueID = uniqueID;
         command.m_controlID = controlID;
-        command.m_actionValue1 = 1.0;
-        command.m_commandType = 4;
-        command.m_actionType1 = 4;
+        command.runTransformCommand(duration, easingType, easingRate);
     }
     cocos2d::CCArray* getAllColorActions() = win 0x253f40, m1 0x26d2a8, imac 0x2ca090, ios 0x12ae8;
     cocos2d::CCArray* getAllColorSprites() = win inline, m1 0x26d2f8, imac 0x2ca0f0, ios inline {
@@ -19299,17 +19294,140 @@ class GroupCommandObject2 {
     GroupCommandObject2() = win 0x2506c0, m1 0x43d350, imac 0x4d9be0, ios 0xe8a4;
     // GroupCommandObject2(GroupCommandObject2 const&);
 
-    void reset() = win 0x250730;
-    TodoReturn resetDelta(bool);
-    TodoReturn runFollowCommand(double, double, double);
-    TodoReturn runMoveCommand(cocos2d::CCPoint, double, int, double, bool, bool, bool, bool, double, double);
-    TodoReturn runPlayerFollowCommand(double, double, int, double, double);
-    TodoReturn runRotateCommand(double, double, int, double, bool, int);
-    TodoReturn runTransformCommand(double, int, double);
-    void step(float) = win 0x250930;
-    TodoReturn stepTransformCommand(float, bool, bool);
-    void updateAction(int, float) = win 0x250a00;
-    TodoReturn updateEffectAction(float, int);
+    void reset() = win 0x250730, m1 0x43d488, imac 0x4d9db0, ios 0xe910;
+    void resetDelta(bool intermediate) = win inline, m1 0x43da44, imac 0x4da500, ios 0xede4 {
+        m_oldDeltaX = m_deltaX;
+        m_oldDeltaY = m_deltaY;
+        m_oldDeltaX_3 = m_deltaX_3;
+        m_oldDeltaY_3 = m_deltaY_3;
+        m_deltaX = 0.0;
+        m_deltaY = 0.0;
+        m_currentRotateOrTransformDelta = 0.0;
+        if (!intermediate) {
+            m_deltaX_3 = 0.0;
+            m_deltaY_3 = 0.0;
+            m_Delta_3_Related = 0.0;
+        }
+    }
+    void runFollowCommand(double xMod, double yMod, double duration) = win inline, m1 0x43d9c8, imac 0x4da450, ios 0xed6c {
+        m_commandType = 2;
+        m_followXMod = xMod;
+        m_followYMod = yMod;
+        m_duration = duration;
+        if (xMod == 0.0 && yMod == 0.0) {
+            m_finished = true;
+            m_finishRelated = true;
+        }
+    }
+    void runMoveCommand(cocos2d::CCPoint offset, double duration, int easingType, double easingRate, bool lockPlayerX, bool lockPlayerY, bool lockCameraX, bool lockCameraY, double moveModX, double moveModY) = win inline, m1 0x43d808, imac 0x4da1f0, ios 0xebac {
+        m_commandType = 0;
+        m_moveOffset = offset;
+        m_duration = duration;
+        m_easingType = (EasingType)easingType;
+        m_easingRate = easingRate;
+        m_lockToPlayerX = lockPlayerX;
+        m_lockToPlayerY = lockPlayerY;
+        m_lockToCameraX = lockCameraX;
+        m_lockToCameraY = lockCameraY;
+        m_moveModX = moveModX != 0.0 ? moveModX : 1.0;
+        m_moveModY = moveModY != 0.0 ? moveModY : 1.0;
+        m_lockedInX = lockPlayerX || lockCameraX;
+        m_lockedInY = lockPlayerY || lockCameraY;
+        if (offset.x != 0.f || offset.y != 0.f || lockPlayerX || lockPlayerY || lockCameraX || lockCameraY) {
+            if (offset.x != 0.f && !lockCameraX && !lockPlayerX) {
+                m_actionType1 = 1;
+                m_actionValue1 = offset.x;
+            }
+            if (offset.y != 0.f && !lockCameraY && !lockPlayerY) {
+                if (m_actionType1 == 0) {
+                    m_actionType1 = 2;
+                    m_actionValue1 = offset.y;
+                }
+                else {
+                    m_actionType2 = 2;
+                    m_actionValue2 = offset.y;
+                }
+            }
+        }
+        else {
+            m_finished = true;
+            m_finishRelated = true;
+        }
+    }
+    void runPlayerFollowCommand(double delay, double speed, int offset, double maxSpeed, double duration) = win inline, m1 0x43d9f8, imac 0x4da4a0, ios 0xed9c {
+        m_commandType = 3;
+        m_followYDelay = delay;
+        m_followYSpeed = std::clamp(speed, 0.0, 500.0);
+        m_followYOffset = offset;
+        m_followYMaxSpeed = maxSpeed;
+        m_duration = duration;
+        if (delay <= 0.0) {
+            m_finished = true;
+            m_finishRelated = true;
+        }
+    }
+    void runRotateCommand(double offset, double duration, int easingType, double easingRate, bool lockRotation, int targetType) = win inline, m1 0x43d958, imac 0x4da3a0, ios 0xecfc {
+        m_commandType = 1;
+        m_rotationOffset = offset;
+        m_duration = duration;
+        m_easingType = (EasingType)easingType;
+        m_easingRate = easingRate;
+        m_lockObjectRotation = lockRotation;
+        m_targetPlayer = targetType;
+        if (offset == 0.0) {
+            m_finished = true;
+            m_finishRelated = true;
+        }
+        else {
+            m_actionType1 = 3;
+            m_actionValue1 = offset;
+        }
+    }
+    void runTransformCommand(double duration, int easingType, double easingRate) = win inline, m1 0x43d9a8, imac 0x4da410, ios 0xed4c {
+        m_commandType = 4;
+        m_duration = duration;
+        m_easingType = (EasingType)easingType;
+        m_easingRate = easingRate;
+        m_actionType1 = 4;
+        m_actionValue1 = 1.0;
+    }
+    void step(float dt) = win 0x250930, m1 0x43d570, imac 0x4d9f30, ios 0xe9f4;
+    void stepTransformCommand(float dt, bool intermediate, bool skipStep) = win inline, m1 0x43d784, imac 0x4da170, ios 0xeb4c {
+        if (!m_finishRelated) {
+            if (!skipStep) this->step(dt);
+            m_someInterpValue1RelatedZero = m_someInterpValue1RelatedOne;
+            m_someInterpValue1RelatedOne += m_currentRotateOrTransformDelta;
+            m_someInterpValue2RelatedZero = m_someInterpValue2RelatedOne;
+            if (!intermediate) m_someInterpValue2RelatedOne = m_someInterpValue1RelatedOne;
+        }
+        m_someInterpValue1RelatedZero = m_someInterpValue1RelatedOne;
+        m_someInterpValue2RelatedZero = m_someInterpValue2RelatedOne;
+        m_someInterpValue2RelatedOne = m_someInterpValue1RelatedOne;
+    }
+    void updateAction(int type, float value) = win 0x250a00, m1 0x43d644, imac 0x4da010, ios 0xeabc;
+    void updateEffectAction(float value, int type) = win inline, m1 0x43da70, imac 0x4da550, ios 0xee10 {
+        switch (type) {
+            case 1:
+                if (!m_lockedInX) {
+                    m_currentXOffset = value;
+                    m_deltaX += value;
+                    m_deltaX_3 += value;
+                }
+                break;
+            case 2:
+                if (!m_lockedInY) {
+                    m_currentYOffset = value;
+                    m_deltaY += value;
+                    m_deltaY_3 += value;
+                }
+                break;
+            case 3:
+            case 4:
+                m_currentRotateOrTransformDelta += value - m_currentRotateOrTransformValue;
+                m_currentRotateOrTransformValue = value;
+                break;
+        }
+    }
 
     int m_groupCommandUniqueID;
     cocos2d::CCPoint m_moveOffset;
