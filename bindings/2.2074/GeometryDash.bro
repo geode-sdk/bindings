@@ -3911,7 +3911,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
         CC_SAFE_RELEASE(m_copyObjects);
     }
 
-    static gd::string colorToHex(cocos2d::ccColor3B) = win 0x926d0;
+    static gd::string colorToHex(cocos2d::ccColor3B color) = win 0x926d0, m1 0x631c5c, imac 0x713640, ios 0x417b98;
     static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array, ColorAction* action) = win 0x8da30, m1 0x62d6a0, imac 0x70e810, ios 0x41424c;
 
     static ColorSelectPopup* create(cocos2d::ccColor3B color) = win inline, m1 0x62d8a8, imac 0x70eb10, ios 0x4142e8 {
@@ -3925,7 +3925,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     static ColorSelectPopup* create(EffectGameObject* effect, cocos2d::CCArray* array) = win inline, m1 0x62d698, imac 0x70e800, ios 0x414244 {
         return ColorSelectPopup::create(effect, array, nullptr);
     }
-    static cocos2d::ccColor3B hexToColor(gd::string) = win 0x91a60;
+    static cocos2d::ccColor3B hexToColor(gd::string hex) = win 0x91a60, m1 0x6320f4, imac 0x713bb0, ios 0x417ce8;
 
     virtual void show() = win 0x92ba0, m1 0x6332dc, imac 0x714aa0, ios 0x418298;
     virtual void determineStartValues() = win 0x90390, m1 0x631010, imac 0x712800, ios 0x417284;
@@ -3934,36 +3934,64 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x93690, imac 0x715130, m1 0x633898, ios 0x418764;
     virtual void keyBackClicked() = win 0x91740, m1 0x6316a4, imac 0x712fc0, ios 0x417888;
 
-    void closeColorSelect(cocos2d::CCObject*) = win 0x914a0, m1 0x62fc94, imac 0x711290, ios 0x4164b0;
-    cocos2d::ccColor3B getColorValue();
-    bool init(EffectGameObject*, cocos2d::CCArray*, ColorAction*) = ios 0x414324, win 0x8dc20, imac 0x70eb40, m1 0x62d8e4;
+    void closeColorSelect(cocos2d::CCObject* sender) = win 0x914a0, m1 0x62fc94, imac 0x711290, ios 0x4164b0;
+    cocos2d::ccColor3B getColorValue() = win inline, m1 0x63150c, imac 0x712d90, ios inline {
+        return m_colorPicker->getColorValue();
+    }
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action) = ios 0x414324, win 0x8dc20, imac 0x70eb40, m1 0x62d8e4;
     void onCopy(cocos2d::CCObject* sender) = win 0x90d60, m1 0x630200, imac 0x7118b0, ios 0x416828;
-    void onCopyOpacity(cocos2d::CCObject* sender) = win 0x90b00;
+    void onCopyOpacity(cocos2d::CCObject* sender) = win 0x90b00, m1 0x63085c, imac 0x711ff0, ios 0x416d3c;
     void onDefault(cocos2d::CCObject* sender) = win 0x90e60, m1 0x630280, imac 0x711930, ios 0x4168a8;
-    void onHSVLegacyMode(cocos2d::CCObject* sender);
+    void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x90a70, m1 0x6308e8, imac 0x712090, ios 0x416dc0;
     void onPaste(cocos2d::CCObject* sender) = win 0x90de0, m1 0x630234, imac 0x7118f0, ios 0x41685c;
-    void onPlayerColor1(cocos2d::CCObject* sender);
-    void onPlayerColor2(cocos2d::CCObject* sender);
-    void onSelectSpecialColor(cocos2d::CCObject* sender);
-    void onTintGround(cocos2d::CCObject* sender);
+    void onPlayerColor1(cocos2d::CCObject* sender) = win 0x90ba0, m1 0x630598, imac 0x711cf0, ios 0x416a90;
+    void onPlayerColor2(cocos2d::CCObject* sender) = win 0x90c80, m1 0x63064c, imac 0x711db0, ios 0x416b3c;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x93490, m1 0x63095c, imac 0x712120, ios 0x416e34;
+    void onTintGround(cocos2d::CCObject* sender) = win 0x90920, m1 0x630704, imac 0x711e70, ios 0x416bec;
     void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x93500, m1 0x630820, imac 0x711fb0, ios 0x416d00;
-    void onToggleTintMode(cocos2d::CCObject* sender) = win 0x909b0;
+    void onToggleTintMode(cocos2d::CCObject* sender) = win 0x909b0, m1 0x630778, imac 0x711f00, ios 0x416c60;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = ios 0x416e98, win 0x93420, m1 0x6309c0, imac 0x712170;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x92c50, m1 0x630c80, imac 0x712450, ios 0x417000;
-    void selectColor(cocos2d::ccColor3B);
+    void selectColor(cocos2d::ccColor3B color) = win inline, m1 0x630164, imac 0x711820, ios inline {
+        m_colorPicker->setColorValue(color);
+    }
     void sliderChanged(cocos2d::CCObject* sender) = win 0x91130, m1 0x62fe2c, imac 0x7114a0, ios 0x4165ec;
-    void updateColorLabels();
-    void updateColorValue();
-    void updateCopyColor() = win 0x93830;
-    void updateCopyColorTextInputLabel();
-    void updateCustomColorIdx() = win 0x93270;
+    void updateColorLabels() = win 0x91880, m1 0x63189c, imac 0x7131f0, ios 0x4179b4;
+    void updateColorValue() = win inline, m1 0x6317d4, imac 0x713120, ios 0x417908 {
+        if (m_colorAction) {
+            m_colorAction->m_fromColor = m_currentColor;
+        }
+        else if (m_gameObject) {
+            m_gameObject->m_triggerTargetColor = m_currentColor;
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_triggerTargetColor = m_currentColor;
+            }
+        }
+    }
+    void updateCopyColor() = win 0x93830, m1 0x6337d0, imac 0x715030, ios 0x4186a8;
+    void updateCopyColorTextInputLabel() = win 0x93aa0, m1 0x630e10, imac 0x712600, ios 0x417190;
+    void updateCustomColorIdx() = win 0x93270, m1 0x633330, imac 0x714b00, ios 0x4182ec;
     void updateDuration() = win 0x91220, m1 0x6315a8, imac 0x712e60, ios 0x417794;
-    void updateDurLabel() = imac 0x7116c0, m1 0x630004;
-    void updateHSVMode() = win 0x93540;
-    void updateHSVValue();
+    void updateDurLabel() = win 0x91360, imac 0x7116c0, m1 0x630004, ios 0x4166ec;
+    void updateHSVMode() = win 0x93540, m1 0x630cec, imac 0x7124c0, ios 0x41706c;
+    void updateHSVValue() = win inline, m1 0x631614, imac 0x712ef0, ios 0x417800 {
+        if (m_colorAction) {
+            m_colorAction->m_copyHSV = m_hsv;
+        }
+        else if (m_gameObject) {
+            m_gameObject->m_hsvValue = m_hsv;
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_hsvValue = m_hsv;
+            }
+        }
+    }
     void updateOpacity() = win 0x912b0, m1 0x631520, imac 0x712db0, ios 0x417714;
     void updateOpacityLabel() = win 0x91430, m1 0x63019c, imac 0x711850, ios 0x4167c4;
-    void updateTextInputLabel();
+    void updateTextInputLabel() = win 0x93310, m1 0x630a80, imac 0x712250, ios 0x416f0c;
 
     cocos2d::extension::CCControlColourPicker* m_colorPicker;
     bool m_unk3c0;
@@ -14973,28 +15001,28 @@ class GJFlyGroundLayer : GJGroundLayer {
 class GJFollowCommandLayer : SetupTriggerPopup {
     // virtual ~GJFollowCommandLayer();
 
-    static GJFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x268d00;
+    static GJFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x268d00, m1 0x266054, imac 0x2c1d70, ios 0x139288;
 
     virtual void determineStartValues() = win 0x26a130, imac 0x2c39d0, m1 0x267ae4, ios 0x13a72c;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x26b1a0, imac 0x2c45a0, m1 0x268494, ios 0x13aed4;
     virtual void textChanged(CCTextInputNode*) = win 0x26a850, imac 0x2c3fe0, m1 0x268044, ios 0x13ac1c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x268e30, m1 0x2661e4, imac 0x2c1fb0, ios 0x139368;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x268e30, m1 0x2661e4, imac 0x2c1fb0, ios 0x139368;
     void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x26a790, m1 0x267498, imac 0x2c33a0, ios 0x13a3b8;
     void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x26a7f0, m1 0x267554, imac 0x2c3460, ios 0x13a420;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
-    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x26a5d0;
-    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x26a610;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440, m1 0x267174, imac 0x2c3030, ios 0x13a21c;
+    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x26a5d0, m1 0x267378, imac 0x2c3240, ios 0x13a338;
+    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x26a610, m1 0x267408, imac 0x2c32f0, ios 0x13a378;
     void updateDuration() = win 0x26b120, m1 0x267df4, imac 0x2c3d20, ios 0x13a9e4;
-    void updateDurLabel(bool) = win 0x26a500;
+    void updateDurLabel(bool decimals) = win 0x26a500, m1 0x267204, imac 0x2c30d0, ios 0x13a25c;
     void updateTargetGroupID() = win 0x26ae80, m1 0x267f44, imac 0x2c3ea0, ios 0x13ab1c;
     void updateTargetGroupID2() = win 0x26af50, m1 0x267fc4, imac 0x2c3f40, ios 0x13ab9c;
-    void updateTextInputLabel() = win 0x26ad60;
-    void updateTextInputLabel2() = win 0x26adf0;
+    void updateTextInputLabel() = win 0x26ad60, m1 0x2675fc, imac 0x2c3510, ios 0x13a47c;
+    void updateTextInputLabel2() = win 0x26adf0, m1 0x267728, imac 0x2c3640, ios 0x13a524;
     void updateXMod() = win 0x26b020, m1 0x267e64, imac 0x2c3da0, ios 0x13aa4c;
-    void updateXModLabel() = win 0x26a650;
+    void updateXModLabel() = win 0x26a650, m1 0x267854, imac 0x2c3770, ios 0x13a5cc;
     void updateYMod() = win 0x26b0a0, m1 0x267ed4, imac 0x2c3e20, ios 0x13aab4;
-    void updateYModLabel() = win 0x26a6f0;
+    void updateYModLabel() = win 0x26a6f0, m1 0x26799c, imac 0x2c38a0, ios 0x13a67c;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
@@ -16777,29 +16805,57 @@ class GJPathSprite : CCSpriteCOpacity {
 class GJPFollowCommandLayer : SetupTriggerPopup {
     // virtual ~GJPFollowCommandLayer();
 
-    static GJPFollowCommandLayer* create(EffectGameObject*, cocos2d::CCArray*) = win 0x282da0;
+    static GJPFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x282da0, m1 0x2e5330, imac 0x3510e0, ios 0x161ec4;
 
     virtual void determineStartValues() = win 0x284790, imac 0x353270, m1 0x2e7324, ios 0x16384c;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x2855f0, imac 0x354000, m1 0x2e7e78, ios 0x16412c;
     virtual void textChanged(CCTextInputNode*) = win 0x284d20, imac 0x353890, m1 0x2e78a0, ios 0x163d48;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x282ed0, m1 0x2e54c8, imac 0x351320, ios 0x161fb0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x282ed0, m1 0x2e54c8, imac 0x351320, ios 0x161fb0;
     void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x284cc0, m1 0x2e6c28, imac 0x352bb0, ios 0x163474;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
-    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x284b20;
-    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x284b50;
-    void updateDuration() = win 0x26b120;
-    void updateDurLabel(bool) = win 0x26a500;
-    void updateMaxSpeed();
-    void updateMaxSpeedLabel();
-    void updateOffsetLabel();
-    void updatePlayerOffset();
-    void updateTargetGroupID() = win 0x285420;
-    void updateTextInputLabel() = win 0x285390;
-    void updateXMod() = win 0x2854f0;
-    void updateXModLabel() = win 0x284b80;
-    void updateYMod() = win 0x285570;
-    void updateYModLabel() = win 0x284c20;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440, m1 0x2e691c, imac 0x352860, ios 0x1632f0;
+    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x284b20, m1 0x2e6b20, imac 0x352a70, ios 0x16340c;
+    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x284b50, m1 0x2e6ba4, imac 0x352b10, ios 0x163440;
+    void updateDuration() = win 0x26b120, m1 0x2e76d0, imac 0x353670, ios 0x163b90;
+    void updateDurLabel(bool decimals) = win 0x26a500, m1 0x2e69ac, imac 0x352900, ios 0x163330;
+    void updateMaxSpeed() = win inline, m1 0x2e7e00, imac 0x353f60, ios 0x1640bc {
+        if (m_gameObject) {
+            m_gameObject->m_followYMaxSpeed = m_maxSpeed;
+        }
+        else {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_followYMaxSpeed = m_maxSpeed;
+            }
+        }
+    }
+    void updateMaxSpeedLabel() = win inline, m1 0x2e71dc, imac 0x353140, ios 0x16379c {
+        m_disableTextDelegate = true;
+        if (m_maxSpeed == -99999.f) m_maxSpeedInput->setString("");
+        else m_maxSpeedInput->setString(cocos2d::CCString::createWithFormat("%0.1f", m_maxSpeed)->getCString());
+        m_disableTextDelegate = false;
+    }
+    void updateOffsetLabel() = win inline, m1 0x2e70a0, imac 0x353000, ios 0x1636e4 {
+        m_disableTextDelegate = true;
+        if (m_offset == -99999) m_offsetInput->setString("");
+        else m_offsetInput->setString(cocos2d::CCString::createWithFormat("%i", (int)(m_offset / 3.f))->getCString());
+        m_disableTextDelegate = false;
+    }
+    void updatePlayerOffset() = win inline, m1 0x2e7d90, imac 0x353ee0, ios 0x164054 {
+        if (m_gameObject) {
+            m_gameObject->m_followYOffset = m_offset;
+        }
+        else {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_followYOffset = m_offset;
+            }
+        }
+    }
+    void updateTargetGroupID() = win 0x285420, m1 0x2e7820, imac 0x3537f0, ios 0x163cc8;
+    void updateTextInputLabel() = win 0x285390, m1 0x2e6ce4, imac 0x352c70, ios 0x1634dc;
+    void updateXMod() = win 0x2854f0, m1 0x2e7740, imac 0x3536f0, ios 0x163bf8;
+    void updateXModLabel() = win 0x284b80, m1 0x2e6e10, imac 0x352da0, ios 0x163584;
+    void updateYMod() = win 0x285570, m1 0x2e77b0, imac 0x353770, ios 0x163c60;
+    void updateYModLabel() = win 0x284c20, m1 0x2e6f58, imac 0x352ed0, ios 0x163634;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
@@ -17116,38 +17172,38 @@ class GJRobotSprite : CCAnimatedSprite {
 class GJRotateCommandLayer : SetupTriggerPopup {
     // virtual ~GJRotateCommandLayer();
 
-    static GJRotateCommandLayer* create(EffectGameObject*, cocos2d::CCArray*);
+    static GJRotateCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = m1 0x4480, imac 0x1b00;
 
     virtual void determineStartValues() = imac 0x45d0, m1 0x6cc8;
     virtual void onClose(cocos2d::CCObject* sender) = m1 0x7988, imac 0x5520;
     virtual void textChanged(CCTextInputNode*) = imac 0x4f80, m1 0x7534;
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = m1 0x7148, imac 0x4af0;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x461c, imac 0x1d60;
-    void onEasing(cocos2d::CCObject* sender);
-    void onEasingRate(cocos2d::CCObject* sender);
-    void onFollowRotation(cocos2d::CCObject* sender);
-    void onLockRotation(cocos2d::CCObject* sender);
-    void onUpdateGroupID(cocos2d::CCObject* sender);
-    void onUpdateGroupID2(cocos2d::CCObject* sender);
-    void sliderChanged(cocos2d::CCObject* sender);
-    void sliderDegreesChanged(cocos2d::CCObject* sender);
-    void sliderTimesChanged(cocos2d::CCObject* sender);
-    void toggleEasingRateVisibility();
-    void updateCommandDegrees();
-    void updateCommandTimes();
-    void updateDegreesLabel();
-    void updateDuration();
-    void updateDurLabel(bool);
-    void updateEasingLabel();
-    void updateEasingRateLabel();
-    void updateMoveCommandEasing();
-    void updateMoveCommandEasingRate();
-    void updateTargetGroupID();
-    void updateTargetGroupID2();
-    void updateTextInputLabel();
-    void updateTextInputLabel2();
-    void updateTimesLabel();
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = m1 0x461c, imac 0x1d60;
+    void onEasing(cocos2d::CCObject* sender) = m1 0x626c, imac 0x3b50;
+    void onEasingRate(cocos2d::CCObject* sender) = m1 0x5f80, imac 0x38b0;
+    void onFollowRotation(cocos2d::CCObject* sender) = m1 0x64d4, imac 0x3e00;
+    void onLockRotation(cocos2d::CCObject* sender) = m1 0x6460, imac 0x3d70;
+    void onUpdateGroupID(cocos2d::CCObject* sender) = m1 0x65a4, imac 0x3ef0;
+    void onUpdateGroupID2(cocos2d::CCObject* sender) = m1 0x6660, imac 0x3fb0;
+    void sliderChanged(cocos2d::CCObject* sender) = m1 0x5d7c, imac 0x36a0;
+    void sliderDegreesChanged(cocos2d::CCObject* sender) = m1 0x6324, imac 0x3c10;
+    void sliderTimesChanged(cocos2d::CCObject* sender) = m1 0x63c4, imac 0x3cc0;
+    void toggleEasingRateVisibility() = m1 0x61cc, imac 0x3aa0;
+    void updateCommandDegrees() = m1 0x73c4, imac 0x4dc0;
+    void updateCommandTimes() = m1 0x7354, imac 0x4d40;
+    void updateDegreesLabel() = m1 0x6960, imac 0x42c0;
+    void updateDuration() = m1 0x72e4, imac 0x4cc0;
+    void updateDurLabel(bool decimals) = m1 0x5e0c, imac 0x3740;
+    void updateEasingLabel() = m1 0x6bd8, imac 0x4510;
+    void updateEasingRateLabel() = m1 0x6070, imac 0x3960;
+    void updateMoveCommandEasing() = m1 0x7274, imac 0x4c40;
+    void updateMoveCommandEasingRate() = m1 0x71fc, imac 0x4ba0;
+    void updateTargetGroupID() = m1 0x7434, imac 0x4e40;
+    void updateTargetGroupID2() = m1 0x74b4, imac 0x4ee0;
+    void updateTextInputLabel() = m1 0x6708, imac 0x4060;
+    void updateTextInputLabel2() = m1 0x6834, imac 0x4190;
+    void updateTimesLabel() = m1 0x6aac, imac 0x43e0;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
