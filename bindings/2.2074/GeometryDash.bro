@@ -28242,7 +28242,7 @@ class SetupEnterTriggerPopup : SetupTriggerPopup {
 
     virtual void determineStartValues() = win 0x287eb0, imac 0x2896f0, m1 0x232768, ios 0x2d3498;
 
-    bool init(EnterEffectObject* object, cocos2d::CCArray* objects) = win 0x287930, m1 0x232188, imac 0x289090;
+    bool init(EnterEffectObject* object, cocos2d::CCArray* objects) = win 0x287930, m1 0x232188, imac 0x289090, ios 0x2d2f88;
     void onEnterType(cocos2d::CCObject* sender) = win 0x287f80, m1 0x232694, imac 0x289620, ios 0x2d33cc;
 
     CCMenuItemToggler* m_enterOnlyToggler;
@@ -28500,26 +28500,26 @@ class SetupItemEditTriggerPopup : SetupTriggerPopup {
 class SetupKeyframeAnimPopup : SetupTriggerPopup {
     // virtual ~SetupKeyframeAnimPopup();
 
-    static SetupKeyframeAnimPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x40c970;
+    static SetupKeyframeAnimPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x40c970, m1 0x1a3bd4, imac 0x1ecba0, ios 0x1b5d18;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x40ca80, m1 0x1a3d5c, imac 0x1ecdd0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x40ca80, m1 0x1a3d5c, imac 0x1ecdd0, ios 0x1b5df0;
 }
 
 [[link(android)]]
 class SetupKeyframePopup : SetupTriggerPopup {
     // virtual ~SetupKeyframePopup();
 
-    static SetupKeyframePopup* create(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*) = win 0x40d4a0;
+    static SetupKeyframePopup* create(KeyframeGameObject* object, cocos2d::CCArray* objects, LevelEditorLayer* layer) = win 0x40d4a0, m1 0x1a48c0, imac 0x1edc80, ios 0x1b6630;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x40f180, imac 0x1effa0, m1 0x1a6778, ios 0x1b7d14;
     virtual void onCustomButton(cocos2d::CCObject* sender) = win 0x40e990, imac 0x1efbe0, m1 0x1a6394, ios 0x1b7a24;
     virtual void valueDidChange(int, float) = win 0x40e8b0, imac 0x1ef920, m1 0x1a60a8, ios 0x1b77fc;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x40e8d0, imac 0x1efb50, m1 0x1a62f0, ios 0x1b7980;
 
-    bool init(KeyframeGameObject*, cocos2d::CCArray*, LevelEditorLayer*) = win 0x40d5e0, m1 0x1a4a58, imac 0x1edec0;
-    void onTimeMode(cocos2d::CCObject* sender) = win 0x40f090;
-    void refreshPreviewArt() = win 0x40edf0;
-    void updateTimeModeButtons() = win 0x40f0f0;
+    bool init(KeyframeGameObject* object, cocos2d::CCArray* objects, LevelEditorLayer* layer) = win 0x40d5e0, m1 0x1a4a58, imac 0x1edec0, ios 0x1b671c;
+    void onTimeMode(cocos2d::CCObject* sender) = win 0x40f090, m1 0x1a5f14, imac 0x1ef790, ios 0x1b770c;
+    void refreshPreviewArt() = win 0x40edf0, m1 0x1a60c8, imac 0x1ef940, ios 0x1b781c;
+    void updateTimeModeButtons() = win 0x40f0f0, m1 0x1a601c, imac 0x1ef890, ios 0x1b7770;
 
     cocos2d::CCArray* m_timeModeToggles;
     LevelEditorLayer* m_editorLayer;
@@ -28530,29 +28530,47 @@ class SetupKeyframePopup : SetupTriggerPopup {
 class SetupMGTrigger : SetupTriggerPopup {
     // virtual ~SetupMGTrigger();
 
-    static SetupMGTrigger* create(EffectGameObject*, cocos2d::CCArray*) = win 0x40f3e0;
+    static SetupMGTrigger* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x40f3e0, m1 0x4531d4, imac 0x4f23c0, ios 0x2f1674;
 
     virtual void determineStartValues() = win 0x4104d0, m1 0x454a5c, imac 0x4f3d90, ios 0x2f2ad8;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x410bc0, m1 0x4551e4, imac 0x4f45f0, ios 0x2f3144;
     virtual void textChanged(CCTextInputNode*) = win 0x410830, imac 0x4f4390, m1 0x454fcc, ios 0x2f2f84;
     virtual void valuePopupClosed(ConfigureValuePopup*, float) = win 0x3fedf0, m1 0x454ce8, imac 0x4f4050, ios 0x2f2d1c;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x40f500, m1 0x453360, imac 0x4f2600;
-    void onEasing(cocos2d::CCObject* sender) = win 0x3ff1b0;
-    void onEasingRate(cocos2d::CCObject* sender) = win 0x3fed30;
-    void posFromSliderValue(float);
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440;
-    void sliderValueFromPos(int);
-    void sliderYChanged(cocos2d::CCObject* sender) = win 0x410730;
-    void toggleEasingRateVisibility() = win 0x3ff0a0;
-    void updateDuration() = win 0x26b120;
-    void updateDurLabel(bool) = win 0x26a500;
-    void updateEasingLabel() = win 0x3ff270;
-    void updateEasingRateLabel() = win 0x3feec0;
-    void updateMoveCommandEasing();
-    void updateMoveCommandEasingRate();
-    void updateMoveCommandPosY() = win 0x410ad0;
-    void updateValueYLabel() = win 0x410780;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x40f500, m1 0x453360, imac 0x4f2600, ios 0x2f1750;
+    void onEasing(cocos2d::CCObject* sender) = win 0x3ff1b0, m1 0x4546cc, imac 0x4f3a10, ios 0x2f2888;
+    void onEasingRate(cocos2d::CCObject* sender) = win 0x3fed30, m1 0x4543e0, imac 0x4f3770, ios 0x2f2650;
+    int posFromSliderValue(float value) = win inline, m1 0x454cc0, imac 0x4f4020, ios inline {
+        return (int)((value - .5f) * 200.f) * 3.f;
+    }
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x26a440, m1 0x4541dc, imac 0x4f3560, ios 0x2f2534;
+    float sliderValueFromPos(int pos) = win inline, m1 0x4547dc, imac 0x4f3b20, ios inline {
+        return std::clamp((int)((float)pos / 3.f) / 200.f + .5f, 0.f, 1.f);
+    }
+    void sliderYChanged(cocos2d::CCObject* sender) = win 0x410730, m1 0x454784, imac 0x4f3ad0, ios 0x2f28ec;
+    void toggleEasingRateVisibility() = win 0x3ff0a0, m1 0x45462c, imac 0x4f3960, ios 0x2f27e8;
+    void updateDuration() = win 0x26b120, m1 0x454e84, imac 0x4f4220, ios 0x2f2e54;
+    void updateDurLabel(bool decimals) = win 0x26a500, m1 0x45426c, imac 0x4f3600, ios 0x2f2574;
+    void updateEasingLabel() = win 0x3ff270, m1 0x45496c, imac 0x4f3cd0, ios 0x2f29fc;
+    void updateEasingRateLabel() = win 0x3feec0, m1 0x4544d0, imac 0x4f3820, ios 0x2f2728;
+    void updateMoveCommandEasing() = win inline, m1 0x454e14, imac 0x4f41a0, ios 0x2f2dec {
+        if (m_gameObject) m_gameObject->m_easingType = m_mgEasingType;
+        else {
+            for (int i = 0; i < m_gameObjects->count(); ++i) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_easingType = m_mgEasingType;
+            }
+        }
+    }
+    void updateMoveCommandEasingRate() = win inline, m1 0x454d9c, imac 0x4f4100, ios 0x2f2d7c {
+        if (m_gameObject) m_gameObject->m_easingRate = m_mgEasingRate;
+        else {
+            for (int i = 0; i < m_gameObjects->count(); ++i) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_easingRate = m_mgEasingRate;
+            }
+        }
+    }
+    void updateMoveCommandPosY() = win 0x410ad0, m1 0x454ef4, imac 0x4f42a0, ios 0x2f2ebc;
+    void updateValueYLabel() = win 0x410780, m1 0x454830, imac 0x4f3b90, ios 0x2f2944;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
@@ -28571,7 +28589,7 @@ class SetupMGTrigger : SetupTriggerPopup {
 class SetupMoveCommandPopup : SetupTriggerPopup {
     // virtual ~SetupMoveCommandPopup();
 
-    static SetupMoveCommandPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x278ef0;
+    static SetupMoveCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x278ef0, m1 0x51fba0, imac 0x5ef940, ios 0x272974;
 
     virtual void updateInputValue(int, float&) = win 0x27a4d0, imac 0x5f1410, m1 0x5211d4, ios 0x273cb8;
     virtual void updateInputNode(int, float) = win 0x27a4a0, m1 0x5211a8, imac 0x5f13d0, ios 0x273c8c;
@@ -28580,7 +28598,7 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
     virtual float triggerSliderValueFromValue(int, float) = win 0x27a430, m1 0x521138, imac 0x5f1340, ios 0x273c1c;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x27ab70, imac 0x5f1650, m1 0x5213d8, ios 0x273eac;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x279010, m1 0x51fd2c, imac 0x5efb70, ios 0x272a50;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x279010, m1 0x51fd2c, imac 0x5efb70, ios 0x272a50;
     void updateControlVisibility() = win 0x27a9b0, m1 0x520f38, imac 0x5f1140, ios 0x273a1c;
 
     bool m_smallStep;
@@ -28590,9 +28608,9 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
 class SetupObjectControlPopup : SetupTriggerPopup {
     // virtual ~SetupObjectControlPopup();
 
-    static SetupObjectControlPopup* create(ObjectControlGameObject*, cocos2d::CCArray*) = win 0x45a8c0;
+    static SetupObjectControlPopup* create(ObjectControlGameObject* object, cocos2d::CCArray* objects) = win 0x45a8c0, m1 0x4c419c, imac 0x56f8b0, ios 0x409aa8;
 
-    bool init(ObjectControlGameObject*, cocos2d::CCArray*) = win 0x45a9d0, m1 0x4c4328, imac 0x56fae0;
+    bool init(ObjectControlGameObject* object, cocos2d::CCArray* objects) = win 0x45a9d0, m1 0x4c4328, imac 0x56fae0, ios 0x409b84;
 }
 
 [[link(android)]]
@@ -28726,30 +28744,30 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
 class SetupObjectTogglePopup : SetupTriggerPopup {
     // virtual ~SetupObjectTogglePopup();
 
-    static SetupObjectTogglePopup* create(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x411b70, m1 0x2f5348, imac 0x3624f0, ios 0x1a5e38;
+    static SetupObjectTogglePopup* create(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x411b70, m1 0x2f5348, imac 0x3624f0, ios 0x1a5e38;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x40c730, imac 0x3631a0, m1 0x2f5e64, ios 0x1a66f8;
     virtual void valueDidChange(int, float) = win 0x4125e0, imac 0x363120, m1 0x2f5dec, ios 0x1a6688;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*, bool) = win 0x411c90, m1 0x2f54d8, imac 0x362720, ios 0x1a5f18;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x411c90, m1 0x2f54d8, imac 0x362720, ios 0x1a5f18;
 }
 
 [[link(android)]]
 class SetupOpacityPopup : SetupTriggerPopup {
     // virtual ~SetupOpacityPopup();
 
-    static SetupOpacityPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x412730;
+    static SetupOpacityPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x412730, m1 0x4d448, imac 0x57310, ios 0x271c8;
 
     virtual void determineStartValues() = win 0x413660, imac 0x58780, m1 0x4e708, ios 0x280e8;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x3f2480, imac 0x58d80, m1 0x4ec00, ios 0x284f4;
     virtual void textInputClosed(CCTextInputNode*) = win 0x8b790, m1 0x4e9c0, imac 0x58ae0, ios 0x28374;
     virtual void textChanged(CCTextInputNode*) = win 0x413a50, imac 0x58b20, m1 0x4e9dc, ios 0x28390;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x412860, m1 0x4d5e0, imac 0x57560, ios 0x272b0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x412860, m1 0x4d5e0, imac 0x57560, ios 0x272b0;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4137f0, m1 0x4e1b0, imac 0x581c0, ios 0x27dbc;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x413840, m1 0x4e368, imac 0x583a0, ios 0x27ea0;
     void updateDuration() = win 0x413e50, m1 0x4e954, imac 0x58a50, ios 0x28308;
-    void updateDurLabel(bool) = win 0x413c90;
+    void updateDurLabel(bool decimals) = win 0x413c90, m1 0x4e544, imac 0x585c0, ios 0x27fbc;
     void updateOpacity() = win inline, m1 0x4e8e8, imac 0x589c0, ios 0x2829c {
         if (m_gameObject) m_gameObject->m_opacity = m_opacity;
         else {
@@ -28760,7 +28778,7 @@ class SetupOpacityPopup : SetupTriggerPopup {
     }
     void updateOpacityLabel() = win 0x413d60, m1 0x4e6b8, imac 0x58730, ios 0x28098;
     void updateTargetID() = win 0x413ee0, m1 0x4e864, imac 0x58920, ios 0x28218;
-    void updateTextInputLabel() = win 0x413dd0;
+    void updateTextInputLabel() = win 0x413dd0, m1 0x4e258, imac 0x58280, ios 0x27e10;
 
     CCTextInputNode* m_groupIDInput;
     CCTextInputNode* m_fadeTimeInput;
@@ -28775,13 +28793,24 @@ class SetupOpacityPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupOptionsTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupOptionsTriggerPopup();
+    SetupOptionsTriggerPopup() = m1 0x503a0c, imac 0x5cf6d0, ios 0x40bf00 {
+        m_togglePage = 0;
+    }
 
-    static SetupOptionsTriggerPopup* create(GameOptionsTrigger*, cocos2d::CCArray*);
+    static SetupOptionsTriggerPopup* create(GameOptionsTrigger* object, cocos2d::CCArray* objects) = win inline, m1 0x502ec4, imac 0x5cea80, ios 0x40b568 {
+        auto ret = new SetupOptionsTriggerPopup();
+        if (ret->init(object, objects)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x41e720, imac 0x5cf620, m1 0x503958, ios 0x40be4c;
 
-    void addOption(int, gd::string) = win 0x41e4c0;
-    bool init(GameOptionsTrigger*, cocos2d::CCArray*) = win 0x41dcc0, m1 0x502f58, imac 0x5ceaf0, ios 0x40b5ec;
+    void addOption(int property, gd::string label) = win 0x41e4c0, m1 0x503720, imac 0x5cf3d0, ios 0x40bc20;
+    bool init(GameOptionsTrigger* object, cocos2d::CCArray* objects) = win 0x41dcc0, m1 0x502f58, imac 0x5ceaf0, ios 0x40b5ec;
 
     cocos2d::CCPoint m_togglePosition;
     int m_togglePage;
@@ -28791,21 +28820,21 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
 class SetupPersistentItemTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupPersistentItemTriggerPopup();
 
-    static SetupPersistentItemTriggerPopup* create(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x457390;
+    static SetupPersistentItemTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x457390, m1 0x4c12c8, imac 0x56c1f0, ios 0x407478;
 
-    bool init(ItemTriggerGameObject*, cocos2d::CCArray*) = win 0x4574a0, m1 0x4c1454, imac 0x56c420;
+    bool init(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x4574a0, m1 0x4c1454, imac 0x56c420, ios 0x407554;
 }
 
 [[link(android)]]
 class SetupPickupTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupPickupTriggerPopup();
 
-    static SetupPickupTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x41e7f0;
+    static SetupPickupTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41e7f0, m1 0x4ecc0, imac 0x58e50, ios 0x46aa8;
 
     virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x40c610, imac 0x598b0, m1 0x4f578, ios 0x47158;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x41f090, imac 0x598f0, m1 0x4f5b0, ios 0x47190;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41e900, m1 0x4ee48, imac 0x59080, ios 0x46b80;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41e900, m1 0x4ee48, imac 0x59080, ios 0x46b80;
     void updateState() = win 0x41f020, m1 0x4f518, imac 0x59840, ios inline {
         auto pickupTriggerMode = this->getValue(88);
         this->toggleGroup(1, pickupTriggerMode == 0.0f);
@@ -28817,39 +28846,39 @@ class SetupPickupTriggerPopup : SetupTriggerPopup {
 class SetupPlatformerEndPopup : SetupTriggerPopup {
     // virtual ~SetupPlatformerEndPopup();
 
-    static SetupPlatformerEndPopup* create(EndTriggerGameObject*, cocos2d::CCArray*) = win 0x405da0;
+    static SetupPlatformerEndPopup* create(EndTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x405da0, m1 0x57adc4, imac 0x653850, ios 0x2acf10;
 
-    bool init(EndTriggerGameObject*, cocos2d::CCArray*) = win 0x405eb0, m1 0x57af4c, imac 0x653a80;
+    bool init(EndTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x405eb0, m1 0x57af4c, imac 0x653a80, ios 0x2acfe8;
 }
 
 [[link(android)]]
 class SetupPlayerControlPopup : SetupTriggerPopup {
     // virtual ~SetupPlayerControlPopup();
 
-    static SetupPlayerControlPopup* create(PlayerControlGameObject*, cocos2d::CCArray*) = win 0x44f720;
+    static SetupPlayerControlPopup* create(PlayerControlGameObject* object, cocos2d::CCArray* objects) = win 0x44f720, m1 0x4b9ae0, imac 0x563a60, ios 0x40138c;
 
-    bool init(PlayerControlGameObject*, cocos2d::CCArray*) = win 0x44f830, m1 0x4b9c68, imac 0x563c90;
+    bool init(PlayerControlGameObject* object, cocos2d::CCArray* objects) = win 0x44f830, m1 0x4b9c68, imac 0x563c90, ios 0x401464;
 }
 
 [[link(android)]]
 class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
     // virtual ~SetupPortalPopup();
 
-    static SetupPortalPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupPortalPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = m1 0x4af6a8, imac 0x558cc0;
 
     virtual void keyBackClicked() = m1 0x4b07e8, imac 0x559fd0;
 
-    void determineStartValues();
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4af7d4, imac 0x558e40;
-    void onClose(cocos2d::CCObject* sender);
-    void onEditCameraSettings(cocos2d::CCObject* sender);
-    void onUnboundMode(cocos2d::CCObject* sender);
-    void sliderChanged(cocos2d::CCObject* sender);
-    void updateCameraEasing();
-    void updateCameraEasingLabel();
-    void updateCameraPadding();
+    void determineStartValues() = m1 0x4b00c8, imac 0x5597e0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = m1 0x4af7d4, imac 0x558e40;
+    void onClose(cocos2d::CCObject* sender) = m1 0x4b0074, imac 0x559790;
+    void onEditCameraSettings(cocos2d::CCObject* sender) = m1 0x4b0320, imac 0x559a50;
+    void onUnboundMode(cocos2d::CCObject* sender) = m1 0x4b02a0, imac 0x5599d0;
+    void sliderChanged(cocos2d::CCObject* sender) = m1 0x4b0448, imac 0x559bb0;
+    void updateCameraEasing() = m1 0x4b0700, imac 0x559ed0;
+    void updateCameraEasingLabel() = m1 0x4b05c8, imac 0x559d80;
+    void updateCameraPadding() = m1 0x4b0778, imac 0x559f50;
     void updateCameraPaddingLabel() = m1 0x4b0614, imac 0x559dd0;
-    void updateItemVisibility();
+    void updateItemVisibility() = m1 0x4b0664, imac 0x559e20;
 
     EffectGameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;
@@ -28870,7 +28899,7 @@ class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
 class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
     // virtual ~SetupPulsePopup();
 
-    static SetupPulsePopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x41f250, m1 0x324ed4, imac 0x396ea0, ios 0x3abb04;
+    static SetupPulsePopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41f250, m1 0x324ed4, imac 0x396ea0, ios 0x3abb04;
 
     virtual void show() = win 0x423fa0, m1 0x32a368, imac 0x39ce50, ios 0x3affd0;
     virtual void determineStartValues() = win 0x422ef0, m1 0x32924c, imac 0x39ba60, ios 0x3af378;
@@ -28880,39 +28909,80 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     virtual void textInputOpened(CCTextInputNode*) = m1 0x32a3bc, imac 0x39ceb0, ios 0x3b0024 {}
     virtual void colorSelectClosed(GJSpecialColorSelect*, int) = win 0x423720, imac 0x39bfa0, m1 0x3296fc, ios 0x3af7cc;
 
-    cocos2d::ccColor3B getColorValue();
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x41f430, m1 0x3250b8, imac 0x397170, ios 0x3abb88;
-    void onCopy(cocos2d::CCObject* sender) = win 0x90d60;
-    void onExclusive(cocos2d::CCObject* sender) = win 0x423380;
-    void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x423410;
-    void onGroupSecondaryOnly(cocos2d::CCObject* sender) = win 0x423500;
-    void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x423560;
-    void onPaste(cocos2d::CCObject* sender) = win 0x90de0, m1 0x328b68, imac 0x39b340;
+    cocos2d::ccColor3B getColorValue() = win inline, m1 0x329ab8, imac 0x39c3f0, ios inline {
+        return m_colorPicker->getColorValue();
+    }
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41f430, m1 0x3250b8, imac 0x397170, ios 0x3abb88;
+    void onCopy(cocos2d::CCObject* sender) = win 0x90d60, m1 0x328b34, imac 0x39b300, ios 0x3aeef4;
+    void onExclusive(cocos2d::CCObject* sender) = win 0x423380, m1 0x32888c, imac 0x39af80, ios 0x3aed6c;
+    void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x423410, m1 0x328900, imac 0x39b010, ios 0x3aede0;
+    void onGroupSecondaryOnly(cocos2d::CCObject* sender) = win 0x423500, m1 0x3289e0, imac 0x39b140, ios 0x3aee30;
+    void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x423560, m1 0x328ac0, imac 0x39b270, ios 0x3aee80;
+    void onPaste(cocos2d::CCObject* sender) = win 0x90de0, m1 0x328b68, imac 0x39b340, ios 0x3aef28;
     void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x422aa0, m1 0x328698, imac 0x39ad60, ios 0x3aebc0;
-    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x423680;
-    void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x4236d0;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x423680, m1 0x328c9c, imac 0x39b480, ios 0x3aefe0;
+    void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x4236d0, m1 0x32864c, imac 0x39ad20, ios 0x3aeb74;
     void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x422cd0, m1 0x328320, imac 0x39a9b0, ios 0x3ae920;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x4240e0, m1 0x328bec, imac 0x39b3b0, ios 0x3aef74;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x424050, m1 0x328578, imac 0x39ac30, ios 0x3aeae4;
-    void selectColor(cocos2d::ccColor3B);
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x4238c0;
-    void updateColorLabels() = win 0x4248f0;
-    void updateColorValue();
-    void updateCopyColor() = win 0x424b90;
-    void updateCopyColorTextInputLabel() = win 0x424d40, imac 0x39b6e0, m1 0x328f04;
-    void updateFadeInLabel(bool) = win 0x422830;
+    void selectColor(cocos2d::ccColor3B color) = win inline, m1 0x328bb4, imac 0x39b380, ios inline {
+        m_colorPicker->setColorValue(color);
+    }
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x4238c0, m1 0x327cfc, imac 0x39a350, ios 0x3ae590;
+    void updateColorLabels() = win 0x4248f0, m1 0x329fa8, imac 0x39ca00, ios 0x3afdec;
+    void updateColorValue() = win inline, m1 0x329f08, imac 0x39c950, ios 0x3afd5c {
+        if (m_colorInitializing) return;
+        if (m_gameObject) {
+            m_gameObject->m_triggerTargetColor = m_currentColor;
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_triggerTargetColor = m_currentColor;
+            }
+        }
+    }
+    void updateCopyColor() = win 0x424b90, m1 0x329a44, imac 0x39c350, ios 0x3af99c;
+    void updateCopyColorTextInputLabel() = win 0x424d40, imac 0x39b6e0, m1 0x328f04, ios 0x3af13c;
+    void updateFadeInLabel(bool decimals) = win 0x422830, m1 0x327ec4, imac 0x39a560, ios 0x3ae68c;
     void updateFadeInTime() = win 0x423b00, m1 0x329acc, imac 0x39c410, ios 0x3afa10;
-    void updateFadeOutLabel(bool) = win 0x4229d0;
+    void updateFadeOutLabel(bool decimals) = win 0x4229d0, m1 0x3281ac, imac 0x39a840, ios 0x3ae844;
     void updateFadeOutTime() = win 0x423c20, m1 0x329ba4, imac 0x39c530, ios 0x3afae8;
-    void updateGroupMainOnly() = win 0x423470;
-    void updateGroupSecondaryOnly() = win 0x4235f0;
-    void updateHoldLabel(bool) = win 0x422900;
+    void updateGroupMainOnly() = win 0x423470, m1 0x329690, imac 0x39bf20, ios 0x3af760;
+    void updateGroupSecondaryOnly() = win 0x4235f0, m1 0x329624, imac 0x39bea0, ios 0x3af6f4;
+    void updateHoldLabel(bool decimals) = win 0x422900, m1 0x328038, imac 0x39a6d0, ios 0x3ae768;
     void updateHoldTime() = win 0x423b90, m1 0x329b38, imac 0x39c4a0, ios 0x3afa7c;
-    void updateHSVValue();
-    void updatePulseMode();
-    void updatePulseTargetType();
-    void updateTargetID() = win 0x424ad0;
-    void updateTextInputLabel() = win 0x424c20, imac 0x39b4c0, m1 0x328ce8;
+    void updateHSVValue() = win inline, m1 0x329c10, imac 0x39c5c0, ios 0x3afb54 {
+        if (m_gameObject) {
+            m_gameObject->m_hsvValue = m_hsv;
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_hsvValue = m_hsv;
+            }
+        }
+    }
+    void updatePulseMode() = win inline, m1 0x329104, imac 0x39b8e0, ios 0x3af230 {
+        if (m_gameObject) {
+            m_gameObject->m_pulseMode = m_pulseMode;
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_pulseMode = m_pulseMode;
+            }
+        }
+    }
+    void updatePulseTargetType() = win inline, m1 0x3291e0, imac 0x39b9e0, ios 0x3af30c {
+        if (m_gameObject) {
+            m_gameObject->m_pulseTargetType = m_pulseTargetType;
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_pulseTargetType = m_pulseTargetType;
+            }
+        }
+    }
+    void updateTargetID() = win 0x424ad0, m1 0x329170, imac 0x39b960, ios 0x3af29c;
+    void updateTextInputLabel() = win 0x424c20, imac 0x39b4c0, m1 0x328ce8, ios 0x3af02c;
 
     cocos2d::extension::CCControlColourPicker* m_colorPicker;
     bool m_unk3c0;
@@ -28967,19 +29037,56 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
 class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandAdvTriggerPopup();
 
-    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x424f50, m1 0x30a6c8, imac 0x37a4e0, ios 0x32990;
+    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x424f50, m1 0x30a6c8, imac 0x37a4e0, ios 0x32990;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x425b10, m1 0x30bc4c, imac 0x37be30, ios 0x33a20;
     virtual void textChanged(CCTextInputNode*) = m1 0x30bc44, imac 0x37be10, ios 0x33a18 {}
 
-    void addChance(int, int);
-    void addChanceToObject(RandTriggerGameObject*, int, int);
-    void callRemoveFromGroup(float) = win 0x426550;
-    bool init(RandTriggerGameObject*, cocos2d::CCArray*) = win 0x425090, m1 0x30a864, imac 0x37a720, ios 0x32a80;
-    void onAddChance(cocos2d::CCObject* sender) = win 0x426790;
-    void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x4266c0;
-    void removeGroupID(int);
-    void removeGroupIDFromObject(RandTriggerGameObject*, int);
+    void addChance(int id, int chance) = win inline, m1 0x30bcb8, imac 0x37bea0, ios 0x33a8c {
+        m_performedAction = true;
+        if (m_gameObject) {
+            this->addChanceToObject(static_cast<RandTriggerGameObject*>(m_gameObject), id, chance);
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                this->addChanceToObject(static_cast<RandTriggerGameObject*>(m_gameObjects->objectAtIndex(i)), id, chance);
+            }
+        }
+        this->updateGroupIDButtons();
+    }
+    void addChanceToObject(RandTriggerGameObject* object, int id, int chance) = win inline, m1 0x30bd58, imac 0x37bf40, ios 0x33b1c {
+        for (auto& object : object->m_chanceObjects) {
+            if (object.m_groupID == id) {
+                object.m_chance += chance;
+                return;
+            }
+        }
+        object->m_chanceObjects.emplace_back(id, chance);
+    }
+    void callRemoveFromGroup(float dt) = win 0x426550, m1 0x30c184, imac 0x37c3a0, ios 0x33e28;
+    bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x425090, m1 0x30a864, imac 0x37a720, ios 0x32a80;
+    void onAddChance(cocos2d::CCObject* sender) = win 0x426790, m1 0x30b158, imac 0x37b0d0, ios 0x33284;
+    void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x4266c0, m1 0x30c0b8, imac 0x37c2d0, ios 0x33d5c;
+    void removeGroupID(int id) = win inline, m1 0x30bec8, imac 0x37c0b0, ios 0x33c50 {
+        m_performedAction = true;
+        if (m_gameObject) {
+            this->removeGroupIDFromObject(static_cast<RandTriggerGameObject*>(m_gameObject), id);
+        }
+        else if (m_gameObjects) {
+            for (int i = 0; i < m_gameObjects->count(); i++) {
+                this->removeGroupIDFromObject(static_cast<RandTriggerGameObject*>(m_gameObjects->objectAtIndex(i)), id);
+            }
+        }
+        this->updateGroupIDButtons();
+    }
+    void removeGroupIDFromObject(RandTriggerGameObject* object, int id) = win inline, m1 0x30c024, imac 0x37c240, ios 0x33cd4 {
+        for (int i = 0; i < object->m_chanceObjects.size(); i++) {
+            if (object->m_chanceObjects[i].m_groupID == id) {
+                object->m_chanceObjects.erase(object->m_chanceObjects.begin() + i);
+                return;
+            }
+        }
+    }
     void updateGroupIDButtons() = win 0x425bd0, m1 0x30b24c, imac 0x37b190, ios 0x33350;
 
     bool m_performedAction;
@@ -28994,22 +29101,22 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 class SetupRandTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandTriggerPopup();
 
-    static SetupRandTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*) = win 0x427720, m1 0x501514, imac 0x5cce60, ios 0x1ca8d0;
+    static SetupRandTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x427720, m1 0x501514, imac 0x5cce60, ios 0x1ca8d0;
 
     virtual void determineStartValues() = win 0x4285e0, m1 0x5028bc, imac 0x5ce3b0, ios 0x1cb858;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x4290c0, m1 0x502ddc, imac 0x5ce990, ios 0x1cbc54;
     virtual void textChanged(CCTextInputNode*) = win 0x4288e0, imac 0x5ce6a0, m1 0x502b44, ios 0x1cbad0;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = win 0x427860, m1 0x5016b0, imac 0x5cd0b0, ios 0x1ca9c0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x427860, m1 0x5016b0, imac 0x5cd0b0, ios 0x1ca9c0;
     void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x428890, m1 0x5022d0, imac 0x5cddc0, ios 0x1cb520;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x428840, m1 0x502228, imac 0x5cdd00, ios 0x1cb4cc;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x428730;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x428730, m1 0x5026b0, imac 0x5ce180, ios 0x1cb734;
     void updateChance() = win 0x26b120, m1 0x5029cc, imac 0x5ce4e0, ios 0x1cb960;
-    void updateChanceLabel(bool) = win 0x428770;
+    void updateChanceLabel(bool decimals) = win 0x428770, m1 0x502748, imac 0x5ce240, ios 0x1cb77c;
     void updateTargetID() = win 0x428f20, m1 0x502a3c, imac 0x5ce560, ios 0x1cb9c8;
     void updateTargetID2() = win 0x428ff0, m1 0x502ac0, imac 0x5ce600, ios 0x1cba4c;
-    void updateTextInputLabel() = win 0x428bc0;
-    void updateTextInputLabel2() = win 0x428d70;
+    void updateTextInputLabel() = win 0x428bc0, m1 0x502378, imac 0x5cde80, ios 0x1cb574;
+    void updateTextInputLabel2() = win 0x428d70, m1 0x502514, imac 0x5ce000, ios 0x1cb654;
 
     CCTextInputNode* m_chanceInput;
     Slider* m_chanceSlider;
@@ -29024,23 +29131,32 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
 class SetupResetTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupResetTriggerPopup();
 
-    static SetupResetTriggerPopup* create(EffectGameObject*, cocos2d::CCArray*);
+    static SetupResetTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4520d0, m1 0x4bc3cc, imac 0x566c80, ios 0x403510;
 
-    bool init(EffectGameObject*, cocos2d::CCArray*) = m1 0x4bc558, imac 0x566eb0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4521e0, m1 0x4bc558, imac 0x566eb0, ios 0x4035ec;
 }
 
 [[link(android)]]
 class SetupReverbPopup : SetupTriggerPopup {
     // virtual ~SetupReverbPopup();
+    SetupReverbPopup() {}
 
-    static SetupReverbPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*);
+    static SetupReverbPopup* create(SFXTriggerGameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x40e758, imac 0x4a4840, ios 0x1828c8 {
+        auto ret = new SetupReverbPopup();
+        if (ret->init(object, objects)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x42eda0, imac 0x4a51d0, m1 0x40f038, ios 0x18304c;
 
-    bool init(SFXTriggerGameObject*, cocos2d::CCArray*) = win 0x42e510, m1 0x40e8e0, imac 0x4a4a70;
-    void onPlay(cocos2d::CCObject* sender) = win 0x42ead0;
-    void onReverb(cocos2d::CCObject* sender) = win 0x42ebc0;
-    void updateReverbLabel() = win 0x42ec50;
+    bool init(SFXTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x42e510, m1 0x40e8e0, imac 0x4a4a70, ios 0x1829a0;
+    void onPlay(cocos2d::CCObject* sender) = win 0x42ead0, m1 0x40efe8, imac 0x4a5170, ios 0x182ffc;
+    void onReverb(cocos2d::CCObject* sender) = win 0x42ebc0, m1 0x40ee98, imac 0x4a5040, ios 0x182ec4;
+    void updateReverbLabel() = win 0x42ec50, m1 0x40ef14, imac 0x4a50c0, ios 0x182f40;
 
     cocos2d::CCLabelBMFont* m_reverbLabel;
 }
@@ -29065,25 +29181,34 @@ class SetupRotateCommandPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupRotateGameplayPopup : SetupTriggerPopup {
     // virtual ~SetupRotateGameplayPopup();
+    SetupRotateGameplayPopup() {}
 
-    static SetupRotateGameplayPopup* create(RotateGameplayGameObject*, cocos2d::CCArray*);
+    static SetupRotateGameplayPopup* create(RotateGameplayGameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x69600c, imac 0x781860, ios 0x1a18cc {
+        auto ret = new SetupRotateGameplayPopup();
+        if (ret->init(object, objects)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
     virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x429c50, m1 0x696a70, imac 0x782510, ios 0x1a2178;
     virtual void valueDidChange(int, float) = win 0x429cc0, imac 0x782550, m1 0x696aa8, ios 0x1a21b0;
 
-    bool init(RotateGameplayGameObject*, cocos2d::CCArray*) = win 0x429280, m1 0x696194, imac 0x781a90;
+    bool init(RotateGameplayGameObject* object, cocos2d::CCArray* objects) = win 0x429280, m1 0x696194, imac 0x781a90, ios 0x1a19a4;
 }
 
 [[link(android)]]
 class SetupRotatePopup : SetupTriggerPopup {
     // virtual ~SetupRotatePopup();
 
-    static SetupRotatePopup* create(EnhancedGameObject*, cocos2d::CCArray*);
+    static SetupRotatePopup* create(EnhancedGameObject* object, cocos2d::CCArray* objects) = win 0x42a660, m1 0x4d6ac8, imac 0x584c90, ios 0x26753c;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x42acd0, m1 0x4d7138, imac 0x585460, ios 0x267a44;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x42ad70, imac 0x5854e0, m1 0x4d71b4, ios 0x267ac0;
 
-    bool init(EnhancedGameObject*, cocos2d::CCArray*) = win 0x42a770, m1 0x4d6c50, imac 0x584ec0, ios 0x267614;
+    bool init(EnhancedGameObject* object, cocos2d::CCArray* objects) = win 0x42a770, m1 0x4d6c50, imac 0x584ec0, ios 0x267614;
 }
 
 [[link(android)]]
