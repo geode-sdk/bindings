@@ -223,8 +223,8 @@ enum class AccountError {
     AlreadyUsedUsername = -2
 };
 enum class GJSongError {
-    DownloadSongFailed = 1,
-    DownloadSFXFailed = 2,
+    FailedToFetch = 1,
+    NotAllowed = 2,
     DownloadCancelled = 3
 };
 enum class GJSongType {
