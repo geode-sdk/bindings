@@ -3872,7 +3872,7 @@ class ColorAction : cocos2d::CCObject {
         if (m_playerColor == 1) m_fromColor = color1;
         else if (m_playerColor == 2) m_fromColor = color2;
     }
-    // TodoReturn writeSaveString(fmt::BasicWriter<char>&);
+    // void writeSaveString(fmt::BasicWriter<char>& writer) = win 0x251dd0, m1 0x269514, imac 0x2c5730, ios 0x111e0;
 
     bool m_stepFinished;
     bool m_paused;
@@ -11570,22 +11570,22 @@ class GameObject : CCSpritePlus {
     }
     int getGroupID(int index) = win inline, m1 0x4e0b24, imac 0x5a66b0, ios 0x25c624 {
         if (index < 10 && m_groups) {
-            return m_groups->at(index);
+            return (*m_groups)[index];
         }
         return 0;
     }
     gd::string getGroupString() = win inline, m1 0x4e0e9c, imac 0x5a6a40, ios 0x25c8b8 {
-        gd::string ret;
+        fmt::memory_buffer buffer;
         auto first = true;
         for (int i = 0; i < 10; i++) {
             auto group = (*m_groups)[i];
             if (group > 0) {
-                if (!first) ret += '.';
-                ret += std::to_string(group);
+                if (!first) fmt::format_to(std::back_inserter(buffer), ".");
+                fmt::format_to(std::back_inserter(buffer), "{}", group);
                 first = false;
             }
         }
-        return ret;
+        return fmt::to_string(buffer);
     }
     cocos2d::CCPoint const& getLastPosition() = win inline, m1 0x4eb730, imac 0x5b2a90, ios 0x261674 {
         return m_lastPosition;
@@ -12585,7 +12585,9 @@ class GameStatsManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("demon_%i", levelID)->getCString();
     }
     gd::string getEventRewardKey(int id) = win inline, m1 0x6bcf8, imac 0x78370, ios inline {
-        return "o_event_" + std::to_string(id);
+        fmt::memory_buffer buffer;
+        fmt::format_to(std::back_inserter(buffer), "o_event_{}", id);
+        return fmt::to_string(buffer);
     }
     gd::string getGauntletRewardKey(int id) = win 0x1e6e40, imac 0x77710, m1 0x6b024, ios 0x33648c;
     gd::string getItemKey(int id, int type) = win 0x1de9b0, m1 0x5a52c, imac 0x65e50, ios 0x32ba84;
@@ -12628,7 +12630,9 @@ class GameStatsManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("unique_%s", key)->getCString();
     }
     gd::string getSecretOnlineRewardKey(int id) = win inline, m1 0x6beb0, imac 0x78550, ios 0x336c0c {
-        return "o_secret_" + std::to_string(id);
+        fmt::memory_buffer buffer;
+        fmt::format_to(std::back_inserter(buffer), "o_secret_{}", id);
+        return fmt::to_string(buffer);
     }
     cocos2d::CCString* getSpecialChestKeyForItem(int id, UnlockType type) = win inline, m1 0x5a4ac, imac 0x65de0, ios 0x32ba18 {
         return static_cast<cocos2d::CCString*>(m_allSpecialChestItems->objectForKey(this->getItemKey(id, (int)type)));
