@@ -11298,7 +11298,7 @@ class GameObject : CCSpritePlus {
     virtual bool canReverse() { return false; }
     virtual bool isSpecialSpawnObject() { return false; }
     virtual bool canBeOrdered() { return false; }
-    virtual cocos2d::CCLabelBMFont* getObjectLabel() = m1 0x8d390, ios 0x171fa4 { return nullptr; }
+    virtual cocos2d::CCLabelBMFont* getObjectLabel() { return nullptr; }
     virtual void setObjectLabel(cocos2d::CCLabelBMFont*) {}
     virtual bool shouldDrawEditorHitbox() = m1 0x4ec0bc, imac 0x5b37c0, ios 0x261f40 { return true; }
     virtual bool getHasSyncedAnimation() { return false; }
