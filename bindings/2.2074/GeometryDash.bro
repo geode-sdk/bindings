@@ -12585,9 +12585,7 @@ class GameStatsManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("demon_%i", levelID)->getCString();
     }
     gd::string getEventRewardKey(int id) = win inline, m1 0x6bcf8, imac 0x78370, ios inline {
-        fmt::memory_buffer buffer;
-        fmt::format_to(std::back_inserter(buffer), "o_event_{}", id);
-        return fmt::to_string(buffer);
+        return fmt::format("o_event_{}", id);
     }
     gd::string getGauntletRewardKey(int id) = win 0x1e6e40, imac 0x77710, m1 0x6b024, ios 0x33648c;
     gd::string getItemKey(int id, int type) = win 0x1de9b0, m1 0x5a52c, imac 0x65e50, ios 0x32ba84;
@@ -12630,9 +12628,7 @@ class GameStatsManager : cocos2d::CCNode {
         return cocos2d::CCString::createWithFormat("unique_%s", key)->getCString();
     }
     gd::string getSecretOnlineRewardKey(int id) = win inline, m1 0x6beb0, imac 0x78550, ios 0x336c0c {
-        fmt::memory_buffer buffer;
-        fmt::format_to(std::back_inserter(buffer), "o_secret_{}", id);
-        return fmt::to_string(buffer);
+        return fmt::format("o_secret_{}", id);
     }
     cocos2d::CCString* getSpecialChestKeyForItem(int id, UnlockType type) = win inline, m1 0x5a4ac, imac 0x65de0, ios 0x32ba18 {
         return static_cast<cocos2d::CCString*>(m_allSpecialChestItems->objectForKey(this->getItemKey(id, (int)type)));
