@@ -2742,7 +2742,7 @@ class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
     static cocos2d::CCLayerRGBA* create();
 
     // CCLayerRGBA(cocos2d::CCLayerRGBA const&);
-    CCLayerRGBA() = imac 0x49e3f0, m1 0x4094b8, ios 0x14ca90;
+    CCLayerRGBA() = imac 0x49e3f0, m1 0x4093d0, ios 0x14ca90;
     virtual ~CCLayerRGBA() = imac 0x49e690, m1 0x4095a0, ios 0x14cae0;
 
     virtual bool init() = imac 0x49e9d0, m1 0x4097b0, ios 0x14cb1c;
