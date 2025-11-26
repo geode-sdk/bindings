@@ -9168,7 +9168,7 @@ class FollowRewardPage : FLAlertLayer, FLAlertLayerProtocol, GameRateDelegate, R
 class FontObject : cocos2d::CCObject {
     // virtual ~FontObject();
     FontObject() {
-        m_hugeIntArray = {};
+        m_fontWidths = {};
     }
 
     static FontObject* createWithConfigFile(char const* font, float scale) = win inline, imac 0x20e860, m1 0x1c2f68, ios 0x2f38b4 {
@@ -9181,7 +9181,7 @@ class FontObject : cocos2d::CCObject {
         return nullptr;
     }
     int getFontWidth(int character) = win inline, m1 0x1c38d8, imac 0x20f360, ios 0x2f3e58 {
-        return m_hugeIntArray[character];
+        return m_fontWidths[character];
     }
     bool initWithConfigFile(char const* font, float scale) = win inline, m1 0x1c2fdc, imac 0x20e8d0, ios inline {
         this->parseConfigFile(font, scale);
@@ -9189,7 +9189,7 @@ class FontObject : cocos2d::CCObject {
     }
     void parseConfigFile(char const* font, float scale) = win 0x3b620, m1 0x1c2ff4, imac 0x20e8e0, ios 0x2f3928;
 
-    std::array<int, 300> m_hugeIntArray;
+    std::array<int, 300> m_fontWidths;
 }
 
 [[link(android)]]
@@ -25266,7 +25266,7 @@ class MultilineBitmapFont : cocos2d::CCSprite {
     gd::string readColorInfo(gd::string text) = win 0x6c7d0, m1 0x3e388c, imac 0x474e10, ios 0x234a2c;
     gd::string stringWithMaxWidth(gd::string text, float width, float scale) = win 0x6d130, imac 0x475b20, m1 0x3e4524, ios 0x235174;
 
-    std::array<int, 300> m_hugeIntArray;
+    std::array<int, 300> m_fontWidths;
     cocos2d::CCArray* m_specialDescriptors;
     cocos2d::CCArray* m_characters;
     cocos2d::CCArray* m_lines;
