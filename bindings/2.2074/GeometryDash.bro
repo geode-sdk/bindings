@@ -2693,7 +2693,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
     virtual void setScaleY(float scaleY) = win 0x466d0, imac 0x361cc0, m1 0x2f4b40, ios 0x83418;
     virtual void setScale(float scale) = win 0x46690, imac 0x361c80, m1 0x2f4af0, ios 0x833c8;
     virtual void setOpacity(unsigned char opacity) = win 0x468a0, imac 0x361f30, m1 0x2f4e04, ios 0x83604;
-    virtual void setBlendFunc(cocos2d::_ccBlendFunc blendFunc) = win 0x466f0, imac 0x361ce0, m1 0x2f4b68, ios 0x83440;
+    virtual void setBlendFunc(cocos2d::ccBlendFunc blendFunc) = win 0x466f0, imac 0x361ce0, m1 0x2f4b68, ios 0x83440;
     virtual void setDisplayFrame(cocos2d::CCSpriteFrame* frame) = win 0x460c0, imac 0x361840, m1 0x2f46bc, ios 0x83094;
     virtual bool isFrameDisplayed(cocos2d::CCSpriteFrame* frame) = win 0x46330, imac 0x3619b0, m1 0x2f4814, ios 0x831c0;
     virtual cocos2d::CCSpriteFrame* displayFrame() = win 0x46350, m1 0x2f482c, imac 0x3619d0, ios 0x831d8;
@@ -13378,7 +13378,7 @@ class GhostTrailEffect : cocos2d::CCNode {
     float m_ghostScale;
     bool m_scaleTwice;
     float m_playerScale;
-    cocos2d::_ccBlendFunc m_blendFunc;
+    cocos2d::ccBlendFunc m_blendFunc;
     cocos2d::CCSprite* m_iconSprite;
     PlayerObject* m_playerObject;
     cocos2d::CCLayer* m_objectLayer;
