@@ -516,14 +516,14 @@ public class ScriptWrapper {
         if (!(type instanceof Composite)) {
             return false;
         }
+        if (type.getName().startsWith("CCPoint") || type.getName().startsWith("CCSize") || type.getName().startsWith("CCRect")) {
+            return true;
+        }
         if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
             return type.getLength() != 4 && type.getLength() != 8;
         }
         if (type.getName().startsWith("RGBA") || type.getName().startsWith("HSV")) {
             return platform == Platform.MAC_INTEL;
-        }
-        if (type.getName().startsWith("CCPoint") || type.getName().startsWith("CCSize") || type.getName().startsWith("CCRect")) {
-            return true;
         }
         if (type.getLength() > 16) {
             return true;
