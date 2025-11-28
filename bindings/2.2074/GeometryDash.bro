@@ -14049,7 +14049,36 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         if (auto objects = static_cast<cocos2d::CCArray*>(m_spawnObjects->objectForKey(m_gameState.m_currentChannel))) return objects;
         return cocos2d::CCArray::create();
     }
-    float getAreaObjectValue(EnterEffectInstance* instance, GameObject* object, cocos2d::CCPoint& position, bool& show) = win 0x222d90, m1 0x10d954, imac 0x133a30, ios 0x1f85c8;
+    float getAreaObjectValue(EnterEffectInstance* instance, GameObject* object, cocos2d::CCPoint& position, bool& show) = win 0x222d90, m1 0x10d954, imac 0x133a30, ios 0x1f85c8, android64 inline {
+        auto realPosition = object->getRealPosition();
+        float value;
+        switch (instance->m_gameObject->m_directionType) {
+            case 1: {
+                value = realPosition.x - position.x + (instance->m_offsetVariance != 0.f ? instance->m_offsetVariance * m_varianceValues[object->m_varianceIndex + 1] : 0.f);
+                value *= value > 0.f ? instance->m_modFront : instance->m_modBack;
+                show = instance->m_reversed ? position.x >= realPosition.x : position.x <= realPosition.x;
+                break;
+            }
+            case 2: {
+                value = realPosition.y - position.y + (instance->m_offsetVariance != 0.f ? instance->m_offsetVariance * m_varianceValues[object->m_varianceIndex + 1] : 0.f);
+                value *= value > 0.f ? instance->m_modFront : instance->m_modBack;
+                show = instance->m_reversed ? position.y >= realPosition.y : position.y <= realPosition.y;
+                break;
+            }
+            default: {
+                value = cocos2d::ccpDistance(realPosition, position + cocos2d::CCPoint {
+                    instance->m_offsetVariance != 0.f ? instance->m_offsetVariance * m_varianceValues[object->m_varianceIndex + 1] : 0.f,
+                    instance->m_offsetYVariance != 0.f ? instance->m_offsetYVariance * m_varianceValues[object->m_varianceIndex + 2] : 0.f
+                });
+                show = instance->m_reversed ? position.x >= realPosition.x : position.x <= realPosition.y;
+                break;
+            }
+        }
+        auto deadzone = instance->m_deadzone;
+        auto result = value / (instance->m_length + (instance->m_lengthVariance != 0.f ? instance->m_lengthVariance * m_varianceValues[object->m_varianceIndex] : 0.f));
+        result = std::clamp(deadzone != 0.f ? (result - deadzone) / (1.f - deadzone) : result, 0.f, 1.f);
+        return instance->m_gameObject->m_inbound ? 1.f - result : result;
+    }
     float getBumpMod(PlayerObject* player, int type) = win inline, m1 0xf87c4, imac 0x119a80, ios 0x1ec028 {
         if (static_cast<GameObjectType>(type) == GameObjectType::PinkJumpPad) {
             if (player->m_isShip) return .35f;
