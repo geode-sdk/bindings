@@ -68,7 +68,8 @@ public class FindVtablesScript extends GhidraScript {
         for (Address addr = dataBlock.getStart(); dataBlock.contains(addr); addr = addr.add(8)) {
             // get the pointer value
             try {
-                Address tiNamePtr = toAddr(getLong(addr));
+                // for some reason, some of the typeinfo names start with 0x80 00 00 00 00 00 00 00
+                Address tiNamePtr = toAddr(getLong(addr) & 0x7FFFFFFFFFFFFFFFL);
                 if (!textBlock.contains(tiNamePtr)) continue;
                 // print("Found typeinfo name: " + tiNamePtr.getOffset() + "\n");
 
@@ -101,7 +102,7 @@ public class FindVtablesScript extends GhidraScript {
         for (Address addr = dataBlock.getStart(); dataBlock.contains(addr); addr = addr.add(8)) {
             try {
                 // get the pointer value
-                long offset = getLong(addr);
+                long offset = getLong(addr) & 0x7FFFFFFFFFFFFFFFL;
                 if (!typeinfoNames.containsKey(offset)) continue;
 
                 typeinfos.put(addr.getOffset() - 8, typeinfoNames.get(offset));
@@ -120,7 +121,7 @@ public class FindVtablesScript extends GhidraScript {
         for (Address addr = dataBlock.getStart(); dataBlock.contains(addr); addr = addr.add(8)) {
             try {
                 // get the pointer value
-                long offset = getLong(addr);
+                long offset = getLong(addr) & 0x7FFFFFFFFFFFFFFFL;
                 if (!typeinfos.containsKey(offset)) continue;
 
                 Address firstFunc = toAddr(getLong(addr.add(8)));

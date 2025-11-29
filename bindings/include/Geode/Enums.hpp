@@ -223,8 +223,9 @@ enum class AccountError {
     AlreadyUsedUsername = -2
 };
 enum class GJSongError {
-    DownloadSongFailed = 1,
-    DownloadSFXFailed = 2
+    FailedToFetch = 1,
+    NotAllowed = 2,
+    DownloadCancelled = 3
 };
 enum class GJSongType {
     Music = -1,
@@ -244,7 +245,8 @@ enum class CommentError {
 };
 enum class BackupAccountError {
     BackupOrSyncFailed = -3,
-    LoginFailed = -2
+    LoginFailed = -2,
+    GenericError = -1
 };
 enum class GJMusicAction {
     DownloadOrUpdate = 2,
@@ -335,7 +337,8 @@ enum class GJTimedLevelType {
 };
 enum class SongSelectType {
     Default = 0,
-    Custom = 1
+    Custom = 1,
+    Default2 = 2
 };
 enum class AudioTargetType {
     SFXChannel = 0,
@@ -466,6 +469,32 @@ enum class LevelLeaderboardMode {
     Points = 1
 };
 enum class StatKey {
+    Jumps = 1,
+    Attempts = 2,
+    CustomLevels = 4,
+    Demons = 5,
+    Stars = 6,
+    MapPacks = 7,
+    Coins = 8,
+    DestroyedPlayers = 9,
+    LikedLevels = 10,
+    RatedLevels = 11,
+    UserCoins = 12,
+    Diamonds = 13,
+    Orbs = 14,
+    DailyLevels = 15,
+    ShadowShards = 16,
+    PoisonShards = 17,
+    FireShards = 18,
+    IceShards = 19,
+    LavaShards = 20,
+    Keys = 21,
+    EarthShards = 23,
+    BloodShards = 24,
+    MetalShards = 25,
+    LightShards = 26,
+    SoulShards = 27,
+    Moons = 28,
     FirePath = 30,
     IcePath = 31,
     PoisonPath = 32,
@@ -475,7 +504,10 @@ enum class StatKey {
     BloodPath = 36,
     MetalPath = 37,
     LightPath = 38,
-    SoulPath = 39
+    SoulPath = 39,
+    Gauntlets = 40,
+    ListsRewards = 41,
+    Insanes = 42,
 };
 enum class TextStyleType {
     Colored = 1,
@@ -516,62 +548,75 @@ enum class gjParticleValue {
     MaxParticles = 1,
     Duration = 2,
     Lifetime = 3,
-    PlusMinus1 = 4,
+    LifetimeVar = 4,
     Emission = 5,
     Angle = 6,
-    PlusMinus2 = 7,
+    AngleVar = 7,
     Speed = 8,
-    PlusMinus3 = 9,
+    SpeedVar = 9,
     PosVarX = 0xA,
     PosVarY = 0xB,
     GravityX = 0xC,
     GravityY = 0xD,
     AccelRad = 0xE,
-    PlusMinus4 = 0xF,
+    AccelRadVar = 0xF,
     AccelTan = 0x10,
-    PlusMinus5 = 0x11,
+    AccelTanVar = 0x11,
     StartSize = 0x12,
-    PlusMinus6 = 0x13,
+    StartSizeVar = 0x13,
     EndSize = 0x14,
-    PlusMinus7 = 0x15,
+    EndSizeVar = 0x15,
     StartSpin = 0x16,
-    PlusMinus8 = 0x17,
+    StartSpinVar = 0x17,
     EndSpin = 0x18,
-    PlusMinus9 = 0x19,
+    EndSpinVar = 0x19,
     StartR = 0x1A,
-    PlusMinus10 = 0x1B,
+    StartRVar = 0x1B,
     StartG = 0x1C,
-    PlusMinus11 = 0x1D,
+    StartGVar = 0x1D,
     StartB = 0x1E,
-    PlusMinus12 = 0x1F,
+    StartBVar = 0x1F,
     StartA = 0x20,
-    PlusMinus13 = 0x21,
+    StartAVar = 0x21,
     EndR = 0x22,
-    PlusMinus14 = 0x23,
+    EndRVar = 0x23,
     EndG = 0x24,
-    PlusMinus15 = 0x25,
+    EndGVar = 0x25,
     EndB = 0x26,
-    PlusMinus16 = 0x27,
+    EndBVar = 0x27,
     EndA = 0x28,
-    PlusMinus17 = 0x29,
+    EndAVar = 0x29,
     FadeIn = 0x2A,
-    PlusMinus18 = 0x2B,
+    FadeInVar = 0x2B,
     FadeOut = 0x2C,
-    PlusMinus19 = 0x2D,
+    FadeOutVar = 0x2D,
     FrictionP = 0x2E,
-    PlusMinus20 = 0x2F,
+    FrictionPVar = 0x2F,
     Respawn = 0x30,
-    PlusMinus21 = 0x31,
+    RespawnVar = 0x31,
     StartRad = 0x32,
-    PlusMinus22 = 0x33,
+    StartRadVar = 0x33,
     EndRad = 0x34,
-    PlusMinus23 = 0x35,
+    EndRadVar = 0x35,
     RotSec = 0x36,
-    PlusMinus24 = 0x37,
+    RotSecVar = 0x37,
+    UniformColor = 0x38,
+    PositionType = 0x39,
+    Blending = 0x3A,
+    StartSpinEqualToEnd = 0x3B,
+    StartRotationIsDir = 0x3C,
+    DynamicRotation = 0x3D,
+    EmitterMode = 0x3E,
+    ParticleIdx = 0x3F,
+    OrderSensitive = 0x40,
+    StartSizeEqualToEnd = 0x41,
+    StartRadiusEqualToEnd = 0x42,
+    StartRGBVarSync = 0x43,
+    EndRGBVarSync = 0x44,
     FrictionS = 0x45,
-    PlusMinus25 = 0x46,
+    FrictionSVar = 0x46,
     FrictionR = 0x47,
-    PlusMinus26 = 0x48
+    FrictionRVar = 0x48
 };
 enum class ColorSelectType {
     Pulse = 0,
@@ -603,7 +648,9 @@ enum class CommentType {
     Level = 0,
     Account = 1,
     FriendRequest = 2,
+    Multiplayer = 3,
     ListDescription = 4,
+    ListName = 5
 };
 
 enum class BoomListType {
@@ -789,6 +836,7 @@ enum class SelectArtType {
     Background = 0,
     Ground = 1,
     Middleground = 2,
+    Premade = 3
 };
 
 enum class UndoCommand {
@@ -847,8 +895,7 @@ enum class GJLevelType {
     SearchResult = 4
 };
 
-enum class GJRewardType
-{
+enum class GJRewardType {
     Unknown = 0x0,
     Small = 0x1,
     Large = 0x2,
@@ -1065,3 +1112,160 @@ enum class GameObjectClassType {
     Enhanced = 4,
     Smart = 5,
 };
+
+namespace GameVar {
+    constexpr auto FollowPlayer = "0001";
+    constexpr auto PlaytestMusic = "0002";
+    constexpr auto Swipe = "0003";
+    constexpr auto FreeMove = "0004";
+    constexpr auto DeleteFilter = "0005";
+    constexpr auto CustomDeleteFilter = "0006";
+    constexpr auto EnableRotate = "0007";
+    constexpr auto EnableSnap = "0008";
+    constexpr auto IgnoreDamage = "0009";
+    constexpr auto Flip2PlayerControls = "0010";
+    constexpr auto AlwaysLimitControls = "0011";
+    constexpr auto ShownCommentRules = "0012";
+    constexpr auto IncreaseUndoRedo = "0013";
+    constexpr auto DisableExplosionShake = "0014";
+    constexpr auto FlipPauseButton = "0015";
+    constexpr auto ShownMusicTOS = "0016";
+    constexpr auto NoSongLimit = "0018";
+    constexpr auto SongsInMemory = "0019";
+    constexpr auto HigherAudioQuality = "0022";
+    constexpr auto SmoothFix = "0023";
+    constexpr auto ShowCursor = "0024";
+    constexpr auto WindowedMode = "0025";
+    constexpr auto AutoRetry = "0026";
+    constexpr auto AutoCheckpoints = "0027";
+    constexpr auto DisableThumbstick = "0028";
+    constexpr auto ShownLevelOptions = "0029";
+    constexpr auto VerticalSync = "0030";
+    constexpr auto ForceTimer = "0032";
+    constexpr auto ChangeCustomSongsLocation = "0033";
+    constexpr auto EnableGameCenter = "0034";
+    constexpr auto SmallGridStep = "0035";
+    constexpr auto PreviewMode = "0036";
+    constexpr auto ShowGround = "0037";
+    constexpr auto ShowGrid = "0038";
+    constexpr auto GridOnTop = "0039";
+    constexpr auto ShowPercentage = "0040";
+    constexpr auto ShowObjectInfo = "0041";
+    constexpr auto IncreaseMaxLevels = "0042";
+    constexpr auto EffectLines = "0043";
+    constexpr auto DrawTriggerBoxes = "0044";
+    constexpr auto DebugDrawEditor = "0045";
+    constexpr auto PlaytestNoUI = "0046";
+    constexpr auto ShownLevelProfile = "0047";
+    constexpr auto ShownMyProfile = "0048";
+    constexpr auto EditorButtonsPerRow = "0049";
+    constexpr auto EditorButtonRows = "0050";
+    constexpr auto ShownNewgroundsDisclaimer = "0051";
+    constexpr auto FastReset = "0052";
+    constexpr auto ShownMoreGames = "0053";
+    constexpr auto CheckIfServerOnline = "0055";
+    constexpr auto DisableObjectAlert = "0056";
+    constexpr auto HoldToSwipe = "0057";
+    constexpr auto DurationLines = "0058";
+    constexpr auto SwipeCycleMode = "0059";
+    constexpr auto DefaultMiniIcon = "0060";
+    constexpr auto SwitchSpiderDashCol = "0061";
+    constexpr auto SwitchDashFireCol = "0062";
+    constexpr auto ShownCoinDisclaimer = "0063";
+    constexpr auto SelectFilter = "0064";
+    constexpr auto EnableMoveOptimization = "0065";
+    constexpr auto IncreaseDrawCapacity = "0066";
+    constexpr auto IncreaseStartPosAccuracy = "0067";
+    constexpr auto QuickCheckpoints = "0068";
+    constexpr auto SortCommentsByLikes = "0069";
+    constexpr auto ShownUnlistedDisclaimer = "0070";
+    constexpr auto HidePracticeButtons = "0071";
+    constexpr auto DisableGravityEffect = "0072";
+    constexpr auto NewCompletedFilter = "0073";
+    constexpr auto ShowRestartButton = "0074";
+    constexpr auto DisableComments = "0075";
+    constexpr auto DisableAccountComments = "0076";
+    constexpr auto OnlyAllowFeatured = "0077";
+    constexpr auto HideBackground = "0078";
+    constexpr auto PlaytestNoGrid = "0079";
+    constexpr auto DisableShakeOld = "0081";
+    constexpr auto DisableHighObjectAlert = "0082";
+    constexpr auto DisableSongAlert = "0083";
+    constexpr auto ManualLevelOrder = "0084";
+    constexpr auto SmallComments = "0088";
+    constexpr auto ExtendedComments = "0089";
+    constexpr auto AutoLoadComments = "0090";
+    constexpr auto LocalLevelsFolder = "0091";
+    constexpr auto SavedLevelsFolder = "0092";
+    constexpr auto IncreaseLocalLevelPages = "0093";
+    constexpr auto MorePageComments = "0094";
+    constexpr auto DoNot = "0095";
+    constexpr auto SwitchWaveTrailCol = "0096";
+    constexpr auto LinkControls = "0097";
+    constexpr auto LeaderboardType = "0098";
+    constexpr auto ShowLeaderboardPercentage = "0099";
+    constexpr auto EnableDeathEffect = "0100";
+    constexpr auto ForceSmoothFix = "0101";
+    constexpr auto PlaytestSmoothFix = "0102";
+    constexpr auto LayerLocking = "0103";
+    constexpr auto RecordOrder = "0104";
+    constexpr auto StartPosPlayback = "0105";
+    constexpr auto ShowMeltdownPromo = "0106";
+    constexpr auto LowDetail = "0108";
+    constexpr auto ShowInfoLabel = "0109";
+    constexpr auto FastEditorPreview = "0110";
+    constexpr auto IncreaseScale = "0112";
+    constexpr auto JumpL = "0113";
+    constexpr auto ShowFPS = "0115";
+    constexpr auto UnlockFPS = "0116";
+    constexpr auto PreviewParticles = "0117";
+    constexpr auto PreviewAnimations = "0118";
+    constexpr auto DisableLevelSaving = "0119";
+    constexpr auto HideInvisible = "0121";
+    constexpr auto DisableMenuMusic = "0122";
+    constexpr auto NormalMusicInEditor = "0125";
+    constexpr auto PercentageDecimals = "0126";
+    constexpr auto SaveGauntlets = "0127";
+    constexpr auto LockCursor = "0128";
+    constexpr auto DisablePortalGuide = "0129";
+    constexpr auto OrbGuide = "0130";
+    constexpr auto UseNearbyAsReference = "0131";
+    constexpr auto DontDelete = "0132";
+    constexpr auto GroupIDFilter = "0133";
+    constexpr auto HideAttempts = "0134";
+    constexpr auto HideAttemptsNormal = "0135";
+    constexpr auto ExtraLDM = "0136";
+    constexpr auto HideParticleIcons = "0137";
+    constexpr auto ColorIDFilter = "0139";
+    constexpr auto DisableOrbScale = "0140";
+    constexpr auto DisableTriggerOrbScale = "0141";
+    constexpr auto ReduceAudioQuality = "0142";
+    constexpr auto AutoPlaySFX = "0143";
+    constexpr auto AudioVisualiser = "0144";
+    constexpr auto ShowTime = "0145";
+    constexpr auto DisableCheckpoints = "0146";
+    constexpr auto SearchSFXFolderName = "0147";
+    constexpr auto SFXCompactMode = "0148";
+    constexpr auto ShowClicks = "0149";
+    constexpr auto AutoPause = "0150";
+    constexpr auto StartOptimization = "0151";
+    constexpr auto HidePlayerPath = "0152";
+    constexpr auto PlayerExplode = "0153";
+    constexpr auto DisableShaderAntiAliasing = "0155";
+    constexpr auto DisablePasteStateGroups = "0156";
+    constexpr auto ShownLevelDisclaimer = "0157";
+    constexpr auto PreviewShaders = "0158";
+    constexpr auto IncreaseAudioBuffer = "0159";
+    constexpr auto EnableQuickKeys = "0163";
+    constexpr auto LeaderboardMode = "0164";
+    constexpr auto DebugDrawPractice = "0166";
+    constexpr auto ConfirmExit = "0167";
+    constexpr auto FastMenu = "0168";
+    constexpr auto SmallWarpButtons = "0169";
+    constexpr auto BorderlessFullscreen = "0170";
+    constexpr auto DisablePlayerHitbox = "0171";
+    constexpr auto DisableShake = "0172";
+    constexpr auto IgnoreDamageLevel = "0173";
+    constexpr auto HidePlaytestText = "0174";
+    constexpr auto BorderlessFix = "0175";
+}

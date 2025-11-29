@@ -56,6 +56,8 @@ public class Regexes {
                 "(?:(?:(?<return>{0})\\s+(?<name>{2}))|(?<destructor>~{2})|(?<constructor>{2}))" +
                 // Grab the parameters
                 "\\(\\s*(?<params>(?:{1}\\s*,?\\s*)*)\\)" +
+                // Grab possible qualifiers
+                "(?<qualifiers>(?:\\s+const)?)" +
                 "(?:"+
                     // Grab the platforms
                     "(?:\\s*=\\s*(?<platforms>(?:\\w+\\s+(?:0x[0-9a-fA-F]+|inline)\\s*,?\\s*)+))" + 

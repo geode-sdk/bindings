@@ -336,6 +336,18 @@ namespace codegen {
         return s.substr(index + 2);
     }
 
+    inline std::string getIncludes(Root const& root) {
+        std::string includes;
+
+        for (auto& header : root.headers) {
+            if ((header.platform & codegen::platform) != Platform::None) {
+                includes += fmt::format("#include <{}>\n", header.name);
+            }
+        }
+
+        return includes;
+    }
+
     inline std::string getAddressString(Function const& f) {
         if (codegen::getStatus(f) == BindStatus::Binded) {
             return fmt::format(
