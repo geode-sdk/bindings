@@ -5398,7 +5398,7 @@ class cocos2d {
     static float ccpToAngle(cocos2d::CCPoint const& point) = m1 0x2d8304, imac 0x342940, ios inline {
         return point.getAngle();
     }
-    static char const* cocos2dVersion();
+    static char const* cocos2dVersion() = m1 0x2d7a00, imac 0x341de0, ios 0x80138;
     static float clampf(float, float, float) = m1 0x2d8370, imac 0x3429d0, ios 0x1b1edc;
 }
 
