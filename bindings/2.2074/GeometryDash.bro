@@ -3620,7 +3620,7 @@ class CheckpointGameObject : EffectGameObject {
         m_colorSprite->getChildByTag(1127)->setVisible(!m_checkpointActivated);
         m_colorSprite->getChildByTag(1128)->setVisible(m_checkpointActivated);
         if (m_checkpointActivated) this->setObjectColor({ 255, 255, 255 });
-        m_unk280 = m_checkpointActivated;
+        m_isColorSpriteBlack = m_checkpointActivated;
     }
 
     bool m_checkpointActivated;
@@ -6631,7 +6631,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void deactivateTransformControl() = win 0x113ad0, m1 0xd5dc, imac 0xc200, ios 0x3bf614;
     void deleteObject(GameObject* object, bool noUndo) = win inline, m1 0x325f8, imac 0x32f70, ios 0x3e1e9c {
         if (!object) return;
-        object->m_unk45c = object->m_isSelected;
+        object->m_wasSelected = object->m_isSelected;
         m_editorLayer->removeObject(object, noUndo);
         this->deactivateRotationControl();
         this->deactivateScaleControl();
@@ -11326,7 +11326,7 @@ class GameObject : CCSpritePlus {
             ret->setColor({ 0, 0, 0 });
             m_blackChildOpacity = opacity;
             ret->setOpacity(opacity * 255);
-            m_unk280 = true;
+            m_blackChildOpacityLocked = true;
             return ret;
         }
     }
@@ -11963,10 +11963,10 @@ class GameObject : CCSpritePlus {
     // property 511
     bool m_hasExtendedCollision;
     cocos2d::ccColor3B m_groupColor;
-    bool m_unk280;
-    bool m_unk281;
+    bool m_isColorSpriteBlack;
+    bool m_isObjectBlack;
     float m_blackChildOpacity;
-    bool m_unk288;
+    bool m_blackChildOpacityLocked;
     bool m_editorEnabled;
     bool m_isGroupDisabled;
     bool m_unk28B;
@@ -12000,7 +12000,7 @@ class GameObject : CCSpritePlus {
     bool m_isRingPoweredOn;
     float m_width;
     float m_height;
-    bool m_hasSpecialChild;
+    bool m_addToNodeContainer;
     bool m_isActivated;
     bool m_isDisabled2;
     cocos2d::CCParticleSystemQuad* m_particle;
@@ -12093,7 +12093,7 @@ class GameObject : CCSpritePlus {
     bool m_ignoreFade;
     // true for object IDs 207-213 and 693-694
     bool m_isSolidColorBlock;
-    bool m_baseOrDetailBlending;
+    bool m_unk3FD;
     bool m_customSpriteColor;
 
     // property 497
@@ -12130,7 +12130,7 @@ class GameObject : CCSpritePlus {
     GJSpriteColor* m_baseColor;
     // property 22, also used with 42 and 44
     GJSpriteColor* m_detailColor;
-    bool m_unk448;
+    bool m_baseOrDetailBlending;
     ZLayer m_defaultZLayer;
     bool m_zFixedZLayer;
 
@@ -12138,12 +12138,12 @@ class GameObject : CCSpritePlus {
     ZLayer m_zLayer;
     // property 25
     int m_zOrder;
-    bool m_unk45c;
+    bool m_wasSelected;
     bool m_isSelected;
     float m_unk460;
     cocos2d::CCPoint m_unk464;
-    bool m_shouldUpdateColorSprite;
-    bool m_unk46d;
+    bool m_updateParents;
+    bool m_updateEditorColor;
 
     // property 34
     bool m_hasGroupParent;
@@ -22630,7 +22630,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     }
     void applyAttributeState(GameObject* dest, GameObject* src) = win inline, m1 0xd766c, imac 0xf2a00, ios inline {
         dest->duplicateAttributes(src);
-        dest->m_shouldUpdateColorSprite = true;
+        dest->m_updateParents = true;
     }
     void applyGroupState(GameObject* dest, GameObject* src) = win 0x2d8d60, m1 0xd7448, imac 0xf2800, ios 0x36358c;
     void breakApartTextObject(TextGameObject* object) = win 0x2d6c10, m1 0xd52f8, imac 0xf03b0, ios 0x361d3c;
@@ -22909,14 +22909,14 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
         if (object) {
             object->duplicateColorMode(m_copyStateObject);
-            object->m_shouldUpdateColorSprite = true;
+            object->m_updateParents = true;
         }
         else {
             CCObject* obj;
             CCARRAY_FOREACH(objects, obj) {
                 auto gameObject = static_cast<GameObject*>(obj);
                 gameObject->duplicateColorMode(m_copyStateObject);
-                gameObject->m_shouldUpdateColorSprite = true;
+                gameObject->m_updateParents = true;
             }
         }
     }
