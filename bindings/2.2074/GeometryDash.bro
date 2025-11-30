@@ -2386,7 +2386,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
         m_baseScale = 0.f; //this is changed to 1.f in init
     }
 
-    static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = ios 0x214364, win 0x44b40, imac 0x264b80, m1 0x2105c0;
+    static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = ios 0x214364, win 0x44b40, imac 0x264b80, m1 0x2105c0;
 
     static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {
         return CCMenuItemSpriteExtra::create(sprite, nullptr, target, callback);
@@ -2396,7 +2396,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     virtual void selected() = win 0x44e50, imac 0x264f10, m1 0x210964, ios 0x214674;
     virtual void unselected() = win 0x45070, imac 0x265190, m1 0x210bb4, ios 0x21484c;
 
-    bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* disabledSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = ios 0x214408, win 0x44be0, imac 0x264c10, m1 0x210678;
+    bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = ios 0x214408, win 0x44be0, imac 0x264c10, m1 0x210678;
     void setSizeMult(float mult) = ios 0x21458c, win inline, m1 0x2107fc, imac 0x264d80 {
         //inlined on windows, member is in CCMenuItemSprite
         m_fSizeMult = mult;
