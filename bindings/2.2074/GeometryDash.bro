@@ -27018,13 +27018,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void exitPlatformerAnimateJump() = win 0x3771a0, m1 0x371834, imac 0x3f09f0, ios 0x21de6c;
     void fadeOutStreak2(float duration) = ios 0x22861c, win 0x38a400, imac 0x402470, m1 0x38071c;
     void flashPlayer(float flashDuration, float flashDelay, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win inline, m1 0x37c04c, imac 0x3fd3f0, ios inline {
-        m_colorRelated2 = mainColor;
-        m_flashRelated3 = secondColor;
-        this->setColor(m_colorRelated2);
-        this->setSecondColor(m_flashRelated3);
+        m_flashMainColor = mainColor;
+        m_flashSecondColor = secondColor;
+        this->setColor(m_flashMainColor);
+        this->setSecondColor(m_flashSecondColor);
         m_flashTime = m_totalTime;
-        m_flashRelated = flashDuration;
-        m_flashRelated1 = flashDelay;
+        m_flashDuration = flashDuration;
+        m_flashDelay = flashDelay;
     }
     void flipGravity(bool flip, bool noEffects) = ios 0x21eb30, win 0x384440, imac 0x3f1c30, m1 0x372910;
     int flipMod() = win inline, m1 0x370968, imac 0x3efae0, ios inline {
@@ -27835,10 +27835,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_lastJumpTime;
     double m_lastFlipTime;
     double m_flashTime;
-    float m_flashRelated;
-    float m_flashRelated1;
-    cocos2d::ccColor3B m_colorRelated2;
-    cocos2d::ccColor3B m_flashRelated3;
+    float m_flashDuration;
+    float m_flashDelay;
+    cocos2d::ccColor3B m_flashMainColor;
+    cocos2d::ccColor3B m_flashSecondColor;
     double m_lastSpiderFlipTime;
     bool m_unkBool5;
     bool m_maybeIsVehicleGlowing;
