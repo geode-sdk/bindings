@@ -27887,8 +27887,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_collidedRightMinX;
     bool m_fadeOutStreak;
     bool m_canPlaceCheckpoint;
-    cocos2d::ccColor3B m_colorRelated;
-    cocos2d::ccColor3B m_secondColorRelated;
+    cocos2d::ccColor3B m_originalMainColor;
+    cocos2d::ccColor3B m_originalSecondColor;
     bool m_hasCustomGlowColor;
     cocos2d::ccColor3B m_glowColor;
     bool m_maybeIsColliding;
