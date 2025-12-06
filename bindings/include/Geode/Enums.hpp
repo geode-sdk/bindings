@@ -471,6 +471,7 @@ enum class LevelLeaderboardMode {
 enum class StatKey {
     Jumps = 1,
     Attempts = 2,
+    CompletedOfficialLevels = 3,
     CustomLevels = 4,
     Demons = 5,
     Stars = 6,
@@ -489,12 +490,14 @@ enum class StatKey {
     IceShards = 19,
     LavaShards = 20,
     Keys = 21,
+    OrbsCollected = 22,
     EarthShards = 23,
     BloodShards = 24,
     MetalShards = 25,
     LightShards = 26,
     SoulShards = 27,
     Moons = 28,
+    DiamondShards = 29,
     FirePath = 30,
     IcePath = 31,
     PoisonPath = 32,
@@ -508,6 +511,7 @@ enum class StatKey {
     Gauntlets = 40,
     ListsRewards = 41,
     Insanes = 42,
+    WraithKeys = 43,
 };
 enum class TextStyleType {
     Colored = 1,
