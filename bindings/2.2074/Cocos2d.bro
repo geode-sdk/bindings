@@ -2286,7 +2286,9 @@ class cocos2d::CCNode : cocos2d::CCObject {
     }
     cocos2d::CCPoint convertTouchToNodeSpace(cocos2d::CCTouch*) = imac 0x262de0, m1 0x20eaf8, ios 0x23cd48;
     cocos2d::CCPoint convertTouchToNodeSpaceAR(cocos2d::CCTouch*);
-    char const* description() = imac 0x260e70, m1 0x20cc04;
+    char const* description() = imac 0x260e70, m1 0x20cc04, ios inline {
+        return CCString::createWithFormat("<CCNode | Tag = %d>", m_nTag)->getCString();
+    }
     void detachChild(cocos2d::CCNode*, bool);
     void insertChild(cocos2d::CCNode*, int);
     unsigned int numberOfRunningActions() = m1 0x20dd8c, imac 0x262010, ios inline {
