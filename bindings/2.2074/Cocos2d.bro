@@ -768,7 +768,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     // void setFastMode(bool);
     // void setM_fMaxSeg(float);
     // void setStartingPositionInitialized(bool);
-    void setStroke(float);
+    void setStroke(float) = m1 0x4b6c40, imac 0x560180, ios 0x17aaf8;
 
     // CCMotionStreak(cocos2d::CCMotionStreak const&);
     CCMotionStreak() = imac 0x55f120, m1 0x4b5cf4, ios 0x17a068;
@@ -779,7 +779,12 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     void reset() = m1 0x4b6c48, imac 0x560190, ios 0x17ab00;
     void resumeStroke() = m1 0x4b6510, imac 0x55fb40, ios 0x17a618;
     void stopStroke() = m1 0x4b6508, imac 0x55fb30, ios 0x17a610;
-    void tintWithColor(cocos2d::ccColor3B);
+    void tintWithColor(cocos2d::ccColor3B) = m1 0x4b6334, imac 0x55f8d0, ios inline {
+        this->setColor(p0);
+        for (int i = 0; i < m_uNuPoints * 2; i++) {
+            *reinterpret_cast<ccColor3B*>(m_pColorPointer + i * 4) = p0;
+        }
+    }
     void updateFade(float) = m1 0x4b64f8, imac 0x55fb10, ios 0x17a600;
 
     virtual ~CCMotionStreak() = imac 0x55f2c0, m1 0x4b5e2c, ios 0x17a104;
