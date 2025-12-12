@@ -1,5 +1,6 @@
 #import win <random>
 #import win <sys/timeb.h>
+#import <Geode/utils/cocos.hpp>
 
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
