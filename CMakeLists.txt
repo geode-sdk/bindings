@@ -199,6 +199,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
 if (WIN32)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC -DNOMINMAX)
 	if (MSVC)
 		target_compile_options(${PROJECT_NAME} PUBLIC /bigobj)
 	endif()
