@@ -94,7 +94,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
         label->setPosition(position + cocos2d::CCPoint { onSprite->getContentSize().width * .5f + 6.4f, 0.f });
         auto width = label->getContentSize().width;
         if (width > 120.f) label->setScale(120.f / width);
-        label->setScale((std::min)(label->getScale(), .35f));
+        label->setScale(std::min(label->getScale(), .35f));
     }
     void doBackup() = ios 0x169c3c, win inline, m1 0xb6708, imac 0xcd8a0 {
         this->updatePage(false);
@@ -504,7 +504,7 @@ class AchievementsLayer : GJDropDownLayer {
         m_prevPageButton->setVisible(pageStartIdx != 0);
         auto nextIndex = pageStartIdx + pageEndIdx;
         m_nextPageButton->setVisible(itemCount > nextIndex);
-        nextIndex = (std::min)(nextIndex, itemCount);
+        nextIndex = std::min(nextIndex, itemCount);
         m_pageLabel->setString(cocos2d::CCString::createWithFormat("%i to %i of %i", pageStartIdx + 1, nextIndex, itemCount)->getCString());
     }
 
@@ -1165,7 +1165,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
         else if (pulse == .9f) scale = .6f;
         else if (pulse == .8f) scale = .4f;
         else scale = pulse * .2f;
-        auto pulseMod = (std::min)(scale + m_audioScale, 1.1f);
+        auto pulseMod = std::min(scale + m_audioScale, 1.1f);
         if (!m_goingDown && m_audioPulseMod > pulseMod) return;
         m_audioPulseMod = pulseMod;
         m_goingDown = false;
@@ -2469,8 +2469,8 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
         auto sprOff = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
         auto sprOn = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
 
-        float maxWidth = (std::max)(sprOff->getContentSize().width, sprOn->getContentSize().width);
-        float maxHeight = (std::max)(sprOff->getContentSize().height, sprOn->getContentSize().height);
+        float maxWidth = std::max(sprOff->getContentSize().width, sprOn->getContentSize().width);
+        float maxHeight = std::max(sprOff->getContentSize().height, sprOn->getContentSize().height);
 
         sprOff->setScale(scale);
         sprOn->setScale(scale);
@@ -5982,7 +5982,7 @@ class DrawGridLayer : cocos2d::CCLayer {
         if (objectType == GameObjectType::BallPortal) height = 240.f;
         else if (objectType == GameObjectType::SpiderPortal) height = 270.f;
         else height = 300.f;
-        auto minimum = (std::max)((int)((object->getPosition().y - height * .5f) / 30.f) * 30.f, 90.f);
+        auto minimum = std::max((int)((object->getPosition().y - height * .5f) / 30.f) * 30.f, 90.f);
         return { minimum, minimum + height };
     }
     bool init(cocos2d::CCNode* parent, LevelEditorLayer* layer) = win inline, m1 0xd9aa0, imac 0xf59b0, ios 0x3655bc {
@@ -6825,7 +6825,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCArray* getSelectedObjects() = win 0x10f780, m1 0x37eac, imac 0x3d330, ios 0x3e6210;
     CCMenuItemSpriteExtra* getSimpleButton(gd::string frameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) = win inline, m1 0x2ea98, imac 0x2f0a0, ios inline {
         auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(frameName.c_str());
-        sprite->setScale((std::min)(18.f / sprite->getContentSize().width, 18.f / sprite->getContentSize().height));
+        sprite->setScale(std::min(18.f / sprite->getContentSize().width, 18.f / sprite->getContentSize().height));
         auto button = CCMenuItemSpriteExtra::create(sprite, this, selector);
         if (menu) menu->addChild(button);
         return button;
@@ -7203,13 +7203,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateZoom(float zoom) = ios 0x3e6980, win 0x110ef0, m1 0x38b14, imac 0x3e050;
     float valueFromXPos(float xPos) = win inline, m1 0x2ef70, imac 0x2f590, ios 0x3df884 {
         auto xMin = this->getXMin(0);
-        auto sectionCount = (std::max)(m_editorLayer->getSectionCount(), 100);
+        auto sectionCount = std::max(m_editorLayer->getSectionCount(), 100);
         auto scale = m_editorLayer->m_objectLayer->getScale();
         return std::clamp(-(xPos - xMin) / (sectionCount * 100.f * scale), 0.f, 1.f);
     }
     float xPosFromValue(float value) = win inline, m1 0x2edec, imac 0x2f3d0, ios 0x3df710 {
         auto xMin = this->getXMin(0);
-        auto sectionCount = (std::max)(m_editorLayer->getSectionCount(), 100);
+        auto sectionCount = std::max(m_editorLayer->getSectionCount(), 100);
         auto scale = m_editorLayer->m_objectLayer->getScale();
         return sectionCount * 100.f * scale * value - xMin;
     }
@@ -11600,7 +11600,7 @@ class GameObject : CCSpritePlus {
     }
     int getObjectDirection() = win 0x1995a0, m1 0x4e07b0, imac 0x5a6360, ios 0x25c360;
     float getObjectRadius() = win inline, m1 0x4eba3c, imac 0x5b3170, ios 0x2619d0 {
-        return m_scaleX == 1.f && m_scaleY == 1.f ? m_objectRadius : m_objectRadius * (std::max)(m_scaleX, m_scaleY);
+        return m_scaleX == 1.f && m_scaleY == 1.f ? m_objectRadius : m_objectRadius * std::max(m_scaleX, m_scaleY);
     }
     cocos2d::CCRect* getObjectRectPointer() = win inline, m1 0x4ddb20, imac 0x5a36a0, ios 0x259d30 {
         if (m_isObjectRectDirty) this->getObjectRect();
@@ -13128,7 +13128,7 @@ class GameToolbox {
     static void stringSetupToMap(gd::string const& str, char const* separator, gd::map<gd::string, gd::string>& setup) = win 0x65890, m1 0x440a60, imac 0x4ddb60, ios 0x48d50;
     static cocos2d::ccColor3B strongColor(cocos2d::ccColor3B color) = win inline, m1 0x4412f4, imac 0x4de4c0, ios 0x492a0 {
         if (color.r != 255 && color.b != 255 && color.g != 255) {
-            auto factor = (std::min)(1.5f, 255.f / (std::max)({ color.r, color.g, color.b }));
+            auto factor = std::min(1.5f, 255.f / std::max({ color.r, color.g, color.b }));
             color.r *= factor;
             color.g *= factor;
             color.b *= factor;
@@ -13881,7 +13881,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
     int atlasValue(int atlas) = win inline, m1 0xed20c, imac 0x10d7d0, ios inline {
         if (atlas < 30) return 0;
-        return (int)(std::min)(atlas * 1.1f, 9999.f);
+        return (int)std::min(atlas * 1.1f, 9999.f);
     }
     void bumpPlayer(PlayerObject* player, EffectGameObject* object) = ios 0x1eab1c, win 0x2124f0, imac 0x117ce0, m1 0xf6b04;
     int buttonIDToButton(int id) = win inline, m1 0x11cc4c, imac 0x146b60, ios inline {
@@ -13989,7 +13989,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             this->triggerGradientCommand(object);
         }
         else {
-            if (auto gradientLayer = static_cast<GJGradientLayer*>(m_gradientLayers->objectForKey((std::min)(object->m_gradientID, 999)))) {
+            if (auto gradientLayer = static_cast<GJGradientLayer*>(m_gradientLayers->objectForKey(std::min(object->m_gradientID, 999)))) {
                 gradientLayer->removeFromParentAndCleanup(false);
                 gradientLayer->m_triggerObject = nullptr;
             }
@@ -14189,7 +14189,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             if (height1 == 240.f) height1 = 270.f;
             auto otherPlayer = this->getOtherPlayer(player);
             auto height2 = this->getGroundHeightForMode(otherPlayer->isFlying() ? 5 : otherPlayer->m_isBall ? 16 : 6);
-            return (std::max)(height1, height2);
+            return std::max(height1, height2);
         }
         return this->getGroundHeightForMode(type);
     }
@@ -16299,7 +16299,7 @@ class GJEffectManager : cocos2d::CCNode {
     void calculateInheritedColor(int id, ColorAction* action) = win 0x2544b0, m1 0x26e0c8, imac 0x2cb180, ios 0x1332c;
     void calculateLightBGColor(cocos2d::ccColor3B color) = win 0x25c090, m1 0x2792bc, imac 0x2d8f40, ios 0x1a4e8;
     bool checkCollision(int const& blockAID, int const& blockBID) = win inline, m1 0x26eef4, imac 0x2cc1c0, ios 0x13c3c {
-        auto key = (std::min)(blockAID, blockBID) * 10000 + (std::max)(blockAID, blockBID) + 10000000;
+        auto key = std::min(blockAID, blockBID) * 10000 + std::max(blockAID, blockBID) + 10000000;
         return m_unkMap288.count(key) != 0;
     }
     void colorActionChanged(ColorAction* action) = win inline, m1 0x26e59c, imac 0x2cb670, ios 0x13794 {
@@ -16444,7 +16444,7 @@ class GJEffectManager : cocos2d::CCNode {
     }
     void loadFromState(EffectManagerState& state) = win 0x25cb40, m1 0x27a3c0, imac 0x2da290, ios 0x1af0c;
     void objectsCollided(int blockAID, int blockBID) = win inline, m1 0x26f310, imac 0x2cc680, ios 0x13eb0 {
-        auto key = (std::min)(blockAID, blockBID) * 10000 + (std::max)(blockAID, blockBID) + 10000000;
+        auto key = std::min(blockAID, blockBID) * 10000 + std::max(blockAID, blockBID) + 10000000;
         if (auto it = m_unkMap288.find(key); it != m_unkMap288.end()) {
             it->second = true;
         }
@@ -17840,7 +17840,7 @@ class GJLevelList : cocos2d::CCNode {
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray* levels) = win 0x174160, m1 0x4a3af8, imac 0x54b780, ios 0xb45c4;
     gd::string getUnpackedDescription() = win 0x173b80, imac 0x54b670, m1 0x4a39d0, ios 0xb44a8;
     void handleStatsConflict(GJLevelList* list) = win inline, imac 0x54b4a0, m1 0x4a37fc, ios 0xb4378 {
-        m_listOrder = (std::max)(m_listOrder, list->m_listOrder);
+        m_listOrder = std::max(m_listOrder, list->m_listOrder);
     }
     bool hasMatchingLevels(GJLevelList* list) = ios 0xb4390, win 0x173970, imac 0x54b4c0, m1 0x4a3814;
     int orderForLevel(int id) = win inline, m1 0x4a44a8, imac 0x54c3c0, ios 0xb4c10 {
@@ -19238,7 +19238,7 @@ class GJSearchObject : cocos2d::CCNode {
     }
     GJSearchObject* getPageObject(int page) = win 0x171d90, imac 0x54aca0, m1 0x4a312c, ios 0xb3eb4;
     GJSearchObject* getPrevPageObject() = win inline, m1 0x4a331c, imac 0x54af60, ios 0xb4064 {
-        return this->getPageObject((std::max)(m_page - 1, 0));
+        return this->getPageObject(std::max(m_page - 1, 0));
     }
     static char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x171f00, m1 0x4a2da8, imac 0x54a780, ios 0xb3c14;
     bool init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win inline, m1 0x4a2c64, imac 0x54a650, ios 0xb3ad0 {
@@ -20098,7 +20098,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
         m_leftArrow->setVisible(pageStartIdx != 0);
         auto nextIndex = pageStartIdx + pageEndIdx;
         m_rightArrow->setVisible(itemCount > nextIndex);
-        nextIndex = (std::min)(nextIndex, itemCount);
+        nextIndex = std::min(nextIndex, itemCount);
         m_countText->setString(cocos2d::CCString::createWithFormat("%i to %i of %i", pageStartIdx + 1, nextIndex, itemCount)->getCString());
     }
     void setupSongBrowser(cocos2d::CCArray* songs) = win inline, m1 0x51986c, imac 0x5e7c60, ios 0x2650c4 {
@@ -20424,12 +20424,12 @@ class GJUINode : cocos2d::CCNode {
         }
         auto centerX = m_rect.size.width * .5f;
         auto reverseCenterX = -m_rect.size.width * .5f;
-        if ((std::min)(rangePos.x, centerX) > reverseCenterX) rangePos.x = reverseCenterX;
-        else rangePos.x = (std::min)(rangePos.x, centerX);
+        if (std::min(rangePos.x, centerX) > reverseCenterX) rangePos.x = reverseCenterX;
+        else rangePos.x = std::min(rangePos.x, centerX);
         auto centerY = 40.f + m_rect.size.height * .5f;
         auto reverseCenterY = 40.f - m_rect.size.height * .5f;
-        if ((std::min)(rangePos.y, centerY) > reverseCenterY) rangePos.y = reverseCenterY;
-        else rangePos.y = (std::min)(rangePos.y, centerY);
+        if (std::min(rangePos.y, centerY) > reverseCenterY) rangePos.y = reverseCenterY;
+        else rangePos.y = std::min(rangePos.y, centerY);
         m_firstSprite->setVisible(true);
         m_firstSprite->setPosition(rangePos);
         return touchResult;
@@ -20700,12 +20700,12 @@ class GJUserScore : cocos2d::CCNode {
 
     bool isCurrentUser() = win 0x16fb90, m1 0x4a21b8, imac 0x549af0, ios 0xb3320;
     void mergeWithScore(GJUserScore* score) = win inline, m1 0x4a218c, imac 0x549ab0, ios inline {
-        m_stars = (std::max)(m_stars, score->m_stars);
-        m_moons = (std::max)(m_moons, score->m_moons);
-        m_diamonds = (std::max)(m_diamonds, score->m_diamonds);
-        m_demons = (std::max)(m_demons, score->m_demons);
-        m_creatorPoints = (std::max)(m_creatorPoints, score->m_creatorPoints);
-        m_secretCoins = (std::max)(m_secretCoins, score->m_secretCoins);
+        m_stars = std::max(m_stars, score->m_stars);
+        m_moons = std::max(m_moons, score->m_moons);
+        m_diamonds = std::max(m_diamonds, score->m_diamonds);
+        m_demons = std::max(m_demons, score->m_demons);
+        m_creatorPoints = std::max(m_creatorPoints, score->m_creatorPoints);
+        m_secretCoins = std::max(m_secretCoins, score->m_secretCoins);
     }
 
     gd::string m_userName;
@@ -26247,7 +26247,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
         label->setPosition(position + cocos2d::CCPoint { onSprite->getContentSize().width * .5f + 6.4f, 0.f });
         auto width = label->getContentSize().width;
         if (width > 120.f) label->setScale(120.f / width);
-        label->setScale((std::min)(label->getScale(), .35f));
+        label->setScale(std::min(label->getScale(), .35f));
         return toggler;
     }
     void exitLayer() = win inline, m1 0x6993e8, imac 0x785230, ios inline {
@@ -30283,11 +30283,11 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
     void addCount(int index, int count) = win inline, m1 0x174ed0, imac 0x1b51b0, ios 0x383ad8 {
         if (index < 0 || index >= m_chanceObjects.size()) return;
         auto& object = m_chanceObjects[index];
-        object.m_chance = (std::max)(object.m_chance + count, 1);
+        object.m_chance = std::max(object.m_chance + count, 1);
         m_sequenceTotalCount = -1;
     }
     void addTarget(int groupID, int count) = win inline, m1 0x174ca4, imac 0x1b4f40, ios 0x3838e0 {
-        count = (std::max)(count, 1);
+        count = std::max(count, 1);
         m_chanceObjects.emplace_back(groupID, count);
         m_sequenceTotalCount = -1;
     }
@@ -33689,7 +33689,7 @@ class ShaderLayer : cocos2d::CCLayer {
         if (m_state.m_colorChangeCR != 1.f || m_state.m_colorChangeCG != 1.f || m_state.m_colorChangeCB != 1.f ||
             m_state.m_colorChangeBR != 0.f || m_state.m_colorChangeBG != 0.f || m_state.m_colorChangeBB != 0.f) {
             m_state.m_usesShaders = true;
-            shaderProgram->setUniformLocationWith3f(m_colorChangeCUniform, (std::max)(m_state.m_colorChangeCR, .001f), m_state.m_colorChangeCG, m_state.m_colorChangeCB);
+            shaderProgram->setUniformLocationWith3f(m_colorChangeCUniform, std::max(m_state.m_colorChangeCR, .001f), m_state.m_colorChangeCG, m_state.m_colorChangeCB);
             shaderProgram->setUniformLocationWith3f(m_colorChangeBUniform, m_state.m_colorChangeBR, m_state.m_colorChangeBG, m_state.m_colorChangeBB);
         }
         else {
@@ -33741,9 +33741,9 @@ class ShaderLayer : cocos2d::CCLayer {
         auto g = edit * m_state.m_invertColorG;
         auto b = edit * m_state.m_invertColorB;
         if (m_state.m_invertColorClampRGB) {
-            r = (std::min)(r, 1.f);
-            g = (std::min)(g, 1.f);
-            b = (std::min)(b, 1.f);
+            r = std::min(r, 1.f);
+            g = std::min(g, 1.f);
+            b = std::min(b, 1.f);
         }
         shaderProgram->setUniformLocationWith4f(m_invertColorValueUniform, r, g, b, edit);
     }

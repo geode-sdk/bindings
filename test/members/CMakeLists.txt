@@ -39,6 +39,7 @@ if (GEODE_TARGET_PLATFORM STREQUAL "Win64")
 	)
 
 	target_sources(${PROJECT_NAME} PRIVATE Windows.cpp)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC -DNOMINMAX)
 elseif (GEODE_TARGET_PLATFORM STREQUAL "Android64")
 	set(GEODE_MEMBER_TEST_PLATFORM "android64")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.android64.so")
