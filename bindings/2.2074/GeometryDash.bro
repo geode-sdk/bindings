@@ -11439,7 +11439,7 @@ class GameObject : CCSpritePlus {
             && type != GameObjectType::Slope
         ) || m_isNoTouch;
     }
-    cocos2d::ccColor3B& colorForMode(int id, bool mainColor) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
+    const cocos2d::ccColor3B& colorForMode(int id, bool mainColor) = win 0x19f010, m1 0x4eaf28, imac 0x5b2260, ios 0x261330;
     void commonInteractiveSetup() = win 0x193e00, imac 0x59d6a0, m1 0x4dc750, ios 0x25893c;
     void commonSetup() = win 0x18ad70, m1 0x4d7950, imac 0x58a320, ios 0x253dfc;
     void copyGroups(GameObject* object) = win 0x1999c0, m1 0x4e0b44, imac 0x5a66d0, ios 0x25c644;
