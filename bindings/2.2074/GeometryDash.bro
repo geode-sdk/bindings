@@ -5794,8 +5794,7 @@ class DialogDelegate {
 
 [[link(android)]]
 class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
-    // virtual ~DialogLayer();
-    DialogLayer() {
+    DialogLayer() = ios 0x8b91c {
         m_animateTime = 0.f;
         m_mainLayer = nullptr;
         m_characterLabel = nullptr;
@@ -5810,6 +5809,10 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
         m_handleTap = false;
         m_animationType = DialogAnimationType::FromCenter;
         m_noRemove = false;
+    }
+    ~DialogLayer() = win inline, m1 0x33f6dc, imac 0x3b3f20, ios 0x8a7d8 {
+        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
+        CC_SAFE_RELEASE(m_dialogObjects);
     }
 
     static DialogLayer* create(DialogObject* object, int background) = win inline, m1 0x33f91c, imac 0x3b4270, ios 0x8a89c {
