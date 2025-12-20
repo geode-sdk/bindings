@@ -30336,9 +30336,8 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
             m_sequenceTotalCount = total;
         }
     }
-
-    gd::unordered_map<int, float> m_sequenceTimes;
-    gd::unordered_map<int, int> m_sequenceIndices;
+    
+    SequenceTriggerState m_state;
     // property 437
     float m_minInt;
     // property 436

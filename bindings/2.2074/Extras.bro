@@ -251,8 +251,8 @@ class SavedSpecialObjectState {
 }
 
 class SequenceTriggerState {
-	gd::unordered_map<int,float> m_unkUnorderedMap1;
-	gd::unordered_map<int,int> m_unkUnorderedMap2;
+    gd::unordered_map<int, float> m_sequenceTimes;
+    gd::unordered_map<int, int> m_sequenceIndices;
 }
 
 class FMODSoundTween {
