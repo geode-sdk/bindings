@@ -1054,8 +1054,8 @@ GEODE_MEMBER_CHECK(EffectManagerState, m_timerItemMap, 0x298);
 GEODE_MEMBER_CHECK(EffectManagerState, m_unorderedMapInt_vectorTimerTriggerAction, 0x2d0);
 
 GEODE_SIZE_CHECK(SequenceTriggerState, 0x70);
-GEODE_MEMBER_CHECK(SequenceTriggerState, m_unkUnorderedMap1, 0x0);
-GEODE_MEMBER_CHECK(SequenceTriggerState, m_unkUnorderedMap2, 0x38);
+GEODE_MEMBER_CHECK(SequenceTriggerState, m_sequenceTimes, 0x0);
+GEODE_MEMBER_CHECK(SequenceTriggerState, m_sequenceIndices, 0x38);
 
 GEODE_SIZE_CHECK(CheckpointObject, 0x1230);
 GEODE_MEMBER_CHECK(CheckpointObject, m_gameState, 0x140);
