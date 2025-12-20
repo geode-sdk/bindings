@@ -11128,7 +11128,7 @@ class GameManager : GManager {
     bool m_clickedReddit;
     double m_socialsDuration;
     bool m_musicPaused; //didPauseBGMusic
-    bool m_wasHigh;
+    bool m_isParticleObject;
     bool m_editorEnabled;
     int m_sceneEnum;
     bool m_searchObjectBool;
