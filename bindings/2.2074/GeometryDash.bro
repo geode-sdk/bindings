@@ -30337,7 +30337,7 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
         }
     }
     
-    SequenceTriggerState m_state;
+    SequenceTriggerState m_sequenceState;
     // property 437
     float m_minInt;
     // property 436
