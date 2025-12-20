@@ -3452,6 +3452,7 @@ class cocos2d::CCSequence : cocos2d::CCActionInterval {
 
     // CCSequence(cocos2d::CCSequence const&);
     // CCSequence();
+    ~CCSequence() = m1 0x32fa6c, imac 0x3a2d20, ios 0x18dcc8;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = m1 0x32f938, imac 0x3a2bd0, ios 0x18dbd4;
     virtual void update(float) = imac 0x3a2e80, m1 0x32fbd0, ios 0x18ddb0;
