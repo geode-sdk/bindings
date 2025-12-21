@@ -12031,7 +12031,7 @@ class GameObject : CCSpritePlus {
     bool m_particleUseObjectColor;
     bool m_hasColorSprite;
     cocos2d::CCPoint m_particleOffset;
-    bool m_isSomeSpriteScalable;
+    bool m_isParticleSpriteLocked;
     cocos2d::CCRect m_textureRect;
     bool m_isDirty;
     bool m_isObjectPosDirty;
