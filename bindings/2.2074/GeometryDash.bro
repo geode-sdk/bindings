@@ -8640,6 +8640,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
     }
 
+    virtual void onEnter() = win 0x52db0, m1 0x3f6a84, imac 0x489640, ios 0x2ac0d4;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x52a00, imac 0x489190, m1 0x3f6568, ios 0x2abcac;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x52b50, m1 0x3f6818, imac 0x4893d0, ios 0x2abe9c;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x52aa0, imac 0x4892b0, m1 0x3f66c8, ios 0x2abd64;
@@ -8659,7 +8660,6 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     bool init(int opacity) = win 0x51a50, imac 0x488de0, m1 0x3f61c0, ios 0x2aba58;
     void onBtn1(cocos2d::CCObject* sender) = win 0x52940, imac 0x488f00, m1 0x3f62e4, ios 0x2abb58;
     void onBtn2(cocos2d::CCObject* sender) = win 0x529a0, imac 0x488f60, m1 0x3f6344, ios 0x2abbb8;
-    // virtual void onEnter() = win 0x52db0, m1 0x3f6a84, imac 0x489640, ios 0x2ac0d4; // only exists on armv7...
 
     cocos2d::CCMenu* m_buttonMenu;
     FLAlertLayerProtocol* m_alertProtocol;
