@@ -3615,7 +3615,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     	return nullptr;
     }
     static cocos2d::CCLabelBMFont* createBatched(char const*, char const*, cocos2d::CCArray*, int) = imac 0x5c0250, m1 0x4f5c40, ios 0x2fb1d0;
-    static void purgeCachedData();
+    static void purgeCachedData() = m1 0x4f55bc, imac 0x5bfc20, ios 0x2fae1c;
 
     bool initWithString(char const*, char const*, float, cocos2d::CCTextAlignment, cocos2d::CCPoint) = imac 0x5bff80, m1 0x4f5984, ios 0x2faf30;
 
@@ -5316,7 +5316,7 @@ class cocos2d {
     static cocos2d::CCRect CCRectFromString(char const*) = m1 0x4a7204, imac 0x54fcc0, ios 0x1a93ec;
     static cocos2d::CCSize CCSizeFromString(char const*) = m1 0x4a7fec, imac 0x550bb0, ios 0x1a9d4c;
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = m1 0x4f1f3c, imac 0x5bc460, ios 0x2f8b04;
-    static void FNTConfigRemoveCache();
+    static void FNTConfigRemoveCache() = m1 0x4f221c, imac 0x5bc730, ios 0x2f8c94;
     static cocos2d::CCAffineTransform __CCAffineTransformMake(float, float, float, float, float, float) = m1 0x1df1d8, imac 0x22e490, ios 0x40b1e8;
     static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = m1 0x1df1e8, imac 0x22e4c0, ios 0x40b1f8;
     static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&) = m1 0x1df244, imac 0x22e530, ios inline {
@@ -6141,19 +6141,33 @@ class cocos2d::CCJumpTo : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCBMFontConfiguration {
-	static cocos2d::CCBMFontConfiguration* create(char const*) = ios 0x2f8bf8, m1 0x4f2174;
+    static cocos2d::CCBMFontConfiguration* create(char const*) = ios 0x2f8bf8, m1 0x4f2174, imac 0x5bc6a0;
 
-	bool initWithFNTfile(char const*) = ios 0x2f8ccc, m1 0x4f22c0;
+    bool initWithFNTfile(char const*) = m1 0x4f228c, imac 0x5bc7c0, ios inline {
+        m_pKerningDictionary = nullptr;
+        m_pFontDefDictionary = nullptr;
+        m_pCharacterSet = this->parseConfigFile(p0);
+        return m_pCharacterSet != nullptr;
+    }
 
-	// CCBMFontConfiguration(cocos2d::CCBMFontConfiguration const&);
-	// CCBMFontConfiguration();
-	char const* description();
-	void parseCharacterDefinition(gd::string, cocos2d::_BMFontDef*);
-	void parseCommonArguments(gd::string);
-	gd::set<unsigned int>* parseConfigFile(char const*);
-	void parseImageFileName(gd::string, char const*);
-	void parseInfoArguments(gd::string);
-	void parseKerningEntry(gd::string);
-	void purgeFontDefDictionary();
-	void purgeKerningDictionary();
+    // CCBMFontConfiguration(cocos2d::CCBMFontConfiguration const&);
+    // CCBMFontConfiguration();
+
+    char const* description() = m1 0x4f3460, imac 0x5bd880, ios inline {
+        return CCString::createWithFormat(
+            "<CCBMFontConfiguration = " CC_FORMAT_PRINTF_SIZE_T " | Glphys:%d Kernings:%d | Image = %s>",
+            (size_t)this,
+            HASH_COUNT(m_pFontDefDictionary),
+            HASH_COUNT(m_pKerningDictionary),
+            m_sAtlasName.c_str()
+        )->getCString();
+    }
+    void parseCharacterDefinition(gd::string, cocos2d::_BMFontDef*) = m1 0x4f401c, imac 0x5be470, ios 0x2fa078;
+    void parseCommonArguments(gd::string) = m1 0x4f3698, imac 0x5bdac0, ios 0x2f9b50;
+    gd::set<unsigned int>* parseConfigFile(char const*) = m1 0x4f22c0, imac 0x5bc7f0, ios 0x2f8ccc;
+    void parseImageFileName(gd::string, char const*) = m1 0x4f3d7c, imac 0x5be1e0, ios 0x2f9f30;
+    void parseInfoArguments(gd::string) = m1 0x4f34bc, imac 0x5bd8e0, ios 0x2f9a2c;
+    void parseKerningEntry(gd::string) = m1 0x4f4d8c, imac 0x5bf370, ios 0x2fa818;
+    void purgeFontDefDictionary() = m1 0x4f31a4, imac 0x5bd5b0, ios 0x2f97b8;
+    void purgeKerningDictionary() = m1 0x4f32fc, imac 0x5bd710, ios 0x2f98ec;
 }
