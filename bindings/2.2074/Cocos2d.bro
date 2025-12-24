@@ -6141,9 +6141,9 @@ class cocos2d::CCJumpTo : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCBMFontConfiguration {
-	static cocos2d::CCBMFontConfiguration* create(char const*) = ios 0x2f8bf8;
+	static cocos2d::CCBMFontConfiguration* create(char const*) = ios 0x2f8bf8, m1 0x4f2174;
 
-	bool initWithFNTfile(char const*) = ios 0x2f8ccc;
+	bool initWithFNTfile(char const*) = ios 0x2f8ccc, m1 0x4f22c0;
 
 	// CCBMFontConfiguration(cocos2d::CCBMFontConfiguration const&);
 	// CCBMFontConfiguration();
