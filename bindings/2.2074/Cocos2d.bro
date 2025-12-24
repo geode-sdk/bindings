@@ -6138,3 +6138,22 @@ class cocos2d::CCJumpTo : cocos2d::CCActionInterval {
         m_delta = m_delta - m_startPosition;
     }
 }
+
+[[link(win, android)]]
+class cocos2d::CCBMFontConfiguration {
+	static cocos2d::CCBMFontConfiguration* create(char const*) = ios 0x2f8bf8, m1 0x4f2174;
+
+	bool initWithFNTfile(char const*) = ios 0x2f8ccc, m1 0x4f22c0;
+
+	// CCBMFontConfiguration(cocos2d::CCBMFontConfiguration const&);
+	// CCBMFontConfiguration();
+	char const* description();
+	void parseCharacterDefinition(gd::string, cocos2d::_BMFontDef*);
+	void parseCommonArguments(gd::string);
+	gd::set<unsigned int>* parseConfigFile(char const*);
+	void parseImageFileName(gd::string, char const*);
+	void parseInfoArguments(gd::string);
+	void parseKerningEntry(gd::string);
+	void purgeFontDefDictionary();
+	void purgeKerningDictionary();
+}
