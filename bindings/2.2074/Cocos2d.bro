@@ -3770,10 +3770,59 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 
 [[link(win, android)]]
 class cocos2d::CCActionManager : cocos2d::CCObject {
+    CCActionManager() = m1 0x1d472c, imac 0x2217c0, ios 0x2f3ec8;
+    virtual ~CCActionManager() = m1 0x1d4754, imac 0x2217f0, ios 0x2f3ef0;
+
+    virtual void update(float) = m1 0x1d59d8, imac 0x2228a0, ios 0x2f4cdc;
+
     void addAction(cocos2d::CCAction*, cocos2d::CCNode*, bool) = m1 0x1d4dfc, imac 0x221dd0, ios 0x2f4378;
+    void removeAllActions() = m1 0x1d47a0, imac 0x221840, ios inline {
+        struct tHashElement {
+            ccArray* actions;
+            CCObject* target;
+            unsigned int actionIndex;
+            CCAction* currentAction;
+            bool currentActionSalvaged;
+            bool paused;
+            UT_hash_handle hh;
+        };
+
+        for (auto element = reinterpret_cast<tHashElement*>(m_pTargets); element != nullptr; element = static_cast<tHashElement*>(element->hh.next)) {
+            this->removeAllActionsFromTarget(element->target);
+        }
+    }
+    void removeAllActionsFromTarget(cocos2d::CCObject*) = m1 0x1d5274, imac 0x222210, ios 0x2f47b8;
     void removeAction(cocos2d::CCAction*) = m1 0x1d53f8, imac 0x222370, ios 0x2f493c;
+    void removeActionByTag(unsigned int, cocos2d::CCObject*) = m1 0x1d55ac, imac 0x2224f0, ios 0x2f4a70;
+    cocos2d::CCAction* getActionByTag(unsigned int, cocos2d::CCObject*) = m1 0x1d5798, imac 0x222690, ios 0x2f4bb0;
     void pauseTarget(cocos2d::CCObject*) = imac 0x221b10, m1 0x1d4aec, ios 0x2f4184;
     void resumeTarget(cocos2d::CCObject*) = m1 0x1d4be8, imac 0x221bf0, ios 0x2f4280;
+    cocos2d::CCSet* pauseAllRunningActions() = m1 0x1d4ce0, imac 0x221cd0, ios inline {
+        struct tHashElement {
+            ccArray* actions;
+            CCObject* target;
+            unsigned int actionIndex;
+            CCAction* currentAction;
+            bool currentActionSalvaged;
+            bool paused;
+            UT_hash_handle hh;
+        };
+
+        auto targets = new CCSet();
+        targets->autorelease();
+        for (auto element = reinterpret_cast<tHashElement*>(m_pTargets); element != nullptr; element = static_cast<tHashElement*>(element->hh.next)) {
+            if (!element->paused) {
+                element->paused = true;
+                targets->addObject(element->target);
+            }
+        }
+        return targets;
+    }
+    void resumeTargets(cocos2d::CCSet*) = m1 0x1d4d68, imac 0x221d40, ios inline {
+        for (auto it = p0->begin(); it != p0->end(); ++it) {
+            this->resumeTarget(*it);
+        }
+    }
     unsigned int numberOfRunningActionsInTarget(cocos2d::CCObject* target) = m1 0x1d58cc, imac 0x2227b0, ios inline {
         struct tHashElement {
             ccArray* actions;
@@ -6140,7 +6189,7 @@ class cocos2d::CCJumpTo : cocos2d::CCActionInterval {
 }
 
 [[link(win, android)]]
-class cocos2d::CCBMFontConfiguration {
+class cocos2d::CCBMFontConfiguration : cocos2d::CCObject {
     static cocos2d::CCBMFontConfiguration* create(char const*) = ios 0x2f8bf8, m1 0x4f2174, imac 0x5bc6a0;
 
     bool initWithFNTfile(char const*) = m1 0x4f228c, imac 0x5bc7c0, ios inline {
