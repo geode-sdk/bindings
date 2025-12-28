@@ -399,15 +399,17 @@ public class Broma {
         }
         return matcher;
     }
-    private void applyRegexes(Platform platform) {
+    private void applyRegexes(Platform platform, boolean importGlobals) {
         var matcher = Regexes.GRAB_CLASS.matcher(this.data);
         while (matcher.find()) {
             this.classes.add(new Class(this, platform, matcher));
         }
 
-        var funMatcher = Regexes.GRAB_GLOBAL_FUNCTION.matcher(this.data);
-        while (funMatcher.find()) {
-            this.functions.add(new Function(this, null, platform, funMatcher));
+        if (importGlobals) {
+            var funMatcher = Regexes.GRAB_GLOBAL_FUNCTION.matcher(this.data);
+            while (funMatcher.find()) {
+                this.functions.add(new Function(this, null, platform, funMatcher));
+            }
         }
     }
 
@@ -444,13 +446,13 @@ public class Broma {
      * @param path Path to the Broma file
      * @throws IOException
      */
-    public Broma(Path path, Platform platform) throws IOException {
+    public Broma(Path path, Platform platform, boolean importGlobals) throws IOException {
         this.path = path;
         data = Files.readString(path);
         patches = new ArrayList<Patch>();
         classes = new ArrayList<Class>();
         functions = new ArrayList<Function>();
-        this.applyRegexes(platform);
+        this.applyRegexes(platform, importGlobals);
     }
 
     /**

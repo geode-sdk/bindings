@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import docking.widgets.dialogs.InputWithChoicesDialog;
 import ghidra.app.script.GhidraScript;
@@ -123,8 +125,8 @@ public class SyncBromaScript extends GhidraScript {
                 .filter(Files::exists)
                 .toList();
             
-            if (!this.importFromBroma && !this.exportToBroma) {
-                throw new Error("Either importing from or exporting to Broma has to be checked!");
+            if (!this.importFromBroma && !this.exportToBroma && !this.syncMembers && !this.syncEnums) {
+                throw new Error("Either importing from Broma, exporting to Broma, syncing members, or syncing enums has to be checked!");
             }
         }
     }
@@ -138,7 +140,7 @@ public class SyncBromaScript extends GhidraScript {
 
         this.args = new Args(wrapper, wrapper.bindingsDir);
         for (var bro : this.args.bromaFiles) {
-            this.bromas.add(new Broma(bro, args.platform));
+            this.bromas.add(new Broma(bro, args.platform, this.args.importFromBroma));
         }
 
         wrapper.fillStandardTypes = this.args.fillStandardTypes;
@@ -151,13 +153,15 @@ public class SyncBromaScript extends GhidraScript {
 
         wrapper.printfmt("Found {0} classes in Broma", wrapper.classes.size());
 
-        // Read functions
-        wrapper.functions.addAll(this.bromas.stream()
-            .map(b -> b.functions.stream().map(f -> f.getName()).toList())
-            .flatMap(List::stream)
-            .toList());
+        if (this.args.importFromBroma) {
+            // Read functions
+            wrapper.functions.addAll(this.bromas.stream()
+                .map(b -> b.functions.stream().map(f -> f.getName()).toList())
+                .flatMap(List::stream)
+                .toList());
 
-        wrapper.printfmt("Found {0} functions in Broma", wrapper.functions.size());
+            wrapper.printfmt("Found {0} functions in Broma", wrapper.functions.size());
+        }
 
         // Read enums
         var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
@@ -176,12 +180,12 @@ public class SyncBromaScript extends GhidraScript {
         // Do the imports and exports and members
         if (this.args.importFromBroma) {
             this.handleImport();
-            if (this.args.syncMembers) {
-                this.handleImportMembers();
-            }
-            if (this.args.syncEnums) {
-                this.handleImportEnums();
-            }
+        }
+        if (this.args.syncMembers) {
+            this.handleImportMembers();
+        }
+        if (this.args.syncEnums) {
+            this.handleImportEnums();
         }
         if (this.args.exportToBroma) {
             this.handleExport();
@@ -821,64 +825,231 @@ public class SyncBromaScript extends GhidraScript {
         wrapper.printfmt("Exported {0} addresses & {1} return types to Broma", exportedAddrCount, exportedTypeCount);
     }
 
-    private void handleImportMembers() throws Exception {
+    HashMap<String, List<String>> basesMap = new HashMap<>();
+    HashMap<String, Broma.Class> classCache = new HashMap<>();
+    HashSet<String> visitedClasses = new HashSet<>();
+    HashMap<String, Integer> classPads = new HashMap<>();
+    int globalOverwriteStatus = 0;
+
+    private void importClass(Broma.Class cls) throws Exception {
+        if (cls == null) return;
+
+        final var fullName = cls.name.value;
+
+        if (visitedClasses.contains(fullName)) return;
+
+        visitedClasses.add(fullName);
+
+        var basesString = cls.bases.isPresent() ? cls.bases.get().value.substring(1) : "";
+        if (fullName.equals("UILayer")) basesString += ", cocos2d::CCKeyboardDelegate";
+        var basesList = Arrays.stream(basesString.split(",")).map(String::trim).toList();
+        var firstBase = basesList.size() == 1 ? basesList.get(0) : "";
+        var needsClear = (!fullName.startsWith("cocos2d::") || fullName.equals("cocos2d::CCLightning")) && firstBase.startsWith("cocos2d::");
+        basesMap.put(fullName, basesList);
+
+        if (!firstBase.isEmpty() && !visitedClasses.contains(firstBase)) {
+            importClass(classCache.get(firstBase));
+        }
+
+        var isBaseless = cls.bases.isEmpty() && !cls.functions.stream().anyMatch(f -> {
+            return f.dispatch.isPresent() && f.dispatch.get().value.equals("virtual");
+        });
+
         final var manager = currentProgram.getDataTypeManager();
         final var pointerSize = manager.getDataOrganization().getPointerSize();
 
-        var basesMap = new HashMap<String, List<String>>();
+        var category = new CategoryPath("/ClassDataTypes");
+        String name = null;
+        for (var part : fullName.split("::")) {
+            category = category.extend(part);
+            name = part;
+        }
+        // Make sure the category exists
+        wrapper.createCategoryAll(category);
 
-        wrapper.printfmt("Importing members...");
-        for (var bro : this.bromas) {
-            wrapper.printfmt("Importing from {0}...", bro.path.getFileName());
-            for (var cls : bro.classes) {
-                final var fullName = cls.name.value;
+        if (!cls.members.isEmpty()) {
+            final var classDataTypePath = new DataTypePath(category, name + (isBaseless ? "" : "_data"));
+            var classMembers = manager.getDataType(classDataTypePath);
 
-                var bases = cls.bases.isPresent() ? cls.bases.get().value.substring(1) : "";
-                if (fullName.equals("UILayer")) bases += ", cocos2d::CCKeyboardDelegate";
-                var basesList = Arrays.stream(bases.split(",")).map(String::trim).toList();
-                var needsClear = (!fullName.startsWith("cocos2d::") || fullName.equals("cocos2d::CCLightning"))
-                    && basesList.size() == 1 && basesList.get(0).startsWith("cocos2d::");
-                basesMap.put(fullName, basesList);
+            if (classMembers == null || !(classMembers instanceof Structure)) {
+                // Create data members struct
+                classMembers = manager.getCategory(category).addDataType(
+                    new StructureDataType(name + (isBaseless ? "" : "_data"), 0),
+                    classMembers == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER
+                );
+            }
+            wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
 
-                var isBaseless = cls.bases.isEmpty() && !cls.functions.stream().anyMatch(f -> {
-                    return f.dispatch.isPresent() && f.dispatch.get().value.equals("virtual");
-                });
+            var classDataMembers = (Structure)classMembers;
 
-                var category = new CategoryPath("/ClassDataTypes");
-                String name = null;
-                for (var part : fullName.split("::")) {
-                    category = category.extend(part);
-                    name = part;
+            // Disable packing
+            classDataMembers.setPackingEnabled(false);
+
+            if (needsClear) {
+                classDataMembers.setLength(0);
+            }
+
+            // Delete any padding at the end of the struct 
+            // (so if the struct has shrunk in broma, we refit it properly)
+            while (!classDataMembers.isZeroLength()) {
+                var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
+                if (comp.getDataType() instanceof DefaultDataType) {
+                    classDataMembers.delete(classDataMembers.getNumComponents() - 1);
                 }
-                // Make sure the category exists
-                wrapper.createCategoryAll(category);
-                final var classDataTypePath = new DataTypePath(category, name + (isBaseless ? "" : "_data"));
-                var classMembers = manager.getDataType(classDataTypePath);
+                else {
+                    break;
+                }
+            }
 
-                if (classMembers == null || !(classMembers instanceof Structure)) {
-                    // Just skip if there are no members to import
-                    if (cls.members.isEmpty()) {
+            var initialOffset = 0;
+            if (args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64 && !firstBase.isEmpty() && classCache.containsKey(firstBase)) {
+                var firstBaseCategory = new CategoryPath("/ClassDataTypes");
+                String firstBaseData = null;
+                for (var part : firstBase.split("::")) {
+                    firstBaseCategory = firstBaseCategory.extend(part);
+                    firstBaseData = part;
+                }
+                var firstBaseType = manager.getDataType(new DataTypePath(firstBaseCategory, firstBaseData + "_data"));
+                if (firstBaseType != null) {
+                    initialOffset = (firstBaseType.getLength() - classPads.getOrDefault(firstBase, 0)) % pointerSize;
+                    classPads.put(fullName, initialOffset);
+                    if (classDataMembers.getNumComponents() > 0) {
+                        var componentOffset = classDataMembers.getComponent(0).getOffset();
+                        if (componentOffset < initialOffset) {
+                            var missingArea = initialOffset - componentOffset;
+                            for (int i = 0; i < missingArea; i++) {
+                                classDataMembers.insertAtOffset(componentOffset, DefaultDataType.dataType, 1);
+                            }
+                        }
+                    }
+                }
+            }
+            var offset = initialOffset;
+            var overwriteStatus = globalOverwriteStatus;
+            for (var mem : cls.members) {
+                int length;
+                var memName = mem.name.isPresent() ? mem.name.get().value : null;
+                if (memName != null) {
+                    // Placeholder member for a doubly inherited virtual table
+                    if (fullName.equals("UILayer") && memName.equals("m_stupidDelegate")) {
                         continue;
                     }
-                    // Otherwise create data members struct
-                    classMembers = manager.getCategory(category).addDataType(
-                        new StructureDataType(name + (isBaseless ? "" : "_data"), 0),
-                        classMembers == null ? DataTypeConflictHandler.DEFAULT_HANDLER : DataTypeConflictHandler.REPLACE_HANDLER
+
+                    final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
+                    boolean isPointer = memType instanceof Pointer || memType instanceof FunctionDefinition;
+                    if (memType instanceof Structure) {
+                        var typeName = memType.getName();
+                        if (classCache.containsKey(typeName) && !visitedClasses.contains(typeName)) {
+                            importClass(classCache.get(typeName));
+                        }
+                    }
+                    length = isPointer ? pointerSize : memType.getLength();
+                    int alignment = isPointer ? length : memType.getAlignment();
+                    if (memType instanceof FunctionDefinition && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
+                        length *= 2;
+                    }
+                    offset = (offset + alignment - 1) / alignment * alignment;
+                }
+                else {
+                    if (mem.paddings.containsKey(args.platform)) {
+                        length = mem.paddings.get(args.platform);
+                    }
+                    else {
+                        length = 0;
+                    }
+                }
+
+                int classLength = classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength();
+                if (offset + length > classLength) {
+                    classDataMembers.growStructure(offset + length - classLength);
+                }
+
+                if (memName != null) {
+                    final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
+                    // Make sure alignment is correct
+                    var existing = classDataMembers.getComponentAt(offset);
+                    if (existing != null && existing.getDataType() instanceof Undefined) {
+                        if (
+                            (!existing.getDataType().isEquivalent(memType) ||
+                            (existing.getFieldName() != null && !existing.getFieldName().equals(memName))) &&
+                            overwriteStatus <= 0
+                        ) {
+                            if (overwriteStatus < 0) continue;
+                            var result = askContinueConflict(
+                                "Override member",
+                                List.of("Yes", "Yes to Class", "Yes to All", "No", "No to Class", "No to All"),
+                                "Member #{0} in {1} does not match between Broma and Ghidra:<br><br>" + 
+                                "Broma: {2} {3}<br>" + 
+                                "Ghidra: {4} {5}<br><br>" + 
+                                "Should the existing member in Ghidra be overwritten with Broma's?",
+                                existing.getOrdinal(), fullName,
+                                ScriptWrapper.formatType(memType), memName,
+                                ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
+                            );
+                            switch (result) {
+                                case 1:
+                                    overwriteStatus = 1;
+                                    break;
+                                case 2:
+                                    overwriteStatus = 1;
+                                    globalOverwriteStatus = 1;
+                                    break;
+                                case 3:
+                                    continue;
+                                case 4:
+                                    overwriteStatus = -1;
+                                    continue;
+                                case 5:
+                                    overwriteStatus = -1;
+                                    globalOverwriteStatus = -1;
+                                    continue;
+                            }
+                        }
+                    }
+                    for (int i = length; i > 0; i -= 1) {
+                        classDataMembers.clearAtOffset(offset + i - 1);
+                    }
+                    classDataMembers.replaceAtOffset(
+                        offset,
+                        memType instanceof FunctionDefinition ? new PointerDataType(memType) : memType, length,
+                        memName,
+                        mem.getComment().orElse(null)
                     );
+                    offset += length;
                 }
-                wrapper.printfmt("Importing {0} members for {1}", cls.members.size(), fullName);
-
-                var classDataMembers = (Structure)classMembers;
-
-                // Disable packing
-                classDataMembers.setPackingEnabled(false);
-
-                if (needsClear) {
-                    classDataMembers.setLength(0);
+                else {
+                    if (mem.paddings.containsKey(args.platform)) {
+                        // Don't clear anything in case there's user-defined members there
+                        // since we don't want to override anyone's RE progress
+                        offset += mem.paddings.get(args.platform);
+                    }
+                    else {
+                        wrapper.printfmt(
+                            "Warning: Reached undefined padding at offset {0} " + 
+                            "on class {1} - stopping importing members",
+                            offset, fullName
+                        );
+                    }
                 }
+            }
 
-                // Delete any padding at the end of the struct 
-                // (so if the struct has shrunk in broma, we refit it properly)
+            for (int i = initialOffset - 1; i >= 0; i--) {
+                classDataMembers.deleteAtOffset(i);
+            }
+
+            if (isBaseless) {
+                classDataMembers.setPackingEnabled(true);
+                classDataMembers.repack();
+            }
+            else if (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) {
+                if (!classDataMembers.isZeroLength()) {
+                    var length = classDataMembers.getLength();
+                    if (length % pointerSize != 0) {
+                        classDataMembers.growStructure(pointerSize - (length % pointerSize));
+                    }
+                }
+            }
+            else {
                 while (!classDataMembers.isZeroLength()) {
                     var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
                     if (comp.getDataType() instanceof DefaultDataType) {
@@ -888,224 +1059,143 @@ public class SyncBromaScript extends GhidraScript {
                         break;
                     }
                 }
+            }
+        }
 
-                var offset = 0;
-                var overwriteStatus = 0;
-                for (var mem : cls.members) {
-                    int length;
-                    if (mem.name.isPresent()) {
-                        // Placeholder member for a doubly inherited virtual table
-                        if (fullName.equals("UILayer") && mem.name.get().value.equals("m_stupidDelegate")) {
+        if (!cls.bases.isPresent()) return;
+
+        var baseList = new ArrayList<List<String>>();
+        var currentClass = fullName;
+        baseList.add(List.of(currentClass));
+        var currentList = basesMap.get(currentClass);
+        baseList.add(currentList);
+        while (
+            currentList != null && !currentList.isEmpty() &&
+            !currentList.get(0).equals("cocos2d::CCCopying") &&
+            !currentList.get(0).equals("cocos2d::CCApplicationProtocol")
+        ) {
+            currentClass = currentList.get(0);
+            currentList = basesMap.get(currentClass);
+            baseList.add(currentList);
+        }
+
+        var classType = manager.getDataType(new DataTypePath(category, name));
+        if (classType == null || !(classType instanceof Structure)) return;
+        var classStruct = (Structure)classType;
+        classStruct.setPackingEnabled(false);
+
+        var noTables = true;
+        var allStructures = manager.getAllStructures();
+        var targetPath = new DataTypePath(category, name + "_vftable").getPath();
+        while (allStructures.hasNext()) {
+            var type = allStructures.next();
+            if (type.getDataTypePath().getPath().startsWith(targetPath)) {
+                noTables = false;
+                break;
+            }
+        }
+
+        for (var component : classStruct.getComponents()) {
+            var fieldName = component.getFieldName();
+            if (fieldName != null && baseList.stream().anyMatch(b -> {
+                if (b == null || b.isEmpty()) return false;
+                var baseFieldName = b.get(0);
+                if (baseFieldName == null) return false;
+                var baseFieldSplit = baseFieldName.split("::");
+                return baseFieldSplit.length > 0 && fieldName.equals(baseFieldSplit[baseFieldSplit.length - 1] + "_data");
+            })) {
+                classStruct.clearAtOffset(component.getOffset());
+            }
+        }
+
+        var index = 0;
+        for (var i = baseList.size() - 1; i >= 0; i--) {
+            var bases = baseList.get(i);
+            if (bases != null && !bases.isEmpty()) {
+                var baseName = bases.get(0);
+                var j = baseName.equals("cocos2d::CCCopying") || baseName.equals("cocos2d::CCApplicationProtocol") ? 0 : 1;
+                if (j == 1) {
+                    var subcategory = new CategoryPath("/ClassDataTypes");
+                    String subname = null;
+                    for (var part : baseName.split("::")) {
+                        subcategory = subcategory.extend(part);
+                        subname = part;
+                    }
+
+                    var baseClass = manager.getDataType(new DataTypePath(subcategory, subname + "_data"));
+                    if (baseClass != null && baseClass instanceof Structure baseStruct) {
+                        var currentComponent = classStruct.getComponentAt(index);
+                        if (currentComponent != null && currentComponent.getDataType().isEquivalent(baseStruct)) {
+                            index += baseStruct.getLength();
                             continue;
                         }
 
-                        final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
-                        boolean isPointer = memType instanceof Pointer || memType instanceof FunctionDefinition;
-                        length = isPointer ? pointerSize : memType.getLength();
-                        int alignment = isPointer ? length : memType.getAlignment();
-                        if (memType instanceof FunctionDefinition && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
-                            length *= 2;
-                        }
-                        offset = (offset + alignment - 1) / alignment * alignment;
-                    }
-                    else {
-                        if (mem.paddings.containsKey(args.platform)) {
-                            length = mem.paddings.get(args.platform);
-                        }
-                        else {
-                            length = 0;
-                        }
-                    }
-
-                    int classLength = classDataMembers.isZeroLength() ? 0 : classDataMembers.getLength();
-                    if (offset + length > classLength) {
-                        classDataMembers.growStructure(offset + length - classLength);
-                    }
-
-                    if (mem.name.isPresent()) {
-                        final var memType = wrapper.addOrGetType(mem.type.get(), args.platform);
-                        // Make sure alignment is correct
-                        var existing = classDataMembers.getComponentAt(offset);
-                        if (existing != null && existing.getDataType() instanceof Undefined) {
-                            if (
-                                (!existing.getDataType().isEquivalent(memType) ||
-                                (existing.getFieldName() != null && !existing.getFieldName().equals(mem.name.get().value))) &&
-                                overwriteStatus <= 0
-                            ) {
-                                if (overwriteStatus < 0) continue;
-                                var result = askContinueConflict(
-                                    "Override member",
-                                    List.of("Yes", "Yes to All", "No", "No to All"),
-                                    "Member #{0} in {1} does not match between Broma and Ghidra:<br><br>" + 
-                                    "Broma: {2} {3}<br>" + 
-                                    "Ghidra: {4} {5}<br><br>" + 
-                                    "Should the existing member in Ghidra be overwritten with Broma's?",
-                                    existing.getOrdinal(), fullName,
-                                    ScriptWrapper.formatType(memType), mem.name.get().value,
-                                    ScriptWrapper.formatType(existing.getDataType()), existing.getFieldName()
-                                );
-                                switch (result) {
-                                    case 1:
-                                        overwriteStatus = 1;
-                                        break;
-                                    case 2:
-                                        continue;
-                                    case 3:
-                                        overwriteStatus = -1;
-                                        continue;
-                                }
+                        var baseLength = baseStruct.getLength();
+                        var component = classStruct.getDefinedComponentAtOrAfterOffset(index);
+                        if (component != null && component.getOffset() < index + baseLength) {
+                            var missingArea = index + baseLength - component.getOffset();
+                            for (int k = 0; k < missingArea; k++) {
+                                classStruct.insertAtOffset(index, DefaultDataType.dataType, 1);
                             }
                         }
-                        for (int i = length; i > 0; i -= 1) {
-                            classDataMembers.clearAtOffset(offset + i - 1);
+
+                        var classLength = classStruct.isZeroLength() ? 0 : classStruct.getLength();
+                        if (index + baseLength > classLength) {
+                            classStruct.growStructure(index + baseLength - classLength);
                         }
-                        classDataMembers.replaceAtOffset(
-                            offset,
-                            memType instanceof FunctionDefinition ? new PointerDataType(memType) : memType, length,
-                            mem.name.get().value,
-                            mem.getComment().orElse(null)
-                        );
-                        offset += length;
-                    }
-                    else {
-                        if (mem.paddings.containsKey(args.platform)) {
-                            // Don't clear anything in case there's user-defined members there
-                            // since we don't want to override anyone's RE progress
-                            offset += mem.paddings.get(args.platform);
-                        }
-                        else {
-                            wrapper.printfmt(
-                                "Warning: Reached undefined padding at offset {0} " + 
-                                "on class {1} - stopping importing members",
-                                offset, fullName
-                            );
-                        }
+                        classStruct.replaceAtOffset(index, baseStruct, baseLength, baseStruct.getName(), null);
+                        index += baseLength;
                     }
                 }
 
-                if (isBaseless) {
-                    classDataMembers.setPackingEnabled(true);
-                    classDataMembers.repack();
-                }
-                else if ((args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) && !classDataMembers.isZeroLength()) {
-                    var length = classDataMembers.getLength();
-                    if (length % pointerSize != 0) {
-                        classDataMembers.growStructure(pointerSize - (length % pointerSize));
+                for (; j < bases.size(); j++) {
+                    if (index % pointerSize != 0) {
+                        index += pointerSize - (index % pointerSize);
                     }
+                    if (noTables) {
+                        var dataType = wrapper.addOrGetType(bases.get(j) + "*", args.platform);
+                        if (dataType instanceof Pointer pointer) {
+                            var currentComponent = classStruct.getComponentAt(index);
+                            if (currentComponent != null && currentComponent.getDataType().isEquivalent(pointer)) {
+                                index += pointerSize;
+                                continue;
+                            }
+
+                            var component = classStruct.getDefinedComponentAtOrAfterOffset(index);
+                            if (component != null && component.getOffset() < index + pointerSize) {
+                                var missingArea = index + pointerSize - component.getOffset();
+                                for (int k = 0; k < missingArea; k++) {
+                                    classStruct.insertAtOffset(index, DefaultDataType.dataType, 1);
+                                }
+                            }
+
+                            var classLength = classStruct.isZeroLength() ? 0 : classStruct.getLength();
+                            if (index + pointerSize > classLength) {
+                                classStruct.growStructure(index + pointerSize - classLength);
+                            }
+
+                            classStruct.replaceAtOffset(index, pointer, pointerSize, pointer.getDataType().getName(), null);
+                        }
+                    }
+                    index += pointerSize;
                 }
             }
         }
 
-        wrapper.printfmt("Correcting members...");
+        classStruct.setLength(index + (pointerSize - (index % pointerSize)) % pointerSize);
+    }
+
+    private void handleImportMembers() throws Exception {
+        wrapper.printfmt("Importing members...");
+
+        classCache.putAll(bromas.stream()
+            .flatMap(bro -> bro.classes.stream())
+            .collect(Collectors.toMap(cls -> cls.name.value, cls -> cls)));
+
         for (var bro : this.bromas) {
-            var bromaPath = bro.path.getFileName();
-            if (bromaPath.endsWith("FMOD.bro")) continue;
-
-            wrapper.printfmt("Correcting members for {0}...", bromaPath);
+            wrapper.printfmt("Importing from {0}...", bro.path.getFileName());
             for (var cls : bro.classes) {
-                if (!cls.bases.isPresent()) continue;
-
-                var fullName = cls.name.value;
-
-                var baseList = new ArrayList<List<String>>();
-                var currentClass = fullName;
-                baseList.add(List.of(currentClass));
-                var currentList = basesMap.get(currentClass);
-                baseList.add(currentList);
-                while (
-                    currentList != null && !currentList.isEmpty() &&
-                    !currentList.get(0).equals("cocos2d::CCCopying") &&
-                    !currentList.get(0).equals("cocos2d::CCApplicationProtocol")
-                ) {
-                    currentClass = currentList.get(0);
-                    currentList = basesMap.get(currentClass);
-                    baseList.add(currentList);
-                }
-                
-                var category = new CategoryPath("/ClassDataTypes");
-                String name = null;
-                for (var part : fullName.split("::")) {
-                    category = category.extend(part);
-                    name = part;
-                }
-                
-                var classType = manager.getDataType(new DataTypePath(category, name));
-                if (classType == null || !(classType instanceof Structure)) continue;
-                var classStruct = (Structure)classType;
-                classStruct.setPackingEnabled(false);
-
-                var noTables = true;
-                var allStructures = manager.getAllStructures();
-                var targetPath = new DataTypePath(category, name + "_vftable").getPath();
-                while (allStructures.hasNext()) {
-                    var type = allStructures.next();
-                    if (type.getDataTypePath().getPath().startsWith(targetPath)) {
-                        noTables = false;
-                        break;
-                    }
-                }
-
-                wrapper.printfmt("Correcting members for {0}", fullName);
-
-                for (var component : classStruct.getComponents()) {
-                    var fieldName = component.getFieldName();
-                    if (fieldName != null && baseList.stream().anyMatch(b -> {
-                        if (b == null || b.isEmpty()) return false;
-                        var baseFieldName = b.get(0);
-                        if (baseFieldName == null) return false;
-                        var baseFieldSplit = baseFieldName.split("::");
-                        return baseFieldSplit.length > 0 && fieldName.equals(baseFieldSplit[baseFieldSplit.length - 1] + "_data");
-                    })) {
-                        classStruct.clearAtOffset(component.getOffset());
-                    }
-                }
-
-                var index = 0;
-                for (var i = baseList.size() - 1; i >= 0; i--) {
-                    var bases = baseList.get(i);
-                    if (bases != null && !bases.isEmpty()) {
-                        var baseName = bases.get(0);
-                        var j = baseName.equals("cocos2d::CCCopying") || baseName.equals("cocos2d::CCApplicationProtocol") ? 0 : 1;
-                        if (j == 1) {
-                            var subcategory = new CategoryPath("/ClassDataTypes");
-                            String subname = null;
-                            for (var part : baseName.split("::")) {
-                                subcategory = subcategory.extend(part);
-                                subname = part;
-                            }
-
-                            var baseClass = manager.getDataType(new DataTypePath(subcategory, subname + "_data"));
-                            if (baseClass != null && baseClass instanceof Structure baseStruct) {
-                                var baseLength = baseStruct.getLength();
-                                var classLength = classStruct.isZeroLength() ? 0 : classStruct.getLength();
-                                if (index + baseLength > classLength) {
-                                    classStruct.growStructure(index + baseLength - classLength);
-                                }
-                                classStruct.replaceAtOffset(index, baseStruct, baseLength, baseStruct.getName(), null);
-                                index += baseLength;
-                            }
-                        }
-
-                        for (; j < bases.size(); j++) {
-                            if (noTables) {
-                                var dataType = wrapper.addOrGetType(bases.get(j), args.platform);
-                                if (dataType instanceof Structure structure) {
-                                    if (structure.isZeroLength()) structure.growStructure(pointerSize);
-                                    else if (structure.getLength() < pointerSize) structure.growStructure(pointerSize);
-                                    else if (structure.getLength() > pointerSize) structure.setLength(pointerSize);
- 
-                                    var classLength = classStruct.isZeroLength() ? 0 : classStruct.getLength();
-                                    if (index + pointerSize > classLength) {
-                                        classStruct.growStructure(index + pointerSize - classLength);
-                                    }
-
-                                    classStruct.replaceAtOffset(index, structure, pointerSize, structure.getName(), null);
-                                }
-                            }
-                            index += pointerSize;
-                        }
-                    }
-                }
+                importClass(cls);
             }
         }
     }
