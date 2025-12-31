@@ -3727,11 +3727,10 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 	static cocos2d::CCLabelTTF* create() = m1 0x336520, imac 0x3aa4d0;
 	static cocos2d::CCLabelTTF* createWithFontDefinition(char const*, cocos2d::ccFontDefinition&) = m1 0x336904, imac 0x3aa900;
 
-	bool initWithString(char const* label, char const* fontName, float fontSize) = m1 0x336b18, imac 0x3aab10, ios inline {
-        return this->initWithString(label, fontName, fontSize, 
-            CCSizeZero, kCCTextAlignmentLeft, kCCVerticalTextAlignmentTop);
+	bool initWithString(char const* label, char const* fontName, float fontSize) = m1 0x336b18, imac 0x3aab10, ios 0x72828;
+	bool initWithString(char const* label, char const* fontName, float fontSize, cocos2d::CCSize const& dimensions, cocos2d::CCTextAlignment alignment) = m1 0x336b2c, imac 0x3aab30, ios inline {
+        return this->initWithString(label, fontName, fontSize, dimensions, alignment, kCCVerticalTextAlignmentTop);
     }
-	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment) = m1 0x336b2c, imac 0x3aab30;
 	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = m1 0x336798, imac 0x3aa780, ios 0x7270c;
 	bool initWithStringAndTextDefinition(char const*, cocos2d::ccFontDefinition&) = m1 0x336a6c, imac 0x3aaa70;
 
@@ -5314,11 +5313,31 @@ class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
     CCTextFieldTTF() = m1 0x2154a4, imac 0x269d00, ios 0x1cbd3c;
     virtual ~CCTextFieldTTF() = m1 0x21557c, imac 0x269e20, ios 0x1cbe04;
 
-    static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize) = imac 0x269f70;
-    static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize) = ios 0x1cbee4, m1 0x21586c, imac 0x26a180;
+    static cocos2d::CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize) = imac 0x269f70, m1 0x21565c, ios inline {
+        auto ret = new CCTextFieldTTF();
+        if (ret->initWithPlaceHolder("", dimensions, alignment, fontName, fontSize)) {
+            ret->autorelease();
+            if (placeholder) ret->setPlaceHolder(placeholder);
+        }
+        delete ret;
+        return nullptr;
+    }
+    static cocos2d::CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize) = ios 0x1cbee4, m1 0x21586c, imac 0x26a180;
 
-    bool initWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
-    bool initWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
+    bool initWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize) = m1 0x215724, imac 0x26a020, ios inline {
+        if (placeholder) {
+            CC_SAFE_DELETE(m_pPlaceHolder);
+            m_pPlaceHolder = new std::string(placeholder);
+        }
+        return CCLabelTTF::initWithString(m_pPlaceHolder->c_str(), fontName, fontSize, dimensions, alignment);
+    }
+    bool initWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize) = m1 0x215930, imac 0x26a210, ios inline {
+        if (placeholder) {
+            CC_SAFE_DELETE(m_pPlaceHolder);
+            m_pPlaceHolder = new std::string(placeholder);
+        }
+        return CCLabelTTF::initWithString(m_pPlaceHolder->c_str(), fontName, fontSize);
+    }
 
     // void setDelegate(cocos2d::CCTextFieldDelegate* var);
 
