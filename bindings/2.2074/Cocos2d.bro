@@ -5314,8 +5314,8 @@ class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
     CCTextFieldTTF() = m1 0x2154a4, imac 0x269d00, ios 0x1cbd3c;
     virtual ~CCTextFieldTTF() = m1 0x21557c, imac 0x269e20, ios 0x1cbe04;
 
-    static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
-    static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
+    static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize) = imac 0x269f70;
+    static CCTextFieldTTF* textFieldWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize) = ios 0x1cbee4, m1 0x21586c, imac 0x26a180;
 
     bool initWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize);
     bool initWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize);
