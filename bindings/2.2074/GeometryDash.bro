@@ -6705,7 +6705,97 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     }
     void doPasteObjects(bool withColor) = ios 0x3e6e5c, win 0x111a90, m1 0x392cc, imac 0x3e820;
     void dynamicGroupUpdate(bool reGroup) = win 0x117000, imac 0x44e10, m1 0x3ed20, ios 0x3eafa8;
-    int edgeForObject(int id, int type) = m1 0x52b4b0, imac 0x5fc790, ios 0x7c578;
+    int edgeForObject(int id, int type) = win inline, m1 0x52b4b0, imac 0x5fc790, ios 0x7c578 {
+        if (id == 1348) {
+            switch (type) {
+                case 0: return 1359;
+                case 3: return 1395;
+                case 7: return 1363;
+            }
+        }
+        else if (id == 1349) {
+            switch (type) {
+                case 0: return 1360;
+                case 1: return 1357;
+                case 4: return 1364;
+            }
+        }
+        else if (id == 1350) {
+            switch (type) {
+                case 2: return 1361;
+                case 3: return 1356;
+                case 6: return 1365;
+            }
+        }
+        else if (id == 1351) {
+            switch (type) {
+                case 1: return 1358;
+                case 2: return 1362;
+                case 5: return 1366;
+            }
+        }
+        else if (id == 1431 || id == 1432 || id == 1433) {
+            switch (type) {
+                case 0: return 1435;
+                case 1: return 1436;
+                case 2: return 1437;
+                case 3: return 1434;
+                case 4: return 1439;
+                case 5: return 1441;
+                case 6: return 1440;
+                case 7: return 1438;
+            }
+        }
+        else if (id == 1461) {
+            switch (type) {
+                case 0: return 1629;
+                case 1: return 1625;
+                case 2: return 1633;
+                case 3: return 1621;
+                case 4: return 1638;
+                case 5: return 1640;
+                case 6: return 1639;
+                case 7: return 1637;
+            }
+        }
+        else if (id == 1462) {
+            switch (type) {
+                case 0: return 1630;
+                case 1: return 1627;
+                case 2: return 1634;
+                case 3: return 1623;
+                case 4: return 1642;
+                case 5: return 1644;
+                case 6: return 1643;
+                case 7: return 1641;
+            }
+        }
+        else if (id == 1463) {
+            switch (type) {
+                case 0: return 1631;
+                case 1: return 1626;
+                case 2: return 1635;
+                case 3: return 1622;
+                case 4: return 1646;
+                case 5: return 1648;
+                case 6: return 1647;
+                case 7: return 1645;
+            }
+        }
+        else if (id == 1464) {
+            switch (type) {
+                case 0: return 1632;
+                case 1: return 1628;
+                case 2: return 1636;
+                case 3: return 1624;
+                case 4: return 1650;
+                case 5: return 1652;
+                case 6: return 1651;
+                case 7: return 1649;
+            }
+        }
+        return 0;
+    }
     bool editButton2Usable() = win 0x118b40, m1 0x4238c, imac 0x492e0, ios 0x3ed220;
     bool editButtonUsable() = win 0x1182f0, imac 0x48580, m1 0x41e60, ios 0x3eccac;
     void editColor() = win 0x11d3b0, m1 0x37aac, imac 0x3ceb0, ios 0x3e5e58;
