@@ -843,8 +843,9 @@ public class SyncBromaScript extends GhidraScript {
         var basesString = cls.bases.isPresent() ? cls.bases.get().value.substring(1) : "";
         if (fullName.equals("UILayer")) basesString += ", cocos2d::CCKeyboardDelegate";
         var basesList = Arrays.stream(basesString.split(",")).map(String::trim).toList();
-        var firstBase = basesList.size() == 1 ? basesList.get(0) : "";
-        var needsClear = (!fullName.startsWith("cocos2d::") || fullName.equals("cocos2d::CCLightning")) && firstBase.startsWith("cocos2d::");
+        var firstBase = basesList.size() > 1 ? basesList.get(0) : "";
+        var needsClear = (!fullName.startsWith("cocos2d::") || fullName.equals("cocos2d::CCLightning")) &&
+            basesList.size() == 1 && firstBase.startsWith("cocos2d::");
         basesMap.put(fullName, basesList);
 
         if (!firstBase.isEmpty() && !visitedClasses.contains(firstBase)) {
