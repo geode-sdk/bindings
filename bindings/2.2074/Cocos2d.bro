@@ -6242,7 +6242,22 @@ class cocos2d::CCBMFontConfiguration : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCGrabber : cocos2d::CCObject {
-    void grab(cocos2d::CCTexture2D*);
-    void beforeRender(cocos2d::CCTexture2D*);
-    void afterRender(cocos2d::CCTexture2D*);
+    void grab(cocos2d::CCTexture2D*) = m1 0x515040, imac 0x5e2a30, ios inline {
+        glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_oldFBO);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, p0->getName(), 0);
+        glCheckFramebufferStatus(GL_FRAMEBUFFER);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_oldFBO);
+    }
+    void beforeRender(cocos2d::CCTexture2D*) = m1 0x5150b0, imac 0x5e2aa0, ios inline {
+        glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_oldFBO);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
+        glGetFloatv(GL_COLOR_CLEAR_VALUE, m_oldClearColor);
+        glClearColor(0, 0, 0, 0);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+    void afterRender(cocos2d::CCTexture2D*) = m1 0x515108, imac 0x5e2b00, ios inline {
+        glBindFramebuffer(GL_FRAMEBUFFER, m_oldFBO);
+        glClearColor(m_oldClearColor[0], m_oldClearColor[1], m_oldClearColor[2], m_oldClearColor[3]);
+    }
 }
