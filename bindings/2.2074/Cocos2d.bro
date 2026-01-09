@@ -6239,3 +6239,10 @@ class cocos2d::CCBMFontConfiguration : cocos2d::CCObject {
     void purgeFontDefDictionary() = m1 0x4f31a4, imac 0x5bd5b0, ios 0x2f97b8;
     void purgeKerningDictionary() = m1 0x4f32fc, imac 0x5bd710, ios 0x2f98ec;
 }
+
+[[link(win, android)]]
+class cocos2d::CCGrabber : cocos2d::CCObject {
+    void grab(cocos2d::CCTexture2D*);
+    void beforeRender(cocos2d::CCTexture2D*);
+    void afterRender(cocos2d::CCTexture2D*);
+}
