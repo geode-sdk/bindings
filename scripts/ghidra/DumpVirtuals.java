@@ -3,23 +3,13 @@
 // @category GeodeSDK
 
 import ghidra.app.script.GhidraScript;
-import ghidra.program.model.mem.*;
-import ghidra.program.model.lang.*;
-import ghidra.program.model.pcode.*;
-import ghidra.program.model.util.*;
-import ghidra.program.model.reloc.*;
 import ghidra.program.model.data.*;
-import ghidra.program.model.block.*;
 import ghidra.program.model.symbol.*;
-import ghidra.program.model.scalar.*;
 import ghidra.program.model.listing.*;
-import ghidra.program.flatapi.FlatProgramAPI;
 import ghidra.program.model.address.*;
-import ghidra.program.model.symbol.SymbolType;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class DumpVirtuals extends GhidraScript {
@@ -56,7 +46,7 @@ public class DumpVirtuals extends GhidraScript {
     }
 
     boolean isTypeinfo(Address addr) {
-        var com = listing.getComment(CodeUnit.PLATE_COMMENT, addr);
+        var com = listing.getComment(CommentType.PLATE, addr);
         if (com == null) return false;
         return com.contains("typeinfo");
         // this.currentProgram.getSymbolTable().getPrimarySymbolAt(addr).getName().equals("typeinfo");
@@ -87,7 +77,7 @@ public class DumpVirtuals extends GhidraScript {
     }
 
     boolean hasVtableComment(Address addr) {
-        var com = listing.getComment(CodeUnit.PLATE_COMMENT, addr);
+        var com = listing.getComment(CommentType.PLATE, addr);
         if (com == null) return false;
         return com.contains("vtable");
     }
@@ -106,7 +96,7 @@ public class DumpVirtuals extends GhidraScript {
 		if (name.contains("std::")) return;
 		if (name.contains("pugi")) return;
 		// i think theyre correct already
-		if (name.contains("cocos2d::")) return;
+		// if (name.contains("cocos2d::")) return;
 
 		// theres only one vtable on android,
 		var vtable = getChildOfName(cl.getSymbol(), "vtable");
@@ -126,6 +116,7 @@ public class DumpVirtuals extends GhidraScript {
 			while (isStartOfVtable(curAddr) && !this.monitor.isCancelled()) {
 				ArrayList<String> virtuals = new ArrayList<>();
 				curAddr = curAddr.add(PTR_SIZE * 2);
+                var emptyCount = 0;
 				while (!this.monitor.isCancelled()) {
 					if (isStartOfVtable(curAddr)) break;
 					// idk what this is for
@@ -138,6 +129,8 @@ public class DumpVirtuals extends GhidraScript {
                     // some vtables have nullptrs in them, like GJBaseGameLayer
                     // since they are pure virtual or something
                     if (functionAddr.getUnsignedOffset() == 0) {
+                        virtuals.add("~" + name + "()");
+                        emptyCount++;
                         curAddr = curAddr.add(PTR_SIZE);
                         continue;
                     }
@@ -145,17 +138,24 @@ public class DumpVirtuals extends GhidraScript {
 					var function = listing.getFunctionAt(functionAddr);
 					
 					if (function == null) break;
+                    
+                    emptyCount = 0;
 
 					if (function.getName().contains("pure_virtual")) {
 						virtuals.add("pure_virtual_" + curAddr.toString() + "()");
 					} else {
-						var comment = listing.getComment(CodeUnit.PLATE_COMMENT, functionAddr);
+						var comment = listing.getComment(CommentType.PLATE, functionAddr);
 						var funcSig = comment.replaceAll("^(non-virtual thunk to )?(\\w+::)+(?=~?\\w+\\()", "");
 						virtuals.add(funcSig);
 					}
 					
 					curAddr = curAddr.add(PTR_SIZE);
 				}
+
+                // remove the empty virtuals at the end
+                for (; emptyCount > 0; emptyCount--) {
+                    virtuals.remove(virtuals.size() - 1);
+                }
 
 				bases.add(virtuals);
 
@@ -175,25 +175,30 @@ public class DumpVirtuals extends GhidraScript {
         listing = currentProgram.getListing();
 
         table.getChildren(currentProgram.getGlobalNamespace().getSymbol()).forEach((sy) -> {
-            if (!sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.CLASS) &&
-            !sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.NAMESPACE)) return;
+            if (!sy.getSymbolType().equals(SymbolType.CLASS) && !sy.getSymbolType().equals(SymbolType.NAMESPACE)) return;
             // var cl = (Namespace)sy;
             // ghidra is so stupid istg
             var cl = table.getNamespace(sy.getName(), currentProgram.getGlobalNamespace());
 			
 			processNamespace(cl);
         });
-		
-        if (false) {
-            var cocosNs = table.getNamespace("cocos2d", currentProgram.getGlobalNamespace());
-            table.getChildren(cocosNs.getSymbol()).forEach((sy) -> {
-                if (!sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.CLASS) &&
-                !sy.getSymbolType().equals(ghidra.program.model.symbol.SymbolType.NAMESPACE)) return;
-                var cl = table.getNamespace(sy.getName(), cocosNs);
-                
-                processNamespace(cl);
-            });
-        }
+
+        var cocosNs = table.getNamespace("cocos2d", currentProgram.getGlobalNamespace());
+        table.getChildren(cocosNs.getSymbol()).forEach((sy) -> {
+            if (!sy.getSymbolType().equals(SymbolType.CLASS) && !sy.getSymbolType().equals(SymbolType.NAMESPACE)) return;
+            var cl = table.getNamespace(sy.getName(), cocosNs);
+            
+            processNamespace(cl);
+        });
+
+        var cocosExtensionNs = table.getNamespace("extension", cocosNs);
+        table.getChildren(cocosExtensionNs.getSymbol()).forEach((sy) -> {
+            if (!sy.getSymbolType().equals(SymbolType.CLASS) &&
+            !sy.getSymbolType().equals(SymbolType.NAMESPACE)) return;
+            var cl = table.getNamespace(sy.getName(), cocosExtensionNs);
+
+            processNamespace(cl);
+        });
 
         println("Generating json..");
 
