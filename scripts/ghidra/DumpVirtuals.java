@@ -193,8 +193,7 @@ public class DumpVirtuals extends GhidraScript {
 
         var cocosExtensionNs = table.getNamespace("extension", cocosNs);
         table.getChildren(cocosExtensionNs.getSymbol()).forEach((sy) -> {
-            if (!sy.getSymbolType().equals(SymbolType.CLASS) &&
-            !sy.getSymbolType().equals(SymbolType.NAMESPACE)) return;
+            if (!sy.getSymbolType().equals(SymbolType.CLASS) && !sy.getSymbolType().equals(SymbolType.NAMESPACE)) return;
             var cl = table.getNamespace(sy.getName(), cocosExtensionNs);
 
             processNamespace(cl);
