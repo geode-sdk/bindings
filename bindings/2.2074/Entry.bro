@@ -2,3 +2,4 @@
 #include <Extras.bro>
 #include <FMOD.bro>
 #include <GeometryDash.bro>
+#include <Kazmath.bro>
