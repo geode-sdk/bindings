@@ -213,7 +213,7 @@ namespace codegen {
 
         if ((fn.prototype.attributes.missing & p) != Platform::None || codegen::sdkVersion < fn.prototype.attributes.since) return BindStatus::Missing;
         if ((fn.prototype.attributes.links & p) != Platform::None) {
-            if (fn.prototype.type != FunctionType::Normal) return BindStatus::NeedsRebinding;
+            if ((p & (Platform::Mac | Platform::iOS)) == Platform::None && fn.prototype.type != FunctionType::Normal) return BindStatus::NeedsRebinding;
 
             if ((int)p & (int)Platform::Android) {
                 for (auto& [type, name] : fn.prototype.args) {

@@ -92,6 +92,8 @@ if (NOT DEFINED GEODE_GD_VERSION)
 	set(GEODE_COMP_GD_VERSION 22074)
 endif()
 
+target_compile_definitions(${PROJECT_NAME} PRIVATE GEODE_COMP_GD_VERSION=${GEODE_COMP_GD_VERSION})
+
 if (WIN32)
 	# without this, some stl structures can have a wrong size when cross compiling from linux
 	add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0)

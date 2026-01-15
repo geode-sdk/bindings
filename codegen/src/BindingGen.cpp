@@ -158,6 +158,9 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             if (codegen::getStatus(f) == BindStatus::Missing) continue;
 
             FunctionProto const* fb = &f.prototype;
+            if ((fb->attributes.links & Platform::Windows) != Platform::None) {
+                continue;
+            }
 
             std::string addressDocs = generateAddressDocs(f, f.binds);
             std::string docs = generateDocs(fb->attributes.docs);

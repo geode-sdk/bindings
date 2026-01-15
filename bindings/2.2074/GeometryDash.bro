@@ -988,7 +988,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     float bgScale() = win inline, m1 0x56e730, imac 0x645f90, ios 0x268554 {
         return cocos2d::CCDirector::sharedDirector()->getScreenScaleFactorMax();
     }
-    void checkSound() = win inline, m1 0x56eb84, imac 0x646440, ios inline {
+    void checkSound() = win inline, m1 0x56eb84, imac 0x646440, ios 0x26885c {
         if (this->musicTest()) FMODAudioEngine::sharedEngine()->pauseAllMusic(true);
     }
     void hideLoadingCircle() = win inline, m1 0x56ed20, imac 0x6465f0, ios 0x2689a0 {}

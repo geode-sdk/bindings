@@ -198,6 +198,8 @@ endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
+target_compile_definitions(${PROJECT_NAME} PUBLIC GEODE_COMP_GD_VERSION=${GEODE_COMP_GD_VERSION})
+
 if (WIN32)
 	target_compile_definitions(${PROJECT_NAME} PUBLIC -DNOMINMAX)
 	if (MSVC)
