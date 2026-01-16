@@ -96,7 +96,7 @@ public class SyncBromaScript extends GhidraScript {
             // Put latest version at the top
             Collections.reverse(versions);
 
-            var bromaFiles = List.of("Cocos2d.bro", "FMOD.bro", "GeometryDash.bro");
+            var bromaFiles = new ArrayList<String>();
             final var platforms = Arrays.asList(Platform.values()).stream().map(p -> p.getLongName()).toList();
 
             var platform = wrapper.autoDetectPlatform().orElse(null).getLongName();
@@ -113,11 +113,14 @@ public class SyncBromaScript extends GhidraScript {
 
             this.waitForAnswers();
 
-            if (this.platform != Platform.IOS) {
-                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "GeometryDash.bro");
+            bromaFiles.add("Cocos2d.bro");
+            bromaFiles.add("Extras.bro");
+            bromaFiles.add("GeometryDash.bro");
+            if (this.platform == Platform.IOS) {
+                bromaFiles.add("FMOD.bro");
             }
-            else {
-                bromaFiles = List.of("Cocos2d.bro", "Extras.bro", "FMOD.bro", "GeometryDash.bro");
+            if (this.platform == Platform.MAC_ARM || this.platform == Platform.MAC_INTEL || this.platform == Platform.IOS) {
+                bromaFiles.add("Kazmath.bro");
             }
 
             this.bromaFiles = bromaFiles.stream()
@@ -139,8 +142,11 @@ public class SyncBromaScript extends GhidraScript {
         this.wrapper = new ScriptWrapper(this);
 
         this.args = new Args(wrapper, wrapper.bindingsDir);
+        boolean useFunctions = (this.args.importFromBroma || this.args.exportToBroma) && (
+            this.args.platform == Platform.MAC_ARM || this.args.platform == Platform.MAC_INTEL || this.args.platform == Platform.IOS
+        );
         for (var bro : this.args.bromaFiles) {
-            this.bromas.add(new Broma(bro, args.platform, this.args.importFromBroma));
+            this.bromas.add(new Broma(bro, args.platform, useFunctions));
         }
 
         wrapper.fillStandardTypes = this.args.fillStandardTypes;
@@ -153,7 +159,7 @@ public class SyncBromaScript extends GhidraScript {
 
         wrapper.printfmt("Found {0} classes in Broma", wrapper.classes.size());
 
-        if (this.args.importFromBroma) {
+        if (useFunctions) {
             // Read functions
             wrapper.functions.addAll(this.bromas.stream()
                 .map(b -> b.functions.stream().map(f -> f.getName()).toList())

@@ -252,7 +252,7 @@ void kmGLPushMatrix() = m1 0x1aba8c, imac 0x1f5fa0, ios 0x16bc50;
 [[link(win, android)]]
 void kmGLPopMatrix() = m1 0x1abad0, imac 0x1f5fe0, ios 0x16bc94;
 [[link(win, android)]]
-void kmGLMatrixMode(kmGLEnum) = m1 0x1aba44, imac 0x1f5f60, ios 0x16bc08;
+void kmGLMatrixMode(unsigned int) = m1 0x1aba44, imac 0x1f5f60, ios 0x16bc08;
 [[link(win, android)]]
 void kmGLLoadIdentity() = m1 0x1abafc, imac 0x1f6010, ios 0x16bcc0;
 [[link(win, android)]]
@@ -266,4 +266,4 @@ void kmGLRotatef(float, float, float, float);
 [[link(win, android)]]
 void kmGLScalef(float, float, float);
 [[link(win, android)]]
-void kmGLGetMatrix(kmGLEnum, kmMat4*) = m1 0x1abbc4, imac 0x1f60d0, ios 0x16bd58;
+void kmGLGetMatrix(unsigned int, kmMat4*) = m1 0x1abbc4, imac 0x1f60d0, ios 0x16bd58;

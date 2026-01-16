@@ -944,6 +944,26 @@ public class ScriptWrapper {
         callFuncSelector.setCallingConvention("__thiscall");
         manager.addDataType(callFuncSelector, DataTypeConflictHandler.REPLACE_HANDLER);
 
+        // cocos2d::SEL_CallFuncO
+
+        cat = this.createCategoryAll(category.extend("cocos2d", "SEL_CallFuncO"));
+        var callFuncOSelector = new FunctionDefinitionDataType(cat, cat.getName());
+        callFuncOSelector.setArguments(new ParameterDefinition[] {
+            new ParameterDefinitionImpl(
+                "this",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The target object for this callback"
+            ),
+            new ParameterDefinitionImpl(
+                "data",
+                this.addOrGetType(Broma.Type.ptr(Broma.fake(), "cocos2d::CCObject"), platform),
+                "The data object for this callback"
+            ),
+        });
+        callFuncOSelector.setReturnType(VoidDataType.dataType);
+        callFuncOSelector.setCallingConvention("__thiscall");
+        manager.addDataType(callFuncOSelector, DataTypeConflictHandler.REPLACE_HANDLER);
+
         // cocos2d::SEL_CallFuncN
 
         cat = this.createCategoryAll(category.extend("cocos2d", "SEL_CallFuncN"));
