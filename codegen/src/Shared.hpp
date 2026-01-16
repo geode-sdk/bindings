@@ -214,9 +214,11 @@ namespace codegen {
     }
 
     inline BindStatus getStatusWithPlatform(Platform p, FunctionBindField const& fn) {
+        if (codegen::sdkVersion < fn.prototype.attributes.since) return BindStatus::Missing;
+
         if (platformNumberWithPlatform(p, fn.binds) == -2) return BindStatus::Inlined;
 
-        if ((fn.prototype.attributes.missing & p) != Platform::None || codegen::sdkVersion < fn.prototype.attributes.since) return BindStatus::Missing;
+        if ((fn.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
         if ((fn.prototype.attributes.links & p) != Platform::None) {
             if ((p & (Platform::Mac | Platform::iOS)) == Platform::None && fn.prototype.type != FunctionType::Normal) return BindStatus::NeedsRebinding;
 
@@ -235,9 +237,11 @@ namespace codegen {
     }
 
     inline BindStatus getStatusWithPlatform(Platform p, Function const& f) {
+        if (codegen::sdkVersion < f.prototype.attributes.since) return BindStatus::Missing;
+
         if (platformNumberWithPlatform(p, f.binds) == -2) return BindStatus::Inlined;
 
-        if ((f.prototype.attributes.missing & p) != Platform::None || codegen::sdkVersion < f.prototype.attributes.since) return BindStatus::Missing;
+        if ((f.prototype.attributes.missing & p) != Platform::None) return BindStatus::Missing;
         if ((f.prototype.attributes.links & p) != Platform::None) return BindStatus::Binded;
 
         if (platformNumberWithPlatform(p, f.binds) != -1) return BindStatus::NeedsBinding;
