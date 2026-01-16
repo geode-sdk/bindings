@@ -143,7 +143,7 @@ namespace codegen {
         VersionType type = VersionType::Release;
         int tag = 0;
 
-        static Version fromString(std::string const& str) {
+        static Version fromString(std::string_view str) {
             Version v;
             if (str.empty()) return v;
 
@@ -171,9 +171,14 @@ namespace codegen {
         }
     };
 
-    inline bool operator<(Version const& a, std::string const& b) {
-        auto v = Version::fromString(b);
-        return std::tie(a.major, a.minor, a.patch, a.type, a.tag) < std::tie(v.major, v.minor, v.patch, v.type, v.tag);
+    inline bool operator<(Version const& a, std::string_view b) {
+        if (b.starts_with("until ")) {
+            auto v = Version::fromString(b.substr(6));
+            return std::tie(a.major, a.minor, a.patch, a.type, a.tag) > std::tie(v.major, v.minor, v.patch, v.type, v.tag);
+        } else {
+            auto v = Version::fromString(b);
+            return std::tie(a.major, a.minor, a.patch, a.type, a.tag) < std::tie(v.major, v.minor, v.patch, v.type, v.tag);
+        }
     }
 
     inline Version sdkVersion = {
