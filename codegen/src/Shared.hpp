@@ -174,7 +174,7 @@ namespace codegen {
     inline bool operator<(Version const& a, std::string_view b) {
         if (b.starts_with("until ")) {
             auto v = Version::fromString(b.substr(6));
-            return std::tie(a.major, a.minor, a.patch, a.type, a.tag) > std::tie(v.major, v.minor, v.patch, v.type, v.tag);
+            return std::tie(a.major, a.minor, a.patch, a.type, a.tag) >= std::tie(v.major, v.minor, v.patch, v.type, v.tag);
         } else {
             auto v = Version::fromString(b);
             return std::tie(a.major, a.minor, a.patch, a.type, a.tag) < std::tie(v.major, v.minor, v.patch, v.type, v.tag);
