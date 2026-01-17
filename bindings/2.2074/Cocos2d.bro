@@ -6002,7 +6002,14 @@ class cocos2d::ZipUtils {
     static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1f33b0, m1 0x1a8efc, ios 0x23d618;
     static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey) = m1 0x1a921c, imac 0x1f36c0, ios 0x23d8a0;
     static gd::string encryptDecrypt(gd::string const& data, int encryptionKey);
-    static gd::string encryptDecryptWKey(gd::string const&, gd::string);
+    static gd::string encryptDecryptWKey(gd::string const&, gd::string) = android64 inline, mac inline, ios inline {
+		std::string ret;
+		ret.resize(p0.size());
+		for (int i = 0; i < p0.size(); i++) {
+			ret[i] = p0[i] ^ p1[i % p1.size()];
+		}
+		return ret;
+	}
     static unsigned char hexToChar(gd::string const&);
     static gd::string urlDecode(gd::string const&);
 }
