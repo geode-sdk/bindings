@@ -5043,9 +5043,11 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
 
     void disableDrawArea() = m1 0x528a70, imac 0x5f9950, ios 0x45dc4;
     void enableDrawArea(cocos2d::CCRect&) = m1 0x528a10, imac 0x5f98e0, ios 0x45d64;
+    [[since("4.10.1")]]
     bool is_circle_on_screen(cocos2d::CCRect const&, cocos2d::CCPoint const&, float) = m1 0x528a78, imac 0x5f9960, ios inline {
         return p1.x + p2 >= m_fMinAreaX && p1.x - p2 <= m_fMaxAreaX && p1.y + p2 >= m_fMinAreaY && p1.y - p2 <= m_fMaxAreaY;
     }
+    [[since("4.10.1")]]
     bool is_segment_on_screen(cocos2d::CCRect const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&) = m1 0x529820, imac 0x5fa7e0, ios 0x46224;
 
     virtual bool init() = imac 0x5f9610, m1 0x52877c, ios 0x45b68;
