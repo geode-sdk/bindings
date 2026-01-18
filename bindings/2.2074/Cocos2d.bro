@@ -3369,8 +3369,8 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     CCDirector() = m1 0x3de790, imac 0x46f5d0, ios 0x1785a4;
     virtual ~CCDirector() = m1 0x3deb9c, imac 0x46fa50, ios 0x17895c;
     void applySmoothFix();
-    void calculateDeltaTime();
-    void calculateMPF();
+    void calculateDeltaTime() = m1 0x3df20c, imac 0x470210;
+    void calculateMPF() = m1 0x3df594, imac 0x4705f0;
     void checkSceneReference();
     cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x470e50, m1 0x3dfd04, ios 0x1793d8;
     cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&) = m1 0x3dfde0, imac 0x470f70, ios inline {
@@ -3415,7 +3415,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     int sceneCount() = m1 0x3e04c0, imac 0x4716b0, ios 0x179924;
     void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
     void showFPSLabel() = imac 0x470510, m1 0x3df4dc;
-    void showStats();
+    void showStats() = m1 0x3df444, imac 0x470470;
     void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x470800, m1 0x3df778, ios 0x1790c8;
     void updateContentScale(cocos2d::TextureQuality) = imac 0x470c00, m1 0x3dfb18, ios 0x1792dc;
     void updateScreenScale(cocos2d::CCSize);
