@@ -1206,7 +1206,9 @@ class cocos2d::CCAction : cocos2d::CCObject {
     // CCAction(cocos2d::CCAction const&);
     CCAction() = m1 0x50f94c, imac 0x5dc9c0, ios 0x264808;
     virtual ~CCAction() = m1 0x50f9ac, imac 0x5dca40, ios 0x264838;
-    char const* description() = imac 0x5dcb10, m1 0x50fa50;
+    char const* description() = imac 0x5dcb10, m1 0x50fa50, ios inline {
+        return CCString::createWithFormat("<CCAction | Tag = %d>", m_nTag)->getCString();
+    }
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x5dcb30, m1 0x50fa7c, ios 0x264878;
     virtual void update(float) = m1 0x50fb64, imac 0x5dcc30, ios 0x264944;
@@ -2341,7 +2343,11 @@ class cocos2d::CCNode : cocos2d::CCObject {
     }
     void scheduleUpdate() = imac 0x262090, m1 0x20ddf0, ios 0x23c278;
     void scheduleUpdateWithPriority(int) = m1 0x20de0c, imac 0x2620c0, ios 0x23c294;
-    void scheduleUpdateWithPriorityLua(int, int) = m1 0x20de28, imac 0x2620f0;
+    void scheduleUpdateWithPriorityLua(int, int) = m1 0x20de28, imac 0x2620f0, ios inline {
+        this->unscheduleUpdate();
+        m_nUpdateScriptHandler = p0;
+        m_pScheduler->scheduleUpdateForTarget(this, p1, !m_bRunning);
+    }
     void sortAllChildrenNoIndex() = m1 0x20d50c, imac 0x261780, ios 0x23ba30;
     void sortAllChildrenWithIndex() = m1 0x20d480, imac 0x2616f0, ios inline {
         this->qsortAllChildrenWithIndex();
@@ -3498,7 +3504,7 @@ class cocos2d::CCSequence : cocos2d::CCActionInterval {
     static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a24d0, m1 0x32f3e4, ios 0x18d99c;
     static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x3a26b0, m1 0x32f52c, ios 0x18dab8;
 
-    bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a25a0, m1 0x32f4a0;
+    bool initWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3a25a0, m1 0x32f4a0, ios 0x18da2c;
 
     // CCSequence(cocos2d::CCSequence const&);
     // CCSequence();
@@ -4064,7 +4070,13 @@ class cocos2d::CCArray : cocos2d::CCObject {
     // CCArray(unsigned int);
     // CCArray();
     // void addObject(cocos2d::CCObject*) = ios 0x249394;
-    void addObjectNew(cocos2d::CCObject*) = m1 0x6294e0, imac 0x709e70;
+    void addObjectNew(cocos2d::CCObject*) = m1 0x6294e0, imac 0x709e70, ios inline {
+        ccArrayEnsureExtraCapacity(data, 1);
+        p0->retain();
+        data->arr[data->num] = p0;
+        p0->m_uIndexInArray = data->num;
+        data->num++;
+    }
     // void addObjectsFromArray(cocos2d::CCArray*);
     unsigned int capacity() const;
     // bool containsObject(cocos2d::CCObject*) const;
@@ -4073,15 +4085,29 @@ class cocos2d::CCArray : cocos2d::CCObject {
     void exchangeObjectAtIndex(unsigned int, unsigned int);
     // void fastRemoveObject(cocos2d::CCObject*);
     // void fastRemoveObjectAtIndex(unsigned int) = imac 0x709f10, m1 0x629530;
-    void fastRemoveObjectAtIndexChild(unsigned int) = m1 0x629540, imac 0x709f30;
-    void fastRemoveObjectAtIndexNew(unsigned int) = m1 0x629538, imac 0x709f20;
+    void fastRemoveObjectAtIndexChild(unsigned int) = m1 0x629540, imac 0x709f30, ios inline {
+        auto last = --data->num;
+        data->arr[last]->m_uUnknown = p0;
+        CC_SAFE_RELEASE(data->arr[p0]);
+        data->arr[p0] = data->arr[last];
+    }
+    void fastRemoveObjectAtIndexNew(unsigned int) = m1 0x629538, imac 0x709f20, ios inline {
+        auto last = --data->num;
+        data->arr[last]->m_uIndexInArray = p0;
+        CC_SAFE_RELEASE(data->arr[p0]);
+        data->arr[p0] = data->arr[last];
+    }
     unsigned int indexOfObject(cocos2d::CCObject*) const;
     // void insertObject(cocos2d::CCObject*, unsigned int) = ios 0x2494f4;
     bool isEqualToArray(cocos2d::CCArray*);
     // cocos2d::CCObject* lastObject();
     // cocos2d::CCObject* objectAtIndex(unsigned int) = m1 0x6293a0, imac 0x709d40;
     cocos2d::CCObject* randomObject();
-    void recreateNewIndexes() = m1 0x6294d8, imac 0x709e60;
+    void recreateNewIndexes() = m1 0x6294d8, imac 0x709e60, ios inline {
+        for (int i = 0; i < data->num; i++) {
+            data->arr[i]->m_uIndexInArray = i;
+        }
+    }
     void reduceMemoryFootprint();
     // void removeAllObjects() = ios 0x249528;
     // void removeLastObject(bool);
@@ -4385,7 +4411,11 @@ class cocos2d::CCRepeat : cocos2d::CCActionInterval {
 class cocos2d::CCRepeatForever : cocos2d::CCActionInterval {
     static cocos2d::CCRepeatForever* create(cocos2d::CCActionInterval*) = m1 0x3304dc, imac 0x3a3770, ios 0x18dfb0;
 
-    bool initWithAction(cocos2d::CCActionInterval*) = m1 0x330548, imac 0x3a37e0;
+    bool initWithAction(cocos2d::CCActionInterval*) = m1 0x330548, imac 0x3a37e0, ios inline {
+        p0->retain();
+        m_pInnerAction = p0;
+        return true;
+    }
 
     // cocos2d::CCActionInterval* getInnerAction();
 
@@ -5008,7 +5038,24 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     virtual ~CCDrawNode() = m1 0x528508, imac 0x5f9330, ios 0x45a1c;
     void clear() = imac 0x5fb240, m1 0x52a0ec, ios 0x46a20;
     bool drawCircle(cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, unsigned int) = imac 0x5fb090, m1 0x529f50, ios 0x46890;
-    void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&) = m1 0x528ed8, imac 0x5f9e80;
+    void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&) = m1 0x528ed8, imac 0x5f9e80, ios inline {
+        auto vertices = new CCPoint[p4 + 1];
+        if (p4 != 0) {
+            auto factor = 0.f;
+            for (int i = 0; i <= p4; i++) {
+                auto& vertex = vertices[i];
+                auto result = 1.f - factor;
+                auto num1 = powf(result, 2.f) * 3.f * factor;
+                auto num2 = result * 3.f * factor * factor;
+                auto num3 = factor * factor * factor;
+                vertex.x = p0.x * powf(result, 3.f) + p1.x * num1 + p2.x * num2 + p3.x * num3;
+                vertex.y = p0.y * powf(result, 3.f) + p1.y * num1 + p2.y * num2 + p3.y * num3;
+            }
+        }
+        vertices[p4] = p3;
+        this->drawPolygon(vertices, p4 + 1, { 0.f, 0.f, 0.f, 0.f }, 2.f, p5);
+        delete[] vertices;
+    }
     bool drawDot(cocos2d::CCPoint const& pos, float radius, cocos2d::ccColor4F const& color) = imac 0x5f99d0, m1 0x528ae8, ios inline {
         if (m_bUseArea && pos.x + radius < m_fMinAreaX || pos.x - radius > m_fMaxAreaX || pos.y + radius < m_fMinAreaY || pos.y - radius > m_fMaxAreaY) return false;
 
@@ -5033,12 +5080,34 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     }
     bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::ccColor4F const&) = imac 0x5fb010, m1 0x529ed0, ios 0x46810;
     bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&) = imac 0x5fa0e0, m1 0x5290cc, ios 0x45dcc;
-    void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&) = imac 0x5f9bb0, m1 0x528ce8;
+    void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&) = imac 0x5f9bb0, m1 0x528ce8, ios inline {
+        auto d01 = ccpDistance(p0, p1);
+        auto d12 = ccpDistance(p1, p2);
+        auto d23 = ccpDistance(p3, p2);
+        auto l = d01 + d12 + d23;
+        auto t1 = d01 / l;
+        auto t2 = (d01 + d12) / l;
+        auto u2 = 1.f - t2;
+        auto u1 = 1.f - t1;
+        auto a1 = u1 * t1 * u1 * 3.f;
+        auto b1 = u1 * t1 * t1 * 3.f;
+        auto a2 = u2 * t2 * u2 * 3.f;
+        auto b2 = u2 * t2 * t2 * 3.f;
+        auto rx = p1.x - powf(u1, 3.f) * p0.x - powf(t1, 3.f) * p3.x;
+        auto ry = p1.y - powf(u1, 3.f) * p0.y - powf(t1, 3.f) * p3.y;
+        auto ratio = a1 / a2;
+        auto denom = b1 - (b2 * a1) / a2;
+        auto x = (rx - (p2.x - powf(u2, 3.f) * p0.x - powf(t2, 3.f) * p3.x) * ratio) / denom;
+        auto y = (ry - (p2.y - powf(t1, 3.f) * p0.y - powf(t2, 3.f) * p3.y) * ratio) / denom;
+        this->drawCubicBezier(p0, { (rx - x * b1) / a1, (ry - y * b1) / a1 }, { x, y }, p3, p4, p5);
+    }
     bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&) = imac 0x5faee0, m1 0x529d94, ios 0x466e4;
     bool drawRect(cocos2d::CCRect const&, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&) = m1 0x529d10, imac 0x5fae60, ios 0x46660;
     bool drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&) = imac 0x5fa890, m1 0x5298c0, ios 0x462c0;
     void ensureCapacity(unsigned int) = imac 0x5f95c0, m1 0x528728, ios 0x45b14;
-    void listenBackToForeground(cocos2d::CCObject*) = m1 0x52a110, imac 0x5fb280;
+    void listenBackToForeground(cocos2d::CCObject*) = m1 0x52a110, imac 0x5fb280, ios inline {
+        this->init();
+    }
     void render() = imac 0x5f9770, m1 0x5288b4, ios 0x45c70;
 
     void disableDrawArea() = m1 0x528a70, imac 0x5f9950, ios 0x45dc4;
@@ -5496,14 +5565,24 @@ class cocos2d::CCDelayTime : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCActionTween {
-    static cocos2d::CCActionTween* create(float, int, float, float) = m1 0x6a3064, imac 0x78f760;
+    static cocos2d::CCActionTween* create(float, int, float, float) = m1 0x6a3064, imac 0x78f760, ios 0x3a1a20;
     static cocos2d::CCActionTween* create(float, char const*, float, float) = m1 0x6a314c, imac 0x78f860, ios 0x3a1a4c;
 
-    bool initWithDuration(float, char const*, float, float) = m1 0x6a322c, imac 0x78f960;
+    bool initWithDuration(float, char const*, float, float) = m1 0x6a322c, imac 0x78f960, ios inline {
+        if (!CCActionInterval::initWithDuration(p0)) return false;
+        m_strKey = p1;
+        // m_nIntTag = 0;
+        m_fFrom = p2;
+        m_fTo = p3;
+        return true;
+    }
 
     // CCActionTween(cocos2d::CCActionTween const&);
     // CCActionTween();
-    void updateTargetValue(float) = m1 0x6a32b4, imac 0x78f9f0;
+    void updateTargetValue(float) = m1 0x6a32b4, imac 0x78f9f0, ios inline {
+        m_fTo = p0;
+        m_fDelta = p0 - m_fFrom;
+    }
 
     virtual void update(float) = m1 0x6a32c4, imac 0x78fa10, ios 0x3a1b58;
     virtual void startWithTarget(cocos2d::CCNode*) = m1 0x6a3288, imac 0x78f9c0, ios 0x3a1b2c;
