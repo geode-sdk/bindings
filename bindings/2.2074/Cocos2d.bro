@@ -2816,8 +2816,8 @@ class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
 [[link(win, android)]]
 class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     // CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
-    CCMouseDispatcher();
-    virtual ~CCMouseDispatcher();
+    CCMouseDispatcher() = m1 0x4b0964, imac 0x55a150, ios 0x2fe324;
+    virtual ~CCMouseDispatcher() = m1 0x4b09d4, imac 0x55a1c0, ios 0x2fe398;
 
     void addDelegate(cocos2d::CCMouseDelegate*) = m1 0x4b0c20, imac 0x55a410, ios 0x2fe4e0;
     bool dispatchScrollMSG(float, float) = imac 0x55a490, m1 0x4b0cb4;
@@ -3278,8 +3278,8 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // void setBlockRepeat(bool);
 
     // CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
-    CCKeyboardDispatcher();
-    virtual ~CCKeyboardDispatcher();
+    CCKeyboardDispatcher() = m1 0x1a7cd0, imac 0x1f1460;
+    virtual ~CCKeyboardDispatcher() = m1 0x1a7d48, imac 0x1f14e0;
 
     void addDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1a7f94, imac 0x1f1730; // ios 0x239960
     bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool) = imac 0x1f17b0, m1 0x1a8028;
@@ -3305,8 +3305,8 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCKeypadDispatcher : cocos2d::CCObject {
     // CCKeypadDispatcher(cocos2d::CCKeypadDispatcher const&);
-    CCKeypadDispatcher();
-    virtual ~CCKeypadDispatcher();
+    CCKeypadDispatcher() = m1 0x5142d4, imac 0x5e1c40, ios 0x1b09f8;
+    virtual ~CCKeypadDispatcher() = m1 0x514344, imac 0x5e1cb0, ios 0x1b0a6c;
 
     void addDelegate(cocos2d::CCKeypadDelegate*) = m1 0x514590, imac 0x5e1f00, ios 0x1b0bb4;
     bool dispatchKeypadMSG(cocos2d::ccKeypadMSGType) = m1 0x514624, imac 0x5e1f80, ios 0x1b0c38;
@@ -3681,8 +3681,8 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
         return m_sFntFile.c_str();
     }
     // bool getIsBatched() const;
-    float getLetterPosXLeft(cocos2d::CCSprite*, float, bool);
-    float getLetterPosXRight(cocos2d::CCSprite*, float, bool);
+    float getLetterPosXLeft(cocos2d::CCSprite*, float, bool) = m1 0x4f83a8, imac 0x5c3030, ios 0x2fce78;
+    float getLetterPosXRight(cocos2d::CCSprite*, float, bool) = m1 0x4f844c, imac 0x5c30e0, ios 0x2fcf1c;
     // cocos2d::CCArray* getTargetArray() const;
 
     // void setExtraKerning(int);
@@ -3704,7 +3704,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     // void setIsBatched(bool);
     // void setTargetArray(cocos2d::CCArray*);
     void createFontChars() = imac 0x5c06b0, m1 0x4f6020, ios 0x2fb578;
-    int kerningAmountForFirst(unsigned short, unsigned short);
+    int kerningAmountForFirst(unsigned short, unsigned short) = m1 0x4f5f00, imac 0x5c0590, ios 0x2fb460;
     void limitLabelWidth(float, float, float) = imac 0x5c3360, m1 0x4f869c, ios 0x2fd074;
 
     virtual ~CCLabelBMFont() = imac 0x5c0480, m1 0x4f5e34, ios 0x2fb3ac;
@@ -3780,42 +3780,175 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
         CC_SAFE_DELETE(pRet);
         return NULL;
     }
-	static cocos2d::CCLabelTTF* create() = m1 0x336520, imac 0x3aa4d0;
-	static cocos2d::CCLabelTTF* createWithFontDefinition(char const*, cocos2d::ccFontDefinition&) = m1 0x336904, imac 0x3aa900;
+	static cocos2d::CCLabelTTF* create() = m1 0x336520, imac 0x3aa4d0, ios inline {
+        auto ret = new CCLabelTTF();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+	static cocos2d::CCLabelTTF* createWithFontDefinition(char const*, cocos2d::ccFontDefinition&) = m1 0x336904, imac 0x3aa900, ios inline {
+        auto ret = new CCLabelTTF();
+        if (ret->initWithStringAndTextDefinition(p0, p1)) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
 
 	bool initWithString(char const* label, char const* fontName, float fontSize) = m1 0x336b18, imac 0x3aab10, ios 0x72828;
 	bool initWithString(char const* label, char const* fontName, float fontSize, cocos2d::CCSize const& dimensions, cocos2d::CCTextAlignment alignment) = m1 0x336b2c, imac 0x3aab30, ios inline {
         return this->initWithString(label, fontName, fontSize, dimensions, alignment, kCCVerticalTextAlignmentTop);
     }
 	bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = m1 0x336798, imac 0x3aa780, ios 0x7270c;
-	bool initWithStringAndTextDefinition(char const*, cocos2d::ccFontDefinition&) = m1 0x336a6c, imac 0x3aaa70;
+	bool initWithStringAndTextDefinition(char const*, cocos2d::ccFontDefinition&) = m1 0x336a6c, imac 0x3aaa70, ios inline {
+        if (!CCSprite::init()) return false;
+        this->setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColor));
+        _updateWithTextDefinition(p1, false);
+        this->setString(p0);
+        return true;
+    }
 
-	cocos2d::CCSize getDimensions();
-	char const* getFontName() = m1 0x336f98, imac 0x3ab060;
-	float getFontSize();
-	cocos2d::CCTextAlignment getHorizontalAlignment();
-	cocos2d::ccFontDefinition* getTextDefinition() = m1 0x337110, imac 0x3ab240;
-	cocos2d::CCVerticalTextAlignment getVerticalAlignment();
+	// cocos2d::CCSize getDimensions();
+	char const* getFontName() = m1 0x336f98, imac 0x3ab060, ios inline {
+        return m_pFontName->c_str();
+    }
+	// float getFontSize();
+	// cocos2d::CCTextAlignment getHorizontalAlignment();
+	cocos2d::ccFontDefinition* getTextDefinition() = m1 0x337110, imac 0x3ab240, ios inline {
+        auto definition = new ccFontDefinition();
+        *definition = _prepareTextDefinition(false);
+        return definition;
+    }
+	// cocos2d::CCVerticalTextAlignment getVerticalAlignment();
 
-	void setDimensions(cocos2d::CCSize const&);
-	void setFontFillColor(cocos2d::ccColor3B const&, bool);
-	void setFontName(char const*) = m1 0x336fb0, imac 0x3ab080;
-	void setFontSize(float);
-	void setHorizontalAlignment(cocos2d::CCTextAlignment);
-	void setTextDefinition(cocos2d::ccFontDefinition*) = m1 0x337100, imac 0x3ab220;
-	void setVerticalAlignment(cocos2d::CCVerticalTextAlignment);
+	// void setDimensions(cocos2d::CCSize const&);
+	void setFontFillColor(cocos2d::ccColor3B const&, bool) = m1 0x3370fc, imac 0x3ab210, ios inline {
+        if (m_textFillColor.r != p0.r || m_textFillColor.g != p0.g || m_textFillColor.b != p0.b) {
+            m_textFillColor = p0;
+            if (p1) this->updateTexture();
+        }
+    }
+	void setFontName(char const*) = m1 0x336fb0, imac 0x3ab080, ios inline {
+        if (m_pFontName->compare(p0)) {
+            delete m_pFontName;
+            m_pFontName = new std::string(p0);
+            if (m_string.size() > 0) this->updateTexture();
+        }
+    }
+	// void setFontSize(float);
+	// void setHorizontalAlignment(cocos2d::CCTextAlignment);
+	void setTextDefinition(cocos2d::ccFontDefinition*) = m1 0x337100, imac 0x3ab220, ios inline {
+        if (p0) _updateWithTextDefinition(*p0, true);
+    }
+	// void setVerticalAlignment(cocos2d::CCVerticalTextAlignment);
 
 	// CCLabelTTF(cocos2d::CCLabelTTF const&);
 	CCLabelTTF() = m1 0x336200, imac 0x3aa150, ios 0x725b4;
     virtual ~CCLabelTTF() = m1 0x336380, imac 0x3aa310, ios 0x7267c;
-	cocos2d::ccFontDefinition _prepareTextDefinition(bool) = m1 0x337280, imac 0x3ab390;
-	void _updateWithTextDefinition(cocos2d::ccFontDefinition&, bool) = m1 0x336b34, imac 0x3aab40;
-	char const* description() = m1 0x336e34, imac 0x3aae90;
-	void disableShadow(bool);
-	void disableStroke(bool);
-	void enableShadow(cocos2d::CCSize const&, float, float, bool);
-	void enableStroke(cocos2d::ccColor3B const&, float, bool);
-	bool updateTexture() = m1 0x336c44, imac 0x3aac60;
+	cocos2d::ccFontDefinition _prepareTextDefinition(bool) = m1 0x337280, imac 0x3ab390, ios inline {
+        auto factor = CCDirector::sharedDirector()->getContentScaleFactor();
+
+        ccFontDefinition texDef;
+        texDef.m_fontSize = p0 ? m_fFontSize * factor : m_fFontSize;
+        texDef.m_fontName = *m_pFontName;
+        texDef.m_alignment = m_hAlignment;
+        texDef.m_vertAlignment = m_vAlignment;
+        texDef.m_dimensions = p0 ? CCSize { m_tDimensions.width * factor, m_tDimensions.height * factor } : m_tDimensions;
+        
+        if (m_strokeEnabled) {
+            texDef.m_stroke.m_strokeEnabled = true;
+            texDef.m_stroke.m_strokeColor = m_strokeColor;
+            texDef.m_stroke.m_strokeSize = p0 ? m_strokeSize * factor : m_strokeSize;
+        }
+        else texDef.m_stroke.m_strokeEnabled = false;
+
+        if (m_shadowEnabled) {
+            texDef.m_shadow.m_shadowEnabled = true;
+            texDef.m_shadow.m_shadowBlur = m_shadowBlur;
+            texDef.m_shadow.m_shadowOpacity = m_shadowOpacity;
+            texDef.m_shadow.m_shadowOffset = p0 ? CCSize { m_shadowOffset.width * factor, m_shadowOffset.height * factor } : m_shadowOffset;
+        }
+        else texDef.m_shadow.m_shadowEnabled = false;
+
+        texDef.m_fontFillColor = m_textFillColor;
+
+        return texDef;
+    }
+	void _updateWithTextDefinition(cocos2d::ccFontDefinition&, bool) = m1 0x336b34, imac 0x3aab40, ios inline {
+        m_tDimensions = p0.m_dimensions;
+        m_hAlignment = p0.m_alignment;
+        m_vAlignment = p0.m_vertAlignment;
+        m_pFontName = new std::string(p0.m_fontName);
+        m_fFontSize = p0.m_fontSize;
+
+        if (p0.m_shadow.m_shadowEnabled) {
+            this->enableShadow(p0.m_shadow.m_shadowOffset, p0.m_shadow.m_shadowOpacity, p0.m_shadow.m_shadowBlur, false);
+        }
+
+        if (p0.m_stroke.m_strokeEnabled) {
+            this->enableStroke(p0.m_stroke.m_strokeColor, p0.m_stroke.m_strokeSize, false);
+        }
+
+        this->setFontFillColor(p0.m_fontFillColor, false);
+
+        if (p1) this->updateTexture();
+    }
+	char const* description() = m1 0x336e34, imac 0x3aae90, ios inline {
+        return CCString::createWithFormat("<CCLabelTTF | FontName = %s, FontSize = %.1f>", m_pFontName->c_str(), m_fFontSize)->getCString();
+    }
+	void disableShadow(bool) = m1 0x3370f0, imac 0x3ab1e0, ios inline {
+        if (m_shadowEnabled) {
+            m_shadowEnabled = false;
+            if (p0) this->updateTexture();
+        }
+    }
+	void disableStroke(bool) = m1 0x3370f8, imac 0x3ab200, ios inline {
+        if (m_strokeEnabled) {
+            m_strokeEnabled = false;
+            if (p0) this->updateTexture();
+        }
+    }
+	void enableShadow(cocos2d::CCSize const&, float, float, bool) = m1 0x3370ec, imac 0x3ab1d0, ios inline {
+        auto changed = false;
+        if (!m_shadowEnabled) {
+            m_shadowEnabled = true;
+            changed = true;
+        }
+        if (m_shadowOffset.width != p0.width || m_shadowOffset.height != p0.height) {
+            m_shadowOffset = p0;
+            changed = true;
+        }
+        if (m_shadowOpacity != p1) {
+            m_shadowOpacity = p1;
+            changed = true;
+        }
+        if (m_shadowBlur != p2) {
+            m_shadowBlur = p2;
+            changed = true;
+        }
+        if (changed && p3) this->updateTexture();
+    }
+	void enableStroke(cocos2d::ccColor3B const&, float, bool) = m1 0x3370f4, imac 0x3ab1f0, ios inline {
+        auto changed = false;
+        if (!m_strokeEnabled) {
+            m_strokeEnabled = true;
+            changed = true;
+        }
+        if (m_strokeColor.r != p0.r || m_strokeColor.g != p0.g || m_strokeColor.b != p0.b) {
+            m_strokeColor = p0;
+            changed = true;
+        }
+        if (m_strokeSize != p1) {
+            m_strokeSize = p1;
+            changed = true;
+        }
+        if (changed && p2) this->updateTexture();
+    }
+	bool updateTexture() = m1 0x336c44, imac 0x3aac60, ios 0x72894;
 
 	virtual bool init() = m1 0x336af0, imac 0x3aaae0, ios 0x72800;
 
@@ -6590,8 +6723,13 @@ class cocos2d::CCBMFontConfiguration : cocos2d::CCObject {
     }
 
     // CCBMFontConfiguration(cocos2d::CCBMFontConfiguration const&);
-    CCBMFontConfiguration();
-    virtual ~CCBMFontConfiguration();
+    CCBMFontConfiguration() = m1 0x4f30cc, imac 0x5bd4d0, ios inline {
+        m_pFontDefDictionary = nullptr;
+        m_nCommonHeight = 0;
+        m_pKerningDictionary = nullptr;
+        m_pCharacterSet = nullptr;
+    }
+    virtual ~CCBMFontConfiguration() = m1 0x4f3104, imac 0x5bd520, ios 0x2f9730;
 
     char const* description() = m1 0x4f3460, imac 0x5bd880, ios inline {
         return CCString::createWithFormat(
@@ -7611,12 +7749,16 @@ class cocos2d::extension::CCTableViewCell : cocos2d::CCNode, cocos2d::extension:
 
 [[link(win, android)]]
 class cocos2d::CCKeypadHandler : cocos2d::CCObject {
-    static cocos2d::CCKeypadHandler* handlerWithDelegate(cocos2d::CCKeypadDelegate*);
+    static cocos2d::CCKeypadHandler* handlerWithDelegate(cocos2d::CCKeypadDelegate*) = m1 0x33a5fc, imac 0x3aeb10, ios 0x4f1a4;
 
-    virtual ~CCKeypadHandler();
+    virtual ~CCKeypadHandler() = m1 0x33a43c, imac 0x3ae930, ios 0x4f0f0;
 
-    cocos2d::CCKeypadDelegate* getDelegate();
-    void setDelegate(cocos2d::CCKeypadDelegate*);
+    cocos2d::CCKeypadDelegate* getDelegate() = m1 0x33a434, imac 0x3ae920, ios 0x4f0e8;
+    void setDelegate(cocos2d::CCKeypadDelegate*) = m1 0x33a53c, imac 0x3aea50, ios inline {
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(p0)) delegate->retain();
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(m_pDelegate)) delegate->release();
+        m_pDelegate = p0;
+    }
 
     virtual bool initWithDelegate(cocos2d::CCKeypadDelegate*) = m1 0x33a5a8, imac 0x3aeac0, ios 0x4f15c;
 }
@@ -7731,12 +7873,12 @@ class cocos2d::CCTransitionProgressVertical : cocos2d::CCTransitionProgress {
 
 [[link(win, android)]]
 class cocos2d::CCLabelAtlas : cocos2d::CCAtlasNode, cocos2d::CCLabelProtocol {
-    static cocos2d::CCLabelAtlas* create(char const*, char const*, unsigned int, unsigned int, unsigned int);
-    static cocos2d::CCLabelAtlas* create(char const*, char const*);
+    static cocos2d::CCLabelAtlas* create(char const*, char const*, unsigned int, unsigned int, unsigned int) = m1 0x697504, imac 0x7831c0;
+    static cocos2d::CCLabelAtlas* create(char const*, char const*) = m1 0x697734, imac 0x7833c0;
 
-    bool initWithString(char const*, char const*, unsigned int, unsigned int, unsigned int);
-    bool initWithString(char const*, char const*);
-    bool initWithString(char const*, cocos2d::CCTexture2D*, unsigned int, unsigned int, unsigned int);
+    bool initWithString(char const*, char const*, unsigned int, unsigned int, unsigned int) = m1 0x697618, imac 0x7832c0;
+    bool initWithString(char const*, char const*) = m1 0x6977c8, imac 0x783460;
+    bool initWithString(char const*, cocos2d::CCTexture2D*, unsigned int, unsigned int, unsigned int) = m1 0x6976b0, imac 0x783350;
 
     virtual void updateAtlasValues() = m1 0x697cd0, imac 0x783990;
     virtual void setString(char const*) = m1 0x697f20, imac 0x783c50;
@@ -7938,12 +8080,16 @@ class cocos2d::CCTime {
 
 [[link(win, android)]]
 class cocos2d::CCKeyboardHandler : cocos2d::CCObject {
-    static cocos2d::CCKeyboardHandler* handlerWithDelegate(cocos2d::CCKeyboardDelegate*);
+    static cocos2d::CCKeyboardHandler* handlerWithDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x3a540c, imac 0x42a2d0, ios 0x217670;
 
-    virtual ~CCKeyboardHandler();
+    virtual ~CCKeyboardHandler() = m1 0x3a524c, imac 0x42a0f0, ios 0x2175bc;
 
-    cocos2d::CCKeyboardDelegate* getDelegate();
-    void setDelegate(cocos2d::CCKeyboardDelegate*);
+    cocos2d::CCKeyboardDelegate* getDelegate() = m1 0x3a5244, imac 0x42a0e0, ios 0x2175b4;
+    void setDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x3a534c, imac 0x42a210, ios inline {
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(p0)) delegate->retain();
+        if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(m_pDelegate)) delegate->release();
+        m_pDelegate = p0;
+    }
 
     virtual bool initWithDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x3a53b8, imac 0x42a280, ios 0x217628;
 }
