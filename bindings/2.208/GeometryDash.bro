@@ -3239,7 +3239,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_valueType = (InputValueType)0;
         m_kerningAmount = 0;
     }
-    ~CCTextInputNode() = win inline, m1 0x8e6d0 {
+    ~CCTextInputNode() = win inline, m1 0x8e6d0, imac 0x9ddd0 {
         if (m_selected) CCTextInputNode::onClickTrackNode(false);
     }
 
@@ -3266,14 +3266,14 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50c40, m1 0x905ac, imac 0xa0010;
 
     void addTextArea(TextArea* textArea) = win 0x4f5d0, imac 0x9e4b0, m1 0x8ec90;
-    void forceOffset() = win inline, imac 0xa07a0 {}
+    void forceOffset() = win inline, imac 0xa07a0, m1 0x90c5c {}
     gd::string getString() = win inline, imac 0x9eb20, m1 0x8f2dc {
         return m_textField->getString();
     }
     cocos2d::CCLabelBMFont* getTextLabel() {
         return m_textLabel;
     }
-    bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x4f390;
+    bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x4f390, m1 0x8e948, imac 0x9e140;
     void refreshLabel() = win 0x4fbd0, imac 0x9ebd0, m1 0x8f38c;
     void setAllowedChars(gd::string filter) = win inline, imac 0x9e9e0, m1 0x8f1a8 {
         m_allowedChars = filter;
@@ -3281,15 +3281,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setDelegate(TextInputDelegate* delegate) {
         m_delegate = delegate;
     }
-    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5cc, ios inline {
+    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5cc, imac 0x9ee90, ios inline {
         m_textColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5bc {
+    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5bc, imac 0x9ee70 {
         m_placeholderColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderScale(float v) = win inline, m1 0x8f5b4 {
+    void setLabelPlaceholderScale(float v) = win inline, m1 0x8f5b4, imac 0x9ee50 {
         m_placeholderScale = v;
         this->refreshLabel();
     }
@@ -3297,11 +3297,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_maxLabelLength = v;
         this->refreshLabel();
     }
-    void setMaxLabelScale(float v) = win inline, m1 0x8f5a4 {
+    void setMaxLabelScale(float v) = win inline, m1 0x8f5a4, imac 0x9ee10 {
         m_maxLabelScale = v;
         this->refreshLabel();
     }
-    void setMaxLabelWidth(float v) = win inline, m1 0x8f5ac {
+    void setMaxLabelWidth(float v) = win inline, m1 0x8f5ac, imac 0x9ee30 {
         m_maxLabelWidth = v;
         this->refreshLabel();
     }
@@ -3310,7 +3310,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
     }
     void updateBlinkLabelToChar(int index) = win 0x4feb0, imac 0x9eeb0, m1 0x8f5e0;
-    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0, m1 0x90c60;
+    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0, m1 0x90c60, imac 0xa07b0;
     void updateDefaultFontValues(gd::string font) = win 0x4f6c0, imac 0x9e410, m1 0x8ebe8;
     void updateLabel(gd::string text) = win 0x4f8d0, imac 0x9e6c0, m1 0x8eeb8;
 
@@ -25357,7 +25357,7 @@ class MultilineBitmapFont : cocos2d::CCSprite {
         CC_SAFE_RELEASE(m_specialDescriptors);
     }
 
-    static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x486af0, m1 0x8e948 {
+    static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x486af0 {
         auto ret = new MultilineBitmapFont();
         if (ret->initWithFont(font, text, scale, width, anchor, height, disableColor)) {
             ret->autorelease();
