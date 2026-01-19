@@ -982,8 +982,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     virtual void applicationWillEnterForeground();
     virtual void applicationWillBecomeActive();
     virtual void applicationWillResignActive();
-    virtual void trySaveGame(bool force);
-    virtual void willSwitchToScene(cocos2d::CCScene* scene);
+    virtual void trySaveGame(bool force) = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    virtual void willSwitchToScene(cocos2d::CCScene* scene) = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     float bgScale() = win inline {
         return cocos2d::CCDirector::sharedDirector()->getScreenScaleFactorMax();
@@ -3260,7 +3260,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     }
 
     virtual void visit();
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline {}
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline {}
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline {}
@@ -3518,7 +3518,7 @@ class CharacterColorPage : FLAlertLayer {
     }
 
     virtual bool init();
-    virtual void registerWithTouchDispatcher() = win inline, ;
+    virtual void registerWithTouchDispatcher();
     virtual void keyBackClicked();
     virtual void show();
 
@@ -17570,7 +17570,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     }
     static cocos2d::CCScene* scene();
 
-    virtual bool init();
+    virtual bool init() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
     virtual void keyBackClicked();
     virtual void textInputOpened(CCTextInputNode* node);
     virtual void textInputClosed(CCTextInputNode* node);
@@ -23940,7 +23940,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
         cocos2d::CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 100);
         layer->showLayer(false);
     }
-    void onPlay(cocos2d::CCObject* sender);
+    void onPlay(cocos2d::CCObject* sender) = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
     void onSecretDoor(cocos2d::CCObject* sender);
     void onTheTower(cocos2d::CCObject* sender);
     void playCoinEffect();
@@ -24644,8 +24644,8 @@ class LoadingLayer : cocos2d::CCLayer {
     static cocos2d::CCScene* scene(bool refresh);
 
     const char* getLoadingString();
-    bool init(bool refresh);
-    void loadAssets();
+    bool init(bool refresh) = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    void loadAssets() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
     void loadingFinished() = win inline{
         cocos2d::CCDirector::sharedDirector()->replaceScene(MenuLayer::scene(m_fromRefresh));
     }
@@ -24904,7 +24904,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
     static cocos2d::CCScene* scene(bool isVideoOptionsOpen);
 
-    virtual bool init() = win 0x3337c0;
+    virtual bool init() = win 0x3337c0, ios 0x1234567, imac 0x1234567, m1 0x1234567;
     virtual void keyBackClicked();
     virtual void keyDown(cocos2d::enumKeyCodes key);
     virtual void googlePlaySignedIn();
@@ -24936,7 +24936,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
         }
         else PlatformToolbox::signInGooglePlay();
     }
-    void onMoreGames(cocos2d::CCObject* sender);
+    void onMoreGames(cocos2d::CCObject* sender) = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
     void onMyProfile(cocos2d::CCObject* sender);
     void onNewgrounds(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender);
@@ -28676,7 +28676,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2);
     virtual void updateUserScoreFinished();
     virtual void updateUserScoreFailed();
-    virtual void getUserInfoFinished(GJUserScore* score);
+    virtual void getUserInfoFinished(GJUserScore* score) = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
     virtual void getUserInfoFailed(int id);
     virtual void userInfoChanged(GJUserScore* score);
     virtual void loadCommentsFinished(cocos2d::CCArray* comments, char const* key);
