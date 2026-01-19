@@ -3172,7 +3172,7 @@ class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCA
     virtual void didAccelerate(cocos2d::CCAcceleration*);
     virtual void keyBackClicked() = imac 0x4b07d0, m1 0x41266c;
     virtual void keyMenuClicked();
-    virtual void keyDown(cocos2d::enumKeyCodes) = m1 0x41278c;
+    virtual void keyDown(cocos2d::enumKeyCodes, double) = m1 0x41278c;
 
     // cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
     // cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();

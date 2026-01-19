@@ -488,7 +488,7 @@ class AchievementsLayer : GJDropDownLayer {
         return nullptr;
     }
 
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x822d0;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x822d0;
     virtual void customSetup() = win 0x82020, m1 0x2fc804;
 
     void loadPage(int page) = win 0x82370, imac 0x372fe0, m1 0x2fca90;
@@ -4564,7 +4564,7 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x4644e4;
     virtual void registerWithTouchDispatcher() = win 0x9b7f0, m1 0x464500;
     virtual void keyBackClicked() = win 0x9b690, imac 0x50cc10;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x9b840, imac 0x50cf00, m1 0x464538;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x9b840, imac 0x50cf00, m1 0x464538;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x9b5b0, m1 0x46413c;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x84690, imac 0x50cbe0, m1 0x45c854;
     virtual void keyUp(cocos2d::enumKeyCodes key) = win inline, imac 0x50cf50, m1 0x46457c {}
@@ -5815,7 +5815,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xd4100, imac 0x3c7df0, m1 0x3492b0;
     virtual void registerWithTouchDispatcher() = win 0x52df0, m1 0x3492f4;
     virtual void keyBackClicked() = win 0xd4020, imac 0x3c7c00;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0xd43d0, imac 0x3c8200, m1 0x349688;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0xd43d0, imac 0x3c8200, m1 0x349688;
     virtual void fadeInTextFinished(TextArea* textArea) = win 0xd4120, m1 0x349330;
 
     void addToMainScene() = win 0xd3fc0, m1 0x349084;
@@ -6222,7 +6222,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     static cocos2d::CCScene* scene(GJGameLevel* level) = win 0xd52d0, imac 0x1fa020, m1 0x1a7830;
 
     virtual void keyBackClicked() = win 0xd9ac0, m1 0x1ab83c;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0xd9ad0, imac 0x1fe200, m1 0x1ab848;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0xd9ad0, imac 0x1fe200, m1 0x1ab848;
     virtual void setIDPopupClosed(SetIDPopup* popup, int value) = m1 0x1ab73c;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xd8c60, m1 0x1ab388;
     virtual void textInputOpened(CCTextInputNode* node) = win 0xd7b10, m1 0x1aabb8;
@@ -6341,7 +6341,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     }
 
     virtual void keyBackClicked();
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0xde630, imac 0x294bb0, m1 0x234f80;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0xde630, imac 0x294bb0, m1 0x234f80;
     virtual void customSetup() = win 0xda570;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xde500, m1 0x234dcc;
 
@@ -6477,7 +6477,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     virtual void registerWithTouchDispatcher() = win 0x9b7f0;
     virtual void keyBackClicked() = m1 0x36d84;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x125360;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x125360;
     virtual EditorUI* getUI() = win 0xdee40 { return this; }
     virtual void setIDPopupClosed(SetIDPopup* popup, int value) = win 0xe6c90, imac 0x33280, m1 0x3010c;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xe6a90, m1 0x2ff3c;
@@ -7805,7 +7805,7 @@ class EndLevelLayer : GJDropDownLayer {
     }
 
     virtual void keyBackClicked() = win 0x135710;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x136db0, imac 0x4c33f0, m1 0x422f60;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x136db0, imac 0x4c33f0, m1 0x422f60;
     virtual void customSetup() = win 0x132e90, m1 0x4e0d38;
     virtual void showLayer(bool instant) = win 0x134ce0, m1 0x421a30;
     virtual void enterAnimFinished() = win inline, imac 0x4c2b70, m1 0x422718 {}
@@ -8716,7 +8716,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     virtual void registerWithTouchDispatcher() = win 0x52df0, m1 0x400454;
     virtual void keyBackClicked() = win 0x52910, imac 0x49bbd0, m1 0x3ffe44;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x52890, imac 0x49bb20, m1 0x3ffda4;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x52890, imac 0x49bb20, m1 0x3ffda4;
     virtual void show() = win 0x52c20, imac 0x49bfc0;
 
     void incrementForcePrio() = win inline {
@@ -22335,7 +22335,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x4919a0, m1 0x3f6968 {}
     virtual void registerWithTouchDispatcher() = win 0x2cfc30;
     virtual void keyBackClicked();
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x2ccd90;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x2ccd90;
     virtual void loadLevelsFinished(cocos2d::CCArray* levels, char const* key, int type) = win 0x2cc280, m1 0x3f5170;
     virtual void loadLevelsFailed(char const* key, int type) = win 0x2cc3b0, imac 0x416810, m1 0x3f5298;
     virtual void setupPageInfo(gd::string info, char const* key) = win 0x2cc400, imac 0x2c1eb0;
@@ -23401,7 +23401,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x2f6e60, m1 0x25944c;
 
     virtual void keyBackClicked() = win 0x3005a0;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x3005b0;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x3005b0;
     virtual void numberInputClosed(NumberInputLayer* layer) = win 0x2fd420, imac 0x2c4180, m1 0x26049c;
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = win 0x2f9770, m1 0x25e9e8;
     virtual void levelDownloadFinished(GJGameLevel* level) = win 0x2fb7f0, imac 0x2c33b0, m1 0x25f718;
@@ -24035,7 +24035,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     static cocos2d::CCScene* scene(int page) = win 0x318040, m1 0x3a3a18;
 
     virtual void keyBackClicked() = win 0x319800, m1 0x3a65f0;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x319850;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x319850;
     virtual void updatePageWithObject(cocos2d::CCObject* layer, cocos2d::CCObject* object) = win 0x318f80, imac 0x432520;
     virtual void scrollLayerMoved(cocos2d::CCPoint position) = win 0x318ff0, imac 0x433ce0, m1 0x3a6168;
 
@@ -24829,7 +24829,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
     virtual bool init() = win 0x3337c0;
     virtual void keyBackClicked() = win 0x335cb0, imac 0x391c00, m1 0x318068;
-    virtual void keyDown(cocos2d::enumKeyCodes key);
+    virtual void keyDown(cocos2d::enumKeyCodes key, double);
     virtual void googlePlaySignedIn() = win 0x3356b0, imac 0x391970, m1 0x317e1c;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x335e80, imac 0x391c30, m1 0x318074;
 
@@ -25256,7 +25256,7 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
     static cocos2d::CCScene* scene(int type) = m1 0x3f8248;
 
     virtual void keyBackClicked() = m1 0x3f87b8;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = imac 0x4942d0, m1 0x3f8ee8;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = imac 0x4942d0, m1 0x3f8ee8;
     virtual void joinLobbyFinished(int id) = imac 0x493c50, m1 0x3f8918;
     virtual void joinLobbyFailed(int id, GJMPErrorCode errorType) = imac 0x494100, m1 0x3f8d2c;
     virtual void updateComments() = m1 0x3f8c24;
@@ -26626,7 +26626,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     }
 
     virtual void keyBackClicked() = win 0x37eb10, imac 0x3d7730;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = win 0x37ea40, m1 0x3fb948;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = win 0x37ea40, m1 0x3fb948;
     virtual void customSetup() = win 0x2c24c0, m1 0x31de90;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x37e880, imac 0x3d7570, m1 0x356b2c;
     virtual void keyUp(cocos2d::enumKeyCodes key) = win inline, imac 0x3d7710 {}
@@ -28985,7 +28985,7 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
     }
 
     virtual void keyBackClicked() = win 0x3cbc40;
-    virtual void keyDown(cocos2d::enumKeyCodes key);
+    virtual void keyDown(cocos2d::enumKeyCodes key, double);
     virtual void customSetup() = win 0x3cacf0, m1 0x450fd0;
     virtual void showLayer(bool instant) = win 0x3cb890, m1 0x451b68;
     virtual void enterAnimFinished() = win 0x3cb9b0;
@@ -36459,7 +36459,7 @@ class UILayer : cocos2d::CCLayerColor {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x42909c;
     virtual void registerWithTouchDispatcher() = win 0x9b7f0, m1 0x4290b8;
     virtual void keyBackClicked() = win 0x4cdad0, m1 0x427ec0;
-    virtual void keyDown(cocos2d::enumKeyCodes key) = m1 0x427e80;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double) = m1 0x427e80;
     virtual void keyUp(cocos2d::enumKeyCodes key) = m1 0x427ea0;
 
     void disableMenu() = win inline, imac 0x4c88f0, m1 0x4279ec {
