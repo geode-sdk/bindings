@@ -6089,6 +6089,7 @@ class cocos2d::extension::CCScale9Sprite : cocos2d::CCNodeRGBA {
         delete ret;
         return nullptr;
     }
+    [[since("4.10.1")]]
     void setBlendAdditive(bool) = m1 0x366b38, imac 0x3e4820, ios 0x21711c;
 
     virtual bool init() = m1 0x364478, imac 0x3e2060, ios 0x21536c;
