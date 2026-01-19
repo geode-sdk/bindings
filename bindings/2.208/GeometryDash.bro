@@ -24904,7 +24904,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
 
     static cocos2d::CCScene* scene(bool isVideoOptionsOpen);
 
-    virtual bool init();
+    virtual bool init() = win 0x3337c0;
     virtual void keyBackClicked();
     virtual void keyDown(cocos2d::enumKeyCodes key);
     virtual void googlePlaySignedIn();
