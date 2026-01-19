@@ -2002,7 +2002,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
         m_closeOnHide = false;
         m_forcePrioRegistered = false;
     }
-    ~CCBlockLayer();
+    ~CCBlockLayer() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     static CCBlockLayer* create() = win inline, imac 0x517790, m1 0x46e008, ios inline {
         auto ret = new CCBlockLayer();
@@ -5315,7 +5315,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 [[link(android)]]
 class CustomSongCell : TableViewCell, CustomSongDelegate {
     // virtual ~CustomSongCell();
-    CustomSongCell(char const* identifier, float width, float height) = m1 0x1f9ce0, ios inline : TableViewCell(identifier, width, height) {
+    CustomSongCell(char const* identifier, float width, float height) = win 0x1234567, imac 0x1234567, m1 0x1f9ce0, ios inline : TableViewCell(identifier, width, height) {
         this->init();
     }
 
@@ -7461,7 +7461,7 @@ class EditTriggersPopup : SetupTriggerPopup {
 [[link(android)]]
 class EffectGameObject : EnhancedGameObject {
     // virtual ~EffectGameObject();
-    EffectGameObject() = imac 0x1f3b70, m1 0x1a1dd4;
+    EffectGameObject() = imac 0x1f3b70, m1 0x1a1dd4, win 0x1234567, ios 0x1234567;
 
     static EffectGameObject* create(char const* frame) = win inline, m1 0x172514 {
         auto ret = new EffectGameObject();
@@ -8698,7 +8698,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer();
+    ~FLAlertLayer() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
@@ -9489,7 +9489,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     static cocos2d::CCDictionary* responseToDict(gd::string response, bool colon) = win 0x16abd0, m1 0x484310;
     // virtual ~GameLevelManager();
-    static GameLevelManager* sharedState();
+    static GameLevelManager* sharedState() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     virtual bool init() = win 0x1442d0, m1 0x47fc30, imac 0x52b7d0;
 
@@ -18477,7 +18477,7 @@ class GJOptionsLayer : SetupTriggerPopup {
         m_maxLabelWidth = 130.f;
         m_offset = 0.f;
     }
-    ~GJOptionsLayer();
+    ~GJOptionsLayer() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     static GJOptionsLayer* create(int background) = win inline, imac 0x29b6b0, m1 0x23b190, ios inline {
         auto ret = new GJOptionsLayer();
@@ -20987,7 +20987,7 @@ class GooglePlayDelegate {
 class GooglePlayManager : cocos2d::CCNode {
     // virtual ~GooglePlayManager();
 
-    static GooglePlayManager* sharedState();
+    static GooglePlayManager* sharedState() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     virtual bool init() = win inline, imac 0x477950, m1 0x3de860 { return true; }
 
@@ -24859,7 +24859,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
         }
         else PlatformToolbox::signInGooglePlay();
     }
-    void onMoreGames(cocos2d::CCObject* sender) = m1 0x3178f4;
+    void onMoreGames(cocos2d::CCObject* sender) = m1 0x3178f4, win 0x1234567, ios 0x1234567, imac 0x1234567;
     void onMyProfile(cocos2d::CCObject* sender) = m1 0x317a50;
     void onNewgrounds(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x3357a0, m1 0x3176ac;
@@ -30836,7 +30836,7 @@ class SetupAreaMoveTriggerPopup : SetupTriggerPopup {
         m_modeButtons = nullptr;
         m_targetButtons = nullptr;
     }
-    ~SetupAreaMoveTriggerPopup();
+    ~SetupAreaMoveTriggerPopup() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     static SetupAreaMoveTriggerPopup* create(EnterEffectObject* object, cocos2d::CCArray* objects) = win inline {
         auto ret = new SetupAreaMoveTriggerPopup();

@@ -174,8 +174,16 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
+// 	constexpr char const* ool_function_definition = R"GEN(
+// {return} {class_name}::{function_name}({parameters}){const} {definition}
+// )GEN";
+
 	constexpr char const* ool_function_definition = R"GEN(
-{return} {class_name}::{function_name}({parameters}){const} {definition}
+{return} {class_name}::{function_name}({parameters}){const} {{ }}
+)GEN";
+
+	constexpr char const* void_ool_function_definition = R"GEN(
+{return} {class_name}::{function_name}({parameters}){const} {{}}
 )GEN";
 
 	constexpr char const* ool_structor_function_definition = R"GEN(
@@ -256,14 +264,27 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 							);
 							break;
 						default:
-							output += fmt::format(format_strings::ool_function_definition,
-								fmt::arg("function_name", fn->prototype.name),
-								fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-								fmt::arg("class_name", c.name),
-													fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-								fmt::arg("definition", fn->inner),
-									fmt::arg("return", fn->prototype.ret.name)
-							);
+							{
+								if (fn->prototype.ret.name == "void") {
+									output += fmt::format(format_strings::void_ool_function_definition,
+										fmt::arg("function_name", fn->prototype.name),
+										fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+										fmt::arg("class_name", c.name),
+										fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+										fmt::arg("definition", fn->inner),
+										fmt::arg("return", fn->prototype.ret.name)
+									);
+								} else {
+									output += fmt::format(format_strings::ool_function_definition,
+										fmt::arg("function_name", fn->prototype.name),
+										fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+										fmt::arg("class_name", c.name),
+										fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+										fmt::arg("definition", fn->inner),
+										fmt::arg("return", fn->prototype.ret.name)
+									);
+								}
+							}
 							break;
 					}
 				} else if (codegen::getStatus(*fn) != BindStatus::Unbindable || codegen::platformNumber(fn->binds) != -1) {

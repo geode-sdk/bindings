@@ -2172,10 +2172,10 @@ class cocos2d::CCEGLViewProtocol {
     virtual cocos2d::CCRect getScissorRect() = imac 0x50f900, m1 0x466764;
     virtual void setViewName(char const*) = m1 0x4667f4, imac 0x50f9a0;
     virtual void pollInputEvents() = m1 0x466f98, imac 0x510130;
-    virtual void handleTouchesBegin(int, int*, float*, float*) = m1 0x466818, imac 0x50f9d0;
-    virtual void handleTouchesMove(int, int*, float*, float*) = m1 0x466ae8, imac 0x50fcb0;
-    virtual void handleTouchesEnd(int, int*, float*, float*) = m1 0x466e28, imac 0x50ffe0;
-    virtual void handleTouchesCancel(int, int*, float*, float*) = m1 0x466ed4, imac 0x510070;
+    virtual void handleTouchesBegin(int, int*, float*, float*, double) = m1 0x466818, imac 0x50f9d0;
+    virtual void handleTouchesMove(int, int*, float*, float*, double) = m1 0x466ae8, imac 0x50fcb0;
+    virtual void handleTouchesEnd(int, int*, float*, float*, double) = m1 0x466e28, imac 0x50ffe0;
+    virtual void handleTouchesCancel(int, int*, float*, float*, double) = m1 0x466ed4, imac 0x510070;
 
     float getScaleX() const;
     float getScaleY() const;
@@ -6947,8 +6947,8 @@ class cocos2d::CCTouchDelegate {
     // CCTouchDelegate(cocos2d::CCTouchDelegate const&);
     // CCTouchDelegate();
 
-    virtual void setPreviousPriority(int) {}
-    virtual int getPreviousPriority() { return 0; }
+    virtual void setPreviousPriority(int) = mac inline, ios inline {}
+    virtual int getPreviousPriority() = mac inline, ios inline { return 0; }
 }
 
 [[link(win, android)]]
