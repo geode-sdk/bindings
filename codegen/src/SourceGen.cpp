@@ -174,17 +174,21 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
-// 	constexpr char const* ool_function_definition = R"GEN(
-// {return} {class_name}::{function_name}({parameters}){const} {definition}
-// )GEN";
-
 	constexpr char const* ool_function_definition = R"GEN(
-{return} {class_name}::{function_name}({parameters}){const} {{ }}
+{return} {class_name}::{function_name}({parameters}){const} {definition}
 )GEN";
 
 	constexpr char const* void_ool_function_definition = R"GEN(
-{return} {class_name}::{function_name}({parameters}){const} {{}}
+{return} {class_name}::{function_name}({parameters}){const} {definition}
 )GEN";
+
+// 	constexpr char const* ool_function_definition = R"GEN(
+// {return} {class_name}::{function_name}({parameters}){const} {{ }}
+// )GEN";
+
+// 	constexpr char const* void_ool_function_definition = R"GEN(
+// {return} {class_name}::{function_name}({parameters}){const} {{}}
+// )GEN";
 
 	constexpr char const* ool_structor_function_definition = R"GEN(
 {class_name}::{function_name}({parameters}){const} {definition}
