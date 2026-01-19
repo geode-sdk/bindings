@@ -7505,39 +7505,39 @@ class cocos2d::extension::CCEditBox : cocos2d::extension::CCControlButton, cocos
 
 [[link(win, android)]]
 class cocos2d::extension::CCScrollView : cocos2d::CCLayer {
-    static cocos2d::extension::CCScrollView* create(cocos2d::CCSize, cocos2d::CCNode*);
-    static cocos2d::extension::CCScrollView* create();
+    static cocos2d::extension::CCScrollView* create(cocos2d::CCSize, cocos2d::CCNode*) = m1 0x3677b8, imac 0x3e5570;
+    static cocos2d::extension::CCScrollView* create() = m1 0x3679c8, imac 0x3e57a0;
 
-    CCScrollView();
-    virtual ~CCScrollView();
+    CCScrollView() = m1 0x367418, imac 0x3e50e0;
+    virtual ~CCScrollView() = m1 0x367504, imac 0x3e5240;
 
-    bool initWithViewSize(cocos2d::CCSize, cocos2d::CCNode*);
-    void setContentOffset(cocos2d::CCPoint, bool);
-    cocos2d::CCPoint getContentOffset();
-    void setContentOffsetInDuration(cocos2d::CCPoint, float);
-    void setZoomScale(float);
-    void setZoomScale(float, bool);
-    float getZoomScale();
-    void setZoomScaleInDuration(float, float);
-    cocos2d::CCPoint minContainerOffset();
-    cocos2d::CCPoint maxContainerOffset();
-    bool isNodeVisible(cocos2d::CCNode*);
-    void pause(cocos2d::CCObject*);
-    void resume(cocos2d::CCObject*);
-    void setViewSize(cocos2d::CCSize);
-    cocos2d::CCNode* getContainer();
-    void setContainer(cocos2d::CCNode*);
-    void updateInset();
-    void relocateContainer(bool);
-    void deaccelerateScrolling(float);
-    void performedAnimatedScroll(float);
-    void stoppedAnimatedScroll(cocos2d::CCNode*);
-    void beforeDraw();
-    void afterDraw();
-    cocos2d::CCRect getViewRect();
-    void registerScriptHandler(int, int);
-    void unregisterScriptHandler(int);
-    int getScriptHandler(int);
+    bool initWithViewSize(cocos2d::CCSize, cocos2d::CCNode*) = m1 0x367864, imac 0x3e5600;
+    void setContentOffset(cocos2d::CCPoint, bool) = m1 0x367d2c, imac 0x3e5b00;
+    cocos2d::CCPoint getContentOffset() = m1 0x367bd4, imac 0x3e5990;
+    void setContentOffsetInDuration(cocos2d::CCPoint, float) = m1 0x367ea0, imac 0x3e5c90;
+    void setZoomScale(float) = m1 0x368040, imac 0x3e5e60;
+    void setZoomScale(float, bool) = m1 0x3681b0, imac 0x3e5ff0;
+    float getZoomScale() = m1 0x367c08, imac 0x3e59c0;
+    void setZoomScaleInDuration(float, float) = m1 0x368254, imac 0x3e6070;
+    cocos2d::CCPoint minContainerOffset() = m1 0x367f18, imac 0x3e5d00;
+    cocos2d::CCPoint maxContainerOffset() = m1 0x367fa8, imac 0x3e5dc0;
+    bool isNodeVisible(cocos2d::CCNode*) = m1 0x367b14, imac 0x3e58c0;
+    void pause(cocos2d::CCObject*) = m1 0x367c18, imac 0x3e59e0;
+    void resume(cocos2d::CCObject*) = m1 0x367c80, imac 0x3e5a50;
+    void setViewSize(cocos2d::CCSize) = m1 0x367a48, imac 0x3e5800;
+    cocos2d::CCNode* getContainer() = m1 0x3682f8, imac 0x3e6100;
+    void setContainer(cocos2d::CCNode*) = m1 0x368300, imac 0x3e6110;
+    void updateInset() = m1 0x3688bc, imac 0x3e6730;
+    void relocateContainer(bool) = m1 0x3683b8, imac 0x3e61d0;
+    void deaccelerateScrolling(float) = m1 0x36854c, imac 0x3e6370;
+    void performedAnimatedScroll(float) = m1 0x368004, imac 0x3e5e20;
+    void stoppedAnimatedScroll(cocos2d::CCNode*) = m1 0x367fb8, imac 0x3e5de0;
+    void beforeDraw() = m1 0x368b64, imac 0x3e69e0;
+    void afterDraw() = m1 0x368d98, imac 0x3e6c50;
+    cocos2d::CCRect getViewRect() = m1 0x368c84, imac 0x3e6b30;
+    void registerScriptHandler(int, int) = m1 0x369698, imac 0x3e7600;
+    void unregisterScriptHandler(int) = m1 0x3676bc, imac 0x3e5430;
+    int getScriptHandler(int) = m1 0x36980c, imac 0x3e7760;
 
     virtual bool init() = m1 0x367a78, imac 0x3e5830;
     virtual void registerWithTouchDispatcher() = m1 0x367ac0, imac 0x3e5870;
@@ -7556,40 +7556,40 @@ class cocos2d::extension::CCScrollView : cocos2d::CCLayer {
 
 [[link(win, android)]]
 class cocos2d::extension::CCArrayForObjectSorting : cocos2d::CCArray {
-    void insertSortedObject(cocos2d::extension::CCSortableObject*);
-    void removeSortedObject(cocos2d::extension::CCSortableObject*);
-    void setObjectID_ofSortedObject(unsigned int, cocos2d::extension::CCSortableObject*);
-    cocos2d::extension::CCSortableObject* objectWithObjectID(unsigned int);
-    unsigned int indexOfSortedObject(cocos2d::extension::CCSortableObject*);
+    void insertSortedObject(cocos2d::extension::CCSortableObject*) = m1 0x392edc, imac 0x417480;
+    void removeSortedObject(cocos2d::extension::CCSortableObject*) = m1 0x3930e4, imac 0x417650;
+    void setObjectID_ofSortedObject(unsigned int, cocos2d::extension::CCSortableObject*) = m1 0x393290, imac 0x4177b0;
+    cocos2d::extension::CCSortableObject* objectWithObjectID(unsigned int) = m1 0x393578, imac 0x417a30;
+    unsigned int indexOfSortedObject(cocos2d::extension::CCSortableObject*) = m1 0x392ffc, imac 0x417590;
 }
 
 [[link(win, android)]]
 class cocos2d::extension::CCTableView : cocos2d::extension::CCScrollView, cocos2d::extension::CCScrollViewDelegate {
-    static cocos2d::extension::CCTableView* create(cocos2d::extension::CCTableViewDataSource*, cocos2d::CCSize);
-    static cocos2d::extension::CCTableView* create(cocos2d::extension::CCTableViewDataSource*, cocos2d::CCSize, cocos2d::CCNode*);
+    static cocos2d::extension::CCTableView* create(cocos2d::extension::CCTableViewDataSource*, cocos2d::CCSize) = m1 0x3953c0, imac 0x419700;
+    static cocos2d::extension::CCTableView* create(cocos2d::extension::CCTableViewDataSource*, cocos2d::CCSize, cocos2d::CCNode*) = m1 0x3953fc, imac 0x419730;
 
-    CCTableView();
-    virtual ~CCTableView();
+    CCTableView() = m1 0x395844, imac 0x419bf0;
+    virtual ~CCTableView() = m1 0x3958a4, imac 0x419ca0;
 
-    void setVerticalFillOrder(cocos2d::extension::CCTableViewVerticalFillOrder);
-    cocos2d::extension::CCTableViewVerticalFillOrder getVerticalFillOrder();
-    bool initWithViewSize(cocos2d::CCSize, cocos2d::CCNode*);
-    void updateCellAtIndex(unsigned int);
-    void insertCellAtIndex(unsigned int);
-    void removeCellAtIndex(unsigned int);
-    void reloadData();
-    cocos2d::extension::CCTableViewCell* dequeueCell();
-    cocos2d::extension::CCTableViewCell* cellAtIndex(unsigned int);
-    int __indexFromOffset(cocos2d::CCPoint);
-    unsigned int _indexFromOffset(cocos2d::CCPoint);
-    cocos2d::CCPoint __offsetFromIndex(unsigned int);
-    cocos2d::CCPoint _offsetFromIndex(unsigned int);
-    void _moveCellOutOfSight(cocos2d::extension::CCTableViewCell*);
-    void _setIndexForCell(unsigned int, cocos2d::extension::CCTableViewCell*);
-    void _addCellIfNecessary(cocos2d::extension::CCTableViewCell*);
-    void _updateCellPositions();
-    void _updateContentSize();
-    void unregisterAllScriptHandler();
+    void setVerticalFillOrder(cocos2d::extension::CCTableViewVerticalFillOrder) = m1 0x395a88, imac 0x419f50;
+    cocos2d::extension::CCTableViewVerticalFillOrder getVerticalFillOrder() = m1 0x395c5c, imac 0x41a120;
+    bool initWithViewSize(cocos2d::CCSize, cocos2d::CCNode*) = m1 0x39553c, imac 0x419900;
+    void updateCellAtIndex(unsigned int) = m1 0x395cd4, imac 0x41a1a0;
+    void insertCellAtIndex(unsigned int) = m1 0x396104, imac 0x41a560;
+    void removeCellAtIndex(unsigned int) = m1 0x3962a4, imac 0x41a700;
+    void reloadData() = m1 0x395ad0, imac 0x419f90;
+    cocos2d::extension::CCTableViewCell* dequeueCell() = m1 0x3964b0, imac 0x41a910;
+    cocos2d::extension::CCTableViewCell* cellAtIndex(unsigned int) = m1 0x395c64, imac 0x41a130;
+    int __indexFromOffset(cocos2d::CCPoint) = m1 0x3967bc, imac 0x41abe0;
+    unsigned int _indexFromOffset(cocos2d::CCPoint) = m1 0x396688, imac 0x41aac0;
+    cocos2d::CCPoint __offsetFromIndex(unsigned int) = m1 0x396604, imac 0x41aa40;
+    cocos2d::CCPoint _offsetFromIndex(unsigned int) = m1 0x39651c, imac 0x41a970;
+    void _moveCellOutOfSight(cocos2d::extension::CCTableViewCell*) = m1 0x395e08, imac 0x41a2c0;
+    void _setIndexForCell(unsigned int, cocos2d::extension::CCTableViewCell*) = m1 0x395f70, imac 0x41a400;
+    void _addCellIfNecessary(cocos2d::extension::CCTableViewCell*) = m1 0x395ff8, imac 0x41a470;
+    void _updateCellPositions() = m1 0x395634, imac 0x4199f0;
+    void _updateContentSize() = m1 0x395748, imac 0x419b00;
+    void unregisterAllScriptHandler() = m1 0x3959b0, imac 0x419e00;
 
     virtual void scrollViewDidScroll(cocos2d::extension::CCScrollView*) = m1 0x396868, imac 0x41ac80;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = m1 0x396b88, imac 0x41b020;
@@ -7600,9 +7600,9 @@ class cocos2d::extension::CCTableView : cocos2d::extension::CCScrollView, cocos2
 
 [[link(win, android)]]
 class cocos2d::extension::CCTableViewCell : cocos2d::CCNode, cocos2d::extension::CCSortableObject {
-    unsigned int getIdx();
-    void setIdx(unsigned int);
-    void reset();
+    unsigned int getIdx() = m1 0x39ff3c, imac 0x424e80;
+    void setIdx(unsigned int) = m1 0x39ff44, imac 0x424e90;
+    void reset() = m1 0x39ff10, imac 0x424e30;
 
     virtual void setObjectID(unsigned int) = m1 0x39ff1c, imac 0x424e40;
     virtual unsigned int getObjectID() = m1 0x39ff2c, imac 0x424e60;
