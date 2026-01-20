@@ -138,12 +138,6 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 {class_name}::{function_name}({parameters}){const} {definition}
 )GEN";
 
-	// constexpr char const* ool_function_definition = R"GEN()GEN";
-
-	// constexpr char const* void_ool_function_definition = R"GEN()GEN";
-
-	// constexpr char const* ool_structor_function_definition = R"GEN()GEN";
-
 	constexpr char const* declare_standalone = R"GEN(
 {return} {function_name}({parameters}) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
@@ -164,7 +158,7 @@ bool areSuperclassesEmpty(Class const& c) {
 	return c.superclasses.empty() || (c.superclasses.size() == 1 && c.superclasses[0].find("CCCopying") != std::string::npos);
 }
 
-std::string generateBindingSource(Root const& root, bool skipPugixml) {
+std::string generateBindingSource(Root const& root, bool skipPugixml, bool skipInlines) {
 	std::string output = fmt::format(format_strings::source_start,
 		fmt::arg("includes", codegen::getIncludes(root))
 	);
@@ -206,6 +200,9 @@ std::string generateBindingSource(Root const& root, bool skipPugixml) {
 				// yeah there are no inlines on cocos
 			} else if (auto fn = f.get_as<FunctionBindField>()) {
 				if (codegen::getStatus(*fn) == BindStatus::Inlined) {
+					if (skipInlines) {
+						continue;
+					}
 					switch (fn->prototype.type) {
 						case FunctionType::Ctor:
 						case FunctionType::Dtor:

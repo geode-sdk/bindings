@@ -161,6 +161,8 @@ void GameLevelManager::storeUserMessage(GJUserMessage* message) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+#include <sys/types.h>
+#include <sys/timeb.h>
 bool GameLevelManager::areGauntletsLoaded() {
     return m_savedGauntlets->count() != 0;
 }

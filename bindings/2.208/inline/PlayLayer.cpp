@@ -96,6 +96,8 @@ void PlayLayer::updateTimeWarp(EffectGameObject* object, float timeWarp) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+#include <sys/types.h>
+#include <sys/timeb.h>
 void PlayLayer::activateEndTrigger(int targetID, bool reverse, bool lockPlayerY) {}
 
 void PlayLayer::checkSnapshot() {}
