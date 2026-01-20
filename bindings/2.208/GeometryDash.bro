@@ -13608,9 +13608,10 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
         m_messageStatus = 0;
         m_friendStatus = 0;
         m_commentHistoryStatus = 0;
-        m_youtubeInput = nullptr;
-        m_twitterInput = nullptr;
-        m_twitchInput = nullptr;
+        // TODO: fix
+        // m_youtubeInput = nullptr;
+        // m_twitterInput = nullptr;
+        // m_twitchInput = nullptr;
         m_inputs = nullptr;
     }
     ~GJAccountSettingsLayer() = win inline, m1 0x23e1c8 {
@@ -13646,9 +13647,10 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
             score->m_messageState = m_messageStatus;
             score->m_friendStatus = m_friendStatus;
             score->m_commentHistoryStatus = m_commentHistoryStatus;
-            score->m_youtubeURL = m_youtubeURL;
-            score->m_twitterURL = m_twitterURL;
-            score->m_twitchURL = m_twitchURL;
+            // TODO: fix
+            // score->m_youtubeURL = m_youtubeURL;
+            // score->m_twitterURL = m_twitterURL;
+            // score->m_twitchURL = m_twitchURL;
         }
     }
 
@@ -28376,7 +28378,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
         }
     }
     void setDamageVerifiedIdx(int idx) {
-        m_damageVerifiedIndex = idx;
+        // TODO: FIX
+        // m_damageVerifiedIndex = idx;
     }
     void setupHasCompleted() = win 0x3a6380;
     bool shouldBlend(int colorID) = win inline, m1 0xa4550 {
