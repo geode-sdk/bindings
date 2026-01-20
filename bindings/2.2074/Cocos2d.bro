@@ -3016,7 +3016,6 @@ class cocos2d::CCTouch : cocos2d::CCObject {
     	return getLocation() - getPreviousLocation();
     }
 
-    cocos2d::CCPoint getPreviousLocationInView() const;
     cocos2d::CCPoint getStartLocationInView() const;
 
     int m_nId;
