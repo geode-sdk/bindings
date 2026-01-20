@@ -6617,7 +6617,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     }
     void createExtrasForObject(int id, GameObject* object, cocos2d::CCArray* objects) = win 0x12ff60;
     void createGlow() = win inline, ios inline {}
-    void createLoop() = m1 0x102de8;
+    void createLoop() = win 0x119670, m1 0x102de8;
     void createMoveMenu() = win 0x11ad70, m1 0x3d3a0;
     void createNewKeyframeAnim() = win 0x1193d0, imac 0x45500, m1 0x3ca80;
     GameObject* createObject(int objectID, cocos2d::CCPoint position) = win 0x10ff60, imac 0x3a4e0, m1 0x32fcc;
@@ -7815,8 +7815,8 @@ class EndLevelLayer : GJDropDownLayer {
 
     void coinEnterFinished(cocos2d::CCPoint position) = win 0x135ea0, imac 0x4c3000, m1 0x422b54;
     void coinEnterFinishedO(cocos2d::CCObject* sender) = win 0x135e60, imac 0x4c2fc0, m1 0x422b08;
-    void currencyEnterFinished() = win 0x136550;
-    void diamondEnterFinished() = win 0x1369e0;
+    void currencyEnterFinished() = win 0x136550, m1 0x422d74;
+    void diamondEnterFinished() = win 0x1369e0, m1 0x422e68;
     gd::string getCoinString() = win 0x1349a0, imac 0x4c1620, m1 0x4211ac;
     const char* getEndText() = win 0x136e00, m1 0x4213f4;
     void goEdit() = win 0x135350, imac 0x4c2b90, m1 0x422720;
@@ -7827,14 +7827,14 @@ class EndLevelLayer : GJDropDownLayer {
     void onEdit(cocos2d::CCObject* sender) = win 0x135250, m1 0x4216f0;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x4c2b80, m1 0x42271c, ios inline {}
     void onHideLayer(cocos2d::CCObject* sender) = win 0x135420, imac 0x4c1d30, m1 0x421944;
-    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x1348a0;
-    void onMenu(cocos2d::CCObject* sender) = win 0x1350d0;
-    void onReplay(cocos2d::CCObject* sender) = win 0x134ec0;
-    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x135500;
+    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x1348a0, m1 0x4218d8;
+    void onMenu(cocos2d::CCObject* sender) = win 0x1350d0, m1 0x4215ec;
+    void onReplay(cocos2d::CCObject* sender) = win 0x134ec0, m1 0x4214d8;
+    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x135500, m1 0x421784;
     void playCoinEffect(float duration) = win 0x135c20, imac 0x4c2310, m1 0x10fea8;
-    void playCurrencyEffect(float duration) = win 0x1361d0;
-    void playDiamondEffect(float duration) = win 0x136660;
-    void playEndEffect() = win 0x136af0;
+    void playCurrencyEffect(float duration) = win 0x1361d0, m1 0x4220a8;
+    void playDiamondEffect(float duration) = win 0x136660, m1 0x4223e0;
+    void playEndEffect() = win 0x136af0, m1 0x4228ec;
     void playStarEffect(float duration) = win 0x135720, m1 0x421bc0;
     void starEnterFinished() = win 0x135ac0, m1 0x4227d0;
     void tryShowBanner(float dt) = m1 0x421a00;
@@ -8487,7 +8487,7 @@ class EventLinkTrigger : EffectGameObject {
         m_extraID2 = 0;
     }
 
-    static EventLinkTrigger* create() = win inline, imac 0x1d1140 {
+    static EventLinkTrigger* create() = win inline, imac 0x1d1140, m1 0x1861b4 {
         auto ret = new EventLinkTrigger();
         if (ret->init()) {
             ret->autorelease();
@@ -8520,7 +8520,7 @@ class ExplodeItemNode : cocos2d::CCNode {
 
     virtual void update(float dt) = win 0x384c90, imac 0x214250, m1 0x1bfa6c;
 
-    void createSprites(int countX, int countY, float xVel, float xVar, float yVel, float yVar, float dur, float durVar, cocos2d::ccColor4F startColor, cocos2d::ccColor4F endColor, bool noParticles) = win 0x3842e0;
+    void createSprites(int countX, int countY, float xVel, float xVar, float yVel, float yVar, float dur, float durVar, cocos2d::ccColor4F startColor, cocos2d::ccColor4F endColor, bool noParticles) = win 0x3842e0, m1 0x1bec3c;
     bool init(cocos2d::CCRenderTexture* texture) = win inline {
         if (!cocos2d::CCNode::init()) return false;
         m_floorHeight = 90.f;
@@ -9845,7 +9845,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getUserList(UserListType type) = win 0x1629d0, m1 0x4a62ac;
     void getUserMessages(bool sent, int page, int total);
     void getUsers(GJSearchObject* object) = win 0x159790;
-    void gotoLevelPage(GJGameLevel* level) = m1 0x48a7d0;
+    void gotoLevelPage(GJGameLevel* level) = win 0x149500, m1 0x48a7d0;
     void handleIt(bool success, gd::string response, gd::string tag, GJHttpType type) = win 0x143030;
     void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, ios inline {
         auto result = GJHttpResult::create(true, response, tag, type);
@@ -13311,7 +13311,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(int unused);
+    static cocos2d::CCScene* scene(int unused) = win 0x1f8b20;
 
     virtual void onExit() = win 0x1fb070, m1 0x4c0e64, imac 0x573250;
     virtual void keyBackClicked() = win 0x1fa7a0, m1 0x4c0758, imac 0x572bb0;
@@ -15091,9 +15091,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         }
         this->toggleGlitter(true);
     }
-    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = imac 0x124320;
-    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = imac 0x124270;
-    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = imac 0x1243d0, m1 0xfcfe0;
+    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x212c60, imac 0x124320;
+    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x212e40, imac 0x124270;
+    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x212d50, imac 0x1243d0, m1 0xfcfe0;
     void syncBGTextures() = win 0x23ade0, imac 0x158b30, m1 0x128650;
     void teleportPlayer(TeleportPortalObject* object, PlayerObject* player) = win 0x20fdf0, imac 0x4fa60;
     void testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x14b650, m1 0x11df58 {
@@ -23178,7 +23178,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateBlendValues() = win 0x2de510, imac 0xefa90, m1 0xd2e18;
     void updateEditor(float dt);
     void updateEditorMode() = win 0x2db600, imac 0xde880;
-    void updateGameObjects() = win 0x119670;
+    void updateGameObjects() = win 0x2dbf70;
     void updateGridLayer() = win inline {
         auto parent = m_shaderLayer && m_shaderLayer->m_state.m_usesShaders ? m_aboveShaderObjectLayer : m_objectLayer;
         if (m_drawGridLayer->getParent() != parent) {
@@ -25989,10 +25989,10 @@ class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
     void onArtists(cocos2d::CCObject* sender) = win 0xc5fb0, m1 0x1c2e5c;
     void onChanges(cocos2d::CCObject* sender) = win 0xc6270, imac 0x217a60;
     void onClose(cocos2d::CCObject* sender) = win 0x84690, m1 0x1c2e20;
-    void onGuidelines(cocos2d::CCObject* sender) = m1 0x1c2eb4;
+    void onGuidelines(cocos2d::CCObject* sender) = win 0xc6100, m1 0x1c2eb4;
     void onInfo(cocos2d::CCObject* sender) = win 0xc6120, imac 0x217b20, m1 0x1c2fdc;
-    void onNewgrounds(cocos2d::CCObject* sender) = m1 0x1c2e90;
-    void onSupporter(cocos2d::CCObject* sender) = m1 0x1c2ed8;
+    void onNewgrounds(cocos2d::CCObject* sender) = win 0xc5f9a, m1 0x1c2e90;
+    void onSupporter(cocos2d::CCObject* sender) = win 0xc60e0, m1 0x1c2ed8;
 }
 
 [[link(android)]]
@@ -29454,7 +29454,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x1f8b20, m1 0x400c94;
+    static cocos2d::CCScene* scene() = win 0x3e1df0, m1 0x400c94;
 
     virtual bool init() = win 0x3e1f70, m1 0x400dc0, imac 0x49cc40;
     virtual void onExit() = win 0x3e95a0, m1 0x40693c, imac 0x4a2c00;

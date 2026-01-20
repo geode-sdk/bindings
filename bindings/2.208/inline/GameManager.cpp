@@ -353,6 +353,8 @@ void GameManager::videoAdShowed() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+#include <sys/types.h>
+#include <sys/timeb.h>
 void GameManager::accountStatusChanged() {
     if (m_menuLayer) m_menuLayer->updateUserProfileButton();
 }

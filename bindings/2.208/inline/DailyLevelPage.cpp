@@ -5,6 +5,8 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+#include <sys/types.h>
+#include <sys/timeb.h>
 void DailyLevelPage::FLAlert_Clicked(FLAlertLayer* layer, bool btn2) {}
 
 int DailyLevelPage::getDailyTime() {

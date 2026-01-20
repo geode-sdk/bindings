@@ -237,6 +237,8 @@ void PlayerObject::yStartUp() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+#include <sys/types.h>
+#include <sys/timeb.h>
 void PlayerObject::addToTouchedRings(RingObject* object) {
     if (!m_touchingRings->containsObject(object)) {
         m_touchingRings->addObject(object);

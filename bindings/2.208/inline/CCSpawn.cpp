@@ -1,5 +1,12 @@
 #include <Geode/Geode.hpp>
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#endif
+
+#if defined(GEODE_IS_WINDOWS)
+#endif
+
+#if defined(GEODE_IS_IOS)
 cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCFiniteTimeAction* first, ...) {
     va_list args;
     va_start(args, first);
@@ -12,13 +19,6 @@ cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCFiniteTimeAction* first, .
     return cocos2d::CCSpawn::create(array);
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-#endif
-
-#if defined(GEODE_IS_WINDOWS)
-#endif
-
-#if defined(GEODE_IS_IOS)
 cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCArray* arrayOfActions) {
     CCSpawn* pRet = NULL;
     do 

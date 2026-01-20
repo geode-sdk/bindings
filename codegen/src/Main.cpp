@@ -109,10 +109,12 @@ int main(int argc, char** argv) try {
 
     std::filesystem::create_directories(writeDir / "modify");
     std::filesystem::create_directories(writeDir / "binding");
+    std::filesystem::create_directories(writeDir / "source");
     // std::filesystem::create_directories(writeDir / "inline");
 
     auto rootDir = std::filesystem::path(argv[2]);
     Root root = broma::parse_file(rootDir / "Entry.bro");
+    bool skipInlines = std::filesystem::exists(rootDir / "inline");
 
     for (auto cls : root.classes) {
         for (auto dep : cls.attributes.depends) {
@@ -143,6 +145,7 @@ int main(int argc, char** argv) try {
 
         std::unordered_set<std::string> generatedModify{};
         std::unordered_set<std::string> generatedBindings{};
+        std::unordered_set<std::string> generatedSources{};
 
         bool generatedSourceChanged = false;
 
@@ -151,7 +154,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModifyArm.hpp", generateModifyHeader(root, writeDir / "modify_arm", &generatedModify));
         writeFile(writeDir / "GeneratedBindingArm.hpp", generateBindingHeader(root, writeDir / "binding_arm", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareArm.hpp", generatePredeclareHeader(root));
-        if (writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root, skipPugixml))) {
+        if (writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root, writeDir / "source_arm", skipPugixml, skipInlines, &generatedSources))) {
             generatedSourceChanged = true;
         }
 
@@ -162,7 +165,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModifyIntel.hpp", generateModifyHeader(root, writeDir / "modify_intel", &generatedModify));
         writeFile(writeDir / "GeneratedBindingIntel.hpp", generateBindingHeader(root, writeDir / "binding_intel", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareIntel.hpp", generatePredeclareHeader(root));
-        if (writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root, skipPugixml))) {
+        if (writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root, writeDir / "source_intel", skipPugixml, skipInlines, &generatedSources))) {
             generatedSourceChanged = true;
         }
 
@@ -183,12 +186,13 @@ int main(int argc, char** argv) try {
 
         generateFolderAlias(writeDir, "modify", generatedModify);
         generateFolderAlias(writeDir, "binding", generatedBindings);
+        generateFolderAlias(writeDir, "source", generatedSources);
     } else {
         // writeFile(writeDir / "GeneratedAddress.cpp", generateAddressHeader(root));
         writeFile(writeDir / "GeneratedModify.hpp", generateModifyHeader(root, writeDir / "modify"));
         writeFile(writeDir / "GeneratedBinding.hpp", generateBindingHeader(root, writeDir / "binding"));
         writeFile(writeDir / "GeneratedPredeclare.hpp", generatePredeclareHeader(root));
-        writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root, skipPugixml));
+        writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root, writeDir / "source", skipPugixml, skipInlines));
         writeFile(writeDir / "CodegenData.txt", generateTextInterface(root));
         // generateInlineSources(root, writeDir / "inline");
     }
