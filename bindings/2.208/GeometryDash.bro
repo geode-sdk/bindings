@@ -7815,8 +7815,8 @@ class EndLevelLayer : GJDropDownLayer {
 
     void coinEnterFinished(cocos2d::CCPoint position) = win 0x135ea0, imac 0x4c3000, m1 0x422b54;
     void coinEnterFinishedO(cocos2d::CCObject* sender) = win 0x135e60, imac 0x4c2fc0, m1 0x422b08;
-    void currencyEnterFinished();
-    void diamondEnterFinished();
+    void currencyEnterFinished() = win 0x136550;
+    void diamondEnterFinished() = win 0x1369e0;
     gd::string getCoinString() = win 0x1349a0, imac 0x4c1620, m1 0x4211ac;
     const char* getEndText() = win 0x136e00, m1 0x4213f4;
     void goEdit() = win 0x135350, imac 0x4c2b90, m1 0x422720;
@@ -7832,8 +7832,8 @@ class EndLevelLayer : GJDropDownLayer {
     void onReplay(cocos2d::CCObject* sender) = win 0x134ec0;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x135500;
     void playCoinEffect(float duration) = win 0x135c20, imac 0x4c2310, m1 0x10fea8;
-    void playCurrencyEffect(float duration);
-    void playDiamondEffect(float duration);
+    void playCurrencyEffect(float duration) = win 0x1361d0;
+    void playDiamondEffect(float duration) = win 0x136660;
     void playEndEffect() = win 0x136af0;
     void playStarEffect(float duration) = win 0x135720, m1 0x421bc0;
     void starEnterFinished() = win 0x135ac0, m1 0x4227d0;
