@@ -7834,7 +7834,7 @@ class EndLevelLayer : GJDropDownLayer {
     void playDiamondEffect(float duration);
     void playEndEffect() = win 0x136af0;
     void playStarEffect(float duration) = win 0x135720, m1 0x421bc0;
-    void starEnterFinished() = win 0x135ac0;
+    void starEnterFinished() = win 0x135ac0, m1 0x4227d0;
     void tryShowBanner(float dt) = m1 0x421a00;
 
     PlayLayer* m_playLayer;
