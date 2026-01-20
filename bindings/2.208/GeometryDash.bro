@@ -13769,7 +13769,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void updateTimeWarp(GameObject* object, float timeWarp) = win 0x235f90, m1 0x120d58, imac 0x14efb0;
     virtual void applyTimeWarp(float timeWarp) = win 0x235fe0, m1 0x120d58, imac 0x14efb0;
     virtual void playGravityEffect(bool flip) = m1 0x601c, imac 0x6b20 {}
-    virtual void manualUpdateObjectColors(GameObject* object) = win 0x3bea0, m1 0x601c, imac 0x6b20 {}
+    virtual void manualUpdateObjectColors(GameObject* object) = m1 0x601c, imac 0x6b20 {}
     virtual cocos2d::CCParticleSystemQuad* createCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int minimum, bool dontAdd) = win 0x240b90, m1 0x12c7dc, imac 0x15d980;
     virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int zLayer, int zOrder, int uiObject, bool dontAdd) = win 0x240e90, imac 0x15dcf0, m1 0x12cb64;
     virtual void unclaimCustomParticle(gd::string const& key, cocos2d::CCParticleSystemQuad* particle) = win 0x241090, imac 0x15def0, m1 0x12cda4;
@@ -22589,7 +22589,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void activatedAudioTrigger(SFXTriggerGameObject* object) = win 0x2e0c90, imac 0xf3150, m1 0xd5f30;
     virtual void checkpointActivated(CheckpointGameObject* object) = win 0x2e0cc0, imac 0xf3180, m1 0xd5f48;
     virtual void addKeyframe(KeyframeGameObject* object) = win 0x2e1630, imac 0xf4280, m1 0xd6fbc;
-    virtual void levelSettingsUpdated() = win 0x2d3580, imac 0x6b20, m1 0x601c;
+    virtual void levelSettingsUpdated() = win 0x2d3580, imac 0xdeeb0, m1 0xc4c10;
 
     bool activateTriggerEffect(EffectGameObject* object, float currentTime, float playTime, float boundTime, bool active) = win 0x2dcda0, imac 0xef1a0;
     void addDelayedSpawn(EffectGameObject* object, float delay) = win 0x2dd5f0, m1 0xd313c, ios inline {
@@ -28124,9 +28124,9 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void toggleInfoLabel() = win 0x3b31f0, m1 0xa72f0, imac 0xb9ba0;
     virtual void removeAllCheckpoints() = win 0x3b7ce0, m1 0xaa7f0, imac 0xbdb00;
     virtual void toggleMusicInPractice() = win 0x3b25b0, m1 0xa7244, imac 0xb9b00;
-    virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x3b43d0, m1 0xa81a8, imac 0xbabf0;
-    virtual void circleWaveWillBeRemoved(CCCircleWave* circleWave) = win 0x3b4590, m1 0xaaf90, imac 0xbe350;
-    virtual void dialogClosed(DialogLayer* layer) = win 0x3b43f0, m1 0xa804c, imac 0xbaa20;
+    virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x3b43d0, m1 0xa804c, imac 0xbaa20;
+    virtual void circleWaveWillBeRemoved(CCCircleWave* circleWave) = win 0x3b4590, m1 0xa80dc, imac 0xbaae0;
+    virtual void dialogClosed(DialogLayer* layer) = win 0x3b43f0, m1 0xa8090, imac 0xbaa70;
 
     void addCircle(CCCircleWave* cw) = win inline, m1 0xa80d4 {
         m_circleWaveArray->addObject(cw);
