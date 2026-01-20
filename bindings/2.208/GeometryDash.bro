@@ -9882,7 +9882,7 @@ class GameLevelManager : cocos2d::CCNode {
         if (reload && m_userListDelegate) m_userListDelegate->forceReloadList(type);
     }
     bool isDLActive(char const* tag) = win 0x149aa0;
-    bool isFollowingUser(int id);
+    bool isFollowingUser(int id) = win 0x14a980;
     bool isTimeValid(char const* key, float length) = win 0x149dd0;
     bool isUpdateValid(int id) = win inline {
         const char* str = cocos2d::CCString::createWithFormat("%i", id)->getCString();
@@ -12723,7 +12723,7 @@ class GameStatsManager : cocos2d::CCNode {
     }
     bool hasCompletedGauntletLevel(int id) = imac 0x6d8e0;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x1ddfc0, imac 0x6d7b0, m1 0x5ef94;
-    bool hasCompletedMainLevel(int levelID) = imac 0x6d730;
+    bool hasCompletedMainLevel(int levelID) = win 0x1dde90, imac 0x6d730;
     bool hasCompletedMapPack(int id);
     bool hasCompletedOnlineLevel(int id) = imac 0x6d860;
     bool hasCompletedStarLevel(GJGameLevel* level) = win 0x1de2e0;
@@ -19260,7 +19260,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
     virtual void draw() = win 0xade40, m1 0x1fb3b8, imac 0x255640;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xb9bd0, imac 0x255580, m1 0x1fb2f0;
 
-    void loadFromScore(GJUserScore* score);
+    void loadFromScore(GJUserScore* score) = win 0xb84b0;
     void onBan(cocos2d::CCObject* sender) = win inline, imac 0x255560, m1 0x1fb2e8, ios inline {}
     void onCheck(cocos2d::CCObject* sender) = win inline, imac 0x255570, m1 0x1fb2ec, ios inline {}
     void onMoreLevels(cocos2d::CCObject* sender) = win inline, imac 0x255610, m1 0x1fb390, ios inline {
@@ -23869,7 +23869,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
     virtual void dialogClosed(DialogLayer* layer) = win 0x31d520, m1 0x3a8e64, imac 0x436e30;
 
     void addSecretCoin() = win 0x31c120, m1 0x3a5f50;
-    void addSecretDoor() = m1 0x3a8188;
+    void addSecretDoor() = win 0x31c830, m1 0x3a8188;
     bool init(GJGameLevel* level) = win 0x3199a0;
     void onInfo(cocos2d::CCObject* sender) = win 0x31db70;
     void onMoreGames(cocos2d::CCObject* sender) = win inline, m1 0x3a82f4, ios inline {
@@ -24873,7 +24873,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onOptions(cocos2d::CCObject* sender) = win 0x3357a0, m1 0x3176ac;
     void onOptionsInstant() = win 0x3357b0, m1 0x316184;
     void onPlay(cocos2d::CCObject* sender) = win 0x335700;
-    void onQuit(cocos2d::CCObject* sender);
+    void onQuit(cocos2d::CCObject* sender) = win 0x335cc0;
     void onRobTop(cocos2d::CCObject* sender) = m1 0x31781c;
     void onStats(cocos2d::CCObject* sender) = win 0x335940, m1 0x3176f8;
     void onTrailer(cocos2d::CCObject* sender) = win inline, m1 0x318028, ios inline {
@@ -24919,7 +24919,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void videoOptionsOpened() = win inline, imac 0x391b10, m1 0x317fa0 {
         m_menuGameLayer->m_videoOptionsOpen = true;
     }
-    void willClose() = m1 0x315e40;
+    void willClose() = win 0x335de0, m1 0x315e40;
 
     bool m_showingTOS;
     cocos2d::CCSprite* m_gpSprite;
@@ -28625,7 +28625,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     bool isCorrect(char const* key) = m1 0x6c5308;
     bool isOnWatchlist(int id) = win inline, imac 0x7b8c50, m1 0x6be9a4, ios inline { return false; }
     void loadPage(int page) = win 0x3c5e70, m1 0x6c4e30;
-    void loadPageFromUserInfo(GJUserScore* score);
+    void loadPageFromUserInfo(GJUserScore* score) = win 0x3bfb20;
     void onBlockUser(cocos2d::CCObject* sender) = m1 0x6c2ee8;
     void onClose(cocos2d::CCObject* sender) = win 0x3c4d40, m1 0x6be9ac;
     void onComment(cocos2d::CCObject* sender) = win 0x3c39c0, m1 0x6c379c;
@@ -32323,7 +32323,7 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x441020, m1 0x510e8c, imac 0x5e66a0;
     virtual void textChanged(CCTextInputNode* node) = win 0x440840, m1 0x510c18, imac 0x5e63b0;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x3bfb20;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
     void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x4407f0, m1 0x5103bc;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4407a0, m1 0x510314;
     void sliderChanged(cocos2d::CCObject* sender) = m1 0x510794;
