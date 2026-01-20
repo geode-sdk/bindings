@@ -6351,12 +6351,12 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
         m_editorLayer->resetUnusedColorChannels();
     }
     bool init(LevelEditorLayer* layer) = win 0xd9ee0, imac 0x290d30, m1 0x231228;
-    void onAlignX(cocos2d::CCObject* sender) = m1 0x233f94;
-    void onAlignY(cocos2d::CCObject* sender) = m1 0x233fc8;
-    void onBuildHelper(cocos2d::CCObject* sender) = m1 0x233f68;
-    void onCopyWColor(cocos2d::CCObject* sender) = m1 0x233f58;
-    void onCreateExtras(cocos2d::CCObject* sender) = m1 0x233f18;
-    void onCreateLoop(cocos2d::CCObject* sender) = m1 0x233f78;
+    void onAlignX(cocos2d::CCObject* sender) = win 0xdcf30, m1 0x233f94;
+    void onAlignY(cocos2d::CCObject* sender) = win 0xdcf60, m1 0x233fc8;
+    void onBuildHelper(cocos2d::CCObject* sender) = win 0xdcd00, m1 0x233f68;
+    void onCopyWColor(cocos2d::CCObject* sender) = win 0xdcd40, m1 0x233f58;
+    void onCreateExtras(cocos2d::CCObject* sender) = win 0xdccb0, m1 0x233f18;
+    void onCreateLoop(cocos2d::CCObject* sender) = win 0xdcd20, m1 0x233f78;
     void onCreateTemplate(cocos2d::CCObject* sender) = win inline, m1 0x23423c, ios inline {
         auto objects = cocos2d::CCArray::create();
         auto lel = GameManager::sharedState()->m_levelEditorLayer;
@@ -6369,35 +6369,35 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     }
     void onExitEditor(cocos2d::CCObject* sender) = win 0xde2c0, m1 0x234d94;
     void onExitNoSave(cocos2d::CCObject* sender) = win 0xde390;
-    void onHelp(cocos2d::CCObject* sender);
-    void onKeybindings(cocos2d::CCObject* sender) = m1 0x2341fc;
-    void onNewGroupX(cocos2d::CCObject* sender) = m1 0x234028;
-    void onNewGroupY(cocos2d::CCObject* sender) = m1 0x234038;
+    void onHelp(cocos2d::CCObject* sender) = win 0xde5b0;
+    void onKeybindings(cocos2d::CCObject* sender) = win 0xdcf90, m1 0x2341fc;
+    void onNewGroupX(cocos2d::CCObject* sender) = win 0xdcd80, m1 0x234028;
+    void onNewGroupY(cocos2d::CCObject* sender) = win 0xdcda0, m1 0x234038;
     void onOptions(cocos2d::CCObject* sender) = win 0xdc8e0, m1 0x234218;
-    void onPasteWColor(cocos2d::CCObject* sender) = m1 0x233f48;
-    void onReGroup(cocos2d::CCObject* sender) = m1 0x233f84;
+    void onPasteWColor(cocos2d::CCObject* sender) = win 0xdcd60, m1 0x233f48;
+    void onReGroup(cocos2d::CCObject* sender) = win 0xdcce0, m1 0x233f84;
     void onResetUnusedColors(cocos2d::CCObject* sender) = win 0xdcb10;
     void onResume(cocos2d::CCObject* sender) = win 0xdd690;
     void onSave(cocos2d::CCObject* sender) = win 0xde150;
     void onSaveAndExit(cocos2d::CCObject* sender) = win 0xde280;
     void onSaveAndPlay(cocos2d::CCObject* sender) = win 0xddf00;
     void onSelectAll(cocos2d::CCObject* sender) = win 0xdcdc0, m1 0x233ffc;
-    void onSelectAllLeft(cocos2d::CCObject* sender) = m1 0x234008;
-    void onSelectAllRight(cocos2d::CCObject* sender) = m1 0x234018;
-    void onSong(cocos2d::CCObject* sender);
+    void onSelectAllLeft(cocos2d::CCObject* sender) = win 0xdcef0, m1 0x234008;
+    void onSelectAllRight(cocos2d::CCObject* sender) = win 0xdcf10, m1 0x234018;
+    void onSong(cocos2d::CCObject* sender) = win 0xdd530;
     void onUnlockAllLayers(cocos2d::CCObject* sender) = win 0xdcc70, m1 0x233f10;
     void playStep2() = win 0xddf80, m1 0x234c68;
     void playStep3() = win 0xde0b0, m1 0x234d38;
     void saveLevel() = win 0xdd860, imac 0x2943e0;
-    void toggleDebugDraw(cocos2d::CCObject* sender) = m1 0x2341e0;
+    void toggleDebugDraw(cocos2d::CCObject* sender) = win 0xdd320, m1 0x2341e0;
     void toggleEditorBackground(cocos2d::CCObject* sender) = win inline, m1 0x234748, ios inline {
         auto gameManager = GameManager::sharedState();
         gameManager->toggleGameVariable("0078");
         m_editorLayer->toggleBackground(!gameManager->getGameVariable("0078"));
     }
-    void toggleEditorColorMode(cocos2d::CCObject* sender) = m1 0x234194;
-    void toggleEditorGrid(cocos2d::CCObject* sender) = m1 0x234080;
-    void toggleEditorGround(cocos2d::CCObject* sender) = m1 0x2340d0;
+    void toggleEditorColorMode(cocos2d::CCObject* sender) = win 0xdd000, m1 0x234194;
+    void toggleEditorGrid(cocos2d::CCObject* sender) = win 0xdd430, m1 0x234080;
+    void toggleEditorGround(cocos2d::CCObject* sender) = win 0xdd370, m1 0x2340d0;
     void toggleEffectDuration(cocos2d::CCObject* sender) = win inline, m1 0x234710, ios inline {
         GameManager::sharedState()->toggleGameVariable("0058");
     }
@@ -6412,19 +6412,19 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
         gameManager->toggleGameVariable("0039");
         m_editorLayer->m_drawGridLayer->getParent()->reorderChild(m_editorLayer->m_drawGridLayer, gameManager->getGameVariable("0039") ? 1399 : -1599);
     }
-    void toggleHideInvisible(cocos2d::CCObject* sender) = m1 0x2341c4;
-    void toggleIgnoreDamage(cocos2d::CCObject* sender) = m1 0x234048;
+    void toggleHideInvisible(cocos2d::CCObject* sender) = win 0xdd060, m1 0x2341c4;
+    void toggleIgnoreDamage(cocos2d::CCObject* sender) = win 0xdcfb0, m1 0x234048;
     void togglePlaytestMusic(cocos2d::CCObject* sender) = win inline, m1 0x2346f4, ios inline {
         GameManager::sharedState()->toggleGameVariable("0002");
     }
     void togglePreviewAnim(cocos2d::CCObject* sender) = win 0xdd160, m1 0x234164;
-    void togglePreviewParticles(cocos2d::CCObject* sender) = m1 0x234134;
-    void togglePreviewShaders(cocos2d::CCObject* sender) = m1 0x234118;
+    void togglePreviewParticles(cocos2d::CCObject* sender) = win 0xdd0b0, m1 0x234134;
+    void togglePreviewShaders(cocos2d::CCObject* sender) = win 0xdd110, m1 0x234118;
     void toggleRecordOrder(cocos2d::CCObject* sender) = win inline, ios inline {
         GameManager::sharedState()->toggleGameVariable("0104");
     }
-    void toggleSelectFilter(cocos2d::CCObject* sender) = m1 0x234064;
-    void toggleShowObjectInfo(cocos2d::CCObject* sender) = m1 0x23409c;
+    void toggleSelectFilter(cocos2d::CCObject* sender) = win 0xdd4e0, m1 0x234064;
+    void toggleShowObjectInfo(cocos2d::CCObject* sender) = win 0xdd480, m1 0x23409c;
     void uncheckAllPortals(cocos2d::CCObject* sender) = win 0xdca30;
     void updateSongButton() = win 0xdd5e0;
 
