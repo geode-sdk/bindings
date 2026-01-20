@@ -8520,7 +8520,7 @@ class ExplodeItemNode : cocos2d::CCNode {
 
     virtual void update(float dt) = win 0x384c90, imac 0x214250, m1 0x1bfa6c;
 
-    void createSprites(int countX, int countY, float xVel, float xVar, float yVel, float yVar, float dur, float durVar, cocos2d::ccColor4F startColor, cocos2d::ccColor4F endColor, bool noParticles) = win 0x3842e0;
+    void createSprites(int countX, int countY, float xVel, float xVar, float yVel, float yVar, float dur, float durVar, cocos2d::ccColor4F startColor, cocos2d::ccColor4F endColor, bool noParticles) = win 0x3842e0, m1 0x1bec3c;
     bool init(cocos2d::CCRenderTexture* texture) = win inline {
         if (!cocos2d::CCNode::init()) return false;
         m_floorHeight = 90.f;
