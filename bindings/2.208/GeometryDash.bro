@@ -7815,8 +7815,8 @@ class EndLevelLayer : GJDropDownLayer {
 
     void coinEnterFinished(cocos2d::CCPoint position) = win 0x135ea0, imac 0x4c3000, m1 0x422b54;
     void coinEnterFinishedO(cocos2d::CCObject* sender) = win 0x135e60, imac 0x4c2fc0, m1 0x422b08;
-    void currencyEnterFinished();
-    void diamondEnterFinished();
+    void currencyEnterFinished() = m1 0x422d74;
+    void diamondEnterFinished() = m1 0x422e68;
     gd::string getCoinString() = win 0x1349a0, imac 0x4c1620, m1 0x4211ac;
     const char* getEndText() = win 0x136e00, m1 0x4213f4;
     void goEdit() = win 0x135350, imac 0x4c2b90, m1 0x422720;
@@ -7827,14 +7827,14 @@ class EndLevelLayer : GJDropDownLayer {
     void onEdit(cocos2d::CCObject* sender) = win 0x135250, m1 0x4216f0;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x4c2b80, m1 0x42271c, ios inline {}
     void onHideLayer(cocos2d::CCObject* sender) = win 0x135420, imac 0x4c1d30, m1 0x421944;
-    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x1348a0;
-    void onMenu(cocos2d::CCObject* sender) = win 0x1350d0;
-    void onReplay(cocos2d::CCObject* sender) = win 0x134ec0;
-    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x135500;
+    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x1348a0, m1 0x4218d8;
+    void onMenu(cocos2d::CCObject* sender) = win 0x1350d0, m1 0x4215ec;
+    void onReplay(cocos2d::CCObject* sender) = win 0x134ec0, m1 0x4214d8;
+    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x135500, m1 0x421784;
     void playCoinEffect(float duration) = win 0x135c20, imac 0x4c2310, m1 0x10fea8;
-    void playCurrencyEffect(float duration);
-    void playDiamondEffect(float duration);
-    void playEndEffect() = win 0x136af0;
+    void playCurrencyEffect(float duration) = m1 0x4220a8;
+    void playDiamondEffect(float duration) = m1 0x4223e0;
+    void playEndEffect() = win 0x136af0, m1 0x4228ec;
     void playStarEffect(float duration) = win 0x135720, m1 0x421bc0;
     void starEnterFinished() = win 0x135ac0, m1 0x4227d0;
     void tryShowBanner(float dt) = m1 0x421a00;
