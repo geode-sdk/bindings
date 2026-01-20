@@ -12643,7 +12643,7 @@ class GameStatsManager : cocos2d::CCNode {
     gd::string getEventRewardKey(int id) = win inline, imac 0x789f0, m1 0x6a230, ios inline {
         return fmt::format("o_event_{}", id);
     }
-    gd::string getGauntletRewardKey(int id) = imac 0x77bf0, m1 0x693b0;
+    gd::string getGauntletRewardKey(int id) = win 0x1ea210, imac 0x77bf0, m1 0x693b0;
     gd::string getItemKey(int id, int type) = win 0x1e19c0;
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x1e5b40, imac 0x77510, m1 0x68c10;
     int getItemUnlockStateLite(int id, UnlockType type) = imac 0x775d0, m1 0x68d0c;
@@ -12754,7 +12754,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isPathUnlocked(StatKey key) = win inline, imac 0x6b990, m1 0x5cfa4, ios inline {
         return this->isItemUnlocked(UnlockType::GJItem, (int)key - 24);
     }
-    bool isSecretChestUnlocked(int id);
+    bool isSecretChestUnlocked(int id) = win 0x1ea8a0;
     bool isSecretCoin(gd::string key) = win inline, imac 0x70660, m1 0x61da4, ios inline {
         return key.starts_with("unique_");
     }
@@ -13262,10 +13262,10 @@ class GauntletNode : cocos2d::CCNode {
         delete ret;
         return nullptr;
     }
-    static gd::string frameForType(GauntletType type);
+    static gd::string frameForType(GauntletType type) = win 0x1fde40;
     static gd::string nameForType(GauntletType type);
 
-    bool init(GJMapPack* gauntlet) = imac 0x249310;
+    bool init(GJMapPack* gauntlet) = win 0x1fc280, imac 0x249310;
     void onClaimReward() = win 0x1fde00, imac 0x572ca0;
 
     cocos2d::CCNode* m_gauntletInfoNode;
