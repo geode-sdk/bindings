@@ -2002,7 +2002,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
         m_closeOnHide = false;
         m_forcePrioRegistered = false;
     }
-    ~CCBlockLayer() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    ~CCBlockLayer() = win 0x424c0, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     static CCBlockLayer* create() = win inline, imac 0x517790, m1 0x46e008, ios inline {
         auto ret = new CCBlockLayer();
@@ -5315,7 +5315,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 [[link(android)]]
 class CustomSongCell : TableViewCell, CustomSongDelegate {
     // virtual ~CustomSongCell();
-    CustomSongCell(char const* identifier, float width, float height) = win 0x1234567, imac 0x1234567, m1 0x1f9ce0, ios inline : TableViewCell(identifier, width, height) {
+    CustomSongCell(char const* identifier, float width, float height) = win 0xb4570, imac 0x1234567, m1 0x1f9ce0, ios inline : TableViewCell(identifier, width, height) {
         this->init();
     }
 
@@ -8698,7 +8698,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    ~FLAlertLayer() = win 0x51870, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
@@ -9489,7 +9489,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     static cocos2d::CCDictionary* responseToDict(gd::string response, bool colon) = win 0x16abd0, m1 0x484310;
     // virtual ~GameLevelManager();
-    static GameLevelManager* sharedState() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    static GameLevelManager* sharedState() = win 0x1440e0, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     virtual bool init() = win 0x1442d0, m1 0x47fc30, imac 0x52b7d0;
 
@@ -18477,7 +18477,7 @@ class GJOptionsLayer : SetupTriggerPopup {
         m_maxLabelWidth = 130.f;
         m_offset = 0.f;
     }
-    ~GJOptionsLayer() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    ~GJOptionsLayer() = win 0x28f7f0, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     static GJOptionsLayer* create(int background) = win inline, imac 0x29b6b0, m1 0x23b190, ios inline {
         auto ret = new GJOptionsLayer();
