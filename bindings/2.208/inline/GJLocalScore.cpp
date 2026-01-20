@@ -1,4 +1,3 @@
-#include <Geode/binding/GJLocalScore.hpp>
 #include <Geode/Geode.hpp>
 
 GJLocalScore::GJLocalScore() {

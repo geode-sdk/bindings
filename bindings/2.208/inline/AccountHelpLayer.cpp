@@ -1,4 +1,3 @@
-#include <Geode/binding/AccountHelpLayer.hpp>
 #include <Geode/Geode.hpp>
 
 AccountHelpLayer::AccountHelpLayer() {

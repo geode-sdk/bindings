@@ -1,4 +1,3 @@
-#include <Geode/binding/AnimatedSpriteDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void AnimatedSpriteDelegate::animationFinished(char const* key) {}

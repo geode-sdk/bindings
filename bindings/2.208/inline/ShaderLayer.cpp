@@ -1,4 +1,3 @@
-#include <Geode/binding/ShaderLayer.hpp>
 #include <Geode/Geode.hpp>
 
 ShaderLayer::ShaderLayer() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/LevelPage.hpp>
 #include <Geode/Geode.hpp>
 
 LevelPage::LevelPage() {

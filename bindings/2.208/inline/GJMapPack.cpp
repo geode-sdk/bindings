@@ -1,4 +1,3 @@
-#include <Geode/binding/GJMapPack.hpp>
 #include <Geode/Geode.hpp>
 
 GJMapPack::GJMapPack() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupShaderEffectPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupShaderEffectPopup::SetupShaderEffectPopup() {

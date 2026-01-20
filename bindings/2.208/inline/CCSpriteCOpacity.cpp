@@ -1,4 +1,3 @@
-#include <Geode/binding/CCSpriteCOpacity.hpp>
 #include <Geode/Geode.hpp>
 
 CCSpriteCOpacity::CCSpriteCOpacity() {}

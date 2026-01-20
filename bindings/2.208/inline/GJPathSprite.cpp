@@ -1,4 +1,3 @@
-#include <Geode/binding/GJPathSprite.hpp>
 #include <Geode/Geode.hpp>
 
 

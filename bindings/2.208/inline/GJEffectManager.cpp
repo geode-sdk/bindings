@@ -1,4 +1,3 @@
-#include <Geode/binding/GJEffectManager.hpp>
 #include <Geode/Geode.hpp>
 
 

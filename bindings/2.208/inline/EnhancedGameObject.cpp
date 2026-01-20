@@ -1,4 +1,3 @@
-#include <Geode/binding/EnhancedGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 EnhancedGameObject::EnhancedGameObject() {

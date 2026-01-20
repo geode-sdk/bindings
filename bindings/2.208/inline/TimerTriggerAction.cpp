@@ -1,4 +1,3 @@
-#include <Geode/binding/TimerTriggerAction.hpp>
 #include <Geode/Geode.hpp>
 
 TimerTriggerAction::TimerTriggerAction() {}

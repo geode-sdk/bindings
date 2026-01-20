@@ -1,4 +1,3 @@
-#include <Geode/binding/GJShopLayer.hpp>
 #include <Geode/Geode.hpp>
 
 GJShopLayer::GJShopLayer() {

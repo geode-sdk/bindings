@@ -1,4 +1,3 @@
-#include <Geode/binding/SongObject.hpp>
 #include <Geode/Geode.hpp>
 
 SongObject::SongObject() {

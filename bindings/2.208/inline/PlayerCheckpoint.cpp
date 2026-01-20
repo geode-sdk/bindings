@@ -1,4 +1,3 @@
-#include <Geode/binding/PlayerCheckpoint.hpp>
 #include <Geode/Geode.hpp>
 
 PlayerCheckpoint::PlayerCheckpoint() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/ItemInfoPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

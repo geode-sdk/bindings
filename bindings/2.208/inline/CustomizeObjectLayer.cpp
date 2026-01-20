@@ -1,4 +1,3 @@
-#include <Geode/binding/CustomizeObjectLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

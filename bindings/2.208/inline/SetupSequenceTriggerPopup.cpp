@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupSequenceTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

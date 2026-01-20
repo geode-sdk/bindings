@@ -1,4 +1,3 @@
-#include <Geode/binding/GJUINode.hpp>
 #include <Geode/Geode.hpp>
 
 

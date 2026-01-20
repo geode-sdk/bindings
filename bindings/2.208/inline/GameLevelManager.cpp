@@ -1,4 +1,3 @@
-#include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/Geode.hpp>
 
 GameLevelManager* GameLevelManager::get() {

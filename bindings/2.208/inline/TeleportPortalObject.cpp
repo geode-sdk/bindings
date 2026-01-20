@@ -1,4 +1,3 @@
-#include <Geode/binding/TeleportPortalObject.hpp>
 #include <Geode/Geode.hpp>
 
 TeleportPortalObject::TeleportPortalObject() {

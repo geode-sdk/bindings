@@ -1,4 +1,3 @@
-#include <Geode/binding/GhostTrailEffect.hpp>
 #include <Geode/Geode.hpp>
 
 

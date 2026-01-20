@@ -1,4 +1,3 @@
-#include <Geode/binding/Channel.hpp>
 #include <Geode/Geode.hpp>
 
 

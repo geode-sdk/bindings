@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupAdvFollowRetargetPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

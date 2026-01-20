@@ -1,4 +1,3 @@
-#include <Geode/binding/CCLayerRGBA.hpp>
 #include <Geode/Geode.hpp>
 
 

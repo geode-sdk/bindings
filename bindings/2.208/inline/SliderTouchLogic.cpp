@@ -1,4 +1,3 @@
-#include <Geode/binding/SliderTouchLogic.hpp>
 #include <Geode/Geode.hpp>
 
 SliderTouchLogic::SliderTouchLogic() {}

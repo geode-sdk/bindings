@@ -1,4 +1,3 @@
-#include <Geode/binding/CCMenuItemToggler.hpp>
 #include <Geode/Geode.hpp>
 
 CCMenuItemToggler::CCMenuItemToggler() {

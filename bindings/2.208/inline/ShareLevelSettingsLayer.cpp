@@ -1,4 +1,3 @@
-#include <Geode/binding/ShareLevelSettingsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 ShareLevelSettingsLayer::ShareLevelSettingsLayer() {}

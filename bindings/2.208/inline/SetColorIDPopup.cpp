@@ -1,4 +1,3 @@
-#include <Geode/binding/SetColorIDPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetColorIDPopup::SetColorIDPopup() {}

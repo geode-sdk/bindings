@@ -1,4 +1,3 @@
-#include <Geode/binding/ColorSelectDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void ColorSelectDelegate::colorSelectClosed(cocos2d::CCNode* popup) {}

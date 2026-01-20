@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTextInputNode.hpp>
 #include <Geode/Geode.hpp>
 
 CCTextInputNode::CCTextInputNode() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCExtenderNode.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/GJRotationControlDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void GJRotationControlDelegate::angleChanged(float angle) {}

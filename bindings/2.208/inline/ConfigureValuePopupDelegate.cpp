@@ -1,4 +1,3 @@
-#include <Geode/binding/ConfigureValuePopupDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void ConfigureValuePopupDelegate::valuePopupClosed(ConfigureValuePopup* popup, float value) {}

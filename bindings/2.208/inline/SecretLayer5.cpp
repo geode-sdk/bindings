@@ -1,4 +1,3 @@
-#include <Geode/binding/SecretLayer5.hpp>
 #include <Geode/Geode.hpp>
 
 SecretLayer5::SecretLayer5() {

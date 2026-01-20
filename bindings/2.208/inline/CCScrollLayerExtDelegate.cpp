@@ -1,4 +1,3 @@
-#include <Geode/binding/CCScrollLayerExtDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void CCScrollLayerExtDelegate::scrllViewWillBeginDecelerating(CCScrollLayerExt* layer) {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/GJLevelList.hpp>
 #include <Geode/Geode.hpp>
 
 GJLevelList::GJLevelList() {

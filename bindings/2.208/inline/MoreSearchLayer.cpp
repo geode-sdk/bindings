@@ -1,4 +1,3 @@
-#include <Geode/binding/MoreSearchLayer.hpp>
 #include <Geode/Geode.hpp>
 
 MoreSearchLayer::MoreSearchLayer() {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/TextArea.hpp>
 #include <Geode/Geode.hpp>
 
 

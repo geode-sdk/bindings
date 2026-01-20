@@ -1,4 +1,3 @@
-#include <Geode/binding/GJGameLoadingLayer.hpp>
 #include <Geode/Geode.hpp>
 
 GJGameLoadingLayer::GJGameLoadingLayer() {

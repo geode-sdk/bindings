@@ -1,4 +1,3 @@
-#include <Geode/binding/LocalLevelManager.hpp>
 #include <Geode/Geode.hpp>
 
 LocalLevelManager* LocalLevelManager::get() {

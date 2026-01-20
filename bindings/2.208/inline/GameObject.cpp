@@ -1,4 +1,3 @@
-#include <Geode/binding/GameObject.hpp>
 #include <Geode/Geode.hpp>
 
 void GameObject::firstSetup() {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/SliderThumb.hpp>
 #include <Geode/Geode.hpp>
 
 SliderThumb::SliderThumb() {

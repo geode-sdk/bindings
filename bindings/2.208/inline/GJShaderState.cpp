@@ -1,4 +1,3 @@
-#include <Geode/binding/GJShaderState.hpp>
 #include <Geode/Geode.hpp>
 
 

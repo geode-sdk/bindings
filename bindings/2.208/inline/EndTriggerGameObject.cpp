@@ -1,4 +1,3 @@
-#include <Geode/binding/EndTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 EndTriggerGameObject::EndTriggerGameObject() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/UndoObject.hpp>
 #include <Geode/Geode.hpp>
 
 UndoObject::UndoObject() {

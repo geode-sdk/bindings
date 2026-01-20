@@ -1,4 +1,3 @@
-#include <Geode/binding/HSVWidgetDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void HSVWidgetDelegate::hsvPopupClosed(HSVWidgetPopup* popup, cocos2d::ccHSVValue value) {}

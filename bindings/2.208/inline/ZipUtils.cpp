@@ -1,4 +1,3 @@
-#include <Geode/binding/ZipUtils.hpp>
 #include <Geode/Geode.hpp>
 
 gd::string cocos2d::ZipUtils::encryptDecryptWKey(gd::string const& p0, gd::string p1) {

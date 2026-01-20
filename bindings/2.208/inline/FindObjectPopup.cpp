@@ -1,4 +1,3 @@
-#include <Geode/binding/FindObjectPopup.hpp>
 #include <Geode/Geode.hpp>
 
 FindObjectPopup::FindObjectPopup() {

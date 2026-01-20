@@ -1,4 +1,3 @@
-#include <Geode/binding/CustomListView.hpp>
 #include <Geode/Geode.hpp>
 
 CustomListView::CustomListView() {

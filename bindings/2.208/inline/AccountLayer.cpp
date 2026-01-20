@@ -1,4 +1,3 @@
-#include <Geode/binding/AccountLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

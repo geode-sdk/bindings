@@ -1,4 +1,3 @@
-#include <Geode/binding/SequenceTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 SequenceTriggerGameObject::SequenceTriggerGameObject() {

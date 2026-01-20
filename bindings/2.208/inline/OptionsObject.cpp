@@ -1,4 +1,3 @@
-#include <Geode/binding/OptionsObject.hpp>
 #include <Geode/Geode.hpp>
 
 

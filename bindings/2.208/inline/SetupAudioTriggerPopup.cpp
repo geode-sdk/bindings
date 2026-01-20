@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupAudioTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

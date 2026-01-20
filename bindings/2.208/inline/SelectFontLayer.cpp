@@ -1,4 +1,3 @@
-#include <Geode/binding/SelectFontLayer.hpp>
 #include <Geode/Geode.hpp>
 
 SelectFontLayer::SelectFontLayer() {

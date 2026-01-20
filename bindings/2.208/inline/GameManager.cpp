@@ -1,4 +1,3 @@
-#include <Geode/binding/GameManager.hpp>
 #include <Geode/Geode.hpp>
 
 GameManager* GameManager::get() {

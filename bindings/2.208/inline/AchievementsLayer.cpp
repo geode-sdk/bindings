@@ -1,4 +1,3 @@
-#include <Geode/binding/AchievementsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 AchievementsLayer::AchievementsLayer() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/RewardsPage.hpp>
 #include <Geode/Geode.hpp>
 
 RewardsPage::RewardsPage() {

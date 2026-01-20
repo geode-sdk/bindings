@@ -1,4 +1,3 @@
-#include <Geode/binding/GameObjectCopy.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCParticleSystemQuad.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCGLProgram.hpp>
 #include <Geode/Geode.hpp>
 
 

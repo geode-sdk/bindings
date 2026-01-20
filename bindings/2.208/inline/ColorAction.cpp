@@ -1,4 +1,3 @@
-#include <Geode/binding/ColorAction.hpp>
 #include <Geode/Geode.hpp>
 
 ColorAction::ColorAction() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/TopArtistsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 TopArtistsLayer::TopArtistsLayer() {

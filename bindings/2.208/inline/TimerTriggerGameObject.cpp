@@ -1,4 +1,3 @@
-#include <Geode/binding/TimerTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 TimerTriggerGameObject::TimerTriggerGameObject() {

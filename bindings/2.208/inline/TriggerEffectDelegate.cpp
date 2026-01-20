@@ -1,4 +1,3 @@
-#include <Geode/binding/TriggerEffectDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void TriggerEffectDelegate::toggleGroupTriggered(int group, bool activate, gd::vector<int> const& remapKeys, int triggerID, int controlID) {}

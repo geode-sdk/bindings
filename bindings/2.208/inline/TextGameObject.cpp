@@ -1,4 +1,3 @@
-#include <Geode/binding/TextGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 TextGameObject::TextGameObject() {

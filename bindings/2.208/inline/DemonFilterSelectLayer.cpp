@@ -1,4 +1,3 @@
-#include <Geode/binding/DemonFilterSelectLayer.hpp>
 #include <Geode/Geode.hpp>
 
 DemonFilterSelectLayer::DemonFilterSelectLayer() {

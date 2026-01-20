@@ -1,4 +1,3 @@
-#include <Geode/binding/EnhancedTriggerObject.hpp>
 #include <Geode/Geode.hpp>
 
 EnhancedTriggerObject::EnhancedTriggerObject() {

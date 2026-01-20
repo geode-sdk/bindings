@@ -1,4 +1,3 @@
-#include <Geode/binding/ParticleGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 ParticleGameObject::ParticleGameObject() {

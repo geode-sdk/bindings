@@ -1,4 +1,3 @@
-#include <Geode/binding/DynamicScrollDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void DynamicScrollDelegate::updatePageWithObject(cocos2d::CCObject* layer, cocos2d::CCObject* object) {}

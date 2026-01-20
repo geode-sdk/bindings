@@ -1,4 +1,3 @@
-#include <Geode/binding/ChallengeNode.hpp>
 #include <Geode/Geode.hpp>
 
 ChallengeNode::ChallengeNode() {

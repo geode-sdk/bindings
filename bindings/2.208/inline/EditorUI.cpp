@@ -1,4 +1,3 @@
-#include <Geode/binding/EditorUI.hpp>
 #include <Geode/Geode.hpp>
 
 EditorUI* EditorUI::get() {

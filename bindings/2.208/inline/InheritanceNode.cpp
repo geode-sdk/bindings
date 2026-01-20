@@ -1,4 +1,3 @@
-#include <Geode/binding/InheritanceNode.hpp>
 #include <Geode/Geode.hpp>
 
 InheritanceNode::InheritanceNode() {

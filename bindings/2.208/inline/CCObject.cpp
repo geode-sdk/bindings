@@ -1,4 +1,3 @@
-#include <Geode/binding/CCObject.hpp>
 #include <Geode/Geode.hpp>
 
 

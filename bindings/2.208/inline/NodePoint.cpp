@@ -1,4 +1,3 @@
-#include <Geode/binding/NodePoint.hpp>
 #include <Geode/Geode.hpp>
 
 NodePoint::NodePoint() {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/GJActionManager.hpp>
 #include <Geode/Geode.hpp>
 
 GJActionManager::GJActionManager() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/GJSmartTemplate.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCEGLViewProtocol.hpp>
 #include <Geode/Geode.hpp>
 
 

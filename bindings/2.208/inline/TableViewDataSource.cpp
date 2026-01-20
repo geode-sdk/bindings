@@ -1,4 +1,3 @@
-#include <Geode/binding/TableViewDataSource.hpp>
 #include <Geode/Geode.hpp>
 
 int TableViewDataSource::numberOfRowsInSection(unsigned int section, TableView* tableView) { return 0; }

@@ -1,4 +1,3 @@
-#include <Geode/binding/PlayerFireBoostSprite.hpp>
 #include <Geode/Geode.hpp>
 
 

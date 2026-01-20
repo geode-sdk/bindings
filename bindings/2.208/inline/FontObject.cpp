@@ -1,4 +1,3 @@
-#include <Geode/binding/FontObject.hpp>
 #include <Geode/Geode.hpp>
 
 FontObject::FontObject() {

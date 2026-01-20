@@ -1,4 +1,3 @@
-#include <Geode/binding/CustomizeObjectSettingsPopup.hpp>
 #include <Geode/Geode.hpp>
 
 CustomizeObjectSettingsPopup::CustomizeObjectSettingsPopup() {

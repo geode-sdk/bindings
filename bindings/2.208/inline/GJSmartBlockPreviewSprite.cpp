@@ -1,4 +1,3 @@
-#include <Geode/binding/GJSmartBlockPreviewSprite.hpp>
 #include <Geode/Geode.hpp>
 
 GJSmartBlockPreviewSprite::GJSmartBlockPreviewSprite() {}

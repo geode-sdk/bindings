@@ -1,4 +1,3 @@
-#include <Geode/binding/CCSpawn.hpp>
 #include <Geode/Geode.hpp>
 
 cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCFiniteTimeAction* first, ...) {

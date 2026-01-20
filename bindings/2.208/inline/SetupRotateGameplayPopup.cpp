@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupRotateGameplayPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupRotateGameplayPopup::SetupRotateGameplayPopup() {}

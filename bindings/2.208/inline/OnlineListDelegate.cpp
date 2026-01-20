@@ -1,4 +1,3 @@
-#include <Geode/binding/OnlineListDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void OnlineListDelegate::loadListFinished(cocos2d::CCArray* objects, char const* key) {}

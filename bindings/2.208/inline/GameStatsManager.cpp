@@ -1,4 +1,3 @@
-#include <Geode/binding/GameStatsManager.hpp>
 #include <Geode/Geode.hpp>
 
 GameStatsManager* GameStatsManager::get() {

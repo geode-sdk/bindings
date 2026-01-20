@@ -1,4 +1,3 @@
-#include <Geode/binding/ShaderGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 ShaderGameObject::ShaderGameObject() {

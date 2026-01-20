@@ -1,4 +1,3 @@
-#include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/Geode.hpp>
 
 LevelEditorLayer* LevelEditorLayer::get() {

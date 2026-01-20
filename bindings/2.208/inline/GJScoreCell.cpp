@@ -1,4 +1,3 @@
-#include <Geode/binding/GJScoreCell.hpp>
 #include <Geode/Geode.hpp>
 
 

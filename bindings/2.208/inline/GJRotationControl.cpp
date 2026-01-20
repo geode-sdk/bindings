@@ -1,4 +1,3 @@
-#include <Geode/binding/GJRotationControl.hpp>
 #include <Geode/Geode.hpp>
 
 GJRotationControl::GJRotationControl() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTransitionFadeTR.hpp>
 #include <Geode/Geode.hpp>
 
 

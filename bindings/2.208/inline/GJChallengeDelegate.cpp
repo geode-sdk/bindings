@@ -1,4 +1,3 @@
-#include <Geode/binding/GJChallengeDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void GJChallengeDelegate::challengeStatusFinished() {}

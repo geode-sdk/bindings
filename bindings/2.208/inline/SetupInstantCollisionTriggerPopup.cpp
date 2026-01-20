@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupInstantCollisionTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupInstantCollisionTriggerPopup::SetupInstantCollisionTriggerPopup() {}

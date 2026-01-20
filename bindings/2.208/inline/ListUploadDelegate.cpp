@@ -1,4 +1,3 @@
-#include <Geode/binding/ListUploadDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void ListUploadDelegate::listUploadFinished(GJLevelList* list) {}

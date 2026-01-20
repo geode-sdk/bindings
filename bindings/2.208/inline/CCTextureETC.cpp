@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTextureETC.hpp>
 #include <Geode/Geode.hpp>
 
 

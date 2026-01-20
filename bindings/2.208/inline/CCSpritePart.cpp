@@ -1,4 +1,3 @@
-#include <Geode/binding/CCSpritePart.hpp>
 #include <Geode/Geode.hpp>
 
 

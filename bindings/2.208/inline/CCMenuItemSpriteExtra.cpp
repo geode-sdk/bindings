@@ -1,4 +1,3 @@
-#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/Geode.hpp>
 
 CCMenuItemSpriteExtra* CCMenuItemSpriteExtra::create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) {

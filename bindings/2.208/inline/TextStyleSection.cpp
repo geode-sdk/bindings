@@ -1,4 +1,3 @@
-#include <Geode/binding/TextStyleSection.hpp>
 #include <Geode/Geode.hpp>
 
 

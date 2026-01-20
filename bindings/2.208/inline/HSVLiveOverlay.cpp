@@ -1,4 +1,3 @@
-#include <Geode/binding/HSVLiveOverlay.hpp>
 #include <Geode/Geode.hpp>
 
 HSVLiveOverlay::HSVLiveOverlay() {

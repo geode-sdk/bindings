@@ -1,4 +1,3 @@
-#include <Geode/binding/DemonFilterDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void DemonFilterDelegate::demonFilterSelectClosed(int filter) {}

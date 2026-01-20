@@ -1,4 +1,3 @@
-#include <Geode/binding/ColorChannelSprite.hpp>
 #include <Geode/Geode.hpp>
 
 

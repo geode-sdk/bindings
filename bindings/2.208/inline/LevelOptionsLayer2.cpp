@@ -1,4 +1,3 @@
-#include <Geode/binding/LevelOptionsLayer2.hpp>
 #include <Geode/Geode.hpp>
 
 LevelOptionsLayer2::LevelOptionsLayer2() {}

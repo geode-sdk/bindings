@@ -1,4 +1,3 @@
-#include <Geode/binding/SelectListIconLayer.hpp>
 #include <Geode/Geode.hpp>
 
 SelectListIconLayer::SelectListIconLayer() {

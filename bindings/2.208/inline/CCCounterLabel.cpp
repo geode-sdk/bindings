@@ -1,4 +1,3 @@
-#include <Geode/binding/CCCounterLabel.hpp>
 #include <Geode/Geode.hpp>
 
 CCCounterLabel::CCCounterLabel() {

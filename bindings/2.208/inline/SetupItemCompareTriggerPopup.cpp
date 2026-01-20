@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupItemCompareTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

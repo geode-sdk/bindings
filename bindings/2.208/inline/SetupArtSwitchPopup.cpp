@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupArtSwitchPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

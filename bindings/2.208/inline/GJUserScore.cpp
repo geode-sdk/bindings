@@ -1,4 +1,3 @@
-#include <Geode/binding/GJUserScore.hpp>
 #include <Geode/Geode.hpp>
 
 

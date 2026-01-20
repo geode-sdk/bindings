@@ -1,4 +1,3 @@
-#include <Geode/binding/CCSpriteGrayscale.hpp>
 #include <Geode/Geode.hpp>
 
 CCSpriteGrayscale::CCSpriteGrayscale() {}

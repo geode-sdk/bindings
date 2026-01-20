@@ -1,4 +1,3 @@
-#include <Geode/binding/SetLevelOrderPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetLevelOrderPopup::SetLevelOrderPopup() {

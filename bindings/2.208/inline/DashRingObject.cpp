@@ -1,4 +1,3 @@
-#include <Geode/binding/DashRingObject.hpp>
 #include <Geode/Geode.hpp>
 
 DashRingObject::DashRingObject() {

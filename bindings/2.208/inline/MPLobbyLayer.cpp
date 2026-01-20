@@ -1,4 +1,3 @@
-#include <Geode/binding/MPLobbyLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

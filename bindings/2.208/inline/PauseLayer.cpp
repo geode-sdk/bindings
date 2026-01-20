@@ -1,4 +1,3 @@
-#include <Geode/binding/PauseLayer.hpp>
 #include <Geode/Geode.hpp>
 
 PauseLayer::PauseLayer() {

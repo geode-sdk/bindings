@@ -1,4 +1,3 @@
-#include <Geode/binding/FriendRequestDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void FriendRequestDelegate::loadFRequestsFinished(cocos2d::CCArray* scores, char const* key) {}

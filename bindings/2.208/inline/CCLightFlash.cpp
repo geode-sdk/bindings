@@ -1,4 +1,3 @@
-#include <Geode/binding/CCLightFlash.hpp>
 #include <Geode/Geode.hpp>
 
 CCLightFlash::CCLightFlash() {

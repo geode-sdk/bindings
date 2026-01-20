@@ -1,4 +1,3 @@
-#include <Geode/binding/CCCircleWaveDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void CCCircleWaveDelegate::circleWaveWillBeRemoved(CCCircleWave* circleWave) {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/RotateGameplayGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 RotateGameplayGameObject::RotateGameplayGameObject() {

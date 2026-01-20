@@ -1,4 +1,3 @@
-#include <Geode/binding/CCParticleExplosion.hpp>
 #include <Geode/Geode.hpp>
 
 

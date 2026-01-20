@@ -1,8 +1,7 @@
 #include "Shared.hpp"
 
 namespace { namespace format_strings {
-    constexpr char const* source_start = R"GEN(#include <Geode/binding/{class_name}.hpp>
-#include <Geode/Geode.hpp>
+    constexpr char const* source_start = R"GEN(#include <Geode/Geode.hpp>
 {definitions}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS){ios_win_definitions}#endif
 

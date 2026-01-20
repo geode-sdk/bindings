@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTMXMapInfo.hpp>
 #include <Geode/Geode.hpp>
 
 

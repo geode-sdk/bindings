@@ -1,4 +1,3 @@
-#include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/Geode.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {

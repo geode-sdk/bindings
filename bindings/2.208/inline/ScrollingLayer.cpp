@@ -1,4 +1,3 @@
-#include <Geode/binding/ScrollingLayer.hpp>
 #include <Geode/Geode.hpp>
 
 ScrollingLayer::ScrollingLayer() {

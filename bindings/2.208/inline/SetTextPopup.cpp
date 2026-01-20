@@ -1,4 +1,3 @@
-#include <Geode/binding/SetTextPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetTextPopup::SetTextPopup() {

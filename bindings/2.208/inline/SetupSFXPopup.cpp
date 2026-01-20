@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupSFXPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

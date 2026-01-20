@@ -1,4 +1,3 @@
-#include <Geode/binding/MultiplayerLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

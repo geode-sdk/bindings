@@ -1,4 +1,3 @@
-#include <Geode/binding/LeaderboardManagerDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void LeaderboardManagerDelegate::updateUserScoreFinished() {}

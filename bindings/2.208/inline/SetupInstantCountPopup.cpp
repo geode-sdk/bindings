@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupInstantCountPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

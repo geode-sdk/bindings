@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTransitionSlideInR.hpp>
 #include <Geode/Geode.hpp>
 
 

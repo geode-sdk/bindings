@@ -1,4 +1,3 @@
-#include <Geode/binding/SelectPremadeDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void SelectPremadeDelegate::selectPremadeClosed(SelectPremadeLayer* layer, int type) {}

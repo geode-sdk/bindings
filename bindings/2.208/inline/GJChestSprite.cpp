@@ -1,4 +1,3 @@
-#include <Geode/binding/GJChestSprite.hpp>
 #include <Geode/Geode.hpp>
 
 

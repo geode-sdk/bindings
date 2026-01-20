@@ -1,4 +1,3 @@
-#include <Geode/binding/SimplePlayer.hpp>
 #include <Geode/Geode.hpp>
 
 SimplePlayer::SimplePlayer() {

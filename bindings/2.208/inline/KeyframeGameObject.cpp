@@ -1,4 +1,3 @@
-#include <Geode/binding/KeyframeGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 KeyframeGameObject::KeyframeGameObject() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/GJBigSprite.hpp>
 #include <Geode/Geode.hpp>
 
 

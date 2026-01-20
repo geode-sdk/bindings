@@ -1,4 +1,3 @@
-#include <Geode/binding/AdvancedFollowTriggerObject.hpp>
 #include <Geode/Geode.hpp>
 
 

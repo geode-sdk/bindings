@@ -1,4 +1,3 @@
-#include <Geode/binding/CCAnimateFrameCache.hpp>
 #include <Geode/Geode.hpp>
 
 CCAnimateFrameCache* CCAnimateFrameCache::get() {

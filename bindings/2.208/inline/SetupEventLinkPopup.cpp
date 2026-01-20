@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupEventLinkPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

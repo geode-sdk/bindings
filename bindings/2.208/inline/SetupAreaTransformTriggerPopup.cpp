@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupAreaTransformTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupAreaTransformTriggerPopup::SetupAreaTransformTriggerPopup() {}

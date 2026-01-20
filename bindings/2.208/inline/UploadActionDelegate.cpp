@@ -1,4 +1,3 @@
-#include <Geode/binding/UploadActionDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void UploadActionDelegate::uploadActionFinished(int id, int response) {}

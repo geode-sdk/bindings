@@ -1,4 +1,3 @@
-#include <Geode/binding/GJScaleControlDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void GJScaleControlDelegate::scaleXChanged(float scaleX, bool lock) {}

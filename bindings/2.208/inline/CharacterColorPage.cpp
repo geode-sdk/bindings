@@ -1,4 +1,3 @@
-#include <Geode/binding/CharacterColorPage.hpp>
 #include <Geode/Geode.hpp>
 
 CharacterColorPage::CharacterColorPage() {

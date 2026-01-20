@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupCheckpointPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupCheckpointPopup::SetupCheckpointPopup() {}

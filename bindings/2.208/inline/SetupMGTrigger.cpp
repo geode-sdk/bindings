@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupMGTrigger.hpp>
 #include <Geode/Geode.hpp>
 
 

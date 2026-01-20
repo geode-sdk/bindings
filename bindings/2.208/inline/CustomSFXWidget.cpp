@@ -1,4 +1,3 @@
-#include <Geode/binding/CustomSFXWidget.hpp>
 #include <Geode/Geode.hpp>
 
 

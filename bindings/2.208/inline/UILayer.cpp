@@ -1,4 +1,3 @@
-#include <Geode/binding/UILayer.hpp>
 #include <Geode/Geode.hpp>
 
 UILayer::UILayer() {

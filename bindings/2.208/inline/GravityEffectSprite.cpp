@@ -1,4 +1,3 @@
-#include <Geode/binding/GravityEffectSprite.hpp>
 #include <Geode/Geode.hpp>
 
 GravityEffectSprite::GravityEffectSprite() {}

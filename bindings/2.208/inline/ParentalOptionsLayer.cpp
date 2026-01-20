@@ -1,4 +1,3 @@
-#include <Geode/binding/ParentalOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 ParentalOptionsLayer::ParentalOptionsLayer() {

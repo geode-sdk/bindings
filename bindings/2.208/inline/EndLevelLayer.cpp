@@ -1,4 +1,3 @@
-#include <Geode/binding/EndLevelLayer.hpp>
 #include <Geode/Geode.hpp>
 
 EndLevelLayer::EndLevelLayer() {

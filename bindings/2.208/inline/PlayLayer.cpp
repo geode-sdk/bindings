@@ -1,4 +1,3 @@
-#include <Geode/binding/PlayLayer.hpp>
 #include <Geode/Geode.hpp>
 
 PlayLayer* PlayLayer::get() {

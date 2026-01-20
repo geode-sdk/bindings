@@ -1,4 +1,3 @@
-#include <Geode/binding/LikeItemLayer.hpp>
 #include <Geode/Geode.hpp>
 
 LikeItemLayer::LikeItemLayer() {

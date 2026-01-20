@@ -1,4 +1,3 @@
-#include <Geode/binding/SelectListIconDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void SelectListIconDelegate::iconSelectClosed(SelectListIconLayer* layer) {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/PointNode.hpp>
 #include <Geode/Geode.hpp>
 
 PointNode::PointNode() {}

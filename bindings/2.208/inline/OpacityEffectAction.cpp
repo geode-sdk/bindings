@@ -1,4 +1,3 @@
-#include <Geode/binding/OpacityEffectAction.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupTriggerPopup::SetupTriggerPopup() {

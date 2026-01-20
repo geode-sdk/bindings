@@ -1,4 +1,3 @@
-#include <Geode/binding/UpdateAccountSettingsPopup.hpp>
 #include <Geode/Geode.hpp>
 
 UpdateAccountSettingsPopup::UpdateAccountSettingsPopup() {

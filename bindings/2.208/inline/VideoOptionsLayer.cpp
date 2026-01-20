@@ -1,4 +1,3 @@
-#include <Geode/binding/VideoOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

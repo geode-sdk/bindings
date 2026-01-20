@@ -1,4 +1,3 @@
-#include <Geode/binding/EditButtonBar.hpp>
 #include <Geode/Geode.hpp>
 
 

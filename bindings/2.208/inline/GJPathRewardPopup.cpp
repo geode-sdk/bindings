@@ -1,4 +1,3 @@
-#include <Geode/binding/GJPathRewardPopup.hpp>
 #include <Geode/Geode.hpp>
 
 GJPathRewardPopup::GJPathRewardPopup() {

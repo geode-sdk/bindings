@@ -1,4 +1,3 @@
-#include <Geode/binding/FLAlertLayer.hpp>
 #include <Geode/Geode.hpp>
 
 FLAlertLayer* FLAlertLayer::create(char const* title, const gd::string& desc, char const* btn) {

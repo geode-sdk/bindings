@@ -1,4 +1,3 @@
-#include <Geode/binding/GJAccountSyncDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void GJAccountSyncDelegate::syncAccountFinished() {}

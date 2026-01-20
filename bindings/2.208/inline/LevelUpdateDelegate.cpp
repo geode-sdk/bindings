@@ -1,4 +1,3 @@
-#include <Geode/binding/LevelUpdateDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void LevelUpdateDelegate::levelUpdateFinished(GJGameLevel* level, UpdateResponse response) {}

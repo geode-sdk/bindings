@@ -1,4 +1,3 @@
-#include <Geode/binding/GJAccountSettingsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 GJAccountSettingsLayer::GJAccountSettingsLayer() {

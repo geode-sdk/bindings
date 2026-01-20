@@ -1,4 +1,3 @@
-#include <Geode/binding/RandTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 RandTriggerGameObject::RandTriggerGameObject() {}

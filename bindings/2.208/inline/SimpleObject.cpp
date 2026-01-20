@@ -1,4 +1,3 @@
-#include <Geode/binding/SimpleObject.hpp>
 #include <Geode/Geode.hpp>
 
 SimpleObject::SimpleObject() {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupDashRingPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupDashRingPopup::SetupDashRingPopup() {}

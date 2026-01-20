@@ -1,4 +1,3 @@
-#include <Geode/binding/CCURLObject.hpp>
 #include <Geode/Geode.hpp>
 
 

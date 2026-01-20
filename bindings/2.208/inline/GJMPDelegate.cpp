@@ -1,4 +1,3 @@
-#include <Geode/binding/GJMPDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void GJMPDelegate::joinLobbyFinished(int id) {}

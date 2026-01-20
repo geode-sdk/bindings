@@ -1,4 +1,3 @@
-#include <Geode/binding/UploadListPopup.hpp>
 #include <Geode/Geode.hpp>
 
 UploadListPopup::UploadListPopup() {

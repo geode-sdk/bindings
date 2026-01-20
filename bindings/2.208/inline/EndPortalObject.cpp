@@ -1,4 +1,3 @@
-#include <Geode/binding/EndPortalObject.hpp>
 #include <Geode/Geode.hpp>
 
 EndPortalObject::EndPortalObject() {

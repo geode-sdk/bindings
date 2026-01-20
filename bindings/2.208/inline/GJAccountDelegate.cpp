@@ -1,4 +1,3 @@
-#include <Geode/binding/GJAccountDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void GJAccountDelegate::accountStatusChanged() {}

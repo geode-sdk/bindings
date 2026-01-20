@@ -1,4 +1,3 @@
-#include <Geode/binding/LevelAreaLayer.hpp>
 #include <Geode/Geode.hpp>
 
 LevelAreaLayer::LevelAreaLayer() {

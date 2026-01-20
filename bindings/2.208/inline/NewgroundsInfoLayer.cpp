@@ -1,4 +1,3 @@
-#include <Geode/binding/NewgroundsInfoLayer.hpp>
 #include <Geode/Geode.hpp>
 
 NewgroundsInfoLayer::NewgroundsInfoLayer() {}

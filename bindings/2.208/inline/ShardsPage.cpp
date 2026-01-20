@@ -1,4 +1,3 @@
-#include <Geode/binding/ShardsPage.hpp>
 #include <Geode/Geode.hpp>
 
 ShardsPage::ShardsPage() {

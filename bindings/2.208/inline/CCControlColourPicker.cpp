@@ -1,4 +1,3 @@
-#include <Geode/binding/CCControlColourPicker.hpp>
 #include <Geode/Geode.hpp>
 
 cocos2d::extension::CCControlColourPicker::CCControlColourPicker() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/GJPFollowCommandLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

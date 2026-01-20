@@ -1,4 +1,3 @@
-#include <Geode/binding/SelectSFXSortLayer.hpp>
 #include <Geode/Geode.hpp>
 
 SelectSFXSortLayer::SelectSFXSortLayer() {

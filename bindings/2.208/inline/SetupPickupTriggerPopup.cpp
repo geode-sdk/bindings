@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupPickupTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

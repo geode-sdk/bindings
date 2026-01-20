@@ -1,4 +1,3 @@
-#include <Geode/binding/BoomScrollLayer.hpp>
 #include <Geode/Geode.hpp>
 
 BoomScrollLayer::BoomScrollLayer() {

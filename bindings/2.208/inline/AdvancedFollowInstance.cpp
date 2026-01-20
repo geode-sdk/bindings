@@ -1,4 +1,3 @@
-#include <Geode/binding/AdvancedFollowInstance.hpp>
 #include <Geode/Geode.hpp>
 
 AdvancedFollowInstance::AdvancedFollowInstance() {}

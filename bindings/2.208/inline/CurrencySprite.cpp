@@ -1,4 +1,3 @@
-#include <Geode/binding/CurrencySprite.hpp>
 #include <Geode/Geode.hpp>
 
 CurrencySprite::CurrencySprite() {

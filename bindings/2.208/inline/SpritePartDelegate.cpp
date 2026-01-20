@@ -1,4 +1,3 @@
-#include <Geode/binding/SpritePartDelegate.hpp>
 #include <Geode/Geode.hpp>
 
 void SpritePartDelegate::displayFrameChanged(cocos2d::CCObject* sprite, gd::string frameName) {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/BoomListView.hpp>
 #include <Geode/Geode.hpp>
 
 BoomListView::BoomListView() {

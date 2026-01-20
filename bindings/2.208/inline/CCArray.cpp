@@ -1,4 +1,3 @@
-#include <Geode/binding/CCArray.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/SetIDPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetIDPopup::SetIDPopup() {

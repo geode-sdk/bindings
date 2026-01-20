@@ -1,4 +1,3 @@
-#include <Geode/binding/BitmapFontCache.hpp>
 #include <Geode/Geode.hpp>
 
 BitmapFontCache::BitmapFontCache() {

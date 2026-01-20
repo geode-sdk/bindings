@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTransitionProgressHorizontal.hpp>
 #include <Geode/Geode.hpp>
 
 

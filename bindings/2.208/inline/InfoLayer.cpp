@@ -1,4 +1,3 @@
-#include <Geode/binding/InfoLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCLayerColor.hpp>
 #include <Geode/Geode.hpp>
 
 

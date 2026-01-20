@@ -1,4 +1,3 @@
-#include <Geode/binding/AudioEffectsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 AudioEffectsLayer::AudioEffectsLayer() {

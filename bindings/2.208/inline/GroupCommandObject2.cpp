@@ -1,4 +1,3 @@
-#include <Geode/binding/GroupCommandObject2.hpp>
 #include <Geode/Geode.hpp>
 
 

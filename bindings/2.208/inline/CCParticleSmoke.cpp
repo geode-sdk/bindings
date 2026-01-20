@@ -1,4 +1,3 @@
-#include <Geode/binding/CCParticleSmoke.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/BrowseSmartTemplateLayer.hpp>
 #include <Geode/Geode.hpp>
 
 BrowseSmartTemplateLayer::BrowseSmartTemplateLayer() {

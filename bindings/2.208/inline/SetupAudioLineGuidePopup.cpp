@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupAudioLineGuidePopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupAudioLineGuidePopup::SetupAudioLineGuidePopup() {

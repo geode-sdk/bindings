@@ -1,4 +1,3 @@
-#include <Geode/binding/GauntletSelectLayer.hpp>
 #include <Geode/Geode.hpp>
 
 GauntletSelectLayer::GauntletSelectLayer() {

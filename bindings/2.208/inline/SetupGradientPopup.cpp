@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupGradientPopup.hpp>
 #include <Geode/Geode.hpp>
 
 SetupGradientPopup::SetupGradientPopup() {

@@ -1,4 +1,3 @@
-#include <Geode/binding/EnterEffectInstance.hpp>
 #include <Geode/Geode.hpp>
 
 EnterEffectInstance::EnterEffectInstance() {}

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCPartAnimSprite.hpp>
 #include <Geode/Geode.hpp>
 
 CCPartAnimSprite::CCPartAnimSprite() {

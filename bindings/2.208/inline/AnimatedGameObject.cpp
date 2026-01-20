@@ -1,4 +1,3 @@
-#include <Geode/binding/AnimatedGameObject.hpp>
 #include <Geode/Geode.hpp>
 
 AnimatedGameObject::AnimatedGameObject() {

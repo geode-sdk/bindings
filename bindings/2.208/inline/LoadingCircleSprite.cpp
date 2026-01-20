@@ -1,4 +1,3 @@
-#include <Geode/binding/LoadingCircleSprite.hpp>
 #include <Geode/Geode.hpp>
 
 

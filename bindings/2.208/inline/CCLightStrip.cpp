@@ -1,4 +1,3 @@
-#include <Geode/binding/CCLightStrip.hpp>
 #include <Geode/Geode.hpp>
 
 CCLightStrip::CCLightStrip() {

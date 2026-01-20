@@ -1,4 +1,3 @@
-#include <Geode/binding/StarInfoPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

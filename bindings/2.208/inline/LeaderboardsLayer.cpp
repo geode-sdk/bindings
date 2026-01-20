@@ -1,4 +1,3 @@
-#include <Geode/binding/LeaderboardsLayer.hpp>
 #include <Geode/Geode.hpp>
 
 LeaderboardsLayer::LeaderboardsLayer() {

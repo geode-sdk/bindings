@@ -1,4 +1,3 @@
-#include <Geode/binding/CCParallaxNode.hpp>
 #include <Geode/Geode.hpp>
 
 

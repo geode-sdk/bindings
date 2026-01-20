@@ -1,4 +1,3 @@
-#include <Geode/binding/GJGradientLayer.hpp>
 #include <Geode/Geode.hpp>
 
 GJGradientLayer::GJGradientLayer() {

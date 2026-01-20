@@ -1,4 +1,3 @@
-#include <Geode/binding/MusicDelegateHandler.hpp>
 #include <Geode/Geode.hpp>
 
 MusicDelegateHandler::MusicDelegateHandler() {

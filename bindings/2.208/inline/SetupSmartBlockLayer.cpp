@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupSmartBlockLayer.hpp>
 #include <Geode/Geode.hpp>
 
 
