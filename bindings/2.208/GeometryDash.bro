@@ -5647,7 +5647,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
         return std::max<int>(GameLevelManager::sharedState()->getDailyTimer(m_type) - currentTime, 0);
     }
     gd::string getDailyTimeString(int timeLeft) = win 0xd0650, imac 0x230ae0, m1 0x1da340;
-    bool init(GJTimedLevelType type) = win 0xb84b0, imac 0x22fe10;
+    bool init(GJTimedLevelType type) = win 0xce560, imac 0x22fe10;
     void onClose(cocos2d::CCObject* sender) = win 0x869b0, m1 0x1da288;
     void onTheSafe(cocos2d::CCObject* sender) = win 0xd2000, imac 0x230a70, m1 0x1da2d4;
     void refreshDailyPage() = win inline {
@@ -9495,7 +9495,7 @@ class GameLevelManager : cocos2d::CCNode {
 
     bool acceptFriendRequest(int accountID, int requestID) = win 0x1611b0, m1 0x4a49e0;
     int accountIDForUserID(int userID) = m1 0x48245c;
-    void addDLToActive(char const* key);
+    void addDLToActive(char const* key) = win 0x149b60;
     bool areGauntletsLoaded() = win inline, m1 0x3fb70 {
         return m_savedGauntlets->count() != 0;
     }
@@ -9546,7 +9546,7 @@ class GameLevelManager : cocos2d::CCNode {
         m_smartTemplates->removeObject(smartTemplate);
     }
     bool deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender) = win 0x15b4f0, imac 0x54e910, m1 0x49ee0c;
-    void downloadLevel(int id, bool gauntletLevel) = imac 0x543700, m1 0x4953ac;
+    void downloadLevel(int id, bool gauntletLevel) = win 0x151e40, imac 0x543700, m1 0x4953ac;
     void downloadUserMessage(int id, bool sent) = win 0x15aac0, m1 0x49e4c4;
     void encodeDataTo(DS_Dictionary* dict) = win 0x14af40, imac 0x53a980, m1 0x48d564;
     void firstSetup() = win 0x14ab80, m1 0x48d238;
@@ -9881,7 +9881,7 @@ class GameLevelManager : cocos2d::CCNode {
         this->resetStoredUserList(type);
         if (reload && m_userListDelegate) m_userListDelegate->forceReloadList(type);
     }
-    bool isDLActive(char const* tag);
+    bool isDLActive(char const* tag) = win 0x149aa0;
     bool isFollowingUser(int id);
     bool isTimeValid(char const* key, float length) = win 0x149dd0;
     bool isUpdateValid(int id) = win inline {
