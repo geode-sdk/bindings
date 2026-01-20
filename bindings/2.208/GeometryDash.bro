@@ -15891,6 +15891,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<PlayerButtonCommand> m_queuedReplayButtons;
     gd::vector<void*> m_unk3340;
     gd::vector<void*> m_unk3358;
+    PAD = win 0x88;
     int m_queuedRecordedButtonsSize;
     bool m_portalIndicators;
     bool m_orbIndicators;
@@ -15898,6 +15899,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float m_unk3380;
     gd::vector<int> m_unk3388;
     gd::vector<int> m_unk33a0;
+    PAD = win 0x48;
     bool m_hideGround;
     cocos2d::CCArray* m_unk33c0;
     cocos2d::CCArray* m_objectsToMove;
@@ -17392,6 +17394,7 @@ class GJGameState {
     float m_targetCameraAngle;
     bool m_playerStreakBlend;
     float m_timeWarp;
+    int m_unk18c; // int/float, size 4
     float m_timeWarpRelated;
     int m_currentChannel;
     int m_rotateChannel;
