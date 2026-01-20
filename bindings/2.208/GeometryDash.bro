@@ -4441,17 +4441,18 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
     // virtual ~ConfigureValuePopup();
 
-    static ConfigureValuePopup* create(ConfigureValuePopupDelegate* delegate, float value, float minimum, float maximum, gd::string title, gd::string description);
+    static ConfigureValuePopup* create(ConfigureValuePopupDelegate* delegate, float value, float minimum, float maximum, gd::string title, gd::string description) = win 0x98480;
 
     virtual void keyBackClicked() = win 0x99600, m1 0x5489fc, imac 0x625340;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x8b870, m1 0x54887c, imac 0x625170;
     virtual void textChanged(CCTextInputNode* node) = win 0x99370, m1 0x548898, imac 0x6251b0;
 
-    bool init(ConfigureValuePopupDelegate* delegate, float value, float minimum, float maximum, gd::string title, gd::string description);
+    bool init(ConfigureValuePopupDelegate* delegate, float value, float minimum, float maximum, gd::string title, gd::string description) = win 0x98660;
     void onClose(cocos2d::CCObject* sender) = win 0x99580;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x990c0, imac 0x624e10;
     void updateTextInputLabel();
 
+    int m_type;
     float m_value;
     float m_minimum;
     float m_maximum;
@@ -4766,6 +4767,9 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     cocos2d::CCSprite* m_endColorSprite;
     cocos2d::CCArray* m_gravityObjects;
     cocos2d::CCArray* m_radiusObjects;
+    bool m_perfLogEnabled;
+    float m_perfLogElapsed;
+    cocos2d::CCLabelBMFont* m_perfLogLabel;
     int m_particleIndex;
     int m_page;
     bool m_useObjectColor;
@@ -5441,7 +5445,6 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
         m_hasSFX = false;
         m_unkBool2 = false;
         m_totalBytes = 0;
-        m_nextSongID = 0;
     }
     ~CustomSongWidget() = win inline, m1 0x53e3dc {
         MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
@@ -5573,7 +5576,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     gd::map<int, bool> m_sfx;
     gd::vector<GJAssetDownloadAction> m_undownloadedAssets;
     int m_totalBytes;
-    int m_nextSongID;
+    gd::set<int> m_nextSongIDs;
 }
 
 [[link(android)]]
@@ -7359,6 +7362,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool m_snapObjectExists;
     bool m_snapSelected;
     bool m_stickyControlsEnabled;
+    bool m_linkControlsEnabled;
     bool m_speedObjectsUpdated;
     cocos2d::CCPoint m_createPosition;
     cocos2d::CCArray* m_snapPositions;
@@ -7380,6 +7384,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_trashBtn;
     CCMenuItemSpriteExtra* m_linkBtn;
     CCMenuItemSpriteExtra* m_unlinkBtn;
+    CCMenuItemToggler* m_linkControlsToggler;
     CCMenuItemSpriteExtra* m_undoBtn;
     CCMenuItemSpriteExtra* m_redoBtn;
     CCMenuItemSpriteExtra* m_editObjectBtn;
@@ -10348,9 +10353,11 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_friendRequests;
     cocos2d::CCDictionary* m_userMessages;
     cocos2d::CCDictionary* m_userReplies;
+    cocos2d::CCDictionary* m_localLeaderboardLevels;
     gd::string m_searchKey;
     gd::string m_mapPackKey;
     LeaderboardState m_leaderboardState;
+    int m_leaderboardMode;
     bool m_returnToLocalLevels;
     LevelManagerDelegate* m_levelManagerDelegate;
     LevelDownloadDelegate* m_levelDownloadDelegate;
@@ -10374,6 +10381,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJChallengeDelegate* m_GJChallengeDelegate;
     GJDailyLevelDelegate* m_GJDailyLevelDelegate;
     OnlineListDelegate* m_onlineListDelegate;
+    void* m_levelRateInfoDelegate;
     SearchType m_searchType;
     int m_mapPack;
     gd::string m_tempSave;
@@ -12944,6 +12952,7 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_enabledItems;
     cocos2d::CCDictionary* m_wraithChests;
     bool m_skipIncrementChallenge;
+    cocos2d::CCDictionary* m_unk390;
     cocos2d::CCDictionary* m_unkDict;
     cocos2d::CCDictionary* m_unlockedItems;
     gd::map<std::pair<int, UnlockType>, int> m_accountIDForIcon;
@@ -13251,6 +13260,8 @@ class GauntletNode : cocos2d::CCNode {
     GauntletNode() {
         m_gauntletInfoNode = nullptr;
         m_rewardNode = nullptr;
+        m_gauntlet = nullptr;
+        m_locked = false;
     }
 
     static GauntletNode* create(GJMapPack* gauntlet) = win inline {
@@ -13270,10 +13281,14 @@ class GauntletNode : cocos2d::CCNode {
 
     cocos2d::CCNode* m_gauntletInfoNode;
     cocos2d::CCNode* m_rewardNode;
+    cocos2d::ccColor3B m_labelColor;
+    cocos2d::ccColor3B m_backgroundColor;
+    GJMapPack* m_gauntlet;
+    bool m_locked;
 }
 
 [[link(android)]]
-class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelManagerDelegate {
+class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelManagerDelegate, RewardedVideoDelegate {
     GauntletSelectLayer() {
         m_backgroundSprite = nullptr;
         m_scrollLayer = nullptr;
@@ -13284,6 +13299,9 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
         m_loadingCircle = nullptr;
         m_gauntlets = nullptr;
         m_playBlocked = false;
+        m_gauntletID = 0;
+        m_videoPlaying = false;
+        m_locked = false;
     }
     ~GauntletSelectLayer() = win inline {
         auto glm = GameLevelManager::sharedState();
@@ -13335,6 +13353,9 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     LoadingCircle* m_loadingCircle;
     cocos2d::CCDictionary* m_gauntlets;
     bool m_playBlocked;
+    int m_gauntletID;
+    bool m_videoPlaying;
+    bool m_locked;
 }
 
 [[link(android)]]
@@ -13590,11 +13611,10 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
         m_youtubeInput = nullptr;
         m_twitterInput = nullptr;
         m_twitchInput = nullptr;
-        m_messageSettings = nullptr;
-        m_friendRequestSettings = nullptr;
-        m_commentSettings = nullptr;
+        m_inputs = nullptr;
     }
     ~GJAccountSettingsLayer() = win inline, m1 0x23e1c8 {
+        CC_SAFE_RELEASE(m_inputs);
         CC_SAFE_RELEASE(m_messageSettings);
         CC_SAFE_RELEASE(m_friendRequestSettings);
         CC_SAFE_RELEASE(m_commentSettings);
@@ -13636,12 +13656,8 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     int m_messageStatus;
     int m_friendStatus;
     int m_commentHistoryStatus;
-    gd::string m_youtubeURL;
-    gd::string m_twitterURL;
-    gd::string m_twitchURL;
-    CCTextInputNode* m_youtubeInput;
-    CCTextInputNode* m_twitterInput;
-    CCTextInputNode* m_twitchInput;
+    cocos2d::CCArray* m_inputs;
+    gd::map<int, gd::string> m_links;
     cocos2d::CCArray* m_messageSettings;
     cocos2d::CCArray* m_friendRequestSettings;
     cocos2d::CCArray* m_commentSettings;
@@ -17222,8 +17238,18 @@ class GJGameLevel : cocos2d::CCNode {
     int m_bestTime;
     int m_bestPoints;
     int m_platformerSeed;
+    int m_unk520;
+    gd::string m_unk528;
+    int m_unk548;
+    int m_unk54c;
+    int m_unk550;
+    int m_unk554;
+    gd::string m_unk558;
+    int m_unk578;
     gd::string m_localBestTimes;
     gd::string m_localBestPoints;
+    bool m_unk5c0;
+    bool m_unk5c1;
 }
 
 [[link(android)]]
@@ -20739,6 +20765,7 @@ class GJUserScore : cocos2d::CCNode {
         m_unkInt2 = 0;
         m_levelMode = 0;
         m_leaderboardMode = LevelLeaderboardMode::Time;
+        m_unk390 = 0;
     }
 
     // virtual ~GJUserScore();
@@ -20791,6 +20818,10 @@ class GJUserScore : cocos2d::CCNode {
     gd::string m_youtubeURL;
     gd::string m_twitterURL;
     gd::string m_twitchURL;
+    gd::string m_instagramURL;
+    gd::string m_tiktokURL;
+    gd::string m_discordUsername;
+    gd::string m_customString;
     int m_playerCube;
     int m_playerShip;
     int m_playerBall;
@@ -20819,6 +20850,7 @@ class GJUserScore : cocos2d::CCNode {
     gd::string m_platformerInfo;
     int m_levelMode;
     LevelLeaderboardMode m_leaderboardMode;
+    int m_unk390;
 }
 
 [[link(android)]]
@@ -22156,6 +22188,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
         m_friendsBtn = nullptr;
         m_circle = nullptr;
         m_noInternet = nullptr;
+        m_modeButtons = nullptr;
     }
     ~LeaderboardsLayer() = win inline {
         auto glm = GameLevelManager::sharedState();
@@ -22210,6 +22243,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     LoadingCircle* m_circle;
     TextArea* m_noInternet;
     cocos2d::CCArray* m_tabs;
+    cocos2d::CCArray* m_modeButtons;
 }
 
 [[link(android)]]
@@ -24242,6 +24276,8 @@ class LevelSettingsObject : cocos2d::CCNode {
     bool m_noTimePenalty;
     // property kA44
     int m_propertykA44;
+    // property kA47
+    int m_propertykA47;
     // property kA35
     bool m_resetCamera;
     // property kA36
@@ -26187,7 +26223,7 @@ class ObjectToolbox : cocos2d::CCNode {
         return nullptr;
     }
     float gridNodeSizeForKey(int key) = win 0x3708d0, imac 0x719ed0, m1 0x631924;
-    const char* intKeyToFrame(int key) = win 0x1d06a0, imac 0x719e00, m1 0x631840;
+    const char* intKeyToFrame(int key) = win 0x3708a0, imac 0x719e00, m1 0x631840;
     const char* perspectiveBlockFrame(int key) = win 0x3712f0, m1 0x631a08;
 
     gd::map<int, gd::string> m_allKeys;
@@ -28451,11 +28487,6 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
         this->updateTimeWarp(timeWarp);
     }
 
-    int m_unk36c8;
-    bool m_unk36cc;
-    bool m_unk36cd;
-    bool m_unk36ce;
-    bool m_unk36cf;
     geode::SeedValueRSV m_damageVerifiedIndex;
     bool m_damageVerified;
     gd::vector<gd::string> m_objectStrings;
@@ -30405,7 +30436,7 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 }
 
 [[link(android)]]
-class SetGroupIDLayer : FLAlertLayer, TextInputDelegate {
+class SetGroupIDLayer : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDelegate {
     SetGroupIDLayer() {
         m_targetObject = nullptr;
         m_targetObjects = nullptr;
@@ -30660,7 +30691,7 @@ class SetLevelOrderPopup : SetIDPopup {
 class SetTargetIDLayer : SetupTriggerPopup {
     // virtual ~SetTargetIDLayer();
 
-    static SetTargetIDLayer* create(EffectGameObject* object, cocos2d::CCArray* objects, gd::string title, gd::string label, int minimum, int maximum, int objectID) = win 0x98480, imac 0x2b9730, m1 0x256b70;
+    static SetTargetIDLayer* create(EffectGameObject* object, cocos2d::CCArray* objects, gd::string title, gd::string label, int minimum, int maximum, int objectID) = imac 0x2b9730, m1 0x256b70;
 
     virtual void determineStartValues() = win 0x28f0a0, m1 0x257188, imac 0x2b9e60;
     virtual void valueDidChange(int tag, float value) = win 0x401f90, imac 0x2b9e70, m1 0x25718c;
@@ -34844,6 +34875,7 @@ class SongInfoObject : cocos2d::CCNode {
     gd::string m_youtubeVideo;
     gd::string m_youtubeChannel;
     gd::string m_songUrl;
+    gd::string m_unkString;
     int m_artistID;
     float m_fileSize;
     int m_nongType;
