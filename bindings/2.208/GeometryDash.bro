@@ -22490,7 +22490,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 [[link(android)]]
 class LevelCell : TableViewCell {
     // virtual ~LevelCell();
-    LevelCell(char const* identifier, float width, float height) = m1 0x1f4fb0, win 0xadfa0;
+    LevelCell(char const* identifier, float width, float height) = win 0xadfa0, m1 0x1f4fb0;
 
     static LevelCell* create(float width, float height) = win inline, imac 0x24e620, m1 0x1f4ea8 {
         auto ret = new LevelCell(" ", width, height);
@@ -23429,7 +23429,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void confirmMoveToBottom(cocos2d::CCObject* sender) = win 0x2ff070;
     void confirmMoveToTop(cocos2d::CCObject* sender) = win 0x2fef30;
     void confirmOwnerDelete(cocos2d::CCObject* sender) = win 0x2fd8a0, imac 0x2c19e0;
-    void downloadLevel() = m1 0x25bfa4, win 0x2f9d30;
+    void downloadLevel() = win 0x2f9d30, m1 0x25bfa4;
     void incrementDislikes() = win inline, ios inline {
         m_level->m_dislikes++;
         this->updateLabelValues();
@@ -23617,7 +23617,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 
 [[link(android)]]
 class LevelListCell : TableViewCell {
-    LevelListCell(char const* identifier, float width, float height) = m1 0x1fe2fc, win 0xbec50, ios inline : TableViewCell(identifier, width, height) {
+    LevelListCell(char const* identifier, float width, float height) = win 0xbec50, m1 0x1fe2fc, ios inline : TableViewCell(identifier, width, height) {
         m_levelList = nullptr;
         m_addingLevel = false;
         this->init();
@@ -24165,7 +24165,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     // virtual ~LevelSettingsObject();
 
     static LevelSettingsObject* create() = m1 0xc35d4;
-    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = imac 0x102e20, m1 0xe168c, win 0x2ec800;
+    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = win 0x2ec800, imac 0x102e20, m1 0xe168c;
     static LevelSettingsObject* objectFromString(gd::string const& str) = win inline, m1 0xc4fc0 {
         return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
     }
@@ -25419,7 +25419,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     void onPlaybackControl(cocos2d::CCObject* sender) = win 0x339790, imac 0x60eba0, m1 0x5346b8;
     void onSearch(cocos2d::CCObject* sender) = win 0x33a4b0, imac 0x60e4f0, m1 0x533fc4;
     void onTagFilters(cocos2d::CCObject* sender) = win 0x33a6a0, imac 0x60e680;
-    void onUpdateLibrary(cocos2d::CCObject* sender) = m1 0x533f64, win 0x339910;
+    void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x339910, m1 0x533f64;
     void setupList(MusicSearchResult* result) = win 0x339c50, imac 0x60ed40, m1 0x534838;
     void setupMusicBrowser() = win inline {
         auto mdm = MusicDownloadManager::sharedState();
@@ -25782,7 +25782,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response);
     void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x340540;
     void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x3425d0;
-    void parseMusicLibrary() = imac 0x46e340, win 0x340ab0;
+    void parseMusicLibrary() = win 0x340ab0, imac 0x46e340;
     void parseSFXLibrary() = win 0x342b00, m1 0x4df4bc;
     gd::string pathForSFX(int id) = win 0x33f530, imac 0x58fc90, m1 0x4da7d4;
     gd::string pathForSFXFolder(int id) = win 0x33f3e0;
@@ -28642,8 +28642,8 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onMessages(cocos2d::CCObject* sender);
     void onMyLevels(cocos2d::CCObject* sender) = win 0x3c3620, imac 0x7bdc60;
     void onMyLists(cocos2d::CCObject* sender) = win 0x3c37d0;
-    void onNextPage(cocos2d::CCObject* sender) = m1 0x6c42d4, win 0x3c6580;
-    void onPrevPage(cocos2d::CCObject* sender) = m1 0x6c42c8, win 0x3c6590;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x3c6580, m1 0x6c42d4;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x3c6590, m1 0x6c42c8;
     void onRequests(cocos2d::CCObject* sender) = m1 0x6c36f0;
     void onSendMessage(cocos2d::CCObject* sender) = m1 0x6c2a80;
     void onSettings(cocos2d::CCObject* sender) = m1 0x34792c;
@@ -31850,7 +31850,7 @@ class SetupObjectOptions2Popup : SetupTriggerPopup {
 
     virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x400c50, m1 0x2a93e0, imac 0x31b2d0;
 
-    bool init(GameObject* object, cocos2d::CCArray* objects) = imac 0x501100, win 0x400750;
+    bool init(GameObject* object, cocos2d::CCArray* objects) = win 0x400750, imac 0x501100;
 }
 
 [[link(android)]]
@@ -36525,10 +36525,10 @@ class UILayer : cocos2d::CCLayerColor {
             this->updateUINodeVisibility(visible && m_inPlatformer);
         }
     }
-    void togglePlatformerMode(bool platformer) = imac 0x4c8160, m1 0x4272d4, win inline {
+    void togglePlatformerMode(bool platformer) = win inline, imac 0x4c8160, m1 0x4272d4 {
         m_inPlatformer = platformer;
-        refreshDpad();
-        updateUINodeVisibility(platformer);
+        this->refreshDpad();
+        this->updateUINodeVisibility(platformer);
     }
     void updateCheckState() = win 0x4cd0b0, m1 0x427158;
     void updateDualMode(bool dual) = win inline {
@@ -36536,7 +36536,7 @@ class UILayer : cocos2d::CCLayerColor {
         m_dualMode = dual;
         this->togglePlatformerMode(m_inPlatformer);
     }
-    void updateUINodeVisibility(bool visible) = m1 0x42768c, win 0x4cd460;
+    void updateUINodeVisibility(bool visible) = win 0x4cd460, m1 0x42768c;
 
     // This member is here because rob managed to inhert CCKeyboardDelegate twice
     // in this class, which ended up breaking addresser when trying to hook it.
