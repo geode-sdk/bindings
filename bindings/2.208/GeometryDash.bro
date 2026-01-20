@@ -7822,7 +7822,7 @@ class EndLevelLayer : GJDropDownLayer {
         m_playLayer = playLayer;
         return GJDropDownLayer::init(" ", 230.f, true);
     }
-    void onEdit(cocos2d::CCObject* sender) = win 0x135250;
+    void onEdit(cocos2d::CCObject* sender) = win 0x135250, m1 0x4216f0;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x4c2b80, m1 0x42271c, ios inline {}
     void onHideLayer(cocos2d::CCObject* sender) = win 0x135420, imac 0x4c1d30, m1 0x421944;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x1348a0;
@@ -7881,7 +7881,7 @@ class EndPortalObject : GameObject {
     virtual void setVisible(bool visible) = win 0x138400, imac 0x39c580, m1 0x321a40;
 
     cocos2d::CCPoint getSpawnPos() = win 0x1381e0, m1 0x3218e4;
-    void triggerObject(GJBaseGameLayer* layer) = win inline {
+    void triggerObject(GJBaseGameLayer* layer) = win inline, m1 0x321874 {
         auto playLayer = GameManager::sharedState()->m_playLayer;
         if (!playLayer->m_player1->m_isDead) {
             playLayer->m_levelEndAnimationStarted = true;
@@ -28267,8 +28267,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void onQuit() = win 0x3ba850, m1 0xa0fe4;
     void optimizeColorGroups() = win 0x3ae880;
     void optimizeOpacityGroups() = win 0x3aeb10;
-    void pauseGame(bool unfocused) = win 0x3b9d80;
-    void playEndAnimationToPos(cocos2d::CCPoint position) = win 0x3ab6b0;
+    void pauseGame(bool unfocused) = win 0x3b9d80, m1 0xabdb0;
+    void playEndAnimationToPos(cocos2d::CCPoint position) = win 0x3ab6b0, m1 0xa3bfc;
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint position, bool instant) = win 0x3ac090;
     void playReplay(gd::string inputs) = win inline, ios inline {
         m_useReplay = true;
@@ -28282,7 +28282,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void queueCheckpoint() = win inline, imac 0xbd2c0 {
         m_tryPlaceCheckpoint = true;
     }
-    void removeAllObjects() = win 0x3baa50, imac 0xb3070;
+    void removeAllObjects() = win 0x3baa50, imac 0xb3070, m1 0xa114c;
     void removeCheckpoint(bool first) = win 0x3b7ba0, m1 0xa9ef4;
     void removeFromGroupOld(GameObject* object) = win inline, ios inline {
         for (int i = 0; i < object->m_groupCount; i++) {
