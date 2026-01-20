@@ -1326,7 +1326,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     bool init(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
         return this->init(entries, nullptr, height, width, 0, type, 0.0f);
     }
-    bool init(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win 0x3c040;
+    bool init(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win 0x3c040, m1 0x29bacc;
     void lockList(bool locked) = win inline, imac 0x30c450 {
         m_locked = locked;
         this->setTouchEnabled(!locked);
@@ -1785,7 +1785,7 @@ class ButtonSprite : cocos2d::CCSprite {
         if (m_subBGSprite) m_subBGSprite->setColor(color);
         if (m_BGSprite) m_BGSprite->setColor(color);
     }
-    void setString(char const* text) = win 0x3fb70;
+    void setString(char const* text) = win 0x3fb70, m1 0x83eec;
     void updateBGImage(char const* filename) = win 0x3f5b0, imac 0x93290;
     void updateSpriteBGSize() = win 0x3f6f0;
     void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x933a0, m1 0x843ac {
@@ -2493,7 +2493,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     CCMenuItemSpriteExtra* activeItem() = win inline, imac 0x59e40 {
         return m_toggled ? m_onButton : m_offButton;
     }
-    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win inline {
+    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win inline, m1 0x4cfa4 {
         if (!CCMenuItem::initWithTarget(target, callback)) return false;
 
         m_offButton = CCMenuItemSpriteExtra::create(off, nullptr, this, menu_selector(CCMenuItemToggler::normalTouch));
@@ -2769,7 +2769,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
-    CCScrollLayerExt(cocos2d::CCRect rect) = win 0x46ae0;
+    CCScrollLayerExt(cocos2d::CCRect rect) = win 0x46ae0, m1 0x3a0300;
     ~CCScrollLayerExt() = win 0x47120, m1 0x3a0ad0;
 
     virtual void visit() = win 0x47b60, m1 0x3a1558, imac 0x42ec90;
@@ -3310,7 +3310,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
     }
     void updateBlinkLabelToChar(int index) = win 0x4feb0, imac 0x9eeb0, m1 0x8f5e0;
-    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0;
+    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0, m1 0x90c60;
     void updateDefaultFontValues(gd::string font) = win 0x4f6c0, imac 0x9e410, m1 0x8ebe8;
     void updateLabel(gd::string text) = win 0x4f8d0, imac 0x9e6c0, m1 0x8eeb8;
 
@@ -8698,7 +8698,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer() = win 0x51870, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    ~FLAlertLayer() = win 0x51870, ios 0x1234567, imac 0x1234567, m1 0x3fec84;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
@@ -8706,7 +8706,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2) {
         return FLAlertLayer::create(delegate, title, desc, btn1, btn2, 300.0);
     }
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x51920;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x51920, m1 0x3ff120;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x519d0, m1 0x3fef78;
 
     virtual void onEnter() = win 0x52e40, m1 0x40048c, imac 0x49c1b0;
@@ -8726,7 +8726,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         }
     }
     bool init(int opacity) = win 0x51ae0, imac 0x49b940, m1 0x3ffbc8;
-    bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x51bf0;
+    bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x51bf0, m1 0x3ff208;
     void onBtn1(cocos2d::CCObject* sender) = win 0x529d0, m1 0x3ffce4;
     void onBtn2(cocos2d::CCObject* sender) = win 0x52a30, m1 0x3ffd44;
 
@@ -8951,7 +8951,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         if (channel)
             channel->setPaused(true);
     }
-    int playEffect(gd::string path) = win 0x56de0;
+    int playEffect(gd::string path) = win 0x56de0, m1 0x360f90;
     int playEffect(gd::string path, float speed, float unknown, float volume) = win 0x56e60;
     int playEffectAdvanced(gd::string path, float speed, float unknown, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int effectID, bool override, bool noPreload, int channelID, int uniqueID, float minInterval, int sfxGroup) = win 0x56f50, imac 0x3e1580;
     int playEffectAsync(gd::string path) = win inline {
@@ -19272,7 +19272,7 @@ class GJSearchObject : cocos2d::CCNode {
     // virtual ~GJSearchObject();
 
     static GJSearchObject* create(SearchType searchType) = win 0x174740, imac 0x560780, m1 0x4afb80;
-    static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x174820, imac 0x5607f0;
+    static GJSearchObject* create(SearchType searchType, gd::string searchQuery) = win 0x174820, imac 0x5607f0, m1 0x4afbec;
     static GJSearchObject* create(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x174950, imac 0x141ae0, m1 0x4af8d8;
     static GJSearchObject* createFromKey(char const* key) = win 0x174040, imac 0x1181b0, m1 0x48b7e4;
     static char const* getSearchKey(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x174f50, m1 0x4afe14;
@@ -24569,8 +24569,8 @@ class LoadingLayer : cocos2d::CCLayer {
     static cocos2d::CCScene* scene(bool refresh) = win 0x32e0e0, m1 0x326c88;
 
     const char* getLoadingString() = win 0x32f520;
-    bool init(bool refresh) = win 0x32e1f0;
-    void loadAssets() = win 0x32ea90;
+    bool init(bool refresh) = win 0x32e1f0, m1 0x326e20;
+    void loadAssets() = win 0x32ea90, m1 0x32767c;
     void loadingFinished() = win inline, imac 0x3a31c0, m1 0x327d88 {
         cocos2d::CCDirector::sharedDirector()->replaceScene(MenuLayer::scene(m_fromRefresh));
     }
@@ -34618,7 +34618,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
         return nullptr;
     }
 
-    float getValue() = win 0x71300, imac 0x303380;
+    float getValue() = win 0x71300, imac 0x303380, m1 0x293f5c;
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0x303270, m1 0x293e64, ios inline {
         m_length = 200.f;
         return cocos2d::CCMenuItemImage::initWithNormalImage(normalFrame, selectedFrame, nullptr, target, selector);
@@ -34635,7 +34635,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
         this->setPosition({0, 0});
         setValue(value);
     }
-    void setValue(float value) = win 0x71390;
+    void setValue(float value) = win 0x71390, m1 0x293fe0;
 
     float m_length;
     bool m_vertical;
@@ -35688,7 +35688,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 
 [[link(android), depends(CCIndexPath)]]
 class TableViewCell : cocos2d::CCLayer {
-    TableViewCell(char const* identifier, float width, float height) = win 0x76b20, imac 0x626870;
+    TableViewCell(char const* identifier, float width, float height) = win 0x76b20, imac 0x626870, m1 0x549e04;
     ~TableViewCell() = win 0x76d80, m1 0x549ff4;
 
     void updateVisibility() = win inline, imac 0x7bc560, m1 0x123f6c {
@@ -35913,7 +35913,7 @@ class TextArea : cocos2d::CCSprite {
         m_disableColor = ignore;
         if (m_label) m_label->m_disableColor = ignore;
     }
-    void setString(gd::string text) = win 0x770e0;
+    void setString(gd::string text) = win 0x770e0, m1 0x2af3ac;
     void showAll() = win inline, m1 0x2af800 {
         this->stopAllCharacterActions();
         this->setOpacity(255);
