@@ -8487,7 +8487,7 @@ class EventLinkTrigger : EffectGameObject {
         m_extraID2 = 0;
     }
 
-    static EventLinkTrigger* create() = win inline, imac 0x1d1140 {
+    static EventLinkTrigger* create() = win inline, imac 0x1d1140, m1 0x1861b4 {
         auto ret = new EventLinkTrigger();
         if (ret->init()) {
             ret->autorelease();
