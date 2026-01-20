@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SavedActiveObjectState.hpp>
 #include <Geode/Geode.hpp>
 

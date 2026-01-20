@@ -1,4 +1,3 @@
-
 #include <Geode/binding/AdvancedFollowEditObject.hpp>
 #include <Geode/Geode.hpp>
 

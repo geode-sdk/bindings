@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCCallFuncN.hpp>
 #include <Geode/Geode.hpp>
 

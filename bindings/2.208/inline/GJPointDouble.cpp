@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJPointDouble.hpp>
 #include <Geode/Geode.hpp>
 

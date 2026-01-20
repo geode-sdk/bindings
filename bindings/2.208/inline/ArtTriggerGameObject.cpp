@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ArtTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SmartTemplateCell.hpp>
 #include <Geode/Geode.hpp>
 

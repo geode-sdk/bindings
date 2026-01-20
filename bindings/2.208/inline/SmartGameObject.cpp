@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SmartGameObject.hpp>
 #include <Geode/Geode.hpp>
 

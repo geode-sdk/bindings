@@ -1,4 +1,3 @@
-
 #include <Geode/binding/UISettingsGameObject.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/RewardedVideoDelegate.hpp>
 #include <Geode/Geode.hpp>
 

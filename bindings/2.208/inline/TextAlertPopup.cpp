@@ -1,4 +1,3 @@
-
 #include <Geode/binding/TextAlertPopup.hpp>
 #include <Geode/Geode.hpp>
 

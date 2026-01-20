@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJTransformControl.hpp>
 #include <Geode/Geode.hpp>
 

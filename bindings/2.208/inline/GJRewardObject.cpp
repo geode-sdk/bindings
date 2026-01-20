@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJRewardObject.hpp>
 #include <Geode/Geode.hpp>
 

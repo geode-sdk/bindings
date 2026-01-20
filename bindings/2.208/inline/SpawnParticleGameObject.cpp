@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SpawnParticleGameObject.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionShrinkGrow.hpp>
 #include <Geode/Geode.hpp>
 

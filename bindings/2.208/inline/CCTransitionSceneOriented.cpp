@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionSceneOriented.hpp>
 #include <Geode/Geode.hpp>
 

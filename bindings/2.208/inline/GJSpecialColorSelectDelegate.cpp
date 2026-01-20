@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJSpecialColorSelectDelegate.hpp>
 #include <Geode/Geode.hpp>
 

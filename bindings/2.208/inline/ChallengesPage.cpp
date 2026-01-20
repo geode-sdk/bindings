@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ChallengesPage.hpp>
 #include <Geode/Geode.hpp>
 

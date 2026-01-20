@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SFXTriggerInstance.hpp>
 #include <Geode/Geode.hpp>
 

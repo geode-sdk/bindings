@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJEffectManager.hpp>
 #include <Geode/Geode.hpp>
 
@@ -361,8 +360,7 @@ void GJEffectManager::traverseInheritanceChain(InheritanceNode* node) {
         m_unkArray430->addObject(node);
         node = node->m_inheritanceNode;
     }
-    CCObject* obj;
-    CCARRAY_FOREACH(m_unkArray430, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_unkArray430)) {
         auto currentNode = static_cast<InheritanceNode*>(obj);
         this->calculateInheritedColor(currentNode->m_colorID, currentNode->m_colorAction);
     }

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupResetTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 

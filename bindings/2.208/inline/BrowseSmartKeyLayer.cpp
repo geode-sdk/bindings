@@ -1,4 +1,3 @@
-
 #include <Geode/binding/BrowseSmartKeyLayer.hpp>
 #include <Geode/Geode.hpp>
 

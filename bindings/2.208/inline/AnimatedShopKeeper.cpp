@@ -1,4 +1,3 @@
-
 #include <Geode/binding/AnimatedShopKeeper.hpp>
 #include <Geode/Geode.hpp>
 

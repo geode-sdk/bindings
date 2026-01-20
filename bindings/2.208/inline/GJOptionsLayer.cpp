@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 

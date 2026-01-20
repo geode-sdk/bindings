@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupForceBlockPopup.hpp>
 #include <Geode/Geode.hpp>
 

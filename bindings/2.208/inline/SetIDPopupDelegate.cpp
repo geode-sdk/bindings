@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetIDPopupDelegate.hpp>
 #include <Geode/Geode.hpp>
 

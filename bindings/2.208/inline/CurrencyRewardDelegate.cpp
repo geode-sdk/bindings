@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CurrencyRewardDelegate.hpp>
 #include <Geode/Geode.hpp>
 

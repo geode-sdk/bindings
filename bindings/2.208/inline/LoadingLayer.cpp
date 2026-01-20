@@ -1,4 +1,3 @@
-
 #include <Geode/binding/LoadingLayer.hpp>
 #include <Geode/Geode.hpp>
 

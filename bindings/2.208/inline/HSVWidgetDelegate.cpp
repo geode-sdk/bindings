@@ -1,4 +1,3 @@
-
 #include <Geode/binding/HSVWidgetDelegate.hpp>
 #include <Geode/Geode.hpp>
 

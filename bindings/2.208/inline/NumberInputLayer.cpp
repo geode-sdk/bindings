@@ -1,4 +1,3 @@
-
 #include <Geode/binding/NumberInputLayer.hpp>
 #include <Geode/Geode.hpp>
 

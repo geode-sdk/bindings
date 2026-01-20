@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupSmartTemplateLayer.hpp>
 #include <Geode/Geode.hpp>
 

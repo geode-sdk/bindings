@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJAccountSettingsDelegate.hpp>
 #include <Geode/Geode.hpp>
 

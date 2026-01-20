@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJSmartPrefab.hpp>
 #include <Geode/Geode.hpp>
 

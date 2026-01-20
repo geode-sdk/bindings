@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJColorSetupLayer.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCSpriteFrameCache.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SecretLayer.hpp>
 #include <Geode/Geode.hpp>
 

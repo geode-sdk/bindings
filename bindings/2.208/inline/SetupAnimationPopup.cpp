@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupAnimationPopup.hpp>
 #include <Geode/Geode.hpp>
 

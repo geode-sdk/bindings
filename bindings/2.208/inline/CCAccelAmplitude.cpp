@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCAccelAmplitude.hpp>
 #include <Geode/Geode.hpp>
 

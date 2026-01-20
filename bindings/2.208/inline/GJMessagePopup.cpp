@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJMessagePopup.hpp>
 #include <Geode/Geode.hpp>
 

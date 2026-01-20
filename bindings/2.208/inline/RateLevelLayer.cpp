@@ -1,4 +1,3 @@
-
 #include <Geode/binding/RateLevelLayer.hpp>
 #include <Geode/Geode.hpp>
 

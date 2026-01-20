@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ChanceTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 

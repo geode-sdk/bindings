@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCSchedulerScriptHandlerEntry.hpp>
 #include <Geode/Geode.hpp>
 

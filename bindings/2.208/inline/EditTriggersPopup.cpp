@@ -1,4 +1,3 @@
-
 #include <Geode/binding/EditTriggersPopup.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/DynamicScrollDelegate.hpp>
 #include <Geode/Geode.hpp>
 

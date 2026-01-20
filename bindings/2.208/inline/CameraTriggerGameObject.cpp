@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CameraTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 

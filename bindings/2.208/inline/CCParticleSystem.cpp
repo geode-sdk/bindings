@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCParticleSystem.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/LevelSettingsDelegate.hpp>
 #include <Geode/Geode.hpp>
 

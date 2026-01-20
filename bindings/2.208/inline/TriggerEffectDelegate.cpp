@@ -1,4 +1,3 @@
-
 #include <Geode/binding/TriggerEffectDelegate.hpp>
 #include <Geode/Geode.hpp>
 

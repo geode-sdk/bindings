@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupRandTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 

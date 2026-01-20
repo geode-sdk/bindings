@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupShakePopup.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCEaseElasticIn.hpp>
 #include <Geode/Geode.hpp>
 

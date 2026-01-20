@@ -1,4 +1,3 @@
-
 #include <Geode/binding/MusicDownloadDelegate.hpp>
 #include <Geode/Geode.hpp>
 

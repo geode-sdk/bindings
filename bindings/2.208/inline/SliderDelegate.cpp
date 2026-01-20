@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SliderDelegate.hpp>
 #include <Geode/Geode.hpp>
 

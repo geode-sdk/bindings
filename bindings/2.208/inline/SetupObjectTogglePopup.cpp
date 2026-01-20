@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupObjectTogglePopup.hpp>
 #include <Geode/Geode.hpp>
 

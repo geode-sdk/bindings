@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetFolderPopup.hpp>
 #include <Geode/Geode.hpp>
 

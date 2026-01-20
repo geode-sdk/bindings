@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetGroupIDLayer.hpp>
 #include <Geode/Geode.hpp>
 

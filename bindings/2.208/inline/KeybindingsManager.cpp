@@ -1,4 +1,3 @@
-
 #include <Geode/binding/KeybindingsManager.hpp>
 #include <Geode/Geode.hpp>
 

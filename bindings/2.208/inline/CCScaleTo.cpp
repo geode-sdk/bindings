@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCScaleTo.hpp>
 #include <Geode/Geode.hpp>
 

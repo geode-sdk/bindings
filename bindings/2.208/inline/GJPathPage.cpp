@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJPathPage.hpp>
 #include <Geode/Geode.hpp>
 

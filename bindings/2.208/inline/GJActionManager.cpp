@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJActionManager.hpp>
 #include <Geode/Geode.hpp>
 
@@ -45,8 +44,7 @@ void GJActionManager::stopInternalAction(int id) {
 
 void GJActionManager::updateInternalActions(float dt, bool remove) {
     auto keys = m_internalActions->allKeys();
-    CCObject* obj;
-    CCARRAY_FOREACH(keys, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(keys)) {
         auto key = static_cast<cocos2d::CCInteger*>(obj)->getValue();
         auto action = static_cast<cocos2d::CCAction*>(m_internalActions->objectForKey(key));
         if (action->isDone() || remove) {

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetItemIDLayer.hpp>
 #include <Geode/Geode.hpp>
 

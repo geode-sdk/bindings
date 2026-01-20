@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCDataVisitor.hpp>
 #include <Geode/Geode.hpp>
 

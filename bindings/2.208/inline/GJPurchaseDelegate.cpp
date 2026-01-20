@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJPurchaseDelegate.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupCountTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 

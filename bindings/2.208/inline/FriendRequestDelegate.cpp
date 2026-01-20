@@ -1,4 +1,3 @@
-
 #include <Geode/binding/FriendRequestDelegate.hpp>
 #include <Geode/Geode.hpp>
 

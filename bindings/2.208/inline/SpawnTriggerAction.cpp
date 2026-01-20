@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SpawnTriggerAction.hpp>
 #include <Geode/Geode.hpp>
 

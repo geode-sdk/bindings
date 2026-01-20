@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCEditBox.hpp>
 #include <Geode/Geode.hpp>
 

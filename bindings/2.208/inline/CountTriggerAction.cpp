@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CountTriggerAction.hpp>
 #include <Geode/Geode.hpp>
 

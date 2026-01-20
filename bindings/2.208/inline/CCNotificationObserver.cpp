@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCNotificationObserver.hpp>
 #include <Geode/Geode.hpp>
 

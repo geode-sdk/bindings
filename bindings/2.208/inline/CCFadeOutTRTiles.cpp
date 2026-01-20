@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCFadeOutTRTiles.hpp>
 #include <Geode/Geode.hpp>
 

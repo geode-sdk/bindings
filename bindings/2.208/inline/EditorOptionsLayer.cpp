@@ -1,4 +1,3 @@
-
 #include <Geode/binding/EditorOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CreatorLayer.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/HardStreak.hpp>
 #include <Geode/Geode.hpp>
 
@@ -40,8 +39,7 @@ HardStreak* HardStreak::createDuplicate() {
     ret->setOpacity(this->getOpacity());
     ret->setColor(this->getColor());
 
-    CCObject* obj;
-    CCARRAY_FOREACH(m_pointArray, obj){
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_pointArray)){
         auto nodePoint = static_cast<PointNode*>(obj);
         ret->addPoint(nodePoint->m_point);
     }

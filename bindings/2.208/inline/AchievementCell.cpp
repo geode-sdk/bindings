@@ -1,4 +1,3 @@
-
 #include <Geode/binding/AchievementCell.hpp>
 #include <Geode/Geode.hpp>
 

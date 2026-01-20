@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJMGLayer.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CharacterColorDelegate.hpp>
 #include <Geode/Geode.hpp>
 

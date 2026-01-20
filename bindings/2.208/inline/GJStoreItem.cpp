@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJStoreItem.hpp>
 #include <Geode/Geode.hpp>
 

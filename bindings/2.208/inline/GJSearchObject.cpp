@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJSearchObject.hpp>
 #include <Geode/Geode.hpp>
 

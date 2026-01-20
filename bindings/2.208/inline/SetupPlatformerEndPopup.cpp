@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupPlatformerEndPopup.hpp>
 #include <Geode/Geode.hpp>
 

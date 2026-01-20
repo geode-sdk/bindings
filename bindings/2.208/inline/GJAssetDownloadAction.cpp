@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJAssetDownloadAction.hpp>
 #include <Geode/Geode.hpp>
 

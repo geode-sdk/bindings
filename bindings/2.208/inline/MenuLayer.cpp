@@ -1,4 +1,3 @@
-
 #include <Geode/binding/MenuLayer.hpp>
 #include <Geode/Geode.hpp>
 

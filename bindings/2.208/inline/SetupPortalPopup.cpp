@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupPortalPopup.hpp>
 #include <Geode/Geode.hpp>
 

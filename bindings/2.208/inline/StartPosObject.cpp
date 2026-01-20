@@ -1,4 +1,3 @@
-
 #include <Geode/binding/StartPosObject.hpp>
 #include <Geode/Geode.hpp>
 

@@ -109,7 +109,7 @@ int main(int argc, char** argv) try {
 
     std::filesystem::create_directories(writeDir / "modify");
     std::filesystem::create_directories(writeDir / "binding");
-    // std::filesystem::create_directories(writeDir / "inlines");
+    // std::filesystem::create_directories(writeDir / "inline");
 
     auto rootDir = std::filesystem::path(argv[2]);
     Root root = broma::parse_file(rootDir / "Entry.bro");
@@ -190,7 +190,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedPredeclare.hpp", generatePredeclareHeader(root));
         writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root, skipPugixml));
         writeFile(writeDir / "CodegenData.txt", generateTextInterface(root));
-        // generateInlineSources(root, writeDir / "inlines");
+        // generateInlineSources(root, writeDir / "inline");
     }
 
     writeFile(writeDir / "CodegenData.json", generateJsonInterface(root).dump(0));

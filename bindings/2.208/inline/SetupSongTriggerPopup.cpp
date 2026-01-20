@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupSongTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 

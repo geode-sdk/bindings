@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GauntletLayer.hpp>
 #include <Geode/Geode.hpp>
 

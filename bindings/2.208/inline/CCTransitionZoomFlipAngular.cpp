@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionZoomFlipAngular.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupGameplayOffsetPopup.hpp>
 #include <Geode/Geode.hpp>
 

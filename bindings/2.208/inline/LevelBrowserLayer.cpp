@@ -1,4 +1,3 @@
-
 #include <Geode/binding/LevelBrowserLayer.hpp>
 #include <Geode/Geode.hpp>
 
@@ -57,14 +56,13 @@ void LevelBrowserLayer::createNewSmartTemplate(cocos2d::CCObject* sender) {
 
 void LevelBrowserLayer::deleteSelected() {
     auto selected = cocos2d::CCArray::create();
-    CCObject* obj;
-    CCARRAY_FOREACH(m_levels, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_levels)) {
         auto level = static_cast<GJGameLevel*>(obj);
         if (level->m_selected) selected->addObject(level);
     }
     if (selected->count() == 0) return;
     auto glm = GameLevelManager::sharedState();
-    CCARRAY_FOREACH(selected, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(selected)) {
         glm->deleteLevel(static_cast<GJGameLevel*>(obj));
     }
     m_allSelected = false;

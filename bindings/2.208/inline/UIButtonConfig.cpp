@@ -1,4 +1,3 @@
-
 #include <Geode/binding/UIButtonConfig.hpp>
 #include <Geode/Geode.hpp>
 

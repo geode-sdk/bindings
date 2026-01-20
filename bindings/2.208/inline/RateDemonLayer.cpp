@@ -1,4 +1,3 @@
-
 #include <Geode/binding/RateDemonLayer.hpp>
 #include <Geode/Geode.hpp>
 

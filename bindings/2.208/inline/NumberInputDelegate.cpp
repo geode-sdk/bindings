@@ -1,4 +1,3 @@
-
 #include <Geode/binding/NumberInputDelegate.hpp>
 #include <Geode/Geode.hpp>
 

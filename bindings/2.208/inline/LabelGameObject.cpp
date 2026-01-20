@@ -1,4 +1,3 @@
-
 #include <Geode/binding/LabelGameObject.hpp>
 #include <Geode/Geode.hpp>
 

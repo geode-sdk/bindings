@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJScaleControlDelegate.hpp>
 #include <Geode/Geode.hpp>
 

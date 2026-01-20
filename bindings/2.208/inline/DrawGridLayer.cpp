@@ -1,4 +1,3 @@
-
 #include <Geode/binding/DrawGridLayer.hpp>
 #include <Geode/Geode.hpp>
 

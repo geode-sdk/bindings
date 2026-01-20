@@ -1,4 +1,3 @@
-
 #include <Geode/binding/RingObject.hpp>
 #include <Geode/Geode.hpp>
 

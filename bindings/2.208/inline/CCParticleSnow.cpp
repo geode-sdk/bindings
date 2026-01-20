@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCParticleSnow.hpp>
 #include <Geode/Geode.hpp>
 

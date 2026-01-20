@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SearchButton.hpp>
 #include <Geode/Geode.hpp>
 

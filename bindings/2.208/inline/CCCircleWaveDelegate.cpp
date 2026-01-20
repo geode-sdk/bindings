@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCCircleWaveDelegate.hpp>
 #include <Geode/Geode.hpp>
 

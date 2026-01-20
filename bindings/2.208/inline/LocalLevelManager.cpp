@@ -1,4 +1,3 @@
-
 #include <Geode/binding/LocalLevelManager.hpp>
 #include <Geode/Geode.hpp>
 
@@ -22,8 +21,7 @@ cocos2d::CCArray* LocalLevelManager::getAllLevelsWithName(gd::string name) {
 cocos2d::CCArray* LocalLevelManager::getCreatedLevels(int folder) {
     if (folder < 1) return m_localLevels;
     auto ret = cocos2d::CCArray::create();
-    CCObject* obj;
-    CCARRAY_FOREACH(m_localLevels, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_localLevels)) {
         if (!obj) return ret;
         if (static_cast<GJGameLevel*>(obj)->m_levelFolder == folder) ret->addObject(obj);
     }
@@ -33,8 +31,7 @@ cocos2d::CCArray* LocalLevelManager::getCreatedLevels(int folder) {
 cocos2d::CCArray* LocalLevelManager::getCreatedLists(int folder) {
     if (folder < 1) return m_localLists;
     auto ret = cocos2d::CCArray::create();
-    CCObject* obj;
-    CCARRAY_FOREACH(m_localLists, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_localLists)) {
         if (!obj) return ret;
         if (static_cast<GJLevelList*>(obj)->m_folder == folder) ret->addObject(obj);
     }

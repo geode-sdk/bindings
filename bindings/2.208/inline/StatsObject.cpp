@@ -1,4 +1,3 @@
-
 #include <Geode/binding/StatsObject.hpp>
 #include <Geode/Geode.hpp>
 

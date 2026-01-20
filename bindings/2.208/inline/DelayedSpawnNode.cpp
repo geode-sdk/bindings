@@ -1,4 +1,3 @@
-
 #include <Geode/binding/DelayedSpawnNode.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupEnterTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 

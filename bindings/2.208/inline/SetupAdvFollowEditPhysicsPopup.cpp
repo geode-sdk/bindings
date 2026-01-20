@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupAdvFollowEditPhysicsPopup.hpp>
 #include <Geode/Geode.hpp>
 

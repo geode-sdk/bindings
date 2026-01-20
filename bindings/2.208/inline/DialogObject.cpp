@@ -1,4 +1,3 @@
-
 #include <Geode/binding/DialogObject.hpp>
 #include <Geode/Geode.hpp>
 

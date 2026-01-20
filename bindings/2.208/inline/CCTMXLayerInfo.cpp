@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTMXLayerInfo.hpp>
 #include <Geode/Geode.hpp>
 

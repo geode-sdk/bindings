@@ -1,4 +1,3 @@
-
 #include <Geode/binding/UIObjectSettingsPopup.hpp>
 #include <Geode/Geode.hpp>
 

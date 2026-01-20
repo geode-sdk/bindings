@@ -1,4 +1,3 @@
-
 #include <Geode/binding/InfoAlertButton.hpp>
 #include <Geode/Geode.hpp>
 

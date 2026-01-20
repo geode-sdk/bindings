@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CustomSongLayer.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/DynamicMoveCalculation.hpp>
 #include <Geode/Geode.hpp>
 

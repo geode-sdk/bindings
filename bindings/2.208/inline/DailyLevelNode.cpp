@@ -1,4 +1,3 @@
-
 #include <Geode/binding/DailyLevelNode.hpp>
 #include <Geode/Geode.hpp>
 

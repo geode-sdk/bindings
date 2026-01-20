@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCScriptEngineManager.hpp>
 #include <Geode/Geode.hpp>
 

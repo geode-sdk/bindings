@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCFollow.hpp>
 #include <Geode/Geode.hpp>
 

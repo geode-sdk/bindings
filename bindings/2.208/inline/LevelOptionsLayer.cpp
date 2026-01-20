@@ -1,4 +1,3 @@
-
 #include <Geode/binding/LevelOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 

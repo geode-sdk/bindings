@@ -1,4 +1,3 @@
-
 #include <Geode/binding/EventLinkTrigger.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ItemTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 

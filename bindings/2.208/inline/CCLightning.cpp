@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCLightning.hpp>
 #include <Geode/Geode.hpp>
 

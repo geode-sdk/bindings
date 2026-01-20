@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CommunityCreditsPage.hpp>
 #include <Geode/Geode.hpp>
 

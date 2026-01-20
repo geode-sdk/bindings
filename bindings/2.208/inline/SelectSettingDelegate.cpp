@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SelectSettingDelegate.hpp>
 #include <Geode/Geode.hpp>
 

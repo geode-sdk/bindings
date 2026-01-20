@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCCardinalSplineBy.hpp>
 #include <Geode/Geode.hpp>
 

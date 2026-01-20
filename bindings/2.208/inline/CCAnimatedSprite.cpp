@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCAnimatedSprite.hpp>
 #include <Geode/Geode.hpp>
 

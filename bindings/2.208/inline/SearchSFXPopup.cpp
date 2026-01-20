@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SearchSFXPopup.hpp>
 #include <Geode/Geode.hpp>
 

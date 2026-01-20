@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GameOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 

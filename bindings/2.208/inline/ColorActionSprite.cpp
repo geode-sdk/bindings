@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ColorActionSprite.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCBezierTo.hpp>
 #include <Geode/Geode.hpp>
 

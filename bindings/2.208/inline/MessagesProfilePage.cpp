@@ -1,4 +1,3 @@
-
 #include <Geode/binding/MessagesProfilePage.hpp>
 #include <Geode/Geode.hpp>
 

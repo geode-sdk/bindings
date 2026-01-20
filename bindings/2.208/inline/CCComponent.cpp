@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCComponent.hpp>
 #include <Geode/Geode.hpp>
 

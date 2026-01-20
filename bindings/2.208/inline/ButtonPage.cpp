@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ButtonPage.hpp>
 #include <Geode/Geode.hpp>
 

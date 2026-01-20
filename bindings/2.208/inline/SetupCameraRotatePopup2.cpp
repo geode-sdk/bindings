@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupCameraRotatePopup2.hpp>
 #include <Geode/Geode.hpp>
 

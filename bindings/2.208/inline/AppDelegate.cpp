@@ -1,4 +1,3 @@
-
 #include <Geode/binding/AppDelegate.hpp>
 #include <Geode/Geode.hpp>
 

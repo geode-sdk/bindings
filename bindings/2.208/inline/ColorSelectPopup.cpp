@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ColorSelectPopup.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupRotateCommandPopup.hpp>
 #include <Geode/Geode.hpp>
 

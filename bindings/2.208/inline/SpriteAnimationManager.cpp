@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SpriteAnimationManager.hpp>
 #include <Geode/Geode.hpp>
 

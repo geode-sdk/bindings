@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCPartAnimSprite.hpp>
 #include <Geode/Geode.hpp>
 
@@ -22,8 +21,7 @@ int CCPartAnimSprite::countParts() {
 }
 
 void CCPartAnimSprite::dirtify() {
-    CCObject* obj;
-    CCARRAY_FOREACH(this->getChildren(), obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getChildren())) {
         static_cast<cocos2d::CCSprite*>(obj)->setDirty(true);
     }
 }

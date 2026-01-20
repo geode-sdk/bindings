@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CustomSFXDelegate.hpp>
 #include <Geode/Geode.hpp>
 

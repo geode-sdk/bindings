@@ -1,4 +1,3 @@
-
 #include <Geode/binding/UploadPopupDelegate.hpp>
 #include <Geode/Geode.hpp>
 

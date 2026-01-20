@@ -1,4 +1,3 @@
-
 #include <Geode/binding/PlatformDownloadDelegate.hpp>
 #include <Geode/Geode.hpp>
 

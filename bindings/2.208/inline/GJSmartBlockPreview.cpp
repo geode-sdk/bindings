@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJSmartBlockPreview.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/FriendsProfilePage.hpp>
 #include <Geode/Geode.hpp>
 

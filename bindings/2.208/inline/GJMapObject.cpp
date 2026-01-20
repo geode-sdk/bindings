@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJMapObject.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GooglePlayManager.hpp>
 #include <Geode/Geode.hpp>
 

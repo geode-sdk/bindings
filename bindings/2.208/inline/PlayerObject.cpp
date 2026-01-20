@@ -1,4 +1,3 @@
-
 #include <Geode/binding/PlayerObject.hpp>
 #include <Geode/Geode.hpp>
 

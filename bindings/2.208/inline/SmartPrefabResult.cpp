@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SmartPrefabResult.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SlideInLayer.hpp>
 #include <Geode/Geode.hpp>
 

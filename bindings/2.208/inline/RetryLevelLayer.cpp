@@ -1,4 +1,3 @@
-
 #include <Geode/binding/RetryLevelLayer.hpp>
 #include <Geode/Geode.hpp>
 

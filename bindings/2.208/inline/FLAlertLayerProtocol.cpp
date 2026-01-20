@@ -1,4 +1,3 @@
-
 #include <Geode/binding/FLAlertLayerProtocol.hpp>
 #include <Geode/Geode.hpp>
 

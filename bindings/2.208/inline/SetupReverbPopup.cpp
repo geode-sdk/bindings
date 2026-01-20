@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupReverbPopup.hpp>
 #include <Geode/Geode.hpp>
 

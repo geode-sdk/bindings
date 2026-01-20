@@ -1,4 +1,3 @@
-
 #include <Geode/binding/TouchToggleAction.hpp>
 #include <Geode/Geode.hpp>
 

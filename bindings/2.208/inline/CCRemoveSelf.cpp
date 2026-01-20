@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCRemoveSelf.hpp>
 #include <Geode/Geode.hpp>
 

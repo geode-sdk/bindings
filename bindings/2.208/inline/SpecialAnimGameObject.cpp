@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SpecialAnimGameObject.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJAccountSettingsLayer.hpp>
 #include <Geode/Geode.hpp>
 
@@ -7,11 +6,10 @@ GJAccountSettingsLayer::GJAccountSettingsLayer() {
     m_messageStatus = 0;
     m_friendStatus = 0;
     m_commentHistoryStatus = 0;
-    // TODO: fix
-    // m_youtubeInput = nullptr;
-    // m_twitterInput = nullptr;
-    // m_twitchInput = nullptr;
     m_inputs = nullptr;
+    m_messageSettings = nullptr;
+    m_friendRequestSettings = nullptr;
+    m_commentSettings = nullptr;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -33,18 +31,6 @@ GJAccountSettingsLayer* GJAccountSettingsLayer::create(int accountID) {
     }
     delete ret;
     return nullptr;
-}
-
-void GJAccountSettingsLayer::updateScoreValues() {
-    if (auto score = GameLevelManager::sharedState()->userInfoForAccountID(m_accountID)) {
-        score->m_messageState = m_messageStatus;
-        score->m_friendStatus = m_friendStatus;
-        score->m_commentHistoryStatus = m_commentHistoryStatus;
-        // TODO: fix
-        // score->m_youtubeURL = m_youtubeURL;
-        // score->m_twitterURL = m_twitterURL;
-        // score->m_twitchURL = m_twitchURL;
-    }
 }
 #endif
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupAreaMoveTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 

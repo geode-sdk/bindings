@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CustomSongCell.hpp>
 #include <Geode/Geode.hpp>
 

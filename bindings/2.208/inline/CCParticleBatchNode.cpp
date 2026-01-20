@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCParticleBatchNode.hpp>
 #include <Geode/Geode.hpp>
 

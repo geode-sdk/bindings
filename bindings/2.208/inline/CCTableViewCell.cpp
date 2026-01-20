@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTableViewCell.hpp>
 #include <Geode/Geode.hpp>
 

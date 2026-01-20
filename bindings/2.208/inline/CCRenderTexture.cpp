@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCRenderTexture.hpp>
 #include <Geode/Geode.hpp>
 

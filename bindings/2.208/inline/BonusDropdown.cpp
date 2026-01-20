@@ -1,4 +1,3 @@
-
 #include <Geode/binding/BonusDropdown.hpp>
 #include <Geode/Geode.hpp>
 

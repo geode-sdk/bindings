@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJUserMessage.hpp>
 #include <Geode/Geode.hpp>
 

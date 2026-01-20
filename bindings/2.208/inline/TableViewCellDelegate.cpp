@@ -1,4 +1,3 @@
-
 #include <Geode/binding/TableViewCellDelegate.hpp>
 #include <Geode/Geode.hpp>
 

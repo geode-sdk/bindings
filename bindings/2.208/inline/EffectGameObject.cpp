@@ -1,4 +1,3 @@
-
 #include <Geode/binding/EffectGameObject.hpp>
 #include <Geode/Geode.hpp>
 

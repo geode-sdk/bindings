@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GManager.hpp>
 #include <Geode/Geode.hpp>
 

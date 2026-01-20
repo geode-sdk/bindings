@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupGravityModPopup.hpp>
 #include <Geode/Geode.hpp>
 

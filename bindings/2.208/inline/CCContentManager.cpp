@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCContentManager.hpp>
 #include <Geode/Geode.hpp>
 

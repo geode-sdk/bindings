@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTouchDispatcher.hpp>
 #include <Geode/Geode.hpp>
 

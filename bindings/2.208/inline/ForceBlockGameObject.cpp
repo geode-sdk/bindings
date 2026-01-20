@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ForceBlockGameObject.hpp>
 #include <Geode/Geode.hpp>
 

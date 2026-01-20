@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ListButtonBarDelegate.hpp>
 #include <Geode/Geode.hpp>
 

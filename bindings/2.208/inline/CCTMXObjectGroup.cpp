@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTMXObjectGroup.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SongOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 

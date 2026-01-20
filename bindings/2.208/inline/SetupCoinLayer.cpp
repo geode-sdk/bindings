@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupCoinLayer.hpp>
 #include <Geode/Geode.hpp>
 

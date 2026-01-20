@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionMoveInT.hpp>
 #include <Geode/Geode.hpp>
 

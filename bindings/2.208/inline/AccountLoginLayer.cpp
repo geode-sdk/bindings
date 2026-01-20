@@ -1,4 +1,3 @@
-
 #include <Geode/binding/AccountLoginLayer.hpp>
 #include <Geode/Geode.hpp>
 

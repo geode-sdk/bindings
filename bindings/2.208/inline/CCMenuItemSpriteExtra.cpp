@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/Geode.hpp>
 

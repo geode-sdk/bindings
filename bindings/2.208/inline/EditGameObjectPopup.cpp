@@ -1,4 +1,3 @@
-
 #include <Geode/binding/EditGameObjectPopup.hpp>
 #include <Geode/Geode.hpp>
 

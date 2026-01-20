@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GradientTriggerObject.hpp>
 #include <Geode/Geode.hpp>
 

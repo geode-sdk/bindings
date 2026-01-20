@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCInvocation.hpp>
 #include <Geode/Geode.hpp>
 

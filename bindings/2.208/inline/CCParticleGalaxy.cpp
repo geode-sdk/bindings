@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCParticleGalaxy.hpp>
 #include <Geode/Geode.hpp>
 

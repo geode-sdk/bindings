@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupOpacityPopup.hpp>
 #include <Geode/Geode.hpp>
 

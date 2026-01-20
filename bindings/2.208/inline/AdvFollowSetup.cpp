@@ -1,4 +1,3 @@
-
 #include <Geode/binding/AdvFollowSetup.hpp>
 #include <Geode/Geode.hpp>
 

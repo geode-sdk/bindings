@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCStopGrid.hpp>
 #include <Geode/Geode.hpp>
 

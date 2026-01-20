@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GraphicsReloadLayer.hpp>
 #include <Geode/Geode.hpp>
 

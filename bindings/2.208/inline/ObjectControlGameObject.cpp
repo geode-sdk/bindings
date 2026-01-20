@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ObjectControlGameObject.hpp>
 #include <Geode/Geode.hpp>
 

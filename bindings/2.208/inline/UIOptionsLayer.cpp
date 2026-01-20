@@ -1,4 +1,3 @@
-
 #include <Geode/binding/UIOptionsLayer.hpp>
 #include <Geode/Geode.hpp>
 

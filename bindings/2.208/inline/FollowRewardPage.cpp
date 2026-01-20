@@ -1,4 +1,3 @@
-
 #include <Geode/binding/FollowRewardPage.hpp>
 #include <Geode/Geode.hpp>
 

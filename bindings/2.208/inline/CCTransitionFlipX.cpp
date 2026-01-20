@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionFlipX.hpp>
 #include <Geode/Geode.hpp>
 

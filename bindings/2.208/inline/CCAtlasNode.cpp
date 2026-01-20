@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCAtlasNode.hpp>
 #include <Geode/Geode.hpp>
 

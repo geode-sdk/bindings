@@ -1,4 +1,3 @@
-
 #include <Geode/binding/DynamicObjectAction.hpp>
 #include <Geode/Geode.hpp>
 

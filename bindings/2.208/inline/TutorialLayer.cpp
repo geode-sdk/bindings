@@ -1,4 +1,3 @@
-
 #include <Geode/binding/TutorialLayer.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GauntletSprite.hpp>
 #include <Geode/Geode.hpp>
 

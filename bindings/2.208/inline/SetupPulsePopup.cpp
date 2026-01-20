@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupPulsePopup.hpp>
 #include <Geode/Geode.hpp>
 

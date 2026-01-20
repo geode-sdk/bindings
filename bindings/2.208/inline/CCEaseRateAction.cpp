@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCEaseRateAction.hpp>
 #include <Geode/Geode.hpp>
 

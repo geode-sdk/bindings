@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SFXFolderObject.hpp>
 #include <Geode/Geode.hpp>
 

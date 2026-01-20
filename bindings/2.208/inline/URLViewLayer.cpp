@@ -1,4 +1,3 @@
-
 #include <Geode/binding/URLViewLayer.hpp>
 #include <Geode/Geode.hpp>
 

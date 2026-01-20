@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionPageTurn.hpp>
 #include <Geode/Geode.hpp>
 

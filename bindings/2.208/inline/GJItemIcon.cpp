@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJItemIcon.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ProfilePage.hpp>
 #include <Geode/Geode.hpp>
 
@@ -7,11 +6,10 @@
 bool ProfilePage::isOnWatchlist(int id) { return false; }
 
 void ProfilePage::toggleMainPageVisibility(bool visible) {
-    CCObject* obj;
-    CCARRAY_FOREACH(m_arrayWithUsernameLabel, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_arrayWithUsernameLabel)) {
         static_cast<cocos2d::CCNode*>(obj)->setVisible(visible);
     }
-    CCARRAY_FOREACH(m_buttons, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_buttons)) {
         static_cast<cocos2d::CCNode*>(obj)->setVisible(visible);
     }
     if (m_list) m_list->setVisible(visible);

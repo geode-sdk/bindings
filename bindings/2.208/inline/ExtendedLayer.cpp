@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ExtendedLayer.hpp>
 #include <Geode/Geode.hpp>
 

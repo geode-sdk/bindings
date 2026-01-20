@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupBGSpeedTrigger.hpp>
 #include <Geode/Geode.hpp>
 

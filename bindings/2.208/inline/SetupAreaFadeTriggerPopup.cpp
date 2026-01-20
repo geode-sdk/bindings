@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupAreaFadeTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 

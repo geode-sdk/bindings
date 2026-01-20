@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCPoolManager.hpp>
 #include <Geode/Geode.hpp>
 

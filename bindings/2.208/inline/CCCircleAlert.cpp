@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCCircleAlert.hpp>
 #include <Geode/Geode.hpp>
 

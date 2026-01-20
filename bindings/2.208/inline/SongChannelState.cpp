@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SongChannelState.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/EffectManagerState.hpp>
 #include <Geode/Geode.hpp>
 

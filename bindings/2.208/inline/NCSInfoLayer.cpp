@@ -1,4 +1,3 @@
-
 #include <Geode/binding/NCSInfoLayer.hpp>
 #include <Geode/Geode.hpp>
 

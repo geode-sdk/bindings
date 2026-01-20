@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ShardsPage.hpp>
 #include <Geode/Geode.hpp>
 
@@ -34,8 +33,7 @@ void ShardsPage::goToPage(int page) {
         m_page = page;
         for (int i = 0; i < m_pages->count(); i++) {
             auto arr = static_cast<cocos2d::CCArray*>(m_pages->objectForKey(i));
-            CCObject* obj;
-            CCARRAY_FOREACH(arr, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(arr)) {
                 static_cast<cocos2d::CCNode*>(obj)->setVisible(i == page);
             }
         }

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/FRequestProfilePage.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJFriendRequest.hpp>
 #include <Geode/Geode.hpp>
 

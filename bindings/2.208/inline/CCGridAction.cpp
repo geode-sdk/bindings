@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCGridAction.hpp>
 #include <Geode/Geode.hpp>
 

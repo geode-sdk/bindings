@@ -1,4 +1,3 @@
-
 #include <Geode/binding/MusicArtistObject.hpp>
 #include <Geode/Geode.hpp>
 

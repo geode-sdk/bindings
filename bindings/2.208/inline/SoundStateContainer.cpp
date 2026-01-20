@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SoundStateContainer.hpp>
 #include <Geode/Geode.hpp>
 

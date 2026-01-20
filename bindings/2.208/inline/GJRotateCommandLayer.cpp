@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJRotateCommandLayer.hpp>
 #include <Geode/Geode.hpp>
 

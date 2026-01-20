@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCEaseSineOut.hpp>
 #include <Geode/Geode.hpp>
 

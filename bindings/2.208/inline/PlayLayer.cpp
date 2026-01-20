@@ -1,4 +1,3 @@
-
 #include <Geode/binding/PlayLayer.hpp>
 #include <Geode/Geode.hpp>
 
@@ -7,11 +6,6 @@ PlayLayer* PlayLayer::get() {
 }
 
 void PlayLayer::testTime() {}
-
-void PlayLayer::setDamageVerifiedIdx(int idx) {
-    // TODO: FIX
-    // m_damageVerifiedIndex = idx;
-}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void PlayLayer::addToGroupOld(GameObject* object) {
@@ -207,8 +201,7 @@ void PlayLayer::queueCheckpoint() {
 }
 
 void PlayLayer::scanActiveSaveObjects() {
-    CCObject* obj;
-    CCARRAY_FOREACH(m_objects, obj) {
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
         auto object = static_cast<GameObject*>(obj);
         if (object->canAllowMultiActivate()) {
             if (!object->canMultiActivate(m_isPlatformer)) {

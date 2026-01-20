@@ -1,4 +1,3 @@
-
 #include <Geode/binding/AdToolbox.hpp>
 #include <Geode/Geode.hpp>
 

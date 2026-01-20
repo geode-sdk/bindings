@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCLabelTTF.hpp>
 #include <Geode/Geode.hpp>
 

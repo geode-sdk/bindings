@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCSpriteWithHue.hpp>
 #include <Geode/Geode.hpp>
 

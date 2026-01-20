@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SelectArtLayer.hpp>
 #include <Geode/Geode.hpp>
 

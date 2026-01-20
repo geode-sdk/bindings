@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionSplitCols.hpp>
 #include <Geode/Geode.hpp>
 

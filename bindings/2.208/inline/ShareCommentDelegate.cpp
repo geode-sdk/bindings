@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ShareCommentDelegate.hpp>
 #include <Geode/Geode.hpp>
 

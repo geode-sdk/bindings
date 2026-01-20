@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SongInfoObject.hpp>
 #include <Geode/Geode.hpp>
 

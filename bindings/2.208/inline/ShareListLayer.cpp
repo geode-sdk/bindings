@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ShareListLayer.hpp>
 #include <Geode/Geode.hpp>
 

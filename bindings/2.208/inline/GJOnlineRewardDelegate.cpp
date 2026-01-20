@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJOnlineRewardDelegate.hpp>
 #include <Geode/Geode.hpp>
 

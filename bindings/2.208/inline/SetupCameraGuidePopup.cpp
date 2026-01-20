@@ -1,4 +1,3 @@
-
 #include <Geode/binding/SetupCameraGuidePopup.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GameOptionsTrigger.hpp>
 #include <Geode/Geode.hpp>
 

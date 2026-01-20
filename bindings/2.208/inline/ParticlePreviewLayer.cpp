@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ParticlePreviewLayer.hpp>
 #include <Geode/Geode.hpp>
 

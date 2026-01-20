@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCScrollLayerExt.hpp>
 #include <Geode/Geode.hpp>
 

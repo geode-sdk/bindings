@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCMenuItemAtlasFont.hpp>
 #include <Geode/Geode.hpp>
 

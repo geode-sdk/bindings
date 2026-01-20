@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCTransitionJumpZoom.hpp>
 #include <Geode/Geode.hpp>
 

@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJSpriteColor.hpp>
 #include <Geode/Geode.hpp>
 

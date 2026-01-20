@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CountTriggerGameObject.hpp>
 #include <Geode/Geode.hpp>
 

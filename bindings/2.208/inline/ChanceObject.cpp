@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ChanceObject.hpp>
 #include <Geode/Geode.hpp>
 

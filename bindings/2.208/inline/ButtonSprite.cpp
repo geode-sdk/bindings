@@ -1,4 +1,3 @@
-
 #include <Geode/binding/ButtonSprite.hpp>
 #include <Geode/Geode.hpp>
 

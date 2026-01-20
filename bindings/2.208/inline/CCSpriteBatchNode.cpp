@@ -1,4 +1,3 @@
-
 #include <Geode/binding/CCSpriteBatchNode.hpp>
 #include <Geode/Geode.hpp>
 

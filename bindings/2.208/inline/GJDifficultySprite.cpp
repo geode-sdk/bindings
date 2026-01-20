@@ -1,4 +1,3 @@
-
 #include <Geode/binding/GJDifficultySprite.hpp>
 #include <Geode/Geode.hpp>
 
