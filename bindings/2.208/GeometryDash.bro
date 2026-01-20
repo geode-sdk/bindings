@@ -13318,7 +13318,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(int unused);
+    static cocos2d::CCScene* scene(int unused) = win 0x1f8b20;
 
     virtual void onExit() = win 0x1fb070, m1 0x4c0e64, imac 0x573250;
     virtual void keyBackClicked() = win 0x1fa7a0, m1 0x4c0758, imac 0x572bb0;
@@ -29494,7 +29494,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x1f8b20, m1 0x400c94;
+    static cocos2d::CCScene* scene() = win 0x3e1df0, m1 0x400c94;
 
     virtual bool init() = win 0x3e1f70, m1 0x400dc0, imac 0x49cc40;
     virtual void onExit() = win 0x3e95a0, m1 0x40693c, imac 0x4a2c00;
