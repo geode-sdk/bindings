@@ -6356,7 +6356,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void onBuildHelper(cocos2d::CCObject* sender) = m1 0x233f68;
     void onCopyWColor(cocos2d::CCObject* sender) = m1 0x233f58;
     void onCreateExtras(cocos2d::CCObject* sender) = m1 0x233f18;
-    void onCreateLoop(cocos2d::CCObject* sender) = m1 0x233f78;
+    void onCreateLoop(cocos2d::CCObject* sender) = win 0xdcd20, m1 0x233f78;
     void onCreateTemplate(cocos2d::CCObject* sender) = win inline, m1 0x23423c, ios inline {
         auto objects = cocos2d::CCArray::create();
         auto lel = GameManager::sharedState()->m_levelEditorLayer;
@@ -6617,7 +6617,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     }
     void createExtrasForObject(int id, GameObject* object, cocos2d::CCArray* objects) = win 0x12ff60;
     void createGlow() = win inline, ios inline {}
-    void createLoop() = m1 0x102de8;
+    void createLoop() = win 0x119670, m1 0x102de8;
     void createMoveMenu() = win 0x11ad70, m1 0x3d3a0;
     void createNewKeyframeAnim() = win 0x1193d0, imac 0x45500, m1 0x3ca80;
     GameObject* createObject(int objectID, cocos2d::CCPoint position) = win 0x10ff60, imac 0x3a4e0, m1 0x32fcc;
@@ -9845,7 +9845,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getUserList(UserListType type) = win 0x1629d0, m1 0x4a62ac;
     void getUserMessages(bool sent, int page, int total);
     void getUsers(GJSearchObject* object) = win 0x159790;
-    void gotoLevelPage(GJGameLevel* level) = m1 0x48a7d0;
+    void gotoLevelPage(GJGameLevel* level) = win 0x149500, m1 0x48a7d0;
     void handleIt(bool success, gd::string response, gd::string tag, GJHttpType type) = win 0x143030;
     void handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) = win inline, ios inline {
         auto result = GJHttpResult::create(true, response, tag, type);
@@ -13311,7 +13311,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(int unused);
+    static cocos2d::CCScene* scene(int unused) = win 0x1f8b20;
 
     virtual void onExit() = win 0x1fb070, m1 0x4c0e64, imac 0x573250;
     virtual void keyBackClicked() = win 0x1fa7a0, m1 0x4c0758, imac 0x572bb0;
@@ -15091,9 +15091,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         }
         this->toggleGlitter(true);
     }
-    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = imac 0x124320;
-    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = imac 0x124270;
-    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = imac 0x1243d0, m1 0xfcfe0;
+    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x212c60, imac 0x124320;
+    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x212e40, imac 0x124270;
+    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x212d50, imac 0x1243d0, m1 0xfcfe0;
     void syncBGTextures() = win 0x23ade0, imac 0x158b30, m1 0x128650;
     void teleportPlayer(TeleportPortalObject* object, PlayerObject* player) = win 0x20fdf0, imac 0x4fa60;
     void testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, gd::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x14b650, m1 0x11df58 {
@@ -23178,7 +23178,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateBlendValues() = win 0x2de510, imac 0xefa90, m1 0xd2e18;
     void updateEditor(float dt);
     void updateEditorMode() = win 0x2db600, imac 0xde880;
-    void updateGameObjects() = win 0x119670;
+    void updateGameObjects() = win 0x2dbf70;
     void updateGridLayer() = win inline {
         auto parent = m_shaderLayer && m_shaderLayer->m_state.m_usesShaders ? m_aboveShaderObjectLayer : m_objectLayer;
         if (m_drawGridLayer->getParent() != parent) {
@@ -29454,7 +29454,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene() = win 0x1f8b20, m1 0x400c94;
+    static cocos2d::CCScene* scene() = win 0x3e1df0, m1 0x400c94;
 
     virtual bool init() = win 0x3e1f70, m1 0x400dc0, imac 0x49cc40;
     virtual void onExit() = win 0x3e95a0, m1 0x40693c, imac 0x4a2c00;
