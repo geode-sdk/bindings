@@ -12664,7 +12664,7 @@ class GameStatsManager : cocos2d::CCNode {
         return 0;
     }
     gd::string getNextVideoAdReward() = imac 0x781b0, m1 0x69960;
-    gd::string getPathRewardKey(int id) = imac 0x6c9a0, m1 0x5e170;
+    gd::string getPathRewardKey(int id) = win 0x1ea700, imac 0x6c9a0, m1 0x5e170;
     GJChallengeItem* getQueuedChallenge(int id);
     GJRewardItem* getRewardForSecretChest(int id) = win inline, m1 0x7dde0, ios inline {
         return static_cast<GJRewardItem*>(m_allTreasureRoomChests->objectForKey(id));
@@ -16380,7 +16380,7 @@ class GJEffectManager : cocos2d::CCNode {
     GroupCommandObject2* createKeyframeCommand(int targetID, cocos2d::CCArray* group, GameObject* object, int uniqueID, int controlID, bool temporary, float posXMod, float posYMod, float rotMod, float scaleXMod, float scaleYMod, float timeMod, gd::vector<int> const& remapKeys) = win 0x25cb20;
     void createMoveCommand(cocos2d::CCPoint pt, int groupID, float duration, int easingType, float easingRate, bool lockPlayerX, bool lockPlayerY, bool lockCameraX, bool lockCameraY, float moveModX, float moveModY, int uniqueID, int controlID) = win 0x25c510, imac 0x2e0470, m1 0x279d18;
     void createPlayerFollowCommand(float delay, float speed, int offset, float maxSpeed, float duration, int targetID, int uniqueID, int controlID) = imac 0x2e0900, m1 0x27a138;
-    void createRotateCommand(float offset, float duration, int targetID, int centerID, int easingType, float easingRate, bool lockRotation, bool player1, bool player2, int uniqueID, int controlID) = imac 0x2e05d0, m1 0x279e6c;
+    void createRotateCommand(float offset, float duration, int targetID, int centerID, int easingType, float easingRate, bool lockRotation, bool player1, bool player2, int uniqueID, int controlID) = win 0x25c7c0, imac 0x2e05d0, m1 0x279e6c;
     void createTransformCommand(double scaleX, double scaleY, double property450, double property451, bool onlyMove, float duration, int targetID, int centerID, int easingType, float easingRate, bool, bool relativeRotation, int uniqueID, int controlID) = win inline, imac 0x2e06e0, m1 0x279f60 {
         auto& command = m_unkVector560.emplace_back();
         command.m_targetScaleX = scaleX;
@@ -16961,8 +16961,16 @@ class GJGameLevel : cocos2d::CCNode {
         CC_SAFE_RELEASE(m_lastBuildSave);
     }
 
-    static GJGameLevel* create();
-    static GJGameLevel* create(cocos2d::CCDictionary* dict, bool download);
+    static GJGameLevel* create() = win inline {
+	auto ret = new GJGameLevel();
+        if (ret->init()) {
+            ret->autorelease();
+            return ret;
+        }
+        delete ret;
+        return nullptr;
+    }
+    static GJGameLevel* create(cocos2d::CCDictionary* dict, bool download) = win 0x16ae70;
     static GJGameLevel* createWithCoder(DS_Dictionary* dict) = win inline {
         auto level = GJGameLevel::create();
         level->dataLoaded(dict);
@@ -18438,7 +18446,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
         }
     }
     void ProcessHttpRequest(gd::string url, gd::string params, gd::string tag, GJHttpType type) = win 0x282500, imac 0x658630, m1 0x5787e8;
-    void removeDLFromActive(char const* tag);
+    void removeDLFromActive(char const* tag) = win 0x282c20;
     bool uploadComment(gd::string text, int lobbyID) = win 0x283430, imac 0x65ae40, m1 0x3f33cc;
 
     cocos2d::CCDictionary* m_activeDownloads;
@@ -20741,7 +20749,7 @@ class GJUserScore : cocos2d::CCNode {
         delete ret;
         return nullptr;
     }
-    static GJUserScore* create(cocos2d::CCDictionary* dict) = win 0x16ae70;
+    static GJUserScore* create(cocos2d::CCDictionary* dict);
 
     virtual bool init() = win 0x172b90, m1 0x4af1bc, imac 0x55fd10;
 
@@ -21795,7 +21803,7 @@ class KeybindingsLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x846c0, m1 0x531520, imac 0x60b260;
 
     cocos2d::CCLabelBMFont* addKeyPair(char const* action, char const* key) = win 0x2c0100, m1 0x53048c;
-    int countForPage(int page);
+    int countForPage(int page) = win 0x2c04b0;
     void goToPage(int page);
     void incrementCountForPage(int page) = win inline, imac 0x60abc0 {
         m_values->setObject(cocos2d::CCString::createWithFormat("%i", this->countForPage(page) + 1), this->pageKey(page));
@@ -22175,7 +22183,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     virtual void loadLeaderboardFinished(cocos2d::CCArray* scores, char const* key) = win 0x2c36d0, m1 0x46a0b4, imac 0x513740;
     virtual void loadLeaderboardFailed(char const* key) = win 0x2c3790, m1 0x46a35c, imac 0x513990;
 
-    bool init(LeaderboardState state);
+    bool init(LeaderboardState state) = win 0x2c1220;
     bool isCorrect(char const* key);
     void onBack(cocos2d::CCObject* sender) = win 0x2c3f30, m1 0x469a74;
     void onCreators(cocos2d::CCObject* sender) = imac 0x513180;
