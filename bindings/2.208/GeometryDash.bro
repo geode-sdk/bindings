@@ -443,7 +443,7 @@ class AchievementManager : cocos2d::CCNode {
 class AchievementNotifier : cocos2d::CCNode {
     // virtual ~AchievementNotifier();
 
-    static AchievementNotifier* sharedState() = win 0x3ab20, m1 0x6c7b4c;
+    static AchievementNotifier* sharedState() = win 0x3ab20, m1 0x6c7b4c, imac 0x7c2580;
 
     virtual bool init() = win 0x3abd0, m1 0x6c7bc8, imac 0x7c2610;
 
@@ -1295,7 +1295,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
         m_currentPage = 0;
         m_locked = false;
     }
-    ~BoomListView() = win 0x3bfa0, m1 0x29b7b0;
+    ~BoomListView() = win 0x3bfa0, m1 0x29b7b0, imac 0x30be50;
 
     static BoomListView* create(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win inline, imac 0x30c170, m1 0x29b9c0, ios inline {
         auto ret = new BoomListView();
@@ -1326,7 +1326,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     bool init(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
         return this->init(entries, nullptr, height, width, 0, type, 0.0f);
     }
-    bool init(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win 0x3c040, m1 0x29bacc;
+    bool init(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win 0x3c040, m1 0x29bacc, imac 0x30c2a0;
     void lockList(bool locked) = win inline, imac 0x30c450 {
         m_locked = locked;
         this->setTouchEnabled(!locked);
@@ -1785,7 +1785,7 @@ class ButtonSprite : cocos2d::CCSprite {
         if (m_subBGSprite) m_subBGSprite->setColor(color);
         if (m_BGSprite) m_BGSprite->setColor(color);
     }
-    void setString(char const* text) = win 0x3fb70, m1 0x83eec;
+    void setString(char const* text) = win 0x3fb70, m1 0x83eec, imac 0x92eb0;
     void updateBGImage(char const* filename) = win 0x3f5b0, imac 0x93290;
     void updateSpriteBGSize() = win 0x3f6f0;
     void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x933a0, m1 0x843ac {
@@ -2493,7 +2493,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     CCMenuItemSpriteExtra* activeItem() = win inline, imac 0x59e40 {
         return m_toggled ? m_onButton : m_offButton;
     }
-    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win inline, m1 0x4cfa4 {
+    bool init(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win inline, m1 0x4cfa4, imac 0x59880 {
         if (!CCMenuItem::initWithTarget(target, callback)) return false;
 
         m_offButton = CCMenuItemSpriteExtra::create(off, nullptr, this, menu_selector(CCMenuItemToggler::normalTouch));
@@ -2768,8 +2768,8 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer {
-    CCScrollLayerExt(cocos2d::CCRect rect) = win 0x46ae0, m1 0x3a0300;
-    ~CCScrollLayerExt() = win 0x47120, m1 0x3a0ad0;
+    CCScrollLayerExt(cocos2d::CCRect rect) = win 0x46ae0, m1 0x3a0300, imac 0x42d900;
+    ~CCScrollLayerExt() = win 0x47120, m1 0x3a0ad0, imac 0x42e0b0;
 
     virtual void visit() = win 0x47b60, m1 0x3a1558, imac 0x42ec90;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x47610, m1 0x3a0f5c, imac 0x42e630;
@@ -3956,7 +3956,7 @@ class ColorActionSprite : cocos2d::CCNode {
 class ColorChannelSprite : cocos2d::CCSprite {
     // virtual ~ColorChannelSprite();
 
-    static ColorChannelSprite* create() = win 0x258740, m1 0x272d8c;
+    static ColorChannelSprite* create() = win 0x258740, m1 0x272d8c, imac 0x2d8700;
 
     virtual bool init() = win 0x258800, imac 0x2d87a0, m1 0x272e34;
 
@@ -8700,7 +8700,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer() = win 0x51870, imac 0x49a810, m1 0x3fec84;
+    ~FLAlertLayer() = win 0x51870, imac 0x49a810, m1 0x3fec00;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
@@ -8708,8 +8708,8 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2) {
         return FLAlertLayer::create(delegate, title, desc, btn1, btn2, 300.0);
     }
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x51920, m1 0x3ff120;
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x519d0, m1 0x3fef78;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = win 0x51920, m1 0x3ff120, imac 0x49ab90;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x519d0, m1 0x3fef78, imac 0x49ac50;
 
     virtual void onEnter() = win 0x52e40, m1 0x40048c, imac 0x49c1b0;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x52a90, m1 0x3fff64, imac 0x49bcf0;
@@ -8728,7 +8728,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         }
     }
     bool init(int opacity) = win 0x51ae0, imac 0x49b940, m1 0x3ffbc8;
-    bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x51bf0, m1 0x3ff208;
+    bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x51bf0, m1 0x3ff208, imac 0x49aee0;
     void onBtn1(cocos2d::CCObject* sender) = win 0x529d0, m1 0x3ffce4;
     void onBtn2(cocos2d::CCObject* sender) = win 0x52a30, m1 0x3ffd44;
 
@@ -8953,7 +8953,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         if (channel)
             channel->setPaused(true);
     }
-    int playEffect(gd::string path) = win 0x56de0, m1 0x360f90;
+    int playEffect(gd::string path) = win 0x56de0, m1 0x360f90, imac 0x3e3b80;
     int playEffect(gd::string path, float speed, float unknown, float volume) = win 0x56e60;
     int playEffectAdvanced(gd::string path, float speed, float unknown, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int effectID, bool override, bool noPreload, int channelID, int uniqueID, float minInterval, int sfxGroup) = win 0x56f50, imac 0x3e1580;
     int playEffectAsync(gd::string path) = win inline {
@@ -22337,7 +22337,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     ~LevelBrowserLayer() = win 0x2c8820, m1 0x3efcf4;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = win 0x2c8a50, imac 0x48a8e0, m1 0x3efe90;
-    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x2c8a00, m1 0x3efe44;
+    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x2c8a00, m1 0x3efe44, imac 0x48a8a0;
 
     virtual void onEnter() = win 0x2cfaf0, m1 0x3f6690, imac 0x4916e0;
     virtual void onEnterTransitionDidFinish() = win 0x248ec0, m1 0x3f6880, imac 0x491880;
@@ -24556,7 +24556,7 @@ class LoadingLayer : cocos2d::CCLayer {
         m_sliderGrooveHeight = 0.f;
         m_fromRefresh = false;
     }
-    ~LoadingLayer() = win inline, m1 0x327dbc {
+    ~LoadingLayer() = win inline, m1 0x327dbc, imac 0x3a31f0 {
         CCNode::removeAllChildrenWithCleanup(true);
     }
 
@@ -24569,11 +24569,11 @@ class LoadingLayer : cocos2d::CCLayer {
         delete ret;
         return nullptr;
     }
-    static cocos2d::CCScene* scene(bool refresh) = win 0x32e0e0, m1 0x326c88;
+    static cocos2d::CCScene* scene(bool refresh) = win 0x32e0e0, m1 0x326c88, imac 0x3a2010;
 
     const char* getLoadingString() = win 0x32f520;
-    bool init(bool refresh) = win 0x32e1f0, m1 0x326e20;
-    void loadAssets() = win 0x32ea90, m1 0x32767c;
+    bool init(bool refresh) = win 0x32e1f0, m1 0x326e20, imac 0x3a21f0;
+    void loadAssets() = win 0x32ea90, m1 0x32767c, imac 0x3a2a20;
     void loadingFinished() = win inline, imac 0x3a31c0, m1 0x327d88 {
         cocos2d::CCDirector::sharedDirector()->replaceScene(MenuLayer::scene(m_fromRefresh));
     }
@@ -24826,7 +24826,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     static MenuLayer* get() {
         return GameManager::get()->m_menuLayer;
     }
-    static cocos2d::CCScene* scene(bool isVideoOptionsOpen) = win 0x333630, m1 0x31603c;
+    static cocos2d::CCScene* scene(bool isVideoOptionsOpen) = win 0x333630, m1 0x31603c, imac 0x38fb20;
 
     virtual bool init() = win 0x3337c0, m1 0x3161ec, imac 0x38fce0;
     virtual void keyBackClicked() = win 0x335cb0, imac 0x391c00, m1 0x318068;
@@ -34622,7 +34622,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
         this->setPosition({0, 0});
         setValue(value);
     }
-    void setValue(float value) = win 0x71390, m1 0x293fe0;
+    void setValue(float value) = win 0x71390, m1 0x293fe0, imac 0x303410;
 
     float m_length;
     bool m_vertical;
@@ -34821,10 +34821,10 @@ class SongInfoObject : cocos2d::CCNode {
     int m_songID;
     gd::string m_songName;
     gd::string m_artistName;
+    gd::string m_unkString;
     gd::string m_youtubeVideo;
     gd::string m_youtubeChannel;
     gd::string m_songUrl;
-    gd::string m_unkString;
     int m_artistID;
     float m_fileSize;
     int m_nongType;
@@ -35677,7 +35677,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 [[link(android), depends(CCIndexPath)]]
 class TableViewCell : cocos2d::CCLayer {
     TableViewCell(char const* identifier, float width, float height) = win 0x76b20, imac 0x626870, m1 0x549e04;
-    ~TableViewCell() = win 0x76d80, m1 0x549ff4;
+    ~TableViewCell() = win 0x76d80, m1 0x549ff4, imac 0x626ad0;
 
     void updateVisibility() = win inline, imac 0x7bc560, m1 0x123f6c {
         if (!m_tableView) return;
@@ -35901,7 +35901,7 @@ class TextArea : cocos2d::CCSprite {
         m_disableColor = ignore;
         if (m_label) m_label->m_disableColor = ignore;
     }
-    void setString(gd::string text) = win 0x770e0, m1 0x2af3ac;
+    void setString(gd::string text) = win 0x770e0, m1 0x2af3ac, imac 0x3217b0;
     void showAll() = win inline, m1 0x2af800 {
         this->stopAllCharacterActions();
         this->setOpacity(255);

@@ -2,6 +2,7 @@
 
 #ifdef GEODE_IS_ARM_MAC
 
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(PlayLayer, 0x3798);
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
 GEODE_MEMBER_CHECK(PlayLayer, m_endXPosition, 0x35a4);
@@ -78,5 +79,6 @@ GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
 
 GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x1f0);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x25c);
+#endif
 
 #endif

@@ -176,8 +176,8 @@ class cocos2d::CCAction : cocos2d::CCObject {
     // void setSpeedMod(float);
     // void setTarget(cocos2d::CCNode*);
     // CCAction(cocos2d::CCAction const&);
-    CCAction() = m1 0x51d154;
-    virtual ~CCAction() = m1 0x51d1b4;
+    CCAction() = m1 0x51d154, imac 0x5f3c20;
+    virtual ~CCAction() = m1 0x51d1b4, imac 0x5f3ca0;
 
     static cocos2d::CCAction* create() = imac 0x5f3d10, m1 0x51d1f4, ios inline {
         auto ret = new CCAction();
@@ -1248,7 +1248,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     bool popSceneWithTransition(float, cocos2d::PopTransition) = m1 0x3e9bcc;
     void popToRootScene() = imac 0x483fc0, m1 0x3e9c9c;
     void popToSceneInStack(cocos2d::CCScene*) = imac 0x484140, m1 0x3e9e04;
-    void popToSceneStackLevel(int) = m1 0x3e9ca4;
+    void popToSceneStackLevel(int) = m1 0x3e9ca4, imac 0x483fd0;
     void purgeCachedData();
     void purgeDirector() = imac 0x4841a0, m1 0x3e9e54;
     bool pushScene(cocos2d::CCScene*);
@@ -2737,10 +2737,10 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = m1 0x1b03a4;
 
     void addDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x239960
-    bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool, double) = m1 0x1b00a8;
+    bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool, double) = m1 0x1b00a8, imac 0x203180;
     void forceAddDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x2399a8
     void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x2398cc
-    char const* keyToString(cocos2d::enumKeyCodes) = m1 0x1b03d8;
+    char const* keyToString(cocos2d::enumKeyCodes) = m1 0x1b03d8, imac 0x203490;
     void removeDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x239884
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x203460, m1 0x1b03c0;
 
@@ -2827,8 +2827,8 @@ class cocos2d::CCLabelAtlas : cocos2d::CCAtlasNode, cocos2d::CCLabelProtocol {
 
 [[link(win, android)]]
 class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProtocol, cocos2d::CCRGBAProtocol {
-    CCLabelBMFont() = m1 0x5042f0;
-    virtual ~CCLabelBMFont() = m1 0x5043cc;
+    CCLabelBMFont() = m1 0x5042f0, imac 0x5d8500;
+    virtual ~CCLabelBMFont() = m1 0x5043cc, imac 0x5d8630;
 
     static cocos2d::CCLabelBMFont* create() = m1 0x503b9c, ios inline {
     	auto pRet = new CCLabelBMFont();
@@ -3132,8 +3132,8 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 [[link(win, android)]]
 class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCAccelerometerDelegate, cocos2d::CCKeypadDelegate, cocos2d::CCKeyboardDelegate, cocos2d::CCMouseDelegate {
     // CCLayer(cocos2d::CCLayer const&);
-    CCLayer() = m1 0x411b90;
-    virtual ~CCLayer() = m1 0x411ce8;
+    CCLayer() = m1 0x411b90, imac 0x4afb20;
+    virtual ~CCLayer() = m1 0x411ce8, imac 0x4afce0;
 
     static cocos2d::CCLayer* create() = imac 0x4b00e0, m1 0x411fac;
 
@@ -3200,8 +3200,8 @@ class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCA
 [[link(win, android)]]
 class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
     // CCLayerColor(cocos2d::CCLayerColor const&);
-    CCLayerColor() = m1 0x413990;
-    virtual ~CCLayerColor() = m1 0x413c08;
+    CCLayerColor() = m1 0x413990, imac 0x4b1d70;
+    virtual ~CCLayerColor() = m1 0x413b88, imac 0x4b2050;
 
     static cocos2d::CCLayerColor* create() = imac 0x4b23d0, m1 0x413db8, ios inline {
     	CCLayerColor* pRet = new CCLayerColor();
@@ -3313,8 +3313,8 @@ class cocos2d::CCLayerMultiplex : cocos2d::CCLayer {
 class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
     // static cocos2d::CCLayerRGBA* create();
     // CCLayerRGBA(cocos2d::CCLayerRGBA const&);
-    CCLayerRGBA() = m1 0x412efc;
-    virtual ~CCLayerRGBA() = m1 0x41314c;
+    CCLayerRGBA() = m1 0x412efc, imac 0x4b0fb0;
+    virtual ~CCLayerRGBA() = m1 0x4130cc, imac 0x4b1250 {}
 
     virtual bool init() = m1 0x4132dc, imac 0x4b1590;
     virtual void setColor(cocos2d::ccColor3B const&) = m1 0x413514, imac 0x4b17d0;
@@ -3466,7 +3466,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsVertically();
     void alignItemsVerticallyWithPadding(float);
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
-    bool initWithArray(cocos2d::CCArray*) = m1 0x69b20c;
+    bool initWithArray(cocos2d::CCArray*) = m1 0x69b20c, imac 0x792970;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x792dc0, m1 0x69b670;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0x794470, m1 0x69c8d0;
     void setHandlerPriority(int);
@@ -3479,7 +3479,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
 [[link(win, android)]]
 class cocos2d::CCMenuItem : cocos2d::CCNodeRGBA {
 
-    virtual ~CCMenuItem() = m1 0x340060;
+    virtual ~CCMenuItem() = m1 0x340004, imac 0x3be390;
 
     static cocos2d::CCMenuItem* create() = imac 0x3be180, m1 0x33fe30;
     static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3be240, m1 0x33fed8;
@@ -3817,7 +3817,7 @@ class cocos2d::CCMoveTo : cocos2d::CCMoveBy {
 [[link(win, android)]]
 class cocos2d::CCNode : cocos2d::CCObject {
     // CCNode(cocos2d::CCNode const&);
-    CCNode() = m1 0x21481c;
+    CCNode() = m1 0x21481c, imac 0x271db0;
     virtual ~CCNode() = imac 0x271f60, m1 0x2149a8;
 
     static cocos2d::CCNode* create() = m1 0x215138;
@@ -4046,8 +4046,8 @@ class cocos2d::CCNode : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     // CCNodeRGBA(cocos2d::CCNodeRGBA const&);
-    CCNodeRGBA() = m1 0x2172a0;
-    virtual ~CCNodeRGBA() = m1 0x217300;
+    CCNodeRGBA() = m1 0x2172a0, imac 0x274b40;
+    virtual ~CCNodeRGBA() = m1 0x217300, imac 0x274be0;
 
     static cocos2d::CCNodeRGBA* create() = m1 0x217330, ios inline {
     	auto pRet = new cocos2d::CCNodeRGBA();
@@ -4130,7 +4130,7 @@ class cocos2d::CCNotificationObserver : cocos2d::CCObject {
 class cocos2d::CCObject : cocos2d::CCCopying {
     // CCObject(cocos2d::CCObject const&);
     CCObject() = imac 0x48a340, m1 0x3ef980;
-    virtual ~CCObject() = m1 0x3efaa4;
+    virtual ~CCObject() = m1 0x3efa10, imac 0x48a3e0;
 
     static cocos2d::CCObject* createWithCoder(DS_Dictionary*) = imac 0x48a630, m1 0x3efc8c;
 
@@ -5587,8 +5587,8 @@ class cocos2d::CCScaleTo : cocos2d::CCActionInterval {
 [[link(win, android)]]
 class cocos2d::CCScene : cocos2d::CCNode {
     // CCScene(cocos2d::CCScene const&);
-    CCScene() = m1 0x230dec;
-    virtual ~CCScene() = m1 0x230ee4;
+    CCScene() = m1 0x230dec, imac 0x290890;
+    virtual ~CCScene() = m1 0x230ee4, imac 0x290970;
 
     static cocos2d::CCScene* create() = imac 0x290a00, m1 0x230f58;
 
@@ -6100,8 +6100,8 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     // void setTrVertexMod(float);
     // void setUseVertexMod(bool);
     // CCSprite(cocos2d::CCSprite const&);
-    CCSprite() = m1 0x229d88;
-    virtual ~CCSprite() = m1 0x229e10;
+    CCSprite() = m1 0x229d88, imac 0x288690;
+    virtual ~CCSprite() = m1 0x229e10, imac 0x288730;
 
     static cocos2d::CCSprite* create() = m1 0x229910;
     static cocos2d::CCSprite* create(char const*) = m1 0x229600;
@@ -6221,8 +6221,8 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
 
 [[link(win, android)]]
 class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
-    CCSpriteBatchNode() = m1 0x13c788;
-    virtual ~CCSpriteBatchNode() = m1 0x13c7b8;
+    CCSpriteBatchNode() = m1 0x13c788, imac 0x176280;
+    virtual ~CCSpriteBatchNode() = m1 0x13c7b8, imac 0x1762d0;
 
     static cocos2d::CCSpriteBatchNode* create(char const* fileImage, unsigned int capacity) = m1 0x13c600;
     static cocos2d::CCSpriteBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int) = m1 0x13c410;
@@ -6510,9 +6510,9 @@ class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
 
 [[link(win, android)]]
 class cocos2d::CCTexture2D : cocos2d::CCObject {
-    CCTexture2D() = imac 0x477a60, m1 0x3de918;
+    CCTexture2D() = imac 0x477a60, m1 0x3de97c;
     // CCTexture2D(cocos2d::CCTexture2D const&);
-    virtual ~CCTexture2D() = m1 0x3de9e0; //imac 0x465400
+    virtual ~CCTexture2D() = m1 0x3de9e0, imac 0x477ac0;
 
     static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
     static void PVRImagesHavePremultipliedAlpha(bool) = imac 0x478f30;
@@ -7304,8 +7304,8 @@ class cocos2d::CCTransitionRotoZoom : cocos2d::CCTransitionScene {
 [[link(win, android)]]
 class cocos2d::CCTransitionScene : cocos2d::CCScene {
     // CCTransitionScene(cocos2d::CCTransitionScene const&);
-    CCTransitionScene();
-    virtual ~CCTransitionScene() = m1 0xbb4dc;
+    CCTransitionScene() = m1 0xbb45c, imac 0xd46e0;
+    virtual ~CCTransitionScene() = m1 0xbb49c, imac 0xd9890;
 
     static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*);
 
