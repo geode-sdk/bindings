@@ -11,8 +11,12 @@ namespace { namespace format_strings {
 using namespace geode;
 using namespace geode::modifier;
 
-auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadata) {{
-	auto wrapped = geode::hook::createWrapper(reinterpret_cast<void*>(address), metadata);
+template <class F>
+auto wrapFunction(uintptr_t address, tulip::hook::TulipConvention convention) {{
+	auto wrapped = geode::hook::createWrapper(reinterpret_cast<void*>(address), tulip::hook::WrapperMetadata{{
+		.m_convention = geode::hook::createConvention(convention),
+		.m_abstract = tulip::hook::AbstractFunction::from(F(nullptr)),
+	}});
 	if (wrapped.isErr()) {{
 		throw std::runtime_error(wrapped.unwrapErr());
 	}}
@@ -23,10 +27,7 @@ auto wrapFunction(uintptr_t address, tulip::hook::WrapperMetadata const& metadat
 	constexpr char const* declare_member = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({class_name}{const}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 	return reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 }}
 )GEN";
@@ -35,10 +36,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	auto self = addresser::thunkAdjust(Resolve<{parameter_types}>::func(&{class_name}::{function_name}), this);
 	using FunctionType = decltype({function_name}({arguments}))(*)({class_name}{const}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 	return reinterpret_cast<FunctionType>(func)(self{parameter_comma}{arguments});
 }}
 )GEN";
@@ -46,24 +44,18 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	constexpr char const* declare_static = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 	return reinterpret_cast<FunctionType>(func)({arguments});
 }}
 )GEN";
 
 	constexpr char const* declare_destructor = R"GEN(
 {class_name}::{function_name}({parameters}) {{
-	// basically we destruct it once by calling the gd function, 
+	// basically we destruct it once by calling the gd function,
 	// then lock it, so that other gd destructors dont get called
 	if (!geode::DestructorLock::isLocked(this)) {{
 		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-			.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-			.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-		}});
+		static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 		reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 
 		// we need to construct it back so that it uhhh ummm doesnt crash
@@ -76,14 +68,11 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 
 	constexpr char const* declare_destructor_baseless = R"GEN(
 {class_name}::{function_name}({parameters}) {{
-	// basically we destruct it once by calling the gd function, 
+	// basically we destruct it once by calling the gd function,
 	// then we release the lock because there are no other destructors after this
 	if (!geode::DestructorLock::isLocked(this)) {{
 		using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-		static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-			.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-			.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-		}});
+		static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 		reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 	}}
 	else {{
@@ -101,10 +90,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	{class_name}::~{unqualified_class_name}();
 
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 }}
 )GEN";
@@ -112,10 +98,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	constexpr char const* declare_constructor_begin = R"GEN(
 {class_name}::{function_name}({parameters}) {{
 	using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 }}
 )GEN";
@@ -141,10 +124,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	constexpr char const* declare_standalone = R"GEN(
 {return} {function_name}({parameters}) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
-	static auto func = wrapFunction({address_inline}, tulip::hook::WrapperMetadata{{
-		.m_convention = geode::hook::createConvention(tulip::hook::TulipConvention::{convention}),
-		.m_abstract = tulip::hook::AbstractFunction::from(FunctionType(nullptr)),
-	}});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 	return reinterpret_cast<FunctionType>(func)({arguments});
 }}
 )GEN";
