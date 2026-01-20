@@ -7232,7 +7232,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         }
     }
     void toggleEditObjectButton() = win 0x11a930, m1 0x2a434;
-    void toggleEnableRotate(cocos2d::CCObject* sender) = m1 0xaaa0;
+    void toggleEnableRotate(cocos2d::CCObject* sender) = win 0x110220, m1 0xaaa0;
     void toggleFreeMove(cocos2d::CCObject* sender) = m1 0xa9c4;
     void toggleLockUI(bool lockUI) = win inline, imac 0x2d1e0, m1 0x26b308 {
         m_isPaused = lockUI;
@@ -24859,7 +24859,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
         }
         else PlatformToolbox::signInGooglePlay();
     }
-    void onMoreGames(cocos2d::CCObject* sender) = m1 0x3178f4, win 0x1234567, ios 0x1234567, imac 0x1234567;
+    void onMoreGames(cocos2d::CCObject* sender) = m1 0x3178f4, win 0x335470, ios 0x1234567, imac 0x1234567;
     void onMyProfile(cocos2d::CCObject* sender) = m1 0x317a50;
     void onNewgrounds(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x3357a0, m1 0x3176ac;
@@ -28215,7 +28215,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool isGameplayActive() = win inline {
         return !m_hasCompletedLevel && m_started && !m_player1->m_isDead;
     }
-    void levelComplete() = m1 0x1a95a4;
+    void levelComplete() = win 0x3a7730, m1 0x1a95a4;
     void loadActiveSaveObjects(gd::vector<SavedActiveObjectState>& activeObjects, gd::vector<SavedSpecialObjectState>& specialObjects) = win inline, imac 0xbda50, m1 0xaa708 {
         for (auto& state : activeObjects) {
             auto object = static_cast<EnhancedGameObject*>(state.m_gameObject);
@@ -32124,7 +32124,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     cocos2d::ccColor3B getColorValue() = win inline, imac 0x3af090, m1 0x33267c, ios inline {
         return m_colorPicker->getColorValue();
     }
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x3a7730;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x1234567;
     void onCopy(cocos2d::CCObject* sender) = win 0x90e40, m1 0x331748;
     void onExclusive(cocos2d::CCObject* sender);
     void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x43b370;
