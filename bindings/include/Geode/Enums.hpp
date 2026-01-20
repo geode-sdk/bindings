@@ -1272,4 +1272,10 @@ namespace GameVar {
     constexpr auto IgnoreDamageLevel = "0173";
     constexpr auto HidePlaytestText = "0174";
     constexpr auto BorderlessFix = "0175";
+    constexpr auto ClickOnSteps = "0176";
+    constexpr auto ClickBetweenSteps = "0177";
+    constexpr auto ParticlesPerfLog = "0178";
+    constexpr auto HitboxOnDeath = "0179";
+    constexpr auto LinkControlsQuickToggle = "0180";
+    constexpr auto StaticTraceArrows = "0181";
 }
