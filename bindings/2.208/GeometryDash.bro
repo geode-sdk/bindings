@@ -4809,16 +4809,16 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     }
     void checkQuestsStatus() = win 0x9f640, imac 0x2989e0, m1 0x238a38;
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x9e270, imac 0x298430, m1 0x23848c;
-    void onBack(cocos2d::CCObject* sender) = m1 0x239318;
+    void onBack(cocos2d::CCObject* sender) = win 0x9f820, m1 0x239318;
     void onChallenge(cocos2d::CCObject* sender) = win 0x9e440, imac 0x2984a0, m1 0x238520;
-    void onDailyLevel(cocos2d::CCObject* sender) = m1 0x238558;
+    void onDailyLevel(cocos2d::CCObject* sender) = win 0x9e3e0, m1 0x238558;
     void onEventLevel(cocos2d::CCObject* sender) = win 0x9e420, imac 0x298510, m1 0x238598;
     void onFameLevels(cocos2d::CCObject* sender) = win inline, m1 0x239380, ios inline {
         cocos2d::CCDirector::sharedDirector()->pushScene(cocos2d::CCTransitionFade::create(0.5f, LevelBrowserLayer::scene(GJSearchObject::create(SearchType::HallOfFame))));
         GameManager::sharedState()->m_sceneEnum = 1;
     }
     void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x9d930, m1 0x238600;
-    void onGauntlets(cocos2d::CCObject* sender) = m1 0x2385b8;
+    void onGauntlets(cocos2d::CCObject* sender) = win 0x9dc20, m1 0x2385b8;
     void onLeaderboards(cocos2d::CCObject* sender);
     void onMapPacks(cocos2d::CCObject* sender) = win 0x9db60, m1 0x2386c8;
     void onMultiplayer(cocos2d::CCObject* sender) = win 0x9dca0, imac 0x2980c0, m1 0x2380cc;
@@ -6261,8 +6261,8 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onGuidelines(cocos2d::CCObject* sender) = win 0xd6830, imac 0x1fd080;
     void onHelp(cocos2d::CCObject* sender);
     void onLevelInfo(cocos2d::CCObject* sender) = win 0xd6a50, m1 0x1aa478;
-    void onLevelLeaderboard(cocos2d::CCObject* sender) = m1 0x1aa2c8;
-    void onLevelOptions(cocos2d::CCObject* sender) = m1 0x1aa7f8;
+    void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xd69a0, m1 0x1aa2c8;
+    void onLevelOptions(cocos2d::CCObject* sender) = win 0xd6a20, m1 0x1aa7f8;
     void onMoveToTop() = win inline, m1 0x1ab710, ios inline {
         LocalLevelManager::sharedState()->moveLevelToTop(m_level);
     }
@@ -6275,8 +6275,8 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
         cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, false, false)));
     }
     void onUpdateDescription(cocos2d::CCObject* sender);
-    void playStep2() = m1 0x1ab1a4;
-    void playStep3() = m1 0x1ab268;
+    void playStep2() = win 0xd8030, m1 0x1ab1a4;
+    void playStep3() = win 0xd8110, m1 0x1ab268;
     void setupLevelInfo() = win 0xd6c70;
     void updateDescText(char const* text) = win inline, ios inline {}
     void verifyLevelName() = win 0xd97e0, imac 0x1fd790;
