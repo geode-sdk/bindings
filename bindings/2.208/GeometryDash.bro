@@ -13231,7 +13231,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     virtual void loadLevelsFinished(cocos2d::CCArray* levels, char const* key, int type) = win 0x1f6970, m1 0x319de0, imac 0x393d30;
     virtual void loadLevelsFailed(char const* key, int type) = win 0x1f6b80, m1 0x319f74, imac 0x393ed0;
 
-    bool init(GauntletType type) = win 0x1f6180, m1 0x318870;
+    bool init(GauntletType type) = win 0x1f6180, m1 0x318870, imac 0x392600;
     void onBack(cocos2d::CCObject* sender) = m1 0x318ecc;
     void onLevel(cocos2d::CCObject* sender) = win 0x1f7dd0, imac 0x394140, m1 0x85f28;
     void setupGauntlet(cocos2d::CCArray* levels) = imac 0x392cb0, m1 0x318f14;
@@ -13321,7 +13321,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     virtual void loadLevelsFailed(char const* key, int type) = win 0x1f9bf0, m1 0x4bfbe8, imac 0x571fa0;
 
     void goToPage(int page, bool instant) = win 0x1fa530, m1 0x4c051c;
-    bool init(int unused) = win 0x1f8c70;
+    bool init(int unused) = win 0x1f8c70, m1 = 0x4beb30, imac = 0x570dd0;
     void onBack(cocos2d::CCObject* sender);
     void onInfo(cocos2d::CCObject* sender) = win 0x1f97d0, imac 0x571950, m1 0x4bf5dc;
     void onNext(cocos2d::CCObject* sender) = win 0x1fa4f0, imac 0x5718c0;
@@ -19727,7 +19727,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
     virtual void dialogClosed(DialogLayer* layer) = win 0x2ae480, imac 0x326c10, m1 0x2b409c;
 
     void exitVideoAdItems() = imac 0x324a40, m1 0x2b232c;
-    bool init(ShopType type) = win 0x2a9590;
+    bool init(ShopType type) = win 0x2a9590, imac 0x322ba0, m1 0x2b054c;
     void onBack(cocos2d::CCObject* sender) = win 0x2acbd0;
     void onCommunityCredits(cocos2d::CCObject* sender) = win 0x2ab900;
     void onPlushies(cocos2d::CCObject* sender) = win inline {}
