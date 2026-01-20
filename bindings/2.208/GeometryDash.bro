@@ -13609,7 +13609,6 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
         m_friendStatus = 0;
         m_commentHistoryStatus = 0;
         m_inputs = nullptr;
-        m_links = {};
         m_messageSettings = nullptr;
         m_friendRequestSettings = nullptr;
         m_commentSettings = nullptr;
@@ -13642,20 +13641,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     void onFriendRequests(cocos2d::CCObject* sender);
     void onMessageSetting(cocos2d::CCObject* sender);
     void onUpdate(cocos2d::CCObject* sender) = win 0x293ed0;
-    void updateScoreValues() = win inline {
-        if (auto score = GameLevelManager::sharedState()->userInfoForAccountID(m_accountID)) {
-            score->m_messageState = m_messageStatus;
-            score->m_friendStatus = m_friendStatus;
-            score->m_commentHistoryStatus = m_commentHistoryStatus;
-            score->m_youtubeURL = m_links[0];
-            score->m_twitterURL = m_links[1];
-            score->m_twitchURL = m_links[2];
-            score->m_instagramURL = m_links[3];
-            score->m_tiktokURL = m_links[4];
-            score->m_discordUsername = m_links[5];
-            score->m_customString = m_links[6];
-        }
-    }
+    void updateScoreValues() = win 0x2940b0;
 
     int m_accountID;
     int m_messageStatus;
