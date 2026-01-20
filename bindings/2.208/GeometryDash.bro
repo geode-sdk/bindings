@@ -28134,7 +28134,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void addCircle(CCCircleWave* cw) = win inline, m1 0xa80d4 {
         m_circleWaveArray->addObject(cw);
     }
-    void addObject(GameObject* object) = win 0x3ada20;
+    void addObject(GameObject* object) = win 0x3ada20, m1 0xa02e8, imac 0xb1fa0;
     void addToGroupOld(GameObject* object) = win inline, ios inline {
         for (int i = 0; i < object->m_groupCount; i++) {
             auto id = object->getGroupID(i);
@@ -36501,7 +36501,7 @@ class UILayer : cocos2d::CCLayerColor {
         m_pauseBtn->setEnabled(true);
     }
     void handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) = win 0x4cd4c0;
-    bool init(GJBaseGameLayer* layer) = win 0x4cc790;
+    bool init(GJBaseGameLayer* layer) = win 0x4cc790, m1 0x426884, imac 0x4c76a0;
     bool isJumpButtonPressed(bool player1) = win inline, imac 0x4c9440 {
         return player1 ? (m_p2TouchId != -1 || m_p1Jumping) : (m_p1TouchId != -1 || m_p2Jumping);
     }
