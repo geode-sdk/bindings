@@ -12461,7 +12461,7 @@ class GameStatsManager : cocos2d::CCNode {
         return GameStatsManager::sharedState();
     }
     // virtual ~GameStatsManager();
-    // GameStatsManager();
+    // GameStatsManager() = win 0x1d0b20;
     static GameStatsManager* sharedState() = win 0x1d0f30, m1 0x4d72c;
 
     virtual bool init() = win 0x1d1150, imac 0x5a4a0, m1 0x4da70;
@@ -14550,7 +14550,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             default: return value;
         }
     }
-    void pickupItem(EffectGameObject* object);
+    void pickupItem(EffectGameObject* object) = win 0x2161e0;
     void playAnimationCommand(int id, int groupID) = win inline, m1 0x69b6cc {
         if (groupID <= 0) return;
         auto group = this->getGroup(groupID);
@@ -19197,9 +19197,9 @@ class GJScaleControl : cocos2d::CCLayer {
         return (m_upperBound - m_lowerBound) * value + m_lowerBound;
     }
     void sliderChanged(cocos2d::CCObject* sender) = m1 0x471dc;
-    void updateLabelX(float value) = m1 0x4720c;
-    void updateLabelXY(float value) = m1 0x472dc;
-    void updateLabelY(float value) = m1 0x47274;
+    void updateLabelX(float value) = m1 0x4720c, win 0x12ad10;
+    void updateLabelXY(float value) = m1 0x472dc, win 0x12ae10;
+    void updateLabelY(float value) = m1 0x47274, win 0x12ad90;
     float valueFromScale(float scale) = win inline, ios inline {
         auto value = (scale - m_lowerBound) / (m_upperBound - m_lowerBound);
         return value < 0 ? 0 : (value > 1 ? 1 : value);
@@ -28170,7 +28170,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
             nullptr
         ));
     }
-    void delayedResetLevel();
+    void delayedResetLevel() = win 0x3b8990;
     void fullReset() = win 0x3b8890, m1 0xaabe8;
     float getCurrentPercent() = win 0x3b35f0;
     int getCurrentPercentInt() = win inline, ios inline { // i love this
