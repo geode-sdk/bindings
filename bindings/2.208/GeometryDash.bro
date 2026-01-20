@@ -7832,8 +7832,8 @@ class EndLevelLayer : GJDropDownLayer {
     void onReplay(cocos2d::CCObject* sender) = win 0x134ec0, m1 0x4214d8;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x135500, m1 0x421784;
     void playCoinEffect(float duration) = win 0x135c20, imac 0x4c2310, m1 0x10fea8;
-    void playCurrencyEffect(float duration) m1 0x4220a8;
-    void playDiamondEffect(float duration) m1 0x4223e0;
+    void playCurrencyEffect(float duration) = m1 0x4220a8;
+    void playDiamondEffect(float duration) = m1 0x4223e0;
     void playEndEffect() = win 0x136af0, m1 0x4228ec;
     void playStarEffect(float duration) = win 0x135720, m1 0x421bc0;
     void starEnterFinished() = win 0x135ac0, m1 0x4227d0;
