@@ -14984,7 +14984,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
     void setupLayers() = win 0x208ae0, imac 0x111480, m1 0xec5c0;
     void setupLevelStart(LevelSettingsObject* settings) = win 0x212260, imac 0x123580, m1 0xfc290;
-    void setupReplay(gd::string inputs) = win 0x9999999;
+    void setupReplay(gd::string inputs);
     void shakeCamera(float duration, float strength, float interval) = win 0x23ba60, m1 0x12a098;
     bool shouldExitHackedLevel() = win 0x20b090, m1 0xeead4;
     void sortAllGroupsX() = win inline, imac 0x13d2b0 {
@@ -28278,11 +28278,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void pauseGame(bool unfocused) = win 0x3b9d80, m1 0xabdb0;
     void playEndAnimationToPos(cocos2d::CCPoint position) = win 0x3ab6b0, m1 0xa3bfc;
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint position, bool instant) = win 0x3ac090;
-    void playReplay(gd::string inputs) = win inline, ios inline {
-        m_useReplay = true;
-        this->setupReplay(inputs);
-        this->resetLevel();
-    }
+    void playReplay(gd::string inputs);
     void prepareCreateObjectsFromSetup(gd::string& levelString) = win 0x3acaf0;
     void prepareMusic(bool dontWait) = win 0x3ba580;
     void processCreateObjectsFromSetup() = win 0x3acda0;
