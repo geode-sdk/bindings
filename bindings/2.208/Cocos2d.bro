@@ -3901,7 +3901,7 @@ class cocos2d::CCSpawn : cocos2d::CCActionInterval {
 
     static cocos2d::CCSpawn* create(cocos2d::CCArray* arrayOfActions) = m1 0x339550, ios inline;
     // static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...) = m1 0x33e430, imac 0x3b9e30;
-    static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction* first, ...);
+    static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction* first, ...) = win inline, imac inline, m1 inline, ios inline;
     static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = m1 0x3394c4;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3b7000, m1 0x339a58;
@@ -5402,8 +5402,8 @@ class cocos2d::extension::CCControlButton : cocos2d::extension::CCControl {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
-    CCControlColourPicker();
-    virtual ~CCControlColourPicker();
+    CCControlColourPicker() = win inline, imac inline, m1 inline, ios inline;
+    virtual ~CCControlColourPicker() = win inline, imac inline, m1 inline, ios inline;
 
     static cocos2d::extension::CCControlColourPicker* colourPicker() = m1 0x2e1cec;
 
@@ -5412,7 +5412,7 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
     virtual void setColorValue(cocos2d::ccColor3B const&) = imac 0x355990, m1 0x2e1e14;
 
     void colourSliderValueChanged(cocos2d::CCObject*, unsigned int) = imac 0x355690, m1 0x2e1bd0;
-    cocos2d::ccColor3B const& getColorValue() const;
+    cocos2d::ccColor3B const& getColorValue() const = win inline, imac inline, m1 inline, ios inline;
     void hueSliderValueChanged(cocos2d::CCObject*, unsigned int) = imac 0x355560, m1 0x2e1aec;
     void updateControlPicker() = imac 0x355ae0, m1 0x2e1f0c, ios inline;
     void updateHueAndControlPicker() = imac 0x355770, m1 0x2e1c8c;
@@ -5840,7 +5840,7 @@ class cocos2d::ZipUtils {
     static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey);
     static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = m1 0x1b1074;
     static gd::string encryptDecrypt(gd::string const& data, int encryptionKey);
-    static gd::string encryptDecryptWKey(gd::string const&, gd::string);
+    static gd::string encryptDecryptWKey(gd::string const&, gd::string) = win inline, imac inline, m1 inline, ios inline;
     static unsigned char hexToChar(gd::string const&);
     static gd::string urlDecode(gd::string const&);
 }
@@ -5935,6 +5935,6 @@ class pugi::xml_document : pugi::xml_node {
 [[link(android)]]
 class pugi::xml_node {
     // i'm not bothering
-    xml_node();
+    xml_node() = win inline, imac inline, m1 inline, ios inline;
 }
 
