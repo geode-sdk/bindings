@@ -1093,8 +1093,8 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 
     virtual void registerWithTouchDispatcher() = win 0x42660, m1 0x6ba968, imac 0x7b4970;
     virtual void keyBackClicked() = win 0x846c0, m1 0x6ba8ec, imac 0x7b4900;
-    virtual void musicActionFinished(GJMusicAction action) = imac 0x7b4820, m1 0x6ba898 {}
-    virtual void musicActionFailed(GJMusicAction action) = win 0x83d40, m1 0x6ba8a4, imac 0x7b4850;
+    virtual void musicActionFinished(GJMusicAction action) = win 0x83d40, imac 0x7b4820, m1 0x6ba898 {}
+    virtual void musicActionFailed(GJMusicAction action) = win 0x83dc0, m1 0x6ba8a4, imac 0x7b4850;
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = win inline, imac 0x7b4890, m1 0x6ba8b8 { return false; }
     virtual int getSelectedCellIdx() = win inline, imac 0x7b48b0, m1 0x6ba8c8 { return 0; }
     virtual int getCellDelegateType() = win inline, imac 0x7b48d0, m1 0x6ba8d8 { return 1; }
@@ -5213,9 +5213,9 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 
     static CustomSFXWidget* create(SFXInfoObject* object, CustomSFXDelegate* delegate, bool showDelete, bool showPlay, bool showDownload, bool noBackground, bool compactMode) = win 0xc0660, imac 0x5e2360, m1 0x50cee0;
 
-    virtual void downloadSFXFinished(int id) = win 0xc1f70, m1 0x50f040, imac 0x5e45f0;
-    virtual void downloadSFXFailed(int id, GJSongError errorType) = win 0xc2620, imac 0x5e46a0, m1 0x50f0e0;
-    virtual void songStateChanged() = win 0x3bea0, imac 0x5e4580, m1 0x50f018;
+    virtual void downloadSFXFinished(int id) = win 0xc2620, m1 0x50f040, imac 0x5e45f0;
+    virtual void downloadSFXFailed(int id, GJSongError errorType) = win 0xc26a0, imac 0x5e46a0, m1 0x50f0e0;
+    virtual void songStateChanged() = win 0xc1f70, imac 0x5e4580, m1 0x50f018;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xc27a0, imac 0x5e48c0, m1 0x50f338;
 
     void deleteSFX() = win inline, imac 0x5e40c0, m1 0x50eb68 {
@@ -5454,12 +5454,12 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     virtual void loadSongInfoFailed(int id, GJSongError errorType) = win 0xcce30, m1 0x543bc0, imac 0x61ff50;
     virtual void downloadSongFinished(int id) = win 0xccf20, m1 0x543ebc, imac 0x620250;
     virtual void downloadSongFailed(int id, GJSongError errorType) = win 0xccf40, m1 0x544050, imac 0x6203f0;
-    virtual void downloadSFXFinished(int id) = win 0xcb4e0, imac 0x6206e0, m1 0x54432c;
-    virtual void downloadSFXFailed(int id, GJSongError errorType) = win 0xcd080, m1 0x54455c, imac 0x620910;
-    virtual void musicActionFinished(GJMusicAction action) = win 0xcd0a0, imac 0x620940, m1 0x544570;
-    virtual void musicActionFailed(GJMusicAction action) = win 0xcd650, m1 0x544948, imac 0x620d80;
-    virtual void songStateChanged() = win 0xcd000, m1 0x544990, imac 0x620de0;
-    virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xcd9f0, imac 0x61ed90, m1 0x542ac0;
+    virtual void downloadSFXFinished(int id) = win 0xcd080, imac 0x620910, m1 0x54455c;
+    virtual void downloadSFXFailed(int id, GJSongError errorType) = win 0xcd0a0, m1 0x544570, imac 0x620940;
+    virtual void musicActionFinished(GJMusicAction action) = win 0xcd650, imac 0x620d80, m1 0x544948;
+    virtual void musicActionFailed(GJMusicAction action) = win 0xcd680, m1 0x544990, imac 0x620de0;
+    virtual void songStateChanged() = win 0xcb4e0, m1 0x542ac0, imac 0x61ed90;
+    virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xcd9f0, imac 0x620e80, m1 0x544a2c;
 
     void addExtraVisuals(bool newMusic, bool newLibraryMusic) = win inline {
         if (newMusic && !newLibraryMusic) {
@@ -6495,7 +6495,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void transformRotationChanged(float rotation) = win 0x121940, imac 0x4d640, m1 0x42c64;
     virtual void transformResetRotation() = win 0x121960, m1 0x42d9c, imac 0x4d7b0;
     virtual void transformRestoreRotation() = win 0x121990, m1 0x42e54, imac 0x4d8a0;
-    virtual void songStateChanged() = win 0x3bea0, m1 0x35bf8, imac 0x3d8b0;
+    virtual void songStateChanged() = win 0x1120e0, m1 0x35bf8, imac 0x3d8b0;
     virtual void colorSelectClosed(cocos2d::CCNode* popup) = win 0x11f730, m1 0x40738, imac 0x4a080;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win 0x1267f0, imac 0x51630, m1 0x46508;
     virtual void scrollWheel(float y, float x) = win 0x126830, imac 0x516d0, m1 0x46580;
@@ -13765,18 +13765,18 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void reverseDirection(EffectGameObject* object) = win 0x218190, m1 0x1027cc, imac 0x12a660;
     virtual void rotateGameplay(RotateGameplayGameObject* object) = win 0x2181f0, m1 0x102814, imac 0x12a6a0;
     virtual void didRotateGameplay() = m1 0x601c, imac 0x6b20 {}
-    virtual void updateTimeWarp(float timeWarp) = win 0x235fe0, imac 0x14ef60, m1 0x120d14;
+    virtual void updateTimeWarp(float timeWarp) = win 0x235f90, imac 0x14ef60, m1 0x120d14;
     virtual void updateTimeWarp(GameObject* object, float timeWarp) = win 0x235f90, m1 0x120d58, imac 0x14efb0;
-    virtual void applyTimeWarp(float timeWarp) = win 0x3bea0, m1 0x601c, imac 0x6b20;
+    virtual void applyTimeWarp(float timeWarp) = win 0x235fe0, m1 0x120d58, imac 0x14efb0;
     virtual void playGravityEffect(bool flip) = m1 0x601c, imac 0x6b20 {}
-    virtual void manualUpdateObjectColors(GameObject* object) = win 0x240b90, m1 0x12c7dc, imac 0x15d980 {}
-    virtual cocos2d::CCParticleSystemQuad* createCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int minimum, bool dontAdd) = win 0x240e90, m1 0x12cb64, imac 0x15dcf0;
-    virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int zLayer, int zOrder, int uiObject, bool dontAdd) = win 0x241090, imac 0x15def0, m1 0x12cda4;
-    virtual void unclaimCustomParticle(gd::string const& key, cocos2d::CCParticleSystemQuad* particle) = win 0x242c40, imac 0x15ee30, m1 0x12dae0;
-    virtual void activatedAudioTrigger(SFXTriggerGameObject* object) = win 0x2468d0, imac 0x1630f0, m1 0x130c70;
-    virtual void checkpointActivated(CheckpointGameObject* object) = win 0x3bea0, imac 0x1630e0, m1 0x130c6c;
-    virtual void flipArt(bool flip) = win inline, m1 0x11dc74, imac 0x14b300 {}
-    virtual void addKeyframe(KeyframeGameObject* object) = win 0x3bea0, imac 0x6b20, m1 0x601c;
+    virtual void manualUpdateObjectColors(GameObject* object) = win 0x3bea0, m1 0x601c, imac 0x6b20 {}
+    virtual cocos2d::CCParticleSystemQuad* createCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int minimum, bool dontAdd) = win 0x240b90, m1 0x12c7dc, imac 0x15d980;
+    virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int zLayer, int zOrder, int uiObject, bool dontAdd) = win 0x240e90, imac 0x15dcf0, m1 0x12cb64;
+    virtual void unclaimCustomParticle(gd::string const& key, cocos2d::CCParticleSystemQuad* particle) = win 0x241090, imac 0x15def0, m1 0x12cda4;
+    virtual void activatedAudioTrigger(SFXTriggerGameObject* object) = win 0x242c40, imac 0x15ee30, m1 0x12dae0;
+    virtual void checkpointActivated(CheckpointGameObject* object) = win 0x2468d0, imac 0x1630f0, m1 0x130c70;
+    virtual void flipArt(bool flip) = win inline, m1 0x130c6c, imac 0x1630e0 {}
+    virtual void addKeyframe(KeyframeGameObject* object) = win 0x2339c0, imac 0x14b300, m1 0x11dc74;
     virtual void updateTimeLabel(int seconds, int centiseconds, bool decimals) = m1 0x601c, imac 0x6b20 {}
     virtual void checkSnapshot() = m1 0x601c, imac 0x6b20 {}
     virtual void toggleProgressbar() = m1 0x601c, imac 0x6b20 {}
@@ -22583,12 +22583,12 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual cocos2d::CCPoint posForTime(float time) = win 0x2de700, imac 0xf05c0, m1 0xd3818;
     virtual void resetSPTriggered() = win 0x2de770, imac 0xf0660, m1 0xd3858;
     virtual void didRotateGameplay() = win 0x2df720, imac 0xf1a40, m1 0xd4a9c;
-    virtual void manualUpdateObjectColors(GameObject* object) = win 0x240b90, m1 0x12c7dc, imac 0x15d980;
-    virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int zLayer, int zOrder, int uiObject, bool dontAdd) = win 0x2e15f0, m1 0xd6f7c, imac 0xf4240;
-    virtual void unclaimCustomParticle(gd::string const& key, cocos2d::CCParticleSystemQuad* particle) = win 0x2e0c90, imac 0xf3150, m1 0xd5f30;
-    virtual void activatedAudioTrigger(SFXTriggerGameObject* object) = win 0x2e0cc0, imac 0xf3180, m1 0xd5f48;
-    virtual void checkpointActivated(CheckpointGameObject* object) = win 0x3bea0, imac 0x1630e0, m1 0x130c6c;
-    virtual void addKeyframe(KeyframeGameObject* object) = win 0x3bea0, imac 0x6b20, m1 0x601c;
+    virtual void manualUpdateObjectColors(GameObject* object) = win 0x2d9cd0, m1 0xcf484, imac 0xeb620;
+    virtual cocos2d::CCParticleSystemQuad* claimCustomParticle(gd::string const& key, cocos2d::ParticleStruct const& particleStruct, int zLayer, int zOrder, int uiObject, bool dontAdd) = win 0x2e1530, m1 0xd6eac, imac 0xf4190;
+    virtual void unclaimCustomParticle(gd::string const& key, cocos2d::CCParticleSystemQuad* particle) = win 0x2e15f0, imac 0xf4240, m1 0xd6f7c;
+    virtual void activatedAudioTrigger(SFXTriggerGameObject* object) = win 0x2e0c90, imac 0xf3150, m1 0xd5f30;
+    virtual void checkpointActivated(CheckpointGameObject* object) = win 0x2e0cc0, imac 0xf3180, m1 0xd5f48;
+    virtual void addKeyframe(KeyframeGameObject* object) = win 0x2e1630, imac 0xf4280, m1 0xd6fbc;
     virtual void levelSettingsUpdated() = win 0x2d3580, imac 0x6b20, m1 0x601c;
 
     bool activateTriggerEffect(EffectGameObject* object, float currentTime, float playTime, float boundTime, bool active) = win 0x2dcda0, imac 0xef1a0;
@@ -25403,8 +25403,8 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     virtual void update(float dt) = win 0x3391b0, m1 0x534570, imac 0x60ea50;
     virtual void registerWithTouchDispatcher() = win 0x42660, m1 0x5354ec, imac 0x60fb20;
     virtual void keyBackClicked() = win 0x33a890, m1 0x5353d0, imac 0x60f9f0;
-    virtual void musicActionFinished(GJMusicAction action) = m1 0x534df0, imac 0x60f390 {}
-    virtual void musicActionFailed(GJMusicAction action) = win 0x339ab0, m1 0x534eb8, imac 0x60f490;
+    virtual void musicActionFinished(GJMusicAction action) = win 0x339ab0, m1 0x534df0, imac 0x60f390 {}
+    virtual void musicActionFailed(GJMusicAction action) = win 0x339b20, m1 0x534eb8, imac 0x60f490;
     virtual void sliderEnded(Slider* slider) = win 0x3397f0, m1 0x5346ec, imac 0x60ebd0;
     virtual void setTextPopupClosed(SetTextPopup* popup, gd::string text) = win 0x33a600, imac 0x60f740, m1 0x535148;
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = win 0x33a350, imac 0x60f6c0, m1 0x5350e0;
@@ -28113,20 +28113,20 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, int id) = win 0x3b3270, imac 0xb9be0, m1 0xa7334;
     virtual cocos2d::CCPoint posForTime(float time) = win 0x3b3300, imac 0xb9c60, m1 0xa73a8;
     virtual void resetSPTriggered() = win 0x3b3360, m1 0xa73c8, imac 0xb9cb0;
-    virtual void updateTimeWarp(float timeWarp) = win 0x235fe0, m1 0xa3b10, imac 0xb5e30;
-    virtual void playGravityEffect(bool flip) = win 0x3affa0, m1 0xa69e8, imac 0xb9230;
-    virtual void manualUpdateObjectColors(GameObject* object) = win 0x240b90, m1 0x12c7dc, imac 0x15d980;
-    virtual void checkpointActivated(CheckpointGameObject* object) = win 0x3b26e0, m1 0xa72d0, imac 0xb9b60;
-    virtual void flipArt(bool flip) = win 0x2339c0, imac 0x14b300, m1 0x11dc74;
-    virtual void updateTimeLabel(int seconds, int centiseconds, bool decimals) = win 0x3bea0, imac 0xbdf10, m1 0xaab68;
-    virtual void checkSnapshot() = win inline, m1 0xa70d8, imac 0xb9980 {}
-    virtual void toggleProgressbar() = win 0x3b31f0, m1 0xa72f0, imac 0xb9ba0;
-    virtual void toggleInfoLabel() = win 0x3b7ce0, m1 0xaa7f0, imac 0xbdb00;
-    virtual void removeAllCheckpoints() = win 0x3b25b0, m1 0xa7244, imac 0xb9b00;
-    virtual void toggleMusicInPractice() = win 0x3b45b0, m1 0xa81a8, imac 0xbabf0;
-    virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x3b43d0, m1 0xaaf90, imac 0xbe350;
-    virtual void circleWaveWillBeRemoved(CCCircleWave* circleWave) = win 0x3b4590, m1 0xa804c, imac 0xbaa20;
-    virtual void dialogClosed(DialogLayer* layer) = win 0x3b43f0, m1 0xa80dc, imac 0xbaae0;
+    virtual void updateTimeWarp(float timeWarp) = win 0x3ab650, m1 0xa3b10, imac 0xb5e30;
+    virtual void playGravityEffect(bool flip) = win 0x3b1d00, m1 0xa6b08, imac 0xb9370;
+    virtual void manualUpdateObjectColors(GameObject* object) = win 0x3affa0, m1 0xa69e8, imac 0xb9230;
+    virtual void checkpointActivated(CheckpointGameObject* object) = win 0x3b4c40, m1 0xa86c0, imac 0xbb130;
+    virtual void flipArt(bool flip) = win 0x3b26e0, imac 0xb9b60, m1 0xa72d0;
+    virtual void updateTimeLabel(int seconds, int centiseconds, bool decimals) = win 0x3b2210, imac 0xb97b0, m1 0xa6efc;
+    virtual void checkSnapshot() = win inline, m1 0xaab68, imac 0xbdf10 {}
+    virtual void toggleProgressbar() = win 0x3b2410, m1 0xa70d8, imac 0xb9980;
+    virtual void toggleInfoLabel() = win 0x3b31f0, m1 0xa72f0, imac 0xb9ba0;
+    virtual void removeAllCheckpoints() = win 0x3b7ce0, m1 0xaa7f0, imac 0xbdb00;
+    virtual void toggleMusicInPractice() = win 0x3b25b0, m1 0xa7244, imac 0xb9b00;
+    virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x3b43d0, m1 0xa81a8, imac 0xbabf0;
+    virtual void circleWaveWillBeRemoved(CCCircleWave* circleWave) = win 0x3b4590, m1 0xaaf90, imac 0xbe350;
+    virtual void dialogClosed(DialogLayer* layer) = win 0x3b43f0, m1 0xa804c, imac 0xbaa20;
 
     void addCircle(CCCircleWave* cw) = win inline, m1 0xa80d4 {
         m_circleWaveArray->addObject(cw);
@@ -33240,8 +33240,8 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
 
     virtual void registerWithTouchDispatcher() = win 0x42660, m1 0x3b2038, imac 0x440930;
     virtual void keyBackClicked() = win 0x480960, m1 0x3b1f88, imac 0x440890;
-    virtual void musicActionFinished(GJMusicAction action) = m1 0x3b16e4, imac 0x43fef0 {}
-    virtual void musicActionFailed(GJMusicAction action) = win 0x47f4d0, m1 0x3b17ac, imac 0x43fff0;
+    virtual void musicActionFinished(GJMusicAction action) = win 0x47f4d0, m1 0x3b16e4, imac 0x43fef0 {}
+    virtual void musicActionFailed(GJMusicAction action) = win 0x47f570, m1 0x3b17ac, imac 0x43fff0;
     virtual void sortSelectClosed(SelectSFXSortLayer* layer) = win 0x480090, m1 0x3b1b1c, imac 0x4403c0;
     virtual void setTextPopupClosed(SetTextPopup* popup, gd::string text) = win 0x480370, imac 0x440620, m1 0x3b1d4c;
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = win 0x480410, imac 0x4406e0, m1 0x3b1df8;
