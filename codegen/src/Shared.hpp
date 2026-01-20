@@ -28,6 +28,7 @@ std::string generatePredeclareHeader(Root const& root);
 std::string generateBindingSource(Root const& root, bool skipPugixml);
 std::string generateTextInterface(Root const& root);
 matjson::Value generateJsonInterface(Root const& root);
+std::string generateInlineSources(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 
 // returns true if the file contents were different (overwritten), false otherwise
 inline bool writeFile(std::filesystem::path const& writePath, std::string const& output) {
