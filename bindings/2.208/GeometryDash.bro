@@ -2901,7 +2901,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
         delete ret;
         return nullptr;
     }
-    static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = m1 0x51a680, win 0x490b0;
+    static CCSpriteGrayscale* createWithSpriteFrameName(gd::string const& frameName) = m1 0x51a680;
     static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, ios inline {
         auto ret = new CCSpriteGrayscale();
         if (ret->initWithTexture(texture)) {
@@ -3546,7 +3546,7 @@ class CharacterColorPage : FLAlertLayer {
     void onClose(cocos2d::CCObject* sender) = win 0x8a7d0, imac 0x65d1c0, m1 0x57cf28;
     void onMode(cocos2d::CCObject* sender) = win 0x895c0, imac 0x65d2c0, m1 0x2966c;
     void onPlayerColor(cocos2d::CCObject* sender) = win 0x89dd0, imac 0x65df30, m1 0x57dc80;
-    void toggleGlow(cocos2d::CCObject* sender) = m1 0x57d748, win 0x88e10;
+    void toggleGlow(cocos2d::CCObject* sender) = m1 0x57d748;
     void toggleGlowItems(bool visible) = win inline, imac 0x65dec0, m1 0x57dc0c, ios inline {
         m_glowToggler->setEnabled(visible);
         m_glowToggler->setVisible(visible);
@@ -7833,7 +7833,7 @@ class EndLevelLayer : GJDropDownLayer {
     void playCurrencyEffect(float duration);
     void playDiamondEffect(float duration);
     void playEndEffect() = win 0x136af0;
-    void playStarEffect(float duration) = win 0x135720;
+    void playStarEffect(float duration) = win 0x135720, m1 0x421bc0;
     void starEnterFinished() = win 0x135ac0;
     void tryShowBanner(float dt) = m1 0x421a00;
 
@@ -8798,7 +8798,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     static float pitchForIdx(int index) = win 0x56a00, imac 0x3e3110, m1 0x36082c;
     static gd::string reverbToString(FMODReverbPreset preset) = win 0x54d10, imac 0x3dd610, m1 0x35c088;
     static FMODAudioEngine* sharedEngine() = win inline, imac 0x3dc5e0, m1 0x35b390 {
-        auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6c1e88);
+        auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6a4e18);
         if (!*instancePtr) {
             *instancePtr = new FMODAudioEngine();
             (*instancePtr)->init();
@@ -9023,7 +9023,7 @@ class FMODAudioEngine : cocos2d::CCNode {
         this->pauseSchedulerAndActions();
     }
     void stopAllEffects() = win 0x59900, m1 0x35c698;
-    void stopAllMusic(bool clear) = win 0x59dc0; // this is wrong, its inlined but idk how to reimplement it
+    void stopAllMusic(bool clear) = win 0x59dc0;
     float stopAndGetFade(FMOD::Channel* channel) = win 0x58a70, imac 0x3e5a60, m1 0x3628c0;
     void stopAndRemoveMusic(int id) = win 0x5cad0;
     void stopChannel(int id) = win inline, imac 0x3e4510 {
@@ -10411,7 +10411,7 @@ class GameLevelOptionsLayer : GJOptionsLayer {
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
     // virtual ~GameManager();
-    // GameManager() = win 0x17ab40, ios 0x32eafc;
+    // GameManager() = win 0x177af0, ios 0x32eafc;
 
     static GameManager* get() {
         return GameManager::sharedState();
@@ -12461,7 +12461,7 @@ class GameStatsManager : cocos2d::CCNode {
         return GameStatsManager::sharedState();
     }
     // virtual ~GameStatsManager();
-    // GameStatsManager() = win 0x1d0b20;
+    // GameStatsManager();
     static GameStatsManager* sharedState() = win 0x1d0f30, m1 0x4d72c;
 
     virtual bool init() = win 0x1d1150, imac 0x5a4a0, m1 0x4da70;
@@ -12643,7 +12643,7 @@ class GameStatsManager : cocos2d::CCNode {
     gd::string getEventRewardKey(int id) = win inline, imac 0x789f0, m1 0x6a230, ios inline {
         return fmt::format("o_event_{}", id);
     }
-    gd::string getGauntletRewardKey(int id) = win 0x1ea210, imac 0x77bf0, m1 0x693b0;
+    gd::string getGauntletRewardKey(int id) = imac 0x77bf0, m1 0x693b0;
     gd::string getItemKey(int id, int type) = win 0x1e19c0;
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x1e5b40, imac 0x77510, m1 0x68c10;
     int getItemUnlockStateLite(int id, UnlockType type) = imac 0x775d0, m1 0x68d0c;
@@ -12754,7 +12754,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isPathUnlocked(StatKey key) = win inline, imac 0x6b990, m1 0x5cfa4, ios inline {
         return this->isItemUnlocked(UnlockType::GJItem, (int)key - 24);
     }
-    bool isSecretChestUnlocked(int id) = win 0x1ea8a0;
+    bool isSecretChestUnlocked(int id);
     bool isSecretCoin(gd::string key) = win inline, imac 0x70660, m1 0x61da4, ios inline {
         return key.starts_with("unique_");
     }
@@ -13262,10 +13262,10 @@ class GauntletNode : cocos2d::CCNode {
         delete ret;
         return nullptr;
     }
-    static gd::string frameForType(GauntletType type) = win 0x1fde40;
+    static gd::string frameForType(GauntletType type);
     static gd::string nameForType(GauntletType type);
 
-    bool init(GJMapPack* gauntlet) = win 0x1fc280, imac 0x249310;
+    bool init(GJMapPack* gauntlet) = imac 0x249310;
     void onClaimReward() = win 0x1fde00, imac 0x572ca0;
 
     cocos2d::CCNode* m_gauntletInfoNode;
@@ -14550,7 +14550,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             default: return value;
         }
     }
-    void pickupItem(EffectGameObject* object) = win 0x2161e0;
+    void pickupItem(EffectGameObject* object);
     void playAnimationCommand(int id, int groupID) = win inline, m1 0x69b6cc {
         if (groupID <= 0) return;
         auto group = this->getGroup(groupID);
@@ -15550,7 +15550,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         }
     }
     void updateShaderLayer(float dt) = win 0x2222e0, imac 0x3fcab0, m1 0x343a38;
-    void updateSpecialGroupData() = imac 0x1171b0, m1 0xf1b58, win 0x20df70;
+    void updateSpecialGroupData() = imac 0x1171b0, m1 0xf1b58;
     void updateSpecialLabels() = win 0x239220, imac 0x155a10, m1 0x125f34;
     void updateStaticCameraPos(cocos2d::CCPoint pos, bool staticX, bool staticY, bool followOrSmoothEase, float time, int easingType, float easingRate) = win 0x23f040, imac 0x124fb0, m1 0xfdaf0;
     void updateStaticCameraPosToGroup(int centerID, bool updateX, bool updateY, bool followObject, float followEase, float duration, int easingType, float easingRate, bool smoothVelocity, float velocityMod) = win 0x23ec50, imac 0x15bca0, m1 0x12af14;
@@ -17272,7 +17272,7 @@ class GJGameLoadingLayer : cocos2d::CCLayer {
 [[link(android), depends(EventTriggerInstance), depends(SongChannelState), depends(DynamicObjectAction), depends(AdvancedFollowInstance), depends(EnterEffectInstance), depends(GameObjectPhysics), depends(GJValueTween), depends(SFXTriggerInstance), depends(SFXTriggerState), depends(SongTriggerState), depends(EnterEffectAnimValue)]]
 class GJGameState {
     // ~GJGameState();
-    // GJGameState() = win 0x204510;
+    // GJGameState();
 
     void controlTweenAction(int uniqueID, int controlID, GJActionCommand command) = win 0x2054a0, imac 0x10df20, m1 0xe9d8c;
     GameObjectPhysics& getGameObjectPhysics(GameObject* object) = win 0x2056a0, imac 0x10e5c0, m1 0xea2bc;
@@ -19197,9 +19197,9 @@ class GJScaleControl : cocos2d::CCLayer {
         return (m_upperBound - m_lowerBound) * value + m_lowerBound;
     }
     void sliderChanged(cocos2d::CCObject* sender) = m1 0x471dc;
-    void updateLabelX(float value) = m1 0x4720c, win 0x12ad10;
-    void updateLabelXY(float value) = m1 0x472dc, win 0x12ae10;
-    void updateLabelY(float value) = m1 0x47274, win 0x12ad90;
+    void updateLabelX(float value) = m1 0x4720c;
+    void updateLabelXY(float value) = m1 0x472dc;
+    void updateLabelY(float value) = m1 0x47274;
     float valueFromScale(float scale) = win inline, ios inline {
         auto value = (scale - m_lowerBound) / (m_upperBound - m_lowerBound);
         return value < 0 ? 0 : (value > 1 ? 1 : value);
@@ -28068,10 +28068,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android), depends(DynamicBitset), depends(SavedActiveObjectState), depends(SavedObjectStateRef), depends(SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-    PlayLayer() = win 0x3a4a50;
+    PlayLayer();
     ~PlayLayer() = win 0x3a5460, imac 0xabd40;
 
-    static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5700 {
+    static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win inline {
         auto ret = new PlayLayer();
         if (ret->init(level, useReplay, dontCreateObjects)) {
             ret->autorelease();
@@ -28170,7 +28170,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
             nullptr
         ));
     }
-    void delayedResetLevel() = win 0x3b8990;
+    void delayedResetLevel();
     void fullReset() = win 0x3b8890, m1 0xaabe8;
     float getCurrentPercent() = win 0x3b35f0;
     int getCurrentPercentInt() = win inline, ios inline { // i love this
@@ -28254,7 +28254,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
             this->updateObjectSection(object);
         }
     }
-    void loadFromCheckpoint(CheckpointObject* object) = m1 0xaa040, win 0x3b72e0;
+    void loadFromCheckpoint(CheckpointObject* object) = m1 0xaa040;
     CheckpointObject* loadLastCheckpoint() = win inline, m1 0xa9fe8 {
         if (m_checkpointArray->count() != 0) {
             auto checkpoint = static_cast<CheckpointObject*>(m_checkpointArray->lastObject());
@@ -28265,7 +28265,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     }
     CheckpointObject* markCheckpoint() = win 0x3b7210;
     void onQuit() = win 0x3ba850, m1 0xa0fe4;
-    void optimizeColorGroups() = win 0x3ae880;
+    void optimizeColorGroups();
     void optimizeOpacityGroups() = win 0x3aeb10;
     void pauseGame(bool unfocused) = win 0x3b9d80, m1 0xabdb0;
     void playEndAnimationToPos(cocos2d::CCPoint position) = win 0x3ab6b0, m1 0xa3bfc;
@@ -28290,7 +28290,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
         }
     }
     void resetLevel() = win 0x3b8b50, m1 0x2f6a44;
-    void resetLevelFromStart() = m1 0xaa2c, win 0x3b89b0;
+    void resetLevelFromStart() = m1 0xaa2c;
     void resume() = win 0x3ba2e0;
     void resumeAndRestart(bool fromStart) = win 0x3ba060, m1 0xabee8;
     void saveActiveSaveObjects(gd::vector<SavedActiveObjectState>& activeObjects, gd::vector<SavedSpecialObjectState>& specialObjects) = win 0x3b8690, m1 0xa9ab8;
@@ -28351,7 +28351,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void spawnCircle() = win 0x3abbb0, m1 0xa2050;
     void spawnFirework() = win 0x3abca0, m1 0xa2dd4;
     void startGame() = win 0x3a76d0, m1 0xa0f88;
-    void startGameDelayed() = win 0x3a7720;
+    void startGameDelayed();
     void startMusic() = win 0x3ba700;
     void startRecording() = win inline, imac 0xbf1b0, m1 0x4f8294, ios inline {
         m_recordingStopped = false;
