@@ -13608,11 +13608,11 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
         m_messageStatus = 0;
         m_friendStatus = 0;
         m_commentHistoryStatus = 0;
-        // TODO: fix
-        // m_youtubeInput = nullptr;
-        // m_twitterInput = nullptr;
-        // m_twitchInput = nullptr;
         m_inputs = nullptr;
+        m_links = {};
+        m_messageSettings = nullptr;
+        m_friendRequestSettings = nullptr;
+        m_commentSettings = nullptr;
     }
     ~GJAccountSettingsLayer() = win inline, m1 0x23e1c8 {
         CC_SAFE_RELEASE(m_inputs);
@@ -13636,21 +13636,24 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     virtual void textInputReturn(CCTextInputNode* node) = win 0x7b680, m1 0x240d64, imac 0x2a1ae0;
 
     CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, float width, float scale) = imac 0x2a0db0, m1 0x2400d4;
-    bool init(int accountID) = win 0x2946c0;
+    bool init(int accountID) = win 0x292040;
     void onClose(cocos2d::CCObject* sender);
     void onCommentSetting(cocos2d::CCObject* sender);
     void onFriendRequests(cocos2d::CCObject* sender);
     void onMessageSetting(cocos2d::CCObject* sender);
-    void onUpdate(cocos2d::CCObject* sender);
+    void onUpdate(cocos2d::CCObject* sender) = win 0x293ed0;
     void updateScoreValues() = win inline {
         if (auto score = GameLevelManager::sharedState()->userInfoForAccountID(m_accountID)) {
             score->m_messageState = m_messageStatus;
             score->m_friendStatus = m_friendStatus;
             score->m_commentHistoryStatus = m_commentHistoryStatus;
-            // TODO: fix
-            // score->m_youtubeURL = m_youtubeURL;
-            // score->m_twitterURL = m_twitterURL;
-            // score->m_twitchURL = m_twitchURL;
+            score->m_youtubeURL = m_links[0];
+            score->m_twitterURL = m_links[1];
+            score->m_twitchURL = m_links[2];
+            score->m_instagramURL = m_links[3];
+            score->m_tiktokURL = m_links[4];
+            score->m_discordUsername = m_links[5];
+            score->m_customString = m_links[6];
         }
     }
 
@@ -20817,9 +20820,9 @@ class GJUserScore : cocos2d::CCNode {
     gd::string m_youtubeURL;
     gd::string m_twitterURL;
     gd::string m_twitchURL;
+    gd::string m_discordUsername;
     gd::string m_instagramURL;
     gd::string m_tiktokURL;
-    gd::string m_discordUsername;
     gd::string m_customString;
     int m_playerCube;
     int m_playerShip;
@@ -23474,7 +23477,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
         m_level->m_likes++;
         this->updateLabelValues();
     }
-    bool init(GJGameLevel* level, bool challenge) = win 0x2f70e0, imac 0x2bd000, m1 0x259604; 
+    bool init(GJGameLevel* level, bool challenge) = win 0x2f70e0, imac 0x2bd000, m1 0x259604;
     void loadLevelStep() = win 0x2fcff0, imac 0x2c3ee0, m1 0x26020c;
     void onAddToList(cocos2d::CCObject* sender) = win 0x2f9720, imac 0x2c25b0, m1 0x25e990;
     void onBack(cocos2d::CCObject* sender) = win 0x3004b0;
@@ -28681,7 +28684,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onPrevPage(cocos2d::CCObject* sender) = win 0x3c6590, m1 0x6c42c8;
     void onRequests(cocos2d::CCObject* sender) = m1 0x6c36f0;
     void onSendMessage(cocos2d::CCObject* sender) = m1 0x6c2a80;
-    void onSettings(cocos2d::CCObject* sender) = m1 0x34792c;
+    void onSettings(cocos2d::CCObject* sender) = win 0x3c5980, m1 0x34792c;
     void onStatInfo(cocos2d::CCObject* sender) = win 0x3c2d80, imac 0x7bc180, m1 0x6c1894;
     void onTwitch(cocos2d::CCObject* sender);
     void onTwitter(cocos2d::CCObject* sender);
@@ -36843,9 +36846,9 @@ class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
         if (gjam->m_accountSettingsDelegate == this) gjam->m_accountSettingsDelegate = nullptr;
     }
 
-    static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL) = win 0x2943d0 {
+    static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL, gd::string instagramURL, gd::string tiktokURL, gd::string discordUsername, gd::string customString) = win 0x2943d0 {
         auto ret = new UpdateAccountSettingsPopup();
-        if (ret->init(settingsLayer, messageStatus, friendStatus, commentStatus, youtubeURL, twitterURL, twitchURL)) {
+        if (ret->init(settingsLayer, messageStatus, friendStatus, commentStatus, youtubeURL, twitterURL, twitchURL, instagramURL, tiktokURL, discordUsername, customString)) {
             ret->autorelease();
             return ret;
         }
@@ -36857,7 +36860,7 @@ class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
     virtual void updateSettingsFinished() = win 0x294d90, imac 0x2a3780, m1 0x2426c0;
     virtual void updateSettingsFailed() = win 0x294e90, imac 0x2a38a0, m1 0x2427d8;
 
-    bool init(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL);
+    bool init(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL, gd::string instagramURL, gd::string tiktokURL, gd::string discordUsername, gd::string customString) = win 0x2946c0;
     void onClose(cocos2d::CCObject* sender);
 
     bool m_updateSuccess;
@@ -37156,4 +37159,3 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
     GJWorldNode* m_worldNode;
     bool m_buttonsLocked;
 }
-
