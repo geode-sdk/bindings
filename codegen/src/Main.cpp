@@ -105,6 +105,8 @@ int main(int argc, char** argv) try {
         std::filesystem::create_directories(writeDir / "binding_intel");
         std::filesystem::create_directories(writeDir / "modify_arm");
         std::filesystem::create_directories(writeDir / "binding_arm");
+        std::filesystem::create_directories(writeDir / "source_intel");
+        std::filesystem::create_directories(writeDir / "source_arm");
     }
 
     std::filesystem::create_directories(writeDir / "modify");
