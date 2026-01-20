@@ -3762,16 +3762,18 @@ class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCMouseHandler : cocos2d::CCObject {
-    // CCMouseHandler(cocos2d::CCMouseHandler const&);
-    // CCMouseHandler();
-    virtual ~CCMouseHandler();
+    CCMouseHandler(cocos2d::CCMouseHandler const&) = win 0xc5b40;
+    CCMouseHandler() = win 0x60750;
+    virtual ~CCMouseHandler() = win 0x60720;
 
-    static cocos2d::CCMouseHandler* handlerWithDelegate(cocos2d::CCMouseDelegate*) = m1 0x2260dc;
+    static cocos2d::CCMouseHandler* handlerWithDelegate(cocos2d::CCMouseDelegate*) = win 0x60870, m1 0x2260dc;
 
-    virtual bool initWithDelegate(cocos2d::CCMouseDelegate*) = m1 0x226088, imac 0x284580;
+    virtual bool initWithDelegate(cocos2d::CCMouseDelegate*) = win 0x60930, m1 0x226088, imac 0x284580;
 
-    cocos2d::CCMouseDelegate* getDelegate();
-    void setDelegate(cocos2d::CCMouseDelegate* p0) = ios inline {
+    cocos2d::CCMouseDelegate* getDelegate() = win inline {
+        return m_pDelegate;
+    }
+    void setDelegate(cocos2d::CCMouseDelegate* p0) = win 0x60970, ios inline {
         if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(p0)) delegate->retain();
         if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(m_pDelegate)) delegate->release();
         m_pDelegate = p0;
