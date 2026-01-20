@@ -3238,7 +3238,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_valueType = (InputValueType)0;
         m_kerningAmount = 0;
     }
-    ~CCTextInputNode() = win inline, m1 0x8e6d0 {
+    ~CCTextInputNode() = win inline, m1 0x8e6d0, imac 0x9ddd0 {
         if (m_selected) CCTextInputNode::onClickTrackNode(false);
     }
 
@@ -3265,14 +3265,14 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50c40, m1 0x905ac, imac 0xa0010;
 
     void addTextArea(TextArea* textArea) = win 0x4f5d0, imac 0x9e4b0, m1 0x8ec90;
-    void forceOffset() = win inline, imac 0xa07a0 {}
+    void forceOffset() = win inline, imac 0xa07a0, m1 0x90c5c {}
     gd::string getString() = win inline, imac 0x9eb20, m1 0x8f2dc {
         return m_textField->getString();
     }
     cocos2d::CCLabelBMFont* getTextLabel() {
         return m_textLabel;
     }
-    bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x4f390;
+    bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x4f390, m1 0x8e948, imac 0x9e140;
     void refreshLabel() = win 0x4fbd0, imac 0x9ebd0, m1 0x8f38c;
     void setAllowedChars(gd::string filter) = win inline, imac 0x9e9e0, m1 0x8f1a8 {
         m_allowedChars = filter;
@@ -3280,15 +3280,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setDelegate(TextInputDelegate* delegate) {
         m_delegate = delegate;
     }
-    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5cc, ios inline {
+    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5cc, imac 0x9ee90, ios inline {
         m_textColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5bc {
+    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5bc, imac 0x9ee70 {
         m_placeholderColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderScale(float v) = win inline, m1 0x8f5b4 {
+    void setLabelPlaceholderScale(float v) = win inline, m1 0x8f5b4, imac 0x9ee50 {
         m_placeholderScale = v;
         this->refreshLabel();
     }
@@ -3296,11 +3296,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_maxLabelLength = v;
         this->refreshLabel();
     }
-    void setMaxLabelScale(float v) = win inline, m1 0x8f5a4 {
+    void setMaxLabelScale(float v) = win inline, m1 0x8f5a4, imac 0x9ee10 {
         m_maxLabelScale = v;
         this->refreshLabel();
     }
-    void setMaxLabelWidth(float v) = win inline, m1 0x8f5ac {
+    void setMaxLabelWidth(float v) = win inline, m1 0x8f5ac, imac 0x9ee30 {
         m_maxLabelWidth = v;
         this->refreshLabel();
     }
@@ -3309,7 +3309,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
     }
     void updateBlinkLabelToChar(int index) = win 0x4feb0, imac 0x9eeb0, m1 0x8f5e0;
-    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0, m1 0x90c60;
+    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0, m1 0x90c60, imac 0xa07b0;
     void updateDefaultFontValues(gd::string font) = win 0x4f6c0, imac 0x9e410, m1 0x8ebe8;
     void updateLabel(gd::string text) = win 0x4f8d0, imac 0x9e6c0, m1 0x8eeb8;
 
@@ -3719,14 +3719,14 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
             }
         }
     }
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x8aa60;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x8aa60, m1 0x227130, imac 0x2858f0;
     void onClose(cocos2d::CCObject* sender) = win 0x8bb60, imac 0x2863a0, m1 0x227b78;
     void onDynamicBlock(cocos2d::CCObject* sender) = imac 0x286860;
-    void onItemIDArrow(cocos2d::CCObject* sender) = imac 0x286620, m1 0x227db0;
+    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b670, imac 0x286620, m1 0x227db0;
     void onNextItemID(cocos2d::CCObject* sender);
     void updateEditorLabel() = m1 0x2282b0;
     void updateItemID() = m1 0x228328;
-    void updateTextInputLabel() = m1 0x227ec8;
+    void updateTextInputLabel() = m1 0x227ec8, imac 0x286750;
 
     EffectGameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;
@@ -4167,7 +4167,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     cocos2d::ccColor3B getColorValue() = win inline, imac 0x728b10, m1 0x63abc0, ios inline {
         return m_colorPicker->getColorValue();
     }
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action) = win 0x8dd00;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action) = win 0x8dd00, imac 0x7248e0, m1 0x636f9c;
     void onCopy(cocos2d::CCObject* sender) = win 0x90e40, m1 0x6398cc;
     void onCopyOpacity(cocos2d::CCObject* sender) = win 0x90be0, imac 0x727d20;
     void onDefault(cocos2d::CCObject* sender) = win 0x90f40, m1 0x63994c;
@@ -8700,7 +8700,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer() = win 0x51870, imac 0x49a810, m1 0x3fec00;
+    ~FLAlertLayer() = win 0x51870, imac 0x49a810, m1 0x3fec84;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
@@ -14614,7 +14614,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void preResumeGame() = win inline, imac 0x150d30, m1 0x122484 {
         m_resumeTimer = 2;
     }
-    void preUpdateVisibility(float dt) = win 0x236040, imac 0x364510, m1 0x120dac;
+    void preUpdateVisibility(float dt) = win 0x236040, m1 0x120dac;
     void processActivatedAudioTriggers(float levelTime) = win 0x243780, imac 0x15ff30;
     void processAdvancedFollowAction(AdvancedFollowInstance& instance, bool started, float dt) = win 0x22f330;
     void processAdvancedFollowActions(float dt) = win 0x22f110, imac 0x146700;
@@ -16798,8 +16798,8 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x272890, m1 0x271c68, imac 0x2d74b0;
     virtual void textChanged(CCTextInputNode* node) = win 0x271f40, m1 0x271850, imac 0x2d6f00;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
-    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x271e80, m1 0x270cdc;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x270520, imac 0x2d4e20, m1 0x26f9f0;
+    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x271e80, imac 0x2d6230, m1 0x270cdc;
     void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x271ee0, imac 0x2d62f0, m1 0x270d98;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x271b30;
     void sliderXModChanged(cocos2d::CCObject* sender) = m1 0x270bbc;
@@ -18661,8 +18661,8 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x28cd80, imac 0x367240, m1 0x2f1a2c;
     virtual void textChanged(CCTextInputNode* node) = win 0x28c4b0, m1 0x2f1498, imac 0x366af0;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x28a660;
-    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x28c450, m1 0x2f0860;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x28a660, imac 0x364510, m1 0x2ef0d4;
+    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x28c450, m1 0x2f0860, imac 0x365d90;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x271b30;
     void sliderXModChanged(cocos2d::CCObject* sender) = m1 0x2f0758;
     void sliderYModChanged(cocos2d::CCObject* sender) = m1 0x2f07dc;
@@ -25312,7 +25312,7 @@ class MultilineBitmapFont : cocos2d::CCSprite {
         CC_SAFE_RELEASE(m_specialDescriptors);
     }
 
-    static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x486af0, m1 0x8e948 {
+    static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x486af0 {
         auto ret = new MultilineBitmapFont();
         if (ret->initWithFont(font, text, scale, width, anchor, height, disableColor)) {
             ret->autorelease();
@@ -30744,9 +30744,9 @@ class SetupAnimationPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x409d90, m1 0x354c98, imac 0x3d5630;
     virtual void textChanged(CCTextInputNode* node) = win 0x409970, m1 0x354b0c, imac 0x3d5440;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4089f0;
-    void onAnimationIDArrow(cocos2d::CCObject* sender) = win 0x4098e0, m1 0x354684;
-    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x409920, m1 0x3545dc;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4089f0, imac 0x3d42e0, m1 0x353af8;
+    void onAnimationIDArrow(cocos2d::CCObject* sender) = win 0x4098e0, imac 0x3d4f30, m1 0x354684;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x409920, imac 0x3d4e70, m1 0x3545dc;
     void updateAnimationID() = win 0x409cf0, m1 0x354a08;
     void updateAnimationTextInputLabel();
     void updateTargetID();
@@ -31021,9 +31021,9 @@ class SetupCameraEdgePopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x413b50, m1 0x4d424c, imac 0x588e20;
     virtual void textChanged(CCTextInputNode* node) = win 0x413910, m1 0x4d4174, imac 0x588d10;
 
-    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x412920, imac 0x4d7af0, m1 0x257af8;
+    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x412920, imac 0x587b20, m1 0x4d3128;
     void onCameraEdge(cocos2d::CCObject* sender) = win 0x413760, m1 0x4d3ea8;
-    void onTargetIDArrow(cocos2d::CCObject* sender);
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4138c0, imac 0x5887e0, m1 0x4d3cfc;
     void onUnlockEdge(cocos2d::CCObject* sender) = win 0x413890, imac 0x588ae0, m1 0x4d3f98;
     void updateTargetID();
     void updateTextInputLabel();
@@ -32069,7 +32069,7 @@ class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
     virtual void keyBackClicked() = m1 0x4be280, imac 0x570420;
 
     void determineStartValues();
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = m1 0x227130;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
     void onClose(cocos2d::CCObject* sender);
     void onEditCameraSettings(cocos2d::CCObject* sender);
     void onUnboundMode(cocos2d::CCObject* sender);
@@ -32264,7 +32264,7 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
         object->m_chanceObjects.emplace_back(id, chance);
     }
     void callRemoveFromGroup(float dt) = win 0x43e4b0, m1 0x3159c0;
-    bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x43cff0, m1 0x353af8;
+    bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x43cff0;
     void onAddChance(cocos2d::CCObject* sender) = win 0x43e6f0, imac 0x38e180, m1 0x314b44;
     void onRemoveFromGroup(cocos2d::CCObject* sender);
     void removeGroupID(int id) = win inline, m1 0x315710 {
