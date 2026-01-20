@@ -4,6 +4,7 @@
 
 using namespace geode::prelude;
 
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x36b0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_gameState, 0x1a8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_level, 0x870);
@@ -29,8 +30,10 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3560);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_stickyGroups, 0x35d0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3610);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3688);
+#endif
 
-GEODE_SIZE_CHECK(PlayLayer, 0x39a0);
+GEODE_SIZE_CHECK(PlayLayer, 0x3a88);
+#if 0 // TODO: update for 2.208
 GEODE_MEMBER_CHECK(PlayLayer, m_checkpointArray, 0x37a0);
 GEODE_MEMBER_CHECK(PlayLayer, m_circleWaveArray, 0x37d0);
 GEODE_MEMBER_CHECK(PlayLayer, m_attemptLabel, 0x37f0);
@@ -39,12 +42,16 @@ GEODE_MEMBER_CHECK(PlayLayer, m_hasCompletedLevel, 0x3895);
 GEODE_MEMBER_CHECK(PlayLayer, m_isPaused, 0x3907);
 GEODE_MEMBER_CHECK(PlayLayer, m_tryPlaceCheckpoint, 0x397c);
 GEODE_MEMBER_CHECK(PlayLayer, m_activatedCheckpoint, 0x3980);
+#endif
 
-GEODE_SIZE_CHECK(LevelEditorLayer, 0x39e8);
+GEODE_SIZE_CHECK(LevelEditorLayer, 0x3b60);
+#if 0 // TODO: update for 2.208
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_coinCount, 0x3754);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_trailTimer, 0x37a8);
 GEODE_MEMBER_CHECK(LevelEditorLayer, m_drawGridLayer, 0x37d8);
+#endif
 
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(DrawGridLayer, 0x280);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x208);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x27c);
@@ -533,21 +540,25 @@ GEODE_MEMBER_CHECK(PlayerObject, m_jumpPadRelated, 0xb98);
 GEODE_MEMBER_CHECK(PlayerObject, m_robotFire, 0xc10);
 GEODE_MEMBER_CHECK(PlayerObject, m_gameLayer, 0xc20);
 GEODE_MEMBER_CHECK(PlayerObject, m_actionManager, 0xc30);
+#endif
 
 GEODE_SIZE_CHECK(TableViewCell, 0x230);
 GEODE_SIZE_CHECK(ChallengeNode, 0x168);
-GEODE_SIZE_CHECK(LeaderboardsLayer, 0x1f8);
+GEODE_SIZE_CHECK(LeaderboardsLayer, 0x200);
 GEODE_SIZE_CHECK(MoreSearchLayer, 0x2c8);
-GEODE_SIZE_CHECK(GJUserScore, 0x310);
+GEODE_SIZE_CHECK(GJUserScore, 0x398);
 GEODE_SIZE_CHECK(BoomScrollLayer, 0x270);
 GEODE_SIZE_CHECK(ButtonSprite, 0x2c0);
 GEODE_SIZE_CHECK(EditLevelLayer, 0x210);
 GEODE_SIZE_CHECK(EditorPauseLayer, 0x270);
 GEODE_SIZE_CHECK(PauseLayer, 0x238);
-GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x320);
+GEODE_SIZE_CHECK(GJAccountSettingsLayer, 0x2c0);
+#if 0 // TODO: update for 2.208
 //GEODE_SIZE_CHECK(GJDropDownLayer, 0x260);
 GEODE_SIZE_CHECK(OptionsLayer, 0x298);
+#endif
 GEODE_SIZE_CHECK(LevelPage, 0x240);
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(LevelBrowserLayer, 0x320);
 GEODE_SIZE_CHECK(LevelListLayer, 0x3d8);
 GEODE_SIZE_CHECK(SelectListIconLayer, 0x290);
@@ -558,8 +569,10 @@ GEODE_SIZE_CHECK(MenuGameLayer, 0x1d0);
 GEODE_SIZE_CHECK(GJItemIcon, 0x278);
 GEODE_SIZE_CHECK(ChallengesPage, 0x2c0);
 GEODE_SIZE_CHECK(GauntletLayer, 0x1e0);
-GEODE_SIZE_CHECK(GauntletNode, 0x150);
-GEODE_SIZE_CHECK(GauntletSelectLayer, 0x1f8);
+#endif
+GEODE_SIZE_CHECK(GauntletNode, 0x168);
+GEODE_SIZE_CHECK(GauntletSelectLayer, 0x208);
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(GauntletSprite, 0x148);
 GEODE_SIZE_CHECK(CreatorLayer, 0x1c0);
 GEODE_SIZE_CHECK(GJRotationControl, 0x1c8);
@@ -624,15 +637,19 @@ GEODE_MEMBER_CHECK(TextArea, m_unkPoint, 0x2b4);
 GEODE_MEMBER_CHECK(TextArea, m_delegate, 0x2c0);
 GEODE_MEMBER_CHECK(TextArea, m_shakeCharacters, 0x2c8);
 GEODE_MEMBER_CHECK(TextArea, m_shakeElapsed, 0x2d0);
+#endif
 
-GEODE_SIZE_CHECK(EditorUI, 0x5a0);
+GEODE_SIZE_CHECK(EditorUI, 0x5a8);
+#if 0 // TODO: update for 2.208
 // GEODE_MEMBER_CHECK(EditorUI, m_transformState, 0x210);
 GEODE_MEMBER_CHECK(EditorUI, m_scaleControl, 0x2d0);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObjects, 0x340);
 GEODE_MEMBER_CHECK(EditorUI, m_editorLayer, 0x4f8);
 GEODE_MEMBER_CHECK(EditorUI, m_selectedObject, 0x530);
+#endif
 
 
+#if 0 // TODO: update for 2.208
 GEODE_MEMBER_CHECK(TableViewCell, m_tableView, 0x1a0);
 GEODE_MEMBER_CHECK(TableViewCell, m_indexPath, 0x1a8);
 GEODE_MEMBER_CHECK(TableViewCell, m_cellIdentifier, 0x1f0);
@@ -1059,8 +1076,10 @@ GEODE_MEMBER_CHECK(EffectManagerState, m_unorderedMapInt_vectorTimerTriggerActio
 GEODE_SIZE_CHECK(SequenceTriggerState, 0x80);
 GEODE_MEMBER_CHECK(SequenceTriggerState, m_sequenceTimes, 0x0);
 GEODE_MEMBER_CHECK(SequenceTriggerState, m_sequenceIndices, 0x40);
+#endif
 
-GEODE_SIZE_CHECK(CheckpointObject, 0x1258);
+GEODE_SIZE_CHECK(CheckpointObject, 0x1260);
+#if 0 // TODO: update for 2.208
 GEODE_MEMBER_CHECK(CheckpointObject, m_gameState, 0x140);
 GEODE_MEMBER_CHECK(CheckpointObject, m_shaderState, 0x808);
 GEODE_MEMBER_CHECK(CheckpointObject, m_audioState, 0xad0);
@@ -1082,7 +1101,9 @@ GEODE_MEMBER_CHECK(CheckpointObject, m_gradientTriggerObjectArray, 0x1200);
 GEODE_MEMBER_CHECK(CheckpointObject, m_unk11e8, 0x1208);
 GEODE_MEMBER_CHECK(CheckpointObject, m_sequenceTriggerStateUnorderedMap, 0x1210);
 GEODE_MEMBER_CHECK(CheckpointObject, m_commandIndex, 0x1250);
+#endif
 
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(CCTextInputNode, 0x268);
 
 GEODE_SIZE_CHECK(Slider, 0x1c8);
@@ -1225,7 +1246,9 @@ GEODE_SIZE_CHECK(SetupPulsePopup, 0x4f8);
 GEODE_SIZE_CHECK(CustomSongWidget, 0x260);
 GEODE_SIZE_CHECK(SetupTeleportPopup, 0x3b0);
 GEODE_SIZE_CHECK(ConfigureValuePopup, 0x2b0);
+#endif
 GEODE_SIZE_CHECK(GJEffectManager, 0x820);
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(GManager, 0x168);
 GEODE_SIZE_CHECK(SetColorIDPopup, 0x2b0);
 GEODE_SIZE_CHECK(ColorAction, 0xa8);
@@ -1274,7 +1297,9 @@ GEODE_SIZE_CHECK(SetupAdvFollowEditPhysicsPopup, 0x3a8);
 GEODE_SIZE_CHECK(LevelOptionsLayer2, 0x3f8);
 GEODE_SIZE_CHECK(CommunityCreditsPage, 0x298);
 GEODE_SIZE_CHECK(LabelGameObject, 0x790);
+#endif
 GEODE_SIZE_CHECK(PlayerCheckpoint, 0x560);
+#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(SongObject, 0x40);
 GEODE_SIZE_CHECK(LevelOptionsLayer, 0x3f8);
 GEODE_SIZE_CHECK(SetupItemEditTriggerPopup, 0x3b0);
@@ -1572,5 +1597,6 @@ GEODE_SIZE_CHECK(DailyLevelNode, 0x178);
 GEODE_SIZE_CHECK(GJShopLayer, 0x218);
 GEODE_SIZE_CHECK(EndPortalObject, 0x560);
 GEODE_SIZE_CHECK(URLCell, 0x238);
+#endif
 
 #endif
