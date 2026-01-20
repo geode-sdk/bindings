@@ -7815,8 +7815,8 @@ class EndLevelLayer : GJDropDownLayer {
 
     void coinEnterFinished(cocos2d::CCPoint position) = win 0x135ea0, imac 0x4c3000, m1 0x422b54;
     void coinEnterFinishedO(cocos2d::CCObject* sender) = win 0x135e60, imac 0x4c2fc0, m1 0x422b08;
-    void currencyEnterFinished() m1 0x422d74;
-    void diamondEnterFinished() m1 0x422e68;
+    void currencyEnterFinished() = m1 0x422d74;
+    void diamondEnterFinished() = m1 0x422e68;
     gd::string getCoinString() = win 0x1349a0, imac 0x4c1620, m1 0x4211ac;
     const char* getEndText() = win 0x136e00, m1 0x4213f4;
     void goEdit() = win 0x135350, imac 0x4c2b90, m1 0x422720;
