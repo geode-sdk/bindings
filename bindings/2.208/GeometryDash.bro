@@ -9511,9 +9511,9 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCArray* createAndGetLevelComments(gd::string str, int levelID) = win inline {
         return this->createAndGetCommentsFull(str, levelID, false);
     }
-    cocos2d::CCArray* createAndGetLevelLists(gd::string str);
-    cocos2d::CCArray* createAndGetLevels(gd::string str);
-    cocos2d::CCArray* createAndGetMapPacks(gd::string str);
+    cocos2d::CCArray* createAndGetLevelLists(gd::string str) = win 0x146c70;
+    cocos2d::CCArray* createAndGetLevels(gd::string str) = win 0x146730;
+    cocos2d::CCArray* createAndGetMapPacks(gd::string str) = win 0x146f10;
     cocos2d::CCArray* createAndGetScores(gd::string str, GJScoreType type) = win 0x1471b0, imac 0x532760, m1 0x485d7c;
     GJGameLevel* createNewLevel() = win 0x1448b0;
     GJLevelList* createNewLevelList() = win 0x145360;
@@ -9725,7 +9725,7 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getLikeItemKey(LikeItemType type, int id, bool liked, int parentID) = win inline, ios inline {
         return cocos2d::CCString::createWithFormat("like_%i_%i_%i_%i", type, id, (int)liked, parentID)->getCString();
     }
-    GJGameLevel* getLocalLevel(int uniqueID) = m1 0x48024c;
+    GJGameLevel* getLocalLevel(int uniqueID) = win 0x144840, m1 0x48024c;
     GJGameLevel* getLocalLevelByName(gd::string name) = win inline, ios inline {
         auto localLevels = LocalLevelManager::sharedState()->m_localLevels;
         for (int i = 0; i < localLevels->count(); i++) {
@@ -9822,7 +9822,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     int getSplitIntFromKey(char const* key, int index) = win 0x15d5e0, imac 0x547290, m1 0x498894;
     gd::string getStarLevelsString() = win 0x147c70, imac 0x535070, m1 0x4883b0;
-    cocos2d::CCArray* getStoredLevelComments(char const* key) = m1 0x4a14b0;
+    cocos2d::CCArray* getStoredLevelComments(char const* key) = win 0x15d9f0, m1 0x4a14b0;
     cocos2d::CCArray* getStoredOnlineLevels(char const* key) = win 0x1498c0, imac 0x537f50, m1 0x48ad3c;
     cocos2d::CCArray* getStoredUserList(UserListType type) = win 0x1630e0;
     GJUserMessage* getStoredUserMessage(int id) = win inline, m1 0x49d65c {
@@ -9831,7 +9831,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJUserMessage* getStoredUserMessageReply(int id) = win inline, m1 0x49d684 {
         return static_cast<GJUserMessage*>(m_userReplies->objectForKey(id));
     }
-    int getTimeLeft(char const* key, float length);
+    int getTimeLeft(char const* key, float length) = win 0x149f10;
     void getTopArtists(int page, int total) = win 0x158ff0, imac 0x122680, m1 0x49c694;
     const char* getTopArtistsKey(int page) = win inline, m1 0x49ca3c {
         return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
@@ -9874,9 +9874,9 @@ class GameLevelManager : cocos2d::CCNode {
     bool hasLikedAccountItem(LikeItemType type, int id, bool liked, int parentID) = win 0x164e50;
     bool hasLikedItem(LikeItemType type, int id, bool liked, int parentID) = win 0x164e50;
     bool hasLikedItemFullCheck(LikeItemType type, int id, bool liked, int parentID) = win 0x164dc0, imac 0x5574e0, m1 0x4a73bc;
-    bool hasRatedDemon(int id);
-    bool hasRatedLevelStars(int id);
-    bool hasReportedLevel(int id);
+    bool hasRatedDemon(int id) = win 0x154450;
+    bool hasRatedLevelStars(int id) = win 0x154380;
+    bool hasReportedLevel(int id) = win 0x16a6f0;
     void invalidateMessages(bool sent, bool reload);
     void invalidateRequests(bool sent, bool reload);
     void invalidateUserList(UserListType type, bool reload) = win inline, m1 0x33f364 {
@@ -9907,7 +9907,7 @@ class GameLevelManager : cocos2d::CCNode {
         }
         return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(2))->getCString()) : 0;
     }
-    bool keyHasTimer(char const* key);
+    bool keyHasTimer(char const* key) = win 0x14a060;
     int levelIDFromCommentKey(char const* key) = win 0x15d6e0;
     int levelIDFromPostCommentKey(char const* key) = win inline {
         std::string keyStr = key;
