@@ -15929,6 +15929,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCDictionary* m_uiObjectLayers;
     cocos2d::CCNode* m_uiTriggerUI;
     double m_timePlayed;
+    int m_unk3568;
+    int m_unk356c;
     bool m_levelEndAnimationStarted;
     int m_points;
     gd::string m_pointsString;
@@ -15986,7 +15988,12 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     std::array<cocos2d::CCPoint, 400>* m_debugDrawPoints;
     bool m_isDebugDrawEnabled;
     bool m_disablePlayerHitbox;
+    bool m_hitboxesOnDeath;
     GameObject* m_anticheatSpike;
+    double m_timestamp;
+    bool m_isBetweenSteps;
+    bool m_clickBetweenSteps;
+    bool m_clickOnSteps;
 }
 
 [[link(android)]]
@@ -17050,17 +17057,7 @@ class GJGameLevel : cocos2d::CCNode {
         m_isUploaded = true;
     }
     void parseSettingsString(gd::string str) = win inline, imac 0x55ae10, ios inline {}
-    void saveNewScore(int value, int type) = win inline {
-        if (type == 0) {
-            if (value > 0 && (m_bestTime > value || m_bestTime == 0)) m_bestTime = value;
-        }
-        else {
-            if (m_bestPoints < value || m_bestPoints == 0) m_bestPoints = value;
-        }
-        uint32_t seed = (((m_bestTime + 7890) % 34567) * 601 + ((abs(m_bestPoints) + 3456) % 78901) * 967 + 94819) % 94433;
-        m_platformerSeed = (int)(((int)seed >> 16 ^ seed) * 829) % 77849;
-        storeNewLocalScore(value, type);
-    }
+    void saveNewScore(int value, int type) = win 0x16d270;
     void savePercentage(int percent, bool isPracticeMode, int clicks, int attempts, bool isChkValid) = win 0x16c8f0, m1 0x4aae44;
     void scoreStringToVector(gd::string& str, gd::vector<int>& vec) = win 0x16d6c0, m1 0x399e88;
     gd::string scoreVectorToString(gd::vector<int>& vec, int type) = win inline, imac 0x55c5d0, m1 0x4ac1a0 {
@@ -17236,20 +17233,20 @@ class GJGameLevel : cocos2d::CCNode {
     gd::string m_sfxIDs;
     int m_54; //aka k106
     int m_bestTime;
-    int m_bestPoints;
-    int m_platformerSeed;
+    int m_unk518;
+    int m_unk51c;
     int m_unk520;
-    gd::string m_unk528;
-    int m_unk548;
+    gd::string m_inputsTime;
+    int m_bestPoints;
     int m_unk54c;
     int m_unk550;
     int m_unk554;
-    gd::string m_unk558;
-    int m_unk578;
+    gd::string m_inputsPoints;
+    int m_platformerSeed;
     gd::string m_localBestTimes;
     gd::string m_localBestPoints;
-    bool m_unk5c0;
-    bool m_unk5c1;
+    bool m_savedTime;
+    bool m_savedPoints;
 }
 
 [[link(android)]]
@@ -26839,6 +26836,7 @@ class PlayerButtonCommand {
     bool m_isPush;
     bool m_isPlayer2;
     int m_step;
+    double m_timestamp;
 }
 
 [[link(android)]]
@@ -28487,7 +28485,11 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
         this->updateTimeWarp(timeWarp);
     }
 
-    geode::SeedValueRSV m_damageVerifiedIndex;
+    int m_unk36c8;
+    bool m_unk36cc;
+    bool m_unk36cd;
+    bool m_unk36ce;
+    bool m_unk36cf;
     bool m_damageVerified;
     gd::vector<gd::string> m_objectStrings;
     cocos2d::CCArray* m_coinArray;
