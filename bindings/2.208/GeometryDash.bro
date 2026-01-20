@@ -2702,8 +2702,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
         return this->getChildren()->count();
     }
     void dirtify() = win inline, imac 0x375220, m1 0x2feb80, ios inline {
-        CCObject* obj;
-        CCARRAY_FOREACH(this->getChildren(), obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getChildren())) {
             static_cast<cocos2d::CCSprite*>(obj)->setDirty(true);
         }
     }
@@ -3239,7 +3238,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_valueType = (InputValueType)0;
         m_kerningAmount = 0;
     }
-    ~CCTextInputNode() = win inline, m1 0x8e6d0 {
+    ~CCTextInputNode() = win inline, m1 0x8e6d0, imac 0x9ddd0 {
         if (m_selected) CCTextInputNode::onClickTrackNode(false);
     }
 
@@ -3266,14 +3265,14 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x50c40, m1 0x905ac, imac 0xa0010;
 
     void addTextArea(TextArea* textArea) = win 0x4f5d0, imac 0x9e4b0, m1 0x8ec90;
-    void forceOffset() = win inline, imac 0xa07a0 {}
+    void forceOffset() = win inline, imac 0xa07a0, m1 0x90c5c {}
     gd::string getString() = win inline, imac 0x9eb20, m1 0x8f2dc {
         return m_textField->getString();
     }
     cocos2d::CCLabelBMFont* getTextLabel() {
         return m_textLabel;
     }
-    bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x4f390;
+    bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x4f390, m1 0x8e948, imac 0x9e140;
     void refreshLabel() = win 0x4fbd0, imac 0x9ebd0, m1 0x8f38c;
     void setAllowedChars(gd::string filter) = win inline, imac 0x9e9e0, m1 0x8f1a8 {
         m_allowedChars = filter;
@@ -3281,15 +3280,15 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setDelegate(TextInputDelegate* delegate) {
         m_delegate = delegate;
     }
-    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5cc, ios inline {
+    void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5cc, imac 0x9ee90, ios inline {
         m_textColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5bc {
+    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, m1 0x8f5bc, imac 0x9ee70 {
         m_placeholderColor = color;
         this->refreshLabel();
     }
-    void setLabelPlaceholderScale(float v) = win inline, m1 0x8f5b4 {
+    void setLabelPlaceholderScale(float v) = win inline, m1 0x8f5b4, imac 0x9ee50 {
         m_placeholderScale = v;
         this->refreshLabel();
     }
@@ -3297,11 +3296,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         m_maxLabelLength = v;
         this->refreshLabel();
     }
-    void setMaxLabelScale(float v) = win inline, m1 0x8f5a4 {
+    void setMaxLabelScale(float v) = win inline, m1 0x8f5a4, imac 0x9ee10 {
         m_maxLabelScale = v;
         this->refreshLabel();
     }
-    void setMaxLabelWidth(float v) = win inline, m1 0x8f5ac {
+    void setMaxLabelWidth(float v) = win inline, m1 0x8f5ac, imac 0x9ee30 {
         m_maxLabelWidth = v;
         this->refreshLabel();
     }
@@ -3310,7 +3309,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
         this->updateBlinkLabelToChar(this->m_textField->m_uCursorPos);
     }
     void updateBlinkLabelToChar(int index) = win 0x4feb0, imac 0x9eeb0, m1 0x8f5e0;
-    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0, m1 0x90c60;
+    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x50df0, m1 0x90c60, imac 0xa07b0;
     void updateDefaultFontValues(gd::string font) = win 0x4f6c0, imac 0x9e410, m1 0x8ebe8;
     void updateLabel(gd::string text) = win 0x4f8d0, imac 0x9e6c0, m1 0x8eeb8;
 
@@ -3720,14 +3719,14 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
             }
         }
     }
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x8aa60;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x8aa60, m1 0x227130, imac 0x2858f0;
     void onClose(cocos2d::CCObject* sender) = win 0x8bb60, imac 0x2863a0, m1 0x227b78;
     void onDynamicBlock(cocos2d::CCObject* sender) = imac 0x286860;
-    void onItemIDArrow(cocos2d::CCObject* sender) = imac 0x286620, m1 0x227db0;
+    void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b670, imac 0x286620, m1 0x227db0;
     void onNextItemID(cocos2d::CCObject* sender);
     void updateEditorLabel() = m1 0x2282b0;
     void updateItemID() = m1 0x228328;
-    void updateTextInputLabel() = m1 0x227ec8;
+    void updateTextInputLabel() = m1 0x227ec8, imac 0x286750;
 
     EffectGameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;
@@ -4168,7 +4167,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     cocos2d::ccColor3B getColorValue() = win inline, imac 0x728b10, m1 0x63abc0, ios inline {
         return m_colorPicker->getColorValue();
     }
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action) = win 0x8dd00;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action) = win 0x8dd00, imac 0x7248e0, m1 0x636f9c;
     void onCopy(cocos2d::CCObject* sender) = win 0x90e40, m1 0x6398cc;
     void onCopyOpacity(cocos2d::CCObject* sender) = win 0x90be0, imac 0x727d20;
     void onDefault(cocos2d::CCObject* sender) = win 0x90f40, m1 0x63994c;
@@ -6592,8 +6591,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         });
         auto groupCenter = this->getGroupCenter(objects, false);
         std::string result = "";
-        CCObject* obj;
-        CCARRAY_FOREACH(objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
             auto object = static_cast<GameObject*>(obj);
             if (object->m_objectID == 749) continue;
             auto position = object->getPosition();
@@ -7179,8 +7177,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
             m_selectedObject->deselectObject();
         }
         else {
-            CCObject* obj;
-            CCARRAY_FOREACH(m_selectedObjects, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_selectedObjects)) {
                 static_cast<GameObject*>(obj)->deselectObject();
             }
         }
@@ -8703,7 +8700,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer() = win 0x51870, imac 0x49a810, m1 0x3fec00;
+    ~FLAlertLayer() = win 0x51870, imac 0x49a810, m1 0x3fec84;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
@@ -10636,8 +10633,7 @@ class GameManager : GManager {
     int getNextUniqueObjectKey() = win inline, m1 0x30bcd8 {
         auto customKeys = this->getOrderedCustomObjectKeys();
         auto result = -1;
-        CCObject* obj;
-        CCARRAY_FOREACH(customKeys, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(customKeys)) {
             auto key = static_cast<cocos2d::CCString*>(obj)->intValue();
             if (key < result) result = key;
         }
@@ -12969,17 +12965,14 @@ class GameToolbox {
     static void addRThumbScrollButton(cocos2d::CCLayer* parent) = win 0x65140, m1 0x449190;
     static void alignItemsHorisontally(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position, bool skipSize) = win 0x64160, imac 0x4edd20, m1 0x447c7c;
     static void alignItemsVertically(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position) = win inline, imac 0x4ee050, m1 0x2afd64 {
-        using cocos2d::CCObject;
-
-        CCObject* obj;
         auto y = -gap;
-        CCARRAY_FOREACH(items, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(items)) {
             auto node = static_cast<cocos2d::CCNode*>(obj);
             y += node->getScaleY() * node->getContentSize().height + gap;
         }
 
         y = -y / 2.f;
-        CCARRAY_FOREACH(items, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(items)) {
             auto node = static_cast<cocos2d::CCNode*>(obj);
             auto size = node->getContentSize();
             auto scale = node->getScaleY();
@@ -13699,8 +13692,7 @@ class GJActionManager : cocos2d::CCNode {
     }
     void updateInternalActions(float dt, bool remove) = win inline, imac 0x6092c0, m1 0x52f6b8 {
         auto keys = m_internalActions->allKeys();
-        CCObject* obj;
-        CCARRAY_FOREACH(keys, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(keys)) {
             auto key = static_cast<cocos2d::CCInteger*>(obj)->getValue();
             auto action = static_cast<cocos2d::CCAction*>(m_internalActions->objectForKey(key));
             if (action->isDone() || remove) {
@@ -13805,8 +13797,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activateResetTrigger(EffectGameObject* object) = win inline, imac 0x14b4f0, m1 0x11de34 {
         auto group = this->getGroup(object->m_targetGroupID);
         if (group && group->count() != 0) {
-            cocos2d::CCObject* obj;
-            CCARRAY_FOREACH(group, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
                 auto gameObject = static_cast<GameObject*>(obj);
                 if (gameObject->m_objectID == 2063) {
                     m_effectManager->removeTriggeredID(gameObject->m_uniqueID, m_player1->m_uniqueID);
@@ -14190,8 +14181,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         fmt::memory_buffer buffer;
         auto first = true;
         auto index = 0;
-        CCObject* obj;
-        CCARRAY_FOREACH(m_batchNodes, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_batchNodes)) {
             auto capacity = static_cast<cocos2d::CCSpriteBatchNode*>(obj)->getUsedAtlasCapacity();
             if (capacity > 200) {
                 if (!first) fmt::format_to(std::back_inserter(buffer), ",");
@@ -14497,8 +14487,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void moveObjects(cocos2d::CCArray* objects, double dx, double dy, bool lockPlayerY) = win 0x22dd80, imac 0x147680, m1 0x11ab2c;
     void moveObjectsSilent(int groupId, double dx, double dy) = win inline, imac 0x137a80, m1 0x10ced4 {
         auto group = this->getGroup(groupId);
-        CCObject* object;
-        CCARRAY_FOREACH(group, object) {
+        for (auto object : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
             auto obj = static_cast<GameObject*>(object);
 
             if (!obj->m_tempOffsetXRelated) {
@@ -14625,7 +14614,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void preResumeGame() = win inline, imac 0x150d30, m1 0x122484 {
         m_resumeTimer = 2;
     }
-    void preUpdateVisibility(float dt) = win 0x236040, imac 0x364510, m1 0x120dac;
+    void preUpdateVisibility(float dt) = win 0x236040, m1 0x120dac;
     void processActivatedAudioTriggers(float levelTime) = win 0x243780, imac 0x15ff30;
     void processAdvancedFollowAction(AdvancedFollowInstance& instance, bool started, float dt) = win 0x22f330;
     void processAdvancedFollowActions(float dt) = win 0x22f110, imac 0x146700;
@@ -14637,8 +14626,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         m_areaColorCount += objects->count();
         auto colorCount = 0;
         auto totalCount = 0;
-        CCObject* obj;
-        CCARRAY_FOREACH(objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
             auto object = static_cast<GameObject*>(obj);
             if (!object->m_isActivated) continue;
             totalCount++;
@@ -14648,8 +14636,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             if (targetGroups) {
                 auto targetGroup = this->getTargetGroup(instance->m_targetGroupIndex, object->m_uniqueID);
                 colorCount += targetGroup->count() - 1;
-                CCObject* targetObj;
-                CCARRAY_FOREACH(targetGroup, targetObj) {
+                for (auto targetObj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(targetGroup)) {
                     static_cast<GameObject*>(targetObj)->setAreaOpacity(opacity, rawOpacity, m_gameState.m_unkUint2);
                 }
             }
@@ -14754,8 +14741,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         m_enterEasingValues.clear();
         m_enterEasingIndices.clear();
         m_enterEasingValuesIndex = 0;
-        CCObject* obj;
-        CCARRAY_FOREACH(m_objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
             auto object = static_cast<EnterEffectObject*>(obj);
             if (object->m_objectID >= 3006 && object->m_objectID <= 3021 && object->m_objectID != 3016) {
                 this->generateEnterEasingBuffers(object);
@@ -14921,8 +14907,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     }
     void resetLevelVariables() = win 0x23ae80, imac 0x158c40, m1 0x128768;
     void resetMoveOptimizedValue() = win inline, m1 0x11ceac {
-        CCObject* obj;
-        CCARRAY_FOREACH(m_objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
             auto object = static_cast<GameObject*>(obj);
             object->m_isDecoration2 = object->m_isDecoration;
         }
@@ -14950,8 +14935,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         }
     }
     void restoreAllUIObjects() = win inline, imac 0x4e070 {
-        CCObject* obj;
-        CCARRAY_FOREACH(m_uiObjects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_uiObjects)) {
             auto object = static_cast<GameObject*>(obj);
             object->setStartPos(m_uiObjectPositions[object->m_uniqueID]);
             object->deactivateObject(true);
@@ -15197,8 +15181,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         }
         else {
             auto group = this->getGroup(targetID);
-            CCObject* obj;
-            CCARRAY_FOREACH(group, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
                 auto groupObject = static_cast<GameObject*>(obj);
                 if (groupObject->m_unk390 != 45) continue;
                 std::vector<EnterEffectInstance>* instances;
@@ -15319,8 +15302,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GameObject* tryGetGroupParent(int groupID) = win inline, imac 0x13d3b0, m1 0x112178, ios inline {
         if (auto groupParent = static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupID))) return groupParent;
         auto group = this->getGroup(groupID);
-        CCObject* obj;
-        CCARRAY_FOREACH(group, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
             auto object = static_cast<GameObject*>(obj);
             if (object->m_hasGroupParent) return object;
         }
@@ -15369,8 +15351,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
         }
     }
     void updateAllObjectSection() = win inline {
-        CCObject* obj;
-        CCARRAY_FOREACH(m_objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
             this->updateObjectSection(static_cast<GameObject*>(obj));
         }
     }
@@ -15898,7 +15879,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     gd::vector<PlayerButtonCommand> m_queuedReplayButtons;
     gd::vector<void*> m_unk3340;
     gd::vector<void*> m_unk3358;
-    PAD = win 0x88, m1 0x88;
+    PAD = win 0x88, mac 0x88;
     int m_queuedRecordedButtonsSize;
     bool m_portalIndicators;
     bool m_orbIndicators;
@@ -15906,7 +15887,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float m_unk3380;
     gd::vector<int> m_unk3388;
     gd::vector<int> m_unk33a0;
-    PAD = win 0x48, m1 0x48;
+    PAD = win 0x48, mac 0x48;
     bool m_hideGround;
     cocos2d::CCArray* m_unk33c0;
     cocos2d::CCArray* m_objectsToMove;
@@ -16673,8 +16654,7 @@ class GJEffectManager : cocos2d::CCNode {
             m_unkArray430->addObject(node);
             node = node->m_inheritanceNode;
         }
-        CCObject* obj;
-        CCARRAY_FOREACH(m_unkArray430, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_unkArray430)) {
             auto currentNode = static_cast<InheritanceNode*>(obj);
             this->calculateInheritedColor(currentNode->m_colorID, currentNode->m_colorAction);
         }
@@ -16818,8 +16798,8 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x272890, m1 0x271c68, imac 0x2d74b0;
     virtual void textChanged(CCTextInputNode* node) = win 0x271f40, m1 0x271850, imac 0x2d6f00;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
-    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x271e80, m1 0x270cdc;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x270520, imac 0x2d4e20, m1 0x26f9f0;
+    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x271e80, imac 0x2d6230, m1 0x270cdc;
     void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x271ee0, imac 0x2d62f0, m1 0x270d98;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x271b30;
     void sliderXModChanged(cocos2d::CCObject* sender) = m1 0x270bbc;
@@ -18681,8 +18661,8 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x28cd80, imac 0x367240, m1 0x2f1a2c;
     virtual void textChanged(CCTextInputNode* node) = win 0x28c4b0, m1 0x2f1498, imac 0x366af0;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x28a660;
-    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x28c450, m1 0x2f0860;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x28a660, imac 0x364510, m1 0x2ef0d4;
+    void onUpdateGroupID(cocos2d::CCObject* sender) = win 0x28c450, m1 0x2f0860, imac 0x365d90;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x271b30;
     void sliderXModChanged(cocos2d::CCObject* sender) = m1 0x2f0758;
     void sliderYModChanged(cocos2d::CCObject* sender) = m1 0x2f07dc;
@@ -21437,8 +21417,7 @@ class HardStreak : cocos2d::CCDrawNode {
         ret->setOpacity(this->getOpacity());
         ret->setColor(this->getColor());
 
-        CCObject* obj;
-        CCARRAY_FOREACH(m_pointArray, obj){
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_pointArray)){
             auto nodePoint = static_cast<PointNode*>(obj);
             ret->addPoint(nodePoint->m_point);
         }
@@ -22414,14 +22393,13 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     }
     void deleteSelected() = win inline, imac 0x4910d0, m1 0x3f60f8 {
         auto selected = cocos2d::CCArray::create();
-        CCObject* obj;
-        CCARRAY_FOREACH(m_levels, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_levels)) {
             auto level = static_cast<GJGameLevel*>(obj);
             if (level->m_selected) selected->addObject(level);
         }
         if (selected->count() == 0) return;
         auto glm = GameLevelManager::sharedState();
-        CCARRAY_FOREACH(selected, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(selected)) {
             glm->deleteLevel(static_cast<GJGameLevel*>(obj));
         }
         m_allSelected = false;
@@ -22743,8 +22721,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* duplicateKeyframeAnimation(int keyframeGroup) = win 0x2e16e0, imac 0xf42a0, m1 0xd6fd0;
     void fastUpdateDisabledGroups() = win inline, ios inline {}
     GameObject* findGameObject(int uniqueID) = win inline, m1 0xc7abc {
-        CCObject* obj;
-        CCARRAY_FOREACH(m_objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
             auto object = static_cast<GameObject*>(obj);
             if (object->m_uniqueID == uniqueID) return object;
         }
@@ -22754,8 +22731,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         StartPosObject* ret = nullptr;
         auto xPos = 0.0f;
         auto order = -1;
-        CCObject* obj;
-        CCARRAY_FOREACH(m_objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
             auto object = static_cast<StartPosObject*>(obj);
             if (object->m_objectID == 31 && !object->m_startSettings->m_disableStartPos) {
                 auto currentXPos = object->getPosition().x;
@@ -22784,8 +22760,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         else {
             objects = m_editorUI->m_selectedObjects;
         }
-        CCObject* obj;
-        CCARRAY_FOREACH(objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
             auto object = static_cast<GameObject*>(obj);
             if (show) {
                 object->m_unk28B = object->m_isGroupDisabled;
@@ -22968,8 +22943,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         if (!m_copyStateObject) return;
 
         if (!object) {
-            CCObject* obj;
-            CCARRAY_FOREACH(objects, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
                 this->applyAttributeState(static_cast<GameObject*>(obj), m_copyStateObject);
             }
         }
@@ -22985,8 +22959,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
             object->m_updateParents = true;
         }
         else {
-            CCObject* obj;
-            CCARRAY_FOREACH(objects, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
                 auto gameObject = static_cast<GameObject*>(obj);
                 gameObject->duplicateColorMode(m_copyStateObject);
                 gameObject->m_updateParents = true;
@@ -22998,8 +22971,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
         if (object) return this->applyGroupState(object, m_copyStateObject);
 
-        CCObject* obj;
-        CCARRAY_FOREACH(objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
             this->applyGroupState(static_cast<GameObject*>(obj), m_copyStateObject);
         }
     }
@@ -23013,8 +22985,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
             object->updateParticle();
         }
         else {
-            CCObject* obj;
-            CCARRAY_FOREACH(objects, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
                 auto gameObject = static_cast<ParticleGameObject*>(obj);
                 gameObject->setParticleString(m_particleObject->m_particleData);
                 gameObject->m_hasUniformObjectColor = m_particleObject->m_hasUniformObjectColor;
@@ -23038,8 +23009,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         if (m_editorUI) m_editorUI->deselectAll();
         auto objectsCopy = cocos2d::CCArray::createWithCapacity(m_objects->count());
         objectsCopy->addObjectsFromArray(m_objects);
-        CCObject* obj;
-        CCARRAY_FOREACH(objectsCopy, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objectsCopy)) {
             this->removeObject(static_cast<GameObject*>(obj), true);
         }
         m_redoObjects->removeAllObjects();
@@ -23067,8 +23037,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
             if (object->m_dontIgnoreDuration) static_cast<EffectGameObject*>(object)->m_endPosition = cocos2d::CCPoint { 0.f, 0.f };
         }
         else {
-            CCObject* obj;
-            CCARRAY_FOREACH(objects, obj) {
+            for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
                 auto gameObject = static_cast<EffectGameObject*>(obj);
                 if (gameObject->m_dontIgnoreDuration) gameObject->m_endPosition = cocos2d::CCPoint { 0.f, 0.f };
             }
@@ -23119,8 +23088,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     }
     bool shouldBlend(int colorID) = win 0x2d3530;
     void sortBatchnodeChildren(float unused) = win inline {
-        CCObject* obj;
-        CCARRAY_FOREACH(m_batchNodes, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_batchNodes)) {
             static_cast<cocos2d::CCSpriteBatchNode*>(obj)->manualSortAllChildren();
         }
     }
@@ -24647,8 +24615,7 @@ class LocalLevelManager : GManager {
     cocos2d::CCArray* getCreatedLevels(int folder) = win inline, m1 0x520498 {
         if (folder < 1) return m_localLevels;
         auto ret = cocos2d::CCArray::create();
-        CCObject* obj;
-        CCARRAY_FOREACH(m_localLevels, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_localLevels)) {
             if (!obj) return ret;
             if (static_cast<GJGameLevel*>(obj)->m_levelFolder == folder) ret->addObject(obj);
         }
@@ -24657,8 +24624,7 @@ class LocalLevelManager : GManager {
     cocos2d::CCArray* getCreatedLists(int folder) = win inline, m1 0x520604 {
         if (folder < 1) return m_localLists;
         auto ret = cocos2d::CCArray::create();
-        CCObject* obj;
-        CCARRAY_FOREACH(m_localLists, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_localLists)) {
             if (!obj) return ret;
             if (static_cast<GJLevelList*>(obj)->m_folder == folder) ret->addObject(obj);
         }
@@ -25346,7 +25312,7 @@ class MultilineBitmapFont : cocos2d::CCSprite {
         CC_SAFE_RELEASE(m_specialDescriptors);
     }
 
-    static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x486af0, m1 0x8e948 {
+    static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x486af0 {
         auto ret = new MultilineBitmapFont();
         if (ret->initWithFont(font, text, scale, width, anchor, height, disableColor)) {
             ret->autorelease();
@@ -25907,14 +25873,12 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
         if (objects->count() == 0) return objects;
         auto filterObjects = cocos2d::CCArray::create();
         m_artistFilter = false;
-        CCObject* obj;
-        CCARRAY_FOREACH(m_artistFilterObjects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_artistFilterObjects)) {
             auto object = static_cast<OptionsObject*>(obj);
             if (object->m_enabled) {
                 m_artistFilter = true;
                 auto filtered = MusicDownloadManager::sharedState()->filterMusicByArtistID(object->m_optionID, objects);
-                CCObject* fobj;
-                CCARRAY_FOREACH(filtered, fobj) {
+                for (auto fobj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(filtered)) {
                     filterObjects->addObject(fobj);
                 }
             }
@@ -25947,13 +25911,12 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     }
     void updateFutureCount(cocos2d::CCArray* objects, cocos2d::CCArray* allObjects) = win inline, imac 0x5993b0, m1 0x4e2b40 {
         auto count = objects->count();
-        CCObject* obj;
-        CCARRAY_FOREACH(m_tagFilterObjects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_tagFilterObjects)) {
             auto object = static_cast<OptionsObject*>(obj);
             object->m_count = object->m_enabled ? MusicDownloadManager::sharedState()->filterMusicByTag(object->m_optionID, objects)->count() : count;
         }
         auto filtered = this->applyTagFilters(allObjects);
-        CCARRAY_FOREACH(m_artistFilterObjects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_artistFilterObjects)) {
             auto object = static_cast<OptionsObject*>(obj);
             object->m_count = MusicDownloadManager::sharedState()->filterMusicByArtistID(object->m_optionID, filtered)->count();
         }
@@ -26404,8 +26367,7 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
 
     cocos2d::CCArray* getRelevantObjects(cocos2d::CCArray* objects) = win inline, m1 0x535b00 {
         auto relevantObjects = cocos2d::CCArray::create();
-        CCObject* obj;
-        CCARRAY_FOREACH(objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
             auto object = static_cast<OptionsObject*>(obj);
             if (object->m_count > m_minCount || object->m_enabled) {
                 relevantObjects->addObject(object);
@@ -28328,8 +28290,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void saveActiveSaveObjects(gd::vector<SavedActiveObjectState>& activeObjects, gd::vector<SavedSpecialObjectState>& specialObjects) = win 0x3b8690, m1 0xa9ab8;
     void saveDynamicSaveObjects(gd::vector<SavedObjectStateRef>& dynamicObjects) = win 0x3b8380;
     void scanActiveSaveObjects() = win inline {
-        CCObject* obj;
-        CCARRAY_FOREACH(m_objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
             auto object = static_cast<GameObject*>(obj);
             if (object->canAllowMultiActivate()) {
                 if (!object->canMultiActivate(m_isPlatformer)) {
@@ -28694,11 +28655,10 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void setupCommentsBrowser(cocos2d::CCArray* comments) = win 0x3c6160, m1 0x6bf0ec;
     void showNoAccountError() = win 0x3c4dd0, imac 0x7bec30, m1 0x6c4158;
     void toggleMainPageVisibility(bool visible) = win inline, imac 0x7bf700, m1 0x6c4bf0, ios inline {
-        CCObject* obj;
-        CCARRAY_FOREACH(m_arrayWithUsernameLabel, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_arrayWithUsernameLabel)) {
             static_cast<cocos2d::CCNode*>(obj)->setVisible(visible);
         }
-        CCARRAY_FOREACH(m_buttons, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_buttons)) {
             static_cast<cocos2d::CCNode*>(obj)->setVisible(visible);
         }
         if (m_list) m_list->setVisible(visible);
@@ -30784,9 +30744,9 @@ class SetupAnimationPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x409d90, m1 0x354c98, imac 0x3d5630;
     virtual void textChanged(CCTextInputNode* node) = win 0x409970, m1 0x354b0c, imac 0x3d5440;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4089f0;
-    void onAnimationIDArrow(cocos2d::CCObject* sender) = win 0x4098e0, m1 0x354684;
-    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x409920, m1 0x3545dc;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4089f0, imac 0x3d42e0, m1 0x353af8;
+    void onAnimationIDArrow(cocos2d::CCObject* sender) = win 0x4098e0, imac 0x3d4f30, m1 0x354684;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x409920, imac 0x3d4e70, m1 0x3545dc;
     void updateAnimationID() = win 0x409cf0, m1 0x354a08;
     void updateAnimationTextInputLabel();
     void updateTargetID();
@@ -31061,9 +31021,9 @@ class SetupCameraEdgePopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x413b50, m1 0x4d424c, imac 0x588e20;
     virtual void textChanged(CCTextInputNode* node) = win 0x413910, m1 0x4d4174, imac 0x588d10;
 
-    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x412920, imac 0x4d7af0, m1 0x257af8;
+    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x412920, imac 0x587b20, m1 0x4d3128;
     void onCameraEdge(cocos2d::CCObject* sender) = win 0x413760, m1 0x4d3ea8;
-    void onTargetIDArrow(cocos2d::CCObject* sender);
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x4138c0, imac 0x5887e0, m1 0x4d3cfc;
     void onUnlockEdge(cocos2d::CCObject* sender) = win 0x413890, imac 0x588ae0, m1 0x4d3f98;
     void updateTargetID();
     void updateTextInputLabel();
@@ -31501,8 +31461,7 @@ class SetupEventLinkPopup : SetupTriggerPopup {
     void onSelectEvent(cocos2d::CCObject* sender) = win 0x466150, imac 0x577570, m1 0x20cb28;
     void updateEventIDs(gd::set<int>& eventIDs) = win inline, imac 0x5778c0, m1 0x4c51cc {
         auto objects = m_gameObject ? cocos2d::CCArray::createWithObject(m_gameObject) : m_gameObjects;
-        CCObject* obj;
-        CCARRAY_FOREACH(objects, obj) {
+        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
             static_cast<EventLinkTrigger*>(obj)->m_eventIDs = eventIDs;
         }
     }
@@ -32110,7 +32069,7 @@ class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
     virtual void keyBackClicked() = m1 0x4be280, imac 0x570420;
 
     void determineStartValues();
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = m1 0x227130;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
     void onClose(cocos2d::CCObject* sender);
     void onEditCameraSettings(cocos2d::CCObject* sender);
     void onUnboundMode(cocos2d::CCObject* sender);
@@ -32305,7 +32264,7 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
         object->m_chanceObjects.emplace_back(id, chance);
     }
     void callRemoveFromGroup(float dt) = win 0x43e4b0, m1 0x3159c0;
-    bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x43cff0, m1 0x353af8;
+    bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x43cff0;
     void onAddChance(cocos2d::CCObject* sender) = win 0x43e6f0, imac 0x38e180, m1 0x314b44;
     void onRemoveFromGroup(cocos2d::CCObject* sender);
     void removeGroupID(int id) = win inline, m1 0x315710 {
@@ -34197,8 +34156,7 @@ class ShardsPage : FLAlertLayer {
             m_page = page;
             for (int i = 0; i < m_pages->count(); i++) {
                 auto arr = static_cast<cocos2d::CCArray*>(m_pages->objectForKey(i));
-                CCObject* obj;
-                CCARRAY_FOREACH(arr, obj) {
+                for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(arr)) {
                     static_cast<cocos2d::CCNode*>(obj)->setVisible(i == page);
                 }
             }
