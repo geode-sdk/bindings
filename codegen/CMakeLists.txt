@@ -19,6 +19,7 @@ add_executable(${PROJECT_NAME}
 	src/AndroidSymbol.cpp
 	src/WindowsSymbol.cpp
 	src/BindingGen.cpp
+	src/InlineGen.cpp
 	src/JsonInterfaceGen.cpp
 	src/ModifyGen.cpp
 	src/PredeclareGen.cpp
