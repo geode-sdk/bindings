@@ -12664,7 +12664,7 @@ class GameStatsManager : cocos2d::CCNode {
         return 0;
     }
     gd::string getNextVideoAdReward() = imac 0x781b0, m1 0x69960;
-    gd::string getPathRewardKey(int id) = imac 0x6c9a0, m1 0x5e170;
+    gd::string getPathRewardKey(int id) = imac 0x6c9a0, m1 0x5e170, win 0x1ea700;
     GJChallengeItem* getQueuedChallenge(int id);
     GJRewardItem* getRewardForSecretChest(int id) = win inline, m1 0x7dde0, ios inline {
         return static_cast<GJRewardItem*>(m_allTreasureRoomChests->objectForKey(id));
@@ -16961,7 +16961,16 @@ class GJGameLevel : cocos2d::CCNode {
         CC_SAFE_RELEASE(m_lastBuildSave);
     }
 
-    static GJGameLevel* create();
+    static GJGameLevel* create() = win inline {
+        auto pRet = new GJGameLevel();
+        if (pRet && pRet->init())
+        {
+            pRet->autorelease();
+            return pRet;
+        }
+        delete pRet;
+        return nullptr;
+    }
     static GJGameLevel* create(cocos2d::CCDictionary* dict, bool download);
     static GJGameLevel* createWithCoder(DS_Dictionary* dict) = win inline {
         auto level = GJGameLevel::create();
@@ -18438,7 +18447,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
         }
     }
     void ProcessHttpRequest(gd::string url, gd::string params, gd::string tag, GJHttpType type) = win 0x282500, imac 0x658630, m1 0x5787e8;
-    void removeDLFromActive(char const* tag);
+    void removeDLFromActive(char const* tag) = win 0x282c20;
     bool uploadComment(gd::string text, int lobbyID) = win 0x283430, imac 0x65ae40, m1 0x3f33cc;
 
     cocos2d::CCDictionary* m_activeDownloads;
@@ -22547,7 +22556,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     // virtual ~LevelEditorLayer();
     LevelEditorLayer();
 
-    static LevelEditorLayer* create(GJGameLevel* level, bool noUI);
+    static LevelEditorLayer* create(GJGameLevel* level, bool noUI) = win 0x2d1ba0;
     static LevelEditorLayer* get() {
         return GameManager::sharedState()->m_levelEditorLayer;
     }
@@ -23421,7 +23430,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void confirmMoveToBottom(cocos2d::CCObject* sender) = win 0x2ff070;
     void confirmMoveToTop(cocos2d::CCObject* sender) = win 0x2fef30;
     void confirmOwnerDelete(cocos2d::CCObject* sender) = win 0x2fd8a0, imac 0x2c19e0;
-    void downloadLevel() = m1 0x25bfa4;
+    void downloadLevel() = m1 0x25bfa4, win 0x2f9d30;
     void incrementDislikes() = win inline, ios inline {
         m_level->m_dislikes++;
         this->updateLabelValues();
@@ -23609,7 +23618,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
 
 [[link(android)]]
 class LevelListCell : TableViewCell {
-    LevelListCell(char const* identifier, float width, float height) = m1 0x1fe2fc, ios inline : TableViewCell(identifier, width, height) {
+    LevelListCell(char const* identifier, float width, float height) = win 0xbec50, m1 0x1fe2fc, ios inline : TableViewCell(identifier, width, height) {
         m_levelList = nullptr;
         m_addingLevel = false;
         this->init();
@@ -23936,8 +23945,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x30f530, m1 0x54ec48, imac 0x62b970;
     virtual void demonFilterSelectClosed(int filter) = win 0x30e060, m1 0x54e794, imac 0x62b460;
 
-    bool checkDiff(int diff);
-    bool checkTime(int time);
+    bool checkDiff(int diff) = win 0x311c10;
+    bool checkTime(int time) = win 0x3121d0;
     void clearFilters() = win 0x30e510, m1 0x54e980;
     void confirmClearFilters(cocos2d::CCObject* sender);
     char const* getDiffKey(int diff) = win inline, m1 0x54e668, ios inline {
@@ -24157,7 +24166,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     // virtual ~LevelSettingsObject();
 
     static LevelSettingsObject* create() = m1 0xc35d4;
-    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = imac 0x102e20, m1 0xe168c;
+    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = imac 0x102e20, m1 0xe168c, win 0x2ec800;
     static LevelSettingsObject* objectFromString(gd::string const& str) = win inline, m1 0xc4fc0 {
         return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
     }
@@ -25024,8 +25033,8 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     virtual void googlePlaySignedIn() = win 0x376740, m1 0x6a5e94, imac 0x79e680;
     virtual void dropDownLayerWillClose(GJDropDownLayer* layer) = win 0x376290, m1 0x6a5bd4, imac 0x79e360;
 
-    void addToggle(char const* label, char const* key, char const* description);
-    int countForPage(int page);
+    void addToggle(char const* label, char const* key, char const* description) = win 0x3748b0;
+    int countForPage(int page) = win 0x374f10;
     void goToPage(int page) = win 0x375330;
     void incrementCountForPage(int page) = win inline {
         m_objects->setObject(cocos2d::CCString::createWithFormat("%i", this->countForPage(page) + 1), this->pageKey(page));
@@ -25191,8 +25200,8 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     virtual bool init() = win 0x378950, m1 0x6a7e24, imac 0x7a0a10;
     virtual void keyBackClicked() = win 0x37b270, imac 0x7a2b50, m1 0x6a9e50;
 
-    void addToggle(char const* label, char const* key, char const* description);
-    int countForPage(int page);
+    void addToggle(char const* label, char const* key, char const* description) = win 0x379450;
+    int countForPage(int page) = win 0x379ab0;
     void goToPage(int page);
     void incrementCountForPage(int page) = win inline {
         m_values->setObject(cocos2d::CCString::createWithFormat("%i", this->countForPage(page) + 1), this->pageKey(page));
@@ -34794,10 +34803,11 @@ class SongInfoLayer : FLAlertLayer {
 [[link(android)]]
 class SongInfoObject : cocos2d::CCNode {
     // virtual ~SongInfoObject();
+    // SongInfoObject() = win 0x33b200;
 
     static SongInfoObject* create(cocos2d::CCDictionary* dict) = imac 0x50db80;
     static SongInfoObject* create(int songID);
-    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority);
+    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x345920;
     static SongInfoObject* createWithCoder(DS_Dictionary* dict);
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x3462e0, m1 0x4e13f8, imac 0x5977c0;
@@ -34809,7 +34819,7 @@ class SongInfoObject : cocos2d::CCNode {
     }
     gd::string getArtistNames(int unused) = imac 0x5979d0, m1 0x4e15a0;
     gd::string getTagsString(bool shortTags) = win 0x346b90, imac 0x598300, m1 0x4e1c84;
-    bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = imac 0x596b00, m1 0x1c3bc8;
+    bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = imac 0x596b00, m1 0x1c3bc8, win 0x345b90;
     void updateArtists(gd::string artists) = win inline, imac 0x596d70 {
         m_extraArtists = artists;
         m_artistIDs.clear();
