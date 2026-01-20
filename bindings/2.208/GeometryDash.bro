@@ -25989,10 +25989,10 @@ class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
     void onArtists(cocos2d::CCObject* sender) = win 0xc5fb0, m1 0x1c2e5c;
     void onChanges(cocos2d::CCObject* sender) = win 0xc6270, imac 0x217a60;
     void onClose(cocos2d::CCObject* sender) = win 0x84690, m1 0x1c2e20;
-    void onGuidelines(cocos2d::CCObject* sender) = m1 0x1c2eb4;
+    void onGuidelines(cocos2d::CCObject* sender) = win 0xc6100, m1 0x1c2eb4;
     void onInfo(cocos2d::CCObject* sender) = win 0xc6120, imac 0x217b20, m1 0x1c2fdc;
-    void onNewgrounds(cocos2d::CCObject* sender) = m1 0x1c2e90;
-    void onSupporter(cocos2d::CCObject* sender) = m1 0x1c2ed8;
+    void onNewgrounds(cocos2d::CCObject* sender) = win 0xc5f9a, m1 0x1c2e90;
+    void onSupporter(cocos2d::CCObject* sender) = win 0xc60e0, m1 0x1c2ed8;
 }
 
 [[link(android)]]
