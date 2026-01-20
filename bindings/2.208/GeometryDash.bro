@@ -7232,7 +7232,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         }
     }
     void toggleEditObjectButton() = win 0x11a930, m1 0x2a434;
-    void toggleEnableRotate(cocos2d::CCObject* sender) = m1 0xaaa0;
+    void toggleEnableRotate(cocos2d::CCObject* sender) = win 0x110220, m1 0xaaa0;
     void toggleFreeMove(cocos2d::CCObject* sender) = m1 0xa9c4;
     void toggleLockUI(bool lockUI) = win inline, imac 0x2d1e0, m1 0x26b308 {
         m_isPaused = lockUI;
@@ -9732,7 +9732,7 @@ class GameLevelManager : cocos2d::CCNode {
         }
         return nullptr;
     }
-    GJLevelList* getLocalLevelList(int uniqueID);
+    GJLevelList* getLocalLevelList(int uniqueID) = win 0x1452f0;
     int getLowestLevelOrder() = win inline, m1 0x487c08 {
         auto result = INT_MAX;
         cocos2d::CCDictElement* element;
@@ -9783,7 +9783,7 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getReportKey(int levelID) = win inline, m1 0x4a9f38, ios inline {
         return cocos2d::CCString::createWithFormat("%i", levelID)->getCString();
     }
-    GJGameLevel* getSavedDailyLevel(int dailyID);
+    GJGameLevel* getSavedDailyLevel(int dailyID) = win 0x148c20;
     GJGameLevel* getSavedDailyLevelFromLevelID(int id) = win inline, m1 0x48a0f8 {
         cocos2d::CCDictElement* element;
         cocos2d::CCDictElement* temp;
@@ -9803,7 +9803,7 @@ class GameLevelManager : cocos2d::CCNode {
         else if (level->m_gauntletLevel) return this->getSavedGauntletLevel(level->m_levelID.value());
         else return this->getSavedLevel(level->m_levelID.value());
     }
-    GJGameLevel* getSavedLevel(int id);
+    GJGameLevel* getSavedLevel(int id) = win 0x148b50;
     GJLevelList* getSavedLevelList(int listID) = win inline {
         return static_cast<GJLevelList*>(m_favoriteLists->objectForKey(this->getLevelListKey(listID)));
     }
@@ -9865,7 +9865,7 @@ class GameLevelManager : cocos2d::CCNode {
         if (type == GJTimedLevelType::Event) return m_eventTimeLeft > 0;
         return false;
     }
-    bool hasDownloadedLevel(int id);
+    bool hasDownloadedLevel(int id) = win 0x1537f0;
     bool hasDownloadedList(int id) = win inline, m1 0x4925b4, ios inline {
         return this->hasDownloadedLevel(-id);
     }
@@ -9883,7 +9883,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     bool isDLActive(char const* tag);
     bool isFollowingUser(int id);
-    bool isTimeValid(char const* key, float length);
+    bool isTimeValid(char const* key, float length) = win 0x149dd0;
     bool isUpdateValid(int id) = win inline {
         const char* str = cocos2d::CCString::createWithFormat("%i", id)->getCString();
 
@@ -10086,13 +10086,13 @@ class GameLevelManager : cocos2d::CCNode {
         request->release();
     }
     void ProcessHttpRequest(gd::string endpoint, gd::string params, gd::string tag, GJHttpType httpType) = win 0x142da0, imac 0x51a970, m1 0x2ac248;
-    void processOnDownloadLevelCompleted(gd::string response, gd::string tag, bool update) = imac 0x375860, m1 0x495bec;
+    void processOnDownloadLevelCompleted(gd::string response, gd::string tag, bool update) = win 0x1523b0, imac 0x375860, m1 0x495bec;
     void purgeUnusedLevels() = win 0x14a470, imac 0x129350, m1 0x48c16c;
     bool rateDemon(int id, int diff, bool moderator) = win 0x155390, m1 0x4989d4;
     void rateStars(int id, int diff) = win 0x153b00, imac 0x545910, m1 0x497180;
     void readFriendRequest(int id) = win 0x1616c0;
     void removeDelimiterChars(gd::string str, bool colon) = win 0x16a9a0;
-    void removeDLFromActive(char const* key);
+    void removeDLFromActive(char const* key) = win 0x149c20;
     bool removeFriend(int accountID) = win 0x1619d0;
     void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary* dict);
     void removeUserFromList(int id, UserListType type) = win 0x162920, imac 0x555d60, m1 0x4a5d80;
@@ -10132,7 +10132,7 @@ class GameLevelManager : cocos2d::CCNode {
         m_storedUserInfo->removeObjectForKey(id);
     }
     void resetStoredUserList(UserListType type) = win 0x163270, imac 0x554dc0, m1 0x4a4e64;
-    void resetTimerForKey(char const* key);
+    void resetTimerForKey(char const* key) = win 0x14a120;
     void restoreItems() = imac 0xd29e0, m1 0x4a973c;
     void saveFetchedLevelLists(cocos2d::CCArray* lists) = win inline, ios inline {
         for (int i = 0; i < lists->count(); i++) {
@@ -10149,7 +10149,7 @@ class GameLevelManager : cocos2d::CCNode {
         m_savedGauntlets->setObject(gauntlet, this->getGauntletKey(gauntlet->m_packID));
     }
     void saveLevel(GJGameLevel* level) = win 0x148dc0, imac 0x5371c0;
-    void saveLevelList(GJLevelList* list);
+    void saveLevelList(GJLevelList* list) = win 0x150f20;
     void saveLocalScore(int id, int value, int type) = win inline, imac 0x53a400, m1 0x48d0b0, ios inline {}
     void saveMapPack(GJMapPack* pack) = win inline {
         m_savedPacks->setObject(pack, this->getMapPackKey(pack->m_packID));
@@ -10531,12 +10531,12 @@ class GameManager : GManager {
     void fadeInMusic(gd::string path) = win 0x17bbe0, imac 0x376f30;
     void finishedLoadingBGAsync(cocos2d::CCObject* obj) = win 0x182990;
     void finishedLoadingGAsync(int index) = win 0x182e30, m1 0x30b264;
-    void finishedLoadingGAsync1(cocos2d::CCObject* obj);
-    void finishedLoadingGAsync2(cocos2d::CCObject* obj);
+    void finishedLoadingGAsync1(cocos2d::CCObject* obj) = win 0x182db0;
+    void finishedLoadingGAsync2(cocos2d::CCObject* obj) = win 0x182df0;
     void finishedLoadingIconAsync(cocos2d::CCObject* obj) = m1 0x3091f4;
     void finishedLoadingMGAsync(int index) = win 0x182bd0, m1 0x30af04;
-    void finishedLoadingMGAsync1(cocos2d::CCObject* obj);
-    void finishedLoadingMGAsync2(cocos2d::CCObject* obj);
+    void finishedLoadingMGAsync1(cocos2d::CCObject* obj) = win 0x182b50;
+    void finishedLoadingMGAsync2(cocos2d::CCObject* obj) = win 0x182b90;
     void followTwitch() = win inline, m1 0x308410 {
         if (GameToolbox::doWeHaveInternet()) {
             cocos2d::CCApplication::sharedApplication()->openURL("https://www.twitch.tv/directory/category/geometry-dash");
@@ -12727,10 +12727,10 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedMapPack(int id);
     bool hasCompletedOnlineLevel(int id) = imac 0x6d860;
     bool hasCompletedStarLevel(GJGameLevel* level) = win 0x1de2e0;
-    bool hasPendingUserCoin(char const* key);
+    bool hasPendingUserCoin(char const* key) = win 0x1dfea0;
     bool hasRewardBeenCollected(GJRewardType type, int id) = win 0x1e1ab0;
-    bool hasSecretCoin(char const* key);
-    bool hasUserCoin(char const* key);
+    bool hasSecretCoin(char const* key) = win 0x1dff60;
+    bool hasUserCoin(char const* key) = win 0x1dfd20;
     void incrementActivePath(int amount) = win inline, imac 0x6b910, m1 0x5cef8 {
         this->trySelectActivePath();
         if (m_activePath < 30 || m_activePath > 39) return;
@@ -12853,7 +12853,7 @@ class GameStatsManager : cocos2d::CCNode {
         m_upcomingChallenges->setObject(challenge, cocos2d::CCString::createWithFormat("%i", position + 100)->getCString());
     }
     void storeSecretCoin(char const* key) = m1 0x61c94;
-    void storeUserCoin(char const* key);
+    void storeUserCoin(char const* key) = win 0x1dfde0;
     void tempClear() = win inline, imac 0x70bc0, ios inline {}
     void toggleEnableItem(UnlockType type, int id, bool enabled) = win 0x1e5c10, imac 0x77930, m1 0x690a8;
     void tryFixPathBug() = win 0x1d4820;
@@ -23430,7 +23430,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
         m_level->m_likes++;
         this->updateLabelValues();
     }
-    bool init(GJGameLevel* level, bool challenge) = win 0x2f70e0;
+    bool init(GJGameLevel* level, bool challenge) = win 0x2f70e0, imac 0x2bd000, m1 0x259604; 
     void loadLevelStep() = win 0x2fcff0, imac 0x2c3ee0, m1 0x26020c;
     void onAddToList(cocos2d::CCObject* sender) = win 0x2f9720, imac 0x2c25b0, m1 0x25e990;
     void onBack(cocos2d::CCObject* sender) = win 0x3004b0;
@@ -24859,7 +24859,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
         }
         else PlatformToolbox::signInGooglePlay();
     }
-    void onMoreGames(cocos2d::CCObject* sender) = m1 0x3178f4, win 0x1234567, ios 0x1234567, imac 0x1234567;
+    void onMoreGames(cocos2d::CCObject* sender) = m1 0x3178f4, win 0x335470, ios 0x1234567, imac 0x1234567;
     void onMyProfile(cocos2d::CCObject* sender) = m1 0x317a50;
     void onNewgrounds(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x3357a0, m1 0x3176ac;
