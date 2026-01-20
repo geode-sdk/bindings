@@ -28380,10 +28380,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
             if ((int)angle % 90 != 0) object->setRotation(-object->m_startRotationX);
         }
     }
-    void setDamageVerifiedIdx(int idx) {
-        // TODO: FIX
-        // m_damageVerifiedIndex = idx;
-    }
+    void setDamageVerifiedIdx(int idx);
     void setupHasCompleted() = win 0x3a6380;
     bool shouldBlend(int colorID) = win inline, m1 0xa4550 {
         return m_effectManager->shouldBlend(colorID);
