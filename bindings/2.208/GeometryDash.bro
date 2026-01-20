@@ -8703,7 +8703,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
         m_containsBorder = 0;
         m_forcePrioRegistered = false;
     }
-    ~FLAlertLayer() = win 0x51870 imac 0x49a810, m1 0x3fec84;
+    ~FLAlertLayer() = win 0x51870, imac 0x49a810, m1 0x3fec84;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) {
         return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
