@@ -34821,10 +34821,10 @@ class SongInfoObject : cocos2d::CCNode {
     int m_songID;
     gd::string m_songName;
     gd::string m_artistName;
+    gd::string m_unkString;
     gd::string m_youtubeVideo;
     gd::string m_youtubeChannel;
     gd::string m_songUrl;
-    gd::string m_unkString;
     int m_artistID;
     float m_fileSize;
     int m_nongType;
