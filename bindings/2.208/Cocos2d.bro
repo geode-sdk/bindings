@@ -69,7 +69,7 @@ class cocos2d {
 
     	ccDrawSolidPoly(vertices, 4, color);
     }
-    static void ccGLBindTexture2D(unsigned int);
+    static void ccGLBindTexture2D(unsigned int) = m1 0x2e6878;
     static void ccGLBindTexture2DN(unsigned int, unsigned int);
     static void ccGLBindVAO(unsigned int);
     static void ccGLBlendFunc(unsigned int, unsigned int) = m1 0x2e67c0;
@@ -93,7 +93,7 @@ class cocos2d {
         glDeleteTextures(1, &p1);
     }
     static void ccGLEnable(cocos2d::ccGLServerState);
-    static void ccGLEnableVertexAttribs(unsigned int);
+    static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e69c4;
     static void ccGLInvalidateStateCache();
     static void ccGLUseProgram(unsigned int);
     static void CCLog(char const*);
@@ -2103,7 +2103,7 @@ class cocos2d::CCEGLView {
     // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool, GLFWvidmode const&, GLFWmonitor*);
     // [[missing(android, mac, ios)]]
     // static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
-    static cocos2d::CCEGLView* sharedOpenGLView();
+    static cocos2d::CCEGLView* sharedOpenGLView() = m1 0x45acf0;
 
     virtual void end() = imac 0x503110, m1 0x45ae34;
     virtual void swapBuffers() = imac 0x503180, m1 0x45ae8c;
@@ -2600,7 +2600,7 @@ class cocos2d::CCIMEDispatcher {
     void addDelegate(cocos2d::CCIMEDelegate*);
     bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
     bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
-    void dispatchDeleteBackward() = imac 0x4bbf30;
+    void dispatchDeleteBackward() = m1 0x41c214, imac 0x4bbf30;
     void dispatchDeleteForward();
     void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4bbf00, m1 0x41c1e8;
     void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
@@ -5742,7 +5742,7 @@ class cocos2d::CCShaderCache : cocos2d::CCObject {
     bool init() = m1 0x1aebf8;
     void loadDefaultShader(cocos2d::CCGLProgram*, int) = m1 0x585ec0;
     void loadDefaultShaders() = imac 0x201f30, m1 0x1aed44;
-    cocos2d::CCGLProgram* programForKey(char const*);
+    cocos2d::CCGLProgram* programForKey(char const*) = m1 0x1afac0;
     void reloadDefaultShaders() = imac 0x202850, m1 0x1af718, ios inline {
         CCGLProgram* program;
         program = this->programForKey(kCCShader_PositionTextureColor);
@@ -6562,7 +6562,7 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     bool hasMipmaps();
     bool hasPremultipliedAlpha();
     bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = imac 0x17e370, m1 0x3defa4;
-    bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&);
+    bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = m1 0x3debe4;
     bool initWithETCFile(char const*) = imac 0x478e60, m1 0x3dfcc8;
     bool initWithImage(cocos2d::CCImage*) = m1 0x3def28;
     bool initWithPVRFile(char const*) = imac 0x478d80, m1 0x3dfbf4;
