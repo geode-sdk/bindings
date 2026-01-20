@@ -6965,7 +6965,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void moveGamelayer(cocos2d::CCPoint offset) = win 0xe2d90, imac 0x2f3b0, m1 0x2c484;
     void moveObject(GameObject* object, cocos2d::CCPoint offset) = win 0x11fcf0, m1 0x36c14;
     void moveObjectCall(EditCommand command) = win 0x11fa60;
-    void moveObjectCall(cocos2d::CCObject* sender) = m1 0x3fd70;
+    void moveObjectCall(cocos2d::CCObject* sender) = win 0x11fa30, m1 0x3fd70;
     cocos2d::CCPoint offsetForKey(int id) = win 0x1269e0, imac 0x35770, m1 0x32448;
     void onAssignNewGroupID() = ios inline {
         auto selectedObjects = m_selectedObject ? cocos2d::CCArray::createWithObject(m_selectedObject) : m_selectedObjects;
@@ -6977,7 +6977,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
         }
         this->updateObjectInfoLabel();
     }
-    void onColorFilter(cocos2d::CCObject* sender) = m1 0x2ee84;
+    void onColorFilter(cocos2d::CCObject* sender) = win 0xe72e0, m1 0x2ee84;
     void onCopy(cocos2d::CCObject* sender) = m1 0x28758;
     void onCopyState(cocos2d::CCObject* sender) = win 0x1143a0;
     bool onCreate() = win 0x10f430, imac 0x2e170, m1 0x2b238;
@@ -6992,7 +6992,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onDeleteInfo(cocos2d::CCObject* sender) = win 0xe5cf0, imac 0x31e00, m1 0x2ec78;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0xe6470, m1 0xac84;
     void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0xe6a10;
-    void onDeleteStartPos(cocos2d::CCObject* sender) = m1 0x2eb84;
+    void onDeleteStartPos(cocos2d::CCObject* sender) = win 0xe6a60, m1 0x2eb84;
     void onDeselectAll(cocos2d::CCObject* sender) = win 0x111480, m1 0x29614;
     void onDuplicate(cocos2d::CCObject* sender) = win 0x112cc0, imac 0x2acc0, m1 0x28580;
     void onEditColor(cocos2d::CCObject* sender) = win 0x11ead0, m1 0x28768;
@@ -7014,7 +7014,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPause(cocos2d::CCObject* sender) = win 0xe1a80;
     void onPlayback(cocos2d::CCObject* sender) = win 0x111ae0;
     void onPlaytest(cocos2d::CCObject* sender) = win 0x1120f0;
-    void onResetSpecialFilter(cocos2d::CCObject* sender) = m1 0x2eedc;
+    void onResetSpecialFilter(cocos2d::CCObject* sender) = win 0xe7470, m1 0x2eedc;
     void onSelectBuildTab(cocos2d::CCObject* sender) = imac 0x33db0;
     void onSettings(cocos2d::CCObject* sender) = win 0xe1a00;
     void onStopPlaytest(cocos2d::CCObject* sender) = win 0x112570;
@@ -7233,12 +7233,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     }
     void toggleEditObjectButton() = win 0x11a930, m1 0x2a434;
     void toggleEnableRotate(cocos2d::CCObject* sender) = win 0x110220, m1 0xaaa0;
-    void toggleFreeMove(cocos2d::CCObject* sender) = m1 0xa9c4;
+    void toggleFreeMove(cocos2d::CCObject* sender) = win 0x1100a0, m1 0xa9c4;
     void toggleLockUI(bool lockUI) = win inline, imac 0x2d1e0, m1 0x26b308 {
         m_isPaused = lockUI;
     }
     void toggleMode(cocos2d::CCObject* sender) = win 0xe4ed0, imac 0x2a900, m1 0x2820c;
-    void toggleObjectInfoLabel() = m1 0x2a1f8;
+    void toggleObjectInfoLabel() = win 0xdd480, m1 0x2a1f8;
     void toggleSnap(cocos2d::CCObject* sender);
     void toggleSpecialEditButtons() = win 0x11aa30, m1 0x2a660;
     void toggleStickyControls(bool enable) = win inline {
@@ -7248,10 +7248,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
               m_unlinkBtn->setEnabled(enable);
               m_unlinkBtn->setVisible(enable);
     }
-    void toggleSwipe(cocos2d::CCObject* sender) = m1 0xa8c4;
+    void toggleSwipe(cocos2d::CCObject* sender) = win 0x110000, m1 0xa8c4;
     void transformObject(GameObject* object, EditCommand command, bool noOffset);
     void transformObjectCall(EditCommand command) = win 0x120210, imac 0x4a480, m1 0x40ed4;
-    void transformObjectCall(cocos2d::CCObject* sender) = m1 0x3fda4;
+    void transformObjectCall(cocos2d::CCObject* sender) = win 0x1201e0, m1 0x3fda4;
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x121a80, imac 0x407f0, m1 0x387c4;
     void transformObjectsActive() = win 0x1219c0;
     void transformObjectsReset() = win inline {
