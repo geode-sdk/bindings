@@ -23430,7 +23430,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
         m_level->m_likes++;
         this->updateLabelValues();
     }
-    bool init(GJGameLevel* level, bool challenge);
+    bool init(GJGameLevel* level, bool challenge) = win 0x2f70e0, imac 0x2bd000, m1 0x259604; 
     void loadLevelStep() = win 0x2fcff0, imac 0x2c3ee0, m1 0x26020c;
     void onAddToList(cocos2d::CCObject* sender) = win 0x2f9720, imac 0x2c25b0, m1 0x25e990;
     void onBack(cocos2d::CCObject* sender) = win 0x3004b0;
