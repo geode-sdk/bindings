@@ -9489,7 +9489,7 @@ class GameLevelManager : cocos2d::CCNode {
     }
     static cocos2d::CCDictionary* responseToDict(gd::string response, bool colon) = win 0x16abd0, m1 0x484310;
     // virtual ~GameLevelManager();
-    static GameLevelManager* sharedState() = win 0x1440e0, ios 0x1234567, imac 0x1234567, m1 0x1234567;
+    static GameLevelManager* sharedState() = win 0x1234567, ios 0x1234567, imac 0x1234567, m1 0x1234567;
 
     virtual bool init() = win 0x1442d0, m1 0x47fc30, imac 0x52b7d0;
 
