@@ -10,10 +10,6 @@ cocos2d::extension::CCControlColourPicker::CCControlColourPicker() {
 
 cocos2d::extension::CCControlColourPicker::~CCControlColourPicker() {}
 
-cocos2d::ccColor3B const& cocos2d::extension::CCControlColourPicker::getColorValue() const  {
-    return m_rgb;
-}
-
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
@@ -21,6 +17,10 @@ cocos2d::ccColor3B const& cocos2d::extension::CCControlColourPicker::getColorVal
 #endif
 
 #if defined(GEODE_IS_IOS)
+cocos2d::ccColor3B const& cocos2d::extension::CCControlColourPicker::getColorValue() const  {
+    return m_rgb;
+}
+
 void cocos2d::extension::CCControlColourPicker::updateControlPicker() {
     m_huePicker->setHue(m_hsv.h);
     m_colourPicker->updateWithHSV(m_hsv);

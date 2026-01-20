@@ -11,8 +11,10 @@ namespace { namespace format_strings {
 using namespace geode;
 using namespace geode::modifier;
 
+#if !defined(GEODE_WRAP_FUNCTION)
+#define GEODE_WRAP_FUNCTION
 template <class F>
-auto wrapFunction(uintptr_t address, tulip::hook::TulipConvention convention) {{
+static auto wrapFunction(uintptr_t address, tulip::hook::TulipConvention convention) {{
 	auto wrapped = geode::hook::createWrapper(reinterpret_cast<void*>(address), tulip::hook::WrapperMetadata{{
 		.m_convention = geode::hook::createConvention(convention),
 		.m_abstract = tulip::hook::AbstractFunction::from(F(nullptr)),
@@ -22,6 +24,7 @@ auto wrapFunction(uintptr_t address, tulip::hook::TulipConvention convention) {{
 	}}
 	return wrapped.unwrap();
 }}
+#endif
 )GEN";
 
 	constexpr char const* declare_member = R"GEN(
@@ -138,7 +141,7 @@ bool areSuperclassesEmpty(Class const& c) {
 	return c.superclasses.empty() || (c.superclasses.size() == 1 && c.superclasses[0].find("CCCopying") != std::string::npos);
 }
 
-std::string generateBindingSource(Root const& root, bool skipPugixml, bool skipInlines) {
+std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, bool skipPugixml, bool skipInlines, std::unordered_set<std::string>* generatedFiles) {
 	std::string output = fmt::format(format_strings::source_start,
 		fmt::arg("includes", codegen::getIncludes(root))
 	);
@@ -174,6 +177,15 @@ std::string generateBindingSource(Root const& root, bool skipPugixml, bool skipI
 				continue;
 			}
 		}
+		std::string output = fmt::format(format_strings::source_start,
+			fmt::arg("includes", codegen::getIncludes(root))
+		);
+
+		std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".cpp");
+
+        if (generatedFiles != nullptr) {
+            generatedFiles->insert(filename);
+        }
 
 		for (auto& f : c.fields) {
 			if (auto i = f.get_as<InlineField>()) {
@@ -267,6 +279,8 @@ std::string generateBindingSource(Root const& root, bool skipPugixml, bool skipI
 				}
 			}
 		}
+
+		writeFile(singleFolder / filename, output);
 	}
 	return output;
 }
