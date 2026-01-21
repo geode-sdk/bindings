@@ -7,3 +7,4 @@ __optcall.xml
 __membercall.xml
 /.vs
 **/.cache
+.idea/
