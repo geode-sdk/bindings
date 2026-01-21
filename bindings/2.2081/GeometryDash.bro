@@ -14245,20 +14245,20 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x3866d0, imac 0x3fa640, m1 0x373100;
 
     virtual void update(float dt) = win 0x388d80;
-    virtual void setScaleX(float scale) = m1 0x391b8c;
-    virtual void setScaleY(float scale) = m1 0x391b90;
-    virtual void setScale(float scale) = m1 0x391b94;
+    virtual void setScaleX(float scale) = win 0x3a3910, m1 0x391b8c;
+    virtual void setScaleY(float scale) = win 0x3a3920, m1 0x391b90;
+    virtual void setScale(float scale) = win 0x3a3930, m1 0x391b94;
     virtual void setPosition(cocos2d::CCPoint const& position) = win 0x39c640;
     virtual void setVisible(bool visible) = win 0x3a3940, m1 0x391b98;
-    virtual void setRotation(float rotation) = m1 0x391b20;
-    virtual void setOpacity(unsigned char opacity) = m1 0x38f294;
+    virtual void setRotation(float rotation) = win 0x3a3840, m1 0x391b20;
+    virtual void setOpacity(unsigned char opacity) = win 0x39daf0, m1 0x38f294;
     virtual void setColor(cocos2d::ccColor3B const& color) = win 0x39d310, m1 0x38ecb8;
     virtual void setFlipX(bool flipX) = win 0x3a3850, m1 0x391b24;
     virtual void setFlipY(bool flipY) = win 0x198200, m1 0x391b88;
     virtual void resetObject() = win 0x396ee0, m1 0x387858;
     virtual cocos2d::CCPoint getRealPosition() = win 0x39dc20, imac 0x41a5d0, m1 0x38f490;
     virtual OBB2D* getOrientedBox() = win 0x3a0650, imac 0x41b8f0, m1 0x390668;
-    virtual float getObjectRotation() = imac 0x41b910;
+    virtual float getObjectRotation() = win 0x3a0670, imac 0x41b910;
     virtual void animationFinished(char const* key) = win 0x3a3960, imac 0x41d690, m1 0x391c6c;
 
     void activateStreak() = win 0x3a0090;
@@ -14449,13 +14449,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerScale() = win 0x3a0220, imac 0x416080, m1 0x38b2e4, ios inline;
     void updatePlayerShipFrame(int frame) = win 0x39de80, imac 0x4166a0, m1 0x38b8e4;
     void updatePlayerSpiderFrame(int frame) = win inline, imac 0x41a620, m1 0x38f4d8;
-    void updatePlayerSpriteExtra(gd::string frameName) = m1 0x37466c;
+    void updatePlayerSpriteExtra(gd::string frameName) = win 0x39ec10, m1 0x37466c;
     void updatePlayerSwingFrame(int frame) = win 0x39e7b0, imac 0x417890, m1 0x38c9bc;
     void updateRobotAnimationSpeed() = win 0x3a10e0, imac 0x41b960, m1 0x390710;
     void updateRotation(float dt) = win 0x391020;
     void updateRotation(float dt, float rotation) = win 0x391260;
     void updateShipRotation(float dt) = win 0x390c40;
-    void updateShipSpriteExtra(gd::string frameName) = m1 0x374750;
+    void updateShipSpriteExtra(gd::string frameName) = win 0x39ed20, m1 0x374750;
     void updateSlopeRotation(float dt) = win 0x390bc0;
     void updateSlopeYVelocity(float yVelocity) = win inline, ios inline;
     void updateSpecial(float dt) = win inline, imac 0x402b90, m1 0x37a7dc;
