@@ -1,5 +1,15 @@
 #include <Geode/Geode.hpp>
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+bool EndLevelLayer::init(PlayLayer* playLayer) {
+    m_playLayer = playLayer;
+    return GJDropDownLayer::init(" ", 230.f, true);
+}
+
+void EndLevelLayer::onEveryplay(cocos2d::CCObject* sender) {}
+#endif
+
+#if defined(GEODE_IS_WINDOWS)
 EndLevelLayer::EndLevelLayer() {
     m_playLayer = nullptr;
     m_notLocal = false;
@@ -17,16 +27,6 @@ EndLevelLayer::EndLevelLayer() {
     m_hidden = false;
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-bool EndLevelLayer::init(PlayLayer* playLayer) {
-    m_playLayer = playLayer;
-    return GJDropDownLayer::init(" ", 230.f, true);
-}
-
-void EndLevelLayer::onEveryplay(cocos2d::CCObject* sender) {}
-#endif
-
-#if defined(GEODE_IS_WINDOWS)
 EndLevelLayer::~EndLevelLayer() {
     CC_SAFE_RELEASE(m_coinsToAnimate);
 }

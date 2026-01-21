@@ -1712,6 +1712,9 @@ float GJBaseGameLayer::getGroundHeightForMode(int type) {
     }
     return 270.f;
 }
+#endif
+
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC)
 
 void GJBaseGameLayer::moveAreaObject(GameObject* object, float dx, float dy) {
     auto result = this->resetAreaObjectValues(object, true);
@@ -1794,4 +1797,3 @@ void GJBaseGameLayer::updateAreaObjectLastValues(GameObject* object) {
     }
 }
 #endif
-

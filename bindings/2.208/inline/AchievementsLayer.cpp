@@ -1,5 +1,9 @@
 #include <Geode/Geode.hpp>
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#endif
+
+#if defined(GEODE_IS_WINDOWS)
 AchievementsLayer::AchievementsLayer() {
     m_currentPage = 0;
     m_nextPageButton = nullptr;
@@ -7,10 +11,6 @@ AchievementsLayer::AchievementsLayer() {
     m_pageLabel = nullptr;
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-#endif
-
-#if defined(GEODE_IS_WINDOWS)
 AchievementsLayer* AchievementsLayer::create() {
     auto ret = new AchievementsLayer();
     if (ret->init("Achievements")) {

@@ -50,7 +50,7 @@ CCSpritePart* CCSpritePart::createWithSpriteFrameName(char const* frame) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 CCSpritePart::CCSpritePart() {
     m_isBeingUsed = false;
     m_delegate = nullptr;

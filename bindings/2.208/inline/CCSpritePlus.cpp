@@ -38,7 +38,7 @@ void CCSpritePlus::stopFollow() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 CCSpritePlus::CCSpritePlus() {
     m_followers = nullptr;
     m_followingSprite = nullptr;

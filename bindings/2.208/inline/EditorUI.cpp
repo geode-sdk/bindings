@@ -723,8 +723,11 @@ float EditorUI::xPosFromValue(float value) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 EditorUI* EditorUI::getUI() { return this; }
+#endif
+
+#if defined(GEODE_IS_IOS)
 
 void EditorUI::closeLiveColorSelect() {
     if (m_colorOverlay) {

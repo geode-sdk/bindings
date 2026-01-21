@@ -26,7 +26,7 @@ int AdvancedFollowTriggerObject::getAdvancedFollowID() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 AdvancedFollowTriggerObject::AdvancedFollowTriggerObject() {
     m_delay = 0.f;
     m_delayVariance = 0.f;

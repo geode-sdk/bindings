@@ -1,37 +1,5 @@
 #include <Geode/Geode.hpp>
 
-BoomScrollLayer::BoomScrollLayer() {
-    m_dots = nullptr;
-    m_slowPage = 0;
-    m_touchX = 0.f;
-    m_touchQuotient = 0.f;
-    m_looped = false;
-    m_dynamicDelegate = nullptr;
-    m_dynamicObjects = nullptr;
-    m_dynamic = false;
-    m_touchType = 0;
-    m_ignoreTouchCancel = false;
-    m_touch = nullptr;
-    m_pages = nullptr;
-    m_touchTime = 0.0;
-    m_extendedLayer = nullptr;
-    m_unkFloat1 = 0.f;
-    m_maxSpeed = 0.f;
-    m_minSpeed = 0.f;
-    m_unkFloat2 = 0.f;
-    m_delegate = nullptr;
-    m_pageMoving = false;
-    m_pagesInvisible = false;
-    m_minimumTouchLengthToSlide = 0.f;
-    m_minimumTouchLengthToChangePage = 0.f;
-    m_width = 0.f;
-    m_cancelAndStealTouch = false;
-    m_dotsVisible = false;
-    m_page = 0;
-    m_pageOffset = 0.f;
-    m_unkPtr = nullptr;
-    m_doVisit = false;
-}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void BoomScrollLayer::addPage(cocos2d::CCLayer* page) {
@@ -69,6 +37,39 @@ void BoomScrollLayer::removePageWithNumber(int page) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+BoomScrollLayer::BoomScrollLayer() {
+    m_dots = nullptr;
+    m_slowPage = 0;
+    m_touchX = 0.f;
+    m_touchQuotient = 0.f;
+    m_looped = false;
+    m_dynamicDelegate = nullptr;
+    m_dynamicObjects = nullptr;
+    m_dynamic = false;
+    m_touchType = 0;
+    m_ignoreTouchCancel = false;
+    m_touch = nullptr;
+    m_pages = nullptr;
+    m_touchTime = 0.0;
+    m_extendedLayer = nullptr;
+    m_unkFloat1 = 0.f;
+    m_maxSpeed = 0.f;
+    m_minSpeed = 0.f;
+    m_unkFloat2 = 0.f;
+    m_delegate = nullptr;
+    m_pageMoving = false;
+    m_pagesInvisible = false;
+    m_minimumTouchLengthToSlide = 0.f;
+    m_minimumTouchLengthToChangePage = 0.f;
+    m_width = 0.f;
+    m_cancelAndStealTouch = false;
+    m_dotsVisible = false;
+    m_page = 0;
+    m_pageOffset = 0.f;
+    m_unkPtr = nullptr;
+    m_doVisit = false;
+}
+
 BoomScrollLayer::~BoomScrollLayer() {
     CC_SAFE_RELEASE(m_dynamicObjects);
     CC_SAFE_RELEASE(m_pages);

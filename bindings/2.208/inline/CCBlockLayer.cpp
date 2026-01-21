@@ -45,7 +45,7 @@ void CCBlockLayer::incrementForcePrio() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 CCBlockLayer::CCBlockLayer() {
     m_closeOnHide = false;
     m_forcePrioRegistered = false;
