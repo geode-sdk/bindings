@@ -17760,16 +17760,16 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
     void determineStartValues() = win inline, m1 0x441794;
     bool init(SmartGameObject* object, cocos2d::CCArray* objects) = win 0x456a10;
     void onAllowFlipping(cocos2d::CCObject* sender) = win 0x457af0, imac 0x4e7450, m1 0x441f88;
-    void onAllowRotation(cocos2d::CCObject* sender) = m1 0x441f4c;
+    void onAllowRotation(cocos2d::CCObject* sender) = win 0x457a70, m1 0x441f4c;
     void onClose(cocos2d::CCObject* sender) = win 0x4583d0, imac 0x4e6c30, m1 0x441858;
     void onCreate(cocos2d::CCObject* sender) = win 0x458490, m1 0x4418f8;
     void onCreateAll(cocos2d::CCObject* sender) = win 0x458120, m1 0x441ca0;
     void onCreateTemplate(cocos2d::CCObject* sender) = win 0x4588c0, m1 0x4419e4;
-    void onDontDelete(cocos2d::CCObject* sender) = m1 0x442080;
-    void onIgnoreCorners(cocos2d::CCObject* sender) = m1 0x44200c;
-    void onNearbyReference(cocos2d::CCObject* sender) = m1 0x442048;
+    void onDontDelete(cocos2d::CCObject* sender) = win 0x457c30, m1 0x442080;
+    void onIgnoreCorners(cocos2d::CCObject* sender) = win 0x457ca0, m1 0x44200c;
+    void onNearbyReference(cocos2d::CCObject* sender) = win 0x457bc0, m1 0x442048;
     void onPasteTemplate(cocos2d::CCObject* sender) = win 0x457d20, m1 0x441ac8;
-    void onReferenceOnly(cocos2d::CCObject* sender);
+    void onReferenceOnly(cocos2d::CCObject* sender) = win 0x4579e0;
     void onSelectPremade(cocos2d::CCObject* sender) = win 0x4589c0, imac 0x4e6e70, m1 0x441a5c;
     void onSelectTemplate(cocos2d::CCObject* sender) = win 0x458a40, imac 0x4e6ec0, m1 0x441aa4;
 
