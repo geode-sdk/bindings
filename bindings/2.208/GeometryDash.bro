@@ -16,11 +16,11 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 
     void doUnlink() = win inline, imac 0xcef00, m1 0xb62d8, ios inline;
     void exitLayer() = win inline, m1 0xb6304, ios inline;
-    void onAccountManagement(cocos2d::CCObject* sender) = imac 0xce820;
+    void onAccountManagement(cocos2d::CCObject* sender) = m1 0xb5c18, imac 0xce820;
     void onReLogin(cocos2d::CCObject* sender) = win 0x7fa40, m1 0xb5ba4;
     void onUnlink(cocos2d::CCObject* sender) = win 0x7fb90, m1 0xb5cec;
     void updatePage() = win 0x7fd40, imac 0xceaa0, m1 0xb5ea0;
-    void verifyUnlink() = win inline, imac 0xcedf0;
+    void verifyUnlink() = win inline, m1 0xb61e0, imac 0xcedf0;
 
     cocos2d::CCLabelBMFont* m_loginStatusLabel;
     TextArea* m_textArea;
@@ -53,12 +53,12 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
     void onBackup(cocos2d::CCObject* sender) = m1 0xb3ac8;
     void onHelp(cocos2d::CCObject* sender) = imac 0xcc9e0;
     void onLogin(cocos2d::CCObject* sender) = m1 0xb3a10;
-    void onMore(cocos2d::CCObject* sender);
+    void onMore(cocos2d::CCObject* sender) = m1 0xb4090;
     void onRegister(cocos2d::CCObject* sender) = win 0x7dec0, m1 0xb3aac;
     void onSync(cocos2d::CCObject* sender) = m1 0xb3dc0;
     void showLoadingUI() = win inline, imac 0xcd1d0, m1 0xb47e4, ios inline;
     void toggleUI(bool enable) = win inline, imac 0xcdc40, m1 0xb51b0, ios inline;
-    void updatePage(bool changed) = win 0x7e7d0;
+    void updatePage(bool changed) = win 0x7e7d0, m1 0xb40a0;
 
     cocos2d::CCLabelBMFont* m_linkedAccountTitle;
     TextArea* m_textArea;
@@ -93,7 +93,7 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     cocos2d::CCLabelBMFont* createTextLabel(cocos2d::CCPoint position, char const* text, cocos2d::CCSize size) = win 0x7c5e0, imac 0x499a40, m1 0x3fdd7c;
     void disableNodes() = win inline, imac 0x49a3b0, m1 0x3fe778, ios inline;
     void hideLoadingUI() = win inline, imac 0x499f10, m1 0x3fe270, ios inline;
-    bool init(gd::string username) = win 0x7b930;
+    bool init(gd::string username) = win 0x7b930, m1 0x3fcca0;
     void onClose(cocos2d::CCObject* sender) = win 0x7cfc0, imac 0x499530, m1 0x3fd844;
     void onForgotPassword(cocos2d::CCObject* sender) = m1 0x3fdf74;
     void onForgotUser(cocos2d::CCObject* sender) = m1 0x3fdf50;
@@ -102,7 +102,7 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     void resetLabels() = win inline, imac 0x49a200, m1 0x3fe568;
     void showLoadingUI() = win inline, imac 0x49a3f0, m1 0x3fe7b8;
     void toggleUI(bool enable) = win 0x7d070, imac 0x49a560, m1 0x3fe944;
-    void updateLabel(AccountError type) = win 0x7ca40;
+    void updateLabel(AccountError type) = win 0x7ca40, m1 0x3fe470;
 
     CCTextInputNode* m_usernameInput;
     CCTextInputNode* m_passwordInput;
@@ -140,7 +140,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
     void hideLoadingUI() = win inline, imac 0x4970e0, m1 0x3fb744, ios inline;
     void onClose(cocos2d::CCObject* sender) = win 0x7ac20, imac 0x4960b0, m1 0x3fa7e4;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7a2b0, imac 0x496140, m1 0x3fa888;
-    void resetLabel(int tag) = win 0x7a150;
+    void resetLabel(int tag) = win 0x7a150, m1 0x3fb948;
     void resetLabels() = win inline, imac 0x4971d0, m1 0x3fb818;
     void showLoadingUI() = win inline, imac 0x497780, m1 0x3fbd4c;
     void toggleUI(bool enable) = win 0x7ad00, imac 0x4979c0, m1 0x3fbfc8;
@@ -172,7 +172,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 
     virtual void setOpacity(unsigned char opacity) = win 0x81f10, imac 0x619f90, m1 0x53e2a8;
 
-    bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x806e0;
+    bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x806e0, m1 0x53cab0;
     void show() = win 0x81c90, m1 0x53e068;
 
     cocos2d::CCLayerColor* m_layerColor;
@@ -194,7 +194,7 @@ class AchievementCell : TableViewCell {
     virtual bool init() = win inline, imac 0x24e4b0, m1 0x1f4db8;
     virtual void draw() = win 0xade40, imac 0x24e4c0, m1 0x1f4dc0;
 
-    void loadFromDict(cocos2d::CCDictionary* dict) = win 0xac880, imac 0x242540;
+    void loadFromDict(cocos2d::CCDictionary* dict) = win 0xac880, imac 0x242540, m1 0x1e9224;
     void updateBGColor(int index) = win inline, imac 0x243990, m1 0x1ea6ac;
 }
 
@@ -208,7 +208,7 @@ class AchievementManager : cocos2d::CCNode {
 
     gd::string achievementForUnlock(int id, UnlockType type) = win 0x3a1c0, imac 0x784d30, m1 0x68bc74;
     void addAchievement(gd::string identifier, gd::string title, gd::string achievedDescription, gd::string unachievedDescription, gd::string icon, int limits) = win 0x7ef0, imac 0x784520, m1 0x68b3b4;
-    void addManualAchievements() = win 0x8410, imac 0x72b530;
+    void addManualAchievements() = win 0x8410, imac 0x72b530, m1 0x63d490;
     bool areAchievementsEarned(cocos2d::CCArray* achievements) = win inline, imac 0x784970, m1 0x68b834, ios inline;
     void checkAchFromUnlock(char const* id) = win inline, imac 0x52b570, m1 0x47fa84, ios inline;
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x784800, m1 0x68b71c;
@@ -217,11 +217,11 @@ class AchievementManager : cocos2d::CCNode {
     cocos2d::CCDictionary* getAchievementRewardDict() = m1 0x68c584;
     cocos2d::CCDictionary* getAchievementsWithID(char const* id) = win 0x39d70;
     cocos2d::CCArray* getAllAchievements() = win inline, imac 0x784b20, m1 0x68ba0c;
-    cocos2d::CCArray* getAllAchievementsSorted(bool available) = win 0x39b50, imac 0x783ed0;
-    bool isAchievementAvailable(gd::string id) = win inline, imac 0x2a9b10, ios inline;
-    bool isAchievementEarned(char const* ach) = win 0x39a70, imac 0x7849e0;
+    cocos2d::CCArray* getAllAchievementsSorted(bool available) = win 0x39b50, imac 0x783ed0, m1 0x68ad08;
+    bool isAchievementAvailable(gd::string id) = win inline, imac 0x2a9b10, ios inline, m1 0x68bb18;
+    bool isAchievementEarned(char const* ach) = win 0x39a70, imac 0x7849e0, m1 0x68b8c0;
     int limitForAchievement(gd::string id) = win inline, imac 0x54f860, m1 0x68bb18;
-    void notifyAchievement(char const* title, char const* description, char const* icon) = win inline;
+    void notifyAchievement(char const* title, char const* description, char const* icon) = win inline, m1 0x68c2d0;
     void notifyAchievementWithID(char const* id) = win 0x3a470;
     int percentageForCount(int count, int total) = win inline, imac 0x784af0, m1 0x68b9e4, ios inline;
     int percentForAchievement(char const* id) = win 0x39a90;
@@ -6805,7 +6805,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasSecretCoin(char const* key) = win 0x1dff60;
     bool hasUserCoin(char const* key) = win 0x1dfd20;
     void incrementActivePath(int amount) = win inline, imac 0x6b910, m1 0x5cef8;
-    void incrementChallenge(GJChallengeType type, int amount) = win 0x1e2100, imac 0x6b6c0;
+    void incrementChallenge(GJChallengeType type, int amount) = win 0x1e2100, imac 0x6b6c0, m1 0x5c908;
     void incrementStat(char const* key) = win inline, imac 0x67030, m1 0x58eb8;
     void incrementStat(char const* key, int amount) = win 0x1d4510, imac 0x67040, m1 0x58ec0;
     bool isGauntletChestUnlocked(int id) = win inline;
