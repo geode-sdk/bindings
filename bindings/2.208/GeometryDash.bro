@@ -14003,12 +14003,10 @@ class PlayerButtonCommand {
     double m_timestamp;
 }
 
-[[link(android)]]
+[[link(android), depends(DashRingObject)]]
 class PlayerCheckpoint : cocos2d::CCNode {
     // virtual ~PlayerCheckpoint();
-    PlayerCheckpoint() {
-        m_gravityMod = 1.f;
-    }
+    PlayerCheckpoint() = win inline, imac inline, m1 inline, ios inline;
 
     static PlayerCheckpoint* create() = win 0x3bacb0;
 
@@ -14040,11 +14038,11 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_dashY;
     double m_dashAngle;
     double m_dashStartTime;
-    DashRingObject *m_dashRing;
+    DashRingObject* m_dashRing;
     bool m_shouldStop;
     double m_lastFlipTime;
     float m_gravityMod;
-    GameObject *m_objectSnappedTo;
+    GameObject* m_objectSnappedTo;
     double m_snapDistance;
     double m_accelerationOrSpeed;
     bool m_decreaseBoostSlide;
@@ -14067,15 +14065,15 @@ class PlayerCheckpoint : cocos2d::CCNode {
     int m_lastCollisionRight;
     int m_unk50C;
     int m_unk510;
-    GameObject *m_currentSlope2;
-    GameObject *m_preLastGroundObject;
+    GameObject* m_currentSlope2;
+    GameObject* m_preLastGroundObject;
     float m_slopeAngle;
     bool m_slopeSlidingMaybeRotated;
     bool m_quickCheckpointMode;
-    GameObject *m_collidedObject;
-    GameObject *m_lastGroundObject;
-    GameObject *m_collidingWithLeft;
-    GameObject *m_collidingWithRight;
+    GameObject* m_collidedObject;
+    GameObject* m_lastGroundObject;
+    GameObject* m_collidingWithLeft;
+    GameObject* m_collidingWithRight;
     double m_scaleXRelated2;
     double m_groundYVelocity;
     double m_yVelocityRelated;
@@ -14085,8 +14083,8 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_isCollidingWithSlope;
     bool m_isBallRotating;
     bool m_unk669;
-    GameObject *m_currentPotentialSlope;
-    GameObject *m_currentSlope;
+    GameObject* m_currentPotentialSlope;
+    GameObject* m_currentSlope;
     double unk_584;
     int m_collidingWithSlopeId;
     bool m_slopeFlipGravityRelated;
@@ -14151,9 +14149,9 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_isLocked;
     bool m_controlsDisabled;
     cocos2d::CCPoint m_lastGroundedPos;
-    cocos2d::CCArray *m_touchingRings;
+    cocos2d::CCArray* m_touchingRings;
     gd::unordered_set<int> m_touchedRings;
-    GameObject *m_lastActivatedPortal;
+    GameObject* m_lastActivatedPortal;
     double m_totalTime;
     float m_yVelocityRelated3;
     bool m_defaultMiniIcon;

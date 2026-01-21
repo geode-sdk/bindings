@@ -201,7 +201,7 @@ double GJBaseGameLayer::performMathRounding(double value, int type) {
 }
 
 void GJBaseGameLayer::playerTouchedObject(PlayerObject* player, GameObject* object) {
-    m_gameState.m_unkMapPairIntIntInt[{ object->m_uniqueID, player->m_uniqueID }] = m_gameState.m_unkUint2;
+    m_gameState.m_unkMapPairIntIntInt[{ object->m_uniqueID, player->m_uniqueID }] = m_gameState.m_commandIndex;
 }
 
 bool GJBaseGameLayer::playerWasTouchingObject(PlayerObject* player, GameObject* object) {
@@ -884,11 +884,11 @@ void GJBaseGameLayer::processAreaFadeGroupAction(cocos2d::CCArray* objects, Ente
             auto targetGroup = this->getTargetGroup(instance->m_targetGroupIndex, object->m_uniqueID);
             colorCount += targetGroup->count() - 1;
             for (auto targetObj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(targetGroup)) {
-                static_cast<GameObject*>(targetObj)->setAreaOpacity(opacity, rawOpacity, m_gameState.m_unkUint2);
+                static_cast<GameObject*>(targetObj)->setAreaOpacity(opacity, rawOpacity, m_gameState.m_commandIndex);
             }
         }
         else {
-            object->setAreaOpacity(opacity, rawOpacity, m_gameState.m_unkUint2);
+            object->setAreaOpacity(opacity, rawOpacity, m_gameState.m_commandIndex);
         }
     }
     m_areaColorCount += colorCount;
@@ -914,7 +914,7 @@ GameObject* GJBaseGameLayer::processCameraObject(GameObject* object, PlayerObjec
 void GJBaseGameLayer::processStateObjects() {
     for (auto it = m_gameState.m_stateObjects.begin(); it != m_gameState.m_stateObjects.end();) {
         auto obj = it->second;
-        obj->updateState(m_gameState.m_unkUint2);
+        obj->updateState(m_gameState.m_commandIndex);
         if (obj->m_isRingPoweredOn) ++it;
         else {
             obj->stateSensitiveOff(this);
@@ -1584,7 +1584,7 @@ void GJBaseGameLayer::updateQueuedLabels() {
 
 void GJBaseGameLayer::updateReplay() {
     if (!m_useReplay) return;
-    for (auto it = m_queuedReplayButtons.begin(); it != m_queuedReplayButtons.end() && it->m_step <= m_gameState.m_unkUint2;) {
+    for (auto it = m_queuedReplayButtons.begin(); it != m_queuedReplayButtons.end() && it->m_step <= m_gameState.m_commandIndex;) {
         this->handleButton(it->m_isPush, (int)it->m_button, it->m_isPlayer2);
         it = m_queuedReplayButtons.erase(it);
     }
@@ -1735,7 +1735,7 @@ void GJBaseGameLayer::moveAreaObject(GameObject* object, float dx, float dy) {
 }
 
 bool GJBaseGameLayer::resetAreaObjectValues(GameObject* object, bool update) {
-    if (m_gameState.m_unkUint2 <= object->m_unk4C8) return false;
+    if (m_gameState.m_commandIndex <= object->m_unk4C8) return false;
     if (update) this->updateAreaObjectLastValues(object);
     auto result = false;
     if (object->m_positionXOffset != 0.f) {
@@ -1766,7 +1766,7 @@ bool GJBaseGameLayer::resetAreaObjectValues(GameObject* object, bool update) {
         object->m_unk2B0 = 0.f;
         if (!update) object->setRRotation(0.f);
     }
-    object->m_unk4C8 = m_gameState.m_unkUint2;
+    object->m_unk4C8 = m_gameState.m_commandIndex;
     if (update) {
         if (m_areaObjectsCount < m_areaObjectsIndex) {
             m_areaObjects[m_areaObjectsCount++] = object;
@@ -1783,16 +1783,16 @@ bool GJBaseGameLayer::resetAreaObjectValues(GameObject* object, bool update) {
 
 void GJBaseGameLayer::updateAreaObjectLastValues(GameObject* object) {
     if (object->m_isDecoration2) return;
-    if (object->m_unk4C4 != m_gameState.m_unkUint2) {
+    if (object->m_unk4C4 != m_gameState.m_commandIndex) {
         object->m_lastPosition.x = object->m_positionX;
         object->m_lastPosition.y = object->m_positionY;
-        object->m_unk4C4 = m_gameState.m_unkUint2;
+        object->m_unk4C4 = m_gameState.m_commandIndex;
         object->dirtifyObjectRect();
     }
-    if (object->m_unk4CC != m_gameState.m_unkUint2) {
+    if (object->m_unk4CC != m_gameState.m_commandIndex) {
         object->m_customScaleX = object->m_scaleX;
         object->m_customScaleY = object->m_scaleY;
-        object->m_unk4CC = m_gameState.m_unkUint2;
+        object->m_unk4CC = m_gameState.m_commandIndex;
         object->dirtifyObjectRect();
     }
 }
