@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 PlayerObject::PlayerObject() {
 
     #if defined(__clang__)
@@ -33,7 +34,6 @@ PlayerObject::PlayerObject() {
     new (&m_currentRobotAnimation) gd::string("run");
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void PlayerObject::addToYVelocity(double yVelocity, int type) {
     this->setYVelocity(m_yVelocity + yVelocity, type);
 }

@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJTransformControl::GJTransformControl() {
     m_objects = nullptr;
     m_touchID = -1;
@@ -16,7 +17,6 @@ GJTransformControl::GJTransformControl() {
     m_buttonScale = 1.0f;
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJTransformControl::calculateRotationOffset() {
     m_rotation = (-(atan2f(m_rotatePosition.y, m_rotatePosition.x) * (180.f / M_PI)) * 100.f) / 100.f;
 }

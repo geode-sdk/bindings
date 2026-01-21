@@ -35,7 +35,7 @@ bool GJDropDownLayer::init(char const* title) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 GJDropDownLayer::GJDropDownLayer() {
     m_buttonMenu = nullptr;
     m_listLayer = nullptr;

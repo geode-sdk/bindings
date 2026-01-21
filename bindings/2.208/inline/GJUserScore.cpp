@@ -25,7 +25,7 @@ GJUserScore* GJUserScore::create() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 GJUserScore::GJUserScore() {
     m_scoreType = 0;
     m_userID = 0;

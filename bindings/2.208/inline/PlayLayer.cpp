@@ -258,7 +258,7 @@ void PlayLayer::updateEffectPositions() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_MAC) || defined(GEODE_IS_IOS)
 PlayLayer* PlayLayer::create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
     auto ret = new PlayLayer();
     if (ret->init(level, useReplay, dontCreateObjects)) {
@@ -268,6 +268,9 @@ PlayLayer* PlayLayer::create(GJGameLevel* level, bool useReplay, bool dontCreate
     delete ret;
     return nullptr;
 }
+#endif
+
+#if defined(GEODE_IS_IOS)
 
 void PlayLayer::commitJumps() {
     GameStatsManager::sharedState()->incrementStat("1", m_uncommittedJumps);

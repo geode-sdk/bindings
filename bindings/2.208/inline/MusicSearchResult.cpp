@@ -78,7 +78,7 @@ void MusicSearchResult::updateObjects() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
 MusicSearchResult::MusicSearchResult() {
     m_filterObjects = nullptr;
     m_tagFilterObjects = nullptr;
