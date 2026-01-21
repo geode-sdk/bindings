@@ -8973,7 +8973,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     static cocos2d::CCScene* scene() = win 0x272e90, m1 0x2f3394;
     static gd::string titleForUnlock(int id, UnlockType type) = win inline, m1 0x2f93d0;
 
-    virtual bool init() = win 0x273050, m1 0x2f34d8;
+    virtual bool init() = win 0x273050, imac 0x369280 m1 0x2f34d8;
     virtual void keyBackClicked() = win 0x2791d0, m1 0x2f9c74;
     virtual void textInputOpened(CCTextInputNode* node) = win 0x274c70, imac 0x36c730;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x274e60, imac 0x36c860, m1 0x2f69e0;
@@ -8990,15 +8990,15 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     cocos2d::CCArray* getItems(int count, int page, IconType type, int current) = win 0x2767f0;
     gd::string getLockFrame(int id, UnlockType type) = win inline, imac 0x36ec90, m1 0x2f8b44, ios inline;
     void onArrow(cocos2d::CCObject* sender) = win 0x275e70, imac 0x36cab0, m1 0x2f6c74;
-    void onBack(cocos2d::CCObject* sender) = win 0x279030, m1 0x2f60a0;
+    void onBack(cocos2d::CCObject* sender) = win 0x279030, imac 0x36bf20, m1 0x2f60a0;
     void onInfo(cocos2d::CCObject* sender) = win 0x274a70, m1 0x2f62d4;
     void onNavigate(cocos2d::CCObject* sender) = win 0x275f70, imac 0x36d390, m1 0x2f74fc;
     void onPaint(cocos2d::CCObject* sender) = win 0x278e50, m1 0x260c98;
     void onRewardedVideo(cocos2d::CCObject* sender) = imac 0x36c360;
     void onSelect(cocos2d::CCObject* sender) = win 0x277170, imac 0x36deb0, m1 0x83124;
     void onSelectTab(cocos2d::CCObject* sender) = m1 0x2f6c40;
-    void onShards(cocos2d::CCObject* sender) = win 0x278d00, m1 0x2f6250;
-    void onShop(cocos2d::CCObject* sender) = win 0x278fd0, m1 0x2f61f0;
+    void onShards(cocos2d::CCObject* sender) = win 0x278d00, imac 0x36c0e0, m1 0x2f6250;
+    void onShop(cocos2d::CCObject* sender) = win 0x278fd0, imac 0x36c080, m1 0x2f61f0;
     void onSpecial(cocos2d::CCObject* sender) = m1 0x2f7ef0;
     void onToggleItem(cocos2d::CCObject* sender) = win 0x277810, imac 0x36e710, m1 0x2f8610;
     void playRainbowEffect() = win 0x278b10, imac 0x36eaf0, m1 0x2f89a8;
@@ -10453,7 +10453,7 @@ class GJTransformControl : cocos2d::CCLayer {
 
     static GJTransformControl* create() = win inline, imac 0xbb50, m1 0xa5e8;
 
-    virtual bool init() = win 0x12ae50, m1 0x2e518;
+    virtual bool init() = win 0x12ae50, imac 0x53170, m1 0x2e518;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12c4e0, imac 0x53620;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12c6b0, imac 0x53aa0, m1 0x48544;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12cc10, imac 0x54020, m1 0x48a78;
