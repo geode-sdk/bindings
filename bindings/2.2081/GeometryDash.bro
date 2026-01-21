@@ -15053,7 +15053,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     virtual void uploadActionFailed(int id, int response) = imac 0x7bf800, m1 0x6c4c6c, win 0x3c4ff0;
 
     void blockUser() = win inline;
-    bool init(int accountID, bool ownProfile) = win 0x3be840, imac 0x2ec670;
+    bool init(int accountID, bool ownProfile) = win 0x3be840, imac 0x2ec670, m1 0x6bdeb0;
     bool isCorrect(char const* key) = m1 0x6c5868;
     bool isOnWatchlist(int id) = win inline, imac 0x7b9230, m1 0x6beef8, ios inline;
     void loadPage(int page) = win 0x3c61d0, m1 0x6c5390;
