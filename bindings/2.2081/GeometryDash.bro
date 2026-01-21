@@ -3586,15 +3586,15 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1245e0;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240;
     virtual void registerWithTouchDispatcher() = win 0x9b7d0;
-    virtual void keyBackClicked() = m1 0x36d6c;
-    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp);
+    virtual void keyBackClicked() = m1 0x36d6c, win 0x114980;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x125320;
     virtual EditorUI* getUI() = win 0xdee20;
     virtual void setIDPopupClosed(SetIDPopup* popup, int value) = win 0xe6c50, imac 0x33270, m1 0x300f4;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0xe6a50, m1 0x2ff24;
     virtual void updateTransformControl() = win 0x115400, imac 0x40470, m1 0x38498;
     virtual void transformChangeBegin() = win 0x1158f0, m1 0x38d3c;
     virtual void transformChangeEnded() = win inline, imac 0x40ef0;
-    virtual cocos2d::CCNode* getTransformNode() = imac 0x54390, m1 0x48d5c;
+    virtual cocos2d::CCNode* getTransformNode() = imac 0x54390, m1 0x48d5c, win 0xdee30;
     virtual void transformScaleXChanged(float scaleX) = win 0x121820;
     virtual void transformScaleYChanged(float scaleY) = win 0x121840;
     virtual void transformScaleXYChanged(float scaleX, float scaleY) = win 0x121860, imac 0x4cf40;
@@ -3607,7 +3607,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void transformRestoreRotation() = win 0x121950;
     virtual void songStateChanged() = win 0x1120a0, m1 0x35be0;
     virtual void colorSelectClosed(cocos2d::CCNode* popup) = win 0x11f6f0, m1 0x40720;
-    virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp);
+    virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win 0x1267b0;
     virtual void scrollWheel(float y, float x) = win 0x1267f0, imac 0x516c0, m1 0x46568;
     virtual void angleChangeBegin() = win 0x123110, m1 0x439bc;
     virtual void angleChangeEnded() = win inline, imac 0x4e540, m1 0x439d8;
@@ -3616,8 +3616,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void anchorPointMoved(cocos2d::CCPoint anchorPoint) = win 0x115900;
     virtual void scaleChangeBegin() = win 0x114f50;
     virtual void scaleChangeEnded() = win inline;
-    virtual void scaleXChanged(float scaleX, bool lock);
-    virtual void scaleYChanged(float scaleY, bool lock);
+    virtual void scaleXChanged(float scaleX, bool lock) = win 0x114f60;
+    virtual void scaleYChanged(float scaleY, bool lock) = win 0x113770;
     virtual void scaleXYChanged(float scaleX, float scaleY, bool lock) = win 0x1150c0;
 
     void activateRotationControl(cocos2d::CCObject* sender) = win 0x122fd0, m1 0x35910;
