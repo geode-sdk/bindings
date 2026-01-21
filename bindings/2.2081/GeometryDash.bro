@@ -5398,7 +5398,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x15be00, m1 0x49fb94;
     const char* getLevelDownloadKey(int levelID, bool isGauntlet) = win inline, ios inline;
     const char* getLevelKey(int levelID) = win inline, ios inline;
-    void getLevelLeaderboard(GJGameLevel* level, LevelLeaderboardType type, LevelLeaderboardMode mode);
+    void getLevelLeaderboard(GJGameLevel* level, LevelLeaderboardType type, LevelLeaderboardMode mode) = win 0x158040;
     const char* getLevelLeaderboardKey(int levelID, LevelLeaderboardType type, LevelLeaderboardMode mode) = win inline, m1 0x49caf0;
     const char* getLevelListKey(int listID) = win inline, m1 0x481a28, ios inline;
     void getLevelLists(GJSearchObject* object) = win 0x150760;
@@ -6771,7 +6771,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getNextGoldChestID() = win inline, imac 0x8beb0, m1 0x7da4c;
     gd::string getNextVideoAdReward() = imac 0x781a0, m1 0x69948;
     gd::string getPathRewardKey(int id) = win 0x1ea6c0, imac 0x6c990, m1 0x5e158;
-    GJChallengeItem* getQueuedChallenge(int id);
+    GJChallengeItem* getQueuedChallenge(int id) = win 0x1e1f10;
     GJRewardItem* getRewardForSecretChest(int id) = win inline, m1 0x7ddc8, ios inline;
     GJRewardItem* getRewardForSpecialChest(gd::string key) = win inline, m1 0x69c38;
     GJRewardItem* getRewardItem(GJRewardType type) = win inline, imac 0x722d0, m1 0x63b90;
@@ -7026,7 +7026,7 @@ class GauntletNode : cocos2d::CCNode {
 
     static GauntletNode* create(GJMapPack* gauntlet) = win inline;
     static gd::string frameForType(GauntletType type) = win 0x1fde00;
-    static gd::string nameForType(GauntletType type);
+    static gd::string nameForType(GauntletType type) = win 0x1ff190;
 
     bool init(GJMapPack* gauntlet) = win 0x1fc240, imac 0x249740;
     void onClaimReward() = win 0x1fddc0, imac 0x573250;
@@ -8613,7 +8613,7 @@ class GJGameLevel : cocos2d::CCNode {
     GJGameLevel* getListSnapshot() = win 0x16db30;
     int getNormalPercent() = win inline, imac 0x52d210, m1 0x4813b8;
     gd::string getSongName() = win 0x16cfb0, imac 0x55c100, m1 0x4abbfc;
-    gd::string getUnpackedLevelDescription();
+    gd::string getUnpackedLevelDescription() = win 0x170060;
     void handleStatsConflict(GJGameLevel* level);
     bool isPlatformer() = win inline, imac 0x536c80, m1 0x489ba0;
     void levelWasAltered() = win inline, imac 0x55b5f0, m1 0x4ab20c;
@@ -9158,7 +9158,7 @@ class GJLevelList : cocos2d::CCNode {
     void dataLoaded(DS_Dictionary* dict) = win 0x177ce0, imac 0x5634c0, m1 0x4b24ec;
     void duplicateListLevels(GJLevelList* list) = win inline, imac 0x561f80, m1 0x4b1000;
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray* levels) = win 0x177170, imac 0x561ff0;
-    gd::string getUnpackedDescription();
+    gd::string getUnpackedDescription() = win 0x176b90;
     void handleStatsConflict(GJLevelList* list) = win inline, imac 0x561d10, m1 0x4b0d80;
     bool hasMatchingLevels(GJLevelList* list) = win 0x176980, imac 0x561d30, m1 0x4b0d98;
     int orderForLevel(int id) = win inline, imac 0x13e740, m1 0x4b1a44;
