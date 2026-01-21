@@ -8973,7 +8973,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     static cocos2d::CCScene* scene() = win 0x272e90, m1 0x2f3394;
     static gd::string titleForUnlock(int id, UnlockType type) = win inline, m1 0x2f93d0;
 
-    virtual bool init() = win 0x273050;
+    virtual bool init() = win 0x273050, m1 0x2f34d8;
     virtual void keyBackClicked() = win 0x2791d0, m1 0x2f9c74;
     virtual void textInputOpened(CCTextInputNode* node) = win 0x274c70, imac 0x36c730;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x274e60, imac 0x36c860, m1 0x2f69e0;
@@ -8990,7 +8990,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     cocos2d::CCArray* getItems(int count, int page, IconType type, int current) = win 0x2767f0;
     gd::string getLockFrame(int id, UnlockType type) = win inline, imac 0x36ec90, m1 0x2f8b44, ios inline;
     void onArrow(cocos2d::CCObject* sender) = win 0x275e70, imac 0x36cab0, m1 0x2f6c74;
-    void onBack(cocos2d::CCObject* sender) = win 0x279030;
+    void onBack(cocos2d::CCObject* sender) = win 0x279030, m1 0x2f60a0;
     void onInfo(cocos2d::CCObject* sender) = win 0x274a70, m1 0x2f62d4;
     void onNavigate(cocos2d::CCObject* sender) = win 0x275f70, imac 0x36d390, m1 0x2f74fc;
     void onPaint(cocos2d::CCObject* sender) = win 0x278e50, m1 0x260c98;
@@ -8998,7 +8998,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onSelect(cocos2d::CCObject* sender) = win 0x277170, imac 0x36deb0, m1 0x83124;
     void onSelectTab(cocos2d::CCObject* sender) = m1 0x2f6c40;
     void onShards(cocos2d::CCObject* sender) = win 0x278d00, m1 0x2f6250;
-    void onShop(cocos2d::CCObject* sender) = m1 0x2f61f0;
+    void onShop(cocos2d::CCObject* sender) = win 0x278fd0, m1 0x2f61f0;
     void onSpecial(cocos2d::CCObject* sender) = m1 0x2f7ef0;
     void onToggleItem(cocos2d::CCObject* sender) = win 0x277810, imac 0x36e710, m1 0x2f8610;
     void playRainbowEffect() = win 0x278b10, imac 0x36eaf0, m1 0x2f89a8;
