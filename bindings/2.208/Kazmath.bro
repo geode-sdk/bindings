@@ -248,9 +248,9 @@ kmVec3* kmVec3Zero(kmVec3*);
 [[link(win, android)]]
 void kmGLFreeAll();
 [[link(win, android)]]
-void kmGLPushMatrix();
+void kmGLPushMatrix() = m1 0x1b3c80;
 [[link(win, android)]]
-void kmGLPopMatrix();
+void kmGLPopMatrix() = m1 0x1b3cc4;
 [[link(win, android)]]
 void kmGLMatrixMode(unsigned int);
 [[link(win, android)]]

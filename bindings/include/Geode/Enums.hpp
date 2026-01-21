@@ -325,7 +325,13 @@ enum class GauntletType {
     NCS = 0x33,
     NCS2 = 0x34,
     Space = 0x35,
-    Cosmos = 0x36
+    Cosmos = 0x36,
+    Random = 0x37,
+    Chance = 0x38,
+    Future = 0x39,
+    Utopia = 0x3A,
+    Cinema = 0x3B,
+    Love = 0x3C
 };
 enum class GJMPErrorCode {
     Failed = 0
@@ -1014,7 +1020,8 @@ enum class GJHttpType {
     UploadLevelList = 0x3D,
     DeleteServerLevelList = 0x3E,
     GetNews = 0x3F,
-    GetGJSecretReward = 0x40
+    GetGJSecretReward = 0x40,
+    GetLevelRateInfo = 0x41
 };
 
 enum class DialogChatPlacement {
