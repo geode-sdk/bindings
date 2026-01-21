@@ -1894,7 +1894,7 @@ class CheckpointObject : cocos2d::CCNode {
 
     static CheckpointObject* create() = win inline, m1 0xa8c2c;
 
-    virtual bool init();
+    virtual bool init() = win 0x77de0;
 
     GameObject* getObject() = win inline;
     void setObject(GameObject* object) = win inline, m1 0xa9890;
@@ -2442,10 +2442,10 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x9b6f0;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x9b770;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x464a08;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, m1 0x464a08;
     virtual void registerWithTouchDispatcher() = win 0x9b7d0, m1 0x464a24;
     virtual void keyBackClicked() = win 0x9b670, imac 0x50d1c0;
-    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp);
+    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x9b820;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x9b590, m1 0x464660;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x84670, imac 0x50d190, m1 0x45cd78;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win inline;
@@ -2501,7 +2501,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x435290, imac 0x477120, m1 0x3de07c;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x435390;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x4357c0, m1 0x3de500;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x3de53c;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, m1 0x3de53c;
     virtual void keyBackClicked() = win 0x435280;
     virtual void sliderBegan(Slider* slider) = win 0x4349c0, imac 0x476e40, m1 0x3ddd98;
     virtual void sliderEnded(Slider* slider) = win 0x434a80, imac 0x476f20, m1 0x1cdc14;
@@ -3584,7 +3584,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x123810;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x123e90;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1245e0;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240;
     virtual void registerWithTouchDispatcher() = win 0x9b7d0;
     virtual void keyBackClicked() = m1 0x36d6c;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp);
@@ -9880,7 +9880,7 @@ class GJRotationControl : cocos2d::CCLayer {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x129730, imac 0x51b80;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x129830;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1299d0, imac 0x51e00;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x51ed0, m1 0x46cec;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, imac 0x51ed0, m1 0x46cec;
 
     void finishTouch() = win 0x1296b0, imac 0x4e490;
     void setAngle(float angle) = win inline, imac 0x51a00, m1 0x46868;
@@ -9913,7 +9913,7 @@ class GJScaleControl : cocos2d::CCLayer {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12a560;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12a770, imac 0x52810, m1 0x47534;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12ab90, imac 0x52cc0, m1 0x4796c;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x52e20, m1 0x47aa4;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, imac 0x52e20, m1 0x47aa4;
 
     void finishTouch() = win inline, imac 0x3ee10, m1 0x37138, ios inline;
     void loadValues(GameObject* object, cocos2d::CCArray* objects, gd::unordered_map<int, GameObjectEditorState>& editorStates) = win 0x129f40, imac 0x3efe0;
@@ -10198,7 +10198,7 @@ class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, Reward
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x2ae950, imac 0x327270, m1 0x104da8;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, m1 0x2b4ac4;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, m1 0x2b4acc;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x2b4ad4;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, m1 0x2b4ad4;
     virtual void registerWithTouchDispatcher() = win 0x42640, m1 0x2b4af0;
     virtual void keyBackClicked() = win 0x2acf90, imac 0x325c90, m1 0x2b3468;
     virtual void didPurchaseItem(GJStoreItem* item) = win 0x2ac590, m1 0x2b2dfc;
@@ -10458,7 +10458,7 @@ class GJTransformControl : cocos2d::CCLayer {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12c4e0, imac 0x53620;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12c6b0, imac 0x53aa0, m1 0x48544;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12cc10, imac 0x54020, m1 0x48a78;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x54230, m1 0x48c50;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, imac 0x54230, m1 0x48c50;
 
     void applyRotation(float rotation) = win inline, imac 0x40d90, m1 0x38cd4;
     void calculateRotationOffset() = win inline, imac 0x535d0, m1 0x4810c, ios inline;
@@ -12286,7 +12286,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x31e290;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, m1 0x3a9710;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, m1 0x3a9718;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x3a9720;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, m1 0x3a9720;
     virtual void registerWithTouchDispatcher() = win 0x9b7d0, m1 0x3a973c;
     virtual void dialogClosed(DialogLayer* layer) = win 0x31d7a0, m1 0x3a9348;
 
@@ -15457,7 +15457,7 @@ class ScrollingLayer : cocos2d::CCLayerColor {
     virtual void visit() = win 0x70fd0;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71020, imac 0x720b10, m1 0x633854;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71110, imac 0x720cb0;
-    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x720dd0, m1 0x633a9c;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, imac 0x720dd0, m1 0x633a9c;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x477660, m1 0x633ad4;
 
     cocos2d::CCRect getViewRect() = win 0x70e20, imac 0x720800, m1 0x6335e0;
@@ -19997,7 +19997,7 @@ class UILayer : cocos2d::CCLayerColor {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x4ce230;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x4ce420;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x4ce440;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x4295c0, win 0x71240;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, m1 0x4295c0, win 0x71240;
     virtual void registerWithTouchDispatcher() = win 0x9b7d0, m1 0x4295dc;
     virtual void keyBackClicked() = win 0x4cde90, m1 0x4283e4;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x4cde50;
@@ -20072,7 +20072,7 @@ class UIOptionsLayer : SetupTriggerPopup {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x2a3d00;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x2a3e50, m1 0x252950;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x2a3f80, imac 0x2b5000, m1 0x252b3c;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x252c74;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, m1 0x252c74;
     virtual void registerWithTouchDispatcher() = win 0x9b7d0, m1 0x252c90;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x2a2de0, m1 0x2521b8;
     virtual void valueDidChange(int tag, float value) = win 0x2a31e0, imac 0x2b47f0;
@@ -20104,7 +20104,7 @@ class UIPOptionsLayer : SetupTriggerPopup {
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x2a61a0, m1 0x255268;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x2a62b0, imac 0x2b7960, m1 0x255384;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x2b7ad0, m1 0x2554e0;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = m1 0x255518;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x71240, m1 0x255518;
     virtual void registerWithTouchDispatcher() = win 0x9b7d0, m1 0x255534;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x2b7660, m1 0x2550b0;
     virtual void valueDidChange(int tag, float value) = win 0x2a6040, imac 0x2b76e0, m1 0x8d590;
