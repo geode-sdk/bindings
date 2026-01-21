@@ -1,4 +1,3 @@
-#include <Geode/binding/CCHttpResponse.hpp>
 #include <Geode/Geode.hpp>
 
 

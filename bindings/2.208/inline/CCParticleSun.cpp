@@ -1,4 +1,3 @@
-#include <Geode/binding/CCParticleSun.hpp>
 #include <Geode/Geode.hpp>
 
 

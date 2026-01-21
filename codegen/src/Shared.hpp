@@ -25,7 +25,7 @@ std::string generateAddressHeader(Root const& root);
 std::string generateModifyHeader(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generateBindingHeader(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generatePredeclareHeader(Root const& root);
-std::string generateBindingSource(Root const& root, bool skipPugixml);
+std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, bool skipPugixml, bool skipInlines = false, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generateTextInterface(Root const& root);
 matjson::Value generateJsonInterface(Root const& root);
 std::string generateInlineSources(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);

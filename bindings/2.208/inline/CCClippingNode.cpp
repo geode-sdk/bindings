@@ -1,4 +1,3 @@
-#include <Geode/binding/CCClippingNode.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCHide.hpp>
 #include <Geode/Geode.hpp>
 
 

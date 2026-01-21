@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupPlayerControlPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

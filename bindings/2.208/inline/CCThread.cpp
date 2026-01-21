@@ -1,4 +1,3 @@
-#include <Geode/binding/CCThread.hpp>
 #include <Geode/Geode.hpp>
 
 

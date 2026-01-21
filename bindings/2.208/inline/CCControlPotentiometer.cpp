@@ -1,4 +1,3 @@
-#include <Geode/binding/CCControlPotentiometer.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTintBy.hpp>
 #include <Geode/Geode.hpp>
 
 

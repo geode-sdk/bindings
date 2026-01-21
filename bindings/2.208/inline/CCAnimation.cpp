@@ -1,4 +1,3 @@
-#include <Geode/binding/CCAnimation.hpp>
 #include <Geode/Geode.hpp>
 
 

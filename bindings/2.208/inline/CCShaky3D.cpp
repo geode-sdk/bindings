@@ -1,4 +1,3 @@
-#include <Geode/binding/CCShaky3D.hpp>
 #include <Geode/Geode.hpp>
 
 

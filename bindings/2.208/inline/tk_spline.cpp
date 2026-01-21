@@ -1,4 +1,3 @@
-#include <Geode/binding/tk_spline.hpp>
 #include <Geode/Geode.hpp>
 
 

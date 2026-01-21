@@ -1,4 +1,3 @@
-#include <Geode/binding/CCCatmullRomBy.hpp>
 #include <Geode/Geode.hpp>
 
 

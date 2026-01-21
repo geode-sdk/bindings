@@ -1,4 +1,3 @@
-#include <Geode/binding/SongTriggerState.hpp>
 #include <Geode/Geode.hpp>
 
 

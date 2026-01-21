@@ -1,4 +1,3 @@
-#include <Geode/binding/PriceLabel.hpp>
 #include <Geode/Geode.hpp>
 
 

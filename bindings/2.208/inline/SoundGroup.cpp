@@ -1,4 +1,3 @@
-#include <Geode/binding/SoundGroup.hpp>
 #include <Geode/Geode.hpp>
 
 

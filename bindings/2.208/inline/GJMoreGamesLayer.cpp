@@ -1,4 +1,3 @@
-#include <Geode/binding/GJMoreGamesLayer.hpp>
 #include <Geode/Geode.hpp>
 
 

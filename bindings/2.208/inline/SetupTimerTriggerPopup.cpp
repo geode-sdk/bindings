@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupTimerTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/Geometry.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/MultiTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

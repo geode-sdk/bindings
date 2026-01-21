@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupCollisionTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

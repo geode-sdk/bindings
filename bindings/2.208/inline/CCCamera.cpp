@@ -1,4 +1,3 @@
-#include <Geode/binding/CCCamera.hpp>
 #include <Geode/Geode.hpp>
 
 

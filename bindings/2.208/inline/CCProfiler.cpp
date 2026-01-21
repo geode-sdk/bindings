@@ -1,4 +1,3 @@
-#include <Geode/binding/CCProfiler.hpp>
 #include <Geode/Geode.hpp>
 
 

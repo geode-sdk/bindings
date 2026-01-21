@@ -1,4 +1,3 @@
-#include <Geode/binding/GJWorldNode.hpp>
 #include <Geode/Geode.hpp>
 
 

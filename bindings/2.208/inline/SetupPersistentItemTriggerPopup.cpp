@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupPersistentItemTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

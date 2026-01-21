@@ -1,4 +1,3 @@
-#include <Geode/binding/CCTransitionProgressRadialCW.hpp>
 #include <Geode/Geode.hpp>
 
 

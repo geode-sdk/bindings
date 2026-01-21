@@ -1,4 +1,3 @@
-#include <Geode/binding/SetupZoomTriggerPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

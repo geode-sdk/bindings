@@ -1,4 +1,3 @@
-#include <Geode/binding/DemonInfoPopup.hpp>
 #include <Geode/Geode.hpp>
 
 

@@ -1,4 +1,3 @@
-#include <Geode/binding/EnterEffectAnimValue.hpp>
 #include <Geode/Geode.hpp>
 
 
