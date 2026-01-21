@@ -2458,8 +2458,8 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
     void doClearGuidelines() = win inline, imac 0x50c4e0, m1 0x4639ac;
     gd::string getMergedRecordString(gd::string str1, gd::string str2) = win 0x9b0c0, imac 0x50ca60, m1 0x463f50;
     bool init(CustomSongDelegate* delegate, AudioGuidelinesType type) = win 0x99810;
-    void onClearGuidelines(cocos2d::CCObject* sender) = imac 0x50c2f0;
-    void onStop(cocos2d::CCObject* sender) = m1 0x4638a4;
+    void onClearGuidelines(cocos2d::CCObject* sender) = win 0x9aa10, imac 0x50c2f0;
+    void onStop(cocos2d::CCObject* sender) = win 0x9ad60, m1 0x4638a4;
     void toggleItems(bool visible) = win 0x9b340;
 
     CustomSongDelegate* m_delegate;
@@ -3637,8 +3637,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void checkDiffAfterTransformAnchor(cocos2d::CCPoint diff, cocos2d::CCArray* objects) = win 0x115980, imac 0x41060, m1 0x38f1c;
     void checkLiveColorSelect() = win 0x110630, imac 0x3c660, m1 0x34ad0;
     void clickOnPosition(cocos2d::CCPoint position) = win 0xe26e0;
-    void closeLiveColorSelect() = m1 0x34c08, ios inline;
-    void closeLiveHSVSelect() = m1 0x34d5c, ios inline;
+    void closeLiveColorSelect() = win 0x11efa0, m1 0x34c08, ios inline;
+    void closeLiveHSVSelect() = win 0x11f1f0, m1 0x34d5c, ios inline;
     void colorSelectClosed(cocos2d::ccColor3B color) = win inline, imac 0x4a060, m1 0x4071c, ios inline;
     void constrainGameLayerPosition() = win inline, imac 0x2ef90, m1 0x2c0f8, ios inline;
     void constrainGameLayerPosition(float x, float y) = win 0x122980, imac 0x2a910, m1 0x2822c;
@@ -3661,7 +3661,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCArray* createRockBases(cocos2d::CCArray* objects) = win 0x12f5f0;
     cocos2d::CCArray* createRockEdges(cocos2d::CCArray* objects) = win 0x12e320, imac 0x614110;
     void createSmartObjectsFromTemplate(GJSmartTemplate* smartTemplate, cocos2d::CCArray* objects, bool useNearby, bool dontDelete, bool referenceOnly, bool dontPaste);
-    void createSmartObjectsFromType(int type, cocos2d::CCArray* objects, bool extras, bool dontDelete) = imac 0x43d70, m1 0x3b5e4;
+    void createSmartObjectsFromType(int type, cocos2d::CCArray* objects, bool extras, bool dontDelete) = win 0x117f10, imac 0x43d70, m1 0x3b5e4;
     UndoObject* createUndoObject(UndoCommand command, bool addToList) = win 0x110f30, imac 0x3cd20, m1 0xae738;
     void createUndoSelectObject(bool redo) = win 0x111250, m1 0x2b814;
     void deactivateRotationControl() = win inline, imac 0xb8e0, m1 0xa3c4;
@@ -3734,7 +3734,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint offsetForKey(int id) = win 0x1269a0, imac 0x35760, m1 0x32430;
     void onAssignNewGroupID() = ios inline;
     void onColorFilter(cocos2d::CCObject* sender) = win 0xe72a0, m1 0x2ee6c;
-    void onCopy(cocos2d::CCObject* sender) = m1 0x286d4;
+    void onCopy(cocos2d::CCObject* sender) = win 0xdcd30, m1 0x286d4;
     void onCopyState(cocos2d::CCObject* sender) = win 0x114360;
     bool onCreate() = win 0x10f3f0, imac 0x2e160, m1 0x2b220;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x10ef60, imac 0x347d0, m1 0x31564;
@@ -3754,11 +3754,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onGoToLayer(cocos2d::CCObject* sender) = win 0x114680, m1 0x2179c8;
     void onGroupDown(cocos2d::CCObject* sender) = win 0x11f4b0, imac 0x2c5e0;
     void onGroupIDFilter(cocos2d::CCObject* sender) = win 0xe7150, m1 0x2ed40;
-    void onGroupSticky(cocos2d::CCObject* sender) = m1 0xb30c;
+    void onGroupSticky(cocos2d::CCObject* sender) = win 0x1128e0, m1 0xb30c;
     void onGroupUp(cocos2d::CCObject* sender) = win 0x11f490, imac 0x2c5c0;
-    void onLockLayer(cocos2d::CCObject* sender) = m1 0x29970;
+    void onLockLayer(cocos2d::CCObject* sender) = win 0x112960, m1 0x29970;
     void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe4030, imac 0x30820, m1 0x2d7ec;
-    void onPaste(cocos2d::CCObject* sender) = m1 0x286dc;
+    void onPaste(cocos2d::CCObject* sender) = win 0xdcd50, m1 0x286dc;
     void onPasteColor(cocos2d::CCObject* sender) = win 0x114570, m1 0x29738;
     void onPasteInPlace(cocos2d::CCObject* sender) = win inline, m1 0x36714, ios inline;
     void onPasteState(cocos2d::CCObject* sender) = win 0x1143e0, m1 0x296e4;
@@ -3772,7 +3772,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onTargetIDChange(int change) = win 0x1223e0, imac 0x4df20, m1 0x43418;
     void onToggleGuide(EffectGameObject* object) = win inline, imac 0x2f2d0, m1 0x2c3b0;
     void onToggleSelectedOrder(EffectGameObject* object) = win inline, imac 0x2f310, m1 0x2c3f4;
-    void onUngroupSticky(cocos2d::CCObject* sender);
+    void onUngroupSticky(cocos2d::CCObject* sender) = win 0x112920;
     void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0xe7500, imac 0x31d60, m1 0x2ebd4;
     void orderDownCustomItem(cocos2d::CCObject* sender) = win 0xe46f0, imac 0x315d0;
     void orderUpCustomItem(cocos2d::CCObject* sender) = win 0xe4660, imac 0x31510, m1 0x2e398;
