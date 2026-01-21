@@ -13,23 +13,30 @@ PlayerCheckpoint::PlayerCheckpoint() {
     m_isSpider = false;
     m_isOnGround = false;
     m_ghostType = GhostType::Disabled;
-    m_miniMode = false;
-    m_speed = 0.f;
-    m_hidden = false;
+    m_isMini = false;
+    m_playerSpeed = 0.f;
+    m_isHidden = false;
     m_goingLeft = false;
-    m_reverseSpeed = 0.f;
-    m_dashing = false;
-    m_dashX = 0.f;
-    m_dashY = 0.f;
-    m_dashAngle = 0.f;
-    m_dashStartTime = 0.f;
-    m_dashRingObject = nullptr;
-    m_platformerCheckpoint = false;
+    m_maybeReverseSpeed = 0.0;
+    m_isDashing = false;
+    m_dashX = 0.0;
+    m_dashY = 0.0;
+    m_dashAngle = 0.0;
+    m_dashStartTime = 0.0;
+    m_dashRing = nullptr;
+    m_shouldStop = false;
     m_lastFlipTime = 0.0;
     m_gravityMod = 1.f;
+    m_objectSnappedTo = nullptr;
+    m_snapDistance = 0.0;
+    m_accelerationOrSpeed = 0.0;
     m_decreaseBoostSlide = false;
     m_followRelated = 0;
-    m_followRelated2 = 0.f;
+    m_unk838 = 0.f;
+    m_isOnSlope = false;
+    m_wasOnSlope = false;
+    m_slopeVelocity = 0.f;
+    m_touchingRings = nullptr;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
