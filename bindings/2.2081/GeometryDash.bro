@@ -4033,11 +4033,11 @@ class EffectGameObject : EnhancedGameObject {
 
     int getTargetColorIndex() = win inline, imac 0x1bafb0, m1 0x173fcc;
     bool init(char const* frame) = win 0x4a5880, m1 0x149850, ios inline;
-    void playTriggerEffect() = m1 0x172a04;
+    void playTriggerEffect() = win 0x4a5990, m1 0x172a04;
     void resetSpawnTrigger() = win inline, imac 0x1bb210, m1 0x17423c;
     void setTargetID(int id) = win inline, m1 0x160968;
     void setTargetID2(int id) = win inline, m1 0x160980;
-    void triggerEffectFinished() = m1 0x8fbd0;
+    void triggerEffectFinished() = win 0x4a5ee0, m1 0x8fbd0;
     void updateInteractiveHover(float offset) = win 0x4a8630;
     void updateSpecialColor() = win 0x4a85b0;
     void updateSpeedModType() = win 0x4ab8f0, imac 0x1bb320, m1 0x174364;
@@ -6328,8 +6328,8 @@ class GameObject : CCSpritePlus {
     void spawnDefaultPickupParticle(GJBaseGameLayer* layer) = win 0x1aa260, imac 0x1155b0;
     void updateBlendMode() = win inline;
     void updateCustomColorType(short type) = win inline, imac 0x5cafd0, ios inline;
-    void updateCustomScaleX(float scaleX) = imac 0x5a9c50, m1 0x4e7f10;
-    void updateCustomScaleY(float scaleY) = imac 0x5a9cd0, m1 0x4e7f70;
+    void updateCustomScaleX(float scaleX) = win 0x198650, imac 0x5a9c50, m1 0x4e7f10;
+    void updateCustomScaleY(float scaleY) = win 0x1986e0, imac 0x5a9cd0, m1 0x4e7f70;
     void updateHSVState() = win inline, imac 0x5bf010, m1 0x4f05a0;
     void updateIsOriented() = win 0x1a1730, imac 0x5c9d30, m1 0x4f8fdc;
     void updateMainColor() = win inline, imac 0x5ca730, m1 0x4f987c;
@@ -14448,13 +14448,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerScale() = win 0x3a0220, imac 0x416080, m1 0x38b2e4, ios inline;
     void updatePlayerShipFrame(int frame) = win 0x39de80, imac 0x4166a0, m1 0x38b8e4;
     void updatePlayerSpiderFrame(int frame) = win inline, imac 0x41a620, m1 0x38f4d8;
-    void updatePlayerSpriteExtra(gd::string frameName) = m1 0x37466c;
+    void updatePlayerSpriteExtra(gd::string frameName) = win 0x39ec10, m1 0x37466c;
     void updatePlayerSwingFrame(int frame) = win 0x39e7b0, imac 0x417890, m1 0x38c9bc;
     void updateRobotAnimationSpeed() = win 0x3a10e0, imac 0x41b960, m1 0x390710;
     void updateRotation(float dt) = win 0x391020;
     void updateRotation(float dt, float rotation) = win 0x391260;
     void updateShipRotation(float dt) = win 0x390c40;
-    void updateShipSpriteExtra(gd::string frameName) = m1 0x374750;
+    void updateShipSpriteExtra(gd::string frameName) = win 0x39ed20, m1 0x374750;
     void updateSlopeRotation(float dt) = win 0x390bc0;
     void updateSlopeYVelocity(float yVelocity) = win inline, ios inline;
     void updateSpecial(float dt) = win inline, imac 0x402b90, m1 0x37a7dc;
@@ -15300,7 +15300,7 @@ class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
     const char* getEndText() = win inline, m1 0x452030, ios inline;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, ios inline;
     void onMenu(cocos2d::CCObject* sender) = win 0x3cbe90, m1 0x451f74;
-    void onReplay(cocos2d::CCObject* sender) = m1 0x451f20;
+    void onReplay(cocos2d::CCObject* sender) = win 0x3cbd70, m1 0x451f20;
     void onRewardedVideo(cocos2d::CCObject* sender);
     void setupLastProgress() = win 0x3cb7c0, m1 0x451bb8;
 
@@ -16303,7 +16303,7 @@ class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
 class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
     // virtual ~SetupAdvFollowPopup();
 
-    static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects) = m1 0x295b64;
+    static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects) = win 0x4023f0, m1 0x295b64;
 
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x309ee0, m1 0x299c54, win 0x28f250;
     virtual void updateDefaultTriggerValues() = imac 0x3095b0, m1 0x299300, win 0x4055d0;
@@ -16312,7 +16312,7 @@ class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
     virtual void selectPremadeClosed(SelectPremadeLayer* layer, int type) = imac 0x309b90, win 0x405cb0, m1 0x29992c;
 
     bool init(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects) = win 0x402510;
-    void onMode(cocos2d::CCObject* sender) = imac 0x3094e0, m1 0x29921c;
+    void onMode(cocos2d::CCObject* sender) = win 0x405ab0, imac 0x3094e0, m1 0x29921c;
     void onPremade(cocos2d::CCObject* sender) = win 0x405b80, m1 0x2992d0;
     void updateMode(int mode) = win 0x405ae0, imac 0x3099d0, m1 0x29979c;
 }
