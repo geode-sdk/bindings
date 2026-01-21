@@ -42,9 +42,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 
     cocos2d::CCLabelBMFont* m_loginStatusLabel;
     TextArea* m_textArea;
-    /// The "Refresh Login" button.
     CCMenuItemSpriteExtra* m_refreshLoginButton;
-    /// The "Unlink Account" button.
     CCMenuItemSpriteExtra* m_unlinkAccountButton;
     bool m_unk290;
 }
