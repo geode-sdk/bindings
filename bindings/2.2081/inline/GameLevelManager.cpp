@@ -4,6 +4,7 @@ GameLevelManager* GameLevelManager::get() {
     return GameLevelManager::sharedState();
 }
 
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 const char* GameLevelManager::getDeleteCommentKey(int parentID, int id, int type) {
     return cocos2d::CCString::createWithFormat("delcomment_%i_%i_%i", id, type, parentID)->getCString();
