@@ -8966,7 +8966,7 @@ class GJGameState {
 [[link(android)]]
 class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate, DialogDelegate, CharacterColorDelegate, RewardedVideoDelegate {
     GJGarageLayer() = win inline, imac inline, m1 inline, ios inline;
-    ~GJGarageLayer() = win inline, m1 0x2f2e04;
+    ~GJGarageLayer() = win inline, m1 0x2f2e04, imac 0x368a70;
 
     static gd::string achievementForUnlock(int id, UnlockType type) = win inline, m1 0x2f925c, ios inline;
     static gd::string descriptionForUnlock(int id, UnlockType type) = win 0x278120, m1 0x2f90c8;
