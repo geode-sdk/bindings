@@ -16304,7 +16304,7 @@ class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
 class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
     // virtual ~SetupAdvFollowPopup();
 
-    static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects) = m1 0x295b64;
+    static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects) = win 0x4023f0, m1 0x295b64;
 
     virtual void onClose(cocos2d::CCObject* sender);
     virtual void updateDefaultTriggerValues();
@@ -16313,7 +16313,7 @@ class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
     virtual void selectPremadeClosed(SelectPremadeLayer* layer, int type) = win 0x405cb0, m1 0x2a56f0;
 
     bool init(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects) = win 0x402510;
-    void onMode(cocos2d::CCObject* sender) = imac 0x3094e0, m1 0x29921c;
+    void onMode(cocos2d::CCObject* sender) = win 0x405ab0, imac 0x3094e0, m1 0x29921c;
     void onPremade(cocos2d::CCObject* sender) = win 0x405b80, m1 0x2992d0;
     void updateMode(int mode) = win 0x405ae0, imac 0x3099d0, m1 0x29979c;
 }
@@ -16336,8 +16336,8 @@ class SetupAnimationPopup : SetupTriggerPopup {
 
     static SetupAnimationPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
 
-    virtual void determineStartValues() = m1 0x354dc8;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x355134;
+    virtual void determineStartValues() = win 0x409b50, m1 0x354dc8;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x40a100, m1 0x355134;
     virtual void textChanged(CCTextInputNode* node) = win 0x409ce0;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x408d60;
@@ -16400,7 +16400,7 @@ class SetupAreaMoveTriggerPopup : SetupTriggerPopup {
     static SetupAreaMoveTriggerPopup* create(EnterEffectObject* object, cocos2d::CCArray* objects) = win inline;
 
     virtual void updateInputValue(int tag, float& value) = win 0x40e0b0, imac 0x4d4e40, m1 0x432b14;
-    virtual void updateDefaultTriggerValues() = m1 0x4326a8;
+    virtual void updateDefaultTriggerValues() = win 0x40d9a0, m1 0x4326a8;
     virtual void updateInputNode(int tag, float value) = win 0x40e080, m1 0x432ae0;
     virtual void valueDidChange(int tag, float value) = win 0x40df00;
     virtual float triggerValueFromSliderValue(int tag, float value);
@@ -16528,7 +16528,7 @@ class SetupCameraEdgePopup : SetupTriggerPopup {
 
     static SetupCameraEdgePopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects);
 
-    virtual void determineStartValues() = m1 0x4d453c;
+    virtual void determineStartValues() = win 0x4139d0, m1 0x4d453c;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x413ec0, m1 0x4d4774;
     virtual void textChanged(CCTextInputNode* node);
 
