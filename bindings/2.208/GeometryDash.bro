@@ -14332,13 +14332,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void performSlideCheck() = win inline;
     void placeStreakPoint() = win 0x3a0310;
     void playBumpEffect(int objectType, GameObject* player) = win 0x39f6e0;
-    void playBurstEffect() = win inline;
+    void playBurstEffect() = win inline, m1 0x37b6c4;
     void playCompleteEffect(bool noEffects, bool instant) = win 0x383d50, imac 0x213bf0, m1 0x1bf3c4;
-    void playDeathEffect() = win 0x37ec40;
+    void playDeathEffect() = win 0x37ec40, m1 0x1b7a68;
     void playDynamicSpiderRun() = win 0x3a1160;
-    void playerDestroyed(bool noEffects) = win 0x3979d0;
-    bool playerIsFalling(float yVelocity) = win inline, ios inline;
-    bool playerIsFallingBugged() = win 0x39a0c0, imac 0x403aa0;
+    void playerDestroyed(bool noEffects) = win 0x3979d0, m1 0x388bb0;
+    bool playerIsFalling(float yVelocity) = win inline, ios inline, m1 0x37b694;
+    bool playerIsFallingBugged() = win 0x39a0c0, imac 0x403aa0, m1 0x37b5c8;
     bool playerIsMovingUp() = win inline, m1 0x37b674, ios inline;
     void playerTeleported() = win inline, imac 0x415ab0, m1 0x38ad6c;
     void playingEndEffect() = win inline;
@@ -14391,7 +14391,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void speedDown() = win inline, imac 0x41d0d0, m1 0x391728, ios inline;
     void speedUp() = win inline, imac 0x41d0b0, m1 0x391708, ios inline;
     void spiderTestJump(bool dynamic) = win 0x393fd0, m1 0x37ae24;
-    void spiderTestJumpInternal(bool dynamic) = win 0x394080;
+    void spiderTestJumpInternal(bool dynamic) = win 0x394080, m1 0x383270;
     void spiderTestJumpX(bool dynamic);
     void spiderTestJumpY(bool dynamic);
     void startDashing(DashRingObject* object) = win 0x3955a0;
