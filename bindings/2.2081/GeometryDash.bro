@@ -2637,7 +2637,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onPaths(cocos2d::CCObject* sender) = win 0x9d9d0, m1 0x238ac4;
     void onSavedLevels(cocos2d::CCObject* sender) = win 0x9d520, m1 0x23843c;
     void onSecretVault(cocos2d::CCObject* sender) = win 0x9e590;
-    void onTopLists(cocos2d::CCObject* sender) = imac 0x298a70, m1 0x238ae0;
+    void onTopLists(cocos2d::CCObject* sender) = win 0x9d9f0, imac 0x298a70, m1 0x238ae0;
     void onTreasureRoom(cocos2d::CCObject* sender) = win 0x9eda0, m1 0x2391fc;
     void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x9e3e0, m1 0x2389f0;
 
@@ -12130,7 +12130,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
     void onChangeType(cocos2d::CCObject* sender) = m1 0x35a464;
     void onClose(cocos2d::CCObject* sender) = win 0x84670, m1 0x35a358;
     void onDeleteLocalScores(cocos2d::CCObject* sender) = imac 0x3db330;
-    void onUpdate(cocos2d::CCObject* sender) = m1 0x25de0c;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x302810, m1 0x25de0c;
     void reloadLeaderboard(LevelLeaderboardType type, LevelLeaderboardMode mode) = win 0x302600, imac 0x3dbd40, m1 0x35acb0;
     void setupLeaderboard(cocos2d::CCArray* scores) = win 0x302d40, m1 0x35a6e0;
 
