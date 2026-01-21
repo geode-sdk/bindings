@@ -215,7 +215,7 @@ class AchievementManager : cocos2d::CCNode {
     void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0x784e10, m1 0x68bcb0;
     void firstSetup() = win inline, m1 0x68bbf8;
     cocos2d::CCDictionary* getAchievementRewardDict() = m1 0x68caac;
-    cocos2d::CCDictionary* getAchievementsWithID(char const* id);
+    cocos2d::CCDictionary* getAchievementsWithID(char const* id) = win 0x39d70;
     cocos2d::CCArray* getAllAchievements() = win inline, imac 0x7850c0, m1 0x68bf34;
     cocos2d::CCArray* getAllAchievementsSorted(bool available) = m1 0x68b230, win 0x39b50, imac 0x784470;
     bool isAchievementAvailable(gd::string id) = m1 0x68c040, win inline, imac 0x2a9f80, ios inline;
@@ -224,7 +224,7 @@ class AchievementManager : cocos2d::CCNode {
     void notifyAchievement(char const* title, char const* description, char const* icon) = m1 0x68c7f8, win inline;
     void notifyAchievementWithID(char const* id) = win 0x3a470;
     int percentageForCount(int count, int total) = win inline, imac 0x785090, m1 0x68bf0c, ios inline;
-    int percentForAchievement(char const* id);
+    int percentForAchievement(char const* id) = win 0x39a90;
     void reportAchievementWithID(char const* id, int percent, bool dontNotify) = imac 0x785b80, m1 0x148f54;
     void reportPlatformAchievementWithID(char const* id, int percent) = imac 0x785d00, m1 0x68ca98;
     void resetAchievement(char const* id) = win inline;
@@ -4767,7 +4767,7 @@ class FileSaveManager : GManager {
 
     static FileSaveManager* sharedState() = imac 0x6ce0, m1 0x61b4;
 
-    virtual bool init() = imac 0x6d70;
+    virtual bool init() = m1 0x623c, imac 0x6d70;
     virtual void firstLoad() = imac 0x6da0, m1 0x626c;
 
     cocos2d::CCDictionary* getStoreData() = imac 0x72a0, m1 0x6734;
@@ -5312,7 +5312,7 @@ class GameLevelManager : cocos2d::CCNode {
     static GameLevelManager* get() = imac inline, m1 inline, win inline;
     static cocos2d::CCDictionary* responseToDict(gd::string response, bool colon) = win 0x16ab90, m1 0x484834;
     // virtual ~GameLevelManager();
-    static GameLevelManager* sharedState() = imac 0x51aa10, m1 0x4710f8, win inline;
+    static GameLevelManager* sharedState() = imac 0x51aa10, m1 0x4710f8, win 0x142d10;
 
     virtual bool init() = imac 0x52bd80, win 0x144290, m1 0x480154;
 
@@ -6162,7 +6162,7 @@ class GameObject : CCSpritePlus {
     virtual bool canReverse() = imac inline, m1 inline, win inline;
     virtual bool isSpecialSpawnObject() = imac inline, m1 inline, win inline;
     virtual bool canBeOrdered() = imac inline, m1 inline, win inline;
-    virtual cocos2d::CCLabelBMFont* getObjectLabel() = m1 0x8b55c;
+    virtual cocos2d::CCLabelBMFont* getObjectLabel() = imac 0x6b30, m1 0x8b55c;
     virtual void setObjectLabel(cocos2d::CCLabelBMFont* label) = imac inline, m1 inline, win inline;
     virtual bool shouldDrawEditorHitbox() = imac 0x5cbd60, m1 0x4fab48, win inline;
     virtual bool getHasSyncedAnimation() = imac inline, m1 inline, win inline;
@@ -6709,7 +6709,7 @@ class GameStatsManager : cocos2d::CCNode {
     static GameStatsManager* get() = imac inline, m1 inline, win inline;
     // virtual ~GameStatsManager();
     GameStatsManager() = win 0x1d0ae0;
-    static GameStatsManager* sharedState() = m1 0x4d714, win inline;
+    static GameStatsManager* sharedState() = m1 0x4d714, win 0x1d0ef0;
 
     virtual bool init() = win 0x1d1110, imac 0x5a490, m1 0x4da58;
 
@@ -9811,9 +9811,9 @@ class GJRotateCommandLayer : SetupTriggerPopup {
     static GJRotateCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = imac 0x14c0, m1 0x1504;
 
     virtual void determineStartValues() = imac 0x3f70, m1 0x3d60;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x4a10;
-    virtual void textChanged(CCTextInputNode* node);
-    virtual void valuePopupClosed(ConfigureValuePopup* popup, float value);
+    virtual void onClose(cocos2d::CCObject* sender) = imac 0x4f60, m1 0x4a10;
+    virtual void textChanged(CCTextInputNode* node) = imac 0x49c0, m1 0x45cc;
+    virtual void valuePopupClosed(ConfigureValuePopup* popup, float value) = imac 0x4530, m1 0x41e0;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects);
     void onEasing(cocos2d::CCObject* sender);
@@ -13397,7 +13397,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::CCArray* getAllSFXObjects(bool onlySFX) = win inline, m1 0x4e08c4;
     cocos2d::CCArray* getAllSongs() = win inline, m1 0x4d950c;
     void getCustomContentURL() = win 0x33ff10, imac 0x590d30, m1 0x4db728;
-    cocos2d::CCObject* getDLObject(char const* id);
+    cocos2d::CCObject* getDLObject(char const* id) = win 0x39d70;
     cocos2d::CCArray* getDownloadedSongs() = win 0x33e5e0, m1 0x4d9208;
     int getDownloadProgress(int id) = win inline, m1 0x4da5e8;
     MusicArtistObject* getMusicArtistForID(int id) = win inline, m1 0x4de664;
@@ -17581,10 +17581,10 @@ class SetupRotateCommandPopup : SetupTriggerPopup {
 
     static SetupRotateCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
 
-    virtual void updateInputNode(int tag, float value) = win 0x2a8f60;
-    virtual void valueDidChange(int tag, float value) = win 0x2a8f70, imac 0x67b0;
-    virtual float triggerValueFromSliderValue(int tag, float value) = win 0x2a8f20, m1 0x5d40;
-    virtual float triggerSliderValueFromValue(int tag, float value) = win 0x2a8f50, m1 0x5d64;
+    virtual void updateInputNode(int tag, float value) = imac 0x67a0, m1 0x5d68, win 0x2a8f60;
+    virtual void valueDidChange(int tag, float value) = m1 0x5d6c, win 0x2a8f70, imac 0x67b0;
+    virtual float triggerValueFromSliderValue(int tag, float value) = imac 0x6750, win 0x2a8f20, m1 0x5d40;
+    virtual float triggerSliderValueFromValue(int tag, float value) = imac 0x6790, win 0x2a8f50, m1 0x5d64;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0xc3e30, imac 0x6af0, m1 0x5ffc;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x2a7d90;
