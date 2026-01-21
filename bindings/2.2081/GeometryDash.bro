@@ -8973,7 +8973,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     static cocos2d::CCScene* scene() = win 0x272e90, m1 0x2f3394;
     static gd::string titleForUnlock(int id, UnlockType type) = win inline, m1 0x2f93d0;
 
-    virtual bool init() = win 0x273050, imac 0x369280 m1 0x2f34d8;
+    virtual bool init() = win 0x273050, imac 0x369280, m1 0x2f34d8;
     virtual void keyBackClicked() = win 0x2791d0, m1 0x2f9c74;
     virtual void textInputOpened(CCTextInputNode* node) = win 0x274c70, imac 0x36c730;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x274e60, imac 0x36c860, m1 0x2f69e0;
