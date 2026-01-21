@@ -2,8 +2,8 @@
 #import win <sys/timeb.h>
 #import <Geode/utils/cocos.hpp>
 
-[[link(android)]]
 /// The "Account Help" Layer, as seen in account options.
+[[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() = imac inline, m1 inline, win inline;
     ~AccountHelpLayer() = win inline, m1 0xb54d4;
