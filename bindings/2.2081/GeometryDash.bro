@@ -37,6 +37,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     /// @param sender The sender of the callback
     void onUnlink(cocos2d::CCObject* sender) = win 0x7fb70, m1 0xb5ce4;
     void updatePage() = win 0x7fd20, imac 0xceaa0, m1 0xb5e98;
+    /// Creates an FLAlertLayer asking the user if they truly want to unlink their account.
     void verifyUnlink() = m1 0xb61d8, win inline, imac 0xcedf0;
 
     cocos2d::CCLabelBMFont* m_loginStatusLabel;
