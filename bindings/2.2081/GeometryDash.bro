@@ -2185,7 +2185,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x934e0, imac 0x728440, m1 0x63a5c0;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x92d10, imac 0x728710, m1 0x63a864;
     void selectColor(cocos2d::ccColor3B color) = win inline, imac 0x727af0, m1 0x639d58, ios inline;
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x639a30;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x911f0, m1 0x639a30;
     void updateColorLabels();
     void updateColorValue() = win inline;
     void updateCopyColor() = win 0x938f0, imac 0x72b2e0, m1 0x63d218;
@@ -2337,9 +2337,9 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x96ae0;
     void onClose() = win inline, ios inline;
     void onResetHSV(cocos2d::CCObject* sender) = win 0x97bd0, imac 0x430ba0, m1 0x3a32f4;
-    void onToggleSConst(cocos2d::CCObject* sender) = m1 0x3a320c;
-    void onToggleVConst(cocos2d::CCObject* sender) = m1 0x3a3280;
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x3a30c4;
+    void onToggleSConst(cocos2d::CCObject* sender) = win 0x97ad0, m1 0x3a320c;
+    void onToggleVConst(cocos2d::CCObject* sender) = win 0x97b50, m1 0x3a3280;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x979b0, m1 0x3a30c4;
     void updateLabels() = win 0x97c50;
     void updateSliders() = win 0x978e0, imac 0x4311e0, m1 0x3a38a8;
 
@@ -2758,21 +2758,21 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     void highlightSelected(ButtonSprite* sprite) = win 0xa9ee0, imac 0x1f8c60, m1 0x1a66b0;
     bool init(GameObject* object, cocos2d::CCArray* objects) = win 0xa5410, imac 0x55c910;
     void onBreakApart(cocos2d::CCObject* sender) = win 0xa9b20;
-    void onBrowse(cocos2d::CCObject* sender) = m1 0x1a5e78;
+    void onBrowse(cocos2d::CCObject* sender) = win 0xa8310, m1 0x1a5e78;
     void onClear(cocos2d::CCObject* sender) = win 0xa9a90, imac 0x1f8060, m1 0x1a5bd0;
     void onClose(cocos2d::CCObject* sender) = win 0xaa010, m1 0x1a4e64;
-    void onCopy(cocos2d::CCObject* sender) = m1 0x1a5dac;
+    void onCopy(cocos2d::CCObject* sender) = win 0xa8010, m1 0x1a5dac;
     void onEditColor(cocos2d::CCObject* sender) = win 0xa8480, imac 0x1f7ca0, m1 0x1a5858;
     void onHSV(cocos2d::CCObject* sender) = win 0xa8b80, imac 0x1f76d0, m1 0x1a5230;
     void onLiveEdit(cocos2d::CCObject* sender) = win 0xa7f10, imac 0x1f7d00, m1 0x1a58ac;
-    void onNextColorChannel(cocos2d::CCObject* sender) = m1 0x1a5c84;
+    void onNextColorChannel(cocos2d::CCObject* sender) = win 0xa95b0, m1 0x1a5c84;
     void onPaste(cocos2d::CCObject* sender) = win 0xa8070, m1 0x1a5dd4;
     void onSelectColor(cocos2d::CCObject* sender) = win 0xa9cb0, imac 0x1f7a10, m1 0x1a559c;
     void onSelectMode(cocos2d::CCObject* sender) = win 0xa8ff0, imac 0x1f74a0, m1 0x1a5004;
     void onSettings(cocos2d::CCObject* sender) = win 0xa81c0, m1 0x1a5208;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0xa95b0, imac 0x1f7ac0, m1 0x1a5664;
     void recreateLayer() = win inline, imac 0x1f8890, m1 0x1a6340;
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x1a5960;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0xa7ec0, m1 0x1a5960;
     void toggleVisible() = win 0xa9200, imac 0x1f9180;
     void updateChannelLabel(int channel) = win inline, imac 0x1f85e0, m1 0x1a6138;
     void updateColorSprite() = win 0xa8530, imac 0x1f8510, m1 0x1a6068;
@@ -16839,7 +16839,7 @@ class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
     virtual void hsvPopupClosed(HSVWidgetPopup* popup, cocos2d::ccHSVValue value) = imac 0x3f37c0, win 0x420780, m1 0x36c7c8;
 
     bool init(EnterEffectObject* object, cocos2d::CCArray* objects, int id) = win 0x41e240;
-    void onEnterType(cocos2d::CCObject* sender) = m1 0x36c4cc;
+    void onEnterType(cocos2d::CCObject* sender) = win 0x420620, m1 0x36c4cc;
     void onHSV(cocos2d::CCObject* sender);
     void onNextFreeEnterChannel(cocos2d::CCObject* sender);
     void onNextFreeEnterEffectID(cocos2d::CCObject* sender);
@@ -16864,7 +16864,7 @@ class SetupEnterTriggerPopup : SetupTriggerPopup {
     virtual void determineStartValues() = imac 0x29b610, win 0x28f7e0, m1 0x23b278;
 
     bool init(EnterEffectObject* object, cocos2d::CCArray* objects) = win 0x28f260, imac 0x2b86d0;
-    void onEnterType(cocos2d::CCObject* sender) = m1 0x23b1a4;
+    void onEnterType(cocos2d::CCObject* sender) = win 0x28f8b0, m1 0x23b1a4;
 
     CCMenuItemToggler* m_enterOnlyToggler;
     CCMenuItemToggler* m_exitOnlyToggler;
