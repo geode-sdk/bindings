@@ -15,12 +15,13 @@ set(MAT_JSON_AS_INTERFACE ON)
 CPMAddPackage("gh:fmtlib/fmt#11.1.4")
 CPMAddPackage("gh:geode-sdk/json@3.2.1")
 CPMAddPackage("gh:geode-sdk/TulipHook@2.4.4")
+CPMAddPackage("gh:zhihaoy/nontype_functional#8ec2e09")
 
 if (WIN32)
 	target_compile_definitions(fmt PRIVATE _HAS_ITERATOR_DEBUGGING=0)
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt GeodeResult mat-json TulipHookInclude)
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt GeodeResult mat-json TulipHookInclude nontype_functional)
 
 cmake_path(SET GEODE_LOADER_PATH $ENV{GEODE_SDK}/loader)
 

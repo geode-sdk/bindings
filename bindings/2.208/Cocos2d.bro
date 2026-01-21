@@ -738,7 +738,7 @@ class cocos2d::CCConfiguration : cocos2d::CCObject {
     virtual ~CCConfiguration();
 
     static void purgeConfiguration();
-    static cocos2d::CCConfiguration* sharedConfiguration() = imac 0x519700, m1 0x45acf0;
+    static cocos2d::CCConfiguration* sharedConfiguration() = imac 0x519700, m1 0x46fed4;
 
     bool checkForGLExtension(gd::string const&) const;
     void dumpInfo() const;
@@ -5856,7 +5856,7 @@ class DS_Dictionary {
     void checkCompatibility();
     gd::string cleanStringWhiteSpace(gd::string const&);
     cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
-    gd::vector<gd::string> getAllKeys() = imac 0x2d0660;
+    gd::vector<gd::string> getAllKeys();
     cocos2d::CCArray* getArrayForKey(char const*, bool) = imac 0x180660, m1 0x1459d0;
     bool getBoolForKey(char const*) = m1 0x142dd8;
     cocos2d::CCDictionary* getDictForKey(char const*, bool) = m1 0x146768;
@@ -5873,7 +5873,7 @@ class DS_Dictionary {
     gd::string getStringForKey(char const*) = m1 0x142ff0;
     gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
     cocos2d::CCPoint getVec2ForKey(char const*);
-    bool loadRootSubDictFromCompressedFile(char const*) = imac 0x214850, m1 0x520768;
+    bool loadRootSubDictFromCompressedFile(char const*);
     bool loadRootSubDictFromFile(char const*);
     bool loadRootSubDictFromString(gd::string const&) = m1 0x140be4;
     bool rectFromString(gd::string const&, cocos2d::CCRect&);
