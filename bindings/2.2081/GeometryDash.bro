@@ -1942,8 +1942,8 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
     void onDynamicBlock(cocos2d::CCObject* sender) = imac 0x286cd0;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b650, imac 0x286a90, m1 0x228228;
     void onNextItemID(cocos2d::CCObject* sender);
-    void updateEditorLabel() = m1 0x228728;
-    void updateItemID() = m1 0x2287a0;
+    void updateEditorLabel() = win 0x8b950, m1 0x228728;
+    void updateItemID() = win 0x8b9d0, m1 0x2287a0;
     void updateTextInputLabel() = imac 0x286bc0, m1 0x228340;
 
     EffectGameObject* m_gameObject;
@@ -2176,8 +2176,8 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     void onDefault(cocos2d::CCObject* sender) = win 0x90f20, m1 0x639e74;
     void onHSVLegacyMode(cocos2d::CCObject* sender);
     void onPaste(cocos2d::CCObject* sender) = win 0x90ea0, m1 0x639e28;
-    void onPlayerColor1(cocos2d::CCObject* sender) = m1 0x63a18c;
-    void onPlayerColor2(cocos2d::CCObject* sender) = m1 0x63a240;
+    void onPlayerColor1(cocos2d::CCObject* sender) = win 0x90c60, m1 0x63a18c;
+    void onPlayerColor2(cocos2d::CCObject* sender) = win 0x90d40, m1 0x63a240;
     void onSelectSpecialColor(cocos2d::CCObject* sender) = imac 0x7283f0, m1 0x63a55c;
     void onTintGround(cocos2d::CCObject* sender);
     void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x935c0, imac 0x728280, m1 0x63a418;
@@ -2550,7 +2550,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
     void onToggleStartSpinEqualToEnd(cocos2d::CCObject* sender);
     void onUniformColor(cocos2d::CCObject* sender) = win 0x431750;
     bool particleValueIsInt(gjParticleValue type) = win 0x434b40, m1 0x200d04, ios inline;
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x3dc5f0;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x434a90, m1 0x3dc5f0;
     gd::string titleForParticleValue(gjParticleValue type) = win 0x432b80, imac 0x474fd0, m1 0x3dc3c0;
     void toggleGravityMode(bool gravityMode) = win 0x434e60, imac 0x474b90;
     void updateColorSprite(int tag) = win inline;
@@ -8540,17 +8540,17 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     void onUpdateGroupID(cocos2d::CCObject* sender) = imac 0x2d66d0, win 0x272070, m1 0x271170;
     void onUpdateGroupID2(cocos2d::CCObject* sender) = win 0x2720d0, imac 0x2d6790, m1 0x27122c;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x271d20;
-    void sliderXModChanged(cocos2d::CCObject* sender) = m1 0x271050;
-    void sliderYModChanged(cocos2d::CCObject* sender) = m1 0x2710e0;
+    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x271eb0, m1 0x271050;
+    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x271ef0, m1 0x2710e0;
     void updateDuration();
     void updateDurLabel(bool decimals);
     void updateTargetGroupID();
     void updateTargetGroupID2();
     void updateTextInputLabel();
     void updateTextInputLabel2();
-    void updateXMod();
+    void updateXMod() = win 0x271f30;
     void updateXModLabel();
-    void updateYMod() = m1 0x271b74;
+    void updateYMod() = win 0x271fd0, m1 0x271b74;
     void updateYModLabel();
 
     CCTextInputNode* m_moveTimeInput;
