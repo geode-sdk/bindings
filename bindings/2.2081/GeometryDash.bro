@@ -3,28 +3,47 @@
 #import <Geode/utils/cocos.hpp>
 
 [[link(android)]]
+/// The "Account Help" Layer, as seen in account options.
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() = imac inline, m1 inline, win inline;
     ~AccountHelpLayer() = win inline, m1 0xb54d4;
 
+    /// Creates an AccountHelpLayer.
+    /// @returns An AccountHelpLayer pointer to the created class.
     static AccountHelpLayer* create() = win inline, m1 0xb5384;
 
+    /// Runs after the UI is setup, it is highly recommended to hook this method if making UI inside the AccountHelpLayer.
     virtual void customSetup() = imac 0xce3e0, win 0x7f610, m1 0xb57f0;
+    /// Runs when the layer is hidden.
     virtual void layerHidden() = imac 0xcf080, win 0x80370, m1 0xb6450;
+    /// Runs after the status of the account is changed.
     virtual void accountStatusChanged() = win 0x7fd10, imac 0xcef40, m1 0xb6304;
+    /// Executed when an FLAlertLayer created from this class has one of it's buttons pressed.
+    /// @param layer A pointer to the parent FLAlertLayer
+    /// @param btn2 If the second button was pressed, this will be true.
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = imac 0xcef70, win 0x7fff0, m1 0xb6310;
 
+    /// Unlinks the users account.
     void doUnlink() = win inline, imac 0xcef00, m1 0xb62d0, ios inline;
+    /// Executed when the layer is left/exited.
     void exitLayer() = win inline, m1 0xb62fc, ios inline;
+    /// Button callback for when the "Manage Account" button is pressed.
+    /// @param sender The sender of the callback.
     void onAccountManagement(cocos2d::CCObject* sender) = m1 0xb5c10, imac 0xce820;
+    /// Button callback for when the "Refresh Login" button is pressed.
+    /// @param sender The sender of the callback.
     void onReLogin(cocos2d::CCObject* sender) = win 0x7fa20, m1 0xb5b9c;
+    /// Button callback for when the "Unlink Account" button is pressed.
+    /// @param sender The sender of the callback
     void onUnlink(cocos2d::CCObject* sender) = win 0x7fb70, m1 0xb5ce4;
     void updatePage() = win 0x7fd20, imac 0xceaa0, m1 0xb5e98;
     void verifyUnlink() = m1 0xb61d8, win inline, imac 0xcedf0;
 
     cocos2d::CCLabelBMFont* m_loginStatusLabel;
     TextArea* m_textArea;
+    /// The "Refresh Login" button.
     CCMenuItemSpriteExtra* m_refreshLoginButton;
+    /// The "Unlink Account" button.
     CCMenuItemSpriteExtra* m_unlinkAccountButton;
     bool m_unk290;
 }
