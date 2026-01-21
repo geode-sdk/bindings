@@ -4,6 +4,16 @@ GameStatsManager* GameStatsManager::get() {
     return GameStatsManager::sharedState();
 }
 
+
+GameStatsManager* GameStatsManager::sharedState() {
+    auto** instancePtr = reinterpret_cast<GameStatsManager**>(geode::base::get() + 0x6c2ee8);
+    if (!*instancePtr) {
+        *instancePtr = new GameStatsManager();
+        (*instancePtr)->init();
+    }
+    return *instancePtr;
+}
+
 void GameStatsManager::setAwardedBonusKeys(int keys) {
     m_bonusKey = keys;
 }
