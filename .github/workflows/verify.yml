@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/*'
-      - 'bindings/2.208/*'
+      - 'bindings/2.2081/*'
       - 'bindings/include/**'
       - 'cmake/**'
       - 'codegen/**'
@@ -15,7 +15,7 @@ on:
     - '**'
     paths:
       - '.github/workflows/*'
-      - 'bindings/2.208/*'
+      - 'bindings/2.2081/*'
       - 'bindings/include/**'
       - 'cmake/**'
       - 'codegen/**'
@@ -62,7 +62,7 @@ jobs:
         name: Codegen
 
     - name: Verify
-      run: 'chmod +x ./Codegen && ./Codegen Win64 bindings/2.208 out'
+      run: 'chmod +x ./Codegen && ./Codegen Win64 bindings/2.2081 out'
 
   test-members:
     # dont bother running member test if broma isnt even valid
