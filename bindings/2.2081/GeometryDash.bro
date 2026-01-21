@@ -6148,8 +6148,8 @@ class GameObject : CCSpritePlus {
     virtual OBB2D* getOrientedBox() = win 0x1a1510;
     virtual void updateOrientedBox() = win 0x1a1570, m1 0x33ad5c;
     virtual float getObjectRotation() = win 0x1a14f0, imac 0x5d2490;
-    virtual void updateMainColor(cocos2d::ccColor3B const& color) = imac 0x5ca710, m1 0x4f9870;
-    virtual void updateSecondaryColor(cocos2d::ccColor3B const& color);
+    virtual void updateMainColor(cocos2d::ccColor3B const& color) = imac 0x5ca710, m1 0x4f9870, win 0x1a1f70;
+    virtual void updateSecondaryColor(cocos2d::ccColor3B const& color) = win 0x1a1f80;
     virtual int addToGroup(int id) = win 0x19c790;
     virtual void removeFromGroup(int id) = win 0x19c8b0, m1 0x4efa64;
     virtual void saveActiveColors() = win 0x1a08d0, imac 0x1535e0, m1 0x4f8030;
