@@ -13038,7 +13038,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     virtual void googlePlaySignedIn() = imac 0x79ec60, m1 0x6a63e8, win 0x376a10;
     virtual void dropDownLayerWillClose(GJDropDownLayer* layer) = imac 0x79e940, win 0x376560, m1 0x6a6128;
 
-    void addToggle(char const* label, char const* key, char const* description);
+    void addToggle(char const* label, char const* key, char const* description) = win 0x374b80;
     int countForPage(int page) = win 0x3751e0;
     void goToPage(int page) = win 0x375600;
     void incrementCountForPage(int page) = win inline;
