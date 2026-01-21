@@ -23,7 +23,7 @@ PlayerCheckpoint::PlayerCheckpoint() {
     m_dashY = 0.0;
     m_dashAngle = 0.0;
     m_dashStartTime = 0.0;
-    m_dashRingObject = nullptr;
+    m_dashRing = nullptr;
     m_shouldStop = false;
     m_lastFlipTime = 0.0;
     m_gravityMod = 1.f;
