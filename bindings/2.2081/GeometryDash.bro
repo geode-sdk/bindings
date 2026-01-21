@@ -3721,7 +3721,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint getTouchPoint(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x4ecd0, m1 0x44118;
     GJTransformState& getTransformState() = win inline, imac 0x3cec0, ios inline;
     float getXMin(int offset) = win 0x122bc0, imac 0x2efb0, m1 0x2c108;
-    bool init(LevelEditorLayer* editorLayer) = win 0xdf390, imac 0x4ba250;
+    bool init(LevelEditorLayer* editorLayer) = win 0xdf390, imac 0x4ba250, m1 0x7d7c;
     bool isLiveColorSelectTrigger(GameObject* object) = win inline, ios inline;
     bool isSpecialSnapObject(int id) = win 0x129060, imac 0x4bec0, m1 0x42270;
     bool liveEditColorUsable() = win inline, ios inline;
@@ -3764,7 +3764,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPasteState(cocos2d::CCObject* sender) = win 0x1143e0, m1 0x296e4;
     void onPause(cocos2d::CCObject* sender) = win 0xe19c0;
     void onPlayback(cocos2d::CCObject* sender) = win 0x111aa0;
-    void onPlaytest(cocos2d::CCObject* sender) = win 0x1120b0;
+    void onPlaytest(cocos2d::CCObject* sender) = win 0x1120b0, imac 0xc510, m1 0xaf5c;
     void onResetSpecialFilter(cocos2d::CCObject* sender) = m1 0x2eec4;
     void onSelectBuildTab(cocos2d::CCObject* sender) = imac 0x33da0;
     void onSettings(cocos2d::CCObject* sender) = win 0xe1940;
@@ -3780,7 +3780,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void playCircleAnim(cocos2d::CCPoint position, float radius, float duration) = win inline, imac 0x33690, m1 0x3052c, ios inline;
     void playerTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, ios inline;
     void playerTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x4ee50, m1 0x44278, ios inline;
-    void playtestStopped() = win 0x112570, m1 0x35bec;
+    void playtestStopped() = win 0x112570, imac 0xc730, m1 0x35bec;
     bool positionIsInSnapped(cocos2d::CCPoint position) = win inline, imac 0x3a3f0, m1 0x32eb8;
     cocos2d::CCPoint positionWithoutOffset(GameObject* object) = win inline, imac 0x4e1a0, m1 0x436a4;
     void processSelectObjects(cocos2d::CCArray* objects) = win 0x111760, imac 0x3d1c0, m1 0x3551c;
@@ -10454,7 +10454,7 @@ class GJTransformControl : cocos2d::CCLayer {
     static GJTransformControl* create() = win inline, imac 0xbb50, m1 0xa5e8;
 
     virtual bool init() = win 0x12ae50, imac 0x53170, m1 0x2e518;
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12c4e0, imac 0x53620;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12c4e0, imac 0x53620, m1 0x48170;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12c6b0, imac 0x53aa0, m1 0x48544;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x12cc10, imac 0x54020, m1 0x48a78;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x54230, m1 0x48c50;
@@ -10466,7 +10466,7 @@ class GJTransformControl : cocos2d::CCLayer {
     void loadValues(GameObject* object, cocos2d::CCArray* objects, gd::unordered_map<int, GameObjectEditorState>& states) = win inline, imac 0x40c10;
     void logCurrentZeroPos() = win inline, m1 0x48c6c, ios inline;
     void onToggleLockScale(cocos2d::CCObject* sender) = m1 0x47fe4;
-    void refreshControl() = win 0x12b3a0, m1 0x40c3c;
+    void refreshControl() = win 0x12b3a0, imac 0x4a630, m1 0x40c3c;
     void saveToState(GJTransformState& state) = win inline, imac 0x40e50, m1 0x38d58;
     void scaleButtons(float scale) = win 0x12b5c0, imac 0x3dcd0, m1 0x35fa0;
     cocos2d::CCSprite* spriteByTag(int tag) = win inline, m1 0x48054, ios inline;
