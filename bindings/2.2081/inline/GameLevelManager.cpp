@@ -4,15 +4,6 @@ GameLevelManager* GameLevelManager::get() {
     return GameLevelManager::sharedState();
 }
 
-GameLevelManager* GameLevelManager::sharedState() {
-    auto** instancePtr = reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x6c2ec0);
-    if (!*instancePtr) {
-        *instancePtr = new GameLevelManager();
-        (*instancePtr)->init();
-    }
-    return *instancePtr;
-}
-
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 const char* GameLevelManager::getDeleteCommentKey(int parentID, int id, int type) {
