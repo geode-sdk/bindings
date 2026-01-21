@@ -8980,7 +8980,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     virtual void textChanged(CCTextInputNode* node) = win 0xc3d80, m1 0x2f6bc0;
     virtual void listButtonBarSwitchedPage(ListButtonBar* bar, int page) = win 0xc3e30, imac 0x36ee30, m1 0x2f8cc0;
     virtual void showUnlockPopup(int id, UnlockType type) = win 0x277c00, m1 0x2f8e20;
-    virtual void updateRate() = win 0x2788d0;
+    virtual void updateRate() = win 0x2788d0, m1 0x2f9a58;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x2784a0, imac 0x36f9b0, m1 0x2f9820;
     virtual void dialogClosed(DialogLayer* layer) = win 0x278700;
     virtual void playerColorChanged() = win 0x277a50;
