@@ -202,7 +202,7 @@ class AchievementCell : TableViewCell {
 class AchievementManager : cocos2d::CCNode {
     // virtual ~AchievementManager();
 
-    static AchievementManager* sharedState() = win 0x7da0, imac 0x72b390, m1 0x4eb06c;
+    static AchievementManager* sharedState() = win 0x7da0, imac 0x72b390, m1 0x63d318;
 
     virtual bool init() = win 0x7e60, imac 0x72b4a0, m1 0x63d408;
 
