@@ -14391,7 +14391,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x39d3a0, imac 0x3fe080, m1 0x376680;
     void setupStreak() = win 0x3887c0, m1 0x375058;
     void setYVelocity(double velocity, int type) = win 0x388d10, m1 0x374ddc;
-    void spawnCircle();
+    void spawnCircle() = win 0x3975b0;
     void spawnCircle2() = inline;
     void spawnDualCircle() = win 0x397b70, imac 0x413920;
     void spawnFromPlayer(PlayerObject* player, bool flip) = win inline, imac 0x41b760, m1 0x3904fc;
