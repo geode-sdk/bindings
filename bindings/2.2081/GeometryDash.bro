@@ -13526,9 +13526,9 @@ class NCSInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
     bool init(CustomSongLayer* layer) = win 0xc63e0;
     void onClose(cocos2d::CCObject* sender) = win 0x84670, imac 0x218830, m1 0x1c3cf0, ios inline;
     void onLibrary(cocos2d::CCObject* sender) = win 0xc6c30, imac 0x218760, m1 0x1c3c20;
-    void onNCS(cocos2d::CCObject* sender) = m1 0x1c3c84;
-    void onNCSIO(cocos2d::CCObject* sender) = m1 0x1c3ca8;
-    void onNCSUsage(cocos2d::CCObject* sender) = m1 0x1c3ccc;
+    void onNCS(cocos2d::CCObject* sender) = win 0xc6bd0, m1 0x1c3c84;
+    void onNCSIO(cocos2d::CCObject* sender) = win 0xc6bf0, m1 0x1c3ca8;
+    void onNCSUsage(cocos2d::CCObject* sender) = win 0xc6c10, m1 0x1c3ccc;
 
     CustomSongLayer* m_songLayer;
 }
