@@ -2990,13 +2990,13 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
 
     bool init(CustomSongDelegate* delegate) = win 0xc2c20;
     void onClose(cocos2d::CCObject* sender) = win 0xc43b0, m1 0x1c0ec0;
-    void onCreateLines(cocos2d::CCObject* sender) = m1 0x1c1018;
+    void onCreateLines(cocos2d::CCObject* sender) = m1 0x1c1018, win 0xc4120;
     void onMusicBrowser(cocos2d::CCObject* sender) = win 0xc3ec0, imac 0x2159a0, m1 0x1c0fb4;
     void onNCSBrowser(cocos2d::CCObject* sender) = imac 0x215980, m1 0x1c0f98;
     void onNewgroundsBrowser(cocos2d::CCObject* sender) = win 0xc4020, imac 0x2159f0, m1 0x1c0ffc;
     void onOptions(cocos2d::CCObject* sender) = imac 0x215a50, m1 0x1c1054;
     void onSearch(cocos2d::CCObject* sender) = win 0xc39a0, m1 0x1c1074;
-    void onSongBrowser(cocos2d::CCObject* sender) = m1 0x1c0f34;
+    void onSongBrowser(cocos2d::CCObject* sender) = m1 0x1c0f34, win 0xc3e40;
     void showNewgroundsMessage() = win inline, imac 0x215be0, m1 0x1c11f0;
 
     CustomSongDelegate* m_songDelegate;
@@ -3443,16 +3443,16 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     virtual void onClosePopup(UploadActionPopup* popup) = imac 0x1fe680, win 0xd9ae0, m1 0x1abca8;
 
     void closeTextInputs() = win 0xd7490, m1 0x1aac44;
-    void confirmClone(cocos2d::CCObject* sender);
-    void confirmDelete(cocos2d::CCObject* sender) = imac 0x1fcc30;
-    void confirmMoveToTop(cocos2d::CCObject* sender) = imac 0x1fcec0;
+    void confirmClone(cocos2d::CCObject* sender) = win 0xd92a0;
+    void confirmDelete(cocos2d::CCObject* sender) = imac 0x1fcc30, win 0xd8b00;
+    void confirmMoveToTop(cocos2d::CCObject* sender) = imac 0x1fcec0, win 0xd93c0;
     bool init(GJGameLevel* level) = win 0xd5440;
     void onBack(cocos2d::CCObject* sender) = win 0xd9610;
     void onClone() = win inline;
     void onDelete() = win inline, m1 0x1ab774;
     void onEdit(cocos2d::CCObject* sender) = win 0xd82b0;
     void onGuidelines(cocos2d::CCObject* sender) = win 0xd6810, imac 0x1fd4b0;
-    void onHelp(cocos2d::CCObject* sender);
+    void onHelp(cocos2d::CCObject* sender) = win 0xd9180;
     void onLevelInfo(cocos2d::CCObject* sender) = win 0xd6a30, m1 0x1aa8a4;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0xd6980, m1 0x1aa6f4;
     void onLevelOptions(cocos2d::CCObject* sender) = win 0xd6a00, m1 0x1aac24;
@@ -3461,7 +3461,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onSetFolder(cocos2d::CCObject* sender) = win 0xd94f0, imac 0x1fcfa0, m1 0x1aa648;
     void onShare(cocos2d::CCObject* sender) = win 0xd8450, imac 0x1fbf70, m1 0x1a9618;
     void onTest(cocos2d::CCObject* sender) = win inline, m1 0x1ab6e4, ios inline;
-    void onUpdateDescription(cocos2d::CCObject* sender);
+    void onUpdateDescription(cocos2d::CCObject* sender) = win 0xd8180;
     void playStep2() = win 0xd8010, m1 0x1ab5d0;
     void playStep3() = win 0xd80f0, m1 0x1ab694;
     void setupLevelInfo() = win 0xd6c50;
