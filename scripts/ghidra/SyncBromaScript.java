@@ -14,7 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import docking.DockingWindowManager;
 import docking.widgets.dialogs.InputWithChoicesDialog;
+import docking.widgets.dialogs.MultiLineMessageDialog;
 import ghidra.app.script.GhidraScript;
 import ghidra.program.model.address.Address;
 import ghidra.program.model.data.AbstractFloatDataType;
@@ -224,7 +226,9 @@ public class SyncBromaScript extends GhidraScript {
     }
 
     boolean overwriteAll = false;
+    ArrayList<String> overwriteList = new ArrayList<String>();
     boolean mergeAll = false;
+    ArrayList<String> mergeList = new ArrayList<String>();
 
     private SignatureImport importSignatureFromBroma(Address addr, Broma.Function fun, boolean skipTodo) throws Exception {
         final var name = fun.getName();
@@ -254,29 +258,34 @@ public class SyncBromaScript extends GhidraScript {
         if (
             data.getSymbol().getSource() == SourceType.USER_DEFINED &&
             !data.getName(true).equals(fullName) && 
-            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName)) &&
-            !overwriteAll
+            !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
         ) {
-            int choice = mergeAll ? 0 : askContinueConflict(
-                "Function has a different name",
-                List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all", "Merge all"),
-                "The function {0} at {1} from Broma already has the name " + 
-                "{2} in Ghidra - is this function merged with that?",
-                fullName, Long.toHexString(addr.getOffset()), data.getName(true)
-            );
-            if (choice == 3) {
-                choice = 0;
-                mergeAll = true;
+            if (overwriteAll) {
+                overwriteList.add(fullName);
             }
-            if (choice == 0) {
-                data.setComment(
-                    (data.getComment() != null ? (data.getComment() + "\n") : "") + 
-                    "NOTE: Merged with " + fullName
+            else {
+                int choice = mergeAll ? 0 : askContinueConflict(
+                    "Function has a different name",
+                    List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all", "Merge all"),
+                    "The function {0} at {1} from Broma already has the name " + 
+                    "{2} in Ghidra - is this function merged with that?",
+                    fullName, Long.toHexString(addr.getOffset()), data.getName(true)
                 );
-                wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
-                return SignatureImport.ADDED_MERGED;
+                if (choice == 3) {
+                    choice = 0;
+                    mergeAll = true;
+                }
+                if (choice == 0) {
+                    data.setComment(
+                        (data.getComment() != null ? (data.getComment() + "\n") : "") + 
+                        "NOTE: Merged with " + fullName
+                    );
+                    wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
+                    if (mergeAll) mergeList.add(fullName);
+                    return SignatureImport.ADDED_MERGED;
+                }
+                overwriteAll = choice == 2;
             }
-            overwriteAll = choice == 2;
         }
 
         if (data.getSymbol().getSource() != SourceType.USER_DEFINED) {
@@ -647,6 +656,25 @@ public class SyncBromaScript extends GhidraScript {
             }
         }
         wrapper.printfmt("Added {0} functions & updated {1} functions from Broma", importedAddCount, importedUpdateCount);
+
+        if (overwriteList.size() > 0) {
+            DockingWindowManager.showDialog(null, new MultiLineMessageDialog(
+                "Overwrite Summary",
+                "There were " + overwriteList.size() + " functions overwritten automatically.",
+                String.join("\n", overwriteList),
+                MultiLineMessageDialog.INFORMATION_MESSAGE,
+                false
+            ));
+        }
+        else if (mergeList.size() > 0) {
+            DockingWindowManager.showDialog(null, new MultiLineMessageDialog(
+                "Merge Summary",
+                "There were " + mergeList.size() + " functions merged automatically.",
+                String.join("\n", mergeList),
+                MultiLineMessageDialog.INFORMATION_MESSAGE,
+                false
+            ));
+        }
     }
 
     private void handleExport() throws Exception {
