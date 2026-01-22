@@ -128,8 +128,10 @@ if (WIN32)
 	endif()
 endif()
 
-target_sources(${PROJECT_NAME} PRIVATE ${GEODE_MEMBER_TEST_CODEGEN_PATH}/Geode/GeneratedSource.cpp)
-target_compile_definitions(${PROJECT_NAME} PRIVATE GEODE_USE_NEW_DESTRUCTOR_LOCK=1)
+file(GLOB GEODE_INLINE_SOURCES ${GEODE_BINDINGS_PATH}/inline/*.cpp)
+file(GLOB GEODE_GENERATED_SOURCES ${GEODE_MEMBER_TEST_CODEGEN_PATH}/Geode/source/*.cpp)
+
+target_sources(${PROJECT_NAME} PRIVATE ${GEODE_MEMBER_TEST_CODEGEN_PATH}/Geode/GeneratedSource.cpp ${GEODE_INLINE_SOURCES} ${GEODE_GENERATED_SOURCES})
 
 message(STATUS "Fetching Geode nightly Git hash")
 
