@@ -8484,6 +8484,8 @@ class GJEffectManager : cocos2d::CCNode {
     gd::unordered_map<int, int> m_itemCountMap;
     gd::unordered_map<int, int> m_persistentItemCountMap;
     gd::unordered_set<int> m_persistentTimerItemSet;
+    gd::unordered_set<int> m_unk3f0;
+    gd::unordered_set<int> m_unk430;
     gd::unordered_map<int, TimerItem> m_timerItemMap;
     gd::unordered_map<int, gd::vector<TimerTriggerAction>> m_unkMap3f8;
     cocos2d::CCArray* m_unkArray430;
@@ -11964,12 +11966,21 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     double m_sessionTime;
     bool m_removingAll;
     EffectGameObject* m_playbackObject;
+    EffectGameObject* m_traceInObject;
+    EffectGameObject* m_traceOutObject;
     int m_playbackOrder;
     int m_duplicateKeyframeGroup;
     gd::vector<DelayedSpawnNode*> m_delayedSpawnNodes;
     gd::vector<DelayedSpawnNode*> m_delayedSpawnNodes2;
+    gd::unordered_map<int, int> m_unk3ae0;
     bool m_playbackActive;
     bool m_activateAudioTriggers;
+    bool m_unk3b22;
+    int m_unk3b24;
+    int m_unk3b28;
+    int m_unk3b2c;
+    gd::vector<int> m_unk3b30;
+    gd::vector<int> m_unk3b48;
 }
 
 [[link(android)]]
