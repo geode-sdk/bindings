@@ -12460,7 +12460,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
     void onLiveEdit(cocos2d::CCObject* sender) = win 0x321920, imac 0x26df70, m1 0x21106c;
     void onMode(cocos2d::CCObject* sender) = win 0x321100, imac 0x26e6b0, m1 0x2117a0;
     void onOptionToggle(cocos2d::CCObject* sender) = win 0x3215d0, imac 0x26e600;
-    void onSelectFont(cocos2d::CCObject* sender) = m1 0x211370;
+    void onSelectFont(cocos2d::CCObject* sender) = win 0x321d10, m1 0x211370;
     void onSelectMode(cocos2d::CCObject* sender) = imac 0x26ee50, m1 0x211de0;
     void onSelectSpeed(cocos2d::CCObject* sender) = imac 0x26ef10, m1 0x211ea0;
     void onSettings(cocos2d::CCObject* sender) = win 0x321040, imac 0x26e700, m1 0x2117dc;
