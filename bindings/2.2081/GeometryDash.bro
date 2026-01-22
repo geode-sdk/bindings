@@ -7004,7 +7004,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     virtual void loadLevelsFailed(char const* key, int type) = imac 0x394370, win 0x1f6b40, m1 0x31a410;
 
     bool init(GauntletType type) = win 0x1f6140, m1 0x318d0c;
-    void onBack(cocos2d::CCObject* sender) = m1 0x319368;
+    void onBack(cocos2d::CCObject* sender) = win 0x1f8410, m1 0x319368;
     void onLevel(cocos2d::CCObject* sender) = win 0x1f7d90, imac 0x3945e0, m1 0x85f10;
     void setupGauntlet(cocos2d::CCArray* levels) = imac 0x393150, m1 0x3193b0;
     void unlockActiveItem() = win 0x1f7e00, imac 0x394620, m1 0x31a710;
@@ -7056,7 +7056,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 
     void goToPage(int page, bool instant) = win 0x1fa4f0, m1 0x4c0a40;
     bool init(int unused) = win 0x1f8c30;
-    void onBack(cocos2d::CCObject* sender);
+    void onBack(cocos2d::CCObject* sender) = win 0x1fa6a0;
     void onInfo(cocos2d::CCObject* sender) = win 0x1f9790, imac 0x571f00, m1 0x4bfb00;
     void onNext(cocos2d::CCObject* sender) = win 0x1fa4b0, imac 0x571e70;
     void onPlay(cocos2d::CCObject* sender) = win 0x1fa770;
@@ -11601,15 +11601,15 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x2cf2f0, imac 0x48cde0, m1 0x3f21c4;
     void onFavorites(cocos2d::CCObject* sender) = win 0x2ce410, imac 0x48d9b0;
     void onGoToFolder(cocos2d::CCObject* sender) = win 0x2cc9a0, imac 0x48e000, m1 0x3f3478;
-    void onGoToLastPage(cocos2d::CCObject* sender) = m1 0x3f3540;
+    void onGoToLastPage(cocos2d::CCObject* sender) = win 0x2cc820, m1 0x3f3540;
     void onGoToPage(cocos2d::CCObject* sender) = win 0x2cc890, imac 0x48ccd0, m1 0x3f2094;
     void onHelp(cocos2d::CCObject* sender) = win inline, imac 0x491280, m1 0x3f6214, ios inline;
     void onInfo(cocos2d::CCObject* sender) = win 0x2ccfd0, imac 0x48dbf0, m1 0x3f3060;
     void onLocalMode(cocos2d::CCObject* sender) = win 0x2ce050;
     void onMyOnlineLevels(cocos2d::CCObject* sender) = win 0x2ce240, imac 0x48d240;
     void onNew(cocos2d::CCObject* sender) = win 0x2cdba0;
-    void onNextPage(cocos2d::CCObject* sender) = m1 0x3f1f54;
-    void onPrevPage(cocos2d::CCObject* sender) = m1 0x3f1f20;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x2ccd80, m1 0x3f1f54;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x2cce00, m1 0x3f1f20;
     void onRefresh(cocos2d::CCObject* sender) = win 0x2cea40, m1 0x3f2f2c;
     void onRemoveAllFavorites(cocos2d::CCObject* sender) = win 0x2ce770, imac 0x48d5b0, m1 0x3f29cc;
     void onSaved(cocos2d::CCObject* sender) = win 0x2ce4f0, imac 0x48d890;
@@ -12401,9 +12401,9 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     cocos2d::ccColor3B getColorValue(int page1, int page2, float progress) = win inline, imac 0x4343b0, m1 0x3a67a0;
     bool init(int page) = win 0x3183f0;
     void onBack(cocos2d::CCObject* sender) = win 0x319a30, m1 0x3a4d60;
-    void onDownload(cocos2d::CCObject* sender) = m1 0x3a4ca8;
+    void onDownload(cocos2d::CCObject* sender) = win 0x3191b0, m1 0x3a4ca8;
     void onInfo(cocos2d::CCObject* sender) = win 0x319bb0, m1 0x3a4da8;
-    void onNext(cocos2d::CCObject* sender) = m1 0x3a4d30;
+    void onNext(cocos2d::CCObject* sender) = win 0x319930, m1 0x3a4d30;
     void onPlay(cocos2d::CCObject* sender) = win inline;
     void onPrev(cocos2d::CCObject* sender) = m1 0x3a4d00;
     void tryShowAd() = win inline, m1 0x3a4dc4, ios inline;
@@ -12923,27 +12923,27 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onAchievements(cocos2d::CCObject* sender) = win 0x335820, m1 0x317afc;
     void onCreator(cocos2d::CCObject* sender) = win 0x335d30;
     void onDaily(cocos2d::CCObject* sender) = win 0x3350a0, m1 0x31807c;
-    void onDiscord(cocos2d::CCObject* sender) = m1 0x317d6c;
+    void onDiscord(cocos2d::CCObject* sender) = win 0x335720, m1 0x317d6c;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x391f20, m1 0x3183b0, ios inline;
-    void onFacebook(cocos2d::CCObject* sender) = m1 0x317cdc;
+    void onFacebook(cocos2d::CCObject* sender) = win 0x3356a0, m1 0x317cdc;
     void onFreeLevels(cocos2d::CCObject* sender) = m1 0x318458;
     void onFullVersion(cocos2d::CCObject* sender) = m1 0x318478;
     void onGameCenter(cocos2d::CCObject* sender) = win inline, m1 0x318150;
     void onGarage(cocos2d::CCObject* sender) = win 0x335dc0;
     void onGooglePlayGames(cocos2d::CCObject* sender) = win inline, m1 0x318290, ios inline;
     void onMoreGames(cocos2d::CCObject* sender) = imac 0x3918a0, win 0x335740, m1 0x317d90;
-    void onMyProfile(cocos2d::CCObject* sender) = m1 0x317eec;
-    void onNewgrounds(cocos2d::CCObject* sender);
+    void onMyProfile(cocos2d::CCObject* sender) = win 0x3355e0, m1 0x317eec;
+    void onNewgrounds(cocos2d::CCObject* sender) = win 0x335e50;
     void onOptions(cocos2d::CCObject* sender) = win 0x335a70, m1 0x317b48;
     void onOptionsInstant() = win 0x335a80, m1 0x316620;
     void onPlay(cocos2d::CCObject* sender) = win 0x3359d0;
     void onQuit(cocos2d::CCObject* sender) = win 0x335f90;
-    void onRobTop(cocos2d::CCObject* sender) = m1 0x317cb8;
+    void onRobTop(cocos2d::CCObject* sender) = win 0x335680, m1 0x317cb8;
     void onStats(cocos2d::CCObject* sender) = win 0x335c10, m1 0x317b94;
     void onTrailer(cocos2d::CCObject* sender) = win inline, m1 0x3184c4, ios inline;
-    void onTwitch(cocos2d::CCObject* sender) = m1 0x317d48;
-    void onTwitter(cocos2d::CCObject* sender) = m1 0x317d00;
-    void onYouTube(cocos2d::CCObject* sender) = m1 0x317d24;
+    void onTwitch(cocos2d::CCObject* sender) = win 0x335700, m1 0x317d48;
+    void onTwitter(cocos2d::CCObject* sender) = win 0x3356c0, m1 0x317d00;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x3356e0, m1 0x317d24;
     void openOptions(bool videoOptions) = win 0x335a90, m1 0x3183b4;
     void showGCQuestion() = win inline, imac 0x391cd0;
     void showMeltdownPromo() = win inline, m1 0x3180f4, ios inline;
@@ -13725,9 +13725,9 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
     void onRate(cocos2d::CCObject* sender) = win 0x3734d0, m1 0x6a25c4;
     void onRecordReplays(cocos2d::CCObject* sender) = win inline, m1 0x6a2870, ios inline;
     void onSecretVault(cocos2d::CCObject* sender) = win 0x372cd0;
-    void onSoundtracks(cocos2d::CCObject* sender) = m1 0x6a25d8;
+    void onSoundtracks(cocos2d::CCObject* sender) = win 0x372b20, m1 0x6a25d8;
     void onSupport(cocos2d::CCObject* sender) = imac 0x79ac90, m1 0x6a25e8;
-    void onVideo(cocos2d::CCObject* sender) = m1 0x6a25a8, ios inline;
+    void onVideo(cocos2d::CCObject* sender) = win 0x373410, m1 0x6a25a8, ios inline;
     void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x372a90, m1 0x6a2b58;
     void tryEnableRecord() = win inline, imac 0x79b520, m1 0x6a2e38, ios inline;
 
