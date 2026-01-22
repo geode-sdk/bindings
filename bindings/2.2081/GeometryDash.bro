@@ -8614,7 +8614,7 @@ class GJGameLevel : cocos2d::CCNode {
     int getNormalPercent() = win inline, imac 0x52d210, m1 0x4813b8;
     gd::string getSongName() = win 0x16cfb0, imac 0x55c100, m1 0x4abbfc;
     gd::string getUnpackedLevelDescription() = win 0x170060, m1 0x4a16d8;
-    void handleStatsConflict(GJGameLevel* level);
+    void handleStatsConflict(GJGameLevel* level) = win 0x16fb60;
     bool isPlatformer() = win inline, imac 0x536c80, m1 0x489ba0;
     void levelWasAltered() = win inline, imac 0x55b5f0, m1 0x4ab20c;
     void levelWasSubmitted() = win inline, imac 0x53e880, m1 0x490d18, ios inline;
