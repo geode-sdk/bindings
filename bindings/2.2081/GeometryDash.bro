@@ -9631,19 +9631,19 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = imac 0x3649b0, m1 0x2ef568, win 0x28a800;
     void onUpdateGroupID(cocos2d::CCObject* sender) = imac 0x366230, win 0x28c5f0, m1 0x2f0cf4;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x271d20;
-    void sliderXModChanged(cocos2d::CCObject* sender) = m1 0x2f0bec;
-    void sliderYModChanged(cocos2d::CCObject* sender) = m1 0x2f0c70;
+    void sliderXModChanged(cocos2d::CCObject* sender) = win 0x28c450, m1 0x2f0bec;
+    void sliderYModChanged(cocos2d::CCObject* sender) = win 0x28c480, m1 0x2f0c70;
     void updateDuration();
     void updateDurLabel(bool decimals);
     void updateMaxSpeed() = win inline, m1 0x2f1e48;
     void updateMaxSpeedLabel() = win inline;
     void updateOffsetLabel() = win inline;
     void updatePlayerOffset() = win inline, m1 0x2f1dd8;
-    void updateTargetGroupID();
+    void updateTargetGroupID() = win 0x28ccc0;
     void updateTextInputLabel();
-    void updateXMod();
+    void updateXMod() = win 0x28c4b0;
     void updateXModLabel();
-    void updateYMod();
+    void updateYMod() = win 0x28c550;
     void updateYModLabel();
 
     CCTextInputNode* m_moveTimeInput;
