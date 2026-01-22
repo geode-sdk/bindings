@@ -2,7 +2,6 @@
 
 #ifdef GEODE_IS_INTEL_MAC
 
-#if 0 // TODO: update for 2.208
 // // PlayerObject
 // GEODE_MEMBER_CHECK(PlayerObject, m_collisionLog, 0x518);
 // GEODE_MEMBER_CHECK(PlayerObject, m_particleSystems, 0x590);
@@ -204,6 +203,5 @@ GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
 
 GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x1f0);
 GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x25c);
-#endif
 
 #endif

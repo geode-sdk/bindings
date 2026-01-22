@@ -1,8 +1,7 @@
 #include <Common.hpp>
 
-#ifdef GEODE_IS_IOS
+#ifdef GEODE_IS_ARM_MAC
 
-#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(PlayLayer, 0x3798);
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
 GEODE_MEMBER_CHECK(PlayLayer, m_endXPosition, 0x35a4);
@@ -21,11 +20,19 @@ GEODE_MEMBER_CHECK(FMODAudioEngine, m_system, 0x1e8);
 
 GEODE_SIZE_CHECK(GJBaseGameLayer, 0x34c0);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_groupDict, 0xde0);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_linkedGroupDict, 0xe88);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_varianceValues, 0xf6c);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_attempts, 0x2f14);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPlatformer, 0x2f2e);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_particlesDict, 0x2f50);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_customParticles, 0x2f58);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_unclaimedParticles, 0x2f60);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_claimedParticles, 0x2f90);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_temporaryParticles, 0x2f98);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_shaderLayer, 0x2fd8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_startPosObject, 0x2fe8);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_isPracticeMode, 0x3050);
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_collectedItems, 0x3078);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_queuedButtons, 0x3158);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_keyframeGroups, 0x3288);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_uiLayer, 0x3298);
@@ -34,6 +41,8 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_sectionSizes, 0x3388);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
+GEODE_SIZE_CHECK(EnhancedGameObject, 0x5a8);
+GEODE_SIZE_CHECK(EffectGameObject, 0x730);
 
 // GEODE_SIZE_CHECK(PlayerObject, 0xbe8);
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
@@ -66,6 +75,8 @@ GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3b0);
 GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
-#endif
+
+GEODE_MEMBER_CHECK(DrawGridLayer, m_editorLayer, 0x1f0);
+GEODE_MEMBER_CHECK(DrawGridLayer, m_gridSize, 0x25c);
 
 #endif

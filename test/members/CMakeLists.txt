@@ -23,6 +23,11 @@ endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt GeodeResult mat-json TulipHookInclude nontype_functional)
 
+if (NOT DEFINED GEODE_GD_VERSION)
+	set(GEODE_GD_VERSION 2.2081)
+	set(GEODE_COMP_GD_VERSION 22081)
+endif()
+
 cmake_path(SET GEODE_LOADER_PATH $ENV{GEODE_SDK}/loader)
 
 include($ENV{GEODE_SDK}/cmake/PlatformDetect.cmake)
@@ -39,7 +44,7 @@ if (GEODE_TARGET_PLATFORM STREQUAL "Win64")
 		opengl32
 	)
 
-	target_sources(${PROJECT_NAME} PRIVATE Windows.cpp)
+	target_sources(${PROJECT_NAME} PRIVATE ${GEODE_GD_VERSION}/Windows.cpp)
 	target_compile_definitions(${PROJECT_NAME} PUBLIC -DNOMINMAX)
 elseif (GEODE_TARGET_PLATFORM STREQUAL "Android64")
 	set(GEODE_MEMBER_TEST_PLATFORM "android64")
@@ -51,7 +56,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "Android64")
 		GLESv2
 	)
 
-	target_sources(${PROJECT_NAME} PRIVATE Android64.cpp)
+	target_sources(${PROJECT_NAME} PRIVATE ${GEODE_GD_VERSION}/Android64.cpp)
 elseif (GEODE_TARGET_PLATFORM STREQUAL "Android32")
 	set(GEODE_MEMBER_TEST_PLATFORM "android32")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.android32.so")
@@ -62,7 +67,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "Android32")
 		GLESv2
 	)
 
-	target_sources(${PROJECT_NAME} PRIVATE Android32.cpp)
+	target_sources(${PROJECT_NAME} PRIVATE ${GEODE_GD_VERSION}/Android32.cpp)
 elseif (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	set(GEODE_MEMBER_TEST_PLATFORM "mac")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.dylib")
@@ -73,7 +78,7 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "MacOS")
 	)
 
 	add_definitions(-DGL_SILENCE_DEPRECATION)
-	target_sources(${PROJECT_NAME} PRIVATE MacOSArm.cpp MacOSIntel.cpp)
+	target_sources(${PROJECT_NAME} PRIVATE ${GEODE_GD_VERSION}/MacOSArm.cpp ${GEODE_GD_VERSION}/MacOSIntel.cpp)
 elseif (GEODE_TARGET_PLATFORM STREQUAL "iOS")
 	set(GEODE_MEMBER_TEST_PLATFORM "ios")
 	set(GEODE_MEMBER_TEST_BINARY "Geode.ios.dylib")
@@ -83,15 +88,10 @@ elseif (GEODE_TARGET_PLATFORM STREQUAL "iOS")
 	)
 
 	add_definitions(-DGLES_SILENCE_DEPRECATION)
-	target_sources(${PROJECT_NAME} PRIVATE iOS.cpp)
+	target_sources(${PROJECT_NAME} PRIVATE ${GEODE_GD_VERSION}/iOS.cpp)
 endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE GEODE_MOD_ID="${GEODE_MOD_ID}")
-
-if (NOT DEFINED GEODE_GD_VERSION)
-	set(GEODE_GD_VERSION 2.2081)
-	set(GEODE_COMP_GD_VERSION 22081)
-endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE GEODE_COMP_GD_VERSION=${GEODE_COMP_GD_VERSION})
 
@@ -120,6 +120,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 	${GEODE_LOADER_PATH}/include/Geode/cocos/extensions
 	${GEODE_LOADER_PATH}/include/Geode/fmod
 	${GeodeBindings_SOURCE_DIR}/bindings/include
+	${TestMembers_SOURCE_DIR}/include
 )
 
 if (WIN32)

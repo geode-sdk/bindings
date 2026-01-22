@@ -1,4 +1,4 @@
-#include "Common.hpp"
+#include <Common.hpp>
 
 #ifdef GEODE_IS_ANDROID32
 
@@ -6,7 +6,6 @@ using namespace geode::prelude;
 
 // Add known android struct members here
 
-#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(CCObject, 0x34);
 GEODE_SIZE_CHECK(CCNode, 0x108);
 GEODE_SIZE_CHECK(CCNodeRGBA, 0x118);
@@ -1085,6 +1084,5 @@ GEODE_MEMBER_CHECK(CheckpointObject, m_gradientTriggerObjectArray, 0xbd4);
 GEODE_MEMBER_CHECK(CheckpointObject, m_unk11e8, 0xbd8);
 GEODE_MEMBER_CHECK(CheckpointObject, m_sequenceTriggerStateUnorderedMap, 0xbdc);
 GEODE_MEMBER_CHECK(CheckpointObject, m_commandIndex, 0xbf8);
-#endif
 
 #endif

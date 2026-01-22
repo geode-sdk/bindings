@@ -2,7 +2,6 @@
 
 #ifdef GEODE_IS_IOS
 
-#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(PlayLayer, 0x3798);
 GEODE_MEMBER_CHECK(PlayLayer, m_coinArray, 0x3508);
 GEODE_MEMBER_CHECK(PlayLayer, m_endXPosition, 0x35a4);
@@ -35,7 +34,7 @@ GEODE_MEMBER_CHECK(GJBaseGameLayer, m_audioVisualizerBG, 0x3420);
 GEODE_MEMBER_CHECK(GJBaseGameLayer, m_loadingLayer, 0x3498);
 
 
-// GEODE_SIZE_CHECK(PlayerObject, 0xbe8);
+// GEODE_SIZE_CHECK(PlayerObject, 0xbe8); 
 GEODE_MEMBER_CHECK(PlayerObject, m_mainLayer, 0x550);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4e8, 0x5a8);
 // GEODE_MEMBER_CHECK(PlayerObject, m_unk4f4, 0x5c0);
@@ -66,6 +65,5 @@ GEODE_SIZE_CHECK(CCLightStrip, 0x160);
 
 GEODE_SIZE_CHECK(SetupTriggerPopup, 0x3b0);
 GEODE_SIZE_CHECK(GJOptionsLayer, 0x3f0);
-#endif
 
 #endif
