@@ -7,7 +7,7 @@ add_library(${PROJECT_NAME} SHARED)
 set(GEODE_IS_MEMBER_TEST ON)
 add_compile_definitions(GEODE_IS_MEMBER_TEST)
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
 
 include(../../cmake/CPM.cmake)
 

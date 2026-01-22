@@ -14124,7 +14124,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_collidedRightMinX;
     bool m_wasJumpBuffered;
     bool m_wasRobotJump;
-    unsigned __int8 m_stateJumpBuffered;
+    unsigned char m_stateJumpBuffered;
     bool m_stateRingJump2;
     bool m_touchedRing;
     bool m_touchedCustomRing;
