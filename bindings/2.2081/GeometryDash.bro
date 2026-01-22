@@ -18180,15 +18180,15 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     virtual bool shouldSnapToSelected() = win 0x480890, imac 0x440dd0, m1 0x3b245c;
 
     bool init(int id) = win 0x47e690;
-    void onClearSearch(cocos2d::CCObject* sender) = imac 0x43f940;
-    void onClose(cocos2d::CCObject* sender) = imac 0x43f510, m1 0x3b0d80;
-    void onCredits(cocos2d::CCObject* sender) = m1 0x3b1044;
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x480500, imac 0x43f940;
+    void onClose(cocos2d::CCObject* sender) = win 0x480c90, imac 0x43f510, m1 0x3b0d80;
+    void onCredits(cocos2d::CCObject* sender) = win 0x480200, m1 0x3b1044;
     void onExitFolder(cocos2d::CCObject* sender) = win 0x480b40, imac 0x43f560, m1 0x3b0dd8;
     void onPage(cocos2d::CCObject* sender) = win 0x4808a0, imac 0x43f620, m1 0x3b0e80;
     void onSearch(cocos2d::CCObject* sender) = win 0x480570, imac 0x43f890, m1 0x3b1110;
     void onSorting(cocos2d::CCObject* sender) = win 0x4802c0;
     void onToggleCompactMode(cocos2d::CCObject* sender) = win 0x480460;
-    void onUpdateLibrary(cocos2d::CCObject* sender) = m1 0x3b0f44;
+    void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x47f590, m1 0x3b0f44;
     void setupList(SFXSearchResult* result) = win 0x47fa20, imac 0x43fb40, m1 0x3b13a4;
     void setupSFXBrowser();
     void trySetupSFXBrowser();
