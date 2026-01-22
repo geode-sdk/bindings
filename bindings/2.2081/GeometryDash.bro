@@ -15830,7 +15830,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x3d4cc0, m1 0x5555d4;
     void showDialog01() = win 0x3d7e50, imac 0x3f0a70, m1 0x557590;
     void showDialog03() = imac 0x636890, m1 0x558d6c;
-    void showDialogDiamond() = m1 0x55b074;
+    void showDialogDiamond() = win 0x3dbcf0, m1 0x55b074;
     void showDialogMechanic() = win 0x3daa60, imac 0x637e30, m1 0x559f08;
     void showLockedChest() = imac 0x633160, m1 0x555da8;
     void showShop(int shop) = win inline, m1 0x55bb68;
@@ -16076,7 +16076,7 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
     virtual void colorSelectClosed(GJSpecialColorSelect* select, int id) = win 0x29c350, imac 0x2ad110, m1 0x24b774;
 
     bool init(int id) = win 0x29c100, imac 0x2ace50, m1 0x24b4b8;
-    void onSelectSpecialColor(cocos2d::CCObject* sender) = imac 0x2ad0c0, m1 0x24b710;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x29c2e0, imac 0x2ad0c0, m1 0x24b710;
 }
 
 [[link(android)]]
