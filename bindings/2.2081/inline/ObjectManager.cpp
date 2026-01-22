@@ -14,7 +14,7 @@ cocos2d::CCDictionary* ObjectManager::getGlobalAnimCopy(char const* anim) {
 }
 
 void ObjectManager::purgeObjectManager() {
-    auto objectManager = reinterpret_cast<ObjectManager**>(geode::base::get() + 0x6a4e30);
+    auto objectManager = reinterpret_cast<ObjectManager**>(geode::base::get() + 0x6c2ea0);
     if (*objectManager) {
         (*objectManager)->release();
         *objectManager = nullptr;

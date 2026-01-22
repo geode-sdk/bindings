@@ -20,7 +20,7 @@ int LevelTools::getAudioBPM(int id) {
 }
 
 bool LevelTools::getLastGameplayReversed() {
-    return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x6a4c06) GEODE_IOS(0x85f0c0));
+    return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x6c2c77) GEODE_IOS(0x85f0c0));
 }
 
 float LevelTools::offsetBPMForTrack(int id) {
@@ -74,20 +74,11 @@ cocos2d::CCDictionary* LevelTools::createStarPackDict() {
 }
 
 bool LevelTools::getLastGameplayRotated() {
-    return *reinterpret_cast<bool*>(geode::base::get() + 0x6a4c05);
+    return *reinterpret_cast<bool*>(geode::base::get() + 0x6c2c76);
 }
 
 float LevelTools::getLastTimewarp() {
-    return *reinterpret_cast<float*>(geode::base::get() + 0x69c198);
-}
-
-gd::unordered_set<int> LevelTools::getLevelList() {
-    auto levelStart = reinterpret_cast<int*>(geode::base::get() + 0x608580);
-    auto levelList = std::unordered_set<int>(levelStart, levelStart + 40);
-    levelList.insert(5002);
-    levelList.insert(5003);
-    levelList.insert(5004);
-    return levelList;
+    return *reinterpret_cast<float*>(geode::base::get() + 0x6ba198);
 }
 
 SongInfoObject* LevelTools::getSongObject(int id) {

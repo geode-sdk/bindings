@@ -12620,7 +12620,7 @@ class LevelTools {
     static bool getLastGameplayRotated() = win inline, imac 0x5016a0;
     static float getLastTimewarp() = win inline, imac 0x501680, m1 0x459844;
     static GJGameLevel* getLevel(int id, bool noString) = win 0x325040, imac 0x4fb910, m1 0x4544b0;
-    static gd::unordered_set<int> getLevelList() = win inline;
+    static gd::unordered_set<int> getLevelList() = win 0x324f00;
     static SongInfoObject* getSongObject(int id) = win inline;
     static void moveTriggerObjectsToArray(cocos2d::CCArray* objects, cocos2d::CCDictionary* objectsDict, int index) = win 0x32d5e0, imac 0x502310, m1 0x45a1f8;
     static gd::string nameForArtist(int id) = win 0x329110, imac 0x4fe9c0;

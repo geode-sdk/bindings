@@ -675,7 +675,7 @@ TeleportPortalObject* GJBaseGameLayer::getPortalTarget(TeleportPortalObject* obj
         if (count > 0) {
             if (count == 1) return static_cast<TeleportPortalObject*>(group->objectAtIndex(0));
             else {
-                auto seed = reinterpret_cast<uint64_t*>(geode::base::get() + 0x6a4e88);
+                auto seed = reinterpret_cast<uint64_t*>(geode::base::get() + 0x6c2ef8);
                 *seed = *seed * 214013 + 2531011;
                 auto num = ((*seed >> 16) & 32767) / 32767.f;
                 if (num == 1.f) num = 0.f;

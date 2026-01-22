@@ -110,11 +110,11 @@ void MusicDownloadManager::firstSetup() {
 }
 
 void MusicDownloadManager::generateResourceAssetList() {
-    auto sfxStart = reinterpret_cast<int*>(geode::base::get() + 0x608140);
+    auto sfxStart = reinterpret_cast<int*>(geode::base::get() + 0x623b10);
     m_resourceSfxUnorderedSet.clear();
     m_resourceSfxUnorderedSet.insert(sfxStart, sfxStart + 260);
 
-    auto songStart = reinterpret_cast<int*>(geode::base::get() + 0x608660);
+    auto songStart = reinterpret_cast<int*>(geode::base::get() + 0x624050);
     m_resourceSongUnorderedSet.clear();
     m_resourceSongUnorderedSet.insert(songStart, songStart + 8);
     m_resourceSongUnorderedSet.insert(10006555);

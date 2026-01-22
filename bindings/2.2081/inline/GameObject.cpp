@@ -204,7 +204,7 @@ bool GameObject::isBasicEnterEffect(int id) {
 }
 
 void GameObject::resetMID() {
-    *reinterpret_cast<int*>(geode::base::get() + 0x69c158) = 10;
+    *reinterpret_cast<int*>(geode::base::get() + 0x6ba158) = 10;
 }
 
 void GameObject::update(float dt) {}
@@ -276,7 +276,7 @@ void GameObject::addToTempOffset(double offsetX, double offsetY) {
 }
 
 void GameObject::assignUniqueID() {
-    auto uniqueID = reinterpret_cast<int*>(geode::base::get() + 0x69c158);
+    auto uniqueID = reinterpret_cast<int*>(geode::base::get() + 0x6ba158);
     m_uniqueID = *uniqueID;
     m_unknown5 = *uniqueID;
     (*uniqueID)++;
