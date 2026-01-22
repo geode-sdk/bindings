@@ -2178,7 +2178,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     void onPaste(cocos2d::CCObject* sender) = win 0x90ea0, m1 0x639e28;
     void onPlayerColor1(cocos2d::CCObject* sender) = win 0x90c60, m1 0x63a18c;
     void onPlayerColor2(cocos2d::CCObject* sender) = win 0x90d40, m1 0x63a240;
-    void onSelectSpecialColor(cocos2d::CCObject* sender) = imac 0x7283f0, m1 0x63a55c;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x93550, imac 0x7283f0, m1 0x63a55c;
     void onTintGround(cocos2d::CCObject* sender);
     void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x935c0, imac 0x728280, m1 0x63a418;
     void onToggleTintMode(cocos2d::CCObject* sender) = win 0x90a70, imac 0x7281d0, m1 0x63a370;
@@ -3998,7 +3998,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 class EditTriggersPopup : SetupTriggerPopup {
     // virtual ~EditTriggersPopup();
 
-    static EditTriggersPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static EditTriggersPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x28edd0;
 
     virtual void determineStartValues() = imac 0x29ace0, win 0x28f240, m1 0x23aac8;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x29acf0, m1 0x23aacc, win 0x28f250;
@@ -8350,7 +8350,7 @@ class GJEffectManager : cocos2d::CCNode {
     // virtual ~GJEffectManager();
     // GJEffectManager();
 
-    static GJEffectManager* create();
+    static GJEffectManager* create() = win 0x25ac80;
     static cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = win inline, imac 0x2edd30;
 
     virtual bool init() = imac 0x2dd4b0, m1 0x2775d4, win 0x25ace0;
@@ -13263,7 +13263,7 @@ class MultiplayerLayer : cocos2d::CCLayer {
 class MultiTriggerPopup : SetupTriggerPopup {
     // virtual ~MultiTriggerPopup();
 
-    static MultiTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static MultiTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4694f0;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x469600, imac 0x2ce110, m1 0x4c9490;
 }
@@ -16302,7 +16302,7 @@ class SetTextPopupDelegate {
 class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
     // virtual ~SetupAdvFollowEditPhysicsPopup();
 
-    static SetupAdvFollowEditPhysicsPopup* create(AdvancedFollowEditObject* object, cocos2d::CCArray* objects);
+    static SetupAdvFollowEditPhysicsPopup* create(AdvancedFollowEditObject* object, cocos2d::CCArray* objects) = win 0x407220;
 
     virtual void valueDidChange(int tag, float value) = win 0x4080c0, imac 0x30b590, m1 0x29aff0;
 
@@ -16331,7 +16331,7 @@ class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
 class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
     // virtual ~SetupAdvFollowRetargetPopup();
 
-    static SetupAdvFollowRetargetPopup* create(AdvancedFollowEditObject* object, cocos2d::CCArray* objects);
+    static SetupAdvFollowRetargetPopup* create(AdvancedFollowEditObject* object, cocos2d::CCArray* objects) = win 0x408190;
 
     virtual void updateDefaultTriggerValues() = imac 0x30be30, m1 0x29b738, win 0x4055d0;
     virtual void valueDidChange(int tag, float value) = win 0x4088e0, imac 0x30bf70, m1 0x29b8d8;
@@ -16343,7 +16343,7 @@ class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
 class SetupAnimationPopup : SetupTriggerPopup {
     // virtual ~SetupAnimationPopup();
 
-    static SetupAnimationPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupAnimationPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x408c30;
 
     virtual void determineStartValues() = imac 0x3d56b0, win 0x409b50, m1 0x354dc8;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x3d5ad0, win 0x40a100, m1 0x355134;
@@ -16367,7 +16367,7 @@ class SetupAnimationPopup : SetupTriggerPopup {
 class SetupAnimSettingsPopup : SetupTriggerPopup {
     // virtual ~SetupAnimSettingsPopup();
 
-    static SetupAnimSettingsPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupAnimSettingsPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x40a180;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x40ab10, imac 0x9b4f0, m1 0x8c298;
 
@@ -16535,7 +16535,7 @@ class SetupBGSpeedTrigger : SetupTriggerPopup {
 class SetupCameraEdgePopup : SetupTriggerPopup {
     // virtual ~SetupCameraEdgePopup();
 
-    static SetupCameraEdgePopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupCameraEdgePopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x412b60;
 
     virtual void determineStartValues() = imac 0x589120, win 0x4139d0, m1 0x4d453c;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x5893c0, win 0x413ec0, m1 0x4d4774;
@@ -16558,9 +16558,9 @@ class SetupCameraEdgePopup : SetupTriggerPopup {
 class SetupCameraGuidePopup : SetupTriggerPopup {
     // virtual ~SetupCameraGuidePopup();
 
-    static SetupCameraGuidePopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupCameraGuidePopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x470810;
 
-    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects);
+    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x470920;
 }
 
 [[link(android)]]
@@ -16689,7 +16689,7 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
 class SetupCameraRotatePopup2 : SetupTriggerPopup {
     // virtual ~SetupCameraRotatePopup2();
 
-    static SetupCameraRotatePopup2* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupCameraRotatePopup2* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4179f0;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x417b00;
 }
@@ -16728,7 +16728,7 @@ class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
 class SetupCollisionTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupCollisionTriggerPopup();
 
-    static SetupCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4181f0;
 
     virtual void determineStartValues() = imac 0x3969d0, win 0x4191a0, m1 0x31c8cc;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x397040, win 0x419e10, m1 0x31ce14;
@@ -16767,7 +16767,7 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
 class SetupCountTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupCountTriggerPopup();
 
-    static SetupCountTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupCountTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41ae70;
 
     virtual void determineStartValues() = imac 0x2bc9b0, win 0x41c060, m1 0x2591e8;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x2bcf30, m1 0x25968c, win 0x41c800;
@@ -16810,7 +16810,7 @@ class SetupDashRingPopup : SetupTriggerPopup {
 class SetupEndPopup : SetupTriggerPopup {
     // virtual ~SetupEndPopup();
 
-    static SetupEndPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupEndPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41ca90;
 
     virtual void determineStartValues() = imac 0x669810, win 0x41d580, m1 0x588648;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x669b30, win 0x413ec0, m1 0x5888b8;
@@ -16885,7 +16885,7 @@ class SetupEnterTriggerPopup : SetupTriggerPopup {
 class SetupEventLinkPopup : SetupTriggerPopup {
     // virtual ~SetupEventLinkPopup();
 
-    static SetupEventLinkPopup* create(EventLinkTrigger* object, cocos2d::CCArray* objects);
+    static SetupEventLinkPopup* create(EventLinkTrigger* object, cocos2d::CCArray* objects) = win 0x465e40;
 
     bool init(EventLinkTrigger* object, cocos2d::CCArray* objects) = win 0x465f50, imac 0x57abe0, m1 0x4c8e6c;
     void onSelectEvent(cocos2d::CCObject* sender) = win 0x4664c0, imac 0x577b20, m1 0x4c5460;
@@ -16896,7 +16896,7 @@ class SetupEventLinkPopup : SetupTriggerPopup {
 class SetupForceBlockPopup : SetupTriggerPopup {
     // virtual ~SetupForceBlockPopup();
 
-    static SetupForceBlockPopup* create(ForceBlockGameObject* object, cocos2d::CCArray* objects);
+    static SetupForceBlockPopup* create(ForceBlockGameObject* object, cocos2d::CCArray* objects) = win 0x470ee0;
 
     virtual void valueDidChange(int tag, float value) = win 0x471710, imac 0x585620, m1 0x4d1264;
 
@@ -16986,7 +16986,7 @@ class SetupGravityModPopup : FLAlertLayer, TextInputDelegate {
 class SetupGravityTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupGravityTriggerPopup();
 
-    static SetupGravityTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupGravityTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x429140;
 
     virtual void valueDidChange(int tag, float value) = win 0x4296d0, imac 0x4c55d0, m1 0x424ab8;
 
@@ -17047,7 +17047,7 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 class SetupInteractObjectPopup : SetupTriggerPopup {
     // virtual ~SetupInteractObjectPopup();
 
-    static SetupInteractObjectPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupInteractObjectPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x423990;
 
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x50ec80, m1 0x465e2c, win 0x4244b0;
     virtual void onPlusButton(cocos2d::CCObject* sender) = imac 0x50eb50, m1 0x465d08, win 0x424360;
@@ -17061,7 +17061,7 @@ class SetupInteractObjectPopup : SetupTriggerPopup {
 class SetupItemCompareTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupItemCompareTriggerPopup();
 
-    static SetupItemCompareTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupItemCompareTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x46d280;
 
     virtual void valueDidChange(int tag, float value) = win 0x46f550, imac 0x582cb0, m1 0x4cef5c;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = m1 0x4cee04, win 0x46ea40, imac 0x582b50;
@@ -17078,7 +17078,7 @@ class SetupItemCompareTriggerPopup : SetupTriggerPopup {
 class SetupItemEditTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupItemEditTriggerPopup();
 
-    static SetupItemEditTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupItemEditTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x46aa40;
 
     virtual void valueDidChange(int tag, float value) = win 0x46d250, imac 0x580890, m1 0x4cce08;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = m1 0x4ccc28, win 0x46cfb0, imac 0x5806b0;
@@ -17095,7 +17095,7 @@ class SetupItemEditTriggerPopup : SetupTriggerPopup {
 class SetupKeyframeAnimPopup : SetupTriggerPopup {
     // virtual ~SetupKeyframeAnimPopup();
 
-    static SetupKeyframeAnimPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupKeyframeAnimPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4246f0;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects);
 }
@@ -17166,7 +17166,7 @@ class SetupMGTrigger : SetupTriggerPopup {
 class SetupMoveCommandPopup : SetupTriggerPopup {
     // virtual ~SetupMoveCommandPopup();
 
-    static SetupMoveCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupMoveCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x280820;
 
     virtual void updateInputValue(int tag, float& value) = imac 0x608ca0, m1 0x52f1c8, win 0x281e00;
     virtual void updateInputNode(int tag, float value) = imac 0x608c70, m1 0x52f1a0, win 0x281dd0;
@@ -17185,7 +17185,7 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
 class SetupObjectControlPopup : SetupTriggerPopup {
     // virtual ~SetupObjectControlPopup();
 
-    static SetupObjectControlPopup* create(ObjectControlGameObject* object, cocos2d::CCArray* objects);
+    static SetupObjectControlPopup* create(ObjectControlGameObject* object, cocos2d::CCArray* objects) = win 0x472e30;
 
     bool init(ObjectControlGameObject* object, cocos2d::CCArray* objects) = win 0x472f40, imac 0x586b60, m1 0x4d24c4;
 }
@@ -17334,7 +17334,7 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
 class SetupPersistentItemTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupPersistentItemTriggerPopup();
 
-    static SetupPersistentItemTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupPersistentItemTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x46f900;
 
     bool init(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x46fa10;
 }
@@ -17343,7 +17343,7 @@ class SetupPersistentItemTriggerPopup : SetupTriggerPopup {
 class SetupPickupTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupPickupTriggerPopup();
 
-    static SetupPickupTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupPickupTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x436a10;
 
     virtual void onPlusButton(cocos2d::CCObject* sender) = imac 0x59370, m1 0x4cb3c, win 0x437240;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x437360, imac 0x59420, m1 0x4cbd8;
@@ -17356,7 +17356,7 @@ class SetupPickupTriggerPopup : SetupTriggerPopup {
 class SetupPlatformerEndPopup : SetupTriggerPopup {
     // virtual ~SetupPlatformerEndPopup();
 
-    static SetupPlatformerEndPopup* create(EndTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupPlatformerEndPopup* create(EndTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x41da70;
 
     bool init(EndTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x41db80, m1 0x269804;
 }
@@ -17365,7 +17365,7 @@ class SetupPlatformerEndPopup : SetupTriggerPopup {
 class SetupPlayerControlPopup : SetupTriggerPopup {
     // virtual ~SetupPlayerControlPopup();
 
-    static SetupPlayerControlPopup* create(PlayerControlGameObject* object, cocos2d::CCArray* objects);
+    static SetupPlayerControlPopup* create(PlayerControlGameObject* object, cocos2d::CCArray* objects) = win 0x467c90;
 
     bool init(PlayerControlGameObject* object, cocos2d::CCArray* objects) = win 0x467da0;
 }
@@ -17442,9 +17442,9 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void updateFadeInLabel(bool decimals) = win inline;
     void updateFadeInTime() = win 0x43bdd0, m1 0x332b2c;
     void updateFadeOutLabel(bool decimals) = win inline;
-    void updateFadeOutTime() = m1 0x332c04;
-    void updateGroupMainOnly() = m1 0x33270c;
-    void updateGroupSecondaryOnly() = m1 0x3326a0;
+    void updateFadeOutTime() = win 0x43be60, m1 0x332c04;
+    void updateGroupMainOnly() = win 0x43b740, m1 0x33270c;
+    void updateGroupSecondaryOnly() = win 0x43b8c0, m1 0x3326a0;
     void updateHoldLabel(bool decimals) = win inline;
     void updateHoldTime() = win 0x43be60, m1 0x332b98;
     void updateHSVValue() = win inline, imac 0x3af700, m1 0x332c70;
@@ -17506,7 +17506,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
 class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandAdvTriggerPopup();
 
-    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x43d220;
 
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x38f120, win 0x43dde0, m1 0x315954;
     virtual void textChanged(CCTextInputNode* node) = win inline, imac 0x38f100, m1 0x31594c;
@@ -17533,7 +17533,7 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 class SetupRandTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupRandTriggerPopup();
 
-    static SetupRandTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupRandTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x43f9f0;
 
     virtual void determineStartValues() = imac 0x5e6660, win 0x4408b0, m1 0x510eb8;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x5e6c40, m1 0x5113b4, win 0x441390;
@@ -17542,8 +17542,8 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x43fb30;
     void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x440b60, m1 0x5108e4;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x440b10, m1 0x51083c;
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x510cbc;
-    void updateChance() = m1 0x510fc8;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x440a00, m1 0x510cbc;
+    void updateChance() = win 0x440a40, m1 0x510fc8;
     void updateChanceLabel(bool decimals);
     void updateTargetID() = win 0x4411f0, m1 0x511038;
     void updateTargetID2() = win 0x4412c0;
@@ -17563,7 +17563,7 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
 class SetupResetTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupResetTriggerPopup();
 
-    static SetupResetTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupResetTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x46a640;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x46a750, imac 0x57dd70, m1 0x4ca51c;
 }
@@ -17589,7 +17589,7 @@ class SetupReverbPopup : SetupTriggerPopup {
 class SetupRotateCommandPopup : SetupTriggerPopup {
     // virtual ~SetupRotateCommandPopup();
 
-    static SetupRotateCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupRotateCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x2a7c80;
 
     virtual void updateInputNode(int tag, float value) = imac 0x67a0, m1 0x5d68, win 0x2a8f60;
     virtual void valueDidChange(int tag, float value) = m1 0x5d6c, win 0x2a8f70, imac 0x67b0;
@@ -17619,7 +17619,7 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
 class SetupRotatePopup : SetupTriggerPopup {
     // virtual ~SetupRotatePopup();
 
-    static SetupRotatePopup* create(EnhancedGameObject* object, cocos2d::CCArray* objects);
+    static SetupRotatePopup* create(EnhancedGameObject* object, cocos2d::CCArray* objects) = win 0x442970;
 
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x59d1a0, win 0x442fe0, m1 0x4e5dd8;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x443080, imac 0x59d220, m1 0x4e5e54;
@@ -17842,7 +17842,7 @@ class SetupSongTriggerPopup : SetupAudioTriggerPopup, MusicDownloadDelegate, Son
 class SetupSpawnParticlePopup : SetupTriggerPopup {
     // virtual ~SetupSpawnParticlePopup();
 
-    static SetupSpawnParticlePopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupSpawnParticlePopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x468340;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects);
 }
@@ -17851,7 +17851,7 @@ class SetupSpawnParticlePopup : SetupTriggerPopup {
 class SetupSpawnPopup : SetupTriggerPopup {
     // virtual ~SetupSpawnPopup();
 
-    static SetupSpawnPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupSpawnPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x45df80;
 
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x290c60, m1 0x2311b0, win 0x4244b0;
 
@@ -17873,7 +17873,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
 class SetupStaticCameraPopup : SetupTriggerPopup {
     // virtual ~SetupStaticCameraPopup();
 
-    static SetupStaticCameraPopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupStaticCameraPopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x45fb90;
 
     virtual void valueDidChange(int tag, float value) = imac 0x39bef0, m1 0x321510, win 0x4606a0;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = imac 0x39bf80, win 0x442820, m1 0x321598;
@@ -17886,7 +17886,7 @@ class SetupStaticCameraPopup : SetupTriggerPopup {
 class SetupStopTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupStopTriggerPopup();
 
-    static SetupStopTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupStopTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x4724f0;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x472d90, imac 0x5868a0, m1 0x4d22b4;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x472ce0, imac 0x586830, m1 0x4d223c;
@@ -17915,7 +17915,7 @@ class SetupTeleportPopup : SetupTriggerPopup {
 class SetupTimerControlTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupTimerControlTriggerPopup();
 
-    static SetupTimerControlTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupTimerControlTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x462d00;
 
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x4631f0, imac 0x3a23c0, m1 0x32705c;
 
@@ -17926,7 +17926,7 @@ class SetupTimerControlTriggerPopup : SetupTriggerPopup {
 class SetupTimerEventTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupTimerEventTriggerPopup();
 
-    static SetupTimerEventTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupTimerEventTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x4626a0;
 
     bool init(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x4627b0;
 }
@@ -17935,7 +17935,7 @@ class SetupTimerEventTriggerPopup : SetupTriggerPopup {
 class SetupTimerTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupTimerTriggerPopup();
 
-    static SetupTimerTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupTimerTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x461d20;
 
     bool init(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x461e30;
 }
@@ -17944,7 +17944,7 @@ class SetupTimerTriggerPopup : SetupTriggerPopup {
 class SetupTimeWarpPopup : SetupTriggerPopup {
     // virtual ~SetupTimeWarpPopup();
 
-    static SetupTimeWarpPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupTimeWarpPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x463340;
 
     virtual void determineStartValues() = imac 0x503340, win 0x4638d0, m1 0x45b05c;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x5034d0, m1 0x45b1ac, win 0x28f250;
@@ -17994,7 +17994,7 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 class SetupTransformPopup : SetupTriggerPopup {
     // virtual ~SetupTransformPopup();
 
-    static SetupTransformPopup* create(TransformTriggerGameObject* object, cocos2d::CCArray* objects);
+    static SetupTransformPopup* create(TransformTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x464f30;
 
     bool init(TransformTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x465040;
 }
@@ -18073,7 +18073,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void onCustomEaseArrow(int property, bool up) = win 0x47da70, imac 0x23fe20, m1 0x1e781c;
     void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x47da40, imac 0x23fb60, m1 0x1e74ec;
     void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x47da10, imac 0x23fac0, m1 0x1e7438;
-    void onCustomEaseRate(cocos2d::CCObject* sender) = imac 0x23f9d0, m1 0x1e72f8;
+    void onCustomEaseRate(cocos2d::CCObject* sender) = win 0x47d8f0, imac 0x23f9d0, m1 0x1e72f8;
     void onDisableValue(cocos2d::CCObject* sender) = win 0x476b90, imac 0x23a8d0, m1 0x1e2d00;
     void onEase(cocos2d::CCObject* sender) = win 0x47cf80, imac 0x23ecb0, m1 0x1e6570;
     void onEaseRate(cocos2d::CCObject* sender);
@@ -18094,7 +18094,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void toggleBG(bool visible) = win inline, imac 0x2351f0, m1 0x1deb9c;
     void toggleCustomEaseRateVisibility(int property, int tag) = win 0x47ddf0, imac 0x23fd00, m1 0x1e76e0;
     void toggleDisableButtons(bool visible) = win 0x476bc0;
-    void toggleEaseRateVisibility() = m1 0x1e6828;
+    void toggleEaseRateVisibility() = win 0x47ce70, m1 0x1e6828;
     void toggleLimitValue(int property, bool limit) = win inline, imac 0x23e220, m1 0x1e5ad8;
     void togglePageArrows(bool visible) = win inline, imac 0x235550;
     void triggerArrowChanged(int property, bool isRight) = win 0x475e40, imac 0x2397b0, m1 0x1e1c4c;
@@ -18104,7 +18104,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void updateCustomEaseLabel(int property, int easingType) = win 0x47db10, imac 0x23fc00, m1 0x1e75a0;
     void updateCustomEaseRateLabel(int property, float easingRate) = win 0x47dce0, imac 0x23f080, m1 0x1e698c;
     void updateCustomToggleTrigger(int tag, bool toggled) = win inline, imac 0x23b190, m1 0x1e3644;
-    void updateEaseLabel() = m1 0x1e65dc;
+    void updateEaseLabel() = win 0x47cae0, m1 0x1e65dc;
     void updateEaseRateLabel();
     void updateEditorLabel() = m1 0x1e0464;
     void updateInputNodeLabel(int property, gd::string text) = win 0x47c0a0;
@@ -18164,7 +18164,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
 class SetupZoomTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupZoomTriggerPopup();
 
-    static SetupZoomTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static SetupZoomTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x47e050;
 
     virtual void determineStartValues() = imac 0x321740, win 0x28f240, m1 0x2af368;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x321750, win 0x28f250, m1 0x2af36c;
