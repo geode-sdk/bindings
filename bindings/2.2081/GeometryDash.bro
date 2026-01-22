@@ -5237,10 +5237,10 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     void blockUser() = win inline;
     bool init(GJFriendRequest* request) = win 0x295b10;
     void loadFromGJFriendRequest(GJFriendRequest* request) = win 0x296180;
-    void onAccept(cocos2d::CCObject* sender);
+    void onAccept(cocos2d::CCObject* sender) = win 0x296b40;
     void onBlock(cocos2d::CCObject* sender) = win 0x296d50, m1 0x244c9c;
     void onClose(cocos2d::CCObject* sender) = win 0x296aa0;
-    void onRemove(cocos2d::CCObject* sender);
+    void onRemove(cocos2d::CCObject* sender) = win 0x296c50;
 
     void* m_unk;
     GJFriendRequest* m_request;
@@ -5265,7 +5265,7 @@ class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDeleg
     bool init(UserListType type) = win 0x13fda0;
     void onBlocked(cocos2d::CCObject* sender) = win 0x140b90, m1 0x578518;
     void onClose(cocos2d::CCObject* sender) = win 0x140c20, m1 0x578460;
-    void onUpdate(cocos2d::CCObject* sender) = m1 0x5785a4;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x140a70, m1 0x5785a4;
     void setupUsersBrowser(cocos2d::CCArray* users, UserListType type) = win 0x1404b0, imac 0x4b8d0, m1 0x578608;
 
     UserListType m_type;
