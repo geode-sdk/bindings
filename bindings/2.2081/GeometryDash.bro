@@ -11478,10 +11478,10 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     bool init(LeaderboardState state) = win 0x2c13c0;
     bool isCorrect(char const* key);
     void onBack(cocos2d::CCObject* sender) = win 0x2c40d0, m1 0x469f98;
-    void onCreators(cocos2d::CCObject* sender) = imac 0x513730;
-    void onGlobal(cocos2d::CCObject* sender) = imac 0x513710;
+    void onCreators(cocos2d::CCObject* sender) = win 0x2c3240, imac 0x513730;
+    void onGlobal(cocos2d::CCObject* sender) = win 0x2c3220, imac 0x513710;
     void onInfo(cocos2d::CCObject* sender) = win 0x2c3ba0, imac 0x512c70;
-    void onTop(cocos2d::CCObject* sender) = imac 0x5136d0;
+    void onTop(cocos2d::CCObject* sender) = win 0x2c31e0, imac 0x5136d0;
     void onWeek(cocos2d::CCObject* sender) = win 0x2c3200, imac 0x5136f0;
     void refreshTabs() = win 0x2c3100, m1 0x46a1c4;
     void selectLeaderboard(LeaderboardState state);
@@ -19436,16 +19436,16 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
     CCMenuItemToggler* createToggleButton(gd::string text, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCArray* nodes) = win 0x4c9120, m1 0x31fb34;
     void exitLayer() = win inline, m1 0x320078, ios inline;
-    void onCocos2d(cocos2d::CCObject* sender) = m1 0x320054;
+    void onCocos2d(cocos2d::CCObject* sender) = win 0x4c9860, m1 0x320054;
     void onEmail(cocos2d::CCObject* sender) = win 0x4c9ff0, m1 0x31f4c0;
     void onGetReward(cocos2d::CCObject* sender) = win 0x4c9970, m1 0x31ff78;
     void onLinks(cocos2d::CCObject* sender) = imac 0x2ccfd0, m1 0x31ec24;
     void onLowDetail(cocos2d::CCObject* sender) = win 0x4c9d60, m1 0x31fdcc;
-    void onPrivacy(cocos2d::CCObject* sender) = m1 0x31f590;
+    void onPrivacy(cocos2d::CCObject* sender) = win 0x29e5e0, m1 0x31f590;
     void onRequestAccess(cocos2d::CCObject* sender) = win 0x4c9880, m1 0x31fecc;
     void onRobTop(cocos2d::CCObject* sender) = m1 0x320030;
     void onSFX(cocos2d::CCObject* sender) = imac 0x399d60, m1 0x31f5d8;
-    void onTOS(cocos2d::CCObject* sender) = m1 0x31f5b4;
+    void onTOS(cocos2d::CCObject* sender) = win 0x29e600, m1 0x31f5b4;
     void sendSupportMail() = win inline, m1 0x3203f4;
 
     UploadActionPopup* m_uploadPopup;
