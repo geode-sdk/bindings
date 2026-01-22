@@ -13088,25 +13088,25 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
     virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = imac 0x62f040, m1 0x552004, win 0x7b600;
     virtual void textInputReturn(CCTextInputNode* node) = imac 0x62f100, win 0x7b660, m1 0x5520d4;
 
-    void audioNext(cocos2d::CCObject* sender);
-    void audioPrevious(cocos2d::CCObject* sender) = m1 0x551b3c;
+    void audioNext(cocos2d::CCObject* sender) = win 0x316810;
+    void audioPrevious(cocos2d::CCObject* sender) = win 0x316930, m1 0x551b3c;
     CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler callback, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win 0x3172e0;
     void onClose(cocos2d::CCObject* sender) = win 0x317540, imac 0x62e3d0, m1 0x551340;
-    void onCoins(cocos2d::CCObject* sender) = m1 0x55175c;
-    void onCompleted(cocos2d::CCObject* sender) = m1 0x5516dc;
-    void onEpic(cocos2d::CCObject* sender) = m1 0x55192c;
-    void onFeatured(cocos2d::CCObject* sender) = m1 0x5518ec;
+    void onCoins(cocos2d::CCObject* sender) = win 0x315c70, m1 0x55175c;
+    void onCompleted(cocos2d::CCObject* sender) = win 0x314c10, m1 0x5516dc;
+    void onEpic(cocos2d::CCObject* sender) = win 0x315040, m1 0x55192c;
+    void onFeatured(cocos2d::CCObject* sender) = win 0x314e30, m1 0x5518ec;
     void onFollowed(cocos2d::CCObject* sender) = win inline, m1 0x551cf4, ios inline;
     void onFriends(cocos2d::CCObject* sender) = win inline, m1 0x551d34, ios inline;
     void onInfo(cocos2d::CCObject* sender) = win 0x317190, imac 0x62ec60, m1 0x551c18;
-    void onLegendary(cocos2d::CCObject* sender) = m1 0x55196c;
-    void onMythic(cocos2d::CCObject* sender) = m1 0x5519ac;
-    void onNoStar(cocos2d::CCObject* sender);
-    void onOriginal(cocos2d::CCObject* sender) = m1 0x55171c;
+    void onLegendary(cocos2d::CCObject* sender) = win 0x315240, m1 0x55196c;
+    void onMythic(cocos2d::CCObject* sender) = win 0x315460, m1 0x5519ac;
+    void onNoStar(cocos2d::CCObject* sender) = win 0x315a70;
+    void onOriginal(cocos2d::CCObject* sender) = win 0x315660, m1 0x55171c;
     void onSongFilter(cocos2d::CCObject* sender) = win 0x315e70, imac 0x62e810, m1 0x5517dc;
     void onSongMode(cocos2d::CCObject* sender) = win 0x316b90, imac 0x62ea30, m1 0x5519ec;
-    void onTwoPlayer(cocos2d::CCObject* sender) = m1 0x55179c;
-    void onUncompleted(cocos2d::CCObject* sender);
+    void onTwoPlayer(cocos2d::CCObject* sender) = win 0x315870, m1 0x55179c;
+    void onUncompleted(cocos2d::CCObject* sender) = win 0x3149e0;
     void selectSong(int songID) = win 0x316a50, imac 0x62eed0, m1 0x551e6c;
     void toggleSongNodes(bool custom, bool disable) = win 0x317050, imac 0x62ed90, m1 0x350dc;
     void updateAudioLabel() = win 0x316550, m1 0x551eb4;
@@ -15332,7 +15332,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
     virtual void rewardsStatusFailed() = imac 0x21b7e0, win 0x3cd6e0, m1 0x1c6930;
 
     void onClose(cocos2d::CCObject* sender) = win 0x84670, m1 0x1c6080;
-    void onFreeStuff(cocos2d::CCObject* sender) = m1 0x1c60bc;
+    void onFreeStuff(cocos2d::CCObject* sender) = win 0x3cdc90, m1 0x1c60bc;
     void onReward(cocos2d::CCObject* sender) = win 0x3cd350, m1 0x1c6110;
     void tryGetRewards() = m1 0x1c69a4;
     void unlockLayerClosed(RewardUnlockLayer* layer) = win inline, imac 0x21bae0, m1 0x1c6c44, ios inline;
@@ -15591,7 +15591,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     gd::string getMessage();
     gd::string getThreadMessage() = win 0x3e7500, imac 0x4a2b30;
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, ios inline;
-    void onBack(cocos2d::CCObject* sender) = m1 0x402440;
+    void onBack(cocos2d::CCObject* sender) = win 0x3e9850, m1 0x402440;
     void onDoor(cocos2d::CCObject* sender) = win 0x3e4910, m1 0x403910;
     void onSecretLevel(cocos2d::CCObject* sender) = win 0x3e4660, m1 0x403b6c;
     void onSubmit(cocos2d::CCObject* sender) = win 0x3e5270, m1 0x4024b4;
@@ -15678,7 +15678,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     gd::string getMessage();
     gd::string getThreadMessage() = win 0x3f2440, imac 0x3b48e0;
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, m1 0x334974, ios inline;
-    void onBack(cocos2d::CCObject* sender) = m1 0x3350bc;
+    void onBack(cocos2d::CCObject* sender) = win 0x3f3670, m1 0x3350bc;
     void onChest01(cocos2d::CCObject* sender) = win 0x3f0be0, imac 0x3b2eb0, m1 0x335dc0;
     void onSubmit(cocos2d::CCObject* sender) = win 0x3f0d50, imac 0x3b2100, m1 0x335134;
     void playCoinEffect();
