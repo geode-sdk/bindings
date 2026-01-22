@@ -17431,11 +17431,11 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void updateCopyColorTextInputLabel();
     void updateFadeInLabel(bool decimals) = win inline;
     void updateFadeInTime() = win 0x43bdd0, m1 0x332b2c;
-    void updateFadeOutLabel(bool decimals);
+    void updateFadeOutLabel(bool decimals) = win inline;
     void updateFadeOutTime() = m1 0x332c04;
     void updateGroupMainOnly() = m1 0x33270c;
     void updateGroupSecondaryOnly() = m1 0x3326a0;
-    void updateHoldLabel(bool decimals);
+    void updateHoldLabel(bool decimals) = win inline;
     void updateHoldTime() = win 0x43be60, m1 0x332b98;
     void updateHSVValue() = win inline, imac 0x3af700, m1 0x332c70;
     void updatePulseMode() = win inline, m1 0x33217c;
