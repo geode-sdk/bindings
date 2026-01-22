@@ -554,7 +554,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     virtual void willSwitchToScene(cocos2d::CCScene* scene) = imac 0x65c830, m1 0x57c610, win 0x835e0;
 
     float bgScale() = win inline, m1 0x57c05c;
-    void checkSound() = win inline, imac 0x65c6d0, m1 0x57c4bc, ;
+    void checkSound() = win inline, imac 0x65c6d0, m1 0x57c4bc;
     void hideLoadingCircle() = win inline, m1 0x57c65c;
     void loadingIsFinished() = win inline, m1 0x57c074;
     bool musicTest() = win 0x833c0, imac 0x65c660, m1 0x57c438;
