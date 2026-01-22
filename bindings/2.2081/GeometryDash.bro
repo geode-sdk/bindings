@@ -14373,7 +14373,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void resetCollisionValues() = win inline, imac 0x40d670, m1 0x38372c, ios inline;
     void resetPlayerIcon() = win 0x39b2e0;
     void resetStateVariables() = win inline, imac 0x4128c0, m1 0x388100;
-    void resetStreak();
+    void resetStreak() = win 0x38b5e0;
     void resetTouchedRings(bool removeAll) = win 0x3982e0, imac 0x412940, m1 0x388164;
     int reverseMod() = inline;
     void reversePlayer(EffectGameObject* object) = win 0x398430;
