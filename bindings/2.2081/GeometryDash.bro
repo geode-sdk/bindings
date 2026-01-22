@@ -2990,13 +2990,13 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
 
     bool init(CustomSongDelegate* delegate) = win 0xc2c20;
     void onClose(cocos2d::CCObject* sender) = win 0xc43b0, m1 0x1c0ec0;
-    void onCreateLines(cocos2d::CCObject* sender) = m1 0x1c1018;
+    void onCreateLines(cocos2d::CCObject* sender) = m1 0x1c1018, win 0xc4120;
     void onMusicBrowser(cocos2d::CCObject* sender) = win 0xc3ec0, imac 0x2159a0, m1 0x1c0fb4;
     void onNCSBrowser(cocos2d::CCObject* sender) = imac 0x215980, m1 0x1c0f98;
     void onNewgroundsBrowser(cocos2d::CCObject* sender) = win 0xc4020, imac 0x2159f0, m1 0x1c0ffc;
     void onOptions(cocos2d::CCObject* sender) = imac 0x215a50, m1 0x1c1054;
     void onSearch(cocos2d::CCObject* sender) = win 0xc39a0, m1 0x1c1074;
-    void onSongBrowser(cocos2d::CCObject* sender) = m1 0x1c0f34;
+    void onSongBrowser(cocos2d::CCObject* sender) = m1 0x1c0f34, win 0xc3e40;
     void showNewgroundsMessage() = win inline, imac 0x215be0, m1 0x1c11f0;
 
     CustomSongDelegate* m_songDelegate;
