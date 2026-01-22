@@ -7228,12 +7228,12 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = imac 0x2a1e90, m1 0x24110c, win 0x7b600;
     virtual void textInputReturn(CCTextInputNode* node) = imac 0x2a1f50, m1 0x2411dc, win 0x7b660;
 
-    CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, float width, float scale) = imac 0x2a1220, m1 0x24054c;
+    CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, float width, float scale) = win 0x293ae0, imac 0x2a1220, m1 0x24054c;
     bool init(int accountID) = win 0x2921e0;
-    void onClose(cocos2d::CCObject* sender);
-    void onCommentSetting(cocos2d::CCObject* sender);
-    void onFriendRequests(cocos2d::CCObject* sender);
-    void onMessageSetting(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x294030;
+    void onCommentSetting(cocos2d::CCObject* sender) = win 0x293cf0;
+    void onFriendRequests(cocos2d::CCObject* sender) = win 0x293d90;
+    void onMessageSetting(cocos2d::CCObject* sender) = win 0x293e30;
     void onUpdate(cocos2d::CCObject* sender) = win 0x294070;
     void updateScoreValues() = win 0x294250;
 
