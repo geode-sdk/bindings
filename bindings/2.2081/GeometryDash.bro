@@ -12127,9 +12127,9 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
     bool isCorrect(char const* key) = win 0x302990, m1 0x35ae40;
     void loadScores() = win 0x302310, m1 0x35a4d8;
     void onChangeMode(cocos2d::CCObject* sender) = win 0x302790, m1 0x35a230;
-    void onChangeType(cocos2d::CCObject* sender) = m1 0x35a464;
+    void onChangeType(cocos2d::CCObject* sender) = win 0x3026f0, m1 0x35a464;
     void onClose(cocos2d::CCObject* sender) = win 0x84670, m1 0x35a358;
-    void onDeleteLocalScores(cocos2d::CCObject* sender) = imac 0x3db330;
+    void onDeleteLocalScores(cocos2d::CCObject* sender) = win 0x301e80, imac 0x3db330;
     void onUpdate(cocos2d::CCObject* sender) = win 0x302810, m1 0x25de0c;
     void reloadLeaderboard(LevelLeaderboardType type, LevelLeaderboardMode mode) = win 0x302600, imac 0x3dbd40, m1 0x35acb0;
     void setupLeaderboard(cocos2d::CCArray* scores) = win 0x302d40, m1 0x35a6e0;
