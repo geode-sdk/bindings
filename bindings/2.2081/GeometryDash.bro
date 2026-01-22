@@ -17415,11 +17415,11 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void onExclusive(cocos2d::CCObject* sender) win 0x43b650;
     void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x43b6e0;
     void onGroupSecondaryOnly(cocos2d::CCObject* sender) = win 0x43b7d0;
-    void onHSVLegacyMode(cocos2d::CCObject* sender);
+    void onHSVLegacyMode(cocos2d::CCObject* sender); win 0x43b830;
     void onPaste(cocos2d::CCObject* sender) = win 0x90ea0, m1 0x331c18;
     void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x43ad70, imac 0x3ade80, m1 0x331748;
-    void onSelectSpecialColor(cocos2d::CCObject* sender) = m1 0x331d4c;
-    void onSelectSpecialTargetID(cocos2d::CCObject* sender) = m1 0x3316fc;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x43b950, m1 0x331d4c;
+    void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x43b9a0, m1 0x3316fc;
     void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x43afa0, imac 0x3adad0, m1 0x3313e4;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x43c3b0, imac 0x3ae4d0, m1 0x331c9c;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x43c320, imac 0x3add50, m1 0x331628;
