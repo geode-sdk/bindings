@@ -17846,7 +17846,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x290c60, m1 0x2311b0, win 0x4244b0;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x45e0c0;
-    void onAddRemap(cocos2d::CCObject* sender) = win 0x45eeb0;
+    void onAddRemap(cocos2d::CCObject* sender) = win 0x45ee50;
     void onDeleteRemap(cocos2d::CCObject* sender) = win 0x45eff0, imac 0x290150;
     void onSelectRemap(cocos2d::CCObject* sender) = win 0x45fa50, imac 0x290b60;
     void queueUpdateButtons() = win 0x45fb20;
@@ -17961,12 +17961,12 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x463d30;
     void onControlMode(cocos2d::CCObject* sender) = win 0x464cb0, imac 0x2b9650, m1 0x256b8c;
-    void onDualTouchMode(cocos2d::CCObject* sender);
-    void onHoldMode(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
+    void onDualTouchMode(cocos2d::CCObject* sender) = win 0x464b50;
+    void onHoldMode(cocos2d::CCObject* sender) = win 0x464ac0;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x413c30;
     void onTouchMode(cocos2d::CCObject* sender) = win 0x464be0, imac 0x2b94f0, m1 0x256a5c;
-    void updateTargetID();
-    void updateTextInputLabel();
+    void updateTargetID() = win 0x413df0;
+    void updateTextInputLabel() = win 0x413d70;
 
     CCTextInputNode* m_groupIDInput;
     int m_groupID;
