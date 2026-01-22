@@ -14777,7 +14777,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     PlayLayer() = win 0x3a4da0, m1 0xac6d8, imac 0xbfd90;
     ~PlayLayer() = win 0x3a57b0, m1 0x9abb8, imac 0xabd30;
 
-    static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5a50, m1 0x9aeb8;
+    static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win inline, m1 0x9aeb8;
     static PlayLayer* get() = imac inline, m1 inline, win inline;
     static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5a50, m1 0x9ae04;
 
