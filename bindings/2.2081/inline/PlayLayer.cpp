@@ -258,7 +258,7 @@ void PlayLayer::updateEffectPositions() {
 }
 #endif
 
-#if defined(GEODE_IS_MAC) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_WINDOWS)
 PlayLayer* PlayLayer::create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
     auto ret = new PlayLayer();
     if (ret->init(level, useReplay, dontCreateObjects)) {

@@ -25,7 +25,3 @@ void MusicBrowser::updatePageLabel() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC)
-void MusicBrowser::musicActionFinished(GJMusicAction action) {}
-#endif
-

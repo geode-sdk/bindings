@@ -45,7 +45,7 @@ void CCAnimatedSprite::willPlayAnimation() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 CCAnimatedSprite::CCAnimatedSprite() {
     m_animationManager = nullptr;
     m_sprite = nullptr;
