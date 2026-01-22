@@ -1,10 +1,9 @@
-#include "Common.hpp"
+#include <Common.hpp>
 
 #ifdef GEODE_IS_ANDROID64
 
 using namespace geode::prelude;
 
-#if 0 // TODO: update for 2.208
 GEODE_SIZE_CHECK(CCObject, 0x38);
 GEODE_SIZE_CHECK(CCNode, 0x140);
 GEODE_SIZE_CHECK(CCNodeRGBA, 0x158);
@@ -1080,6 +1079,5 @@ GEODE_MEMBER_CHECK(CheckpointObject, m_gradientTriggerObjectArray, 0x11e0);
 GEODE_MEMBER_CHECK(CheckpointObject, m_unk11e8, 0x11e8);
 GEODE_MEMBER_CHECK(CheckpointObject, m_sequenceTriggerStateUnorderedMap, 0x11f0);
 GEODE_MEMBER_CHECK(CheckpointObject, m_commandIndex, 0x1228);
-#endif
 
 #endif
