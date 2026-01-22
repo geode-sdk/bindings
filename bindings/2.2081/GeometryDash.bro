@@ -17728,13 +17728,13 @@ class SetupShakePopup : SetupTriggerPopup {
     virtual void textChanged(CCTextInputNode* node) = imac 0x6654e0, m1 0x584a70, win 0x456100;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x454d20;
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x584138;
-    void updateDuration();
-    void updateDurLabel(bool decimals);
-    void updateInterval();
-    void updateIntervalLabel(bool decimals);
-    void updateShake();
-    void updateShakeLabel(bool decimals);
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x455c40, m1 0x584138;
+    void updateDuration() = win inline;
+    void updateDurLabel(bool decimals) = win inline;
+    void updateInterval() = win 0x456080;
+    void updateIntervalLabel(bool decimals) = win 0x455fb0;
+    void updateShake() = win 0x455f30;
+    void updateShakeLabel(bool decimals) = win 0x455e60;
 
     CCTextInputNode* m_durationInput;
     Slider* m_durationSlider;
