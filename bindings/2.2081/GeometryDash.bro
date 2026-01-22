@@ -328,7 +328,7 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 [[link(android)]]
 class AdvancedFollowTriggerObject : EffectGameObject {
     // virtual ~AdvancedFollowTriggerObject();
-    AdvancedFollowTriggerObject() = win 0x495bf0;
+    AdvancedFollowTriggerObject() = win 0x495bf0, inline;
 
     static AdvancedFollowTriggerObject* create(char const* frame) = win inline, imac 0x1a2cf0, m1 0x160998;
 
@@ -915,7 +915,7 @@ class ButtonPage : cocos2d::CCLayer {
 [[link(android)]]
 class ButtonSprite : cocos2d::CCSprite {
     // virtual ~ButtonSprite();
-    ButtonSprite() = win 0x3ed90;
+    ButtonSprite() = win 0x3ed90, inline;
 
     static ButtonSprite* create(char const* caption) = inline;
     static ButtonSprite* create(cocos2d::CCSprite* topSprite) = inline;
@@ -1016,7 +1016,7 @@ class CCAlertCircle : cocos2d::CCNode {
 
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
-    CCAnimatedSprite() = win 0x3ff20;
+    CCAnimatedSprite() = win 0x3ff20, inline;
     ~CCAnimatedSprite() = win 0x411b0, m1 0x2dde0c;
 
     static CCAnimatedSprite* createWithType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win inline, imac 0x34fe10, m1 0x2dcb8c;
@@ -1071,7 +1071,7 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 
 [[link(android)]]
 class CCBlockLayer : cocos2d::CCLayerColor {
-    CCBlockLayer() = win 0x423d0;
+    CCBlockLayer() = win 0x423d0, inline;
     ~CCBlockLayer() = imac 0x5179c0, m1 0x46e290, win 0x424a0;
 
     static CCBlockLayer* create() = win inline, imac 0x517d40, m1 0x46e52c, ios inline;
@@ -1265,7 +1265,7 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-    CCMenuItemSpriteExtra() = win 0x44a60;
+    CCMenuItemSpriteExtra() = win 0x44a60, inline;
 
     static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = inline;
     static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x44bb0, imac 0x276b90, m1 0x21903c;
@@ -1516,7 +1516,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
 [[link(android)]]
 class CCSpritePart : CCSpritePlus {
     // virtual ~CCSpritePart();
-    CCSpritePart() = win 0x45890;
+    CCSpritePart() = win 0x45890, inline;
 
     static CCSpritePart* create(cocos2d::CCTexture2D* texture) = win inline, m1 0x2fde84;
     static CCSpritePart* createWithSpriteFrameName(char const* frame) = win inline, m1 0x2fdd24;
@@ -1539,7 +1539,7 @@ class CCSpritePart : CCSpritePlus {
 [[link(android)]]
 class CCSpritePlus : cocos2d::CCSprite {
     // virtual ~CCSpritePlus();
-    CCSpritePlus() = win 0x45710;
+    CCSpritePlus() = win 0x45710, inline;
     ~CCSpritePlus() = win 0x47d30, m1 0x3e79bc;
 
     /// Creates a sprite by a given sprite frame
@@ -4507,7 +4507,7 @@ class EnterEffectInstance {
     // EnterEffectInstance(EnterEffectInstance&&);
     // Sabe: idk why but this makes it so my mod works :shrug:
     EnterEffectInstance() = inline;
-    EnterEffectInstance(EnterEffectObject* object, int targetID, int centerID, int unknown, int targetGroupIndex, int easeIndexCount, int controlID) = win 0x2042f0;
+    EnterEffectInstance(EnterEffectObject* object, int targetID, int centerID, int unknown, int targetGroupIndex, int easeIndexCount, int controlID) = win 0x2042f0, inline;
 
     void animateValue(int key, float value, float distance, float duration, int easingType, float easingRate, int easingBuffer) = win 0x139520, m1 0x4ffc70;
     float getValue(int key) = inline;
@@ -4865,7 +4865,7 @@ class FLAlertLayerProtocol {
 
 [[link(android), depends(FMODAudioState), depends(FMODSoundState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect), depends(FMODQueuedMusic), depends(FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
-    FMODAudioEngine() = win 0x53100;
+    FMODAudioEngine() = win 0x53100, inline;
     ~FMODAudioEngine() = win inline, m1 0x35b4f4;
 
     static FMODAudioEngine* get() = inline;
@@ -5031,7 +5031,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 [[link(android), depends(FMODSoundTween), depends(FMODQueuedMusic), depends(FMODSoundState)]]
 class FMODAudioState {
     // ~FMODAudioState();
-    FMODAudioState() = win 0x52e70;
+    FMODAudioState() = win 0x52e70, inline;
 
     float m_interval;
     float m_elapsed;
@@ -8303,7 +8303,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
 [[link(android)]]
 class GJDropDownLayer : cocos2d::CCLayerColor {
-    GJDropDownLayer() = win 0x7d230;
+    GJDropDownLayer() = win 0x7d230, inline;
     ~GJDropDownLayer() = win 0x256dd0, m1 0x512178;
 
     static GJDropDownLayer* create(const char* title) = win inline, imac 0x5e8480, m1 0x5128f8, ios inline;
@@ -8590,7 +8590,7 @@ class GJFriendRequest : cocos2d::CCNode {
 
 [[link(android)]]
 class GJGameLevel : cocos2d::CCNode {
-    GJGameLevel() = win 0x141590, m1 0x4b2c00;
+    GJGameLevel() = win 0x141590, m1 0x4b2c00, inline;
     ~GJGameLevel() = win inline;
 
     static GJGameLevel* create() = win inline;
@@ -9503,7 +9503,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     static GJOptionsLayer* create(int background) = win inline, imac 0x29bb20, m1 0x23b608, ios inline;
 
     virtual void setupOptions() = win inline, imac 0x29c570, m1 0x23bebc;
-    virtual void didToggleGV(gd::string variable) = win 0x1f5ce0;
+    virtual void didToggleGV(gd::string variable) = win 0x1f5ce0, inline;
     virtual void didToggle(int toggle) = inline;
 
     void addGVToggle(char const* title, char const* variable, char const* description) = win 0x28fda0, imac 0x29c580, m1 0x23bec0;
@@ -10631,7 +10631,7 @@ class GJUserMessage : cocos2d::CCNode {
 
 [[link(android)]]
 class GJUserScore : cocos2d::CCNode {
-    GJUserScore() = win 0x142100;
+    GJUserScore() = win 0x142100, inline;
 
     // virtual ~GJUserScore();
     static GJUserScore* create() = win inline;
@@ -10790,7 +10790,7 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 
 [[link(android)]]
 class GManager : cocos2d::CCNode {
-    GManager() = win 0x51640;
+    GManager() = win 0x51640, inline;
 
     virtual bool init() = win 0x6a7f0, imac 0x4abfe0, m1 0x40ecbc;
     virtual void setup() = win 0x6a800, imac 0x4ac000, m1 0x40eccc;
@@ -11562,7 +11562,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
-    LevelBrowserLayer() = win 0x2c87d0;
+    LevelBrowserLayer() = win 0x2c87d0, inline;
     ~LevelBrowserLayer() = win 0x2c89c0, m1 0x3f01d8;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = win 0x2c8bf0, imac 0x48ae40, m1 0x3f0374;
@@ -13496,7 +13496,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
 [[link(android)]]
 class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
-    MusicSearchResult() = win 0x33b880;
+    MusicSearchResult() = win 0x33b880, inline;
     ~MusicSearchResult() = win inline, m1 0x4e2920;
 
     static MusicSearchResult* create(GJSongType songType) = win inline, imac 0x599160, m1 0x4e2a54;
@@ -15458,7 +15458,7 @@ class RotateGameplayGameObject : EffectGameObject {
 [[link(android)]]
 class ScrollingLayer : cocos2d::CCLayerColor {
     // virtual ~ScrollingLayer();
-    ScrollingLayer() = m1 0x633af0;
+    ScrollingLayer() = m1 0x633af0, inline;
 
     static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline, imac 0x720630, m1 0x633410;
 
@@ -16440,7 +16440,7 @@ class SetupAreaRotateTriggerPopup : SetupAreaMoveTriggerPopup {
 [[link(android)]]
 class SetupAreaTintTriggerPopup : SetupAreaMoveTriggerPopup, HSVWidgetDelegate {
     // virtual ~SetupAreaTintTriggerPopup();
-    SetupAreaTintTriggerPopup() = win 0x40af10;
+    SetupAreaTintTriggerPopup() = win 0x40af10, inline;
 
     static SetupAreaTintTriggerPopup* create(EnterEffectObject* object, cocos2d::CCArray* objects) = win inline, m1 0x435000;
 
@@ -17317,7 +17317,7 @@ class SetupOpacityPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupOptionsTriggerPopup : SetupTriggerPopup {
     // virtual ~SetupOptionsTriggerPopup();
-    SetupOptionsTriggerPopup() = m1 0x45fcbc;
+    SetupOptionsTriggerPopup() = m1 0x45fcbc, inline;
 
     static SetupOptionsTriggerPopup* create(GameOptionsTrigger* object, cocos2d::CCArray* objects) = win inline, m1 0x51149c;
 
@@ -18286,7 +18286,7 @@ class SFXSearchResult : MusicSearchResult {
 [[link(android)]]
 class SFXTriggerGameObject : EffectGameObject {
     // virtual ~SFXTriggerGameObject();
-    SFXTriggerGameObject() = win 0x496310;
+    SFXTriggerGameObject() = win 0x496310, inline;
 
     static SFXTriggerGameObject* create(char const* frame) = win inline, m1 0x18074c;
 
@@ -20105,7 +20105,7 @@ class UIOptionsLayer : SetupTriggerPopup {
 [[link(android)]]
 class UIPOptionsLayer : SetupTriggerPopup {
     // virtual ~UIPOptionsLayer();
-    UIPOptionsLayer() = m1 0x2559ac;
+    UIPOptionsLayer() = m1 0x2559ac, inline;
 
     static UIPOptionsLayer* create() = win inline, m1 0x24ff28;
 
@@ -20190,7 +20190,7 @@ class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
     UpdateAccountSettingsPopup() = inline;
     ~UpdateAccountSettingsPopup() = win inline, m1 0x242078;
 
-    static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL, gd::string instagramURL, gd::string tiktokURL, gd::string discordUsername, gd::string customString) = win 0x294570;
+    static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL, gd::string instagramURL, gd::string tiktokURL, gd::string discordUsername, gd::string customString) = win 0x294570, inline;
 
     virtual void keyBackClicked() = imac 0x2a3e00, m1 0x242d3c, win 0x295170;
     virtual void updateSettingsFinished() = win 0x294f30, imac 0x2a3bf0, m1 0x242b38;
