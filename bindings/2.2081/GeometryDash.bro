@@ -1890,7 +1890,7 @@ class CheckpointGameObject : EffectGameObject {
 [[link(android), depends(GJGameState), depends(GJShaderState), depends(FMODAudioState), depends(EffectManagerState), depends(SavedObjectStateRef), depends(SavedActiveObjectState), depends(SavedSpecialObjectState), depends(SequenceTriggerState)]]
 class CheckpointObject : cocos2d::CCNode {
     CheckpointObject() = win 0x3a51c0;
-    ~CheckpointObject() = win inline, imac 0xbf7c0;
+    ~CheckpointObject() = win inline;
 
     static CheckpointObject* create() = win inline, m1 0xa8c2c;
 
