@@ -7,7 +7,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     AccountHelpLayer() = imac inline, m1 inline, win inline;
     ~AccountHelpLayer() = win inline, m1 0xb54d4;
 
-    static AccountHelpLayer* create() = win inline, m1 0xb5384;
+    static AccountHelpLayer* create() = win inline, m1 0xb5384, imac 0xcde00;
 
     virtual void customSetup() = imac 0xce3e0, win 0x7f610, m1 0xb57f0;
     virtual void layerHidden() = imac 0xcf080, win 0x80370, m1 0xb6450;
@@ -17,8 +17,8 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     void doUnlink() = win inline, imac 0xcef00, m1 0xb62d0, ios inline;
     void exitLayer() = win inline, m1 0xb62fc, ios inline;
     void onAccountManagement(cocos2d::CCObject* sender) = m1 0xb5c10, imac 0xce820;
-    void onReLogin(cocos2d::CCObject* sender) = win 0x7fa20, m1 0xb5b9c;
-    void onUnlink(cocos2d::CCObject* sender) = win 0x7fb70, m1 0xb5ce4;
+    void onReLogin(cocos2d::CCObject* sender) = win 0x7fa20, m1 0xb5b9c, imac 0xce7c0;
+    void onUnlink(cocos2d::CCObject* sender) = win 0x7fb70, m1 0xb5ce4, imac 0xce8f0;
     void updatePage() = win 0x7fd20, imac 0xceaa0, m1 0xb5e98;
     void verifyUnlink() = m1 0xb61d8, win inline, imac 0xcedf0;
 
@@ -34,7 +34,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
     // virtual ~AccountLayer();
     // AccountLayer();
 
-    static AccountLayer* create() = win 0x7d5b0, m1 0xb3128;
+    static AccountLayer* create() = win 0x7d5b0, m1 0xb3128, imac 0xcb9b0;
 
     virtual void customSetup() = imac 0xcbd70, win 0x7d710, m1 0xb33b8;
     virtual void layerHidden() = win 0x7f4a0, imac 0xcdda0, m1 0xb5318;
@@ -50,15 +50,15 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
     void doSync() = win inline, imac 0xcd220, m1 0xb4830;
     void exitLayer() = win inline, m1 0xb48b8, ios inline;
     void hideLoadingUI() = win inline, imac 0xcd430, m1 0xb4a3c, ios inline;
-    void onBackup(cocos2d::CCObject* sender) = m1 0xb3ac0;
+    void onBackup(cocos2d::CCObject* sender) = m1 0xb3ac0, imac 0xcc4d0;
     void onHelp(cocos2d::CCObject* sender) = imac 0xcc9e0;
-    void onLogin(cocos2d::CCObject* sender) = m1 0xb3a08;
+    void onLogin(cocos2d::CCObject* sender) = m1 0xb3a08, imac 0xcc420;
     void onMore(cocos2d::CCObject* sender) = m1 0xb4088;
-    void onRegister(cocos2d::CCObject* sender) = win 0x7dea0, m1 0xb3aa4;
-    void onSync(cocos2d::CCObject* sender) = m1 0xb3db8;
+    void onRegister(cocos2d::CCObject* sender) = win 0x7dea0, m1 0xb3aa4, imac 0xcc4b0;
+    void onSync(cocos2d::CCObject* sender) = m1 0xb3db8, imac 0xcc800;
     void showLoadingUI() = win inline, imac 0xcd1d0, m1 0xb47dc, ios inline;
     void toggleUI(bool enable) = win inline, imac 0xcdc40, m1 0xb51a8, ios inline;
-    void updatePage(bool changed) = m1 0xb4098, win 0x7e7b0;
+    void updatePage(bool changed) = m1 0xb4098, win 0x7e7b0, imac 0xccac0;
 
     cocos2d::CCLabelBMFont* m_linkedAccountTitle;
     TextArea* m_textArea;
@@ -93,16 +93,16 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     cocos2d::CCLabelBMFont* createTextLabel(cocos2d::CCPoint position, char const* text, cocos2d::CCSize size) = win 0x7c5c0, imac 0x499fa0, m1 0x3fe260;
     void disableNodes() = win inline, imac 0x49a910, m1 0x3fec5c, ios inline;
     void hideLoadingUI() = win inline, imac 0x49a470, m1 0x3fe754, ios inline;
-    bool init(gd::string username) = m1 0x3fd184, win 0x7b910;
+    bool init(gd::string username) = m1 0x3fd184, win 0x7b910, imac 0x498df0;
     void onClose(cocos2d::CCObject* sender) = win 0x7cfa0, imac 0x499a90, m1 0x3fdd28;
-    void onForgotPassword(cocos2d::CCObject* sender) = m1 0x3fe458;
-    void onForgotUser(cocos2d::CCObject* sender) = m1 0x3fe434;
+    void onForgotPassword(cocos2d::CCObject* sender) = m1 0x3fe458, imac 0x49a180;
+    void onForgotUser(cocos2d::CCObject* sender) = m1 0x3fe434, imac 0x49a160;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7cc10, imac 0x499af0, m1 0x1ab29c;
     void resetLabel(int tag) = win 0x7cb20, m1 0x213b58;
     void resetLabels() = win inline, imac 0x49a760, m1 0x3fea4c;
     void showLoadingUI() = win inline, imac 0x49a950, m1 0x3fec9c;
     void toggleUI(bool enable) = win 0x7d050, imac 0x49aac0, m1 0x3fee28;
-    void updateLabel(AccountError type) = m1 0x3fe954, win 0x7ca20;
+    void updateLabel(AccountError type) = m1 0x3fe954, win 0x7ca20, imac 0x3f49d0;
 
     CCTextInputNode* m_usernameInput;
     CCTextInputNode* m_passwordInput;
@@ -554,14 +554,14 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     virtual void willSwitchToScene(cocos2d::CCScene* scene) = imac 0x65c830, m1 0x57c610, win 0x835e0;
 
     float bgScale() = win inline, m1 0x57c05c;
-    void checkSound() = win inline;
+    void checkSound() = win inline, imac 0x65c6d0;
     void hideLoadingCircle() = win inline, m1 0x57c65c;
     void loadingIsFinished() = win inline, m1 0x57c074;
-    bool musicTest() = win 0x833c0;
+    bool musicTest() = win 0x833c0, imac 0x65c660;
     void pauseGame() = win 0x83040;
     void pauseSound() = win 0x83120;
     void platformShutdown() = ios inline;
-    void resumeSound() = win 0x832c0;
+    void resumeSound() = win 0x832c0, imac 0x65c5b0;
     void setIdleTimerDisabled(bool disabled) = win inline, ios inline;
     void setupGLView() = win 0x825d0;
     void showLoadingCircle(bool unk1, bool unk2, bool unk3) = win inline, m1 0x57c658;
@@ -14831,7 +14831,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void gravityEffectFinished() = win 0x3b23a0, imac 0xb9720, m1 0xa6e68;
     void incrementJumps() = win inline, imac 0xbf230;
     bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5b00, m1 0x9af50;
-    bool isGameplayActive() = win inline, m1 0xae098;
+    bool isGameplayActive() = win inline, m1 0xae098, imac 0xbf720;
     void levelComplete() = m1 0x1a99d0, win 0x3a7a80;
     void loadActiveSaveObjects(gd::vector<SavedActiveObjectState>& activeObjects, gd::vector<SavedSpecialObjectState>& specialObjects) = win inline, imac 0xbda50, m1 0xaa700;
     void loadDefaultColors() = win 0x3b1c50, imac 0xb1bf0, m1 0x9ff78;
