@@ -15841,7 +15841,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x3d4cc0, m1 0x5555d4;
     void showDialog01() = win 0x3d7e50, imac 0x3f0a70, m1 0x557590;
     void showDialog03() = imac 0x636890, m1 0x558d6c;
-    void showDialogDiamond() = m1 0x55b074;
+    void showDialogDiamond() = win 0x3dbcf0, m1 0x55b074;
     void showDialogMechanic() = win 0x3daa60, imac 0x637e30, m1 0x559f08;
     void showLockedChest() = imac 0x633160, m1 0x555da8;
     void showShop(int shop) = win inline, m1 0x55bb68;
@@ -16087,7 +16087,7 @@ class SetColorIDPopup : SetIDPopup, GJSpecialColorSelectDelegate {
     virtual void colorSelectClosed(GJSpecialColorSelect* select, int id) = win 0x29c350, imac 0x2ad110, m1 0x24b774;
 
     bool init(int id) = win 0x29c100, imac 0x2ace50, m1 0x24b4b8;
-    void onSelectSpecialColor(cocos2d::CCObject* sender) = imac 0x2ad0c0, m1 0x24b710;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x29c2e0, imac 0x2ad0c0, m1 0x24b710;
 }
 
 [[link(android)]]
@@ -17423,14 +17423,14 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     cocos2d::ccColor3B getColorValue() = win inline, imac 0x3af530, m1 0x332b18, ios inline;
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x437700;
     void onCopy(cocos2d::CCObject* sender) = win 0x90e20, m1 0x331be4;
-    void onExclusive(cocos2d::CCObject* sender);
+    void onExclusive(cocos2d::CCObject* sender) = win 0x43b650;
     void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x43b6e0;
     void onGroupSecondaryOnly(cocos2d::CCObject* sender) = win 0x43b7d0;
-    void onHSVLegacyMode(cocos2d::CCObject* sender);
+    void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x43b830;
     void onPaste(cocos2d::CCObject* sender) = win 0x90ea0, m1 0x331c18;
     void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x43ad70, imac 0x3ade80, m1 0x331748;
-    void onSelectSpecialColor(cocos2d::CCObject* sender) = m1 0x331d4c;
-    void onSelectSpecialTargetID(cocos2d::CCObject* sender) = m1 0x3316fc;
+    void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x43b950, m1 0x331d4c;
+    void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x43b9a0, m1 0x3316fc;
     void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x43afa0, imac 0x3adad0, m1 0x3313e4;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x43c3b0, imac 0x3ae4d0, m1 0x331c9c;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x43c320, imac 0x3add50, m1 0x331628;
@@ -17438,16 +17438,16 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void sliderChanged(cocos2d::CCObject* sender) = win 0x43bb90, m1 0x330df0;
     void updateColorLabels();
     void updateColorValue() = win inline;
-    void updateCopyColor() = m1 0x332aa4;
+    void updateCopyColor() = win 0x43bef0, m1 0x332aa4;
     void updateCopyColorTextInputLabel();
-    void updateFadeInLabel(bool decimals);
-    void updateFadeInTime() = m1 0x332b2c;
-    void updateFadeOutLabel(bool decimals);
+    void updateFadeInLabel(bool decimals) = win inline;
+    void updateFadeInTime() = win 0x43bdd0, m1 0x332b2c;
+    void updateFadeOutLabel(bool decimals) = win inline;
     void updateFadeOutTime() = m1 0x332c04;
     void updateGroupMainOnly() = m1 0x33270c;
     void updateGroupSecondaryOnly() = m1 0x3326a0;
-    void updateHoldLabel(bool decimals);
-    void updateHoldTime() = m1 0x332b98;
+    void updateHoldLabel(bool decimals) = win inline;
+    void updateHoldTime() = win 0x43be60, m1 0x332b98;
     void updateHSVValue() = win inline, imac 0x3af700, m1 0x332c70;
     void updatePulseMode() = win inline, m1 0x33217c;
     void updatePulseTargetType() = win inline, m1 0x332258;
