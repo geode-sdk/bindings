@@ -12502,7 +12502,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 class LevelSettingsObject : cocos2d::CCNode {
     // virtual ~LevelSettingsObject();
 
-    static LevelSettingsObject* create() = m1 0xc35d0;
+    static LevelSettingsObject* create() = win 0x2eab20, m1 0xc35d0;
     static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = win 0x2eca40, imac 0x102fe0, m1 0xe17cc;
     static LevelSettingsObject* objectFromString(gd::string const& str) = win inline, m1 0xc4fc0;
 
