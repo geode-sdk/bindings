@@ -14039,7 +14039,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_isMini;
     float m_playerSpeed;
     bool m_isHidden;
-    bool m_goingLeft;
+    bool m_isGoingLeft;
     double m_maybeReverseSpeed;
     bool m_jumpBuffered;
     bool m_isDashing;
@@ -14049,7 +14049,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_dashAngle;
     double m_dashStartTime;
     DashRingObject* m_dashRing;
-    bool m_shouldStop;
+    bool m_platformerCheckpoint;
     double m_lastFlipTime;
     float m_gravityMod;
     GameObject* m_objectSnappedTo;
@@ -14112,7 +14112,6 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_maybeIsFalling;
     bool m_shouldTryPlacingCheckpoint;
     bool m_playEffects;
-    bool m_maybeCanRunIntoBlocks;
     bool m_isOnGround3;
     double m_lastSpiderFlipTime;
     bool m_unkBool5;
@@ -14197,7 +14196,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_platformerMovingLeft;
     bool m_platformerMovingRight;
     bool m_isSlidingRight;
-    double m_maybeChangedDirectionsAngle;
+    double m_maybeChangedDirectionAngle;
     double m_unkUnused2;
     int m_stateNoAutoJump;
     int m_stateDartSlide;
@@ -14388,7 +14387,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runNormalRotation() = win inline, ios inline;
     void runNormalRotation(bool notNormalMode, float speed) = win 0x38d220, m1 0x377f68;
     void runRotateAction(bool ground, int type) = win inline;
-    void saveToCheckpoint(PlayerCheckpoint* checkpoint);
+    void saveToCheckpoint(PlayerCheckpoint* checkpoint) = win 0x3a1710;
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x39d3a0, imac 0x3fe080, m1 0x376680;
     void setupStreak() = win 0x3887c0, m1 0x375058;
     void setYVelocity(double velocity, int type) = win 0x388d10, m1 0x374ddc;
@@ -14491,7 +14490,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     DashRingObject* m_dashRing;
     double m_slopeStartTime;
     bool m_justPlacedStreak;
-    cocos2d::CCNode* m_maybeLastGroundObject;
+    GameObject* m_maybeLastGroundObject;
     cocos2d::CCDictionary* m_collisionLogTop;
     cocos2d::CCDictionary* m_collisionLogBottom;
     cocos2d::CCDictionary* m_collisionLogLeft;
