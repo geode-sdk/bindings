@@ -18169,7 +18169,7 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
     virtual void determineStartValues() = imac 0x321740, win 0x28f240, m1 0x2af368;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x321750, win 0x28f250, m1 0x2af36c;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x47e160;
 }
 
 [[link(android)]]
