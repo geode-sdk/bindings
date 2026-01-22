@@ -11670,7 +11670,7 @@ class LevelCell : TableViewCell {
     void loadFromLevel(GJGameLevel* level) = win 0xae050, imac 0x244770, m1 0x1eb578;
     void loadLocalLevelCell() = win 0xb0d70, imac 0x24ec30, m1 0x1f547c;
     void onClick(cocos2d::CCObject* sender) = win 0xb1800, imac 0x252100, m1 0x1f8638;
-    void onToggle(cocos2d::CCObject* sender) = m1 0x1f8620;
+    void onToggle(cocos2d::CCObject* sender) = win 0xae210, m1 0x1f8620;
     void onViewProfile(cocos2d::CCObject* sender) = win 0xb1a20, imac 0x252260;
     void updateBGColor(int index) = win inline, imac 0x244930, m1 0x1eb738;
     void updateCellMode(int mode) = win 0xb1570, imac 0x24e650, m1 0x1f4f6c;
@@ -12209,7 +12209,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     void onFavorite(cocos2d::CCObject* sender) = win 0x307730;
     void onInfo(cocos2d::CCObject* sender) = win 0x307a30, imac 0x35d9e0;
     void onLike(cocos2d::CCObject* sender) = win 0x307a70;
-    void onListInfo(cocos2d::CCObject* sender) = m1 0x2e946c;
+    void onListInfo(cocos2d::CCObject* sender) = win 0x3050c0, m1 0x2e946c;
     void onRefreshLevelList(cocos2d::CCObject* sender) = win 0x306710, m1 0x2e8ca0;
     void onSelectIcon(cocos2d::CCObject* sender) = win 0x307cb0;
     void onShare(cocos2d::CCObject* sender) = win 0x307e20;
