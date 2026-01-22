@@ -19844,9 +19844,9 @@ class TOSPopup : FLAlertLayer {
     virtual bool init() = imac 0x2afe70, m1 0x24dfc4, win 0x29df90;
     virtual void keyBackClicked() = imac 0x2b04f0, m1 0x24e610, win inline;
 
-    void onClose(cocos2d::CCObject* sender) = m1 0x24e574;
-    void onPrivacy(cocos2d::CCObject* sender) = m1 0x24e5ec;
-    void onTOS(cocos2d::CCObject* sender) = m1 0x24e5c8;
+    void onClose(cocos2d::CCObject* sender) = win 0x29e620, m1 0x24e574;
+    void onPrivacy(cocos2d::CCObject* sender) = win 0x29e5e0, m1 0x24e5ec;
+    void onTOS(cocos2d::CCObject* sender) = win 0x29e600, m1 0x24e5c8;
 }
 
 [[link(android)]]
