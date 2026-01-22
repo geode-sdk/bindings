@@ -11128,13 +11128,13 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void onNextPage(cocos2d::CCObject* sender) = win 0x2bef30, imac 0x7b0f30, m1 0x6b7114;
     void onOriginal(cocos2d::CCObject* sender) = win 0x2bd530;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2bef40, imac 0x7b0f10, m1 0x6b7104;
-    void onRefreshComments(cocos2d::CCObject* sender) = m1 0x6b7ef8;
+    void onRefreshComments(cocos2d::CCObject* sender) = win 0x2bccf0, m1 0x6b7ef8;
     void onSimilar(cocos2d::CCObject* sender) = win inline, ios inline;
     void reloadWindow() = win 0x2bf2c0, imac 0x7b3070, m1 0x6b915c;
     void setupCommentsBrowser(cocos2d::CCArray* comments) = win 0x2be8c0, imac 0x7b1650, m1 0x6b77dc;
     void setupLevelInfo() = win 0x2bcaf0, m1 0x6b6678;
     void toggleCommentMode(cocos2d::CCObject* sender) = win 0x2bf4e0, imac 0x7b1030, m1 0x6b7208;
-    void toggleExtendedMode(cocos2d::CCObject* sender) = m1 0x6b72e8;
+    void toggleExtendedMode(cocos2d::CCObject* sender) = win 0x2bf170, m1 0x6b72e8;
     void toggleSmallCommentMode(cocos2d::CCObject* sender) = win 0x2bf1d0, m1 0x6b7318;
     void updateCommentModeButtons() = win 0x2bf5a0, m1 0x6b73d0;
     void updateLevelsLabel() = win inline, m1 0x6b8d64;
