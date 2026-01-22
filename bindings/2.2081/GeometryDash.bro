@@ -47,35 +47,71 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
     bool m_unk290;
 }
 
+/// Options for account (Not to be confused with GJAccountSettingsLayer)
 [[link(android)]]
 class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate, GJAccountSyncDelegate, FLAlertLayerProtocol {
     // virtual ~AccountLayer();
     // AccountLayer();
 
+    /// Creates the AccountLayer
+    /// @returns An AccountLayer pointer to the created class
     static AccountLayer* create() = win 0x7d5b0, m1 0xb3128;
 
+    /// Runs after the UI is setup, it is highly recommended to hook this method if making UI inside the AccountLayer.
     virtual void customSetup() = imac 0xcbd70, win 0x7d710, m1 0xb33b8;
+    /// Runs when the layer is hidden.
     virtual void layerHidden() = win 0x7f4a0, imac 0xcdda0, m1 0xb5318;
+    /// Runs when account data is successfully backed up to the cloud.
     virtual void backupAccountFinished() = win 0x7eb80, imac 0xcd2e0, m1 0xb48d4;
+    /// Runs when backing up account data fails.
+    /// @param errorType The type of error
+    /// @param response The response
     virtual void backupAccountFailed(BackupAccountError errorType, int response) = imac 0xcd4a0, m1 0xb4a98, win 0x7ed30;
+    /// Runs when syncing account data succeeds.
     virtual void syncAccountFinished() = win 0x7f040, imac 0xcd860, m1 0xb4e04;
+    /// Runs when syncing account data fails.
+    /// @param errorType The type of error
+    /// @param response The response
     virtual void syncAccountFailed(BackupAccountError errorType, int response) = imac 0xcd9e0, win 0x7f200, m1 0xb4f70;
+    /// Runs when the account status is changed.
     virtual void accountStatusChanged() = win 0x7e7a0, imac 0xcd2b0, m1 0xb48c0;
+    /// Executed when an FLAlertLayer created from this class has one of it's buttons pressed.
+    /// @param layer A pointer to the parent FLAlertLayer
+    /// @param btn2 If the second button was pressed, this will be true.
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = imac 0xcdc80, win 0x7f390, m1 0xb51e8;
 
     void createToggleButton(gd::string text, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win inline, imac 0xccf40, m1 0xb44e0, ios inline;
+    /// Attempts to backup account data to the cloud.
     void doBackup() = win inline, imac 0xcd150, m1 0xb4754;
+    /// Attempts to sync account data from the cloud.
     void doSync() = win inline, imac 0xcd220, m1 0xb4830;
+    /// Exits the layer.
     void exitLayer() = win inline, m1 0xb48b8, ios inline;
+    /// Hides the throbber UI
     void hideLoadingUI() = win inline, imac 0xcd430, m1 0xb4a3c, ios inline;
+    /// The callback for the "Save" button
+    /// @param sender The sender of the callback
     void onBackup(cocos2d::CCObject* sender) = m1 0xb3ac0;
+    /// The callback for the "Help" button. Will normally prompt the user to open the account help page.
+    /// @param sender The sender of the callback
     void onHelp(cocos2d::CCObject* sender) = imac 0xcc9e0;
+    /// The callback for the "Login" button.
+    /// @param sender The sender of the callback
     void onLogin(cocos2d::CCObject* sender) = m1 0xb3a08;
+
+    /// The callback for the "More" button. Will normally open the AccountHelpLayer.
+    /// @param sender The sender of the callback
     void onMore(cocos2d::CCObject* sender) = m1 0xb4088;
+    /// The callback for the "Register" button
+    /// @param sender The sender of the callback
     void onRegister(cocos2d::CCObject* sender) = win 0x7dea0, m1 0xb3aa4;
+    // The callback for the "Load" button
+    /// @param sender The sender of the callback
     void onSync(cocos2d::CCObject* sender) = m1 0xb3db8;
+    /// Shows the throbber UI
     void showLoadingUI() = win inline, imac 0xcd1d0, m1 0xb47dc, ios inline;
     void toggleUI(bool enable) = win inline, imac 0xcdc40, m1 0xb51a8, ios inline;
+    /// Updates the page for whether the user logged in or logged out.
     void updatePage(bool changed) = m1 0xb4098, win 0x7e7b0;
 
     cocos2d::CCLabelBMFont* m_linkedAccountTitle;
@@ -7333,6 +7369,7 @@ class GJAssetDownloadAction {
     int m_status;
 }
 
+/// The base game layer, for gameplay and such.
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJBaseGameLayer() = win 0x2cfef0, m1 0xac9f4;
@@ -7343,7 +7380,11 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     // GJBaseGameLayer() = ios 0x1256b4;
     static GJBaseGameLayer* get() = imac inline, m1 inline, win inline;
 
+    /// Runs on update.
+    /// @param dt Delta time
     virtual void update(float dt) = imac 0x151310, m1 0x1229e8, win 0x237850;
+    /// Initializes the base game layer.
+    /// @returns Whether it was successful or not.
     virtual bool init() = m1 0xeb374, win 0x206f30, imac 0x10fb80;
     virtual void visit() = win 0x246ee0, imac 0x163800, m1 0x131340;
     virtual void postUpdate(float dt) = imac inline, m1 inline, win inline;
@@ -7352,6 +7393,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void updateVerifyDamage() = imac inline, m1 inline, win inline;
     virtual void updateAttemptTime(float attemptTime) = imac inline, m1 inline, win inline;
     virtual void updateVisibility(float dt) = imac inline, m1 inline, win inline;
+    /// Runs when a PlayerObject takes damage. This also accounts for the "Anti-Cheat spike".
+    /// @param player The player that took damge
     virtual void playerTookDamage(PlayerObject* player) = imac inline, m1 inline, win inline;
     virtual float opacityForObject(GameObject* object) = win 0x237430, imac 0x1510c0, m1 0x1227e8;
     virtual void addToSpeedObjects(EffectGameObject* object) = imac inline, m1 inline, win inline;
@@ -14816,11 +14859,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_enable22Changes;
 }
 
+/// The layer for playing a level
 [[link(android), depends(DynamicBitset), depends(SavedActiveObjectState), depends(SavedObjectStateRef), depends(SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
     PlayLayer() = win 0x3a4da0;
     ~PlayLayer() = win 0x3a57b0, imac 0xabd30;
 
+    /// Creates the PlayLayer
+    /// @param level The level to create the PlayLayer from
     static PlayLayer* create(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5a50, m1 0x9aeb8;
     static PlayLayer* get() = imac inline, m1 inline, win inline;
     static cocos2d::CCScene* scene(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5a50, m1 0x9ae04;
