@@ -3443,9 +3443,9 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     virtual void onClosePopup(UploadActionPopup* popup) = imac 0x1fe680, win 0xd9ae0, m1 0x1abca8;
 
     void closeTextInputs() = win 0xd7490, m1 0x1aac44;
-    void confirmClone(cocos2d::CCObject* sender);
-    void confirmDelete(cocos2d::CCObject* sender) = imac 0x1fcc30;
-    void confirmMoveToTop(cocos2d::CCObject* sender) = imac 0x1fcec0;
+    void confirmClone(cocos2d::CCObject* sender) = win 0xd92a0;
+    void confirmDelete(cocos2d::CCObject* sender) = win 0xd8b00, imac 0x1fcc30;
+    void confirmMoveToTop(cocos2d::CCObject* sender) = win 0xd93c0, imac 0x1fcec0;
     bool init(GJGameLevel* level) = win 0xd5440;
     void onBack(cocos2d::CCObject* sender) = win 0xd9610;
     void onClone() = win inline;
