@@ -10765,8 +10765,8 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 
     void closeMessagePopup(bool fullExit) = win 0x29a550, imac 0x2aa170, m1 0x248b68;
     bool init(int accountID, int messageID) = win 0x299240;
-    void onClearBody(cocos2d::CCObject* sender) = imac 0x2aa080;
-    void onClose(cocos2d::CCObject* sender) = m1 0x24865c;
+    void onClearBody(cocos2d::CCObject* sender) = win 0x29a3b0, imac 0x2aa080;
+    void onClose(cocos2d::CCObject* sender) = win 0x29a540, m1 0x24865c;
     void onSend(cocos2d::CCObject* sender) = win 0x29a0e0, imac 0x2a9c40, m1 0x248664;
     void updateBody(gd::string body);
     void updateCharCountLabel(int type) = win inline, imac 0x2aa9a0, m1 0x2492e4;
@@ -11517,7 +11517,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     bool init(bool returning) = win 0x2c64e0, m1 0x21c018;
     void onBack(cocos2d::CCObject* sender) = win 0x2c86a0;
     void onDoor(cocos2d::CCObject* sender) = win 0x2c81d0, imac 0x27ab60;
-    void onInfo(cocos2d::CCObject* sender) = m1 0x21d0ec;
+    void onInfo(cocos2d::CCObject* sender) = win 0x2c7c30, m1 0x21d0ec;
     void onNextFloor(cocos2d::CCObject* sender) = win 0x2c74c0;
     void onOnlineVault(cocos2d::CCObject* sender) = win 0x2c84c0, m1 0x21d028;
     bool playStep1() = win 0x2c8390, m1 0x21dc9c;
@@ -12158,7 +12158,7 @@ class LevelListCell : TableViewCell {
 
     void loadFromList(GJLevelList* list) = win 0xbecb0, imac 0x245550, m1 0x1ec324;
     void onClick(cocos2d::CCObject* sender) = win 0xc00e0;
-    void onListInfo(cocos2d::CCObject* sender) = m1 0x1fe878;
+    void onListInfo(cocos2d::CCObject* sender) = win 0xc01f0, m1 0x1fe878;
     void onViewProfile(cocos2d::CCObject* sender) = win 0xc0210, imac 0x259560;
     void updateBGColor(int index) = win inline, imac 0x246a40, m1 0x1ed87c;
 
