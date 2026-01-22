@@ -50,12 +50,12 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
     void doSync() = win inline, imac 0xcd220, m1 0xb4830;
     void exitLayer() = win inline, m1 0xb48b8, ios inline;
     void hideLoadingUI() = win inline, imac 0xcd430, m1 0xb4a3c, ios inline;
-    void onBackup(cocos2d::CCObject* sender) = m1 0xb3ac0, imac 0xcc4d0;
-    void onHelp(cocos2d::CCObject* sender) = imac 0xcc9e0;
-    void onLogin(cocos2d::CCObject* sender) = m1 0xb3a08, imac 0xcc420;
-    void onMore(cocos2d::CCObject* sender) = m1 0xb4088;
+    void onBackup(cocos2d::CCObject* sender) = win 0x7e020, m1 0xb3ac0, imac 0xcc4d0;
+    void onHelp(cocos2d::CCObject* sender) = win 0x7e630, imac 0xcc9e0;
+    void onLogin(cocos2d::CCObject* sender) = win 0x7de60, m1 0xb3a08, imac 0xcc420;
+    void onMore(cocos2d::CCObject* sender) = win 0x7e750, m1 0xb4088;
     void onRegister(cocos2d::CCObject* sender) = win 0x7dea0, m1 0xb3aa4, imac 0xcc4b0;
-    void onSync(cocos2d::CCObject* sender) = m1 0xb3db8, imac 0xcc800;
+    void onSync(cocos2d::CCObject* sender) = win 0x7e3b0, m1 0xb3db8, imac 0xcc800;
     void showLoadingUI() = win inline, imac 0xcd1d0, m1 0xb47dc, ios inline;
     void toggleUI(bool enable) = win inline, imac 0xcdc40, m1 0xb51a8, ios inline;
     void updatePage(bool changed) = m1 0xb4098, win 0x7e7b0, imac 0xccac0;
@@ -95,8 +95,8 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     void hideLoadingUI() = win inline, imac 0x49a470, m1 0x3fe754, ios inline;
     bool init(gd::string username) = m1 0x3fd184, win 0x7b910, imac 0x498df0;
     void onClose(cocos2d::CCObject* sender) = win 0x7cfa0, imac 0x499a90, m1 0x3fdd28;
-    void onForgotPassword(cocos2d::CCObject* sender) = m1 0x3fe458, imac 0x49a180;
-    void onForgotUser(cocos2d::CCObject* sender) = m1 0x3fe434, imac 0x49a160;
+    void onForgotPassword(cocos2d::CCObject* sender) = win 0x7c4e0, m1 0x3fe458, imac 0x49a180;
+    void onForgotUser(cocos2d::CCObject* sender) = win 0x7c4c0, m1 0x3fe434, imac 0x49a160;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7cc10, imac 0x499af0, m1 0x1ab29c;
     void resetLabel(int tag) = win 0x7cb20, m1 0x213b58;
     void resetLabels() = win inline, imac 0x49a760, m1 0x3fea4c;
@@ -2628,7 +2628,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onFameLevels(cocos2d::CCObject* sender) = win inline, m1 0x2397f8, ios inline;
     void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x9d910, m1 0x238a78;
     void onGauntlets(cocos2d::CCObject* sender) = win 0x9dc00, m1 0x238a30;
-    void onLeaderboards(cocos2d::CCObject* sender);
+    void onLeaderboards(cocos2d::CCObject* sender) = win 0x9d720;
     void onMapPacks(cocos2d::CCObject* sender) = win 0x9db40, m1 0x238b40;
     void onMultiplayer(cocos2d::CCObject* sender) = win 0x9dc80, imac 0x298530, m1 0x238544;
     void onMyLevels(cocos2d::CCObject* sender) = win 0x9d310, m1 0x238bc8;
@@ -2990,13 +2990,13 @@ class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate
 
     bool init(CustomSongDelegate* delegate) = win 0xc2c20;
     void onClose(cocos2d::CCObject* sender) = win 0xc43b0, m1 0x1c0ec0;
-    void onCreateLines(cocos2d::CCObject* sender) = m1 0x1c1018;
+    void onCreateLines(cocos2d::CCObject* sender) = win 0xc4120, m1 0x1c1018;
     void onMusicBrowser(cocos2d::CCObject* sender) = win 0xc3ec0, imac 0x2159a0, m1 0x1c0fb4;
-    void onNCSBrowser(cocos2d::CCObject* sender) = imac 0x215980, m1 0x1c0f98;
+    void onNCSBrowser(cocos2d::CCObject* sender) = win 0xc3f20, imac 0x215980, m1 0x1c0f98;
     void onNewgroundsBrowser(cocos2d::CCObject* sender) = win 0xc4020, imac 0x2159f0, m1 0x1c0ffc;
-    void onOptions(cocos2d::CCObject* sender) = imac 0x215a50, m1 0x1c1054;
+    void onOptions(cocos2d::CCObject* sender) = win 0xc38a0, imac 0x215a50, m1 0x1c1054;
     void onSearch(cocos2d::CCObject* sender) = win 0xc39a0, m1 0x1c1074;
-    void onSongBrowser(cocos2d::CCObject* sender) = m1 0x1c0f34;
+    void onSongBrowser(cocos2d::CCObject* sender) = win 0xc3e40, m1 0x1c0f34;
     void showNewgroundsMessage() = win inline, imac 0x215be0, m1 0x1c11f0;
 
     CustomSongDelegate* m_songDelegate;
@@ -8996,7 +8996,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onPaint(cocos2d::CCObject* sender) = win 0x278e50, m1 0x260c98;
     void onRewardedVideo(cocos2d::CCObject* sender) = imac 0x36c360;
     void onSelect(cocos2d::CCObject* sender) = win 0x277170, imac 0x36deb0, m1 0x83124;
-    void onSelectTab(cocos2d::CCObject* sender) = m1 0x2f6c40;
+    void onSelectTab(cocos2d::CCObject* sender) = win 0x275fa0, m1 0x2f6c40;
     void onShards(cocos2d::CCObject* sender) = win 0x278d00, imac 0x36c0e0, m1 0x2f6250;
     void onShop(cocos2d::CCObject* sender) = win 0x278fd0, imac 0x36c080, m1 0x2f61f0;
     void onSpecial(cocos2d::CCObject* sender) = m1 0x2f7ef0;
