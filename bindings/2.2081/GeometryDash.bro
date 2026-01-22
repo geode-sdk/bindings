@@ -9518,9 +9518,9 @@ class GJOptionsLayer : SetupTriggerPopup {
     const char* objectKey(int page) = win inline, m1 0x23cf1c, ios inline;
     cocos2d::CCArray* objectsForPage(int page);
     void offsetToNextPage() = win inline, imac 0x29c540, m1 0x23be98, ios inline;
-    void onInfo(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
+    void onInfo(cocos2d::CCObject* sender) = win 0x290e60;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x290920;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x290930;
     void onToggle(cocos2d::CCObject* sender) = win 0x290d50, imac 0x29ceb0, m1 0x23c760;
     const char* pageKey(int page) = win inline, m1 0x23cef4, ios inline;
 
@@ -11268,8 +11268,8 @@ class KeybindingsLayer : FLAlertLayer {
     cocos2d::CCArray* objectsForPage(int page) = win inline;
     void onClose(cocos2d::CCObject* sender) = win 0x84670;
     void onInfo(cocos2d::CCObject* sender) = win inline;
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
+    void onNextPage(cocos2d::CCObject* sender) = win 0x2c08d0;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x2c08e0;
     void onToggle(cocos2d::CCObject* sender) = win inline, m1 0x531804;
     const char* pageKey(int page) = win inline, m1 0x5315a0;
 
