@@ -12655,7 +12655,7 @@ class LikeItemLayer : FLAlertLayer {
 
     bool init(LikeItemType type, int id, int parentID) = win 0x32de60, m1 0x1fec84;
     void onClose(cocos2d::CCObject* sender) = win 0x84670, m1 0x521ca4;
-    void onDislike(cocos2d::CCObject* sender) = m1 0x521d58;
+    void onDislike(cocos2d::CCObject* sender) = win 0x32e240, m1 0x521d58;
     void onLike(cocos2d::CCObject* sender) = win 0x32e230, m1 0x521ce0;
     void triggerLike(bool isLiked) = win 0x32e250, m1 0x521dd0;
 
