@@ -19439,12 +19439,12 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
     void onCocos2d(cocos2d::CCObject* sender) = win 0x4c9860, m1 0x320054;
     void onEmail(cocos2d::CCObject* sender) = win 0x4c9ff0, m1 0x31f4c0;
     void onGetReward(cocos2d::CCObject* sender) = win 0x4c9970, m1 0x31ff78;
-    void onLinks(cocos2d::CCObject* sender) = imac 0x2ccfd0, m1 0x31ec24;
+    void onLinks(cocos2d::CCObject* sender) = win 0x4ca0f0, imac 0x2ccfd0, m1 0x31ec24;
     void onLowDetail(cocos2d::CCObject* sender) = win 0x4c9d60, m1 0x31fdcc;
     void onPrivacy(cocos2d::CCObject* sender) = win 0x29e5e0, m1 0x31f590;
     void onRequestAccess(cocos2d::CCObject* sender) = win 0x4c9880, m1 0x31fecc;
-    void onRobTop(cocos2d::CCObject* sender) = m1 0x320030;
-    void onSFX(cocos2d::CCObject* sender) = imac 0x399d60, m1 0x31f5d8;
+    void onRobTop(cocos2d::CCObject* sender) = win 0x335680, m1 0x320030;
+    void onSFX(cocos2d::CCObject* sender) = win 0x4c9380, imac 0x399d60, m1 0x31f5d8;
     void onTOS(cocos2d::CCObject* sender) = win 0x29e600, m1 0x31f5b4;
     void sendSupportMail() = win inline, m1 0x3203f4;
 
