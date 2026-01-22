@@ -15953,7 +15953,7 @@ class SelectListIconLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x309ad0, imac 0x3619e0, m1 0x2ecb84;
 
     bool init(int difficulty) = win 0x3091e0;
-    void onClose(cocos2d::CCObject* sender) = imac 0x361990, m1 0x2ecb2c;
+    void onClose(cocos2d::CCObject* sender) = win 0x309a90, imac 0x361990, m1 0x2ecb2c;
     void onSelect(cocos2d::CCObject* sender) = win 0x3099d0, m1 0x2eca34;
 
     cocos2d::CCArray* m_difficulties;
@@ -16002,7 +16002,7 @@ class SelectSettingLayer : FLAlertLayer {
     gd::string getSelectedFrame() = win inline, imac 0x26ec70, m1 0x211c5c;
     int getSelectedValue() = win inline, imac 0x26ec40;
     bool init(SelectSettingType type, int value) = win 0x323220;
-    void onClose(cocos2d::CCObject* sender) = m1 0x213e5c;
+    void onClose(cocos2d::CCObject* sender) = win 0x323ec0, m1 0x213e5c;
     void onSelect(cocos2d::CCObject* sender) = win 0x323e10, imac 0x271180, m1 0x213d84;
 
     cocos2d::CCArray* m_settingSprites;
