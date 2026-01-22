@@ -15207,7 +15207,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     virtual void onClosePopup(UploadActionPopup* popup) = imac 0x284660, m1 0x22616c, win 0x3c95a0;
 
     bool init(int levelID) = win 0x3c8b50;
-    void onClose(cocos2d::CCObject* sender) = m1 0x225d14;
+    void onClose(cocos2d::CCObject* sender) = win 0x3c9620, m1 0x225d14;
     void onRate(cocos2d::CCObject* sender) = win 0x3c92a0, m1 0x225d70;
     void selectRating(cocos2d::CCObject* sender) = win 0x3c9120, m1 0x225c08;
 
@@ -15237,7 +15237,7 @@ class RateLevelLayer : FLAlertLayer {
     virtual void keyBackClicked() = imac 0x5684e0, m1 0x4b6d9c, win 0x3c9e70;
 
     bool init(int levelID) = win 0x3c9780;
-    void onClose(cocos2d::CCObject* sender) = imac 0x568440, m1 0x4b6cd8;
+    void onClose(cocos2d::CCObject* sender) = win 0x3c9e30, imac 0x568440, m1 0x4b6cd8;
     void onRate(cocos2d::CCObject* sender) = win 0x3c9de0, imac 0x568490;
     void selectRating(cocos2d::CCObject* sender) = win 0x3c9c90, imac 0x568360, m1 0x4b6bbc;
 
@@ -15261,7 +15261,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 
     CCMenuItemSpriteExtra* getStarsButton(int stars, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = m1 0x22cfb4, ios inline;
     bool init(int levelID, bool platformer, bool moderator);
-    void onClose(cocos2d::CCObject* sender) = imac 0x28c5b0;
+    void onClose(cocos2d::CCObject* sender) = win 0x3caeb0, imac 0x28c5b0;
     void onFeature(cocos2d::CCObject* sender) = win 0x3ca8e0, imac 0x28c580, m1 0x22aa5c;
     void onRate(cocos2d::CCObject* sender) = win 0x3cab00, imac 0x28c600;
     void onToggleCoins(cocos2d::CCObject* sender) = win inline, m1 0x22d394, ios inline;
