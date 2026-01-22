@@ -12820,7 +12820,7 @@ class MapPackCell : TableViewCell {
     virtual void draw() = imac 0x252be0, win 0xade20, m1 0x1f8ff0;
 
     void loadFromMapPack(GJMapPack* pack) = win 0xb1c60, imac 0x244990, m1 0x1eb7b8;
-    void onClaimReward(cocos2d::CCObject* sender) = m1 0x1f8d2c;
+    void onClaimReward(cocos2d::CCObject* sender) = win 0xb28a0, m1 0x1f8d2c;
     void onClick(cocos2d::CCObject* sender) = win 0xb2780, m1 0x1f8b7c;
     void playCompleteEffect() = win 0xb2950, imac 0x2529b0;
     void reloadCell() = win inline, imac 0x24e5a0, m1 0x1f4f10, ios inline;
@@ -19135,7 +19135,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
     void audioNext(cocos2d::CCObject* sender) = win 0xc77d0, imac 0x2194f0, m1 0x1c495c;
     void audioPrevious(cocos2d::CCObject* sender) = win 0xc7810, imac 0x2194b0, m1 0x1c4928;
     bool init(int id, bool customSong, LevelSettingsObject* settings, SongSelectType selectType, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCMenu* menu, bool noLabel) = win 0xc6dd0;
-    void onOpenCustomSong(cocos2d::CCObject* sender) = m1 0x1c49c8;
+    void onOpenCustomSong(cocos2d::CCObject* sender) = win 0xc7b20, m1 0x1c49c8;
     void onSongMode(cocos2d::CCObject* sender) = imac 0x219530, m1 0x1c4994;
     void onSongMode(int songMode) = win 0xc7870, imac 0x219600, m1 0x1c4a44;
     void selectSong(int id) = win inline, imac 0x2195d0, m1 0x1c4a24, ios inline;
