@@ -2765,7 +2765,7 @@ class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate,
     void onEditColor(cocos2d::CCObject* sender) = win 0xa8480, imac 0x1f7ca0, m1 0x1a5858;
     void onHSV(cocos2d::CCObject* sender) = win 0xa8b80, imac 0x1f76d0, m1 0x1a5230;
     void onLiveEdit(cocos2d::CCObject* sender) = win 0xa7f10, imac 0x1f7d00, m1 0x1a58ac;
-    void onNextColorChannel(cocos2d::CCObject* sender) = win 0xa95b0, m1 0x1a5c84;
+    void onNextColorChannel(cocos2d::CCObject* sender) = win 0xa8ee0, m1 0x1a5c84;
     void onPaste(cocos2d::CCObject* sender) = win 0xa8070, m1 0x1a5dd4;
     void onSelectColor(cocos2d::CCObject* sender) = win 0xa9cb0, imac 0x1f7a10, m1 0x1a559c;
     void onSelectMode(cocos2d::CCObject* sender) = win 0xa8ff0, imac 0x1f74a0, m1 0x1a5004;
@@ -11041,7 +11041,7 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
     void closeColorSelect(cocos2d::CCObject* sender) = imac 0x26ad40, m1 0x20e278;
     void createHSVWidget(int tab) = win 0x2ba0e0, imac 0x26aec0, m1 0x20e408;
     void determineStartValues() = win 0x2b9e60, imac 0x26ad90, m1 0x20e2d8;
-    bool init(GameObject* object, cocos2d::CCArray* objects) = win 0x1f8f40;
+    bool init(GameObject* object, cocos2d::CCArray* objects) = win 0x2b99c0;
     void onSelectTab(cocos2d::CCObject* sender) = win 0x2ba0b0, imac 0x26ae80, m1 0x20e3bc;
     void toggleControls(bool visible) = win inline, m1 0x20e66c, ios inline;
 
