@@ -126,7 +126,11 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 if (WIN32)
 	if (MSVC)
 		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
+	elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+		target_link_options(${PROJECT_NAME} PRIVATE "-Wl,/errorlimit:0")
 	endif()
+else()
+	target_link_options(${PROJECT_NAME} PRIVATE "-Wl,--error-limit=0")
 endif()
 
 file(GLOB GEODE_INLINE_SOURCES ${GEODE_MEMBER_TEST_BINDINGS_PATH}/inline/*.cpp)
