@@ -19112,11 +19112,11 @@ class SongOptionsLayer : FLAlertLayer {
 
     bool init(CustomSongDelegate* delegate) = win 0xc45a0;
     void onClose(cocos2d::CCObject* sender) = win 0xc54d0, imac 0x2171e0, m1 0x1c2688;
-    void onFadeIn(cocos2d::CCObject* sender) = imac 0x217120, m1 0x1c25a4;
-    void onFadeOut(cocos2d::CCObject* sender) = imac 0x217160, m1 0x1c25f0;
+    void onFadeIn(cocos2d::CCObject* sender) = win 0xc4fc0, imac 0x217120, m1 0x1c25a4;
+    void onFadeOut(cocos2d::CCObject* sender) = win 0xc5010, imac 0x217160, m1 0x1c25f0;
     void onInfo(cocos2d::CCObject* sender) = win 0xc5370, imac 0x2172e0, m1 0x1c2798;
     void onPlayback(cocos2d::CCObject* sender) = win 0xc50b0, m1 0x1c2878;
-    void onSongPersistent(cocos2d::CCObject* sender) = imac 0x2171a0, m1 0x1c263c;
+    void onSongPersistent(cocos2d::CCObject* sender) = win 0xc5060, imac 0x2171a0, m1 0x1c263c;
     void updatePlaybackBtn() = win inline, imac 0x2174e0, m1 0x1c29c4;
 
     CustomSongDelegate* m_delegate;
@@ -19146,7 +19146,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
     void audioPrevious(cocos2d::CCObject* sender) = win 0xc7810, imac 0x2194b0, m1 0x1c4928;
     bool init(int id, bool customSong, LevelSettingsObject* settings, SongSelectType selectType, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCMenu* menu, bool noLabel) = win 0xc6dd0;
     void onOpenCustomSong(cocos2d::CCObject* sender) = win 0xc7b20, m1 0x1c49c8;
-    void onSongMode(cocos2d::CCObject* sender) = imac 0x219530, m1 0x1c4994;
+    void onSongMode(cocos2d::CCObject* sender) = win 0xc7840, imac 0x219530, m1 0x1c4994;
     void onSongMode(int songMode) = win 0xc7870, imac 0x219600, m1 0x1c4a44;
     void selectSong(int id) = win inline, imac 0x2195d0, m1 0x1c4a24, ios inline;
     void showCustomSongSelect() = win 0xc7ba0, imac 0x219870, m1 0x1c4c84, ios inline;
