@@ -16,7 +16,7 @@ PlayerCheckpoint::PlayerCheckpoint() {
     m_isMini = false;
     m_playerSpeed = 0.f;
     m_isHidden = false;
-    m_goingLeft = false;
+    m_isGoingLeft = false;
     m_maybeReverseSpeed = 0.0;
     m_isDashing = false;
     m_dashX = 0.0;
@@ -24,7 +24,7 @@ PlayerCheckpoint::PlayerCheckpoint() {
     m_dashAngle = 0.0;
     m_dashStartTime = 0.0;
     m_dashRing = nullptr;
-    m_shouldStop = false;
+    m_platformerCheckpoint = false;
     m_lastFlipTime = 0.0;
     m_gravityMod = 1.f;
     m_objectSnappedTo = nullptr;
