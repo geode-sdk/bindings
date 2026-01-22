@@ -16,7 +16,7 @@ class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtoco
 
     void doUnlink() = win inline, imac 0xcef00, m1 0xb62d0, ios inline;
     void exitLayer() = win inline, m1 0xb62fc, ios inline;
-    void onAccountManagement(cocos2d::CCObject* sender) = m1 0xb5c10, imac 0xce820;
+    void onAccountManagement(cocos2d::CCObject* sender) = win 0x7fa60, m1 0xb5c10, imac 0xce820;
     void onReLogin(cocos2d::CCObject* sender) = win 0x7fa20, m1 0xb5b9c, imac 0xce7c0;
     void onUnlink(cocos2d::CCObject* sender) = win 0x7fb70, m1 0xb5ce4, imac 0xce8f0;
     void updatePage() = win 0x7fd20, imac 0xceaa0, m1 0xb5e98;
@@ -6649,7 +6649,7 @@ class GameOptionsLayer : GJOptionsLayer {
 
     bool init(GJBaseGameLayer* baseGameLayer) = win inline, imac 0x2b10b0;
     void onPracticeMusicSync(cocos2d::CCObject* sender) = win 0x2a0270, m1 0x24f92c;
-    void onUIOptions(cocos2d::CCObject* sender) = m1 0x24f9a0;
+    void onUIOptions(cocos2d::CCObject* sender) = win 0x2a03f0, m1 0x24f9a0;
     void onUIPOptions(cocos2d::CCObject* sender) = win 0x2a0410, m1 0x24f9c0;
     void showPracticeMusicSyncUnlockInfo() = win 0x29fa10, imac 0x2b1900, m1 0x24fa2c;
 
@@ -12405,7 +12405,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     void onInfo(cocos2d::CCObject* sender) = win 0x319bb0, m1 0x3a4da8;
     void onNext(cocos2d::CCObject* sender) = win 0x319930, m1 0x3a4d30;
     void onPlay(cocos2d::CCObject* sender) = win inline;
-    void onPrev(cocos2d::CCObject* sender) = m1 0x3a4d00;
+    void onPrev(cocos2d::CCObject* sender) = win 0x3199b0, m1 0x3a4d00;
     void tryShowAd() = win inline, m1 0x3a4dc4, ios inline;
 
     float m_width;
@@ -15058,22 +15058,22 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     bool isOnWatchlist(int id) = win inline, imac 0x7b9230, m1 0x6beef8, ios inline;
     void loadPage(int page) = win 0x3c61d0, m1 0x6c5390;
     void loadPageFromUserInfo(GJUserScore* score) = win 0x3bfe80;
-    void onBlockUser(cocos2d::CCObject* sender) = m1 0x6c3448;
+    void onBlockUser(cocos2d::CCObject* sender) = win 0x3c42d0, m1 0x6c3448;
     void onClose(cocos2d::CCObject* sender) = win 0x3c50a0, m1 0x6bef00;
     void onComment(cocos2d::CCObject* sender) = win 0x3c3d20, m1 0x6c3cfc;
     void onCommentHistory(cocos2d::CCObject* sender) = win 0x3c3c90, imac 0x7bcf60, m1 0x6c267c;
     void onCopyName(cocos2d::CCObject* sender) = win 0x3c32b0, imac 0x7bd7e0, m1 0x6c2da0;
     void onFollow(cocos2d::CCObject* sender) = win 0x3c4520, m1 0x6bf170;
     void onFriend(cocos2d::CCObject* sender) = win 0x3c3ee0, imac 0x7bdb30, m1 0x6c30ec;
-    void onFriends(cocos2d::CCObject* sender);
+    void onFriends(cocos2d::CCObject* sender) = win 0x3c5e80;
     void onInfo(cocos2d::CCObject* sender) = imac 0x7bcfa0, m1 0x6c26b4;
-    void onMessages(cocos2d::CCObject* sender);
+    void onMessages(cocos2d::CCObject* sender) = win 0x3c5e50;
     void onMyLevels(cocos2d::CCObject* sender) = win 0x3c3980, imac 0x7be240;
     void onMyLists(cocos2d::CCObject* sender) = win 0x3c3b30;
     void onNextPage(cocos2d::CCObject* sender) = win 0x3c68f0, m1 0x6c4834;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x3c6900, m1 0x6c4828;
-    void onRequests(cocos2d::CCObject* sender) = m1 0x6c3c50;
-    void onSendMessage(cocos2d::CCObject* sender) = m1 0x6c2fe0;
+    void onRequests(cocos2d::CCObject* sender) = win 0x3c5eb0, m1 0x6c3c50;
+    void onSendMessage(cocos2d::CCObject* sender) = win 0x3c3cd0, m1 0x6c2fe0;
     void onSettings(cocos2d::CCObject* sender) = win 0x3c5ce0, m1 0x347dc8;
     void onStatInfo(cocos2d::CCObject* sender) = win 0x3c30e0, imac 0x7bc760, m1 0x6c1df4;
     void onTwitch(cocos2d::CCObject* sender);
