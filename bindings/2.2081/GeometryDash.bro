@@ -17286,13 +17286,13 @@ class SetupOpacityPopup : SetupTriggerPopup {
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x42a5e0;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x42b570;
-    void sliderChanged(cocos2d::CCObject* sender) = m1 0x4b964;
-    void updateDuration() = m1 0x4bf3c;
-    void updateDurLabel(bool decimals);
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x42b5c0, m1 0x4b964;
+    void updateDuration() = win 0x42bbd0, m1 0x4bf3c;
+    void updateDurLabel(bool decimals) = win 0x42ba10;
     void updateOpacity() = win inline, m1 0x4bed0;
-    void updateOpacityLabel();
-    void updateTargetID() = m1 0x4be4c;
-    void updateTextInputLabel();
+    void updateOpacityLabel() = win 0x42bae0;
+    void updateTargetID() = win 0x42bc60, m1 0x4be4c;
+    void updateTextInputLabel() = win 0x42bb50;
 
     CCTextInputNode* m_groupIDInput;
     CCTextInputNode* m_fadeTimeInput;
