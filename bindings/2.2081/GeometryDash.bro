@@ -8023,9 +8023,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCObject* m_unk32c8;
     int m_unk32d0;
     bool m_unk32d4;
-    double m_queueInterval;
-    uint64_t m_coinsCollected;
-    int m_replayRandSeed;
+    uint64_t m_randomSeed;
+    uint64_t m_unk32e0;
+    uint64_t m_replayRandSeed;
     int m_unk32ec;
     int m_currentStep;
     gd::vector<PlayerButtonCommand> m_queuedButtons;
