@@ -17219,7 +17219,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
     void onGripSlope(cocos2d::CCObject* sender);
     void onHideEffects(cocos2d::CCObject* sender);
     void onHighDetail(cocos2d::CCObject* sender);
-    void onIceBlock(cocos2d::CCObject* sender) = m1 0x548a48;
+    void onIceBlock(cocos2d::CCObject* sender) = win 0x3ffba0, m1 0x548a48;
     void onNoAudioScale(cocos2d::CCObject* sender);
     void onNonStickX(cocos2d::CCObject* sender);
     void onNonStickY(cocos2d::CCObject* sender);
@@ -17228,7 +17228,7 @@ class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
     void onReverse(cocos2d::CCObject* sender) = win 0x4008a0, imac 0x31ac30;
     void onSinglePlayerTouch(cocos2d::CCObject* sender);
     void onToggleAreaParent(cocos2d::CCObject* sender);
-    void onToggleGroupParent(cocos2d::CCObject* sender) = m1 0x22b160;
+    void onToggleGroupParent(cocos2d::CCObject* sender) = win 0x4005c0, m1 0x22b160;
 
     GameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;
