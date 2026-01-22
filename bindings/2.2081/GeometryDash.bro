@@ -4831,14 +4831,42 @@ class FindObjectPopup : SetIDPopup {
     bool m_unknownBool;
 }
 
+/// The FLAlertLayer class for popups/dialogue boxes.
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
     FLAlertLayer() = win 0x51720;
     ~FLAlertLayer() = imac 0x49ad70, m1 0x3ff0e4, win 0x51850;
 
+    /// Creates an FLAlertLayer
+    /// @param title The title of the alert
+    /// @param desc The content of the alert
+    /// @param btn The text for the button
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) = imac inline, m1 inline, win inline;
+    /// Creates an FLAlertLayer
+    /// @param delegate The callback delegate
+    /// @param title The title of the alert
+    /// @param desc The content of the alert
+    /// @param btn1 The text for the first button
+    /// @param btn2 The text for the second button.
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2) = imac inline, m1 inline, win inline;
+    /// Creates an FLAlertLayer
+    /// @param delegate The callback delegate
+    /// @param title The title of the alert
+    /// @param desc The content of the alert
+    /// @param btn1 The text for the first button
+    /// @param btn2 The text for the second button.
+    /// @param width The width of the alert container
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = imac 0x49b0f0, m1 0x3ff604, win 0x51900;
+    /// Creates an FLAlertLayer
+    /// @param delegate The callback delegate
+    /// @param title The title of the alert
+    /// @param desc The content of the alert
+    /// @param btn1 The text for the first button
+    /// @param btn2 The text for the second button.
+    /// @param width The width of the alert container
+    /// @param scroll Set to true if you want this to be scrollable.
+    /// @param height The height of the alert container
+    /// @param textScale The text scale of the alert content
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = imac 0x49b1b0, win 0x519b0, m1 0x3ff45c;
 
     // virtual void onEnter() = imac 0x49c710, win 0x52e20, m1 0x400970; // might not exist on 2.2081
@@ -4848,13 +4876,21 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x49c420, m1 0x400664, win 0x52b80;
     virtual void registerWithTouchDispatcher() = imac 0x49c6d0, win 0x52dd0, m1 0x400938;
     virtual void keyBackClicked() = win 0x528f0, imac 0x49c130, m1 0x400328;
+    /// Ran when a key is pressed while the alert is active.
+    /// @param key The key pressed
+    /// @param timestamp The timestamp
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = imac 0x49c080, m1 0x400288, win 0x52870;
+    /// Shows the alert
     virtual void show() = m1 0x400794, win 0x52c00, imac 0x49c520;
 
     void incrementForcePrio() = win inline;
     bool init(int opacity) = win 0x51ac0, imac 0x49bea0, m1 0x4000ac;
     bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = imac 0x49b440, m1 0x3ff6ec, win 0x51bd0;
+    /// Callback for when the first button is pressed
+    /// @param sender The sender of the callback
     void onBtn1(cocos2d::CCObject* sender) = win 0x529b0, m1 0x4001c8;
+    /// Callback for when the second button is pressed
+    /// @param sender The sender of the callback
     void onBtn2(cocos2d::CCObject* sender) = win 0x52a10, m1 0x400228;
 
     cocos2d::CCMenu* m_buttonMenu;
