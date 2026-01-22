@@ -19015,14 +19015,14 @@ class SongInfoLayer : FLAlertLayer {
     virtual void keyBackClicked() = imac 0x601fc0, win 0x846a0, m1 0x529e78;
 
     bool init(gd::string songName, gd::string artistName, gd::string songURL, gd::string newgroundsURL, gd::string youtubeURL, gd::string facebookURL, int songID, gd::string songTags, int nongType);
-    void onBPM(cocos2d::CCObject* sender) = m1 0x529944;
+    void onBPM(cocos2d::CCObject* sender) = win 0x494500, m1 0x529944;
     void onClose(cocos2d::CCObject* sender) = win 0x84670, m1 0x529908;
-    void onDownload(cocos2d::CCObject* sender) = m1 0x52997c;
-    void onFB(cocos2d::CCObject* sender) = m1 0x529a60;
-    void onMenuMusic(cocos2d::CCObject* sender) = m1 0x529aac;
-    void onNG(cocos2d::CCObject* sender) = m1 0x5299c8;
-    void onPracticeMusic(cocos2d::CCObject* sender) = m1 0x529b54;
-    void onYT(cocos2d::CCObject* sender) = m1 0x529a14;
+    void onDownload(cocos2d::CCObject* sender) = win 0x494440, m1 0x52997c;
+    void onFB(cocos2d::CCObject* sender) = win 0x4944d0, m1 0x529a60;
+    void onMenuMusic(cocos2d::CCObject* sender) = win 0x4942b0, m1 0x529aac;
+    void onNG(cocos2d::CCObject* sender) = win 0x494470, m1 0x5299c8;
+    void onPracticeMusic(cocos2d::CCObject* sender) = win 0x494380, m1 0x529b54;
+    void onYT(cocos2d::CCObject* sender) = win 0x4944a0, m1 0x529a14;
     void showCustomMusicUnlockInfo() = win 0x493c50, imac 0x601db0, m1 0x529be0;
 
     gd::string m_downloadLink;
