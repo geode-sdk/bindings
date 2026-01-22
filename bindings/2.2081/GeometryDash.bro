@@ -14831,7 +14831,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void gravityEffectFinished() = win 0x3b23a0, imac 0xb9720, m1 0xa6e68;
     void incrementJumps() = win inline, imac 0xbf230;
     bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5b00, m1 0x9af50;
-    bool isGameplayActive() = win inline, m1 0xae098;
+    bool isGameplayActive() = win inline, m1 0xac1d8;
     void levelComplete() = m1 0x1a99d0, win 0x3a7a80;
     void loadActiveSaveObjects(gd::vector<SavedActiveObjectState>& activeObjects, gd::vector<SavedSpecialObjectState>& specialObjects) = win inline, imac 0xbda50, m1 0xaa700;
     void loadDefaultColors() = win 0x3b1c50, imac 0xb1bf0, m1 0x9ff78;
