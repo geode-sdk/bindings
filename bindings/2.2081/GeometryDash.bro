@@ -6743,7 +6743,7 @@ class GameStatsManager : cocos2d::CCNode {
     void createSpecialChestItems() = win 0x1e5c60, imac 0x5cd20;
     void createStoreItems() = win 0x1d1800;
     void dataLoaded(DS_Dictionary* dict) = win 0x1f24a0, imac 0x653fc0, m1 0x59174;
-    void encodeDataTo(DS_Dictionary* dict) = m1 0x7e8e0;
+    void encodeDataTo(DS_Dictionary* dict) = win 0x1f21a0, m1 0x7e8e0;
     void firstSetup() = win 0x1f1ab0, m1 0x7e2b0;
     void generateItemUnlockableData() = win 0x1d1310, m1 0x57a00;
     int getAwardedCurrencyForLevel(GJGameLevel* level) = win 0x1e0720, m1 0x62724;
@@ -7174,8 +7174,8 @@ class GJAccountManager : cocos2d::CCNode {
     void linkToAccount(gd::string username, gd::string gjp2, int accountID, int userID) = win 0x2038a0, imac 0xd3850, m1 0xba734;
     void loginAccount(gd::string username, gd::string gjp2) = win 0x200b00, m1 0xb911c;
     void onBackupAccountCompleted(gd::string response, gd::string tag) = win 0x201ea0, imac 0xd0440, m1 0xb7654;
-    void onGetAccountBackupURLCompleted(gd::string response, gd::string tag) = m1 0xb8604;
-    void onGetAccountSyncURLCompleted(gd::string response, gd::string tag) = m1 0xb882c;
+    void onGetAccountBackupURLCompleted(gd::string response, gd::string tag) = win 0x2016a0, m1 0xb8604;
+    void onGetAccountSyncURLCompleted(gd::string response, gd::string tag) = win 0x2025f0, m1 0xb882c;
     void onLoginAccountCompleted(gd::string response, gd::string tag) = win 0x200f60, imac 0xd00a0, m1 0xb72f8;
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response);
     void onRegisterAccountCompleted(gd::string response, gd::string tag) = win 0x200970, imac 0xcffe0, m1 0xb721c;
