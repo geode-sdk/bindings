@@ -5044,7 +5044,7 @@ class cocos2d::CCTransitionRotoZoom : cocos2d::CCTransitionScene {
 class cocos2d::CCTransitionScene : cocos2d::CCScene {
     // CCTransitionScene(cocos2d::CCTransitionScene const&);
     CCTransitionScene() = imac 0xd46e0, m1 0xbb454;
-    virtual ~CCTransitionScene() = imac 0xd9890, m1 0xbb494;
+    virtual ~CCTransitionScene() = imac 0xd4720, m1 0xbb494;
 
     static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*);
 
