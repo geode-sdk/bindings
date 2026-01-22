@@ -45,7 +45,7 @@ SFXBrowser* SFXBrowser::create(int id) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 void SFXBrowser::musicActionFinished(GJMusicAction action) {}
 #endif
 

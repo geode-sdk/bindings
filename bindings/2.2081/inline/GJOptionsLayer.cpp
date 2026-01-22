@@ -61,7 +61,7 @@ cocos2d::CCPoint GJOptionsLayer::nextPosition(int page) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 void GJOptionsLayer::didToggleGV(gd::string variable) {}
 #endif
 

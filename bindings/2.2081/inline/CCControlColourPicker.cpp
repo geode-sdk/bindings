@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 
-#if 0
+#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 cocos2d::extension::CCControlColourPicker::CCControlColourPicker() {
     m_colourPicker = nullptr;
     m_huePicker = nullptr;
@@ -8,11 +8,13 @@ cocos2d::extension::CCControlColourPicker::CCControlColourPicker() {
     m_colorTarget = nullptr;
     m_delegate = nullptr;
 }
+#endif
 
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 cocos2d::extension::CCControlColourPicker::~CCControlColourPicker() {}
 #endif
 
-#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MAC) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 cocos2d::ccColor3B const& cocos2d::extension::CCControlColourPicker::getColorValue() const  {
     return m_rgb;
 }

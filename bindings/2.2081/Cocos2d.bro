@@ -1281,11 +1281,11 @@ class cocos2d::CCEGLView {
     [[missing(win, android)]]
     virtual bool setContentScaleFactor(float) = imac 0x5036b0, m1 0x45b350;
     [[missing(android, ios)]]
-    virtual void setViewPortInPoints(float, float, float, float) = m1 0x45b420;
+    virtual void setViewPortInPoints(float, float, float, float) = m1 0x45b420, imac 0x503800;
     [[missing(android, ios)]]
-    virtual void setScissorInPoints(float, float, float, float) = m1 0x45b4c8;
+    virtual void setScissorInPoints(float, float, float, float) = m1 0x45b4c8, imac 0x5038f0;
     [[missing(win, android, ios)]]
-    virtual void setMultiTouchMask(bool) = imac 0x5039e0;
+    virtual void setMultiTouchMask(bool) = m1 0x45b570, imac 0x5039e0;
 
     [[missing(android, mac, ios)]]
     bool initGlew();
@@ -1620,7 +1620,7 @@ class cocos2d::CCGridAction : cocos2d::CCActionInterval {
 [[link(win, android)]]
 class cocos2d::CCGridBase : cocos2d::CCObject {
 
-    virtual ~CCGridBase();
+    virtual ~CCGridBase() = m1 0x43edf8, imac 0x4e3840;
 
     static cocos2d::CCGridBase* create(cocos2d::CCSize const&) = imac 0x4e3500, m1 0x43eab0;
     static cocos2d::CCGridBase* create(cocos2d::CCSize const&, cocos2d::CCTexture2D*, bool) = imac 0x4e36b0, m1 0x43ec68;
@@ -1751,7 +1751,7 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // void setBlockRepeat(bool);
     // CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
     CCKeyboardDispatcher() = m1 0x1b0168;
-    virtual ~CCKeyboardDispatcher();
+    virtual ~CCKeyboardDispatcher() = m1 0x1b01e0, imac 0x2032d0;
 
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = m1 0x1b07d0;
 
@@ -2339,8 +2339,7 @@ class cocos2d::CCMenuItemImage : cocos2d::CCMenuItemSprite {
 [[link(win, android)]]
 class cocos2d::CCMenuItemLabel : cocos2d::CCMenuItem {
 
-    [[since("until 4.10.1")]]
-    ~CCMenuItemLabel() = imac inline, m1 inline;
+    ~CCMenuItemLabel() = m1 0x340b2c, imac 0x3bef50;
 
     static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*);
     static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
@@ -4220,7 +4219,7 @@ class cocos2d::CCString : cocos2d::CCObject {
     virtual bool isEqual(cocos2d::CCObject const*) = imac 0x7ab2c0, m1 0x6b1d7c;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = imac 0x7ab730, m1 0x6b216c;
 
-    bool boolValue() const;
+    bool boolValue() const = m1 0x6b1bec, imac 0x7ab140;
     int compare(char const*) const = imac 0x7ab1a0, m1 0x6b1c60, ios inline;
     double doubleValue() const;
     float floatValue() const;
@@ -4236,7 +4235,7 @@ class cocos2d::CCString : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCTargetedAction : cocos2d::CCActionInterval {
     CCTargetedAction() = m1 0x33eb28;
-    virtual ~CCTargetedAction();
+    virtual ~CCTargetedAction() = m1 0x33eb50, imac 0x3bcbe0;
 
     static cocos2d::CCTargetedAction* create(cocos2d::CCNode*, cocos2d::CCFiniteTimeAction*) = m1 0x33ec2c;
 
@@ -4592,7 +4591,7 @@ class cocos2d::CCTMXLayer : cocos2d::CCSpriteBatchNode {
 [[link(win, android)]]
 class cocos2d::CCTMXLayerInfo : cocos2d::CCObject {
     CCTMXLayerInfo() = m1 0x42b9bc;
-    virtual ~CCTMXLayerInfo();
+    virtual ~CCTMXLayerInfo() = m1 0x42ba74, imac 0x4ccdc0;
 
     virtual cocos2d::CCDictionary* getProperties() = imac 0x4ccf10, m1 0x42bbe4;
     virtual void setProperties(cocos2d::CCDictionary*) = imac 0x4ccf20, m1 0x42bbec;
@@ -4758,7 +4757,7 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
 [[link(win, android)]]
 class cocos2d::CCTouchHandler : cocos2d::CCObject {
 
-    virtual ~CCTouchHandler();
+    virtual ~CCTouchHandler() = m1 0x3e740c, imac 0x4812f0;
 
     static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
 
@@ -5315,7 +5314,7 @@ class cocos2d::extension::CCArrayForObjectSorting : cocos2d::CCArray {
 [[link(win, android)]]
 class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
     CCControl() = m1 0x2ddf3c;
-    virtual ~CCControl();
+    virtual ~CCControl() = m1 0x2de198, imac 0x3515c0;
 
     static cocos2d::extension::CCControl* create() = m1 0x2de004, ios inline;
 
@@ -5847,7 +5846,7 @@ class cocos2d::ZipUtils {
 
 [[link(win, android)]]
 class DS_Dictionary {
-    DS_Dictionary() = m1 0x13f8f8;
+    DS_Dictionary() = m1 0x13f8f8, imac 0x179900;
 
     static void copyFile(char const*, char const*);
 
@@ -5928,8 +5927,8 @@ class ObjectDecoder : cocos2d::CCNode {
 
 [[link(win, android)]]
 class pugi::xml_document : pugi::xml_node {
-    xml_document();
-    ~xml_document() = m1 0x562e60;
+    xml_document() = m1 0x562d10, imac 0x641250;
+    ~xml_document() = m1 0x562e60, imac 0x641390;
 }
 
 [[link(android)]]

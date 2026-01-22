@@ -723,7 +723,7 @@ float EditorUI::xPosFromValue(float value) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MAC) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 EditorUI* EditorUI::getUI() { return this; }
 #endif
 
