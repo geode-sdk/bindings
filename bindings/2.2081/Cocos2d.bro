@@ -5856,7 +5856,7 @@ class DS_Dictionary {
     void checkCompatibility();
     gd::string cleanStringWhiteSpace(gd::string const&);
     cocos2d::CCObject* decodeObjectForKey(char const*, bool, int);
-    gd::vector<gd::string> getAllKeys() = imac 0x2d0b00;
+    gd::vector<gd::string> getAllKeys();
     cocos2d::CCArray* getArrayForKey(char const*, bool) = imac 0x180a90, m1 0x145dfc;
     bool getBoolForKey(char const*) = m1 0x143204;
     cocos2d::CCDictionary* getDictForKey(char const*, bool) = m1 0x146b94;
@@ -5873,7 +5873,7 @@ class DS_Dictionary {
     gd::string getStringForKey(char const*) = m1 0x14341c;
     gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
     cocos2d::CCPoint getVec2ForKey(char const*);
-    bool loadRootSubDictFromCompressedFile(char const*) = imac 0x214c80, m1 0x520c90;
+    bool loadRootSubDictFromCompressedFile(char const*);
     bool loadRootSubDictFromFile(char const*);
     bool loadRootSubDictFromString(gd::string const&) = m1 0x141010;
     bool rectFromString(gd::string const&, cocos2d::CCRect&);
