@@ -168,7 +168,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
     // virtual ~AchievementBar();
     AchievementBar() = inline;
 
-    static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest) = win inline, imac 0x618bd0, m1 0x53cf08;
+    static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest) = win 0x3abe0, imac 0x618bd0, m1 0x53cf08;
 
     virtual void setOpacity(unsigned char opacity) = win 0x81ef0, imac 0x61a530, m1 0x53e7d0;
 
