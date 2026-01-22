@@ -1939,7 +1939,7 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
     void determineStartValues() = win inline, imac 0x286740, m1 0x227f38;
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = imac 0x285d60, m1 0x2275a8, win 0x8aa40;
     void onClose(cocos2d::CCObject* sender) = win 0x8bb40, imac 0x286810, m1 0x227ff0;
-    void onDynamicBlock(cocos2d::CCObject* sender) = imac 0x286cd0;
+    void onDynamicBlock(cocos2d::CCObject* sender) = win 0x8b5a0, imac 0x286cd0;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x8b650, imac 0x286a90, m1 0x228228;
     void onNextItemID(cocos2d::CCObject* sender);
     void updateEditorLabel() = win 0x8b950, m1 0x228728;
@@ -10362,7 +10362,7 @@ class GJSongBrowser : GJDropDownLayer, FLAlertLayerProtocol, TableViewCellDelega
     virtual int getSelectedCellIdx() = win 0x2b7c60, imac 0x5ff6f0, m1 0x527998;
 
     void loadPage(int page) = win 0x2b7770, imac 0x5fed80, m1 0x5270e8;
-    void onDeleteAll(cocos2d::CCObject* sender) = imac 0x5ff3b0;
+    void onDeleteAll(cocos2d::CCObject* sender) = win 0x2b7a20, imac 0x5ff3b0;
     void onNextPage(cocos2d::CCObject* sender) = win 0x2b7a00, imac 0x5ff390, m1 0x527670;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x2b7a10, imac 0x5ff370, m1 0x527664;
     void setupPageInfo(int itemCount, int pageStartIdx, int pageEndIdx) = win inline, m1 0x5277e0;
