@@ -17009,16 +17009,16 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 
     bool init(CountTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x4223b0, imac 0x2d3180;
     void onCountType(cocos2d::CCObject* sender) = win 0x4237e0, imac 0x5e9f40, m1 0x514050;
-    void onEnableGroup(cocos2d::CCObject* sender);
+    void onEnableGroup(cocos2d::CCObject* sender) = win 0x419330;
     void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x41c250, m1 0x513b9c;
     void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x423450, m1 0x513c2c;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x41c290;
-    void updateCountTextInputLabel();
-    void updateItemID();
-    void updateItemIDInputLabel();
-    void updateTargetCount();
-    void updateTargetID();
-    void updateTargetIDInputLabel();
+    void updateCountTextInputLabel() = win 0x419b80;
+    void updateItemID() = win 0x419c00;
+    void updateItemIDInputLabel() = win 0x41c5a0;
+    void updateTargetCount() = win 0x41c770;
+    void updateTargetID() = win 0x423710;
+    void updateTargetIDInputLabel() = win 0x41c620;
 
     CCTextInputNode* m_itemIDInput;
     CCTextInputNode* m_targetIDInput;
@@ -17535,10 +17535,10 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     void sliderChanged(cocos2d::CCObject* sender) = m1 0x510cbc;
     void updateChance() = m1 0x510fc8;
     void updateChanceLabel(bool decimals);
-    void updateTargetID() = m1 0x511038;
-    void updateTargetID2();
-    void updateTextInputLabel();
-    void updateTextInputLabel2();
+    void updateTargetID() = win 0x4411f0, m1 0x511038;
+    void updateTargetID2() = win 0x4412c0;
+    void updateTextInputLabel() = win 0x440e90;
+    void updateTextInputLabel2() = win 0x441040;
 
     CCTextInputNode* m_chanceInput;
     Slider* m_chanceSlider;
@@ -17942,7 +17942,7 @@ class SetupTimeWarpPopup : SetupTriggerPopup {
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x463460, m1 0x45ab14;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x4639e0, m1 0x2f4ea4;
     void updateTimeWarp() = win inline, m1 0x45b140;
-    void updateTimeWarpLabel() = m1 0x45b00c;
+    void updateTimeWarpLabel() = win 0x463ab0, m1 0x45b00c;
 
     cocos2d::CCLabelBMFont* m_timeWarpLabel;
     Slider* m_timeWarpSlider;
