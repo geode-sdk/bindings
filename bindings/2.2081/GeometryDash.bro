@@ -20020,10 +20020,10 @@ class UILayer : cocos2d::CCLayerColor {
     void handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) = win 0x4cd830;
     bool init(GJBaseGameLayer* layer) = imac 0x4c7c00, m1 0x426d68, win 0x4ccb00;
     bool isJumpButtonPressed(bool player1) = win inline, imac 0x4c99f0;
-    void onCheck(cocos2d::CCObject* sender) = m1 0x42758c;
-    void onDeleteCheck(cocos2d::CCObject* sender) = m1 0x4275e0;
+    void onCheck(cocos2d::CCObject* sender) = win 0x4ce060, m1 0x42758c;
+    void onDeleteCheck(cocos2d::CCObject* sender) = win 0x4ce0e0, m1 0x4275e0;
     void onPause(cocos2d::CCObject* sender) = win 0x4cdf50, m1 0x427540;
-    bool processUINodesTouch(GJUITouchEvent event, cocos2d::CCTouch* touch) = m1 0x4289bc;
+    bool processUINodesTouch(GJUITouchEvent event, cocos2d::CCTouch* touch) = win 0x4ce520, m1 0x4289bc;
     bool processUINodeTouch(GJUITouchEvent event, int touchID, cocos2d::CCPoint position, GJUINode* node) = win 0x4ce5f0;
     void refreshDpad() = win inline, imac 0x4c8840, m1 0x427924;
     void resetAllButtons() = win inline;
