@@ -18728,7 +18728,7 @@ class ShareLevelLayer : FLAlertLayer {
     CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, m1 0x223350;
     bool init(GJGameLevel* level) = win 0x48eec0, imac 0x53fa90;
     void onClose(cocos2d::CCObject* sender) = win 0x84670, imac 0x2811f0, m1 0x2230dc;
-    void onSettings(cocos2d::CCObject* sender) = m1 0x223310;
+    void onSettings(cocos2d::CCObject* sender) = win 0x490120, m1 0x223310;
     void onShare(cocos2d::CCObject* sender) = win 0x490270;
     void selectRating(cocos2d::CCObject* sender) = win 0x48ff90, m1 0x223418;
     void setupStars() = win 0x48fb80;
@@ -18751,8 +18751,8 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
     bool init(GJGameLevel* level) = win 0x4910e0;
     void onClose(cocos2d::CCObject* sender) = win 0x491e20;
     void onUnlisted(cocos2d::CCObject* sender) = win 0x491b00, imac 0x2830a0, m1 0x224d70;
-    void onUnlistedFriendsOnly(cocos2d::CCObject* sender) = imac 0x283290, m1 0x224f2c;
-    void updateSettingsState();
+    void onUnlistedFriendsOnly(cocos2d::CCObject* sender) = win 0x491d20, imac 0x283290, m1 0x224f2c;
+    void updateSettingsState() = win 0x491d40;
 
     cocos2d::CCLabelBMFont* m_passwordLabel;
     GJGameLevel* m_level;
@@ -18774,7 +18774,7 @@ class ShareListLayer : FLAlertLayer {
     void onInfo(cocos2d::CCObject* sender) = win 0x30acc0, imac 0x363140, m1 0x2ee0c8;
     void onShare(cocos2d::CCObject* sender) = win 0x30af80, m1 0x2edfb0;
     void onUnlisted(cocos2d::CCObject* sender) = win 0x30ae30, imac 0x3631f0, m1 0x2ee184;
-    void updateUnlistedF();
+    void updateUnlistedF() = win 0x30aea0;
 
     GJLevelList* m_list;
     CCMenuItemToggler* m_friendsOnlyToggler;
