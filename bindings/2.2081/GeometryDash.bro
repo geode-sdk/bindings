@@ -13149,7 +13149,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     void onPrevPage(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender) = win 0x37a5b0, m1 0x6a9458;
     const char* pageKey(int page) = win inline, m1 0x6aa0f0, ios inline;
-    void updateFPSButtons() = m1 0x6aa168;
+    void updateFPSButtons() = win 0x37af50, m1 0x6aa168;
 
     int m_page;
     int m_toggleCount;
@@ -13290,7 +13290,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 
     bool init(int songID, GJSongType songType) = win 0x3388b0;
     void onArtistFilters(cocos2d::CCObject* sender) = win 0x33a9e0;
-    void onClearSearch(cocos2d::CCObject* sender) = imac 0x60ebc0;
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x33a710, imac 0x60ebc0;
     void onClose(cocos2d::CCObject* sender) = win 0x33aad0, m1 0x534360;
     void onPage(cocos2d::CCObject* sender) = win 0x33a660, imac 0x60e990, m1 0x5343ec;
     void onPlaybackControl(cocos2d::CCObject* sender) = win 0x339a60, imac 0x60f140, m1 0x534be0;
