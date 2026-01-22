@@ -150,7 +150,8 @@ if (WIN32)
 		target_link_options(${PROJECT_NAME} PRIVATE "-Wl,/errorlimit:0")
 	endif()
 else()
-	target_link_options(${PROJECT_NAME} PRIVATE "-Wl,--error-limit=0")
+	# Doesnt work on macos
+	# target_link_options(${PROJECT_NAME} PRIVATE "-Wl,--error-limit=0")
 endif()
 
 file(GLOB GEODE_INLINE_SOURCES ${GEODE_MEMBER_TEST_BINDINGS_PATH}/inline/*.cpp)
