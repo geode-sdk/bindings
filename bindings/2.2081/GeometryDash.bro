@@ -16565,11 +16565,11 @@ class SetupCameraModePopup : SetupTriggerPopup {
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x414140;
     void onEditCameraSettings(cocos2d::CCObject* sender) = win 0x414e60;
     void onUnboundMode(cocos2d::CCObject* sender) = win 0x414db0, m1 0x4c17ac;
-    void sliderChanged(cocos2d::CCObject* sender);
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x414fe0;
     void updateCameraEasing() = win 0x4150f0, m1 0x40d100;
     void updateCameraEasingLabel() = win 0x415090;
-    void updateCameraPadding() = m1 0x40d178;
-    void updateCameraPaddingLabel();
+    void updateCameraPadding() = win 0x4151f0, m1 0x40d178;
+    void updateCameraPaddingLabel() = win 0x415180;
     void updateItemVisibility() = win 0x414f10;
 
     cocos2d::CCArray* m_freeModeObjects;
@@ -16725,20 +16725,20 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
     virtual void textChanged(CCTextInputNode* node) = imac 0x396d70, m1 0x31cbd0, win 0x419790;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x418330;
-    void onActivateOnExit(cocos2d::CCObject* sender);
-    void onEnableGroup(cocos2d::CCObject* sender);
+    void onActivateOnExit(cocos2d::CCObject* sender) = win 0x419630;
+    void onEnableGroup(cocos2d::CCObject* sender) = win 0x419330;
     void onItemID2Arrow(cocos2d::CCObject* sender) = win 0x4196c0, m1 0x31c0ec;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x419700, m1 0x31c04c;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x419740, m1 0x31c18c;
     void onTargetP1(cocos2d::CCObject* sender) = win 0x4193c0;
     void onTargetP2(cocos2d::CCObject* sender) = win 0x419480;
     void onTargetPP(cocos2d::CCObject* sender) = win 0x419540;
-    void updateItemID();
-    void updateItemID2() = m1 0x31ca4c;
+    void updateItemID() = win 0x419c00;
+    void updateItemID2() = win 0x419ca0, m1 0x31ca4c;
     void updateItemID2InputLabel() = win 0x419ae0, m1 0x31c374;
     void updateItemIDInputLabel() = win 0x419a10, m1 0x31c234;
-    void updateTargetID();
-    void updateTargetIDInputLabel();
+    void updateTargetID() = win 0x419d40;
+    void updateTargetIDInputLabel() = win 0x419b80;
 
     CCTextInputNode* m_blockAInput;
     CCTextInputNode* m_blockBInput;
@@ -16763,18 +16763,18 @@ class SetupCountTriggerPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x2bcf30, m1 0x25968c, win 0x41c800;
     virtual void textChanged(CCTextInputNode* node) = imac 0x2bcce0, m1 0x25949c, win 0x41c320;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
-    void onEnableGroup(cocos2d::CCObject* sender);
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41afb0;
+    void onEnableGroup(cocos2d::CCObject* sender) = win 0x419330;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x41c290;
-    void onMultiActivate(cocos2d::CCObject* sender);
+    void onMultiActivate(cocos2d::CCObject* sender) = win 0x41c1c0;
     void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x41c250, m1 0x258d10;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x41c2e0, imac 0x2bc510, m1 0x258da0;
-    void updateCountTextInputLabel();
-    void updateItemID() = m1 0x259398;
-    void updateItemIDInputLabel();
-    void updateTargetCount();
+    void updateCountTextInputLabel() = win 0x419b80;
+    void updateItemID() = win 0x419c00, m1 0x259398;
+    void updateItemIDInputLabel() = win 0x41c5a0;
+    void updateTargetCount() = win 0x41c770;
     void updateTargetID() = win 0x41c6a0, m1 0x259418;
-    void updateTargetIDInputLabel();
+    void updateTargetIDInputLabel() = win 0x41c620;
 
     CCTextInputNode* m_itemIDInput;
     CCTextInputNode* m_targetIDInput;
@@ -16808,12 +16808,12 @@ class SetupEndPopup : SetupTriggerPopup {
     virtual void textChanged(CCTextInputNode* node) = imac 0x669a20, m1 0x5887e0, win 0x41d830;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x41cbc0, m1 0x4e58ec;
-    void onLockY(cocos2d::CCObject* sender);
+    void onLockY(cocos2d::CCObject* sender) = win 0x41d750;
     void onMultiActivate(cocos2d::CCObject* sender) = win 0x41d690, imac 0x6696c0, m1 0x588538;
-    void onReversed(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
-    void updateTargetID() = m1 0x588740;
-    void updateTextInputLabel();
+    void onReversed(cocos2d::CCObject* sender) = win 0x41d6c0;
+    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x41d7e0;
+    void updateTargetID() = win 0x41d9a0, m1 0x588740;
+    void updateTextInputLabel() = win 0x41d920;
 
     CCTextInputNode* m_groupIDInput;
     bool m_reversed;
@@ -17124,15 +17124,15 @@ class SetupMGTrigger : SetupTriggerPopup {
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x427280;
     void onEasing(cocos2d::CCObject* sender) = win 0x416e80;
-    void onEasingRate(cocos2d::CCObject* sender);
+    void onEasingRate(cocos2d::CCObject* sender) = win 0x4169f0;
     int posFromSliderValue(float value) = win inline, ios inline;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x271d20;
     float sliderValueFromPos(int pos) = win inline, imac 0x509b50, m1 0x4614d0, ios inline;
-    void sliderYChanged(cocos2d::CCObject* sender) = m1 0x461478;
-    void toggleEasingRateVisibility();
-    void updateDuration();
-    void updateDurLabel(bool decimals);
-    void updateEasingLabel();
+    void sliderYChanged(cocos2d::CCObject* sender) = win 0x4284b0, m1 0x461478;
+    void toggleEasingRateVisibility() = win 0x416d70;
+    void updateDuration() = win 0x272a00;
+    void updateDurLabel(bool decimals) = win 0x271de0;
+    void updateEasingLabel() = win 0x416b90;
     void updateEasingRateLabel();
     void updateMoveCommandEasing() = win inline;
     void updateMoveCommandEasingRate() = win inline;
