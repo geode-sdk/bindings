@@ -875,7 +875,7 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
 [[link(android), depends(SmartPrefabResult)]]
 class BrowseSmartTemplateLayer : FLAlertLayer {
     BrowseSmartTemplateLayer() = inline;
-    ~BrowseSmartTemplateLayer() = win 0x459d20, m1 0x443464;
+    ~BrowseSmartTemplateLayer() = win 0x459d20, m1 0x443464, imac 0x4e8b20;
 
     static BrowseSmartTemplateLayer* create(GJSmartTemplate* smartTemplate, SmartBrowseFilter browseFilter) = win inline, imac 0x4e8590, m1 0x442ed4;
 
@@ -1017,7 +1017,7 @@ class CCAlertCircle : cocos2d::CCNode {
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
     CCAnimatedSprite() = win 0x3ff20, inline;
-    ~CCAnimatedSprite() = win 0x411b0, m1 0x2dde0c;
+    ~CCAnimatedSprite() = win 0x411b0, m1 0x2dde0c, imac 0x351130;
 
     static CCAnimatedSprite* createWithType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win inline, imac 0x34fe10, m1 0x2dcb8c;
 
@@ -6083,8 +6083,8 @@ class GameManager : GManager {
 
 [[link(android)]]
 class GameObject : CCSpritePlus {
-    GameObject() = win 0x1377e0, m1 0x1a23f4;
-    ~GameObject() = win 0x18b6b0, m1 0x4e5f84;
+    GameObject() = win 0x1377e0, m1 0x1a23f4, imac 0x1f42c0;
+    ~GameObject() = win 0x18b6b0, m1 0x4e5f84, imac 0x59d340;
 
     static GameObject* createWithFrame(char const* name) = win 0x18dc20, imac 0x5a1fc0, m1 0x4e6524;
     static GameObject* createWithKey(int key) = win 0x18b7d0, imac 0x59d460, m1 0x4e605c;
@@ -6709,7 +6709,7 @@ class GameStatsManager : cocos2d::CCNode {
     static GameStatsManager* get() = inline;
     // virtual ~GameStatsManager();
     GameStatsManager() = win 0x1d0ae0;
-    static GameStatsManager* sharedState() = m1 0x4d714, win 0x1d0ef0;
+    static GameStatsManager* sharedState() = imac 0x59fb0, m1 0x4d714, win 0x1d0ef0;
 
     virtual bool init() = win 0x1d1110, imac 0x5a490, m1 0x4da58;
 
@@ -7281,8 +7281,8 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-    GJBaseGameLayer() = win 0x2cfef0, m1 0xac9f4;
-    ~GJBaseGameLayer() = win 0x2057a0, m1 0xea680;
+    GJBaseGameLayer() = win 0x2cfef0, m1 0xac9f4, imac 0xc01e0;
+    ~GJBaseGameLayer() = win 0x2057a0, m1 0xea680, imac 0x10ea70;
 
     static float convertToClosestDirection(float angle, float bound) = win 0x22e8b0, imac 0x1383d0, m1 0x10d79c;
     static gd::string gameEventToString(GJGameEvent event) = win 0x232720, imac 0x14b530, m1 0x11dec0;
@@ -8304,7 +8304,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 [[link(android)]]
 class GJDropDownLayer : cocos2d::CCLayerColor {
     GJDropDownLayer() = win 0x7d230, inline;
-    ~GJDropDownLayer() = win 0x256dd0, m1 0x512178;
+    ~GJDropDownLayer() = win 0x256dd0, m1 0x512178, imac 0x5e7be0;
 
     static GJDropDownLayer* create(const char* title) = win inline, imac 0x5e8480, m1 0x5128f8, ios inline;
     static GJDropDownLayer* create(const char* title, float height, bool noBack) = win inline, imac 0x5e7f40, m1 0x5123d8, ios inline;
@@ -11563,7 +11563,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
     LevelBrowserLayer() = win 0x2c87d0, inline;
-    ~LevelBrowserLayer() = win 0x2c89c0, m1 0x3f01d8;
+    ~LevelBrowserLayer() = win 0x2c89c0, m1 0x3f01d8, imac 0x48ac00;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = win 0x2c8bf0, imac 0x48ae40, m1 0x3f0374;
     static cocos2d::CCScene* scene(GJSearchObject* object) = imac 0x48ae00, win 0x2c8ba0, m1 0x3f0328;
@@ -13497,7 +13497,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 [[link(android)]]
 class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     MusicSearchResult() = win 0x33b880, inline;
-    ~MusicSearchResult() = win inline, m1 0x4e2920;
+    ~MusicSearchResult() = win inline, m1 0x4e2920, imac 0x599040;
 
     static MusicSearchResult* create(GJSongType songType) = win inline, imac 0x599160, m1 0x4e2a54;
 
@@ -16271,7 +16271,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 [[link(android)]]
 class SetTextPopup : FLAlertLayer, TextInputDelegate {
     SetTextPopup() = inline;
-    ~SetTextPopup() = win 0x29cd80, m1 0x24caf0;
+    ~SetTextPopup() = win 0x29cd80, m1 0x24caf0, imac 0x2ae7b0;
 
     static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float offset) = win 0x29ce30, imac 0x2ae370, m1 0x24c738;
 
@@ -18002,7 +18002,7 @@ class SetupTransformPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDelegate, SliderDelegate {
     SetupTriggerPopup() = inline;
-    ~SetupTriggerPopup() = win 0x473a80, m1 0x1de5a0;
+    ~SetupTriggerPopup() = win 0x473a80, m1 0x1de5a0, imac 0x2349a0;
 
     static SetupTriggerPopup* create(float width, float height) = win inline, imac 0x2351d0, m1 0x1deb8c, ios inline;
     static SetupTriggerPopup* create(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background) = win inline, imac 0x234c40, m1 0x1de748, ios inline;
