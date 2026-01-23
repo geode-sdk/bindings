@@ -5427,7 +5427,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJMapPack* getSavedGauntlet(int id) = win inline;
     GJGameLevel* getSavedGauntletLevel(int id) = win 0x148cb0;
     GJGameLevel* getSavedLevel(GJGameLevel* level) = win inline, imac 0x531600, m1 0x484ce4;
-    GJGameLevel* getSavedLevel(int id) = win 0x148b10;
+    GJGameLevel* getSavedLevel(int id) = win 0x148b10, m1 0x48a508;
     GJLevelList* getSavedLevelList(int listID) = win inline;
     cocos2d::CCArray* getSavedLevelLists(int folder) = win 0x147610, m1 0x488028;
     cocos2d::CCArray* getSavedLevels(bool favorite, int folder) = win 0x147450;
