@@ -3147,7 +3147,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     void exitDailyNode(DailyLevelNode* node, float delay) = win 0xd0560, imac 0x231a20, m1 0x1db438;
     int getDailyTime() = win inline, m1 0x1dbad8;
     gd::string getDailyTimeString(int timeLeft) = win 0xd0630, imac 0x230f10, m1 0x1da76c;
-    bool init(GJTimedLevelType type) = win 0xce540, imac 0x230240;
+    bool init(GJTimedLevelType type) = win 0xce540, imac 0x230240, m1 0x1d97bc;
     void onClose(cocos2d::CCObject* sender) = win 0x86990, m1 0x1da6b4;
     void onTheSafe(cocos2d::CCObject* sender) = win 0xd1fe0, imac 0x230ea0, m1 0x1da700;
     void refreshDailyPage() = win inline;
