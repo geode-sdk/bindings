@@ -11032,7 +11032,7 @@ class HardStreak : cocos2d::CCDrawNode {
 [[link(android)]]
 class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
     HSVLiveOverlay() = inline;
-    ~HSVLiveOverlay() = win inline, m1 0x20dc7c, imac 0x26a750;
+    ~HSVLiveOverlay() = win inline, m1 0x20dc7c, imac 0x26a660;
 
     static HSVLiveOverlay* create(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x26a7d0, m1 0x20dd54;
 
@@ -13219,7 +13219,7 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 [[link(android)]]
 class MultilineBitmapFont : cocos2d::CCSprite {
     MultilineBitmapFont() = inline;
-    ~MultilineBitmapFont() = win inline, m1 0x3eeaf8, imac 0x489150;
+    ~MultilineBitmapFont() = win inline, m1 0x3eea94, imac 0x489150;
 
     static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x487050, m1 0x3ecc14;
 
