@@ -6741,7 +6741,7 @@ class GameStatsManager : cocos2d::CCNode {
     void createSecretChestItems() = win inline, imac 0x5cbd0, m1 0x4fa3c;
     void createSecretChestRewards() = win 0x1eaaf0, m1 0x6a574;
     void createSpecialChestItems() = win 0x1e5c60, imac 0x5cd20;
-    void createStoreItems() = win 0x1d1800;
+    void createStoreItems() = win 0x1d1800, m1 0x4db00;
     void dataLoaded(DS_Dictionary* dict) = win 0x1f24a0, imac 0x653fc0, m1 0x59174;
     void encodeDataTo(DS_Dictionary* dict) = win 0x1f21a0, m1 0x7e8e0;
     void firstSetup() = win 0x1f1ab0, m1 0x7e2b0;
@@ -6792,7 +6792,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getTotalCollectedDiamonds() = win 0x1e4150, imac 0x75660, m1 0x66eec;
     bool hasClaimedListReward(GJLevelList* list) = win 0x1e2c00, imac 0x73b90, m1 0x6558c;
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x1e2840, m1 0x651d4;
-    bool hasCompletedDailyLevel(int dailyID) = win 0x1e2ce0;
+    bool hasCompletedDailyLevel(int dailyID) = win 0x1e2ce0, m1 0x659e8;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
     bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0, m1 0x5f0e4;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x1ddf80, imac 0x6d7a0, m1 0x5ef7c;
@@ -6818,7 +6818,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isSecretCoinValid(gd::string key) = win 0x1e00c0, imac 0x70680, m1 0x61dbc;
     bool isSpecialChestLiteUnlockable(gd::string key) = inline;
     bool isSpecialChestUnlocked(gd::string key) = win 0x1ea4f0, imac 0x77410, m1 0x68af8;
-    bool isStoreItemUnlocked(int index);
+    bool isStoreItemUnlocked(int index) = m1 0x58844;
     int keyCostForSecretChest(int id) = win inline, imac 0x76f30, m1 0x68600;
     void linkSpecialChestUnlocks(GJRewardItem* item, gd::string key) = win 0x1e9f90, imac 0x77ef0, m1 0x69684;
     void logCoins() = m1 0x8032c;
