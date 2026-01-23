@@ -952,8 +952,8 @@ class ButtonSprite : cocos2d::CCSprite {
     bool init(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x3ef60;
     void setColor(cocos2d::ccColor3B color) = win inline, imac 0x933c0, m1 0x843bc;
     void setString(char const* text) = imac 0x92ea0, m1 0x83ed4, win 0x3fb50;
-    void updateBGImage(char const* filename) = win 0x3f590, imac 0x93280;
-    void updateSpriteBGSize() = win 0x3f6d0;
+    void updateBGImage(char const* filename) = win 0x3f590, imac 0x93280, m1 0x84278;
+    void updateSpriteBGSize() = win 0x3f6d0, m1 0x836f8;
     void updateSpriteOffset(cocos2d::CCPoint offset) = win inline, imac 0x93390, m1 0x84394;
 
     int m_mode;
@@ -4833,7 +4833,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = imac 0x49c080, m1 0x400288, win 0x52870;
     virtual void show() = m1 0x400794, win 0x52c00, imac 0x49c520;
 
-    void incrementForcePrio() = win inline;
+    void incrementForcePrio() = win inline, m1 0x400180;
     bool init(int opacity) = win 0x51ac0, imac 0x49bea0, m1 0x4000ac;
     bool init(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = imac 0x49b440, m1 0x3ff6ec, win 0x51bd0;
     void onBtn1(cocos2d::CCObject* sender) = win 0x529b0, m1 0x4001c8;
@@ -7229,7 +7229,7 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     virtual void textInputReturn(CCTextInputNode* node) = imac 0x2a1f50, m1 0x2411dc, win 0x7b660;
 
     CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, float width, float scale) = win 0x293ae0, imac 0x2a1220, m1 0x24054c;
-    bool init(int accountID) = win 0x2921e0;
+    bool init(int accountID) = win 0x2921e0, m1 0x23e838;
     void onClose(cocos2d::CCObject* sender) = win 0x294030;
     void onCommentSetting(cocos2d::CCObject* sender) = win 0x293cf0;
     void onFriendRequests(cocos2d::CCObject* sender) = win 0x293d90;
