@@ -13143,7 +13143,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     virtual bool init() = imac 0x7a0ff0, m1 0x6a8378, win 0x378c20;
     virtual void keyBackClicked() = win 0x37b540, imac 0x7a3130, m1 0x6aa3a4;
 
-    void addToggle(char const* label, char const* key, char const* description);
+    void addToggle(char const* label, char const* key, char const* description) = win 0x379720;
     int countForPage(int page) = win 0x379d80;
     void goToPage(int page);
     void incrementCountForPage(int page) = win inline;
