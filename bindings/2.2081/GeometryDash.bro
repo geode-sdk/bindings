@@ -7456,7 +7456,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float getMaxPortalY() = win 0x213770;
     float getMinDistance(cocos2d::CCPoint position, cocos2d::CCArray* objects, float minNear, int mode) = win 0x2429c0, imac 0x15ed70, m1 0x12db24;
     float getMinPortalY() = win 0x213690, imac 0x125670;
-    float getModifiedDelta(float dt) = win 0x2377b0, imac 0x151260, m1 0x122958;
+    double getModifiedDelta(float dt) = win 0x2377b0, imac 0x151260, m1 0x122958;
     cocos2d::CCPoint getMoveTargetDelta(EffectGameObject* object, bool mainObject) = win inline, imac 0x12b940, m1 0x1038f4;
     cocos2d::CCArray* getOptimizedGroup(int groupID) = win inline;
     PlayerObject* getOtherPlayer(PlayerObject* player) = win inline, imac 0x123120;
