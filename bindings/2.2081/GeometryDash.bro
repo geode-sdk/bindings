@@ -253,7 +253,7 @@ class AchievementNotifier : cocos2d::CCNode {
 
     void achievementDisplayFinished() = win 0x3ae20, imac 0x7c2d80, m1 0x6c82c0;
     void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x3abe0, imac 0x7c2c20, m1 0x6c8154;
-    void showNextAchievement() = win 0x3acc0, m1 0x6c81a8;
+    void showNextAchievement() = win 0x3acc0, m1 0x6c81a8, imac 0x6bec08;
     void willSwitchToScene(cocos2d::CCScene* scene) = win inline, imac 0x7c2dd0, m1 0x6c8304;
 
     cocos2d::CCScene* m_nextScene;
@@ -266,7 +266,7 @@ class AchievementsLayer : GJDropDownLayer {
     // virtual ~AchievementsLayer();
     AchievementsLayer() = m1 0x2fd384;
 
-    static AchievementsLayer* create() = win inline, m1 0x2fcbe4;
+    static AchievementsLayer* create() = win inline, m1 0x2fcbe4, imac 0x3730b0;
 
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = imac 0x373660, m1 0x2fd0fc, win 0x822b0;
     virtual void customSetup() = imac 0x3731a0, win 0x82000, m1 0x2fcca0;
@@ -13555,13 +13555,13 @@ class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
     virtual void keyBackClicked() = imac 0x218060, m1 0x1c3548, win 0x846a0;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = imac 0x218000, win 0xc63b0, m1 0x1c34f0;
 
-    void onArtists(cocos2d::CCObject* sender) = win 0xc5f90, m1 0x1c3288;
-    void onChanges(cocos2d::CCObject* sender) = win 0xc6250, imac 0x217e90;
-    void onClose(cocos2d::CCObject* sender) = win 0x84670, m1 0x1c324c;
-    void onGuidelines(cocos2d::CCObject* sender) = win 0xc60e0, m1 0x1c32e0;
+    void onArtists(cocos2d::CCObject* sender) = win 0xc5f90, m1 0x1c3288, imac 0x217e00;
+    void onChanges(cocos2d::CCObject* sender) = win 0xc6250, imac 0x217e90, m1 0x1c3328;
+    void onClose(cocos2d::CCObject* sender) = win 0x84670, m1 0x1c324c, imac 0x217dd0;
+    void onGuidelines(cocos2d::CCObject* sender) = win 0xc60e0, m1 0x1c32e0, imac 0x217e50;
     void onInfo(cocos2d::CCObject* sender) = win 0xc6100, imac 0x217f50, m1 0x1c3408;
-    void onNewgrounds(cocos2d::CCObject* sender) = win 0xc5f7a, m1 0x1c32bc;
-    void onSupporter(cocos2d::CCObject* sender) = win 0xc60c0, m1 0x1c3304;
+    void onNewgrounds(cocos2d::CCObject* sender) = win 0xc5f7a, m1 0x1c32bc, imac 0x217e30;
+    void onSupporter(cocos2d::CCObject* sender) = win 0xc60c0, m1 0x1c3304, imac 0x217e70;
 }
 
 [[link(android)]]
@@ -13586,7 +13586,7 @@ class NumberInputLayer : FLAlertLayer {
     // virtual ~NumberInputLayer();
     NumberInputLayer() = inline;
 
-    static NumberInputLayer* create() = win inline, m1 0x3f7134;
+    static NumberInputLayer* create() = win inline, m1 0x3f7134, imac 0x4922c0;
 
     virtual bool init() = imac 0x492420, m1 0x3f7238, win 0x348400;
     virtual void registerWithTouchDispatcher() = imac 0x493330, win 0x52dd0, m1 0x3f80d4;
@@ -14248,7 +14248,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    PlayerObject() = m1 0x39215c;
+    PlayerObject() = m1 0x39215c, imac 0x41dbe0;
     ~PlayerObject() = win 0x3864a0, imac 0x3fa360, m1 0x372f0c;
 
     static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x3866d0, imac 0x3fa640, m1 0x373100;
@@ -14270,7 +14270,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     virtual float getObjectRotation() = m1 0x390694, win 0x3a0670, imac 0x41b910;
     virtual void animationFinished(char const* key) = win 0x3a3960, imac 0x41d690, m1 0x391c6c;
 
-    void activateStreak() = win 0x3a0090;
+    void activateStreak() = win 0x3a0090, imac 0x4033f0, m1 0x37afbc;
     void addAllParticles() = win 0x388670, imac 0x3fcbc0, m1 0x3753fc;
     void addToTouchedRings(RingObject* object) = win inline, imac 0x415800;
     void addToYVelocity(double yVelocity, int type) = inline;
