@@ -3734,7 +3734,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint offsetForKey(int id) = win 0x1269a0, imac 0x35760, m1 0x32430;
     void onAssignNewGroupID() = ios inline;
     void onColorFilter(cocos2d::CCObject* sender) = win 0xe72a0, m1 0x2ee6c;
-    void onCopy(cocos2d::CCObject* sender) = win 0xdcd30, m1 0x286d4;
+    void onCopy(cocos2d::CCObject* sender) = win 0x113190, m1 0x286d4;
     void onCopyState(cocos2d::CCObject* sender) = win 0x114360;
     bool onCreate() = win 0x10f3f0, imac 0x2e160, m1 0x2b220;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x10ef60, imac 0x347d0, m1 0x31564;
@@ -3756,9 +3756,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onGroupIDFilter(cocos2d::CCObject* sender) = win 0xe7150, m1 0x2ed40;
     void onGroupSticky(cocos2d::CCObject* sender) = win 0x1128e0, m1 0xb30c;
     void onGroupUp(cocos2d::CCObject* sender) = win 0x11f490, imac 0x2c5c0;
-    void onLockLayer(cocos2d::CCObject* sender) = win 0x112960, m1 0x29970;
+    void onLockLayer(cocos2d::CCObject* sender) = win 0x11f620, m1 0x29970;
     void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe4030, imac 0x30820, m1 0x2d7ec;
-    void onPaste(cocos2d::CCObject* sender) = win 0xdcd50, m1 0x286dc;
+    void onPaste(cocos2d::CCObject* sender) = win 0x113320, m1 0x286dc;
     void onPasteColor(cocos2d::CCObject* sender) = win 0x114570, m1 0x29738;
     void onPasteInPlace(cocos2d::CCObject* sender) = win inline, m1 0x36714, ios inline;
     void onPasteState(cocos2d::CCObject* sender) = win 0x1143e0, m1 0x296e4;
@@ -7231,9 +7231,9 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, float width, float scale) = win 0x293ae0, imac 0x2a1220, m1 0x24054c;
     bool init(int accountID) = win 0x2921e0;
     void onClose(cocos2d::CCObject* sender) = win 0x294030;
-    void onCommentSetting(cocos2d::CCObject* sender) = win 0x293cf0;
+    void onCommentSetting(cocos2d::CCObject* sender) = win 0x293e30;
     void onFriendRequests(cocos2d::CCObject* sender) = win 0x293d90;
-    void onMessageSetting(cocos2d::CCObject* sender) = win 0x293e30;
+    void onMessageSetting(cocos2d::CCObject* sender) = win 0x293cf0;
     void onUpdate(cocos2d::CCObject* sender) = win 0x294070;
     void updateScoreValues() = win 0x294250;
 
@@ -8550,10 +8550,10 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     void updateTargetGroupID2() = win 0x272830;
     void updateTextInputLabel() = win 0x272640;
     void updateTextInputLabel2() = win 0x2726d0;
-    void updateXMod() = win 0x271f30;
-    void updateXModLabel();
-    void updateYMod() = win 0x271fd0, m1 0x271b74;
-    void updateYModLabel();
+    void updateXMod();
+    void updateXModLabel() = win 0x271f30;
+    void updateYMod() = m1 0x271b74;
+    void updateYModLabel() = win 0x271fd0;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
@@ -9643,10 +9643,10 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     void updatePlayerOffset() = win inline, m1 0x2f1dd8;
     void updateTargetGroupID() = win 0x28ccc0;
     void updateTextInputLabel();
-    void updateXMod() = win 0x28c4b0;
-    void updateXModLabel();
-    void updateYMod() = win 0x28c550;
-    void updateYModLabel();
+    void updateXMod();
+    void updateXModLabel() = win 0x28c4b0;
+    void updateYMod();
+    void updateYModLabel() = win 0x28c550;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
@@ -17142,8 +17142,8 @@ class SetupMGTrigger : SetupTriggerPopup {
     void toggleEasingRateVisibility() = win 0x416d70;
     void updateDuration() = win 0x272a00;
     void updateDurLabel(bool decimals) = win 0x271de0;
-    void updateEasingLabel() = win 0x416b90;
-    void updateEasingRateLabel();
+    void updateEasingLabel();
+    void updateEasingRateLabel() = win 0x416b90;
     void updateMoveCommandEasing() = win inline;
     void updateMoveCommandEasingRate() = win inline;
     void updateMoveCommandPosY();
@@ -17437,12 +17437,12 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void sliderChanged(cocos2d::CCObject* sender) = win 0x43bb90, m1 0x330df0;
     void updateColorLabels();
     void updateColorValue() = win inline;
-    void updateCopyColor() = win 0x43bef0, m1 0x332aa4;
+    void updateCopyColor() = win 0x43ce60, m1 0x332aa4;
     void updateCopyColorTextInputLabel();
     void updateFadeInLabel(bool decimals) = win inline;
     void updateFadeInTime() = win 0x43bdd0, m1 0x332b2c;
     void updateFadeOutLabel(bool decimals) = win inline;
-    void updateFadeOutTime() = win 0x43be60, m1 0x332c04;
+    void updateFadeOutTime() = win 0x43bef0, m1 0x332c04;
     void updateGroupMainOnly() = win 0x43b740, m1 0x33270c;
     void updateGroupSecondaryOnly() = win 0x43b8c0, m1 0x3326a0;
     void updateHoldLabel(bool decimals) = win inline;
@@ -17543,8 +17543,8 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x440b60, m1 0x5108e4;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x440b10, m1 0x51083c;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x440a00, m1 0x510cbc;
-    void updateChance() = win 0x440a40, m1 0x510fc8;
-    void updateChanceLabel(bool decimals);
+    void updateChance() = m1 0x510fc8;
+    void updateChanceLabel(bool decimals) = win 0x440a40;
     void updateTargetID() = win 0x4411f0, m1 0x511038;
     void updateTargetID2() = win 0x4412c0;
     void updateTextInputLabel() = win 0x440e90;
