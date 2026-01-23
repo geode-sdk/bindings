@@ -5,7 +5,7 @@
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() = inline;
-    ~AccountHelpLayer() = win inline, m1 0xb54d4;
+    ~AccountHelpLayer() = win inline, m1 0xb54d4, imac 0xcdfc0;
 
     static AccountHelpLayer* create() = win inline, m1 0xb5384, imac 0xcde00;
 
@@ -116,7 +116,7 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 [[link(android)]]
 class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterDelegate, FLAlertLayerProtocol {
     AccountRegisterLayer() = inline;
-    ~AccountRegisterLayer() = win inline, m1 0x3f9a48;
+    ~AccountRegisterLayer() = win inline, m1 0x3f9a48, imac 0x494fb0;
 
     static AccountRegisterLayer* create() = win inline, imac 0x4953d0, m1 0x3f9d04;
 
@@ -480,7 +480,7 @@ class AdvFollowSetup {
 [[link(android)]]
 class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePartDelegate {
     AnimatedGameObject() = inline;
-    ~AnimatedGameObject() = win inline, m1 0x16fd60;
+    ~AnimatedGameObject() = win inline, m1 0x16fd60, imac 0x1b6150;
 
     static gd::string animationForID(int type, int id) = win 0x4a5380, imac 0x1b8c80;
     static AnimatedGameObject* create(int id) = win inline, imac 0x1b6300, m1 0x16fedc;
@@ -614,7 +614,7 @@ class ArtTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDelegate {
     AudioAssetsBrowser() = inline;
-    ~AudioAssetsBrowser() = win inline, m1 0x6b9df4;
+    ~AudioAssetsBrowser() = win inline, m1 0x6b9df4, imac 0x7b3be0;
 
     static AudioAssetsBrowser* create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) = win inline, imac 0x7b3d60, m1 0x6b9ed4;
 
@@ -693,7 +693,7 @@ class AudioLineGuideGameObject : EffectGameObject {
 [[link(android)]]
 class BitmapFontCache : cocos2d::CCObject {
     BitmapFontCache() = inline;
-    ~BitmapFontCache() = win inline, m1 0x1cac40;
+    ~BitmapFontCache() = win inline, m1 0x1cac40, imac 0x21ff40;
 
     static void purgeSharedFontCache() = win inline, m1 0x1cac14;
     static BitmapFontCache* sharedFontCache() = win inline, m1 0x1cab70;
@@ -875,7 +875,7 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
 [[link(android), depends(SmartPrefabResult)]]
 class BrowseSmartTemplateLayer : FLAlertLayer {
     BrowseSmartTemplateLayer() = inline;
-    ~BrowseSmartTemplateLayer() = win 0x459d20, m1 0x443464;
+    ~BrowseSmartTemplateLayer() = win 0x459d20, m1 0x443464, imac 0x4e8b20;
 
     static BrowseSmartTemplateLayer* create(GJSmartTemplate* smartTemplate, SmartBrowseFilter browseFilter) = win inline, imac 0x4e8590, m1 0x442ed4;
 
@@ -1017,7 +1017,7 @@ class CCAlertCircle : cocos2d::CCNode {
 [[link(android)]]
 class CCAnimatedSprite : cocos2d::CCSprite {
     CCAnimatedSprite() = win 0x3ff20, inline;
-    ~CCAnimatedSprite() = win 0x411b0, m1 0x2dde0c;
+    ~CCAnimatedSprite() = win 0x411b0, m1 0x2dde0c, imac 0x351130;
 
     static CCAnimatedSprite* createWithType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win inline, imac 0x34fe10, m1 0x2dcb8c;
 
@@ -1221,7 +1221,7 @@ class CCIndexPath : cocos2d::CCObject {
 [[link(android)]]
 class CCLightFlash : cocos2d::CCNode {
     CCLightFlash() = inline;
-    ~CCLightFlash() = win inline, m1 0x45be74;
+    ~CCLightFlash() = win inline, m1 0x45be74, imac 0x504440;
 
     static CCLightFlash* create() = win inline, imac 0x503b20, m1 0x45b6ac;
 
@@ -1773,7 +1773,7 @@ class ChallengeNode : cocos2d::CCNode {
 [[link(android)]]
 class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, CurrencyRewardDelegate {
     ChallengesPage() = inline;
-    ~ChallengesPage() = win inline, m1 0x322220;
+    ~ChallengesPage() = win inline, m1 0x322220, imac 0x39cdc0;
 
     static ChallengesPage* create() = win inline, m1 0x322310;
 
@@ -1826,7 +1826,7 @@ class CharacterColorDelegate {
 [[link(android)]]
 class CharacterColorPage : FLAlertLayer {
     CharacterColorPage() = inline;
-    ~CharacterColorPage() = win inline, m1 0x57c6c4;
+    ~CharacterColorPage() = win inline, m1 0x57c6c4, imac 0x65c8f0;
 
     static CharacterColorPage* create() = win inline, m1 0x57c78c;
 
@@ -2152,7 +2152,7 @@ class ColorSelectLiveOverlay : FLAlertLayer {
 [[link(android)]]
 class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelegate, GJSpecialColorSelectDelegate {
     ColorSelectPopup() = inline;
-    ~ColorSelectPopup() = win inline, m1 0x637194;
+    ~ColorSelectPopup() = win inline, m1 0x637194, imac 0x7249b0;
 
     static gd::string colorToHex(cocos2d::ccColor3B color) = win 0x92790, imac 0x729930, m1 0x63b7ac;
     static ColorSelectPopup* create(ColorAction* action) = win inline, imac 0x724e30, m1 0x637478;
@@ -2714,7 +2714,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 [[link(android)]]
 class CurrencySprite : CCSpritePlus {
     CurrencySprite() = inline;
-    ~CurrencySprite() = win inline, m1 0x6b0814;
+    ~CurrencySprite() = win inline, m1 0x6b0814, imac 0x7a9c40;
 
     static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, imac 0x7a7c40, m1 0x6aeb34;
     static CurrencySprite* createWithSprite(cocos2d::CCSprite* sprite) = win 0xa4bc0, m1 0x6af81c;
@@ -3013,7 +3013,7 @@ class CustomSongLayerDelegate {
 [[link(android), depends(GJAssetDownloadAction)]]
 class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProtocol {
     CustomSongWidget() = inline;
-    ~CustomSongWidget() = win inline, m1 0x53e904;
+    ~CustomSongWidget() = win inline, m1 0x53e904, imac 0x61a640;
 
     static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc8230, imac 0x3710b0;
 
@@ -3103,7 +3103,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 [[link(android)]]
 class DailyLevelNode : cocos2d::CCNode, FLAlertLayerProtocol {
     DailyLevelNode() = inline;
-    ~DailyLevelNode() = win inline, m1 0x1dc0dc;
+    ~DailyLevelNode() = win inline, m1 0x1dc0dc, imac 0x2326a0;
 
     static DailyLevelNode* create(GJGameLevel* level, DailyLevelPage* page, bool isNew) = win inline, imac 0x231fd0, m1 0x1dba00;
 
@@ -3240,7 +3240,7 @@ class DialogDelegate {
 [[link(android)]]
 class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     DialogLayer() = inline;
-    ~DialogLayer() = win inline, m1 0x3484d0;
+    ~DialogLayer() = win inline, m1 0x3484d0, imac 0x3c6e40;
 
     static DialogLayer* create(DialogObject* object, int background) = win inline, imac 0x3c7190, m1 0x348710;
     static DialogLayer* createDialogLayer(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0xd3490, imac 0x3c71a0, m1 0x34871c;
@@ -3426,7 +3426,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
     EditLevelLayer() = inline;
-    ~EditLevelLayer() = win inline, m1 0x1a7b4c;
+    ~EditLevelLayer() = win inline, m1 0x1a7b4c, imac 0x1fa290;
 
     static EditLevelLayer* create(GJGameLevel* level) = win inline, m1 0x1a7d60;
     static cocos2d::CCScene* scene(GJGameLevel* level) = imac 0x1fa450, win 0xd52b0, m1 0x1a7c5c;
@@ -3734,7 +3734,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint offsetForKey(int id) = win 0x1269a0, imac 0x35760, m1 0x32430;
     void onAssignNewGroupID() = ios inline;
     void onColorFilter(cocos2d::CCObject* sender) = win 0xe72a0, m1 0x2ee6c;
-    void onCopy(cocos2d::CCObject* sender) = win 0xdcd30, m1 0x286d4;
+    void onCopy(cocos2d::CCObject* sender) = win 0x113190, m1 0x286d4;
     void onCopyState(cocos2d::CCObject* sender) = win 0x114360;
     bool onCreate() = win 0x10f3f0, imac 0x2e160, m1 0x2b220;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x10ef60, imac 0x347d0, m1 0x31564;
@@ -3756,9 +3756,9 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onGroupIDFilter(cocos2d::CCObject* sender) = win 0xe7150, m1 0x2ed40;
     void onGroupSticky(cocos2d::CCObject* sender) = win 0x1128e0, m1 0xb30c;
     void onGroupUp(cocos2d::CCObject* sender) = win 0x11f490, imac 0x2c5c0;
-    void onLockLayer(cocos2d::CCObject* sender) = win 0x112960, m1 0x29970;
+    void onLockLayer(cocos2d::CCObject* sender) = win 0x11f620, m1 0x29970;
     void onNewCustomItem(cocos2d::CCObject* sender) = win 0xe4030, imac 0x30820, m1 0x2d7ec;
-    void onPaste(cocos2d::CCObject* sender) = win 0xdcd50, m1 0x286dc;
+    void onPaste(cocos2d::CCObject* sender) = win 0x113320, m1 0x286dc;
     void onPasteColor(cocos2d::CCObject* sender) = win 0x114570, m1 0x29738;
     void onPasteInPlace(cocos2d::CCObject* sender) = win inline, m1 0x36714, ios inline;
     void onPasteState(cocos2d::CCObject* sender) = win 0x1143e0, m1 0x296e4;
@@ -4866,7 +4866,7 @@ class FLAlertLayerProtocol {
 [[link(android), depends(FMODAudioState), depends(FMODSoundState), depends(FMODMusic), depends(FMODSound), depends(FMODQueuedEffect), depends(FMODQueuedMusic), depends(FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
     FMODAudioEngine() = win 0x53100, inline;
-    ~FMODAudioEngine() = win inline, m1 0x35b4f4;
+    ~FMODAudioEngine() = win inline, m1 0x35b4f4, imac 0x3dc5e0;
 
     static FMODAudioEngine* get() = inline;
     static float pitchForIdx(int index) = win 0x569e0, imac 0x3e35b0, m1 0x360cc8;
@@ -6083,8 +6083,8 @@ class GameManager : GManager {
 
 [[link(android)]]
 class GameObject : CCSpritePlus {
-    GameObject() = win 0x1377e0, m1 0x1a23f4;
-    ~GameObject() = win 0x18b6b0, m1 0x4e5f84;
+    GameObject() = win 0x1377e0, m1 0x1a23f4, imac 0x1f42c0;
+    ~GameObject() = win 0x18b6b0, m1 0x4e5f84, imac 0x59d340;
 
     static GameObject* createWithFrame(char const* name) = win 0x18dc20, imac 0x5a1fc0, m1 0x4e6524;
     static GameObject* createWithKey(int key) = win 0x18b7d0, imac 0x59d460, m1 0x4e605c;
@@ -6709,7 +6709,7 @@ class GameStatsManager : cocos2d::CCNode {
     static GameStatsManager* get() = inline;
     // virtual ~GameStatsManager();
     GameStatsManager() = win 0x1d0ae0;
-    static GameStatsManager* sharedState() = m1 0x4d714, win 0x1d0ef0;
+    static GameStatsManager* sharedState() = imac 0x59fb0, m1 0x4d714, win 0x1d0ef0;
 
     virtual bool init() = win 0x1d1110, imac 0x5a490, m1 0x4da58;
 
@@ -6794,10 +6794,10 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x1e2840, m1 0x651d4;
     bool hasCompletedDailyLevel(int dailyID) = win 0x1e2ce0;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
-    bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0;
+    bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0, m1 0x5f0e4;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x1ddf80, imac 0x6d7a0, m1 0x5ef7c;
     bool hasCompletedMainLevel(int levelID) = win 0x1dde50, imac 0x6d720;
-    bool hasCompletedMapPack(int id);
+    bool hasCompletedMapPack(int id) = m1 0x60104;
     bool hasCompletedOnlineLevel(int id) = imac 0x6d850, m1 0x5f0e4;
     bool hasCompletedStarLevel(GJGameLevel* level) = win 0x1de2a0;
     bool hasPendingUserCoin(char const* key) = win 0x1dfe60;
@@ -6994,7 +6994,7 @@ class GameToolbox {
 [[link(android)]]
 class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     GauntletLayer() = inline;
-    ~GauntletLayer() = win inline, m1 0x318880;
+    ~GauntletLayer() = win inline, m1 0x318880, imac 0x3924c0;
 
     static GauntletLayer* create(GauntletType type) = win inline, imac 0x3929c0, m1 0x318c44;
     static cocos2d::CCScene* scene(GauntletType type) = win 0x1f5df0, m1 0x318b5c;
@@ -7220,7 +7220,7 @@ class GJAccountSettingsDelegate {
 [[link(android)]]
 class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     GJAccountSettingsLayer() = inline;
-    ~GJAccountSettingsLayer() = win inline, m1 0x23e640;
+    ~GJAccountSettingsLayer() = win inline, m1 0x23e640, imac 0x29f020;
 
     static GJAccountSettingsLayer* create(int accountID) = win inline;
 
@@ -7231,9 +7231,9 @@ class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
     CCMenuItemToggler* createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, float width, float scale) = win 0x293ae0, imac 0x2a1220, m1 0x24054c;
     bool init(int accountID) = win 0x2921e0;
     void onClose(cocos2d::CCObject* sender) = win 0x294030;
-    void onCommentSetting(cocos2d::CCObject* sender) = win 0x293cf0;
+    void onCommentSetting(cocos2d::CCObject* sender) = win 0x293e30;
     void onFriendRequests(cocos2d::CCObject* sender) = win 0x293d90;
-    void onMessageSetting(cocos2d::CCObject* sender) = win 0x293e30;
+    void onMessageSetting(cocos2d::CCObject* sender) = win 0x293cf0;
     void onUpdate(cocos2d::CCObject* sender) = win 0x294070;
     void updateScoreValues() = win 0x294250;
 
@@ -7257,7 +7257,7 @@ class GJAccountSyncDelegate {
 [[link(android)]]
 class GJActionManager : cocos2d::CCNode {
     GJActionManager() = inline;
-    ~GJActionManager() = win inline, m1 0x52f924;
+    ~GJActionManager() = win inline, m1 0x52f924, imac 0x609580;
 
     static GJActionManager* create() = win inline, m1 0x52f9dc;
 
@@ -7281,8 +7281,8 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-    GJBaseGameLayer() = win 0x2cfef0, m1 0xac9f4;
-    ~GJBaseGameLayer() = win 0x2057a0, m1 0xea680;
+    GJBaseGameLayer() = win 0x2cfef0, m1 0xac9f4, imac 0xc01e0;
+    ~GJBaseGameLayer() = win 0x2057a0, m1 0xea680, imac 0x10ea70;
 
     static float convertToClosestDirection(float angle, float bound) = win 0x22e8b0, imac 0x1383d0, m1 0x10d79c;
     static gd::string gameEventToString(GJGameEvent event) = win 0x232720, imac 0x14b530, m1 0x11dec0;
@@ -8243,7 +8243,7 @@ class GJColorSetupLayer : FLAlertLayer, ColorSelectDelegate, FLAlertLayerProtoco
 [[link(android)]]
 class GJComment : cocos2d::CCNode {
     GJComment() = inline;
-    ~GJComment() = win inline, m1 0x4b08fc;
+    ~GJComment() = win inline, m1 0x4b08fc, imac 0x561830;
 
     static GJComment* create() = win inline, m1 0x4b09a0;
     static GJComment* create(cocos2d::CCDictionary* dict) = win 0x1752a0, imac 0x550a20, m1 0xa14ac;
@@ -8304,7 +8304,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 [[link(android)]]
 class GJDropDownLayer : cocos2d::CCLayerColor {
     GJDropDownLayer() = win 0x7d230, inline;
-    ~GJDropDownLayer() = win 0x256dd0, m1 0x512178;
+    ~GJDropDownLayer() = win 0x256dd0, m1 0x512178, imac 0x5e7be0;
 
     static GJDropDownLayer* create(const char* title) = win inline, imac 0x5e8480, m1 0x5128f8, ios inline;
     static GJDropDownLayer* create(const char* title, float height, bool noBack) = win inline, imac 0x5e7f40, m1 0x5123d8, ios inline;
@@ -8550,10 +8550,10 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     void updateTargetGroupID2() = win 0x272830;
     void updateTextInputLabel() = win 0x272640;
     void updateTextInputLabel2() = win 0x2726d0;
-    void updateXMod() = win 0x271f30;
-    void updateXModLabel();
-    void updateYMod() = win 0x271fd0, m1 0x271b74;
-    void updateYModLabel();
+    void updateXMod();
+    void updateXModLabel() = win 0x271f30;
+    void updateYMod() = m1 0x271b74;
+    void updateYModLabel() = win 0x271fd0;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
@@ -8615,7 +8615,7 @@ class GJGameLevel : cocos2d::CCNode {
     GJGameLevel* getListSnapshot() = win 0x16db30;
     int getNormalPercent() = win inline, imac 0x52d210, m1 0x4813b8;
     gd::string getSongName() = win 0x16cfb0, imac 0x55c100, m1 0x4abbfc;
-    gd::string getUnpackedLevelDescription() = win 0x170060, m1 0x4a16d8;
+    gd::string getUnpackedLevelDescription() = win 0x170060, m1 0x4aec30;
     void handleStatsConflict(GJGameLevel* level) = win 0x16fb60;
     bool isPlatformer() = win inline, imac 0x536c80, m1 0x489ba0;
     void levelWasAltered() = win inline, imac 0x55b5f0, m1 0x4ab20c;
@@ -9117,7 +9117,7 @@ class GJHttpResult : cocos2d::CCNode {
 [[link(android)]]
 class GJItemIcon : cocos2d::CCSprite {
     GJItemIcon() = inline;
-    ~GJItemIcon() = win inline, m1 0x2fab00;
+    ~GJItemIcon() = win inline, m1 0x2fab00, imac 0x370e40;
 
     static GJItemIcon* create(UnlockType type, int id, cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, bool dark, bool unused, bool noLabel, cocos2d::ccColor3B unlockColor) = win inline, imac 0x370f90, m1 0x2fac04;
     static GJItemIcon* createBrowserItem(UnlockType unlockType, int itemID) = win 0x27a9f0, imac 0x36de50, m1 0x2f7f64, ios inline;
@@ -9643,10 +9643,10 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     void updatePlayerOffset() = win inline, m1 0x2f1dd8;
     void updateTargetGroupID() = win 0x28ccc0;
     void updateTextInputLabel();
-    void updateXMod() = win 0x28c4b0;
-    void updateXModLabel();
-    void updateYMod() = win 0x28c550;
-    void updateYModLabel();
+    void updateXMod();
+    void updateXModLabel() = win 0x28c4b0;
+    void updateYMod();
+    void updateYModLabel() = win 0x28c550;
 
     CCTextInputNode* m_moveTimeInput;
     Slider* m_moveTimeSlider;
@@ -10190,7 +10190,7 @@ class GJShaderState {
 [[link(android)]]
 class GJShopLayer : cocos2d::CCLayer, GJPurchaseDelegate, DialogDelegate, RewardedVideoDelegate {
     GJShopLayer() = inline;
-    ~GJShopLayer() = win inline, m1 0x2b06f0;
+    ~GJShopLayer() = win inline, m1 0x2b06f0, imac 0x322c60;
 
     static GJShopLayer* create(ShopType type) = win inline, imac 0x322f30, m1 0x2b08fc;
     static cocos2d::CCScene* scene(ShopType type) = win 0x2a95b0, m1 0x2b07f8;
@@ -11032,7 +11032,7 @@ class HardStreak : cocos2d::CCDrawNode {
 [[link(android)]]
 class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
     HSVLiveOverlay() = inline;
-    ~HSVLiveOverlay() = win inline, m1 0x20dc7c;
+    ~HSVLiveOverlay() = win inline, m1 0x20dc7c, imac 0x26a660;
 
     static HSVLiveOverlay* create(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x26a7d0, m1 0x20dd54;
 
@@ -11335,7 +11335,7 @@ class KeyframeAnimTriggerObject : EffectGameObject {
 [[link(android)]]
 class KeyframeGameObject : EffectGameObject {
     KeyframeGameObject() = inline;
-    ~KeyframeGameObject() = win inline, m1 0x17dd88;
+    ~KeyframeGameObject() = win inline, m1 0x17dd88, imac 0x1c6630;
 
     static KeyframeGameObject* create() = win inline, imac 0x1c6750, m1 0x17de70;
 
@@ -11563,7 +11563,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
     LevelBrowserLayer() = win 0x2c87d0, inline;
-    ~LevelBrowserLayer() = win 0x2c89c0, m1 0x3f01d8;
+    ~LevelBrowserLayer() = win 0x2c89c0, m1 0x3f01d8, imac 0x48ac00;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = win 0x2c8bf0, imac 0x48ae40, m1 0x3f0374;
     static cocos2d::CCScene* scene(GJSearchObject* object) = imac 0x48ae00, win 0x2c8ba0, m1 0x3f0328;
@@ -12289,7 +12289,7 @@ class LevelOptionsLayer2 : LevelOptionsLayer {
 [[link(android)]]
 class LevelPage : cocos2d::CCLayer, DialogDelegate {
     LevelPage() = inline;
-    ~LevelPage() = win inline, m1 0x3a749c;
+    ~LevelPage() = win inline, m1 0x3a749c, imac 0x435210;
 
     static LevelPage* create(GJGameLevel* level) = win inline, imac 0x432840, m1 0x3a4bcc;
 
@@ -12338,7 +12338,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 [[link(android)]]
 class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DemonFilterDelegate {
     LevelSearchLayer() = inline;
-    ~LevelSearchLayer() = win inline, m1 0x54a8c8;
+    ~LevelSearchLayer() = win inline, m1 0x54a8c8, imac 0x6274d0;
 
     static LevelSearchLayer* create(int type) = win inline, imac 0x627970, m1 0x54abf0;
     static cocos2d::CCScene* scene(int type) = win 0x30c040, m1 0x54aaf8;
@@ -13038,7 +13038,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 [[link(android)]]
 class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
     MoreOptionsLayer() = inline;
-    ~MoreOptionsLayer() = win inline, m1 0x6a2f9c;
+    ~MoreOptionsLayer() = win inline, m1 0x6a2f9c, imac 0x79b670;
 
     static MoreOptionsLayer* create() = win inline, imac 0x79b220;
 
@@ -13090,7 +13090,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 [[link(android)]]
 class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
     MoreSearchLayer() = inline;
-    ~MoreSearchLayer() = win inline, m1 0x54ff40;
+    ~MoreSearchLayer() = win inline, m1 0x54ff40, imac 0x62ccc0;
 
     static MoreSearchLayer* create() = win inline, m1 0x54edb0;
 
@@ -13219,7 +13219,7 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 [[link(android)]]
 class MultilineBitmapFont : cocos2d::CCSprite {
     MultilineBitmapFont() = inline;
-    ~MultilineBitmapFont() = win inline, m1 0x3eeaf8, imac 0x489150;
+    ~MultilineBitmapFont() = win inline, m1 0x3eea94, imac 0x489150;
 
     static MultilineBitmapFont* createWithFont(char const* font, gd::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) = win inline, imac 0x487050, m1 0x3ecc14;
 
@@ -13497,7 +13497,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 [[link(android)]]
 class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     MusicSearchResult() = win 0x33b880, inline;
-    ~MusicSearchResult() = win inline, m1 0x4e2920;
+    ~MusicSearchResult() = win inline, m1 0x4e2920, imac 0x599040;
 
     static MusicSearchResult* create(GJSongType songType) = win inline, imac 0x599160, m1 0x4e2a54;
 
@@ -14373,7 +14373,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void resetCollisionValues() = win inline, imac 0x40d670, m1 0x38372c, ios inline;
     void resetPlayerIcon() = win 0x39b2e0;
     void resetStateVariables() = win inline, imac 0x4128c0, m1 0x388100;
-    void resetStreak();
+    void resetStreak() = win 0x38b5e0;
     void resetTouchedRings(bool removeAll) = win 0x3982e0, imac 0x412940, m1 0x388164;
     int reverseMod() = inline;
     void reversePlayer(EffectGameObject* object) = win 0x398430;
@@ -14391,7 +14391,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x39d3a0, imac 0x3fe080, m1 0x376680;
     void setupStreak() = win 0x3887c0, m1 0x375058;
     void setYVelocity(double velocity, int type) = win 0x388d10, m1 0x374ddc;
-    void spawnCircle();
+    void spawnCircle() = win 0x3975b0;
     void spawnCircle2() = inline;
     void spawnDualCircle() = win 0x397b70, imac 0x413920;
     void spawnFromPlayer(PlayerObject* player, bool flip) = win inline, imac 0x41b760, m1 0x3904fc;
@@ -15294,7 +15294,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 [[link(android)]]
 class RetryLevelLayer : GJDropDownLayer, RewardedVideoDelegate {
     RetryLevelLayer() = inline;
-    ~RetryLevelLayer() = win inline, m1 0x4511f8;
+    ~RetryLevelLayer() = win inline, m1 0x4511f8, imac 0x4f8210;
 
     static RetryLevelLayer* create() = win inline, m1 0x4510a0;
 
@@ -15328,7 +15328,7 @@ class RewardedVideoDelegate {
 [[link(android)]]
 class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
     RewardsPage() = inline;
-    ~RewardsPage() = win inline, m1 0x1c5020;
+    ~RewardsPage() = win inline, m1 0x1c5020, imac 0x219c90;
 
     static RewardsPage* create() = win inline, m1 0x1c533c;
     static char const* getRewardFrame(int type, int state) = win inline, imac 0x21afc0, m1 0x1c60e8, ios inline;
@@ -15544,7 +15544,7 @@ class SecretGame01Layer : cocos2d::CCLayer {
 [[link(android)]]
 class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
     SecretLayer() = inline;
-    ~SecretLayer() = win inline, m1 0x522f34;
+    ~SecretLayer() = win inline, m1 0x522f34, imac 0x5fa460;
 
     static SecretLayer* create() = win inline, m1 0x523230;
     static cocos2d::CCScene* scene() = win inline, m1 0x523144;
@@ -15582,7 +15582,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 [[link(android)]]
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     SecretLayer2() = inline;
-    ~SecretLayer2() = win inline, m1 0x400efc;
+    ~SecretLayer2() = win inline, m1 0x400efc, imac 0x49cc70;
 
     static SecretLayer2* create() = win inline, m1 0x4011bc;
     static cocos2d::CCScene* scene() = win 0x3e2160, m1 0x401178;
@@ -15669,7 +15669,7 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
 [[link(android)]]
 class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     SecretLayer4() = inline;
-    ~SecretLayer4() = win inline, m1 0x3339ec;
+    ~SecretLayer4() = win inline, m1 0x3339ec, imac 0x3b07c0;
 
     static SecretLayer4* create() = win inline, m1 0x333c68;
     static cocos2d::CCScene* scene() = win inline, m1 0x333c24;
@@ -15714,7 +15714,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 [[link(android)]]
 class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate, GJOnlineRewardDelegate {
     SecretLayer5() = inline;
-    ~SecretLayer5() = win inline, m1 0x3e0918;
+    ~SecretLayer5() = win inline, m1 0x3e0918, imac 0x479d20;
 
     static SecretLayer5* create() = win inline, m1 0x3e0a54;
     static cocos2d::CCScene* scene() = win inline, m1 0x3e0a10;
@@ -15812,7 +15812,7 @@ class SecretNumberLayer : cocos2d::CCLayer {
 [[link(android)]]
 class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDelegate {
     SecretRewardsLayer() = inline;
-    ~SecretRewardsLayer() = win inline, m1 0x552ad8;
+    ~SecretRewardsLayer() = win inline, m1 0x552ad8, imac 0x62fc00;
 
     static SecretRewardsLayer* create(bool fromShop) = win inline, m1 0x552d34;
     static cocos2d::CCScene* scene(bool fromShop) = win 0x3d2510, m1 0x552ce8;
@@ -15932,7 +15932,7 @@ class SelectEventLayer : SetupTriggerPopup {
 [[link(android)]]
 class SelectFontLayer : FLAlertLayer {
     SelectFontLayer() = inline;
-    ~SelectFontLayer() = win inline, m1 0x239adc;
+    ~SelectFontLayer() = win inline, m1 0x239adc, imac 0x299ae0;
 
     static SelectFontLayer* create(LevelEditorLayer* editorLayer) = win inline, m1 0x239cf4;
 
@@ -16271,7 +16271,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 [[link(android)]]
 class SetTextPopup : FLAlertLayer, TextInputDelegate {
     SetTextPopup() = inline;
-    ~SetTextPopup() = win 0x29cd80, m1 0x24caf0;
+    ~SetTextPopup() = win 0x29cd80, m1 0x24caf0, imac 0x2ae7b0;
 
     static SetTextPopup* create(gd::string value, gd::string placeholder, int maxLength, gd::string title, gd::string okBtnText, bool showResetBtn, float offset) = win 0x29ce30, imac 0x2ae370, m1 0x24c738;
 
@@ -17142,8 +17142,8 @@ class SetupMGTrigger : SetupTriggerPopup {
     void toggleEasingRateVisibility() = win 0x416d70;
     void updateDuration() = win 0x272a00;
     void updateDurLabel(bool decimals) = win 0x271de0;
-    void updateEasingLabel() = win 0x416b90;
-    void updateEasingRateLabel();
+    void updateEasingLabel();
+    void updateEasingRateLabel() = win 0x416b90;
     void updateMoveCommandEasing() = win inline;
     void updateMoveCommandEasingRate() = win inline;
     void updateMoveCommandPosY();
@@ -17437,12 +17437,12 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     void sliderChanged(cocos2d::CCObject* sender) = win 0x43bb90, m1 0x330df0;
     void updateColorLabels();
     void updateColorValue() = win inline;
-    void updateCopyColor() = win 0x43bef0, m1 0x332aa4;
+    void updateCopyColor() = win 0x43ce60, m1 0x332aa4;
     void updateCopyColorTextInputLabel();
     void updateFadeInLabel(bool decimals) = win inline;
     void updateFadeInTime() = win 0x43bdd0, m1 0x332b2c;
     void updateFadeOutLabel(bool decimals) = win inline;
-    void updateFadeOutTime() = win 0x43be60, m1 0x332c04;
+    void updateFadeOutTime() = win 0x43bef0, m1 0x332c04;
     void updateGroupMainOnly() = win 0x43b740, m1 0x33270c;
     void updateGroupSecondaryOnly() = win 0x43b8c0, m1 0x3326a0;
     void updateHoldLabel(bool decimals) = win inline;
@@ -17543,8 +17543,8 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x440b60, m1 0x5108e4;
     void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x440b10, m1 0x51083c;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x440a00, m1 0x510cbc;
-    void updateChance() = win 0x440a40, m1 0x510fc8;
-    void updateChanceLabel(bool decimals);
+    void updateChance() = m1 0x510fc8;
+    void updateChanceLabel(bool decimals) = win 0x440a40;
     void updateTargetID() = win 0x4411f0, m1 0x511038;
     void updateTargetID2() = win 0x4412c0;
     void updateTextInputLabel() = win 0x440e90;
@@ -18002,7 +18002,7 @@ class SetupTransformPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDelegate, SliderDelegate {
     SetupTriggerPopup() = inline;
-    ~SetupTriggerPopup() = win 0x473a80, m1 0x1de5a0;
+    ~SetupTriggerPopup() = win 0x473a80, m1 0x1de5a0, imac 0x2349a0;
 
     static SetupTriggerPopup* create(float width, float height) = win inline, imac 0x2351d0, m1 0x1deb8c, ios inline;
     static SetupTriggerPopup* create(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background) = win inline, imac 0x234c40, m1 0x1de748, ios inline;
@@ -18175,7 +18175,7 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
 [[link(android)]]
 class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SetTextPopupDelegate, SelectSFXSortDelegate {
     SFXBrowser() = inline;
-    ~SFXBrowser() = win inline, m1 0x3afdac;
+    ~SFXBrowser() = win inline, m1 0x3afdac, imac 0x43e310;
 
     static SFXBrowser* create(int id) = win inline, imac 0x43e490, m1 0x3afe88;
 
@@ -18238,7 +18238,7 @@ class SFXBrowserDelegate {
 [[link(android)]]
 class SFXFolderObject : SFXInfoObject {
     SFXFolderObject() = inline;
-    ~SFXFolderObject() = win inline, m1 0x4e2724;
+    ~SFXFolderObject() = win inline, m1 0x4e2724, imac 0x598e90;
 
     static SFXFolderObject* create(int id, gd::string name, int folderID) = win inline, imac 0x596560, m1 0x4e04c8;
 
@@ -18453,7 +18453,7 @@ class ShaderGameObject : EffectGameObject {
 [[link(android), depends(GJShaderState)]]
 class ShaderLayer : cocos2d::CCLayer {
     ShaderLayer() = inline;
-    ~ShaderLayer() = win inline, m1 0x34b67c;
+    ~ShaderLayer() = win inline, m1 0x34b67c, imac 0x3ca420;
 
     static ShaderLayer* create() = win inline, imac 0x3ca620, m1 0x34b7d0;
 
@@ -19299,7 +19299,7 @@ class SpecialAnimGameObject : EnhancedGameObject {
 [[link(android)]]
 class SpriteAnimationManager : cocos2d::CCNode {
     SpriteAnimationManager() = inline;
-    ~SpriteAnimationManager() = win inline, m1 0x636e98;
+    ~SpriteAnimationManager() = win inline, m1 0x636e98, imac 0x7246a0;
 
     static void createAnimations(gd::string definition) = win 0x72fd0, m1 0x633f14;
     static SpriteAnimationManager* createWithOwner(CCAnimatedSprite* sprite, gd::string definition) = win inline, imac 0x720fa0, m1 0x633c00;
@@ -19342,7 +19342,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
 [[link(android)]]
 class SpriteDescription : cocos2d::CCObject {
     SpriteDescription() = inline;
-    ~SpriteDescription() = win inline, m1 0x4bb480;
+    ~SpriteDescription() = win inline, m1 0x4bb480, imac 0x56d1f0;
 
     static SpriteDescription* createDescription(DS_Dictionary* dict) = win inline, m1 0x4bac00;
     static SpriteDescription* createDescription(cocos2d::CCDictionary* dict) = win inline, m1 0x4ba4ac;
@@ -19382,7 +19382,7 @@ class StarInfoPopup : FLAlertLayer {
 [[link(android)]]
 class StartPosObject : EffectGameObject {
     StartPosObject() = inline;
-    ~StartPosObject() = win inline, m1 0x1761bc;
+    ~StartPosObject() = win inline, m1 0x1761bc, imac 0x1bd6f0;
 
     static StartPosObject* create() = win inline, m1 0x1762a4;
 
@@ -19434,7 +19434,7 @@ class StatsObject : cocos2d::CCObject {
 [[link(android)]]
 class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate {
     SupportLayer() = inline;
-    ~SupportLayer() = win inline, m1 0x31dfe8;
+    ~SupportLayer() = win inline, m1 0x31dfe8, imac 0x398510;
 
     static SupportLayer* create() = win inline, m1 0x31de90;
 
@@ -19810,7 +19810,7 @@ class ToggleTriggerAction {
 [[link(android)]]
 class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
     TopArtistsLayer() = inline;
-    ~TopArtistsLayer() = win inline, m1 0x29f620;
+    ~TopArtistsLayer() = win inline, m1 0x29f620, imac 0x310280;
 
     static TopArtistsLayer* create() = win inline, m1 0x29f91c;
 
@@ -20166,7 +20166,7 @@ class UISettingsGameObject : EffectGameObject {
 [[link(android), depends(GJTransformState)]]
 class UndoObject : cocos2d::CCObject {
     UndoObject() = inline;
-    ~UndoObject() = win inline, m1 0xdf7c4;
+    ~UndoObject() = win inline, m1 0xdf7c4, imac 0x1006c0;
 
     static UndoObject* create(GameObject* object, UndoCommand command) = win inline;
     static UndoObject* createWithArray(cocos2d::CCArray* array, UndoCommand command) = win inline;
@@ -20188,7 +20188,7 @@ class UndoObject : cocos2d::CCObject {
 [[link(android)]]
 class UpdateAccountSettingsPopup : FLAlertLayer, GJAccountSettingsDelegate {
     UpdateAccountSettingsPopup() = inline;
-    ~UpdateAccountSettingsPopup() = win inline, m1 0x242078;
+    ~UpdateAccountSettingsPopup() = win inline, m1 0x242078, imac 0x2a2f40;
 
     static UpdateAccountSettingsPopup* create(GJAccountSettingsLayer* settingsLayer, int messageStatus, int friendStatus, int commentStatus, gd::string youtubeURL, gd::string twitterURL, gd::string twitchURL, gd::string instagramURL, gd::string tiktokURL, gd::string discordUsername, gd::string customString) = win 0x294570, inline;
 
@@ -20236,7 +20236,7 @@ class UploadActionPopup : FLAlertLayer {
 [[link(android)]]
 class UploadListPopup : FLAlertLayer, ListUploadDelegate {
     UploadListPopup() = inline;
-    ~UploadListPopup() = win inline, m1 0x2ee4c0;
+    ~UploadListPopup() = win inline, m1 0x2ee4c0, imac 0x363560;
 
     static UploadListPopup* create(GJLevelList* list) = win inline;
 
@@ -20265,7 +20265,7 @@ class UploadMessageDelegate {
 [[link(android)]]
 class UploadPopup : FLAlertLayer, LevelUploadDelegate {
     UploadPopup() = inline;
-    ~UploadPopup() = win inline, m1 0x223818;
+    ~UploadPopup() = win inline, m1 0x223818, imac 0x281940;
 
     static UploadPopup* create(GJGameLevel* level) = win inline;
 
