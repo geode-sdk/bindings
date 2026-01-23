@@ -6797,7 +6797,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0, m1 0x5f0e4;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x1ddf80, imac 0x6d7a0, m1 0x5ef7c;
     bool hasCompletedMainLevel(int levelID) = win 0x1dde50, imac 0x6d720;
-    bool hasCompletedMapPack(int id);
+    bool hasCompletedMapPack(int id) = m1 0x60104;
     bool hasCompletedOnlineLevel(int id) = imac 0x6d850;
     bool hasCompletedStarLevel(GJGameLevel* level) = win 0x1de2a0;
     bool hasPendingUserCoin(char const* key) = win 0x1dfe60;
