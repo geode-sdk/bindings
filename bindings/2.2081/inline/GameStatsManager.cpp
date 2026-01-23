@@ -9,6 +9,16 @@ void GameStatsManager::setAwardedBonusKeys(int keys) {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+void GameStatsManager::awardOldSpecialStats() {
+    for (int level : LevelTools::getLevelList()) {
+        auto mainLevel = GameLevelManager::sharedState()->getMainLevel(level, true);
+        if (mainLevel->m_orbCompletion.value() < mainLevel->m_normalPercent.value()) {
+            mainLevel->m_orbCompletion = mainLevel->m_normalPercent.value();
+        }
+        this->awardCurrencyForLevel(mainLevel);
+    }
+}
+
 bool GameStatsManager::canItemBeUnlocked(int id, UnlockType type) { return true; }
 
 gd::string GameStatsManager::getEventRewardKey(int id) {

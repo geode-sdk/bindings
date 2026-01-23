@@ -6721,6 +6721,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool areRewardsLoaded() = win inline, m1 0x63b9c;
     void awardCurrencyForLevel(GJGameLevel* level) = win 0x1e0960, m1 0x62914;
     void awardDiamondsForLevel(GJGameLevel* level) = win 0x1e1140, imac 0x71810, m1 0x630b0;
+    void awardOldSpecialStats() = win inline, m1 0x67404, imac 0x75be0, ios inline;
     bool awardSecretKey() = win 0x1f19f0, m1 0x7e098;
     bool canItemBeUnlocked(int id, UnlockType type) = win inline, imac 0x77880, m1 0x473b4, ios inline;
     void checkAchievement(char const* statKey) = win 0x1d5440;
