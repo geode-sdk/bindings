@@ -6794,10 +6794,10 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x1e2840, m1 0x651d4;
     bool hasCompletedDailyLevel(int dailyID) = win 0x1e2ce0;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
-    bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0;
+    bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0, m1 0x5f0e4;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x1ddf80, imac 0x6d7a0, m1 0x5ef7c;
     bool hasCompletedMainLevel(int levelID) = win 0x1dde50, imac 0x6d720;
-    bool hasCompletedMapPack(int id);
+    bool hasCompletedMapPack(int id) = m1 0x60104;
     bool hasCompletedOnlineLevel(int id) = imac 0x6d850;
     bool hasCompletedStarLevel(GJGameLevel* level) = win 0x1de2a0;
     bool hasPendingUserCoin(char const* key) = win 0x1dfe60;
@@ -8615,7 +8615,7 @@ class GJGameLevel : cocos2d::CCNode {
     GJGameLevel* getListSnapshot() = win 0x16db30;
     int getNormalPercent() = win inline, imac 0x52d210, m1 0x4813b8;
     gd::string getSongName() = win 0x16cfb0, imac 0x55c100, m1 0x4abbfc;
-    gd::string getUnpackedLevelDescription() = win 0x170060, m1 0x4a16d8;
+    gd::string getUnpackedLevelDescription() = win 0x170060, m1 0x4aec30;
     void handleStatsConflict(GJGameLevel* level) = win 0x16fb60;
     bool isPlatformer() = win inline, imac 0x536c80, m1 0x489ba0;
     void levelWasAltered() = win inline, imac 0x55b5f0, m1 0x4ab20c;
