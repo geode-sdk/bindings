@@ -8612,7 +8612,7 @@ class GJGameLevel : cocos2d::CCNode {
     gd::string getAudioFileName() = win 0x16cef0, m1 0x4abacc, imac 0x55bfe0;
     int getAverageDifficulty() = win 0x16cd30, m1 0x4ab864, imac 0x55bd70;
     char const* getCoinKey(int coinNumber) = win 0x16cda0, imac 0x54c470, m1 0x49cb1c;
-    int getLastBuildPageForTab(int tab) = m1 0x4ab890, imac 0x55bdc0;
+    int getLastBuildPageForTab(int tab) = win 0x16ce20, m1 0x4ab890, imac 0x55bdc0;
     GJGameLevel* getListSnapshot() = win 0x16db30, m1 0x4acdd8, imac 0x55d4d0;
     int getNormalPercent() = win inline, imac 0x52d210, m1 0x4813b8;
     gd::string getSongName() = win 0x16cfb0, imac 0x55c100, m1 0x4abbfc;
