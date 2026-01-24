@@ -10773,7 +10773,7 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     void onSend(cocos2d::CCObject* sender) = win 0x29a0e0, imac 0x2a9c40, m1 0x248664;
     void updateBody(gd::string body) = m1 0x2489d8, imac 0x2aa000;
     void updateCharCountLabel(int type) = win inline, imac 0x2aa9a0, m1 0x2492e4;
-    void updateSubject(gd::string subject) = m1 0x24893c, imac 0x2a9f80;
+    void updateSubject(gd::string subject) = win 0x29a8c0, m1 0x24893c, imac 0x2a9f80;
     void updateText(gd::string text, int type) = win 0x29a990, imac 0x2aa720, m1 0x249080;
 
     int m_unk298;
