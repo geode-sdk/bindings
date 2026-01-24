@@ -5287,7 +5287,7 @@ class GameCell : TableViewCell {
     virtual void draw() = imac 0x30d530, win 0x3cc30, m1 0x29cb00;
 
     void loadFromString(gd::string str) = win 0x3c840, m1 0x29c5ec, imac 0x30cf40;
-    void onTouch(cocos2d::CCObject* sender) = m1 0x29ca38, imac 0x30d490;
+    void onTouch(cocos2d::CCObject* sender) = win 0x3cc00, m1 0x29ca38, imac 0x30d490;
     void updateBGColor(int index) = win inline, imac 0x30d4d0, m1 0x29ca84, ios inline;
 
     void* m_unk230;
