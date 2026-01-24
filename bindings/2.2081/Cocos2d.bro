@@ -5599,7 +5599,7 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
     virtual ~CCHttpClient() = m1 0x3aa4e8, imac 0x438750;
 
     static void destroyInstance() = m1 0x3aa65c, imac 0x4388d0, ios inline;
-    static cocos2d::extension::CCHttpClient* getInstance() = m1 0x3aa770, imac 0x438880;
+    static cocos2d::extension::CCHttpClient* getInstance() = m1 0x3aa600, imac 0x438880;
 
     void dispatchResponseCallbacks(float) = m1 0x3aa3d8, imac 0x438650;
     size_t availableThreadCount() = m1 0x3aa770, imac 0x4389c0;
