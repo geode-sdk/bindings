@@ -961,10 +961,10 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
 
 [[link(android)]]
 class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
-    virtual void setAnimationInterval(double) = m1 0x3ea86c, imac 0x484cf0;
-    virtual void stopAnimation() = m1 0x3ea860, imac 0x484ce0;
-    virtual void startAnimation() = imac 0x484c60, m1 0x3ea7ec;
-    virtual void mainLoop() = imac 0x484ca0, m1 0x3ea828;
+    virtual void setAnimationInterval(double) = win 0xbf3f0, m1 0x3ea86c, imac 0x484cf0;
+    virtual void stopAnimation() = win 0xbff30, m1 0x3ea860, imac 0x484ce0;
+    virtual void startAnimation() = win 0xbfef0, imac 0x484c60, m1 0x3ea7ec;
+    virtual void mainLoop() = win 0xbeae0, imac 0x484ca0, m1 0x3ea828;
 }
 
 [[link(win, android)]]
