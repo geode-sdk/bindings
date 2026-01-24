@@ -3015,7 +3015,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     CustomSongWidget() = inline;
     ~CustomSongWidget() = win inline, m1 0x53e904;
 
-    static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc8230, imac 0x3710b0;
+    static CustomSongWidget* create(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc8230, imac 0x3710b0, m1 0x53e9a4;
 
     virtual void loadSongInfoFinished(SongInfoObject* object) = m1 0x543e44, win 0xccc80, imac 0x620210;
     virtual void loadSongInfoFailed(int id, GJSongError errorType) = imac 0x6204f0, m1 0x5440e8, win 0xcce10;
@@ -3034,7 +3034,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void downloadAssetFinished(int id, GJAssetType type) = win 0xcd4a0;
     void downloadFailed() = win inline, m1 0x542f9c;
     void getSongInfoIfUnloaded() = win 0xca9e0, imac 0x61ec90;
-    bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc8470;
+    bool init(SongInfoObject* songInfo, CustomSongDelegate* songDelegate, bool showSongSelect, bool showPlayMusic, bool showDownload, bool isRobtopSong, bool unkBool, bool isMusicLibrary, int unk) = win 0xc8470, m1 0x53eb08;
     void onCancelDownload(cocos2d::CCObject* sender) = win 0xcaaa0;
     void onDelete(cocos2d::CCObject* sender) = win 0xc9f00;
     void onDownload(cocos2d::CCObject* sender) = win 0xcabc0, imac 0x61ba70, m1 0x53fbac;
@@ -3054,7 +3054,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updateError(GJSongError errorType) = win 0xcd6b0, imac 0x620710, m1 0x544300;
     void updateLengthMod(float lengthMod) = win inline, m1 0x543034;
     void updateMultiAssetInfo(bool update) = win 0xcc6a0, imac 0x61fb70, m1 0x3be64;
-    void updatePlaybackBtn() = win 0xcb2a0;
+    void updatePlaybackBtn() = win 0xcb2a0, m1 0x5424b4;
     void updateProgressBar(int progress) = win 0xcb440, m1 0x54146c;
     void updateSongInfo() = win 0xcb4f0, m1 0x541588;
     void updateSongObject(SongInfoObject* songInfo) = win inline, imac 0x61d670, m1 0x5414e4;
