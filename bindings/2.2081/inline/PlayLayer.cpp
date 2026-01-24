@@ -132,13 +132,24 @@ CheckpointObject* PlayLayer::getLastCheckpoint() {
     }
     return nullptr;
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS)
 double PlayLayer::getTempMilliTime() {
     __timeb64 current;
     _ftime64_s(&current);
     return ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
 }
+#elif defined(GEODE_IS_MACOS)
+#include <sys/timeb.h>
+double PlayLayer::getTempMilliTime() {
+    timeb current;
+    ftime(&current);
+    return ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+}
+#endif
 
+#if defined(GEODE_IS_WINDOWS)
 void PlayLayer::incrementJumps() {
     m_uncommittedJumps++;
     m_jumps++;

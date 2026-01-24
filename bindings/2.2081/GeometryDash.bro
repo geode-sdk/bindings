@@ -14837,7 +14837,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     CheckpointObject* getLastCheckpoint() = win inline, m1 0xa9854, imac 0xbc950;
     float getRelativeMod(cocos2d::CCPoint position, float right, float left, float offset) = win inline, imac 0xb9290, ios inline, m1 0xa6a48;
     float getRelativeModNew(cocos2d::CCPoint position, float mod, float offset, bool unused, bool isRight) = win inline, imac 0xb7e30, m1 0xa57d4, ios inline;
-    double getTempMilliTime() = win inline;
+    double getTempMilliTime() = inline;
     void gravityEffectFinished() = win 0x3b23a0, imac 0xb9720, m1 0xa6e68;
     void incrementJumps() = win inline, imac 0xbf230, m1 0xabd0c;
     bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5b00, m1 0x9af50, imac 0xac1b0;
