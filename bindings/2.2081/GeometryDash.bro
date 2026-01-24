@@ -12050,7 +12050,6 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onClone(cocos2d::CCObject* sender) = win inline, imac 0x2c47b0, m1 0x260afc;
     void onDelete(cocos2d::CCObject* sender) = win inline, m1 0x260c40;
     void onFavorite(cocos2d::CCObject* sender) = win 0x2f9c60;
-    void onFeatured(cocos2d::CCObject* sender) = inline;
     void onGarage(cocos2d::CCObject* sender) = win 0x2f9de0;
     void onInfo(cocos2d::CCObject* sender) = win 0x2fd3c0, imac 0x2c1970;
     void onLevelInfo(cocos2d::CCObject* sender) = win 0x2fef60;
@@ -15087,10 +15086,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onSendMessage(cocos2d::CCObject* sender) = win 0x3c3cd0, m1 0x6c2fe0;
     void onSettings(cocos2d::CCObject* sender) = win 0x3c5ce0, m1 0x347dc8;
     void onStatInfo(cocos2d::CCObject* sender) = win 0x3c30e0, imac 0x7bc760, m1 0x6c1df4;
-    void onTwitch(cocos2d::CCObject* sender);
-    void onTwitter(cocos2d::CCObject* sender);
     void onUpdate(cocos2d::CCObject* sender) = win 0x3bf7f0, imac 0x7b9740, m1 0x6bf3c8;
-    void onYouTube(cocos2d::CCObject* sender);
     void setupComments() = win inline, m1 0x6bef78;
     void setupCommentsBrowser(cocos2d::CCArray* comments) = win 0x3c64c0, m1 0x6bf640;
     void showNoAccountError() = win 0x3c5130, imac 0x7bf210, m1 0x6c46b8;

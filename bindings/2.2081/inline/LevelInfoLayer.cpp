@@ -46,8 +46,6 @@ void LevelInfoLayer::incrementLikes() {
     this->updateLabelValues();
 }
 
-void LevelInfoLayer::onFeatured(cocos2d::CCObject* sender) {}
-
 void LevelInfoLayer::onPlayReplay(cocos2d::CCObject* sender) {
     if (m_isBusy) return;
     if (this->shouldDownloadLevel()) {
