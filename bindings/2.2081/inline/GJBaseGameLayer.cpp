@@ -1714,7 +1714,7 @@ float GJBaseGameLayer::getGroundHeightForMode(int type) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 
 void GJBaseGameLayer::moveAreaObject(GameObject* object, float dx, float dy) {
     auto result = this->resetAreaObjectValues(object, true);
@@ -1733,7 +1733,9 @@ void GJBaseGameLayer::moveAreaObject(GameObject* object, float dx, float dy) {
     }
     this->updateObjectSection(object);
 }
+#endif
 
+#if defined(GEODE_IS_ANDROID)
 bool GJBaseGameLayer::resetAreaObjectValues(GameObject* object, bool update) {
     if (m_gameState.m_commandIndex <= object->m_unk4C8) return false;
     if (update) this->updateAreaObjectLastValues(object);
@@ -1780,7 +1782,9 @@ bool GJBaseGameLayer::resetAreaObjectValues(GameObject* object, bool update) {
     else this->updateAreaObjectLastValues(object);
     return result;
 }
+#endif
 
+#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 void GJBaseGameLayer::updateAreaObjectLastValues(GameObject* object) {
     if (object->m_isDecoration2) return;
     if (object->m_unk4C4 != m_gameState.m_commandIndex) {

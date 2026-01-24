@@ -32,7 +32,7 @@ void CCMenuItemSpriteExtra::useAnimationType(MenuAnimationType type) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_ANDROID)
 CCMenuItemSpriteExtra::CCMenuItemSpriteExtra() {
     m_animationEnabled = false; //this is changed to true in init
     m_colorEnabled = false;

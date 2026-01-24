@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_MACOS)
 ShaderLayer::ShaderLayer() {
     m_timesyncShaderActions = false;
     m_shader = nullptr;
@@ -12,6 +13,7 @@ ShaderLayer::ShaderLayer() {
     m_shockWaveTimeMult = 1.f;
     m_scaleFactor = 1.f;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void ShaderLayer::setupInvertColorShader() {

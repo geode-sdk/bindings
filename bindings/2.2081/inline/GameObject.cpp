@@ -42,9 +42,9 @@ void GameObject::updateTextKerning(int kerning) {}
 
 int GameObject::getTextKerning() { return false; }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::CCLabelBMFont* GameObject::getObjectLabel() { return nullptr; }
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::CCSprite* GameObject::addCustomBlackChild(gd::string frame, float opacity, bool color) {
     if (color) {
         return this->addCustomColorChild(frame);
