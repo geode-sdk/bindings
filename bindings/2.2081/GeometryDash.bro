@@ -12460,7 +12460,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
     void onLiveEdit(cocos2d::CCObject* sender) = win 0x321920, imac 0x26df70, m1 0x21106c;
     void onMode(cocos2d::CCObject* sender) = win 0x321100, imac 0x26e6b0, m1 0x2117a0;
     void onOptionToggle(cocos2d::CCObject* sender) = win 0x3215d0, imac 0x26e600, m1 0x2116f8;
-    void onSelectFont(cocos2d::CCObject* sender) = m1 0x211370, imac 0x26e2a0;
+    void onSelectFont(cocos2d::CCObject* sender) = win 0x321d10, m1 0x211370, imac 0x26e2a0;
     void onSelectMode(cocos2d::CCObject* sender) = imac 0x26ee50, m1 0x211de0;
     void onSelectSpeed(cocos2d::CCObject* sender) = imac 0x26ef10, m1 0x211ea0;
     void onSettings(cocos2d::CCObject* sender) = win 0x321040, imac 0x26e700, m1 0x2117dc;
@@ -12502,7 +12502,7 @@ class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate,
 class LevelSettingsObject : cocos2d::CCNode {
     // virtual ~LevelSettingsObject();
 
-    static LevelSettingsObject* create() = m1 0xc35d0, imac 0xdd490;
+    static LevelSettingsObject* create() = win 0x2eab20, m1 0xc35d0, imac 0xdd490;
     static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = win 0x2eca40, imac 0x102fe0, m1 0xe17cc;
     static LevelSettingsObject* objectFromString(gd::string const& str) = win inline, m1 0xc4fc0, imac 0xdf2c0;
 
