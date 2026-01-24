@@ -7457,7 +7457,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float getMaxPortalY() = win 0x213770, m1 0xfe0e4, imac 0x125750;
     float getMinDistance(cocos2d::CCPoint position, cocos2d::CCArray* objects, float minNear, int mode) = win 0x2429c0, imac 0x15ed70, m1 0x12db24;
     float getMinPortalY() = win 0x213690, imac 0x125670, m1 0xfe008;
-    float getModifiedDelta(float dt) = win 0x2377b0, imac 0x151260, m1 0x122958;
+    double getModifiedDelta(float dt) = win 0x2377b0, imac 0x151260, m1 0x122958;
     cocos2d::CCPoint getMoveTargetDelta(EffectGameObject* object, bool mainObject) = win inline, imac 0x12b940, m1 0x1038f4;
     cocos2d::CCArray* getOptimizedGroup(int groupID) = win inline, m1 0x111db8, imac 0x13d120;
     PlayerObject* getOtherPlayer(PlayerObject* player) = win inline, imac 0x123120, m1 0xfbdf4;
@@ -13143,7 +13143,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
     virtual bool init() = imac 0x7a0ff0, m1 0x6a8378, win 0x378c20;
     virtual void keyBackClicked() = win 0x37b540, imac 0x7a3130, m1 0x6aa3a4;
 
-    void addToggle(char const* label, char const* key, char const* description) = m1 0x6a87b4, imac 0x7a1470;
+    void addToggle(char const* label, char const* key, char const* description) = win 0x379720, m1 0x6a87b4, imac 0x7a1470;
     int countForPage(int page) = win 0x379d80, m1 0x6a9fd8, imac 0x7a2d90;
     void goToPage(int page) = m1 0x6a8d80, imac 0x7a1a90;
     void incrementCountForPage(int page) = win inline, m1 0x6a9ae0, imac 0x7a28a0;
