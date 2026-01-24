@@ -243,7 +243,7 @@ GJGameLevel::GJGameLevel() {
     m_unlimitedObjectsEnabled = false;
     m_timestamp = 0;
     m_listPosition = 0;
-    m_54 = 0;
+    m_songSize = 0;
     m_bestTime = 0;
     m_bestPoints = 0;
 }

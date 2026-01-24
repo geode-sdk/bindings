@@ -28,7 +28,7 @@ TableView::TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
     m_disableHorizontal = false;
     m_unused3 = nullptr;
     m_delegate = this;
-    m_touchOutOfBoundary = false;
+    m_scheduled = false;
     m_cellRemovedArray = cocos2d::CCArray::create();
     m_cellRemovedArray->retain();
     m_cellArray = cocos2d::CCArray::create();
