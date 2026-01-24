@@ -8029,7 +8029,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     uint64_t m_replayRandSeed;
     int m_unk32ec;
     int m_currentStep;
-    int m_unk32fc;
     gd::vector<PlayerButtonCommand> m_queuedButtons;
     gd::vector<PlayerButtonCommand> m_queuedRecordedButtons;
     gd::unordered_map<int, int> m_unk3330;
