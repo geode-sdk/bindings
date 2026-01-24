@@ -8029,20 +8029,25 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     uint64_t m_replayRandSeed;
     int m_unk32ec;
     int m_currentStep;
+    int m_unk32fc;
     gd::vector<PlayerButtonCommand> m_queuedButtons;
     gd::vector<PlayerButtonCommand> m_queuedRecordedButtons;
+    gd::unordered_map<int, int> m_unk3330;
+    int m_unk3370;
     gd::vector<PlayerButtonCommand> m_queuedReplayButtons;
+    gd::unordered_map<int, int> m_unk3390;
     gd::vector<void*> m_unk3340;
     gd::vector<void*> m_unk3358;
-    PAD = win 0x88, imac 0x88, m1 0x88;
     int m_queuedRecordedButtonsSize;
+    gd::string m_unk3408;
+    gd::string m_unk3428;
+    int m_unk3448;
     bool m_portalIndicators;
     bool m_orbIndicators;
     cocos2d::CCArray* m_indicatorSprites;
     float m_unk3380;
     gd::vector<int> m_unk3388;
     gd::vector<int> m_unk33a0;
-    PAD = win 0x48, imac 0x48, m1 0x48;
     bool m_hideGround;
     cocos2d::CCArray* m_unk33c0;
     cocos2d::CCArray* m_objectsToMove;
@@ -14010,7 +14015,6 @@ class PlayerButtonCommand {
     bool m_isPush;
     bool m_isPlayer2;
     int m_step;
-    double m_timestamp;
 }
 
 [[link(android), depends(DashRingObject)]]
