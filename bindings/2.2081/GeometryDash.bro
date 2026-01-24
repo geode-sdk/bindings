@@ -16124,7 +16124,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDele
     void onArrowLeft(cocos2d::CCObject* sender) = win 0x3fb130, imac 0x316950, m1 0x2a5680;
     void onArrowRight(cocos2d::CCObject* sender) = win 0x3fb160, imac 0x316980, m1 0x2a56b8;
     void onClose(cocos2d::CCObject* sender) = win 0x3fdb60, m1 0x2a3668, imac 0x314740;
-    void onCopy(cocos2d::CCObject* sender) = m1 0x2a5448, imac 0x3166e0;
+    void onCopy(cocos2d::CCObject* sender) = win 0x3fb680, m1 0x2a5448, imac 0x3166e0;
     void onExtra(cocos2d::CCObject* sender) = win 0x3fb880, m1 0x2a5550, imac 0x316800;
     void onExtra2(cocos2d::CCObject* sender) = win 0x3fba00, imac 0x316830, m1 0x2a5578;
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = m1 0x2a384c, imac 0x314970;
@@ -16143,11 +16143,11 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDele
     void updateEditorLabel2() = m1 0x2a4cd8, imac 0x315ef0;
     void updateEditorLayerID() = m1 0x2a5a50, imac 0x316da0;
     void updateEditorLayerID2() = m1 0x2a5ac0, imac 0x316e20;
-    void updateEditorOrder() = m1 0x2a5b30, imac 0x316ea0;
+    void updateEditorOrder() = win 0x3fda90, m1 0x2a5b30, imac 0x316ea0;
     void updateEditorOrderLabel() = m1 0x2a46e0, imac 0x315900;
     void updateGroupIDButtons() = win 0x3fc120, imac 0x3161c0, m1 0x2a4fac;
     void updateGroupIDLabel() = m1 0x2a4a88, imac 0x315cb0;
-    void updateOrderChannel() = m1 0x2a5bd8, imac 0x316f50;
+    void updateOrderChannel() = win 0x3fd9c0, m1 0x2a5bd8, imac 0x316f50;
     void updateOrderChannelLabel() = m1 0x2a4828, imac 0x315a40;
     void updateZLayerButtons() = win 0x3fd930, m1 0x2a4f1c, imac 0x316130;
     void updateZOrder() = win 0x3fd460, imac 0x317000, m1 0x2a5c80;
