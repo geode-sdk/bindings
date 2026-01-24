@@ -4823,7 +4823,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width) = imac 0x49b380, m1 0x3ff604, win 0x51900;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = imac 0x49b1b0, win 0x519b0, m1 0x3ff45c;
 
-    virtual void onEnter() = imac 0x49c710, win 0x52e20, m1 0x400970; // might not exist on 2.2081
+    virtual void onEnter() = imac 0x49c710, win 0x52e20, m1 0x400970;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x49c250, m1 0x400448, win 0x52a70;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x49c4a0, m1 0x4006fc, win 0x52bc0;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = imac 0x49c370, win 0x52b10, m1 0x4005a0;
@@ -5617,7 +5617,7 @@ class GameLevelManager : cocos2d::CCNode {
 
     gd::set<gd::string> m_queuedLists;
     cocos2d::CCDictionary* m_mainLevels;
-    cocos2d::CCDictionary* m_searchFilters; //"value dict"
+    cocos2d::CCDictionary* m_searchFilters;
     cocos2d::CCDictionary* m_onlineLevels;
     cocos2d::CCDictionary* m_storedLevelData;
     cocos2d::CCDictionary* m_followedCreators;
@@ -5956,7 +5956,7 @@ class GameManager : GManager {
     bool m_unknownBool5;
     gd::string m_playerUDID;
     gd::string m_playerName;
-    bool m_scoreUpdated; //playerScoreValid
+    bool m_scoreValid;
     geode::SeedValueRSV m_playerUserID;
     float m_bgVolume;
     float m_sfxVolume;
@@ -5969,7 +5969,7 @@ class GameManager : GManager {
     bool m_clickedDiscord;
     bool m_clickedReddit;
     double m_socialsDuration;
-    bool m_musicPaused; //didPauseBGMusic
+    bool m_musicPaused;
     bool m_isParticleObject;
     bool m_editorEnabled;
     int m_sceneEnum;
@@ -8756,7 +8756,7 @@ class GJGameLevel : cocos2d::CCNode {
     int m_listPosition;
     gd::string m_songIDs;
     gd::string m_sfxIDs;
-    int m_54; //aka k106
+    int m_songSize;
     int m_bestTime;
     int m_unk518;
     int m_unk51c;
@@ -8878,7 +8878,7 @@ class GJGameState {
     float m_targetCameraAngle;
     bool m_playerStreakBlend;
     float m_timeWarp;
-    int m_unk18c; // int/float, size 4
+    float m_unk18c;
     float m_timeWarpRelated;
     int m_currentChannel;
     int m_rotateChannel;
@@ -11002,7 +11002,7 @@ class GroupCommandObject2 {
     float m_gameObjectRotation;
     gd::vector<int> m_remapKeys;
     bool m_someInterpValue2RelatedTrue;
-    int m_unkInt204; // formerly m_unkFloat204
+    int m_unkInt204;
 }
 
 [[link(android)]]
@@ -19073,8 +19073,8 @@ class SongInfoObject : cocos2d::CCNode {
     float m_fileSize;
     int m_nongType;
     gd::string m_extraArtists;
-    bool m_isUnknownSong; //isUnloaded
-    bool m_autoDownload; //isVerified
+    bool m_unloaded;
+    bool m_verified;
     bool m_isBlocked;
     int m_priority;
     int m_unkInt;
@@ -19500,15 +19500,15 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
     void scrollToIndexPath(CCIndexPath& path) = win inline, imac 0x622530, m1 0x545f20, ios inline;
     void touchFinish(cocos2d::CCTouch* touch) = win 0x757d0, imac 0x6235f0, m1 0x546e68;
 
-    bool m_touchOutOfBoundary; //isScheduled
-    cocos2d::CCTouch* m_touchStart; //beginTouch
-    cocos2d::CCPoint m_touchStartPosition2; //beginLocation
+    bool m_scheduled;
+    cocos2d::CCTouch* m_beginTouch;
+    cocos2d::CCPoint m_beginLocation;
     cocos2d::CCPoint m_lastCellPos;
-    cocos2d::CCPoint m_touchPosition2; //checkLocation
-    TableViewCell* m_touchedCell; //touchCell
+    cocos2d::CCPoint m_checkLocation;
+    TableViewCell* m_touchedCell;
     bool m_touchMoved;
     bool m_isTouch;
-    cocos2d::CCArray* m_cellArray; //cellVisibleArray
+    cocos2d::CCArray* m_cellArray;
     cocos2d::CCArray* m_cellRemovedArray;
     cocos2d::CCArray* m_indexPathArray;
     TableViewDelegate* m_tableDelegate;
