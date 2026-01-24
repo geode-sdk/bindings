@@ -3381,7 +3381,7 @@ class DungeonBarsSprite : cocos2d::CCNode {
 
 [[link(android)]]
 class DynamicBitset {
-    void resize(size_t size) = win 0x3a4d00;
+    void resize(size_t size) = win 0x3a4d00, inline;
 
     gd::vector<unsigned int> m_bits;
 }
@@ -3588,7 +3588,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void registerWithTouchDispatcher() = imac 0x50360, m1 0x455e4, win 0x9b7d0;
     virtual void keyBackClicked() = imac 0x3ea00, win 0x114980, m1 0x36d6c;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = imac 0x503a0, m1 0x4561c, win 0x125320;
-    virtual EditorUI* getUI() = win 0xdee20;
+    virtual EditorUI* getUI() = win 0xdee20, inline;
     virtual void setIDPopupClosed(SetIDPopup* popup, int value) = win 0xe6c50, imac 0x33270, m1 0x300f4;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = imac 0x330f0, win 0xe6a50, m1 0x2ff24;
     virtual void updateTransformControl() = win 0x115400, imac 0x40470, m1 0x38498;
@@ -4815,7 +4815,7 @@ class FindObjectPopup : SetIDPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor {
-    FLAlertLayer() = win 0x51720;
+    FLAlertLayer() = win 0x51720, inline;
     ~FLAlertLayer() = imac 0x49ad70, m1 0x3ff0e4, win 0x51850;
 
     static FLAlertLayer* create(char const* title, const gd::string& desc, char const* btn) = inline;
@@ -4955,7 +4955,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void startMusic(int start, int end, int fadeIn, int fadeOut, bool loop, int musicID, bool noResume, bool dontReset) = win 0x5a620, imac 0x3e76a0, m1 0x364344;
     void stop() = win inline, m1 0x35c9ac, imac 0x3dded0;
     void stopAllEffects() = win 0x598e0, m1 0x35cb34, imac 0x3de090;
-    void stopAllMusic(bool clear) = win 0x59da0; // this is wrong, its inlined but idk how to reimplement i, m1 0x35cdb4, imac 0x3de470;
+    void stopAllMusic(bool clear) = win 0x59da0, m1 0x35cdb4, imac 0x3de470;
     float stopAndGetFade(FMOD::Channel* channel) = win 0x58a50, imac 0x3e5f00, m1 0x362d5c;
     void stopAndRemoveMusic(int id) = win 0x5cab0, m1 0x366008, imac 0x3e9b70;
     void stopChannel(int id) = win inline, imac 0x3e49b0, m1 0x361ca0;
@@ -6708,7 +6708,7 @@ class GameRateDelegate {
 class GameStatsManager : cocos2d::CCNode {
     static GameStatsManager* get() = inline;
     // virtual ~GameStatsManager();
-    GameStatsManager() = win 0x1d0ae0;
+    // GameStatsManager() = win 0x1d0ae0;
     static GameStatsManager* sharedState() = imac 0x59fb0, m1 0x4d714, win 0x1d0ef0;
 
     virtual bool init() = win 0x1d1110, imac 0x5a490, m1 0x4da58;
@@ -7497,7 +7497,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int minZOrderForShaderZ(int zLayer) = win 0x223700, m1 0x1114b4, imac 0x13c720;
     void modifyGroupPhysics(AdvancedFollowEditObject* object, cocos2d::CCArray* group) = win 0x22ee00, m1 0x11b70c, imac 0x148820;
     void modifyObjectPhysics(AdvancedFollowEditObject* object, GameObjectPhysics& physics) = win inline, imac 0x14a600, m1 0x11b84c;
-    void moveAreaObject(GameObject* object, float dx, float dy) = win 0x22aab0;
+    void moveAreaObject(GameObject* object, float dx, float dy) = win 0x22aab0, inline;
     void moveCameraToPos(cocos2d::CCPoint pos) = win inline, imac 0x15bb20, ios inline, m1 0x12ae2c;
     void moveObject(GameObject* object, double dx, double dy, bool lockPlayerY) = win inline, imac 0x147d80, m1 0x11af24;
     void moveObjects(cocos2d::CCArray* objects, double dx, double dy, bool lockPlayerY) = win 0x22dd50, imac 0x147c10, m1 0x11acb0;
@@ -7666,7 +7666,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void unlinkAllEvents() = inline, m1 0x11de88, imac 0x14b4f0;
     void updateActiveEnterEffect(EnterEffectObject* object) = win inline, m1 0xf6eb4, imac 0x11e090;
     void updateAllObjectSection() = win inline, m1 0x128a08, imac 0x158ef0;
-    void updateAreaObjectLastValues(GameObject* object) = win 0x227eb0;
+    void updateAreaObjectLastValues(GameObject* object) = win 0x227eb0, inline;
     void updateAudioVisualizer() = win 0x248880, m1 0x12437c, imac 0x153470;
     void updateBGArtSpeed(float modX, float modY) = win inline, imac 0x159b90, m1 0x129418;
     void updateCamera(float dt) = win 0x23bcf0, m1 0x124838, imac 0x153a30;
@@ -9702,7 +9702,7 @@ class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     virtual void onClosePopup(UploadActionPopup* popup) = imac 0x258000, m1 0x1fd718, win 0xbc1b0;
 
     void loadFromScore(GJUserScore* score) = win 0xbc340, m1 0x1f2e88, imac 0x24c220;
-    void markAsRead() = win 0xbcc70; // inlined on maco, m1 0x1fd170, imac 0x2579a0;
+    void markAsRead() = win 0xbcc70, m1 0x1fd170, imac 0x2579a0;
     void onDeleteRequest(cocos2d::CCObject* sender) = win 0xbcd50, m1 0x1fd04c, imac 0x257870;
     void onToggle(cocos2d::CCObject* sender) = win 0xbcef0, m1 0x1fd158, imac 0x257980;
     void onViewFriendRequest(cocos2d::CCObject* sender) = win 0xbcbc0, m1 0x1fcf6c, imac 0x257770;
@@ -11384,7 +11384,7 @@ class KeyframeObject {
     // KeyframeObject();
     // KeyframeObject(KeyframeObject const&);
 
-    void setupSpline(gd::vector<KeyframeObject*>& objects) = win 0x2c0e00;
+    void setupSpline(gd::vector<KeyframeObject*>& objects) = win 0x2c0e00, m1 0xe9684, imac 0x10d6c0;
 
     double m_unk000;
     int m_unk008;
@@ -14873,7 +14873,6 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void scanActiveSaveObjects() = win inline, m1 0x9e1d8, imac 0xaf7e0;
     void scanDynamicSaveObjects() = win 0x3b8090, m1 0x9d914, imac 0xaee60;
     void screenFlipObject(GameObject* object) = win 0x3b0750, imac 0xb8fd0, m1 0xa67b8;
-    void setDamageVerifiedIdx(int idx);
     void setupHasCompleted() = win 0x3a66d0, m1 0x9c828, imac 0xadd40;
     bool shouldBlend(int colorID) = win inline, m1 0xa4548, imac 0xb69d0;
     void showCompleteEffect() = win 0x3a8f30, m1 0xa211c, imac 0xb4230;
@@ -19974,8 +19973,8 @@ class TutorialPopup : FLAlertLayer {
 
 [[link(android)]]
 class UIButtonConfig {
-    void reset() = win 0x17a9f0;
-    void resetOneBtn() = win 0x17aa60;
+    void reset() = win 0x17a9f0, inline;
+    void resetOneBtn() = win 0x17aa60, inline;
 
     int m_width;
     int m_height;
