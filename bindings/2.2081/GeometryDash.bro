@@ -5183,7 +5183,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void deleteSelected() = win 0x13ea40, m1 0x699890, imac 0x7911e0;
     bool init(bool sent) = win 0x13da70, imac 0x78fdd0, m1 0x69860c;
     bool isCorrect(char const* key) = m1 0x699f2c, imac 0x791850;
-    void loadPage(int page) = m1 0x6994dc, imac 0x790da0;
+    void loadPage(int page) = win 0x13f270, m1 0x6994dc, imac 0x790da0;
     void onClose(cocos2d::CCObject* sender) = win 0x13ed70, m1 0x699014, imac 0x790840;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x13e750, m1 0x6991f0, imac 0x790a60;
     void onNextPage(cocos2d::CCObject* sender) = win 0x13fac0, m1 0x69946c, imac 0x790d10;
