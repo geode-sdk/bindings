@@ -980,8 +980,10 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
 
     void clear() = imac 0x613050, m1 0x538270;
     void disableDrawArea() = imac 0x611220, m1 0x5369a4;
+    void drawArchLikeHalfCircle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, unsigned int, cocos2d::_ccColor4F const&, float) = m1 0x536bf8, imac 0x611490;
     bool drawCircle(cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, unsigned int) = m1 0x5380d0, imac 0x612ea0;
     void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&, float) = ios inline, m1 0x537180, imac 0x611b50;
+    void drawCubicBezierDashed(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&, float, unsigned int, unsigned int) = m1 0x536db4, imac 0x611660;
     bool drawDot(cocos2d::CCPoint const& pos, float radius, cocos2d::ccColor4F const& color) = ios inline, m1 0x536a1c, imac 0x6112a0;
     bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::ccColor4F const&) = imac 0x612e20, m1 0x538048;
     bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = m1 0x5378dc, imac 0x6124d0;
@@ -989,6 +991,7 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     bool drawRect(cocos2d::CCRect const&, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = m1 0x537e7c, imac 0x612c60;
     bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = m1 0x537f10, imac 0x612cf0;
     bool drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&) = m1 0x5378d0, imac 0x6124b0;
+    bool drawSegmentEx(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, bool, bool) = m1 0x537398, imac 0x611de0;
     void enableDrawArea(cocos2d::CCRect&) = imac 0x6111b0, m1 0x536944;
     void ensureCapacity(unsigned int) = m1 0x536650, imac 0x610e90;
     cocos2d::ccBlendFunc getBlendFunc() const = imac 0x613070, m1 0x538280;
@@ -1338,6 +1341,7 @@ class cocos2d::CCEGLViewProtocol {
     virtual void handleTouchesEnd(int, int*, float*, float*, double) = imac 0x510590, m1 0x46734c;
     virtual void handleTouchesCancel(int, int*, float*, float*, double) = imac 0x510620, m1 0x4673f8;
 
+    double getPlatformTimestamp();
     float getScaleX() const;
     float getScaleY() const;
     void getSetOfTouchesEndOrCancel(cocos2d::CCSet&, int, int*, float*, float*);
@@ -2244,6 +2248,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsVertically();
     void alignItemsVerticallyWithPadding(float) = m1 0x69bf08, imac 0x7936b0;
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
+    void giveMenuTouchPriority() = m1 0x69b9dc, imac 0x7931b0;
     bool initWithArray(cocos2d::CCArray*) = imac 0x792f10, m1 0x69b734;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x7933a0, m1 0x69bbc4;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0x794a50, m1 0x69ce24;
@@ -3148,6 +3153,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     // float getFrictionSize() const;
     // float getFrictionSizeVar() const;
     // bool getOrderSensitive() const;
+    int getParticleDrawCost() = m1 0x6cf470, imac 0x7cad10;
     // float getRespawn() const;
     // float getRespawnVar() const;
     // bool getStartRGBVarSync() const;
@@ -5589,15 +5595,15 @@ class cocos2d::extension::CCEditBox : cocos2d::extension::CCControlButton, cocos
 
 [[link(win, android)]]
 class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
-    CCHttpClient();
-    virtual ~CCHttpClient();
+    CCHttpClient() = m1 0x3aa308, imac 0x438580;
+    virtual ~CCHttpClient() = m1 0x3aa4e8, imac 0x438750;
 
-    static void destroyInstance() = ios inline;
-    static cocos2d::extension::CCHttpClient* getInstance();
+    static void destroyInstance() = m1 0x3aa65c, imac 0x4388d0, ios inline;
+    static cocos2d::extension::CCHttpClient* getInstance() = m1 0x3aa770, imac 0x438880;
 
-    void dispatchResponseCallbacks(float);
-    bool lazyInitThreadSemphore();
-    void send(cocos2d::extension::CCHttpRequest* request);
+    void dispatchResponseCallbacks(float) = m1 0x3aa3d8, imac 0x438650;
+    size_t availableThreadCount() = m1 0x3aa770, imac 0x4389c0;
+    void send(cocos2d::extension::CCHttpRequest* request) = m1 0x3aa690, imac 0x438900;
 
     int _timeoutForConnect;
     int _timeoutForRead;
