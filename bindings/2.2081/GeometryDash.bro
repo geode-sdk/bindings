@@ -7420,7 +7420,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void createMiddleground(int middleground) = win 0x20bae0, imac 0x114b20, m1 0xef900;
     cocos2d::CCArray* createNewKeyframeAnim() = win inline, m1 0x11e018, imac 0x14b6d0;
     cocos2d::CCParticleSystemQuad* createParticle(int objectType, char const* plistName, int tag, cocos2d::tCCPositionType positionType) = win 0x2405f0, m1 0x12c140, imac 0x15d2d0;
-    void createPlayer() = m1 0xeeea0, imac 0x114030;
+    void createPlayer() = win 0x20b310, m1 0xeeea0, imac 0x114030;
     void createPlayerCollisionBlock() = win 0x218370, m1 0x102b24, imac 0x12aa90;
     void createTextLayers() = win 0x20ec90, m1 0xf82c0, imac 0x11f9a0;
     cocos2d::CCArray* damagingObjectsInRect(cocos2d::CCRect rect, bool enabledGroups) = win 0x211620, m1 0xfb5d4, imac 0x122880;
