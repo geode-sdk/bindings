@@ -1,7 +1,7 @@
 #include <Geode/Geode.hpp>
 
 PlayerCheckpoint::PlayerCheckpoint() {
-    m_yVelocity = 0.f;
+    m_yVelocityUnrounded = 0.0;
     m_isUpsideDown = false;
     m_isSideways = false;
     m_isShip = false;
@@ -18,6 +18,7 @@ PlayerCheckpoint::PlayerCheckpoint() {
     m_isHidden = false;
     m_isGoingLeft = false;
     m_maybeReverseSpeed = 0.0;
+    m_jumpBuffered = false;
     m_isDashing = false;
     m_dashX = 0.0;
     m_dashY = 0.0;

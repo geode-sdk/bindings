@@ -10705,7 +10705,7 @@ class GJUserScore : cocos2d::CCNode {
     gd::string m_platformerInfo;
     int m_levelMode;
     LevelLeaderboardMode m_leaderboardMode;
-    int m_unk390;
+    int m_leaderboardType;
 }
 
 [[link(android)]]
@@ -19065,10 +19065,10 @@ class SongInfoObject : cocos2d::CCNode {
     int m_songID;
     gd::string m_songName;
     gd::string m_artistName;
-    gd::string m_unkString;
     gd::string m_youtubeVideo;
     gd::string m_youtubeChannel;
     gd::string m_songUrl;
+    gd::string m_unkString;
     int m_artistID;
     float m_fileSize;
     int m_nongType;
