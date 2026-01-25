@@ -669,7 +669,7 @@ class cocos2d::CCCatmullRomTo : cocos2d::CCCardinalSplineTo {
 
 [[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
-    CCClippingNode() = m1 0x6320b0, imac 0x71efd0;
+    protected CCClippingNode() = m1 0x6320b0, imac 0x71efd0;
     virtual ~CCClippingNode() = m1 0x632108, imac 0x71f050;
 
     static cocos2d::CCClippingNode* create() = imac 0x71f120, m1 0x6321c0;
@@ -693,7 +693,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 [[link(win, android)]]
 class cocos2d::CCComponent : cocos2d::CCObject {
-    CCComponent();
+    protected CCComponent();
     virtual ~CCComponent();
 
     static cocos2d::CCComponent* create();
@@ -714,7 +714,7 @@ class cocos2d::CCComponent : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCComponentContainer {
-    CCComponentContainer(cocos2d::CCNode*) = win inline;
+    protected CCComponentContainer(cocos2d::CCNode*) = win inline;
     virtual ~CCComponentContainer();
 
     virtual cocos2d::CCComponent* get(char const*) const = imac 0x2c5050, m1 0x26135c;
@@ -1258,8 +1258,8 @@ class cocos2d::CCEaseSineOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEGLView {
-    CCEGLView() = m1 0x45b284, imac 0x5035b0;
-    virtual ~CCEGLView() = m1 0x45b2d4, ios inline, imac 0x503610;
+    protected CCEGLView() = m1 0x45b284, imac 0x5035b0;
+    protected virtual ~CCEGLView() = m1 0x45b2d4, ios inline, imac 0x503610;
 
     // [[missing(android, mac, ios)]]
     // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool);
@@ -1423,7 +1423,7 @@ class cocos2d::CCFadeTo : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCFileUtils : cocos2d::TypeInfo {
-    CCFileUtils();
+    protected CCFileUtils();
     // CCFileUtils(cocos2d::CCFileUtils const&);
     virtual ~CCFileUtils();
 
@@ -1675,7 +1675,7 @@ class cocos2d::CCImage : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDelegate {
-    CCIMEDelegate() = imac 0x4bbc20, m1 0x41be44;
+    protected CCIMEDelegate() = imac 0x4bbc20, m1 0x41be44;
     virtual ~CCIMEDelegate() = imac 0x4bbe20, m1 0x41c054;
 
     virtual bool attachWithIME() = imac 0x4bbfa0, m1 0x41c1bc;
