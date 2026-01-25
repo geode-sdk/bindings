@@ -4,6 +4,7 @@ LeaderboardsLayer::LeaderboardsLayer() {
     m_list = nullptr;
     m_userScores = nullptr;
     m_state = LeaderboardState::Default;
+    m_mode = 0;
     m_topBtn = nullptr;
     m_globalBtn = nullptr;
     m_creatorsBtn = nullptr;

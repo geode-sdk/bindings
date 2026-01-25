@@ -11500,6 +11500,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     GJListLayer* m_list;
     cocos2d::CCArray* m_userScores;
     LeaderboardState m_state;
+    int m_mode;
     CCMenuItemToggler* m_topBtn;
     CCMenuItemToggler* m_globalBtn;
     CCMenuItemToggler* m_creatorsBtn;
