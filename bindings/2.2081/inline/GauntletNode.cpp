@@ -20,6 +20,17 @@ GauntletNode* GauntletNode::create(GJMapPack* gauntlet) {
     delete ret;
     return nullptr;
 }
+
+bool GauntletNode::init(GJMapPack* gauntlet) {
+    if (!CCNode::init()) return false;
+    if (gauntlet) {
+        m_gauntlet = gauntlet;
+        m_gauntlet->retain();
+    }
+    m_locked = false;
+    this->setupNode();
+    return true;
+}
 #endif
 
 #if defined(GEODE_IS_IOS)

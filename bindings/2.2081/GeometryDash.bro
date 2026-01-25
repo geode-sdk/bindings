@@ -7029,7 +7029,8 @@ class GauntletNode : cocos2d::CCNode {
     static gd::string frameForType(GauntletType type) = win 0x1fde00, m1 0x4c3690, imac 0x575ab0;
     static gd::string nameForType(GauntletType type) = win 0x1ff190, m1 0x4c3660, imac 0x575a70;
 
-    bool init(GJMapPack* gauntlet) = win 0x1fc240, imac 0x574100, m1 0x4c1d08;
+    bool init(GJMapPack* gauntlet) = win inline, m1 0x4c1cb4, imac 0x5740b0;
+    void setupNode() = win 0x1fc240, imac 0x574100, m1 0x4c1d08;
     void onClaimReward() = win 0x1fddc0, imac 0x573250, m1 0x4c0d68;
 
     cocos2d::CCNode* m_gauntletInfoNode;
