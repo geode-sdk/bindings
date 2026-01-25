@@ -3927,7 +3927,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_trashBtn;
     CCMenuItemSpriteExtra* m_linkBtn;
     CCMenuItemSpriteExtra* m_unlinkBtn;
-    CCMenuItemToggler* m_linkControlsToggler;
+    CCMenuItemSpriteExtra* m_enableLinkBtn;
     CCMenuItemSpriteExtra* m_undoBtn;
     CCMenuItemSpriteExtra* m_redoBtn;
     CCMenuItemSpriteExtra* m_editObjectBtn;
