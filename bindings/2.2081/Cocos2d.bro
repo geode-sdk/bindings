@@ -50,7 +50,7 @@ class cocos2d {
     static void ccDrawRect(cocos2d::CCPoint, cocos2d::CCPoint);
     static void ccDrawSolidPoly(cocos2d::CCPoint const*, unsigned int, cocos2d::ccColor4F) = imac 0x208770, m1 0x1b49ec;
     static void ccDrawSolidRect(cocos2d::CCPoint origin, cocos2d::CCPoint destination, cocos2d::ccColor4F color) = imac 0x2086c0, m1 0x1b4918, ios inline;
-    static void ccGLBindTexture2D(unsigned int) = m1 0x2e6d0c;
+    static void ccGLBindTexture2D(unsigned int) = m1 0x2e6d0c, imac 0x35b760;
     static void ccGLBindTexture2DN(unsigned int, unsigned int);
     static void ccGLBindVAO(unsigned int);
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x35b6b0, m1 0x2e6c54;
@@ -59,7 +59,7 @@ class cocos2d {
     static void ccGLDeleteTexture(unsigned int);
     static void ccGLDeleteTextureN(unsigned int, unsigned int) = ios inline;
     static void ccGLEnable(cocos2d::ccGLServerState);
-    static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e6e58;
+    static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e6e58, imac 0x35b890;
     static void ccGLInvalidateStateCache();
     static void ccGLUseProgram(unsigned int);
     static void CCLog(char const*);
