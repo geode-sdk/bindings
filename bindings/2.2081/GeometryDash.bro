@@ -16146,13 +16146,13 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDele
     void removeGroupID(int id) = win inline, imac 0x317a00, m1 0x2a64b0;
     void updateEditorLabel() = m1 0x2a4bb0, imac 0x315dd0;
     void updateEditorLabel2() = m1 0x2a4cd8, imac 0x315ef0;
-    void updateEditorLayerID() = m1 0x2a5a50, imac 0x316da0;
-    void updateEditorLayerID2() = m1 0x2a5ac0, imac 0x316e20;
-    void updateEditorOrder() = win 0x3fda90, m1 0x2a5b30, imac 0x316ea0;
+    void updateEditorLayerID() = win 0x3fd9c0, m1 0x2a5a50, imac 0x316da0;
+    void updateEditorLayerID2() = win 0x3fda90, m1 0x2a5ac0, imac 0x316e20;
+    void updateEditorOrder() = m1 0x2a5b30, imac 0x316ea0;
     void updateEditorOrderLabel() = m1 0x2a46e0, imac 0x315900;
     void updateGroupIDButtons() = win 0x3fc120, imac 0x3161c0, m1 0x2a4fac;
     void updateGroupIDLabel() = m1 0x2a4a88, imac 0x315cb0;
-    void updateOrderChannel() = win 0x3fd9c0, m1 0x2a5bd8, imac 0x316f50;
+    void updateOrderChannel() = m1 0x2a5bd8, imac 0x316f50;
     void updateOrderChannelLabel() = m1 0x2a4828, imac 0x315a40;
     void updateZLayerButtons() = win 0x3fd930, m1 0x2a4f1c, imac 0x316130;
     void updateZOrder() = win 0x3fd460, imac 0x317000, m1 0x2a5c80;
