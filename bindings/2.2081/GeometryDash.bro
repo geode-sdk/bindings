@@ -11473,8 +11473,8 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     LeaderboardsLayer() = inline;
     ~LeaderboardsLayer() = win inline, m1 0x4689d4, imac 0x511f70;
 
-    static LeaderboardsLayer* create(LeaderboardState state) = win inline, m1 0x468ba0, imac 0x512210;
-    static cocos2d::CCScene* scene(LeaderboardState state) = win inline, m1 0x468aa8, imac 0x5120d0;
+    static LeaderboardsLayer* create(LeaderboardState state, int mode) = win inline, m1 0x468ba0, imac 0x512210;
+    static cocos2d::CCScene* scene(LeaderboardState state, int mode) = win inline, m1 0x468aa8, imac 0x5120d0;
 
     virtual void keyBackClicked() = imac 0x5141e0, win 0x2c4150, m1 0x46ab90;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = imac 0x514180, win 0x2c40a0, m1 0x46ab38;
@@ -11483,7 +11483,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
     virtual void loadLeaderboardFinished(cocos2d::CCArray* scores, char const* key) = imac 0x513cf0, m1 0x46a5d8, win 0x2c3870;
     virtual void loadLeaderboardFailed(char const* key) = imac 0x513f40, m1 0x46a880, win 0x2c3930;
 
-    bool init(LeaderboardState state) = win 0x2c13c0, m1 0x468c84, imac 0x512320;
+    bool init(LeaderboardState state, int mode) = win 0x2c13c0, m1 0x468c84, imac 0x512320;
     bool isCorrect(char const* key) = m1 0x46a7bc, imac 0x513e50;
     void onBack(cocos2d::CCObject* sender) = win 0x2c40d0, m1 0x469f98, imac 0x513680;
     void onCreators(cocos2d::CCObject* sender) = win 0x2c3240, imac 0x513730, m1 0x46a038;

@@ -23,9 +23,9 @@ LeaderboardsLayer::~LeaderboardsLayer() {
     if (glm->m_leaderboardManagerDelegate == this) glm->m_leaderboardManagerDelegate = nullptr;
 }
 
-LeaderboardsLayer* LeaderboardsLayer::create(LeaderboardState state) {
+LeaderboardsLayer* LeaderboardsLayer::create(LeaderboardState state, int mode) {
     auto ret = new LeaderboardsLayer();
-    if (ret->init(state)) {
+    if (ret->init(state, mode)) {
         ret->autorelease();
         return ret;
     }
@@ -33,10 +33,10 @@ LeaderboardsLayer* LeaderboardsLayer::create(LeaderboardState state) {
     return nullptr;
 }
 
-cocos2d::CCScene* LeaderboardsLayer::scene(LeaderboardState state) {
+cocos2d::CCScene* LeaderboardsLayer::scene(LeaderboardState state, int mode) {
     auto scene = cocos2d::CCScene::create();
     AppDelegate::get()->m_runningScene = scene;
-    auto layer = LeaderboardsLayer::create(state);
+    auto layer = LeaderboardsLayer::create(state, mode);
     scene->addChild(layer);
     return scene;
 }
