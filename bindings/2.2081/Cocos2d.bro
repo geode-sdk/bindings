@@ -1313,6 +1313,8 @@ class cocos2d::CCEGLView {
     [[missing(android, mac, ios)]]
     void pollEvents();
     [[missing(android, mac, ios)]]
+    void pumpRawInput();
+    [[missing(android, mac, ios)]]
     void setupWindow(cocos2d::CCRect);
     [[missing(android, mac, ios)]]
     void toggleFullScreen(bool, bool, bool);
