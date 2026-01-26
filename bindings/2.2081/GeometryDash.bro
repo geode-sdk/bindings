@@ -1944,7 +1944,7 @@ class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
     void onNextItemID(cocos2d::CCObject* sender) = m1 0x2280c0, imac 0x2868f0;
     void updateEditorLabel() = win 0x8b950, m1 0x228728, imac 0x286f90;
     void updateItemID() = win 0x8b9d0, m1 0x2287a0, imac 0x287010;
-    void updateTextInputLabel() = imac 0x286bc0, m1 0x228340;
+    void updateTextInputLabel() = win 0x8b9d0, imac 0x286bc0, m1 0x228340;
 
     EffectGameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;
