@@ -2902,7 +2902,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     void downloadFailed() = win inline, m1 0x50f48c, imac 0x5e4a70;
     void hideLoadingArt() = win 0xc1910, m1 0x50e850, imac 0x5e3e20;
     bool init(SFXInfoObject* object, CustomSFXDelegate* delegate, bool showDelete, bool showPlay, bool showDownload, bool noBackground, bool compactMode) = win 0xc0780, imac 0x5e2a20, m1 0x50d500;
-    void onCancelDownload(cocos2d::CCObject* sender) = m1 0x50e500, imac 0x5e3ad0;
+    void onCancelDownload(cocos2d::CCObject* sender) = win 0xc19a0, m1 0x50e500, imac 0x5e3ad0;
     void onDelete(cocos2d::CCObject* sender) = win 0xc1670, m1 0x50e53c, imac 0x5e3b10;
     void onDownload(cocos2d::CCObject* sender) = win 0xc1a30, imac 0x5e3970, m1 0x50e3bc;
     void onPlayback(cocos2d::CCObject* sender) = win 0xc1c00, m1 0x50e63c, imac 0x5e3c20;
