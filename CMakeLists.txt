@@ -205,7 +205,7 @@ if (NOT BINDINGS_VERSIONED_ONLY)
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC GEODE_COMP_GD_VERSION=${GEODE_COMP_GD_VERSION})
 
