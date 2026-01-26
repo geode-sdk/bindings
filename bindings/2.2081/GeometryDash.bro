@@ -3697,8 +3697,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void findSnapObject(cocos2d::CCArray* objects, float offset) = win 0x123340, m1 0x43c20, imac 0x4e7a0;
     void findSnapObject(cocos2d::CCPoint position, float offset) = win 0x123240, imac 0x4e690, m1 0x43b08;
     void findTriggerTest() = win inline, m1 0x3ca18, ios inline, imac 0x454a0;
-    void flipObjectsX(cocos2d::CCArray* objects) = m1 0x3af0c, imac 0x435f0;
-    void flipObjectsY(cocos2d::CCArray* objects) = m1 0x3ad6c, imac 0x43420;
+    void flipObjectsX(cocos2d::CCArray* objects) = win 0x120c70, m1 0x3af0c, imac 0x435f0;
+    void flipObjectsY(cocos2d::CCArray* objects) = win 0x120e50, m1 0x3ad6c, imac 0x43420;
     CCMenuItemSpriteExtra* getButton(char const* text, int width, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) = win inline, imac 0x2ea90, m1 0x2bbc0, ios inline;
     CreateMenuItem* getCreateBtn(int id, int bg) = win 0x10e980, imac 0x33700, m1 0x305b0;
     CreateMenuItem* getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) = win inline, imac 0x2ecd0, m1 0x2be24;
