@@ -6795,7 +6795,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x1e2840, m1 0x651d4, imac 0x737f0;
     bool hasCompletedDailyLevel(int dailyID) = win 0x1e2ce0, m1 0x659e8, imac 0x74000;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline, m1 0x5f180, imac 0x6d950;
-    bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0, m1 0x5f0e4;
+    bool hasCompletedGauntletLevel(int id) = win 0x1de170, imac 0x6d8d0, m1 0x5f0e4;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x1ddf80, imac 0x6d7a0, m1 0x5ef7c;
     bool hasCompletedMainLevel(int levelID) = win 0x1dde50, imac 0x6d720, m1 0x5eee0;
     bool hasCompletedMapPack(int id) = m1 0x60104, imac 0x6e860;
