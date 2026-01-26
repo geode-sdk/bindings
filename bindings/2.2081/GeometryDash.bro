@@ -7387,7 +7387,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int atlasValue(int atlas) = win inline, imac 0x11dff0, m1 0xf6e10, ios inline;
     void bumpPlayer(PlayerObject* player, EffectGameObject* object) = win 0x2179d0, m1 0x1004b0, imac 0x128130;
     int buttonIDToButton(int id) = inline, m1 0x126c5c, imac 0x156910;
-    void calculateColorGroups() = m1 0xf6b08, imac 0x11dd40;
+    void calculateColorGroups() = win 0x20e0b0, m1 0xf6b08, imac 0x11dd40;
     void cameraMoveX(float value, float duration, float rate, bool unused) = win inline, imac 0x15bc80, ios inline, m1 0x12af54;
     void cameraMoveY(float value, float duration, float rate, bool force) = inline, m1 0x12aff0, imac 0x15bd30;
     bool canBeActivatedByPlayer(PlayerObject* player, EffectGameObject* object) = win 0x2178c0, imac 0x127ce0, m1 0x1000cc;
