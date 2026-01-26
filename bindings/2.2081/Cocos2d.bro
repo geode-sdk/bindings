@@ -56,8 +56,8 @@ class cocos2d {
     static void ccGLBlendFunc(unsigned int, unsigned int) = imac 0x35b6b0, m1 0x2e6c54;
     static void ccGLBlendResetToCache() = ios inline;
     static void ccGLDeleteProgram(unsigned int);
-    static void ccGLDeleteTexture(unsigned int);
-    static void ccGLDeleteTextureN(unsigned int, unsigned int) = ios inline;
+    static void ccGLDeleteTexture(unsigned int) = m1 0x2e6da8, imac 0x35b7e0;
+    static void ccGLDeleteTextureN(unsigned int, unsigned int) = m1 0x2e6de8, imac 0x35b820, ios inline;
     static void ccGLEnable(cocos2d::ccGLServerState);
     static void ccGLEnableVertexAttribs(unsigned int) = m1 0x2e6e58, imac 0x35b890;
     static void ccGLInvalidateStateCache();
@@ -78,7 +78,7 @@ class cocos2d {
     static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*);
     static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&);
-    static cocos2d::CCPoint CCPointFromString(char const*);
+    static cocos2d::CCPoint CCPointFromString(char const*) = m1 0x4b5f48, imac 0x5675e0;
     static void ccPointSize(float);
     static void CCProfilingBeginTimingBlock(char const*);
     static void CCProfilingEndTimingBlock(char const*);
@@ -87,9 +87,9 @@ class cocos2d {
     static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpToAngle(cocos2d::CCPoint const& point) = ios inline;
     static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&);
-    static cocos2d::CCRect CCRectFromString(char const*);
+    static cocos2d::CCRect CCRectFromString(char const*) = m1 0x4b5358, imac 0x5668a0;
     static void ccSetProjectionMatrixDirty();
-    static cocos2d::CCSize CCSizeFromString(char const*);
+    static cocos2d::CCSize CCSizeFromString(char const*) = m1 0x4b6074, imac 0x5676e0;
     static bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*);
     static void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::ccVertex2F*, unsigned int, unsigned int);
     static float clampf(float, float, float);
