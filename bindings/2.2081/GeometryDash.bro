@@ -2902,7 +2902,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     void downloadFailed() = win inline, m1 0x50f48c, imac 0x5e4a70;
     void hideLoadingArt() = win 0xc1910, m1 0x50e850, imac 0x5e3e20;
     bool init(SFXInfoObject* object, CustomSFXDelegate* delegate, bool showDelete, bool showPlay, bool showDownload, bool noBackground, bool compactMode) = win 0xc0780, imac 0x5e2a20, m1 0x50d500;
-    void onCancelDownload(cocos2d::CCObject* sender) = m1 0x50e500, imac 0x5e3ad0;
+    void onCancelDownload(cocos2d::CCObject* sender) = win 0xc19a0, m1 0x50e500, imac 0x5e3ad0;
     void onDelete(cocos2d::CCObject* sender) = win 0xc1670, m1 0x50e53c, imac 0x5e3b10;
     void onDownload(cocos2d::CCObject* sender) = win 0xc1a30, imac 0x5e3970, m1 0x50e3bc;
     void onPlayback(cocos2d::CCObject* sender) = win 0xc1c00, m1 0x50e63c, imac 0x5e3c20;
@@ -2914,7 +2914,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     void updateError(GJSongError errorType) = win inline, imac 0x5e4d00, m1 0x50f6d4;
     void updateLengthMod(float mod) = win inline, imac 0x5e4b50, m1 0x50f54c;
     void updatePlaybackBtn() = win inline, imac 0x5e4650, m1 0x50f08c, ios inline;
-    void updateProgressBar(int progress) = m1 0x50e7d8, imac 0x5e3da0;
+    void updateProgressBar(int progress) = win 0xc1ed0, m1 0x50e7d8, imac 0x5e3da0;
     void updateSFXInfo() = win 0xc1f60, imac 0x5e3f40, m1 0x50e970;
     void updateSFXObject(SFXInfoObject* object) = win inline, imac 0x5e3eb0, m1 0x50e8e4;
     bool verifySFXID(int id) = win inline, imac 0x5e4b70, m1 0x50f554, ios inline;
@@ -3629,7 +3629,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void applyOffset(GameObject* object) = win inline, imac 0x3a5e0, m1 0x330b8;
     cocos2d::CCPoint applySpecialOffset(cocos2d::CCPoint position, GameObject* object, cocos2d::CCPoint offset) = win 0x122660, imac 0x4e210, m1 0x43704;
     bool arrayContainsClass(cocos2d::CCArray* objects, int classType) = win inline, imac 0x49130, m1 0x3fa38;
-    void assignNewGroups(bool groupY) = m1 0x3c8a0, imac 0x45310;
+    void assignNewGroups(bool groupY) = win 0x119220, m1 0x3c8a0, imac 0x45310;
     bool canAllowMultiActivate(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x3fab0, imac 0x491a0;
     bool canSelectObject(GameObject* object) = win 0x110310, m1 0x3453c, imac 0x3c090;
     void centerCameraOnObject(GameObject* object) = win inline, m1 0x30454, imac 0x335b0;
@@ -3697,8 +3697,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void findSnapObject(cocos2d::CCArray* objects, float offset) = win 0x123340, m1 0x43c20, imac 0x4e7a0;
     void findSnapObject(cocos2d::CCPoint position, float offset) = win 0x123240, imac 0x4e690, m1 0x43b08;
     void findTriggerTest() = win inline, m1 0x3ca18, ios inline, imac 0x454a0;
-    void flipObjectsX(cocos2d::CCArray* objects) = m1 0x3af0c, imac 0x435f0;
-    void flipObjectsY(cocos2d::CCArray* objects) = m1 0x3ad6c, imac 0x43420;
+    void flipObjectsX(cocos2d::CCArray* objects) = win 0x120c70, m1 0x3af0c, imac 0x435f0;
+    void flipObjectsY(cocos2d::CCArray* objects) = win 0x120e50, m1 0x3ad6c, imac 0x43420;
     CCMenuItemSpriteExtra* getButton(char const* text, int width, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) = win inline, imac 0x2ea90, m1 0x2bbc0, ios inline;
     CreateMenuItem* getCreateBtn(int id, int bg) = win 0x10e980, imac 0x33700, m1 0x305b0;
     CreateMenuItem* getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) = win inline, imac 0x2ecd0, m1 0x2be24;
