@@ -5183,7 +5183,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void deleteSelected() = win 0x13ea40, m1 0x699890, imac 0x7911e0;
     bool init(bool sent) = win 0x13da70, imac 0x78fdd0, m1 0x69860c;
     bool isCorrect(char const* key) = m1 0x699f2c, imac 0x791850;
-    void loadPage(int page) = m1 0x6994dc, imac 0x790da0;
+    void loadPage(int page) = win 0x13f270, m1 0x6994dc, imac 0x790da0;
     void onClose(cocos2d::CCObject* sender) = win 0x13ed70, m1 0x699014, imac 0x790840;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x13e750, m1 0x6991f0, imac 0x790a60;
     void onNextPage(cocos2d::CCObject* sender) = win 0x13fac0, m1 0x69946c, imac 0x790d10;
@@ -5287,7 +5287,7 @@ class GameCell : TableViewCell {
     virtual void draw() = imac 0x30d530, win 0x3cc30, m1 0x29cb00;
 
     void loadFromString(gd::string str) = win 0x3c840, m1 0x29c5ec, imac 0x30cf40;
-    void onTouch(cocos2d::CCObject* sender) = m1 0x29ca38, imac 0x30d490;
+    void onTouch(cocos2d::CCObject* sender) = win 0x3cc00, m1 0x29ca38, imac 0x30d490;
     void updateBGColor(int index) = win inline, imac 0x30d4d0, m1 0x29ca84, ios inline;
 
     void* m_unk230;
@@ -8617,7 +8617,7 @@ class GJGameLevel : cocos2d::CCNode {
     gd::string getAudioFileName() = win 0x16cef0, m1 0x4abacc, imac 0x55bfe0;
     int getAverageDifficulty() = win 0x16cd30, m1 0x4ab864, imac 0x55bd70;
     char const* getCoinKey(int coinNumber) = win 0x16cda0, imac 0x54c470, m1 0x49cb1c;
-    int getLastBuildPageForTab(int tab) = m1 0x4ab890, imac 0x55bdc0;
+    int getLastBuildPageForTab(int tab) = win 0x16ce20, m1 0x4ab890, imac 0x55bdc0;
     GJGameLevel* getListSnapshot() = win 0x16db30, m1 0x4acdd8, imac 0x55d4d0;
     int getNormalPercent() = win inline, imac 0x52d210, m1 0x4813b8;
     gd::string getSongName() = win 0x16cfb0, imac 0x55c100, m1 0x4abbfc;
@@ -10776,9 +10776,9 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
     void onClearBody(cocos2d::CCObject* sender) = win 0x29a3b0, imac 0x2aa080, m1 0x248a74;
     void onClose(cocos2d::CCObject* sender) = win 0x29a540, m1 0x24865c, imac 0x2a9c30;
     void onSend(cocos2d::CCObject* sender) = win 0x29a0e0, imac 0x2a9c40, m1 0x248664;
-    void updateBody(gd::string body) = m1 0x2489d8, imac 0x2aa000;
+    void updateBody(gd::string body) = win 0x29a920, m1 0x2489d8, imac 0x2aa000;
     void updateCharCountLabel(int type) = win inline, imac 0x2aa9a0, m1 0x2492e4;
-    void updateSubject(gd::string subject) = m1 0x24893c, imac 0x2a9f80;
+    void updateSubject(gd::string subject) = win 0x29a8c0, m1 0x24893c, imac 0x2a9f80;
     void updateText(gd::string text, int type) = win 0x29a990, imac 0x2aa720, m1 0x249080;
 
     int m_unk298;
