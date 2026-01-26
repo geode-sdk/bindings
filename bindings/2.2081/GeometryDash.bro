@@ -3629,7 +3629,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void applyOffset(GameObject* object) = win inline, imac 0x3a5e0, m1 0x330b8;
     cocos2d::CCPoint applySpecialOffset(cocos2d::CCPoint position, GameObject* object, cocos2d::CCPoint offset) = win 0x122660, imac 0x4e210, m1 0x43704;
     bool arrayContainsClass(cocos2d::CCArray* objects, int classType) = win inline, imac 0x49130, m1 0x3fa38;
-    void assignNewGroups(bool groupY) = m1 0x3c8a0, imac 0x45310;
+    void assignNewGroups(bool groupY) = win 0x119220, m1 0x3c8a0, imac 0x45310;
     bool canAllowMultiActivate(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x3fab0, imac 0x491a0;
     bool canSelectObject(GameObject* object) = win 0x110310, m1 0x3453c, imac 0x3c090;
     void centerCameraOnObject(GameObject* object) = win inline, m1 0x30454, imac 0x335b0;
