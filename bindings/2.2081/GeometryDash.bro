@@ -3825,11 +3825,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void toggleLockUI(bool lockUI) = win inline, imac 0x2d1d0, m1 0x2a414;
     void toggleMode(cocos2d::CCObject* sender) = win 0xe4e90, imac 0x2a880, m1 0x28188;
     void toggleObjectInfoLabel() = win 0xe2dd0, m1 0x2a1e0, imac 0x2cf90;
-    void toggleSnap(cocos2d::CCObject* sender) = m1 0xa9a8, imac 0xbee0;
+    void toggleSnap(cocos2d::CCObject* sender) = win 0x110100, m1 0xa9a8, imac 0xbee0;
     void toggleSpecialEditButtons() = win 0x11a9f0, m1 0x2a648, imac 0x2d420;
     void toggleStickyControls(bool enable) = win inline, m1 0x2a23c, imac 0x2cff0;
     void toggleSwipe(cocos2d::CCObject* sender) = win 0x10ffc0, m1 0xa840, imac 0xbd80;
-    void transformObject(GameObject* object, EditCommand command, bool noOffset) = m1 0x41c0c, imac 0x4b8d0;
+    void transformObject(GameObject* object, EditCommand command, bool noOffset) = win 0x120720, m1 0x41c0c, imac 0x4b8d0;
     void transformObjectCall(EditCommand command) = win 0x1201d0, imac 0x4a8b0, m1 0x40ebc;
     void transformObjectCall(cocos2d::CCObject* sender) = win 0x1201a0, m1 0x3fd8c, imac 0x49430;
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x121a40, imac 0x407e0, m1 0x387ac;
