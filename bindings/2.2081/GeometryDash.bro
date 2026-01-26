@@ -5734,7 +5734,7 @@ class GameManager : GManager {
     void applicationWillEnterForeground() = win 0x189c50, m1 0x312960, imac 0x38bb80;
     void calculateBaseKeyForIcons() = win inline, m1 0x300268, imac 0x376bd0;
     bool canShowRewardedVideo() = m1 0x308258, imac 0x380300;
-    void checkSteamAchievementUnlock() = m1 0x303330, ios inline, imac 0x379f60;
+    void checkSteamAchievementUnlock() = win 0x17e1c0, m1 0x303330, ios inline, imac 0x379f60;
     void checkUsedIcons() = win 0x1841d0, imac 0x37eeb0, m1 0x306d84;
     void claimItemsResponse(gd::string str) = win inline, m1 0x307b04, ios inline, imac 0x37fb60;
     void clearGJLog() = win inline, m1 0x30e290, imac 0x386b50;
