@@ -2914,7 +2914,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     void updateError(GJSongError errorType) = win inline, imac 0x5e4d00, m1 0x50f6d4;
     void updateLengthMod(float mod) = win inline, imac 0x5e4b50, m1 0x50f54c;
     void updatePlaybackBtn() = win inline, imac 0x5e4650, m1 0x50f08c, ios inline;
-    void updateProgressBar(int progress) = m1 0x50e7d8, imac 0x5e3da0;
+    void updateProgressBar(int progress) = win 0xc1ed0, m1 0x50e7d8, imac 0x5e3da0;
     void updateSFXInfo() = win 0xc1f60, imac 0x5e3f40, m1 0x50e970;
     void updateSFXObject(SFXInfoObject* object) = win inline, imac 0x5e3eb0, m1 0x50e8e4;
     bool verifySFXID(int id) = win inline, imac 0x5e4b70, m1 0x50f554, ios inline;
