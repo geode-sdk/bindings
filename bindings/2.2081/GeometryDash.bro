@@ -7543,7 +7543,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processAreaTransformGroupAction(cocos2d::CCArray* objects, EnterEffectInstance* instance, cocos2d::CCPoint position, int outerMin, int outerMax, int middleMin, int middleMax, int startIndex, bool targetGroups, bool reset) = win 0x229220, imac 0x141cf0, m1 0x115b74;
     void processAreaVisualActions(float dt) = win inline, imac 0x143a90, m1 0x1176bc;
     GameObject* processCameraObject(GameObject* object, PlayerObject* player) = win inline, imac 0x123400, m1 0xfc0d4;
-    void processCommands(float dt) = win 0x239c60, m1 0x124490, imac 0x1535e0;
+    void processCommands(float dt, bool isHalfTick, bool isLastTick) = win 0x239c60, m1 0x124490, imac 0x1535e0;
     void processDynamicObjectActions(int type, float dt) = win 0x22e280, m1 0x118490, imac 0x145ba0;
     void processFollowActions() = win 0x230580, imac 0x147100, m1 0x11a19c;
     void processItems() = win 0x216290, m1 0x1017d4, imac 0x129560;
@@ -7552,7 +7552,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processOptionsTrigger(GameOptionsTrigger* object) = win 0x223d50, imac 0x13ce60, m1 0x1119b4;
     void processPlayerFollowActions(float dt) = win 0x22ded0, imac 0x146b00, m1 0x119d98;
     void processQueuedAudioTriggers() = win 0x23bae0, imac 0x15a260, m1 0x12996c;
-    void processQueuedButtons(float p1, bool p2) = win 0x231d10, m1 0x11d44c, imac 0x14ada0;
+    void processQueuedButtons(float dt, bool clearInputQueue) = win 0x231d10, m1 0x11d44c, imac 0x14ada0;
     void processRotationActions() = win 0x22b7f0, m1 0x119470, imac 0x146640;
     void processSFXObjects() = win 0x241a10, imac 0x11db10, m1 0xf68e8;
     void processSFXState(SFXTriggerState* state1, SFXTriggerState* state2, int type, float levelTime) = win 0x244e10, m1 0x12e65c, imac 0x15fbd0;
