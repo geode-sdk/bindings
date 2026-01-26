@@ -7007,7 +7007,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     bool init(GauntletType type) = win 0x1f6140, m1 0x318d0c, imac 0x392aa0;
     void onBack(cocos2d::CCObject* sender) = win 0x1f8410, m1 0x319368, imac 0x393100;
     void onLevel(cocos2d::CCObject* sender) = win 0x1f7d90, imac 0x3945e0, m1 0x31a6cc;
-    void setupGauntlet(cocos2d::CCArray* levels) = imac 0x393150, m1 0x3193b0;
+    void setupGauntlet(cocos2d::CCArray* levels) = win 0x1f6d40, imac 0x393150, m1 0x3193b0;
     void unlockActiveItem() = win 0x1f7e00, imac 0x394620, m1 0x31a710;
 
     cocos2d::CCArray* m_levels;
