@@ -8556,9 +8556,9 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     void updateTargetGroupID2() = win 0x272830, m1 0x271c64, imac 0x2d7300;
     void updateTextInputLabel() = win 0x272640, m1 0x2712d4, imac 0x2d6840;
     void updateTextInputLabel2() = win 0x2726d0, m1 0x2713f4, imac 0x2d6960;
-    void updateXMod() = m1 0x271b04, imac 0x2d7160;
+    void updateXMod() = win 0x272900, m1 0x271b04, imac 0x2d7160;
     void updateXModLabel() = win 0x271f30, m1 0x271514, imac 0x2d6a80;
-    void updateYMod() = m1 0x271b74, imac 0x2d71e0;
+    void updateYMod() = win 0x272980, m1 0x271b74, imac 0x2d71e0;
     void updateYModLabel() = win 0x271fd0, m1 0x271650, imac 0x2d6bb0;
 
     CCTextInputNode* m_moveTimeInput;
