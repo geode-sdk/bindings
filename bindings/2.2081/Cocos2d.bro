@@ -1958,6 +1958,21 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
     // void setHorizontalAlignment(cocos2d::CCTextAlignment);
     void setTextDefinition(cocos2d::ccFontDefinition*) = imac 0x3be130, ios inline, m1 0x33fe60;
     bool updateTexture() = imac 0x3bdb80, m1 0x33f9c8;
+
+    cocos2d::CCSize m_tDimensions;
+    cocos2d::CCTextAlignment m_hAlignment;
+    cocos2d::CCVerticalTextAlignment m_vAlignment;
+    gd::string* m_pFontName;
+    float m_fFontSize;
+    gd::string m_string;
+    bool m_shadowEnabled;
+    cocos2d::CCSize m_shadowOffset;
+    float m_shadowOpacity;
+    float m_shadowBlur;
+    bool m_strokeEnabled;
+    cocos2d::ccColor3B m_strokeColor;
+    float m_strokeSize;
+    cocos2d::ccColor3B m_textFillColor;
 }
 
 [[link(win, android)]]
@@ -4286,6 +4301,15 @@ class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
 
     bool initWithPlaceHolder(const char* placeholder, const char* fontName, float fontSize) = ios inline, m1 0x21e320, imac 0x27c1a0;
     bool initWithPlaceHolder(const char* placeholder, const cocos2d::CCSize& dimensions, cocos2d::CCTextAlignment alignment, const char* fontName, float fontSize) = ios inline, m1 0x21e120, imac 0x27bfb0;
+
+    cocos2d::CCTextFieldDelegate* m_pDelegate;
+    int m_nCharCount;
+    gd::string* m_pInputText;
+    gd::string* m_pPlaceHolder;
+    cocos2d::ccColor3B m_ColorSpaceHolder;
+    bool m_bSecureTextEntry;
+    cocos2d::CCTextFieldTTF::LengthStack* m_pLens;
+    int m_uCursorPos;
 }
 
 [[link(win, android)]]
