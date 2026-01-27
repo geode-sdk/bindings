@@ -3825,11 +3825,11 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void toggleLockUI(bool lockUI) = win inline, imac 0x2d1d0, m1 0x2a414;
     void toggleMode(cocos2d::CCObject* sender) = win 0xe4e90, imac 0x2a880, m1 0x28188;
     void toggleObjectInfoLabel() = win 0xe2dd0, m1 0x2a1e0, imac 0x2cf90;
-    void toggleSnap(cocos2d::CCObject* sender) = m1 0xa9a8, imac 0xbee0;
+    void toggleSnap(cocos2d::CCObject* sender) = win 0x110100, m1 0xa9a8, imac 0xbee0;
     void toggleSpecialEditButtons() = win 0x11a9f0, m1 0x2a648, imac 0x2d420;
     void toggleStickyControls(bool enable) = win inline, m1 0x2a23c, imac 0x2cff0;
     void toggleSwipe(cocos2d::CCObject* sender) = win 0x10ffc0, m1 0xa840, imac 0xbd80;
-    void transformObject(GameObject* object, EditCommand command, bool noOffset) = m1 0x41c0c, imac 0x4b8d0;
+    void transformObject(GameObject* object, EditCommand command, bool noOffset) = win 0x120720, m1 0x41c0c, imac 0x4b8d0;
     void transformObjectCall(EditCommand command) = win 0x1201d0, imac 0x4a8b0, m1 0x40ebc;
     void transformObjectCall(cocos2d::CCObject* sender) = win 0x1201a0, m1 0x3fd8c, imac 0x49430;
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x121a40, imac 0x407e0, m1 0x387ac;
@@ -5734,7 +5734,7 @@ class GameManager : GManager {
     void applicationWillEnterForeground() = win 0x189c50, m1 0x312960, imac 0x38bb80;
     void calculateBaseKeyForIcons() = win inline, m1 0x300268, imac 0x376bd0;
     bool canShowRewardedVideo() = m1 0x308258, imac 0x380300;
-    void checkSteamAchievementUnlock() = m1 0x303330, ios inline, imac 0x379f60;
+    void checkSteamAchievementUnlock() = win 0x17e1c0, m1 0x303330, ios inline, imac 0x379f60;
     void checkUsedIcons() = win 0x1841d0, imac 0x37eeb0, m1 0x306d84;
     void claimItemsResponse(gd::string str) = win inline, m1 0x307b04, ios inline, imac 0x37fb60;
     void clearGJLog() = win inline, m1 0x30e290, imac 0x386b50;
@@ -6795,11 +6795,11 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x1e2840, m1 0x651d4, imac 0x737f0;
     bool hasCompletedDailyLevel(int dailyID) = win 0x1e2ce0, m1 0x659e8, imac 0x74000;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline, m1 0x5f180, imac 0x6d950;
-    bool hasCompletedGauntletLevel(int id) = imac 0x6d8d0, m1 0x5f0e4;
+    bool hasCompletedGauntletLevel(int id) = win 0x1de170, imac 0x6d8d0, m1 0x5f0e4;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x1ddf80, imac 0x6d7a0, m1 0x5ef7c;
     bool hasCompletedMainLevel(int levelID) = win 0x1dde50, imac 0x6d720, m1 0x5eee0;
-    bool hasCompletedMapPack(int id) = m1 0x60104, imac 0x6e860;
-    bool hasCompletedOnlineLevel(int id) = imac 0x6d850, m1 0x5f048;
+    bool hasCompletedMapPack(int id) = win 0x1def90, m1 0x60104, imac 0x6e860;
+    bool hasCompletedOnlineLevel(int id) = win 0x1de040, imac 0x6d850, m1 0x5f048;
     bool hasCompletedStarLevel(GJGameLevel* level) = win 0x1de2a0, m1 0x5f2d0, imac 0x6da80;
     bool hasPendingUserCoin(char const* key) = win 0x1dfe60, m1 0x6186c, imac 0x70180;
     bool hasRewardBeenCollected(GJRewardType type, int id) = win 0x1e1a70, m1 0x63de0, imac 0x725a0;
@@ -7007,7 +7007,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     bool init(GauntletType type) = win 0x1f6140, m1 0x318d0c, imac 0x392aa0;
     void onBack(cocos2d::CCObject* sender) = win 0x1f8410, m1 0x319368, imac 0x393100;
     void onLevel(cocos2d::CCObject* sender) = win 0x1f7d90, imac 0x3945e0, m1 0x31a6cc;
-    void setupGauntlet(cocos2d::CCArray* levels) = imac 0x393150, m1 0x3193b0;
+    void setupGauntlet(cocos2d::CCArray* levels) = win 0x1f6d40, imac 0x393150, m1 0x3193b0;
     void unlockActiveItem() = win 0x1f7e00, imac 0x394620, m1 0x31a710;
 
     cocos2d::CCArray* m_levels;
@@ -7387,7 +7387,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int atlasValue(int atlas) = win inline, imac 0x11dff0, m1 0xf6e10, ios inline;
     void bumpPlayer(PlayerObject* player, EffectGameObject* object) = win 0x2179d0, m1 0x1004b0, imac 0x128130;
     int buttonIDToButton(int id) = inline, m1 0x126c5c, imac 0x156910;
-    void calculateColorGroups() = m1 0xf6b08, imac 0x11dd40;
+    void calculateColorGroups() = win 0x20e0b0, m1 0xf6b08, imac 0x11dd40;
     void cameraMoveX(float value, float duration, float rate, bool unused) = win inline, imac 0x15bc80, ios inline, m1 0x12af54;
     void cameraMoveY(float value, float duration, float rate, bool force) = inline, m1 0x12aff0, imac 0x15bd30;
     bool canBeActivatedByPlayer(PlayerObject* player, EffectGameObject* object) = win 0x2178c0, imac 0x127ce0, m1 0x1000cc;
@@ -8556,9 +8556,9 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     void updateTargetGroupID2() = win 0x272830, m1 0x271c64, imac 0x2d7300;
     void updateTextInputLabel() = win 0x272640, m1 0x2712d4, imac 0x2d6840;
     void updateTextInputLabel2() = win 0x2726d0, m1 0x2713f4, imac 0x2d6960;
-    void updateXMod() = m1 0x271b04, imac 0x2d7160;
+    void updateXMod() = win 0x272900, m1 0x271b04, imac 0x2d7160;
     void updateXModLabel() = win 0x271f30, m1 0x271514, imac 0x2d6a80;
-    void updateYMod() = m1 0x271b74, imac 0x2d71e0;
+    void updateYMod() = win 0x272980, m1 0x271b74, imac 0x2d71e0;
     void updateYModLabel() = win 0x271fd0, m1 0x271650, imac 0x2d6bb0;
 
     CCTextInputNode* m_moveTimeInput;
@@ -9516,7 +9516,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, m1 0x23c490, imac 0x29cbb0;
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x28fee0, m1 0x23c000, imac 0x29c6b0;
     int countForPage(int page) = win 0x290420, m1 0x23cddc, imac 0x29d4f0;
-    void goToPage(int page) = m1 0x23ba88, imac 0x29c0d0;
+    void goToPage(int page) = win 0x290940, m1 0x23ba88, imac 0x29c0d0;
     void incrementCountForPage(int page) = win 0x2904f0, m1 0x23c8e4, imac 0x29d000;
     const char* infoKey(int index) = inline, m1 0x23cbd8, imac 0x29d300;
     bool init(int background) = win 0x28fa60, imac 0x29bd70, m1 0x23b7a0;
@@ -9524,7 +9524,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     const char* layerKey(int page) = win inline, m1 0x23cf44, ios inline, imac 0x29d630;
     cocos2d::CCPoint nextPosition(int page) = win inline, imac 0x29cbc0, m1 0x23c494;
     const char* objectKey(int page) = win inline, m1 0x23cf1c, ios inline, imac 0x29d610;
-    cocos2d::CCArray* objectsForPage(int page) = m1 0x23ca14, imac 0x29d120;
+    cocos2d::CCArray* objectsForPage(int page) = win 0x2905f0, m1 0x23ca14, imac 0x29d120;
     void offsetToNextPage() = win inline, imac 0x29c540, m1 0x23be98, ios inline;
     void onInfo(cocos2d::CCObject* sender) = win 0x290e60, m1 0x23cc00, imac 0x29d320;
     void onNextPage(cocos2d::CCObject* sender) = win 0x290920, m1 0x23ba7c, imac 0x29c0b0;
