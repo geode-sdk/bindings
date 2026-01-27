@@ -9516,7 +9516,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, m1 0x23c490, imac 0x29cbb0;
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x28fee0, m1 0x23c000, imac 0x29c6b0;
     int countForPage(int page) = win 0x290420, m1 0x23cddc, imac 0x29d4f0;
-    void goToPage(int page) = m1 0x23ba88, imac 0x29c0d0;
+    void goToPage(int page) = win 0x290940, m1 0x23ba88, imac 0x29c0d0;
     void incrementCountForPage(int page) = win 0x2904f0, m1 0x23c8e4, imac 0x29d000;
     const char* infoKey(int index) = inline, m1 0x23cbd8, imac 0x29d300;
     bool init(int background) = win 0x28fa60, imac 0x29bd70, m1 0x23b7a0;
