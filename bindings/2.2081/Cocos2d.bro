@@ -2354,6 +2354,7 @@ class cocos2d::CCMenuItemImage : cocos2d::CCMenuItemSprite {
 [[link(win, android)]]
 class cocos2d::CCMenuItemLabel : cocos2d::CCMenuItem {
 
+    [[since("4.11.0")]]
     ~CCMenuItemLabel() = m1 0x340b2c, imac 0x3bef50;
 
     static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*);
