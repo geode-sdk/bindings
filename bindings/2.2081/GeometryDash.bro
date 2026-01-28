@@ -264,7 +264,7 @@ class AchievementNotifier : cocos2d::CCNode {
 [[link(android)]]
 class AchievementsLayer : GJDropDownLayer {
     // virtual ~AchievementsLayer();
-    AchievementsLayer() = m1 0x2fd384, imac 0x3738a0;
+    AchievementsLayer() = win inline, m1 0x2fd384, imac 0x3738a0;
 
     static AchievementsLayer* create() = win inline, m1 0x2fcbe4, imac 0x3730b0;
 
@@ -764,7 +764,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 
 [[link(android)]]
 class BoomScrollLayer : cocos2d::CCLayer {
-    BoomScrollLayer() = m1 0x32bce4, imac 0x3a7590;
+    BoomScrollLayer() = win inline, m1 0x32bce4, imac 0x3a7590;
     ~BoomScrollLayer() = win inline, m1 0x32a7dc, imac 0x3a5eb0;
 
     static BoomScrollLayer* create(cocos2d::CCArray* pages, int offset, bool looped) = win inline, imac 0x3a4f60, m1 0x3298e8;
@@ -4287,7 +4287,7 @@ class EffectManagerState {
 
 [[link(android)]]
 class EndLevelLayer : GJDropDownLayer {
-    EndLevelLayer() = m1 0x4234c8, imac 0x4c3a00;
+    EndLevelLayer() = win inline, m1 0x4234c8, imac 0x4c3a00;
     ~EndLevelLayer() = win inline, m1 0x41fbe8, imac 0x4bfce0;
 
     static EndLevelLayer* create(PlayLayer* playLayer) = win inline, m1 0x41fb38, imac 0x4bfc30;
@@ -4567,7 +4567,7 @@ class EnterEffectInstance {
 class EnterEffectObject : EffectGameObject {
     // virtual ~EnterEffectObject();
     // make every member zero
-    EnterEffectObject() = imac 0x1f3e70, m1 0x1a2120;
+    EnterEffectObject() = win inline, imac 0x1f3e70, m1 0x1a2120;
 
     static EnterEffectObject* create(char const* frame) = win inline, imac 0x1847a0, m1 0x14972c;
 
@@ -10456,7 +10456,7 @@ class GJStoreItem : cocos2d::CCNode {
 
 [[link(android)]]
 class GJTransformControl : cocos2d::CCLayer {
-    GJTransformControl() = m1 0x496b8, imac 0x54f50;
+    GJTransformControl() = win inline, m1 0x496b8, imac 0x54f50;
     ~GJTransformControl() = win inline, m1 0x47ac0, imac 0x52e60;
 
     static GJTransformControl* create() = win inline, imac 0xbb50, m1 0xa5e8;
@@ -12191,7 +12191,7 @@ class LevelListDeleteDelegate {
 
 [[link(android)]]
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
-    LevelListLayer() = m1 0x2ef188, imac 0x364390;
+    LevelListLayer() = win inline, m1 0x2ef188, imac 0x364390;
     ~LevelListLayer() = win inline, imac 0x35b9c0, m1 0x2e6fd4;
 
     static LevelListLayer* create(GJLevelList* list) = win inline, imac 0x35bc80, m1 0x2e71dc;
