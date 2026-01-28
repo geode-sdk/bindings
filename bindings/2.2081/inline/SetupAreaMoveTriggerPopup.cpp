@@ -1,9 +1,11 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 SetupAreaMoveTriggerPopup::SetupAreaMoveTriggerPopup() {
     m_modeButtons = nullptr;
     m_targetButtons = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void SetupAreaMoveTriggerPopup::getModeValues(int mode, int& direction, bool& inbound, bool& twoDirections) {

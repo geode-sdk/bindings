@@ -1,11 +1,13 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 SetTextPopup::SetTextPopup() {
     m_input = nullptr;
     m_disableDelegate = false;
     m_cancelled = false;
     m_delegate = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

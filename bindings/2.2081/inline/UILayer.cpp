@@ -103,12 +103,6 @@ void UILayer::toggleMenuVisibility(bool visible) {
     }
 }
 
-void UILayer::togglePlatformerMode(bool platformer) {
-    m_inPlatformer = platformer;
-    this->refreshDpad();
-    this->updateUINodeVisibility(platformer);
-}
-
 void UILayer::updateDualMode(bool dual) {
     if (m_dualMode == dual) return;
     m_dualMode = dual;

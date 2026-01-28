@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_IOS)
 CurrencySprite::CurrencySprite() {
     m_unkFloat1 = 0.f;
     m_unkFloat2 = 0.f;
@@ -10,6 +11,7 @@ CurrencySprite::CurrencySprite() {
     m_spriteType = CurrencySpriteType::Orb;
     m_burstSprite = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

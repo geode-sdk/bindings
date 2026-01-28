@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 SetIDPopup::SetIDPopup() {
     m_inputNode = nullptr;
     m_value = 0;
@@ -10,6 +11,7 @@ SetIDPopup::SetIDPopup() {
     m_default = 0;
     m_delegate = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

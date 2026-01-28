@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_IOS)
 EnhancedGameObject::EnhancedGameObject() {
     m_poweredOn = false;
     m_state = 0;
@@ -41,6 +42,7 @@ EnhancedGameObject::EnhancedGameObject() {
     m_activatedByPlayer2 = false;
     m_hasUniqueCoin = false;
 }
+#endif
 
 void EnhancedGameObject::stateSensitiveOff(GJBaseGameLayer* layer) {}
 

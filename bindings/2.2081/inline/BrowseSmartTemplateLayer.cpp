@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 BrowseSmartTemplateLayer::BrowseSmartTemplateLayer() {
     m_template = nullptr;
     m_pages = nullptr;
@@ -8,6 +9,7 @@ BrowseSmartTemplateLayer::BrowseSmartTemplateLayer() {
     m_prevPageBtn = nullptr;
     m_dotsArray = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

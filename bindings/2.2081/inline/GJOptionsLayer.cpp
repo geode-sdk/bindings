@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_IOS)
 GJOptionsLayer::GJOptionsLayer() {
     m_gap = 48.f;
     m_page = 0;
@@ -10,6 +11,7 @@ GJOptionsLayer::GJOptionsLayer() {
     m_maxLabelWidth = 130.f;
     m_offset = 0.f;
 }
+#endif
 
 void GJOptionsLayer::didToggle(int toggle) {}
 

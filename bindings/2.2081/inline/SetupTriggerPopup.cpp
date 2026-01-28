@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 SetupTriggerPopup::SetupTriggerPopup() {
     m_gameObject = nullptr;
     m_gameObjects = nullptr;
@@ -41,6 +42,7 @@ SetupTriggerPopup::SetupTriggerPopup() {
     m_nextButton = nullptr;
     m_hideAll = false;
 }
+#endif
 
 void SetupTriggerPopup::pageChanged() {}
 

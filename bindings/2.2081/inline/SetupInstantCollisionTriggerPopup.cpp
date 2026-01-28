@@ -1,6 +1,8 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 SetupInstantCollisionTriggerPopup::SetupInstantCollisionTriggerPopup() {}
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -1,7 +1,7 @@
 #include <Geode/Geode.hpp>
 
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_ANDROID)
 GJShaderState::GJShaderState() {
     m_time = 0.0;
     m_prevTime = -1.0;
@@ -80,7 +80,9 @@ GJShaderState::GJShaderState() {
     m_noPlayerParticles = false;
     m_usesShaders = false;
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJShaderState::stopTweenAction(int action) {
     m_tweenActions.erase(action);
 }

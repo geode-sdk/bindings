@@ -1,11 +1,13 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 CreateGuidelinesLayer::CreateGuidelinesLayer() {
     m_delegate = nullptr;
     m_elapsed = 0.f;
     m_recording = false;
     m_unk2b5 = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
