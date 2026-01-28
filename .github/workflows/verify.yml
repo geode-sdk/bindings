@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/*'
+      - 'bindings/2.2074/*'
       - 'bindings/2.2081/**'
       - 'bindings/include/**'
       - 'cmake/**'
@@ -15,6 +16,7 @@ on:
     - '**'
     paths:
       - '.github/workflows/*'
+      - 'bindings/2.2074/*'
       - 'bindings/2.2081/**'
       - 'bindings/include/**'
       - 'cmake/**'
