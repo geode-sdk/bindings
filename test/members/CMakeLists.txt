@@ -145,7 +145,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 if (WIN32)
 	if (MSVC)
-		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
+		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj /Zc:__cplusplus)
 	elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 		target_link_options(${PROJECT_NAME} PRIVATE "-Wl,/errorlimit:0")
 	endif()
