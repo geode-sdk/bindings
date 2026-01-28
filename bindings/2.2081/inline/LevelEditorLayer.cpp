@@ -156,13 +156,8 @@ cocos2d::CCScene* LevelEditorLayer::scene(GJGameLevel* level, bool noUI) {
     return scene;
 }
 
-void LevelEditorLayer::addExclusionList(cocos2d::CCArray* groups, cocos2d::CCDictionary* dict) {
-    if (!groups || !dict) return;
-    auto node = cocos2d::CCNode::create();
-    for (int i = 0; i < groups->count(); i++) {
-        auto group = static_cast<cocos2d::CCInteger*>(groups->objectAtIndex(i))->getValue();
-        if (!dict->objectForKey(group)) dict->setObject(node, group);
-    }
+void LevelEditorLayer::addExclusionList(const gd::unordered_set<int>& excludes, gd::unordered_set<int>& groups) {
+    groups.insert(excludes.begin(), excludes.end());
 }
 
 GameObject* LevelEditorLayer::addObjectFromVector(gd::vector<gd::string>& values, gd::vector<void*>& exists) {
@@ -318,56 +313,48 @@ gd::string LevelEditorLayer::getLockedLayers() {
     return fmt::to_string(buffer);
 }
 
-int LevelEditorLayer::getNextFreeBlockID(cocos2d::CCArray* exclude) {
-    auto dict = cocos2d::CCDictionary::create();
-    auto node = cocos2d::CCNode::create();
-    auto objects = this->getAllObjects();
-    this->addExclusionList(exclude, dict);
-    for (int i = 0; i < objects->count(); i++) {
-        auto object = static_cast<EffectGameObject*>(objects->objectAtIndex(i));
+int LevelEditorLayer::getNextFreeBlockID(const gd::unordered_set<int>& exclude) {
+    std::unordered_set<int> ids;
+    this->addExclusionList(exclude, ids);
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getAllObjects())) {
+        auto object = static_cast<EffectGameObject*>(obj);
         if (object->m_classType == GameObjectClassType::Effect || object->m_objectID == 1816) {
-            auto id = object->m_itemID;
-            if (!dict->objectForKey(id)) dict->setObject(node, id);
+            ids.insert(object->m_itemID);
         }
     }
-    for (int i = 0; i < 1001; i++) {
-        if (!dict->objectForKey(i)) return i;
+    for (int i = 1; i < 1001; i++) {
+        if (ids.find(i) == ids.end()) return i;
     }
     return 1000;
 }
 
-int LevelEditorLayer::getNextFreeSFXGroupID(cocos2d::CCArray* exclude) {
-    auto dict = cocos2d::CCDictionary::create();
-    auto node = cocos2d::CCNode::create();
-    auto objects = this->getAllObjects();
-    this->addExclusionList(exclude, dict);
-    for (int i = 0; i < objects->count(); i++) {
-        auto object = static_cast<SFXTriggerGameObject*>(objects->objectAtIndex(i));
-        if (object->m_objectID == 3602 || object->m_objectID == 3603) {
-            auto id = object->m_sfxGroup;
-            if (id > 0 && !dict->objectForKey(id)) dict->setObject(node, id);
+int LevelEditorLayer::getNextFreeSFXGroupID(const gd::unordered_set<int>& exclude) {
+    std::unordered_set<int> ids;
+    this->addExclusionList(exclude, ids);
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getAllObjects())) {
+        auto object = static_cast<SFXTriggerGameObject*>(obj);
+        if ((object->m_objectID == 3602 || object->m_objectID == 3603) && object->m_sfxGroup > 0) {
+            ids.insert(object->m_sfxGroup);
         }
     }
-    for (int i = 0; i < 1001; i++) {
-        if (!dict->objectForKey(i)) return i;
+    for (int i = 1; i < 1001; i++) {
+        if (ids.find(i) == ids.end()) return i;
     }
     return 1000;
 }
 
-int LevelEditorLayer::getNextFreeSFXID(cocos2d::CCArray* exclude) {
-    auto dict = cocos2d::CCDictionary::create();
-    auto node = cocos2d::CCNode::create();
-    auto objects = this->getAllObjects();
-    this->addExclusionList(exclude, dict);
-    for (int i = 0; i < objects->count(); i++) {
-        auto object = static_cast<SFXTriggerGameObject*>(objects->objectAtIndex(i));
+int LevelEditorLayer::getNextFreeSFXID(const gd::unordered_set<int>& exclude) {
+    std::unordered_set<int> ids;
+    this->addExclusionList(exclude, ids);
+    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getAllObjects())) {
+        auto object = static_cast<SFXTriggerGameObject*>(obj);
         if (object->m_objectID == 3602) {
             auto id = object->getUniqueSFXID();
-            if (id > 0 && !dict->objectForKey(id)) dict->setObject(node, id);
+            if (id > 0) ids.insert(id);
         }
     }
-    for (int i = 0; i < 1001; i++) {
-        if (!dict->objectForKey(i)) return i;
+    for (int i = 1; i < 1001; i++) {
+        if (ids.find(i) == ids.end()) return i;
     }
     return 1000;
 }
@@ -437,6 +424,27 @@ void LevelEditorLayer::onPausePlaytest() {
     m_playtestCameraZoom = m_gameState.m_cameraZoom;
     this->pauseAudio();
     if (m_playtestOrderChanged) this->timeObjectChanged();
+}
+
+void LevelEditorLayer::onResumePlaytest() {
+    auto director = cocos2d::CCDirector::sharedDirector();
+    director->getKeyboardDispatcher()->setBlockRepeat(true);
+    m_uiLayer->editorPlaytest(true);
+    this->addPlayerCollisionBlock();
+    if (m_playTestSmoothFix) {
+        director->resetSmoothFixCounter();
+        director->setSmoothFixCheck(false);
+    }
+    m_playtestZoom = m_objectLayer->getScale();
+    m_objectLayer->setScale(std::max(m_playtestZoom, 0.7f));
+    m_playbackMode = PlaybackMode::Playing;
+    m_player1->resumeSchedulerAndActions();
+    m_player2->pauseSchedulerAndActions();
+    m_gameState.m_cameraZoom = m_playtestCameraZoom;
+    this->recreateGroups();
+    this->optimizeMoveGroups();
+    this->dirtifyTriggers();
+    this->resumeAudio();
 }
 
 void LevelEditorLayer::pasteAttributeState(GameObject* object, cocos2d::CCArray* objects) {

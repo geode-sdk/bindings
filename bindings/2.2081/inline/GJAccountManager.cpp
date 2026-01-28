@@ -4,11 +4,13 @@ GJAccountManager* GJAccountManager::get() {
     return GJAccountManager::sharedState();
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS)
 void GJAccountManager::addDLToActive(char const* tag) {
     this->addDLToActive(tag, cocos2d::CCNode::create());
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJAccountManager::handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) {
     auto result = GJHttpResult::create(true, response, tag, type);
     result->retain();
