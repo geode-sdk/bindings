@@ -7915,6 +7915,7 @@ class cocos2d::CCMenuItemLabel : cocos2d::CCMenuItem {
     static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
     static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*);
 
+    [[since("4.11.0")]]
     ~CCMenuItemLabel() = mac inline {}
 
     bool initWithLabel(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
