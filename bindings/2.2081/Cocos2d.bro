@@ -2023,11 +2023,11 @@ class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCA
     // cocos2d::CCScriptHandlerEntry* getScriptAccelerateHandlerEntry();
     // cocos2d::CCScriptHandlerEntry* getScriptKeypadHandlerEntry();
     // cocos2d::CCTouchScriptHandlerEntry* getScriptTouchHandlerEntry();
-    int excuteScriptTouchHandler(int, cocos2d::CCSet*);
-    int excuteScriptTouchHandler(int, cocos2d::CCTouch*);
-    void registerScriptAccelerateHandler(int);
-    void registerScriptKeypadHandler(int);
-    void unregisterScriptAccelerateHandler();
+    int excuteScriptTouchHandler(int, cocos2d::CCSet*) = m1 0x4126f4, imac 0x4b08c0;
+    int excuteScriptTouchHandler(int, cocos2d::CCTouch*) = m1 0x4126ac, imac 0x4b0880;
+    void registerScriptAccelerateHandler(int) = m1 0x412970, imac 0x4b0b30;
+    void registerScriptKeypadHandler(int) = m1 0x412b14, imac 0x4b0ce0;
+    void unregisterScriptAccelerateHandler() = m1 0x412278, imac 0x4b0340;
     void unregisterScriptKeypadHandler() = m1 0x41224c, imac 0x4b0310;
 
     bool m_bTouchEnabled;
@@ -2064,11 +2064,11 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
     virtual void setBlendFunc(cocos2d::ccBlendFunc) = imac 0x4b2910, m1 0x41428c;
     virtual cocos2d::ccBlendFunc getBlendFunc() = imac 0x4b28f0, m1 0x41427c;
 
-    void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
-    void changeHeight(float);
-    void changeWidth(float);
-    void changeWidthAndHeight(float, float);
-    void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint);
+    void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x414880, imac 0x4b3060;
+    void changeHeight(float) = m1 0x414948, imac 0x4b3150;
+    void changeWidth(float) = m1 0x414904, imac 0x4b3110;
+    void changeWidthAndHeight(float, float) = m1 0x4148c4, imac 0x4b30d0;
+    void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = m1 0x414864, imac 0x4b3040;
 
     std::array<cocos2d::ccVertex2F, 4> m_pSquareVertices;
     std::array<cocos2d::ccColor4F, 4> m_pSquareColors;
@@ -2103,7 +2103,7 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
 
     // bool getShouldPremultiply() const;
     // void setShouldPremultiply(bool);
-    void setValues(cocos2d::ccColor3B const&, unsigned char, cocos2d::ccColor3B const&, unsigned char, cocos2d::CCPoint const&);
+    void setValues(cocos2d::ccColor3B const&, unsigned char, cocos2d::ccColor3B const&, unsigned char, cocos2d::CCPoint const&) = m1 0x4156a4, imac 0x4b3fa0;
 
     cocos2d::ccColor3B m_startColor;
     cocos2d::ccColor3B m_endColor;
@@ -2116,19 +2116,19 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
 
 [[link(win, android)]]
 class cocos2d::CCLayerMultiplex : cocos2d::CCLayer {
-    CCLayerMultiplex();
-    virtual ~CCLayerMultiplex();
+    CCLayerMultiplex() = m1 0x415830, imac 0x4b41b0;
+    virtual ~CCLayerMultiplex() = m1 0x415910, imac 0x4b42f0;
 
-    static cocos2d::CCLayerMultiplex* create();
-    static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*);
-    static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*);
-    static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*);
+    static cocos2d::CCLayerMultiplex* create() = m1 0x415c50, imac 0x4b4810;
+    static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...) = m1 inline, imac inline;
+    static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*) = m1 0x415da8, imac 0x4b49c0;
+    static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*) = m1 0x415c30, imac 0x4b4800;
 
-    void addLayer(cocos2d::CCLayer*);
-    bool initWithArray(cocos2d::CCArray*);
-    bool initWithLayers(cocos2d::CCLayer*, va_list);
-    void switchTo(unsigned int);
-    void switchToAndReleaseMe(unsigned int);
+    void addLayer(cocos2d::CCLayer*) = m1 0x415f98, imac 0x4b4c10;
+    bool initWithArray(cocos2d::CCArray*) = m1 0x415eec, imac 0x4b4b50;
+    bool initWithLayers(cocos2d::CCLayer*, va_list) = m1 0x415b54, imac 0x4b46e0;
+    void switchTo(unsigned int) = m1 0x415fa0, imac 0x4b4c30;
+    void switchToAndReleaseMe(unsigned int) = m1 0x41600c, imac 0x4b4ca0;
 }
 
 [[link(win, android)]]
