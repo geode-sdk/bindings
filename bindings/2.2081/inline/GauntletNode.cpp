@@ -28,7 +28,7 @@ bool GauntletNode::init(GJMapPack* gauntlet) {
         m_gauntlet->retain();
     }
     m_locked = false;
-    this->setupNode();
+    this->generateNode();
     return true;
 }
 #endif

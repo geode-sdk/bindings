@@ -1068,13 +1068,19 @@ enum class MoveTargetType {
     YOnly = 2,
 };
 
-// Geode Addition
-enum class LeaderboardState {
+enum class LeaderboardType {
     Default = 0,
     Top100 = 1,
     Global = 2,
     Creator = 3,
     Friends = 4,
+};
+
+enum class LeaderboardStat {
+    Stars = 0,
+    Moons = 1,
+    Demons = 2,
+    UserCoins = 3
 };
 
 // Wylie Addition (https://github.com/Wyliemaster/GD-Decompiled/blob/main/GD/code/headers/Layers/LevelSettingsLayer.h)

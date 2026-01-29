@@ -30,8 +30,8 @@ const char* GameLevelManager::getLenKey(int len) {
     return cocos2d::CCString::createWithFormat("Len%i", len)->getCString();
 }
 
-const char* GameLevelManager::getLevelDownloadKey(int levelID, bool isGauntlet) {
-    return cocos2d::CCString::createWithFormat("%i_%i", levelID, isGauntlet)->getCString();
+const char* GameLevelManager::getLevelDownloadKey(int levelID, bool isGauntlet, int dailyID) {
+    return cocos2d::CCString::createWithFormat("%i_%i_%i", levelID, isGauntlet, dailyID)->getCString();
 }
 
 const char* GameLevelManager::getLevelKey(int levelID) {

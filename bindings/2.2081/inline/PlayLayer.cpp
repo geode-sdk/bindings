@@ -91,10 +91,6 @@ void PlayLayer::updateScreenRotation(int rotation, bool add, bool convert, float
     if (angle != m_gameState.m_targetCameraAngle) m_calculateTargetHeightOffset = true;
     GJBaseGameLayer::updateScreenRotation(angle, add, convert, duration, easingType, easingRate, uniqueID, controlID);
 }
-
-void PlayLayer::updateTimeWarp(EffectGameObject* object, float timeWarp) {
-    this->updateTimeWarp(timeWarp);
-}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -240,12 +236,6 @@ void PlayLayer::toggleBGEffectVisibility(bool enabled) {
     m_bgEffectDisabled = !enabled;
     if (!enabled) m_glitterParticles->stopSystem();
     else if (m_glitterEnabled) m_glitterParticles->resumeSystem();
-}
-
-void PlayLayer::toggleDebugDraw(bool enabled) {
-    m_isDebugDrawEnabled = enabled;
-    m_debugDrawNode->clear();
-    m_debugDrawNode->setVisible(m_isDebugDrawEnabled && m_isPracticeMode);
 }
 
 void PlayLayer::toggleGhostEffect(int type) {

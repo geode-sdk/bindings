@@ -1278,8 +1278,8 @@ void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int 
     this->toggleGroupTriggered(groupID, activateGroup, remapKeys, uniqueID, controlID);
 }
 
-void GJBaseGameLayer::togglePlayerStreakBlend(bool blend) {
-    if (blend != m_gameState.m_playerStreakBlend) {
+void GJBaseGameLayer::togglePlayerStreakBlend(bool blend, bool force) {
+    if (blend != m_gameState.m_playerStreakBlend || force) {
         m_gameState.m_playerStreakBlend = blend;
         m_player1->updateStreakBlend(blend);
         m_player2->updateStreakBlend(blend);
@@ -1635,7 +1635,7 @@ void GJBaseGameLayer::updateTimeMod(float speed, bool players, bool noEffects) {
     }
 }
 
-void GJBaseGameLayer::updateTimeWarp(GameObject* object, float timeWarp) {
+void GJBaseGameLayer::queueTimeWarp(float timeWarp) {
     m_gameState.m_unk18c = timeWarp;
 }
 #endif

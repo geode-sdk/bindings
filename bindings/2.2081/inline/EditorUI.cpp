@@ -691,14 +691,6 @@ void EditorUI::toggleLockUI(bool lockUI) {
     m_isPaused = lockUI;
 }
 
-void EditorUI::toggleStickyControls(bool enable) {
-    m_stickyControlsEnabled = enable;
-    m_linkBtn->setEnabled(enable);
-          m_linkBtn->setVisible(enable);
-          m_unlinkBtn->setEnabled(enable);
-          m_unlinkBtn->setVisible(enable);
-}
-
 void EditorUI::transformObjectsReset() {
     auto selectedObjects = m_selectedObjects;
     if (!selectedObjects || selectedObjects->count() == 0) {

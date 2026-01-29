@@ -67,7 +67,7 @@ GJUserScore::GJUserScore() {
     m_unkInt2 = 0;
     m_levelMode = 0;
     m_leaderboardMode = LevelLeaderboardMode::Time;
-    m_leaderboardType = 0;
+    m_leaderboardStat = LeaderboardStat::Stars;
 }
 #endif
 
