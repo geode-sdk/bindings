@@ -56,6 +56,8 @@ float PlayLayer::getRelativeModNew(cocos2d::CCPoint position, float mod, float o
     return cocos2d::clampf(result / mod, 0.f, 1.f);
 }
 
+void PlayLayer::playReplay(gd::string inputs) {}
+
 void PlayLayer::removeFromGroupOld(GameObject* object) {
     for (int i = 0; i < object->m_groupCount; i++) {
         this->getGroup(object->getGroupID(i))->removeObject(object);
@@ -132,15 +134,15 @@ CheckpointObject* PlayLayer::getLastCheckpoint() {
     }
     return nullptr;
 }
-#endif
 
-#if defined(GEODE_IS_WINDOWS)
 double PlayLayer::getTempMilliTime() {
     __timeb64 current;
     _ftime64_s(&current);
     return ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
 }
-#elif defined(GEODE_IS_MACOS)
+#endif
+
+#if defined(GEODE_IS_MACOS)
 #include <sys/timeb.h>
 double PlayLayer::getTempMilliTime() {
     timeb current;

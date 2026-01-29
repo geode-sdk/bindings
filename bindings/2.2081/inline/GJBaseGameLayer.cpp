@@ -239,6 +239,8 @@ void GJBaseGameLayer::restoreDefaultGameplayOffsetY() {
     this->updateGameplayOffsetY(75, false);
 }
 
+void GJBaseGameLayer::setupReplay(gd::string inputs) {}
+
 void GJBaseGameLayer::stopAllGroundActions() {
     m_groundLayer->deactivateGround();
     m_groundLayer2->deactivateGround();
@@ -292,6 +294,8 @@ void GJBaseGameLayer::updateInternalCamOffsetY(float offsetY, float duration, fl
         m_gameState.m_unkPoint26.y = m_gameState.m_unkPoint27.y;
     }
 }
+
+void GJBaseGameLayer::updateReplay() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -1579,14 +1583,6 @@ void GJBaseGameLayer::updateQueuedLabels() {
         for (auto label : pair.second) {
             if (label->m_isActivated) label->updateLabelIfDirty();
         }
-    }
-}
-
-void GJBaseGameLayer::updateReplay() {
-    if (!m_useReplay) return;
-    for (auto it = m_queuedReplayButtons.begin(); it != m_queuedReplayButtons.end() && it->m_step <= m_gameState.m_commandIndex;) {
-        this->handleButton(it->m_isPush, (int)it->m_button, it->m_isPlayer2);
-        it = m_queuedReplayButtons.erase(it);
     }
 }
 

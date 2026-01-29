@@ -81,11 +81,6 @@ float LevelTools::getLastTimewarp() {
     return *reinterpret_cast<float*>(geode::base::get() + 0x6ba198);
 }
 
-SongInfoObject* LevelTools::getSongObject(int id) {
-    auto artistID = artistForAudio(id);
-    return SongInfoObject::create(id, getAudioTitle(id), nameForArtist(artistID), artistID, 0.f, "", "", "", 0, "", false, 0, -1);
-}
-
 cocos2d::CCPoint LevelTools::posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& rotateChannel) {
     return posForTimeInternal(time, objects, speed, platformer, false, false, rotateChannel, 0);
 }
