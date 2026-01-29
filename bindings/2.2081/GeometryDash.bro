@@ -3024,7 +3024,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
 
     virtual void loadSongInfoFinished(SongInfoObject* object) = m1 0x543e44, win 0xccc80, imac 0x620210;
     virtual void loadSongInfoFailed(int id, GJSongError errorType) = imac 0x6204f0, m1 0x5440e8, win 0xcce10;
-    virtual void downloadSongStarted(int id);
+    virtual void downloadSongStarted(int id) = win 0xccf00, m1 0x5443e4, imac 0x6207f0;
     virtual void downloadSongFinished(int id) = imac 0x620990, m1 0x544578, win 0xccf20;
     virtual void downloadSongFailed(int id, GJSongError errorType) = imac 0x620c80, m1 0x544854, win 0xccfe0;
     virtual void downloadSFXFinished(int id) = m1 0x544a84, win 0xcd060, imac 0x620eb0;
@@ -7073,7 +7073,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 
     virtual void onExit() = imac 0x573800, m1 0x4c1388, win 0x1fb030;
     virtual void keyBackClicked() = imac 0x573160, m1 0x4c0c7c, win 0x1fa760;
-    virtual void rewardedVideoFinished();
+    virtual void rewardedVideoFinished() = win 0x1fafc0, m1 0x4c0da8, imac 0x573290;
     virtual void scrollLayerWillScrollToPage(BoomScrollLayer* layer, int page) = imac 0x5730c0, m1 0x4c0bdc, win 0x1fa660;
     virtual void scrollLayerScrolledToPage(BoomScrollLayer* layer, int page) = win 0x1fa660, imac 0x573020, m1 0x4c0b3c;
     virtual void loadLevelsFinished(cocos2d::CCArray* gauntlets, char const* key, int type) = win 0x1f99f0, imac 0x572550, m1 0x4c010c;
@@ -7374,8 +7374,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void toggleInfoLabel() = win inline, m1 inline, imac inline, ios inline;
     virtual void removeAllCheckpoints() = win inline, m1 inline, imac inline, ios inline;
     virtual void toggleMusicInPractice() = win inline, m1 inline, imac inline, ios inline;
-    virtual void processCheckpoints();
-    virtual void resetLevel();
+    virtual void processCheckpoints() = win inline, m1 inline, imac inline, ios inline;
+    virtual void resetLevel() = win inline, m1 inline, imac inline, ios inline;
 
     void activateCustomRing(RingObject* object) = win inline, m1 0x10b030, imac 0x135d60;
     void activatedAudioTrigger(SFXTriggerGameObject* object, float levelTime) = win 0x242e50, m1 0x12df18, imac 0x15f280;
@@ -12401,11 +12401,11 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     static cocos2d::CCScene* scene(int type) = win 0x30c040, m1 0x54aaf8, imac 0x627830;
 
     virtual void keyBackClicked() = imac 0x62c9b0, win 0x312870, m1 0x54fc7c;
-    virtual void textInputOpened(CCTextInputNode* node) = imac 0x62bf50, m1 0x54f1bc, win 0x30f7f0;
-    virtual void textInputClosed(CCTextInputNode* node) = imac 0x62c040, m1 0x54f2e0, win 0x30f940;
-    virtual void textChanged(CCTextInputNode* node) = imac 0x62c0c0, m1 0x54f370, win 0x30f940;
-    virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = imac 0x62bc40, win 0x30f7b0, m1 0x54eea8;
-    virtual void demonFilterSelectClosed(int filter) = imac 0x62b8b0, win 0x30e2e0, m1 0x54ebb8;
+    virtual void textInputOpened(CCTextInputNode* node) = imac 0x62bf90, m1 0x54f208, win 0x30f7f0;
+    virtual void textInputClosed(CCTextInputNode* node) = imac 0x62c060, m1 0x54f2e8, win 0x30f940;
+    virtual void textChanged(CCTextInputNode* node) = imac 0x62c130, m1 0x54f3f8, win 0x30f940;
+    virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = imac 0x62bf10, win 0x30f7b0, m1 0x54f170;
+    virtual void demonFilterSelectClosed(int filter) = imac 0x62ba00, win 0x30e2e0, m1 0x54ecbc;
 
     bool checkDiff(int diff) = win 0x311e90, m1 0x54fa24, imac 0x62c790;
     bool checkTime(int time) = win 0x312450, m1 0x54fb3c, imac 0x62c890;
@@ -14872,7 +14872,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void toggleInfoLabel() = imac 0xb9ba0, win 0x3b3550, m1 0xa72e8;
     virtual void removeAllCheckpoints() = imac 0xbdb00, win 0x3b8040, m1 0xaa7e8;
     virtual void toggleMusicInPractice() = imac 0xb9b00, win 0x3b2900, m1 0xa723c;
-    virtual void processCheckpoints();
+    virtual void processCheckpoints() = win 0x3b4910, m1 0xa81a0, imac 0xbabf0;
+    virtual void resetLevel() = m1 0xaaf88, win 0x3b8eb0, imac 0xbe350;
     virtual void currencyWillExit(CurrencyRewardLayer* layer) = imac 0xbaa20, m1 0xa8044, win 0x3b4730;
     virtual void circleWaveWillBeRemoved(CCCircleWave* circleWave) = imac 0xbaae0, win 0x3b48f0, m1 0xa80d4;
     virtual void dialogClosed(DialogLayer* layer) = imac 0xbaa70, m1 0xa8088, win 0x3b4750;
@@ -14925,7 +14926,6 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void removeAllObjects() = m1 0xa1144, win 0x3badb0, imac 0xb3070;
     void removeCheckpoint(bool first) = win 0x3b7f00, m1 0xa9eec, imac 0xbd1d0;
     void removeFromGroupOld(GameObject* object) = win inline, ios inline, m1 0xa4938, imac 0xb6df0;
-    void resetLevel() = m1 0xaaf88, win 0x3b8eb0, imac 0xbe350;
     void resetLevelFromStart() = m1 0xaaef8, win 0x3b8d10, imac 0xbe2c0;
     void resume() = win 0x3ba640, m1 0xac094, imac 0xbf5c0;
     void resumeAndRestart(bool fromStart) = m1 0xabee0, win 0x3ba3c0, imac 0xbf410;
@@ -16173,7 +16173,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDele
     static SetGroupIDLayer* create(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x2a14b8, imac 0x312360;
 
     virtual void keyBackClicked() = imac 0x317cc0, win 0x3fdf20, m1 0x2a6748;
-    virtual void valuePopupClosed(ConfigureValuePopup* popup, float value);
+    virtual void valuePopupClosed(ConfigureValuePopup* popup, float value) = win 0x3fd3d0, m1 0x2a6678, imac 0x317bc0;
     virtual void textInputClosed(CCTextInputNode* node) = imac 0x317450, m1 0x2a5fd4, win 0x8b850;
     virtual void textChanged(CCTextInputNode* node) = imac 0x317490, m1 0x2a5ff0, win 0x3fbbb0;
 

@@ -54,6 +54,10 @@ void GJBaseGameLayer::removeAllCheckpoints() {}
 
 void GJBaseGameLayer::toggleMusicInPractice() {}
 
+void GJBaseGameLayer::processCheckpoints() {}
+
+void GJBaseGameLayer::resetLevel() {}
+
 void GJBaseGameLayer::addToObjectsToShow(GameObject* object) {
     if (m_activeObjectsCount < m_activeObjectsIndex) {
         m_activeObjects[m_activeObjectsIndex] = object;

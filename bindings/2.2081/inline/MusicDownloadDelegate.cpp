@@ -4,6 +4,8 @@ void MusicDownloadDelegate::loadSongInfoFinished(SongInfoObject* object) {}
 
 void MusicDownloadDelegate::loadSongInfoFailed(int id, GJSongError errorType) {}
 
+void MusicDownloadDelegate::downloadSongStarted(int id) {}
+
 void MusicDownloadDelegate::downloadSongFinished(int id) {}
 
 void MusicDownloadDelegate::downloadSongFailed(int id, GJSongError errorType) {}

@@ -4629,8 +4629,8 @@ class cocos2d::CCTMXMapInfo : cocos2d::CCObject, cocos2d::CCSAXDelegator {
     virtual cocos2d::CCDictionary* getProperties() = imac 0x4cda90, m1 0x42c6f8;
     virtual void setProperties(cocos2d::CCDictionary*) = imac 0x4cdaa0, m1 0x42c700;
     virtual void startElement(void*, char const*, char const**) = m1 0x42c780, imac 0x4cdb30;
-    virtual void endElement(void*, char const*) = imac 0x4d0cc0, m1 0x42f0d4;
-    virtual void textHandler(void*, char const*, int) = imac 0x4d1100, m1 0x42f54c;
+    virtual void endElement(void*, char const*) = imac 0x4d0cd0, m1 0x42f0d4;
+    virtual void textHandler(void*, char const*, int) = imac 0x4d1110, m1 0x42f54c;
 
     cocos2d::CCDictionary* getTileProperties();
     bool initWithTMXFile(char const*);
