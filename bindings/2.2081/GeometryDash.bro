@@ -5702,7 +5702,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJChallengeDelegate* m_GJChallengeDelegate;
     GJDailyLevelDelegate* m_GJDailyLevelDelegate;
     OnlineListDelegate* m_onlineListDelegate;
-    void* m_levelRateInfoDelegate;
+    LevelRateInfoDelegate* m_levelRateInfoDelegate;
     SearchType m_searchType;
     int m_mapPack;
     gd::string m_tempSave;
@@ -7310,7 +7310,7 @@ class GJAssetDownloadAction {
     int m_status;
 }
 
-[[link(android), depends(GJGameState), depends(PlayerButtonCommand)]]
+[[link(android), depends(GJGameState), depends(PlayerButtonCommand), depends(RecordCheckpoint)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJBaseGameLayer() = win 0x2cfef0, m1 0xac9f4, imac 0xc01e0;
     ~GJBaseGameLayer() = win 0x2057a0, m1 0xea680, imac 0x10ea70;
@@ -8073,10 +8073,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_currentStep;
     gd::vector<PlayerButtonCommand> m_queuedButtons;
     gd::vector<PlayerButtonCommand> m_queuedRecordedButtons;
-    gd::unordered_map<int, int> m_unk3330;
+    gd::unordered_map<int, RecordCheckpoint> m_unk3330;
     int m_unk3370;
     gd::vector<PlayerButtonCommand> m_queuedReplayButtons;
-    gd::unordered_map<int, int> m_unk3390;
+    gd::unordered_map<int, RecordCheckpoint> m_unk3390;
     gd::vector<void*> m_unk3340;
     gd::vector<void*> m_unk3358;
     int m_queuedRecordedButtonsSize;
@@ -9740,6 +9740,46 @@ class GJPromoPopup : FLAlertLayer {
 [[link(android)]]
 class GJPurchaseDelegate {
     virtual void didPurchaseItem(GJStoreItem* item) = inline;
+}
+
+[[link(android)]]
+class GJRateLevelLayer : SetupTriggerPopup, UploadPopupDelegate, UploadActionDelegate, LevelRateInfoDelegate, FLAlertLayerProtocol {
+    GJRateLevelLayer() = inline;
+    ~GJRateLevelLayer() = win inline;
+
+    virtual void keyBackClicked();
+    virtual void onClose(cocos2d::CCObject* sender);
+    virtual void onCustomButton(cocos2d::CCObject* sender);
+    virtual void uploadActionFinished(int id, int response);
+    virtual void uploadActionFailed(int id, int response);
+    virtual void onClosePopup(UploadActionPopup* popup);
+    virtual void rateInfoFinished(int id, gd::string info);
+    virtual void rateInfoFailed(int id, int response);
+    virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2);
+
+    static GJRateLevelLayer* create(GJGameLevel* level);
+
+    void createStatPillar(int, int, int, cocos2d::ccColor3B, cocos2d::ccColor3B, cocos2d::CCPoint, gd::string);
+    CCMenuItemSpriteExtra* getStarsButton(int stars, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale);
+    bool init(GJGameLevel* level);
+    void onFeature(cocos2d::CCObject* sender);
+    void onRate(cocos2d::CCObject* sender);
+    void onToggleCoins(cocos2d::CCObject* sender);
+    void selectRating(cocos2d::CCObject* sender);
+    void setupRateInfo(gd::string info);
+
+    GJGameLevel* m_level;
+    bool m_uploadFinished;
+    CCMenuItemSpriteExtra* m_submitButton;
+    cocos2d::CCArray* m_starButtons;
+    int m_stars;
+    bool m_coinsToggled;
+    cocos2d::CCSprite* m_coinSprite;
+    UploadActionPopup* m_uploadPopup;
+    GJDifficultySprite* m_difficultySprite;
+    GJFeatureState m_featureState;
+    LoadingCircle* m_loadingCircle;
+    cocos2d::CCPoint m_center;
 }
 
 [[link(android)]]
@@ -12393,6 +12433,12 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
 }
 
 [[link(android)]]
+class LevelRateInfoDelegate {
+    virtual void rateInfoFinished(int id, gd::string info) = inline;
+    virtual void rateInfoFailed(int id, int response) = inline;
+}
+
+[[link(android)]]
 class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DemonFilterDelegate {
     LevelSearchLayer() = inline;
     ~LevelSearchLayer() = win inline, m1 0x54a8c8, imac 0x6274d0;
@@ -12632,7 +12678,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     // property kA44
     int m_propertykA44;
     // property kA47
-    int m_propertykA47;
+    int m_nextFreeID;
     // property kA35
     bool m_resetCamera;
     // property kA36

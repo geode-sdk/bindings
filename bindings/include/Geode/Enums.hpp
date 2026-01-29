@@ -1019,7 +1019,8 @@ enum class GJHttpType {
     DeleteServerLevelList = 0x3E,
     GetNews = 0x3F,
     GetGJSecretReward = 0x40,
-    GetLevelRateInfo = 0x41
+    GetLevelRateInfo = 0x41,
+    RateLevelAdmin = 0x42
 };
 
 enum class DialogChatPlacement {
