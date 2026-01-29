@@ -7,7 +7,11 @@ cocos2d::CCDictElement::CCDictElement(char const* p0, cocos2d::CCObject* p1) {
     auto pStart = p0;
     int len = strlen(p0);
     if (len > MAX_KEY_LEN) pStart = p0 + len - MAX_KEY_LEN;
+    #ifdef GEODE_IS_WINDOWS
+    strncpy_s(m_szKey, MAX_KEY_LEN, pStart, std::min(len, MAX_KEY_LEN));
+    #else
     strncpy(m_szKey, pStart, std::min(len, MAX_KEY_LEN));
+    #endif
     m_pObject = p1;
     memset(&hh, 0, sizeof(hh));
 }

@@ -210,7 +210,7 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
 target_compile_definitions(${PROJECT_NAME} PUBLIC GEODE_COMP_GD_VERSION=${GEODE_COMP_GD_VERSION})
 
 if (WIN32)
-	target_compile_definitions(${PROJECT_NAME} PUBLIC -DNOMINMAX PRIVATE -D_CRT_SECURE_NO_WARNINGS)
+	target_compile_definitions(${PROJECT_NAME} PUBLIC -DNOMINMAX)
 	if (MSVC)
 		target_compile_options(${PROJECT_NAME} PUBLIC /bigobj)
 	endif()
