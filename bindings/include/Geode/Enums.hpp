@@ -1290,3 +1290,15 @@ namespace GameVar {
     constexpr auto LinkControlsQuickToggle = "0180";
     constexpr auto StaticTraceArrows = "0181";
 }
+
+// frozen archaic versions of enums
+
+#if GEODE_COMP_GD_VERSION < 22080
+enum class LeaderboardState {
+    Default = 0,
+    Top100 = 1,
+    Global = 2,
+    Creator = 3,
+    Friends = 4,
+};
+#endif
