@@ -1634,6 +1634,10 @@ void GJBaseGameLayer::updateTimeMod(float speed, bool players, bool noEffects) {
         m_gameState.m_timeModRelated2 = noEffects;
     }
 }
+
+void GJBaseGameLayer::updateTimeWarp(GameObject* object, float timeWarp) {
+    m_gameState.m_unk18c = timeWarp;
+}
 #endif
 
 #if defined(GEODE_IS_IOS)
