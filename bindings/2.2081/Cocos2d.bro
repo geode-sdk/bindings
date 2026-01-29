@@ -3908,7 +3908,7 @@ class cocos2d::CCSpawn : cocos2d::CCActionInterval {
 
     static cocos2d::CCSpawn* create(cocos2d::CCArray* arrayOfActions) = imac 0x3b6ef0, m1 0x3399ec, ios inline;
     // static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...) = m1 0x33e430, imac 0x3b9e30;
-    static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction* first, ...) = inline;
+    static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction* first, ...) = m1 inline, imac inline, ios inline;
     static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3b6e60, m1 0x339960;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3b74a0, m1 0x339ef4;
@@ -5416,7 +5416,7 @@ class cocos2d::extension::CCControlButton : cocos2d::extension::CCControl {
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
     CCControlColourPicker() = inline;
-    virtual ~CCControlColourPicker() = inline;
+    virtual ~CCControlColourPicker() = m1 inline, imac inline, ios inline;
 
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x355d60, m1 0x2e2214;
 
