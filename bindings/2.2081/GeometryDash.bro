@@ -13699,7 +13699,7 @@ class NumberInputLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x846a0, imac 0x4932c0, m1 0x3f8058, ios 0xf9630;
 
     void deleteLast() = win inline, imac 0x492fa0, m1 0x3f7d24, ios 0xf94e8;
-    void inputNumber(int num) = win inline, imac 0x4931c0, m1 0x3f7f40, ios 0x226fa8;
+    void inputNumber(int num) = win inline, imac 0x4931c0, m1 0x3f7f40, ios 0xf95c0;
     void onClose(cocos2d::CCObject* sender) = win 0x84670, imac 0x492e40, m1 0x3f7b98, ios 0xf93a0;
     void onDone(cocos2d::CCObject* sender) = win inline, imac 0x493170, m1 0x3f7ee8, ios 0xf9568;
     void onNumber(cocos2d::CCObject* sender) = win 0x3489b0, imac 0x492e70, m1 0x3f7bd4, ios 0xf93dc;
@@ -19162,9 +19162,9 @@ class SongInfoLayer : FLAlertLayer {
 class SongInfoObject : cocos2d::CCNode {
     // virtual ~SongInfoObject();
 
-    static SongInfoObject* create(cocos2d::CCDictionary* dict) = win 0x3448b0, imac 0x58c1e0, m1 0x4d740c, ios 0x158f48;
+    static SongInfoObject* create(cocos2d::CCDictionary* dict) = win 0x3448b0, imac 0x58c1e0, m1 0x4d740c, ios 0x154920;
     static SongInfoObject* create(int songID) = win 0x344730, imac 0x596ea0, m1 0x4e0cc0, ios 0x15b164;
-    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, gd::string, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x345bf0, imac 0x593d00, m1 0x4ddfe4;
+    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, gd::string, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x345bf0, imac 0x593d00, m1 0x4ddfe4, ios 0x158f48;
     static SongInfoObject* createWithCoder(DS_Dictionary* dict) = win 0x346250, imac 0x5974f0, m1 0x4e1260, ios 0x15b644;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x3465b0, imac 0x597d60, m1 0x4e1920, ios 0x15bb98;
