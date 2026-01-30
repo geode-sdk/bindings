@@ -64,7 +64,7 @@ class FMOD::ChannelControl {
     FMOD_RESULT set3DConeOrientation(FMOD_VECTOR*) = ios 0x5062d4;
     FMOD_RESULT stop() = ios 0x503050;
     FMOD_RESULT addDSP(int, FMOD::DSP*) = ios 0x5055e4;
-    FMOD_RESULT getDSP(int, FMOD::DSP**) = ios 0x504ac0;
+    FMOD_RESULT getDSP(int, FMOD::DSP**) = ios 0x5054b4;
     FMOD_RESULT setPan(float) = ios 0x504288;
     FMOD_RESULT getMode(unsigned int*) = ios 0x503fd8;
     FMOD_RESULT getMute(bool*) = ios 0x5039f0;
@@ -259,7 +259,7 @@ class FMOD::SoundGroup {
 
 [[link(win, android, mac)]]
 class FMOD::System {
-    FMOD_RESULT getChannel(int, FMOD::Channel**) = ios 0x4cb758;
+    FMOD_RESULT getChannel(int, FMOD::Channel**) = ios 0x4cc634;
     FMOD_RESULT getVersion(unsigned int*) = ios 0x4cb5a8;
     FMOD_RESULT loadPlugin(char const*, unsigned int*, unsigned int) = ios 0x4c9038;
     FMOD_RESULT recordStop(int) = ios 0x4cd6a8;
@@ -344,8 +344,8 @@ class FMOD::System {
     FMOD_RESULT lockDSP() = ios 0x4cceb8;
     FMOD_RESULT playDSP(FMOD::DSP*, FMOD::ChannelGroup*, bool, FMOD::Channel**) = ios 0x4cc4a0;
     FMOD_RESULT release() = ios 0x4c79ac;
-    FMOD_RESULT createDSP(FMOD_DSP_DESCRIPTION const*, FMOD::DSP**) = ios 0x4cbebc;
-    FMOD_RESULT getDriver(int*) = ios 0x4c7d0c;
+    FMOD_RESULT createDSP(FMOD_DSP_DESCRIPTION const*, FMOD::DSP**) = ios 0x4cbd94;
+    FMOD_RESULT getDriver(int*) = ios 0x4c8078;
     FMOD_RESULT getOutput(FMOD_OUTPUTTYPE*) = ios 0x4c7b5c;
     FMOD_RESULT playSound(FMOD::Sound*, FMOD::ChannelGroup*, bool, FMOD::Channel**) = ios 0x4cc30c;
     FMOD_RESULT setDriver(int) = ios 0x4c7fa0;
