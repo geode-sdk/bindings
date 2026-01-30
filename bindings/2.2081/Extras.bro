@@ -381,4 +381,5 @@ class RecordButtonCommand {
     bool m_isPush;
     bool m_isPlayer2;
     int m_step;
+	int m_unk00c;
 }

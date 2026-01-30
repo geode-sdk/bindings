@@ -955,12 +955,13 @@ void GJBaseGameLayer::reAddToStickyGroup(GameObject* object) {
 }
 
 void GJBaseGameLayer::recordAction(int button, bool down, bool player2) {
-    if (m_recordInputs && !m_useReplay) {
-        PlayerButtonCommand command;
+    if (m_recordInputs && !m_useReplay && m_queuedRecordedButtons.size() < 100000) {
+        RecordButtonCommand command;
         command.m_button = (PlayerButton)button;
         command.m_isPush = down;
         command.m_isPlayer2 = player2;
         command.m_step = 0;
+        command.m_unk00c = 0;
         m_queuedRecordedButtons.push_back(command);
     }
 }
