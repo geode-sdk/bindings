@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 ShaderGameObject::ShaderGameObject() {
     m_speed = 1.f;
     m_strength = 1.f;
@@ -29,6 +30,7 @@ ShaderGameObject::ShaderGameObject() {
     m_relative = false;
     m_editorDisabled = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool ShaderGameObject::init(char const* frame) {

@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 LevelPage::LevelPage() {
     m_isBusy = false;
     m_level = nullptr;
@@ -7,6 +8,7 @@ LevelPage::LevelPage() {
     m_coinObject = nullptr;
     m_secretDoor = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void LevelPage::onMoreGames(cocos2d::CCObject* sender) {

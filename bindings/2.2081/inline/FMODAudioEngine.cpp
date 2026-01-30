@@ -312,7 +312,7 @@ FMOD_OPENSTATE FMODAudioEngine::waitUntilSoundReady(FMOD::Sound* sound) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 FMODAudioEngine::FMODAudioEngine() {
     m_musicVolume = 1.f;
     m_sfxVolume = 1.f;

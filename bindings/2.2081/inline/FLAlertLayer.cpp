@@ -20,7 +20,7 @@ void FLAlertLayer::incrementForcePrio() {
 }
 #endif
 
-#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 FLAlertLayer::FLAlertLayer() {
     m_buttonMenu = nullptr;
     m_controlConnected = -1;

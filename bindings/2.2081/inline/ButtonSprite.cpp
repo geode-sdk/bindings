@@ -58,7 +58,7 @@ void ButtonSprite::updateSpriteOffset(cocos2d::CCPoint offset) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 ButtonSprite::ButtonSprite() {
     m_mode = 0;
     m_width = 0.f;

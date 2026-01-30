@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SecretLayer2::SecretLayer2() {
     m_threadTag = -1;
     m_basicMessageIndex = -1;
@@ -16,6 +17,7 @@ SecretLayer2::SecretLayer2() {
     m_secretLevelLabels = nullptr;
     m_secretDoorButton = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::CCNode* SecretLayer2::nodeWithTag(int tag) {

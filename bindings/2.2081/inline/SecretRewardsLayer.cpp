@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SecretRewardsLayer::SecretRewardsLayer() {
     m_mainLayer = nullptr;
     m_secondaryLayer = nullptr;
@@ -16,6 +17,7 @@ SecretRewardsLayer::SecretRewardsLayer() {
     m_rewardType = GJRewardType::Unknown;
     m_lockedDialogIndex = 0;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::ccColor3B SecretRewardsLayer::getPageColor(int page) {

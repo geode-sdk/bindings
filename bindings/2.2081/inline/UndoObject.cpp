@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 UndoObject::UndoObject() {
     m_objectCopy = nullptr;
     m_command = (UndoCommand)0;
@@ -7,6 +8,7 @@ UndoObject::UndoObject() {
     m_redo = false;
     m_undoTransform = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool UndoObject::init(GameObject* object, UndoCommand command) {

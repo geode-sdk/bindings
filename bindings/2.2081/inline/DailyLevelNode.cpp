@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 DailyLevelNode::DailyLevelNode() {
     m_level = nullptr;
     m_page = nullptr;
@@ -7,6 +8,7 @@ DailyLevelNode::DailyLevelNode() {
     m_unkBool = false;
     m_needsDownloading = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void DailyLevelNode::updateTimeLabel(gd::string text) {

@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SpriteDescription::SpriteDescription() {
     m_rotation = 0;
     m_zValue = 0;
@@ -7,6 +8,7 @@ SpriteDescription::SpriteDescription() {
     m_usesCustomTag = false;
     m_texture = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
 LevelListLayer::LevelListLayer() {
     m_buttonMenu = nullptr;
     m_levelList = nullptr;
@@ -13,7 +13,9 @@ LevelListLayer::LevelListLayer() {
     m_featureSprite = nullptr;
     m_exited = false;
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void LevelListLayer::updateEditMode() {
     if (!m_list) return;
     auto listView = static_cast<CustomListView*>(m_list->m_listView);

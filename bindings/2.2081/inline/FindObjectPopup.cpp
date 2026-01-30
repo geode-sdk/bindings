@@ -1,8 +1,10 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 FindObjectPopup::FindObjectPopup() {
     m_unknownBool = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void FindObjectPopup::onFindObjectID(cocos2d::CCObject* sender) {

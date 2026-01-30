@@ -16,7 +16,7 @@ SetupAreaTintTriggerPopup* SetupAreaTintTriggerPopup::create(EnterEffectObject* 
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 SetupAreaTintTriggerPopup::SetupAreaTintTriggerPopup() {
     m_hsvButton = nullptr;
     m_hsvChanged = false;

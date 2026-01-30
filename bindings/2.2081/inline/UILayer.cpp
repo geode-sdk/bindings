@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 UILayer::UILayer() {
     m_pUnknown1 = nullptr;
     m_checkpointMenu = nullptr;
@@ -21,6 +22,7 @@ UILayer::UILayer() {
     m_editorMode = false;
     m_controllerButtons = nullptr;
 }
+#endif
 
 UILayer* UILayer::get() {
     if (auto gjbgl = GJBaseGameLayer::get()) return gjbgl->m_uiLayer;

@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 MoreOptionsLayer::MoreOptionsLayer() {
     m_page = -1;
     m_toggleCount = 0;
@@ -8,6 +9,7 @@ MoreOptionsLayer::MoreOptionsLayer() {
     m_gpSignOutBtn = nullptr;
     m_categoryLabel = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 const char* MoreOptionsLayer::infoKey(int index) {

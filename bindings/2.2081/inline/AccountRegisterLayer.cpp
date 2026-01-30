@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 AccountRegisterLayer::AccountRegisterLayer() {
     m_usernameField = nullptr;
     m_passwordField = nullptr;
@@ -12,6 +13,7 @@ AccountRegisterLayer::AccountRegisterLayer() {
     m_loadingCircle = nullptr;
     m_lockInput = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void AccountRegisterLayer::hideLoadingUI() {

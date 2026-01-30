@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 PlayerCheckpoint::PlayerCheckpoint() {
     m_yVelocityUnrounded = 0.0;
     m_isUpsideDown = false;
@@ -39,6 +40,7 @@ PlayerCheckpoint::PlayerCheckpoint() {
     m_slopeVelocity = 0.f;
     m_touchingRings = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

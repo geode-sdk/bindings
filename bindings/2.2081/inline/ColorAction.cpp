@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 ColorAction::ColorAction() {
     m_stepFinished = false;
     m_paused = false;
@@ -24,6 +25,7 @@ ColorAction::ColorAction() {
     m_actionDelay = 0.f;
     m_stepInterval = 0.f;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 ColorAction* ColorAction::create(cocos2d::ccColor3B color, bool blending, int playerColor) {

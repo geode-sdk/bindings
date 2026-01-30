@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 CustomSongWidget::CustomSongWidget() {
     m_songInfoObject = nullptr;
     m_songLabel = nullptr;
@@ -29,6 +30,7 @@ CustomSongWidget::CustomSongWidget() {
     m_unkBool2 = false;
     m_totalBytes = 0;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void CustomSongWidget::toggleUpdateButton(bool enabled) {

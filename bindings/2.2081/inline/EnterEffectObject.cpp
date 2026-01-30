@@ -1,7 +1,7 @@
 #include <Geode/Geode.hpp>
 
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_WINDOWS)
 EnterEffectObject::EnterEffectObject() {
     m_enterType = 0;
     m_length = 0;

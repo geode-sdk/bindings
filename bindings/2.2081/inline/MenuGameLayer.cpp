@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 MenuGameLayer::MenuGameLayer() {
     m_videoOptionsOpen = false;
     m_deltaCount = 0.f;
@@ -10,6 +11,7 @@ MenuGameLayer::MenuGameLayer() {
     m_groundLayer = nullptr;
     m_backgroundWrapPosition = 0.f;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

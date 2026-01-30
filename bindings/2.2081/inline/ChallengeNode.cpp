@@ -1,10 +1,12 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 ChallengeNode::ChallengeNode() {
     m_challengeItem = nullptr;
     m_countdownLabel = nullptr;
     m_unloaded = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void ChallengeNode::updateTimeLabel(gd::string text) {

@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
 UIPOptionsLayer::UIPOptionsLayer() {
     m_touchID = -1;
     m_practiceNode = nullptr;

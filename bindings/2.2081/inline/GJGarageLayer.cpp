@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 GJGarageLayer::GJGarageLayer() {
     m_playerObject = nullptr;
     m_unknown = nullptr;
@@ -12,6 +13,7 @@ GJGarageLayer::GJGarageLayer() {
     m_selectedIconType = IconType::Cube;
     m_videoPlaying = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 gd::string GJGarageLayer::achievementForUnlock(int id, UnlockType type) {

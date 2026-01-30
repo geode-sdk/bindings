@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 
-#if !defined(GEODE_IS_MACOS)
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
 ShaderLayer::ShaderLayer() {
     m_timesyncShaderActions = false;
     m_shader = nullptr;

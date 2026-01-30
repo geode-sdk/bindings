@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 GJScaleControl::GJScaleControl() {
     m_sliderX = nullptr;
     m_sliderY = nullptr;
@@ -19,6 +20,7 @@ GJScaleControl::GJScaleControl() {
     m_scaleLockButton = nullptr;
     m_scaleLocked = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJScaleControl::finishTouch() {

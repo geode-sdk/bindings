@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 MultilineBitmapFont::MultilineBitmapFont() {
     m_specialDescriptors = nullptr;
     m_characters = nullptr;
@@ -12,6 +13,7 @@ MultilineBitmapFont::MultilineBitmapFont() {
     m_maxWidth = 0.f;
     m_disableColor = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 ColorSelectPopup::ColorSelectPopup() {
     m_colorPicker = nullptr;
     m_unk3c0 = false;
@@ -29,6 +30,7 @@ ColorSelectPopup::ColorSelectPopup() {
     m_fadeTimeInput = nullptr;
     m_showCopyObjects = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::ccColor3B ColorSelectPopup::getColorValue() {

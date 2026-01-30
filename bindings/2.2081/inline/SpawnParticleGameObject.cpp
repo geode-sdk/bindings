@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SpawnParticleGameObject::SpawnParticleGameObject() {
     m_matchRotation = false;
     m_rotation = 0.f;
@@ -7,6 +8,7 @@ SpawnParticleGameObject::SpawnParticleGameObject() {
     m_scale = 1.f;
     m_scaleVariance = 0.f;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

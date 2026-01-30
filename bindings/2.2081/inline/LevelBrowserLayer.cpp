@@ -92,7 +92,7 @@ void LevelBrowserLayer::updateLevelsLabel() {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 LevelBrowserLayer::LevelBrowserLayer() {
     m_unk = false;
     m_allSelected = false;

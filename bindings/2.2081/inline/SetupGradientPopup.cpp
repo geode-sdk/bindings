@@ -1,11 +1,13 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SetupGradientPopup::SetupGradientPopup() {
     m_blendingMode = 0;
     m_layerButtons = nullptr;
     m_blendingLayer = 0;
     m_gradientLabels = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void SetupGradientPopup::sliderChanged(cocos2d::CCObject* sender) {}

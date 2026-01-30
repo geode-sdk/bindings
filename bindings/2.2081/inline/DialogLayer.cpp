@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 DialogLayer::DialogLayer() {
     m_animateTime = 0.f;
     m_mainLayer = nullptr;
@@ -16,6 +17,7 @@ DialogLayer::DialogLayer() {
     m_animationType = DialogAnimationType::FromCenter;
     m_noRemove = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void DialogLayer::animateInDialog() {

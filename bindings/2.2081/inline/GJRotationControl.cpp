@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 GJRotationControl::GJRotationControl() {
     m_controlSprite = nullptr;
     m_startingRotation = 0.0f;
@@ -7,6 +8,7 @@ GJRotationControl::GJRotationControl() {
     m_touchID = -1;
     m_delegate = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SFXBrowser::SFXBrowser() {
     m_searchResult = nullptr;
     m_sfxObjects = nullptr;
@@ -23,6 +24,7 @@ SFXBrowser::SFXBrowser() {
     m_delegate = nullptr;
     m_autoUpdating = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -1,11 +1,13 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 CCPartAnimSprite::CCPartAnimSprite() {
     m_spritePartIDs = nullptr;
     m_spriteFrame = nullptr;
     m_hasChanged = false;
     m_spriteParts = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void CCPartAnimSprite::changeTextureOfID(char const* key, char const* frame) {

@@ -156,7 +156,7 @@ void GJGameLevel::setLastBuildPageForTab(int tab, int page) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_ANDROID)
 GJGameLevel::GJGameLevel() {
     m_lastBuildSave = nullptr;
     m_levelID = { 0, 0 };

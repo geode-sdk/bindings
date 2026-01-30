@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 TeleportPortalObject::TeleportPortalObject() {
     m_orangePortal = nullptr;
     m_isYellowPortal = false;
@@ -20,6 +21,7 @@ TeleportPortalObject::TeleportPortalObject() {
     m_snapGround = false;
     m_redirectDash = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool TeleportPortalObject::init(char const* frame, bool trigger) {

@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SecretLayer5::SecretLayer5() {
     m_threadTag = -1;
     m_basicMessageIndex = -1;
@@ -16,6 +17,7 @@ SecretLayer5::SecretLayer5() {
     m_uiLocked = false;
     m_chatIndex = -1;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 gd::string SecretLayer5::getMessage() {

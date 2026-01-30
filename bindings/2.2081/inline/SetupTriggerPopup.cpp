@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 
-#if !defined(GEODE_IS_WINDOWS)
+#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS)
 SetupTriggerPopup::SetupTriggerPopup() {
     m_gameObject = nullptr;
     m_gameObjects = nullptr;

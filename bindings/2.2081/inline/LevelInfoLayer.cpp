@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 LevelInfoLayer::LevelInfoLayer() {
     m_isBusy = false;
     m_playBtnMenu = nullptr;
@@ -34,6 +35,7 @@ LevelInfoLayer::LevelInfoLayer() {
     m_progressTimer = nullptr;
     m_songWidget = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void LevelInfoLayer::incrementDislikes() {

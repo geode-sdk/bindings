@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 GJMapPack::GJMapPack() {
     m_levels = nullptr;
     m_packID = 0;
@@ -9,6 +10,7 @@ GJMapPack::GJMapPack() {
     m_MId = 0;
     m_isGauntlet = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

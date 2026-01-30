@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 GJItemIcon::GJItemIcon() {
     m_player = nullptr;
     m_iconRequestID = 0;
@@ -7,6 +8,7 @@ GJItemIcon::GJItemIcon() {
     m_unlockID = 0;
     m_unlockType = (UnlockType)0;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

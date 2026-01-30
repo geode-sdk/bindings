@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SetGroupIDLayer::SetGroupIDLayer() {
     m_targetObject = nullptr;
     m_targetObjects = nullptr;
@@ -28,6 +29,7 @@ SetGroupIDLayer::SetGroupIDLayer() {
     m_nextFreeID = 0;
     m_parentGroups = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void SetGroupIDLayer::onSmoothEase(cocos2d::CCObject* sender) {

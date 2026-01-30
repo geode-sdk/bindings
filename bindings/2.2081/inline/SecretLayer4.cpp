@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SecretLayer4::SecretLayer4() {
     m_threadTag = -1;
     m_basicMessageIndex = -1;
@@ -12,6 +13,7 @@ SecretLayer4::SecretLayer4() {
     m_messageThreads = nullptr;
     m_exiting = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::CCNode* SecretLayer4::nodeWithTag(int tag) {

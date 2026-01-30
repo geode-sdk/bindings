@@ -1,5 +1,6 @@
 #include <Geode/Geode.hpp>
 
+#if !defined(GEODE_IS_IOS)
 SetupEnterEffectPopup::SetupEnterEffectPopup() {
     m_objectID = 0;
     m_enterOnlyToggler = nullptr;
@@ -8,6 +9,7 @@ SetupEnterEffectPopup::SetupEnterEffectPopup() {
     m_hsvButton = nullptr;
     m_hsvChanged = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
