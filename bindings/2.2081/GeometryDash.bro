@@ -7310,7 +7310,7 @@ class GJAssetDownloadAction {
     int m_status;
 }
 
-[[link(android), depends(GJGameState), depends(PlayerButtonCommand), depends(RecordCheckpoint)]]
+[[link(android), depends(GJGameState), depends(PlayerButtonCommand), depends(RecordButtonCommand), depends(RecordCheckpoint)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJBaseGameLayer() = win 0x2cfef0, m1 0xac9f4, imac 0xc01e0;
     ~GJBaseGameLayer() = win 0x2057a0, m1 0xea680, imac 0x10ea70;
@@ -8072,10 +8072,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_unk32ec;
     int m_currentStep;
     gd::vector<PlayerButtonCommand> m_queuedButtons;
-    gd::vector<PlayerButtonCommand> m_queuedRecordedButtons;
+    gd::vector<RecordButtonCommand> m_queuedRecordedButtons;
     gd::unordered_map<int, RecordCheckpoint> m_unk3330;
     int m_unk3370;
-    gd::vector<PlayerButtonCommand> m_queuedReplayButtons;
+    gd::vector<RecordButtonCommand> m_queuedReplayButtons;
     gd::unordered_map<int, RecordCheckpoint> m_unk3390;
     gd::vector<void*> m_unk3340;
     gd::vector<void*> m_unk3358;
@@ -14117,6 +14117,7 @@ class PlayerButtonCommand {
     bool m_isPush;
     bool m_isPlayer2;
     int m_step;
+    double m_timestamp;
 }
 
 [[link(android), depends(DashRingObject)]]

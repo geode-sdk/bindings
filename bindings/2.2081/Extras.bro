@@ -375,3 +375,10 @@ class RecordCheckpoint {
 	int m_points;
 	gd::string m_inputs;
 }
+
+class RecordButtonCommand {
+    PlayerButton m_button;
+    bool m_isPush;
+    bool m_isPlayer2;
+    int m_step;
+}
