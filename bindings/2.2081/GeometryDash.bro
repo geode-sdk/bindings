@@ -5414,7 +5414,7 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getLevelLeaderboardKey(int levelID, LevelLeaderboardType type, LevelLeaderboardMode mode) = win inline, imac 0x54c450, m1 0x49caf0, ios 0xa3f98;
     const char* getLevelListKey(int listID) = win inline, imac 0x52d910, m1 0x481a28, ios inline;
     void getLevelLists(GJSearchObject* object) = win 0x150760, imac 0x542500, m1 0x494364, ios 0x9ec0c;
-    void getLevelRateInfo(int id);
+    void getLevelRateInfo(int id) = win 0x15f860, m1 0x4a3a04, imac 0x553810, ios 0xa805c;
     void getLevelSaveData() = win 0x14edc0, imac 0x540b10, m1 0x492ae0, ios 0x9de4c;
     const char* getLikeAccountItemKey(LikeItemType type, int id, bool liked, int parentID) = win inline, imac 0x558260, m1 0x4a816c, ios inline;
     const char* getLikeItemKey(LikeItemType type, int id, bool liked, int parentID) = win inline, imac 0x557c20, m1 0x4a7a8c, ios inline;
@@ -5518,7 +5518,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetLevelCommentsCompleted(gd::string response, gd::string tag) = win 0x15c330, imac 0x520a90, m1 0x4760f0, ios 0x8bb20;
     void onGetLevelLeaderboardCompleted(gd::string response, gd::string tag) = win 0x158d20, imac 0x5294e0, m1 0x47dd38, ios 0x90868;
     void onGetLevelListsCompleted(gd::string response, gd::string tag) = win 0x1509f0, imac 0x52a470, m1 0x47ebf0, ios 0x91298;
-    void onGetLevelRateInfoCompleted(gd::string response, gd::string tag);
+    void onGetLevelRateInfoCompleted(gd::string response, gd::string tag) = win 0x15fb90, m1 0x47fe28, imac 0x52b9d0, ios 0x91e18;
     void onGetLevelSaveDataCompleted(gd::string response, gd::string tag) = win 0x14f0a0, imac 0x5265a0, m1 0x47b470, ios 0x8ecfc;
     void onGetMapPacksCompleted(gd::string response, gd::string tag) = win 0x14f700, imac 0x51f320, m1 0x474bb0, ios 0x8ac7c;
     void onGetNewsCompleted(gd::string response, gd::string tag) = win inline, imac 0x52af30, m1 0x47f528, ios inline;
@@ -7049,7 +7049,7 @@ class GauntletNode : cocos2d::CCNode {
     static gd::string frameForType(GauntletType type) = win 0x1fde00, imac 0x575ab0, m1 0x4c3690, ios 0x1c25c0;
     static gd::string nameForType(GauntletType type) = win 0x1ff190, imac 0x575a70, m1 0x4c3660, ios 0x1c2590;
 
-    void generateNode() = win 0x1fc240, imac 0x574100, m1 0x4c1d08;
+    void generateNode() = win 0x1fc240, imac 0x574100, m1 0x4c1d08, ios 0x1c0d4c;
     bool init(GJMapPack* gauntlet) = win inline, imac 0x5740b0, m1 0x4c1cb4, ios 0x1c0cf8;
     void onClaimReward() = win 0x1fddc0, imac 0x573250, m1 0x4c0d68, ios 0x1bffc8;
     void onUnlock();
@@ -7629,7 +7629,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void resetLevelVariables() = win 0x23b040, imac 0x159060, m1 0x128b88, ios 0x20220c;
     void resetMoveOptimizedValue() = win inline, imac 0x14a600, m1 0x11d030, ios 0x1fa7a0;
     void resetPlayer() = win 0x2120b0, imac 0x123490, m1 0xfc15c, ios 0x1e5d24;
-    void resetRecord(int, bool);
+    void resetRecord(int, bool) = win 0x239e20, m1 0x126d7c, imac 0x156bb0, ios 0x2014b4;
     void resetRecordFull();
     void resetSongTriggerValues() = win inline, imac 0x14e9f0, m1 0x120928, ios inline;
     void resetSpawnChannelIndex() = win 0x245e20, imac 0x15a170, m1 0x1298a8, ios 0x202c1c;
@@ -9744,29 +9744,29 @@ class GJPurchaseDelegate {
 
 [[link(android)]]
 class GJRateLevelLayer : SetupTriggerPopup, UploadPopupDelegate, UploadActionDelegate, LevelRateInfoDelegate, FLAlertLayerProtocol {
-    GJRateLevelLayer() = inline;
-    ~GJRateLevelLayer() = win inline;
+    GJRateLevelLayer() = inline, m1 0x45fcbc, imac 0x5080b0, ios 0x1b2d1c;
+    ~GJRateLevelLayer() = win inline, m1 0x45d134, imac 0x505860, ios 0x1b0b64;
 
-    static GJRateLevelLayer* create(GJGameLevel* level);
+    static GJRateLevelLayer* create(GJGameLevel* level) = win inline, m1 0x45d26c, imac 0x505a60, ios 0x1b0c90;
 
-    virtual void keyBackClicked() = m1 0x45fc98, imac 0x508070, ios 0x1b2cf8;
-    virtual void onClose(cocos2d::CCObject* sender) = m1 0x45fc94, imac 0x508060, ios 0x1b2cf4;
-    virtual void onCustomButton(cocos2d::CCObject* sender) = m1 0x45e33c, imac 0x506800, ios 0x1b18d8;
-    virtual void uploadActionFinished(int id, int response) = m1 0x45f924, imac 0x507dc0, ios 0x1b2b1c;
-    virtual void uploadActionFailed(int id, int response) = m1 0x45fa7c, imac 0x507ed0, ios 0x1b2bb4;
-    virtual void onClosePopup(UploadActionPopup* popup) = m1 0x45fbf4, imac 0x507fc0, ios 0x1b2c54;
-    virtual void rateInfoFinished(int id, gd::string info) = m1 0x45f7f8, imac 0x507c80, ios 0x1b2a00;
-    virtual void rateInfoFailed(int id, int response) = m1 0x45f8c4, imac 0x507d50, ios 0x1b2abc;
-    virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = m1 0x45e508, imac 0x5069e0, ios 0x1b1a78;
+    virtual void keyBackClicked() = win 0x2f6ec0, m1 0x45fc98, imac 0x508070, ios 0x1b2cf8;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x28f250, m1 0x45fc94, imac 0x508060, ios 0x1b2cf4;
+    virtual void onCustomButton(cocos2d::CCObject* sender) = win 0x2f54d0, m1 0x45e33c, imac 0x506800, ios 0x1b18d8;
+    virtual void uploadActionFinished(int id, int response) = win 0x2f6ce0, m1 0x45f924, imac 0x507dc0, ios 0x1b2b1c;
+    virtual void uploadActionFailed(int id, int response) = win 0x2f6d80, m1 0x45fa7c, imac 0x507ed0, ios 0x1b2bb4;
+    virtual void onClosePopup(UploadActionPopup* popup) = win 0x2f6e60, m1 0x45fbf4, imac 0x507fc0, ios 0x1b2c54;
+    virtual void rateInfoFinished(int id, gd::string info) = win 0x2f6c20, m1 0x45f7f8, imac 0x507c80, ios 0x1b2a00;
+    virtual void rateInfoFailed(int id, int response) = win 0x2f6cb0, m1 0x45f8c4, imac 0x507d50, ios 0x1b2abc;
+    virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x2f5750, m1 0x45e508, imac 0x5069e0, ios 0x1b1a78;
 
-    void createStatPillar(int, int, int, cocos2d::ccColor3B, cocos2d::ccColor3B, cocos2d::CCPoint, gd::string);
-    CCMenuItemSpriteExtra* getStarsButton(int stars, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale);
-    bool init(GJGameLevel* level);
-    void onFeature(cocos2d::CCObject* sender);
-    void onRate(cocos2d::CCObject* sender);
-    void onToggleCoins(cocos2d::CCObject* sender);
-    void selectRating(cocos2d::CCObject* sender);
-    void setupRateInfo(gd::string info);
+    void createStatPillar(int, int, int, cocos2d::ccColor3B, cocos2d::ccColor3B, cocos2d::CCPoint, gd::string) = win 0x2f6540, m1 0x45f4c0, imac 0x507970, ios 0x1b26cc;
+    CCMenuItemSpriteExtra* getStarsButton(int stars, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, m1 0x45dfd4, imac 0x506490, ios 0x1b1590;
+    bool init(GJGameLevel* level) = win 0x2f4920, m1 0x45d2ec, imac 0x505ac0, ios 0x1b0d04;
+    void onFeature(cocos2d::CCObject* sender) = win 0x2f5920, m1 0x45e210, imac 0x5066b0, ios 0x1b17bc;
+    void onRate(cocos2d::CCObject* sender) = win 0x2f6ab0, m1 0x45e260, imac 0x506710, ios 0x1b180c;
+    void onToggleCoins(cocos2d::CCObject* sender) = win 0x2f58b0, m1 0x45df7c, imac 0x506440, ios 0x1b1538;
+    void selectRating(cocos2d::CCObject* sender) = win 0x2f68c0, m1 0x45e09c, imac 0x506560, ios 0x1b1658;
+    void setupRateInfo(gd::string info) = win 0x2f5980, m1 0x45e5f0, imac 0x506af0, ios 0x1b1b50;
 
     GJGameLevel* m_level;
     bool m_uploadFinished;
