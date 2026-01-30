@@ -8,7 +8,7 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
-void cocos2d::CCDrawNode::drawCubicBezier(cocos2d::CCPoint const& p0, cocos2d::CCPoint const& p1, cocos2d::CCPoint const& p2, cocos2d::CCPoint const& p3, unsigned int p4, cocos2d::ccColor4F const& p5) {
+void cocos2d::CCDrawNode::drawCubicBezier(cocos2d::CCPoint const& p0, cocos2d::CCPoint const& p1, cocos2d::CCPoint const& p2, cocos2d::CCPoint const& p3, unsigned int p4, cocos2d::ccColor4F const& p5, float p6) {
     auto vertices = new CCPoint[p4 + 1];
     if (p4 != 0) {
         auto factor = 0.f;
@@ -23,12 +23,16 @@ void cocos2d::CCDrawNode::drawCubicBezier(cocos2d::CCPoint const& p0, cocos2d::C
         }
     }
     vertices[p4] = p3;
-    this->drawPolygon(vertices, p4 + 1, { 0.f, 0.f, 0.f, 0.f }, 2.f, p5);
+    if (p4 != 0) {
+        for (int j = 0; j < p4; j++) {
+            this->drawSegmentEx(vertices[j], vertices[j + 1], p6, p5, j == 0, j == p4 - 1);
+        }
+    }
     delete[] vertices;
 }
 
 bool cocos2d::CCDrawNode::drawDot(cocos2d::CCPoint const& pos, float radius, cocos2d::ccColor4F const& color) {
-    if (m_bUseArea && pos.x + radius < m_fMinAreaX || pos.x - radius > m_fMaxAreaX || pos.y + radius < m_fMinAreaY || pos.y - radius > m_fMaxAreaY) return false;
+    if (m_bUseArea && is_circle_on_screen(m_rDrawArea, pos, radius)) return false;
 
     unsigned int vertex_count = 2*3;
     cocos2d::CCDrawNode::ensureCapacity(vertex_count);
@@ -50,7 +54,7 @@ bool cocos2d::CCDrawNode::drawDot(cocos2d::CCPoint const& pos, float radius, coc
     return true;
 }
 
-void cocos2d::CCDrawNode::drawPreciseCubicBezier(cocos2d::CCPoint const& p0, cocos2d::CCPoint const& p1, cocos2d::CCPoint const& p2, cocos2d::CCPoint const& p3, unsigned int p4, cocos2d::ccColor4F const& p5) {
+void cocos2d::CCDrawNode::drawPreciseCubicBezier(cocos2d::CCPoint const& p0, cocos2d::CCPoint const& p1, cocos2d::CCPoint const& p2, cocos2d::CCPoint const& p3, unsigned int p4, cocos2d::ccColor4F const& p5, float p6) {
     auto d01 = ccpDistance(p0, p1);
     auto d12 = ccpDistance(p1, p2);
     auto d23 = ccpDistance(p3, p2);
@@ -69,7 +73,7 @@ void cocos2d::CCDrawNode::drawPreciseCubicBezier(cocos2d::CCPoint const& p0, coc
     auto denom = b1 - (b2 * a1) / a2;
     auto x = (rx - (p2.x - powf(u2, 3.f) * p0.x - powf(t2, 3.f) * p3.x) * ratio) / denom;
     auto y = (ry - (p2.y - powf(t1, 3.f) * p0.y - powf(t2, 3.f) * p3.y) * ratio) / denom;
-    this->drawCubicBezier(p0, { (rx - x * b1) / a1, (ry - y * b1) / a1 }, { x, y }, p3, p4, p5);
+    this->drawCubicBezier(p0, { (rx - x * b1) / a1, (ry - y * b1) / a1 }, { x, y }, p3, p4, p5, p6);
 }
 
 bool cocos2d::CCDrawNode::is_circle_on_screen(cocos2d::CCRect const& p0, cocos2d::CCPoint const& p1, float p2) {

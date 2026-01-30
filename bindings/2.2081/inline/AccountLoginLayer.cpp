@@ -31,5 +31,15 @@ void AccountLoginLayer::showLoadingUI() {
 #endif
 
 #if defined(GEODE_IS_IOS)
+void AccountLoginLayer::resetLabel(int tag) {
+    if (tag == 1) {
+        m_usernameLabel->setString("Username:");
+        m_usernameLabel->setColor({ 255, 255, 255 });
+    }
+    else if (tag == 2) {
+        m_passwordLabel->setString("Password:");
+        m_passwordLabel->setColor({ 255, 255, 255 });
+    }
+}
 #endif
 

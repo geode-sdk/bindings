@@ -98,7 +98,7 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
     void onForgotPassword(cocos2d::CCObject* sender) = win 0x7c4e0, imac 0x49a180, m1 0x3fe458, ios 0x83e7c;
     void onForgotUser(cocos2d::CCObject* sender) = win 0x7c4c0, imac 0x49a160, m1 0x3fe434, ios 0x83e58;
     void onSubmit(cocos2d::CCObject* sender) = win 0x7cc10, imac 0x499af0, m1 0x3fdd90, ios 0x83914;
-    void resetLabel(int tag) = win 0x7cb20, imac 0x49a7d0, m1 0x3feac4, ios 0x39a97c;
+    void resetLabel(int tag) = win 0x7cb20, imac 0x49a7d0, m1 0x3feac4, ios inline;
     void resetLabels() = win inline, imac 0x49a760, m1 0x3fea4c, ios 0x84218;
     void showLoadingUI() = win inline, imac 0x49a950, m1 0x3fec9c, ios 0x84328;
     void toggleUI(bool enable) = win 0x7d050, imac 0x49aac0, m1 0x3fee28, ios 0x843f8;
@@ -10120,7 +10120,7 @@ class GJSearchObject : cocos2d::CCNode {
 
 [[link(android), depends(GJValueTween)]]
 class GJShaderState {
-    GJShaderState() = win 0x3a4950, imac 0xca5b0, m1 0xb25a4, ios 0x127924;
+    GJShaderState() = inline, win 0x3a4950, imac 0xca5b0, m1 0xb25a4, ios 0x127924;
 
     void reset() = win inline, imac 0x3ca210, m1 0x34b4f8, ios 0x26d994;
     void stopTweenAction(int action) = win inline, imac 0x3c9b30, m1 0x34b054, ios inline;
@@ -13176,7 +13176,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
     void onSongBrowser(cocos2d::CCObject* sender) = win 0x3763a0, imac 0x79d300, m1 0x6a4b30, ios 0xeecf0;
     void onToggle(cocos2d::CCObject* sender) = win 0x375ba0, imac 0x79ded0, m1 0x6a568c, ios 0xef3f4;
     const char* pageKey(int page) = win inline, imac 0x79e8e0, m1 0x6a60b0, ios inline;
-    void toggleGP() = win inline, imac 0x79d590, m1 0x6a4de0;
+    void toggleGP() = win inline, imac 0x79d590, m1 0x6a4de0, ios inline;
 
     int m_page;
     int m_toggleCount;
@@ -14355,7 +14355,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    PlayerObject() = win 0x385350, imac 0x41dbe0, m1 0x39215c, ios 0x22eb48;
+    PlayerObject() = inline, win 0x385350, imac 0x41dbe0, m1 0x39215c, ios 0x22eb48;
     ~PlayerObject() = win 0x3864a0, imac 0x3fa360, m1 0x372f0c, ios 0x2175f8;
 
     static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x3866d0, imac 0x3fa640, m1 0x373100, ios 0x21776c;

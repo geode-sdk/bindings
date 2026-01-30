@@ -986,12 +986,12 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     void drawCubicBezierDashed(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&, float, unsigned int, unsigned int) = imac 0x611660, m1 0x536db4;
     bool drawDot(cocos2d::CCPoint const& pos, float radius, cocos2d::ccColor4F const& color) = imac 0x6112a0, m1 0x536a1c, ios inline;
     bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::ccColor4F const&) = imac 0x612e20, m1 0x538048, ios 0x42fc0;
-    bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = imac 0x6124d0, m1 0x5378dc, ios 0x424d8;
+    bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = imac 0x6124d0, m1 0x5378dc, ios 0x4295c;
     void drawPreciseCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&, float) = imac 0x611870, m1 0x536f88, ios inline;
     bool drawRect(cocos2d::CCRect const&, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = imac 0x612c60, m1 0x537e7c, ios 0x42df8;
     bool drawRect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = imac 0x612cf0, m1 0x537f10, ios 0x42e8c;
     bool drawSegment(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&) = imac 0x6124b0, m1 0x5378d0, ios 0x42950;
-    bool drawSegmentEx(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, bool, bool) = imac 0x611de0, m1 0x537398;
+    bool drawSegmentEx(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, bool, bool) = imac 0x611de0, m1 0x537398, ios 0x424d8;
     void enableDrawArea(cocos2d::CCRect&) = imac 0x6111b0, m1 0x536944, ios 0x420f8;
     void ensureCapacity(unsigned int) = imac 0x610e90, m1 0x536650, ios 0x41ea4;
     cocos2d::ccBlendFunc getBlendFunc() const = imac 0x613070, m1 0x538280, ios 0x431ec;
@@ -5623,15 +5623,15 @@ class cocos2d::extension::CCEditBox : cocos2d::extension::CCControlButton, cocos
 
 [[link(win, android)]]
 class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
-    CCHttpClient() = imac 0x438580, m1 0x3aa308;
-    virtual ~CCHttpClient() = imac 0x438750, m1 0x3aa4e8, ios 0x1132c8;
+    CCHttpClient() = imac 0x438580, m1 0x3aa308, ios 0x240cd4;
+    virtual ~CCHttpClient() = imac 0x438750, m1 0x3aa4e8, ios 0x240e90;
 
     static void destroyInstance() = imac 0x4388d0, m1 0x3aa65c, ios inline;
-    static cocos2d::extension::CCHttpClient* getInstance() = imac 0x438880, m1 0x3aa600;
+    static cocos2d::extension::CCHttpClient* getInstance() = imac 0x438880, m1 0x3aa600, ios 0x240f2c;
 
-    size_t availableThreadCount() = imac 0x4389c0, m1 0x3aa770;
+    size_t availableThreadCount() = imac 0x4389c0, m1 0x3aa770, ios 0x241058;
     void dispatchResponseCallbacks(float) = imac 0x438650, m1 0x3aa3d8, ios 0x240d98;
-    void send(cocos2d::extension::CCHttpRequest* request) = imac 0x438900, m1 0x3aa690;
+    void send(cocos2d::extension::CCHttpRequest* request) = imac 0x438900, m1 0x3aa690, ios 0x240f7c;
 
     int _timeoutForConnect;
     int _timeoutForRead;
