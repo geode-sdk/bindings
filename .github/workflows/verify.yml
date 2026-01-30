@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/*'
-      - 'bindings/2.2074/*'
       - 'bindings/2.2081/**'
       - 'bindings/include/**'
       - 'cmake/**'
@@ -16,7 +15,6 @@ on:
     - '**'
     paths:
       - '.github/workflows/*'
-      - 'bindings/2.2074/*'
       - 'bindings/2.2081/**'
       - 'bindings/include/**'
       - 'cmake/**'
@@ -76,7 +74,6 @@ jobs:
         config:
         - name: Windows
           os: windows-latest
-          ref: v5
           prefixes: ''
           extra_flags: >
             -A x64
@@ -84,7 +81,6 @@ jobs:
 
         - name: Android32
           os: ubuntu-latest
-          ref: main
           prefixes: ''
           extra_flags: >
             -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_LATEST_HOME/build/cmake/android.toolchain.cmake
@@ -95,7 +91,6 @@ jobs:
 
         - name: Android64
           os: ubuntu-latest
-          ref: main
           prefixes: ''
           extra_flags: >
             -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_LATEST_HOME/build/cmake/android.toolchain.cmake
@@ -107,7 +102,6 @@ jobs:
         - name: macOS (x64)
           os_identifier: mac
           os: macos-latest
-          ref: v5
           extra_flags: >
             -DCMAKE_C_COMPILER=clang
             -DCMAKE_CXX_COMPILER=clang++
@@ -118,7 +112,6 @@ jobs:
         - name: macOS (ARM)
           os_identifier: mac-arm
           os: macos-latest
-          ref: v5
           extra_flags: >
             -DCMAKE_C_COMPILER=clang
             -DCMAKE_CXX_COMPILER=clang++
@@ -129,7 +122,6 @@ jobs:
         - name: iOS
           os_identifier: ios
           os: macos-latest
-          ref: main
           extra_flags: >
             -DCMAKE_C_COMPILER=clang
             -DCMAKE_CXX_COMPILER=clang++
@@ -151,7 +143,7 @@ jobs:
       with:
         repository: geode-sdk/geode
         # TODO: this is temporary
-        ref: ${{ matrix.config.ref }} # TODO: CHANGE BACK TO 'main' AFTER v5 GETS MERGED !!! IMPORTANT!! thank you
+        ref: v5 # TODO: CHANGE BACK TO 'main' AFTER v5 GETS MERGED !!! IMPORTANT!! thank you
         path: geode
 
     - name: Set up codegen binary cache
