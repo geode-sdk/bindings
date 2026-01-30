@@ -44,7 +44,7 @@ float EnterEffectInstance::getValue(int key) {
 #if defined(GEODE_IS_WINDOWS)
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 EnterEffectInstance::EnterEffectInstance(EnterEffectObject* object, int targetID, int centerID, int unknown, int targetGroupIndex, int easeIndexCount, int controlID) {
     m_gameObject = object;
     m_reversed = false;

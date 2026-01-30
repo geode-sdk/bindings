@@ -7,7 +7,7 @@
 #if defined(GEODE_IS_WINDOWS)
 #endif
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 void UIButtonConfig::reset() {
     m_width = 280;
     m_height = 120;

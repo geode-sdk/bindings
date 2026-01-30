@@ -1645,7 +1645,7 @@ void GJBaseGameLayer::queueTimeWarp(float timeWarp) {
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_ANDROID)
 float GJBaseGameLayer::getAreaObjectValue(EnterEffectInstance* instance, GameObject* object, cocos2d::CCPoint& position, bool& show) {
     auto realPosition = object->getRealPosition();
     float value;
@@ -1676,7 +1676,9 @@ float GJBaseGameLayer::getAreaObjectValue(EnterEffectInstance* instance, GameObj
     result = std::clamp(deadzone != 0.f ? (result - deadzone) / (1.f - deadzone) : result, 0.f, 1.f);
     return instance->m_gameObject->m_inbound ? 1.f - result : result;
 }
+#endif
 
+#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_IOS)
 float GJBaseGameLayer::getEasedAreaValue(GameObject* object, EnterEffectInstance* instance, float value, bool show, int index) {
     auto enterObject = instance->m_gameObject;
     if (enterObject->m_easeOutEnabled) {
@@ -1696,7 +1698,9 @@ float GJBaseGameLayer::getEasedAreaValue(GameObject* object, EnterEffectInstance
     }
     return this->getEnterEasingValue(value, (int)enterObject->m_easingInType, enterObject->m_easingInRate, enterObject->m_easingInBuffer);
 }
+#endif
 
+#if defined(GEODE_IS_IOS)
 float GJBaseGameLayer::getGroundHeightForMode(int type) {
     while (true) {
         switch (type) {

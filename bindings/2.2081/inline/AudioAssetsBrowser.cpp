@@ -49,6 +49,5 @@ void AudioAssetsBrowser::trySetupAudioBrowser() {
 #endif
 
 #if defined(GEODE_IS_IOS)
-void AudioAssetsBrowser::musicActionFinished(GJMusicAction action) {}
 #endif
 

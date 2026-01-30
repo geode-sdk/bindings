@@ -5,6 +5,7 @@ CCIndexPath::CCIndexPath() {
     m_section = 0;
 }
 
+#if !defined(GEODE_IS_IOS)
 CCIndexPath* CCIndexPath::CCIndexPathWithSectionRow(int section, int row) {
     auto ret = new CCIndexPath();
     ret->m_row = row;
@@ -12,6 +13,7 @@ CCIndexPath* CCIndexPath::CCIndexPathWithSectionRow(int section, int row) {
     ret->autorelease();
     return ret;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

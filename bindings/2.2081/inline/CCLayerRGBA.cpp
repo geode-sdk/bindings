@@ -2,7 +2,6 @@
 
 
 #if defined(GEODE_IS_IOS)
-cocos2d::CCLayerRGBA::~CCLayerRGBA() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
