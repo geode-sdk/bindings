@@ -1678,7 +1678,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     static CCTextInputNode* create(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x4f160, imac 0x9df70, m1 0x8e7d0, ios 0x16c7cc;
 
     virtual void visit() = win 0x4f7a0, imac 0x9e9f0, m1 0x8f198, ios 0x16ce4c;
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x51330, imac 0xa0dd0, m1 0x91170;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x51330, imac 0xa0dd0, m1 0x91170, ios 0x16e770;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0xa0ff0, m1 0x91350, ios 0x16e918;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0xa0fb0, m1 0x91340, ios 0x16e908;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0xa0fd0, m1 0x91348, ios 0x16e910;
@@ -9028,7 +9028,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     static cocos2d::CCScene* scene() = win 0x272e90, imac 0x3690d0, m1 0x2f3394, ios 0x301a90;
     static gd::string titleForUnlock(int id, UnlockType type) = win inline, imac 0x36f5c0, m1 0x2f93d0, ios 0x3069e0;
 
-    virtual bool init() = win 0x273050, imac 0x369280, m1 0x2f34d8;
+    virtual bool init() = win 0x273050, imac 0x369280, m1 0x2f34d8, ios 0x301b48;
     virtual void keyBackClicked() = win 0x2791d0, imac 0x36fe70, m1 0x2f9c74, ios 0x306f80;
     virtual void textInputOpened(CCTextInputNode* node) = win 0x274c70, imac 0x36c730, m1 0x2f687c, ios 0x3046ec;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x274e60, imac 0x36c860, m1 0x2f69e0, ios 0x30481c;
@@ -12879,8 +12879,8 @@ class LoadingLayer : cocos2d::CCLayer {
     static cocos2d::CCScene* scene(bool refresh) = win 0x32e3b0, imac 0x3a24b0, m1 0x327124, ios 0x1d5efc;
 
     const char* getLoadingString() = win 0x32f7f0, imac 0x3a2e00, m1 0x327a3c;
-    bool init(bool refresh) = win 0x32e4c0, imac 0x3a2690, m1 0x3272bc;
-    void loadAssets() = win 0x32ed60, imac 0x3a2ec0, m1 0x327b18;
+    bool init(bool refresh) = win 0x32e4c0, imac 0x3a2690, m1 0x3272bc, ios 0x1d5ff4;
+    void loadAssets() = win 0x32ed60, imac 0x3a2ec0, m1 0x327b18, ios 0x1d67a4;
     void loadingFinished() = win inline, imac 0x3a3660, m1 0x328224, ios 0x1d6e3c;
     void updateProgress(int progress) = win 0x32ece0, imac 0x3a2e60, m1 0x327aac, ios 0x1d6738;
 
@@ -15157,8 +15157,8 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x3c4af0, imac 0x7bf3d0, m1 0x6c4840, ios 0x19bd68;
     virtual void updateUserScoreFinished() = win 0x3c5270, imac 0x7bfa30, m1 0x6c4ec0, ios 0x19c0f8;
     virtual void updateUserScoreFailed() = win 0x3c5360, imac 0x7bfb00, m1 0x6c4f54, ios 0x19c18c;
-    virtual void getUserInfoFinished(GJUserScore* score) = win 0x3c5ee0, imac 0x7bfec0, m1 0x6c52dc;
-    virtual void getUserInfoFailed(int id) = win 0x3c5fd0, imac 0x7c02b0, m1 0x6c568c;
+    virtual void getUserInfoFinished(GJUserScore* score) = win 0x3c5ee0, imac 0x7bfec0, m1 0x6c52dc, ios 0x19c370;
+    virtual void getUserInfoFailed(int id) = win 0x3c5fd0, imac 0x7c02b0, m1 0x6c568c, ios 0x19c5d8;
     virtual void userInfoChanged(GJUserScore* score) = win 0x3c6020, imac 0x7c0370, m1 0x6c575c, ios 0x19c644;
     virtual void loadCommentsFinished(cocos2d::CCArray* comments, char const* key) = win 0x3c6630, imac 0x7c0580, m1 0x6c5970, ios 0x19c764;
     virtual void loadCommentsFailed(char const* key) = win 0x3c66b0, imac 0x7c0670, m1 0x6c5a7c, ios 0x19c7e8;

@@ -8,6 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+#include <Geode/cocos/particle_nodes/firePngData.h>
+
 cocos2d::CCParticleSnow* cocos2d::CCParticleSnow::create() {
     CCParticleSnow* pRet = new CCParticleSnow();
     if (pRet && pRet->init())

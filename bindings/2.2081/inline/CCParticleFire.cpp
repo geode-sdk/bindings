@@ -8,6 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+#include <Geode/cocos/particle_nodes/firePngData.h>
+
 cocos2d::CCParticleFire* cocos2d::CCParticleFire::create() {
     auto ret = new CCParticleFire();
     if (ret->init()) {

@@ -738,7 +738,7 @@ void EditorUI::closeLiveHSVSelect() {
 void EditorUI::onAssignNewGroupID() {
     auto selectedObjects = m_selectedObject ? cocos2d::CCArray::createWithObject(m_selectedObject) : m_selectedObjects;
     if (selectedObjects->count() == 0) return;
-    auto groupID = m_editorLayer->getNextFreeGroupID(nullptr);
+    auto groupID = m_editorLayer->getNextFreeGroupID({});
     for (int i = 0; i < selectedObjects->count(); i++) {
         auto obj = static_cast<GameObject*>(selectedObjects->objectAtIndex(i));
         if (obj->addToGroup(groupID) == 1) m_editorLayer->addToGroup(obj, groupID, false);

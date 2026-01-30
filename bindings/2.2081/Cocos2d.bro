@@ -2286,7 +2286,7 @@ class cocos2d::CCMenuItem : cocos2d::CCNodeRGBA {
     static cocos2d::CCMenuItem* create() = imac 0x3be620, m1 0x3402cc;
     static cocos2d::CCMenuItem* create(cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = imac 0x3be6e0, m1 0x340374;
 
-    virtual void activate() = imac 0x3be9f0, m1 0x34063c;
+    virtual void activate() = imac 0x3be9f0, m1 0x34063c, ios 0x506b4;
     virtual void selected() = imac 0x3be960, m1 0x3405b8, ios 0x4cbc8;
     virtual void unselected() = imac 0x3be970, m1 0x3405c4, ios 0x4cbd4;
     virtual void registerScriptTapHandler(int) = imac 0x3be980, m1 0x3405cc;
