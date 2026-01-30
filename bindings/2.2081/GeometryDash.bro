@@ -12282,7 +12282,7 @@ class LevelListDeleteDelegate {
 
 [[link(android)]]
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
-    LevelListLayer() = win inline, imac 0x364390, m1 0x2ef188, ios 0x249d94;
+    LevelListLayer() = inline, imac 0x364390, m1 0x2ef188, ios 0x249d94;
     ~LevelListLayer() = win inline, imac 0x35b9c0, m1 0x2e6fd4, ios 0x242f98;
 
     static LevelListLayer* create(GJLevelList* list) = win inline, imac 0x35bc80, m1 0x2e71dc, ios 0x24312c;
