@@ -693,7 +693,7 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 [[link(win, android)]]
 class cocos2d::CCComponent : cocos2d::CCObject {
-    CCComponent();
+    protected CCComponent();
     virtual ~CCComponent();
 
     static cocos2d::CCComponent* create();
@@ -714,7 +714,7 @@ class cocos2d::CCComponent : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCComponentContainer {
-    CCComponentContainer(cocos2d::CCNode*) = win inline;
+    protected CCComponentContainer(cocos2d::CCNode*) = win inline;
     virtual ~CCComponentContainer();
 
     virtual cocos2d::CCComponent* get(char const*) const = imac 0x2c5050, m1 0x26135c, ios 0x164ce0;
@@ -1258,8 +1258,8 @@ class cocos2d::CCEaseSineOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEGLView {
-    CCEGLView() = imac 0x5035b0, m1 0x45b284, ios 0x12a68c;
-    virtual ~CCEGLView() = imac 0x503610, m1 0x45b2d4, ios inline;
+    protected CCEGLView() = imac 0x5035b0, m1 0x45b284, ios 0x12a68c;
+    protected virtual ~CCEGLView() = imac 0x503610, m1 0x45b2d4, ios inline;
 
     // [[missing(android, mac, ios)]]
     // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool);
@@ -1425,7 +1425,7 @@ class cocos2d::CCFadeTo : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCFileUtils : cocos2d::TypeInfo {
-    CCFileUtils();
+    protected CCFileUtils();
     // CCFileUtils(cocos2d::CCFileUtils const&);
     virtual ~CCFileUtils();
 
