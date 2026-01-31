@@ -980,10 +980,10 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
 
     void clear() = imac 0x613050, m1 0x538270, ios 0x431dc;
     void disableDrawArea() = imac 0x611220, m1 0x5369a4, ios 0x42158;
-    void drawArchLikeHalfCircle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, unsigned int, cocos2d::_ccColor4F const&, float) = imac 0x611490, m1 0x536bf8;
+    void drawArchLikeHalfCircle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, unsigned int, cocos2d::_ccColor4F const&, float) = imac 0x611490, m1 0x536bf8, ios 0x42160;
     bool drawCircle(cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, unsigned int) = imac 0x612ea0, m1 0x5380d0, ios 0x43048;
     void drawCubicBezier(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&, float) = imac 0x611b50, m1 0x537180, ios inline;
-    void drawCubicBezierDashed(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&, float, unsigned int, unsigned int) = imac 0x611660, m1 0x536db4;
+    void drawCubicBezierDashed(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, unsigned int, cocos2d::ccColor4F const&, float, unsigned int, unsigned int) = imac 0x611660, m1 0x536db4, ios 0x4230c;
     bool drawDot(cocos2d::CCPoint const& pos, float radius, cocos2d::ccColor4F const& color) = imac 0x6112a0, m1 0x536a1c, ios inline;
     bool drawLines(cocos2d::CCPoint*, unsigned int, float, cocos2d::ccColor4F const&) = imac 0x612e20, m1 0x538048, ios 0x42fc0;
     bool drawPolygon(cocos2d::CCPoint*, unsigned int, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, cocos2d::BorderAlignment) = imac 0x6124d0, m1 0x5378dc, ios 0x4295c;
@@ -2064,11 +2064,11 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
     virtual void setBlendFunc(cocos2d::ccBlendFunc) = imac 0x4b2910, m1 0x41428c, ios 0x1498dc;
     virtual cocos2d::ccBlendFunc getBlendFunc() = imac 0x4b28f0, m1 0x41427c, ios 0x1498cc;
 
-    void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = imac 0x4b3060, m1 0x414880;
+    void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = imac 0x4b3060, m1 0x414880, ios 0x149c10;
     void changeHeight(float) = imac 0x4b3150, m1 0x414948;
     void changeWidth(float) = imac 0x4b3110, m1 0x414904;
     void changeWidthAndHeight(float, float) = imac 0x4b30d0, m1 0x4148c4;
-    void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = imac 0x4b3040, m1 0x414864;
+    void setVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = imac 0x4b3040, m1 0x414864, ios 0x149bf4;
 
     std::array<cocos2d::ccVertex2F, 4> m_pSquareVertices;
     std::array<cocos2d::ccColor4F, 4> m_pSquareColors;
@@ -2103,7 +2103,7 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
 
     // bool getShouldPremultiply() const;
     // void setShouldPremultiply(bool);
-    void setValues(cocos2d::ccColor3B const&, unsigned char, cocos2d::ccColor3B const&, unsigned char, cocos2d::CCPoint const&) = imac 0x4b3fa0, m1 0x4156a4;
+    void setValues(cocos2d::ccColor3B const&, unsigned char, cocos2d::ccColor3B const&, unsigned char, cocos2d::CCPoint const&) = imac 0x4b3fa0, m1 0x4156a4, ios 0x14a2e8;
 
     cocos2d::ccColor3B m_startColor;
     cocos2d::ccColor3B m_endColor;
@@ -2267,7 +2267,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsVertically();
     void alignItemsVerticallyWithPadding(float) = imac 0x7936b0, m1 0x69bf08, ios 0x1d85b8;
     // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
-    void giveMenuTouchPriority() = imac 0x7931b0, m1 0x69b9dc;
+    void giveMenuTouchPriority() = imac 0x7931b0, m1 0x69b9dc, ios 0x1d8284;
     bool initWithArray(cocos2d::CCArray*) = imac 0x792f10, m1 0x69b734, ios 0x1d8004;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x7933a0, m1 0x69bbc4, ios 0x1d8414;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0x794a50, m1 0x69ce24, ios 0x1d8980;
@@ -3172,7 +3172,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     // float getFrictionSize() const;
     // float getFrictionSizeVar() const;
     // bool getOrderSensitive() const;
-    int getParticleDrawCost() = imac 0x7cad10, m1 0x6cf470;
+    int getParticleDrawCost() = imac 0x7cad10, m1 0x6cf470, ios 0x196024;
     // float getRespawn() const;
     // float getRespawnVar() const;
     // bool getStartRGBVarSync() const;
