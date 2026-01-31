@@ -64,6 +64,10 @@ void PlayLayer::removeFromGroupOld(GameObject* object) {
     }
 }
 
+bool PlayLayer::shouldDebugDraw() {
+    return (m_isDebugDrawEnabled && m_isPracticeMode) || (m_hitboxesOnDeath && m_playerDied);
+}
+
 void PlayLayer::startRecording() {
     m_recordingStopped = false;
 }

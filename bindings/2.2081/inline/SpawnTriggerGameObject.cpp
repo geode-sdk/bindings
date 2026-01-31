@@ -9,6 +9,23 @@ SpawnTriggerGameObject::SpawnTriggerGameObject() {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+ChanceObject* SpawnTriggerGameObject::getRemapWithSource(int id) {
+    for (auto& obj : m_remapObjects) {
+        if (obj.m_groupID == id) {
+            return &obj;
+        }
+    }
+    return nullptr;
+}
+
+ChanceObject* SpawnTriggerGameObject::getRemapWithTarget(int id) {
+    for (auto& obj : m_remapObjects) {
+        if (obj.m_chance == id) {
+            return &obj;
+        }
+    }
+    return nullptr;
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

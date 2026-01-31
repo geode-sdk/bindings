@@ -30,6 +30,9 @@ UILayer* UILayer::get() {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+bool UILayer::isJumpButtonPressed(bool player1) {
+    return player1 ? (m_p2TouchId != -1 || m_p1Jumping) : (m_p1TouchId != -1 || m_p2Jumping);
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -82,8 +85,8 @@ void UILayer::enableMenu() {
     m_pauseBtn->setEnabled(true);
 }
 
-bool UILayer::isJumpButtonPressed(bool player1) {
-    return player1 ? (m_p2TouchId != -1 || m_p1Jumping) : (m_p1TouchId != -1 || m_p2Jumping);
+bool UILayer::isJumpButtonPressed() {
+    return this->isJumpButtonPressed(true) || this->isJumpButtonPressed(false);
 }
 
 void UILayer::refreshDpad() {}
