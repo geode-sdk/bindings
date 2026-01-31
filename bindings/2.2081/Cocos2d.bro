@@ -955,7 +955,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void showStats() = imac 0x4833c0, m1 0x3e9230;
     void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x483750, m1 0x3e9568, ios 0x175a68;
     void updateContentScale(cocos2d::TextureQuality) = imac 0x483b70, m1 0x3e9914, ios 0x175c84;
-    void updateScreenScale(cocos2d::CCSize);
+    void updateScreenScale(cocos2d::CCSize) = m1 0x3e9864;
     void willSwitchToScene(cocos2d::CCScene*) = imac 0x4840b0, m1 0x3e9d14, ios 0x175ea4;
 }
 
