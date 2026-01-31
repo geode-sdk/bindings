@@ -700,6 +700,18 @@ void EditorUI::transformObjectsReset() {
     if (selectedObjects) this->transformObjects(selectedObjects, m_pivotPoint, 1.f, 1.f, 0.f, 0.f, m_transformState.m_skewX, m_transformState.m_skewY);
 }
 
+void EditorUI::updateStickyControls() {
+    auto gameManager = GameManager::sharedState();
+    m_stickyControlsEnabled = gameManager->getGameVariable("0097");
+    m_linkControlsEnabled = gameManager->getGameVariable("0180");
+    m_enableLinkBtn->setEnabled(m_stickyControlsEnabled);
+    m_enableLinkBtn->setVisible(m_stickyControlsEnabled);
+    m_linkBtn->setEnabled(m_stickyControlsEnabled);
+    m_linkBtn->setVisible(m_stickyControlsEnabled);
+    m_unlinkBtn->setEnabled(m_stickyControlsEnabled);
+    m_unlinkBtn->setVisible(m_stickyControlsEnabled);
+}
+
 float EditorUI::valueFromXPos(float xPos) {
     auto xMin = this->getXMin(0);
     auto sectionCount = std::max(m_editorLayer->getSectionCount(), 100);

@@ -79,6 +79,10 @@ bool GameStatsManager::shouldAwardSecretKey() {
 }
 
 void GameStatsManager::tempClear() {}
+
+void GameStatsManager::unlockGauntlet(int id) {
+    m_unlockedGauntlets->setObject(cocos2d::CCString::createWithFormat("%i", 1), this->getGauntletRewardKey(id));
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -320,6 +324,10 @@ void GameStatsManager::incrementStat(char const* key) {
 
 bool GameStatsManager::isGauntletChestUnlocked(int id) {
     return this->isSpecialChestUnlocked(this->getGauntletRewardKey(id));
+}
+
+bool GameStatsManager::isGauntletUnlocked(int id) {
+    return true;
 }
 
 bool GameStatsManager::isItemEnabled(UnlockType type, int id) {

@@ -31,6 +31,32 @@ bool GauntletNode::init(GJMapPack* gauntlet) {
     this->generateNode();
     return true;
 }
+
+void GauntletNode::onUnlock() {
+    m_locked = false;
+    this->generateNode();
+    auto background = cocos2d::extension::CCScale9Sprite::create("GJ_squareB_01.png", { 0.f, 0.f, 86.f, 86.f });
+    background->setOpacity(255);
+    background->setContentSize({ 110.f, 234.f });
+    this->addChild(background, 100);
+    background->setColor({ 255, 255, 255 });
+    background->setBlendAdditive(true);
+    background->runAction(cocos2d::CCSequence::create(
+        cocos2d::CCEaseIn::create(cocos2d::CCFadeOut::create(.8f), 1.5f),
+        cocos2d::CCCallFunc::create(this, callfunc_selector(CCNode::removeMeAndCleanup)),
+        nullptr
+    ));
+}
+
+void GauntletNode::showUnlockAnimation() {
+    auto background = cocos2d::extension::CCScale9Sprite::create("GJ_squareB_01.png", { 0.f, 0.f, 86.f, 86.f });
+    background->setOpacity(0);
+    background->setContentSize({ 110.f, 234.f });
+    this->addChild(background, 100);
+    background->setColor({ 255, 255, 255 });
+    background->setBlendAdditive(true);
+    background->runAction(cocos2d::CCEaseIn::create(cocos2d::CCFadeTo::create(2.f, 150), 2.f));
+}
 #endif
 
 #if defined(GEODE_IS_IOS)

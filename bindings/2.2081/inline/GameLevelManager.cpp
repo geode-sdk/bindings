@@ -109,7 +109,13 @@ bool GameLevelManager::hasDownloadedList(int id) {
 
 void GameLevelManager::onGetNewsCompleted(gd::string response, gd::string tag) {}
 
+void GameLevelManager::onRateLevelAdminCompleted(gd::string response, gd::string tag) {}
+
 void GameLevelManager::parseRestoreData(gd::string str) {}
+
+bool GameLevelManager::rateLevelAdmin(int id, int, int, int rank, bool, bool updateRank) {
+    return true;
+}
 
 void GameLevelManager::resetAllTimers() {
     m_timerDict->removeAllObjects();
@@ -337,6 +343,10 @@ int GameLevelManager::getHighestLevelOrder() {
 
 int GameLevelManager::getIntForKey(char const* key) {
     return m_searchFilters->valueForKey(key)->intValue();
+}
+
+gd::string GameLevelManager::getLeaderboardKey(LeaderboardType type, LeaderboardStat stat) {
+    return cocos2d::CCString::createWithFormat("lb_%i_%i", (int)type, (int)stat)->getCString();
 }
 
 bool GameLevelManager::getLenVal(int len) {
@@ -711,6 +721,14 @@ LikeItemType GameLevelManager::typeFromLikeKey(char const* key) {
 
 void GameLevelManager::unfollowUser(int id) {
     m_followedCreators->removeObjectForKey(cocos2d::CCString::createWithFormat("%i", id)->getCString());
+}
+
+bool GameLevelManager::unrateLevelAdmin(int id) {
+    return this->rateLevelAdmin(id, 0, 0, 0, false, false);
+}
+
+bool GameLevelManager::updateLevelRankAdmin(int id, int rank) {
+    return this->rateLevelAdmin(id, 0, 0, rank, false, true);
 }
 
 void GameLevelManager::updateUsernames() {

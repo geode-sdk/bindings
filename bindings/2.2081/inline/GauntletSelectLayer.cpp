@@ -16,6 +16,10 @@ GauntletSelectLayer::GauntletSelectLayer() {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+void GauntletSelectLayer::showUnlockGauntlet() {
+    static_cast<GauntletNode*>(m_gauntlets->objectForKey(m_gauntletID))->onUnlock();
+}
+
 void GauntletSelectLayer::updateArrows() {
     m_leftButton->setVisible(m_scrollLayer != nullptr);
     m_rightButton->setVisible(m_scrollLayer != nullptr);
