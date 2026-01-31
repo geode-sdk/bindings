@@ -20,5 +20,17 @@ cocos2d::CCLayerColor* cocos2d::CCLayerColor::create() {
 	}
 	return pRet;
 }
+
+void cocos2d::CCLayerColor::changeWidthAndHeight(float w, float h) {
+	this->setContentSize({ w, h });
+}
+
+void cocos2d::CCLayerColor::changeWidth(float w) {
+	this->setContentSize({ w, m_obContentSize.height });
+}
+
+void cocos2d::CCLayerColor::changeHeight(float h) {
+	this->setContentSize({ m_obContentSize.width, h });
+}
 #endif
 
