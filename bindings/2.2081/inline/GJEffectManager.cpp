@@ -34,6 +34,8 @@ bool GJEffectManager::hasPulseEffectForGroupID(int id) {
     return false;
 }
 
+void GJEffectManager::itemWasUsed(int id) {}
+
 const char* GJEffectManager::keyForGroupIDColor(int id, cocos2d::ccColor3B const& color, bool mainColor) {
     fmt::memory_buffer out;
     fmt::format_to(std::back_inserter(out), "{}_{}{}{}_{}", id, color.r, color.g, color.b, (int)mainColor);
@@ -48,6 +50,8 @@ float GJEffectManager::opacityForIndex(int index) {
 void GJEffectManager::resetTriggeredIDs() {
     m_unkMap498.clear();
 }
+
+void GJEffectManager::timerWasUsed(int id) {}
 
 void GJEffectManager::updateActiveOpacityEffects() {
     for (auto it = m_opacityEffectMap.begin(); it != m_opacityEffectMap.end();) {
@@ -289,6 +293,11 @@ void GJEffectManager::resetMoveActions() {
 void GJEffectManager::resetToggledGroups() {
     m_unkVector438.assign(m_unkVector438.size(), true);
     m_unkMap460.clear();
+}
+
+void GJEffectManager::resetUsedItemState() {
+    m_unk3f0.clear();
+    m_unk430.clear();
 }
 
 void GJEffectManager::resumeTimer(int id) {
