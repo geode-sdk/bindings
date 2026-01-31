@@ -9,6 +9,10 @@ void LevelEditorLayer::setObjectCount(int count) {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+void LevelEditorLayer::addExclusionList(const gd::unordered_set<int>& excludes, gd::unordered_set<int>& groups) {
+    groups.insert(excludes.begin(), excludes.end());
+}
+
 void LevelEditorLayer::addObjectsAtPosition(cocos2d::CCPoint position, cocos2d::CCArray* objects, cocos2d::CCArray* result) {
     for (int i = 0; i < objects->count(); i++) {
         auto object = static_cast<GameObject*>(objects->objectAtIndex(i));
@@ -44,6 +48,14 @@ void LevelEditorLayer::addPlayerCollisionBlock() {
     m_collisionBlocksAdded = true;
     this->addToSection(m_player1CollisionBlock);
     this->addToSection(m_player2CollisionBlock);
+}
+
+void LevelEditorLayer::addPlayerPoint(cocos2d::CCPoint point) {
+    m_playerPoints.push_back(point);
+}
+
+void LevelEditorLayer::addTouchPoint(cocos2d::CCPoint point) {
+    m_touchPoints.push_back(point);
 }
 
 void LevelEditorLayer::applyAttributeState(GameObject* dest, GameObject* src) {
@@ -156,10 +168,6 @@ cocos2d::CCScene* LevelEditorLayer::scene(GJGameLevel* level, bool noUI) {
     return scene;
 }
 
-void LevelEditorLayer::addExclusionList(const gd::unordered_set<int>& excludes, gd::unordered_set<int>& groups) {
-    groups.insert(excludes.begin(), excludes.end());
-}
-
 GameObject* LevelEditorLayer::addObjectFromVector(gd::vector<gd::string>& values, gd::vector<void*>& exists) {
     auto object = GameObject::objectFromVector(values, exists, this, false);
     if (!object) return nullptr;
@@ -183,17 +191,9 @@ void LevelEditorLayer::addPlayer2Point(cocos2d::CCPoint point, bool newGroup) {
     m_player2Points.back().push_back(point);
 }
 
-void LevelEditorLayer::addPlayerPoint(cocos2d::CCPoint point) {
-    m_playerPoints.push_back(point);
-}
-
 void LevelEditorLayer::addToRedoList(UndoObject* object) {
     if (m_redoObjects->count() >= (m_increaseMaxUndoRedo ? 1000 : 200)) m_redoObjects->removeObjectAtIndex(0, true);
     m_redoObjects->addObject(object);
-}
-
-void LevelEditorLayer::addTouchPoint(cocos2d::CCPoint point) {
-    m_touchPoints.push_back(point);
 }
 
 void LevelEditorLayer::addToUndoList(UndoObject* object, bool keepRedo) {

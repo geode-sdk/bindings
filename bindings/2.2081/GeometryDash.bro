@@ -11839,17 +11839,17 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
 
     bool activateTriggerEffect(EffectGameObject* object, float currentTime, float playTime, float boundTime, bool active) = win 0x2dcf40, imac 0xef370, m1 0xd2940, ios 0x360db4;
     void addDelayedSpawn(EffectGameObject* object, float delay) = win 0x2dd790, imac 0xeff70, m1 0xd3278, ios inline;
-    void addExclusionList(const gd::unordered_set<int>& excludes, gd::unordered_set<int>& groups) = win inline, imac 0xec040, m1 0xcfe0c;
+    void addExclusionList(const gd::unordered_set<int>& excludes, gd::unordered_set<int>& groups) = win inline, imac 0xec040, m1 0xcfe0c, ios inline;
     GameObject* addObjectFromVector(gd::vector<gd::string>& values, gd::vector<void*>& exists) = win inline, imac 0xdf2e0, m1 0xc4fdc, ios 0x359690;
     void addObjectsAtPosition(cocos2d::CCPoint position, cocos2d::CCArray* objects, cocos2d::CCArray* result) = win inline, imac 0xe1cc0, m1 0xc7708, ios inline;
     void addObjectsInRect(cocos2d::CCRect rect, bool ignoreGroups, cocos2d::CCArray* objects, cocos2d::CCArray* result) = win inline, imac 0xe1ec0, m1 0xc78b8, ios inline;
     void addObjectToGroup(GameObject* object, int group) = win inline, imac 0xf0c30, m1 0xd3d60, ios 0x361be0;
     void addPlayer2Point(cocos2d::CCPoint point, bool newGroup) = win inline, imac 0xf3710, m1 0xd642c, ios 0x363864;
     void addPlayerCollisionBlock() = win inline, imac 0xf1a80, m1 0xd4abc, ios inline;
-    void addPlayerPoint(cocos2d::CCPoint point) = win inline, imac 0xf36b0, m1 0xd63c8;
+    void addPlayerPoint(cocos2d::CCPoint point) = win inline, imac 0xf36b0, m1 0xd63c8, ios inline;
     void addSpecial(GameObject* object) = win 0x2d7bc0, imac 0xdfce0, m1 0xc58b8, ios 0x359c14;
     void addToRedoList(UndoObject* object) = win inline, imac 0xe2b00, m1 0xc83ac, ios 0x35bc34;
-    void addTouchPoint(cocos2d::CCPoint point) = win inline, imac 0xf1ca0, m1 0xd4c6c;
+    void addTouchPoint(cocos2d::CCPoint point) = win inline, imac 0xf1ca0, m1 0xd4c6c, ios inline;
     void addToUndoList(UndoObject* object, bool keepRedo) = win inline, imac 0xdfb60, m1 0xc5764, ios 0x359b30;
     void addTriggersWithGroupID(gd::unordered_set<int>&, cocos2d::CCArray*, gd::unordered_map<int, int>&, int) = m1 0xd1b6c, imac 0xee240;
     void addTriggersWithTargetGroupID(gd::unordered_set<int>&, gd::unordered_set<int>&, cocos2d::CCArray*, gd::unordered_map<int, int>&, int) = m1 0xd17f0, imac 0xedd00;
@@ -13502,7 +13502,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void downloadSong(int id) = win 0x33ea20, imac 0x58ed00, m1 0x4d9a2c, ios 0x15631c;
     void downloadSongFailed(int id, GJSongError errorCode) = win 0x344530, imac 0x58f8e0, m1 0x4da508, ios 0x156a4c;
     void downloadSongFinished(int id) = win inline, imac 0x58f950, m1 0x4da57c, ios 0x156ac0;
-    void downloadSongStarted(int id);
+    void downloadSongStarted(int id) = win 0x33e9a0, m1 0x4d99b4, imac 0x58ec80, ios 0x1562ac;
     void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0x590690, m1 0x4db110, ios 0x1570cc;
     cocos2d::CCArray* filterMusicByArtistID(int id, cocos2d::CCArray* songs) = win 0x3420e0, imac 0x5947e0, m1 0x4de980, ios 0x15970c;
     cocos2d::CCArray* filterMusicByTag(int id, cocos2d::CCArray* songs) = win 0x342190, imac 0x594a00, m1 0x4dead8, ios 0x1597a4;
@@ -14434,13 +14434,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool isBoostValid(float yVelocity) = win inline, imac 0x4064d0, m1 0x37d9d4, ios 0x21ff0c;
     bool isFlying() = win inline, imac 0x401750, m1 0x3793e0, ios 0x21c7f8;
     bool isInBasicMode() = win inline, imac 0x40e440, m1 0x384318, ios 0x22559c;
-    bool isInNormalMode() = win inline, imac 0x3ffe50, m1 0x377ef8;
+    bool isInNormalMode() = win inline, imac 0x3ffe50, m1 0x377ef8, ios inline;
     bool isSafeFlip(float flipTime) = win inline, imac 0x40bb80, m1 0x381e74, ios 0x223704;
     bool isSafeHeadTest() = win inline, imac 0x41b400, m1 0x390244, ios 0x22d1dc;
     bool isSafeMode(float changeTime) = win inline, imac 0x40bb40, m1 0x381e48, ios inline;
     bool isSafeSpiderFlip(float flipTime) = win inline, imac 0x40d5a0, m1 0x383678, ios inline;
     void levelFlipFinished() = win 0x38b750, imac 0x4035b0, m1 0x37b168, ios 0x21df64;
-    bool levelFlipping() = win 0x39b4f0, imac 0x401780, m1 0x379428;
+    bool levelFlipping() = win 0x39b4f0, imac 0x401780, m1 0x379428, ios inline;
     void levelWillFlip() = win 0x38b6d0, imac 0x403570, m1 0x37b120, ios 0x21df20;
     void limitDashRotation(float& rotation) = win inline, imac 0x4111d0, m1 0x386c4c, ios 0x22614c;
     void loadFromCheckpoint(PlayerCheckpoint* object) = win 0x3a21b0, imac 0x41c670, m1 0x39107c, ios 0x22dde4;
@@ -14557,7 +14557,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerArt() = win 0x398860, imac 0x415bb0, m1 0x38aeb8, ios 0x2291d0;
     void updatePlayerBirdFrame(int frame) = win 0x39e2e0, imac 0x4171a0, m1 0x38c330, ios 0x22a098;
     void updatePlayerDartFrame(int frame) = win 0x39e9e0, imac 0x4182b0, m1 0x38d368, ios 0x22ac28;
-    void updatePlayerForce(cocos2d::CCPoint velocity, bool additive) = win inline, imac 0x411e90, m1 0x3877f8;
+    void updatePlayerForce(cocos2d::CCPoint velocity, bool additive) = win inline, imac 0x411e90, m1 0x3877f8, ios inline;
     void updatePlayerFrame(int frame) = win 0x39dc50, imac 0x417b60, m1 0x38cc84, ios 0x22a720;
     void updatePlayerGlow() = win 0x3a02a0, imac 0x415a20, m1 0x38acf8, ios 0x229030;
     void updatePlayerJetpackFrame(int frame) = win 0x39e0b0, imac 0x4168f0, m1 0x38bb14, ios 0x229ac0;

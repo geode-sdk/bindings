@@ -95,6 +95,10 @@ void PlayerObject::handleRotatedSlopeCollision(float dt, GameObject* object, boo
     this->handleRotatedCollisionInternal(dt, object, { 0.f, 0.f, 0.f, 0.f }, false, skipPre, true);
 }
 
+bool PlayerObject::isInNormalMode() {
+    return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
+}
+
 bool PlayerObject::isSafeMode(float changeTime) {
     return m_gameModeChangedTime != 0.0 && m_totalTime - m_gameModeChangedTime < changeTime;
 }
@@ -215,6 +219,23 @@ void PlayerObject::updateLastGroundObject(GameObject* object) {
     m_lastGroundObject = object;
     if (m_isDontBoostY) m_stateBoostX = 2;
     if (m_isDontBoostX) m_stateBoostY = 2;
+}
+
+void PlayerObject::updatePlayerForce(cocos2d::CCPoint velocity, bool additive) {
+    if (additive) {
+        m_yVelocity += velocity.y;
+        if (m_isPlatformer) {
+            m_platformerXVelocity += velocity.x;
+            m_affectedByForces = true;
+        }
+    }
+    else {
+        m_yVelocity = velocity.y;
+        if (m_isPlatformer) {
+            m_platformerXVelocity = velocity.x;
+            m_affectedByForces = true;
+        }
+    }
 }
 
 void PlayerObject::updateSlopeYVelocity(float yVelocity) {}
@@ -340,10 +361,6 @@ bool PlayerObject::isFlying() {
 
 bool PlayerObject::isInBasicMode() {
     return !this->isFlying() && !m_isBall && !m_isSpider;
-}
-
-bool PlayerObject::isInNormalMode() {
-    return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
 }
 
 bool PlayerObject::isSafeFlip(float flipTime) {
@@ -715,23 +732,6 @@ void PlayerObject::updateEffects(float param) {
     m_waveTrail->updateStroke(param);
 }
 
-void PlayerObject::updatePlayerForce(cocos2d::CCPoint velocity, bool additive) {
-    if (additive) {
-        m_yVelocity += velocity.y;
-        if (m_isPlatformer) {
-            m_platformerXVelocity += velocity.x;
-            m_affectedByForces = true;
-        }
-    }
-    else {
-        m_yVelocity = velocity.y;
-        if (m_isPlatformer) {
-            m_platformerXVelocity = velocity.x;
-            m_affectedByForces = true;
-        }
-    }
-}
-
 void PlayerObject::updatePlayerRobotFrame(int frame) {
     this->createRobot(std::clamp(frame, 1, 68));
 }
@@ -793,6 +793,10 @@ void PlayerObject::hitGroundNoJump(GameObject* object, bool notFlipped) {
     m_isOnGround = isOnGround;
     m_isOnGround2 = isOnGround2;
     m_lastLandTime = lastLandTime;
+}
+
+bool PlayerObject::levelFlipping() {
+    return m_playEffects && GameManager::sharedState()->m_playLayer->isFlipping();
 }
 
 void PlayerObject::updatePlayerScale() {
