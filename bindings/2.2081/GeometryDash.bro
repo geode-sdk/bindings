@@ -8435,7 +8435,7 @@ class GJEffectManager : cocos2d::CCNode {
     CCMoveCNode* getMoveCommandNode(GroupCommandObject2* command) = win 0x25efd0, imac 0x2e2460, m1 0x27b6cc, ios 0x11458;
     CCMoveCNode* getMoveCommandObject() = win 0x25eed0, imac 0x2e46e0, m1 0x27d318, ios 0x128bc;
     OpacityEffectAction* getOpacityActionForGroup(int id) = win inline, imac 0x2e7e10, m1 0x27fdd8, ios 0x140e0;
-    void getPersistentState(gd::unordered_map<int, int>& counts, gd::unordered_map<int, TimerItem>& items) = m1 0x283100, imac 0x283100;
+    void getPersistentState(gd::unordered_map<int, int>& counts, gd::unordered_map<int, TimerItem>& items) = m1 0x283100, imac 0x2ebef0;
     gd::string getPersistentStateString() = win 0x262900, m1 0x282228, imac 0x2eaa80, ios 0x1553c;
     gd::string getSaveString() = win inline, imac 0x2edf80, m1 0x284938, ios 0x16558;
     GroupCommandObject2* getTempGroupCommand() = win 0x25f270, imac 0x2e4890, m1 0x27d480, ios 0x1299c;
