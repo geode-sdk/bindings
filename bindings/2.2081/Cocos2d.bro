@@ -946,7 +946,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void setNotificationNode(cocos2d::CCNode*) = imac 0x4849e0, m1 0x3ea59c;
     void setOpenGLView(cocos2d::CCEGLView*);
     void setProjection(cocos2d::ccDirectorProjection) = imac 0x482be0, m1 0x3e8b04, ios 0x175484;
-    void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
+    void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality) = m1 0x3e9674, imac 0x483890, ios 0x175b74;
     // void setSceneReference(cocos2d::CCScene*);
     // void setSmoothFix(bool);
     // void setSmoothFixCheck(bool);
@@ -955,7 +955,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void showStats() = imac 0x4833c0, m1 0x3e9230;
     void toggleShowFPS(bool, gd::string, cocos2d::CCPoint) = imac 0x483750, m1 0x3e9568, ios 0x175a68;
     void updateContentScale(cocos2d::TextureQuality) = imac 0x483b70, m1 0x3e9914, ios 0x175c84;
-    void updateScreenScale(cocos2d::CCSize) = m1 0x3e9864;
+    void updateScreenScale(cocos2d::CCSize) = m1 0x3e9864, imac 0x483aa0, ios 0x175bd4;
     void willSwitchToScene(cocos2d::CCScene*) = imac 0x4840b0, m1 0x3e9d14, ios 0x175ea4;
 }
 
