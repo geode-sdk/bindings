@@ -1,6 +1,6 @@
 #include <Geode/Geode.hpp>
 
-#if defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 PlayerObject::PlayerObject() {
 
     #if defined(__clang__)
@@ -33,9 +33,7 @@ PlayerObject::PlayerObject() {
     new (&m_holdingButtons) decltype(m_holdingButtons)();
     new (&m_currentRobotAnimation) gd::string("run");
 }
-#endif
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void PlayerObject::addToYVelocity(double yVelocity, int type) {
     this->setYVelocity(m_yVelocity + yVelocity, type);
 }
@@ -93,10 +91,6 @@ bool PlayerObject::handleRotatedObjectCollision(float dt, GameObject* object, co
 
 void PlayerObject::handleRotatedSlopeCollision(float dt, GameObject* object, bool skipPre) {
     this->handleRotatedCollisionInternal(dt, object, { 0.f, 0.f, 0.f, 0.f }, false, skipPre, true);
-}
-
-bool PlayerObject::isInNormalMode() {
-    return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
 }
 
 bool PlayerObject::isSafeMode(float changeTime) {
@@ -166,6 +160,135 @@ void PlayerObject::speedUp() {
     this->logValues();
 }
 
+void PlayerObject::spiderTestJumpX(bool dynamic) {
+    if (!m_gameLayer) return;
+
+    auto gl = m_gameLayer;
+
+    float minY = gl->getMinPortalY();
+    float maxY = gl->getMaxPortalY();
+
+    if (!gl->m_gameState.m_unkBool8 &&
+        !m_isOnSlope &&
+        !m_isShip &&
+        !m_isBall &&
+        !m_isOnGround) {
+        minY = 90.f;
+        maxY = 2490.f;
+    }
+
+    CCRect base = this->getObjectRect();
+
+    if (!m_isUpsideDown) {
+        base.origin.y = base.getMaxY() - 2.f;
+        base.size.height = maxY - base.origin.y;
+    }
+    else {
+        base.size.height = (base.origin.y - minY) + 2.f;
+        base.origin.y = minY;
+    }
+
+    CCRect sweep = base;
+    sweep.size.height += 4.f;
+
+    float half = (base.size.width - (m_scale * 8.f)) * 0.5f;
+    sweep.origin.x += half;
+    sweep.size.width = m_scale * 0.5f + 1.f;
+
+    auto statics = gl->staticObjectsInRect(sweep, true, true);
+    auto damagers = gl->damagingObjectsInRect(base);
+
+    bool expanded = false;
+
+    if ((statics && statics->count()) || (damagers && damagers->count())) {
+        if (dynamic) {
+            sweep = base;
+            expanded = true;
+            statics = gl->staticObjectsInRect(sweep, true, true);
+        }
+    }
+
+    if (!statics || !statics->count()) return;
+
+    float best = m_position.y;
+    bool found = false;
+
+    CCObject* obj;
+    CCARRAY_FOREACH(statics, obj) {
+        auto block = static_cast<GameObject*>(obj);
+        if (!block || block->m_isPassable) continue;
+
+        if (overlaps1Way(block)) continue;
+
+        auto r = block->getObjectRect();
+        float snap = m_isUpsideDown ? r.getMaxY() : r.getMinY();
+
+        if (!found || fabsf(snap - m_position.y) < fabsf(best - m_position.y)) {
+            best = snap;
+            found = true;
+        }
+    }
+
+    if (!found) return;
+
+    this->setPositionY(best);
+    this->flipGravity(!m_isUpsideDown, true);
+}
+
+void PlayerObject::spiderTestJumpY(bool dynamic) {
+    if (!m_gameLayer) return;
+
+    auto gl = m_gameLayer;
+
+    CCRect base = this->getObjectRect();
+
+    base.origin.y -= 3000.f;
+    base.size.height += 6000.f;
+
+    CCRect sweep = base;
+    sweep.size.width += 4.f;
+    sweep.origin.x -= 2.f;
+
+    auto statics = gl->staticObjectsInRect(sweep, true, true);
+    auto damagers = gl->damagingObjectsInRect(base);
+
+    bool expanded = false;
+
+    if ((statics && statics->count()) || (damagers && damagers->count())) {
+        if (dynamic) {
+            sweep = base;
+            expanded = true;
+            statics = gl->staticObjectsInRect(sweep, true, true);
+        }
+    }
+
+    if (!statics || !statics->count()) return;
+
+    float best = m_position.x;
+    bool found = false;
+
+    CCObject* obj;
+    CCARRAY_FOREACH(statics, obj) {
+        auto block = static_cast<GameObject*>(obj);
+        if (!block || block->m_isPassable) continue;
+
+        if (overlaps1Way(block)) continue;
+
+        auto r = block->getObjectRect();
+        float snap = m_isUpsideDown ? r.getMaxX() : r.getMinX();
+
+        if (!found || fabsf(snap - m_position.x) < fabsf(best - m_position.x)) {
+            best = snap;
+            found = true;
+        }
+    }
+
+    if (!found) return;
+
+    this->setPositionX(best);
+    this->flipGravity(!m_isUpsideDown, true);
+}
+
 void PlayerObject::storeCollision(PlayerCollisionDirection direction, int id) {
     switch (direction) {
         case PlayerCollisionDirection::Top: {
@@ -219,23 +342,6 @@ void PlayerObject::updateLastGroundObject(GameObject* object) {
     m_lastGroundObject = object;
     if (m_isDontBoostY) m_stateBoostX = 2;
     if (m_isDontBoostX) m_stateBoostY = 2;
-}
-
-void PlayerObject::updatePlayerForce(cocos2d::CCPoint velocity, bool additive) {
-    if (additive) {
-        m_yVelocity += velocity.y;
-        if (m_isPlatformer) {
-            m_platformerXVelocity += velocity.x;
-            m_affectedByForces = true;
-        }
-    }
-    else {
-        m_yVelocity = velocity.y;
-        if (m_isPlatformer) {
-            m_platformerXVelocity = velocity.x;
-            m_affectedByForces = true;
-        }
-    }
 }
 
 void PlayerObject::updateSlopeYVelocity(float yVelocity) {}
@@ -361,6 +467,10 @@ bool PlayerObject::isFlying() {
 
 bool PlayerObject::isInBasicMode() {
     return !this->isFlying() && !m_isBall && !m_isSpider;
+}
+
+bool PlayerObject::isInNormalMode() {
+    return !this->isFlying() && !m_isBall && !m_isRobot && !m_isSpider;
 }
 
 bool PlayerObject::isSafeFlip(float flipTime) {
@@ -732,6 +842,23 @@ void PlayerObject::updateEffects(float param) {
     m_waveTrail->updateStroke(param);
 }
 
+void PlayerObject::updatePlayerForce(cocos2d::CCPoint velocity, bool additive) {
+    if (additive) {
+        m_yVelocity += velocity.y;
+        if (m_isPlatformer) {
+            m_platformerXVelocity += velocity.x;
+            m_affectedByForces = true;
+        }
+    }
+    else {
+        m_yVelocity = velocity.y;
+        if (m_isPlatformer) {
+            m_platformerXVelocity = velocity.x;
+            m_affectedByForces = true;
+        }
+    }
+}
+
 void PlayerObject::updatePlayerRobotFrame(int frame) {
     this->createRobot(std::clamp(frame, 1, 68));
 }
@@ -793,10 +920,6 @@ void PlayerObject::hitGroundNoJump(GameObject* object, bool notFlipped) {
     m_isOnGround = isOnGround;
     m_isOnGround2 = isOnGround2;
     m_lastLandTime = lastLandTime;
-}
-
-bool PlayerObject::levelFlipping() {
-    return m_playEffects && GameManager::sharedState()->m_playLayer->isFlipping();
 }
 
 void PlayerObject::updatePlayerScale() {

@@ -14510,8 +14510,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void speedUp() = win inline, imac 0x41d610, m1 0x391bec, ios inline;
     void spiderTestJump(bool dynamic) = win 0x394340, imac 0x403720, m1 0x37b2c0, ios 0x21e058;
     void spiderTestJumpInternal(bool dynamic) = win 0x3943f0, imac 0x40d690, m1 0x38373c, ios 0x224a9c;
-    void spiderTestJumpX(bool dynamic) = imac 0x40ed60, m1 0x384b64;
-    void spiderTestJumpY(bool dynamic) = imac 0x40fc20, m1 0x38587c;
+    void spiderTestJumpX(bool dynamic) = win inline, imac 0x40ed60, m1 0x384b64;
+    void spiderTestJumpY(bool dynamic) = win inline, imac 0x40fc20, m1 0x38587c;
     void startDashing(DashRingObject* object) = win 0x395910, imac 0x411380, m1 0x386de8, ios 0x2262e8;
     void stopBurstEffect() = win 0x39b4e0, imac 0x4184f0, m1 0x38d598, ios 0x22addc;
     void stopDashing() = win 0x396650, imac 0x401a50, m1 0x3796d0, ios 0x21ca7c;
