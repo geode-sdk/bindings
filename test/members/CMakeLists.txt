@@ -12,16 +12,18 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
 include(../../cmake/CPM.cmake)
 
 set(MAT_JSON_AS_INTERFACE ON)
-CPMAddPackage("gh:fmtlib/fmt#11.1.4")
-CPMAddPackage("gh:geode-sdk/json@3.2.1")
+CPMAddPackage("gh:fmtlib/fmt#12.1.0")
+CPMAddPackage("gh:geode-sdk/result@1.3.3")
+CPMAddPackage("gh:geode-sdk/json@3.2.3")
 CPMAddPackage("gh:geode-sdk/TulipHook@2.4.4")
 CPMAddPackage("gh:zhihaoy/nontype_functional#8ec2e09")
+CPMAddPackage("gh:dankmeme01/arc#0d568d1")
 
 if (WIN32)
 	target_compile_definitions(fmt PRIVATE _HAS_ITERATOR_DEBUGGING=0)
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt GeodeResult mat-json TulipHookInclude nontype_functional)
+target_link_libraries(${PROJECT_NAME} PRIVATE mat-json TulipHookInclude nontype_functional arc)
 
 cmake_path(SET GEODE_LOADER_PATH $ENV{GEODE_SDK}/loader)
 
@@ -145,11 +147,13 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 if (WIN32)
 	if (MSVC)
-		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj /Zc:__cplusplus)
+		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj /O0)
 	elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+		target_compile_options(${PROJECT_NAME} PRIVATE -O0)
 		target_link_options(${PROJECT_NAME} PRIVATE "-Wl,/errorlimit:0")
 	endif()
 else()
+	target_compile_options(${PROJECT_NAME} PRIVATE -O0)
 	# Doesnt work on macos
 	# target_link_options(${PROJECT_NAME} PRIVATE "-Wl,--error-limit=0")
 endif()
