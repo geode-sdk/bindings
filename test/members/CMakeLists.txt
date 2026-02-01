@@ -147,13 +147,11 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 if (WIN32)
 	if (MSVC)
-		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj /O0)
+		target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
 	elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-		target_compile_options(${PROJECT_NAME} PRIVATE -O0)
 		target_link_options(${PROJECT_NAME} PRIVATE "-Wl,/errorlimit:0")
 	endif()
 else()
-	target_compile_options(${PROJECT_NAME} PRIVATE -O0)
 	# Doesnt work on macos
 	# target_link_options(${PROJECT_NAME} PRIVATE "-Wl,--error-limit=0")
 endif()

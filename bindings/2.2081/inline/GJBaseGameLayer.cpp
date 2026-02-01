@@ -722,7 +722,7 @@ cocos2d::CCPoint GJBaseGameLayer::getPortalTargetPos(TeleportPortalObject* objec
 }
 
 gd::string GJBaseGameLayer::getRecordExtra() {
-    return cocos2d::CCString::createWithFormat("#%s,%i,%i,%i,%i,%s", std::to_string(m_unk32e0).c_str(), m_unk3448, 22, 47, m_level->m_levelVersion, m_unk3428.c_str())->getCString();
+    return cocos2d::CCString::createWithFormat("#%s,%i,%i,%i,%i,%s", std::to_string(m_unk32e0).c_str(), m_savedAttempts, 22, 47, m_level->m_levelVersion, m_savedPersistentStateString.c_str())->getCString();
 }
 
 void GJBaseGameLayer::getRotateCommandTargets(EnhancedTriggerObject* object, GameObject*& centerObject, GameObject*& targetObject, GameObject*& rotateObject) {
