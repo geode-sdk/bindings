@@ -9600,6 +9600,9 @@ class GJOptionsLayer : SetupTriggerPopup {
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
     float m_offset;
+    android, ios {
+        gd::unordered_map<int, CCMenuItemToggler*> m_toggleButtons;
+    }
 }
 
 [[link(android)]]
