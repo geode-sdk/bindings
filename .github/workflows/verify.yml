@@ -143,7 +143,7 @@ jobs:
       with:
         repository: geode-sdk/geode
         # TODO: this is temporary
-        ref: v5 # TODO: CHANGE BACK TO 'main' AFTER v5 GETS MERGED !!! IMPORTANT!! thank you
+        ref: main
         path: geode
 
     - name: Set up codegen binary cache
