@@ -17,7 +17,7 @@ CPMAddPackage("gh:geode-sdk/result@1.3.3")
 CPMAddPackage("gh:geode-sdk/json@3.2.3")
 CPMAddPackage("gh:geode-sdk/TulipHook@2.4.4")
 CPMAddPackage("gh:zhihaoy/nontype_functional#8ec2e09")
-CPMAddPackage("gh:dankmeme01/arc#65266d9")
+CPMAddPackage("gh:dankmeme01/arc#dcbd12e")
 
 if (WIN32)
 	target_compile_definitions(fmt PRIVATE _HAS_ITERATOR_DEBUGGING=0)
