@@ -8827,6 +8827,9 @@ class GJGameLevel : cocos2d::CCNode {
     gd::string m_localBestPoints;
     bool m_savedTime;
     bool m_savedPoints;
+    android, ios {
+        int m_cbsOverride; // 0 none, 1 enabled, 2 disabled
+    }
 }
 
 [[link(android)]]
