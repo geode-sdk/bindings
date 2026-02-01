@@ -943,7 +943,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void setGLDefaultValues() = imac 0x482b30, m1 0x3e8a74, ios 0x175408;
     void setNextDeltaTimeZero(bool);
     void setNextScene() = imac 0x483290, m1 0x3e9110, ios 0x175730;
-    void setNotificationNode(cocos2d::CCNode*) = imac 0x4849e0, m1 0x3ea59c;
+    // void setNotificationNode(cocos2d::CCNode*) = imac 0x4849e0, m1 0x3ea59c;
     void setOpenGLView(cocos2d::CCEGLView*);
     void setProjection(cocos2d::ccDirectorProjection) = imac 0x482be0, m1 0x3e8b04, ios 0x175484;
     void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality) = m1 0x3e9674, imac 0x483890, ios 0x175b74;
