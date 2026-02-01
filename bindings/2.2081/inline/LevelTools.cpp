@@ -20,7 +20,7 @@ int LevelTools::getAudioBPM(int id) {
 }
 
 bool LevelTools::getLastGameplayReversed() {
-    return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x6c2c77) GEODE_IOS(0x85f0c0));
+    return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x6c2c77) GEODE_IOS(0x86c010));
 }
 
 float LevelTools::offsetBPMForTrack(int id) {

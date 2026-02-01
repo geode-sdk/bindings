@@ -3,7 +3,7 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool GJSmartPrefab::init() {
-    m_prefabID = (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x6ba174) GEODE_IOS(0x83ef48)))++;
+    m_prefabID = (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x6ba174) GEODE_IOS(0x84be00)))++;
     return true;
 }
 #endif

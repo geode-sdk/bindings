@@ -6,7 +6,7 @@ CCAnimateFrameCache* CCAnimateFrameCache::get() {
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void CCAnimateFrameCache::purgeSharedSpriteFrameCache() {
-    auto** instancePtr = reinterpret_cast<CCAnimateFrameCache**>(geode::base::get() + GEODE_WINDOWS(0x6c2e80) GEODE_IOS(0x85f2d0));
+    auto** instancePtr = reinterpret_cast<CCAnimateFrameCache**>(geode::base::get() + GEODE_WINDOWS(0x6c2e80) GEODE_IOS(0x86c220));
     if (*instancePtr) {
         (*instancePtr)->release();
         *instancePtr = nullptr;

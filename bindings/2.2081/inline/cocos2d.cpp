@@ -33,8 +33,8 @@ void cocos2d::ccDrawSolidRect(cocos2d::CCPoint origin, cocos2d::CCPoint destinat
 
 void cocos2d::ccGLBlendResetToCache() {
     glBlendEquation(GL_FUNC_ADD);
-    auto sfactor = *reinterpret_cast<GLenum*>(geode::base::get() + 0x83f124);
-    auto dfactor = *reinterpret_cast<GLenum*>(geode::base::get() + 0x83f128);
+    auto sfactor = *reinterpret_cast<GLenum*>(geode::base::get() + 0x84bfdc);
+    auto dfactor = *reinterpret_cast<GLenum*>(geode::base::get() + 0x84bfe0);
     if (sfactor == GL_ONE && dfactor == GL_ZERO) {
         glDisable(GL_BLEND);
     }
@@ -45,7 +45,7 @@ void cocos2d::ccGLBlendResetToCache() {
 }
 
 void cocos2d::ccGLDeleteTextureN(unsigned int p0, unsigned int p1) {
-    auto currentTexture = reinterpret_cast<GLuint*>(geode::base::get() + 0x83f0e4 + p0 * 4);
+    auto currentTexture = reinterpret_cast<GLuint*>(geode::base::get() + 0x84bf9c + p0 * 4);
     if (*currentTexture == p1) *currentTexture = -1;
     glDeleteTextures(1, &p1);
 }

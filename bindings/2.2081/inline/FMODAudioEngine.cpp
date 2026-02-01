@@ -10,7 +10,7 @@ FMOD::Channel* FMODAudioEngine::channelForUniqueID(int id) {
 }
 
 int FMODAudioEngine::getNextChannelID() {
-    return (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x6ba0e4) GEODE_IOS(0x83ef50)))++;
+    return (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x6ba0e4) GEODE_IOS(0x84be08)))++;
 }
 
 gd::map<std::pair<int, int>, FMODSoundTween>& FMODAudioEngine::getTweenContainer(AudioTargetType type) {
