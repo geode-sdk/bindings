@@ -14137,7 +14137,7 @@ class PlayerButtonCommand {
 [[link(android), depends(DashRingObject)]]
 class PlayerCheckpoint : cocos2d::CCNode {
     // virtual ~PlayerCheckpoint();
-    PlayerCheckpoint() = ios 0x1273c4, inline;
+    PlayerCheckpoint() = m1 0xb1ac4, imac 0xc9aa0, ios 0x1273c4, inline;
 
     static PlayerCheckpoint* create() = win 0x3bb010, imac 0xbb860, m1 0xa8cac, ios 0x11fd08;
 
@@ -14209,6 +14209,9 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
+    android, ios {
+        bool m_collidingBetweenSteps;
+    }
     double m_scaleXRelated4;
     double m_scaleXRelated5;
     bool m_isCollidingWithSlope;
@@ -14475,7 +14478,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void playingEndEffect() = win inline, imac 0x41aa60, m1 0x38f930, ios 0x22ca30;
     void playSpawnEffect() = win 0x397480, imac 0x4133a0, m1 0x3889d8, ios 0x22762c;
     void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x395170, imac 0x40e490, m1 0x384378, ios 0x2255dc;
-    void postCollision(float dt, bool) = win 0x38d580, imac 0x4047f0, m1 0x37c258, ios 0x21ea64;
+    void postCollision(float dt, bool betweenSteps) = win 0x38d580, imac 0x4047f0, m1 0x37c258, ios 0x21ea64;
     void preCollision() = win inline, imac 0x404660, m1 0x37c100, ios 0x21e958;
     bool preSlopeCollision(float dt, GameObject* object) = win 0x38f2e0, imac 0x40b650, m1 0x3819b0, ios 0x223278;
     void propellPlayer(float yVelocity, bool noEffects, int objectType) = win 0x39f850, imac 0x41adf0, m1 0x38fcac, ios 0x22cd04;
@@ -14636,6 +14639,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
+    android, ios {
+        bool m_collidingBetweenSteps;
+    }
     double m_scaleXRelated4;
     double m_scaleXRelated5;
     bool m_isCollidingWithSlope;
