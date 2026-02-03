@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 
-project(GeodeBindings VERSION 1.0.0)
+project(GeodeBindings VERSION 1.1.0)
 
 if (NOT DEFINED GEODE_TARGET_PLATFORM)
 	message(FATAL_ERROR "GEODE_TARGET_PLATFORM is not defined.")
@@ -17,6 +17,16 @@ option(
 	"Disables inclusion of the unversioned Enums header, allowing for builds on older Geode/Geometry Dash versions."
 	OFF
 )
+
+option(
+	BINDINGS_DEBASER
+	"Enables new ctor/dtor base call removal ir pass."
+	ON
+)
+
+if (BINDINGS_DEBASER)
+	list(APPEND GEODE_CODEGEN_EXTRA_ARGS --debase)
+endif()
 
 if (NOT GEODE_BINDINGS_PATH)
 	set(GEODE_BINDINGS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bindings/${GEODE_GD_VERSION})

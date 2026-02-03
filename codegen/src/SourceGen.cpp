@@ -141,13 +141,14 @@ bool areSuperclassesEmpty(Class const& c) {
 	return c.superclasses.empty() || (c.superclasses.size() == 1 && c.superclasses[0].find("CCCopying") != std::string::npos);
 }
 
-std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, bool skipPugixml, bool skipInlines, std::unordered_set<std::string>* generatedFiles) {
+std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder,
+                                  SourceGenOpts opts, std::unordered_set<std::string>* generatedFiles) {
 	std::string output = fmt::format(format_strings::source_start,
 		fmt::arg("includes", codegen::getIncludes(root))
 	);
 
 	for (auto& f : root.functions) {
-        if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
+    if (codegen::getStatus(f) != BindStatus::NeedsBinding) {
 			if (codegen::getStatus(f) == BindStatus::Inlined) {
 				output += fmt::format(format_strings::declare_standalone_definition,
 					fmt::arg("return", f.prototype.ret.name),
@@ -156,8 +157,8 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 					fmt::arg("definition", f.inner)
 				);
 			}
-            continue;
-        }
+      continue;
+    }
 
 		output += fmt::format(format_strings::declare_standalone,
 			fmt::arg("return", f.prototype.ret.name),
@@ -169,10 +170,12 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 			fmt::arg("arguments", codegen::getParameterNames(f.prototype)),
 			fmt::arg("parameter_comma", str_if(", ", !f.prototype.args.empty()))
 		);
-    }
+  }
+
+  
 
 	for (auto& c : root.classes) {
-		if (skipPugixml) {
+		if (opts.skipPugixml) {
 			if (c.name.starts_with("pugi::")) {
 				continue;
 			}
@@ -182,19 +185,16 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 		);
 
 		std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".cpp");
-
-        if (generatedFiles != nullptr) {
-            generatedFiles->insert(filename);
-        }
+    if (generatedFiles != nullptr)
+      generatedFiles->insert(filename);
 
 		for (auto& f : c.fields) {
 			if (auto i = f.get_as<InlineField>()) {
 				// yeah there are no inlines on cocos
 			} else if (auto fn = f.get_as<FunctionBindField>()) {
 				if (codegen::getStatus(*fn) == BindStatus::Inlined) {
-					if (skipInlines) {
+					if (opts.skipInlines)
 						continue;
-					}
 					switch (fn->prototype.type) {
 						case FunctionType::Ctor:
 						case FunctionType::Dtor:

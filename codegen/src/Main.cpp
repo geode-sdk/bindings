@@ -3,6 +3,7 @@
 #include <filesystem>
 
 using namespace codegen;
+namespace fs = std::filesystem;
 
 std::map<void const*, size_t> codegen::idMap;
 
@@ -32,7 +33,7 @@ std::string generateMacFolderHeader(std::string folder, std::string filename) {
 )GEN", folder, filename);
 }
 
-void generateFolderAlias(std::filesystem::path const& writeDir, std::string baseName, std::unordered_set<std::string> const& files) {
+void generateFolderAlias(fs::path const& writeDir, std::string baseName, std::unordered_set<std::string> const& files) {
     auto outputDir = writeDir / baseName;
 
     for (const auto& filename : files) {
@@ -48,11 +49,11 @@ int main(int argc, char** argv) try {
     std::string p = argv[1];
 
     // if (p == "--into-json") {
-    //     auto rootDir = std::filesystem::path(argv[2]);
-    //     std::filesystem::current_path(rootDir);
+    //     auto rootDir = fs::path(argv[2]);
+    //     fs::current_path(rootDir);
 
     //     Root root = broma::parse_file("Entry.bro");
-    //     writeFile(std::filesystem::path(argv[3]), generateTextInterface(root));
+    //     writeFile(fs::path(argv[3]), generateTextInterface(root));
     //     return 0;
     // }
 
@@ -68,8 +69,8 @@ int main(int argc, char** argv) try {
     else throw codegen::error("Invalid platform {}\n", p);
 
 
-    auto writeDir = std::filesystem::path(argv[3]) / "Geode";
-    std::filesystem::create_directories(writeDir);
+    auto writeDir = fs::path(argv[3]) / "Geode";
+    fs::create_directories(writeDir);
 
     // parse extra arguments
     std::vector<std::string> extraArgs;
@@ -83,40 +84,41 @@ int main(int argc, char** argv) try {
         extraArgs.push_back(arg);
     }
 
-    bool skipPugixml = false;
-    bool versionSet = false;
+    SourceGenOpts opts {};
     for (int i = 0; i < extraArgs.size(); i++) {
         auto& arg = extraArgs[i];
         if (arg == "--skip-pugixml") {
-            skipPugixml = true;
+            opts.skipPugixml = true;
         } else if (arg.starts_with("--sdk-version")) {
             if (arg.starts_with("--sdk-version=")) {
                 codegen::sdkVersion = codegen::Version::fromString(arg.substr(14));
-                versionSet = true;
+                opts.versionSet = true;
             } else if (arg == "--sdk-version" && i + 1 < extraArgs.size()) {
                 codegen::sdkVersion = codegen::Version::fromString(extraArgs[++i]);
-                versionSet = true;
+                opts.versionSet = true;
             }
+        } else if (arg.starts_with("--debase")) {
+            opts.debaser = true;
         }
     }
 
     if (codegen::platform == Platform::Mac) {
-        std::filesystem::create_directories(writeDir / "modify_intel");
-        std::filesystem::create_directories(writeDir / "binding_intel");
-        std::filesystem::create_directories(writeDir / "modify_arm");
-        std::filesystem::create_directories(writeDir / "binding_arm");
-        std::filesystem::create_directories(writeDir / "source_intel");
-        std::filesystem::create_directories(writeDir / "source_arm");
+        fs::create_directories(writeDir / "modify_intel");
+        fs::create_directories(writeDir / "binding_intel");
+        fs::create_directories(writeDir / "modify_arm");
+        fs::create_directories(writeDir / "binding_arm");
+        fs::create_directories(writeDir / "source_intel");
+        fs::create_directories(writeDir / "source_arm");
     }
 
-    std::filesystem::create_directories(writeDir / "modify");
-    std::filesystem::create_directories(writeDir / "binding");
-    std::filesystem::create_directories(writeDir / "source");
-    // std::filesystem::create_directories(writeDir / "inline");
+    fs::create_directories(writeDir / "modify");
+    fs::create_directories(writeDir / "binding");
+    fs::create_directories(writeDir / "source");
+    // fs::create_directories(writeDir / "inline");
 
-    auto rootDir = std::filesystem::path(argv[2]);
+    auto rootDir = fs::path(argv[2]);
     Root root = broma::parse_file(rootDir / "Entry.bro");
-    bool skipInlines = std::filesystem::exists(rootDir / "inline");
+    bool skipInlines = fs::exists(rootDir / "inline");
 
     for (auto cls : root.classes) {
         for (auto dep : cls.attributes.depends) {
@@ -131,8 +133,8 @@ int main(int argc, char** argv) try {
 
     if (!versionSet) {
         if (auto sdkPath = std::getenv("GEODE_SDK")) {
-            auto versionPath = std::filesystem::path(sdkPath) / "VERSION";
-            if (std::filesystem::exists(versionPath)) {
+            auto versionPath = fs::path(sdkPath) / "VERSION";
+            if (fs::exists(versionPath)) {
                 std::ifstream versionFile(versionPath);
                 std::string version;
                 std::getline(versionFile, version);
@@ -156,7 +158,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModifyArm.hpp", generateModifyHeader(root, writeDir / "modify_arm", &generatedModify));
         writeFile(writeDir / "GeneratedBindingArm.hpp", generateBindingHeader(root, writeDir / "binding_arm", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareArm.hpp", generatePredeclareHeader(root));
-        if (writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root, writeDir / "source_arm", skipPugixml, skipInlines, &generatedSources))) {
+        if (writeFile(writeDir / "GeneratedSourceArm.cpp", generateBindingSource(root, writeDir / "source_arm", opts, &generatedSources))) {
             generatedSourceChanged = true;
         }
 
@@ -167,7 +169,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModifyIntel.hpp", generateModifyHeader(root, writeDir / "modify_intel", &generatedModify));
         writeFile(writeDir / "GeneratedBindingIntel.hpp", generateBindingHeader(root, writeDir / "binding_intel", &generatedBindings));
         writeFile(writeDir / "GeneratedPredeclareIntel.hpp", generatePredeclareHeader(root));
-        if (writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root, writeDir / "source_intel", skipPugixml, skipInlines, &generatedSources))) {
+        if (writeFile(writeDir / "GeneratedSourceIntel.cpp", generateBindingSource(root, writeDir / "source_intel", opts, &generatedSources))) {
             generatedSourceChanged = true;
         }
 
@@ -183,7 +185,7 @@ int main(int argc, char** argv) try {
         auto now = std::chrono::file_clock::now();
         if (generatedSourceChanged) {
             // force cmake to rebuild generatedsource
-            std::filesystem::last_write_time(writeDir / "GeneratedSource.cpp", now);
+            fs::last_write_time(writeDir / "GeneratedSource.cpp", now);
         }
 
         generateFolderAlias(writeDir, "modify", generatedModify);
@@ -194,7 +196,7 @@ int main(int argc, char** argv) try {
         writeFile(writeDir / "GeneratedModify.hpp", generateModifyHeader(root, writeDir / "modify"));
         writeFile(writeDir / "GeneratedBinding.hpp", generateBindingHeader(root, writeDir / "binding"));
         writeFile(writeDir / "GeneratedPredeclare.hpp", generatePredeclareHeader(root));
-        writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root, writeDir / "source", skipPugixml, skipInlines));
+        writeFile(writeDir / "GeneratedSource.cpp", generateBindingSource(root, writeDir / "source", opts));
         writeFile(writeDir / "CodegenData.txt", generateTextInterface(root));
         // generateInlineSources(root, writeDir / "inline");
     }
