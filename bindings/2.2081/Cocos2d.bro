@@ -1689,7 +1689,7 @@ class cocos2d::CCIMEDispatcher {
     CCIMEDispatcher();
     ~CCIMEDispatcher();
 
-    static cocos2d::CCIMEDispatcher* sharedDispatcher() = imac 0x4bbd10, m1 0x41bf40;
+    static cocos2d::CCIMEDispatcher* sharedDispatcher() = imac 0x4bbd10, m1 0x41bf40, ios 0x1d3858;
 
     void addDelegate(cocos2d::CCIMEDelegate*);
     bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);

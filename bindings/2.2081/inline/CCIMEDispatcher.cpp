@@ -8,5 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+bool cocos2d::CCIMEDispatcher::hasDelegate() {
+    return m_pImpl->m_DelegateWithIme != nullptr;
+}
 #endif
 
