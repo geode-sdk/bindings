@@ -1934,7 +1934,7 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
     virtual void setString(char const*) = imac 0x3bdb30, m1 0x33f980, ios 0x6e990;
     virtual char const* getString() = imac 0x3bdd60, m1 0x33fb7c, ios 0x6eae8;
 
-    cocos2d::ccFontDefinition _prepareTextDefinition(bool) = imac 0x3be2a0, m1 0x33fff0, ios inline;
+    cocos2d::ccFontDefinition _prepareTextDefinition(bool) = imac 0x3be2a0, m1 0x33fff0, ios 0x6eb20;
     void _updateWithTextDefinition(cocos2d::ccFontDefinition&, bool) = imac 0x3bda60, m1 0x33f8c8, ios inline;
     char const* description() = imac 0x3bddb0, m1 0x33fbb4, ios inline;
     void disableShadow(bool) = imac 0x3be0f0, m1 0x33fe50, ios inline;
@@ -4348,9 +4348,9 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     bool initWithETCFile(char const*) = imac 0x4793c0, m1 0x3e01ac;
     bool initWithImage(cocos2d::CCImage*) = imac 0x478620, m1 0x3df40c, ios 0x12d7fc;
     bool initWithPVRFile(char const*) = imac 0x4792e0, m1 0x3e00d8;
-    bool initWithString(char const*, cocos2d::ccFontDefinition*);
-    bool initWithString(char const*, char const*, float) = imac 0x478f30, m1 0x3dfd08;
-    bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = imac 0x478f90, m1 0x3dfd78;
+    bool initWithString(char const*, cocos2d::ccFontDefinition*) = m1 0x3dfec4, imac 0x4790d0, ios 0x12db2c;
+    bool initWithString(char const*, char const*, float) = imac 0x478f30, m1 0x3dfd08, ios inline;
+    bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = imac 0x478f90, m1 0x3dfd78, ios inline;
     void* keepData(void*, unsigned int);
     void releaseData(void*);
     void releaseGLTexture() = imac 0x478260, m1 0x3df084;

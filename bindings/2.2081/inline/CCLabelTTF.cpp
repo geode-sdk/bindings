@@ -48,36 +48,6 @@ cocos2d::CCLabelTTF* cocos2d::CCLabelTTF::createWithFontDefinition(char const* p
     return nullptr;
 }
 
-cocos2d::ccFontDefinition cocos2d::CCLabelTTF::_prepareTextDefinition(bool p0) {
-    auto factor = CCDirector::sharedDirector()->getContentScaleFactor();
-
-    ccFontDefinition texDef;
-    texDef.m_fontSize = p0 ? m_fFontSize * factor : m_fFontSize;
-    texDef.m_fontName = *m_pFontName;
-    texDef.m_alignment = m_hAlignment;
-    texDef.m_vertAlignment = m_vAlignment;
-    texDef.m_dimensions = p0 ? CCSize { m_tDimensions.width * factor, m_tDimensions.height * factor } : m_tDimensions;
-    
-    if (m_strokeEnabled) {
-        texDef.m_stroke.m_strokeEnabled = true;
-        texDef.m_stroke.m_strokeColor = m_strokeColor;
-        texDef.m_stroke.m_strokeSize = p0 ? m_strokeSize * factor : m_strokeSize;
-    }
-    else texDef.m_stroke.m_strokeEnabled = false;
-
-    if (m_shadowEnabled) {
-        texDef.m_shadow.m_shadowEnabled = true;
-        texDef.m_shadow.m_shadowBlur = m_shadowBlur;
-        texDef.m_shadow.m_shadowOpacity = m_shadowOpacity;
-        texDef.m_shadow.m_shadowOffset = p0 ? CCSize { m_shadowOffset.width * factor, m_shadowOffset.height * factor } : m_shadowOffset;
-    }
-    else texDef.m_shadow.m_shadowEnabled = false;
-
-    texDef.m_fontFillColor = m_textFillColor;
-
-    return texDef;
-}
-
 void cocos2d::CCLabelTTF::_updateWithTextDefinition(cocos2d::ccFontDefinition& p0, bool p1) {
     m_tDimensions = p0.m_dimensions;
     m_hAlignment = p0.m_alignment;

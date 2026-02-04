@@ -33,5 +33,22 @@ unsigned int cocos2d::CCTexture2D::bitsPerPixelForFormat(cocos2d::CCTexture2DPix
             return -1;
     }
 }
+
+bool cocos2d::CCTexture2D::initWithString(char const* text, char const* fontName, float fontSize) {
+    return this->initWithString(text, fontName, fontSize, { 0.f, 0.f }, kCCTextAlignmentCenter, kCCVerticalTextAlignmentTop);
+}
+
+bool cocos2d::CCTexture2D::initWithString(char const* text, char const* fontName, float fontSize, cocos2d::CCSize const& dimensions, cocos2d::CCTextAlignment hAlignment, cocos2d::CCVerticalTextAlignment vAlignment) {
+    ccFontDefinition tempDef;
+    tempDef.m_shadow.m_shadowEnabled = false;
+    tempDef.m_stroke.m_strokeEnabled = false;
+    tempDef.m_fontName = std::string(fontName);
+    tempDef.m_fontSize = fontSize;
+    tempDef.m_dimensions = dimensions;
+    tempDef.m_alignment = hAlignment;
+    tempDef.m_vertAlignment = vAlignment;
+    tempDef.m_fontFillColor = { 255, 255, 255 };
+    return this->initWithString(text, &tempDef);
+}
 #endif
 
