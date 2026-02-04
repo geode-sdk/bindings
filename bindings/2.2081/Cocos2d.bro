@@ -4355,7 +4355,7 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     void releaseData(void*);
     void releaseGLTexture() = imac 0x478260, m1 0x3df084;
     void setAliasTexParameters() = imac 0x479580, m1 0x3e0370, ios 0x12df80;
-    void setAntiAliasTexParameters();
+    void setAntiAliasTexParameters() = imac 0x4795d0, m1 0x3e03c0, ios 0x12dfd0;
     void setTexParameters(cocos2d::ccTexParams*) = imac 0x4794f0, m1 0x3e02d8, ios 0x12dee8;
     char const* stringForFormat() = imac 0x479620, m1 0x3e0410;
 }
