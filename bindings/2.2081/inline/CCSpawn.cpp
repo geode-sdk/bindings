@@ -38,7 +38,7 @@ cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCArray* arrayOfActions) {
 }
 #endif
 
-#ifndef GEODE_IS_ANDROID
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS)
 cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCFiniteTimeAction* first, ...) {
     va_list args;
     va_start(args, first);
