@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 void ShareCommentDelegate::shareCommentClosed(gd::string text, ShareCommentLayer* layer) {}
 

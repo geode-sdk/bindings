@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 PlayLayer* PlayLayer::get() {
     return GameManager::get()->m_playLayer;
@@ -142,7 +143,7 @@ double PlayLayer::getTempMilliTime() {
 }
 #endif
 
-#if defined(GEODE_IS_MACOS)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 #include <sys/timeb.h>
 double PlayLayer::getTempMilliTime() {
     timeb current;
@@ -215,8 +216,7 @@ void PlayLayer::queueCheckpoint() {
 }
 
 void PlayLayer::scanActiveSaveObjects() {
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(m_objects)) {
         if (object->canAllowMultiActivate()) {
             if (!object->canMultiActivate(m_isPlatformer)) {
                 m_activeSaveObjects1.push_back(object);

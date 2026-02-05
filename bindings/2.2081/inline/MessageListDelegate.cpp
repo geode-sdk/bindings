@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 void MessageListDelegate::loadMessagesFinished(cocos2d::CCArray* messages, char const* key) {}
 

@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -7,8 +8,7 @@
 #if defined(GEODE_IS_WINDOWS)
 cocos2d::CCArray* OptionsScrollLayer::getRelevantObjects(cocos2d::CCArray* objects) {
     auto relevantObjects = cocos2d::CCArray::create();
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-        auto object = static_cast<OptionsObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(objects)) {
         if (object->m_count > m_minCount || object->m_enabled) {
             relevantObjects->addObject(object);
         }

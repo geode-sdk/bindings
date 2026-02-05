@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 ColorActionSprite::ColorActionSprite() {
     m_opacity = 255.f;

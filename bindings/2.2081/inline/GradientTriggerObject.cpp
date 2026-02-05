@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 GradientTriggerObject::GradientTriggerObject() {
     m_blendingLayer = 0;

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 AudioLineGuideGameObject::AudioLineGuideGameObject() {
     m_beatsPerMinute = 100;

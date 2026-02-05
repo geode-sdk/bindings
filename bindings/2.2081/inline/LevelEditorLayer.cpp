@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 LevelEditorLayer* LevelEditorLayer::get() {
     return GameManager::sharedState()->m_levelEditorLayer;
@@ -228,8 +229,7 @@ void LevelEditorLayer::dirtifyTriggers() {
 }
 
 GameObject* LevelEditorLayer::findGameObject(int uniqueID) {
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(m_objects)) {
         if (object->m_uniqueID == uniqueID) return object;
     }
     return nullptr;
@@ -239,8 +239,7 @@ StartPosObject* LevelEditorLayer::findStartPosObject() {
     StartPosObject* ret = nullptr;
     auto xPos = 0.0f;
     auto order = -1;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
-        auto object = static_cast<StartPosObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<StartPosObject, false>(m_objects)) {
         if (object->m_objectID == 31 && !object->m_startSettings->m_disableStartPos) {
             auto currentXPos = object->getPosition().x;
             auto currentOrder = object->m_startSettings->m_targetOrder;
@@ -269,8 +268,7 @@ void LevelEditorLayer::forceShowSelectedObjects(bool show) {
     else {
         objects = m_editorUI->m_selectedObjects;
     }
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
         if (show) {
             object->m_unk28B = object->m_isGroupDisabled;
             object->m_isGroupDisabled = false;
@@ -316,8 +314,7 @@ gd::string LevelEditorLayer::getLockedLayers() {
 int LevelEditorLayer::getNextFreeBlockID(const gd::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getAllObjects())) {
-        auto object = static_cast<EffectGameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<EffectGameObject, false>(this->getAllObjects())) {
         if (object->m_classType == GameObjectClassType::Effect || object->m_objectID == 1816) {
             ids.insert(object->m_itemID);
         }
@@ -331,8 +328,7 @@ int LevelEditorLayer::getNextFreeBlockID(const gd::unordered_set<int>& exclude) 
 int LevelEditorLayer::getNextFreeSFXGroupID(const gd::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getAllObjects())) {
-        auto object = static_cast<SFXTriggerGameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
         if ((object->m_objectID == 3602 || object->m_objectID == 3603) && object->m_sfxGroup > 0) {
             ids.insert(object->m_sfxGroup);
         }
@@ -346,8 +342,7 @@ int LevelEditorLayer::getNextFreeSFXGroupID(const gd::unordered_set<int>& exclud
 int LevelEditorLayer::getNextFreeSFXID(const gd::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getAllObjects())) {
-        auto object = static_cast<SFXTriggerGameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
         if (object->m_objectID == 3602) {
             auto id = object->getUniqueSFXID();
             if (id > 0) ids.insert(id);
@@ -451,8 +446,8 @@ void LevelEditorLayer::pasteAttributeState(GameObject* object, cocos2d::CCArray*
     if (!m_copyStateObject) return;
 
     if (!object) {
-        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-            this->applyAttributeState(static_cast<GameObject*>(obj), m_copyStateObject);
+        for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
+            this->applyAttributeState(object, m_copyStateObject);
         }
     }
     else this->applyAttributeState(object, m_copyStateObject);
@@ -468,8 +463,7 @@ void LevelEditorLayer::pasteColorState(GameObject* object, cocos2d::CCArray* obj
         object->m_updateParents = true;
     }
     else {
-        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-            auto gameObject = static_cast<GameObject*>(obj);
+        for (auto gameObject : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
             gameObject->duplicateColorMode(m_copyStateObject);
             gameObject->m_updateParents = true;
         }
@@ -481,8 +475,8 @@ void LevelEditorLayer::pasteGroupState(GameObject* object, cocos2d::CCArray* obj
 
     if (object) return this->applyGroupState(object, m_copyStateObject);
 
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-        this->applyGroupState(static_cast<GameObject*>(obj), m_copyStateObject);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
+        this->applyGroupState(object, m_copyStateObject);
     }
 }
 
@@ -496,8 +490,7 @@ void LevelEditorLayer::pasteParticleState(ParticleGameObject* object, cocos2d::C
         object->updateParticle();
     }
     else {
-        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-            auto gameObject = static_cast<ParticleGameObject*>(obj);
+        for (auto gameObject : geode::cocos::CCArrayExt<ParticleGameObject, false>(objects)) {
             gameObject->setParticleString(m_particleObject->m_particleData);
             gameObject->m_hasUniformObjectColor = m_particleObject->m_hasUniformObjectColor;
             gameObject->m_animateOnTrigger = m_particleObject->m_animateOnTrigger;
@@ -520,8 +513,8 @@ void LevelEditorLayer::removeAllObjects() {
     if (m_editorUI) m_editorUI->deselectAll();
     auto objectsCopy = cocos2d::CCArray::createWithCapacity(m_objects->count());
     objectsCopy->addObjectsFromArray(m_objects);
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objectsCopy)) {
-        this->removeObject(static_cast<GameObject*>(obj), true);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objectsCopy)) {
+        this->removeObject(object, true);
     }
     m_redoObjects->removeAllObjects();
     m_undoObjects->removeAllObjects();
@@ -548,8 +541,7 @@ void LevelEditorLayer::resetEffectTriggerOptim(GameObject* object, cocos2d::CCAr
         if (object->m_dontIgnoreDuration) static_cast<EffectGameObject*>(object)->m_endPosition = cocos2d::CCPoint { 0.f, 0.f };
     }
     else {
-        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-            auto gameObject = static_cast<EffectGameObject*>(obj);
+        for (auto gameObject : geode::cocos::CCArrayExt<EffectGameObject, false>(objects)) {
             if (gameObject->m_dontIgnoreDuration) gameObject->m_endPosition = cocos2d::CCPoint { 0.f, 0.f };
         }
     }
@@ -586,8 +578,8 @@ void LevelEditorLayer::saveEditorPosition(cocos2d::CCPoint& position, int index)
 }
 
 void LevelEditorLayer::sortBatchnodeChildren(float unused) {
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_batchNodes)) {
-        static_cast<cocos2d::CCSpriteBatchNode*>(obj)->manualSortAllChildren();
+    for (auto node : geode::cocos::CCArrayExt<cocos2d::CCSpriteBatchNode, false>(m_batchNodes)) {
+        node->manualSortAllChildren();
     }
 }
 

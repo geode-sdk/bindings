@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -14,7 +15,7 @@ void cocos2d::CCMouseDispatcher::forceAddDelegate(cocos2d::CCMouseDelegate* p0) 
 
 bool cocos2d::CCMouseDispatcher::dispatchScrollMSG(float x, float y) {
     m_bLocked = true;
-    for (auto handler : geode::cocos::CCArrayExt<CCMouseHandler>(m_pMouseHandlers)) {
+    for (auto handler : geode::cocos::CCArrayExt<CCMouseHandler, false>(m_pMouseHandlers)) {
         if (!handler) continue;
         auto delegate = handler->getDelegate();
         if (!delegate) continue;

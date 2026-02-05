@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 UISettingsGameObject::UISettingsGameObject() {
     m_xRef = 0;

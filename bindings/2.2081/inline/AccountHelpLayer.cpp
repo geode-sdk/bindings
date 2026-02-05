@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 AccountHelpLayer::AccountHelpLayer() {
     m_unk290 = false;

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 BrowseSmartKeyLayer::BrowseSmartKeyLayer() {
     m_templatePage = 0;

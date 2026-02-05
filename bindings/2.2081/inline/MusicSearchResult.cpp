@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -27,12 +28,11 @@ cocos2d::CCArray* MusicSearchResult::applyArtistFilters(cocos2d::CCArray* object
     if (objects->count() == 0) return objects;
     auto filterObjects = cocos2d::CCArray::create();
     m_artistFilter = false;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_artistFilterObjects)) {
-        auto object = static_cast<OptionsObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_artistFilterObjects)) {
         if (object->m_enabled) {
             m_artistFilter = true;
             auto filtered = MusicDownloadManager::sharedState()->filterMusicByArtistID(object->m_optionID, objects);
-            for (auto fobj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(filtered)) {
+            for (auto fobj : geode::cocos::CCArrayExt<OptionsObject, false>(filtered)) {
                 filterObjects->addObject(fobj);
             }
         }
@@ -62,13 +62,11 @@ void MusicSearchResult::createTagFilterObjects() {
 
 void MusicSearchResult::updateFutureCount(cocos2d::CCArray* objects, cocos2d::CCArray* allObjects) {
     auto count = objects->count();
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_tagFilterObjects)) {
-        auto object = static_cast<OptionsObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_tagFilterObjects)) {
         object->m_count = object->m_enabled ? MusicDownloadManager::sharedState()->filterMusicByTag(object->m_optionID, objects)->count() : count;
     }
     auto filtered = this->applyTagFilters(allObjects);
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_artistFilterObjects)) {
-        auto object = static_cast<OptionsObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_artistFilterObjects)) {
         object->m_count = MusicDownloadManager::sharedState()->filterMusicByArtistID(object->m_optionID, filtered)->count();
     }
 }

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 void LevelRateInfoDelegate::rateInfoFinished(int id, gd::string info) {}
 

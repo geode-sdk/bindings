@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 LevelSearchLayer::LevelSearchLayer() {
     m_type = 0;

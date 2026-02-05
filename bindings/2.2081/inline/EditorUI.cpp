@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
@@ -278,8 +279,7 @@ gd::string EditorUI::copyObjectsDetailed(cocos2d::CCArray* objects) {
     });
     auto groupCenter = this->getGroupCenter(objects, false);
     std::string result = "";
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
         if (object->m_objectID == 749) continue;
         auto position = object->getPosition();
         object->setPosition(position - groupCenter);
@@ -635,8 +635,8 @@ void EditorUI::showLiveColorSelectForModeSpecial(int colorID) {
         m_selectedObject->deselectObject();
     }
     else {
-        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_selectedObjects)) {
-            static_cast<GameObject*>(obj)->deselectObject();
+        for (auto object : geode::cocos::CCArrayExt<GameObject, false>(m_selectedObjects)) {
+            object->deselectObject();
         }
     }
     this->showLiveColorSelectForMode(colorID);

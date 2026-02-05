@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 CCAnimateFrameCache* CCAnimateFrameCache::get() {
     return CCAnimateFrameCache::sharedSpriteFrameCache();

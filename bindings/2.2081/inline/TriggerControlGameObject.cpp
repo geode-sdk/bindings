@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 TriggerControlGameObject::TriggerControlGameObject() {
     m_customTriggerValue = GJActionCommand::Stop;

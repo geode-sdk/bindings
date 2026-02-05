@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 UpdateAccountSettingsPopup::UpdateAccountSettingsPopup() {
     m_updateSuccess = false;

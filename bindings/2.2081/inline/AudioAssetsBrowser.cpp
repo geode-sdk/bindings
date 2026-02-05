@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 AudioAssetsBrowser::AudioAssetsBrowser() {
     m_songInfoObjects = nullptr;

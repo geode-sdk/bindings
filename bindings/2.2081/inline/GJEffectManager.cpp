@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -368,8 +369,7 @@ void GJEffectManager::traverseInheritanceChain(InheritanceNode* node) {
         m_unkArray430->addObject(node);
         node = node->m_inheritanceNode;
     }
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_unkArray430)) {
-        auto currentNode = static_cast<InheritanceNode*>(obj);
+    for (auto currentNode : geode::cocos::CCArrayExt<InheritanceNode, false>(m_unkArray430)) {
         this->calculateInheritedColor(currentNode->m_colorID, currentNode->m_colorAction);
     }
     m_unkArray430->removeAllObjects();

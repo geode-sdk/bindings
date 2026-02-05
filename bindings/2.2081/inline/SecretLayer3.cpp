@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SecretLayer3::SecretLayer3() {
     m_lockInput = false;

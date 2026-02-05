@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;
@@ -271,8 +272,7 @@ void GJBaseGameLayer::togglePlayerVisibility(bool visible, bool player1) {
 GameObject* GJBaseGameLayer::tryGetGroupParent(int groupID) {
     if (auto groupParent = static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupID))) return groupParent;
     auto group = this->getGroup(groupID);
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(group)) {
         if (object->m_hasGroupParent) return object;
     }
     return nullptr;
@@ -326,8 +326,7 @@ void GJBaseGameLayer::activateObjectControlTrigger(ObjectControlGameObject* obje
 void GJBaseGameLayer::activateResetTrigger(EffectGameObject* object) {
     auto group = this->getGroup(object->m_targetGroupID);
     if (group && group->count() != 0) {
-        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
-            auto gameObject = static_cast<GameObject*>(obj);
+        for (auto gameObject : geode::cocos::CCArrayExt<GameObject, false>(group)) {
             if (gameObject->m_objectID == 2063) {
                 m_effectManager->removeTriggeredID(gameObject->m_uniqueID, m_player1->m_uniqueID);
                 m_effectManager->removeTriggeredID(gameObject->m_uniqueID, m_player2->m_uniqueID);
@@ -604,8 +603,8 @@ gd::string GJBaseGameLayer::getCapacityString() {
     fmt::memory_buffer buffer;
     auto first = true;
     auto index = 0;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_batchNodes)) {
-        auto capacity = static_cast<cocos2d::CCSpriteBatchNode*>(obj)->getUsedAtlasCapacity();
+    for (auto node : geode::cocos::CCArrayExt<cocos2d::CCSpriteBatchNode, false>(m_batchNodes)) {
+        auto capacity = node->getUsedAtlasCapacity();
         if (capacity > 200) {
             if (!first) fmt::format_to(std::back_inserter(buffer), ",");
             fmt::format_to(std::back_inserter(buffer), "{},{}", capacity, index++);
@@ -822,9 +821,7 @@ void GJBaseGameLayer::moveObject(GameObject* object, double dx, double dy, bool 
 
 void GJBaseGameLayer::moveObjectsSilent(int groupId, double dx, double dy) {
     auto group = this->getGroup(groupId);
-    for (auto object : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
-        auto obj = static_cast<GameObject*>(object);
-
+    for (auto obj : geode::cocos::CCArrayExt<GameObject, false>(group)) {
         if (!obj->m_tempOffsetXRelated) {
             obj->m_positionX += dx;
         }
@@ -907,8 +904,7 @@ void GJBaseGameLayer::processAreaFadeGroupAction(cocos2d::CCArray* objects, Ente
     m_areaColorCount += objects->count();
     auto colorCount = 0;
     auto totalCount = 0;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
         if (!object->m_isActivated) continue;
         totalCount++;
         auto show = false;
@@ -917,8 +913,8 @@ void GJBaseGameLayer::processAreaFadeGroupAction(cocos2d::CCArray* objects, Ente
         if (targetGroups) {
             auto targetGroup = this->getTargetGroup(instance->m_targetGroupIndex, object->m_uniqueID);
             colorCount += targetGroup->count() - 1;
-            for (auto targetObj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(targetGroup)) {
-                static_cast<GameObject*>(targetObj)->setAreaOpacity(opacity, rawOpacity, m_gameState.m_commandIndex);
+            for (auto targetObj : geode::cocos::CCArrayExt<GameObject, false>(targetGroup)) {
+                targetObj->setAreaOpacity(opacity, rawOpacity, m_gameState.m_commandIndex);
             }
         }
         else {
@@ -1011,8 +1007,7 @@ void GJBaseGameLayer::regenerateEnterEasingBuffers() {
     m_enterEasingValues.clear();
     m_enterEasingIndices.clear();
     m_enterEasingValuesIndex = 0;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
-        auto object = static_cast<EnterEffectObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<EnterEffectObject, false>(m_objects)) {
         if (object->m_objectID >= 3006 && object->m_objectID <= 3021 && object->m_objectID != 3016) {
             this->generateEnterEasingBuffers(object);
         }
@@ -1132,8 +1127,7 @@ void GJBaseGameLayer::resetGroupCounters(bool reset) {
 }
 
 void GJBaseGameLayer::resetMoveOptimizedValue() {
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(m_objects)) {
         object->m_isDecoration2 = object->m_isDecoration;
     }
 }
@@ -1155,8 +1149,7 @@ void GJBaseGameLayer::resetStoppedAreaObjects() {
 }
 
 void GJBaseGameLayer::restoreAllUIObjects() {
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_uiObjects)) {
-        auto object = static_cast<GameObject*>(obj);
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(m_uiObjects)) {
         object->setStartPos(m_uiObjectPositions[object->m_uniqueID]);
         object->deactivateObject(true);
         object->m_outerSectionIndex = 0;
@@ -1377,8 +1370,7 @@ void GJBaseGameLayer::triggerAreaEffectAnimation(EnterEffectObject* object) {
     }
     else {
         auto group = this->getGroup(targetID);
-        for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(group)) {
-            auto groupObject = static_cast<GameObject*>(obj);
+        for (auto groupObject : geode::cocos::CCArrayExt<GameObject, false>(group)) {
             if (groupObject->m_unk390 != 45) continue;
             std::vector<EnterEffectInstance>* instances;
             switch (groupObject->m_objectID) {
@@ -1532,8 +1524,8 @@ void GJBaseGameLayer::updateActiveEnterEffect(EnterEffectObject* object) {
 }
 
 void GJBaseGameLayer::updateAllObjectSection() {
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_objects)) {
-        this->updateObjectSection(static_cast<GameObject*>(obj));
+    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(m_objects)) {
+        this->updateObjectSection(object);
     }
 }
 

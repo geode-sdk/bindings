@@ -1,4 +1,7 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#ifdef GEODE_IS_WINDOWS
+#include <random>
+#endif
 
 #if !defined(GEODE_IS_IOS)
 SecretLayer5::SecretLayer5() {

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SongTriggerGameObject::SongTriggerGameObject() {
     m_unk7a9 = false;

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 LeaderboardsLayer::LeaderboardsLayer() {
     m_list = nullptr;

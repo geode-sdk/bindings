@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 RingObject::RingObject() {
     m_claimTouch = false;

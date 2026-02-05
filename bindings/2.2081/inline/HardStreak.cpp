@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -38,8 +39,7 @@ HardStreak* HardStreak::createDuplicate() {
     ret->setOpacity(this->getOpacity());
     ret->setColor(this->getColor());
 
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(m_pointArray)){
-        auto nodePoint = static_cast<PointNode*>(obj);
+    for (auto nodePoint : geode::cocos::CCArrayExt<PointNode, false>(m_pointArray)){
         ret->addPoint(nodePoint->m_point);
     }
 

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 CCIndexPath::CCIndexPath() {
     m_row = 0;

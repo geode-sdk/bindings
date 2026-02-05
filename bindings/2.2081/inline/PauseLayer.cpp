@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 PauseLayer::PauseLayer() {
     m_unfocused = false;

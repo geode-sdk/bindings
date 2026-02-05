@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 AnimatedShopKeeper::AnimatedShopKeeper() {
     m_type = ShopType::Normal;

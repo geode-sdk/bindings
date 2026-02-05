@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 CCMenuItemToggler::CCMenuItemToggler() {
     m_offButton = nullptr;

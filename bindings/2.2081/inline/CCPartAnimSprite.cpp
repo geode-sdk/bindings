@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 #if !defined(GEODE_IS_IOS)
 CCPartAnimSprite::CCPartAnimSprite() {
@@ -22,8 +23,8 @@ int CCPartAnimSprite::countParts() {
 }
 
 void CCPartAnimSprite::dirtify() {
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(this->getChildren())) {
-        static_cast<cocos2d::CCSprite*>(obj)->setDirty(true);
+    for (auto sprite : geode::cocos::CCArrayExt<cocos2d::CCSprite, false>(this->getChildren())) {
+        sprite->setDirty(true);
     }
 }
 

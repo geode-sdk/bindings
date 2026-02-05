@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;

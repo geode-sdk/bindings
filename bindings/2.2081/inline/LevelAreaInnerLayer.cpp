@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 LevelAreaInnerLayer::LevelAreaInnerLayer() {
     m_nextFloorButton = nullptr;

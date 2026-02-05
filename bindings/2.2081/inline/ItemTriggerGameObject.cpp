@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 ItemTriggerGameObject::ItemTriggerGameObject() {
     m_item1Mode = 0;

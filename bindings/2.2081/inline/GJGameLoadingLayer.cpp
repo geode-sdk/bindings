@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 GJGameLoadingLayer::GJGameLoadingLayer() {
     m_level = nullptr;

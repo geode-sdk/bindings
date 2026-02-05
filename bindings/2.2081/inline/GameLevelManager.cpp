@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 GameLevelManager* GameLevelManager::get() {
     return GameLevelManager::sharedState();

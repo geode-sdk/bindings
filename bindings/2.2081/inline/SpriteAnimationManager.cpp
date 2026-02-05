@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SpriteAnimationManager::SpriteAnimationManager() {
     m_sprite = nullptr;

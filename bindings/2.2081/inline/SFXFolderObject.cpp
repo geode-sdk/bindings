@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SFXFolderObject::SFXFolderObject() {
     m_sfxObjects = nullptr;

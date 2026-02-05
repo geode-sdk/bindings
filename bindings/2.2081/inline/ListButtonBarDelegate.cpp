@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 void ListButtonBarDelegate::listButtonBarSwitchedPage(ListButtonBar* bar, int page) {}
 

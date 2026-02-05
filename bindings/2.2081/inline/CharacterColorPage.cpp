@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 CharacterColorPage::CharacterColorPage() {
     m_colorMode = 0;

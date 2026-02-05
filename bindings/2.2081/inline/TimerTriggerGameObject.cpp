@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 TimerTriggerGameObject::TimerTriggerGameObject() {
     m_startTime = 0.0;

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SimplePlayer::SimplePlayer() {
     m_firstLayer = nullptr;

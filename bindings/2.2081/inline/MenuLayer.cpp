@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 MenuLayer* MenuLayer::get() {
     return GameManager::get()->m_menuLayer;

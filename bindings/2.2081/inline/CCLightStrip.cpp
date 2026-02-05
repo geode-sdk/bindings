@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 CCLightStrip::CCLightStrip() {
     m_objectWidth = .0f;

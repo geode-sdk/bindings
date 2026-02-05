@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 void SetIDPopupDelegate::setIDPopupClosed(SetIDPopup* popup, int value) {}
 

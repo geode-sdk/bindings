@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SongOptionsLayer::SongOptionsLayer() {
     m_delegate = nullptr;

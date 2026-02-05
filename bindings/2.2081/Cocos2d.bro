@@ -1,5 +1,3 @@
-#import ios <Geode/cocos/particle_nodes/firePngData.h>
-
 [[link(win, android)]]
 class CCContentManager : cocos2d::CCObject {
     static CCContentManager* sharedManager() = imac 0x184200, m1 0x1491c0, ios 0x4126ac;

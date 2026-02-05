@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 float PlatformToolbox::getDeviceRefreshRate() {
     return 60.f;

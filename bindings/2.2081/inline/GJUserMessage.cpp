@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 GJUserMessage::GJUserMessage() {
     m_messageID = 0;

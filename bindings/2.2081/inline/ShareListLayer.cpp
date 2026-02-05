@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 ShareListLayer::ShareListLayer() {
     m_list = nullptr;

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 AdvancedFollowEditObject::AdvancedFollowEditObject() {
     m_modX = 1.f;

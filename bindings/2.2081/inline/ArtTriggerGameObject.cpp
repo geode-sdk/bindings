@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 ArtTriggerGameObject::ArtTriggerGameObject() {
     m_artIndex = 0;

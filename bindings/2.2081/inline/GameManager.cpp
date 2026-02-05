@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 GameManager* GameManager::get() {
     return GameManager::sharedState();
@@ -459,8 +460,8 @@ const char* GameManager::getMGTexture(int index) {
 int GameManager::getNextUniqueObjectKey() {
     auto customKeys = this->getOrderedCustomObjectKeys();
     auto result = -1;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(customKeys)) {
-        auto key = static_cast<cocos2d::CCString*>(obj)->intValue();
+    for (auto str : geode::cocos::CCArrayExt<cocos2d::CCString, false>(customKeys)) {
+        auto key = str->intValue();
         if (key < result) result = key;
     }
     return result;

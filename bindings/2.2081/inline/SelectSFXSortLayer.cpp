@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SelectSFXSortLayer::SelectSFXSortLayer() {
     m_sortType = AudioSortType::NameAscending;

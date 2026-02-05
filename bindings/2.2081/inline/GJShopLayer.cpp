@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 GJShopLayer::GJShopLayer() {
     m_closing = false;

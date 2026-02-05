@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -7,8 +8,8 @@
 #if defined(GEODE_IS_WINDOWS)
 void SetupEventLinkPopup::updateEventIDs(gd::set<int>& eventIDs) {
     auto objects = m_gameObject ? cocos2d::CCArray::createWithObject(m_gameObject) : m_gameObjects;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
-        static_cast<EventLinkTrigger*>(obj)->m_eventIDs = eventIDs;
+    for (auto trigger : geode::cocos::CCArrayExt<EventLinkTrigger, false>(objects)) {
+        trigger->m_eventIDs = eventIDs;
     }
 }
 #endif

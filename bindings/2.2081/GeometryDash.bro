@@ -1,7 +1,3 @@
-#import win <random>
-#import win <sys/timeb.h>
-#import <Geode/utils/cocos.hpp>
-
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() = inline;
@@ -14972,7 +14968,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     CheckpointObject* getLastCheckpoint() = win inline, imac 0xbc950, m1 0xa9854, ios 0x120744;
     float getRelativeMod(cocos2d::CCPoint position, float right, float left, float offset) = win inline, imac 0xb9290, m1 0xa6a48, ios inline;
     float getRelativeModNew(cocos2d::CCPoint position, float mod, float offset, bool unused, bool isRight) = win inline, imac 0xb7e30, m1 0xa57d4, ios inline;
-    double getTempMilliTime() = ios 0x21dae8, inline;
+    double getTempMilliTime() = win inline, m1 inline, imac inline, ios inline;
     void gravityEffectFinished() = win 0x3b23a0, imac 0xb9720, m1 0xa6e68, ios 0x11e320;
     void incrementJumps() = win inline, imac 0xbf230, m1 0xabd0c, ios 0x122754;
     bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) = win 0x3a5b00, imac 0xac1b0, m1 0x9af50, ios 0x115800;

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 UploadPopup::UploadPopup() {
     m_level = nullptr;

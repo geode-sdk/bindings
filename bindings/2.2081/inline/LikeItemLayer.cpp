@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 LikeItemLayer::LikeItemLayer() {
     m_itemType = LikeItemType::Unknown;

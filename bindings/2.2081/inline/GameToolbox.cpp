@@ -1,4 +1,5 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
+#include <Geode/utils/cocos.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -141,14 +142,12 @@ bool GameToolbox::saveStringToFile(gd::string const& path, gd::string const& con
 #if defined(GEODE_IS_WINDOWS)
 void GameToolbox::alignItemsVertically(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position) {
     auto y = -gap;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(items)) {
-        auto node = static_cast<cocos2d::CCNode*>(obj);
+    for (auto node : geode::cocos::CCArrayExt<cocos2d::CCNode, false>(items)) {
         y += node->getScaleY() * node->getContentSize().height + gap;
     }
 
     y = -y / 2.f;
-    for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(items)) {
-        auto node = static_cast<cocos2d::CCNode*>(obj);
+    for (auto node : geode::cocos::CCArrayExt<cocos2d::CCNode, false>(items)) {
         auto size = node->getContentSize();
         auto scale = node->getScaleY();
         node->setPosition({ 0.f, scale * size.height / 2.f + y });

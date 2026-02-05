@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 GauntletNode::GauntletNode() {
     m_gauntletInfoNode = nullptr;

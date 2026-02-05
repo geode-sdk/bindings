@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SecretLayer::SecretLayer() {
     m_basicMessageIndex = -1;

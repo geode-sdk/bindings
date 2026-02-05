@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 ExtendedLayer::ExtendedLayer() {
     m_delegate = nullptr;

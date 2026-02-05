@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 GauntletSelectLayer::GauntletSelectLayer() {
     m_backgroundSprite = nullptr;

@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 RetryLevelLayer::RetryLevelLayer() {
     m_mainMenu = nullptr;

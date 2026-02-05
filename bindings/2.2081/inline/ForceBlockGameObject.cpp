@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 ForceBlockGameObject::ForceBlockGameObject() {
     m_force = 0.f;

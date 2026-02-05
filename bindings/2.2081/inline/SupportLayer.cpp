@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/Bindings.hpp>
 
 SupportLayer::SupportLayer() {
     m_uploadPopup = nullptr;
