@@ -7,18 +7,6 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
-cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCFiniteTimeAction* first, ...) {
-    va_list args;
-    va_start(args, first);
-    auto* array = cocos2d::CCArray::create();
-    array->addObject(first);
-    while (auto* action = va_arg(args, cocos2d::CCFiniteTimeAction*)) {
-        array->addObject(action);
-    }
-    va_end(args);
-    return cocos2d::CCSpawn::create(array);
-}
-
 cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCArray* arrayOfActions) {
     CCSpawn* pRet = NULL;
     do 
@@ -50,3 +38,16 @@ cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCArray* arrayOfActions) {
 }
 #endif
 
+#ifndef GEODE_IS_ANDROID
+cocos2d::CCSpawn* cocos2d::CCSpawn::create(cocos2d::CCFiniteTimeAction* first, ...) {
+    va_list args;
+    va_start(args, first);
+    auto* array = cocos2d::CCArray::create();
+    array->addObject(first);
+    while (auto* action = va_arg(args, cocos2d::CCFiniteTimeAction*)) {
+        array->addObject(action);
+    }
+    va_end(args);
+    return cocos2d::CCSpawn::create(array);
+}
+#endif
