@@ -108,30 +108,30 @@ void EditorUI::playerTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event
         if (winSize.width * .5f < touchLocation.x) {
             if (m_playerTouchID2 == -1) {
                 m_playerTouchID2 = touch->getID();
-                m_editorLayer->queueButton(1, true, true);
+                m_editorLayer->queueButton(1, true, true, touch->getTimestamp());
             }
         }
     }
     else if (GameManager::sharedState()->getGameVariable("0011")) {
         if (m_playerTouchID2 == -1) {
             m_playerTouchID2 = touch->getID();
-            m_editorLayer->queueButton(1, true, true);
+            m_editorLayer->queueButton(1, true, true, touch->getTimestamp());
         }
     }
     if (m_playerTouchID1 == -1) {
         m_playerTouchID1 = touch->getID();
-        m_editorLayer->queueButton(1, true, false);
+        m_editorLayer->queueButton(1, true, false, touch->getTimestamp());
     }
 }
 
 void EditorUI::playerTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) {
     if (touch->getID() == m_playerTouchID1) {
         m_playerTouchID1 = -1;
-        m_editorLayer->queueButton(1, false, false);
+        m_editorLayer->queueButton(1, false, false, touch->getTimestamp());
     }
     else if (touch->getID() == m_playerTouchID2) {
         m_playerTouchID2 = -1;
-        m_editorLayer->queueButton(1, false, true);
+        m_editorLayer->queueButton(1, false, true, touch->getTimestamp());
     }
 }
 
