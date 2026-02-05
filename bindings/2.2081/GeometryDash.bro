@@ -7596,7 +7596,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool processSongState(int musicID, float spawnDelay, float levelTime, int songOffset, float volume, float speed, gd::vector<SongTriggerState>* states, SongTriggerGameObject* object) = win 0x245350, imac 0x161dc0, m1 0x12fcd0, ios 0x207074;
     void processStateObjects() = win inline, imac 0x12a7c0, m1 0x1028b8, ios 0x1ea840;
     void processTransformActions(bool visibleFrame) = win 0x22c680, imac 0x144ce0, m1 0x118960, ios 0x1f7544;
-    void queueButton(int button, bool push, bool isPlayer2) = win inline, imac 0x14a900, m1 0x11d2d8, ios 0x1fa9bc;
+    void queueButton(int button, bool push, bool isPlayer2, double timestamp) = win inline, imac 0x14a900, m1 0x11d2d8, ios 0x1fa9bc;
     void queueTimeWarp(float timeWarp) = win inline, imac 0x14f370, m1 0x121104, ios 0x1fd444;
     void reAddToStickyGroup(GameObject* object) = win inline, imac 0x13e200, m1 0x112e18, ios 0x1f3080;
     void recordAction(int button, bool down, bool player2) = win inline, imac 0x14b570, m1 0x11deec, ios 0x1fb2a8;

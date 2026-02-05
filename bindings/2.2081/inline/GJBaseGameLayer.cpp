@@ -957,7 +957,7 @@ void GJBaseGameLayer::processStateObjects() {
     }
 }
 
-void GJBaseGameLayer::queueButton(int button, bool push, bool isPlayer2) {
+void GJBaseGameLayer::queueButton(int button, bool push, bool isPlayer2, double timestamp) {
     if (button <= 0 || button > 3) {
         return;
     }
@@ -965,6 +965,7 @@ void GJBaseGameLayer::queueButton(int button, bool push, bool isPlayer2) {
     command.m_button = (PlayerButton) button;
     command.m_isPush = push;
     command.m_isPlayer2 = isPlayer2;
+    command.m_timestamp = timestamp;
     m_queuedButtons.push_back(command);
 }
 
