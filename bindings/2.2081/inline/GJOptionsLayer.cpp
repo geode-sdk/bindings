@@ -63,6 +63,13 @@ cocos2d::CCPoint GJOptionsLayer::nextPosition(int page) {
 }
 #endif
 
+#if defined(GEODE_IS_IOS)
+CCMenuItemToggler* GJOptionsLayer::getToggleButton(int id) {
+    auto it = m_toggleButtons.find(id);
+    return it != m_toggleButtons.end() ? it->second : nullptr;
+}
+#endif
+
 #if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 void GJOptionsLayer::didToggleGV(gd::string variable) {}
 #endif

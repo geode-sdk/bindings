@@ -7336,6 +7336,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void objectsCollided(int blockAID, int blockBID) = win 0x219170, imac 0x12b920, m1 0x1038ec, ios 0x1eb480;
     virtual void updateColor(cocos2d::ccColor3B& color, float fadeTime, int colorID, bool blending, float opacity, cocos2d::ccHSVValue& copyHSV, int colorIDToCopy, bool copyOpacity, EffectGameObject* callerObject, int unk1, int unk2) = win 0x223970, imac 0x13c880, m1 0x111634, ios 0x1f1ebc;
     virtual void toggleGroupTriggered(int group, bool activate, gd::vector<int> const& remapKeys, int triggerID, int controlID) = win 0x223b50, imac 0x13ca20, m1 0x11179c, ios 0x1f2024;
+    [[missing(win, mac)]]
+    virtual bool checkSpawnAbuse() = ios 0x1ec0d4;
     virtual void spawnGroup(int group, bool ordered, double delay, gd::vector<int> const& remapKeys, int triggerID, int controlID) = win 0x21ab80, imac 0x12caa0, m1 0x104924, ios 0x1ec120;
     virtual void spawnObject(GameObject* object, double delay, gd::vector<int> const& remapKeys) = win 0x21b030, imac 0x12cf20, m1 0x104da8, ios 0x1ec3f8;
     virtual void activateEndTrigger(int targetID, bool reverse, bool lockPlayerY) = inline;
@@ -7521,7 +7523,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool hasItem(int id) = win inline, imac 0x129410, m1 0x101668, ios 0x1e9b80;
     bool hasUniqueCoin(EffectGameObject* object) = win 0x216700, imac 0x128a10, m1 0x100d0c, ios 0x1e9558;
     void increaseBatchNodeCapacity() = win 0x20cc20, imac 0x115410, m1 0xf013c, ios 0x1dea1c;
-    bool isButtonAllowed(bool down, int button, bool isPlayer1);
+    [[missing(win, mac)]]
+    bool isButtonAllowed(bool down, int button, bool isPlayer1) = ios inline;
     bool isFlipping() = win inline, imac 0x156440, m1 0x12683c, ios 0x201130;
     bool isPlayer2Button(int button) = win inline, imac 0x1568c0, m1 0x126c20, ios inline;
     void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color) = win inline, imac 0x163660, m1 0x1311b4, ios 0x207fb8;
@@ -9574,7 +9577,8 @@ class GJOptionsLayer : SetupTriggerPopup {
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, imac 0x29cbb0, m1 0x23c490, ios 0x2d3910;
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x28fee0, imac 0x29c6b0, m1 0x23c000, ios 0x2d3594;
     int countForPage(int page) = win 0x290420, imac 0x29d4f0, m1 0x23cddc, ios 0x2d3eb0;
-    CCMenuItemToggler* getToggleButton(int id);
+    [[missing(win, mac)]]
+    CCMenuItemToggler* getToggleButton(int id) = ios inline;
     void goToPage(int page) = win 0x290940, imac 0x29c0d0, m1 0x23ba88, ios 0x2d3248;
     void incrementCountForPage(int page) = win 0x2904f0, imac 0x29d000, m1 0x23c8e4, ios 0x2d3c0c;
     const char* infoKey(int index) = win inline, imac 0x29d300, m1 0x23cbd8, ios inline;
@@ -12488,7 +12492,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onMostDownloaded(cocos2d::CCObject* sender) = win 0x310fb0, imac 0x62a9a0, m1 0x54dc88, ios 0x5385c;
     void onMostLikes(cocos2d::CCObject* sender) = win 0x311070, imac 0x62aa10, m1 0x54dcf4, ios 0x53900;
     void onMostRecent(cocos2d::CCObject* sender) = win 0x311370, imac 0x62ab60, m1 0x54de38, ios 0x53aec;
-    void onPasteClipboard(cocos2d::CCObject* sender);
+    [[missing(win, mac)]]
+    void onPasteClipboard(cocos2d::CCObject* sender) = ios 0x531a4;
     void onSearch(cocos2d::CCObject* sender) = win 0x311730, imac 0x62a5f0, m1 0x54d87c, ios 0x534a8;
     void onSearchMode(cocos2d::CCObject* sender) = win 0x30e520, imac 0x62a220, m1 0x54d504, ios 0x53160;
     void onSearchUser(cocos2d::CCObject* sender) = win 0x311970, imac 0x62a760, m1 0x54da04, ios 0x535ec;
@@ -14078,7 +14083,8 @@ class PlatformToolbox {
     static bool doesFileExist(gd::string path) = win inline, imac 0x4c4240, m1 0x423ad4, ios 0x16bbb0;
     static void downloadAndSavePromoImage(gd::string url, gd::string path) = win inline, imac 0x4c4330, m1 0x423b8c, ios inline;
     static void gameDidSave() = win inline, imac 0x4c4ac0, m1 0x424248, ios 0x16bc68;
-    static gd::string getClipboardString();
+    [[missing(win, mac)]]
+    static gd::string getClipboardString() = ios 0x16bd50;
     static float getDeviceRefreshRate() = inline;
     static cocos2d::CCSize getDisplaySize() = win 0x78700, imac 0x4c4c10, m1 0x424314, ios 0x16bc74;
     static gd::string getRawPath(char const* path) = win inline, imac 0x4c4910, m1 0x4240dc;
@@ -20071,6 +20077,8 @@ class TriggerEffectDelegate {
     virtual void toggleGroupTriggered(int group, bool activate, gd::vector<int> const& remapKeys, int triggerID, int controlID) = inline;
     virtual void spawnGroup(int group, bool ordered, double delay, gd::vector<int> const& remapKeys, int triggerID, int controlID) = inline;
     virtual void spawnObject(GameObject* object, double delay, gd::vector<int> const& remapKeys) = inline;
+    [[missing(win, mac)]]
+    virtual bool checkSpawnAbuse() = inline;
 }
 
 [[link(android)]]

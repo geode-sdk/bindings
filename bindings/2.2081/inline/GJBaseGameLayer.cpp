@@ -1760,6 +1760,13 @@ float GJBaseGameLayer::getGroundHeightForMode(int type) {
     }
     return 270.f;
 }
+
+bool GJBaseGameLayer::isButtonAllowed(bool down, int button, bool isPlayer1) {
+    auto id = (int)down + button * 1000 + (int)isPlayer1 * 10;
+    if (m_allowedButtons.contains(id)) return false;
+    m_allowedButtons.insert(id);
+    return true;
+}
 #endif
 
 #if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
