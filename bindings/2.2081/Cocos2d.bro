@@ -2492,7 +2492,7 @@ class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     virtual ~CCMouseDispatcher() = imac 0x570bc0, m1 0x4be990, ios 0x2fe0f4;
 
     void addDelegate(cocos2d::CCMouseDelegate*) = imac 0x570e20, m1 0x4bebec, ios 0x2fe23c;
-    bool dispatchScrollMSG(float, float) = imac 0x570ea0, m1 0x4bec84;
+    bool dispatchScrollMSG(float, float) = imac 0x570ea0, m1 0x4bec84, ios inline;
     void forceAddDelegate(cocos2d::CCMouseDelegate*) = imac 0x570e70, m1 0x4bec48, ios inline;
     void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = imac 0x570d90, m1 0x4beb58, ios 0x2fe1a8;
     void removeDelegate(cocos2d::CCMouseDelegate*) = imac 0x570ce0, m1 0x4bea90, ios 0x2fe160;
