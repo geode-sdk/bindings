@@ -703,7 +703,7 @@ void EditorUI::transformObjectsReset() {
 void EditorUI::updateStickyControls() {
     auto gameManager = GameManager::sharedState();
     m_stickyControlsEnabled = gameManager->getGameVariable("0097");
-    m_linkControlsEnabled = gameManager->getGameVariable("0180");
+    m_linkControlsDisabled = gameManager->getGameVariable("0180");
     m_enableLinkBtn->setEnabled(m_stickyControlsEnabled);
     m_enableLinkBtn->setVisible(m_stickyControlsEnabled);
     m_linkBtn->setEnabled(m_stickyControlsEnabled);
