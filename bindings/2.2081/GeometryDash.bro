@@ -3914,7 +3914,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool m_snapObjectExists;
     bool m_snapSelected;
     bool m_stickyControlsEnabled;
-    bool m_linkControlsEnabled;
+    bool m_linkControlsDisabled;
     bool m_speedObjectsUpdated;
     cocos2d::CCPoint m_createPosition;
     cocos2d::CCArray* m_snapPositions;
