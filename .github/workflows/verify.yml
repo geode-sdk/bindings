@@ -73,7 +73,7 @@ jobs:
       matrix:
         config:
         - name: Windows
-          os: windows-latest
+          os: windows-2025-vs2026
           prefixes: ''
           extra_flags: >
             -A x64
