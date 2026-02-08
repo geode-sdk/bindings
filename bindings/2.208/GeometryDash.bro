@@ -6493,8 +6493,8 @@ class GameObject : CCSpritePlus {
     // property 53
     int m_property53;
     bool m_isInvisibleBlock;
-    bool m_glowColorIsLBG;
     bool m_customGlowColor;
+    bool m_glowColorIsLBG;
     bool m_cantColorGlow;
     float m_opacityMod;
     bool m_slopeUphill;
