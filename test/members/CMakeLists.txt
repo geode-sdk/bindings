@@ -18,7 +18,7 @@ CPMAddPackage("gh:geode-sdk/json@3.2.3")
 CPMAddPackage("gh:geode-sdk/TulipHook@3.1.7")
 CPMAddPackage("gh:zhihaoy/nontype_functional#8ec2e09")
 set (ARC_FEATURE_FULL OFF CACHE BOOL "" FORCE)
-CPMAddPackage("gh:dankmeme01/arc#0e155ad")
+CPMAddPackage("gh:dankmeme01/arc@1.4.7")
 
 if (WIN32)
 	target_compile_definitions(fmt PRIVATE _HAS_ITERATOR_DEBUGGING=0)
