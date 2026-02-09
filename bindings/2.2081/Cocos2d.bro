@@ -667,7 +667,7 @@ class cocos2d::CCCatmullRomTo : cocos2d::CCCardinalSplineTo {
 
 [[link(win, android)]]
 class cocos2d::CCClippingNode : cocos2d::CCNode {
-    CCClippingNode() = imac 0x71efd0, m1 0x6320b0;
+    protected CCClippingNode() = imac 0x71efd0, m1 0x6320b0;
     virtual ~CCClippingNode() = imac 0x71f050, m1 0x632108;
 
     static cocos2d::CCClippingNode* create() = imac 0x71f120, m1 0x6321c0;
@@ -1675,7 +1675,7 @@ class cocos2d::CCImage : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDelegate {
-    CCIMEDelegate() = imac 0x4bbc20, m1 0x41be44, ios 0x1d3818;
+    protected CCIMEDelegate() = imac 0x4bbc20, m1 0x41be44, ios 0x1d3818;
     virtual ~CCIMEDelegate() = imac 0x4bbe20, m1 0x41c054, ios 0x1d3958;
 
     virtual bool attachWithIME() = imac 0x4bbfa0, m1 0x41c1bc, ios 0x1d3a0c;
