@@ -6405,36 +6405,36 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
     void toggleDebugDraw(cocos2d::CCObject* sender) = win 0xdbdd0, m1 0x22bc20, imac 0x2822f0, ios 0x39707c;
     void toggleEditorBackground(cocos2d::CCObject* sender) = win inline, m1 0x22c19c, imac 0x282890, ios inline {
         auto gameManager = GameManager::sharedState();
-        gameManager->toggleGameVariable("0078");
-        m_editorLayer->toggleBackground(!gameManager->getGameVariable("0078"));
+        gameManager->toggleGameVariable(GameVar::HideBackground);
+        m_editorLayer->toggleBackground(!gameManager->getGameVariable(GameVar::HideBackground));
     }
     void toggleEditorColorMode(cocos2d::CCObject* sender) = win 0xdbab0, m1 0x22bbd4, imac 0x2822a0, ios 0x397030;
     void toggleEditorGrid(cocos2d::CCObject* sender) = win 0xdbee0, m1 0x22bac0, imac 0x282170, ios 0x396f1c;
     void toggleEditorGround(cocos2d::CCObject* sender) = win 0xdbe20, m1 0x22bb10, imac 0x2821d0, ios 0x396f6c;
     void toggleEffectDuration(cocos2d::CCObject* sender) = win inline, m1 0x22c164, imac 0x282850, ios inline {
-        GameManager::sharedState()->toggleGameVariable("0058");
+        GameManager::sharedState()->toggleGameVariable(GameVar::DurationLines);
     }
     void toggleEffectLines(cocos2d::CCObject* sender) = win inline, m1 0x22c180, imac 0x282870, ios inline {
-        GameManager::sharedState()->toggleGameVariable("0043");
+        GameManager::sharedState()->toggleGameVariable(GameVar::EffectLines);
     }
     void toggleFollowPlayer(cocos2d::CCObject* sender) = win inline, m1 0x22c12c, imac 0x282810, ios inline {
-        GameManager::sharedState()->toggleGameVariable("0001");
+        GameManager::sharedState()->toggleGameVariable(GameVar::FollowPlayer);
     }
     void toggleGridOnTop(cocos2d::CCObject* sender) = win inline, m1 0x22c1e4, imac 0x2828e0, ios inline {
         auto gameManager = GameManager::sharedState();
-        gameManager->toggleGameVariable("0039");
-        m_editorLayer->m_drawGridLayer->getParent()->reorderChild(m_editorLayer->m_drawGridLayer, gameManager->getGameVariable("0039") ? 1399 : -1599);
+        gameManager->toggleGameVariable(GameVar::GridOnTop);
+        m_editorLayer->m_drawGridLayer->getParent()->reorderChild(m_editorLayer->m_drawGridLayer, gameManager->getGameVariable(GameVar::GridOnTop) ? 1399 : -1599);
     }
     void toggleHideInvisible(cocos2d::CCObject* sender) = win 0xdbb10, m1 0x22bc04, imac 0x2822d0, ios 0x397060;
     void toggleIgnoreDamage(cocos2d::CCObject* sender) = win 0xdba60, m1 0x22ba88, imac 0x282130, ios 0x396ee4;
     void togglePlaytestMusic(cocos2d::CCObject* sender) = win inline, m1 0x22c148, imac 0x282830, ios inline {
-        GameManager::sharedState()->toggleGameVariable("0002");
+        GameManager::sharedState()->toggleGameVariable(GameVar::PlaytestMusic);
     }
     void togglePreviewAnim(cocos2d::CCObject* sender) = ios 0x397000, win 0xdbc10, m1 0x22bba4, imac 0x282270;
     void togglePreviewParticles(cocos2d::CCObject* sender) = win 0xdbb60, m1 0x22bb74, imac 0x282240, ios 0x396fd0;
     void togglePreviewShaders(cocos2d::CCObject* sender) = win 0xdbbc0, m1 0x22bb58, imac 0x282220, ios 0x396fb4;
     void toggleRecordOrder(cocos2d::CCObject* sender) = win inline, m1 0x22c258, imac 0x282960, ios inline {
-        GameManager::sharedState()->toggleGameVariable("0104");
+        GameManager::sharedState()->toggleGameVariable(GameVar::RecordOrder);
     }
     void toggleSelectFilter(cocos2d::CCObject* sender) = win 0xdbf90, m1 0x22baa4, imac 0x282150, ios 0x396f00;
     void toggleShowObjectInfo(cocos2d::CCObject* sender) = win 0xdbf30, m1 0x22badc, imac 0x282190, ios 0x396f38;
@@ -7065,7 +7065,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
                 }
             }
         }
-        else if (GameManager::sharedState()->getGameVariable("0011")) {
+        else if (GameManager::sharedState()->getGameVariable(GameVar::AlwaysLimitControls)) {
             if (m_playerTouchID2 == -1) {
                 m_playerTouchID2 = touch->getID();
                 m_editorLayer->queueButton(1, true, true);
@@ -7102,8 +7102,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void recreateButtonTabs() = win inline, m1 0x317f8, imac 0x32160, ios 0x3e135c {
         m_reloadItems = false;
         auto gameManager = GameManager::sharedState();
-        auto buttonsPerRow = gameManager->getIntGameVariable("0049");
-        auto buttonRows = gameManager->getIntGameVariable("0050");
+        auto buttonsPerRow = gameManager->getIntGameVariable(GameVar::EditorButtonsPerRow);
+        auto buttonRows = gameManager->getIntGameVariable(GameVar::EditorButtonRows);
         for (int i = 0; i < m_createButtonBars->count(); i++) {
             static_cast<EditButtonBar*>(m_createButtonBars->objectAtIndex(i))->reloadItems(buttonsPerRow, buttonRows);
         }
@@ -10538,7 +10538,7 @@ class GameManager : GManager {
         if (this->m_unkBool8) {
             this->m_unkBool8 = false;
             if (cocos2d::CCDirector::sharedDirector()->getSmoothFixCounter() >= 10) {
-                this->setGameVariable("0023", false);
+                this->setGameVariable(GameVar::SmoothFix, false);
             }
         }
     }
@@ -10894,9 +10894,9 @@ class GameManager : GManager {
     }
     void loadVideoSettings() = win inline, m1 0x306228, imac 0x375a90, ios 0x31b65c {
         auto application = cocos2d::CCApplication::sharedApplication();
-        application->toggleVerticalSync(this->getGameVariable("0030"));
-        application->setForceTimer(this->getGameVariable("0032"));
-        application->setSmoothFix(this->getGameVariable("0023"));
+        application->toggleVerticalSync(this->getGameVariable(GameVar::VerticalSync));
+        application->setForceTimer(this->getGameVariable(GameVar::ForceTimer));
+        application->setSmoothFix(this->getGameVariable(GameVar::SmoothFix));
     }
     void lockColor(int id, UnlockType type) = win inline, m1 0x2f7a20, imac 0x365080, ios 0x3130f4 {
         m_valueKeeper->removeObjectForKey(this->colorKey(id, type));
@@ -21161,19 +21161,19 @@ class GraphicsReloadLayer : cocos2d::CCLayer {
         director->updateContentScale(m_quality);
         auto newQuality = director->getLoadedTextureQuality();
         auto gameManager = GameManager::sharedState();
-        if (gameManager->getGameVariable("0025") == m_fullscreen) {
-            gameManager->setGameVariable("0025", !m_fullscreen);
-            gameManager->setGameVariable("0170", m_borderless);
-            gameManager->setGameVariable("0175", m_fix);
+        if (gameManager->getGameVariable(GameVar::WindowedMode) == m_fullscreen) {
+            gameManager->setGameVariable(GameVar::WindowedMode, !m_fullscreen);
+            gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
+            gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
             gameManager->switchScreenMode(m_fullscreen, m_borderless, m_fix, true);
         }
-        else if (!m_fullscreen || m_borderless == gameManager->getGameVariable("0170") || m_fix == gameManager->getGameVariable("0175")) {
-            gameManager->setGameVariable("0170", m_borderless);
-            gameManager->setGameVariable("0175", m_fix);
+        else if (!m_fullscreen || m_borderless == gameManager->getGameVariable(GameVar::BorderlessFullscreen) || m_fix == gameManager->getGameVariable(GameVar::BorderlessFix)) {
+            gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
+            gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
             if (oldQuality == newQuality) gameManager->queueReloadMenu();
             else gameManager->reloadAll(false, false, false, false, true);
         }
-        if (gameManager->getGameVariable("0115")) director->toggleShowFPS(1, "chatFont.fnt", { 0.f, 0.f });
+        if (gameManager->getGameVariable(GameVar::ShowFPS)) director->toggleShowFPS(1, "chatFont.fnt", { 0.f, 0.f });
     }
 
     cocos2d::TextureQuality m_quality;
@@ -23012,7 +23012,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         }
         else this->applyAttributeState(object, m_copyStateObject);
 
-        if (!GameManager::sharedState()->getGameVariable("0156")) this->pasteGroupState(object, objects);
+        if (!GameManager::sharedState()->getGameVariable(GameVar::DisablePasteStateGroups)) this->pasteGroupState(object, objects);
     }
     void pasteColorState(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0xd7500, imac 0xf28a0, ios 0x36363c {
         if (!m_copyStateObject) return;
@@ -23264,7 +23264,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateObjectColors(cocos2d::CCArray* gameObjects) = ios 0x35ea84, win 0x2d1790, imac 0xeb700, m1 0xd102c;
     void updateOptions() = ios 0x357150, win 0x2ca8f0, m1 0xc4394, imac 0xdc880;
     void updatePreviewAnim() = win inline, m1 0xd7b80, imac 0xf2f90, ios 0x363b10 {
-        auto previewAnimations = GameManager::sharedState()->getGameVariable("0118");
+        auto previewAnimations = GameManager::sharedState()->getGameVariable(GameVar::PreviewAnimations);
         if (m_previewAnimations == previewAnimations) return;
         m_previewAnimations = previewAnimations;
         for (int i = 0; i < m_objects->count(); i++) {
@@ -24922,7 +24922,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
     void onFullVersion(cocos2d::CCObject* sender) = m1 0x30f424, imac 0x37ed30;
     void onGameCenter(cocos2d::CCObject* sender) = win inline, m1 0x30f0fc, imac 0x37e9a0, ios 0x266ee0 {
         auto gameManager = GameManager::sharedState();
-        if (gameManager->getGameVariable("0034")) {
+        if (gameManager->getGameVariable(GameVar::EnableGameCenter)) {
             gameManager->syncPlatformAchievements();
             PlatformToolbox::showAchievements();
         }
@@ -32668,8 +32668,8 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
             m_ignoreCorners = smartTemplate->m_ignoreCorners;
         }
         auto gameManager = GameManager::sharedState();
-        m_useNearby = gameManager->getGameVariable("0131");
-        m_dontDelete = gameManager->getGameVariable("0132");
+        m_useNearby = gameManager->getGameVariable(GameVar::UseNearbyAsReference);
+        m_dontDelete = gameManager->getGameVariable(GameVar::DontDelete);
         if (m_gameObject) {
             m_referenceOnly = m_gameObject->m_referenceOnly;
         }
@@ -36597,7 +36597,7 @@ class UILayer : cocos2d::CCLayerColor {
     void toggleCheckpointsMenu(bool visible) = win 0x4b5340, m1 0x41d454, imac 0x4b52a0, ios 0x4d21c;
     void toggleMenuVisibility(bool visible) = win inline, ios 0x4dc58, m1 0x41e384, imac 0x4b64e0 {
         this->resetUINodeState();
-        if (GameManager::sharedState()->getGameVariable("0024")) {
+        if (GameManager::sharedState()->getGameVariable(GameVar::ShowCursor)) {
             static_cast<cocos2d::CCNodeRGBA*>(m_pauseBtn->getNormalImage())->setOpacity(visible ? 75 : 0);
             this->updateUINodeVisibility(visible && m_inPlatformer);
         }

@@ -4117,8 +4117,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	void redoLastAction(cocos2d::CCObject*) = win 0x10dd30;
 	void reloadCustomItems() = win 0xe1190, ios 0x3f13c8, mac inline {
 		GameManager* gm = GameManager::sharedState();
-		int buttonsPerRow = gm->getIntGameVariable("0049");
-		int buttonRows = gm->getIntGameVariable("0050");
+		int buttonsPerRow = gm->getIntGameVariable(GameVar::EditorButtonsPerRow);
+		int buttonRows = gm->getIntGameVariable(GameVar::EditorButtonRows);
 		cocos2d::CCArray* customItems = createCustomItems();
 		m_buttonBar->loadFromItems(customItems,buttonsPerRow,buttonRows,true);
 	}

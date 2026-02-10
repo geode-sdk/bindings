@@ -25,34 +25,34 @@ void EditorPauseLayer::onCreateTemplate(cocos2d::CCObject* sender) {
 
 void EditorPauseLayer::toggleEditorBackground(cocos2d::CCObject* sender) {
     auto gameManager = GameManager::sharedState();
-    gameManager->toggleGameVariable("0078");
-    m_editorLayer->toggleBackground(!gameManager->getGameVariable("0078"));
+    gameManager->toggleGameVariable(GameVar::HideBackground);
+    m_editorLayer->toggleBackground(!gameManager->getGameVariable(GameVar::HideBackground));
 }
 
 void EditorPauseLayer::toggleEffectDuration(cocos2d::CCObject* sender) {
-    GameManager::sharedState()->toggleGameVariable("0058");
+    GameManager::sharedState()->toggleGameVariable(GameVar::DurationLines);
 }
 
 void EditorPauseLayer::toggleEffectLines(cocos2d::CCObject* sender) {
-    GameManager::sharedState()->toggleGameVariable("0043");
+    GameManager::sharedState()->toggleGameVariable(GameVar::EffectLines);
 }
 
 void EditorPauseLayer::toggleFollowPlayer(cocos2d::CCObject* sender) {
-    GameManager::sharedState()->toggleGameVariable("0001");
+    GameManager::sharedState()->toggleGameVariable(GameVar::FollowPlayer);
 }
 
 void EditorPauseLayer::toggleGridOnTop(cocos2d::CCObject* sender) {
     auto gameManager = GameManager::sharedState();
-    gameManager->toggleGameVariable("0039");
-    m_editorLayer->m_drawGridLayer->getParent()->reorderChild(m_editorLayer->m_drawGridLayer, gameManager->getGameVariable("0039") ? 1399 : -1599);
+    gameManager->toggleGameVariable(GameVar::GridOnTop);
+    m_editorLayer->m_drawGridLayer->getParent()->reorderChild(m_editorLayer->m_drawGridLayer, gameManager->getGameVariable(GameVar::GridOnTop) ? 1399 : -1599);
 }
 
 void EditorPauseLayer::togglePlaytestMusic(cocos2d::CCObject* sender) {
-    GameManager::sharedState()->toggleGameVariable("0002");
+    GameManager::sharedState()->toggleGameVariable(GameVar::PlaytestMusic);
 }
 
 void EditorPauseLayer::toggleRecordOrder(cocos2d::CCObject* sender) {
-    GameManager::sharedState()->toggleGameVariable("0104");
+    GameManager::sharedState()->toggleGameVariable(GameVar::RecordOrder);
 }
 #endif
 

@@ -11365,8 +11365,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 	float m_unk688;
 	float m_unk68c;
 	PAD = win 0x12, android32 0x12, android64 0x12;
-	bool m_unk6a2; // = GameManager::getGameVariable("0096")
-	bool m_unk6a3; // = GameManager::getGameVariable("0100")
+	bool m_unk6a2; // = GameManager::getGameVariable(GameVar::SwitchWaveTrailCol)
+	bool m_unk6a3; // = GameManager::getGameVariable(GameVar::EnableDeathEffect)
 	PAD = win 0x18, android32 0x18, android64 0x18;
 	gd::unordered_set<int> m_unk6a4;
 	GameObject* m_objectSnappedTo;

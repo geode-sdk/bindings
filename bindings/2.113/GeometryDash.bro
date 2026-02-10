@@ -1289,8 +1289,8 @@ class EditButtonBar : cocos2d::CCNode {
     void reloadItemsInNormalSize() {
         // TODO: fix this
         // this->reloadItems(
-        //     GameManager::sharedState()->getIntGameVariable("0049"),
-        //     GameManager::sharedState()->getIntGameVariable("0050")
+        //     GameManager::sharedState()->getIntGameVariable(GameVar::EditorButtonsPerRow),
+        //     GameManager::sharedState()->getIntGameVariable(GameVar::EditorButtonRows)
         // );
     }
     void addButton(CCMenuItemSpriteExtra* btn, bool reload) {

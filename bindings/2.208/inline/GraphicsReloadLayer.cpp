@@ -49,19 +49,19 @@ void GraphicsReloadLayer::performReload() {
     director->updateContentScale(m_quality);
     auto newQuality = director->getLoadedTextureQuality();
     auto gameManager = GameManager::sharedState();
-    if (gameManager->getGameVariable("0025") == m_fullscreen) {
-        gameManager->setGameVariable("0025", !m_fullscreen);
-        gameManager->setGameVariable("0170", m_borderless);
-        gameManager->setGameVariable("0175", m_fix);
+    if (gameManager->getGameVariable(GameVar::WindowedMode) == m_fullscreen) {
+        gameManager->setGameVariable(GameVar::WindowedMode, !m_fullscreen);
+        gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
+        gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
         gameManager->switchScreenMode(m_fullscreen, m_borderless, m_fix, true);
     }
-    else if (!m_fullscreen || m_borderless == gameManager->getGameVariable("0170") || m_fix == gameManager->getGameVariable("0175")) {
-        gameManager->setGameVariable("0170", m_borderless);
-        gameManager->setGameVariable("0175", m_fix);
+    else if (!m_fullscreen || m_borderless == gameManager->getGameVariable(GameVar::BorderlessFullscreen) || m_fix == gameManager->getGameVariable(GameVar::BorderlessFix)) {
+        gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
+        gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
         if (oldQuality == newQuality) gameManager->queueReloadMenu();
         else gameManager->reloadAll(false, false, false, false, true);
     }
-    if (gameManager->getGameVariable("0115")) director->toggleShowFPS(1, "chatFont.fnt", { 0.f, 0.f });
+    if (gameManager->getGameVariable(GameVar::ShowFPS)) director->toggleShowFPS(1, "chatFont.fnt", { 0.f, 0.f });
 }
 #endif
 
