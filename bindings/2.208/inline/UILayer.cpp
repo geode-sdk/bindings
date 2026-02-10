@@ -97,7 +97,7 @@ void UILayer::resetAllButtons() {
 
 void UILayer::toggleMenuVisibility(bool visible) {
     this->resetUINodeState();
-    if (GameManager::sharedState()->getGameVariable("0024")) {
+    if (GameManager::sharedState()->getGameVariable(GameVar::ShowCursor)) {
         static_cast<cocos2d::CCNodeRGBA*>(m_pauseBtn->getNormalImage())->setOpacity(visible ? 75 : 0);
         this->updateUINodeVisibility(visible && m_inPlatformer);
     }

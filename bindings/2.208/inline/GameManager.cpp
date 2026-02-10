@@ -385,7 +385,7 @@ void GameManager::didExitPlayscene() {
     if (this->m_unkBool8) {
         this->m_unkBool8 = false;
         if (cocos2d::CCDirector::sharedDirector()->getSmoothFixCounter() >= 10) {
-            this->setGameVariable("0023", false);
+            this->setGameVariable(GameVar::SmoothFix, false);
         }
     }
 }
@@ -624,9 +624,9 @@ void GameManager::loadMiddlegroundAsync(int index) {
 
 void GameManager::loadVideoSettings() {
     auto application = cocos2d::CCApplication::sharedApplication();
-    application->toggleVerticalSync(this->getGameVariable("0030"));
-    application->setForceTimer(this->getGameVariable("0032"));
-    application->setSmoothFix(this->getGameVariable("0023"));
+    application->toggleVerticalSync(this->getGameVariable(GameVar::VerticalSync));
+    application->setForceTimer(this->getGameVariable(GameVar::ForceTimer));
+    application->setSmoothFix(this->getGameVariable(GameVar::SmoothFix));
 }
 
 void GameManager::lockColor(int id, UnlockType type) {

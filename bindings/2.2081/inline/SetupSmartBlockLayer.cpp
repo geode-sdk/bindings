@@ -13,8 +13,8 @@ void SetupSmartBlockLayer::determineStartValues() {
         m_ignoreCorners = smartTemplate->m_ignoreCorners;
     }
     auto gameManager = GameManager::sharedState();
-    m_useNearby = gameManager->getGameVariable("0131");
-    m_dontDelete = gameManager->getGameVariable("0132");
+    m_useNearby = gameManager->getGameVariable(GameVar::UseNearbyAsReference);
+    m_dontDelete = gameManager->getGameVariable(GameVar::DontDelete);
     if (m_gameObject) {
         m_referenceOnly = m_gameObject->m_referenceOnly;
     }

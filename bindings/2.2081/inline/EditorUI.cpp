@@ -113,7 +113,7 @@ void EditorUI::playerTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event
             }
         }
     }
-    else if (GameManager::sharedState()->getGameVariable("0011")) {
+    else if (GameManager::sharedState()->getGameVariable(GameVar::AlwaysLimitControls)) {
         if (m_playerTouchID2 == -1) {
             m_playerTouchID2 = touch->getID();
             m_editorLayer->queueButton(1, true, true, touch->getTimestamp());
@@ -587,8 +587,8 @@ cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
 void EditorUI::recreateButtonTabs() {
     m_reloadItems = false;
     auto gameManager = GameManager::sharedState();
-    auto buttonsPerRow = gameManager->getIntGameVariable("0049");
-    auto buttonRows = gameManager->getIntGameVariable("0050");
+    auto buttonsPerRow = gameManager->getIntGameVariable(GameVar::EditorButtonsPerRow);
+    auto buttonRows = gameManager->getIntGameVariable(GameVar::EditorButtonRows);
     for (int i = 0; i < m_createButtonBars->count(); i++) {
         static_cast<EditButtonBar*>(m_createButtonBars->objectAtIndex(i))->reloadItems(buttonsPerRow, buttonRows);
     }
@@ -702,8 +702,8 @@ void EditorUI::transformObjectsReset() {
 
 void EditorUI::updateStickyControls() {
     auto gameManager = GameManager::sharedState();
-    m_stickyControlsEnabled = gameManager->getGameVariable("0097");
-    m_linkControlsDisabled = gameManager->getGameVariable("0180");
+    m_stickyControlsEnabled = gameManager->getGameVariable(GameVar::LinkControls);
+    m_linkControlsDisabled = gameManager->getGameVariable(GameVar::LinkControlsQuickToggle);
     m_enableLinkBtn->setEnabled(m_stickyControlsEnabled);
     m_enableLinkBtn->setVisible(m_stickyControlsEnabled);
     m_linkBtn->setEnabled(m_stickyControlsEnabled);

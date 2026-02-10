@@ -449,7 +449,7 @@ void LevelEditorLayer::pasteAttributeState(GameObject* object, cocos2d::CCArray*
     }
     else this->applyAttributeState(object, m_copyStateObject);
 
-    if (!GameManager::sharedState()->getGameVariable("0156")) this->pasteGroupState(object, objects);
+    if (!GameManager::sharedState()->getGameVariable(GameVar::DisablePasteStateGroups)) this->pasteGroupState(object, objects);
 }
 
 void LevelEditorLayer::pasteColorState(GameObject* object, cocos2d::CCArray* objects) {
@@ -624,7 +624,7 @@ void LevelEditorLayer::updateGridLayer() {
 }
 
 void LevelEditorLayer::updatePreviewAnim() {
-    auto previewAnimations = GameManager::sharedState()->getGameVariable("0118");
+    auto previewAnimations = GameManager::sharedState()->getGameVariable(GameVar::PreviewAnimations);
     if (m_previewAnimations == previewAnimations) return;
     m_previewAnimations = previewAnimations;
     for (int i = 0; i < m_objects->count(); i++) {
