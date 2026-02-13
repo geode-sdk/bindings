@@ -8,10 +8,5 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
-void cocos2d::CCKeyboardHandler::setDelegate(cocos2d::CCKeyboardDelegate* p0) {
-    if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(p0)) delegate->retain();
-    if (auto delegate = geode::cast::typeinfo_cast<cocos2d::CCObject*>(m_pDelegate)) delegate->release();
-    m_pDelegate = p0;
-}
 #endif
 

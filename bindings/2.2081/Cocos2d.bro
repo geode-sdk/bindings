@@ -1739,7 +1739,7 @@ class cocos2d::CCJumpTo : cocos2d::CCActionInterval {
     virtual void startWithTarget(cocos2d::CCNode* pTarget) = imac 0x3b9730, m1 0x33bd10, ios inline;
 }
 
-[[link(win, android)]]
+[[link(win, android, ios)]]
 class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // bool getAltKeyPressed() const;
     // bool getBlockRepeat() const;
@@ -1753,12 +1753,12 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
 
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = imac 0x203870, m1 0x1b07d0;
 
-    void addDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x23996, m1 0x1b043c, imac 0x203530;
+    void addDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1b043c, imac 0x203530;
     bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool, double) = imac 0x2035b0, m1 0x1b04d4;
-    void forceAddDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x2399a, m1 0x1b0498, imac 0x203580;
-    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x2398c, m1 0x1b03a8, imac 0x2034a0;
+    void forceAddDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1b0498, imac 0x203580;
+    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1b03a8, imac 0x2034a0;
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x2038c0, m1 0x1b0804;
-    void removeDelegate(cocos2d::CCKeyboardDelegate*); // ios 0x23988, m1 0x1b02e0, imac 0x2033f0;
+    void removeDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1b02e0, imac 0x2033f0;
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x203890, m1 0x1b07ec;
 
     cocos2d::CCArray* m_pDelegates;
@@ -1774,17 +1774,17 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     bool m_bBlockRepeat;
 }
 
-[[link(win, android)]]
+[[link(win, android, ios)]]
 class cocos2d::CCKeyboardHandler : cocos2d::CCObject {
 
-    virtual ~CCKeyboardHandler() = imac 0x43e0b0, m1 0x3afb5c, ios 0x216958;
+    virtual ~CCKeyboardHandler() = imac 0x43e0b0, m1 0x3afb5c;
 
-    static cocos2d::CCKeyboardHandler* handlerWithDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x43e290, m1 0x3afd24, ios 0x216a0c;
+    static cocos2d::CCKeyboardHandler* handlerWithDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x43e290, m1 0x3afd24;
 
-    virtual bool initWithDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x43e240, m1 0x3afcd0, ios 0x2169c4;
+    virtual bool initWithDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x43e240, m1 0x3afcd0;
 
-    cocos2d::CCKeyboardDelegate* getDelegate() = imac 0x43e0a0, m1 0x3afb54, ios 0x216950;
-    void setDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x43e1d0, m1 0x3afc64, ios inline;
+    cocos2d::CCKeyboardDelegate* getDelegate() = imac 0x43e0a0, m1 0x3afb54;
+    void setDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x43e1d0, m1 0x3afc64;
 }
 
 [[link(win, android)]]
