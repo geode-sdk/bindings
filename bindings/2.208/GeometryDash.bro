@@ -6357,7 +6357,7 @@ class GameObject : CCSpritePlus {
     bool m_blackChildOpacityLocked;
     bool m_editorEnabled;
     bool m_isGroupDisabled;
-    bool m_unk28B;
+    bool m_isGroupDisabledTemp;
     bool m_unk28c;
     // somehow related to property 155 and 156 if anyone wants to reverse engineer
     int m_activeMainColorID;

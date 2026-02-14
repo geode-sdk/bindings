@@ -6710,7 +6710,7 @@ class GameObject : CCSpritePlus {
 	bool m_maybeBlackChildIsBlendable;
 	bool m_editorEnabled;
 	bool m_isGroupDisabled;
-	bool m_unk28B;
+	bool m_isGroupDisabledTemp;
 	bool m_notLinked;
 
 	// somehow related to property 155 and 156 if anyone wants to reverse engineer
