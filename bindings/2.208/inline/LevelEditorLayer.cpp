@@ -277,11 +277,11 @@ void LevelEditorLayer::forceShowSelectedObjects(bool show) {
     for (auto obj : geode::cocos::CCArrayExt<cocos2d::CCObject*, false>(objects)) {
         auto object = static_cast<GameObject*>(obj);
         if (show) {
-            object->m_unk28B = object->m_isGroupDisabled;
+            object->m_isGroupDisabledTemp = object->m_isGroupDisabled;
             object->m_isGroupDisabled = false;
         }
         else {
-            object->m_isGroupDisabled = object->m_unk28B;
+            object->m_isGroupDisabled = object->m_isGroupDisabledTemp;
         }
     }
 }

@@ -12079,7 +12079,7 @@ class GameObject : CCSpritePlus {
     bool m_blackChildOpacityLocked;
     bool m_editorEnabled;
     bool m_isGroupDisabled;
-    bool m_unk28B;
+    bool m_isGroupDisabledTemp;
     bool m_unk28c;
 
     // somehow related to property 155 and 156 if anyone wants to reverse engineer
@@ -22825,11 +22825,11 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
         CCARRAY_FOREACH(objects, obj) {
             auto object = static_cast<GameObject*>(obj);
             if (show) {
-                object->m_unk28B = object->m_isGroupDisabled;
+                object->m_isGroupDisabledTemp = object->m_isGroupDisabled;
                 object->m_isGroupDisabled = false;
             }
             else {
-                object->m_isGroupDisabled = object->m_unk28B;
+                object->m_isGroupDisabled = object->m_isGroupDisabledTemp;
             }
         }
     }
