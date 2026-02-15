@@ -84,6 +84,19 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
+namespace nu {
+  /// Removes base class calls in an ir pass
+  constexpr char const* declare_destructor = R"GEN(
+{class_name}::{function_name}({parameters}) {{
+  __debase_dtor_begin();
+  using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
+	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
+  __debase_dtor_end();
+}}
+)GEN";
+} // namespace nu
+
 	constexpr char const* declare_constructor = R"GEN(
 {class_name}::{function_name}({parameters}) : {class_name}(geode::CutoffConstructor, sizeof({class_name})) {{
 	// here we construct it as normal as we can, then destruct it
@@ -97,6 +110,19 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
 }}
 )GEN";
+
+namespace nu {
+  /// Removes base class calls in an ir pass
+	constexpr char const* declare_constructor = R"GEN(
+{class_name}::{function_name}({parameters}) : {class_name}(geode::CutoffConstructor, sizeof({class_name})) {{
+	__debase_ctor_begin();
+  using FunctionType = void(*)({class_name}*{parameter_comma}{parameter_types});
+	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
+	reinterpret_cast<FunctionType>(func)(this{parameter_comma}{arguments});
+  __debase_ctor_end();
+}}
+)GEN";
+} // namespace nu
 
 	constexpr char const* declare_constructor_begin = R"GEN(
 {class_name}::{function_name}({parameters}) {{
@@ -138,12 +164,48 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 
 bool areSuperclassesEmpty(Class const& c) {
-	return c.superclasses.empty() || (c.superclasses.size() == 1 && c.superclasses[0].find("CCCopying") != std::string::npos);
+	return c.superclasses.empty() ||
+        (c.superclasses.size() == 1 &&
+         c.superclasses[0].find("CCCopying") != std::string::npos);
 }
 
-std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder,
-                                  SourceGenOpts opts, std::unordered_set<std::string>* generatedFiles) {
-	std::string output = fmt::format(format_strings::source_start,
+static char const* getNonInlinedCtorFormat(Class const& c, SourceGenOpts opts) {
+  if (areSuperclassesEmpty(c))
+		return format_strings::declare_constructor_begin;
+  else if (opts.debase)
+    return format_strings::nu::declare_constructor;
+	else
+		return format_strings::declare_constructor;
+}
+
+static char const* getNonInlinedDtorFormat(Class const& c, SourceGenOpts opts) {
+  if (opts.debase)
+    return format_strings::nu::declare_destructor;
+  else if (areSuperclassesEmpty(c))
+		return format_strings::declare_destructor_baseless;
+	else
+		return format_strings::declare_destructor;
+}
+
+static char const* getDeclareFormatFor(Class const& c, FunctionBindField const* fn, SourceGenOpts opts) {
+  switch (fn->prototype.type) {
+		case FunctionType::Normal:
+      if (fn->prototype.is_static)
+		    return format_strings::declare_static;
+      else if (fn->prototype.is_virtual)
+		    return format_strings::declare_virtual;
+      else
+			  return format_strings::declare_member;
+		case FunctionType::Ctor:
+      return getNonInlinedCtorFormat(c, opts);
+		case FunctionType::Dtor:
+      return getNonInlinedDtorFormat(c, opts);
+	}
+  return nullptr;
+}
+
+static std::string generateFunctionBindingSource(Root const& root, SourceGenOpts opts) {
+  std::string output = fmt::format(format_strings::source_start,
 		fmt::arg("includes", codegen::getIncludes(root))
 	);
 
@@ -172,115 +234,114 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 		);
   }
 
-  
+  return output;
+}
 
+std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder,
+                                  SourceGenOpts opts, std::unordered_set<std::string>* generatedFiles) {
 	for (auto& c : root.classes) {
 		if (opts.skipPugixml) {
-			if (c.name.starts_with("pugi::")) {
+			if (c.name.starts_with("pugi::"))
 				continue;
-			}
 		}
 		std::string output = fmt::format(format_strings::source_start,
-			fmt::arg("includes", codegen::getIncludes(root))
+			fmt::arg("includes", codegen::getIncludes(root, opts.debase))
 		);
+
+    auto uqclass = codegen::getUnqualifiedClassName(c.name);
+    int FieldCount = 0;
+		for (auto& f : c.fields) {
+      if (auto i = f.get_as<InlineField>()) {
+        // yeah there are no inlines on cocos
+        continue;
+      }
+
+      auto fn = f.get_as<FunctionBindField>();
+			if (!fn)
+        continue;
+      
+      const BindStatus fnStatus = codegen::getStatus(*fn);
+			if (fnStatus == BindStatus::Inlined) {
+				if (opts.skipInlines)
+					continue;
+        ++FieldCount;
+				switch (fn->prototype.type) {
+					case FunctionType::Ctor:
+					case FunctionType::Dtor:
+						output += fmt::format(format_strings::ool_structor_function_definition,
+							fmt::arg("function_name", fn->prototype.name),
+							fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+							fmt::arg("class_name", c.name),
+												fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+							fmt::arg("definition", fn->inner)
+						);
+						break;
+					default:
+						{
+							if (fn->prototype.ret.name == "void") {
+								output += fmt::format(format_strings::void_ool_function_definition,
+									fmt::arg("function_name", fn->prototype.name),
+									fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+									fmt::arg("class_name", c.name),
+									fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+									fmt::arg("definition", fn->inner),
+									fmt::arg("return", fn->prototype.ret.name)
+								);
+							} else {
+								output += fmt::format(format_strings::ool_function_definition,
+									fmt::arg("function_name", fn->prototype.name),
+									fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+									fmt::arg("class_name", c.name),
+									fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+									fmt::arg("definition", fn->inner),
+									fmt::arg("return", fn->prototype.ret.name)
+								);
+							}
+						}
+						break;
+				}
+			} else if (fnStatus != BindStatus::Unbindable ||
+                 codegen::platformNumber(fn->binds) != -1) {
+				char const* used_declare_format = nullptr;
+
+				if (codegen::platformNumber(fn->binds) == 0x9999999) {
+					used_declare_format = format_strings::declare_unimplemented_error;
+				}
+				else if (fnStatus != BindStatus::NeedsBinding &&
+                 fnStatus != BindStatus::NeedsRebinding) {
+					continue;
+				}
+
+				if (!used_declare_format)
+          used_declare_format = getDeclareFormatFor(c, fn, opts);
+
+        ++FieldCount;
+				output += fmt::format(fmt::runtime(used_declare_format),
+					fmt::arg("class_name", c.name),
+					fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
+					fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
+					fmt::arg("convention", codegen::getModifyConventionName(f)),
+					fmt::arg("function_name", fn->prototype.name),
+					fmt::arg("address_inline", codegen::getAddressString(c, f)),
+					fmt::arg("parameters", codegen::getParameters(fn->prototype)),
+					fmt::arg("parameter_types", codegen::getParameterTypes(fn->prototype)),
+					fmt::arg("arguments", codegen::getParameterNames(fn->prototype)),
+					fmt::arg("parameter_comma", str_if(", ", !fn->prototype.args.empty()))
+				);
+			}
+		}
+
+    // Avoid generating mountains of empty files
+    if (FieldCount == 0) {
+      continue;
+    }
 
 		std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".cpp");
     if (generatedFiles != nullptr)
       generatedFiles->insert(filename);
 
-		for (auto& f : c.fields) {
-			if (auto i = f.get_as<InlineField>()) {
-				// yeah there are no inlines on cocos
-			} else if (auto fn = f.get_as<FunctionBindField>()) {
-				if (codegen::getStatus(*fn) == BindStatus::Inlined) {
-					if (opts.skipInlines)
-						continue;
-					switch (fn->prototype.type) {
-						case FunctionType::Ctor:
-						case FunctionType::Dtor:
-							output += fmt::format(format_strings::ool_structor_function_definition,
-								fmt::arg("function_name", fn->prototype.name),
-								fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-								fmt::arg("class_name", c.name),
-													fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-								fmt::arg("definition", fn->inner)
-							);
-							break;
-						default:
-							{
-								if (fn->prototype.ret.name == "void") {
-									output += fmt::format(format_strings::void_ool_function_definition,
-										fmt::arg("function_name", fn->prototype.name),
-										fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-										fmt::arg("class_name", c.name),
-										fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-										fmt::arg("definition", fn->inner),
-										fmt::arg("return", fn->prototype.ret.name)
-									);
-								} else {
-									output += fmt::format(format_strings::ool_function_definition,
-										fmt::arg("function_name", fn->prototype.name),
-										fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-										fmt::arg("class_name", c.name),
-										fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-										fmt::arg("definition", fn->inner),
-										fmt::arg("return", fn->prototype.ret.name)
-									);
-								}
-							}
-							break;
-					}
-				} else if (codegen::getStatus(*fn) != BindStatus::Unbindable || codegen::platformNumber(fn->binds) != -1) {
-					char const* used_declare_format = nullptr;
-
-					if (codegen::platformNumber(fn->binds) == 0x9999999) {
-						used_declare_format = format_strings::declare_unimplemented_error;
-					}
-					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && codegen::getStatus(*fn) != BindStatus::NeedsRebinding) {
-						continue;
-					}
-
-					if (!used_declare_format) {
-						switch (fn->prototype.type) {
-							case FunctionType::Normal:
-								used_declare_format = format_strings::declare_member;
-								break;
-							case FunctionType::Ctor:
-								if (areSuperclassesEmpty(c)) {
-									used_declare_format = format_strings::declare_constructor_begin;
-								}
-								else {
-									used_declare_format = format_strings::declare_constructor;
-								}
-								break;
-							case FunctionType::Dtor:
-								used_declare_format = areSuperclassesEmpty(c) ? format_strings::declare_destructor_baseless : format_strings::declare_destructor;
-								break;
-						}
-
-						if (fn->prototype.is_static)
-							used_declare_format = format_strings::declare_static;
-						if (fn->prototype.is_virtual && fn->prototype.type != FunctionType::Dtor)
-							used_declare_format = format_strings::declare_virtual;
-					}
-
-					output += fmt::format(fmt::runtime(used_declare_format),
-						fmt::arg("class_name", c.name),
-						fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
-						fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
-						fmt::arg("convention", codegen::getModifyConventionName(f)),
-						fmt::arg("function_name", fn->prototype.name),
-						fmt::arg("address_inline", codegen::getAddressString(c, f)),
-						fmt::arg("parameters", codegen::getParameters(fn->prototype)),
-						fmt::arg("parameter_types", codegen::getParameterTypes(fn->prototype)),
-						fmt::arg("arguments", codegen::getParameterNames(fn->prototype)),
-						fmt::arg("parameter_comma", str_if(", ", !fn->prototype.args.empty()))
-					);
-				}
-			}
-		}
-
 		writeFile(singleFolder / filename, output);
 	}
-	return output;
+
+	return generateFunctionBindingSource(root, opts);
 }

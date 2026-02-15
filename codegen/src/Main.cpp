@@ -98,7 +98,7 @@ int main(int argc, char** argv) try {
                 opts.versionSet = true;
             }
         } else if (arg.starts_with("--debase")) {
-            opts.debaser = true;
+            opts.debase = true;
         }
     }
 
@@ -118,7 +118,7 @@ int main(int argc, char** argv) try {
 
     auto rootDir = fs::path(argv[2]);
     Root root = broma::parse_file(rootDir / "Entry.bro");
-    bool skipInlines = fs::exists(rootDir / "inline");
+    opts.skipInlines = fs::exists(rootDir / "inline");
 
     for (auto cls : root.classes) {
         for (auto dep : cls.attributes.depends) {
@@ -131,7 +131,7 @@ int main(int argc, char** argv) try {
 
     codegen::populateIds(root);
 
-    if (!versionSet) {
+    if (!opts.versionSet) {
         if (auto sdkPath = std::getenv("GEODE_SDK")) {
             auto versionPath = fs::path(sdkPath) / "VERSION";
             if (fs::exists(versionPath)) {

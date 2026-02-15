@@ -22,9 +22,10 @@ using namespace broma;
 #include <matjson.hpp>
 
 struct SourceGenOpts {
-  bool skipPugixml = false;
-  bool skipInlines = false;
-  bool debase = false;
+    bool versionSet = false;
+    bool skipPugixml = false;
+    bool skipInlines = false;
+    bool debase = false;
 };
 
 std::string generateAddressHeader(Root const& root);
@@ -352,7 +353,7 @@ namespace codegen {
         return s.substr(index + 2);
     }
 
-    inline std::string getIncludes(Root const& root) {
+    inline std::string getIncludes(Root const& root, bool debase_opt = false) {
         std::string includes;
 
         for (auto& header : root.headers) {
@@ -360,6 +361,9 @@ namespace codegen {
                 includes += fmt::format("#include <{}>\n", header.name);
             }
         }
+
+        if (debase_opt)
+            includes += "#include <debase/Annotations.hpp>\n";
 
         return includes;
     }

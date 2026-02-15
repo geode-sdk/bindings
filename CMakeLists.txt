@@ -25,6 +25,7 @@ option(
 )
 
 if (BINDINGS_DEBASER)
+  set(GEODE_DEBASE_VER 1.0.0)
 	list(APPEND GEODE_CODEGEN_EXTRA_ARGS --debase)
 endif()
 
@@ -39,7 +40,7 @@ set(GEODE_CODEGEN_MAX_AGE 86400 CACHE STRING "Max age (in seconds) for the downl
 set(GEODE_CODEGEN_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/codegen)
 set(GEODE_CODEGEN_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/codegen-build)
 
-function(geode_download_codegen url output_path)
+function(geode_download_file name url output_path)
 	file(DOWNLOAD
 		${url}
 		${output_path}
@@ -48,22 +49,106 @@ function(geode_download_codegen url output_path)
 	)
 
 	list(GET GEODE_CODEGEN_DOWNLOAD_STATUS 0 GEODE_CODEGEN_DOWNLOAD_STATUS_CODE)
+  set(GEODE_CODEGEN_DOWNLOAD_STATUS_CODE ${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} PARENT_SCOPE)
 	if (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0)
 		file(
-			CHMOD ${GEODE_CODEGEN_BINARY_OUT}/${GEODE_CODEGEN_TARGET_FILE_NAME}
+			CHMOD ${output_path}
 			PERMISSIONS
 				OWNER_READ OWNER_WRITE OWNER_EXECUTE
 				GROUP_READ GROUP_WRITE GROUP_EXECUTE
 				WORLD_READ WORLD_WRITE WORLD_EXECUTE
 		)
-		message(STATUS "Downloading Codegen - success")
+		message(STATUS "Downloading ${name} - success")
 		set(SKIP_BUILDING_CODEGEN ON PARENT_SCOPE)
 	else()
 		list(GET GEODE_CODEGEN_DOWNLOAD_STATUS 1 GEODE_CODEGEN_DOWNLOAD_STATUS_MESSAGE)
-		message(STATUS "Downloading Codegen - fail: ${GEODE_CODEGEN_DOWNLOAD_STATUS_MESSAGE}")
+		message(STATUS "Downloading ${name} - fail: ${GEODE_CODEGEN_DOWNLOAD_STATUS_MESSAGE}")
 		set(SKIP_BUILDING_CODEGEN OFF PARENT_SCOPE)
 	endif()
 endfunction()
+
+function(geode_download_codegen url output_path)
+  geode_download_file(Codegen "${url}" "${output_path}")
+	if (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0)
+		set(SKIP_BUILDING_CODEGEN ON PARENT_SCOPE)
+	else()
+		set(SKIP_BUILDING_CODEGEN OFF PARENT_SCOPE)
+	endif()
+endfunction()
+
+if (BINDINGS_DEBASER AND NOT DOWNLOADED_DEBASER)
+  # Download names
+  if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+		set(DEBASE_DOWNLOAD_FILE_NAME debase-win.exe)
+    set(LLC_DOWNLOAD_FILE_NAME    llc-win.exe)
+		set(DEBASE_TARGET_FILE_NAME   debase.exe)
+		set(LLC_TARGET_FILE_NAME      llc.exe)
+	elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux")
+		set(DEBASE_DOWNLOAD_FILE_NAME debase-linux)
+    set(LLC_DOWNLOAD_FILE_NAME    llc-linux)
+		set(DEBASE_TARGET_FILE_NAME   debase)
+		set(LLC_TARGET_FILE_NAME      llc)
+	elseif (CMAKE_HOST_SYSTEM_NAME STREQUAL "Darwin")
+		set(DEBASE_DOWNLOAD_FILE_NAME debase-mac)
+    set(LLC_DOWNLOAD_FILE_NAME    llc-mac)
+		set(DEBASE_TARGET_FILE_NAME   debase)
+		set(LLC_TARGET_FILE_NAME      llc)
+	else()
+		unset(DEBASE_DOWNLOAD_FILE_NAME)
+    unset(LLC_DOWNLOAD_FILE_NAME)
+	endif()
+
+  if (DEFINED DEBASE_DOWNLOAD_FILE_NAME)
+    message(STATUS "Downloading ${DEBASE_DOWNLOAD_FILE_NAME}")
+    geode_download_file(Debase
+      "https://github.com/9inefold/debase/releases/download/v${GEODE_DEBASE_VER}/${DEBASE_DOWNLOAD_FILE_NAME}"
+			"${GEODE_CODEGEN_BINARY_OUT}/${DEBASE_TARGET_FILE_NAME}")
+    if (NOT (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0))
+	  	set(SKIP_DOWNLOADING_LLC ON)
+      set(DOWNLOADED_DEBASER OFF)
+	  endif()
+    unset(GEODE_CODEGEN_DOWNLOAD_STATUS_CODE)
+  else()
+    set(SKIP_DOWNLOADING_LLC ON)
+    set(DOWNLOADED_DEBASER OFF)
+  endif()
+
+  if (NOT SKIP_DOWNLOADING_LLC)
+    message(STATUS "Downloading ${LLC_DOWNLOAD_FILE_NAME}")
+    geode_download_file(llc
+      "https://github.com/9inefold/debase/releases/download/v${GEODE_DEBASE_VER}/${LLC_DOWNLOAD_FILE_NAME}"
+			"${GEODE_CODEGEN_BINARY_OUT}/${LLC_TARGET_FILE_NAME}")
+    if (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0)
+      set(DOWNLOADED_DEBASER ON CACHE BOOL "")
+    else()
+	  	set(DOWNLOADED_DEBASER OFF)
+	  endif()
+    unset(GEODE_CODEGEN_DOWNLOAD_STATUS_CODE)
+  endif()
+  unset(DEBASE_DOWNLOAD_FILE_NAME)
+  unset(LLC_DOWNLOAD_FILE_NAME)
+endif()
+
+if (DOWNLOADED_DEBASER)
+  include(cmake/CPM.cmake)
+  if (DEFINED GEODE_DEBASE_LIB_PATH)
+    set(DEBASE_BINARY_DIR "${GEODE_CODEGEN_BINARY_OUT}")
+    set(DEBASE_RUNTIME_ONLY ON)
+    set(DEBASE_GENERATE_TARGET_FUNCTION ON)
+    add_subdirectory(
+      ${GEODE_DEBASE_LIB_PATH}
+      ${CMAKE_CURRENT_BINARY_DIR}/debase
+    )
+  else()
+    CPMAddPackage(
+      URI "gh:9inefold/debase"
+      OPTIONS
+        "DEBASE_BINARY_DIR ${GEODE_CODEGEN_BINARY_OUT}"
+        "DEBASE_RUNTIME_ONLY ON"
+        "DEBASE_GENERATE_TARGET_FUNCTION ON"
+    )
+  endif()
+endif()
 
 if (NOT DEFINED SKIP_BUILDING_CODEGEN)
 	if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
@@ -194,43 +279,8 @@ else()
 	set(GEODE_INCLUDE_SYSTEM_SPECIFIER SYSTEM)
 endif()
 
-file(GLOB GEODE_INLINE_SOURCES ${GEODE_BINDINGS_PATH}/inline/*.cpp)
-file(GLOB GEODE_GENERATED_SOURCES ${GEODE_CODEGEN_PATH}/Geode/source/*.cpp)
-
-
-add_library(${PROJECT_NAME} ${GEODE_CODEGEN_PATH}/Geode/GeneratedSource.cpp ${GEODE_INLINE_SOURCES} ${GEODE_GENERATED_SOURCES})
-target_include_directories(${PROJECT_NAME} ${GEODE_INCLUDE_SYSTEM_SPECIFIER} PUBLIC
-	${GEODE_CODEGEN_PATH}
-)
-
-set_target_properties(${PROJECT_NAME} PROPERTIES
-    UNITY_BUILD ON
-    UNITY_BUILD_BATCH_SIZE 128
-)
-
-if (NOT BINDINGS_VERSIONED_ONLY)
-	target_include_directories(${PROJECT_NAME} ${GEODE_INCLUDE_SYSTEM_SPECIFIER} PUBLIC
-		${CMAKE_CURRENT_SOURCE_DIR}/bindings/include
-	)
-endif()
-
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
-
-target_compile_definitions(${PROJECT_NAME} PUBLIC GEODE_COMP_GD_VERSION=${GEODE_COMP_GD_VERSION})
-
-if (WIN32)
-	target_compile_definitions(${PROJECT_NAME} PUBLIC -DNOMINMAX)
-	if (MSVC)
-		target_compile_options(${PROJECT_NAME} PUBLIC /bigobj)
-	endif()
-elseif (APPLE)
-	target_compile_options(${PROJECT_NAME} PUBLIC -ffunction-sections -fdata-sections)
-	target_link_options(${PROJECT_NAME} PUBLIC -dead_strip)
-	if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS)
-		add_definitions(-DGLES_SILENCE_DEPRECATION)
-	endif()
-elseif (ANDROID)
-	target_compile_options(${PROJECT_NAME} PUBLIC -ffunction-sections -fdata-sections)
-	target_link_options(${PROJECT_NAME} PUBLIC -Wl,--gc-sections)
+if (BINDINGS_DEBASER)
+  include(BindingsDebase.cmake)
+else()
+  include(BindingsOld.cmake)
 endif()

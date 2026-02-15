@@ -3,9 +3,13 @@ project(Codegen LANGUAGES C CXX)
 
 include(../cmake/CPM.cmake)
 
+unset(BUILD_SHARED_LIBS)
+unset(BUILD_SHARED_LIBS CACHE)
+
+# TODO: Figure out why fmt builds weird on windows
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
 CPMAddPackage("gh:geode-sdk/Broma#19fa02c")
-CPMAddPackage("gh:geode-sdk/json@3.2.1")
+CPMAddPackage("gh:geode-sdk/json@3.3.0")
 
 target_compile_definitions(fmt PUBLIC -DFMT_CONSTEVAL=)
 
@@ -40,4 +44,5 @@ if (NOT DEFINED CMAKE_CXX_COMPILER_LAUNCHER OR CMAKE_CXX_COMPILER_LAUNCHER STREQ
 	)
 endif ()
 
+message(STATUS "CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
