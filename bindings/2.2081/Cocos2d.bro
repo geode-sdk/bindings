@@ -5876,12 +5876,12 @@ class DS_Dictionary {
     gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
     cocos2d::CCRect getRectForKey(char const*);
     gd::vector<gd::string> getStringArrayForKey(char const*);
-    gd::string getStringForKey(char const*) = m1 0x14341c;
+    gd::string getStringForKey(char const*) = m1 0x14341c, imac 0x17dc90, ios 0x161ae8;
     gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*);
     cocos2d::CCPoint getVec2ForKey(char const*);
     bool loadRootSubDictFromCompressedFile(char const*);
     bool loadRootSubDictFromFile(char const*);
-    bool loadRootSubDictFromString(gd::string const&) = m1 0x141010, ios 0x161058;
+    bool loadRootSubDictFromString(gd::string const&) = m1 0x141010, imac 0x17b200 ios 0x161058;
     bool rectFromString(gd::string const&, cocos2d::CCRect&);
     void removeAllKeys();
     void removeKey(char const*);
@@ -5916,7 +5916,7 @@ class DS_Dictionary {
     void split(gd::string const&, char const*, gd::vector<gd::string>&);
     bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
     void stepBackToRootSubDict();
-    bool stepIntoSubDictWithKey(char const*) = imac 0x17ce10, ios 0x161520;
+    bool stepIntoSubDictWithKey(char const*) = m1 0x14274c, imac 0x17ce10, ios 0x161520;
     void stepOutOfSubDict() = imac 0x17d020, m1 0x1428f4, ios inline;
     bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
 }
