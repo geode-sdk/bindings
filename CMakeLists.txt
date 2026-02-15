@@ -25,7 +25,7 @@ option(
 )
 
 if (BINDINGS_DEBASER)
-  set(GEODE_DEBASE_VER 1.0.0)
+  set(GEODE_DEBASE_VER 1.0.1)
 	list(APPEND GEODE_CODEGEN_EXTRA_ARGS --debase)
 endif()
 
