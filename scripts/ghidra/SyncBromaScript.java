@@ -579,7 +579,7 @@ public class SyncBromaScript extends GhidraScript {
                 // CCLightning is in the Geometry Dash binary, but it is only in Cocos2d.bro
                 if (
                     (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) &&
-                    cls.name.value.startsWith("cocos2d::") && !cls.name.value.equals("cocos2d::CCLightning")
+                    ((cls.name.value.startsWith("cocos2d::") && !cls.name.value.equals("cocos2d::CCLightning")) || cls.name.value.startsWith("pugi::"))
                 ) {
                     continue;
                 }
