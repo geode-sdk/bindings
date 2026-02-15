@@ -5941,5 +5941,6 @@ class pugi::xml_document : pugi::xml_node {
 [[link(android)]]
 class pugi::xml_node {
     xml_node() = win 0x724f0, m1 0x55ccd4, imac 0x63b3c0, ios 0x3ab440;
+    ~xml_node() = inline;
 }
 
