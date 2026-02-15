@@ -63,7 +63,7 @@ std::string generateWindowsSymbol(const Class& clazz, const FunctionBindField* f
 			}
 			break;
 		case FunctionType::Dtor:
-            // U - public virtual
+      // U - public virtual
 			// E - private virtual
 			// M - protected virtual
 
