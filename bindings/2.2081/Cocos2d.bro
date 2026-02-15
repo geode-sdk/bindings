@@ -5829,7 +5829,7 @@ class cocos2d::extension::CCTableViewCell : cocos2d::CCNode, cocos2d::extension:
 
 [[link(win, android)]]
 class cocos2d::ZipUtils {
-    static gd::string base64DecodeEnc(gd::string const&, gd::string);
+    static gd::string base64DecodeEnc(gd::string const&, gd::string) = m1 0x1b1a48, imac 0x205880, ios 0x23dd7c;
     static gd::string base64EncodeEnc(gd::string const&, gd::string) = imac 0x205ac0, m1 0x1b1cbc, ios 0x23dfa0;
     static gd::string base64URLDecode(gd::string const&) = imac 0x205d00, m1 0x1b1f2c, ios 0x23e200;
     static gd::string base64URLEncode(gd::string const&) = imac 0x205de0, m1 0x1b2038, ios 0x23e2f0;
