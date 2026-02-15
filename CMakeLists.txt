@@ -141,7 +141,7 @@ if (DOWNLOADED_DEBASER)
     )
   else()
     CPMAddPackage(
-      URI "gh:9inefold/debase"
+      URI "gh:9inefold/debase@${GEODE_DEBASE_VER}"
       OPTIONS
         "DEBASE_BINARY_DIR ${GEODE_CODEGEN_BINARY_OUT}"
         "DEBASE_RUNTIME_ONLY ON"
