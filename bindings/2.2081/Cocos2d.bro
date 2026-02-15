@@ -1748,7 +1748,9 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // bool getShiftKeyPressed() const;
     // void setBlockRepeat(bool);
     // CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
+    [[link(win, android)]]
     CCKeyboardDispatcher() = imac 0x203250, m1 0x1b0168;
+    [[link(win, android)]]
     virtual ~CCKeyboardDispatcher() = imac 0x2032d0, m1 0x1b01e0;
 
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = imac 0x203870, m1 0x1b07d0;
@@ -1777,6 +1779,7 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
 [[link(win, android, ios)]]
 class cocos2d::CCKeyboardHandler : cocos2d::CCObject {
 
+    [[link(win, android)]]
     virtual ~CCKeyboardHandler() = imac 0x43e0b0, m1 0x3afb5c;
 
     static cocos2d::CCKeyboardHandler* handlerWithDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x43e290, m1 0x3afd24;
