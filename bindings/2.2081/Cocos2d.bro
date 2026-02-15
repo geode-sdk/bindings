@@ -5881,7 +5881,7 @@ class DS_Dictionary {
     cocos2d::CCPoint getVec2ForKey(char const*);
     bool loadRootSubDictFromCompressedFile(char const*);
     bool loadRootSubDictFromFile(char const*);
-    bool loadRootSubDictFromString(gd::string const&) = m1 0x141010, imac 0x17b200 ios 0x161058;
+    bool loadRootSubDictFromString(gd::string const&) = m1 0x141010, imac 0x17b200, ios 0x161058;
     bool rectFromString(gd::string const&, cocos2d::CCRect&);
     void removeAllKeys();
     void removeKey(char const*);
