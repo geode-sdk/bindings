@@ -80,12 +80,28 @@ jobs:
     #     echo "$GITHUB_WORKSPACE/llvm/bin" >> $GITHUB_PATH
     #   if: matrix.config.id == 'win'
 
+    - name: Update Clang (Windows)
+      shell: bash
+      run: |
+        cd ..
+        curl -fL --retry 3 --max-time 300 -o clang.exe \
+          https://github.com/llvm/llvm-project/releases/download/llvmorg-19.1.0/LLVM-19.1.0-win64.exe
+        ./clang.exe //S
+        rm clang.exe
+        clang-cl --version
+      if: matrix.config.id == 'win'
+
     - name: Update Clang (Linux)
       shell: bash
       run: |
         sudo apt update
         sudo apt remove clang-14 -y
-        sudo apt install clang-19 -y
+
+        cd ..
+        wget https://apt.llvm.org/llvm.sh
+        chmod u+x llvm.sh
+        sudo bash ./llvm.sh 19
+
         sudo ln -sf /usr/bin/clang-19 /usr/bin/clang
         sudo ln -sf /usr/bin/clang++-19 /usr/bin/clang++
       if: matrix.config.id == 'linux'
@@ -94,6 +110,7 @@ jobs:
       shell: bash
       run: |
         brew install llvm@19
+      if: matrix.config.id == 'mac'
 
     - name: Configure
       run: >
