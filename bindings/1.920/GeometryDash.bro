@@ -6940,7 +6940,14 @@ class SetGroupIDLayer : FLAlertLayer {
 	void onDown(cocos2d::CCObject* sender) = win 0xf7e20;
 	void onUp(cocos2d::CCObject* sender) = win 0xf7dd0;
 	void updateGroupID() = win 0xf7e80;
-	void updateLabel();
+	void updateLabel() = win inline {
+		if (m_groupIndex < 0) {
+			m_groupLabel->setString("Mixed");
+		}
+		else {
+			m_groupLabel->setString(cocos2d::CCString::createWithFormat("%i", m_groupIndex)->getCString());
+		}
+	}
 
 	virtual void keyBackClicked();
 
