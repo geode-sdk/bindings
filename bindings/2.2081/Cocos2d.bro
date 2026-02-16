@@ -5872,7 +5872,7 @@ class DS_Dictionary {
     int getIntegerForKey(char const*) = imac 0x17d910, m1 0x1430f8, ios 0x1617e4;
     gd::string getKey(unsigned int) = imac 0x17d250, m1 0x142aa8;
     unsigned int getNumKeys();
-    cocos2d::CCObject* getObjectForKey(char const*) = m1 0x145f64, ios 0x162828;
+    cocos2d::CCObject* getObjectForKey(char const*) = m1 0x145f64, ios 0x162828, imac 0x180c10;
     gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*);
     cocos2d::CCRect getRectForKey(char const*);
     gd::vector<gd::string> getStringArrayForKey(char const*);
