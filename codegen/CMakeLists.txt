@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 project(Codegen LANGUAGES C CXX)
 
-include(../cmake/CPM.cmake)
+cmake_policy(SET CMP0156 OLD)
+cmake_policy(SET CMP0181 OLD)
 
-unset(BUILD_SHARED_LIBS)
-unset(BUILD_SHARED_LIBS CACHE)
+include(../cmake/CPM.cmake)
 
 # TODO: Figure out why fmt builds weird on windows
 CPMAddPackage("gh:fmtlib/fmt#11.0.2")
@@ -12,6 +12,7 @@ CPMAddPackage("gh:geode-sdk/Broma#19fa02c")
 CPMAddPackage("gh:geode-sdk/json@3.3.0")
 
 target_compile_definitions(fmt PUBLIC -DFMT_CONSTEVAL=)
+target_compile_definitions(fmt-header-only INTERFACE -DFMT_CONSTEVAL=)
 
 file(GLOB SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
@@ -31,7 +32,7 @@ add_executable(${PROJECT_NAME}
 )
 target_compile_features(Codegen PUBLIC cxx_std_17)
 
-target_link_libraries(Codegen PRIVATE fmt::fmt Broma mat-json)
+target_link_libraries(Codegen PRIVATE fmt::fmt-header-only Broma mat-json)
 target_include_directories(Codegen PRIVATE 
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 )
