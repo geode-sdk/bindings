@@ -1294,12 +1294,12 @@ class cocos2d::CCEGLView {
     void onGLFWError(int code, char const* description);
     [[missing(android, mac, ios)]]
     void onGLFWframebuffersize(GLFWwindow* window, int width, int height);
-    [[missing(android, mac, ios)]]
-    void onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-    [[missing(android, mac, ios)]]
-    void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
-    [[missing(android, mac, ios)]]
-    void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
+    // [[missing(android, mac, ios)]]
+    // void onGLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+    // [[missing(android, mac, ios)]]
+    // void onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int mods);
+    // [[missing(android, mac, ios)]]
+    // void onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y);
     [[missing(android, mac, ios)]]
     void onGLFWMouseScrollCallback(GLFWwindow* window, double xOffset, double yOffset);
     [[missing(android, mac, ios)]]
