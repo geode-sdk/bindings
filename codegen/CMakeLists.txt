@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.21 FATAL_ERROR)
 project(Codegen LANGUAGES C CXX)
 
-cmake_policy(SET CMP0156 OLD)
-cmake_policy(SET CMP0181 OLD)
-
 include(../cmake/CPM.cmake)
 
 # TODO: Figure out why fmt builds weird on windows
