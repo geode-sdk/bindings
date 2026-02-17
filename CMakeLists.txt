@@ -25,8 +25,8 @@ option(
 )
 
 if (BINDINGS_DEBASER)
-  set(GEODE_DEBASE_VER 1.0.1)
-  set(GEODE_DEBASE_TAG "14c375b")
+  set(GEODE_DEBASE_VER 1.0.2)
+  set(GEODE_DEBASE_TAG 9fa9c3b)
 	list(APPEND GEODE_CODEGEN_EXTRA_ARGS --debase)
 endif()
 
