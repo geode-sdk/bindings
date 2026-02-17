@@ -4,7 +4,7 @@ project(Codegen LANGUAGES C CXX)
 include(../cmake/CPM.cmake)
 
 # TODO: Figure out why fmt builds weird on windows
-CPMAddPackage("gh:fmtlib/fmt#11.0.2")
+CPMAddPackage("gh:fmtlib/fmt#12.0.0")
 CPMAddPackage("gh:geode-sdk/Broma#19fa02c")
 CPMAddPackage("gh:geode-sdk/json@3.3.0")
 
