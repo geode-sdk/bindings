@@ -26,6 +26,7 @@ option(
 
 if (BINDINGS_DEBASER)
   set(GEODE_DEBASE_VER 1.0.1)
+  set(GEODE_DEBASE_TAG "14c375b")
 	list(APPEND GEODE_CODEGEN_EXTRA_ARGS --debase)
 endif()
 
@@ -141,7 +142,7 @@ if (DOWNLOADED_DEBASER)
     )
   else()
     CPMAddPackage(
-      URI "gh:9inefold/debase@${GEODE_DEBASE_VER}"
+      URI "gh:9inefold/debase#${GEODE_DEBASE_TAG}"
       OPTIONS
         "DEBASE_BINARY_DIR ${GEODE_CODEGEN_BINARY_OUT}"
         "DEBASE_RUNTIME_ONLY ON"

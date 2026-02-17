@@ -16,10 +16,10 @@ debase_include_directories(${PROJECT_NAME}
 	${GEODE_CODEGEN_PATH}
 )
 
-set_target_properties(${PROJECT_NAME}__sources PROPERTIES
-    UNITY_BUILD ON
-    UNITY_BUILD_BATCH_SIZE 128
-)
+#set_target_properties(${PROJECT_NAME}__sources PROPERTIES
+#  UNITY_BUILD ON
+#  UNITY_BUILD_BATCH_SIZE 128
+#)
 
 if (NOT BINDINGS_VERSIONED_ONLY)
 	debase_include_directories(${PROJECT_NAME} ${GEODE_INCLUDE_SYSTEM_SPECIFIER} PUBLIC
@@ -27,7 +27,6 @@ if (NOT BINDINGS_VERSIONED_ONLY)
 	)
 endif()
 
-set_target_properties(${PROJECT_NAME}__sources PROPERTIES CXX_VISIBILITY_PRESET hidden)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_VISIBILITY_PRESET hidden)
 debase_compile_features(${PROJECT_NAME} PUBLIC cxx_std_23)
 
