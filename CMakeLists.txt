@@ -26,7 +26,7 @@ option(
 
 if (BINDINGS_DEBASER)
   set(GEODE_DEBASE_VER 1.0.2)
-  set(GEODE_DEBASE_TAG 9fa9c3b)
+  set(GEODE_DEBASE_TAG f76bba7)
 	list(APPEND GEODE_CODEGEN_EXTRA_ARGS --debase)
 endif()
 
@@ -102,7 +102,7 @@ if (BINDINGS_DEBASER AND NOT DOWNLOADED_DEBASER)
   if (DEFINED DEBASE_DOWNLOAD_FILE_NAME)
     message(STATUS "Downloading ${DEBASE_DOWNLOAD_FILE_NAME}")
     geode_download_file(Debase
-      "https://github.com/9inefold/debase/releases/download/v${GEODE_DEBASE_VER}/${DEBASE_DOWNLOAD_FILE_NAME}"
+      "https://github.com/9inefold/debase/releases/download/debase/${DEBASE_DOWNLOAD_FILE_NAME}"
 			"${GEODE_CODEGEN_BINARY_OUT}/${DEBASE_TARGET_FILE_NAME}")
     if (NOT (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0))
 	  	set(SKIP_DOWNLOADING_LLC ON)
@@ -117,7 +117,7 @@ if (BINDINGS_DEBASER AND NOT DOWNLOADED_DEBASER)
   if (NOT SKIP_DOWNLOADING_LLC)
     message(STATUS "Downloading ${LLC_DOWNLOAD_FILE_NAME}")
     geode_download_file(llc
-      "https://github.com/9inefold/debase/releases/download/v${GEODE_DEBASE_VER}/${LLC_DOWNLOAD_FILE_NAME}"
+      "https://github.com/9inefold/debase/releases/download/debase/${LLC_DOWNLOAD_FILE_NAME}"
 			"${GEODE_CODEGEN_BINARY_OUT}/${LLC_TARGET_FILE_NAME}")
     if (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0)
       set(DOWNLOADED_DEBASER ON CACHE BOOL "")
