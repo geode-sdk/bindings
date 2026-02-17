@@ -243,7 +243,7 @@ else()
 	message(VERBOSE "Codegen CMake args were: '${GEODE_CODEGEN_CMAKE_ARGS}'")
 endif()
 
-message(STATUS "Running Codegen")
+message(STATUS "Running Codegen in '${GEODE_CODEGEN_BINARY_OUT}'")
 execute_process(
 	COMMAND ./Codegen ${GEODE_TARGET_PLATFORM} ${GEODE_BINDINGS_PATH} ${GEODE_CODEGEN_PATH} ${GEODE_CODEGEN_EXTRA_ARGS}
 	WORKING_DIRECTORY ${GEODE_CODEGEN_BINARY_OUT}
