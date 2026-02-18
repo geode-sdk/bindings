@@ -2121,7 +2121,7 @@ class cocos2d::CCLayerMultiplex : cocos2d::CCLayer {
     virtual ~CCLayerMultiplex() = imac 0x4b42f0, m1 0x415910;
 
     static cocos2d::CCLayerMultiplex* create() = imac 0x4b4810, m1 0x415c50;
-    static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...) = imac inline, m1 inline;
+    static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...) = mac inline;
     static cocos2d::CCLayerMultiplex* createWithArray(cocos2d::CCArray*) = imac 0x4b49c0, m1 0x415da8;
     static cocos2d::CCLayerMultiplex* createWithLayer(cocos2d::CCLayer*) = imac 0x4b4800, m1 0x415c30;
 
@@ -3909,7 +3909,7 @@ class cocos2d::CCSpawn : cocos2d::CCActionInterval {
 
     static cocos2d::CCSpawn* create(cocos2d::CCArray* arrayOfActions) = imac 0x3b6ef0, m1 0x3399ec, ios inline;
     // static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...) = m1 0x33e430, imac 0x3b9e30;
-    static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction* first, ...) = inline;
+    static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction* first, ...) = mac inline, ios inline;
     static cocos2d::CCSpawn* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x3b6e60, m1 0x339960, ios 0x18ac88;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x3b74a0, m1 0x339ef4, ios 0x18ae5c;
@@ -5416,8 +5416,8 @@ class cocos2d::extension::CCControlButton : cocos2d::extension::CCControl {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
-    CCControlColourPicker() = inline;
-    virtual ~CCControlColourPicker() = inline;
+    CCControlColourPicker() = android inline, mac inline, ios inline;
+    virtual ~CCControlColourPicker() = mac inline, ios inline;
 
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x355d60, m1 0x2e2214, ios 0x1ae710;
 
@@ -5426,7 +5426,7 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
     virtual void setColorValue(cocos2d::ccColor3B const&) = imac 0x355e30, m1 0x2e22a8, ios 0x1ae7a4;
 
     void colourSliderValueChanged(cocos2d::CCObject*, unsigned int) = imac 0x355b30, m1 0x2e2064, ios 0x1ae5f8;
-    cocos2d::ccColor3B const& getColorValue() const = inline;
+    cocos2d::ccColor3B const& getColorValue() const = android inline, mac inline, ios inline;
     void hueSliderValueChanged(cocos2d::CCObject*, unsigned int) = imac 0x355a00, m1 0x2e1f80, ios 0x1ae518;
     void updateControlPicker() = imac 0x355f80, m1 0x2e23a0, ios inline;
     void updateHueAndControlPicker() = imac 0x355c10, m1 0x2e2120, ios 0x1ae6b0;
@@ -5846,7 +5846,7 @@ class cocos2d::ZipUtils {
     static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey) = imac 0x205600, m1 0x1b17c0, ios 0x23db3c;
     static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x2052e0, m1 0x1b14a0, ios 0x23d8b4;
     static gd::string encryptDecrypt(gd::string const& data, int encryptionKey);
-    static gd::string encryptDecryptWKey(gd::string const&, gd::string) = inline;
+    static gd::string encryptDecryptWKey(gd::string const&, gd::string) = android inline, mac inline, ios inline;
     static unsigned char hexToChar(gd::string const&);
     static gd::string urlDecode(gd::string const&);
 }
