@@ -144,6 +144,11 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
             if (!fn)
                 continue;
 
+            // Skip variadic functions
+            if (std::any_of(fn->prototype.args.begin(), fn->prototype.args.end(), [](const auto& arg) { return arg.first.name == "..."; })) {
+                continue;
+            }
+
             auto status = codegen::getStatus(*fn);
 
             std::string format_string;

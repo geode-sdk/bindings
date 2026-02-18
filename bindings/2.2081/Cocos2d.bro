@@ -2237,11 +2237,11 @@ class cocos2d::CCLiquid : cocos2d::CCGrid3DAction {
 
 [[link(win, android)]]
 class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
-    // static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = ios 0x1d8d28, m1 0x6a6d58, imac 0x79e7b0;
-
     static cocos2d::CCMenu* create() = imac 0x792c40, m1 0x69b524, ios 0x1d7eac;
+    static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = mac inline, ios inline;
     static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = imac 0x792e40, m1 0x69b67c, ios 0x1d7f58;
     static cocos2d::CCMenu* createWithItem(cocos2d::CCMenuItem*) = imac 0x793090, m1 0x69b8c8, ios 0x1d8198;
+    static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, va_list) = m1 0x69b570, imac 0x792d00, ios 0x1d7ef8;
 
     virtual bool init() = imac 0x7930a0, m1 0x69b8e8, ios 0x1d81b8;
     virtual void addChild(cocos2d::CCNode*) = imac 0x7930b0, m1 0x69b8f0, ios 0x1d81c0;
@@ -2267,7 +2267,6 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*);
     void alignItemsVertically();
     void alignItemsVerticallyWithPadding(float) = imac 0x7936b0, m1 0x69bf08, ios 0x1d85b8;
-    // static cocos2d::CCMenu* createWithItems(cocos2d::CCMenuItem*, char*);
     void giveMenuTouchPriority() = imac 0x7931b0, m1 0x69b9dc, ios 0x1d8284;
     bool initWithArray(cocos2d::CCArray*) = imac 0x792f10, m1 0x69b734, ios 0x1d8004;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x7933a0, m1 0x69bbc4, ios 0x1d8414;
