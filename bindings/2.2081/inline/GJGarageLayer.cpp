@@ -60,7 +60,9 @@ GJGarageLayer::~GJGarageLayer() {
     CC_SAFE_RELEASE(m_pageButtons);
     if (gm->m_rewardedVideoDelegate == this) gm->m_rewardedVideoDelegate = nullptr;
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID64)
 GJGarageLayer* GJGarageLayer::node() {
     auto ret = new GJGarageLayer();
     if (ret->init()) {
