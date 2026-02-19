@@ -4818,8 +4818,8 @@ class cocos2d::CCTransitionCrossFade : cocos2d::CCTransitionScene {
 [[link(win, android)]]
 class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
-    CCTransitionFade();
-    virtual ~CCTransitionFade();
+    CCTransitionFade() = m1 0xbf120, imac 0xd8820, ios inline;
+    virtual ~CCTransitionFade() = m1 0xbf160, imac 0xd8860, ios inline;
 
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xd89f0, m1 0xbf2c0, ios 0x1ce124;
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::ccColor3B const&) = imac 0xd8950, m1 0xbf224, ios 0x1ce088;
@@ -4927,8 +4927,8 @@ class cocos2d::CCTransitionJumpZoom : cocos2d::CCTransitionScene {
 [[link(win, android)]]
 class cocos2d::CCTransitionMoveInB : cocos2d::CCTransitionMoveInL {
     // CCTransitionMoveInB(cocos2d::CCTransitionMoveInB const&);
-    CCTransitionMoveInB();
-    virtual ~CCTransitionMoveInB();
+    CCTransitionMoveInB() = m1 0xbc9ec, imac 0xd5d90;
+    virtual ~CCTransitionMoveInB() = m1 0xbca3c, imac 0xd5df0;
 
     static cocos2d::CCTransitionMoveInB* create(float, cocos2d::CCScene*) = imac 0xd5ee0, m1 0xbcb00;
 
@@ -4938,22 +4938,22 @@ class cocos2d::CCTransitionMoveInB : cocos2d::CCTransitionMoveInL {
 [[link(win, android)]]
 class cocos2d::CCTransitionMoveInL : cocos2d::CCTransitionScene, cocos2d::CCTransitionEaseScene {
     // CCTransitionMoveInL(cocos2d::CCTransitionMoveInL const&);
-    CCTransitionMoveInL();
-    virtual ~CCTransitionMoveInL();
+    CCTransitionMoveInL() = m1 0xbc280, imac 0xd55a0, ios inline;
+    virtual ~CCTransitionMoveInL() = m1 0xbc2d0, imac 0xd5600, ios inline;
 
-    static cocos2d::CCTransitionMoveInL* create(float, cocos2d::CCScene*) = imac 0xd56f0, m1 0xbc394;
+    static cocos2d::CCTransitionMoveInL* create(float, cocos2d::CCScene*) = imac 0xd56f0, m1 0xbc394, ios inline;
 
-    virtual void onEnter() = imac 0xd5780, m1 0xbc43c;
-    virtual void initScenes() = imac 0xd58b0, m1 0xbc568;
-    virtual cocos2d::CCActionInterval* action() = imac 0xd5850, m1 0xbc518;
-    virtual cocos2d::CCActionInterval* easeActionWithAction(cocos2d::CCActionInterval*) = imac 0xd5890, m1 0xbc558;
+    virtual void onEnter() = imac 0xd5780, m1 0xbc43c, ios 0x1cde74;
+    virtual void initScenes() = imac 0xd58b0, m1 0xbc568, ios inline;
+    virtual cocos2d::CCActionInterval* action() = imac 0xd5850, m1 0xbc518, ios 0x1cdf18;
+    virtual cocos2d::CCActionInterval* easeActionWithAction(cocos2d::CCActionInterval*) = imac 0xd5890, m1 0xbc558, ios 0x1cdf58;
 }
 
 [[link(win, android)]]
 class cocos2d::CCTransitionMoveInR : cocos2d::CCTransitionMoveInL {
     // CCTransitionMoveInR(cocos2d::CCTransitionMoveInR const&);
-    CCTransitionMoveInR();
-    virtual ~CCTransitionMoveInR();
+    CCTransitionMoveInR() = m1 0xbc5c4, imac 0xd5910;
+    virtual ~CCTransitionMoveInR() = m1 0xbc614, imac 0xd5970;
 
     static cocos2d::CCTransitionMoveInR* create(float, cocos2d::CCScene*) = imac 0xd5a60, m1 0xbc6d8;
 
@@ -4963,8 +4963,8 @@ class cocos2d::CCTransitionMoveInR : cocos2d::CCTransitionMoveInL {
 [[link(win, android)]]
 class cocos2d::CCTransitionMoveInT : cocos2d::CCTransitionMoveInL {
     // CCTransitionMoveInT(cocos2d::CCTransitionMoveInT const&);
-    CCTransitionMoveInT();
-    virtual ~CCTransitionMoveInT();
+    CCTransitionMoveInT() = m1 0xbc7d8, imac 0xd5b50, ios inline;
+    virtual ~CCTransitionMoveInT() = m1 0xbc828, imac 0xd5bb0, ios inline;
 
     static cocos2d::CCTransitionMoveInT* create(float, cocos2d::CCScene*) = imac 0xd5ca0, m1 0xbc8ec, ios 0x1cdf80;
 
@@ -5056,10 +5056,10 @@ class cocos2d::CCTransitionRotoZoom : cocos2d::CCTransitionScene {
 [[link(win, android)]]
 class cocos2d::CCTransitionScene : cocos2d::CCScene {
     // CCTransitionScene(cocos2d::CCTransitionScene const&);
-    CCTransitionScene() = imac 0xd46e0, m1 0xbb454;
+    CCTransitionScene() = imac 0xd46e0, m1 0xbb454, ios inline;
     virtual ~CCTransitionScene() = imac 0xd4720, m1 0xbb494, ios 0x1cda44;
 
-    static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*);
+    static cocos2d::CCTransitionScene* create(float, cocos2d::CCScene*) = m1 0xbb558, imac 0xd4810, ios inline;
 
     virtual void onEnter() = imac 0xd4ba0, m1 0xbb914, ios 0x1cdd88;
     virtual void onExit() = imac 0xd4bf0, m1 0xbb968, ios 0x1cdddc;
@@ -5068,9 +5068,9 @@ class cocos2d::CCTransitionScene : cocos2d::CCScene {
     virtual bool initWithDuration(float, cocos2d::CCScene*) = imac 0xd4890, m1 0xbb5f8, ios 0x1cda9c;
     virtual void sceneOrder() = imac 0xd4950, m1 0xbb6dc, ios 0x1cdb50;
 
-    void finish();
-    void hideOutShowIn();
-    void setNewScene(float);
+    void finish() = m1 0xbb73c, imac 0xd49b0, ios 0x1cdbb0;
+    void hideOutShowIn() = m1 0xbb8c8, imac 0xd4b50, ios 0x1cdd3c;
+    void setNewScene(float) = m1 0xbb868, imac 0xd4ae0, ios 0x1cdcdc;
 }
 
 [[link(win, android)]]

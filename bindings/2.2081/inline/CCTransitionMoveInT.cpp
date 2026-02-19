@@ -8,5 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+cocos2d::CCTransitionMoveInT::CCTransitionMoveInT() {}
+
+cocos2d::CCTransitionMoveInT::~CCTransitionMoveInT() {}
 #endif
 
