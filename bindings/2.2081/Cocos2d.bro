@@ -712,8 +712,8 @@ class cocos2d::CCComponent : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCComponentContainer {
-    protected CCComponentContainer(cocos2d::CCNode*) = win inline;
-    virtual ~CCComponentContainer();
+    protected CCComponentContainer(cocos2d::CCNode*) = win inline, m1 0x261294, imac 0x2c4f90, ios 0x164c78;
+    virtual ~CCComponentContainer() = m1 0x2612a8, imac 0x2c4fb0, ios 0x164c8c;
 
     virtual cocos2d::CCComponent* get(char const*) const = imac 0x2c5050, m1 0x26135c, ios 0x164ce0;
     virtual bool add(cocos2d::CCComponent*) = imac 0x2c5170, m1 0x26148c, ios 0x164d80;
@@ -722,8 +722,8 @@ class cocos2d::CCComponentContainer {
     virtual void removeAll() = imac 0x2c5800, m1 0x261b00, ios 0x1652e4;
     virtual void visit(float) = imac 0x2c59f0, m1 0x261ca0, ios 0x165454;
 
-    void alloc();
-    bool isEmpty() const;
+    void alloc() = m1 0x261c7c, imac 0x2c59d0, ios inline;
+    bool isEmpty() const = m1 0x261cf4, imac 0x2c5a40, ios 0x1654a8;
 }
 
 [[link(win, android)]]

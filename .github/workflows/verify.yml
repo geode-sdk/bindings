@@ -146,7 +146,7 @@ jobs:
       with:
         repository: geode-sdk/geode
         # TODO: this is temporary
-        ref: main
+        ref: nightly
         path: geode
 
     - name: Set up codegen binary cache
