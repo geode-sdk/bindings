@@ -100,7 +100,6 @@ class cocos2d {
 
 [[link(win, android)]]
 class cocos2d::CCAccelAmplitude : cocos2d::CCActionInterval {
-
     virtual ~CCAccelAmplitude() = imac 0x20a8b0, m1 0x1b6720;
 
     static cocos2d::CCAccelAmplitude* create(cocos2d::CCAction*, float) = imac 0x20a7b0, m1 0x1b6614;
@@ -114,7 +113,6 @@ class cocos2d::CCAccelAmplitude : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCAccelDeccelAmplitude : cocos2d::CCActionInterval {
-
     virtual ~CCAccelDeccelAmplitude() = imac 0x20a590, m1 0x1b6408;
 
     static cocos2d::CCAccelDeccelAmplitude* create(cocos2d::CCAction*, float) = imac 0x20a490, m1 0x1b62fc;
@@ -769,7 +767,6 @@ class cocos2d::CCDataVisitor {
 
 [[link(win, android)]]
 class cocos2d::CCDeccelAmplitude : cocos2d::CCActionInterval {
-
     virtual ~CCDeccelAmplitude() = imac 0x20abc0, m1 0x1b6a60;
 
     static cocos2d::CCDeccelAmplitude* create(cocos2d::CCAction*, float) = imac 0x20aac0, m1 0x1b6954;
@@ -1513,7 +1510,6 @@ class cocos2d::CCFlipY3D : cocos2d::CCFlipX3D {
 
 [[link(win, android)]]
 class cocos2d::CCFollow : cocos2d::CCAction {
-
     virtual ~CCFollow() = imac 0x5f4930, m1 0x51dd34;
 
     static cocos2d::CCFollow* create(cocos2d::CCNode*, cocos2d::CCRect const&) = imac 0x5f4a20, m1 0x51de10;
@@ -1616,7 +1612,6 @@ class cocos2d::CCGridAction : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCGridBase : cocos2d::CCObject {
-
     virtual ~CCGridBase() = imac 0x4e3840, m1 0x43edf8;
 
     static cocos2d::CCGridBase* create(cocos2d::CCSize const&) = imac 0x4e3500, m1 0x43eab0;
@@ -1779,7 +1774,6 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
 
 [[link(win, android, ios)]]
 class cocos2d::CCKeyboardHandler : cocos2d::CCObject {
-
     [[link(win, android)]]
     virtual ~CCKeyboardHandler() = imac 0x43e0b0, m1 0x3afb5c;
 
@@ -1813,7 +1807,6 @@ class cocos2d::CCKeypadDispatcher : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCKeypadHandler : cocos2d::CCObject {
-
     virtual ~CCKeypadHandler() = imac 0x3c18c0, m1 0x3431e0, ios 0x4b54c;
 
     static cocos2d::CCKeypadHandler* handlerWithDelegate(cocos2d::CCKeypadDelegate*) = imac 0x3c1aa0, m1 0x3433a8, ios 0x4b600;
@@ -2281,7 +2274,6 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItem : cocos2d::CCNodeRGBA {
-
     virtual ~CCMenuItem() = imac 0x3be830, m1 0x3404a0, ios 0x4cb74;
 
     static cocos2d::CCMenuItem* create() = imac 0x3be620, m1 0x3402cc, ios inline;
@@ -2354,7 +2346,6 @@ class cocos2d::CCMenuItemImage : cocos2d::CCMenuItemSprite {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItemLabel : cocos2d::CCMenuItem {
-
     ~CCMenuItemLabel() = imac 0x3bef50, m1 0x340b2c;
 
     static cocos2d::CCMenuItemLabel* create(cocos2d::CCNode*) = m1 0x3409fc, imac 0x3bee10;
@@ -2399,7 +2390,6 @@ class cocos2d::CCMenuItemSprite : cocos2d::CCMenuItem {
 
 [[link(win, android)]]
 class cocos2d::CCMenuItemToggle : cocos2d::CCMenuItem {
-
     virtual ~CCMenuItemToggle() = imac 0x3c1180, m1 0x342b3c;
 
     static cocos2d::CCMenuItemToggle* create() = m1 0x342834, imac 0x3c0e30;
@@ -3397,7 +3387,6 @@ class cocos2d::CCPrettyPrinter : cocos2d::CCDataVisitor {
 
 [[link(win, android)]]
 class cocos2d::CCProfiler : cocos2d::CCObject {
-
     virtual ~CCProfiler();
 
     static cocos2d::CCProfiler* sharedProfiler();
@@ -3733,7 +3722,6 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCSchedulerScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
-
     virtual ~CCSchedulerScriptHandlerEntry();
 
     static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool);
@@ -3755,7 +3743,6 @@ class cocos2d::CCScriptEngineManager {
 
 [[link(win, android)]]
 class cocos2d::CCScriptHandlerEntry : cocos2d::CCObject {
-
     virtual ~CCScriptHandlerEntry() = m1 0x2a9a88, imac 0x31b960, ios 0x2735a8;
 
     static cocos2d::CCScriptHandlerEntry* create(int) = m1 0x2a9a18, imac 0x31b900, ios inline;
@@ -3863,7 +3850,6 @@ class cocos2d::CCShow : cocos2d::CCActionInstant {
 
 [[link(win, android)]]
 class cocos2d::CCShuffleTiles : cocos2d::CCTiledGrid3DAction {
-
     virtual ~CCShuffleTiles() = imac 0x7b5bf0, m1 0x6bbbd8;
 
     static cocos2d::CCShuffleTiles* create(float, cocos2d::CCSize const&, unsigned int) = imac 0x7b59b0, m1 0x6bb99c;
@@ -4203,7 +4189,6 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCStandardTouchHandler : cocos2d::CCTouchHandler {
-
     virtual ~CCStandardTouchHandler();
 
     static cocos2d::CCStandardTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
@@ -4257,7 +4242,6 @@ class cocos2d::CCTargetedAction : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCTargetedTouchHandler : cocos2d::CCTouchHandler {
-
     virtual ~CCTargetedTouchHandler() = imac 0x4816d0, m1 0x3e77b8, ios 0xc784;
 
     static cocos2d::CCTargetedTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
@@ -4771,7 +4755,6 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
 
 [[link(win, android)]]
 class cocos2d::CCTouchHandler : cocos2d::CCObject {
-
     virtual ~CCTouchHandler() = imac 0x4812f0, m1 0x3e740c, ios 0xc580;
 
     static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
@@ -4794,7 +4777,6 @@ class cocos2d::CCTouchHandler : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCTouchScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
-
     virtual ~CCTouchScriptHandlerEntry();
 
     static cocos2d::CCTouchScriptHandlerEntry* create(int, bool, int, bool);
