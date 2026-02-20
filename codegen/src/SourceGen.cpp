@@ -239,6 +239,10 @@ static std::string generateFunctionBindingSource(Root const& root, SourceGenOpts
 
 std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder,
                                   SourceGenOpts opts, std::unordered_set<std::string>* generatedFiles) {
+  std::optional<matjson::Value> basetrie;
+  if (opts.debase)
+    basetrie.emplace(matjson::Value::array());
+
 	for (auto& c : root.classes) {
 		if (opts.skipPugixml) {
 			if (c.name.starts_with("pugi::"))
@@ -248,7 +252,7 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 			fmt::arg("includes", codegen::getIncludes(root, opts.debase))
 		);
 
-    auto uqclass = codegen::getUnqualifiedClassName(c.name);
+    std::string uqclass = codegen::getUnqualifiedClassName(c.name);
     int FieldCount = 0;
 		for (auto& f : c.fields) {
       if (auto i = f.get_as<InlineField>()) {
@@ -318,7 +322,7 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
         ++FieldCount;
 				output += fmt::format(fmt::runtime(used_declare_format),
 					fmt::arg("class_name", c.name),
-					fmt::arg("unqualified_class_name", codegen::getUnqualifiedClassName(c.name)),
+					fmt::arg("unqualified_class_name", uqclass),
 					fmt::arg("const", str_if(" const ", fn->prototype.is_const)),
 					fmt::arg("convention", codegen::getModifyConventionName(f)),
 					fmt::arg("function_name", fn->prototype.name),
@@ -336,12 +340,23 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
       continue;
     }
 
-		std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".cpp");
+    std::string filename = uqclass + ".cpp";
     if (generatedFiles != nullptr)
       generatedFiles->insert(filename);
 
+    if (basetrie)
+      basetrie->push(uqclass);
+
 		writeFile(singleFolder / filename, output);
 	}
+
+  // Generate config
+  if (basetrie) {
+    std::string config_output = 
+        fmt::format(R"({{ "basetrie": {}, "files": [] }})",
+                    basetrie->dump(matjson::NO_INDENTATION));
+    writeFile(singleFolder / "DebaseConfig.json", config_output);
+  }
 
 	return generateFunctionBindingSource(root, opts);
 }

@@ -3,7 +3,7 @@ file(GLOB GEODE_GENERATED_SOURCES ${GEODE_CODEGEN_PATH}/Geode/source/*.cpp)
 
 debase_library(${PROJECT_NAME}
   FILES ${GEODE_GENERATED_SOURCES}
-  PATTERNS "**::/{file.stem}/"
+  CONFIG "${GEODE_CODEGEN_PATH}/Geode/source/DebaseConfig.json"
   OUTPUT ir
 )
 
