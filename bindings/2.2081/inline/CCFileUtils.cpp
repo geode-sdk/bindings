@@ -8,5 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+void cocos2d::CCFileUtils::removeAllPaths() {
+    m_searchPathArray.clear();
+}
 #endif
 

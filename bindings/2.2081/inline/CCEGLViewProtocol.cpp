@@ -8,8 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
-cocos2d::CCRect const& cocos2d::CCEGLViewProtocol::getViewPortRect() const  {
-    return m_obViewPortRect;
+const char* cocos2d::CCEGLViewProtocol::getViewName() {
+    return m_szViewName;
 }
 #endif
 

@@ -348,21 +348,21 @@ class cocos2d::CCAnimationFrame : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
-    CCApplication();
+    CCApplication() = m1 0x2b65e8, imac 0x3293f0, ios 0x1abe78;
     virtual ~CCApplication() = imac 0x329420, m1 0x2b6610, ios 0x1abea4;
 
     static cocos2d::CCApplication* sharedApplication() = imac 0x329520, m1 0x2b66ec, ios 0x1abff0;
 
-    virtual int run();
+    virtual int run() = m1 0x2b6684, imac 0x329490, ios 0x1abf04;
     virtual void setAnimationInterval(double) = imac 0x3294d0, m1 0x2b66b8, ios 0x1abfc4;
     virtual cocos2d::ccLanguageType getCurrentLanguage() = imac 0x329530, m1 0x2b66f8, ios 0x1ac00c;
     virtual cocos2d::TargetPlatform getTargetPlatform() = imac 0x329510, m1 0x2b66e4, ios 0x1ac1d0;
     virtual void openURL(char const*) = imac 0x32a230, m1 0x2b6fb4, ios 0x1abf38;
 
     [[missing(android, ios)]]
-    gd::string const& getResourceRootPath();
+    gd::string const& getResourceRootPath() = m1 0x2b6ccc, imac 0x329b20;
     [[missing(android, ios)]]
-    gd::string const& getStartupScriptFilename();
+    gd::string const& getStartupScriptFilename() = m1 0x2b6fac, imac 0x32a220;
     [[missing(android, mac, ios)]]
     int getTimeElapsed();
     [[missing(android, mac, ios)]]
@@ -376,9 +376,9 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
     [[missing(android, mac, ios)]]
     void resetForceTimer();
     [[missing(android, ios)]]
-    void setResourceRootPath(gd::string const&);
+    void setResourceRootPath(gd::string const&) = m1 0x2b691c, imac 0x329760;
     [[missing(android, ios)]]
-    void setStartupScriptFilename(gd::string const&);
+    void setStartupScriptFilename(gd::string const&) = m1 0x2b6cd4, imac 0x329b30;
     [[missing(android, mac, ios)]]
     void setupVerticalSync();
     [[missing(android, mac, ios)]]
@@ -794,7 +794,7 @@ class cocos2d::CCDelayTime : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCDevice {
-    static int getDPI();
+    static int getDPI() = m1 0x54a8c0, imac 0x6274c0;
 }
 
 [[link(win, android)]]
@@ -1343,13 +1343,12 @@ class cocos2d::CCEGLViewProtocol {
     virtual void handleTouchesEnd(int, int*, float*, float*, double) = imac 0x510590, m1 0x46734c, ios 0x2e7290;
     virtual void handleTouchesCancel(int, int*, float*, float*, double) = imac 0x510620, m1 0x4673f8, ios 0x2e733c;
 
-    double getPlatformTimestamp();
-    float getScaleX() const;
-    float getScaleY() const;
-    void getSetOfTouchesEndOrCancel(cocos2d::CCSet&, int, int*, float*, float*);
-    char const* getViewName();
-    cocos2d::CCRect const& getViewPortRect() const = imac 0x5106b0, m1 0x4674a4, ios inline;
-    void updateDesignResolutionSize();
+    float getScaleX() const = m1 0x4674ac, imac 0x5106c0, ios 0x2e73f0;
+    float getScaleY() const = m1 0x4674b4, imac 0x5106d0, ios 0x2e73f8;
+    void getSetOfTouchesEndOrCancel(cocos2d::CCSet&, int, int*, float*, float*, double) = m1 0x4671b8, imac 0x510400, ios 0x2e7138;
+    char const* getViewName() = m1 0x466d34, imac 0x50ff70, ios inline;
+    cocos2d::CCRect const& getViewPortRect() const = imac 0x5106b0, m1 0x4674a4, ios 0x2e73e8;
+    void updateDesignResolutionSize() = m1 0x4674c0, imac 0x5106f0;
 }
 
 [[link(win, android)]]
@@ -1423,11 +1422,11 @@ class cocos2d::CCFadeTo : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCFileUtils : cocos2d::TypeInfo {
-    protected CCFileUtils();
+    protected CCFileUtils() = m1 0x3ac624, imac 0x43ab10, ios 0x1509a4;
     // CCFileUtils(cocos2d::CCFileUtils const&);
-    virtual ~CCFileUtils();
+    virtual ~CCFileUtils() = m1 0x3ac660, imac 0x43ab60, ios 0x1509e0;
 
-    static void purgeFileUtils();
+    static void purgeFileUtils() = m1 0x3ac5f0, imac 0x43aae0, ios 0x150970;
     static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x60b8d0, m1 0x531b28, ios 0x23620c;
 
     virtual void addSearchPath(char const*) = imac 0x43d220, m1 0x3aec64, ios 0x151fc0;
@@ -1459,7 +1458,7 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual bool shouldUseHD() = imac 0x43b170, m1 0x3accc4, ios 0x150e38;
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = imac 0x43aac0, m1 0x3ac5e0, ios 0x150960;
 
-    void removeAllPaths();
+    void removeAllPaths() = m1 0x3af324, imac 0x43d8d0, ios inline;
 }
 
 [[link(win, android)]]
@@ -1659,15 +1658,17 @@ class cocos2d::CCImage : cocos2d::CCObject {
 
     bool _initWithJpgData(void*, int);
     bool _initWithPngData(void*, int);
-    bool _initWithRawData(void*, int, int, int, int, bool);
+    bool _initWithRawData(void*, int, int, int, int, bool) = m1 0x3ef8cc, imac 0x48a0a0, ios inline;
     bool _initWithTiffData(void*, int);
     // bool _initWithWebpData(void*, int);
     bool _saveImageToJPG(char const*);
     bool _saveImageToPNG(char const*, bool);
     bool initWithImageData(void*, int, cocos2d::CCImage::EImageFormat, int, int, int, int) = imac 0x489a30, m1 0x3ef41c, ios 0x2b19c;
     bool initWithImageFile(char const*, cocos2d::CCImage::EImageFormat) = imac 0x489820, m1 0x3ef070, ios 0x2b088;
-    bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat) = imac 0x48a000, m1 0x3ef814;
-    bool initWithString(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int);
+    bool initWithImageFileThreadSafe(char const*, cocos2d::CCImage::EImageFormat) = imac 0x48a000, m1 0x3ef814, ios 0x2b3ac;
+    bool initWithString(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int) = m1 0x3ef948, imac 0x48a120, ios inline;
+    [[missing(win, mac)]]
+    bool initWithStringShadowStroke(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int, float, float, float, bool, float, float, float, float, bool, float, float, float, float) = ios 0x2b458;
     // bool hasAlpha();
     // bool isPremultipliedAlpha();
     bool saveToFile(char const*, bool);
@@ -3645,17 +3646,17 @@ class cocos2d::CCRotateTo : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCSAXParser {
-    CCSAXParser();
-    ~CCSAXParser();
+    CCSAXParser() = m1 0x13c610, imac 0x176090;
+    ~CCSAXParser() = m1 0x13c61c, imac 0x1760b0;
 
-    static void endElement(void*, cocos2d::CC_XML_CHAR const*);
-    static void startElement(void*, cocos2d::CC_XML_CHAR const*, const CC_XML_CHAR **);
-    static void textHandler(void*, cocos2d::CC_XML_CHAR const*, int);
+    static void endElement(void*, cocos2d::CC_XML_CHAR const*) = m1 0x13c574, imac 0x175ff0;
+    static void startElement(void*, cocos2d::CC_XML_CHAR const*, cocos2d::CC_XML_CHAR const**) = m1 0x13c518, imac 0x175fa0;
+    static void textHandler(void*, cocos2d::CC_XML_CHAR const*, int) = m1 0x13c5ec, imac 0x176060;
 
-    bool init(char const*);
-    bool parse(char const*);
-    bool parse(char const*, unsigned int);
-    void setDelegator(cocos2d::CCSAXDelegator*);
+    bool init(char const*) = m1 0x13c620, imac 0x1760c0;
+    bool parse(char const*) = m1 0x13c6cc, imac 0x176170;
+    bool parse(char const*, unsigned int) = m1 0x13c628, imac 0x1760d0;
+    void setDelegator(cocos2d::CCSAXDelegator*) = m1 0x13c7cc, imac 0x176260;
 }
 
 [[link(win, android)]]
@@ -4460,10 +4461,9 @@ class cocos2d::CCTexturePVR : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCThread {
+    ~CCThread() = m1 0x358a5c, imac 0x3d97c0, ios 0x34f700;
 
-    ~CCThread();
-
-    void createAutoreleasePool();
+    void createAutoreleasePool() = m1 0x358a88, imac 0x3d97e0, ios 0x34f72c;
 }
 
 [[link(win, android)]]
@@ -4516,8 +4516,8 @@ class cocos2d::CCTileMapAtlas : cocos2d::CCAtlasNode {
 
 [[link(win, android)]]
 class cocos2d::CCTime {
-    static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*);
-    static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*);
+    static int gettimeofdayCocos2d(cocos2d::cc_timeval*, void*) = m1 0x2af3d4, imac 0x3217c0, ios 0x1d43ac;
+    static double timersubCocos2d(cocos2d::cc_timeval*, cocos2d::cc_timeval*) = m1 0x2af3f4, imac 0x3217e0, ios 0x1d43cc;
 }
 
 [[link(win, android)]]
