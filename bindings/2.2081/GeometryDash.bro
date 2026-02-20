@@ -9034,7 +9034,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 
     static gd::string achievementForUnlock(int id, UnlockType type) = win inline, imac 0x36f8b0, m1 0x2f96f0, ios inline;
     static gd::string descriptionForUnlock(int id, UnlockType type) = win 0x278310, imac 0x36f730, m1 0x2f955c, ios 0x306acc;
-    static GJGarageLayer* node() = win inline, imac 0x369110, m1 0x2f33d8, ios 0x301ad4;
+    static GJGarageLayer* node() = imac 0x369110, m1 0x2f33d8, ios 0x301ad4, inline;
     static cocos2d::CCScene* scene() = win 0x272e90, imac 0x3690d0, m1 0x2f3394, ios 0x301a90;
     static gd::string titleForUnlock(int id, UnlockType type) = win inline, imac 0x36f5c0, m1 0x2f93d0, ios 0x3069e0;
 

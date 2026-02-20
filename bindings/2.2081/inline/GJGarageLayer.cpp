@@ -15,6 +15,18 @@ GJGarageLayer::GJGarageLayer() {
 }
 #endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
+GJGarageLayer* GJGarageLayer::node() {
+    auto ret = new GJGarageLayer();
+    if (ret->init()) {
+        ret->autorelease();
+        return ret;
+    }
+    delete ret;
+    return nullptr;
+}
+#endif
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 gd::string GJGarageLayer::achievementForUnlock(int id, UnlockType type) {
     auto achievementManager = AchievementManager::sharedState();
@@ -59,16 +71,6 @@ GJGarageLayer::~GJGarageLayer() {
     CC_SAFE_RELEASE(m_tabButtons);
     CC_SAFE_RELEASE(m_pageButtons);
     if (gm->m_rewardedVideoDelegate == this) gm->m_rewardedVideoDelegate = nullptr;
-}
-
-GJGarageLayer* GJGarageLayer::node() {
-    auto ret = new GJGarageLayer();
-    if (ret->init()) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
 }
 
 gd::string GJGarageLayer::titleForUnlock(int id, UnlockType type) {
