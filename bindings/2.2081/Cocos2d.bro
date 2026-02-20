@@ -313,7 +313,7 @@ class cocos2d::CCAnimation : cocos2d::CCObject {
     void addSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x236ff0, imac 0x296da0, ios inline;
     void addSpriteFrameWithFileName(char const*) = m1 0x2370c0, imac 0x296e80, ios inline;
     void addSpriteFrameWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x237150, imac 0x296f00, ios inline;
-    bool init() = imac 0x296890, m1 0x236b2, ios inline;
+    bool init() = imac 0x296890, m1 0x236b20, ios inline;
     bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int) = imac 0x296bf0, m1 0x236e5c, ios 0x1a43b8;
     bool initWithSpriteFrames(cocos2d::CCArray*, float) = imac 0x296970, m1 0x236c04, ios 0x1a4204;
 }
