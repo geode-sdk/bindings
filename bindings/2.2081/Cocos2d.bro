@@ -2884,11 +2884,11 @@ class cocos2d::CCParallaxNode : cocos2d::CCNode {
 
 [[link(win, android)]]
 class cocos2d::CCParticleBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
-    CCParticleBatchNode();
-    virtual ~CCParticleBatchNode();
+    CCParticleBatchNode() = m1 0x349cfc, imac 0x3c8820;
+    virtual ~CCParticleBatchNode() = m1 0x349d4c, imac 0x3c88a0;
 
-    static cocos2d::CCParticleBatchNode* create(char const*, unsigned int);
-    static cocos2d::CCParticleBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
+    static cocos2d::CCParticleBatchNode* create(char const*, unsigned int) = m1 0x349f64, imac 0x3c8ad0;
+    static cocos2d::CCParticleBatchNode* createWithTexture(cocos2d::CCTexture2D*, unsigned int) = m1 0x349e1c, imac 0x3c8990;
 
     virtual void addChild(cocos2d::CCNode*) = imac 0x3c8c20, m1 0x34a0c4;
     virtual void addChild(cocos2d::CCNode*, int) = imac 0x3c8c30, m1 0x34a0c8;
@@ -2903,17 +2903,17 @@ class cocos2d::CCParticleBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol
     virtual cocos2d::ccBlendFunc getBlendFunc() = imac 0x3c9880, m1 0x34adf8;
     virtual void visit() = imac 0x3c8bb0, m1 0x34a040;
 
-    unsigned int addChildHelper(cocos2d::CCParticleSystem*, int, int);
-    void disableParticle(unsigned int);
-    void getCurrentIndex(unsigned int*, unsigned int*, cocos2d::CCNode*, int);
-    void increaseAtlasCapacityTo(unsigned int);
-    bool initWithFile(char const*, unsigned int);
-    bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
-    void insertChild(cocos2d::CCParticleSystem*, unsigned int);
-    void removeChildAtIndex(unsigned int, bool);
-    unsigned int searchNewPositionInChildrenForZ(int);
-    void updateAllAtlasIndexes();
-    void updateBlendFunc();
+    unsigned int addChildHelper(cocos2d::CCParticleSystem*, int, int) = m1 0x34a1f8, imac 0x3c8d40;
+    void disableParticle(unsigned int) = m1 0x34ac80, imac 0x3c9700;
+    void getCurrentIndex(unsigned int*, unsigned int*, cocos2d::CCNode*, int) = m1 0x34a898, imac 0x3c9320;
+    void increaseAtlasCapacityTo(unsigned int) = m1 0x34ac78, imac 0x3c96e0;
+    bool initWithFile(char const*, unsigned int) = m1 0x349ff0, imac 0x3c8b70;
+    bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = m1 0x349e98, imac 0x3c8a10;
+    void insertChild(cocos2d::CCParticleSystem*, unsigned int) = m1 0x34a34c, imac 0x3c8e80;
+    void removeChildAtIndex(unsigned int, bool) = m1 0x34ab24, imac 0x3c9590;
+    unsigned int searchNewPositionInChildrenForZ(int) = m1 0x34a504, imac 0x3c9010;
+    void updateAllAtlasIndexes() = m1 0x34a9ac, imac 0x3c9430;
+    void updateBlendFunc() = m1 0x34acc8, imac 0x3c9750;
 }
 
 [[link(win, android)]]
@@ -2940,32 +2940,32 @@ class cocos2d::CCParticleFire : cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCParticleFireworks : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleFireworks* create();
-    static cocos2d::CCParticleFireworks* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleFireworks* create() = m1 0x3ead6c, imac 0x485280;
+    static cocos2d::CCParticleFireworks* createWithTotalParticles(unsigned int) = m1 0x3eadfc, imac 0x485300;
 
     virtual bool initWithTotalParticles(unsigned int) = imac 0x485380, m1 0x3eae90;
 }
 
 [[link(win, android)]]
 class cocos2d::CCParticleFlower : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleFlower* create();
-    static cocos2d::CCParticleFlower* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleFlower* create() = m1 0x3eb5b8, imac 0x485a80;
+    static cocos2d::CCParticleFlower* createWithTotalParticles(unsigned int) = m1 0x3eb648, imac 0x485b00;
 
     virtual bool initWithTotalParticles(unsigned int) = imac 0x485b80, m1 0x3eb6dc;
 }
 
 [[link(win, android)]]
 class cocos2d::CCParticleGalaxy : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleGalaxy* create();
-    static cocos2d::CCParticleGalaxy* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleGalaxy* create() = m1 0x3eb2a8, imac 0x4857a0;
+    static cocos2d::CCParticleGalaxy* createWithTotalParticles(unsigned int) = m1 0x3eb338, imac 0x485820;
 
     virtual bool initWithTotalParticles(unsigned int) = imac 0x4858a0, m1 0x3eb3cc;
 }
 
 [[link(win, android)]]
 class cocos2d::CCParticleMeteor : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleMeteor* create();
-    static cocos2d::CCParticleMeteor* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleMeteor* create() = m1 0x3eb8c8, imac 0x485d70;
+    static cocos2d::CCParticleMeteor* createWithTotalParticles(unsigned int) = m1 0x3eb958, imac 0x485df0;
 
     virtual bool initWithTotalParticles(unsigned int) = imac 0x485e70, m1 0x3eb9ec;
 }
@@ -2983,8 +2983,8 @@ class cocos2d::CCParticleRain : cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSmoke : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleSmoke* create();
-    static cocos2d::CCParticleSmoke* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleSmoke* create() = m1 0x3ec1e8, imac 0x486600;
+    static cocos2d::CCParticleSmoke* createWithTotalParticles(unsigned int) = m1 0x3ec278, imac 0x486680;
 
     virtual bool initWithTotalParticles(unsigned int) = imac 0x486700, m1 0x3ec30c;
 }
@@ -3002,16 +3002,16 @@ class cocos2d::CCParticleSnow : cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSpiral : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleSpiral* create();
-    static cocos2d::CCParticleSpiral* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleSpiral* create() = m1 0x3ebbe0, imac 0x486060;
+    static cocos2d::CCParticleSpiral* createWithTotalParticles(unsigned int) = m1 0x3ebc70, imac 0x4860e0;
 
     virtual bool initWithTotalParticles(unsigned int) = imac 0x486160, m1 0x3ebd04;
 }
 
 [[link(win, android)]]
 class cocos2d::CCParticleSun : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleSun* create();
-    static cocos2d::CCParticleSun* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleSun* create() = m1 0x3eafd4, imac 0x4854f0;
+    static cocos2d::CCParticleSun* createWithTotalParticles(unsigned int) = m1 0x3eb064, imac 0x485570;
 
     virtual bool initWithTotalParticles(unsigned int) = imac 0x4855f0, m1 0x3eb0f8;
 }
@@ -3050,8 +3050,8 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     CCParticleSystem() = imac 0x7c6a00, m1 0x6cba14, ios 0x193210;
     virtual ~CCParticleSystem() = imac 0x7c8b50, m1 0x6cd8d0, ios 0x19478c;
 
-    static cocos2d::CCParticleSystem* create(char const*) = imac 0x7c6bc0, m1 0x6cbb60;
-    static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int);
+    static cocos2d::CCParticleSystem* create(char const*) = imac 0x7c6bc0, m1 0x6cbb60, ios inline;
+    static cocos2d::CCParticleSystem* createWithTotalParticles(unsigned int) = m1 0x6cbe48, imac 0x7c6e90, ios inline;
 
     virtual void update(float) = imac 0x7c9f90, m1 0x6ce94c, ios 0x1955d4;
     virtual bool init() = imac 0x7c6f00, m1 0x6cbed4, ios 0x1934d4;
@@ -3155,8 +3155,8 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     virtual cocos2d::CCTexture2D* getTexture() = imac 0x7caf90, m1 0x6cf634, ios 0x196170;
     virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x7cae50, m1 0x6cf4f4, ios 0x1960a0;
 
-    bool addParticle();
-    void calculateWorldSpace();
+    bool addParticle() = m1 0x6cda34, imac 0x7c8ce0, ios 0x194808;
+    void calculateWorldSpace() = m1 0x6ce78c, imac 0x7c9d60, ios 0x19543c;
     // unsigned int getAtlasIndex() const;
     // bool getDontCleanupOnFinish() const;
     // bool getDynamicRotationIsDir() const;
@@ -3179,20 +3179,20 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     // bool getStartRadiusEqualToEnd() const;
     // bool getStartSizeEqualToEnd() const;
     // bool getStartSpinEqualToEnd() const;
-    float getTimeElapsed();
+    float getTimeElapsed() = m1 0x6cd8c8, imac 0x7c8b40, ios 0x194784;
     void initParticle(cocos2d::sCCParticle*) = imac 0x7c8d50, m1 0x6cdaa0, ios 0x194860;
     bool initWithDictionary(cocos2d::CCDictionary*, bool) = imac 0x7c88d0, m1 0x6cd6dc, ios inline;
     bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool) = imac 0x7c6f20, m1 0x6cbee8, ios 0x1934e8;
     bool initWithFile(char const*, bool) = imac 0x7c6c20, m1 0x6cbbe4, ios 0x193368;
-    bool isFull();
-    void loadDefaults();
+    bool isFull() = m1 0x6cda8c, imac 0x7c8d30, ios inline;
+    void loadDefaults() = m1 0x6cfaec, imac 0x7cb7a0, ios inline;
     void loadScaledDefaults(float) = imac 0x7cb830, m1 0x6cfb68, ios 0x196638;
     void resetSystem() = imac 0x7c9df0, m1 0x6ce7fc, ios 0x1954ac;
     void resumeSystem() = imac 0x7c9de0, m1 0x6ce7f0, ios 0x1954a0;
-    void saveDefaults();
+    void saveDefaults() = m1 0x6cd6ec, imac 0x7c88f0, ios 0x19457c;
     void stopSystem() = imac 0x7c9db0, m1 0x6ce7dc, ios 0x19548c;
     // void toggleUniformColorMode(bool);
-    void updateVisible();
+    void updateVisible() = m1 0x6ce924, imac 0x7c9f60, ios inline;
 
     gd::string m_sPlistFile;
     float m_fElapsed;
@@ -3303,19 +3303,19 @@ class cocos2d::CCParticleSystemQuad : cocos2d::CCParticleSystem {
     virtual void postStep() = imac 0x603490, m1 0x52ad2c, ios 0x253d14;
     virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x602fc0, m1 0x52a88c, ios 0x2539b0;
 
-    bool allocMemory() = imac 0x6023f0, m1 0x52a03c;
-    void initIndices();
-    void initTexCoordsWithRect(cocos2d::CCRect const&) = imac 0x602cf0, m1 0x52a618;
-    void listenBackToForeground(cocos2d::CCObject*);
+    bool allocMemory() = imac 0x6023f0, m1 0x52a03c, ios 0x25335c;
+    void initIndices() = m1 0x52a11c, imac 0x6024e0, ios 0x25342c;
+    void initTexCoordsWithRect(cocos2d::CCRect const&) = imac 0x602cf0, m1 0x52a618, ios 0x2537ec;
+    void listenBackToForeground(cocos2d::CCObject*) = m1 0x52b04c, imac 0x603aa0, ios inline;
     // unsigned char getOpacity();
     void setDisplayFrame(cocos2d::CCSpriteFrame*) = imac 0x6030e0, m1 0x52a9d8, ios 0x253a18;
     // void setOpacity(unsigned char);
-    void setTextureWithRect(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
+    void setTextureWithRect(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x52a818, imac 0x602f60, ios 0x25393c;
     [[missing(mac, ios)]]
     void setupVBO();
     [[missing(win, android)]]
-    void setupVBOandVAO() = imac 0x6027d0, m1 0x52a18c;
-    void updateTexCoords();
+    void setupVBOandVAO() = imac 0x6027d0, m1 0x52a18c, ios 0x25349c;
+    void updateTexCoords() = m1 0x52a804, imac 0x602f40, ios inline;
 
     cocos2d::ccV3F_C4B_T2F_Quad* m_pQuads;
     uint16_t* m_pIndices;
