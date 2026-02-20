@@ -12,6 +12,12 @@ if (NOT DEFINED GEODE_LOADER_PATH)
 	message(FATAL_ERROR "GEODE_LOADER_PATH is not defined.")
 endif()
 
+if (APPLE OR CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+  set(BINDINGS_DEBASER_DEFAULT OFF CACHE BOOL "")
+else()
+  set(BINDINGS_DEBASER_DEFAULT ON CACHE BOOL "")
+endif()
+
 option(
 	BINDINGS_VERSIONED_ONLY
 	"Disables inclusion of the unversioned Enums header, allowing for builds on older Geode/Geometry Dash versions."
@@ -21,8 +27,17 @@ option(
 option(
 	BINDINGS_DEBASER
 	"Enables new ctor/dtor base call removal ir pass."
-	ON
+	${BINDINGS_DEBASER_DEFAULT}
 )
+
+if (BINDINGS_DEBASER)
+  if (CMAKE_CXX_COMPILER_ID MATCHES "MSVC")
+    message(WARNING "Bindings IR passes are not supported on MSVC. Turning off.")
+    set(BINDINGS_DEBASER OFF CACHE BOOL "" FORCE)
+  elseif (APPLE)
+    message(WARNING "Bindings IR passes may not function on apple.")
+  endif()
+endif()
 
 if (BINDINGS_DEBASER)
   set(GEODE_DEBASE_VER 1.0.2)
