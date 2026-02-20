@@ -92,6 +92,8 @@ function(geode_download_codegen url output_path)
 	endif()
 endfunction()
 
+message(STATUS "CMAKE_CXX_COMPILER: ${CMAKE_CXX_COMPILER}")
+
 if (BINDINGS_DEBASER AND NOT DOWNLOADED_DEBASER)
   # Download names
   if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
@@ -130,17 +132,25 @@ if (BINDINGS_DEBASER AND NOT DOWNLOADED_DEBASER)
   endif()
 
   if (NOT SKIP_DOWNLOADING_LLC)
-    message(STATUS "Downloading ${LLC_DOWNLOAD_FILE_NAME}")
-    geode_download_file(llc
-      "https://github.com/9inefold/debase/releases/download/debase/${LLC_DOWNLOAD_FILE_NAME}"
-			"${GEODE_CODEGEN_BINARY_OUT}/${LLC_TARGET_FILE_NAME}")
-    if (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0)
+    cmake_path(GET CMAKE_CXX_COMPILER PARENT_PATH CLANG_BIN_DIR)
+    if (EXISTS "${CLANG_BIN_DIR}/${LLC_TARGET_FILE_NAME}")
+      set(DEBASE_LLC "${CLANG_BIN_DIR}/${LLC_TARGET_FILE_NAME}" CACHE FILEPATH "")
+      message(STATUS "Using local llc: ${DEBASE_LLC}")
       set(DOWNLOADED_DEBASER ON CACHE BOOL "")
     else()
-	  	set(DOWNLOADED_DEBASER OFF)
-	  endif()
-    unset(GEODE_CODEGEN_DOWNLOAD_STATUS_CODE)
+      message(STATUS "Downloading ${LLC_DOWNLOAD_FILE_NAME}")
+      geode_download_file(llc
+        "https://github.com/9inefold/debase/releases/download/debase/${LLC_DOWNLOAD_FILE_NAME}"
+		  	"${GEODE_CODEGEN_BINARY_OUT}/${LLC_TARGET_FILE_NAME}")
+      if (${GEODE_CODEGEN_DOWNLOAD_STATUS_CODE} EQUAL 0)
+        set(DOWNLOADED_DEBASER ON CACHE BOOL "")
+      else()
+	    	set(DOWNLOADED_DEBASER OFF)
+	    endif()
+      unset(GEODE_CODEGEN_DOWNLOAD_STATUS_CODE)
+    endif()
   endif()
+
   unset(DEBASE_DOWNLOAD_FILE_NAME)
   unset(LLC_DOWNLOAD_FILE_NAME)
 endif()
@@ -156,12 +166,16 @@ if (DOWNLOADED_DEBASER)
       ${CMAKE_CURRENT_BINARY_DIR}/debase
     )
   else()
+    if (DEFINED DEBASE_LLC)
+      set(DEBASE_LLC_CMD "DEBASE_LLC ${DEBASE_LLC}")
+    endif()
     CPMAddPackage(
       URI "gh:9inefold/debase#${GEODE_DEBASE_TAG}"
       OPTIONS
         "DEBASE_BINARY_DIR ${GEODE_CODEGEN_BINARY_OUT}"
         "DEBASE_RUNTIME_ONLY ON"
         "DEBASE_GENERATE_TARGET_FUNCTION ON"
+        ${DEBASE_LLC_CMD}
     )
   endif()
 endif()
