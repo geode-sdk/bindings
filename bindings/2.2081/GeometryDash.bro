@@ -5723,21 +5723,32 @@ class GameLevelOptionsLayer : GJOptionsLayer {
     GJGameLevel* m_level;
 }
 
+/// This class handles most game logic, and events.
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
     // virtual ~GameManager();
     // GameManager() = win 0x17ab40, ios 0x32eafc;
 
+    /// Gets the active GameManager
+    /// @returns The current instance pointer of the GameManager
     static GameManager* get() = inline;
     static GameManager* sharedState() = win 0x17b4a0, imac 0x376a80, m1 0x300128, ios 0x311ce8;
 
+    /// Updates the GameManager for the current frame.
+    /// @param dt Delta time (Time elapsed between the last frame and the current one)
     virtual void update(float dt) = win 0x189bc0, imac 0x38bb20, m1 0x312910, ios 0x31d358;
+    /// Initializes the GameManager.
+    /// @returns A true or false value for whether initialization was successful or not.
     virtual bool init() = win 0x17b4f0, imac 0x376ae0, m1 0x300194, ios 0x311d48;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x188fb0, imac 0x38af20, m1 0x311d34, ios 0x31cb0c;
     virtual void dataLoaded(DS_Dictionary* dict) = win 0x186a90, imac 0x389140, m1 0x310294, ios 0x31b408;
     virtual void firstLoad() = win 0x1886b0, imac 0x38a600, m1 0x311520, ios 0x31c5f8;
 
+    /// When the client's account status is changed (e.g. logged in or logged out), this will be called.
     void accountStatusChanged() = win inline, imac 0x384e20, m1 0x30cb20, ios 0x319740;
+    /// Gets the ID for one of the client's current icons.
+    /// @param type The type of icon to get the ID for
+    /// @returns Icon ID
     int activeIconForType(IconType type) = win 0x181a90, imac 0x380b80, m1 0x308b74, ios 0x317640;
     void addCustomAnimationFrame(int objectID, int frameIndex, gd::string mainFrame, gd::string detailFrame) = win 0x1aeb60, imac 0x266460, m1 0x20a000, ios 0x34f588;
     void addDuplicateLastFrame(int objectID) = win inline, imac 0x266590, m1 0x20a118, ios inline;
@@ -5760,6 +5771,7 @@ class GameManager : GManager {
     int countForType(IconType type) = win 0x181c00, imac 0x380df0, m1 0x308c84, ios 0x317750;
     int defaultFrameForAnimation(int objectID) = win inline, imac 0x25d9c0, m1 0x201d2c, ios inline;
     void didExitPlayscene() = win inline, imac 0x38ba90, m1 0x312860, ios 0x31d310;
+    /// Performs a "Quick Save" and saves the progress of the client.
     void doQuickSave() = win inline, imac 0x38ba60, m1 0x312834, ios 0x31d2e4;
     gd::string dpadConfigToString(UIButtonConfig& config) = win 0x186490, imac 0x3878b0, m1 0x30ecf4, ios 0x31a98c;
     void eventUnlockFeature(char const* key) = win inline, imac 0x37fb20, m1 0x307af0, ios inline;
@@ -5794,22 +5806,54 @@ class GameManager : GManager {
     int getNextUniqueObjectKey() = win inline, imac 0x384440, m1 0x30c174, ios 0x319208;
     int getNextUsedKey(int index, bool up) = win inline, imac 0x384530, m1 0x30c26c, ios 0x3192c4;
     cocos2d::CCArray* getOrderedCustomObjectKeys() = win inline, imac 0x3844e0, m1 0x30c220, ios 0x319278;
+    /// Gets the icon ID for the client's current ball icon.
+    /// @returns Icon ID
     int getPlayerBall() = inline;
+    /// Gets the icon ID for the client's current bird/ufo icon.
+    /// @returns Icon ID
     int getPlayerBird() = inline;
+    /// Gets the color ID for the client's current primary color.
+    /// @returns Color ID
     int getPlayerColor() = inline;
+    /// Gets the color ID for the client's current secondary color.
+    /// @returns Color ID
     int getPlayerColor2() = inline;
+    /// Gets the icon ID for the client's current dart/wave icon.
+    /// @returns Icon ID
     int getPlayerDart() = inline;
+    /// Gets the death effect ID for the client's current death effect.
+    /// @returns Death effect ID
     int getPlayerDeathEffect() = inline;
+    /// Gets the icon ID for the client's current cube icon.
+    /// @returns Icon ID
     int getPlayerFrame() = inline;
+    /// Gets the "Glow Enabled" state for the client's icons.
+    /// @returns Glow enabled state
     bool getPlayerGlow() = inline;
+    /// Gets the color ID for the client's current glow color.
+    /// @returns Color ID
     int getPlayerGlowColor() = inline;
+    /// Gets the icon ID for the client's current jetpack icon.
+    /// @returns Icon ID
     int getPlayerJetpack() = inline;
+    /// Gets the icon ID for the client's current robot icon.
+    /// @returns Icon ID
     int getPlayerRobot() = inline;
+    /// Gets the icon ID for the client's current ship icon.
+    /// @returns Icon ID
     int getPlayerShip() = inline;
     int getPlayerShipFire() = inline;
+    /// Gets the ID for the client's current spider icon.
+    /// @returns Icon ID
     int getPlayerSpider() = inline;
+    /// Gets the ID for the client's current streak/trail.
+    /// @returns Streak ID
     int getPlayerStreak() = inline;
+    /// Gets the ID for the client's current swing icon.
+    /// @returns Icon ID
     int getPlayerSwing() = inline;
+    /// Gets the active PlayLayer. Returns nullptr if none.
+    /// @returns PlayLayer pointer
     PlayLayer* getPlayLayer() = inline;
     gd::string getPracticeMusicFile() = win inline, imac 0x376ec0, m1 0x30055c, ios 0x311fcc;
     bool getUGV(char const* key) = win 0x1834a0, imac 0x3840b0, m1 0x30bd78, ios 0x318fe8;
