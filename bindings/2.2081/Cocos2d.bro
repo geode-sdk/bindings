@@ -300,22 +300,22 @@ class cocos2d::CCAnimation : cocos2d::CCObject {
     // void setLoops(unsigned int);
     // void setRestoreOriginalFrame(bool);
     // CCAnimation(cocos2d::CCAnimation const&);
-    CCAnimation();
-    virtual ~CCAnimation();
+    CCAnimation() = m1 0x236f04, imac 0x296c90, ios inline;
+    virtual ~CCAnimation() = m1 0x236f38, imac 0x296ce0, ios 0x1a4438;
 
-    static cocos2d::CCAnimation* create() = imac 0x2967a0, m1 0x236a50;
-    static cocos2d::CCAnimation* create(cocos2d::CCArray*, float, unsigned int) = imac 0x296ae0, m1 0x236d54;
+    static cocos2d::CCAnimation* create() = imac 0x2967a0, m1 0x236a50, ios inline;
+    static cocos2d::CCAnimation* create(cocos2d::CCArray*, float, unsigned int) = imac 0x296ae0, m1 0x236d54, ios 0x1a4320;
     static cocos2d::CCAnimation* createWithSpriteFrames(cocos2d::CCArray*, float) = imac 0x2968e0, m1 0x236b7c, ios 0x1a417c;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x296f40, m1 0x23718c, ios 0x1a4498;
     virtual float getDuration() = imac 0x296f30, m1 0x237180, ios 0x1a448c;
 
-    void addSpriteFrame(cocos2d::CCSpriteFrame*);
-    void addSpriteFrameWithFileName(char const*);
-    void addSpriteFrameWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&);
-    bool init() = imac 0x296890, m1 0x236b20;
-    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int) = imac 0x296bf0, m1 0x236e5c;
-    bool initWithSpriteFrames(cocos2d::CCArray*, float) = imac 0x296970, m1 0x236c04;
+    void addSpriteFrame(cocos2d::CCSpriteFrame*) = m1 0x236ff0, imac 0x296da0, ios inline;
+    void addSpriteFrameWithFileName(char const*) = m1 0x2370c0, imac 0x296e80, ios inline;
+    void addSpriteFrameWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = m1 0x237150, imac 0x296f00, ios inline;
+    bool init() = imac 0x296890, m1 0x236b2, ios inline;
+    bool initWithAnimationFrames(cocos2d::CCArray*, float, unsigned int) = imac 0x296bf0, m1 0x236e5c, ios 0x1a43b8;
+    bool initWithSpriteFrames(cocos2d::CCArray*, float) = imac 0x296970, m1 0x236c04, ios 0x1a4204;
 }
 
 [[link(win, android)]]
@@ -338,12 +338,12 @@ class cocos2d::CCAnimationCache : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCAnimationFrame : cocos2d::CCObject {
-    CCAnimationFrame();
-    virtual ~CCAnimationFrame();
+    CCAnimationFrame() = m1 0x236760, imac 0x296480, ios inline;
+    virtual ~CCAnimationFrame() = m1 0x236824, imac 0x296550, ios 0x1a401c;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x296640, m1 0x236900, ios 0x1a407c;
 
-    bool initWithSpriteFrame(cocos2d::CCSpriteFrame*, float, cocos2d::CCDictionary*);
+    bool initWithSpriteFrame(cocos2d::CCSpriteFrame*, float, cocos2d::CCDictionary*) = m1 0x236794, imac 0x2964c0, ios inline;
 }
 
 [[link(win, android)]]
