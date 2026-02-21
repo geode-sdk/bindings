@@ -1680,25 +1680,25 @@ class cocos2d::CCIMEDelegate {
 
 [[link(win, android)]]
 class cocos2d::CCIMEDispatcher {
-    CCIMEDispatcher();
-    ~CCIMEDispatcher();
+    CCIMEDispatcher() = m1 0x41c560, imac 0x4bc2e0, ios inline;
+    ~CCIMEDispatcher() = m1 0x41c5c8, imac 0x4bc360, ios 0x1d3bb0;
 
     static cocos2d::CCIMEDispatcher* sharedDispatcher() = imac 0x4bbd10, m1 0x41bf40, ios 0x1d3858;
 
-    void addDelegate(cocos2d::CCIMEDelegate*);
-    bool attachDelegateWithIME(cocos2d::CCIMEDelegate*);
-    bool detachDelegateWithIME(cocos2d::CCIMEDelegate*);
+    void addDelegate(cocos2d::CCIMEDelegate*) = m1 0x41bfe8, imac 0x4bbdb0, ios 0x1d38f0;
+    bool attachDelegateWithIME(cocos2d::CCIMEDelegate*) = m1 0x41c318, imac 0x4bc0e0, ios 0x1d3a38;
+    bool detachDelegateWithIME(cocos2d::CCIMEDelegate*) = m1 0x41c4e8, imac 0x4bc280, ios 0x1d3b3c;
     void dispatchDeleteBackward() = imac 0x4bc490, m1 0x41c6f8, ios 0x1d3c1c;
-    void dispatchDeleteForward() = imac 0x4bc4b0, m1 0x41c718;
+    void dispatchDeleteForward() = imac 0x4bc4b0, m1 0x41c718, ios inline;
     void dispatchInsertText(char const*, int, cocos2d::enumKeyCodes) = imac 0x4bc460, m1 0x41c6cc, ios 0x1d3bf0;
-    void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&);
-    void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&);
-    void dispatchKeyboardWillHide();
-    void dispatchKeyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&);
-    void dispatchKeyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&);
-    char const* getContentText();
-    bool hasDelegate() = imac 0x4bc440, m1 0x41c6b8;
-    void removeDelegate(cocos2d::CCIMEDelegate*);
+    void dispatchKeyboardDidHide(cocos2d::CCIMEKeyboardNotificationInfo&) = m1 0x41c8b8, imac 0x4bc600, ios 0x1d3d50;
+    void dispatchKeyboardDidShow(cocos2d::CCIMEKeyboardNotificationInfo&) = m1 0x41c7f0, imac 0x4bc560, ios 0x1d3c98;
+    void dispatchKeyboardWillHide() = m1 0x41c91c, imac 0x4bc650, ios inline;
+    void dispatchKeyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo&) = m1 0x41c854, imac 0x4bc5b0, ios 0x1d3cf4;
+    void dispatchKeyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo&) = m1 0x41c78c, imac 0x4bc510, ios 0x1d3c3c;
+    char const* getContentText() = m1 0x41c738, imac 0x4bc4d0, ios inline;
+    bool hasDelegate() = imac 0x4bc440, m1 0x41c6b8, ios inline;
+    void removeDelegate(cocos2d::CCIMEDelegate*) = m1 0x41c14c, imac 0x4bbf10, ios 0x1d399c;
 }
 
 [[link(win, android)]]
@@ -4305,9 +4305,9 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     // CCTexture2D(cocos2d::CCTexture2D const&);
     virtual ~CCTexture2D() = imac 0x478020, m1 0x3deec4, ios 0x12d3b4;
 
-    static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat();
+    static cocos2d::CCTexture2DPixelFormat defaultAlphaPixelFormat() = m1 0x3e0440, imac 0x479660, ios 0x12e02c;
     static void PVRImagesHavePremultipliedAlpha(bool) = imac 0x479490, m1 0x3e0274, ios 0x12dedc;
-    static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x479650, m1 0x3e0434;
+    static void setDefaultAlphaPixelFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x479650, m1 0x3e0434, ios 0x12e020;
 
     virtual cocos2d::CCTexture2DPixelFormat getPixelFormat() = imac 0x478110, m1 0x3defa0, ios 0x12d414;
     virtual unsigned int getPixelsWide() = imac 0x478120, m1 0x3defa8, ios 0x12d41c;
@@ -4322,29 +4322,29 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     virtual void setShaderProgram(cocos2d::CCGLProgram*) = imac 0x478220, m1 0x3df048, ios 0x12d4bc;
 
     unsigned int bitsPerPixelForFormat() = imac 0x479670, m1 0x3e044c, ios inline;
-    unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x4785c0, m1 0x3df3a8, ios inline;
-    char const* description() = imac 0x4785e0, m1 0x3df3c8;
-    void drawAtPoint(cocos2d::CCPoint const&) = imac 0x4790e0, m1 0x3dfecc;
-    void drawInRect(cocos2d::CCRect const&) = imac 0x4791f0, m1 0x3dffe4;
-    void generateMipmap() = imac 0x4794a0, m1 0x3e0280;
+    unsigned int bitsPerPixelForFormat(cocos2d::CCTexture2DPixelFormat) = imac 0x4785c0, m1 0x3df3a8, ios 0x12d7dc;
+    char const* description() = imac 0x4785e0, m1 0x3df3c8, ios inline;
+    void drawAtPoint(cocos2d::CCPoint const&) = imac 0x4790e0, m1 0x3dfecc, ios inline;
+    void drawInRect(cocos2d::CCRect const&) = imac 0x4791f0, m1 0x3dffe4, ios inline;
+    void generateMipmap() = imac 0x4794a0, m1 0x3e0280, ios inline;
     cocos2d::CCSize const& getContentSizeInPixels() = imac 0x4781c0, m1 0x3df018, ios 0x12d48c;
-    bool hasMipmaps();
+    bool hasMipmaps() = m1 0x3e02d0, imac 0x4794e0, ios inline;
     bool hasPremultipliedAlpha() = m1 0x3df0c0, imac 0x4782b0, ios 0x12d4f8;
     bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = imac 0x478680, m1 0x3df488, ios 0x12d86c;
     bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = imac 0x4782c0, m1 0x3df0c8, ios 0x12d500;
-    bool initWithETCFile(char const*) = imac 0x4793c0, m1 0x3e01ac;
+    bool initWithETCFile(char const*) = imac 0x4793c0, m1 0x3e01ac, ios 0x12de14;
     bool initWithImage(cocos2d::CCImage*) = imac 0x478620, m1 0x3df40c, ios 0x12d7fc;
-    bool initWithPVRFile(char const*) = imac 0x4792e0, m1 0x3e00d8;
+    bool initWithPVRFile(char const*) = imac 0x4792e0, m1 0x3e00d8, ios 0x12dd40;
     bool initWithString(char const*, cocos2d::ccFontDefinition*) = m1 0x3dfec4, imac 0x4790d0, ios 0x12db2c;
     bool initWithString(char const*, char const*, float) = imac 0x478f30, m1 0x3dfd08, ios inline;
     bool initWithString(char const*, char const*, float, cocos2d::CCSize const&, cocos2d::CCTextAlignment, cocos2d::CCVerticalTextAlignment) = imac 0x478f90, m1 0x3dfd78, ios inline;
-    void* keepData(void*, unsigned int);
-    void releaseData(void*);
-    void releaseGLTexture() = imac 0x478260, m1 0x3df084;
+    void* keepData(void*, unsigned int) = m1 0x3df0b8, imac 0x4782a0, ios inline;
+    void releaseData(void*) = m1 0x3df0b0, imac 0x478290, ios inline;
+    void releaseGLTexture() = imac 0x478260, m1 0x3df084, ios inline;
     void setAliasTexParameters() = imac 0x479580, m1 0x3e0370, ios 0x12df80;
     void setAntiAliasTexParameters() = imac 0x4795d0, m1 0x3e03c0, ios 0x12dfd0;
     void setTexParameters(cocos2d::ccTexParams*) = imac 0x4794f0, m1 0x3e02d8, ios 0x12dee8;
-    char const* stringForFormat() = imac 0x479620, m1 0x3e0410;
+    char const* stringForFormat() = imac 0x479620, m1 0x3e0410, ios inline;
 }
 
 [[link(win, android)]]
@@ -4354,8 +4354,8 @@ class cocos2d::CCTextureAtlas : cocos2d::CCObject {
     CCTextureAtlas() = imac 0x4accb0, m1 0x40f9a4, ios 0x269df8;
     virtual ~CCTextureAtlas() = imac 0x4accf0, m1 0x40f9d4, ios 0x269e28;
 
-    static cocos2d::CCTextureAtlas* create(char const*, unsigned int);
-    static cocos2d::CCTextureAtlas* createWithTexture(cocos2d::CCTexture2D*, unsigned int);
+    static cocos2d::CCTextureAtlas* create(char const*, unsigned int) = m1 0x40fad4, imac 0x4ace40, ios inline;
+    static cocos2d::CCTextureAtlas* createWithTexture(cocos2d::CCTexture2D*, unsigned int) = m1 0x40fbf4, imac 0x4acf40, ios inline;
 
     virtual unsigned int getTotalQuads() = imac 0x4acdb0, m1 0x40fa68, ios 0x269ebc;
     virtual unsigned int getCapacity() = imac 0x4acdc0, m1 0x40fa70, ios 0x269ec4;
@@ -4364,85 +4364,85 @@ class cocos2d::CCTextureAtlas : cocos2d::CCObject {
     virtual cocos2d::ccV3F_C4B_T2F_Quad* getQuads() = imac 0x4ace20, m1 0x40fabc, ios 0x269f10;
     virtual void setQuads(cocos2d::ccV3F_C4B_T2F_Quad*) = imac 0x4ace30, m1 0x40facc, ios 0x269f20;
 
-    char const* description();
-    void drawNumberOfQuads(unsigned int);
-    void drawNumberOfQuads(unsigned int, unsigned int);
-    void drawQuads();
-    void fillWithEmptyQuadsFromIndex(unsigned int, unsigned int);
-    void increaseTotalQuadsWith(unsigned int);
-    bool initWithFile(char const*, unsigned int);
-    bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
+    char const* description() = m1 0x40ffd4, imac 0x4ad860, ios inline;
+    void drawNumberOfQuads(unsigned int) = m1 0x410834, imac 0x4ae680, ios inline;
+    void drawNumberOfQuads(unsigned int, unsigned int) = m1 0x41074c, imac 0x4ae5a0, ios 0x26a4e0;
+    void drawQuads() = m1 0x410740, imac 0x4ae590, ios 0x26a4d4;
+    void fillWithEmptyQuadsFromIndex(unsigned int, unsigned int) = m1 0x4106fc, imac 0x4ae420, ios inline;
+    void increaseTotalQuadsWith(unsigned int) = m1 0x4105e0, imac 0x4ae2b0, ios inline;
+    bool initWithFile(char const*, unsigned int) = m1 0x40fb98, imac 0x4acef0, ios inline;
+    bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = m1 0x40fca4, imac 0x4acfe0, ios 0x269f28;
     void insertQuad(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int) = m1 0x4100cc, imac 0x4ad970, ios 0x26a274;
-    void insertQuadFromIndex(unsigned int, unsigned int);
-    void insertQuads(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int, unsigned int);
+    void insertQuadFromIndex(unsigned int, unsigned int) = m1 0x410234, imac 0x4adc00, ios inline;
+    void insertQuads(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int, unsigned int) = m1 0x41016c, imac 0x4ada20, ios inline;
     // bool isDirty();
-    void listenBackToForeground(cocos2d::CCObject*);
-    void mapBuffers();
-    void moveQuadsFromIndex(unsigned int, unsigned int);
-    void moveQuadsFromIndex(unsigned int, unsigned int, unsigned int);
-    void removeAllQuads();
-    void removeQuadAtIndex(unsigned int);
-    void removeQuadsAtIndex(unsigned int, unsigned int);
-    bool resizeCapacity(unsigned int);
-    void setupIndices();
+    void listenBackToForeground(cocos2d::CCObject*) = m1 0x40ffac, imac 0x4ad840, ios inline;
+    void mapBuffers() = m1 0x410000, imac 0x4ad880, ios 0x26a1a8;
+    void moveQuadsFromIndex(unsigned int, unsigned int) = m1 0x4106dc, imac 0x4ae3e0, ios inline;
+    void moveQuadsFromIndex(unsigned int, unsigned int, unsigned int) = m1 0x410600, imac 0x4ae2d0, ios inline;
+    void removeAllQuads() = m1 0x410388, imac 0x4adda0, ios 0x26a370;
+    void removeQuadAtIndex(unsigned int) = m1 0x4102d8, imac 0x4adcf0, ios 0x26a314;
+    void removeQuadsAtIndex(unsigned int, unsigned int) = m1 0x410334, imac 0x4add50, ios inline;
+    bool resizeCapacity(unsigned int) = m1 0x410390, imac 0x4addb0, ios 0x26a378;
+    void setupIndices() = m1 0x40fe28, imac 0x4ad420, ios 0x26a024;
     [[missing(mac, ios)]]
     void setupVBO();
     [[missing(win, android)]]
-    void setupVBOandVAO();
-    void updateQuad(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int);
+    void setupVBOandVAO() = m1 0x40fe98, imac 0x4ad710, ios 0x26a094;
+    void updateQuad(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int) = m1 0x410088, imac 0x4ad910, ios 0x26a230;
 }
 
 [[link(win, android)]]
 class cocos2d::CCTextureCache : cocos2d::CCObject {
     // CCTextureCache(cocos2d::CCTextureCache const&);
-    CCTextureCache();
-    virtual ~CCTextureCache();
+    CCTextureCache() = m1 0x516778, imac 0x5ec8c0, ios 0x113254;
+    virtual ~CCTextureCache() = m1 0x516878, imac 0x5ec9c0, ios 0x1132c8;
 
-    static void purgeSharedTextureCache();
-    static void reloadAllTextures();
+    static void purgeSharedTextureCache() = m1 0x51696c, imac 0x5ecac0, ios 0x113334;
+    static void reloadAllTextures() = m1 0x518df4, imac 0x5eef60, ios inline;
     static cocos2d::CCTextureCache* sharedTextureCache() = imac 0x5ec810, m1 0x5166bc, ios 0x113204;
 
-    cocos2d::CCTexture2D* addETCImage(char const*);
+    cocos2d::CCTexture2D* addETCImage(char const*) = m1 0x5183b4, imac 0x5ee5b0, ios 0x1145dc;
     cocos2d::CCTexture2D* addImage(char const*, bool) = imac 0x5edad0, m1 0x517884, ios 0x113dec;
     void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat) = imac 0x5eccd0, m1 0x516b58, ios 0x113394;
-    void addImageAsyncCallBack(float);
-    cocos2d::CCTexture2D* addPVRImage(char const*);
+    void addImageAsyncCallBack(float) = m1 0x5175c4, imac 0x5ed7e0, ios 0x113bd4;
+    cocos2d::CCTexture2D* addPVRImage(char const*) = m1 0x518054, imac 0x5ee280, ios 0x114418;
     cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = imac 0x5ee8e0, m1 0x518714, ios 0x1147a0;
-    char const* description() = imac 0x5ecaf0, m1 0x516998;
-    void dumpCachedTextureInfo();
+    char const* description() = imac 0x5ecaf0, m1 0x516998, ios inline;
+    void dumpCachedTextureInfo() = m1 0x518df8, imac 0x5eef70, ios inline;
     void prepareAsyncLoading() = imac 0x5ecc90, m1 0x516b24, ios 0x113360;
-    bool reloadTexture(char const*);
-    void removeAllTextures();
-    void removeTexture(cocos2d::CCTexture2D*);
+    bool reloadTexture(char const*) = m1 0x5189a8, imac 0x5eeb70, ios inline;
+    void removeAllTextures() = m1 0x518afc, imac 0x5eec90, ios inline;
+    void removeTexture(cocos2d::CCTexture2D*) = m1 0x518c94, imac 0x5eee30, ios inline;
     void removeTextureForKey(char const*) = imac 0x5eee60, m1 0x518ccc, ios 0x114930;
-    void removeUnusedTextures();
-    cocos2d::CCDictionary* snapshotTextures();
+    void removeUnusedTextures() = m1 0x518b04, imac 0x5eeca0, ios inline;
+    cocos2d::CCDictionary* snapshotTextures() = m1 0x5169c8, imac 0x5ecb20, ios inline;
     cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x5eeee0, m1 0x518d5c, ios 0x1149b0;
 }
 
 [[link(win, android)]]
 class cocos2d::CCTextureETC : cocos2d::CCObject {
-    CCTextureETC();
-    virtual ~CCTextureETC();
+    CCTextureETC() = m1 0x1b5cdc, imac 0x209e60, ios 0x196738;
+    virtual ~CCTextureETC() = m1 0x1b5d04, imac 0x209e90, ios inline;
 
-    unsigned int getHeight() const;
-    unsigned int getName() const;
-    unsigned int getWidth() const;
-    bool initWithFile(char const*);
-    bool loadTexture(char const*);
+    unsigned int getHeight() const = m1 0x1b5d38, imac 0x209f00, ios 0x196790;
+    unsigned int getName() const = m1 0x1b5d28, imac 0x209ee0, ios 0x196780;
+    unsigned int getWidth() const = m1 0x1b5d30, imac 0x209ef0, ios 0x196788;
+    bool initWithFile(char const*) = m1 0x1b5d20, imac 0x209ed0, ios 0x196778;
+    bool loadTexture(char const*) = m1 0x1b5d40, imac 0x209f10, ios inline;
 }
 
 [[link(win, android)]]
 class cocos2d::CCTexturePVR : cocos2d::CCObject {
-    CCTexturePVR();
-    virtual ~CCTexturePVR();
+    CCTexturePVR() = m1 0x226608, imac 0x284af0, ios 0x3702b8;
+    virtual ~CCTexturePVR() = m1 0x226634, imac 0x284b20, ios 0x3702e4;
 
-    static cocos2d::CCTexturePVR* create(char const*);
+    static cocos2d::CCTexturePVR* create(char const*) = m1 0x227150, imac 0x2857d0, ios inline;
 
-    bool createGLTexture();
-    bool initWithContentsOfFile(char const*);
-    bool unpackPVRv2Data(unsigned char*, unsigned int);
-    bool unpackPVRv3Data(unsigned char*, unsigned int);
+    bool createGLTexture() = m1 0x226b7c, imac 0x285160, ios 0x370720;
+    bool initWithContentsOfFile(char const*) = m1 0x226e3c, imac 0x2854a0, ios 0x3708f0;
+    bool unpackPVRv2Data(unsigned char*, unsigned int) = m1 0x226704, imac 0x284c10, ios 0x370340;
+    bool unpackPVRv3Data(unsigned char*, unsigned int) = m1 0x226924, imac 0x284e80, ios 0x370550;
 }
 
 [[link(win, android)]]
