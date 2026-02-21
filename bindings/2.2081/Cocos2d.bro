@@ -871,12 +871,12 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void checkSceneReference();
     cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x483dc0, m1 0x3e9b00, ios 0x175d80;
     cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&) = imac 0x483ee0, m1 0x3e9bdc, ios inline;
-    void createStatsLabel();
+    void createStatsLabel() = m1 0x3e9564, imac 0x483740, ios 0x175a64;
     void drawScene() = imac 0x482de0, m1 0x3e8cac, ios 0x1755fc;
     void end() = imac 0x484430, m1 0x3ea0a4, ios 0x176160;
     // float getActualDeltaTime() const;
     // double getAnimationInterval();
-    float getContentScaleFactor(); // ios 0x179bdc
+    // float getContentScaleFactor();
     cocos2d::CCDirectorDelegate* getDelegate() const;
     // bool getDontCallWillSwitch() const;
     void getFPSImageData(unsigned char**, unsigned int*);
@@ -888,10 +888,10 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     // cocos2d::ccDirectorProjection getProjection();
     // cocos2d::CCScene* getRunningScene();
     // cocos2d::CCScene* getSceneReference() const;
-    float getScreenScaleFactor();
-    float getScreenScaleFactorH();
-    float getScreenScaleFactorMax();
-    float getScreenScaleFactorW();
+    // float getScreenScaleFactor();
+    // float getScreenScaleFactorH();
+    // float getScreenScaleFactorMax();
+    // float getScreenScaleFactorW();
     // float getSecondsPerFrame();
     // bool getSmoothFix() const;
     // bool getSmoothFixCheck() const;
@@ -1345,7 +1345,7 @@ class cocos2d::CCEGLViewProtocol {
     void getSetOfTouchesEndOrCancel(cocos2d::CCSet&, int, int*, float*, float*, double) = m1 0x4671b8, imac 0x510400, ios 0x2e7138;
     char const* getViewName() = m1 0x466d34, imac 0x50ff70, ios inline;
     cocos2d::CCRect const& getViewPortRect() const = imac 0x5106b0, m1 0x4674a4, ios 0x2e73e8;
-    void updateDesignResolutionSize() = m1 0x4674c0, imac 0x5106f0;
+    void updateDesignResolutionSize() = m1 0x4674c0, imac 0x5106f0, ios inline;
 }
 
 [[link(win, android)]]
@@ -1876,7 +1876,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     // void setIsBatched(bool);
     // void setTargetArray(cocos2d::CCArray*);
     void createFontChars() = imac 0x5d8e00, m1 0x504ae0, ios 0x2fb780;
-    cocos2d::CCBMFontConfiguration* getConfiguration() const;
+    // cocos2d::CCBMFontConfiguration* getConfiguration() const;
     // int getExtraKerning() const;
     char const* getFntFile() = imac 0x5db520, m1 0x506c78, ios inline;
     // bool getIsBatched() const;
@@ -2820,7 +2820,7 @@ class cocos2d::CCObject : cocos2d::CCCopying {
     bool isSingleReference() const = imac 0x48ab10, m1 0x3f0120, ios inline;
     void release() = imac 0x48aab0, m1 0x3f00c0, ios 0x8497c;
     void retain() = imac 0x48aad0, m1 0x3f00e4, ios 0x849a0;
-    unsigned int retainCount() const;
+    // unsigned int retainCount() const;
 
     uint32_t m_uID;
     int m_nLuaID;
@@ -4179,11 +4179,11 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     void addSpriteFramesWithFile(char const* plist, cocos2d::CCTexture2D* texture) = imac 0x31ce60, m1 0x2aaee4, ios inline;
     bool init() = m1 0x2aa264, imac 0x31c100, ios 0x3bbed0;
     void removeSpriteFrameByName(char const* name) = imac 0x31d450, m1 0x2ab614, ios inline;
-    void removeSpriteFrames() = imac 0x31d360, m1 0x2ab530;
+    void removeSpriteFrames() = imac 0x31d360, m1 0x2ab530, ios inline;
     void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = imac 0x31d930, m1 0x2abba8, ios 0x3bcc20;
     void removeSpriteFramesFromFile(char const*) = imac 0x31d760, m1 0x2ab8dc, ios 0x3bcb10;
-    void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = imac 0x31db60, m1 0x2abde0;
-    void removeUnusedSpriteFrames() = imac 0x31d3a0, m1 0x2ab57c;
+    void removeSpriteFramesFromTexture(cocos2d::CCTexture2D*) = imac 0x31db60, m1 0x2abde0, ios inline;
+    void removeUnusedSpriteFrames() = imac 0x31d3a0, m1 0x2ab57c, ios inline;
     cocos2d::CCSpriteFrame* spriteFrameByName(char const*) = imac 0x31de60, m1 0x2ac0c8, ios 0x3bcd44;
 }
 
