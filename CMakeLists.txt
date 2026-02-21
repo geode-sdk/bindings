@@ -41,7 +41,7 @@ endif()
 
 if (BINDINGS_DEBASER)
   set(GEODE_DEBASE_VER 1.0.2)
-  set(GEODE_DEBASE_TAG f76bba7)
+  set(GEODE_DEBASE_TAG 2b6f1b4)
 	list(APPEND GEODE_CODEGEN_EXTRA_ARGS --debase)
 endif()
 
