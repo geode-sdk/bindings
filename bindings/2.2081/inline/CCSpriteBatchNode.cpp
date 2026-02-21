@@ -130,7 +130,7 @@ void cocos2d::CCSpriteBatchNode::insertChild(cocos2d::CCSprite* pSprite, unsigne
 
     ccArrayInsertObjectAtIndex(descendantsData, pSprite, uIndex);
 
-    unsigned int i = uIndex+1;
+    unsigned int i = uIndex + 1;
 
     CCSprite* pChild = nullptr;
     for (; i < descendantsData->num; i++){
