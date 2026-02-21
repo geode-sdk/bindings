@@ -4203,6 +4203,9 @@ class cocos2d::CCStopGrid : cocos2d::CCActionInstant {
 
 [[link(win, android)]]
 class cocos2d::CCString : cocos2d::CCObject {
+    [[since("5.0.0-beta.4")]]
+    CCString();
+
     static cocos2d::CCString* createWithContentsOfFile(char const*) = imac 0x7ab6d0, m1 0x6b2100, ios 0x268fd4;
     static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x7ab400, m1 0x6b1ec0, ios 0x268e98;
 
