@@ -78,9 +78,9 @@ class cocos2d {
     static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x356140, m1 0x2e24d8, ios 0x1ae950;
     static cocos2d::CCPoint CCPointFromString(char const*) = imac 0x5675e0, m1 0x4b5f48, ios 0x1a6808;
     static void ccPointSize(float);
-    static void CCProfilingBeginTimingBlock(char const*);
-    static void CCProfilingEndTimingBlock(char const*);
-    static void CCProfilingResetTimingBlock(char const*);
+    static void CCProfilingBeginTimingBlock(char const*) = m1 0x446b54, imac 0x4ec650;
+    static void CCProfilingEndTimingBlock(char const*) = m1 0x446cd8, imac 0x4ec7e0;
+    static void CCProfilingResetTimingBlock(char const*) = m1 0x446e9c, imac 0x4ec9b0;
     static cocos2d::CCPoint ccpRotateByAngle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float);
     static bool ccpSegmentIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&);
     static float ccpToAngle(cocos2d::CCPoint const& point) = imac 0x3561c0, m1 0x2e2534, ios inline;
@@ -689,10 +689,10 @@ class cocos2d::CCClippingNode : cocos2d::CCNode {
 
 [[link(win, android)]]
 class cocos2d::CCComponent : cocos2d::CCObject {
-    protected CCComponent();
-    virtual ~CCComponent();
+    protected CCComponent() = m1 0x8c948, imac 0x9bc40;
+    virtual ~CCComponent() = m1 0x8c9b0, imac 0x9bca0;
 
-    static cocos2d::CCComponent* create();
+    static cocos2d::CCComponent* create() = m1 0x8caa8, imac 0x9bdb0;
 
     virtual bool init() = imac 0x9bd60, m1 0x8ca8c;
     virtual void onEnter() = imac 0x9bd70, m1 0x8ca94;
@@ -702,10 +702,10 @@ class cocos2d::CCComponent : cocos2d::CCObject {
     virtual bool isEnabled() const = imac 0x9be60, m1 0x8cb44;
     virtual void setEnabled(bool) = imac 0x9be70, m1 0x8cb4c;
 
-    char const* getName() const;
-    cocos2d::CCNode* getOwner() const;
-    void setName(char const*);
-    void setOwner(cocos2d::CCNode*);
+    char const* getName() const = m1 0x8cb10, imac 0x9be10;
+    cocos2d::CCNode* getOwner() const = m1 0x8cb34, imac 0x9be40;
+    void setName(char const*) = m1 0x8cb2c, imac 0x9be30;
+    void setOwner(cocos2d::CCNode*) = m1 0x8cb3c, imac 0x9be50;
 }
 
 [[link(win, android)]]
@@ -2766,27 +2766,27 @@ class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 
 [[link(win, android)]]
 class cocos2d::CCNotificationCenter : cocos2d::CCObject {
-    CCNotificationCenter();
-    virtual ~CCNotificationCenter();
+    CCNotificationCenter() = m1 0x228bc0, imac 0x2874c0;
+    virtual ~CCNotificationCenter() = m1 0x228c70, imac 0x287560;
 
-    static void purgeNotificationCenter();
-    static cocos2d::CCNotificationCenter* sharedNotificationCenter();
+    static void purgeNotificationCenter() = m1 0x228db4, imac 0x2876b0, ios 0x26911c;
+    static cocos2d::CCNotificationCenter* sharedNotificationCenter() = m1 0x228d1c, imac 0x287620;
 
-    void addObserver(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, char const*, cocos2d::CCObject*);
-    int getObserverHandlerByName(char const*);
-    bool observerExisted(cocos2d::CCObject*, char const*);
-    void postNotification(char const*);
-    void postNotification(char const*, cocos2d::CCObject*);
-    void registerScriptObserver(cocos2d::CCObject*, int, char const*);
-    int removeAllObservers(cocos2d::CCObject*);
-    void removeObserver(cocos2d::CCObject*, char const*);
-    void unregisterScriptObserver(cocos2d::CCObject*, char const*);
+    void addObserver(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, char const*, cocos2d::CCObject*) = m1 0x228ea0, imac 0x287770;
+    int getObserverHandlerByName(char const*) = m1 0x229490, imac 0x287d30;
+    bool observerExisted(cocos2d::CCObject*, char const*) = m1 0x228de0, imac 0x2876e0;
+    void postNotification(char const*) = m1 0x229488, imac 0x287d20;
+    void postNotification(char const*, cocos2d::CCObject*) = m1 0x229300, imac 0x287b80;
+    void registerScriptObserver(cocos2d::CCObject*, int, char const*) = m1 0x22912c, imac 0x2879f0;
+    int removeAllObservers(cocos2d::CCObject*) = m1 0x229084, imac 0x287940;
+    void removeObserver(cocos2d::CCObject*, char const*) = m1 0x228fc4, imac 0x287880;
+    void unregisterScriptObserver(cocos2d::CCObject*, char const*) = m1 0x22924c, imac 0x287ae0;
 }
 
 [[link(win, android)]]
 class cocos2d::CCNotificationObserver : cocos2d::CCObject {
-    CCNotificationObserver(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, char const*, cocos2d::CCObject*) = win inline;
-    virtual ~CCNotificationObserver();
+    CCNotificationObserver(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, char const*, cocos2d::CCObject*) = win inline, m1 0x229530, imac 0x287dc0;
+    virtual ~CCNotificationObserver() = m1 0x2296b0, imac 0x287f40;
 
     virtual cocos2d::CCObject* getTarget() = imac 0x288000, m1 0x229770;
     virtual cocos2d::SEL_CallFuncO getSelector() = imac 0x288010, m1 0x229778;
@@ -2795,7 +2795,7 @@ class cocos2d::CCNotificationObserver : cocos2d::CCObject {
     virtual int getHandler() = imac 0x288040, m1 0x229794;
     virtual void setHandler(int) = imac 0x288050, m1 0x22979c;
 
-    void performSelector(cocos2d::CCObject*);
+    void performSelector(cocos2d::CCObject*) = m1 0x229448, imac 0x287cd0;
 }
 
 [[link(win, android)]]
@@ -3387,25 +3387,25 @@ class cocos2d::CCPrettyPrinter : cocos2d::CCDataVisitor {
 
 [[link(win, android)]]
 class cocos2d::CCProfiler : cocos2d::CCObject {
-    virtual ~CCProfiler();
+    virtual ~CCProfiler() = m1 0x4468d4, imac 0x4ec3d0;
 
-    static cocos2d::CCProfiler* sharedProfiler();
+    static cocos2d::CCProfiler* sharedProfiler() = m1 0x44653c, imac 0x4ec030;
 
-    cocos2d::CCProfilingTimer* createAndAddTimerWithName(char const*);
-    void displayTimers();
-    bool init();
-    void releaseAllTimers();
-    void releaseTimer(char const*);
+    cocos2d::CCProfilingTimer* createAndAddTimerWithName(char const*) = m1 0x446630, imac 0x4ec120;
+    void displayTimers() = m1 0x44698c, imac 0x4ec490;
+    bool init() = m1 0x4465e8, imac 0x4ec0e0;
+    void releaseAllTimers() = m1 0x4468cc, imac 0x4ec3c0;
+    void releaseTimer(char const*) = m1 0x4467d4, imac 0x4ec2e0;
 }
 
 [[link(win, android)]]
 class cocos2d::CCProfilingTimer : cocos2d::CCObject {
-    CCProfilingTimer();
-    virtual ~CCProfilingTimer();
+    CCProfilingTimer() = m1 0x446990, imac 0x4ec4a0;
+    virtual ~CCProfilingTimer() = m1 0x4469d0, imac 0x4ec4f0;
 
-    char const* description();
-    bool initWithName(char const*);
-    void reset();
+    char const* description() = m1 0x446aac, imac 0x4ec5b0;
+    bool initWithName(char const*) = m1 0x4467b8, imac 0x4ec2c0;
+    void reset() = m1 0x446b30, imac 0x4ec620;
 }
 
 [[link(win, android)]]
@@ -5236,32 +5236,32 @@ class cocos2d::CCTwirl : cocos2d::CCGrid3DAction {
 
 [[link(win, android)]]
 class cocos2d::CCUserDefault {
-    CCUserDefault();
-    ~CCUserDefault();
+    CCUserDefault() = m1 0x5094b8, imac 0x5de3a0;
+    ~CCUserDefault() = m1 0x509470, imac 0x5de350;
 
-    static bool createXMLFile();
-    static gd::string const& getXMLFilePath();
-    static void initXMLFilePath();
-    static bool isXMLFileExist();
-    static void purgeSharedUserDefault();
-    static cocos2d::CCUserDefault* sharedUserDefault();
+    static bool createXMLFile() = m1 0x50a47c, imac 0x5df5b0;
+    static gd::string const& getXMLFilePath() = m1 0x50a484, imac 0x5df5c0;
+    static void initXMLFilePath() = m1 0x50a3a4, imac 0x5df4d0;
+    static bool isXMLFileExist() = m1 0x50a428, imac 0x5df560;
+    static void purgeSharedUserDefault() = m1 0x5094d0, imac 0x5de3e0, ios 0x3fe5c8;
+    static cocos2d::CCUserDefault* sharedUserDefault() = m1 0x50a2ec, imac 0x5df410;
 
-    void flush();
-    bool getBoolForKey(char const*);
-    bool getBoolForKey(char const*, bool);
-    double getDoubleForKey(char const*);
-    double getDoubleForKey(char const*, double);
-    float getFloatForKey(char const*);
-    float getFloatForKey(char const*, float);
-    int getIntegerForKey(char const*);
-    int getIntegerForKey(char const*, int);
-    gd::string getStringForKey(char const*);
-    gd::string getStringForKey(char const*, gd::string const&);
-    void setBoolForKey(char const*, bool);
-    void setDoubleForKey(char const*, double);
-    void setFloatForKey(char const*, float);
-    void setIntegerForKey(char const*, int);
-    void setStringForKey(char const*, gd::string const&);
+    void flush() = m1 0x509920, imac 0x5de820;
+    bool getBoolForKey(char const*) = m1 0x5094dc, imac 0x5de400;
+    bool getBoolForKey(char const*, bool) = m1 0x5094e4, imac 0x5de410;
+    double getDoubleForKey(char const*) = m1 0x509de0, imac 0x5ded70;
+    double getDoubleForKey(char const*, double) = m1 0x509de8, imac 0x5ded80;
+    float getFloatForKey(char const*) = m1 0x509bfc, imac 0x5deae0;
+    float getFloatForKey(char const*, float) = m1 0x509c04, imac 0x5deaf0;
+    int getIntegerForKey(char const*) = m1 0x509a2c, imac 0x5de860;
+    int getIntegerForKey(char const*, int) = m1 0x509a34, imac 0x5de870;
+    gd::string getStringForKey(char const*) = m1 0x509fc4, imac 0x5df000;
+    gd::string getStringForKey(char const*, gd::string const&) = m1 0x509fec, imac 0x5df030;
+    void setBoolForKey(char const*, bool) = m1 0x509894, imac 0x5de740;
+    void setDoubleForKey(char const*, double) = m1 0x509f30, imac 0x5def10;
+    void setFloatForKey(char const*, float) = m1 0x509d4c, imac 0x5dec80;
+    void setIntegerForKey(char const*, int) = m1 0x509b70, imac 0x5dea00;
+    void setStringForKey(char const*, gd::string const&) = m1 0x50a258, imac 0x5df320;
 }
 
 [[link(win, android)]]
