@@ -4189,9 +4189,7 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCStandardTouchHandler : cocos2d::CCTouchHandler {
-    virtual ~CCStandardTouchHandler();
-
-    static cocos2d::CCStandardTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
+    static cocos2d::CCStandardTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int) = m1 0x3e7584, imac 0x481470, ios 0xc604;
 
     virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int) = imac 0x481410, m1 0x3e7514, ios 0xc5ec;
 }
@@ -4244,14 +4242,14 @@ class cocos2d::CCTargetedAction : cocos2d::CCActionInterval {
 class cocos2d::CCTargetedTouchHandler : cocos2d::CCTouchHandler {
     virtual ~CCTargetedTouchHandler() = imac 0x4816d0, m1 0x3e77b8, ios 0xc784;
 
-    static cocos2d::CCTargetedTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
+    static cocos2d::CCTargetedTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int, bool) = m1 0x3e7644, imac 0x481550, ios 0xc698;
 
     cocos2d::CCSet* getClaimedTouches() = imac 0x481540, m1 0x3e763c, ios 0xc690;
-    bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool);
+    bool initWithDelegate(cocos2d::CCTouchDelegate*, int, bool) = m1 0x3e7724, imac 0x481640, ios 0xc728;
     // CCTargetedTouchHandler(cocos2d::CCTargetedTouchHandler const&);
     // CCTargetedTouchHandler();
-    bool isSwallowsTouches();
-    void setSwallowsTouches(bool);
+    bool isSwallowsTouches() = m1 0x3e762c, imac 0x481520, ios 0xc688;
+    void setSwallowsTouches(bool) = m1 0x3e7634, imac 0x481530, ios inline;
 
     bool m_bSwallowsTouches;
     cocos2d::CCSet* m_pClaimedTouches;
@@ -4685,9 +4683,9 @@ class cocos2d::CCTouch : cocos2d::CCObject {
     cocos2d::CCPoint getLocation() const = imac 0x59640, m1 0x4cd68, ios 0x2fe630;
     cocos2d::CCPoint getLocationInView() const = imac 0x595e0, m1 0x4cd44, ios 0x2fe624;
     cocos2d::CCPoint getPreviousLocation() const = imac 0x59670, m1 0x4cd94, ios inline;
-    cocos2d::CCPoint getPreviousLocationInView() const = imac 0x59600, m1 0x4cd50;
+    cocos2d::CCPoint getPreviousLocationInView() const = imac 0x59600, m1 0x4cd50, ios inline;
     cocos2d::CCPoint getStartLocation() const = imac 0x596a0, m1 0x4cdc0, ios inline;
-    cocos2d::CCPoint getStartLocationInView() const;
+    cocos2d::CCPoint getStartLocationInView() const = m1 0x4cd5c, imac 0x59620, ios inline;
 
     int m_nId;
     bool m_startPointCaptured;
@@ -4701,15 +4699,15 @@ class cocos2d::CCTouchDelegate {
     // CCTouchDelegate(cocos2d::CCTouchDelegate const&);
     // CCTouchDelegate();
 
-    virtual void setPreviousPriority(int);
-    virtual int getPreviousPriority();
+    virtual void setPreviousPriority(int) = mac inline, ios inline;
+    virtual int getPreviousPriority() = mac inline, ios inline;
 }
 
 [[link(win, android)]]
 class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate {
     // CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
     // CCTouchDispatcher();
-    virtual ~CCTouchDispatcher();
+    virtual ~CCTouchDispatcher() = m1 0x42a778, imac 0x4cbaa0, ios 0x14ebbc;
 
     virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4ccba0, m1 0x42b888, ios 0x14f69c;
     virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4ccbe0, m1 0x42b8bc, ios 0x14f6d0;
@@ -4717,24 +4715,24 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4ccc60, m1 0x42b924, ios 0x14f738;
 
     void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4cbcb0, m1 0x42a984, ios 0x14ed58;
-    void addStandardDelegate(cocos2d::CCTouchDelegate*, int);
+    void addStandardDelegate(cocos2d::CCTouchDelegate*, int) = m1 0x42ac20, imac 0x4cbf20, ios 0x14ef54;
     void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4cbcd0, m1 0x42a99c, ios 0x14ed70;
-    void decrementForcePrio(int);
+    void decrementForcePrio(int) = m1 0x42a840, imac 0x4cbba0, ios inline;
     cocos2d::CCTouchHandler* findHandler(cocos2d::CCTouchDelegate*) = imac 0x4cc2b0, m1 0x42b000, ios 0x14f200;
-    cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*);
-    void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*);
-    void forceRemoveAllDelegates();
+    cocos2d::CCTouchHandler* findHandler(cocos2d::CCArray*, cocos2d::CCTouchDelegate*) = m1 0x42af14, imac 0x4cc1f0, ios 0x14f150;
+    void forceAddHandler(cocos2d::CCTouchHandler*, cocos2d::CCArray*) = m1 0x42ab4c, imac 0x4cbe50, ios 0x14ee80;
+    void forceRemoveAllDelegates() = m1 0x42af98, imac 0x4cc250, ios inline;
     void forceRemoveDelegate(cocos2d::CCTouchDelegate*) = imac 0x4cc040, m1 0x42ad54, ios 0x14efe8;
-    void incrementForcePrio(int);
+    void incrementForcePrio(int) = m1 0x42a824, imac 0x4cbb90, ios inline;
     bool init() = imac 0x4cba00, m1 0x42a6f0, ios 0x14eb34;
-    bool isDispatchEvents();
+    bool isDispatchEvents() = m1 0x42a6e0, imac 0x4cb9e0, ios inline;
     bool isUsingForcePrio() = imac 0x4cbca0, m1 0x42a974, ios 0x14ed48;
     void rearrangeHandlers(cocos2d::CCArray* handlers) = imac 0x4cc370, m1 0x42b0dc, ios inline;
     void registerForcePrio(cocos2d::CCObject*, int) = imac 0x4cbbb0, m1 0x42a85c, ios 0x14ec68;
-    void removeAllDelegates();
+    void removeAllDelegates() = m1 0x42afc0, imac 0x4cc280, ios 0x14f1bc;
     void removeDelegate(cocos2d::CCTouchDelegate*) = imac 0x4cc130, m1 0x42ae48, ios 0x14f0d4;
     // int getTargetPrio() const;
-    void setDispatchEvents(bool);
+    void setDispatchEvents(bool) = m1 0x42a6e8, imac 0x4cb9f0, ios 0x14eb2c;
     void setPriority(int p1, cocos2d::CCTouchDelegate* p2) = imac 0x4cc3f0, m1 0x42b164, ios inline;
     void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = imac 0x4cc540, m1 0x42b2d4, ios 0x14f2c0;
     void unregisterForcePrio(cocos2d::CCObject*) = imac 0x4cbc50, m1 0x42a910, ios 0x14ece4;
@@ -4757,17 +4755,17 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
 class cocos2d::CCTouchHandler : cocos2d::CCObject {
     virtual ~CCTouchHandler() = imac 0x4812f0, m1 0x3e740c, ios 0xc580;
 
-    static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int);
+    static cocos2d::CCTouchHandler* handlerWithDelegate(cocos2d::CCTouchDelegate*, int) = m1 0x3e72f4, imac 0x4811e0, ios inline;
 
     // CCTouchHandler(cocos2d::CCTouchHandler const&);
     // CCTouchHandler();
     virtual bool initWithDelegate(cocos2d::CCTouchDelegate*, int) = imac 0x481290, m1 0x3e739c, ios 0xc524;
 
     cocos2d::CCTouchDelegate* getDelegate() = imac 0x481120, m1 0x3e7260, ios 0xc514;
-    int getEnabledSelectors();
-    int getPriority() = imac 0x4811a0, m1 0x3e72d4, ios inline;
-    void setDelegate(cocos2d::CCTouchDelegate*);
-    void setEnalbedSelectors(int);
+    int getEnabledSelectors() = m1 0x3e72e4, imac 0x4811c0, ios inline;
+    int getPriority() = imac 0x4811a0, m1 0x3e72d4, ios 0xc51c;
+    void setDelegate(cocos2d::CCTouchDelegate*) = m1 0x3e7268, imac 0x481130, ios inline;
+    void setEnalbedSelectors(int) = m1 0x3e72ec, imac 0x4811d0, ios inline;
     void setPriority(int prio) = imac 0x4811b0, m1 0x3e72dc, ios inline;
 
     cocos2d::CCTouchDelegate* m_pDelegate;

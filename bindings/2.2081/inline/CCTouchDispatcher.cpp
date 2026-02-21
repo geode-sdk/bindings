@@ -8,6 +8,25 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+void cocos2d::CCTouchDispatcher::decrementForcePrio(int priority) {
+	m_forcePrio -= priority;
+	m_targetPrio += priority;
+}
+
+void cocos2d::CCTouchDispatcher::forceRemoveAllDelegates() {
+	m_pStandardHandlers->removeAllObjects();
+	m_pTargetedHandlers->removeAllObjects();
+}
+
+void cocos2d::CCTouchDispatcher::incrementForcePrio(int priority) {
+	m_forcePrio += priority;
+	m_targetPrio -= priority;
+}
+
+bool cocos2d::CCTouchDispatcher::isDispatchEvents() {
+	return m_bDispatchEvents;
+}
+
 void cocos2d::CCTouchDispatcher::rearrangeHandlers(cocos2d::CCArray* handlers) {
     std::sort(handlers->data->arr, handlers->data->arr + handlers->data->num, [](const CCObject* p1, const CCObject* p2) {
         return ((CCTouchHandler*)p1)->getPriority() < ((CCTouchHandler*)p2)->getPriority();

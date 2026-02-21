@@ -16,8 +16,16 @@ cocos2d::CCPoint cocos2d::CCTouch::getPreviousLocation() const  {
 	return CCDirector::sharedDirector()->convertToGL(m_prevPoint);
 }
 
+cocos2d::CCPoint cocos2d::CCTouch::getPreviousLocationInView() const {
+	return m_prevPoint;
+}
+
 cocos2d::CCPoint cocos2d::CCTouch::getStartLocation() const  {
 	return CCDirector::sharedDirector()->convertToGL(m_startPoint);
+}
+
+cocos2d::CCPoint cocos2d::CCTouch::getStartLocationInView() const {
+	return m_startPoint;
 }
 #endif
 
