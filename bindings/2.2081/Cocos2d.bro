@@ -325,12 +325,12 @@ class cocos2d::CCAnimationCache : cocos2d::CCObject {
     static cocos2d::CCAnimationCache* sharedAnimationCache() = imac 0x46d040, m1 0x3d4c6c, ios 0x1d413c;
 
     void addAnimation(cocos2d::CCAnimation*, const char*) = imac 0x46d270, m1 0x3d4e84, ios 0x1d426c;
-    void addAnimationsWithDictionary(cocos2d::CCDictionary*, const char*) = imac 0x46dbf0, m1 0x3d5820;
-    void addAnimationsWithFile(const char*) = imac 0x46de10, m1 0x3d5a80;
+    void addAnimationsWithDictionary(cocos2d::CCDictionary*, const char*) = imac 0x46dbf0, m1 0x3d5820, ios inline;
+    void addAnimationsWithFile(const char*) = imac 0x46de10, m1 0x3d5a80, ios inline;
     cocos2d::CCAnimation* animationByName(const char*) = imac 0x46d440, m1 0x3d5080, ios 0x1d42dc;
     bool init() = imac 0x46d110, m1 0x3d4d34, ios 0x1d41a4;
-    void parseVersion1(cocos2d::CCDictionary*) = imac 0x46d520, m1 0x3d5184;
-    void parseVersion2(cocos2d::CCDictionary*) = imac 0x46d7c0, m1 0x3d53e8;
+    void parseVersion1(cocos2d::CCDictionary*) = imac 0x46d520, m1 0x3d5184, ios inline;
+    void parseVersion2(cocos2d::CCDictionary*) = imac 0x46d7c0, m1 0x3d53e8, ios inline;
     void removeAnimationByName(const char*) = imac 0x46d360, m1 0x3d4f84, ios inline;
 }
 
@@ -3722,22 +3722,22 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCSchedulerScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
-    virtual ~CCSchedulerScriptHandlerEntry();
+    virtual ~CCSchedulerScriptHandlerEntry() = m1 0x2a9cec, imac 0x31bbb0;
 
-    static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool);
+    static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool) = m1 0x2a9b88, imac 0x31ba50;
 
-    bool init(float, bool);
+    bool init(float, bool) = m1 0x2a9c68, imac 0x31bb30;
 }
 
 [[link(win, android)]]
 class cocos2d::CCScriptEngineManager {
     // cocos2d::CCScriptEngineProtocol* getScriptEngine();
-    ~CCScriptEngineManager();
+    ~CCScriptEngineManager() = m1 0x2aa004, imac 0x31bed0, ios inline;
 
-    static void purgeSharedManager();
+    static void purgeSharedManager() = m1 0x2aa0e8, imac 0x31bf90, ios inline;
     static cocos2d::CCScriptEngineManager* sharedManager() = imac 0x31b8d0, m1 0x2a99d8, ios 0x273574;
 
-    void removeScriptEngine();
+    void removeScriptEngine() = m1 0x2aa040, imac 0x31bf00, ios inline;
     void setScriptEngine(cocos2d::CCScriptEngineProtocol* engine) = imac 0x31bf60, m1 0x2aa0b0, ios inline;
 }
 
@@ -3795,8 +3795,8 @@ class cocos2d::CCSet : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCShaderCache : cocos2d::CCObject {
     // CCShaderCache(cocos2d::CCShaderCache const&);
-    CCShaderCache();
-    virtual ~CCShaderCache();
+    CCShaderCache() = m1 0x1af0a0, imac 0x202270, ios inline;
+    virtual ~CCShaderCache() = m1 0x1af0c4, imac 0x2022a0, ios 0x128440;
 
     static void purgeSharedShaderCache() = imac 0x202240, m1 0x1af074, ios 0x128414;
     static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x202120, m1 0x1aef54, ios 0x12835c;
@@ -3962,7 +3962,7 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
 
     static cocos2d::CCSprite* create() = imac 0x288660, m1 0x229d88, ios 0x2377b0;
     static cocos2d::CCSprite* create(char const*) = imac 0x288340, m1 0x229a78, ios 0x23768c;
-    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x288430, m1 0x229b68;
+    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x288430, m1 0x229b68, ios inline;
     static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x288530, m1 0x229c6c, ios 0x237708;
     static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = imac 0x288630, m1 0x229d60, ios 0x237788;
     static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x2880b0, m1 0x2297fc, ios 0x237580;
@@ -4044,7 +4044,7 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     void setFlipX(bool) = imac 0x28a380, m1 0x22b808, ios 0x2390e8;
     void setFlipY(bool) = imac 0x28a3d0, m1 0x22b83c, ios 0x23911c;
     // bool isTextureRectRotated();
-    void updateColor();
+    void updateColor() = m1 0x22b870, imac 0x28a420, ios 0x239150;
 
     cocos2d::CCTextureAtlas* m_pobTextureAtlas;
     uint32_t m_uAtlasIndex;
@@ -4099,28 +4099,28 @@ class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     virtual cocos2d::CCTexture2D* getTexture() = imac 0x177f90, m1 0x13e170, ios 0x1d7d7c;
     virtual void setTexture(cocos2d::CCTexture2D*) = imac 0x177fc0, m1 0x13e190, ios 0x1d7d9c;
 
-    cocos2d::CCSpriteBatchNode* addSpriteWithoutQuad(cocos2d::CCSprite*, unsigned int, int);
-    void appendChild(cocos2d::CCSprite*);
-    unsigned int atlasIndexForChild(cocos2d::CCSprite*, int);
-    int getAtlasCapacity();
-    int getUsedAtlasCapacity();
-    unsigned int highestAtlasIndexInChild(cocos2d::CCSprite*);
-    void increaseAtlasCapacity();
-    void increaseAtlasCapacity(unsigned int);
-    bool initWithFile(char const*, unsigned int);
+    cocos2d::CCSpriteBatchNode* addSpriteWithoutQuad(cocos2d::CCSprite*, unsigned int, int) = m1 0x13e474, imac 0x178290, ios inline;
+    void appendChild(cocos2d::CCSprite*) = m1 0x13ce0c, imac 0x176940, ios 0x1d7400;
+    unsigned int atlasIndexForChild(cocos2d::CCSprite*, int) = m1 0x13dc9c, imac 0x177a70, ios inline;
+    int getAtlasCapacity() = m1 0x13da84, imac 0x177870, ios 0x1d7d4c;
+    int getUsedAtlasCapacity() = m1 0x13da78, imac 0x177860, ios 0x1d7d40;
+    unsigned int highestAtlasIndexInChild(cocos2d::CCSprite*) = m1 0x13dbe0, imac 0x1779b0, ios inline;
+    void increaseAtlasCapacity() = m1 0x13d9bc, imac 0x1777c0, ios 0x1d7c84;
+    void increaseAtlasCapacity(unsigned int) = m1 0x13da2c, imac 0x177820, ios 0x1d7cf4;
+    bool initWithFile(char const*, unsigned int) = m1 0x13cac0, imac 0x1765d0, ios 0x1d7188;
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = imac 0x1763e0, m1 0x13c8f0, ios 0x1d6fe8;
-    void insertChild(cocos2d::CCSprite*, unsigned int);
-    void insertQuadFromSprite(cocos2d::CCSprite*, unsigned int);
-    unsigned int lowestAtlasIndexInChild(cocos2d::CCSprite*);
-    void manualSortAllChildren();
-    unsigned int rebuildIndexInOrder(cocos2d::CCSprite*, unsigned int);
-    void removeChildAtIndex(unsigned int, bool);
-    void removeSpriteFromAtlas(cocos2d::CCSprite*);
-    void reorderBatch(bool);
-    void swap(int, int);
-    void updateAtlasIndex(cocos2d::CCSprite*, int*);
-    void updateBlendFunc();
-    void updateQuadFromSprite(cocos2d::CCSprite*, unsigned int);
+    void insertChild(cocos2d::CCSprite*, unsigned int) = m1 0x13de58, imac 0x177c00, ios inline;
+    void insertQuadFromSprite(cocos2d::CCSprite*, unsigned int) = m1 0x13e23c, imac 0x178070, ios inline;
+    unsigned int lowestAtlasIndexInChild(cocos2d::CCSprite*) = m1 0x13dc3c, imac 0x177a10, ios inline;
+    void manualSortAllChildren() = m1 0x13d34c, imac 0x176f10, ios 0x1d7824;
+    unsigned int rebuildIndexInOrder(cocos2d::CCSprite*, unsigned int) = m1 0x13da94, imac 0x177890, ios inline;
+    void removeChildAtIndex(unsigned int, bool) = m1 0x13d27c, imac 0x176e40, ios inline;
+    void removeSpriteFromAtlas(cocos2d::CCSprite*) = m1 0x13d098, imac 0x176bd0, ios 0x1d7644;
+    void reorderBatch(bool) = m1 0x13d8dc, imac 0x1776d0, ios 0x1d7ba4;
+    void swap(int, int) = m1 0x13d818, imac 0x1775a0, ios 0x1d7ae0;
+    void updateAtlasIndex(cocos2d::CCSprite*, int*) = m1 0x13d47c, imac 0x177060, ios 0x1d793c;
+    void updateBlendFunc() = m1 0x13cb10, imac 0x176610, ios inline;
+    void updateQuadFromSprite(cocos2d::CCSprite*, unsigned int) = m1 0x13e374, imac 0x1781b0, ios inline;
 
     cocos2d::CCTextureAtlas* m_pobTextureAtlas;
     cocos2d::ccBlendFunc m_blendFunc;
@@ -4167,9 +4167,9 @@ class cocos2d::CCSpriteFrame : cocos2d::CCObject {
 class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     // CCSpriteFrameCache();
     // CCSpriteFrameCache(cocos2d::CCSpriteFrameCache const&);
-    virtual ~CCSpriteFrameCache();
+    virtual ~CCSpriteFrameCache() = m1 0x2aa31c, imac 0x31c1b0, ios 0x3bbf78;
 
-    static void purgeSharedSpriteFrameCache();
+    static void purgeSharedSpriteFrameCache() = m1 0x2aa2f0, imac 0x31c180, ios 0x3bbf4c;
     static cocos2d::CCSpriteFrameCache* sharedSpriteFrameCache() = imac 0x31c020, m1 0x2aa184, ios 0x3bbe68;
 
     void addSpriteFrame(cocos2d::CCSpriteFrame* pobFrame, char const* pszFrameName) = imac 0x31d270, m1 0x2ab430, ios inline;
@@ -4177,7 +4177,7 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
     void addSpriteFramesWithFile(char const*) = imac 0x31cf10, m1 0x2aaf9c, ios 0x3bc8ac;
     void addSpriteFramesWithFile(char const* plist, char const* textureFilename) = imac 0x31cea0, m1 0x2aaf2c, ios inline;
     void addSpriteFramesWithFile(char const* plist, cocos2d::CCTexture2D* texture) = imac 0x31ce60, m1 0x2aaee4, ios inline;
-    bool init();
+    bool init() = m1 0x2aa264, imac 0x31c100, ios 0x3bbed0;
     void removeSpriteFrameByName(char const* name) = imac 0x31d450, m1 0x2ab614, ios inline;
     void removeSpriteFrames() = imac 0x31d360, m1 0x2ab530;
     void removeSpriteFramesFromDictionary(cocos2d::CCDictionary*) = imac 0x31d930, m1 0x2abba8, ios 0x3bcc20;
@@ -4327,7 +4327,7 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
     void generateMipmap() = imac 0x4794a0, m1 0x3e0280;
     cocos2d::CCSize const& getContentSizeInPixels() = imac 0x4781c0, m1 0x3df018, ios 0x12d48c;
     bool hasMipmaps();
-    bool hasPremultipliedAlpha();
+    bool hasPremultipliedAlpha() = m1 0x3df0c0, imac 0x4782b0, ios 0x12d4f8;
     bool initPremultipliedATextureWithImage(cocos2d::CCImage*, unsigned int, unsigned int) = imac 0x478680, m1 0x3df488, ios 0x12d86c;
     bool initWithData(void const*, cocos2d::CCTexture2DPixelFormat, unsigned int, unsigned int, cocos2d::CCSize const&) = imac 0x4782c0, m1 0x3df0c8, ios 0x12d500;
     bool initWithETCFile(char const*) = imac 0x4793c0, m1 0x3e01ac;
@@ -4370,7 +4370,7 @@ class cocos2d::CCTextureAtlas : cocos2d::CCObject {
     void increaseTotalQuadsWith(unsigned int);
     bool initWithFile(char const*, unsigned int);
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int);
-    void insertQuad(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int);
+    void insertQuad(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int) = m1 0x4100cc, imac 0x4ad970, ios 0x26a274;
     void insertQuadFromIndex(unsigned int, unsigned int);
     void insertQuads(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int, unsigned int);
     // bool isDirty();
@@ -4777,11 +4777,11 @@ class cocos2d::CCTouchHandler : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCTouchScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
-    virtual ~CCTouchScriptHandlerEntry();
+    virtual ~CCTouchScriptHandlerEntry() = m1 0x2a9ee0, imac 0x31bdb0, ios 0x2736ac;
 
-    static cocos2d::CCTouchScriptHandlerEntry* create(int, bool, int, bool);
+    static cocos2d::CCTouchScriptHandlerEntry* create(int, bool, int, bool) = m1 0x2a9e34, imac 0x31bd00, ios 0x273614;
 
-    bool init(bool, int, bool);
+    bool init(bool, int, bool) = m1 0x2a9ecc, imac 0x31bd90, ios inline;
 }
 
 [[link(win, android)]]
