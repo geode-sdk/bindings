@@ -10800,8 +10800,7 @@ class GJUserScore : cocos2d::CCNode {
     bool m_newFriendRequest;
     bool m_toggled;
     gd::string m_unkString;
-    int m_unkInt;
-    int m_unkInt2;
+    double m_lobbyJoinTime;
     gd::string m_demonInfo;
     gd::string m_starsInfo;
     gd::string m_platformerInfo;
