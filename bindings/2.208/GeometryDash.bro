@@ -2327,7 +2327,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     // virtual ~ConfigureHSVWidget();
 
     static ConfigureHSVWidget* create(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x96a30, imac 0x42f4e0, m1 0x3a1d08;
-    static cocos2d::ccHSVValue getHSV(GameObject* object, cocos2d::CCArray* objects, int mode) = win 0x98180, m1 0x3a36dc;
+    static cocos2d::ccHSVValue& getHSV(GameObject* object, cocos2d::CCArray* objects, int mode) = win 0x98180, m1 0x3a36dc;
 
     virtual void textInputOpened(CCTextInputNode* node) = win inline, imac 0x430d60, m1 0x3a3480;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x8b870, imac 0x430d80, m1 0x3a3488;
