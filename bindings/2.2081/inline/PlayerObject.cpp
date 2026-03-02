@@ -737,7 +737,7 @@ void PlayerObject::updatePlayerRobotFrame(int frame) {
 }
 
 void PlayerObject::updatePlayerSpiderFrame(int frame) {
-    this->createSpider(std::clamp(frame, 1, 30));
+    this->createSpider(std::clamp(frame, 1, 69));
 }
 
 void PlayerObject::updateSpecial(float dt) {
