@@ -3801,7 +3801,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void resetUI() = win 0xe4d70, imac 0x2a5c0, m1 0x27f08, ios 0x3e40dc;
     void rotateObjects(cocos2d::CCArray* objects, float rotation, cocos2d::CCPoint pivotPoint) = win 0x121030, imac 0x3bd00, m1 0x341c0, ios 0x3ed19c;
     float rotationforCommand(EditCommand command) = win inline, imac 0x4a450, m1 0x40a7c, ios inline;
-    void scaleObjects(cocos2d::CCArray* objects, float scaleX, float scaleY, cocos2d::CCPoint pivotPoint, ObjectScaleType type, bool lock_move) = win 0x121450, imac 0x3f6d0, m1 0x3785c, ios 0x3ef8b4;
+    void scaleObjects(cocos2d::CCArray* objects, float scaleX, float scaleY, cocos2d::CCPoint pivotPoint, ObjectScaleType type, bool lockMove) = win 0x121450, imac 0x3f6d0, m1 0x3785c, ios 0x3ef8b4;
     void selectAll() = win inline, imac 0x3cf90, m1 0x352fc, ios 0x3ee0b8;
     void selectAllWithDirection(bool left) = win 0x1115b0, imac 0x3d2a0, m1 0x35604, ios 0x3ee24c;
     void selectBuildTab(int tab) = win 0x114830, imac 0x33dd0, m1 0x30c20, ios 0x3ea70c;
