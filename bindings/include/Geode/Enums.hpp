@@ -650,6 +650,13 @@ enum class ObjectScaleType {
     Y = 2
 };
 
+//Geode Addition
+enum class ScaleButtonType : short {
+    X = 0,
+    Y = 1,
+    XY = 2,
+};
+
 // Thanks cocoa!
 #ifdef GEODE_IS_MACOS
     #undef CommentType

@@ -12,7 +12,7 @@ GJScaleControl::GJScaleControl() {
     m_changedValueX = 0.0f;
     m_changedValueY = 0.0f;
     m_scale1Lock = false;
-    m_scaleButtonType = 0;
+    m_scaleButtonType = ScaleButtonType::X;
     m_delegate = nullptr;
     m_upperBound = 2.0f;
     m_lowerBound = 0.5f;
