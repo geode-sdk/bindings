@@ -42,7 +42,7 @@ BoomScrollLayer::BoomScrollLayer() {
     m_slowPage = 0;
     m_touchX = 0.f;
     m_touchQuotient = 0.f;
-    m_cullOffscreen = false;
+    m_looped = false;
     m_dynamicDelegate = nullptr;
     m_dynamicObjects = nullptr;
     m_dynamic = false;
