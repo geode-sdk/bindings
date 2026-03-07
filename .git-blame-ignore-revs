@@ -1,3 +1,15 @@
 # "some imac bindings"
 b6f4a4d20d85579fe8ccae75c01389be613e3d42
 9b9d7c6ed181055fbef21ae06a84fb23fd7bf936
+
+# "rename incorrect boomscrolllayer create param"
+d265948d94c37d646a51d0d5df1e5dd6d43e5a8d
+1d8b66a297efb8632a52809a0c83a1a1d72be2f4
+
+# "rename m_looped to cullOffscreen and the init param"
+b174a53462464db987b44fa4800df47d41b6714c
+e70ef6f97d7a6b148634908a8ae54d97b6b20224
+
+# "oops forgot inlined functions exist"
+eb5389b65028c4c8024b6914440bee2b98e5dc30
+ef1b80402e0fcbf1b1f07655dc4484de64430112
