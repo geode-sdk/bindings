@@ -763,8 +763,8 @@ class BoomScrollLayer : cocos2d::CCLayer {
     BoomScrollLayer() = win inline, imac 0x3a7590, m1 0x32bce4, ios 0x12ca08;
     ~BoomScrollLayer() = win inline, imac 0x3a5eb0, m1 0x32a7dc, ios 0x12bcc0;
 
-    static BoomScrollLayer* create(cocos2d::CCArray* pages, int offset, bool cullOffscreen) = win inline, imac 0x3a4f60, m1 0x3298e8, ios 0x12b2ec;
-    static BoomScrollLayer* create(cocos2d::CCArray* pages, int offset, bool cullOffscreen, cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x3d0a0, imac 0x3a4b80, m1 0x32951c, ios 0x12afb4;
+    static BoomScrollLayer* create(cocos2d::CCArray* pages, int offset, bool looped) = win inline, imac 0x3a4f60, m1 0x3298e8, ios 0x12b2ec;
+    static BoomScrollLayer* create(cocos2d::CCArray* pages, int offset, bool looped, cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x3d0a0, imac 0x3a4b80, m1 0x32951c, ios 0x12afb4;
 
     virtual void visit() = win 0x3dc20, imac 0x3a6340, m1 0x32ab78, ios 0x12bf1c;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x3e760, imac 0x3a6e70, m1 0x32b680, ios 0x12c510;
