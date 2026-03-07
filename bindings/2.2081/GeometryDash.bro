@@ -781,7 +781,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     int getRelativePageForNum(int page) = win inline, imac 0x3a6270, m1 0x32aaa4, ios 0x12be48;
     cocos2d::CCPoint getRelativePosForPage(int page) = win inline, imac 0x3a5de0, m1 0x32a724, ios inline;
     int getTotalPages() = win inline, imac 0x3a5ab0, m1 0x32a414, ios 0x12ba2c;
-    bool init(cocos2d::CCArray* pages, int offset, bool looped, cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x3d280, imac 0x3a4c10, m1 0x3295d4, ios 0x12b058;
+    bool init(cocos2d::CCArray* pages, int offset, bool cullOffscreen, cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x3d280, imac 0x3a4c10, m1 0x3295d4, ios 0x12b058;
     void instantMoveToPage(int page) = win 0x3de10, imac 0x3a6530, m1 0x32ad8c, ios 0x12c008;
     void moveToPage(int page) = win 0x3def0, imac 0x3a6610, m1 0x32ae64, ios 0x12c0e0;
     void moveToPageEnded() = win 0x3dc80, imac 0x3a63a0, m1 0x32abfc, ios 0x12bf7c;
@@ -803,7 +803,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
     int m_slowPage;
     float m_touchX;
     float m_touchQuotient;
-    bool m_looped;
+    bool m_cullOffscreen;
     DynamicScrollDelegate* m_dynamicDelegate;
     cocos2d::CCArray* m_dynamicObjects;
     bool m_dynamic;
