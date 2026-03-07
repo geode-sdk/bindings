@@ -1385,6 +1385,7 @@ class BoomScrollLayer : cocos2d::CCLayer {
         CC_SAFE_RELEASE(m_dots);
     }
 
+    // note that if looped is set to false, culling with also be disabled
     static BoomScrollLayer* create(cocos2d::CCArray* pages, int offset, bool looped, cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x3d060, imac 0x391a10, m1 0x3204b4, ios 0x12e27c;
     static BoomScrollLayer* create(cocos2d::CCArray* pages, int offset, bool looped) = win inline, imac 0x391e00, m1 0x320880, ios 0x12e5b4 {
         return BoomScrollLayer::create(pages, offset, looped, nullptr, nullptr);
@@ -30426,7 +30427,7 @@ class SequenceTriggerGameObject : ChanceTriggerGameObject {
             m_sequenceTotalCount = total;
         }
     }
-    
+
     SequenceTriggerState m_sequenceState;
     // property 437
     float m_minInt;
