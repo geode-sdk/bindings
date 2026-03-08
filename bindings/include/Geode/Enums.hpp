@@ -1232,6 +1232,14 @@ enum class EffectTriggerEnterType {
     Exit = 2
 };
 
+// EnterEffectObject.m_directionType / property 262
+// Set alongside p276 (m_inbound) and p283 (m_twoDirections) when you select an Area trigger proximity option
+enum class EnterEffectDirectionType {
+	Radial = 0,
+	Horizontal = 1,
+	Vertical = 2
+};
+
 // TeleportPortalObject	m_gravityMode / property 354
 // Teleport portal / orb / trigger Gravity Normal / Flipped / Toggle selector
 enum class TeleportGravityMode {
