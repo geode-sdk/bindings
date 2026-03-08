@@ -377,8 +377,10 @@ enum class FMODReverbPreset {
     SewerPipe = 0x15,
     Underwater = 0x16
 };
+// GJGameLevel.m_demonDifficulty / property k76
 enum class DemonDifficultyType {
     HardDemon = 0,
+	Unknown = 1,  // old is_demon flag from early 2.1, may still show up on old levels that have not been loaded
     EasyDemon = 3,
     MediumDemon = 4,
     InsaneDemon = 5,
@@ -1141,24 +1143,22 @@ enum class GameObjectClassType {
 // Some of the enums look sketchy but i double checked them,
 // i can't guarantee no mistakes so worth triple checking
 
-// EffectGameObject.m_pulseMode
-// property 48
+// EffectGameObject.m_pulseMode / property 48
 // Pulse trigger Color / HSV selector
+// Different from PulseEffectType
 enum class PulseTriggerColorType {
 	Color = 0,
 	HSV = 1
 };
 
-// EffectGameObject.m_pulseTargetType
-// property 52
+// EffectGameObject.m_pulseTargetType / property 52
 // Pulse trigger Channel / Group selector
 enum class PulseTriggerTargetType {
 	Channel = 0,
 	Group = 1
 };
 
-// CountTriggerGameObject.m_pickupTriggerMode
-// property 88
+// CountTriggerGameObject.m_pickupTriggerMode / property 88
 // Pickup trigger Add / Multiply / Divide selector
 // Instant Count trigger Equal / Larger / Smaller selector
 enum class CountTriggerMode {
@@ -1167,8 +1167,7 @@ enum class CountTriggerMode {
 	DivideSmaller = 2
 };
 
-// CameraTriggerGameObject.m_edgeDirection
-// property 164
+// CameraTriggerGameObject.m_edgeDirection / property 164
 // Camera Edge trigger None / Left / Right / Up / Down selector
 enum class CameraTriggerEdge {
     None = 0,
@@ -1194,8 +1193,7 @@ enum class RotateGameplayTriggerDirection {
 	Right = 4
 };
 
-// GradientTriggerObject.m_blendingMode
-// property 174
+// GradientTriggerObject.m_blendingMode / property 174
 // Gradient trigger Normal / Additive / Multiply / Invert selector
 enum class GradientTriggerBlending {
 	Normal = 0,
@@ -1204,12 +1202,9 @@ enum class GradientTriggerBlending {
 	Invert = 3
 };
 
-// ShaderGameObject.m_zLayerMin
-// property 196
-// ShaderGameObject.m_zLayerMax
-// property 197
-// GradientTriggerObject.m_blendingLayer
-// property 202
+// ShaderGameObject.m_zLayerMin / property 196
+// ShaderGameObject.m_zLayerMax / property 197
+// GradientTriggerObject.m_blendingLayer / property 202
 // Shader / Gradient layer selector
 enum class GradientShaderLayer {
 	BG = 1,
@@ -1229,8 +1224,7 @@ enum class GradientShaderLayer {
     MAX = 15
 };
 
-// EnterEffectObject.m_enterType
-// property 217
+// EnterEffectObject.m_enterType / property 217
 // Enter trigger Enter / Exit Only selector
 enum class EffectTriggerEnterType {
     Default = 0,
@@ -1238,8 +1232,7 @@ enum class EffectTriggerEnterType {
     Exit = 2
 };
 
-// TeleportPortalObject	m_gravityMode
-// property 354
+// TeleportPortalObject	m_gravityMode / property 354
 // Teleport portal / orb / trigger Gravity Normal / Flipped / Toggle selector
 enum class TeleportGravityMode {
 	None = 0,
@@ -1248,8 +1241,7 @@ enum class TeleportGravityMode {
 	Toggle = 3
 };
 
-// AdvancedFollowTriggerObject.m_followMode
-// property 367
+// AdvancedFollowTriggerObject.m_followMode / property 367
 // Advanced Follow Mode 1/2/3 selector
 enum class AdvancedFollowTriggerMode {
 	Mode1 = 0,
@@ -1257,8 +1249,7 @@ enum class AdvancedFollowTriggerMode {
 	Mode3 = 2
 };
 
-// KeyframeGameObject.m_timeMode
-// property 379
+// KeyframeGameObject.m_timeMode / property 379
 // Keyframe reference Time / Even / Dist selector
 enum class KeyframePointTimeMode {
 	Time = 0,
@@ -1266,10 +1257,8 @@ enum class KeyframePointTimeMode {
 	Dist = 2
 };
 
-// UISettingsGameObject.m_xRef
-// property 385
-// UISettingsGameObject.m_yRef
-// property 386
+// UISettingsGameObject.m_xRef / property 385
+// UISettingsGameObject.m_yRef / property 386
 // UI trigger X reference Auto / Center / Left / Right selectors
 // UI trigger Y reference Auto / Center / Top / Bottom selectors
 // Yes they use the same enum
@@ -1285,8 +1274,7 @@ enum class UITriggerReference {
 	Top = 8
 };
 
-// LabelGameObject.m_shownSpecial
-// property 390
+// LabelGameObject.m_shownSpecial / property 390
 // Counter Label MainTime / Points / Attempts selector
 // The values are correct, if value is Default then the label's own value is used
 // If you put -1, -2 or -3 in the label's ItemID it will reference the same items
@@ -1297,8 +1285,7 @@ enum class CounterLabelSpecialItem {
 	Attempts = -3
 };
 
-// LabelGameObject.m_alignment
-// property 391
+// LabelGameObject.m_alignment / property 391
 // Counter Label Center / Left / Right alignment selector
 enum class CounterLabelAlignment {
 	Center = 0,
@@ -1306,8 +1293,7 @@ enum class CounterLabelAlignment {
 	Right = 2
 };
 
-// SequenceTriggerGameObject.m_sequenceMode
-// property 436
+// SequenceTriggerGameObject.m_sequenceMode / property 436
 // Sequence trigger Mode Stop / Loop / Last selector
 enum class SequenceTriggerStopMode {
 	Stop = 0,
@@ -1315,16 +1301,14 @@ enum class SequenceTriggerStopMode {
 	Last = 2
 };
 
-// SequenceTriggerGameObject.m_resetMode
-// property 439
+// SequenceTriggerGameObject.m_resetMode / property 439
 // Sequence trigger Reset Full / Step selector 
 enum class SequenceTriggerResetMode {
 	Full = 0,
 	Step = 1
 };
 
-// SFXTriggerGameObject.m_proximityMode
-// property 458
+// SFXTriggerGameObject.m_proximityMode / property 458
 // SFX trigger volume proximity selectors
 // The properties aren't named they have visual selectors
 enum class SFXTriggerProximityMode {
@@ -1337,20 +1321,16 @@ enum class SFXTriggerProximityMode {
 	Upwards = 6
 };
 
-// TimerTriggerGameObject.m_controlType
-// property 472
+// TimerTriggerGameObject.m_controlType / property 472
 // Time Control trigger Start / Stop selector
 enum class TimerTriggerControlType {
 	Start = 0,
 	Stop = 1
 };
 
-// ItemTriggerGameObject.m_item1Mode
-// property 477
-// ItemTriggerGameObject.m_item2Mode
-// property 478
-// ItemTriggerGameObject.m_targetItemMode
-// property 480
+// ItemTriggerGameObject.m_item1Mode / property 477
+// ItemTriggerGameObject.m_item2Mode / property 478
+// ItemTriggerGameObject.m_targetItemMode / property 480
 // Item Edit & Item Compare Item / Timer / Points / Time / Att selectors
 // Target ItemID does not use Time and Att
 enum class ItemTriggerItemType {
@@ -1362,12 +1342,9 @@ enum class ItemTriggerItemType {
 	Attempts = 5 // renamed from Att for clarity
 };
 
-// ItemTriggerGameObject.m_resultType1
-// property 480
-// ItemTriggerGameObject.m_resultType2
-// property 481
-// ItemTriggerGameObject.m_resultType3
-// property 482
+// ItemTriggerGameObject.m_resultType1 / property 480
+// ItemTriggerGameObject.m_resultType2 / property 481
+// ItemTriggerGameObject.m_resultType3 / property 482
 // Item Edit & Item Compare Equal / Add / Subtract / Multiply / Divide selectors
 // m_resultType1 uses Equal, Add, Subtract, Multiply and divide for Item Edit but does not use Equal for Item Compare
 // m_resultType2 uses Add, Subtract, Multiply and Divide
@@ -1382,10 +1359,8 @@ enum class ItemTriggerResultType {
 	NotEqual = 5
 };
 
-// ItemTriggerGameObject.m_roundType1
-// property 485
-// ItemTriggerGameObject.m_roundType2
-// property 486
+// ItemTriggerGameObject.m_roundType1 / property 485
+// ItemTriggerGameObject.m_roundType2 / property 486
 // Item Edit & Item Compare Round / Floor / Ceil selectors
 enum class ItemTriggerRoundType {
 	None = 0,
@@ -1394,8 +1369,7 @@ enum class ItemTriggerRoundType {
 	Ceiling = 3
 };
 
-// GameObject.m_customColorType
-// property 497
+// GameObject.m_customColorType / property 497
 // Single color Default / Base / Detail selectors
 enum class CustomSingleColorType {
 	Default = 0,
@@ -1403,8 +1377,7 @@ enum class CustomSingleColorType {
 	Detail = 2
 };
 
-// EventLinkTrigger	m_extraID2
-// property 525
+// EventLinkTrigger	m_extraID2 / property 525
 // Event trigger Extra ID 2 player selector
 enum class EventTriggerPlayer {
 	All = 0,
@@ -1412,8 +1385,7 @@ enum class EventTriggerPlayer {
 	Player2 = 2
 };
 
-// KeyframeGameObject.m_direction
-// property 536
+// KeyframeGameObject.m_direction / property 536
 // Keyframe object CCW / CW selectors
 enum class KeyframePointRotateDir {
 	Nearest = 0, // none selected
@@ -1421,8 +1393,7 @@ enum class KeyframePointRotateDir {
 	CounterClockwise = 2 // CCW
 };
 
-// EnterEffectObject.m_specialTarget
-// property 538
+// EnterEffectObject.m_specialTarget / property 538
 // Area trigger P1 / P2 / C / BL / CL / TL / BC / TC / BR / CR / TR selectors
 enum class EnterEffectSpecialTarget {
     P1 = -1, // Player1
@@ -1438,8 +1409,7 @@ enum class EnterEffectSpecialTarget {
     TR = -11 // TopRight
 };
 
-// AdvancedFollowTriggerObject.m_startMode
-// property 572
+// AdvancedFollowTriggerObject.m_startMode / property 572
 // Advanced Follow Init / Set / Add selectors
 enum class AdvancedFollowTriggerStartMode {
 	Init = 0,
@@ -1447,10 +1417,8 @@ enum class AdvancedFollowTriggerStartMode {
 	Add = 2
 };
 
-// ItemTriggerGameObject.m_signType1
-// property 578
-// ItemTriggerGameObject.m_signType2
-// property 579
+// ItemTriggerGameObject.m_signType1 / property 578
+// ItemTriggerGameObject.m_signType2 / property 579
 // Item Edit & Item Compare NA / ABS / NEG selectors
 enum class ItemTriggerSignType {
 	None = 0, // NA
@@ -1458,8 +1426,7 @@ enum class ItemTriggerSignType {
 	Negation = 2 // NEG
 };
 
-// LevelSettingsObject.m_startMode
-// property kA2
+// LevelSettingsObject.m_startMode / property kA2
 // Gamemode selector
 enum class PlayerGamemode {
 	Cube = 0,
@@ -1472,8 +1439,7 @@ enum class PlayerGamemode {
 	Swing = 7
 };
 
-// GJGameLevel.m_audioTrack
-// property k8
+// GJGameLevel.m_audioTrack / property k8
 // Normal song selector
 // Includes alt game songs, remove if irrelevant
 enum class DefaultSongs {
@@ -1520,8 +1486,7 @@ enum class DefaultSongs {
 	PowerTrip = 39
 };
 
-// GJGameLevel.m_levelLength
-// property k23
+// GJGameLevel.m_levelLength / property k23
 // Level length display
 enum class LevelLength {
 	Tiny = 0,
@@ -1532,33 +1497,18 @@ enum class LevelLength {
 	Platformer = 5 // Plat
 };
 
-// GJGameLevel.m_isEpic
-// property k75
+// GJGameLevel.m_isEpic / property k75
 // Level epic rating
 enum class LevelEpicType {
 	None = 0,
 	Epic = 1,
-	Legendary 2,
+	Legendary = 2,
 	Mythic = 3
 };
 
-// GJGameLevel.m_demonDifficulty
-// property k76
-// Level demon difficulty
-enum class LevelDemonRating {
-	Hard = 0,
-	PreRating = 1, // old is_demon flag from early 2.1
-	Easy = 3,
-	Medium = 4,
-	Insane = 5,
-	Extreme = 6
-};
-
-// GJLevelList.m_difficulty
-// property k7
+// GJLevelList.m_difficulty / property k7
 // Level List difficulty selector
-// Yes this is really a different enum from GJDifficulty
-// The only difference is how demon difficulties are ordered
+// Yes this is really a different enum from GJDifficulty, the only difference is how demon difficulties are ordered
 enum class LevelListDifficulty {
     NA = -1,
     Auto = 0,
