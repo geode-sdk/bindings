@@ -184,8 +184,10 @@ enum class PulseEffectType {
     Hsv = 1,
     Color = 2,
 };
+// EffectGameObject.m_touchToggleMode / property 82
+// Touch trigger toggle selector
 enum class TouchTriggerType {
-    Normal = 0,
+    Normal = 0, // switches current toggle
     ToggleOn = 1,
     ToggleOff = 2,
 };
@@ -446,6 +448,11 @@ enum class SmartBlockType {
     WideSlope15 = 0x4B,
     WideSlope16 = 0x4C
 };
+// EffectGameObject.m_touchPlayerMode / property 198
+// Touch trigger player selectors
+// EventLinkTrigger.m_extraID2 / property 525
+// Event trigger ExtraID2 player selector
+// The mappings are pretty generic so it might be a better idea to rename this. 
 enum class TouchTriggerControl {
     Both = 0,
     Player1 = 1,
@@ -1383,14 +1390,6 @@ enum class CustomSingleColorType {
 	Default = 0,
 	Base = 1,
 	Detail = 2
-};
-
-// EventLinkTrigger	m_extraID2 / property 525
-// Event trigger Extra ID 2 player selector
-enum class EventTriggerPlayer {
-	All = 0,
-	Player1 = 1,
-	Player2 = 2
 };
 
 // KeyframeGameObject.m_direction / property 536
