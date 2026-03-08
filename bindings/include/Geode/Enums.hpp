@@ -1137,6 +1137,443 @@ enum class GameObjectClassType {
     Smart = 5,
 };
 
+// All of the enum names are for reference feel free to change them
+// Some of the enums look sketchy but i double checked them,
+// i can't guarantee no mistakes so worth triple checking
+
+// EffectGameObject.m_pulseMode
+// property 48
+// Pulse trigger Color / HSV selector
+enum class PulseTriggerColorType {
+	Color = 0,
+	HSV = 1
+};
+
+// EffectGameObject.m_pulseTargetType
+// property 52
+// Pulse trigger Channel / Group selector
+enum class PulseTriggerTargetType {
+	Channel = 0,
+	Group = 1
+};
+
+// CountTriggerGameObject.m_pickupTriggerMode
+// property 88
+// Pickup trigger Add / Multiply / Divide selector
+// Instant Count trigger Equal / Larger / Smaller selector
+enum class CountTriggerMode {
+	AddEqual = 0,
+	MultiplyLarger = 1,
+	DivideSmaller = 2
+};
+
+// CameraTriggerGameObject.m_edgeDirection
+// property 164
+// Camera Edge trigger None / Left / Right / Up / Down selector
+enum class CameraTriggerEdge {
+    None = 0,
+    Left = 1,
+    Right = 2,
+    Up = 3,
+    Down = 4
+};
+
+// RotateGameplayGameObject.m_groundDirection
+// RotateGameplayGameObject.m_moveDirection
+// property 166 and 167
+// Rotate Gameplay trigger direction
+// These are set automatically depending on the trigger's orientation
+// From my testing 166 is ground direction but geode names it m_moveDirection,
+// while 167 is move direction but geode names it m_groundDirection
+// This enum is mapped based off my own testing
+enum class RotateGameplayTriggerDirection {
+	Default = 0, // if p166 has value 2 and p167 has value 4 the game doesn't serialize them 
+	Up = 1,
+	Down = 2,
+	Left = 3,
+	Right = 4
+};
+
+// GradientTriggerObject.m_blendingMode
+// property 174
+// Gradient trigger Normal / Additive / Multiply / Invert selector
+enum class GradientTriggerBlending {
+	Normal = 0,
+	Additive = 1,
+	Multiply = 2,
+	Invert = 3
+};
+
+// ShaderGameObject.m_zLayerMin
+// property 196
+// ShaderGameObject.m_zLayerMax
+// property 197
+// GradientTriggerObject.m_blendingLayer
+// property 202
+// Shader / Gradient layer selector
+enum class GradientShaderLayer {
+	BG = 1,
+    MG = 2,
+    B5 = 3,
+    B4 = 4,
+    B3 = 5,
+    B2 = 6,
+    B1 = 7,
+    P = 8,
+    T1 = 9,
+    T2 = 10,
+    T3 = 11,
+    T4 = 12,
+    G = 13,
+    UI = 14,
+    MAX = 15
+};
+
+// EnterEffectObject.m_enterType
+// property 217
+// Enter trigger Enter / Exit Only selector
+enum class EffectTriggerEnterType {
+    Default = 0,
+    Enter = 1,
+    Exit = 2
+};
+
+// TeleportPortalObject	m_gravityMode
+// property 354
+// Teleport portal / orb / trigger Gravity Normal / Flipped / Toggle selector
+enum class TeleportGravityMode {
+	None = 0,
+	Normal = 1,
+	Flipped = 2,
+	Toggle = 3
+};
+
+// AdvancedFollowTriggerObject.m_followMode
+// property 367
+// Advanced Follow Mode 1/2/3 selector
+enum class AdvancedFollowTriggerMode {
+	Mode1 = 0,
+	Mode2 = 1,
+	Mode3 = 2
+};
+
+// KeyframeGameObject.m_timeMode
+// property 379
+// Keyframe reference Time / Even / Dist selector
+enum class KeyframePointTimeMode {
+	Time = 0,
+	Even = 1,
+	Dist = 2
+};
+
+// UISettingsGameObject.m_xRef
+// property 385
+// UISettingsGameObject.m_yRef
+// property 386
+// UI trigger X reference Auto / Center / Left / Right selectors
+// UI trigger Y reference Auto / Center / Top / Bottom selectors
+// Yes they use the same enum
+enum class UITriggerReference {
+	Default = 0, // for X is AutoX and for Y is AutoY 
+	AutoX = 1,
+	CenterX = 2,
+	Left = 3,
+	Right = 4,
+	AutoY = 5,
+	CenterY = 6,
+	Bottom = 7,
+	Top = 8
+};
+
+// LabelGameObject.m_shownSpecial
+// property 390
+// Counter Label MainTime / Points / Attempts selector
+// The values are correct, if value is Default then the label's own value is used
+// If you put -1, -2 or -3 in the label's ItemID it will reference the same items
+enum class CounterLabelSpecialItem {
+	Default = 0,
+	MainTime = -1,
+	Points = -2,
+	Attempts = -3
+};
+
+// LabelGameObject.m_alignment
+// property 391
+// Counter Label Center / Left / Right alignment selector
+enum class CounterLabelAlignment {
+	Center = 0,
+	Left = 1,
+	Right = 2
+};
+
+// SequenceTriggerGameObject.m_sequenceMode
+// property 436
+// Sequence trigger Mode Stop / Loop / Last selector
+enum class SequenceTriggerStopMode {
+	Stop = 0,
+	Loop = 1,
+	Last = 2
+};
+
+// SequenceTriggerGameObject.m_resetMode
+// property 439
+// Sequence trigger Reset Full / Step selector 
+enum class SequenceTriggerResetMode {
+	Full = 0,
+	Step = 1
+};
+
+// SFXTriggerGameObject.m_proximityMode
+// property 458
+// SFX trigger volume proximity selectors
+// The properties aren't named they have visual selectors
+enum class SFXTriggerProximityMode {
+	Radial = 0,
+	Horizontal = 1,
+	Leftwise = 2,
+	Rightwise = 3,
+	Vertical = 4,
+	Downwards = 5,
+	Upwards = 6
+};
+
+// TimerTriggerGameObject.m_controlType
+// property 472
+// Time Control trigger Start / Stop selector
+enum class TimerTriggerControlType {
+	Start = 0,
+	Stop = 1
+};
+
+// ItemTriggerGameObject.m_item1Mode
+// property 477
+// ItemTriggerGameObject.m_item2Mode
+// property 478
+// ItemTriggerGameObject.m_targetItemMode
+// property 480
+// Item Edit & Item Compare Item / Timer / Points / Time / Att selectors
+// Target ItemID does not use Time and Att
+enum class ItemTriggerItemType {
+	Default = 0, // m_item1Mode on Item Compare maps this to Item
+	Item = 1,
+	Timer = 2,
+	Points = 3,
+	MainTime = 4, // renamed from Time for clarity
+	Attempts = 5 // renamed from Att for clarity
+};
+
+// ItemTriggerGameObject.m_resultType1
+// property 480
+// ItemTriggerGameObject.m_resultType2
+// property 481
+// ItemTriggerGameObject.m_resultType3
+// property 482
+// Item Edit & Item Compare Equal / Add / Subtract / Multiply / Divide selectors
+// m_resultType1 uses Equal, Add, Subtract, Multiply and divide for Item Edit but does not use Equal for Item Compare
+// m_resultType2 uses Add, Subtract, Multiply and Divide
+// m_resultType3 uses arithmetic operations for Item Edit (Multiply, Divide),
+// and comparison operations for Item Compare (Equal, Greater Than, Greater or Equal, Lower Than, Lower or Equal, Not Equal)
+enum class ItemTriggerResultType {
+	Equal = 0,
+	AddGT = 1,
+	SubtractGE = 2,
+	MultiplyLT = 3,
+	DivideLE = 4,
+	NotEqual = 5
+};
+
+// ItemTriggerGameObject.m_roundType1
+// property 485
+// ItemTriggerGameObject.m_roundType2
+// property 486
+// Item Edit & Item Compare Round / Floor / Ceil selectors
+enum class ItemTriggerRoundType {
+	None = 0,
+	Round = 1,
+	Floor = 2,
+	Ceiling = 3
+};
+
+// GameObject.m_customColorType
+// property 497
+// Single color Default / Base / Detail selectors
+enum class CustomSingleColorType {
+	Default = 0,
+	Base = 1,
+	Detail = 2
+};
+
+// EventLinkTrigger	m_extraID2
+// property 525
+// Event trigger Extra ID 2 player selector
+enum class EventTriggerPlayer {
+	All = 0,
+	Player1 = 1,
+	Player2 = 2
+};
+
+// KeyframeGameObject.m_direction
+// property 536
+// Keyframe object CCW / CW selectors
+enum class KeyframePointRotateDir {
+	Nearest = 0, // none selected
+	Clockwise = 1, // CW
+	CounterClockwise = 2 // CCW
+};
+
+// EnterEffectObject.m_specialTarget
+// property 538
+// Area trigger P1 / P2 / C / BL / CL / TL / BC / TC / BR / CR / TR selectors
+enum class EnterEffectSpecialTarget {
+    P1 = -1, // Player1
+    P2 = -2, // Player2
+    C = -3, // Center
+    BL = -4, // BottomLeft
+    CL = -5, // CenterLeft
+    TL = -6, // TopLeft
+    BC = -7, // BottomCenter
+    TC = -8, // TopCenter
+    BR = -9, // BottomRight
+    CR = -10, // CenterRight
+    TR = -11 // TopRight
+};
+
+// AdvancedFollowTriggerObject.m_startMode
+// property 572
+// Advanced Follow Init / Set / Add selectors
+enum class AdvancedFollowTriggerStartMode {
+	Init = 0,
+	Set = 1,
+	Add = 2
+};
+
+// ItemTriggerGameObject.m_signType1
+// property 578
+// ItemTriggerGameObject.m_signType2
+// property 579
+// Item Edit & Item Compare NA / ABS / NEG selectors
+enum class ItemTriggerSignType {
+	None = 0, // NA
+	Absolute = 1, // ABS
+	Negation = 2 // NEG
+};
+
+// LevelSettingsObject.m_startMode
+// property kA2
+// Gamemode selector
+enum class PlayerGamemode {
+	Cube = 0,
+	Ship = 1,
+	Ball = 2,
+	Ufo = 3,
+	Wave = 4,
+	Robot = 5,
+	Spider = 6,
+	Swing = 7
+};
+
+// GJGameLevel.m_audioTrack
+// property k8
+// Normal song selector
+// Includes alt game songs, remove if irrelevant
+enum class DefaultSongs {
+	StayInsideMe = -1,
+	StereoMadness = 0,
+	BackOnTrack = 1,
+	Polargeist = 2,
+	DryOut = 3,
+	BaseAfterBase = 4,
+	CantLetGo = 5,
+	Jumper = 6,
+	TimeMachine = 7,
+	Cycles = 8,
+	Xstep = 9,
+	Clutterfunk = 10,
+	TheoryOfEverything = 11,
+	ElectromanAdventures = 12,
+	Clubstep = 13,
+	Electrodynamix = 14,
+	HexagonForce = 15,
+	BlastProcessing = 16,
+	TheoryOfEverything2 = 17,
+	GeometricalDominator = 18,
+	Deadlocked = 19,
+	Fingerdash = 20,
+	Dash = 21,
+	Explorers = 22,
+	TheSevenSeas = 23,
+	VikingArena = 24,
+	AirborneRobots = 25,
+	Secret = 26,
+	Payload = 27,
+	BeastMode = 28,
+	Machina = 29,
+	Years = 30,
+	Frontlines = 31,
+	SpacePirates = 32,
+	Striker = 33,
+	Embers = 34,
+	Round1 = 35,
+	MonsterDanceOff = 36,
+	PressStart = 37,
+	NockEm = 38,
+	PowerTrip = 39
+};
+
+// GJGameLevel.m_levelLength
+// property k23
+// Level length display
+enum class LevelLength {
+	Tiny = 0,
+	Short = 1,
+	Medium = 2,
+	Long = 3,
+	XL = 4,
+	Platformer = 5 // Plat
+};
+
+// GJGameLevel.m_isEpic
+// property k75
+// Level epic rating
+enum class LevelEpicType {
+	None = 0,
+	Epic = 1,
+	Legendary 2,
+	Mythic = 3
+};
+
+// GJGameLevel.m_demonDifficulty
+// property k76
+// Level demon difficulty
+enum class LevelDemonRating {
+	Hard = 0,
+	PreRating = 1, // old is_demon flag from early 2.1
+	Easy = 3,
+	Medium = 4,
+	Insane = 5,
+	Extreme = 6
+};
+
+// GJLevelList.m_difficulty
+// property k7
+// Level List difficulty selector
+// Yes this is really a different enum from GJDifficulty
+// The only difference is how demon difficulties are ordered
+enum class LevelListDifficulty {
+    NA = -1,
+    Auto = 0,
+    Easy = 1,
+    Normal = 2,
+    Hard = 3,
+    Harder = 4,
+    Insane = 5,
+	DemonEasy = 6,
+    DemonMedium = 7,
+	DemonHard = 8,
+    DemonInsane = 9,
+    DemonExtreme = 10
+};
+
 namespace GameVar {
     constexpr auto FollowPlayer = "0001";
     constexpr auto PlaytestMusic = "0002";
