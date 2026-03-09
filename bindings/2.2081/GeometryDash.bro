@@ -8974,7 +8974,7 @@ class GJGameState {
     float m_unkFloat10;
     float m_timeModRelated;
     bool m_timeModRelated2;
-    gd::map<std::pair<int, int>, int> m_unkMapPairIntIntInt;
+    gd::map<std::pair<int, int>, int> m_activatedObjectIDs;
     float m_unkUint13;
     cocos2d::CCPoint m_unkPoint32;
     // same as m_cameraPosition but still updates in the editor when not playtesting?
