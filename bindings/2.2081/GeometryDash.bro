@@ -14604,12 +14604,18 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void yStartUp() = win inline, imac 0x41d650, m1 0x391c2c, ios inline;
 
     /// @note geode addition
+    /// @note this will return false for PlayerObjects in MenuGameLayer
+    /// @note this might break if you call from PlayerObject::init
     bool isVanillaPlayer() = inline;
 
     /// @note geode addition
+    /// @note this will return false for PlayerObjects in MenuGameLayer
+    /// @note this might break if you call from PlayerObject::init
     bool isPlayer1() = inline;
 
     /// @note geode addition
+    /// @note this will return false for PlayerObjects in MenuGameLayer
+    /// @note this might break if you call from PlayerObject::init
     bool isPlayer2() = inline;
 
     cocos2d::CCNode* m_mainLayer;
