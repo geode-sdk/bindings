@@ -1,10 +1,5 @@
 #include <Geode/Bindings.hpp>
 
-/// @note Geode addition
-bool isVanillaPlayer() {
-    return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
-}
-
 #if defined(GEODE_IS_ANDROID)
 PlayerObject::PlayerObject() {
 
@@ -39,6 +34,12 @@ PlayerObject::PlayerObject() {
     new (&m_currentRobotAnimation) gd::string("run");
 }
 #endif
+
+/// @note Geode addition
+bool isVanillaPlayer() {
+    return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
+}
+
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void PlayerObject::addToYVelocity(double yVelocity, int type) {
