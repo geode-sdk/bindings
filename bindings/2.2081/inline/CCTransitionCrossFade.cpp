@@ -8,8 +8,10 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
-cocos2d::CCTransitionCrossFade() {}
-cocos2d::~CCTransitionCrossFade() {}
+const unsigned int kSceneFade = 0xFADEFADE;
+
+cocos2d::CCTransitionCrossFade::CCTransitionCrossFade() {}
+cocos2d::CCTransitionCrossFade::~CCTransitionCrossFade() {}
 
 cocos2d::CCTransitionCrossFade* cocos2d::CCTransitionCrossFade::create(float t, cocos2d::CCScene* scene) {
     CCTransitionCrossFade* pScene = new CCTransitionCrossFade();
