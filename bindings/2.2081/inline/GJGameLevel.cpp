@@ -245,13 +245,13 @@ GJGameLevel::GJGameLevel() {
     m_listPosition = 0;
     m_songSize = 0;
     m_bestTime = 0;
-    m_unk518 = 0;
-    m_unk51c = 0;
-    m_unk520 = 0;
+    m_ticksTime = 0;
+    m_clicksTime = 0;
+    m_coinsTime = 0;
     m_bestPoints = 0;
-    m_unk54c = 0;
-    m_unk550 = 0;
-    m_unk554 = 0;
+    m_ticksPoints = 0;
+    m_clicksPoints = 0;
+    m_coinsPoints = 0;
     m_savedTime = false;
     m_savedPoints = false;
 }

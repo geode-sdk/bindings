@@ -369,9 +369,9 @@ class RecordCheckpoint {
 	int m_step;
 	uint64_t m_seed;
 	int m_attempts;
-	int m_unk014;
+	int m_ticks;
 	uint64_t m_time;
-	int m_unk020;
+	int m_clicks;
 	int m_points;
 	gd::string m_inputs;
 }

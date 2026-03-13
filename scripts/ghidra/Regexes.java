@@ -131,7 +131,7 @@ public class Regexes {
     );
     public static final Pattern GRAB_CLASS = grabClass("(?:\\w+::)*\\w+");
     public static final Pattern GRAB_TYPE = generateRecursiveRegex(
-        "(?<lconst>\\bconst\\s+)?(?<sign>\\b(?:signed|unsigned)\\s+)?(?<name>(?:\\w+::)*\\w+)(?<template><(?:{0})(?:\\s*,\\s*(?:{0}))*>)?(?<rconst>\\s+const\\b)?(?<ptr>\\s*\\*+)?(?<ref>\\s*&+)?",
+        "(?<lconst>\\bconst\\s+)?(?<sign>\\b(?:signed|unsigned)\\s+)?(?<name>(?:\\w+::)*\\w+)(?<template><(?:{0})(?:\\s*,\\s*(?:{0}))*>)?(?<rconst>\\s+const\\b)?(?<ptr>\\s*\\*+)?(?<ref>\\s*&+)?(?:\\s+const)?",
         3,
         "__depth_limit",
         Pattern.DOTALL

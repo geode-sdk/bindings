@@ -93,7 +93,7 @@ class cocos2d {
     static float clampf(float, float, float) = imac 0x356250, m1 0x2e25a0, ios 0x1aea10;
     static char const* cocos2dVersion() = imac 0x355670, m1 0x2e1c3c, ios 0x7c16c;
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x5d4c40, m1 0x500b70, ios 0x2f8d54;
-    static void FNTConfigRemoveCache() = ios 0x2f8ee4;
+    static void FNTConfigRemoveCache() = m1 0x500e3c, imac 0x5d4f00, ios 0x2f8ee4;
     static bool isspace_unicode(unsigned short) = m1 0x57fe74, imac 0x65fff0, ios 0x1ad088;
     // static cocos2d::CCPoint ccpCompOp(cocos2d::CCPoint const&, float (float)*);
 }
@@ -1666,7 +1666,8 @@ class cocos2d::CCImage : cocos2d::CCObject {
     bool initWithStringShadowStroke(char const*, int, int, cocos2d::CCImage::ETextAlign, char const*, int, float, float, float, bool, float, float, float, float, bool, float, float, float, float) = ios 0x2b458;
     // bool hasAlpha();
     // bool isPremultipliedAlpha();
-    // bool saveToFile(char const*, bool);
+    [[link(win, android, mac, ios)]]
+    bool saveToFile(char const*, bool);
 }
 
 [[link(win, android)]]
