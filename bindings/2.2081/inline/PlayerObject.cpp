@@ -36,7 +36,7 @@ PlayerObject::PlayerObject() {
 #endif
 
 /// @note Geode addition
-bool isVanillaPlayer() {
+bool PlayerObject::isVanillaPlayer() {
     return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
 }
 
