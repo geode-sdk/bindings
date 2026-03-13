@@ -36,8 +36,24 @@ PlayerObject::PlayerObject() {
 #endif
 
 /// @note Geode addition
+/// @note this will return false for PlayerObjects in MenuGameLayer
+/// @note this might break if you call from PlayerObject::init
 bool PlayerObject::isVanillaPlayer() {
     return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
+}
+
+/// @note geode addition
+/// @note this will return false for PlayerObjects in MenuGameLayer
+/// @note this might break if you call from PlayerObject::init
+bool PlayerObject::isPlayer1() {
+    return m_gameLayer && (!m_gameLayer->m_player1 || m_gameLayer->m_player1 == this);
+}
+
+/// @note geode addition
+/// @note this will return false for PlayerObjects in MenuGameLayer
+/// @note this might break if you call from PlayerObject::init
+bool PlayerObject::isPlayer2() {
+    return m_gameLayer && (!m_gameLayer->m_player2 || m_gameLayer->m_player2 == this);
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

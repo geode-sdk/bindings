@@ -14606,6 +14606,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     /// @note geode addition
     bool isVanillaPlayer() = inline;
 
+    /// @note geode addition
+    bool isPlayer1() = inline;
+
+    /// @note geode addition
+    bool isPlayer2() = inline;
+
     cocos2d::CCNode* m_mainLayer;
     bool m_wasTeleported;
     bool m_fixGravityBug;
