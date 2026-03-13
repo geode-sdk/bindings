@@ -1,5 +1,10 @@
 #include <Geode/Bindings.hpp>
 
+/// @note Geode addition
+bool isNotMultiplayerPlayer() {
+    return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
+}
+
 #if defined(GEODE_IS_ANDROID)
 PlayerObject::PlayerObject() {
 

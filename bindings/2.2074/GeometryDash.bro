@@ -27850,6 +27850,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         this->logValues();
     }
 
+    /// @note geode addition
+    bool isNotMultiplayerPlayer() {
+        return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
+    }
+
     cocos2d::CCNode* m_mainLayer;
     bool m_wasTeleported;
     bool m_fixGravityBug;

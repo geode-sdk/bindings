@@ -14603,6 +14603,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void yStartDown() = win inline, imac 0x41d670, m1 0x391c4c, ios inline;
     void yStartUp() = win inline, imac 0x41d650, m1 0x391c2c, ios inline;
 
+    /// @note geode addition
+    bool isNotMultiplayerPlayer() inline;
+
     cocos2d::CCNode* m_mainLayer;
     bool m_wasTeleported;
     bool m_fixGravityBug;
