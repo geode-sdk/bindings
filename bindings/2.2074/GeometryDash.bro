@@ -27851,7 +27851,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     }
 
     /// @note geode addition
-    bool isNotMultiplayerPlayer() {
+    bool isVanillaPlayer() {
         return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
     }
 
