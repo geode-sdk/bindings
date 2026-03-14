@@ -47,5 +47,6 @@ CCActionInterval* CCTransitionSlideInR:: action()
     CCSize s = CCDirector::sharedDirector()->getWinSize();
     return CCMoveBy::create(m_fDuration, ccp(-(s.width-ADJUST_FACTOR),0));
 }
+#undef ADJUST_FACTOR
 #endif
 

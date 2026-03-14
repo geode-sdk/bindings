@@ -71,5 +71,6 @@ CCTransitionSlideInL* CCTransitionSlideInL::create(float t, CCScene* scene)
     CC_SAFE_DELETE(pScene);
     return NULL;
 }
+#undef ADJUST_FACTOR
 #endif
 
