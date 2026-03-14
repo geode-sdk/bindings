@@ -80,6 +80,16 @@ bool CCGridBase::initWithSize(const CCSize& gridSize, CCTexture2D *pTexture, boo
     return bRet;
 }
 
+unsigned int ccNextPOT(unsigned int n)
+{
+    // not cocos's impl but works
+
+    if (n <= 1)
+        return 1;
+
+    return std::ceil2(n);
+}
+
 bool CCGridBase::initWithSize(const CCSize& gridSize)
 {
     CCDirector *pDirector = CCDirector::sharedDirector();
