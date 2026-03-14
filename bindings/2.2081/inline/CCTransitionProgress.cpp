@@ -10,6 +10,10 @@
 #if defined(GEODE_IS_IOS)
 using namespace cocos2d;
 
+enum {
+    kCCSceneRadial = 0xc001,
+};
+
 CCTransitionProgress::CCTransitionProgress()
 : m_fTo(0.0f)
 , m_fFrom(0.0f)
