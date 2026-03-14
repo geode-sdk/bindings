@@ -80,14 +80,15 @@ bool CCGridBase::initWithSize(const CCSize& gridSize, CCTexture2D *pTexture, boo
     return bRet;
 }
 
-unsigned int ccNextPOT(unsigned int n)
+unsigned long ccNextPOT(unsigned long x)
 {
-    // not cocos's impl but works
-
-    if (n <= 1)
-        return 1;
-
-    return std::ceil2(n);
+    x = x - 1;
+    x = x | (x >> 1);
+    x = x | (x >> 2);
+    x = x | (x >> 4);
+    x = x | (x >> 8);
+    x = x | (x >>16);
+    return x + 1;
 }
 
 bool CCGridBase::initWithSize(const CCSize& gridSize)
