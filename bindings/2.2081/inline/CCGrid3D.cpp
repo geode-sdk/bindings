@@ -102,7 +102,7 @@ void CCGrid3D::blit(void)
 
     glDrawElements(GL_TRIANGLES, (GLsizei) n*6, GL_UNSIGNED_SHORT, m_pIndices);
 #endif // EMSCRIPTEN
-    CC_INCREMENT_GL_DRAWS(1);
+    // CC_INCREMENT_GL_DRAWS(1);
 }
 
 void CCGrid3D::calculateVertexPoints(void)

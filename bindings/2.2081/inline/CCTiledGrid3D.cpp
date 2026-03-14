@@ -103,7 +103,7 @@ void CCTiledGrid3D::blit(void)
 #endif // EMSCRIPTEN
 
 
-    CC_INCREMENT_GL_DRAWS(1);
+    // CC_INCREMENT_GL_DRAWS(1);
 }
 
 void CCTiledGrid3D::calculateVertexPoints(void)
