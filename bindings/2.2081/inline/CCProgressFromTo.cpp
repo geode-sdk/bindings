@@ -10,6 +10,8 @@
 #if defined(GEODE_IS_IOS)
 using namespace cocos2d;
 
+#define kProgressTimerCast CCProgressTimer*
+
 CCProgressFromTo* CCProgressFromTo::create(float duration, float fFromPercentage, float fToPercentage)
 {
     CCProgressFromTo *pProgressFromTo = new CCProgressFromTo();
