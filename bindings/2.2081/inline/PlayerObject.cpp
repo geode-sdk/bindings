@@ -35,6 +35,27 @@ PlayerObject::PlayerObject() {
 }
 #endif
 
+/// @note Geode addition
+/// @note this will return false for PlayerObjects in MenuGameLayer
+/// @note this might break if you call from PlayerObject::init
+bool PlayerObject::isVanillaPlayer() {
+    return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
+}
+
+/// @note geode addition
+/// @note this will return false for PlayerObjects in MenuGameLayer
+/// @note this might break if you call from PlayerObject::init
+bool PlayerObject::isPlayer1() {
+    return m_gameLayer && this == m_gameLayer->m_player1;
+}
+
+/// @note geode addition
+/// @note this will return false for PlayerObjects in MenuGameLayer
+/// @note this might break if you call from PlayerObject::init
+bool PlayerObject::isPlayer2() {
+    return m_gameLayer && this == m_gameLayer->m_player2;
+}
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void PlayerObject::addToYVelocity(double yVelocity, int type) {
     this->setYVelocity(m_yVelocity + yVelocity, type);

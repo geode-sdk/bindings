@@ -27850,6 +27850,27 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
         this->logValues();
     }
 
+    /// @note geode addition
+    /// @note this will return false for PlayerObjects in MenuGameLayer
+    /// @note this might break if you call from PlayerObject::init
+    bool isVanillaPlayer() {
+        return m_gameLayer && (this == m_gameLayer->m_player1 || this == m_gameLayer->m_player2);
+    }
+
+    /// @note geode addition
+    /// @note this will return false for PlayerObjects in MenuGameLayer
+    /// @note this might break if you call from PlayerObject::init
+    bool isPlayer1() {
+        return m_gameLayer && this == m_gameLayer->m_player1;
+    }
+
+    /// @note geode addition
+    /// @note this will return false for PlayerObjects in MenuGameLayer
+    /// @note this might break if you call from PlayerObject::init
+    bool isPlayer2() {
+        return m_gameLayer && this == m_gameLayer->m_player2;
+    }
+
     cocos2d::CCNode* m_mainLayer;
     bool m_wasTeleported;
     bool m_fixGravityBug;
