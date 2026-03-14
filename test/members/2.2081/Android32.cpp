@@ -2,6 +2,8 @@
 
 #ifdef GEODE_IS_ANDROID32
 
+GEODE_MEMBER_CHECK(GJBaseGameLayer, m_started, 0x2b10);
+
 using namespace geode::prelude;
 
 // Add known android struct members here

@@ -8,7 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
-void cocos2d::CCDrawNode::drawCubicBezier(cocos2d::CCPoint const& p0, cocos2d::CCPoint const& p1, cocos2d::CCPoint const& p2, cocos2d::CCPoint const& p3, unsigned int p4, cocos2d::ccColor4F const& p5) {
+void cocos2d::CCDrawNode::drawCubicBezier(cocos2d::CCPoint const& p0, cocos2d::CCPoint const& p1, cocos2d::CCPoint const& p2, cocos2d::CCPoint const& p3, unsigned int p4, cocos2d::ccColor4F const& p5, float p6) {
+    // no idea what p6 is but it was added recently
     auto vertices = new CCPoint[p4 + 1];
     if (p4 != 0) {
         auto factor = 0.f;
