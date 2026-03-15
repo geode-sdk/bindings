@@ -1,0 +1,2 @@
+# Treat .bro files as C++ for syntax highlighting on GitHub
+*.bro linguist-language=C++
