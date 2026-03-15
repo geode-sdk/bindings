@@ -3636,7 +3636,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool canSelectObject(GameObject* object) = win 0x110310, imac 0x3c090, m1 0x3453c, ios 0x3ed510;
     void centerCameraOnObject(GameObject* object) = win inline, imac 0x335b0, m1 0x30454, ios 0x3ea128;
     void changeSelectedObjects(cocos2d::CCArray* objects, bool ignoreFilter) = win inline, imac 0x3cb00, m1 0x34ec4, ios 0x3edde4;
-    void checkDiffAfterTransformAnchor(cocos2d::CCPoint diff, cocos2d::CCArray* objects) = win 0x115980, imac 0x41060, m1 0x38f1c, ios 0x3f0810;
+    cocos2d::CCPoint checkDiffAfterTransformAnchor(cocos2d::CCPoint diff, cocos2d::CCArray* objects) = win 0x115980, imac 0x41060, m1 0x38f1c, ios 0x3f0810;
     void checkLiveColorSelect() = win 0x110630, imac 0x3c660, m1 0x34ad0, ios 0x3eda58;
     void clickOnPosition(cocos2d::CCPoint position) = win 0xe26e0, imac 0x2da70, m1 0x2ac2c, ios 0x3e66f8;
     void closeLiveColorSelect() = win 0x11efa0, imac 0x3c7c0, m1 0x34c08, ios inline;
