@@ -6051,6 +6051,7 @@ class GameManager : GManager {
     bool m_unkBool7;
     bool m_unkBool8;
     geode::SeedValueRSV m_hasRP;
+    bool m_hasDRP;
     bool m_canGetLevelSaveData;
     int m_resolution;
     int m_texQuality;
@@ -6094,6 +6095,7 @@ class GameManager : GManager {
     bool m_shouldResetShader;
     cocos2d::CCPoint m_practicePos;
     float m_practiceOpacity;
+    int m_unk664;
 }
 
 [[link(android)]]
