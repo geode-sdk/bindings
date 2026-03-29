@@ -1882,7 +1882,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 	gd::string copyObjects(cocos2d::CCArray*) = win 0x48fc0;
 	void createMoveMenu() = win 0x49d20;
 	void createUndoSelectObject(bool) = win 0x48240;
-	void deactivateRotationControl() {
+	void deactivateRotationControl() = win inline {
 		m_rotationTouchID = -1;
 		if (m_rotationControl->isVisible()) {
 			m_rotationControl->setVisible(false);
