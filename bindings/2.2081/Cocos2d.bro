@@ -1,3 +1,8 @@
+// #import win <Geode/cocos/platform/win32/CCFileUtilsWin32.h>
+#import android <Geode/cocos/platform/android/CCFileUtilsAndroid.h>
+#import mac <Geode/cocos/platform/mac/CCFileUtilsMac.h>
+#import ios <Geode/cocos/platform/ios/CCFileUtilsIOS.h>
+
 [[link(win, android)]]
 class CCContentManager : cocos2d::CCObject {
     static CCContentManager* sharedManager() = imac 0x184200, m1 0x1491c0, ios 0x4126ac;
@@ -1456,6 +1461,60 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = imac 0x43aac0, m1 0x3ac5e0, ios 0x150960;
 
     void removeAllPaths() = m1 0x3af324, imac 0x43d8d0, ios inline;
+}
+
+[[link(android), missing(win, mac, ios)]]
+class cocos2d::CCFileUtilsAndroid : cocos2d::CCFileUtils {
+    private CCFileUtilsAndroid();
+    virtual ~CCFileUtilsAndroid();
+
+    virtual unsigned char* getFileData(char const*, char const*, unsigned long*);
+    virtual gd::string getWritablePath();
+    virtual bool init();
+    virtual bool isAbsolutePath(gd::string const&);
+    virtual bool isFileExist(gd::string const&);
+
+    unsigned char* doGetFileData(char const*, char const*, unsigned long*, bool);
+    unsigned char* getFileDataForAsync(char const*, char const*, unsigned long*);
+}
+
+[[missing(win, android, mac)]]
+class cocos2d::CCFileUtilsIOS : cocos2d::CCFileUtils {
+    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const&) = ios 0x236ee8;
+    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&) = ios 0x236694;
+    virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&) = ios 0x23651c;
+    virtual gd::string getWritablePath() = ios 0x23628c;
+    virtual bool isAbsolutePath(gd::string const&) = ios 0x236668;
+    virtual bool isFileExist(gd::string const&) = ios 0x2362f8;
+    virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = ios 0x236cf0;
+}
+
+[[missing(win, android, ios)]]
+class cocos2d::CCFileUtilsMac : cocos2d::CCFileUtils {
+    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const&) = m1 0x532d7c, imac 0x60ceb0;
+    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const&) = m1 0x53229c, imac 0x60c100;
+    virtual gd::string getFullPathForDirectoryAndFilename(gd::string const&, gd::string const&) = m1 0x532014, imac 0x60bdd0;
+    virtual gd::string getWritablePath() = m1 0x531bb4, imac 0x60b960;
+    virtual bool isAbsolutePath(gd::string const&) = m1 0x532270, imac 0x60c0b0;
+    virtual bool isFileExist(gd::string const&) = m1 0x531c98, imac 0x60ba60;
+    virtual bool writeToFile(cocos2d::CCDictionary*, gd::string const&) = m1 0x532b8c, imac 0x60cc60;
+}
+
+[[link(win), missing(android, mac, ios)]]
+class cocos2d::CCFileUtilsWin32 : cocos2d::CCFileUtils {
+    // private CCFileUtilsWin32();
+
+    virtual void addSearchPath(char const*);
+    virtual gd::string fullPathForFilename(char const*);
+    virtual gd::string getPathForFilename(gd::string const&, gd::string const&, gd::string const&);
+    virtual gd::string getWritablePath();
+    virtual gd::string getWritablePath2();
+    virtual bool init();
+    virtual bool isAbsolutePath(gd::string const&);
+    virtual bool isFileExist(gd::string const&);
+    virtual void removeSearchPath(char const*);
+
+    gd::string utf8Togbk(char const*);
 }
 
 [[link(win, android)]]
