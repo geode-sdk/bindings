@@ -8953,6 +8953,7 @@ class GJGameState {
     int m_unkUint5;
     int m_unkUint6;
     int m_unkUint7;
+    int m_unkUint8; // i don't know
     GameObject* m_lastActivatedPortal1;
     GameObject* m_lastActivatedPortal2;
     cocos2d::CCPoint m_cameraPosition;
