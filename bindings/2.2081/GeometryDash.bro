@@ -14107,7 +14107,7 @@ class PlatformToolbox {
     static void reportAchievementWithID(char const* key, int percent) = imac 0x4c3e10, m1 0x42378c, ios 0x16b830;
     static void reportLoadingFinished() = win inline, imac 0x4c3d30, m1 0x423748, ios 0x16b7fc;
     static void resizeWindow(float width, float height) = win inline, imac 0x4c4b80, m1 0x4242cc, ios 0x16bc70;
-    static void saveAndEncryptStringToFile(gd::string& str, char const* dirPath, char const* fileName) = imac 0x4c3ec0, m1 0x4237fc, ios 0x16b924;
+    static void saveAndEncryptStringToFile(gd::string& str, char const* fileName, char const* dirPath) = imac 0x4c3ec0, m1 0x4237fc, ios 0x16b924;
     static void sendMail(char const* title, char const* content, char const* address) = win inline, imac 0x4c3e50, m1 0x4237c0, ios 0x16b838;
     static void setBlockBackButton(bool block) = win inline, imac 0x4c3d90, m1 0x423760, ios inline;
     static void setKeyboardState(bool state) = win inline, imac 0x4c3d70, m1 0x423758, ios 0x16b80c;
