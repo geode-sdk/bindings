@@ -17,7 +17,7 @@ void DS_Dictionary::stepOutOfSubDict() {
 }
 
 void DS_Dictionary::removeAllKeys() {
-    while(xml_node node = dictTree.back().child(compatible ? "key" : "k"))
+    while(pugi::xml_node node = dictTree.back().child(compatible ? "key" : "k"))
     {
         dictTree.back().remove_child(node.next_sibling());
         dictTree.back().remove_child(node);
