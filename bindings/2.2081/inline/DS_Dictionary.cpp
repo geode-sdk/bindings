@@ -15,13 +15,5 @@ void DS_Dictionary::setSubDictForKey(char const* p0) {
 void DS_Dictionary::stepOutOfSubDict() {
     if (dictTree.size() > 1) dictTree.pop_back();
 }
-
-void DS_Dictionary::removeAllKeys() {
-    while(pugi::xml_node node = dictTree.back().child(compatible ? "key" : "k"))
-    {
-        dictTree.back().remove_child(node.next_sibling());
-        dictTree.back().remove_child(node);
-    }
-}
 #endif
 
