@@ -5925,7 +5925,7 @@ class DS_Dictionary {
     bool loadRootSubDictFromFile(char const*) = m1 0x1409e0, imac 0x17ab30;
     bool loadRootSubDictFromString(gd::string const&) = m1 0x141010, imac 0x17b200, ios 0x161058;
     bool rectFromString(gd::string const&, cocos2d::CCRect&) = m1 0x140298, imac 0x17a390;
-    void removeAllKeys() = m1 0x143054, imac 0x17d830;
+    void removeAllKeys() = m1 0x143054, imac 0x17d830, ios inline;
     void removeKey(char const*) = m1 0x142f70, imac 0x17d740, ios 0x161720;
     void removeKey(unsigned int) = m1 0x142e94, imac 0x17d660;
     bool saveRootSubDictToCompressedFile(char const*) = m1 0x141b80, imac 0x17bfa0;
