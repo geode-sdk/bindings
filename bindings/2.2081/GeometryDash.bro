@@ -14812,7 +14812,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_maybeReverseAcceleration;
     float m_xVelocityRelated2;
     bool m_isDashing;
-    int m_unk9e8;
+    int m_dashFireFrame;
     int m_groundObjectMaterial;
     float m_vehicleSize;
     float m_playerSpeed;
