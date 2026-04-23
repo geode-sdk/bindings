@@ -8,7 +8,41 @@
 #include <fstream>
 #include <filesystem>
 
+#ifdef _WIN32
+#include <windows.h>
+#include <io.h>
+#include <fcntl.h>
+#endif
+
 using std::istreambuf_iterator;
+
+// Cross-platform helper to open a file stream with Unicode path support
+// On Windows, we need to use wide strings for proper Unicode support
+#ifdef _WIN32
+inline std::ifstream openInputFile(std::filesystem::path const& path) {
+    std::ifstream file;
+    file.open(path.wstring());
+    return file;
+}
+
+inline std::ofstream openOutputFile(std::filesystem::path const& path) {
+    std::ofstream file;
+    file.open(path.wstring());
+    return file;
+}
+#else
+inline std::ifstream openInputFile(std::filesystem::path const& path) {
+    std::ifstream file;
+    file.open(path);
+    return file;
+}
+
+inline std::ofstream openOutputFile(std::filesystem::path const& path) {
+    std::ofstream file;
+    file.open(path);
+    return file;
+}
+#endif
 
 #ifdef _MSC_VER
     #pragma warning(disable : 4996)
@@ -32,15 +66,13 @@ std::string generateInlineSources(Root const& root, std::filesystem::path const&
 
 // returns true if the file contents were different (overwritten), false otherwise
 inline bool writeFile(std::filesystem::path const& writePath, std::string const& output) {
-    std::ifstream readfile;
+    auto readfile = openInputFile(writePath);
     readfile >> std::noskipws;
-    readfile.open(writePath);
     std::string data((std::istreambuf_iterator<char>(readfile)), std::istreambuf_iterator<char>());
     readfile.close();
 
     if (data != output) {
-        std::ofstream writefile;
-        writefile.open(writePath);
+        auto writefile = openOutputFile(writePath);
         writefile << output;
         writefile.close();
 
