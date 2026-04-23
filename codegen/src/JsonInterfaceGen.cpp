@@ -60,7 +60,6 @@ std::string generateTextInterface(Root const& root) {
 
 static matjson::Value bindingOnPlatform(Platform p, FunctionBindField const* fn) {
     auto status = codegen::getStatusWithPlatform(p, *fn);
-
     switch (status) {
         case BindStatus::Inlined: return "inline";
         case BindStatus::Binded: return "link";
