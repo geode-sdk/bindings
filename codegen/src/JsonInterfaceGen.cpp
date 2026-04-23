@@ -60,12 +60,14 @@ std::string generateTextInterface(Root const& root) {
 
 static matjson::Value bindingOnPlatform(Platform p, FunctionBindField const* fn) {
     auto status = codegen::getStatusWithPlatform(p, *fn);
-    if (status == BindStatus::Inlined) {
-        return "inline";
+
+    switch (status) {
+        case BindStatus::Inlined: return "inline";
+        case BindStatus::Binded: return "link";
+        case BindStatus::NeedsRebinding: return "rebind";
+        case BindStatus::Missing: return "missing";
     }
-    if (status == BindStatus::Binded) {
-        return "link";
-    }
+
     auto addr = codegen::platformNumberWithPlatform(p, fn->binds);
     if (addr >= 0) {
         return addr;
@@ -75,12 +77,13 @@ static matjson::Value bindingOnPlatform(Platform p, FunctionBindField const* fn)
 
 static matjson::Value bindingOnPlatform(Platform p, Function const& fn) {
     auto status = codegen::getStatusWithPlatform(p, fn);
-    if (status == BindStatus::Inlined) {
-        return "inline";
+    switch (status) {
+        case BindStatus::Inlined: return "inline";
+        case BindStatus::Binded: return "link";
+        case BindStatus::NeedsRebinding: return "rebind";
+        case BindStatus::Missing: return "missing";
     }
-    if (status == BindStatus::Binded) {
-        return "link";
-    }
+    
     auto addr = codegen::platformNumberWithPlatform(p, fn.binds);
     if (addr >= 0) {
         return addr;
