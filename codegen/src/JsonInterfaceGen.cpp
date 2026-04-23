@@ -82,7 +82,7 @@ static matjson::Value bindingOnPlatform(Platform p, Function const& fn) {
         case BindStatus::NeedsRebinding: return "rebind";
         case BindStatus::Missing: return "missing";
     }
-    
+
     auto addr = codegen::platformNumberWithPlatform(p, fn.binds);
     if (addr >= 0) {
         return addr;
