@@ -3,7 +3,7 @@
 std::string generateTextInterface(Root const& root) {
     std::string output;
 
-    for (auto& c : root.classes) {        
+    for (auto& c : root.classes) {
         for (auto& f : c.fields) {
             if (auto fn = f.get_as<FunctionBindField>()) {
                 auto status = codegen::getStatus(*fn);
@@ -14,7 +14,7 @@ std::string generateTextInterface(Root const& root) {
 
                 if (
                     (
-                        (status == BindStatus::Unbindable || status == BindStatus::Missing) && 
+                        (status == BindStatus::Unbindable || status == BindStatus::Missing) &&
                         codegen::platformNumber(fn->binds) == -1
                     ) || (
                         codegen::platformNumber(fn->binds) == 0x9999999
@@ -40,7 +40,7 @@ std::string generateTextInterface(Root const& root) {
 
         if (
             (
-                (status == BindStatus::Unbindable || status == BindStatus::Missing) && 
+                (status == BindStatus::Unbindable || status == BindStatus::Missing) &&
                 codegen::platformNumber(f.binds) == -1
             ) || (
                 codegen::platformNumber(f.binds) == 0x9999999
@@ -93,9 +93,9 @@ static matjson::Value bindingOnPlatform(Platform p, Function const& fn) {
 
 matjson::Value generateJsonInterface(Root const& root) {
     std::vector<matjson::Value> classes;
-    
-    for (auto& c : root.classes) {        
-        // Array because 
+
+    for (auto& c : root.classes) {
+        // Array because
         std::vector<matjson::Value> functions;
         std::vector<matjson::Value> fields;
         for (auto& f : c.fields) {
