@@ -14816,7 +14816,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int m_groundObjectMaterial;
     float m_vehicleSize;
     float m_playerSpeed;
-    cocos2d::CCPoint m_shipRotation;
+    cocos2d::CCPoint m_lastPosition;
     cocos2d::CCPoint m_lastPortalPos;
     float m_unkUnused3;
     bool m_isOnGround2;
