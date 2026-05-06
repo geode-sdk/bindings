@@ -2473,7 +2473,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn getDiffVal(int);
 	int getIntForKey(char const*) = win 0x60c10;
 	void getLeaderboardScores(char const*) = win 0x5ce50;
-	TodoReturn getLengthStr(bool, bool, bool, bool);
+	gd::string getLengthStr(bool, bool, bool, bool) = win 0x599b0;
 	TodoReturn getLenKey(int);
 	TodoReturn getLenVal(int);
 	void getLevelComments(int, int, int) = win 0x5d320;
@@ -3381,16 +3381,20 @@ class GameStatsManager : cocos2d::CCNode {
 	void dataLoaded(DS_Dictionary*) = win 0x79150;
 	void encodeDataTo(DS_Dictionary*);
 	TodoReturn firstSetup();
-	TodoReturn getDemonLevelKey(int);
+	const char* getDemonLevelKey(int levelID) {
+		return cocos2d::CCString::createWithFormat("demon_%i", levelID)->getCString();
+	}
 	TodoReturn getLevelKey(GJGameLevel*);
 	TodoReturn getLevelKey(int, bool);
 	TodoReturn getLiteAchievements();
 	TodoReturn getMapPackKey(int);
-	TodoReturn getStarLevelKey(int);
+	const char* getStarLevelKey(int levelID) {
+		return cocos2d::CCString::createWithFormat("star_%i", levelID)->getCString();
+	}
 	int getStat(char const*) = win 0x770c0;
 	TodoReturn getUniqueItemKey(char const*);
 	TodoReturn hasCompletedDemonLevel(GJGameLevel*);
-	TodoReturn hasCompletedLevel(GJGameLevel*);
+	bool hasCompletedLevel(GJGameLevel*) = win 0x78220;
 	bool hasCompletedMapPack(int) = win 0x78c80;
 	bool hasCompletedOnlineLevel(int) = win 0x78320;
 	TodoReturn hasCompletedStarLevel(GJGameLevel*);
@@ -3405,7 +3409,7 @@ class GameStatsManager : cocos2d::CCNode {
 	TodoReturn markLevelAsCompletedAndClaimed(int);
 	TodoReturn resetPreSync();
 	void restorePostSync() = win 0x79530;
-	void setStat(char const*, int);
+	void setStat(char const*, int) = win 0x77180;
 	void setStatIfHigher(char const*, int);
 	void storeUniqueItem(char const*) = win 0x78e40;
 	TodoReturn tempClear();
