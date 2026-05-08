@@ -4751,7 +4751,17 @@ class LevelEditorLayer : cocos2d::CCLayer, LevelSettingsDelegate, GameplayDelega
 	void rotationForSlopeNearObject(GameObject*) = win 0x8d5c0;
 	TodoReturn scene(GJGameLevel*);
 	TodoReturn sectionForPos(cocos2d::CCPoint);
-	void setStartPosObject(StartPosObject*);
+	void setStartPosObject(StartPosObject* startPos) = win inline {
+		if (startPos != m_startPosObject) {
+            if (startPos) {
+                startPos->retain();
+            }
+            if (m_startPosObject) {
+                m_startPosObject->release();
+            }
+            m_startPosObject = startPos;
+        }
+	}
 	TodoReturn setupLevelStart(LevelSettingsObject*);
 	void sortBatchnodeChildren(float);
 	TodoReturn spawnPlayer2();
@@ -6422,7 +6432,17 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn scene(GJGameLevel*);
 	TodoReturn sectionForPos(cocos2d::CCPoint);
 	void setActiveEnterEffect(EnterEffect);
-	void setStartPosObject(StartPosObject*);
+	void setStartPosObject(StartPosObject* startPos) = win inline {
+		if (startPos != m_startPosObject) {
+            if (startPos) {
+                startPos->retain();
+            }
+            if (m_startPosObject) {
+                m_startPosObject->release();
+            }
+            m_startPosObject = startPos;
+        }
+	}
 	TodoReturn setupLevelStart(LevelSettingsObject*);
 	void setupReplay(gd::string);
 	TodoReturn shakeCamera(float) = win 0xe61c0;
