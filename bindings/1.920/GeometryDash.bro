@@ -4071,6 +4071,11 @@ class GJGroundLayer {
 	virtual TodoReturn showGround();
 	virtual TodoReturn fadeInGround(float);
 	virtual TodoReturn fadeOutGround(float);
+
+	cocos2d::CCSprite* m_groundSprite; // 0x118
+	float m_groundWidth; // 0x11c
+	cocos2d::CCSprite* m_line; // 0x120
+	bool m_isActive; // 0x124
 }
 
 [[link(android)]]
