@@ -1260,7 +1260,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 	void setString(gd::string) = win 0x13d70;
 	void refreshLabel() = win 0x14030;
 	TodoReturn updateBlinkLabel();
-	TodoReturn updateLabel(gd::string);
+	void updateLabel(gd::string) = win 0x13e40;
 
 	virtual void visit();
 	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x14c00;
