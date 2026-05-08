@@ -6407,7 +6407,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	void objectIntersectsCircle(GameObject*, GameObject*) = win 0x90400;
 	void onQuit() = win 0xf3b80;
 	void pauseGame(bool) = win 0xf38c0;
-	TodoReturn pickupItem(GameObject*);
+	void pickupItem(GameObject*) = win 0xee080;
 	TodoReturn playEndAnimationToPos(cocos2d::CCPoint);
 	TodoReturn playerWillSwitchMode(PlayerObject*, GameObject*);
 	TodoReturn playExitDualEffect(PlayerObject*);
@@ -6477,7 +6477,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn unclaimParticle(char const*, cocos2d::CCParticleSystemQuad*);
 	TodoReturn unregisterActiveObject(GameObject*);
 	TodoReturn unregisterStateObject(GameObject*);
-	TodoReturn updateAttempts();
+	void updateAttempts() = win 0xf33a0;
 	void updateCamera(float) = win 0xed0f0;
 	void updateColor(cocos2d::ccColor3B, float, int) = win 0xeca90;
 	void updateCustomColorBlend(int channel, bool blend) = win inline {
