@@ -4455,7 +4455,7 @@ class HardStreak : cocos2d::CCDrawNode {
 	TodoReturn normalizeAngle(double);
 	TodoReturn quadCornerOffset(cocos2d::CCPoint, cocos2d::CCPoint, float);
 	TodoReturn reset();
-	TodoReturn resumeStroke();
+	void resumeStroke() = win 0x832d0;
 	TodoReturn stopStroke();
 	void updateStroke(float) = win 0x833e0;
 
