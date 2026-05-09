@@ -6086,10 +6086,10 @@ class PlayerObject : GameObject {
 	TodoReturn levelFlipFinished();
 	TodoReturn levelFlipping();
 	TodoReturn levelWillFlip();
-	void loadFromCheckpoint(PlayerCheckpoint*);
+	void loadFromCheckpoint(PlayerCheckpoint*) = win 0xe19c0;
 	TodoReturn lockPlayer();
 	TodoReturn logValues();
-	TodoReturn placeStreakPoint();
+	void placeStreakPoint() = win 0xe1270;
 	TodoReturn playBurstEffect();
 	TodoReturn playerDestroyed(bool) = win 0xddda0;
 	bool playerIsFalling();
@@ -6147,7 +6147,7 @@ class PlayerObject : GameObject {
 	void updateCollideBottom(float, int) = win 0xdd330;
 	void updateCollideTop(float, int) = win 0xdd2c0;
 	void updateGlowColor() = win 0xdfc80;
-	TodoReturn updateJump(float);
+	void updateJump(float) = win 0xda1a0;
 	void updatePlayerBirdFrame(int) = win 0xe0290;
 	void updatePlayerDartFrame(int) = win 0xe0580;
 	void updatePlayerFrame(int) = win 0xdfff0;
