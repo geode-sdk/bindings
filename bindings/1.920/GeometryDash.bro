@@ -4645,7 +4645,7 @@ class LevelBrowserLayer : cocos2d::CCLayer, LevelManagerDelegate, FLAlertLayerPr
 	virtual TodoReturn loadLevelsFinished(cocos2d::CCArray*, char const*);
 	virtual TodoReturn loadLevelsFailed(char const*);
 	virtual TodoReturn setupPageInfo(gd::string, char const*) = win 0x8aab0;
-	virtual void FLAlert_Clicked(FLAlertLayer*, bool);
+	virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x8b450;
 
 	TextArea* m_noInternet;
 	GJListLayer* m_list;
