@@ -570,7 +570,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     bool m_ios;
     bool m_unk0eb;
     bool m_unk0ec;
-    bool m_unk0ed;
+    bool m_needsSafeArea;
     float m_saveTime;
 }
 
