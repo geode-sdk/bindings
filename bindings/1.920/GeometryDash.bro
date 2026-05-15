@@ -176,7 +176,7 @@ class AchievementCell : TableViewCell {
 	virtual void draw();
 }
 
-[[link(android)]]
+[[link(android)]]	
 class AchievementManager : cocos2d::CCNode {
 	// virtual ~AchievementManager();
 
@@ -6440,7 +6440,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	void resume() = win 0xf39b0;
 	void resumeAndRestart();
 	void saveRecordAction(bool, PlayerObject*) = win 0xf0e20;
-	TodoReturn scene(GJGameLevel*);
+	cocos2d::CCScene* scene(GJGameLevel*);
 	TodoReturn sectionForPos(cocos2d::CCPoint);
 	void setActiveEnterEffect(EnterEffect);
 	void setStartPosObject(StartPosObject* startPos) = win inline {
@@ -6460,7 +6460,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn showCompleteEffect();
 	TodoReturn showCompleteText();
 	void showEndLayer();
-	TodoReturn showHint() = win 0xf0800;
+	void showHint() = win 0xf0800;
 	void showNewBest() = win 0xe5ff0;
 	void showRetryLayer();
 	TodoReturn showTwoPlayerGuide();
@@ -6545,36 +6545,36 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	virtual void flipGravity(PlayerObject*, bool, bool);
 	virtual bool getPlaybackMode() const;
 	virtual void setPlaybackMode(bool);
-	virtual TodoReturn getCameraPortal() const;
-	virtual TodoReturn getDualModeCamera() const;
-	virtual TodoReturn getIsFlipped() const;
-	virtual TodoReturn getFlipValue() const;
+	virtual GameObject* getCameraPortal() const;
+	virtual GameObject* getDualModeCamera() const;
+	virtual bool getIsFlipped() const;
+	virtual float getFlipValue() const;
 	virtual bool getDualMode() const;
-	virtual TodoReturn getUILayer() const;
+	virtual UILayer* getUILayer() const;
 	virtual PlayerObject* getPlayer() const;
 	virtual PlayerObject* getPlayer2() const;
 	virtual GJGameLevel* getLevel() const;
-	virtual TodoReturn getCameraPos() const;
+	virtual cocos2d::CCPoint getCameraPos() const;
 	virtual bool getTestMode() const;
 	virtual bool getPracticeMode() const;
 	virtual bool getIsResetting() const;
 	virtual void setIsResetting(bool);
-	virtual TodoReturn getBatchNode() const;
-	virtual TodoReturn getBatchNodeBottom() const;
-	virtual TodoReturn getBatchNodeAdd() const;
-	virtual TodoReturn getBatchNodeAddBottom() const;
-	virtual TodoReturn getBatchNodePlayer() const;
-	virtual TodoReturn getBatchNodeAddPlayer() const;
+	virtual cocos2d::CCSpriteBatchNode* getBatchNode() const;
+	virtual cocos2d::CCSpriteBatchNode* getBatchNodeBottom() const;
+	virtual cocos2d::CCSpriteBatchNode* getBatchNodeAdd() const;
+	virtual cocos2d::CCSpriteBatchNode* getBatchNodeAddBottom() const;
+	virtual cocos2d::CCSpriteBatchNode* getBatchNodePlayer() const;
+	virtual cocos2d::CCSpriteBatchNode* getBatchNodeAddPlayer() const;
 	virtual cocos2d::CCLayer* getGameLayer() const;
-	virtual TodoReturn getBigActionContainer() const;
+	virtual cocos2d::CCArray* getBigActionContainer() const;
 	virtual bool getCleanReset() const;
 	virtual void setCleanReset(bool);
 	virtual cocos2d::CCPoint getStartPos() const;
 	virtual void setStartPos(cocos2d::CCPoint);
-	virtual TodoReturn getAttempts() const;
-	virtual TodoReturn getJumps() const;
-	virtual TodoReturn getDidJump() const;
-	virtual TodoReturn getClkTimer() const;
+	virtual int getAttempts() const;
+	virtual int getJumps() const;
+	virtual bool getDidJump() const;
+	virtual double getClkTimer() const;
 	virtual bool getShowingEndLayer() const;
 	virtual void setShowingEndLayer(bool);
 	virtual bool getEndTriggered() const;
@@ -6583,7 +6583,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	virtual void setResetQueued(bool);
 	virtual int getLastRunPercent() const;
 	virtual void setLastRunPercent(int);
-	virtual TodoReturn getDidAwardStars();
+	virtual bool getDidAwardStars();
 	virtual ColorAction* getActiveBGColorAction() const;
 	virtual void setActiveBGColorAction(ColorAction*);
 	virtual ColorAction* getActiveGColorAction() const;
@@ -6604,11 +6604,11 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	virtual void setActiveColor04Action(ColorAction*);
 	virtual bool getShouldRestartAfterStopped() const;
 	virtual void setShouldRestartAfterStopped(bool);
-	virtual TodoReturn getCustomColor01Blend() const;
-	virtual TodoReturn getCustomColor02Blend() const;
-	virtual TodoReturn getCustomColor03Blend() const;
-	virtual TodoReturn getCustomColor04Blend() const;
-	virtual TodoReturn getCustomColor3DBlend() const;
+	virtual bool getCustomColor01Blend() const;
+	virtual bool getCustomColor02Blend() const;
+	virtual bool getCustomColor03Blend() const;
+	virtual bool getCustomColor04Blend() const;
+	virtual bool getCustomColor3DBlend() const;
 
 	bool m_debugDraw;
 	cocos2d::CCDrawNode* m_drawNode;
