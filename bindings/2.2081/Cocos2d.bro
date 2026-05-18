@@ -1320,6 +1320,8 @@ class cocos2d::CCEGLView {
     void setupWindow(cocos2d::CCRect);
     [[missing(android, mac, ios)]]
     void toggleFullScreen(bool, bool, bool);
+    [[missing(android, mac, ios)]]
+    void toggleLockCursor(bool)
 }
 
 [[link(win, android)]]
