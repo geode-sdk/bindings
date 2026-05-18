@@ -133,7 +133,7 @@ int main(int argc, char** argv) try {
         if (auto sdkPath = std::getenv("GEODE_SDK")) {
             auto versionPath = std::filesystem::path(sdkPath) / "VERSION";
             if (std::filesystem::exists(versionPath)) {
-                std::ifstream versionFile(versionPath);
+                auto versionFile = openInputFile(versionPath);
                 std::string version;
                 std::getline(versionFile, version);
                 codegen::sdkVersion = codegen::Version::fromString(version);
