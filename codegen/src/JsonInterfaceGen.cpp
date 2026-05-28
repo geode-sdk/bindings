@@ -65,6 +65,7 @@ static matjson::Value bindingOnPlatform(Platform p, FunctionBindField const* fn)
         case BindStatus::Binded: return "link";
         case BindStatus::NeedsRebinding: return "rebind";
         case BindStatus::Missing: return "missing";
+        default: break;
     }
 
     auto addr = codegen::platformNumberWithPlatform(p, fn->binds);
@@ -81,6 +82,7 @@ static matjson::Value bindingOnPlatform(Platform p, Function const& fn) {
         case BindStatus::Binded: return "link";
         case BindStatus::NeedsRebinding: return "rebind";
         case BindStatus::Missing: return "missing";
+        default: break;
     }
 
     auto addr = codegen::platformNumberWithPlatform(p, fn.binds);
