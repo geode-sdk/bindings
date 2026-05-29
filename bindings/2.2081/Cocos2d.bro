@@ -1598,7 +1598,7 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
     bool initWithVertexShaderByteArray(char const*, char const*) = imac 0x42a930, m1 0x39d348, ios 0x135244;
     bool initWithVertexShaderFilename(char const*, char const*) = imac 0x42aa80, m1 0x39d4b8, ios inline;
     bool link() = imac 0x42ad00, m1 0x39d784, ios 0x135528;
-    char const* logForOpenGLObject(unsigned int, GLInfoFunction, GLLogFunction) = imac 0x42ad40, m1 0x39d7c8, ios inline;
+    char const* logForOpenGLObject(unsigned int, cocos2d::GLInfoFunction, cocos2d::GLLogFunction) = imac 0x42ad40, m1 0x39d7c8, ios inline;
     char const* programLog() = imac 0x42b0d0, m1 0x39db84, ios inline;
     void reset() = imac 0x42bff0, m1 0x39eb50, ios 0x135eec;
     void setUniformLocationWith1f(int, float) = imac 0x42b920, m1 0x39e458, ios 0x1359bc;
