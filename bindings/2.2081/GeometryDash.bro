@@ -20196,10 +20196,10 @@ class UILayer : cocos2d::CCLayerColor {
     void updateDualMode(bool dual) = win inline, imac 0x4c87b0, m1 0x42789c, ios 0x4981c;
     void updateUINodeVisibility(bool visible) = win 0x4cd7d0, imac 0x4c8b00, m1 0x427ba0, ios 0x49a18;
 
-    // This member is here because rob managed to inhert CCKeyboardDelegate twice
-    // in this class, which ended up breaking addresser when trying to hook it.
-    // so instead, we removed the second CCKeyboardDelegate from the base class list
-    // and put this member here to take the place of its vtable
+    /// This member is here because rob managed to inhert CCKeyboardDelegate twice
+    /// in this class, which ended up breaking addresser when trying to hook it.
+    /// so instead, we removed the second CCKeyboardDelegate from the base class list
+    /// and put this member here to take the place of its vtable
     void* m_stupidDelegate;
     void* m_pUnknown1;
     cocos2d::CCMenu* m_checkpointMenu;
