@@ -19233,8 +19233,7 @@ class SongInfoObject : cocos2d::CCNode {
     bool m_verified;
     bool m_isBlocked;
     int m_priority;
-    /// in seconds
-    int m_duration;
+    int m_duration; //in seconds
     int m_BPM;
     bool m_isNew;
     int m_libraryOrder;
