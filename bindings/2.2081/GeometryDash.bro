@@ -19203,7 +19203,8 @@ class SongInfoObject : cocos2d::CCNode {
 
     static SongInfoObject* create(cocos2d::CCDictionary* dict) = win 0x3448b0, imac 0x58c1e0, m1 0x4d740c, ios 0x154920;
     static SongInfoObject* create(int songID) = win 0x344730, imac 0x596ea0, m1 0x4e0cc0, ios 0x15b164;
-    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, gd::string unknown, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x345bf0, imac 0x593d00, m1 0x4ddfe4, ios 0x158f48;
+    /// @param downloadLinkOverride The user-friendly page URL for the song
+    static SongInfoObject* create(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, gd::string downloadLinkOverride, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x345bf0, imac 0x593d00, m1 0x4ddfe4, ios 0x158f48;
     static SongInfoObject* createWithCoder(DS_Dictionary* dict) = win 0x346250, imac 0x5974f0, m1 0x4e1260, ios 0x15b644;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x3465b0, imac 0x597d60, m1 0x4e1920, ios 0x15bb98;
@@ -19215,7 +19216,8 @@ class SongInfoObject : cocos2d::CCNode {
     gd::string getArtistNames(int unused) = win 0x3467b0, imac 0x597f70, m1 0x4e1ac8, ios 0x15bd40;
     int getExtraArtistCount() = win 0x346c00, m1 0x4e20a0, imac 0x598730, ios 0x15c0b4;
     gd::string getTagsString(bool shortTags) = win 0x346e60, imac 0x5988a0, m1 0x4e21ac, ios 0x15c100;
-    bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, gd::string unknown, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x345e60, imac 0x5970a0, m1 0x4e0e50, ios 0x15b378;
+    /// @param downloadLinkOverride The user-friendly page URL for the song
+    bool init(int songID, gd::string songName, gd::string artistName, int artistID, float filesize, gd::string youtubeVideo, gd::string youtubeChannel, gd::string url, gd::string downloadLinkOverride, int nongType, gd::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x345e60, imac 0x5970a0, m1 0x4e0e50, ios 0x15b378;
     void updateArtists(gd::string artists) = win inline, imac 0x597310, m1 0x4e1090, ios 0x15b510;
 
     int m_songID;
@@ -19224,7 +19226,8 @@ class SongInfoObject : cocos2d::CCNode {
     gd::string m_youtubeVideo;
     gd::string m_youtubeChannel;
     gd::string m_songUrl;
-    gd::string m_unkString;
+    /// overrides SongInfoLayer.m_downloadLink
+    gd::string m_downloadLinkOverride;
     int m_artistID;
     float m_fileSize;
     int m_nongType;
