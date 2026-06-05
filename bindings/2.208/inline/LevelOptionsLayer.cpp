@@ -1,10 +1,8 @@
 #include <Geode/Geode.hpp>
 
-#if !defined(GEODE_IS_WINDOWS)
 LevelOptionsLayer::LevelOptionsLayer() {
     m_settingsObject = nullptr;
 }
-#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
