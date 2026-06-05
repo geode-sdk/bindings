@@ -176,7 +176,7 @@ class AchievementCell : TableViewCell {
 	virtual void draw();
 }
 
-[[link(android)]]	
+[[link(android)]]
 class AchievementManager : cocos2d::CCNode {
 	// virtual ~AchievementManager();
 
