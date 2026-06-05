@@ -725,7 +725,7 @@ class BoomListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
-    BoomListView() = inline, win 0x3be90;
+    BoomListView() = win 0x3be90, imac inline, m1 inline, ios inline;
     ~BoomListView() = win 0x3bf80, imac 0x30c2f0, m1 0x29bc44, ios 0x1cfde0;
 
     static BoomListView* create(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win inline, imac 0x30c610, m1 0x29be54, ios inline;
@@ -12372,7 +12372,7 @@ class LevelManagerDelegate {
 [[link(android)]]
 class LevelOptionsLayer : GJOptionsLayer {
     // virtual ~LevelOptionsLayer();
-    LevelOptionsLayer() = inline, win 0x31e730;
+    LevelOptionsLayer() = win 0x31e730, imac inline, m1 inline, ios inline;
 
     static LevelOptionsLayer* create(LevelSettingsObject* object) = win inline, imac 0x26e720, m1 0x2117fc, ios 0x17babc;
 
@@ -16867,7 +16867,7 @@ class SetupCoinLayer : SetupTriggerPopup {
 [[link(android)]]
 class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
     // virtual ~SetupCollisionStateTriggerPopup();
-    SetupCollisionStateTriggerPopup() = inline, win 0x41a8b0;
+    SetupCollisionStateTriggerPopup() = win 0x41a8b0, imac inline, m1 inline, ios inline;
 
     static SetupCollisionStateTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x397d20, m1 0x31d938, ios 0x231488;
 
