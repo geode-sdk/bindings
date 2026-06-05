@@ -1,5 +1,6 @@
 #include <Geode/Bindings.hpp>
 
+#if !defined(GEODE_IS_WINDOWS)
 BoomListView::BoomListView() {
     m_tableView = nullptr;
     m_entries = nullptr;
@@ -10,6 +11,7 @@ BoomListView::BoomListView() {
     m_currentPage = 0;
     m_locked = false;
 }
+#endif
 
 bool BoomListView::init(cocos2d::CCArray* entries, BoomListType type, float width, float height) {
     return this->init(entries, nullptr, height, width, 0, type, 0.0f);
