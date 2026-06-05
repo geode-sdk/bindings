@@ -14,7 +14,7 @@ void SongInfoObject::copyValues(SongInfoObject* object) {
     if (!object) return;
     m_youtubeVideo = object->m_youtubeVideo;
     m_youtubeChannel = object->m_youtubeChannel;
-    m_unkString = object->m_unkString;
+    m_downloadLinkOverride = object->m_downloadLinkOverride;
     m_songUrl = object->m_songUrl;
     m_extraArtists = object->m_extraArtists;
     m_extraArtistNames = object->m_extraArtistNames;
