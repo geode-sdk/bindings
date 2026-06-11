@@ -3,11 +3,13 @@ project(Codegen LANGUAGES C CXX)
 
 include(../cmake/CPM.cmake)
 
-CPMAddPackage("gh:fmtlib/fmt#11.0.2")
+# TODO: Figure out why fmt builds weird on windows
+CPMAddPackage("gh:fmtlib/fmt#12.0.0")
 CPMAddPackage("gh:geode-sdk/Broma#19fa02c")
-CPMAddPackage("gh:geode-sdk/json@3.2.1")
+CPMAddPackage("gh:geode-sdk/json@3.3.0")
 
 target_compile_definitions(fmt PUBLIC -DFMT_CONSTEVAL=)
+target_compile_definitions(fmt-header-only INTERFACE -DFMT_CONSTEVAL=)
 
 file(GLOB SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
@@ -27,7 +29,7 @@ add_executable(${PROJECT_NAME}
 )
 target_compile_features(Codegen PUBLIC cxx_std_17)
 
-target_link_libraries(Codegen PRIVATE fmt::fmt Broma mat-json)
+target_link_libraries(Codegen PRIVATE fmt::fmt-header-only Broma mat-json)
 target_include_directories(Codegen PRIVATE 
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 )
@@ -40,4 +42,5 @@ if (NOT DEFINED CMAKE_CXX_COMPILER_LAUNCHER OR CMAKE_CXX_COMPILER_LAUNCHER STREQ
 	)
 endif ()
 
+message(STATUS "CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})

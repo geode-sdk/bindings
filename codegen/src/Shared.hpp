@@ -21,11 +21,18 @@ using namespace broma;
 #include "WindowsSymbol.hpp"
 #include <matjson.hpp>
 
+struct SourceGenOpts {
+    bool versionSet = false;
+    bool skipPugixml = false;
+    bool skipInlines = false;
+    bool debase = false;
+};
+
 std::string generateAddressHeader(Root const& root);
 std::string generateModifyHeader(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generateBindingHeader(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generatePredeclareHeader(Root const& root);
-std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, bool skipPugixml, bool skipInlines = false, std::unordered_set<std::string>* generatedFiles = nullptr);
+std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, SourceGenOpts opts, std::unordered_set<std::string>* generatedFiles = nullptr);
 std::string generateTextInterface(Root const& root);
 matjson::Value generateJsonInterface(Root const& root);
 std::string generateInlineSources(Root const& root, std::filesystem::path const& singleFolder, std::unordered_set<std::string>* generatedFiles = nullptr);
@@ -350,7 +357,7 @@ namespace codegen {
         return s.substr(index + 2);
     }
 
-    inline std::string getIncludes(Root const& root) {
+    inline std::string getIncludes(Root const& root, bool debase_opt = false) {
         std::string includes;
 
         for (auto& header : root.headers) {
@@ -358,6 +365,9 @@ namespace codegen {
                 includes += fmt::format("#include <{}>\n", header.name);
             }
         }
+
+        if (debase_opt)
+            includes += "#include <debase/Annotations.hpp>\n";
 
         return includes;
     }
