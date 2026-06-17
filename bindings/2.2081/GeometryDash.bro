@@ -12023,7 +12023,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* m_cameraGuideTriggers;
     cocos2d::CCArray* m_particleObjects;
     cocos2d::CCArray* m_keyframeObjects;
-    cocos2d::CCDictionary* m_unk3720;
+    cocos2d::CCArray* m_spawnOrderTriggers;
     cocos2d::CCArray* m_playtestTriggers;
     GameObject* m_copyStateObject;
     ParticleGameObject* m_particleObject;
