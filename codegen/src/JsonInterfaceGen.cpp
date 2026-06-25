@@ -99,6 +99,8 @@ matjson::Value generateJsonInterface(Root const& root) {
         // Array because
         std::vector<matjson::Value> functions;
         std::vector<matjson::Value> fields;
+        std::vector<matjson::Value> bases;
+
         for (auto& f : c.fields) {
             if (auto fn = f.get_as<FunctionBindField>()) {
                 std::vector<matjson::Value> args;
@@ -145,10 +147,15 @@ matjson::Value generateJsonInterface(Root const& root) {
                 }));
             }
         }
+        for (auto& sc : c.superclasses) {
+            bases.push_back(sc);
+        }
+
         classes.push_back(matjson::makeObject({
             { "name", c.name },
             { "functions", functions },
             { "fields", fields },
+            { "bases", bases },
             { "source", std::filesystem::path(c.source).filename().string() },
             { "line", c.line },
         }));
