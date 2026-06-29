@@ -3292,9 +3292,9 @@ class DialogObject : cocos2d::CCObject {
     // virtual ~DialogObject();
     DialogObject() = inline;
 
-    static DialogObject* create(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win 0xd32d0, imac 0x3c6c40, m1 0x3482a0, ios 0x865b4;
+    static DialogObject* create(gd::string character, gd::string text, int characterFrame, float textScale, bool uskippable, cocos2d::ccColor3B color) = win 0xd32d0, imac 0x3c6c40, m1 0x3482a0, ios 0x865b4;
 
-    bool init(gd::string character, gd::string text, int characterFrame, float textScale, bool skippable, cocos2d::ccColor3B color) = win inline, imac 0x3c6dd0, m1 0x348458, ios inline;
+    bool init(gd::string character, gd::string text, int characterFrame, float textScale, bool unskippable, cocos2d::ccColor3B color) = win inline, imac 0x3c6dd0, m1 0x348458, ios inline;
 
     gd::string m_text;
     gd::string m_character;
