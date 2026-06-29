@@ -3,7 +3,7 @@
 DialogObject::DialogObject() {
     m_characterFrame = 0;
     m_textScale = 1.f;
-    m_skippable = false;
+    m_unskippable = false;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
