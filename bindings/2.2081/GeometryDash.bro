@@ -12724,6 +12724,8 @@ class LevelSettingsObject : cocos2d::CCNode {
     bool m_reverseSync;
     // property kA45
     bool m_decreaseBoostSlide;
+    // property kA48
+    bool m_enableImpulseFix;
 }
 
 [[link(android)]]
@@ -14916,6 +14918,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_spiderAnimationEnabled;
     bool m_ignoreDamage;
     bool m_enable22Changes;
+    bool m_enableImpulseFix;
 }
 
 [[link(android), depends(DynamicBitset), depends(SavedActiveObjectState), depends(SavedObjectStateRef), depends(SavedSpecialObjectState)]]
