@@ -1284,7 +1284,7 @@ class cocos2d::CCEGLView {
     [[missing(win, android, ios)]]
     virtual void setMultiTouchMask(bool) = imac 0x5039e0, m1 0x45b570;
     [[missing(android, ios)]]
-	void showCursor(bool state) = win 0x78cb0, imac 0x5039f0, m1 0x45b574;
+	void showCursor(bool state); // = imac 0x5039f0, m1 0x45b574;
 	
     [[missing(android, mac, ios)]]
     bool initGlew();
