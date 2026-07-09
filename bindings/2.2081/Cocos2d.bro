@@ -1468,13 +1468,13 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual bool writeToFile(cocos2d::CCDictionary* dict, gd::string const& fullPath) = imac 0x43aac0, m1 0x3ac5e0, ios 0x150960;
     virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const& filename) = imac 0x43aad0, m1 0x3ac5e8, ios 0x150968;
 
-    CCDictionary* m_pFilenameLookupDict;
+    cocos2d::CCDictionary* m_pFilenameLookupDict;
     gd::vector<gd::string> m_searchResolutionsOrderArray;
     gd::vector<gd::string> m_searchPathArray;
     gd::string m_strDefaultResRootPath;
     gd::map<gd::string, gd::string> m_fullPathCache;
     gd::string m_strAndroidPath;
-    CCFileUtils* s_sharedFileUtils;
+    cocos2d::CCFileUtils* s_sharedFileUtils;
 }
 
 [[link(android), missing(win, mac, ios)]]
