@@ -1454,7 +1454,7 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual gd::vector<gd::string> const& getSearchPaths() = imac 0x43cd70, m1 0x3ae844, ios 0x151ce0;
     virtual gd::string getWritablePath() = inline;
     virtual gd::string getWritablePath2() = imac 0x43dd30, m1 0x3af7ec, ios 0x152584;
-    virtual gd::string isFileExist(gd::string const& strFilePath) = inline;
+    virtual bool isFileExist(gd::string const& strFilePath) = inline;
     virtual bool isAbsolutePath(gd::string const& strPath) = imac 0x43dc70, m1 0x3af724, ios 0x1524c8;
     virtual void setPopupNotify(bool bNotify) = imac 0x43dc90, m1 0x3af744, ios 0x1524e8;
     virtual bool isPopupNotify() = imac 0x43dca0, m1 0x3af750, ios 0x1524f4;
