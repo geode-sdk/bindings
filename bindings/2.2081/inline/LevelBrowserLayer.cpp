@@ -122,7 +122,7 @@ LevelBrowserLayer::LevelBrowserLayer() {
     m_unk2 = false;
     m_listHeight = 0;
     m_unkFloat = .0f;
-    m_unkFloat2 = .0f;
+    m_initialListViewY = .0f;
     m_delegate = nullptr;
     m_cached = false;
 }
