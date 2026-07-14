@@ -11765,7 +11765,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     bool m_unk2;
     int m_listHeight;
     float m_unkFloat;
-    float m_unkFloat2;
+    float m_initialListViewY;
     TableViewCellDelegate* m_delegate;
     bool m_cached;
 }
