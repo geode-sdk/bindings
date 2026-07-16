@@ -1553,8 +1553,8 @@ void GJBaseGameLayer::updateCameraEdge(int direction, int value) {
 
 void GJBaseGameLayer::updateCameraMode(EffectGameObject* obj, bool updateDual) {
     auto cameraFree = obj->m_cameraIsFreeMode;
-    auto freeMode = m_gameState.m_unkBool8;
-    m_gameState.m_unkBool8 = cameraFree;
+    auto freeMode = m_gameState.m_isFreeMode;
+    m_gameState.m_isFreeMode = cameraFree;
     m_gameState.m_unkBool9 = obj->m_cameraDisableGridSnap;
     if (obj->m_cameraEditCameraSettings) {
         m_gameState.m_unkFloat3 = std::clamp(obj->m_cameraEasingValue, 1.f, 40.f);
