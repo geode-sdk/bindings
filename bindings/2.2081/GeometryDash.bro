@@ -8927,7 +8927,7 @@ class GJGameState {
     int m_unkInt14;
     int m_unkInt15;
     bool m_unkBool7;
-    bool m_unkBool8;
+    bool m_isFreeMode; // m_unkBool8
     bool m_unkBool9;
     float m_unkFloat5;
     float m_unkFloat6;
