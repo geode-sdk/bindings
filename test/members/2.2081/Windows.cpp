@@ -241,7 +241,7 @@ GEODE_MEMBER_CHECK(GJGameState, m_unkInt13, 0x15c);
 GEODE_MEMBER_CHECK(GJGameState, m_unkInt14, 0x160);
 GEODE_MEMBER_CHECK(GJGameState, m_unkInt15, 0x164);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool7, 0x168);
-GEODE_MEMBER_CHECK(GJGameState, m_unkBool8, 0x169);
+GEODE_MEMBER_CHECK(GJGameState, m_isFreeMode, 0x169);
 GEODE_MEMBER_CHECK(GJGameState, m_unkBool9, 0x16a);
 GEODE_MEMBER_CHECK(GJGameState, m_unkFloat5, 0x16c);
 GEODE_MEMBER_CHECK(GJGameState, m_unkFloat6, 0x170);
