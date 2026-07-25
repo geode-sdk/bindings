@@ -5966,6 +5966,11 @@ class DS_Dictionary {
 }
 
 [[link(win, android)]]
+class ObjectDecoderDelegate {
+	virtual cocos2d::CCObject* getDecodedObject(int objectType, DS_Dictionary* data) = inline;
+}
+
+[[link(win, android)]]
 class ObjectDecoder : cocos2d::CCNode {
     // virtual ~ObjectDecoder();
 
@@ -5974,6 +5979,8 @@ class ObjectDecoder : cocos2d::CCNode {
     virtual bool init() = imac 0x792390, m1 0x69aaf4, ios 0x235a58;
 
     cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = imac 0x7923a0, m1 0x69aaf8, ios 0x235a5c;
+
+	ObjectDecoderDelegate* m_delegate;
 }
 
 [[link(win, android)]]
