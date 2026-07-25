@@ -6984,7 +6984,7 @@ class GameObject : CCSpritePlus {
 	float m_areaOpacityRelated2;
 	int m_areaOpacityRelated3;
 	int m_unk52C;
-	bool m_unk530;
+	bool m_hasDynamicallySaved; // m_unk530
 	bool m_maybeIsUiObject;
 	bool m_unk532;
 }
