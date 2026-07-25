@@ -4255,6 +4255,7 @@ class EffectGameObject : EnhancedGameObject {
     int m_secretCoinID;
     bool m_unk6f4;
     bool m_unk6f5;
+    bool m_isPost2208Remap;
     cocos2d::CCPoint m_endPosition;
     float m_spawnTriggerDelay;
     float m_gravityMod;
@@ -6619,7 +6620,7 @@ class GameObject : CCSpritePlus {
     float m_areaOpacityValue;
     int m_areaOpacityIndex;
     int m_unk52C;
-    bool m_unk530;
+    bool m_hasDynamicallySaved;
     bool m_isUIObject;
     bool m_greenDebugDraw;
 }
