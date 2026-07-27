@@ -5965,7 +5965,7 @@ class DS_Dictionary {
     bool vec2FromString(gd::string const&, cocos2d::CCPoint&) = m1 0x140824, imac 0x17a9b0;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class ObjectDecoderDelegate {
 	virtual cocos2d::CCObject* getDecodedObject(int objectType, DS_Dictionary* data) = inline;
 }
