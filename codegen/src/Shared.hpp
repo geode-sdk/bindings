@@ -1,10 +1,11 @@
 #pragma once
 
-#include <array>
-#include <unordered_set>
 #include <broma.hpp>
 #include <fmt/format.h>
 #include <fmt/ranges.h>
+#include <array>
+#include <unordered_set>
+#include <map>
 #include <fstream>
 #include <filesystem>
 
@@ -99,7 +100,7 @@ namespace codegen {
         for (auto& f : root.functions) {
             idMap[&f] = id++;
         }
-        
+
         for (auto& c : root.classes) {
             for (auto& f : c.fields) {
                 if (auto fn = f.get_as<FunctionBindField>()) {
@@ -219,7 +220,7 @@ namespace codegen {
             codegen::sdkVersion < fn.prototype.attributes.since ||
             (fn.prototype.attributes.missing & p) != Platform::None
         ) return BindStatus::Missing;
-        
+
         if (platformNumberWithPlatform(p, fn.binds) == -2) return BindStatus::Inlined;
 
         if ((fn.prototype.attributes.links & p) != Platform::None) {
@@ -230,7 +231,7 @@ namespace codegen {
                     if (can_find(type.name, "gd::")) return BindStatus::NeedsRebinding;
                 }
             }
-            
+
             return BindStatus::Binded;
         }
 
