@@ -401,7 +401,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
 	void alignItemsInRowsWithArray(cocos2d::CCArray*);
 	void setHandlerPriority(int);
 
-	virtual ~CCMenu(); // = imac 0x2450a0;
+	// virtual ~CCMenu() = imac 0x2450a0;
 
 	virtual bool init() = imac 0x243990;
 	virtual void addChild(cocos2d::CCNode*) = imac 0x2439a0;
@@ -792,7 +792,7 @@ class cocos2d::CCString : cocos2d::CCObject {
 	static cocos2d::CCString* createWithData(const unsigned char* pData, unsigned long nLen) = imac 0x249590;
 
 	CCString() = imac 0x248d90;
-	virtual ~CCString(); // = imac 0x249140;
+	// virtual ~CCString() = imac 0x249140;
 
 	virtual CCObject* copyWithZone(CCZone* pZone) = imac 0x249420;
 	virtual bool isEqual(const CCObject* pObject) = imac 0x2494a0;
