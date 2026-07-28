@@ -759,8 +759,8 @@ class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
 	virtual void setTexture(CCTexture2D *texture) = imac 0x7d7e0;
 	virtual void setBlendFunc(ccBlendFunc blendFunc) = imac 0x7d770;
 	virtual ccBlendFunc getBlendFunc() = imac 0x7d790;
-	virtual bool getManualSortChildren() const = imac 0x7db10;
-	virtual void setManualSortChildren(bool) = imac 0x7db20;
+	protected virtual bool getManualSortChildren() const = imac 0x7db10;
+	protected virtual void setManualSortChildren(bool) = imac 0x7db20;
 }
 
 [[link(win, android)]]

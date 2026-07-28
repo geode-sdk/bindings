@@ -414,7 +414,7 @@ class BoomListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
-	virtual ~BoomListView() = imac 0xe24f0;
+	// virtual ~BoomListView() = imac 0xe24f0, win 0x6b30;
 	BoomListView() = imac inline {
 		m_tableView = nullptr;
 		m_entries = nullptr;
