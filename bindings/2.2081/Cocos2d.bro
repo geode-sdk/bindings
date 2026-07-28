@@ -5976,9 +5976,12 @@ class ObjectDecoder : cocos2d::CCNode {
 
     static ObjectDecoder* sharedDecoder() = imac 0x792320, m1 0x69aa80, ios 0x2359f0;
 
+    cocos2d::CCObject* getDecodedObject(int objectType, DS_Dictionary* data) = imac 0x7923a0, m1 0x69aaf8, ios 0x235a5c;
+
     virtual bool init() = imac 0x792390, m1 0x69aaf4, ios 0x235a58;
 
-    cocos2d::CCObject* getDecodedObject(int, DS_Dictionary*) = imac 0x7923a0, m1 0x69aaf8, ios 0x235a5c;
+    ObjectDecoderDelegate const* getDelegate() = inline;
+    void setDelegate(ObjectDecoderDelegate*) = inline;
 
 	ObjectDecoderDelegate* m_delegate;
 }
