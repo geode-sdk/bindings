@@ -791,7 +791,7 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
 class cocos2d::CCString : cocos2d::CCObject {
 	static cocos2d::CCString* createWithData(const unsigned char* pData, unsigned long nLen) = imac 0x249590;
 
-	CCString() = imac 0x248d90;
+	CCString() = imac 0x248d90, win inline;
 	// virtual ~CCString() = imac 0x249140;
 
 	virtual CCObject* copyWithZone(CCZone* pZone) = imac 0x249420;
