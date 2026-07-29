@@ -101,6 +101,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
   cocos2d::CCSize getWinSize() = imac 0x166f10;
 	void setProjection(cocos2d::ccDirectorProjection kProjection) = imac 0x166170;
 	void setViewport() = imac 0x166f50;
+	void setOpenGLView(cocos2d::CCEGLView *pobOpenGLView) = imac 0x1668a0;
 
 	void replaceScene(cocos2d::CCScene *pScene) = imac 0x167420;
 }
@@ -730,14 +731,14 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
 	virtual bool isFrameDisplayed(CCSpriteFrame *pFrame) = imac 0xc01f0;
 	virtual CCSpriteFrame* displayFrame() = imac 0xc0280;
 	virtual void setDisplayFrameWithAnimationName(const char *animationName, int frameIndex) = imac 0xc0190;
-  virtual bool isDirty(); // = imac 0x91a0;
-  virtual void setDirty(bool bDirty); // = imac 0x91b0;
+	virtual bool isDirty(); // = imac 0x91a0;
+	virtual void setDirty(bool bDirty); // = imac 0x91b0;
 	virtual void setTextureCoords(CCRect rect) = imac 0xbebb0;
 	virtual void updateBlendFunc() = imac 0xc0550;
 	virtual void setReorderChildDirtyRecursively() = imac 0xbf660;
 	virtual void setDirtyRecursively(bool bValue) = imac 0xbf6c0;
-  virtual bool getDontDraw(); // = imac 0x91c0;
-  virtual void setDontDraw(bool); // = imac 0x91d0;
+	virtual bool getDontDraw(); // = imac 0x91c0;
+	virtual void setDontDraw(bool); // = imac 0x91d0;
 }
 
 [[link(win, android)]]
@@ -759,8 +760,8 @@ class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
 	virtual void setTexture(CCTexture2D *texture) = imac 0x7d7e0;
 	virtual void setBlendFunc(ccBlendFunc blendFunc) = imac 0x7d770;
 	virtual ccBlendFunc getBlendFunc() = imac 0x7d790;
-	protected virtual bool getManualSortChildren() const = imac 0x7db10;
-	protected virtual void setManualSortChildren(bool) = imac 0x7db20;
+	virtual bool getManualSortChildren() const = imac 0x7db10;
+	virtual void setManualSortChildren(bool) = imac 0x7db20;
 }
 
 [[link(win, android)]]
@@ -791,7 +792,7 @@ class cocos2d::CCSpriteFrameCache : cocos2d::CCObject {
 class cocos2d::CCString : cocos2d::CCObject {
 	static cocos2d::CCString* createWithData(const unsigned char* pData, unsigned long nLen) = imac 0x249590;
 
-	CCString() = imac 0x248d90, win inline;
+	CCString() = imac 0x248d90;
 	// virtual ~CCString() = imac 0x249140;
 
 	virtual CCObject* copyWithZone(CCZone* pZone) = imac 0x249420;
@@ -830,8 +831,8 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
 	virtual GLfloat getMaxT() = imac 0x161750;
 	virtual void setMaxT(GLfloat) = imac 0x161760;
 	virtual cocos2d::CCSize getContentSize() = imac 0x1616b0;
-  virtual cocos2d::CCGLProgram* getShaderProgram() = imac 0x161770;
-  virtual void setShaderProgram(cocos2d::CCGLProgram*) = imac 0x161780;
+	virtual cocos2d::CCGLProgram* getShaderProgram() = imac 0x161770;
+	virtual void setShaderProgram(cocos2d::CCGLProgram*) = imac 0x161780;
 
 	void setTexParameters(ccTexParams* texParams) = imac 0x162860;
 	bool initWithImage(cocos2d::CCImage * uiImage) = imac 0x161b60;
@@ -880,10 +881,14 @@ class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
 	static cocos2d::CCTransitionFade* create(float duration,cocos2d::CCScene* scene) = imac 0x72130;
 }
 
-
 [[link(win, android)]]
 class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 	void send(cocos2d::extension::CCHttpRequest*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCConfiguration : cocos2d::CCObject {
+	void gatherGPUInfo() = imac 0x1c7d60;
 }
 
 [[link(win, android)]]

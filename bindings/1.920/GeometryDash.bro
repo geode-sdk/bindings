@@ -297,10 +297,10 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 	void platformShutdown();
 	TodoReturn resumeSound();
 	void setIdleTimerDisabled(bool);
-	void setupGLView() = win 0x28770;
+	void setupGLView() = win 0x28770, imac 0x248570;
 	TodoReturn showLoadingCircle(bool, bool, bool);
 
-	virtual bool applicationDidFinishLaunching() = win 0x289c0;
+	virtual bool applicationDidFinishLaunching() = win 0x289c0, imac 0x248620;
 	virtual void applicationDidEnterBackground() = win 0x28d10;
 	virtual void applicationWillEnterForeground() = win 0x28f00;
 	virtual void applicationWillBecomeActive() = win 0x28c70;
@@ -3985,7 +3985,7 @@ class GJGameLevel : cocos2d::CCNode {
 
 [[link(android)]]
 class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, GameRateDelegate, ListButtonBarDelegate {
-	virtual ~GJGarageLayer() = imac 0x20a080;
+	virtual ~GJGarageLayer() = imac 0x20a080, win 0x47c4b0;
 	// GJGarageLayer();
 
 	TodoReturn achievementForUnlock(int, UnlockType);
@@ -6363,6 +6363,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	// PlayLayer();
 
 	static PlayLayer* create(GJGameLevel*) = win 0xe3530;
+	static cocos2d::CCScene* scene(GJGameLevel*);
 
 	TodoReturn addCircle(CCCircleWave*);
 	void addToSection(GameObject*) = win 0xe9280;
@@ -6383,7 +6384,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	void createObjectsFromSetup(gd::string) = win 0xe81c0;
 	TodoReturn createParticle(int, char const*, int, cocos2d::tCCPositionType);
 	void delayedResetLevel() = win 0xf1f10;
-	void destroyPlayer(PlayerObject*) = win 0xf04a0;
+	void destroyPlayer(PlayerObject*) = win 0xf04a0, imac 0x26c710;
 	TodoReturn enterDualMode(GameObject*, bool);
 	TodoReturn exitAirMode();
 	TodoReturn exitBirdMode(PlayerObject*);
@@ -6417,9 +6418,9 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn hasItem(int);
 	TodoReturn hasUniqueCoin(GameObject*);
 	TodoReturn incrementJumps();
-	bool init(GJGameLevel*) = win 0xe35d0;
+	bool init(GJGameLevel*) = win 0xe35d0, imac 0x25eda0;
 	bool isFlipping();
-	void levelComplete() = win 0xe52e0;
+	void levelComplete() = win 0xe52e0, imac 0x266980;
 	TodoReturn lightningFlash(cocos2d::CCPoint, cocos2d::ccColor3B);
 	void loadLastCheckpoint() = win 0xf15b0;
 	TodoReturn markCheckpoint();
@@ -6445,11 +6446,10 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn removeObjectFromSection(GameObject*);
 	TodoReturn removePlayer2();
 	TodoReturn reorderObjectSection(GameObject*);
-	void resetLevel() = win 0xf1f20;
+	void resetLevel() = win 0xf1f20, imac 0x265d70;
 	void resume() = win 0xf39b0;
 	void resumeAndRestart();
 	void saveRecordAction(bool, PlayerObject*) = win 0xf0e20;
-	cocos2d::CCScene* scene(GJGameLevel*);
 	TodoReturn sectionForPos(cocos2d::CCPoint);
 	void setActiveEnterEffect(EnterEffect);
 	void setStartPosObject(StartPosObject* startPos) = win inline {
@@ -6490,7 +6490,7 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	TodoReturn toggleFlipped(bool, bool);
 	TodoReturn toggleGhostEffect(int);
 	TodoReturn toggleGlitter(bool);
-	void togglePracticeMode(bool) = win 0xf3610;
+	void togglePracticeMode(bool) = win 0xf3610, imac 0x271a00;
 	TodoReturn toggleProgressbar();
 	TodoReturn transformColor(cocos2d::ccColor3B, float, float, float);
 	TodoReturn tryStartRecord();
@@ -6544,9 +6544,9 @@ class PlayLayer : cocos2d::CCLayer, CCCircleWaveDelegate, GameplayDelegate {
 	void updateVisibility() = win 0xeb3f0;
 	TodoReturn visitWithColorFlash();
 
-	virtual void update(float) = win 0xe9360;
-	virtual void onEnterTransitionDidFinish() = win 0xf3f50;
-	virtual void onExit() = win 0xf3f70;
+	virtual void update(float) = win 0xe9360, imac 0x26a280;
+	virtual void onEnterTransitionDidFinish() = win 0xf3f50, imac 0x2727e0;
+	virtual void onExit() = win 0xf3f70, imac 0x272810;
 	virtual void draw() = win 0xee5e0;
 	virtual void visit() = win 0xe6d00;
 	virtual void updateTweenAction(float, char const*);
