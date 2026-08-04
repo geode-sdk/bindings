@@ -753,6 +753,8 @@ enum class ZLayer {
     B3 = -1,
     B2 = 1,
     B1 = 3,
+    // The back part of a portal exists on a layer which is behind the player but in front of background objects
+    PortalBack = 4,
     Default = 0,
     T1 = 5,
     T2 = 7,
