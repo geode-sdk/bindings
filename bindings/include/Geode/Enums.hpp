@@ -753,6 +753,7 @@ enum class ZLayer {
     B3 = -1,
     B2 = 1,
     B1 = 3,
+    PortalBack = 4,
     Default = 0,
     T1 = 5,
     T2 = 7,
