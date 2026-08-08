@@ -94,6 +94,21 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
         }
         else if (is_cocos_class(c.name)) {
             class_include = "#include <cocos2d.h>";
+
+            // fix for platform CCFileUtils
+            constexpr std::string_view prefix = "cocos2d::CCFileUtils";
+            if (c.name.starts_with(prefix) && c.name.size() > prefix.size()) {
+                auto platform = std::string_view(c.name).substr(prefix.size());
+
+                std::string platform_lower(platform);
+                std::ranges::transform(platform_lower, platform_lower.begin(),
+                    [](unsigned char ch) { return std::tolower(ch); });
+
+                class_include.append(fmt::format(
+                    "\n#include <Geode/cocos/platform/{}/CCFileUtils{}.h>",
+                    platform_lower, platform
+                ));
+            }
         }
         else if (is_fmod_class(c.name)) {
             class_include = "#include <fmod.hpp>";
