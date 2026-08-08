@@ -5994,8 +5994,10 @@ class ObjectDecoder : cocos2d::CCNode {
 
     virtual bool init() = imac 0x792390, m1 0x69aaf4, ios 0x235a58;
 
-    ObjectDecoderDelegate const* getDelegate() = inline;
-    void setDelegate(ObjectDecoderDelegate*) = inline;
+    [[since("5.9.0")]]
+    ObjectDecoderDelegate* getDelegate() const = inline;
+    [[since("5.9.0")]]
+    void setDelegate(ObjectDecoderDelegate* delegate) = inline;
 
 	ObjectDecoderDelegate* m_delegate;
 }
