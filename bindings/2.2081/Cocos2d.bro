@@ -1516,7 +1516,7 @@ class cocos2d::CCFileUtilsMac : cocos2d::CCFileUtils {
     virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const& filename) = imac 0x60ceb0, m1 0x532d7c;
 }
 
-[[link(win), missing(android, mac, ios)]]
+[[link(win), missing(android, mac, ios), since("5.6.0")]]
 class cocos2d::CCFileUtilsWin32 : cocos2d::CCFileUtils {
     // private CCFileUtilsWin32();
 
