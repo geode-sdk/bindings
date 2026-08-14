@@ -9033,10 +9033,14 @@ class GJGameState {
     float m_unkUint14;
     bool m_unkBool26;
     bool m_cameraShakeEnabled;
-    float m_cameraShakeFactor;
-    float m_unkUint15;
-    float m_unkUint16;
-    double m_unkUint64_1;
+    [[renamed_from(m_cameraShakeFactor)]]
+    float m_cameraShakeDuration;
+    [[renamed_from(m_unkUint15)]]
+    float m_cameraShakeStrength;
+    [[renamed_from(m_unkUint16)]]
+    float m_cameraShakeInterval;
+    [[renamed_from(m_unkUint64_1)]]
+    double m_lastShakeTime;
     cocos2d::CCPoint m_unkPoint34;
     unsigned int m_dualRelated;
     gd::unordered_map<int, EnhancedGameObject*> m_stateObjects;
