@@ -14943,7 +14943,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCPoint m_stateForceVector;
     bool m_affectedByForces;
     gd::map<int, bool> m_jumpPadRelated;
-    float m_somethingPlayerSpeedTime;
+    [[renamed_from(m_somethingPlayerSpeedTime)]]
+    float m_lastMovedTime;
     float m_playerSpeedAC;
     bool m_fixRobotJump;
     gd::map<int, bool> m_holdingButtons;
