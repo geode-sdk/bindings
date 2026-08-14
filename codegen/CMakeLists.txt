@@ -7,6 +7,8 @@ CPMAddPackage("gh:fmtlib/fmt#12.2.0")
 CPMAddPackage("gh:geode-sdk/Broma#4565343")
 CPMAddPackage("gh:geode-sdk/json@3.3.0")
 
+target_compile_definitions(fmt PUBLIC -DFMT_CONSTEVAL=)
+
 file(GLOB SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
