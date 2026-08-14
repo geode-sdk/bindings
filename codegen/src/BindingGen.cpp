@@ -65,6 +65,11 @@ public:
     constexpr char const* member_definition = R"GEN({private}    {type} {member_name};{public}
 )GEN";
 
+    constexpr char const* renamed_member_definition = R"GEN({private}    union {{
+        {type} {member_name};
+{renamed_members}    }};{public}
+)GEN";
+
     constexpr char const* pad_definition = R"GEN(    GEODE_PAD({hardcode});
 )GEN";
 
@@ -255,12 +260,26 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
                     if (opt != nullptr && std::string_view(opt) == "1") {
                         unimplementedField = false;
                     }
-                    single_output += fmt::format(format_strings::member_definition,
-                        fmt::arg("private", unimplementedField ? "private:\n" : ""),
-                        fmt::arg("public", unimplementedField ? "\npublic:" : ""),
-                        fmt::arg("type", m->type.name),
-                        fmt::arg("member_name", m->name + str_if(fmt::format("[{}]", m->count), m->count))
-                    );
+                    if (m->attributes.renamed_from.empty()) {
+                        single_output += fmt::format(format_strings::member_definition,
+                            fmt::arg("private", unimplementedField ? "private:\n" : ""),
+                            fmt::arg("public", unimplementedField ? "\npublic:" : ""),
+                            fmt::arg("type", m->type.name),
+                            fmt::arg("member_name", m->name + str_if(fmt::format("[{}]", m->count), m->count))
+                        );
+                    } else {
+                        std::string renamed_members;
+                        for (auto& renamed : m->attributes.renamed_from) {
+                            renamed_members += fmt::format("        {} {};\n", m->type.name, renamed);
+                        }
+                        single_output += fmt::format(format_strings::renamed_member_definition,
+                            fmt::arg("private", unimplementedField ? "private:\n" : ""),
+                            fmt::arg("public", unimplementedField ? "\npublic:" : ""),
+                            fmt::arg("type", m->type.name),
+                            fmt::arg("member_name", m->name + str_if(fmt::format("[{}]", m->count), m->count)),
+                            fmt::arg("renamed_members", renamed_members)
+                        );
+                    }
                 }
 
                 continue;
