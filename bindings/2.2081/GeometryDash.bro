@@ -9063,8 +9063,7 @@ class GJGameState {
     float m_cameraShakeInterval;
     [[renamed_from(m_unkUint64_1)]]
     double m_lastShakeTime;
-    [[renamed_from(m_unkPoint34)]]
-    cocos2d::CCPoint m_shakeOffset;
+    cocos2d::CCPoint m_unkPoint34;
     unsigned int m_dualRelated;
     gd::unordered_map<int, EnhancedGameObject*> m_stateObjects;
     gd::map<std::pair<GJGameEvent, int>, gd::vector<EventTriggerInstance>> m_unkMapPairGJGameEventIntVectorEventTriggerInstance;
