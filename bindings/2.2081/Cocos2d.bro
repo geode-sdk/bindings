@@ -1640,12 +1640,12 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCGrabber : cocos2d::CCObject {
-    CCGrabber() = imac 0x5fa1e0, m1 0x522cc8, ios inline;
-    virtual ~CCGrabber() = imac 0x5fa340, m1 0x522e18, ios inline;
+    CCGrabber() = imac 0x5fa1e0, m1 0x522cc8, ios inline, win 0x21f50;
+    virtual ~CCGrabber() = imac 0x5fa340, m1 0x522e18, ios inline, win 0x21fa0;
 
-    void afterRender(cocos2d::CCTexture2D*) = imac 0x5fa300, m1 0x522de8, ios inline;
-    void beforeRender(cocos2d::CCTexture2D*) = imac 0x5fa2a0, m1 0x522d90, ios inline;
-    void grab(cocos2d::CCTexture2D*) = imac 0x5fa230, m1 0x522d20, ios inline;
+    void afterRender(cocos2d::CCTexture2D*) = imac 0x5fa300, m1 0x522de8, ios inline, win 0x22000;
+    void beforeRender(cocos2d::CCTexture2D*) = imac 0x5fa2a0, m1 0x522d90, ios inline, win 0x22040;
+    void grab(cocos2d::CCTexture2D*) = imac 0x5fa230, m1 0x522d20, ios inline, win 0x220a0;
 }
 
 [[link(win, android)]]
@@ -3800,9 +3800,9 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 class cocos2d::CCSchedulerScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
     virtual ~CCSchedulerScriptHandlerEntry() = m1 0x2a9cec, imac 0x31bbb0;
 
-    static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool) = m1 0x2a9b88, imac 0x31ba50;
+    static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool) = m1 0x2a9b88, imac 0x31ba50, win 0xb6730;
 
-    bool init(float, bool) = m1 0x2a9c68, imac 0x31bb30;
+    bool init(float, bool) = m1 0x2a9c68, imac 0x31bb30, win inline;
 }
 
 [[link(win, android)]]
@@ -4509,15 +4509,15 @@ class cocos2d::CCTextureETC : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCTexturePVR : cocos2d::CCObject {
-    CCTexturePVR() = m1 0x226608, imac 0x284af0, ios 0x3702b8;
-    virtual ~CCTexturePVR() = m1 0x226634, imac 0x284b20, ios 0x3702e4;
+    CCTexturePVR() = m1 0x226608, imac 0x284af0, ios 0x3702b8, win 0xa9df0;
+    virtual ~CCTexturePVR() = m1 0x226634, imac 0x284b20, ios 0x3702e4, win 0xa9e30;
 
-    static cocos2d::CCTexturePVR* create(char const*) = m1 0x227150, imac 0x2857d0, ios inline;
+    static cocos2d::CCTexturePVR* create(char const*) = m1 0x227150, imac 0x2857d0, ios inline, win inline;
 
-    bool createGLTexture() = m1 0x226b7c, imac 0x285160, ios 0x370720;
-    bool initWithContentsOfFile(char const*) = m1 0x226e3c, imac 0x2854a0, ios 0x3708f0;
-    bool unpackPVRv2Data(unsigned char*, unsigned int) = m1 0x226704, imac 0x284c10, ios 0x370340;
-    bool unpackPVRv3Data(unsigned char*, unsigned int) = m1 0x226924, imac 0x284e80, ios 0x370550;
+    bool createGLTexture() = m1 0x226b7c, imac 0x285160, ios 0x370720, win 0xa9e90;
+    bool initWithContentsOfFile(char const*) = m1 0x226e3c, imac 0x2854a0, ios 0x3708f0, win 0xa5a9e;
+    bool unpackPVRv2Data(unsigned char*, unsigned int) = m1 0x226704, imac 0x284c10, ios 0x370340, win 0xaa460;
+    bool unpackPVRv3Data(unsigned char*, unsigned int) = m1 0x226924, imac 0x284e80, ios 0x370550, win 0xaa690;
 }
 
 [[link(win, android)]]
