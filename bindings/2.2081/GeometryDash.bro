@@ -172,7 +172,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
     void show() = win 0x81c70, imac 0x61a2e0, m1 0x53e590, ios 0x26b818;
 
     cocos2d::CCLayerColor* m_layerColor;
-    int m_unkUnused;
+    float m_offsetUnused;
     cocos2d::CCScene* m_nextScene;
     cocos2d::extension::CCScale9Sprite* m_bg;
     cocos2d::extension::CCScale9Sprite* m_bg2;
@@ -566,7 +566,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     bool m_gamePaused;
     cocos2d::CCScene* m_runningScene;
     bool m_loadingFinished;
-    bool m_unk0e9;
+    bool m_managersLoadedUnused;
     bool m_ios;
     bool m_unk0eb;
     bool m_unk0ec;
@@ -656,13 +656,13 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
     void triggerEffect(float pulse) = win inline, imac 0x4afa20, m1 0x411a64, ios 0x3c47c8;
 
     cocos2d::CCSpriteBatchNode* m_batchNode;
-    cocos2d::CCArray* m_unk1bc;
-    cocos2d::CCArray* m_unk1c0;
+    cocos2d::CCArray* m_masterTicks;
+    cocos2d::CCArray* m_tickArray;
     float m_timeElapsed;
     float m_audioPulseMod;
     bool m_goingDown;
     float m_audioScale;
-    bool m_unk1d4;
+    bool m_audioRainUnused;
 }
 
 [[link(android)]]
@@ -1710,9 +1710,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 
     bool m_numberInput;
     gd::string m_caption;
-    int m_unknown1;
+    float m_keyboardOffset;
     bool m_selected;
-    bool m_unknown2;
+    bool m_keyboardShowing;
     float m_fontValue1;
     float m_fontValue2;
     bool m_isChatFont;
@@ -3354,7 +3354,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     cocos2d::CCArray* m_effectGameObjects;
     cocos2d::CCArray* m_guideObjects;
     cocos2d::CCArray* m_speedObjects;
-    double m_unk258;
+    double m_beatWidth;
     float m_currentSpeed;
     float m_slowSpeed;
     float m_normalSpeed;
@@ -12891,7 +12891,7 @@ class ListCell : TableViewCell {
     void loadFromObject(cocos2d::CCObject* object, int id, int page, int index) = win inline, imac 0x30d280, m1 0x29c904, ios inline;
     void updateBGColor(int index) = win inline, imac 0x30d340, m1 0x29c95c, ios inline;
 
-    int m_unk230;
+    cocos2d::ccColor4B m_bgColor;
 }
 
 [[link(android)]]
@@ -13406,8 +13406,8 @@ class MultilineBitmapFont : cocos2d::CCSprite {
     cocos2d::CCArray* m_specialDescriptors;
     cocos2d::CCArray* m_characters;
     cocos2d::CCArray* m_lines;
-    int m_unkInt;
-    bool m_unkBool;
+    int m_lineMetric;
+    bool m_metricWritten;
     void* m_unkPtr;
     int m_height;
     int m_width;
@@ -19742,9 +19742,11 @@ class TableViewCell : cocos2d::CCLayer {
 
     void updateVisibility() = win inline, imac 0x6273a0, m1 0x54a7ac, ios 0x33eac;
 
+    // potential candidate: cocos2d::CCNode* m_deleteMenu; - needs verification
     void* m_unknown;
     TableView* m_tableView;
     CCIndexPath m_indexPath;
+    // potential candidates: bool m_editable; cocos2d::ccColor3B m_delBtnColor; cocos2d::CCMenuItem* m_deleteButton;
     void* m_unknown2;
     gd::string m_cellIdentifier;
     float m_width;
@@ -19883,17 +19885,19 @@ class TextArea : cocos2d::CCSprite {
     bool m_disableColor;
     MultilineBitmapFont* m_label;
     float m_width;
+    // this was unused even in 1.0
     float m_unknown;
     gd::string m_fontFile;
     float m_height;
-    bool m_unkBool;
+    // unused but name extracted from 1.0 virtual getter
+    bool m_onTimerUnused;
     cocos2d::CCPoint m_anchorPoint;
     bool m_allShown;
     float m_scale;
     int m_rectHeight;
     int m_rectWidth;
     float m_maxWidth;
-    cocos2d::CCPoint m_unkPoint;
+    cocos2d::CCPoint m_textPos;
     TextAreaDelegate* m_delegate;
     cocos2d::CCDictionary* m_shakeCharacters;
     float m_shakeElapsed;
