@@ -8,7 +8,7 @@ AudioEffectsLayer::AudioEffectsLayer() {
     m_audioPulseMod = 0;
     m_goingDown = false;
     m_audioScale = 0;
-    m_unk1d4 = false;
+    m_audioRainUnused = false;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

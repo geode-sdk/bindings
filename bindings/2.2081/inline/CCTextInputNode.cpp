@@ -2,9 +2,9 @@
 
 CCTextInputNode::CCTextInputNode() {
     m_numberInput = false;
-    m_unknown1 = 0;
+    m_keyboardOffset = 0;
     m_selected = false;
-    m_unknown2 = false;
+    m_keyboardShowing = false;
     m_fontValue1 = -0.5f;
     m_fontValue2 = 8.0f;
     m_isChatFont = false;
