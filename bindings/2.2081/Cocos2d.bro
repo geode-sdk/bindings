@@ -1638,7 +1638,7 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
     char const* vertexShaderLog() = imac 0x42ae70, m1 0x39d90c, ios inline;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class cocos2d::CCGrabber : cocos2d::CCObject {
     CCGrabber() = imac 0x5fa1e0, m1 0x522cc8, ios inline;
     virtual ~CCGrabber() = imac 0x5fa340, m1 0x522e18, ios inline;
@@ -3474,7 +3474,7 @@ class cocos2d::CCProfiler : cocos2d::CCObject {
     void releaseTimer(char const*) = m1 0x4467d4, imac 0x4ec2e0;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class cocos2d::CCProfilingTimer : cocos2d::CCObject {
     CCProfilingTimer() = m1 0x446990, imac 0x4ec4a0;
     virtual ~CCProfilingTimer() = m1 0x4469d0, imac 0x4ec4f0;
@@ -3796,7 +3796,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
     void unscheduleUpdateForTarget(cocos2d::CCObject const*) = m1 0x3b4844, imac 0x443110, ios 0x1ab39c;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class cocos2d::CCSchedulerScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
     virtual ~CCSchedulerScriptHandlerEntry() = m1 0x2a9cec, imac 0x31bbb0;
 
@@ -4507,7 +4507,7 @@ class cocos2d::CCTextureETC : cocos2d::CCObject {
     bool loadTexture(char const*) = m1 0x1b5d40, imac 0x209f10, ios inline;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class cocos2d::CCTexturePVR : cocos2d::CCObject {
     CCTexturePVR() = m1 0x226608, imac 0x284af0, ios 0x3702b8;
     virtual ~CCTexturePVR() = m1 0x226634, imac 0x284b20, ios 0x3702e4;
