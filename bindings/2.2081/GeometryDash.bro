@@ -8924,6 +8924,8 @@ class GJGameState {
     cocos2d::CCPoint m_unkPoint3;
     [[renamed_from(m_unkPoint4)]]
     cocos2d::CCPoint m_cameraDeltaPosition;
+    [[renamed_from(m_unkPoint4)]]
+    cocos2d::CCPoint m_cameraDeltaPosition;
     cocos2d::CCPoint m_unkPoint5;
     cocos2d::CCPoint m_unkPoint6;
     cocos2d::CCPoint m_unkPoint7;
