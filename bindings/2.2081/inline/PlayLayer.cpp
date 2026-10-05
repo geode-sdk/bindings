@@ -43,17 +43,17 @@ int PlayLayer::getCurrentPercentInt() { // i love this
 float PlayLayer::getRelativeMod(cocos2d::CCPoint position, float right, float left, float offset) {
     auto result = m_halfCameraWidth;
     auto xPos = position.x;
-    if (xPos > result + m_gameState.m_cameraPosition2.x) {
-        result = (result - (xPos - offset - m_gameState.m_cameraPosition2.x - result)) * right;
+    if (xPos > result + m_gameState.m_cameraLastPosition.x) {
+        result = (result - (xPos - offset - m_gameState.m_cameraLastPosition.x - result)) * right;
     }
     else {
-        result = (result - (result + m_gameState.m_cameraPosition2.x - xPos - offset)) * left;
+        result = (result - (result + m_gameState.m_cameraLastPosition.x - xPos - offset)) * left;
     }
     return std::clamp(result, 0.f, 1.f);
 }
 
 float PlayLayer::getRelativeModNew(cocos2d::CCPoint position, float mod, float offset, bool unused, bool isRight) {
-    auto result = isRight ? (m_cameraWidth + m_gameState.m_cameraPosition2.x - position.x + offset) : (position.x - m_gameState.m_cameraPosition2.x - offset);
+    auto result = isRight ? (m_cameraWidth + m_gameState.m_cameraLastPosition.x - position.x + offset) : (position.x - m_gameState.m_cameraLastPosition.x - offset);
     return cocos2d::clampf(result / mod, 0.f, 1.f);
 }
 
@@ -286,7 +286,7 @@ void PlayLayer::commitJumps() {
 
 #if defined(GEODE_IS_ANDROID)
 void PlayLayer::screenFlipObject(GameObject* object) {
-    auto factor = m_gameState.m_levelFlipping;
+    auto factor = m_gameState.m_levelFlipProgress;
     if (m_cameraFlip == -1.f) factor = 1.f - factor;
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     auto objectPos = object->getPosition();
@@ -295,7 +295,7 @@ void PlayLayer::screenFlipObject(GameObject* object) {
     auto angle = std::abs(object->getRotation());
     auto rotated = angle == 90.f || angle == 270.f;
     auto flip = m_cameraFlip;
-    auto flipping = m_gameState.m_levelFlipping;
+    auto flipping = m_gameState.m_levelFlipProgress;
     if ((flip != 1.f && flipping > .5f) || (flip == 1.f && flipping < .5f)) {
         if (!m_gameState.m_unkBool11) return;
         auto sign = flip == 1.f ? 1 : -1;
@@ -315,7 +315,7 @@ void PlayLayer::updateInvisibleBlock(GameObject* object, float rightFadeBound, f
     if (realPosition.x > m_cameraUnzoomedX) realPosition.x -= object->m_fadeMargin;
     else realPosition.x += object->m_fadeMargin;
     auto relativeMod = this->getRelativeMod(realPosition, .02f, 1.f / 70.f, .0f) * 255.f;
-    auto cameraX = m_gameState.m_cameraPosition2.x;
+    auto cameraX = m_gameState.m_cameraLastPosition.x;
     float factor;
     if (realPosition.x > cameraX + rightFadeBound) {
         factor = realPosition.x - cameraX - rightFadeBound;

@@ -8922,6 +8922,7 @@ class GJGameState {
     cocos2d::CCPoint m_unkPoint1;
     cocos2d::CCPoint m_unkPoint2;
     cocos2d::CCPoint m_unkPoint3;
+    [[renamed_from(m_unkPoint4)]]
     cocos2d::CCPoint m_cameraDeltaPosition;
     cocos2d::CCPoint m_unkPoint5;
     cocos2d::CCPoint m_unkPoint6;
@@ -8969,7 +8970,9 @@ class GJGameState {
     int m_unkInt8;
     int m_unkInt9;
     int m_unkInt10;
+    [[renamed_from(m_unkInt11)]]
     float m_lastModeHeight;
+    [[renamed_from(m_unkFloat4)]]
     float m_lastCameraZoom;
     float m_unkUint1;
     float m_portalY;
@@ -8985,13 +8988,13 @@ class GJGameState {
     [[renamed_from(m_unkBool9)]]
     bool m_disableCameraGridSnap;
     [[renamed_from(m_unkFloat5)]]
-    float m_bgSpeedModX;
+    float m_backgroundSpeedX;
     [[renamed_from(m_unkFloat6)]]
-    float m_bgSpeedModY;
+    float m_backgroundSpeedY;
     [[renamed_from(m_unkFloat7)]]
-    float m_mgSpeedModX;
+    float m_middlegroundSpeedX;
     [[renamed_from(m_unkFloat8)]]
-    float m_mgSpeedModY;
+    float m_middlegroundSpeedY;
     float m_cameraAngle;
     float m_targetCameraAngle;
     bool m_playerStreakBlend;
@@ -9019,12 +9022,13 @@ class GJGameState {
     [[renamed_from(m_unkBool10)]]
     bool m_isFlipped;
     [[renamed_from(m_levelFlipping)]]
-    float m_flipProgress;
+    float m_levelFlipProgress;
     [[renamed_from(m_unkBool11)]]
     bool m_inSecondHalfOfFlipAnimation;
     [[renamed_from(m_unkBool12)]]
     bool m_isFlipping;
     bool m_isDualMode;
+    [[renamed_from(m_unkFloat9)]]
     float m_dualAnimationProgress;
     gd::unordered_map<int, GJValueTween> m_tweenActions;
     int m_cameraEdgeValue0;
@@ -9037,12 +9041,14 @@ class GJGameState {
     int m_unkUint11;
     int m_unkUint12;
     cocos2d::CCPoint m_cameraStepDiff;
+    [[renamed_from(m_unkFloat10)]]
     float m_backgroundWidth;
     float m_timeModRelated;
     bool m_timeModRelated2;
     gd::map<std::pair<int, int>, int> m_activatedObjectIDs;
     float m_unkUint13;
     cocos2d::CCPoint m_unkPoint32;
+    [[renamed_from(m_cameraPosition2)]]
     cocos2d::CCPoint m_cameraLastPosition;
     bool m_unkBool20;
     bool m_unkBool21;

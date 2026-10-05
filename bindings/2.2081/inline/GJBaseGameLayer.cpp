@@ -391,7 +391,7 @@ void GJBaseGameLayer::animateOutGroundNew(bool instant) {
     if (m_gameState.m_unkBool1) {
         this->resetStaticCamera(false, true);
     }
-    m_gameState.tweenValue(m_gameState.m_unkFloat9, 0.f, 25, m_gameState.m_isDualMode ? .32f : .4f, 1, 1.5f, -1, -1);
+    m_gameState.tweenValue(m_gameState.m_unkm_dualAnimationProgressFloat9, 0.f, 25, m_gameState.m_isDualMode ? .32f : .4f, 1, 1.5f, -1, -1);
 }
 
 void GJBaseGameLayer::applyLevelSettings(GameObject* object) {
@@ -791,7 +791,7 @@ bool GJBaseGameLayer::hasItem(int id) {
 }
 
 bool GJBaseGameLayer::isFlipping() {
-    return m_gameState.m_levelFlipping != 0.f && m_gameState.m_levelFlipping != 1.f;
+    return m_gameState.m_levelFlipProgress != 0.f && m_gameState.m_levelFlipProgress != 1.f;
 }
 
 void GJBaseGameLayer::lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color) {
@@ -1530,8 +1530,8 @@ void GJBaseGameLayer::updateAllObjectSection() {
 }
 
 void GJBaseGameLayer::updateBGArtSpeed(float modX, float modY) {
-    m_gameState.m_unkFloat5 = modX;
-    m_gameState.m_unkFloat6 = modY;
+    m_gameState.m_backgroundSpeedX = modX;
+    m_gameState.m_backgroundSpeedY = modY;
 }
 
 void GJBaseGameLayer::updateCameraEdge(int direction, int value) {
@@ -1601,8 +1601,8 @@ void GJBaseGameLayer::updateLegacyLayerCapacity(int front, int frontBlend, int b
 }
 
 void GJBaseGameLayer::updateMGArtSpeed(float modX, float modY) {
-    m_gameState.m_unkFloat7 = modX;
-    m_gameState.m_unkFloat8 = modY;
+    m_gameState.m_middlegroundSpeedX = modX;
+    m_gameState.m_middlegroundSpeedY = modY;
 }
 
 void GJBaseGameLayer::updateOBB2(cocos2d::CCRect rect) {
@@ -1643,7 +1643,7 @@ void GJBaseGameLayer::updateSavePositionObjects() {
                     break;
                 case -3:
                     offset = m_gameState.m_unkUint12;
-                    position = m_gameState.m_cameraPosition2;
+                    position = m_gameState.m_cameraLastPosition;
                     break;
             }
         }
