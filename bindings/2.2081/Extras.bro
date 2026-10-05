@@ -149,15 +149,24 @@ class DynamicObjectAction {
 		m_centerGroupID = object->m_centerGroupID;
 	}
 
-	EffectGameObject* m_gameObject1;
-	GameObject* m_gameObject2;
-	GameObject* m_gameObject3;
-	GameObject* m_gameObject4;
-	GameObject* m_gameObject5;
-	GameObject* m_gameObject6;
-	GameObject* m_gameObject7;
-	GameObject* m_gameObject8;
-	float m_unkFloat1;
+	[[renamed_from(m_gameObject1)]]
+	EffectGameObject* m_trigger;
+	[[renamed_from(m_gameObject2)]]
+	GameObject* m_centerObject;
+	[[renamed_from(m_gameObject3)]]
+	GameObject* m_aimTargetObject;
+	[[renamed_from(m_gameObject4)]]
+	GameObject* m_targetObject;
+	[[renamed_from(m_gameObject5)]]
+	GameObject* m_minXObject;
+	[[renamed_from(m_gameObject6)]]
+	GameObject* m_minYObject;
+	[[renamed_from(m_gameObject7)]]
+	GameObject* m_maxXObject;
+	[[renamed_from(m_gameObject8)]]
+	GameObject* m_maxYObject;
+	[[renamed_from(m_unkFloat1)]]
+	float m_elapsed;
 	float m_unkFloat2;
 	float m_unkFloat3;
 	bool m_unkBool1;

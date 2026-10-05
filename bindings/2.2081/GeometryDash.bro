@@ -6479,7 +6479,8 @@ class GameObject : CCSpritePlus {
     bool m_shouldBlendBase;
     bool m_shouldBlendDetail;
     bool m_hasCustomChild;
-    bool m_unk367;
+    [[renamed_from(m_unk367)]]
+    bool m_hasAnimatedChild;
     cocos2d::CCSprite* m_colorSprite;
     bool m_unk370;
     float m_objectRadius;
@@ -6576,7 +6577,8 @@ class GameObject : CCSpritePlus {
     int m_zOrder;
     bool m_wasSelected;
     bool m_isSelected;
-    float m_unk460;
+    [[renamed_from(m_unk460)]] // float -> int
+    int m_cycleIndex;
     cocos2d::CCPoint m_unk464;
     bool m_updateParents;
     bool m_updateEditorColor;
@@ -6603,11 +6605,13 @@ class GameObject : CCSpritePlus {
     // property 61
     short m_editorLayer2;
     int m_enabledGroupsCounter;
-    bool m_updateCustomContentSize;
+    [[renamed_from(m_updateCustomContentSize)]]
+    bool m_useObjectRect;
     bool m_hasContentSize;
     // property 121
     bool m_isNoTouch;
-    cocos2d::CCSize m_lastSize;
+    [[renamed_from(m_lastSize)]]
+    cocos2d::CCSize m_contentSize;
     cocos2d::CCPoint m_lastPosition;
     int m_unk4C0;
     int m_unk4C4;
@@ -6626,7 +6630,9 @@ class GameObject : CCSpritePlus {
     ColorActionSprite* m_mainActionSprite;
     ColorActionSprite* m_detailActionSprite;
     GJEffectManager* m_goEffectManager;
-    bool m_unk4F8;
+    // true for some 2.1 rock objects & animated fireball
+    [[renamed_from(m_unk4F8)]]
+    bool m_useTextureRectForSelection;
     bool m_isDecoration;
     bool m_isDecoration2;
     bool m_unk4fb;
@@ -8953,8 +8959,10 @@ class GJGameState {
     int m_unkInt4;
     bool m_unkBool4;
     bool m_unkBool5;
-    float m_unkFloat2;
-    float m_unkFloat3;
+    [[renamed_from(m_unkFloat2)]]
+    float m_cameraPadding;
+    [[renamed_from(m_unkFloat3)]]
+    float m_cameraEasing;
     int m_unkInt5;
     int m_unkInt6;
     int m_unkInt7;
@@ -8972,12 +8980,18 @@ class GJGameState {
     int m_unkInt14;
     int m_unkInt15;
     bool m_unkBool7;
-    bool m_isFreeMode; // m_unkBool8
-    bool m_unkBool9;
-    float m_unkFloat5;
-    float m_unkFloat6;
-    float m_unkFloat7;
-    float m_unkFloat8;
+    [[renamed_from(m_unkBool8)]]
+    bool m_isFreeMode;
+    [[renamed_from(m_unkBool9)]]
+    bool m_disableCameraGridSnap;
+    [[renamed_from(m_unkFloat5)]]
+    float m_bgSpeedModX;
+    [[renamed_from(m_unkFloat6)]]
+    float m_bgSpeedModY;
+    [[renamed_from(m_unkFloat7)]]
+    float m_mgSpeedModX;
+    [[renamed_from(m_unkFloat8)]]
+    float m_mgSpeedModY;
     float m_cameraAngle;
     float m_targetCameraAngle;
     bool m_playerStreakBlend;
@@ -9002,12 +9016,17 @@ class GJGameState {
     GameObject* m_lastActivatedPortal1;
     GameObject* m_lastActivatedPortal2;
     cocos2d::CCPoint m_cameraPosition;
-    bool m_unkBool10;
-    float m_levelFlipping;
-    bool m_unkBool11;
-    bool m_unkBool12;
+    [[renamed_from(m_unkBool10)]]
+    bool m_isFlipped;
+    [[renamed_from(m_levelFlipping)]]
+    float m_flipProgress;
+    [[renamed_from(m_unkBool11)]]
+    bool m_inSecondHalfOfFlipAnimation;
+    [[renamed_from(m_unkBool12)]]
+    bool m_isFlipping;
     bool m_isDualMode;
-    float m_unkFloat9;
+    [[renamed_from(m_unkFloat9)]]
+    float m_groundEnterProgress;
     gd::unordered_map<int, GJValueTween> m_tweenActions;
     int m_cameraEdgeValue0;
     int m_cameraEdgeValue1;
@@ -9029,9 +9048,12 @@ class GJGameState {
     cocos2d::CCPoint m_cameraPosition2;
     bool m_unkBool20;
     bool m_unkBool21;
-    bool m_unkBool22;
-    float m_unkUint14;
-    bool m_unkBool26;
+    [[renamed_from(m_unkBool22)]]
+    bool m_audioOnDeath;
+    [[renamed_from(m_unkUint14)]]
+    float m_respawnTime;
+    [[renamed_from(m_unkBool26)]]
+    bool m_noDeathSFX;
     bool m_cameraShakeEnabled;
     [[renamed_from(m_cameraShakeFactor)]]
     float m_cameraShakeDuration;
@@ -9060,8 +9082,10 @@ class GJGameState {
     gd::vector<AdvancedFollowInstance> m_advanceFollowInstances;
     gd::vector<DynamicObjectAction> m_dynamicMoveActions;
     gd::vector<DynamicObjectAction> m_dynamicRotateActions;
-    bool m_unkBool28;
-    bool m_unkBool29;
+    [[renamed_from(m_unkBool28)]]
+    bool m_instantExitStaticCameraX;
+    [[renamed_from(m_unkBool29)]]
+    bool m_instantExitStaticCameraY;
     float m_unkUint17;
     gd::unordered_map<int, gd::vector<int>> m_unkUMap8;
     gd::map<std::pair<int,int>, SFXTriggerInstance> m_proximityVolumeRelated;
@@ -9072,9 +9096,11 @@ class GJGameState {
     int m_background;
     int m_ground;
     int m_middleground;
-    bool m_unkBool31;
+    [[renamed_from(m_unkBool31)]]
+    bool m_unlinkDualGravity;
     int m_points;
-    bool m_unkBool32;
+    [[renamed_from(m_unkBool32)]]
+    bool m_hasObtainedPoints;
     unsigned int m_pauseCounter;
     unsigned int m_pauseBufferTimer;
 }
