@@ -8916,6 +8916,7 @@ class GJGameState {
     cocos2d::CCPoint m_unkPoint1;
     cocos2d::CCPoint m_unkPoint2;
     cocos2d::CCPoint m_unkPoint3;
+    [[renamed_from(m_unkPoint4)]]
     cocos2d::CCPoint m_cameraDeltaPosition;
     cocos2d::CCPoint m_unkPoint5;
     cocos2d::CCPoint m_unkPoint6;
@@ -8961,7 +8962,9 @@ class GJGameState {
     int m_unkInt8;
     int m_unkInt9;
     int m_unkInt10;
+    [[renamed_from(m_unkInt11)]]
     float m_lastModeHeight;
+    [[renamed_from(m_unkFloat4)]]
     float m_lastCameraZoom;
     float m_unkUint1;
     float m_portalY;
@@ -8974,9 +8977,13 @@ class GJGameState {
     bool m_unkBool7;
     bool m_isFreeMode; // m_unkBool8
     bool m_unkBool9;
+    [[renamed_from(m_unkFloat5)]]
     float m_backgroundSpeedX;
+    [[renamed_from(m_unkFloat6)]]
     float m_backgroundSpeedY;
+    [[renamed_from(m_unkFloat7)]]
     float m_middlegroundSpeedX;
+    [[renamed_from(m_unkFloat8)]]
     float m_middlegroundSpeedY;
     float m_cameraAngle;
     float m_targetCameraAngle;
@@ -9007,6 +9014,7 @@ class GJGameState {
     bool m_unkBool11;
     bool m_unkBool12;
     bool m_isDualMode;
+    [[renamed_from(m_unkFloat9)]]
     float m_dualAnimationProgress;
     gd::unordered_map<int, GJValueTween> m_tweenActions;
     int m_cameraEdgeValue0;
@@ -9019,12 +9027,14 @@ class GJGameState {
     int m_unkUint11;
     int m_unkUint12;
     cocos2d::CCPoint m_cameraStepDiff;
+    [[renamed_from(m_unkFloat10)]]
     float m_backgroundWidth;
     float m_timeModRelated;
     bool m_timeModRelated2;
     gd::map<std::pair<int, int>, int> m_activatedObjectIDs;
     float m_unkUint13;
     cocos2d::CCPoint m_unkPoint32;
+    [[renamed_from(m_cameraPosition2)]]
     cocos2d::CCPoint m_cameraLastPosition;
     bool m_unkBool20;
     bool m_unkBool21;
