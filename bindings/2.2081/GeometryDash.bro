@@ -8916,7 +8916,7 @@ class GJGameState {
     cocos2d::CCPoint m_unkPoint1;
     cocos2d::CCPoint m_unkPoint2;
     cocos2d::CCPoint m_unkPoint3;
-    cocos2d::CCPoint m_unkPoint4;
+    cocos2d::CCPoint m_cameraDeltaPosition;
     cocos2d::CCPoint m_unkPoint5;
     cocos2d::CCPoint m_unkPoint6;
     cocos2d::CCPoint m_unkPoint7;
@@ -8961,8 +8961,8 @@ class GJGameState {
     int m_unkInt8;
     int m_unkInt9;
     int m_unkInt10;
-    int m_unkInt11;
-    float m_unkFloat4;
+    float m_lastModeHeight;
+    float m_lastCameraZoom;
     float m_unkUint1;
     float m_portalY;
     bool m_unkBool6;
@@ -8974,10 +8974,10 @@ class GJGameState {
     bool m_unkBool7;
     bool m_isFreeMode; // m_unkBool8
     bool m_unkBool9;
-    float m_unkFloat5;
-    float m_unkFloat6;
-    float m_unkFloat7;
-    float m_unkFloat8;
+    float m_backgroundSpeedX;
+    float m_backgroundSpeedY;
+    float m_middlegroundSpeedX;
+    float m_middlegroundSpeedY;
     float m_cameraAngle;
     float m_targetCameraAngle;
     bool m_playerStreakBlend;
@@ -9003,11 +9003,11 @@ class GJGameState {
     GameObject* m_lastActivatedPortal2;
     cocos2d::CCPoint m_cameraPosition;
     bool m_unkBool10;
-    float m_levelFlipping;
+    float m_levelFlipProgress;
     bool m_unkBool11;
     bool m_unkBool12;
     bool m_isDualMode;
-    float m_unkFloat9;
+    float m_dualAnimationProgress;
     gd::unordered_map<int, GJValueTween> m_tweenActions;
     int m_cameraEdgeValue0;
     int m_cameraEdgeValue1;
@@ -9019,14 +9019,13 @@ class GJGameState {
     int m_unkUint11;
     int m_unkUint12;
     cocos2d::CCPoint m_cameraStepDiff;
-    float m_unkFloat10;
+    float m_backgroundWidth;
     float m_timeModRelated;
     bool m_timeModRelated2;
     gd::map<std::pair<int, int>, int> m_activatedObjectIDs;
     float m_unkUint13;
     cocos2d::CCPoint m_unkPoint32;
-    // same as m_cameraPosition but still updates in the editor when not playtesting?
-    cocos2d::CCPoint m_cameraPosition2;
+    cocos2d::CCPoint m_cameraLastPosition;
     bool m_unkBool20;
     bool m_unkBool21;
     bool m_unkBool22;
