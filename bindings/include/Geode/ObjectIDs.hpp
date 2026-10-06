@@ -31,7 +31,7 @@ namespace ObjectID {
     static constexpr int StartPosition = 31;
     static constexpr int EnableGhostTrail = 32;
     static constexpr int DisableGhostTrail = 33;
-    static constexpr int LegacyLevelEndTrigger = 34;
+    static constexpr int SolidStartPos = 34;
     static constexpr int YellowJumpPad = 35;
     static constexpr int YellowJumpOrb = 36;
     static constexpr int RodBall = 37;
