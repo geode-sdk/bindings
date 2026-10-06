@@ -66,7 +66,7 @@ public:
 )GEN";
 
     constexpr char const* renamed_member_definition = R"GEN({private}    union {{
-        {type} {member_name};
+        {type} {member_name}{{}};
 {renamed_members}    }};{public}
 )GEN";
 
