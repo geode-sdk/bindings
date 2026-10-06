@@ -28,6 +28,8 @@ namespace ObjectID {
     constexpr int FadeRightEnterEffect = 26;
     constexpr int SmallToBigEnterEffect = 27;
     constexpr int BigToSmallEnterEffect = 28;
+    constexpr int LegacyBackgroundTrigger = 29;
+    constexpr int LegacyGroundTrigger = 30;
     constexpr int StartPos = 31;
     constexpr int EnableGhostTrail = 32;
     constexpr int DisableGhostTrail = 33;
@@ -98,6 +100,8 @@ namespace ObjectID {
     constexpr int RegularSizePortal = 99;
     constexpr int MiniSizePortal = 101;
     constexpr int SmallBlackGradientSpike = 103;
+    constexpr int LegacyLineTrigger = 104;
+    constexpr int LegacyObjColorTrigger = 105;
     constexpr int LargeWideChain = 106;
     constexpr int SmallWideChain = 107;
     constexpr int SmallChain = 110;
@@ -208,6 +212,7 @@ namespace ObjectID {
     constexpr int ColoredSmallSpike = 218;
     constexpr int ColoredSmallSlab = 219;
     constexpr int ColoredSmallSquare = 220;
+    constexpr int LegacyColor1Trigger = 221;
     constexpr int LargeRoundCloud = 222;
     constexpr int MediumRoundCloud = 223;
     constexpr int SmallRoundCloud = 224;
@@ -579,6 +584,8 @@ namespace ObjectID {
     constexpr int WhiteTileWideSlope = 714;
     constexpr int DarkGreyTileSlope = 715;
     constexpr int DarkGreyTileWideSlope = 716;
+    constexpr int LegacyColor2Trigger = 717;
+    constexpr int LegacyColor3Trigger = 718;
     constexpr int SquarePitOutline = 719;
     constexpr int NonColorableSquareBlackEdgeHazard = 720;
     constexpr int SquarePitOutlineCorner = 721;
@@ -598,6 +605,8 @@ namespace ObjectID {
     constexpr int LargeInvisibleBlade = 740;
     constexpr int MediumInvisibleBlade = 741;
     constexpr int SmallInvisibleBlade = 742;
+    constexpr int LegacyColor4Trigger = 743;
+    constexpr int Legacy3DLTrigger = 744;
     constexpr int RobotPortal = 745;
     constexpr int LinkedTeleportPortals = 747;
     constexpr int LinkedOrangeTeleportPortal = 749;
@@ -693,6 +702,7 @@ namespace ObjectID {
     constexpr int SingleBeveledSlope = 895;
     constexpr int SingleBeveledWideSlope = 896;
     constexpr int ColorTrigger = 899;
+    constexpr int LegacyGround2Trigger = 900;
     constexpr int MoveTrigger = 901;
     constexpr int WhiteWideSlopeThin3DL = 902;
     constexpr int TexturedGrassBlockPlatformSide = 903;
@@ -705,6 +715,7 @@ namespace ObjectID {
     constexpr int TinyBush = 910;
     constexpr int TexturedGrassBlockBaseSide = 911;
     constexpr int Text = 914;
+    constexpr int LegacyLineTrigger2 = 915;
     constexpr int QuarterColoredBlock = 916;
     constexpr int OneSixteenthColoredBlock = 917;
     constexpr int LargeBeastHazard = 918;
@@ -1622,7 +1633,7 @@ namespace ObjectID {
     constexpr int FireballParticleAnimation3 = 2054;
     constexpr int FastCenterExplosionAnimation = 2055;
     constexpr int EdgeCameraTrigger = 2062;
-    constexpr int Checkpoint = 2063;
+    constexpr int PlatformerCheckpoint = 2063;
     constexpr int UnlinkedOrangeTeleportPortal = 2064;
     constexpr int CustomParticles = 2065;
     constexpr int GravityTrigger = 2066;
