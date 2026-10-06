@@ -188,10 +188,10 @@ namespace ObjectID {
     constexpr int ThreeQuartersWidthMetalSlab = 197;
     constexpr int FakeBlackHalfSpike = 198;
     constexpr int FakeBlackSmallSpike = 199;
-    constexpr int YellowSlowSpeedPortal = 200;
-    constexpr int BlueNormalSpeedPortal = 201;
-    constexpr int GreenFastSpeedPortal = 202;
-    constexpr int PinkFastSpeedPortal = 203;
+    constexpr int SlowSpeedPortal = 200;
+    constexpr int NormalSpeedPortal = 201;
+    constexpr int FastSpeedPortal = 202;
+    constexpr int FasterSpeedPortal = 203;
     constexpr int InvisibleSmallSlab = 204;
     constexpr int InvisibleHalfSpike = 205;
     constexpr int InvisibleSmallSquare = 206;
@@ -1090,7 +1090,7 @@ namespace ObjectID {
     constexpr int SpiderPortal = 1331;
     constexpr int RedJumpPad = 1332;
     constexpr int RedJumpOrb = 1333;
-    constexpr int RedFastSpeedPortal = 1334;
+    constexpr int FastestSpeedPortal = 1334;
     constexpr int OutlineSlope = 1338;
     constexpr int OutlineWideSlope = 1339;
     constexpr int ThinInvisibleOutline = 1340;
