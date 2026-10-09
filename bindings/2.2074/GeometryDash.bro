@@ -22953,7 +22953,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     }
     cocos2d::CCPoint getSelectedEffectPos() = win inline, m1 0xd2bcc, imac 0xed410, ios 0x360000 {
         if (!m_playbackObject) return cocos2d::CCPoint { 0.f, 0.f };
-        if (m_playbackObject->m_objectID != 1816) return m_playbackObject->m_speedStart;
+        if (m_playbackObject->m_objectID != 31) return m_playbackObject->m_speedStart;
         return m_playbackObject->getRealPosition();
     }
     int getSelectedOrderChannel() = win inline, m1 0xd2b5c, imac 0xed390, ios 0x35ff98 {
@@ -27650,7 +27650,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
                 m_stateHitHead = 2;
                 break;
             }
-            case 2069: case 3845: {
+            case 2069: case 3645: {
                 m_stateForce = 2;
                 auto forceObject = static_cast<ForceBlockGameObject*>(object);
                 auto forceID = forceObject->m_forceID;

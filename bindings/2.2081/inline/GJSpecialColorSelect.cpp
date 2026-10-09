@@ -15,7 +15,7 @@ ButtonSprite* GJSpecialColorSelect::getButtonByTag(int tag) {
 void GJSpecialColorSelect::highlightSelected(ButtonSprite* sprite) {
     for (int i = 0; i < m_buttonSprites->count(); i++) {
         auto sprite = static_cast<ButtonSprite*>(m_buttonSprites->objectAtIndex(i));
-        sprite->updateBGImage(sprite->getTag() == 1008 ? "GJ_button_05.png" : "GJ_button_04.png");
+        sprite->updateBGImage(sprite->getTag() == std::to_underlying(GJColorIndex::Reserved) ? "GJ_button_05.png" : "GJ_button_04.png");
     }
     if (sprite) sprite->updateBGImage("GJ_button_02.png");
 }

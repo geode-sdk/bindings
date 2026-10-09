@@ -174,7 +174,7 @@ void PlayLayer::loadActiveSaveObjects(gd::vector<SavedActiveObjectState>& active
         if (object->m_classType == GameObjectClassType::Animated) {
             static_cast<AnimatedGameObject*>(object)->playAnimation(state.m_animationID);
         }
-        else if (object->m_objectID == 1615) {
+        else if (object->m_objectID == ObjectID::CounterLabel) {
             static_cast<LabelGameObject*>(object)->m_updateLabel = true;
         }
     }

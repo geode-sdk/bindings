@@ -327,7 +327,7 @@ void GJBaseGameLayer::activateResetTrigger(EffectGameObject* object) {
     auto group = this->getGroup(object->m_targetGroupID);
     if (group && group->count() != 0) {
         for (auto gameObject : geode::cocos::CCArrayExt<GameObject, false>(group)) {
-            if (gameObject->m_objectID == 2063) {
+            if (gameObject->m_objectID == ObjectID::PlatformerCheckpoint) {
                 m_effectManager->removeTriggeredID(gameObject->m_uniqueID, m_player1->m_uniqueID);
                 m_effectManager->removeTriggeredID(gameObject->m_uniqueID, m_player2->m_uniqueID);
                 gameObject->restoreObject();
@@ -716,7 +716,7 @@ TeleportPortalObject* GJBaseGameLayer::getPortalTarget(TeleportPortalObject* obj
 }
 
 cocos2d::CCPoint GJBaseGameLayer::getPortalTargetPos(TeleportPortalObject* object, GameObject* target, PlayerObject* player) {
-    if (target && object->m_objectID != 747) return target->getRealPosition();
+    if (target && object->m_objectID != ObjectID::LinkedTeleportPortals) return target->getRealPosition();
     else return { player->getPosition().x, object->getRealPosition().y + object->m_teleportYOffset };
 }
 
@@ -1008,7 +1008,7 @@ void GJBaseGameLayer::regenerateEnterEasingBuffers() {
     m_enterEasingIndices.clear();
     m_enterEasingValuesIndex = 0;
     for (auto object : geode::cocos::CCArrayExt<EnterEffectObject, false>(m_objects)) {
-        if (object->m_objectID >= 3006 && object->m_objectID <= 3021 && object->m_objectID != 3016) {
+        if (std::to_underlying(object->m_objectID) >= 3006 && std::to_underlying(object->m_objectID) <= 3021 && object->m_objectID != ObjectID::AdvancedFollowTrigger) {
             this->generateEnterEasingBuffers(object);
         }
     }
@@ -1242,7 +1242,7 @@ void GJBaseGameLayer::stopCustomEnterEffect(EnterEffectObject* object) {
 }
 
 void GJBaseGameLayer::stopSFXTrigger(SFXTriggerGameObject* object) {
-    if (object->m_objectID != 3602) return;
+    if (object->m_objectID != ObjectID::SFXTrigger) return;
     auto engine = FMODAudioEngine::sharedEngine();
     for (auto& channel : m_gameState.m_unkUMap8[object->m_uniqueID]) {
         engine->stopChannel(channel);
@@ -1374,11 +1374,11 @@ void GJBaseGameLayer::triggerAreaEffectAnimation(EnterEffectObject* object) {
             if (groupObject->m_unk390 != 45) continue;
             std::vector<EnterEffectInstance>* instances;
             switch (groupObject->m_objectID) {
-                case 3006: instances = &m_gameState.m_moveEffectInstances; break;
-                case 3007: instances = &m_gameState.m_rotateEffectInstances; break;
-                case 3008: instances = &m_gameState.m_scaleEffectInstances; break;
-                case 3009: instances = &m_gameState.m_fadeEffectInstances; break;
-                case 3010: instances = &m_gameState.m_tintEffectInstances; break;
+                case ObjectID::AreaMoveTrigger: instances = &m_gameState.m_moveEffectInstances; break;
+                case ObjectID::AreaRotateTrigger: instances = &m_gameState.m_rotateEffectInstances; break;
+                case ObjectID::AreaScaleTrigger: instances = &m_gameState.m_scaleEffectInstances; break;
+                case ObjectID::AreaFadeTrigger: instances = &m_gameState.m_fadeEffectInstances; break;
+                case ObjectID::AreaTintTrigger: instances = &m_gameState.m_tintEffectInstances; break;
                 default: continue;
             }
             for (auto& inst : *instances) {
@@ -1496,19 +1496,25 @@ void GJBaseGameLayer::tryResumeAudio() {
 void GJBaseGameLayer::updateActiveEnterEffect(EnterEffectObject* object) {
     auto id = -2;
     switch (object->m_objectID) {
-        case 23: id = -6; break;
-        case 24: id = -5; break;
-        case 25: id = -7; break;
-        case 26: id = -8; break;
-        case 27: id = -3; break;
-        case 28: id = -4; break;
-        case 55: id = -11; break;
-        case 56: id = -10; break;
-        case 57: id = -9; break;
-        case 58: id = -12; break;
-        case 59: id = -13; break;
-        case 1915: id = -14; break;
-        case 3017: case 3018: case 3019: case 3020: case 3021: id = -15; break;
+        case ObjectID::FadeBottomEnterEffect: id = -6; break;
+        case ObjectID::FadeTopEnterEffect: id = -5; break;
+        case ObjectID::FadeLeftEnterEffect: id = -7; break;
+        case ObjectID::FadeRightEnterEffect: id = -8; break;
+        case ObjectID::SmallToBigEnterEffect: id = -3; break;
+        case ObjectID::BigToSmallEnterEffect: id = -4; break;
+        case ObjectID::ChaoticEnterEffect: id = -11; break;
+        case ObjectID::HalveLeftEnterEffect: id = -10; break;
+        case ObjectID::HalveRightEnterEffect: id = -9; break;
+        case ObjectID::HalveEnterEffect: id = -12; break;
+        case ObjectID::InverseHalveEnterEffect: id = -13; break;
+        case ObjectID::NoEnterEffectTrigger: id = -14; break;
+        case ObjectID::EnterMoveTrigger:
+        case ObjectID::EnterRotateTrigger:
+        case ObjectID::EnterScaleTrigger:
+        case ObjectID::EnterFadeTrigger:
+        case ObjectID::EnterTintTrigger:
+            id = -15;
+            break;
     }
     auto enterType = object->m_enterType;
     if (enterType == 0 || enterType == 1) {
