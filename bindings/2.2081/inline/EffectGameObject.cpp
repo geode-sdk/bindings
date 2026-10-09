@@ -19,12 +19,12 @@ bool EffectGameObject::isSpecialSpawnObject() { return false; }
 
 int EffectGameObject::getTargetColorIndex() {
     switch (m_objectID) {
-        case 29: return 1000;
-        case 30: return 1001;
-        case 105: return 1004;
-        case 744: return 1003;
-        case 900: return 1009;
-        case 915: return 1002;
+        case ObjectID::LegacyBackgroundTrigger: return std::to_underlying(GJColorIndex::BG);
+        case ObjectID::LegacyGroundTrigger: return std::to_underlying(GJColorIndex::G1);
+        case ObjectID::LegacyObjColorTrigger: return std::to_underlying(GJColorIndex::Obj);
+        case ObjectID::Legacy3DLTrigger: return std::to_underlying(GJColorIndex::TDL);
+        case ObjectID::LegacyGround2Trigger: return std::to_underlying(GJColorIndex::G2);
+        case ObjectID::LegacyLineTrigger2: return std::to_underlying(GJColorIndex::L);
         default: return m_targetColor;
     }
 }

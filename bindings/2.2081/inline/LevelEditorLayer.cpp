@@ -172,8 +172,8 @@ cocos2d::CCScene* LevelEditorLayer::scene(GJGameLevel* level, bool noUI) {
 GameObject* LevelEditorLayer::addObjectFromVector(gd::vector<gd::string>& values, gd::vector<void*>& exists) {
     auto object = GameObject::objectFromVector(values, exists, this, false);
     if (!object) return nullptr;
-    if (object->m_objectID == 1329 && m_coinCount.value() > 2) return nullptr;
-    if (object->m_objectID == 142) return nullptr;
+    if (object->m_objectID == ObjectID::UserCoin && m_coinCount.value() > 2) return nullptr;
+    if (object->m_objectID == ObjectID::GoldCoin) return nullptr;
     object->setVisible(false);
     this->addToSection(object);
     this->addSpecial(object);
@@ -240,7 +240,7 @@ StartPosObject* LevelEditorLayer::findStartPosObject() {
     auto xPos = 0.0f;
     auto order = -1;
     for (auto object : geode::cocos::CCArrayExt<StartPosObject, false>(m_objects)) {
-        if (object->m_objectID == 31 && !object->m_startSettings->m_disableStartPos) {
+        if (object->m_objectID == ObjectID::StartPos && !object->m_startSettings->m_disableStartPos) {
             auto currentXPos = object->getPosition().x;
             auto currentOrder = object->m_startSettings->m_targetOrder;
             auto reverseGameplay = object->m_startSettings->m_reverseGameplay;
@@ -315,7 +315,7 @@ int LevelEditorLayer::getNextFreeBlockID(const gd::unordered_set<int>& exclude) 
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
     for (auto object : geode::cocos::CCArrayExt<EffectGameObject, false>(this->getAllObjects())) {
-        if (object->m_classType == GameObjectClassType::Effect || object->m_objectID == 1816) {
+        if (object->m_classType == GameObjectClassType::Effect || object->m_objectID == ObjectID::CollisionBlock) {
             ids.insert(object->m_itemID);
         }
     }
@@ -329,7 +329,7 @@ int LevelEditorLayer::getNextFreeSFXGroupID(const gd::unordered_set<int>& exclud
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
     for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
-        if ((object->m_objectID == 3602 || object->m_objectID == 3603) && object->m_sfxGroup > 0) {
+        if ((object->m_objectID == ObjectID::SFXTrigger || object->m_objectID == ObjectID::EditSFXTrigger) && object->m_sfxGroup > 0) {
             ids.insert(object->m_sfxGroup);
         }
     }
@@ -343,7 +343,7 @@ int LevelEditorLayer::getNextFreeSFXID(const gd::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
     for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
-        if (object->m_objectID == 3602) {
+        if (object->m_objectID == ObjectID::SFXTrigger) {
             auto id = object->getUniqueSFXID();
             if (id > 0) ids.insert(id);
         }
@@ -373,19 +373,19 @@ int LevelEditorLayer::getSectionCount() {
 
 int LevelEditorLayer::getSelectedEditorOrder() {
     if (!m_playbackObject) return 0;
-    if (m_playbackObject->m_objectID != 31) return m_playbackObject->m_ordValue;
+    if (m_playbackObject->m_objectID != ObjectID::StartPos) return m_playbackObject->m_ordValue;
     return static_cast<StartPosObject*>(m_playbackObject)->m_startSettings->m_targetOrder;
 }
 
 cocos2d::CCPoint LevelEditorLayer::getSelectedEffectPos() {
     if (!m_playbackObject) return cocos2d::CCPoint { 0.f, 0.f };
-    if (m_playbackObject->m_objectID != 1816) return m_playbackObject->m_speedStart;
+    if (m_playbackObject->m_objectID != ObjectID::StartPos) return m_playbackObject->m_speedStart;
     return m_playbackObject->getRealPosition();
 }
 
 int LevelEditorLayer::getSelectedOrderChannel() {
     if (!m_playbackObject) return 0;
-    if (m_playbackObject->m_objectID != 31) return m_playbackObject->m_channelValue;
+    if (m_playbackObject->m_objectID != ObjectID::StartPos) return m_playbackObject->m_channelValue;
     return static_cast<StartPosObject*>(m_playbackObject)->m_startSettings->m_targetChannel;
 }
 

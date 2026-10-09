@@ -3,6 +3,8 @@
 // Needed for GEODE_IS_MACOS
 #include <Geode/platform/cplatform.h>
 
+#include <Geode/ObjectIDs.hpp>
+
 struct TodoReturnPlaceholder;
 using TodoReturn = TodoReturnPlaceholder;
 
@@ -1057,6 +1059,7 @@ enum class GJColorIndex {
     P1 = 1005,
     P2 = 1006,
     LBG = 1007,
+    Reserved = 1008,
     G2 = 1009,
     Black = 1010,
     White = 1011,

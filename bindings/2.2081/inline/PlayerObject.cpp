@@ -661,25 +661,26 @@ void PlayerObject::togglePlatformerMode(bool val) {
 
 void PlayerObject::touchedObject(GameObject* object) {
     switch (object->m_objectID) {
-        case 1755: {
+        case ObjectID::AllowWaveDragModifier: {
             m_stateDartSlide = 2;
             break;
         }
-        case 1813: {
+        case ObjectID::StopJumpBufferModifier: {
             m_stateNoAutoJump = 2;
             break;
         }
-        case 1829: {
+        case ObjectID::StopDashModifier: {
             if (m_isDashing) {
                 this->stopDashing();
                 m_jumpBuffered = false;
             }
         }
-        case 1859: {
+        case ObjectID::AllowHeadCollisionModifier: {
             m_stateHitHead = 2;
             break;
         }
-        case 2069: case 3845: {
+        case ObjectID::ForceBlock:
+        case ObjectID::ForceCircle: {
             m_stateForce = 2;
             auto forceObject = static_cast<ForceBlockGameObject*>(object);
             auto forceID = forceObject->m_forceID;
@@ -694,7 +695,7 @@ void PlayerObject::touchedObject(GameObject* object) {
             }
             break;
         }
-        case 2866: {
+        case ObjectID::GravityFlipModifier: {
             m_stateFlipGravity = 2;
             break;
         }

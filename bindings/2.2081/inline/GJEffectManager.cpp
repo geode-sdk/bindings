@@ -72,8 +72,8 @@ cocos2d::ccColor3B GJEffectManager::getMixedColor(cocos2d::ccColor3B color1, coc
 }
 
 cocos2d::ccColor3B GJEffectManager::activeColorForIndex(int index) {
-    if (index == 1010) return { 0, 0, 0 };
-    else if (index == 0 || index == 1011) return { 255, 255, 255 };
+    if (index == std::to_underlying(GJColorIndex::Black)) return { 0, 0, 0 };
+    else if (index == 0 || index == std::to_underlying(GJColorIndex::White)) return { 255, 255, 255 };
     else {
         if (auto sprite = this->getColorSprite(index)) return sprite->m_color;
         else return { 255, 255, 255 };

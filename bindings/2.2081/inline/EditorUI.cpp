@@ -76,7 +76,7 @@ GJTransformState& EditorUI::getTransformState() {
 }
 
 bool EditorUI::isLiveColorSelectTrigger(GameObject* object) {
-    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == 1006);
+    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == ObjectID::PulseTrigger);
 }
 
 bool EditorUI::liveEditColorUsable() {
@@ -280,7 +280,7 @@ gd::string EditorUI::copyObjectsDetailed(cocos2d::CCArray* objects) {
     auto groupCenter = this->getGroupCenter(objects, false);
     std::string result = "";
     for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
-        if (object->m_objectID == 749) continue;
+        if (object->m_objectID == ObjectID::LinkedOrangeTeleportPortal) continue;
         auto position = object->getPosition();
         object->setPosition(position - groupCenter);
         result += object->getSaveString(m_editorLayer) + ";";
@@ -294,8 +294,8 @@ cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
     auto extras = cocos2d::CCArray::create();
     for (int i = 0; i < objects->count(); i++) {
         auto object = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (object->m_objectID > 2807 && object->m_objectID < 2838) {
-            this->createExtrasForObject(object->m_objectID, object, extras);
+        if (std::to_underlying(object->m_objectID) > 2807 && std::to_underlying(object->m_objectID) < 2838) {
+            this->createExtrasForObject(std::to_underlying(object->m_objectID), object, extras);
         }
     }
     return extras;
@@ -321,7 +321,7 @@ void EditorUI::deleteObject(GameObject* object, bool noUndo) {
 void EditorUI::deleteTypeFromObjects(int id, cocos2d::CCArray* objects) {
     for (int i = 0; i < objects->count(); i++) {
         auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (obj->m_objectID != id) continue;
+        if (std::to_underlying(obj->m_objectID) != id) continue;
         if (obj->m_linkedGroup > 0) {
             if (auto stickyGroup = m_editorLayer->getStickyGroup(obj->m_linkedGroup)) stickyGroup->removeObject(obj, true);
         }
@@ -470,7 +470,7 @@ void EditorUI::enableButton(CreateMenuItem* button) {
     }
     else {
         auto objectID = object->m_objectID;
-        if (objectID == 918 || objectID == 919 || (objectID != 1584 && objectID != 2012) && object->getMainColorMode() != 1010) {
+        if (objectID == ObjectID::LargeBeastHazard || objectID == ObjectID::AnimatedBlackPitHazard || (objectID != ObjectID::BitHazard && objectID != ObjectID::SpikedRoundMonsterHazard) && object->getMainColorMode() != std::to_underlying(GJColorIndex::Black)) {
             object->setObjectColor({ 255, 255, 255 });
         }
         else {
@@ -520,15 +520,15 @@ cocos2d::CCPoint EditorUI::getGridSnappedPos(cocos2d::CCPoint pos) {
 void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) {
     objectID = classType = objectType = -1;
     if (selectedObject) {
-        objectID = selectedObject->m_objectID;
+        objectID = std::to_underlying(selectedObject->m_objectID);
         classType = (int)selectedObject->m_classType;
         objectType = (int)selectedObject->m_savedObjectType;
     } else if (selectedObjects) {
         for (int i = 0; i < selectedObjects->count(); i++) {
             auto obj = static_cast<GameObject*>(selectedObjects->objectAtIndex(i));
             if (objectID != 0) {
-                if (objectID == -1) objectID = obj->m_objectID;
-                else if (objectID != obj->m_objectID) objectID = 0;
+                if (objectID == -1) objectID = std::to_underlying(obj->m_objectID);
+                else if (objectID != std::to_underlying(obj->m_objectID)) objectID = 0;
             }
             if (classType != 0) {
                 if (classType == -1) classType = (int)obj->m_classType;
@@ -543,7 +543,7 @@ void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* select
 }
 
 cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
-    return GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
+    return GameToolbox::getRelativeOffset(object, this->offsetForKey(std::to_underlying(object->m_objectID)));
 }
 
 float EditorUI::getSnapAngle(GameObject* object, cocos2d::CCArray* objects) {
