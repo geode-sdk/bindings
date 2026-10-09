@@ -397,7 +397,7 @@ int LevelEditorLayer::getSelectedEditorOrder() {
 
 cocos2d::CCPoint LevelEditorLayer::getSelectedEffectPos() {
     if (!m_playbackObject) return cocos2d::CCPoint { 0.f, 0.f };
-    if (m_playbackObject->m_objectID != 1816) return m_playbackObject->m_speedStart;
+    if (m_playbackObject->m_objectID != 31) return m_playbackObject->m_speedStart;
     return m_playbackObject->getRealPosition();
 }
 

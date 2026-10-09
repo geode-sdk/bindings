@@ -470,7 +470,7 @@ void EditorUI::enableButton(CreateMenuItem* button) {
     }
     else {
         auto objectID = object->m_objectID;
-        if (objectID == ObjectID::LargeBeastHazard || objectID == ObjectID::AnimatedBlackPitHazard || (objectID != ObjectID::BitHazard && objectID != ObjectID::SpikedRoundMonsterHazard) && object->getMainColorMode() != std::to_underlying(GJColorIndex::Black)) {
+        if (objectID == ObjectID::LargeBeastHazard || objectID == ObjectID::AnimatedBlackPitHazard || (objectID != ObjectID::BatHazard && objectID != ObjectID::SpikedRoundMonsterHazard) && object->getMainColorMode() != std::to_underlying(GJColorIndex::Black)) {
             object->setObjectColor({ 255, 255, 255 });
         }
         else {
