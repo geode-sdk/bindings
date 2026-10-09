@@ -73,7 +73,7 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
 	const cocos2d::CCString* valueForKey(intptr_t);
 	void setObject(cocos2d::CCObject*, const gd::string&) = imac 0xe5440;
 	void setObject(cocos2d::CCObject*, intptr_t);
-	void removeObjectForKey(const gd::string&);
+	void removeObjectForKey(const gd::string&) = imac 0xe6550;
 	void removeObjectForKey(intptr_t key);
 	void removeObjectsForKeys(cocos2d::CCArray*);
 	void removeObjectForElememt(cocos2d::CCDictElement*);
@@ -93,7 +93,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
 	virtual ~CCDirector();
 
 	void pause() = imac 0x167740;
-	void drawScene();
+	void drawScene() = imac 0x166370;
 	void setContentScaleFactor(float);
 	void setupScreenScale(cocos2d::CCSize, cocos2d::CCSize, cocos2d::TextureQuality);
 	void updateContentScale(cocos2d::TextureQuality);
@@ -104,6 +104,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
 	void setOpenGLView(cocos2d::CCEGLView *pobOpenGLView) = imac 0x1668a0;
 
 	void replaceScene(cocos2d::CCScene *pScene) = imac 0x167420;
+	void runWithScene(cocos2d::CCScene*) = imac 0x1673b0;
 }
 
 [[link(win, android)]]
@@ -198,6 +199,9 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
 [[link(win, android)]]
 class cocos2d::CCGLProgram : cocos2d::CCObject {
 	bool compileShader(unsigned int*, unsigned int, const char*);
+	void use() = imac 0x14d870;
+	void setUniformsForBuiltins() = imac 0x14e790;
+	void setUniformLocationWith4fv(GLint location, GLfloat* floats, unsigned int numberOfArrays) = imac 0x14e700;
 }
 
 [[link(win, android)]]
@@ -609,6 +613,11 @@ class cocos2d::CCObject : cocos2d::CCCopying {
 }
 
 [[link(win, android)]]
+class cocos2d::CCParticleSnow : cocos2d::CCParticleSystemQuad {
+	static cocos2d::CCParticleSnow* create() = imac 0x169b50;
+}
+
+[[link(win, android)]]
 class cocos2d::CCRemoveSelf : cocos2d::CCActionInstant {
 	static CCRemoveSelf* create(bool isNeedCleanUp) = imac 0x257910;
 }
@@ -641,6 +650,11 @@ class cocos2d::CCScene : cocos2d::CCNode {
 }
 
 [[link(win, android)]]
+class cocos2d::CCSet : cocos2d::CCObject {
+	cocos2d::CCObject* anyObject() = imac 0x259d10;
+}
+
+[[link(win, android)]]
 class cocos2d::CCSequence : cocos2d::CCActionInterval {
 	static CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction *pActionOne, cocos2d::CCFiniteTimeAction *pActionTwo) = imac 0x12a830;
 	static CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction *pAction1, va_list args) = imac 0x12aa60;
@@ -668,6 +682,12 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 	cocos2d::CCSet* pauseAllTargets();
 	cocos2d::CCSet* pauseAllTargetsWithMinPriority(int);
 	void resumeTargets(cocos2d::CCSet*);
+}
+
+[[link(win, android)]]
+class cocos2d::CCShaderCache : cocos2d::CCObject {
+	static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x86f30;
+  cocos2d::CCGLProgram * programForKey(const char* key) = imac 0x88190;
 }
 
 [[link(win, android)]]
@@ -836,6 +856,7 @@ class cocos2d::CCTexture2D : cocos2d::CCObject {
 
 	void setTexParameters(ccTexParams* texParams) = imac 0x162860;
 	bool initWithImage(cocos2d::CCImage * uiImage) = imac 0x161b60;
+	bool initWithData(const void* data, CCTexture2DPixelFormat pixelFormat, unsigned int pixelsWide, unsigned int pixelsHigh, const cocos2d::CCSize& contentSize) = imac 0x161820;
 }
 
 [[link(win, android)]]
@@ -845,7 +866,7 @@ class cocos2d::CCTouch : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate {
-	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int);
+	void touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int) = imac 0x198040;
 
 	void incrementForcePrio() = imac 0x197650;
 	void decrementForcePrio() = imac 0x197660;
@@ -1022,7 +1043,10 @@ class cocos2d {
 	static void ccDrawColor4B( GLubyte r, GLubyte g, GLubyte b, GLubyte a ) = imac 0x92150;
 	static void ccGLBlendFunc(GLenum sfactor, GLenum dfactor) = imac 0x118db0;
 	static void ccDrawSolidRect( cocos2d::CCPoint origin, cocos2d::CCPoint destination, cocos2d::ccColor4F color ) = imac 0x912b0;
+	static void ccGLEnableVertexAttribs(unsigned int flags) = imac 0x118f90;
+	static void ccGLBindTexture2D(GLuint textureId) = imac 0x118e60;
 
+	static float ccpDistance(const cocos2d::CCPoint& v1, const cocos2d::CCPoint& v2) = imac 0x115350;
 }
 
 // [[link(win, android)]]
