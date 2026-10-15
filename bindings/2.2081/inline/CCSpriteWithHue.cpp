@@ -3,7 +3,7 @@
 CCSpriteWithHue::CCSpriteWithHue() {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-CCSpriteWithHue* CCSpriteWithHue::create(gd::string const& file) {
+CCSpriteWithHue* CCSpriteWithHue::create(std::string const& file) {
     auto ret = new CCSpriteWithHue();
     if (ret->initWithFile(file.c_str())) {
         ret->autorelease();
@@ -13,7 +13,7 @@ CCSpriteWithHue* CCSpriteWithHue::create(gd::string const& file) {
     return nullptr;
 }
 
-CCSpriteWithHue* CCSpriteWithHue::create(gd::string const& file, cocos2d::CCRect const& rect) {
+CCSpriteWithHue* CCSpriteWithHue::create(std::string const& file, cocos2d::CCRect const& rect) {
     auto ret = new CCSpriteWithHue();
     if (ret->initWithFile(file.c_str(), rect)) {
         ret->autorelease();
@@ -83,7 +83,7 @@ CCSpriteWithHue* CCSpriteWithHue::createWithSpriteFrame(cocos2d::CCSpriteFrame* 
     return nullptr;
 }
 
-CCSpriteWithHue* CCSpriteWithHue::createWithSpriteFrameName(gd::string const& frameName) {
+CCSpriteWithHue* CCSpriteWithHue::createWithSpriteFrameName(std::string const& frameName) {
     return CCSpriteWithHue::createWithSpriteFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frameName.c_str()));
 }
 

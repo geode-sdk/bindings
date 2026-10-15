@@ -2,7 +2,7 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-CreateParticlePopup* CreateParticlePopup::create(gd::string str) {
+CreateParticlePopup* CreateParticlePopup::create(std::string str) {
     return CreateParticlePopup::create(nullptr, nullptr, str);
 }
 

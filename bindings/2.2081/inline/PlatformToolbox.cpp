@@ -5,7 +5,7 @@ float PlatformToolbox::getDeviceRefreshRate() {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-void PlatformToolbox::downloadAndSavePromoImage(gd::string url, gd::string path) {}
+void PlatformToolbox::downloadAndSavePromoImage(std::string url, std::string path) {}
 
 void PlatformToolbox::onGameLaunch() {}
 
@@ -35,7 +35,7 @@ void PlatformToolbox::updateWindowedSize(float width, float height) {
 #if defined(GEODE_IS_WINDOWS)
 void PlatformToolbox::activateGameCenter() {}
 
-bool PlatformToolbox::doesFileExist(gd::string path) {
+bool PlatformToolbox::doesFileExist(std::string path) {
     return false;
 }
 
@@ -43,11 +43,11 @@ void PlatformToolbox::gameDidSave() {
     cocos2d::CCApplication::sharedApplication()->gameDidSave();
 }
 
-gd::string PlatformToolbox::getRawPath(char const* path) {
+std::string PlatformToolbox::getRawPath(char const* path) {
     return "";
 }
 
-gd::string PlatformToolbox::getUserID() {
+std::string PlatformToolbox::getUserID() {
     return PlatformToolbox::getUniqueUserID();
 }
 
@@ -135,7 +135,7 @@ void PlatformToolbox::toggleVerticalSync(bool enable) {
     cocos2d::CCApplication::sharedApplication()->toggleVerticalSync(enable);
 }
 
-void PlatformToolbox::tryShowRateDialog(gd::string gameName) {}
+void PlatformToolbox::tryShowRateDialog(std::string gameName) {}
 #endif
 
 #if defined(GEODE_IS_IOS)

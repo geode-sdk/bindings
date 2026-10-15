@@ -6,7 +6,7 @@ void LevelCommentDelegate::loadCommentsFailed(char const* key) {}
 
 void LevelCommentDelegate::updateUserScoreFinished() {}
 
-void LevelCommentDelegate::setupPageInfo(gd::string info, char const* key) {}
+void LevelCommentDelegate::setupPageInfo(std::string info, char const* key) {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -4,7 +4,7 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void ColorSelectLiveOverlay::colorValueChanged(cocos2d::ccColor3B color) {}
 
-CCMenuItemToggler* ColorSelectLiveOverlay::createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) {
+CCMenuItemToggler* ColorSelectLiveOverlay::createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) {
     auto onSprite = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOn_001.png");
     auto offSprite = cocos2d::CCSprite::createWithSpriteFrameName("GJ_checkOff_001.png");
     onSprite->setScale(.7f);

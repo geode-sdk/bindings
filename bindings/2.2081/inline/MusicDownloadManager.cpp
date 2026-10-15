@@ -26,7 +26,7 @@ int MusicDownloadManager::getSongPriority() {
     return ++m_songPriority;
 }
 
-void MusicDownloadManager::handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) {
+void MusicDownloadManager::handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) {
     auto result = GJHttpResult::create(true, response, tag, type);
     result->retain();
     m_pActionManager->addAction(cocos2d::CCSequence::create(
@@ -263,7 +263,7 @@ void MusicDownloadManager::limitDownloadedSongs() {
     }
 }
 
-gd::string MusicDownloadManager::nameForTagID(int id) {
+std::string MusicDownloadManager::nameForTagID(int id) {
     return m_musicTags.count(id) ? m_musicTags[id] : "";
 }
 

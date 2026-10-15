@@ -69,11 +69,11 @@ void CCTextInputNode::ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent
 
 void CCTextInputNode::forceOffset() {}
 
-gd::string CCTextInputNode::getString() {
+std::string CCTextInputNode::getString() {
     return m_textField->getString();
 }
 
-void CCTextInputNode::setAllowedChars(gd::string filter) {
+void CCTextInputNode::setAllowedChars(std::string filter) {
     m_allowedChars = filter;
 }
 

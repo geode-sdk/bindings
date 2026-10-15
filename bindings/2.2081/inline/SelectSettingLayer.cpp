@@ -26,11 +26,11 @@ int SelectSettingLayer::valueToIdx(SelectSettingType type, int value) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-gd::string SelectSettingLayer::frameForValue(SelectSettingType type, int value) {
+std::string SelectSettingLayer::frameForValue(SelectSettingType type, int value) {
     return frameForItem(type, valueToIdx(type, value));
 }
 
-gd::string SelectSettingLayer::getSelectedFrame() {
+std::string SelectSettingLayer::getSelectedFrame() {
     return frameForValue(m_type, m_settingID);
 }
 

@@ -43,7 +43,7 @@ void GJChallengeItem::incrementCount(int add) {
     }
 }
 
-bool GJChallengeItem::init(GJChallengeType challengeType, int goal, int reward, int timeLeft, gd::string questName) {
+bool GJChallengeItem::init(GJChallengeType challengeType, int goal, int reward, int timeLeft, std::string questName) {
     m_challengeType = challengeType;
     m_goal = goal;
     m_reward = reward;

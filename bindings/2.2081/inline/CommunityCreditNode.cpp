@@ -2,7 +2,7 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-bool CommunityCreditNode::init(int unlockType, int iconID, int unknown, gd::string author) {
+bool CommunityCreditNode::init(int unlockType, int iconID, int unknown, std::string author) {
     if (!CCNode::init()) return false;
     m_unlockType = unlockType;
     m_iconID = iconID;

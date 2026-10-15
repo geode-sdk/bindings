@@ -5,7 +5,7 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-bool URLViewLayer::init(gd::string title, cocos2d::CCArray* objects) {
+bool URLViewLayer::init(std::string title, cocos2d::CCArray* objects) {
     if (!GJDropDownLayer::init(title.c_str())) return false;
     if (objects) {
         m_urlObjects = objects;

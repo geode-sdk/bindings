@@ -2,7 +2,7 @@
 
 CountTriggerAction::CountTriggerAction() {}
 
-CountTriggerAction::CountTriggerAction(int targetID, int targetCount, bool activateGroup, bool multiActivate, int itemID, int previousCount, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+CountTriggerAction::CountTriggerAction(int targetID, int targetCount, bool activateGroup, bool multiActivate, int itemID, int previousCount, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_disabled = false;
     m_previousCount = previousCount;
     m_targetCount = targetCount;

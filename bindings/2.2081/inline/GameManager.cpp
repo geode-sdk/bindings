@@ -184,7 +184,7 @@ void GameManager::addDuplicateLastFrame(int objectID) {
 
 void GameManager::addToGJLog(cocos2d::CCString* str) {}
 
-void GameManager::claimItemsResponse(gd::string str) {}
+void GameManager::claimItemsResponse(std::string str) {}
 
 int GameManager::colorForPos(int pos) {
     switch (pos) {
@@ -493,7 +493,7 @@ cocos2d::CCArray* GameManager::getOrderedCustomObjectKeys() {
     return keys;
 }
 
-gd::string GameManager::getPracticeMusicFile() {
+std::string GameManager::getPracticeMusicFile() {
     auto mdm = MusicDownloadManager::sharedState();
     if (m_customPracticeSongID > 0) {
         if (mdm->isSongDownloaded(m_customPracticeSongID)) {

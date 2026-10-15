@@ -1,10 +1,10 @@
 #include <Geode/Bindings.hpp>
 
-FLAlertLayer* FLAlertLayer::create(char const* title, const gd::string& desc, char const* btn) {
+FLAlertLayer* FLAlertLayer::create(char const* title, const std::string& desc, char const* btn) {
     return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);
 }
 
-FLAlertLayer* FLAlertLayer::create(FLAlertLayerProtocol* delegate, char const* title, gd::string desc, char const* btn1, char const* btn2) {
+FLAlertLayer* FLAlertLayer::create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2) {
     return FLAlertLayer::create(delegate, title, desc, btn1, btn2, 300.0);
 }
 

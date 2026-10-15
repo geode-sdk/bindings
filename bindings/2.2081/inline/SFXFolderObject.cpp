@@ -12,7 +12,7 @@ SFXFolderObject::~SFXFolderObject() {
     CC_SAFE_RELEASE(m_sfxObjects);
 }
 
-SFXFolderObject* SFXFolderObject::create(int id, gd::string name, int folderID) {
+SFXFolderObject* SFXFolderObject::create(int id, std::string name, int folderID) {
     auto ret = new SFXFolderObject();
     if (ret->init(id, name, folderID)) {
         ret->autorelease();
@@ -22,7 +22,7 @@ SFXFolderObject* SFXFolderObject::create(int id, gd::string name, int folderID) 
     return nullptr;
 }
 
-bool SFXFolderObject::init(int id, gd::string name, int folderID) {
+bool SFXFolderObject::init(int id, std::string name, int folderID) {
     if (!SFXInfoObject::init(id, name, folderID, 0, 0)) return false;
     m_sfxObjects = cocos2d::CCArray::create();
     m_sfxObjects->retain();

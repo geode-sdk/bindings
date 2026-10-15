@@ -9,7 +9,7 @@ ChallengeNode::ChallengeNode() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-void ChallengeNode::updateTimeLabel(gd::string text) {
+void ChallengeNode::updateTimeLabel(std::string text) {
     if (m_countdownLabel) m_countdownLabel->setString(text.c_str());
 }
 #endif

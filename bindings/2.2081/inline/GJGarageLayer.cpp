@@ -28,13 +28,13 @@ GJGarageLayer* GJGarageLayer::node() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-gd::string GJGarageLayer::achievementForUnlock(int id, UnlockType type) {
+std::string GJGarageLayer::achievementForUnlock(int id, UnlockType type) {
     auto achievementManager = AchievementManager::sharedState();
     auto achievement = achievementManager->achievementForUnlock(id, type);
     return achievementManager->isAchievementAvailable(achievement) ? achievement : "";
 }
 
-gd::string GJGarageLayer::getLockFrame(int id, UnlockType type) {
+std::string GJGarageLayer::getLockFrame(int id, UnlockType type) {
     return "GJ_lock_001";
 }
 
@@ -73,7 +73,7 @@ GJGarageLayer::~GJGarageLayer() {
     if (gm->m_rewardedVideoDelegate == this) gm->m_rewardedVideoDelegate = nullptr;
 }
 
-gd::string GJGarageLayer::titleForUnlock(int id, UnlockType type) {
+std::string GJGarageLayer::titleForUnlock(int id, UnlockType type) {
     auto achievementManager = AchievementManager::sharedState();
     return achievementManager->getAchievementsWithID(achievementManager->achievementForUnlock(id, type).c_str())->valueForKey("title")->getCString();
 }

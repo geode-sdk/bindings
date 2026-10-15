@@ -20,7 +20,7 @@ AudioEffectsLayer::~AudioEffectsLayer() {
     CC_SAFE_RELEASE(m_tickArray);
 }
 
-AudioEffectsLayer* AudioEffectsLayer::create(gd::string audioString) {
+AudioEffectsLayer* AudioEffectsLayer::create(std::string audioString) {
     auto ret = new AudioEffectsLayer();
     if (ret->init(audioString)) {
         ret->autorelease();

@@ -2,7 +2,7 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-bool OptionsObject::init(int id, bool enabled, gd::string name, OptionsObjectDelegate* delegate) {
+bool OptionsObject::init(int id, bool enabled, std::string name, OptionsObjectDelegate* delegate) {
     m_optionID = id;
     m_enabled = enabled;
     m_name = name;

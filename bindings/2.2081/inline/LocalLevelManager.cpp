@@ -9,7 +9,7 @@ LocalLevelManager* LocalLevelManager::get() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-cocos2d::CCArray* LocalLevelManager::getAllLevelsWithName(gd::string name) {
+cocos2d::CCArray* LocalLevelManager::getAllLevelsWithName(std::string name) {
     auto ret = cocos2d::CCArray::create();
     for (int i = 0; i < m_localLevels->count(); i++) {
         auto level = static_cast<GJGameLevel*>(m_localLevels->objectAtIndex(i));

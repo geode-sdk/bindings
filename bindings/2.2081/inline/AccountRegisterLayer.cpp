@@ -21,11 +21,11 @@ void AccountRegisterLayer::hideLoadingUI() {
     m_loadingCircle->setVisible(false);
 }
 
-bool AccountRegisterLayer::validPassword(gd::string password) {
+bool AccountRegisterLayer::validPassword(std::string password) {
     return password.size() > 5;
 }
 
-bool AccountRegisterLayer::validUser(gd::string username) {
+bool AccountRegisterLayer::validUser(std::string username) {
     return username.size() > 2;
 }
 #endif
@@ -67,7 +67,7 @@ void AccountRegisterLayer::showLoadingUI() {
 #endif
 
 #if defined(GEODE_IS_IOS)
-bool AccountRegisterLayer::validEmail(gd::string email) {
+bool AccountRegisterLayer::validEmail(std::string email) {
     if (!email.c_str()) return false;
     auto first = email[0];
     if (first < 'A' || (first > 'Z' && first < 'a') || first > 'z') return false;

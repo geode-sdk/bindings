@@ -2,7 +2,7 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-bool CCURLObject::init(gd::string name, gd::string url) {
+bool CCURLObject::init(std::string name, std::string url) {
     m_name = name;
     m_url = url;
     return true;

@@ -2,7 +2,7 @@
 
 TimerTriggerAction::TimerTriggerAction() {}
 
-TimerTriggerAction::TimerTriggerAction(int targetID, float targetTime, bool multiActivate, int itemID, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+TimerTriggerAction::TimerTriggerAction(int targetID, float targetTime, bool multiActivate, int itemID, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_disabled = false;
     m_time = 0.f;
     m_targetTime = targetTime;

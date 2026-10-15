@@ -19,7 +19,7 @@ AudioAssetsBrowser::~AudioAssetsBrowser() {
     CC_SAFE_RELEASE(m_songInfoObjects);
 }
 
-AudioAssetsBrowser* AudioAssetsBrowser::create(gd::vector<int>& songIds, gd::vector<int>& sfxIds) {
+AudioAssetsBrowser* AudioAssetsBrowser::create(std::vector<int>& songIds, std::vector<int>& sfxIds) {
     auto ret = new AudioAssetsBrowser();
     if (ret->init(songIds, sfxIds)) {
         ret->autorelease();

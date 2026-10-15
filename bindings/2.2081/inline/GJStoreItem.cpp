@@ -22,7 +22,7 @@ GJStoreItem* GJStoreItem::create(int index, int typeID, int unlockType, int pric
     return nullptr;
 }
 
-gd::string GJStoreItem::getCurrencyKey() {
+std::string GJStoreItem::getCurrencyKey() {
     return m_shopType == ShopType::Diamond ? "29" : "14";
 }
 

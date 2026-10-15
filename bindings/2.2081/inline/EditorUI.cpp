@@ -58,7 +58,7 @@ CCMenuItemSpriteExtra* EditorUI::getModeBtn(char const* frameName, int tag) {
     return button;
 }
 
-CCMenuItemSpriteExtra* EditorUI::getSimpleButton(gd::string frameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) {
+CCMenuItemSpriteExtra* EditorUI::getSimpleButton(std::string frameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) {
     auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(frameName.c_str());
     sprite->setScale(std::min(18.f / sprite->getContentSize().width, 18.f / sprite->getContentSize().height));
     auto button = CCMenuItemSpriteExtra::create(sprite, this, selector);
@@ -271,7 +271,7 @@ void EditorUI::changeSelectedObjects(cocos2d::CCArray* objects, bool ignoreFilte
     this->updateScaleControl();
 }
 
-gd::string EditorUI::copyObjectsDetailed(cocos2d::CCArray* objects) {
+std::string EditorUI::copyObjectsDetailed(cocos2d::CCArray* objects) {
     qsort(objects->data->arr, objects->data->num, sizeof(GameObject*), [](void const* a, void const* b) {
         auto objA = *static_cast<GameObject* const*>(a);
         auto objB = *static_cast<GameObject* const*>(b);

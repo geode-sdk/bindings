@@ -1,6 +1,6 @@
 #include <Geode/Bindings.hpp>
 
-void LevelRateInfoDelegate::rateInfoFinished(int id, gd::string info) {}
+void LevelRateInfoDelegate::rateInfoFinished(int id, std::string info) {}
 
 void LevelRateInfoDelegate::rateInfoFailed(int id, int response) {}
 

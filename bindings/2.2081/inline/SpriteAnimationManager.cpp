@@ -9,12 +9,12 @@ SpriteAnimationManager::SpriteAnimationManager() {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-void SpriteAnimationManager::finishAnimation(gd::string animation) {
+void SpriteAnimationManager::finishAnimation(std::string animation) {
     if (m_queuedAnimation == animation) m_queuedAnimation = "not_used";
     if (m_currentAnimation == animation) this->runQueuedAnimation();
 }
 
-void SpriteAnimationManager::playSound(gd::string sound) {}
+void SpriteAnimationManager::playSound(std::string sound) {}
 
 void SpriteAnimationManager::resetAnimState() {
     m_queuedAnimation = "not_used";
@@ -28,7 +28,7 @@ void SpriteAnimationManager::runQueuedAnimation() {
     }
 }
 
-void SpriteAnimationManager::switchToFirstFrameOfAnimation(gd::string animation) {
+void SpriteAnimationManager::switchToFirstFrameOfAnimation(std::string animation) {
     if (m_frameDict->objectForKey(animation)->getObjType() == (cocos2d::CCObjectType)0) {
         m_sprite->switchToMode(this->getAnimType(animation));
         auto frame = static_cast<cocos2d::CCSpriteFrame*>(m_frameDict->objectForKey(cocos2d::CCString::createWithFormat("%s_first", animation.c_str())->getCString()));
@@ -47,7 +47,7 @@ SpriteAnimationManager::~SpriteAnimationManager() {
     CC_SAFE_RELEASE(m_animateDict);
 }
 
-SpriteAnimationManager* SpriteAnimationManager::createWithOwner(CCAnimatedSprite* sprite, gd::string definition) {
+SpriteAnimationManager* SpriteAnimationManager::createWithOwner(CCAnimatedSprite* sprite, std::string definition) {
     auto ret = new SpriteAnimationManager();
     if (ret->initWithOwner(sprite, definition)) {
         ret->autorelease();
@@ -62,7 +62,7 @@ void SpriteAnimationManager::doCleanup() {
     this->release();
 }
 
-spriteMode SpriteAnimationManager::getAnimType(gd::string animation) {
+spriteMode SpriteAnimationManager::getAnimType(std::string animation) {
     return (spriteMode)m_typeDict->valueForKey(animation)->intValue();
 }
 
@@ -73,7 +73,7 @@ void SpriteAnimationManager::offsetCurrentAnimation(float dt) {
     }
 }
 
-void SpriteAnimationManager::playSoundForAnimation(gd::string animation) {
+void SpriteAnimationManager::playSoundForAnimation(std::string animation) {
     if (auto sound = static_cast<cocos2d::CCString*>(m_soundDict->objectForKey(animation))) {
         auto delay = static_cast<cocos2d::CCString*>(m_soundDict->objectForKey(cocos2d::CCString::createWithFormat("%s%s", animation.c_str(), "delay")->getCString()))->floatValue();
         if (delay == 0.f) this->playSound(sound->getCString());
@@ -86,7 +86,7 @@ void SpriteAnimationManager::stopAnimations() {
     if (m_sprite->m_fbfSprite) m_sprite->m_fbfSprite->stopAllActions();
 }
 
-void SpriteAnimationManager::storeSoundForAnimation(cocos2d::CCString* sound, gd::string animation, float delay) {
+void SpriteAnimationManager::storeSoundForAnimation(cocos2d::CCString* sound, std::string animation, float delay) {
     m_soundDict->setObject(sound, animation);
     m_soundDict->setObject(cocos2d::CCString::createWithFormat("%f", delay), animation);
 }

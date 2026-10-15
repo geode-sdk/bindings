@@ -6,7 +6,7 @@ void MessageListDelegate::loadMessagesFailed(char const* key, GJErrorCode errorT
 
 void MessageListDelegate::forceReloadMessages(bool sent) {}
 
-void MessageListDelegate::setupPageInfo(gd::string info, char const* key) {}
+void MessageListDelegate::setupPageInfo(std::string info, char const* key) {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

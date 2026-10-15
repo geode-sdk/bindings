@@ -21,7 +21,7 @@ void GameStatsManager::awardOldSpecialStats() {
 
 bool GameStatsManager::canItemBeUnlocked(int id, UnlockType type) { return true; }
 
-gd::string GameStatsManager::getEventRewardKey(int id) {
+std::string GameStatsManager::getEventRewardKey(int id) {
     return fmt::format("o_event_{}", id);
 }
 
@@ -41,17 +41,17 @@ bool GameStatsManager::isPathUnlocked(StatKey key) {
     return this->isItemUnlocked(UnlockType::GJItem, (int)key - 24);
 }
 
-bool GameStatsManager::isSecretCoin(gd::string key) {
+bool GameStatsManager::isSecretCoin(std::string key) {
     return key.starts_with("unique_");
 }
 
-bool GameStatsManager::isSpecialChestLiteUnlockable(gd::string key) {
+bool GameStatsManager::isSpecialChestLiteUnlockable(std::string key) {
     return m_specialChestsLite && m_specialChestsLite->objectForKey(key) != nullptr;
 }
 
 void GameStatsManager::resetPreSync() {}
 
-void GameStatsManager::resetSpecialChest(gd::string key) {
+void GameStatsManager::resetSpecialChest(std::string key) {
     m_miscChests->removeObjectForKey(key);
 }
 
@@ -225,16 +225,16 @@ int GameStatsManager::getBonusDiamonds(int stars) {
     return stars > 2 && stars < 11 ? stars == 10 ? 20 : this->getBaseDiamonds(stars) / 2.f : 0;
 }
 
-gd::string GameStatsManager::getChallengeKey(GJChallengeItem* chal) {
+std::string GameStatsManager::getChallengeKey(GJChallengeItem* chal) {
     return cocos2d::CCString::createWithFormat("c%i%i", chal->m_position, chal->m_timeLeft)->getCString();
 }
 
-gd::string GameStatsManager::getCurrencyKey(GJGameLevel* level) {
+std::string GameStatsManager::getCurrencyKey(GJGameLevel* level) {
     auto dailyID = level->m_dailyID.value();
     return cocos2d::CCString::createWithFormat("%i", dailyID > 0 ? dailyID : level->m_levelID.value())->getCString();
 }
 
-gd::string GameStatsManager::getDailyLevelKey(int dailyID) {
+std::string GameStatsManager::getDailyLevelKey(int dailyID) {
     return cocos2d::CCString::createWithFormat("d%i", dailyID)->getCString();
 }
 
@@ -246,11 +246,11 @@ const char* GameStatsManager::getDemonLevelKey(GJGameLevel* level) {
     return cocos2d::CCString::createWithFormat("demon_%i", levelID)->getCString();
 }
 
-gd::string GameStatsManager::getLevelKey(GJGameLevel* level) {
+std::string GameStatsManager::getLevelKey(GJGameLevel* level) {
     return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Main, level->m_dailyID > 0, level->m_gauntletLevel, level->m_dailyID > 200000);
 }
 
-gd::string GameStatsManager::getListRewardKey(GJLevelList* list) {
+std::string GameStatsManager::getListRewardKey(GJLevelList* list) {
     return cocos2d::CCString::createWithFormat("lr_%i", list->m_listID)->getCString();
 }
 
@@ -261,7 +261,7 @@ int GameStatsManager::getNextGoldChestID() {
     return 0;
 }
 
-GJRewardItem* GameStatsManager::getRewardForSpecialChest(gd::string key) {
+GJRewardItem* GameStatsManager::getRewardForSpecialChest(std::string key) {
     return static_cast<GJRewardItem*>(m_allSpecialChests->objectForKey(key));
 }
 
@@ -273,7 +273,7 @@ int GameStatsManager::getSecretChestForItem(int id, UnlockType type) {
     return m_allTreasureRoomChestItems->valueForKey(this->getItemKey(id, (int)type))->intValue();
 }
 
-gd::string GameStatsManager::getSecretOnlineRewardKey(int id) {
+std::string GameStatsManager::getSecretOnlineRewardKey(int id) {
     return fmt::format("o_secret_{}", id);
 }
 
@@ -281,7 +281,7 @@ cocos2d::CCString* GameStatsManager::getSpecialChestKeyForItem(int id, UnlockTyp
     return static_cast<cocos2d::CCString*>(m_allSpecialChestItems->objectForKey(this->getItemKey(id, (int)type)));
 }
 
-gd::string GameStatsManager::getSpecialRewardDescription(gd::string key, bool unused) {
+std::string GameStatsManager::getSpecialRewardDescription(std::string key, bool unused) {
     if (auto it = m_specialRewardDescriptions.find(key); it != m_specialRewardDescriptions.end()) {
         return it->second;
     }
@@ -382,7 +382,7 @@ void GameStatsManager::storeEventChest(int eventID, GJRewardItem* item) {
     if (item) m_eventChest->setObject(item, this->getDailyLevelKey(eventID));
 }
 
-void GameStatsManager::storeOnlineChest(gd::string key, GJRewardItem* item) {
+void GameStatsManager::storeOnlineChest(std::string key, GJRewardItem* item) {
     if (item) m_allSpecialChests->setObject(item, key);
 }
 
@@ -426,7 +426,7 @@ void GameStatsManager::updateActivePath(StatKey key) {
     m_activePath = key >= StatKey::FirePath && key <= StatKey::SoulPath ? (int)key : 0;
 }
 
-gd::string GameStatsManager::usernameForAccountID(int id) {
+std::string GameStatsManager::usernameForAccountID(int id) {
     if (auto it = m_usernameForAccountID.find(id); it != m_usernameForAccountID.end()) {
         return it->second;
     }
@@ -435,7 +435,7 @@ gd::string GameStatsManager::usernameForAccountID(int id) {
 #endif
 
 #if defined(GEODE_IS_IOS)
-void GameStatsManager::addSpecialRewardDescription(gd::string key, gd::string description) {
+void GameStatsManager::addSpecialRewardDescription(std::string key, std::string description) {
     m_specialRewardDescriptions[key] = description;
 }
 #endif

@@ -4,7 +4,7 @@ void OnlineListDelegate::loadListFinished(cocos2d::CCArray* objects, char const*
 
 void OnlineListDelegate::loadListFailed(char const* key) {}
 
-void OnlineListDelegate::setupPageInfo(gd::string info, char const* key) {}
+void OnlineListDelegate::setupPageInfo(std::string info, char const* key) {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

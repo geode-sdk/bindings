@@ -20,7 +20,7 @@ SmartBlockType GJSmartTemplate::getSimplifiedType(SmartBlockType type, bool& cha
     }
 }
 
-gd::string GJSmartTemplate::keyFromNeighborsOld(bool left, bool right, bool top, bool bottom, bool topLeft, bool topRight, bool bottomLeft, bool bottomRight) {
+std::string GJSmartTemplate::keyFromNeighborsOld(bool left, bool right, bool top, bool bottom, bool topLeft, bool topRight, bool bottomLeft, bool bottomRight) {
     fmt::memory_buffer buffer;
     fmt::format_to(std::back_inserter(buffer), "{}{}{}{}{}{}{}{}{}", 1, (int)left, (int)right, (int)top, (int)bottom, (int)topLeft, (int)topRight, (int)bottomLeft, (int)bottomRight);
     return fmt::to_string(buffer);
@@ -90,7 +90,7 @@ SmartBlockType GJSmartTemplate::flipBlockTypeY(SmartBlockType type) {
     }
 }
 
-gd::string GJSmartTemplate::keyFromNeighbors(SmartBlockType type, SmartBlockType left, SmartBlockType right, SmartBlockType top, SmartBlockType bottom, SmartBlockType topLeft, SmartBlockType topRight, SmartBlockType bottomLeft, SmartBlockType bottomRight) {
+std::string GJSmartTemplate::keyFromNeighbors(SmartBlockType type, SmartBlockType left, SmartBlockType right, SmartBlockType top, SmartBlockType bottom, SmartBlockType topLeft, SmartBlockType topRight, SmartBlockType bottomLeft, SmartBlockType bottomRight) {
     std::string result;
     result += (char)type;
     result += (char)left;
@@ -192,7 +192,7 @@ int GJSmartTemplate::smartTypeToObjectKey(SmartBlockType type) {
 
 bool GJSmartTemplate::canEncode() { return true; }
 
-cocos2d::CCArray* GJSmartTemplate::getPrefabs(gd::string key) {
+cocos2d::CCArray* GJSmartTemplate::getPrefabs(std::string key) {
     return static_cast<cocos2d::CCArray*>(m_prefabArrays->objectForKey(key));
 }
 
@@ -215,7 +215,7 @@ bool GJSmartTemplate::init() {
     return true;
 }
 
-void GJSmartTemplate::removePrefab(gd::string prefabKey, int prefabID) {
+void GJSmartTemplate::removePrefab(std::string prefabKey, int prefabID) {
     if (prefabID <= 0) return;
     auto prefabArray = static_cast<cocos2d::CCArray*>(m_prefabArrays->objectForKey(prefabKey));
     if (!prefabArray || prefabArray->count() == 0) return;
@@ -232,7 +232,7 @@ void GJSmartTemplate::resetScannedPrefabs() {
     m_prefabResults.clear();
 }
 
-void GJSmartTemplate::savePrefab(gd::string key, gd::string data) {
+void GJSmartTemplate::savePrefab(std::string key, std::string data) {
     m_unk0a8 = "";
     auto prefabArray = static_cast<cocos2d::CCArray*>(m_prefabArrays->objectForKey(key));
     if (!prefabArray) {

@@ -6,7 +6,7 @@ SearchSFXPopup::SearchSFXPopup() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SearchSFXPopup* SearchSFXPopup::create(gd::string query) {
+SearchSFXPopup* SearchSFXPopup::create(std::string query) {
     auto ret = new SearchSFXPopup();
     if (ret->init(query)) {
         ret->autorelease();

@@ -2,9 +2,9 @@
 
 void GameObject::firstSetup() {}
 
-void GameObject::triggerObject(GJBaseGameLayer* layer, int uniqueID, gd::vector<int> const* remapKeys) {}
+void GameObject::triggerObject(GJBaseGameLayer* layer, int uniqueID, std::vector<int> const* remapKeys) {}
 
-void GameObject::customObjectSetup(gd::vector<gd::string>& values, gd::vector<void*>& exists) {}
+void GameObject::customObjectSetup(std::vector<std::string>& values, std::vector<void*>& exists) {}
 
 void GameObject::triggerActivated(float xPosition) {}
 
@@ -45,7 +45,7 @@ int GameObject::getTextKerning() { return false; }
 cocos2d::CCLabelBMFont* GameObject::getObjectLabel() { return nullptr; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-cocos2d::CCSprite* GameObject::addCustomBlackChild(gd::string frame, float opacity, bool color) {
+cocos2d::CCSprite* GameObject::addCustomBlackChild(std::string frame, float opacity, bool color) {
     if (color) {
         return this->addCustomColorChild(frame);
     }
@@ -59,7 +59,7 @@ cocos2d::CCSprite* GameObject::addCustomBlackChild(gd::string frame, float opaci
     }
 }
 
-cocos2d::CCSprite* GameObject::addInternalChild(cocos2d::CCSprite* parent, gd::string frame, cocos2d::CCPoint offset, int zOrder) {
+cocos2d::CCSprite* GameObject::addInternalChild(cocos2d::CCSprite* parent, std::string frame, cocos2d::CCPoint offset, int zOrder) {
     auto spr = cocos2d::CCSprite::createWithSpriteFrameName(frame.c_str());
     spr->setPosition(parent->convertToNodeSpace({0.f, 0.f}) + offset);
     parent->addChild(spr, zOrder);
@@ -415,7 +415,7 @@ int GameObject::getGroupID(int index) {
     return 0;
 }
 
-gd::string GameObject::getGroupString() {
+std::string GameObject::getGroupString() {
     fmt::memory_buffer buffer;
     auto first = true;
     for (int i = 0; i < 10; i++) {

@@ -13,7 +13,7 @@ cocos2d::ccColor3B GameToolbox::colorToSepia(cocos2d::ccColor3B color, float fac
 
 void GameToolbox::contentScaleClipRect(cocos2d::CCRect& rect) {}
 
-gd::string GameToolbox::createHashString(gd::string const& str, int length) {
+std::string GameToolbox::createHashString(std::string const& str, int length) {
     std::string ret;
     if (length > 0) {
         auto strSize = str.size();
@@ -125,7 +125,7 @@ bool GameToolbox::isIOS() {
     #endif
 }
 
-bool GameToolbox::saveStringToFile(gd::string const& path, gd::string const& content) {
+bool GameToolbox::saveStringToFile(std::string const& path, std::string const& content) {
     #ifdef GEODE_IS_WINDOWS
     FILE* file = nullptr;
     fopen_s(&file, (cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath() + path).c_str(), "w");
@@ -156,7 +156,7 @@ void GameToolbox::alignItemsVertically(cocos2d::CCArray* items, float gap, cocos
     }
 }
 
-CCMenuItemToggler* GameToolbox::createToggleButton(gd::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) {
+CCMenuItemToggler* GameToolbox::createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) {
     return GameToolbox::createToggleButton(label, selector, state, menu, position, parent, labelParent, .7f, .5f, 80.f, { 8.f, 0.f }, "bigFont.fnt", false, 0, container);
 }
 
@@ -208,7 +208,7 @@ void GameToolbox::openAppPage() {
     cocos2d::CCApplication::sharedApplication()->openURL("https://store.steampowered.com/recommended/recommendgame/322170");
 }
 
-cocos2d::CCParticleSystemQuad* GameToolbox::particleFromString(gd::string const& str, cocos2d::CCParticleSystemQuad* system, bool dontUpdate) {
+cocos2d::CCParticleSystemQuad* GameToolbox::particleFromString(std::string const& str, cocos2d::CCParticleSystemQuad* system, bool dontUpdate) {
     cocos2d::ParticleStruct ret;
     GameToolbox::particleStringToStruct(str, ret);
     return GameToolbox::particleFromStruct(ret, system, dontUpdate);

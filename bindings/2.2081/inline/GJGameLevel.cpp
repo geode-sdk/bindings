@@ -61,13 +61,13 @@ void GJGameLevel::setStars(int stars) {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-gd::string GJGameLevel::generateSettingsString() { return ""; }
+std::string GJGameLevel::generateSettingsString() { return ""; }
 
 void GJGameLevel::levelWasSubmitted() {
     m_isUploaded = true;
 }
 
-void GJGameLevel::parseSettingsString(gd::string str) {}
+void GJGameLevel::parseSettingsString(std::string str) {}
 
 void GJGameLevel::setNormalPercent(int percent) {
     m_normalPercent = percent;
@@ -140,7 +140,7 @@ void GJGameLevel::levelWasAltered() {
     }
 }
 
-gd::string GJGameLevel::scoreVectorToString(gd::vector<int>& vec, int type) {
+std::string GJGameLevel::scoreVectorToString(std::vector<int>& vec, int type) {
     if (type == 1) std::sort(vec.begin(), vec.end(), std::greater<int>());
     else std::sort(vec.begin(), vec.end(), std::less<int>());
     fmt::memory_buffer out;

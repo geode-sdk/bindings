@@ -28,7 +28,7 @@ void CCAnimatedSprite::cleanupSprite() {
     m_spriteMode = (spriteMode)0;
 }
 
-void CCAnimatedSprite::runAnimationForced(gd::string animation) {
+void CCAnimatedSprite::runAnimationForced(std::string animation) {
     m_animationManager->overridePrio();
     m_animationManager->runAnimation(animation);
 }

@@ -13,7 +13,7 @@ int FMODAudioEngine::getNextChannelID() {
     return (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x6ba0e4) GEODE_IOS(0x84be08)))++;
 }
 
-gd::map<std::pair<int, int>, FMODSoundTween>& FMODAudioEngine::getTweenContainer(AudioTargetType type) {
+std::map<std::pair<int, int>, FMODSoundTween>& FMODAudioEngine::getTweenContainer(AudioTargetType type) {
     switch (type) {
         case AudioTargetType::SFXGroup:
             return m_audioState.m_tweensForEffectGroups;
@@ -28,7 +28,7 @@ bool FMODAudioEngine::isChannelStopping(int channel) {
     return m_stoppedChannels.count(channel) != 0;
 }
 
-bool FMODAudioEngine::isEffectLoaded(gd::string path) {
+bool FMODAudioEngine::isEffectLoaded(std::string path) {
     return m_fmodSounds.count(path) != 0;
 }
 
@@ -61,7 +61,7 @@ void FMODAudioEngine::stopChannelTweens(int id, AudioTargetType target) {
 
 void FMODAudioEngine::testFunction(int unknown) {}
 
-void FMODAudioEngine::unloadEffect(gd::string path) {}
+void FMODAudioEngine::unloadEffect(std::string path) {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -126,7 +126,7 @@ void FMODAudioEngine::fadeInBackgroundMusic(float value) {
     m_musicFadeStart = -1.f;
 }
 
-gd::string FMODAudioEngine::getActiveMusic(int id) {
+std::string FMODAudioEngine::getActiveMusic(int id) {
     if (m_fmodMusic.count(id) == 0) return "";
     return m_fmodMusic[id].m_filePath;
 }
@@ -164,7 +164,7 @@ bool FMODAudioEngine::isAnyPersistentPlaying() {
     return false;
 }
 
-void FMODAudioEngine::loadMusic(gd::string path) {
+void FMODAudioEngine::loadMusic(std::string path) {
     this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0, false);
 }
 
@@ -188,7 +188,7 @@ void FMODAudioEngine::pauseAllMusic(bool force) {
     }
 }
 
-int FMODAudioEngine::playEffectAsync(gd::string path) {
+int FMODAudioEngine::playEffectAsync(std::string path) {
     return this->playEffectAdvanced(path, 1.f, 0.f, 1.f, 0.f, false, false, 0, 0, 0, 0, false, 0, false, true, 0, 0, 0.f, 0);
 }
 
@@ -253,7 +253,7 @@ void FMODAudioEngine::stopMusic(int id) {
     this->stopAndRemoveMusic(id);
 }
 
-void FMODAudioEngine::stopMusicNotInSet(gd::unordered_set<int>& musicIDs) {
+void FMODAudioEngine::stopMusicNotInSet(std::unordered_set<int>& musicIDs) {
     std::unordered_set<int> totalIDs;
     for (auto& [id, _] : m_fmodMusic) {
         totalIDs.insert(id);

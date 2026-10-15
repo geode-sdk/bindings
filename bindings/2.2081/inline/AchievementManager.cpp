@@ -13,7 +13,7 @@ bool AchievementManager::areAchievementsEarned(cocos2d::CCArray* achievements) {
 
 void AchievementManager::checkAchFromUnlock(char const* id) {}
 
-bool AchievementManager::isAchievementAvailable(gd::string id) {
+bool AchievementManager::isAchievementAvailable(std::string id) {
     if (auto achievements = getAchievementsWithID(id.c_str())) {
         return achievements->objectForKey("un") == nullptr;
     }
@@ -61,7 +61,7 @@ cocos2d::CCArray* AchievementManager::getAllAchievements() {
     return m_allAchievements;
 }
 
-int AchievementManager::limitForAchievement(gd::string id) {
+int AchievementManager::limitForAchievement(std::string id) {
     if (auto achievements = getAchievementsWithID(id.c_str())) {
         if (auto limits = static_cast<cocos2d::CCString*>(achievements->objectForKey("limits"))) return limits->intValue();
     }

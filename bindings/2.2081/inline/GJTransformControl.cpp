@@ -87,7 +87,7 @@ void GJTransformControl::loadFromState(GJTransformState& state) {
     this->spriteByTag(11)->setPosition(state.m_transformSkewY);
 }
 
-void GJTransformControl::loadValues(GameObject* object, cocos2d::CCArray* objects, gd::unordered_map<int, GameObjectEditorState>& states) {
+void GJTransformControl::loadValues(GameObject* object, cocos2d::CCArray* objects, std::unordered_map<int, GameObjectEditorState>& states) {
     if (object && !objects || objects->count() == 0) objects = cocos2d::CCArray::createWithObject(object);
     CC_SAFE_RELEASE(m_objects);
     m_objects = objects;

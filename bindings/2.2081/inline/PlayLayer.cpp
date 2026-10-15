@@ -57,7 +57,7 @@ float PlayLayer::getRelativeModNew(cocos2d::CCPoint position, float mod, float o
     return cocos2d::clampf(result / mod, 0.f, 1.f);
 }
 
-void PlayLayer::playReplay(gd::string inputs) {}
+void PlayLayer::playReplay(std::string inputs) {}
 
 void PlayLayer::removeFromGroupOld(GameObject* object) {
     for (int i = 0; i < object->m_groupCount; i++) {
@@ -163,7 +163,7 @@ bool PlayLayer::isGameplayActive() {
     return !m_hasCompletedLevel && m_started && !m_player1->m_isDead;
 }
 
-void PlayLayer::loadActiveSaveObjects(gd::vector<SavedActiveObjectState>& activeObjects, gd::vector<SavedSpecialObjectState>& specialObjects) {
+void PlayLayer::loadActiveSaveObjects(std::vector<SavedActiveObjectState>& activeObjects, std::vector<SavedSpecialObjectState>& specialObjects) {
     for (auto& state : activeObjects) {
         auto object = static_cast<EnhancedGameObject*>(state.m_gameObject);
         object->m_activatedByPlayer1 = state.m_activatedByPlayer1;
@@ -180,7 +180,7 @@ void PlayLayer::loadActiveSaveObjects(gd::vector<SavedActiveObjectState>& active
     }
 }
 
-void PlayLayer::loadDynamicSaveObjects(gd::vector<SavedObjectStateRef>& dynamicObjects) {
+void PlayLayer::loadDynamicSaveObjects(std::vector<SavedObjectStateRef>& dynamicObjects) {
     for (auto& state : dynamicObjects) {
         auto object = state.m_gameObject;
         object->m_positionX = state.m_positionX;

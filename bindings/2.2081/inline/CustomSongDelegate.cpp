@@ -4,7 +4,7 @@ void CustomSongDelegate::songIDChanged(int id) {}
 
 int CustomSongDelegate::getActiveSongID() { return 0; }
 
-gd::string CustomSongDelegate::getSongFileName() { return ""; }
+std::string CustomSongDelegate::getSongFileName() { return ""; }
 
 LevelSettingsObject* CustomSongDelegate::getLevelSettings() { return nullptr; }
 

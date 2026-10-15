@@ -1,6 +1,6 @@
 #include <Geode/Bindings.hpp>
 
-void GJOnlineRewardDelegate::onlineRewardStatusFinished(gd::string key) {}
+void GJOnlineRewardDelegate::onlineRewardStatusFinished(std::string key) {}
 
 void GJOnlineRewardDelegate::onlineRewardStatusFailed() {}
 

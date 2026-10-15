@@ -36,7 +36,7 @@ GJLevelList* GJLevelList::createWithCoder(DS_Dictionary* dict) {
     return ret;
 }
 
-gd::string GJLevelList::frameForListDifficulty(int diff, DifficultyIconType type) {
+std::string GJLevelList::frameForListDifficulty(int diff, DifficultyIconType type) {
     if (diff == 0) return type == DifficultyIconType::NoText ? "diffIcon_auto_btn_001.png" : "difficulty_auto_btn_001.png";
 
     if (diff > 10) diff = 0;

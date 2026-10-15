@@ -81,7 +81,7 @@ void SetupTriggerPopup::closeInputNodes() {
     }
 }
 
-void SetupTriggerPopup::createValueControlWArrows(int property, gd::string label, cocos2d::CCPoint position, float scale) {
+void SetupTriggerPopup::createValueControlWArrows(int property, std::string label, cocos2d::CCPoint position, float scale) {
     this->createValueControlAdvanced(property, label, position, scale, true, InputValueType::Int, 6, true, 0.f, 0.f, 0, 0, GJInputStyle::GoldLabel, 2, false);
 }
 
@@ -111,7 +111,7 @@ bool SetupTriggerPopup::shouldLimitValue(int property) {
     return m_shouldLimitValues[property];
 }
 
-void SetupTriggerPopup::updateLabel(int property, gd::string text) {
+void SetupTriggerPopup::updateLabel(int property, std::string text) {
     if (auto label = static_cast<cocos2d::CCLabelBMFont*>(m_inputLabels->objectForKey(property))) {
         label->setString(text.c_str());
     }
@@ -131,7 +131,7 @@ void SetupTriggerPopup::addObjectToGroup(cocos2d::CCObject* object, int group) {
     this->getGroupContainer(group)->addObject(object);
 }
 
-cocos2d::CCArray* SetupTriggerPopup::createToggleValueControlAdvanced(int property, gd::string label, cocos2d::CCPoint position, bool vertical, int page, int group, float buttonScale, float labelScale, float labelWidth, cocos2d::CCPoint offset) {
+cocos2d::CCArray* SetupTriggerPopup::createToggleValueControlAdvanced(int property, std::string label, cocos2d::CCPoint position, bool vertical, int page, int group, float buttonScale, float labelScale, float labelWidth, cocos2d::CCPoint offset) {
     auto pageContainer = this->getPageContainer(page);
     auto groupContainer = this->getGroupContainer(group);
     auto nodes = cocos2d::CCArray::create();

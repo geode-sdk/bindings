@@ -18,7 +18,7 @@ SelectEventLayer::~SelectEventLayer() {
     CCNode::removeAllChildrenWithCleanup(true);
 }
 
-SelectEventLayer* SelectEventLayer::create(SetupEventLinkPopup* popup, gd::set<int>& eventIDs) {
+SelectEventLayer* SelectEventLayer::create(SetupEventLinkPopup* popup, std::set<int>& eventIDs) {
     auto ret = new SelectEventLayer();
     if (ret->init(popup, eventIDs)) {
         ret->autorelease();

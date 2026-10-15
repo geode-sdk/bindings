@@ -27,7 +27,7 @@ int GJMultiplayerManager::getLastCommentIDForGame(int id) {
     return 0;
 }
 
-void GJMultiplayerManager::handleItDelayed(bool success, gd::string response, gd::string tag, GJHttpType type) {
+void GJMultiplayerManager::handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) {
     auto result = GJHttpResult::create(true, response, tag, type);
     result->retain();
     m_pActionManager->addAction(cocos2d::CCSequence::create(
@@ -55,7 +55,7 @@ void GJMultiplayerManager::encodeDataTo(DS_Dictionary* dict) {}
 
 void GJMultiplayerManager::firstSetup() {}
 
-void GJMultiplayerManager::onExitLobbyCompleted(gd::string response, gd::string tag) {
+void GJMultiplayerManager::onExitLobbyCompleted(std::string response, std::string tag) {
     this->removeDLFromActive(tag.c_str());
     auto id = atoi(tag.c_str());
     if (response == "-1") {
@@ -66,7 +66,7 @@ void GJMultiplayerManager::onExitLobbyCompleted(gd::string response, gd::string 
     }
 }
 
-void GJMultiplayerManager::onUploadCommentCompleted(gd::string response, gd::string tag) {
+void GJMultiplayerManager::onUploadCommentCompleted(std::string response, std::string tag) {
     this->removeDLFromActive(tag.c_str());
     if (response != "-1") {
         if (m_mpDelegate) m_mpDelegate->didUploadMPComment(atoi(tag.c_str()));

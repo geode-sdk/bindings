@@ -36,7 +36,7 @@ bool GJMapPack::hasCompletedMapPack() {
     else return 0;
 }
 
-void GJMapPack::parsePackLevels(gd::string levelsStr) {
+void GJMapPack::parsePackLevels(std::string levelsStr) {
     CC_SAFE_RELEASE(m_levels);
     auto levels = cocos2d::CCArray::create();
     auto start = 0;

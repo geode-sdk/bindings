@@ -5,7 +5,7 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-void ConfigureValuePopup::addInfoAlertButton(gd::string title, gd::string description) {
+void ConfigureValuePopup::addInfoAlertButton(std::string title, std::string description) {
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     auto button = InfoAlertButton::create(title, description, .8f);
     button->m_textScale = .9f;

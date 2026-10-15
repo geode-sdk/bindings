@@ -2,7 +2,7 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-bool MusicArtistObject::init(int id, gd::string name, gd::string url, gd::string youtube) {
+bool MusicArtistObject::init(int id, std::string name, std::string url, std::string youtube) {
     m_artistID = id;
     m_artistName = name;
     m_artistURL = url;

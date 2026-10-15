@@ -2,7 +2,7 @@
 
 ToggleTriggerAction::ToggleTriggerAction() {}
 
-ToggleTriggerAction::ToggleTriggerAction(int targetID, bool activateGroup, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+ToggleTriggerAction::ToggleTriggerAction(int targetID, bool activateGroup, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_disabled = false;
     m_targetGroupID = targetID;
     m_activateGroup = activateGroup;

@@ -23,7 +23,7 @@ void GJBaseGameLayer::addToSpeedObjects(EffectGameObject* object) {}
 
 void GJBaseGameLayer::activateEndTrigger(int targetID, bool reverse, bool lockPlayerY) {}
 
-void GJBaseGameLayer::activatePlatformerEndTrigger(EndTriggerGameObject* object, gd::vector<int> const& remapKeys) {}
+void GJBaseGameLayer::activatePlatformerEndTrigger(EndTriggerGameObject* object, std::vector<int> const& remapKeys) {}
 
 void GJBaseGameLayer::toggleGlitter(bool visible) {}
 
@@ -249,7 +249,7 @@ void GJBaseGameLayer::restoreDefaultGameplayOffsetY() {
     this->updateGameplayOffsetY(75, false);
 }
 
-void GJBaseGameLayer::setupReplay(gd::string inputs) {}
+void GJBaseGameLayer::setupReplay(std::string inputs) {}
 
 void GJBaseGameLayer::stopAllGroundActions() {
     m_groundLayer->deactivateGround();
@@ -468,7 +468,7 @@ void GJBaseGameLayer::controlAdvancedFollowCommand(AdvancedFollowTriggerObject* 
     }
 }
 
-void GJBaseGameLayer::controlDynamicCommand(EffectGameObject* object, int controlID, gd::vector<DynamicObjectAction>& actions, GJActionCommand command) {
+void GJBaseGameLayer::controlDynamicCommand(EffectGameObject* object, int controlID, std::vector<DynamicObjectAction>& actions, GJActionCommand command) {
     for (auto& action : actions) {
         if ((controlID == -1 && action.m_gameObject1 == object) || action.m_controlID == controlID) {
             switch (command) {
@@ -599,7 +599,7 @@ float GJBaseGameLayer::getCameraEdgeValue(int type) {
     }
 }
 
-gd::string GJBaseGameLayer::getCapacityString() {
+std::string GJBaseGameLayer::getCapacityString() {
     fmt::memory_buffer buffer;
     auto first = true;
     auto index = 0;
@@ -614,7 +614,7 @@ gd::string GJBaseGameLayer::getCapacityString() {
     return fmt::to_string(buffer);
 }
 
-gd::vector<EnterEffectInstance>* GJBaseGameLayer::getCustomEnterEffects(int id, bool enter) {
+std::vector<EnterEffectInstance>* GJBaseGameLayer::getCustomEnterEffects(int id, bool enter) {
     if (id > 100) return nullptr;
     return enter ? &m_gameState.m_enterEffectInstanceVectors[id] : &m_gameState.m_exitEffectInstanceVectors[id];
 }
@@ -641,7 +641,7 @@ GameObject* GJBaseGameLayer::getGroupParent(int groupId) {
     return static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupId));
 }
 
-gd::string GJBaseGameLayer::getGroupParentsString(GameObject* object) {
+std::string GJBaseGameLayer::getGroupParentsString(GameObject* object) {
     auto groupParents = static_cast<cocos2d::CCArray*>(m_parentGroupIDs->objectForKey(object->m_uniqueID));
     if (!groupParents || groupParents->count() == 0) return "";
     fmt::memory_buffer buffer;
@@ -720,7 +720,7 @@ cocos2d::CCPoint GJBaseGameLayer::getPortalTargetPos(TeleportPortalObject* objec
     else return { player->getPosition().x, object->getRealPosition().y + object->m_teleportYOffset };
 }
 
-gd::string GJBaseGameLayer::getRecordExtra() {
+std::string GJBaseGameLayer::getRecordExtra() {
     return cocos2d::CCString::createWithFormat("#%s,%i,%i,%i,%i,%s", std::to_string(m_unk32e0).c_str(), m_savedAttempts, 22, 47, m_level->m_levelVersion, m_savedPersistentStateString.c_str())->getCString();
 }
 
@@ -1014,7 +1014,7 @@ void GJBaseGameLayer::regenerateEnterEasingBuffers() {
     }
 }
 
-int GJBaseGameLayer::registerSpawnRemap(gd::vector<ChanceObject>& spawnRemap) {
+int GJBaseGameLayer::registerSpawnRemap(std::vector<ChanceObject>& spawnRemap) {
     std::unordered_map<int, int> remap;
     m_spawnRemapTriggers.push_back(remap);
     for (auto& obj : spawnRemap) {
@@ -1200,7 +1200,7 @@ void GJBaseGameLayer::sortAllGroupsX() {
     }
 }
 
-void GJBaseGameLayer::spawnGroupTriggered(int targetID, float delay, bool spawnOrdered, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+void GJBaseGameLayer::spawnGroupTriggered(int targetID, float delay, bool spawnOrdered, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     if (delay > 0.f) m_effectManager->spawnGroup(targetID, delay, spawnOrdered, remapKeys, uniqueID, controlID);
     else this->spawnGroup(targetID, spawnOrdered, -delay, remapKeys, uniqueID, controlID);
 }
@@ -1299,7 +1299,7 @@ void GJBaseGameLayer::switchToFlyMode(PlayerObject* player, GameObject* object, 
     this->toggleGlitter(true);
 }
 
-void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     auto itemCount = m_effectManager->countForItem(itemID);
     switch (triggerMode) {
         case 0:

@@ -51,7 +51,7 @@ void TextArea::colorAllLabels(cocos2d::ccColor3B color) {
     }
 }
 
-bool TextArea::init(gd::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) {
+bool TextArea::init(std::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor) {
     if (!cocos2d::CCSprite::init()) return false;
     m_width = width;
     m_anchorPoint = anchor;

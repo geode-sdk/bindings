@@ -14,7 +14,7 @@ void GManager::dataLoaded(DS_Dictionary* dict) {}
 
 void GManager::firstLoad() {}
 
-gd::string GManager::getSaveString() {
+std::string GManager::getSaveString() {
     auto dict = new DS_Dictionary();
     this->encodeDataTo(dict);
     auto str = dict->saveRootSubDictToString();
@@ -22,7 +22,7 @@ gd::string GManager::getSaveString() {
     return str;
 }
 
-void GManager::loadFromString(gd::string& str) {
+void GManager::loadFromString(std::string& str) {
     auto dict = new DS_Dictionary();
     auto loaded = dict->loadRootSubDictFromString(str.c_str());
     str.clear();
@@ -30,11 +30,11 @@ void GManager::loadFromString(gd::string& str) {
     delete dict;
 }
 
-void GManager::saveData(DS_Dictionary* dict, gd::string filename) {
+void GManager::saveData(DS_Dictionary* dict, std::string filename) {
     dict->saveRootSubDictToCompressedFile(filename.c_str());
 }
 
-void GManager::saveGMTo(gd::string filename) {
+void GManager::saveGMTo(std::string filename) {
     auto dict = new DS_Dictionary();
     this->encodeDataTo(dict);
     this->saveData(dict, filename);
@@ -42,7 +42,7 @@ void GManager::saveGMTo(gd::string filename) {
     delete dict;
 }
 
-bool GManager::tryLoadData(DS_Dictionary* dict, gd::string const& filename) {
+bool GManager::tryLoadData(DS_Dictionary* dict, std::string const& filename) {
     return dict->loadRootSubDictFromCompressedFile(filename.c_str());
 }
 #endif

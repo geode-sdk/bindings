@@ -2,7 +2,7 @@
 
 TouchToggleAction::TouchToggleAction() {}
 
-TouchToggleAction::TouchToggleAction(int targetID, bool holdMode, TouchTriggerType touchType, TouchTriggerControl touchControl, bool dualMode, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+TouchToggleAction::TouchToggleAction(int targetID, bool holdMode, TouchTriggerType touchType, TouchTriggerControl touchControl, bool dualMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_disabled = false;
     m_targetGroupID = targetID;
     m_holdMode = holdMode;

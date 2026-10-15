@@ -4,7 +4,7 @@ void FriendRequestDelegate::loadFRequestsFinished(cocos2d::CCArray* scores, char
 
 void FriendRequestDelegate::loadFRequestsFailed(char const* key, GJErrorCode errorType) {}
 
-void FriendRequestDelegate::setupPageInfo(gd::string info, char const* key) {}
+void FriendRequestDelegate::setupPageInfo(std::string info, char const* key) {}
 
 void FriendRequestDelegate::forceReloadRequests(bool sent) {}
 

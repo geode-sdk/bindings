@@ -22,7 +22,7 @@ void CCSpritePart::setBeingUsed(bool beingUsed) {
     m_isBeingUsed = beingUsed;
 }
 
-void CCSpritePart::updateDisplayFrame(gd::string frame) {
+void CCSpritePart::updateDisplayFrame(std::string frame) {
     this->frameChanged(frame);
     this->setDisplayFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frame.c_str()));
 }

@@ -12,7 +12,7 @@ void LevelManagerDelegate::loadLevelsFinished(cocos2d::CCArray* levels, char con
 
 void LevelManagerDelegate::loadLevelsFailed(char const* key, int type) {}
 
-void LevelManagerDelegate::setupPageInfo(gd::string info, char const* key) {}
+void LevelManagerDelegate::setupPageInfo(std::string info, char const* key) {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

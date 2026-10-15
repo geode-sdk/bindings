@@ -3,7 +3,7 @@
 CCSpriteGrayscale::CCSpriteGrayscale() {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-CCSpriteGrayscale* CCSpriteGrayscale::create(gd::string const& file) {
+CCSpriteGrayscale* CCSpriteGrayscale::create(std::string const& file) {
     auto ret = new CCSpriteGrayscale();
     if (ret->initWithFile(file.c_str())) {
         ret->autorelease();
@@ -13,7 +13,7 @@ CCSpriteGrayscale* CCSpriteGrayscale::create(gd::string const& file) {
     return nullptr;
 }
 
-CCSpriteGrayscale* CCSpriteGrayscale::create(gd::string const& file, cocos2d::CCRect const& rect) {
+CCSpriteGrayscale* CCSpriteGrayscale::create(std::string const& file, cocos2d::CCRect const& rect) {
     auto ret = new CCSpriteGrayscale();
     if (ret->initWithFile(file.c_str(), rect)) {
         ret->autorelease();

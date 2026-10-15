@@ -23,7 +23,7 @@ void ShareCommentLayer::updateCharCountLabel() {
 #endif
 
 #if defined(GEODE_IS_IOS)
-void ShareCommentLayer::updateDescText(gd::string desc) {
+void ShareCommentLayer::updateDescText(std::string desc) {
     m_descText = desc;
     this->updateCharCountLabel();
 }

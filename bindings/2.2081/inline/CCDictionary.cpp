@@ -35,7 +35,7 @@ cocos2d::CCArray* cocos2d::CCDictionary::allKeysForObject(cocos2d::CCObject* p0)
     return arr;
 }
 
-char const* cocos2d::CCDictionary::charForKey(gd::string const& p0) {
+char const* cocos2d::CCDictionary::charForKey(std::string const& p0) {
     return this->valueForKey(p0)->getCString();
 }
 

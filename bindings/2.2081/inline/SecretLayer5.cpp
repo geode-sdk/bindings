@@ -23,7 +23,7 @@ SecretLayer5::SecretLayer5() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-gd::string SecretLayer5::getMessage() {
+std::string SecretLayer5::getMessage() {
     return " ";
 }
 
@@ -99,7 +99,7 @@ void SecretLayer5::incrementChatIdx() {
     }
 }
 
-void SecretLayer5::updateMessageLabel(gd::string text) {
+void SecretLayer5::updateMessageLabel(std::string text) {
     m_messageLabel->setString(text.c_str());
     m_messageLabel->limitLabelWidth(320.f, .6f, 0.f);
 }

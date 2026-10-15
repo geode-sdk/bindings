@@ -5,7 +5,7 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-LevelSettingsObject* LevelSettingsObject::objectFromString(gd::string const& str) {
+LevelSettingsObject* LevelSettingsObject::objectFromString(std::string const& str) {
     return objectFromDict(GameToolbox::stringSetupToDict(str, ","));
 }
 

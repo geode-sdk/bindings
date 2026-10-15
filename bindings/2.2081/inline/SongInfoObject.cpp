@@ -20,7 +20,7 @@ void SongInfoObject::copyValues(SongInfoObject* object) {
     m_extraArtistNames = object->m_extraArtistNames;
 }
 
-void SongInfoObject::updateArtists(gd::string artists) {
+void SongInfoObject::updateArtists(std::string artists) {
     m_extraArtists = artists;
     m_artistIDs.clear();
     if (m_extraArtists.empty()) return;

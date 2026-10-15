@@ -11,7 +11,7 @@ DailyLevelNode::DailyLevelNode() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-void DailyLevelNode::updateTimeLabel(gd::string text) {
+void DailyLevelNode::updateTimeLabel(std::string text) {
     if (m_timeLabel) m_timeLabel->setString(text.c_str());
 }
 #endif

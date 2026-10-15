@@ -31,7 +31,7 @@ PlayerObject::PlayerObject() {
     m_gravityMod = 1.0f;
     new (&m_jumpPadRelated) decltype(m_jumpPadRelated)();
     new (&m_holdingButtons) decltype(m_holdingButtons)();
-    new (&m_currentRobotAnimation) gd::string("run");
+    new (&m_currentRobotAnimation) std::string("run");
 }
 #endif
 

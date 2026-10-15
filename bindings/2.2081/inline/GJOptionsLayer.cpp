@@ -71,6 +71,6 @@ CCMenuItemToggler* GJOptionsLayer::getToggleButton(int id) {
 #endif
 
 #if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
-void GJOptionsLayer::didToggleGV(gd::string variable) {}
+void GJOptionsLayer::didToggleGV(std::string variable) {}
 #endif
 

@@ -10,7 +10,7 @@ SFXInfoObject::SFXInfoObject() {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-bool SFXInfoObject::init(int id, gd::string name, int folderID, int size, int duration) {
+bool SFXInfoObject::init(int id, std::string name, int folderID, int size, int duration) {
     m_sfxID = id;
     m_name = name;
     m_folderID = folderID;
@@ -22,7 +22,7 @@ bool SFXInfoObject::init(int id, gd::string name, int folderID, int size, int du
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SFXInfoObject* SFXInfoObject::create(int id, gd::string name, int folderID, int size, int duration) {
+SFXInfoObject* SFXInfoObject::create(int id, std::string name, int folderID, int size, int duration) {
     auto ret = new SFXInfoObject();
     if (ret->init(id, name, folderID, size, duration)) {
         ret->autorelease();
@@ -32,8 +32,8 @@ SFXInfoObject* SFXInfoObject::create(int id, gd::string name, int folderID, int 
     return nullptr;
 }
 
-gd::string SFXInfoObject::getLowerCaseName() {
-    gd::string name = m_name;
+std::string SFXInfoObject::getLowerCaseName() {
+    std::string name = m_name;
     for (int i = 0; i < name.size(); i++) {
         name[i] = tolower(name[i]);
     }

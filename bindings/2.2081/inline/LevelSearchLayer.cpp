@@ -42,7 +42,7 @@ LevelSearchLayer* LevelSearchLayer::create(int type) {
     return nullptr;
 }
 
-gd::string LevelSearchLayer::getLevelLenKey() {
+std::string LevelSearchLayer::getLevelLenKey() {
     return GameLevelManager::sharedState()->getLengthStr(
         this->checkTime(0),
         this->checkTime(1),
@@ -53,7 +53,7 @@ gd::string LevelSearchLayer::getLevelLenKey() {
     );
 }
 
-gd::string LevelSearchLayer::getSearchDiffKey() {
+std::string LevelSearchLayer::getSearchDiffKey() {
     return GameLevelManager::sharedState()->getDifficultyStr(
         this->checkDiff(0),
         this->checkDiff(1),

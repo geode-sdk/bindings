@@ -140,7 +140,7 @@ OpacityEffectAction* GJEffectManager::getOpacityActionForGroup(int id) {
     return nullptr;
 }
 
-gd::string GJEffectManager::getSaveString() {
+std::string GJEffectManager::getSaveString() {
     cocos2d::CCDictElement* element;
     cocos2d::CCDictElement* temp;
     fmt::memory_buffer out;
@@ -305,19 +305,19 @@ void GJEffectManager::resumeTimer(int id) {
     if (m_timerItemMap.count(id) != 0) m_timerItemMap[id].m_active = true;
 }
 
-void GJEffectManager::runCountTrigger(int id, int targetCount, bool multiActivate, int targetID, bool activateGroup, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+void GJEffectManager::runCountTrigger(int id, int targetCount, bool multiActivate, int targetID, bool activateGroup, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_countTriggerActions[id].emplace_back(targetID, targetCount, activateGroup, multiActivate, id, this->countForItem(id), remapKeys, uniqueID, controlID);
 }
 
-void GJEffectManager::runDeathTrigger(int targetID, bool activateGroup, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+void GJEffectManager::runDeathTrigger(int targetID, bool activateGroup, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_unkVector248.emplace_back(targetID, activateGroup, remapKeys, uniqueID, controlID);
 }
 
-void GJEffectManager::runTimerTrigger(int id, double targetTime, bool multiActivate, int targetID, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+void GJEffectManager::runTimerTrigger(int id, double targetTime, bool multiActivate, int targetID, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_unkMap3f8[id].emplace_back(targetID, targetTime, multiActivate, id, remapKeys, uniqueID, controlID);
 }
 
-void GJEffectManager::runTouchTriggerCommand(int targetID, bool holdMode, TouchTriggerType touchType, TouchTriggerControl touchControl, bool dualMode, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+void GJEffectManager::runTouchTriggerCommand(int targetID, bool holdMode, TouchTriggerType touchType, TouchTriggerControl touchControl, bool dualMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_unkVector1e0.emplace_back(targetID, holdMode, touchType, touchControl, dualMode, remapKeys, uniqueID, controlID);
 }
 
@@ -338,7 +338,7 @@ bool GJEffectManager::shouldBlend(int id) {
     return action && action->m_blending;
 }
 
-void GJEffectManager::spawnObject(GameObject* object, float delay, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+void GJEffectManager::spawnObject(GameObject* object, float delay, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_spawnTriggerActions.emplace_back(object, delay, remapKeys, uniqueID, controlID);
 }
 

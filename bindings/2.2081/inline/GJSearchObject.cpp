@@ -17,7 +17,7 @@ GJSearchObject* GJSearchObject::getPrevPageObject() {
     return this->getPageObject(std::max(m_page - 1, 0));
 }
 
-bool GJSearchObject::init(SearchType searchType, gd::string searchQuery, gd::string difficulty, gd::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) {
+bool GJSearchObject::init(SearchType searchType, std::string searchQuery, std::string difficulty, std::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) {
     m_searchType = searchType;
     m_searchQuery = searchQuery;
     m_difficulty = difficulty;

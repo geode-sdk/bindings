@@ -6,7 +6,7 @@ GJPromoPopup::GJPromoPopup() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-GJPromoPopup* GJPromoPopup::create(gd::string filename) {
+GJPromoPopup* GJPromoPopup::create(std::string filename) {
     auto ret = new GJPromoPopup();
     if (ret->init(filename)) {
         ret->autorelease();

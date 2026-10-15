@@ -1,7 +1,7 @@
 #include <Geode/Bindings.hpp>
 
 #if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
-gd::string cocos2d::ZipUtils::encryptDecrypt(gd::string const& p0, int p1) {
+std::string cocos2d::ZipUtils::encryptDecrypt(std::string const& p0, int p1) {
     std::string ret;
     ret.resize(p0.size());
     for (int i = 0; i < p0.size(); i++) {
@@ -10,7 +10,7 @@ gd::string cocos2d::ZipUtils::encryptDecrypt(gd::string const& p0, int p1) {
     return ret;
 }
 
-gd::string cocos2d::ZipUtils::encryptDecryptWKey(gd::string const& p0, gd::string p1) {
+std::string cocos2d::ZipUtils::encryptDecryptWKey(std::string const& p0, std::string p1) {
     std::string ret;
     ret.resize(p0.size());
     for (int i = 0; i < p0.size(); i++) {

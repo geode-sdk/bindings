@@ -2,7 +2,7 @@
 
 SpawnTriggerAction::SpawnTriggerAction() {}
 
-SpawnTriggerAction::SpawnTriggerAction(GameObject* object, float delay, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+SpawnTriggerAction::SpawnTriggerAction(GameObject* object, float delay, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_finished = false;
     m_disabled = false;
     m_duration = delay;
@@ -15,7 +15,7 @@ SpawnTriggerAction::SpawnTriggerAction(GameObject* object, float delay, gd::vect
     m_remapKeys = remapKeys;
 }
 
-SpawnTriggerAction::SpawnTriggerAction(int targetID, float delay, bool spawnOrdered, gd::vector<int> const& remapKeys, int uniqueID, int controlID) {
+SpawnTriggerAction::SpawnTriggerAction(int targetID, float delay, bool spawnOrdered, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     m_finished = false;
     m_disabled = false;
     m_duration = delay;

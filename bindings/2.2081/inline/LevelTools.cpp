@@ -41,11 +41,11 @@ float LevelTools::valueForSpeedMod(int speed) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-gd::string LevelTools::base64DecodeString(gd::string str) {
+std::string LevelTools::base64DecodeString(std::string str) {
     return str.empty() ? str : cocos2d::ZipUtils::base64URLDecode(str);
 }
 
-gd::string LevelTools::base64EncodeString(gd::string str) {
+std::string LevelTools::base64EncodeString(std::string str) {
     return str.empty() ? str : cocos2d::ZipUtils::base64URLEncode(str);
 }
 

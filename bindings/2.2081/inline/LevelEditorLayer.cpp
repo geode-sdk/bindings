@@ -10,7 +10,7 @@ void LevelEditorLayer::setObjectCount(int count) {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-void LevelEditorLayer::addExclusionList(const gd::unordered_set<int>& excludes, gd::unordered_set<int>& groups) {
+void LevelEditorLayer::addExclusionList(const std::unordered_set<int>& excludes, std::unordered_set<int>& groups) {
     groups.insert(excludes.begin(), excludes.end());
 }
 
@@ -169,7 +169,7 @@ cocos2d::CCScene* LevelEditorLayer::scene(GJGameLevel* level, bool noUI) {
     return scene;
 }
 
-GameObject* LevelEditorLayer::addObjectFromVector(gd::vector<gd::string>& values, gd::vector<void*>& exists) {
+GameObject* LevelEditorLayer::addObjectFromVector(std::vector<std::string>& values, std::vector<void*>& exists) {
     auto object = GameObject::objectFromVector(values, exists, this, false);
     if (!object) return nullptr;
     if (object->m_objectID == 1329 && m_coinCount.value() > 2) return nullptr;
@@ -298,7 +298,7 @@ DelayedSpawnNode* LevelEditorLayer::getDelayedSpawnNode() {
     return ret;
 }
 
-gd::string LevelEditorLayer::getLockedLayers() {
+std::string LevelEditorLayer::getLockedLayers() {
     auto isFirst = true;
     fmt::memory_buffer buffer;
     for (int i = 0; i < 10000; i++) {
@@ -311,7 +311,7 @@ gd::string LevelEditorLayer::getLockedLayers() {
     return fmt::to_string(buffer);
 }
 
-int LevelEditorLayer::getNextFreeBlockID(const gd::unordered_set<int>& exclude) {
+int LevelEditorLayer::getNextFreeBlockID(const std::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
     for (auto object : geode::cocos::CCArrayExt<EffectGameObject, false>(this->getAllObjects())) {
@@ -325,7 +325,7 @@ int LevelEditorLayer::getNextFreeBlockID(const gd::unordered_set<int>& exclude) 
     return 1000;
 }
 
-int LevelEditorLayer::getNextFreeSFXGroupID(const gd::unordered_set<int>& exclude) {
+int LevelEditorLayer::getNextFreeSFXGroupID(const std::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
     for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
@@ -339,7 +339,7 @@ int LevelEditorLayer::getNextFreeSFXGroupID(const gd::unordered_set<int>& exclud
     return 1000;
 }
 
-int LevelEditorLayer::getNextFreeSFXID(const gd::unordered_set<int>& exclude) {
+int LevelEditorLayer::getNextFreeSFXID(const std::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
     for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
@@ -358,7 +358,7 @@ cocos2d::CCPoint LevelEditorLayer::getSavedEditorPosition(int index) {
     return index < 10 ? m_savedPositions[index] : cocos2d::CCPoint { 0.f, 0.f };
 }
 
-gd::string LevelEditorLayer::getSavedEditorPositions() {
+std::string LevelEditorLayer::getSavedEditorPositions() {
     fmt::memory_buffer buffer;
     for (int i = 0; i < 10; i++) {
         if (i != 0) fmt::format_to(std::back_inserter(buffer), ",");
