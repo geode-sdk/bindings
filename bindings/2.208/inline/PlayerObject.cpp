@@ -639,7 +639,7 @@ void PlayerObject::touchedObject(GameObject* object) {
             m_stateHitHead = 2;
             break;
         }
-        case 2069: case 3845: {
+        case 2069: case 3645: {
             m_stateForce = 2;
             auto forceObject = static_cast<ForceBlockGameObject*>(object);
             auto forceID = forceObject->m_forceID;
