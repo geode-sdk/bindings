@@ -1641,7 +1641,7 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
 [[link(android)]]
 class cocos2d::CCGrabber : cocos2d::CCObject {
     CCGrabber() = win 0x21f50, imac 0x5fa1e0, m1 0x522cc8, ios inline;
-    virtual ~CCGrabber() = win 0x21fa0, imac 0x5fa340, m1 0x522e18, ios inline;
+    virtual ~CCGrabber() = win inline, imac 0x5fa340, m1 0x522e18, ios inline;
 
     void afterRender(cocos2d::CCTexture2D*) = win 0x22000, imac 0x5fa300, m1 0x522de8, ios inline;
     void beforeRender(cocos2d::CCTexture2D*) = win 0x22040, imac 0x5fa2a0, m1 0x522d90, ios inline;
@@ -3476,12 +3476,12 @@ class cocos2d::CCProfiler : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCProfilingTimer : cocos2d::CCObject {
-    CCProfilingTimer() = m1 0x446990, imac 0x4ec4a0;
-    virtual ~CCProfilingTimer() = m1 0x4469d0, imac 0x4ec4f0;
+    CCProfilingTimer() = win inline, m1 0x446990, imac 0x4ec4a0;
+    virtual ~CCProfilingTimer() = win inline, m1 0x4469d0, imac 0x4ec4f0;
 
-    char const* description() = m1 0x446aac, imac 0x4ec5b0;
-    bool initWithName(char const*) = m1 0x4467b8, imac 0x4ec2c0;
-    void reset() = m1 0x446b30, imac 0x4ec620;
+    char const* description() = win inline, m1 0x446aac, imac 0x4ec5b0;
+    bool initWithName(char const*) = win inline, m1 0x4467b8, imac 0x4ec2c0;
+    void reset() = m1 0x446b30, win inline, imac 0x4ec620;
 }
 
 [[link(win, android)]]
@@ -3798,7 +3798,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCSchedulerScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
-    virtual ~CCSchedulerScriptHandlerEntry() = m1 0x2a9cec, imac 0x31bbb0;
+    virtual ~CCSchedulerScriptHandlerEntry() = win inline, m1 0x2a9cec, imac 0x31bbb0;
 
     static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool) = win 0xb6730, m1 0x2a9b88, imac 0x31ba50;
 
@@ -4510,7 +4510,7 @@ class cocos2d::CCTextureETC : cocos2d::CCObject {
 [[link(android)]]
 class cocos2d::CCTexturePVR : cocos2d::CCObject {
     CCTexturePVR() = win 0xa9df0, m1 0x226608, imac 0x284af0, ios 0x3702b8;
-    virtual ~CCTexturePVR() = win 0xa9e30, m1 0x226634, imac 0x284b20, ios 0x3702e4;
+    virtual ~CCTexturePVR() = win inline, m1 0x226634, imac 0x284b20, ios 0x3702e4;
 
     static cocos2d::CCTexturePVR* create(char const*) = win inline, m1 0x227150, imac 0x2857d0, ios inline;
 
