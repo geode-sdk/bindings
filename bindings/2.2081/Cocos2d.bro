@@ -1285,7 +1285,7 @@ class cocos2d::CCEGLView {
     virtual void setMultiTouchMask(bool) = imac 0x5039e0, m1 0x45b570;
     [[missing(android, ios), since("5.8.0")]]
    	void showCursor(bool state) = imac 0x5039f0, m1 0x45b574;
-	
+
     [[missing(android, mac, ios)]]
     bool initGlew();
     [[missing(android, mac, ios)]]
@@ -1835,7 +1835,8 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     void removeDelegate(cocos2d::CCKeyboardDelegate*) = m1 0x1b02e0, imac 0x2033f0;
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x203890, m1 0x1b07ec;
 
-    cocos2d::CCArray* m_pDelegates;
+    [[renamed_from(m_pDelegates)]]
+    cocos2d::CCArray* m_pHandlers;
     bool m_bLocked;
     bool m_bToAdd;
     bool m_bToRemove;
@@ -1873,7 +1874,8 @@ class cocos2d::CCKeypadDispatcher : cocos2d::CCObject {
     void forceRemoveDelegate(cocos2d::CCKeypadDelegate*) = imac 0x5f9660, m1 0x5221d4, ios 0x1ad658;
     void removeDelegate(cocos2d::CCKeypadDelegate*) = imac 0x5f95b0, m1 0x52210c, ios 0x1ad610;
 
-    cocos2d::CCArray* m_pDelegates;
+    [[renamed_from(m_pDelegates)]]
+    cocos2d::CCArray* m_pHandlers;
     bool m_bLocked;
     bool m_bToAdd;
     bool m_bToRemove;
