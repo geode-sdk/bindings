@@ -10,7 +10,8 @@ namespace { namespace format_strings {
     constexpr char const* class_includes = R"GEN(#pragma once
 #include <stdexcept>
 #include <Geode/platform/platform.hpp>
-#include <Geode/c++stl/gdstdlib.hpp>
+#include <unordered_map>
+#include <unordered_set>
 #include <cocos2d.h>
 #include <cocos-ext.h>
 #include <Geode/GeneratedPredeclare.hpp>
