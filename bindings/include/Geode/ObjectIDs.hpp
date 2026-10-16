@@ -3181,10 +3181,7 @@ enum class ObjectID {
     EditAdvancedFollowTrigger = 3660,
     ReTargetAdvancedFollowTrigger = 3661,
     LinkVisibleTrigger = 3662,
-<<<<<<< HEAD
     PercentTrigger = 3663,
-=======
->>>>>>> 688f5bfe (change ObjectID to enum class, replace colour index magic numbers, corrected some inlines)
     PixelArt1100 = 3700,
     PixelArt1101 = 3701,
     PixelArt1102 = 3702,
