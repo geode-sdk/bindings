@@ -392,3 +392,18 @@ class RecordButtonCommand {
     int m_step;
 	int m_unk00c;
 }
+
+class AccountReviewCard {}
+class AdminReportedMeta {}
+class AdminAbuseMeta {}
+class DropdownListStyle {}
+class EditorSFXImportOptions {}
+class EditorSFXBinding {}
+class EmoteDef {}
+class EmoteToken {}
+class BulkCommentKey {}
+class PlayerTrailState {}
+class KeybindSettingsEntry {}
+class LevelTouchSlot {}
+class GJPlayerState {}
+class SongUsageEntry {}
