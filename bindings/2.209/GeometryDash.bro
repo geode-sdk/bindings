@@ -15689,21 +15689,21 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     bool isCovered();
     void loadPage(int, bool) = win 0xd4e00;
     void onClearSearch(cocos2d::CCObject* sender) = win 0xd7010;
-    void onClose(cocos2d::CCObject* sender);
-    void onDeleteSelected(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0xd8200;
+    void onDeleteSelected(cocos2d::CCObject* sender) = win 0xd5810;
     TodoReturn onInboxPoll(float);
     void onLegacyMessages(cocos2d::CCObject* sender) = win 0xd7400;
-    void onMarkRead(cocos2d::CCObject* sender);
+    void onMarkRead(cocos2d::CCObject* sender) = win 0xd6210;
     void onNewThread(cocos2d::CCObject* sender) = win 0xd74a0;
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onRefresh(cocos2d::CCObject* sender);
-    void onScrollToTop(cocos2d::CCObject* sender);
+    void onNextPage(cocos2d::CCObject* sender) = win 0xd70a0;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0xd7090;
+    void onRefresh(cocos2d::CCObject* sender) = win 0xd7240;
+    void onScrollToTop(cocos2d::CCObject* sender) = win 0xd8120;
     void onSearch(cocos2d::CCObject* sender) = win 0xd68e0;
-    void onSelectAll(cocos2d::CCObject* sender);
-    void onSelectFilter(cocos2d::CCObject* sender);
+    void onSelectAll(cocos2d::CCObject* sender) = win 0xd53c0;
+    void onSelectFilter(cocos2d::CCObject* sender) = win 0xd6fc0;
     void onSelectionChanged(cocos2d::CCObject* sender) = win 0xd54c0;
-    void onShowInvites(cocos2d::CCObject* sender);
+    void onShowInvites(cocos2d::CCObject* sender) = win 0xd5690;
     void onThreadsChanged(cocos2d::CCObject* sender) = win 0xd5030;
     void onUserFilter(cocos2d::CCObject* sender) = win = 0xd6920;
     TodoReturn refetchIfQueued();
@@ -15712,12 +15712,12 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     void setActivityAbove(bool);
     void setInboxPoll(float);
     TodoReturn setupThreadBrowser(cocos2d::CCArray*, float);
-    TodoReturn syncSearchFromBox();
-    TodoReturn updateFilterButtons();
+    TodoReturn syncSearchFromBox() = win 0xd6650;
+    TodoReturn updateFilterButtons() = win 0xd6e30;
     TodoReturn updateInviteButton();
     TodoReturn updatePageArrows(int, int, int);
     TodoReturn updateSelectUI();
-    TodoReturn userFilterCSV();
+    TodoReturn userFilterCSV() = win 0xd6d40;
 }
 
 [[link(android)]]
