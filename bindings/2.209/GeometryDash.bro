@@ -15665,9 +15665,9 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProtocol, FriendPickerDelegate {
     // virtual ~MessageThreadsPage();
 
-    static MessageThreadsPage* create();
+    static MessageThreadsPage* create() = win 0xd3440;
 
-    virtual bool init();
+    virtual bool init() = win 0xd3660;
     virtual void keyBackClicked();
     virtual TodoReturn show();
     virtual TodoReturn ownsTouchPrio();
@@ -15688,24 +15688,24 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn checkActivityAbove(float);
     bool isCovered();
     TodoReturn loadPage(int, bool);
-    void onClearSearch(cocos2d::CCObject* sender);
+    void onClearSearch(cocos2d::CCObject* sender) = win 0xd7010;
     void onClose(cocos2d::CCObject* sender);
     void onDeleteSelected(cocos2d::CCObject* sender);
     TodoReturn onInboxPoll(float);
-    void onLegacyMessages(cocos2d::CCObject* sender);
+    void onLegacyMessages(cocos2d::CCObject* sender) = win 0xd7400;
     void onMarkRead(cocos2d::CCObject* sender);
-    void onNewThread(cocos2d::CCObject* sender);
+    void onNewThread(cocos2d::CCObject* sender) = win 0xd74a0;
     void onNextPage(cocos2d::CCObject* sender);
     void onPrevPage(cocos2d::CCObject* sender);
     void onRefresh(cocos2d::CCObject* sender);
     void onScrollToTop(cocos2d::CCObject* sender);
-    void onSearch(cocos2d::CCObject* sender);
+    void onSearch(cocos2d::CCObject* sender) = win 0xd68e0;
     void onSelectAll(cocos2d::CCObject* sender);
     void onSelectFilter(cocos2d::CCObject* sender);
     void onSelectionChanged(cocos2d::CCObject* sender);
     void onShowInvites(cocos2d::CCObject* sender);
     void onThreadsChanged(cocos2d::CCObject* sender);
-    void onUserFilter(cocos2d::CCObject* sender);
+    void onUserFilter(cocos2d::CCObject* sender) = win = 0xd6920;
     TodoReturn refetchIfQueued();
     TodoReturn refreshUserFilterBtn();
     TodoReturn selectedCount();
