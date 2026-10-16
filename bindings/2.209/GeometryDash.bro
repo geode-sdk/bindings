@@ -22312,7 +22312,7 @@ class ShareCommentDelegate {
 }
 
 [[link(android)]]
-class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate {
+class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate, EmotePickerDelegate {
     // virtual ~ShareCommentLayer();
 
     static ShareCommentLayer* create(std::string title, int charLimit, CommentType type, int ID, std::string desc) = win 0x629ea0, imac 0x6af230, m1 0x5c8f5c, ios 0x26a72c;
@@ -22341,7 +22341,10 @@ class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate,
     int m_charLimit;
     int m_itemID;
     CommentType m_commentType;
+    bool m_allowEmotes;
     CCTextInputNode* m_commentInput;
+    CCMenuItemSpriteExtra* m_emotesButton;
+    EmotePickerPopup* m_emotePicker;
     std::string m_descText;
     std::string m_placeholderText;
     cocos2d::CCLabelBMFont* m_charCountLabel;
@@ -22379,6 +22382,15 @@ class ShareLevelLayer : FLAlertLayer {
     int m_starsRequested;
     cocos2d::CCArray* m_starButtons;
     cocos2d::CCSprite* m_difficultySprite;
+    // GameToolbox::NotifyToggleSet
+    cocos2d::CCLabelBMFont* m_notifyLabel;
+    cocos2d::CCSprite* m_notifySprite;
+    CCMenuItemToggler* m_friendsToggler;
+    CCMenuItemToggler* m_followersToggler;
+    cocos2d::CCSprite* m_friendsSprite;
+    cocos2d::CCSprite* m_followersSprite;
+    cocos2d::CCLabelBMFont* m_friendsLabel;
+    cocos2d::CCLabelBMFont* m_followersLabel;
 }
 
 [[link(android)]]
@@ -22400,6 +22412,7 @@ class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
     GJGameLevel* m_level;
     CCMenuItemToggler* m_friendsOnlyToggler;
     cocos2d::CCLabelBMFont* m_friendsOnlyLabel;
+    ShareLevelLayer* m_shareLevelLayer;
 }
 
 [[link(android)]]
@@ -22424,6 +22437,15 @@ class ShareListLayer : FLAlertLayer {
     GJLevelList* m_list;
     CCMenuItemToggler* m_friendsOnlyToggler;
     cocos2d::CCLabelBMFont* m_friendsOnlyLabel;
+    // GameToolbox::NotifyToggleSet
+    cocos2d::CCLabelBMFont* m_notifyLabel;
+    cocos2d::CCSprite* m_notifySprite;
+    CCMenuItemToggler* m_friendsToggler;
+    CCMenuItemToggler* m_followersToggler;
+    cocos2d::CCSprite* m_friendsSprite;
+    cocos2d::CCSprite* m_followersSprite;
+    cocos2d::CCLabelBMFont* m_friendsLabel;
+    cocos2d::CCLabelBMFont* m_followersLabel;
 }
 
 [[link(android)]]
