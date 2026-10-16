@@ -15540,18 +15540,18 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     static MenuLayer* get() = inline;
     static cocos2d::CCScene* scene(bool isVideoOptionsOpen) = win 0x46ed30, imac 0x37a5d0, m1 0x305e10, ios 0x30144c;
 
-    virtual bool init() = win 0x46eee0, imac 0x37a7a0;
+    virtual bool init() = win 0x46eee0, imac 0x37a7a0, ios 0x3015b4;
     virtual void keyBackClicked() = imac 0x37ca60, m1 0x30819c, ios 0x30335c;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x472360, imac 0x37cd30, m1 0x308418, ios 0x3035e4;
     virtual void googlePlaySignedIn() = imac 0x37c7d0, m1 0x307f50, ios 0x3031c0;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x472130, imac 0x37ca90, m1 0x3081a8, ios 0x30341c;
-    virtual void musicActionFinished(GJMusicAction action);
+    virtual void musicActionFinished(GJMusicAction action) = ios 0x3030a4;
     void checkParentalPending() = win 0x470f90;
 
     void endGame() = win 0x4723d0, imac 0x37cd00, m1 0x30840c, ios 0x3035c8;
-    void firstNetworkTest() = m1 0x4d3718;
+    void firstNetworkTest() = m1 0x4d3718, ios 0x302f9c;
     void onAchievements(cocos2d::CCObject* sender) = win 0x4717e0, imac 0x37be20, m1 0x3075f0, ios 0x302aa4;
-    void onCreator(cocos2d::CCObject* sender) = win 0x471d10, imac 0x37bda0;
+    void onCreator(cocos2d::CCObject* sender) = win 0x471d10, imac 0x37bda0, ios 0x302a54;
     void onDaily(cocos2d::CCObject* sender) = win 0x470980, imac 0x37c390, ios 0x302f38;
     void onDiscord(cocos2d::CCObject* sender) = win 0x471260, imac 0x383250, m1 0x307860, ios 0x302cf0;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x37c8e0, m1 0x308048, ios inline;
@@ -15559,17 +15559,17 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void onFreeLevels(cocos2d::CCObject* sender) = imac 0x37c9b0, m1 0x3080f0;
     void onFullVersion(cocos2d::CCObject* sender) = imac 0x37c9d0, m1 0x308110;
     void onGameCenter(cocos2d::CCObject* sender) = win inline, imac 0x37c640, m1 0x307de8, ios 0x3030b8;
-    void onGarage(cocos2d::CCObject* sender) = win 0x471da0, imac 0x37bd20;
+    void onGarage(cocos2d::CCObject* sender) = win 0x471da0, imac 0x37bd20, ios 0x302a04;
     void onGooglePlayGames(cocos2d::CCObject* sender) = win inline, imac 0x37c7a0, m1 0x307f28, ios inline;
     void onMoreGames(cocos2d::CCObject* sender) = imac 0x37c580, m1 0x307d40;
     void onMyProfile(cocos2d::CCObject* sender) = win 0x4710d0, imac 0x37c190, m1 0x3079a4, ios 0x302d5c;
     void onNewgrounds(cocos2d::CCObject* sender) = win 0x471e30, imac 0x37bee0, m1 0x3076d4, ios 0x302b88;
-    void onNews(cocos2d::CCObject* sender) = win 0x471290;
+    void onNews(cocos2d::CCObject* sender) = win 0x471290, ios 0x302d14;
     void onOptions(cocos2d::CCObject* sender) = win 0x471a30, imac 0x37be60, m1 0x30763c, ios 0x302af0;
-    void onOptionsInstant() = win 0x471a40, imac 0x37a740, m1 0x305f64;
+    void onOptionsInstant() = win 0x471a40, imac 0x37a740, m1 0x305f64, ios 0x3015ac;
     void onPlay(cocos2d::CCObject* sender) = win 0x471990, imac 0x37bc90, ios 0x3029b0;
     void onQuit(cocos2d::CCObject* sender) = win 0x471f70, imac 0x37c0c0, m1 0x3078cc, ios 0x303360;
-    void onReportQueue(cocos2d::CCObject* sender) = win 0x470ae0;
+    void onReportQueue(cocos2d::CCObject* sender) = win 0x470ae0, ios 0x302dbc;
     void onRobTop(cocos2d::CCObject* sender) = win 0x471170, imac 0x37bfb0, m1 0x3077ac, ios 0x302c3c;
     void onStats(cocos2d::CCObject* sender) = win 0x471bf0, imac 0x37bea0, m1 0x307688, ios 0x302b3c;
     void onTrailer(cocos2d::CCObject* sender) = win inline, imac 0x37ca20, m1 0x30815c, ios inline;
@@ -15579,10 +15579,10 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void openOptions(bool videoOptions) = win 0x471a50, imac 0x37c8f0, m1 0x30804c, ios 0x3032b8;
     void showGCQuestion() = win inline, imac 0x37c690, m1 0x307e30, ios 0x303100;
     void showMeltdownPromo() = win inline, imac 0x37c510, m1 0x307ce4, ios inline;
-    void showTOS() = win 0x470fa0, imac 0x37c3b0;
+    void showTOS() = win 0x470fa0, imac 0x37c3b0, ios 0x302f54;
     void syncPlatformAchievements(float dt) = win inline, imac 0x37c8a0, m1 0x30801c, ios 0x30328c;
     void tryShowAd(float dt) = win inline, imac 0x37c520, m1 0x72a8, ios inline;
-    void updateNewsBadge() = win 0x471650;
+    void updateNewsBadge() = win 0x471650, ios 0x302fb0;
     void updateUserProfileButton() = win 0xd6210, m1 0x7901cc, ios 0x228fb0;
     void videoOptionsClosed() = win inline, imac 0x37c990, m1 0x3080e4, ios 0x303350;
     void videoOptionsOpened() = win inline, imac 0x37c970, m1 0x3080d4, ios 0x303340;
