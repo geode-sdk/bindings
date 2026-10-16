@@ -1008,7 +1008,7 @@ void GJBaseGameLayer::regenerateEnterEasingBuffers() {
     m_enterEasingIndices.clear();
     m_enterEasingValuesIndex = 0;
     for (auto object : geode::cocos::CCArrayExt<EnterEffectObject, false>(m_objects)) {
-        if (std::to_underlying(object->m_objectID) >= 3006 && std::to_underlying(object->m_objectID) <= 3021 && object->m_objectID != ObjectID::AdvancedFollowTrigger) {
+        if (ObjectID::AreaMoveTrigger <= object->m_objectID && object->m_objectID <= ObjectID::EnterTintTrigger && object->m_objectID != ObjectID::AdvancedFollowTrigger) {
             this->generateEnterEasingBuffers(object);
         }
     }
