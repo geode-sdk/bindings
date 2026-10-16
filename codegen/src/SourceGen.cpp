@@ -106,6 +106,12 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 )GEN";
 
+	constexpr char const* declare_unimplemented_constr_destr_error = R"GEN(
+{class_name}::{function_name}({parameters}){const} {{
+	throw std::runtime_error("{class_name}::{function_name} not implemented");
+}}
+)GEN";
+
 	constexpr char const* declare_unimplemented_error = R"GEN(
 auto {class_name}::{function_name}({parameters}){const} -> decltype({function_name}({arguments})) {{
 	throw std::runtime_error("{class_name}::{function_name} not implemented");
@@ -234,7 +240,15 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 					char const* used_declare_format = nullptr;
 
 					if (codegen::platformNumber(fn->binds) == 0x9999999) {
-						used_declare_format = format_strings::declare_unimplemented_error;
+						switch (fn->prototype.type) {
+							case FunctionType::Normal:
+								used_declare_format = format_strings::declare_unimplemented_error;
+								break;
+							case FunctionType::Ctor:
+							case FunctionType::Dtor:
+								used_declare_format = format_strings::declare_unimplemented_constr_destr_error;
+								break;
+						}
 					}
 					else if (codegen::getStatus(*fn) != BindStatus::NeedsBinding && codegen::getStatus(*fn) != BindStatus::NeedsRebinding) {
 						continue;
