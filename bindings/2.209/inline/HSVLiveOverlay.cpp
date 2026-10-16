@@ -30,9 +30,10 @@ HSVLiveOverlay::~HSVLiveOverlay() {
     CC_SAFE_RELEASE(m_objects);
 }
 
-HSVLiveOverlay* HSVLiveOverlay::create(GameObject* object, cocos2d::CCArray* objects) {
+// TODO: 2.209
+HSVLiveOverlay* HSVLiveOverlay::create(GameObject* object, cocos2d::CCArray* objects, cocos2d::ccColor3B p0, cocos2d::ccColor3B p1) {
     auto ret = new HSVLiveOverlay();
-    if (ret->init(object, objects)) {
+    if (ret->init(object, objects, p0, p1)) {
         ret->autorelease();
         return ret;
     }

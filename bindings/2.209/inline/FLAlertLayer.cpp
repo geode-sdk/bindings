@@ -12,10 +12,11 @@ FLAlertLayer* FLAlertLayer::create(FLAlertLayerProtocol* delegate, char const* t
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+// TODO: 2.209
 void FLAlertLayer::incrementForcePrio() {
     if (!m_forcePrioRegistered) {
         m_forcePrioRegistered = true;
-        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->registerForcePrio(this, 2);
+        // cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->registerForcePrio(this, 2);
     }
 }
 #endif

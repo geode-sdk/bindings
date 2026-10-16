@@ -180,12 +180,15 @@ bool GameLevelManager::areGauntletsLoaded() {
 
 void GameLevelManager::banUser(int accountID) {}
 
+// TODO: 2.209
 cocos2d::CCArray* GameLevelManager::createAndGetAccountComments(std::string str, int accountID) {
-    return this->createAndGetCommentsFull(str, accountID, true);
+    return nullptr;
+    // return this->createAndGetCommentsFull(str, accountID, true);
 }
 
-cocos2d::CCArray* GameLevelManager::createAndGetLevelComments(std::string str, int levelID) {
-    return this->createAndGetCommentsFull(str, levelID, false);
+// TODO: 2.209
+cocos2d::CCArray* GameLevelManager::createAndGetLevelComments(std::string str, int levelID, CommentKeyType type) {
+    return this->createAndGetCommentsFull(str, levelID, false, type);
 }
 
 std::string GameLevelManager::createPageInfo(int total, int start, int count) {
@@ -322,8 +325,9 @@ bool GameLevelManager::getDiffVal(int diff) {
     return m_searchFilters->valueForKey(this->getDiffKey(diff))->boolValue();
 }
 
-const char* GameLevelManager::getFriendRequestKey(bool sent, int page) {
-    return cocos2d::CCString::createWithFormat("fReq_%i_%i", (int)sent, page)->getCString();
+const char* GameLevelManager::getFriendRequestKey(bool sent, int page, std::string const& p0, bool p1) {
+    return "TODO 2.209";
+    // return cocos2d::CCString::createWithFormat("fReq_%i_%i", (int)sent, page)->getCString();
 }
 
 std::string GameLevelManager::getGauntletSearchKey(int id) {
@@ -767,6 +771,15 @@ void GameLevelManager::verifyLevelState(GJGameLevel* level) {
         level->m_bestPoints = 0;
         level->m_isCompletionLegitimate = true;
     }
+}
+
+GameLevelManager* GameLevelManager::sharedState() {
+    auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x906fb0);
+    if(!ref) {
+        ref = new GameLevelManager(geode::ZeroConstructor);
+        ref->init();
+    }
+    return ref;
 }
 #endif
 

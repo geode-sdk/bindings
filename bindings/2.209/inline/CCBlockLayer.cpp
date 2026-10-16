@@ -40,7 +40,7 @@ void CCBlockLayer::decrementForcePrio() {
 void CCBlockLayer::incrementForcePrio() {
     if (!m_forcePrioRegistered) {
         m_forcePrioRegistered = true;
-        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->registerForcePrio(this, 2);
+        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->registerForcePrio(this, 2, 0);
     }
 }
 #endif

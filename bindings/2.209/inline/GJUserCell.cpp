@@ -6,6 +6,7 @@ GJUserCell::GJUserCell(char const* identifier, float width, float height) : Tabl
     this->init();
 }
 
+// TODO: 2.209
 void GJUserCell::onViewFriendRequest(cocos2d::CCObject* sender) {
     if (!m_userScore || m_userScore->m_accountID <= 0) return;
     if (auto request = GameLevelManager::sharedState()->friendRequestFromAccountID(m_userScore->m_accountID)) {
@@ -13,7 +14,7 @@ void GJUserCell::onViewFriendRequest(cocos2d::CCObject* sender) {
             if (auto child = m_mainLayer->getChildByTag(100)) child->setVisible(false);
             m_userScore->m_newFriendRequest = false;
         }
-        FriendRequestPopup::create(request)->show();
+        // FriendRequestPopup::create(request)->show();
     }
 }
 #endif

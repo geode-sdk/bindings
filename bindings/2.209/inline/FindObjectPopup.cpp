@@ -13,9 +13,9 @@ void FindObjectPopup::onFindObjectID(cocos2d::CCObject* sender) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-FindObjectPopup* FindObjectPopup::create() {
+FindObjectPopup* FindObjectPopup::create(EditorUI* ui) {
     auto ret = new FindObjectPopup();
-    if (ret->init()) {
+    if (ret->init(ui)) {
         ret->autorelease();
         return ret;
     }

@@ -22,7 +22,7 @@ bool GameOptionsLayer::init(GJBaseGameLayer* baseGameLayer) {
     m_baseGameLayer = baseGameLayer;
     m_gap = 40.f;
     m_maxLabelScale = .4f;
-    if (!GJOptionsLayer::init(2)) return false;
+    if (!GJOptionsLayer::init(2, 280.f)) return false;
     this->preSetup();
     this->postSetup();
     return true;

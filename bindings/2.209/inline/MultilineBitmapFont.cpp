@@ -25,9 +25,10 @@ MultilineBitmapFont::~MultilineBitmapFont() {
     CC_SAFE_RELEASE(m_specialDescriptors);
 }
 
-MultilineBitmapFont* MultilineBitmapFont::createWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor) {
+// TODO: 2.209
+MultilineBitmapFont* MultilineBitmapFont::createWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor, bool p0, int p1, float p2) {
     auto ret = new MultilineBitmapFont();
-    if (ret->initWithFont(font, text, scale, width, anchor, height, disableColor)) {
+    if (ret->initWithFont(font, text, scale, width, anchor, height, disableColor, p0, p1, p2)) {
         ret->autorelease();
         return ret;
     }

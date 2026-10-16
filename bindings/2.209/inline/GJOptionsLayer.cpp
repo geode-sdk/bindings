@@ -18,7 +18,7 @@ void GJOptionsLayer::didToggle(int toggle) {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJOptionsLayer* GJOptionsLayer::create(int background) {
     auto ret = new GJOptionsLayer();
-    if (ret->init(background)) {
+    if (ret->init(background, 280.f)) {
         ret->autorelease();
         return ret;
     }

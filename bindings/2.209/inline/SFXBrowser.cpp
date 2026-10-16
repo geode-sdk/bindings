@@ -36,9 +36,10 @@ SFXBrowser::~SFXBrowser() {
     CC_SAFE_RELEASE(m_searchResult);
 }
 
-SFXBrowser* SFXBrowser::create(int id) {
+// TODO: 2.209
+SFXBrowser* SFXBrowser::create(int id, int p0) {
     auto ret = new SFXBrowser();
-    if (ret->init(id)) {
+    if (ret->init(id, p0)) {
         ret->autorelease();
         return ret;
     }

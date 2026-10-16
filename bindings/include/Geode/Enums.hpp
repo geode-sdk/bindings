@@ -1139,6 +1139,16 @@ enum class GameObjectClassType {
     Smart = 5,
 };
 
+// 2.209 Additions
+
+enum class EditorCommand {};
+enum class EditorSoundBrowseMode {};
+enum class EditorSoundInfoKind {};
+enum class AdminDeleteScope {};
+enum class KeybindCaptureMode {};
+enum class AudioViewType {};
+enum class SFXFolderPickerMode {};
+
 namespace GameVar {
     constexpr auto FollowPlayer = "0001";
     constexpr auto PlaytestMusic = "0002";

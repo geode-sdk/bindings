@@ -22,7 +22,7 @@ FontObject* FontObject::createWithConfigFile(char const* font, float scale) {
     return nullptr;
 }
 
-int FontObject::getFontWidth(int character) {
+int FontObject::getFontWidth(uint32_t character) {
     return m_fontWidths[character];
 }
 #endif

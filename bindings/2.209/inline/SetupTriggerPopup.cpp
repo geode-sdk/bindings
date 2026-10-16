@@ -61,9 +61,10 @@ SetupTriggerPopup* SetupTriggerPopup::create(float width, float height) {
     return SetupTriggerPopup::create(nullptr, nullptr, width, height, 1);
 }
 
+// TODO: 2.209
 SetupTriggerPopup* SetupTriggerPopup::create(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background) {
     auto ret = new SetupTriggerPopup();
-    if (ret->init(trigger, triggers, width, height, background)) {
+    if (ret->init(trigger, triggers, width, height, background, 0)) {
         ret->autorelease();
         return ret;
     }

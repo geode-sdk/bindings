@@ -1,6 +1,6 @@
 class FMODSound {
 	FMOD::Sound* m_sound;
-	gd::string m_filePath;
+	std::string m_filePath;
 	int m_length;
 	int m_playCount;
 	int m_playIndex;
@@ -46,7 +46,7 @@ class EventTriggerInstance {
 	int m_uniqueID;
 	int m_controlID;
 	bool m_inactive;
-	gd::vector<int> m_remapKeys;
+	std::vector<int> m_remapKeys;
 }
 
 class SongChannelState {
@@ -105,8 +105,8 @@ class ChanceObject {
 
 class SmartPrefabResult {
 	GJSmartPrefab* m_smartPrefab;
-	gd::string m_binaryKey;
-	gd::string m_prefabKey;
+	std::string m_binaryKey;
+	std::string m_prefabKey;
 	int m_prefabCount;
 	bool m_unrequired;
 	int m_rotation;
@@ -260,8 +260,8 @@ class SavedSpecialObjectState {
 }
 
 class SequenceTriggerState {
-    gd::unordered_map<int, float> m_sequenceTimes;
-    gd::unordered_map<int, int> m_sequenceIndices;
+    std::unordered_map<int, float> m_sequenceTimes;
+    std::unordered_map<int, int> m_sequenceIndices;
 }
 
 class FMODSoundTween {
@@ -274,7 +274,7 @@ class FMODSoundTween {
 }
 
 class FMODQueuedMusic {
-	gd::string m_filePath;
+	std::string m_filePath;
 	float m_pitch;
 	float m_unkFloat2;
 	float m_volume;
@@ -308,7 +308,7 @@ class SoundStateContainer {
 
 [[depends(SoundStateContainer)]]
 class FMODSoundState {
-	gd::string m_filePath;
+	std::string m_filePath;
 	float m_speed;
 	float m_unkFloat1;
 	float m_volume;
@@ -337,7 +337,7 @@ class TimerItem {
 	int m_targetGroupID;
 	int m_triggerUniqueID;
 	int m_controlID;
-	gd::vector<int> m_remapKeys;
+	std::vector<int> m_remapKeys;
 	bool m_disabled;
 }
 
@@ -359,11 +359,11 @@ class DynamicMoveCalculation {
 }
 
 class tk_spline {
-	gd::vector<double> m_x;
-	gd::vector<double> m_y;
-	gd::vector<double> m_b;
-	gd::vector<double> m_c;
-	gd::vector<double> m_d;
+	std::vector<double> m_x;
+	std::vector<double> m_y;
+	std::vector<double> m_b;
+	std::vector<double> m_c;
+	std::vector<double> m_d;
 	double m_c0;
 	int m_type;
 	int m_left;
@@ -382,7 +382,7 @@ class RecordCheckpoint {
 	uint64_t m_time;
 	int m_clicks;
 	int m_points;
-	gd::string m_inputs;
+	std::string m_inputs;
 }
 
 class RecordButtonCommand {
@@ -392,3 +392,18 @@ class RecordButtonCommand {
     int m_step;
 	int m_unk00c;
 }
+
+class AccountReviewCard {}
+class AdminReportedMeta {}
+class AdminAbuseMeta {}
+class DropdownListStyle {}
+class EditorSFXImportOptions {}
+class EditorSFXBinding {}
+class EmoteDef {}
+class EmoteToken {}
+class BulkCommentKey {}
+class PlayerTrailState {}
+class KeybindSettingsEntry {}
+class LevelTouchSlot {}
+class GJPlayerState {}
+class SongUsageEntry {}
