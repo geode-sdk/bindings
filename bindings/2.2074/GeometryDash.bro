@@ -11774,7 +11774,7 @@ class GameObject : CCSpritePlus {
     bool init(char const* frame) = win inline, m1 0x4d7914, imac 0x58a2f0, ios 0x253dc0 {
         if (!CCSpritePlus::initWithSpriteFrameName(frame)) return false;
         this->commonSetup();
-        m_bUnkBool2 = true;
+        m_bDisableScheduling = true;
         return true;
     }
     static bool isBasicEnterEffect(int id) = win inline, m1 0x4ec080, imac 0x5b3790, ios 0x261f04 {
@@ -34821,7 +34821,7 @@ class SmartGameObject : GameObject {
         if (!GameObject::init(frame)) return false;
         m_baseFrame = frame;
         m_classType = GameObjectClassType::Smart;
-        m_bUnkBool2 = false;
+        m_bDisableScheduling = false;
         return true;
     }
     void updateSmartFrame() = win 0x487070, m1 0x162ab4, imac 0x19fe80, ios 0x379684;
@@ -35303,7 +35303,7 @@ class SpecialAnimGameObject : EnhancedGameObject {
 
     bool init(char const* frame) = win inline, m1 0x1654e0, imac 0x1a2c70, ios inline {
         if (!EnhancedGameObject::init(frame)) return false;
-        m_bUnkBool2 = false;
+        m_bDisableScheduling = false;
         return true;
     }
 
