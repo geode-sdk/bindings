@@ -6067,7 +6067,7 @@ class FindObjectPopup : SetIDPopup {
 }
 
 [[link(android)]]
-class FLAlertLayer : cocos2d::CCLayerColor {
+class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     FLAlertLayer() = win 0x5a110, inline;
     ~FLAlertLayer() = win 0x5a240;
 
@@ -6115,6 +6115,7 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     int m_ZOrder;
     bool m_noElasticity;
     cocos2d::ccColor3B m_color2;
+    cocos2d::CCPoint m_unk258;
     ButtonSprite* m_button1;
     ButtonSprite* m_button2;
     ScrollingLayer* m_scrollingLayer;
@@ -6123,6 +6124,9 @@ class FLAlertLayer : cocos2d::CCLayerColor {
     bool m_noAction;
     int m_joystickConnected;
     bool m_forcePrioRegistered;
+    float m_width;
+    float m_height;
+    bool m_unk290;
 }
 
 [[link(android)]]
@@ -21552,7 +21556,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     void addTitle(std::string title) = win 0x2c47d0, imac 0x21a670, m1 0x1c9af4, ios 0x1ab2ac;
     void closeInputNodes() = win inline, imac 0x21dc40, m1 0x1cbc40, ios inline;
     void createCustomButton(int tag, std::string text, std::string frame, cocos2d::CCPoint position, float buttonScale, float labelScale, bool vertical, int page, int group) = imac 0x220700, m1 0x1ce60c, ios 0x1aec1c;
-    void createCustomEasingControls(std::string text, cocos2d::CCPoint position, float scale, int typeProperty, int rateProperty, int page, int group) = win 0x58e630, ios 0x1b0fa0;
+    void createCustomEasingControls(std::string text, cocos2d::CCPoint position, float scale, int typeProperty, int rateProperty, int page, int group) = win 0x611050, ios 0x1b0fa0;
     cocos2d::CCArray* createCustomToggleValueControl(int property, bool toggled, bool notClickable, std::string text, cocos2d::CCPoint position, bool vertical, int page, int group) = win 0x60aa40, imac 0x220120, m1 0x1ce018, ios 0x1ae7f0;
     void createEasingControls(cocos2d::CCPoint position, float scale, int page, int group);
     void createMultiTriggerItems(cocos2d::CCPoint touchPos, cocos2d::CCPoint spawnPos, cocos2d::CCPoint multiPos) = imac 0x21abb0, m1 0x1ca014, ios 0x1ab794;
@@ -21573,7 +21577,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     float getMaxSliderValue(int property) = win inline, imac 0x2235f0, m1 0x1d09c0, ios inline;
     float getMinSliderValue(int property) = win inline, imac 0x2235c0, m1 0x1d0990, ios inline;
     cocos2d::CCArray* getObjects() = win inline, imac 0x21b400, m1 0x1ca750, ios 0x1abe2c;
-    cocos2d::CCArray* getPageContainer(int page) = imac 0x219fa0, m1 0x1c94a0, ios 0x1aaf08;
+    cocos2d::CCArray* getPageContainer(int page) = win 0x607940, imac 0x219fa0, m1 0x1c94a0, ios 0x1aaf08;
     float getTriggerValue(int property, GameObject* object) = win 0x60e040, imac 0x220ff0, m1 0x1cee64, ios 0x1af1f0;
     float getTruncatedValue(float value, int decimals) = win 0x60b530, imac 0x21b9c0, m1 0x1cac54, ios inline;
     float getTruncatedValueByTag(int tag, float value) = win inline, imac 0x21e120, m1 0x1cc0b4, ios 0x1ad1e8;
@@ -21612,9 +21616,9 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     TodoReturn toggleLimitArrowValue(int, bool);
     void toggleLimitValue(int property, bool limit) = win inline, imac 0x21e600, m1 0x1cc550, ios 0x1ad41c;
     void togglePageArrows(bool visible) = win inline, imac 0x219d20, m1 0x1c9228, ios 0x1aacb0;
-    void triggerArrowChanged(int property, bool isRight);
-    void triggerArrowLeft(cocos2d::CCObject* sender) = ios 0x41aac;
-    void triggerArrowRight(cocos2d::CCObject* sender) = ios 0x41aac;
+    void triggerArrowChanged(int property, bool isRight) = win 0x6096f0;
+    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x609690, ios 0x41aac;
+    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x6096c0, ios 0x41aac;
     void triggerSliderChanged(cocos2d::CCObject* sender) = win 0x81530;
     void updateCustomEaseLabel(int property, int easingType) = imac 0x225210, m1 0x1d269c, ios 0x1b1868;
     void updateCustomEaseRateLabel(int property, float easingRate) = win 0x611be0, imac 0x224630, m1 0x1d1a60, ios 0x1b0ee4;
@@ -21659,6 +21663,7 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     cocos2d::CCDictionary* m_minSliderValues;
     cocos2d::CCDictionary* m_maxSliderValues;
     std::map<int, bool> m_shouldLimitValues;
+    std::map<int, bool> m_shouldLimitArrowValues;
     bool m_disableSliderDelegate;
     bool m_effectObjects;
     cocos2d::CCArray* m_pageContainers;
@@ -21673,6 +21678,8 @@ class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDe
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
     bool m_hideAll;
+    cocos2d::CCDictionary* m_unk3d8;
+    int m_unk3e0;
 }
 
 [[link(android)]]
