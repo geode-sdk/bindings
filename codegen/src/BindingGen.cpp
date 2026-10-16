@@ -41,6 +41,9 @@ public:
 	constexpr char const* custom_constructor_cutoff = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_CUTOFF({class_name}, {first_base})
 )GEN";
 
+    constexpr char const* custom_constructor_begin = R"GEN(    GEODE_CUSTOM_CONSTRUCTOR_BEGIN({class_name})
+)GEN";
+
     constexpr char const* function_definition = R"GEN(
     /**
 {docs}{docs_addresses}     */
@@ -188,7 +191,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
         writeFile(singleFolder / filename, single_output);
     }
 
-        for (auto& cls : root.classes) {
+    for (auto& cls : root.classes) {
         if (is_cocos_or_fmod_class(cls.name))
             continue;
 
@@ -242,6 +245,14 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
                 fmt::arg("class_name", cls.name),
                 fmt::arg("first_base", cls.superclasses[0])
             );
+        } else {
+            // TODO: handle case where a class has no base, but has children
+            if (cls.name == "KeybindSource") {
+                single_output += fmt::format(
+                    format_strings::custom_constructor_begin,
+                    fmt::arg("class_name", cls.name)
+                );
+            }
         }
 
         bool unimplementedField = false;
