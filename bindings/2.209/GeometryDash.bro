@@ -8116,7 +8116,7 @@ class GameObject : CCSpritePlus {
     // property 23
     int m_targetColor;
     // property 1
-    int m_objectID;
+    ObjectID m_objectID;
     bool m_unk3F8;
     bool m_intrinsicDontFade;
     bool m_ignoreEnter;
@@ -19747,7 +19747,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects, std::string title, std::string label, int minimum, int maximum, int objectID) = win 0x2c3e40;
 
-    int m_objectID;
+    ObjectID m_objectID;
     int m_minimumID;
     int m_maximumID;
 }
@@ -20348,7 +20348,7 @@ class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
     void onNextFreeEnterEffectID(cocos2d::CCObject* sender) = imac 0x306270, m1 0x35e09c, ios 0x47f35c;
     void updateHSVButton() = imac 0x3dfb00, m1 0x35dfd4, ios 0x47f294;
 
-    int m_objectID;
+    ObjectID m_objectID;
     CCMenuItemToggler* m_enterOnlyToggler;
     CCMenuItemToggler* m_exitOnlyToggler;
     int m_enterType;
@@ -21229,7 +21229,7 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
     int m_zLayerMin;
     int m_zLayerMax;
     bool m_changeMin;
-    int m_objectID;
+    ObjectID m_objectID;
 }
 
 [[link(android)]]
