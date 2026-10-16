@@ -24564,7 +24564,6 @@ class WriteArchive {
     TodoReturn process(int&);
     TodoReturn process(std::map<int, bool>&);
     TodoReturn process(std::map<int, EnterEffectAnimValue>&);
-    TodoReturn process(std::map<std::pair<GJGameEvent, int>> >&);
     TodoReturn process(std::map<std::pair<GJGameEvent, int>>&);
     TodoReturn process(std::map<std::pair<int, int>>&);
     TodoReturn process(std::set<std::pair<int, int>>&);
