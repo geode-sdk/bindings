@@ -768,6 +768,15 @@ void GameLevelManager::verifyLevelState(GJGameLevel* level) {
         level->m_isCompletionLegitimate = true;
     }
 }
+
+GameLevelManager* GameLevelManager::sharedState() {
+    auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x906fb0);
+    if(!ref) {
+        ref = new GameLevelManager(geode::ZeroConstructor);
+        ref->init();
+    }
+    return ref;
+}
 #endif
 
 #if defined(GEODE_IS_IOS)
