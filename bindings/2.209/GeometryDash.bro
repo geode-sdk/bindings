@@ -70,7 +70,7 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 }
 
 [[link(android)]]
-class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegate, FLAlertLayerProtocol {
+class AccountLoginLayer : FLAlertLayer, GJAccountLoginDelegate, FLAlertLayerProtocol {
     // virtual ~AccountLoginLayer();
 
     static AccountLoginLayer* create(std::string username) = win 0x907f0;
@@ -110,7 +110,7 @@ class AccountLoginLayer : FLAlertLayer, TextInputDelegate, GJAccountLoginDelegat
 }
 
 [[link(android)]]
-class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterDelegate, FLAlertLayerProtocol {
+class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLayerProtocol {
     AccountRegisterLayer() = ios 0x21fb00, inline;
     ~AccountRegisterLayer() = win inline, ios 0x21efe4;
 
@@ -161,7 +161,7 @@ class AccountRegisterLayer : FLAlertLayer, TextInputDelegate, GJAccountRegisterD
 }
 
 [[link(android)]]
-class AccountReviewPopup {
+class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDelegate, UploadPopupDelegate, FLAlertLayerProtocol, DropdownDelegate, AdminActionConfirmDelegate, ReviewChoiceDelegate, ThreadMessageDelegate {
     // virtual ~AccountReviewPopup();
 
     static AccountReviewPopup* create(int, std::string const&, GJUserScore*);
@@ -359,7 +359,7 @@ class AchievementsLayer : GJDropDownLayer {
 }
 
 [[link(android)]]
-class AdminAbuseEntry {
+class AdminAbuseEntry : cocos2d::CCObject {
     // virtual ~AdminAbuseEntry();
 }
 
@@ -369,7 +369,7 @@ class AdminActionConfirmDelegate {
 }
 
 [[link(android)]]
-class AdminActionConfirmPopup {
+class AdminActionConfirmPopup : SetupTriggerPopup {
     // virtual ~AdminActionConfirmPopup();
 
     static AdminActionConfirmPopup* create(AdminActionConfirmDelegate*, int, char const*, std::string const&, char const*, std::vector<int> const&, std::string const&, bool);
@@ -386,17 +386,17 @@ class AdminActionConfirmPopup {
 }
 
 [[link(android)]]
-class AdminLogEntry {
+class AdminLogEntry : cocos2d::CCObject {
     // virtual ~AdminLogEntry();
 }
 
 [[link(android)]]
-class AdminReportedEntry {
+class AdminReportedEntry : cocos2d::CCObject {
     // virtual ~AdminReportedEntry();
 }
 
 [[link(android)]]
-class AdminReportQueueEntry {
+class AdminReportQueueEntry : cocos2d::CCObject {
     // virtual ~AdminReportQueueEntry();
 }
 
@@ -760,7 +760,7 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 }
 
 [[link(android)]]
-class AudioAssetsPopup {
+class AudioAssetsPopup : SetupTriggerPopup, MusicDownloadDelegate {
     // virtual ~AudioAssetsPopup();
 
     static AudioAssetsPopup* create(int, int, std::string const&, std::string const&);
@@ -826,7 +826,7 @@ class AutoBackupOptionsDelegate {
 }
 
 [[link(android)]]
-class AutoBackupOptionsPopup {
+class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     // virtual ~AutoBackupOptionsPopup();
 
     static AutoBackupOptionsPopup* create(AutoBackupOptionsDelegate*);
@@ -842,7 +842,7 @@ class AutoBackupOptionsPopup {
 }
 
 [[link(android)]]
-class AutoBackupPopup {
+class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsDelegate {
     // virtual ~AutoBackupPopup();
 
     static AutoBackupPopup* create(int);
@@ -883,7 +883,7 @@ class AutoBackupPopup {
 // }
 
 [[link(android)]]
-class AutoSaveSettingsLayer {
+class AutoSaveSettingsLayer : SetupTriggerPopup {
     // virtual ~AutoSaveSettingsLayer();
 
     static AutoSaveSettingsLayer* create();
@@ -979,7 +979,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
 }
 
 [[link(android)]]
-class BoomScrollLayer : cocos2d::CCLayer {
+class BoomScrollLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     BoomScrollLayer() = win inline;
     ~BoomScrollLayer() = win inline, ios 0x409d7c;
 
@@ -1651,7 +1651,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 }
 
 [[link(android), depends(CCContentLayer)]]
-class CCScrollLayerExt : cocos2d::CCLayer {
+class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     CCScrollLayerExt(cocos2d::CCRect rect) = win 0x4a880, imac 0x41a5c0, m1 0x3926ec, ios 0x39af20;
     ~CCScrollLayerExt() = win 0x4ad40, m1 0x316d20, ios 0x3744c;
 
@@ -1894,7 +1894,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 }
 
 [[link(android)]]
-class CCTextInputMenu {
+class CCTextInputMenu : cocos2d::CCLayer {
     // virtual ~CCTextInputMenu();
 
     static CCTextInputMenu* create(CCTextInputNode*, cocos2d::CCPoint);
@@ -2213,7 +2213,7 @@ class CheckpointObject : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class ClearPlatformerSavesOptionsPopup {
+class ClearPlatformerSavesOptionsPopup : SetupTriggerPopup {
     // virtual ~ClearPlatformerSavesOptionsPopup();
 
     static ClearPlatformerSavesOptionsPopup* create();
@@ -2224,7 +2224,7 @@ class ClearPlatformerSavesOptionsPopup {
 }
 
 [[link(android)]]
-class ClearPlatformerSavesPopup {
+class ClearPlatformerSavesPopup : FLAlertLayer, FLAlertLayerProtocol {
     // virtual ~ClearPlatformerSavesPopup();
 
     static ClearPlatformerSavesPopup* create();
@@ -2241,7 +2241,7 @@ class ClearPlatformerSavesPopup {
 }
 
 [[link(android)]]
-class CollisionBlockPopup : FLAlertLayer, TextInputDelegate {
+class CollisionBlockPopup : SetupTriggerPopup {
     // virtual ~CollisionBlockPopup();
 
     static CollisionBlockPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = ios 0x20b514;
@@ -2645,7 +2645,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 }
 
 [[link(android)]]
-class CommentOptionsPopup {
+class CommentOptionsPopup : SetupTriggerPopup {
     // virtual ~CommentOptionsPopup();
 
     static CommentOptionsPopup* create(GJComment*, bool);
@@ -2745,7 +2745,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 }
 
 [[link(android)]]
-class ConfigureValuePopup : FLAlertLayer, TextInputDelegate {
+class ConfigureValuePopup : FLAlertLayer {
     // virtual ~ConfigureValuePopup();
 
     static ConfigureValuePopup* create(ConfigureValuePopupDelegate* delegate, float value, float minimum, float maximum, std::string title, std::string description, int type) = win 0x130430, imac 0x6fefa0, m1 0x6106c0, ios 0x1cc918;
@@ -2778,7 +2778,7 @@ class ConfigureValuePopupDelegate {
 }
 
 [[link(android)]]
-class ControllerInputNode {
+class ControllerInputNode : cocos2d::CCNode {
     // virtual ~ControllerInputNode();
 
     static ControllerInputNode* create(InputCaptureDelegate*, cocos2d::CCSize const&);
@@ -2791,7 +2791,7 @@ class ControllerInputNode {
 }
 
 [[link(android)]]
-class ControlSlotsPopup {
+class ControlSlotsPopup : SetupTriggerPopup {
     // virtual ~ControlSlotsPopup();
 
     static ControlSlotsPopup* create(TouchControlEditLayer*, bool);
@@ -2905,7 +2905,7 @@ class CreateMenuItem : CCMenuItemSpriteExtra {
 }
 
 [[link(android)]]
-class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate, SliderDelegate {
+class CreateParticlePopup : FLAlertLayer, ColorSelectDelegate, SliderDelegate {
     // virtual ~CreateParticlePopup();
 
     static CreateParticlePopup* create(std::string str) = win inline, imac 0x462570, m1 0x3cec48, ios inline;
@@ -3024,7 +3024,7 @@ class CreateParticlePopup : FLAlertLayer, TextInputDelegate, ColorSelectDelegate
 }
 
 [[link(android)]]
-class CreateStartPosPopup {
+class CreateStartPosPopup : SetupTriggerPopup {
     // virtual ~CreateStartPosPopup();
 
     static CreateStartPosPopup* create();
@@ -3042,7 +3042,7 @@ class CreateStartPosPopupDelegate {
 }
 
 [[link(android)]]
-class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, DialogDelegate {
+class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, DialogDelegate, GJContentStatusDelegate {
     // virtual ~CreatorLayer();
     CreatorLayer() = inline;
 
@@ -3093,7 +3093,7 @@ class CreatorSettingsDelegate {
 }
 
 [[link(android)]]
-class CreatorSettingsPopup {
+class CreatorSettingsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopupDelegate, SetTextPopupDelegate {
     // virtual ~CreatorSettingsPopup();
 
     static CreatorSettingsPopup* create(GJGameLevel*, CreatorSettingsDelegate*);
@@ -3198,7 +3198,7 @@ class CurrencySprite : CCSpritePlus {
 }
 
 [[link(android)]]
-class CustomizeObjectLayer : FLAlertLayer, TextInputDelegate, HSVWidgetDelegate, ColorSelectDelegate, ColorSetupDelegate {
+class CustomizeObjectLayer : FLAlertLayer, HSVWidgetDelegate, ColorSelectDelegate, ColorSetupDelegate {
     // virtual ~CustomizeObjectLayer();
     // CustomizeObjectLayer() = ios 0x577b8;
 
@@ -3369,7 +3369,7 @@ class CustomSFXImportEntry {
 }
 
 [[link(android)]]
-class CustomSFXRowMenu {
+class CustomSFXRowMenu : cocos2d::CCMenu {
     // virtual ~CustomSFXRowMenu();
 
     static CustomSFXRowMenu* create();
@@ -3468,7 +3468,7 @@ class CustomSongDelegate {
 }
 
 [[link(android)]]
-class CustomSongLayer : FLAlertLayer, TextInputDelegate, GJDropDownLayerDelegate, MusicBrowserDelegate {
+class CustomSongLayer : FLAlertLayer, GJDropDownLayerDelegate, MusicBrowserDelegate {
     // virtual ~CustomSongLayer();
     CustomSongLayer() = inline;
 
@@ -3667,7 +3667,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 }
 
 [[link(android)]]
-class DailyRecallUnlockPopup {
+class DailyRecallUnlockPopup : FLAlertLayer {
     // virtual ~DailyRecallUnlockPopup();
 
     static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*);
@@ -3700,7 +3700,7 @@ class DashRingObject : RingObject {
 }
 
 [[link(android)]]
-class DeathHistogram {
+class DeathHistogram : cocos2d::CCNode {
     // virtual ~DeathHistogram();
 
     static DeathHistogram* create(cocos2d::CCSize);
@@ -3719,7 +3719,7 @@ class DeathHistogram {
 }
 
 [[link(android)]]
-class DeathMarkerLayer {
+class DeathMarkerLayer : cocos2d::CCNode {
     // virtual ~DeathMarkerLayer();
 
     static DeathMarkerLayer* create(std::vector<int> const&, cocos2d::ccColor3B, bool, bool, cocos2d::CCRect const&, int, int, float, float, float, int, int, cocos2d::CCNode*, bool);
@@ -3741,7 +3741,7 @@ class DeathMarkerLayer {
 }
 
 [[link(android)]]
-class DeathMarkerSettingsPopup {
+class DeathMarkerSettingsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     // virtual ~DeathMarkerSettingsPopup();
 
     static DeathMarkerSettingsPopup* create(GJGameLevel*);
@@ -3768,7 +3768,7 @@ class DeathMarkerSettingsPopup {
 }
 
 [[link(android)]]
-class DeathStatsPopup {
+class DeathStatsPopup : SetupTriggerPopup {
     // virtual ~DeathStatsPopup();
 
     static DeathStatsPopup* create(LevelEditorLayer*);
@@ -3786,7 +3786,7 @@ class DeathStatsPopup {
 }
 
 [[link(android)]]
-class DeathTrackerOptionsPopup {
+class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     // virtual ~DeathTrackerOptionsPopup();
 
     static DeathTrackerOptionsPopup* create(GJGameLevel*, DeathTrackerPopup*);
@@ -3801,7 +3801,7 @@ class DeathTrackerOptionsPopup {
 }
 
 [[link(android)]]
-class DeathTrackerPopup {
+class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     // virtual ~DeathTrackerPopup();
 
     static DeathTrackerPopup* create(GJGameLevel*);
@@ -3963,7 +3963,7 @@ class DownloadMessageDelegate {
 }
 
 [[link(android)]]
-class DpadMenu {
+class DpadMenu : cocos2d::CCMenu {
     // virtual ~DpadMenu();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -4027,7 +4027,7 @@ class DrawGridLayer : cocos2d::CCLayer {
 }
 
 [[link(android)]]
-class Dropdown {
+class Dropdown : cocos2d::CCNode, DropdownListPopupOwner {
     // virtual ~Dropdown();
 
     static Dropdown* create(FLAlertLayer*, cocos2d::CCMenu*, std::vector<std::string> const&, int, float, DropdownDelegate*, int);
@@ -4051,7 +4051,7 @@ class DropdownDelegate {
 }
 
 [[link(android)]]
-class DropdownListPopup {
+class DropdownListPopup : FLAlertLayer {
     // virtual ~DropdownListPopup();
 
     static DropdownListPopup* create(std::vector<DropdownListRow> const&, cocos2d::CCPoint, DropdownListStyle const&, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
@@ -4111,7 +4111,7 @@ class DynamicScrollDelegate {
 }
 
 [[link(android)]]
-class EasingSelectPopup {
+class EasingSelectPopup : SetupTriggerPopup {
     // virtual ~EasingSelectPopup();
 
     static EasingSelectPopup* create(SetupTriggerPopup*, int, int, int);
@@ -4162,7 +4162,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate {
+class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate, CreatorSettingsDelegate, EmotePickerDelegate {
     EditLevelLayer() = inline;
     ~EditLevelLayer() = win inline, m1 0x3d972c, ios 0x7c048;
 
@@ -4232,7 +4232,7 @@ class EditorBuildStats {
 }
 
 [[link(android)]]
-class EditorCommandsPopup {
+class EditorCommandsPopup : EditorWindowPopup {
     // virtual ~EditorCommandsPopup();
 
     static EditorCommandsPopup* create(EditorUI*);
@@ -4267,7 +4267,7 @@ class EditorOptionsLayer : GJOptionsLayer {
 }
 
 [[link(android)]]
-class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
+class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegate {
     // virtual ~EditorPauseLayer();
     EditorPauseLayer() = inline;
 
@@ -4348,7 +4348,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol {
 }
 
 [[link(android)]]
-class EditorSFXActionConfigLayer {
+class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
     // virtual ~EditorSFXActionConfigLayer();
 
     static EditorSFXActionConfigLayer* create(int, EditorSoundsLayer*);
@@ -4438,7 +4438,7 @@ class EditorSFXManager {
 }
 
 [[link(android)]]
-class EditorSFXSettingsPopup {
+class EditorSFXSettingsPopup : SetupTriggerPopup {
     // virtual ~EditorSFXSettingsPopup();
 
     static EditorSFXSettingsPopup* create(int);
@@ -4450,7 +4450,7 @@ class EditorSFXSettingsPopup {
 }
 
 [[link(android)]]
-class EditorSoundBrowserLayer {
+class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, EditorSoundConfigCellDelegate, TableViewCellDelegate, SetTextPopupDelegate {
     // virtual ~EditorSoundBrowserLayer();
 
     static EditorSoundBrowserLayer* create(std::string, EditorSoundsLayer*);
@@ -4483,7 +4483,7 @@ class EditorSoundBrowserLayer {
 }
 
 [[link(android)]]
-class EditorSoundConfigCell {
+class EditorSoundConfigCell : TableViewCell {
     // virtual ~EditorSoundConfigCell();
     EditorSoundConfigCell(char const*, float, float);
 
@@ -4504,7 +4504,7 @@ class EditorSoundConfigCellDelegate {
 }
 
 [[link(android)]]
-class EditorSoundConfigInfoLayer {
+class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegate, EditorSoundDeleteDelegate, FLAlertLayerProtocol, AdminActionConfirmDelegate, LikeItemDelegate, SoundPackDescDelegate, UploadActionDelegate, UploadPopupDelegate, MusicDownloadDelegate {
     // virtual ~EditorSoundConfigInfoLayer();
 
     static EditorSoundConfigInfoLayer* create(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*);
@@ -4561,7 +4561,7 @@ class EditorSoundConfigInfoLayer {
 }
 
 [[link(android)]]
-class EditorSoundConfigUploadPopup {
+class EditorSoundConfigUploadPopup : SetupTriggerPopup, EditorSoundUploadDelegate {
     // virtual ~EditorSoundConfigUploadPopup();
 
     static EditorSoundConfigUploadPopup* create(GJEditorSoundConfig*, EditorSoundConfigInfoLayer*);
@@ -4600,7 +4600,7 @@ class EditorSoundListDelegate {
 }
 
 [[link(android)]]
-class EditorSoundsLayer {
+class EditorSoundsLayer : TabbedPopupLayer {
     // virtual ~EditorSoundsLayer();
 
     static EditorSoundsLayer* create(EditorUI*);
@@ -4624,7 +4624,7 @@ class EditorSoundsLayer {
 }
 
 [[link(android)]]
-class EditorSoundsSettingsPopup {
+class EditorSoundsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
     // virtual ~EditorSoundsSettingsPopup();
 
     static EditorSoundsSettingsPopup* create(EditorSoundsLayer*);
@@ -5125,7 +5125,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 }
 
 [[link(android)]]
-class EditorWindowPopup {
+class EditorWindowPopup : SetupTriggerPopup {
 
     virtual void onExit();
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -5466,7 +5466,7 @@ class EmotePickerDelegate {
 }
 
 [[link(android)]]
-class EmotePickerPopup {
+class EmotePickerPopup : EditorWindowPopup {
     // virtual ~EmotePickerPopup();
 
     static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int);
@@ -5493,7 +5493,7 @@ class EmotePickerPopup {
 }
 
 [[link(android)]]
-class EmoteSprite {
+class EmoteSprite : cocos2d::CCSprite {
     // virtual ~EmoteSprite();
 
     virtual void setColor(cocos2d::ccColor3B const&);
@@ -6036,7 +6036,7 @@ class FindBPMLayer : CreateGuidelinesLayer {
 }
 
 [[link(android)]]
-class FindObjectOptionsLayer {
+class FindObjectOptionsLayer : GJOptionsLayer {
     // virtual ~FindObjectOptionsLayer();
 
     static FindObjectOptionsLayer* create();
@@ -6046,7 +6046,7 @@ class FindObjectOptionsLayer {
 }
 
 [[link(android)]]
-class FindObjectPopup : SetIDPopup {
+class FindObjectPopup : EditorWindowPopup {
     // virtual ~FindObjectPopup();
     FindObjectPopup() = inline;
 
@@ -6421,7 +6421,7 @@ class FontObject : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class FontPreviewCell {
+class FontPreviewCell : TableViewCell {
     // virtual ~FontPreviewCell();
     FontPreviewCell(char const*, float, float);
 
@@ -6461,7 +6461,7 @@ class ForceBlockGameObject : EffectGameObject {
 }
 
 [[link(android)]]
-class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, FriendRequestDelegate {
+class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, FriendRequestDelegate, UserListDelegate {
     // virtual ~FRequestProfilePage();
 
     static FRequestProfilePage* create(bool sent) = ios 0x21f0b8;
@@ -6540,7 +6540,7 @@ class FriendPickerDelegate {
 }
 
 [[link(android)]]
-class FriendPickerPopup {
+class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     // virtual ~FriendPickerPopup();
 
     static FriendPickerPopup* create(FriendPickerDelegate*, bool, bool, bool, bool);
@@ -6604,14 +6604,14 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 }
 
 [[link(android)]]
-class FriendRowEdges {
+class FriendRowEdges : cocos2d::CCNode {
     // virtual ~FriendRowEdges();
 
     virtual void draw();
 }
 
 [[link(android)]]
-class FriendsProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
+class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
     // virtual ~FriendsProfilePage();
 
     static FriendsProfilePage* create(UserListType type) = win 0x16ddb0;
@@ -7242,7 +7242,7 @@ class GameLevelManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GameLevelOptionsLayer : GJOptionsLayer {
+class GameLevelOptionsLayer : GJOptionsLayer, FLAlertLayerProtocol {
     // virtual ~GameLevelOptionsLayer();
 
     static GameLevelOptionsLayer* create(GJGameLevel* level) = win 0x3af360;
@@ -8339,7 +8339,7 @@ class GameRateDelegate {
 }
 
 [[link(android)]]
-class GameSettingsLayer {
+class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     // virtual ~GameSettingsLayer();
 
     static GameSettingsLayer* create(GJBaseGameLayer*, int);
@@ -8943,7 +8943,7 @@ class GJAccountSettingsDelegate {
 }
 
 [[link(android)]]
-class GJAccountSettingsLayer : FLAlertLayer, TextInputDelegate {
+class GJAccountSettingsLayer : FLAlertLayer {
     GJAccountSettingsLayer() = inline;
     ~GJAccountSettingsLayer() = win inline;
 
@@ -10063,7 +10063,7 @@ class GJCommentListLayer : cocos2d::CCLayerColor {
 }
 
 [[link(android)]]
-class GJCompactUserCell {
+class GJCompactUserCell : TableViewCell {
     // virtual ~GJCompactUserCell();
     GJCompactUserCell(char const*, float, float);
 
@@ -10150,7 +10150,7 @@ class GJDropDownLayerDelegate {
 }
 
 [[link(android)]]
-class GJEditorSoundConfig {
+class GJEditorSoundConfig : cocos2d::CCNode {
     // virtual ~GJEditorSoundConfig();
 
     static GJEditorSoundConfig* create();
@@ -11032,7 +11032,7 @@ class GJItemIcon : cocos2d::CCSprite {
 }
 
 [[link(android)]]
-class GJKeybindManager {
+class GJKeybindManager : cocos2d::CCKeyboardActionManager {
     // virtual ~GJKeybindManager();
 
     static GJKeybindManager* sharedState();
@@ -11315,7 +11315,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
 }
 
 [[link(android)]]
-class GJMessageThread {
+class GJMessageThread : cocos2d::CCObject {
     // virtual ~GJMessageThread();
 
     TodoReturn createRoleBadge(float);
@@ -11426,14 +11426,14 @@ class GJMultiplayerManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GJNotification {
+class GJNotification : cocos2d::CCObject {
     // virtual ~GJNotification();
 
     TodoReturn rewardKey();
 }
 
 [[link(android)]]
-class GJNotificationCell {
+class GJNotificationCell : TableViewCell, FLAlertLayerProtocol {
     // virtual ~GJNotificationCell();
     GJNotificationCell(char const*, float, float);
 
@@ -11666,7 +11666,7 @@ class GJPurchaseDelegate {
 }
 
 [[link(android)]]
-class GJRateEditorSoundLayer {
+class GJRateEditorSoundLayer : SetupTriggerPopup, UploadPopupDelegate, UploadActionDelegate, FLAlertLayerProtocol {
     // virtual ~GJRateEditorSoundLayer();
 
     static GJRateEditorSoundLayer* create(GJEditorSoundConfig*);
@@ -11723,7 +11723,7 @@ class GJRateLevelLayer : SetupTriggerPopup, UploadPopupDelegate, UploadActionDel
 }
 
 [[link(android)]]
-class GJRateLevelListLayer {
+class GJRateLevelListLayer : SetupTriggerPopup, UploadPopupDelegate, UploadActionDelegate, FLAlertLayerProtocol {
     // virtual ~GJRateLevelListLayer();
 
     static GJRateLevelListLayer* create(GJLevelList*, cocos2d::CCArray*);
@@ -11746,7 +11746,7 @@ class GJRateLevelListLayer {
 }
 
 [[link(android)]]
-class GJRequestCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, UploadActionDelegate {
+class GJRequestCell : TableViewCell {
     GJRequestCell(char const* identifier, float width, float height) = win inline, imac 0x2420d0, m1 0x1ecb38, ios inline;
     ~GJRequestCell() = win inline, ios 0x13a130;
 
@@ -12093,7 +12093,7 @@ class GJSearchObject : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GJSelectionStrip {
+class GJSelectionStrip : cocos2d::CCNode {
     // virtual ~GJSelectionStrip();
 
     static GJSelectionStrip* create(cocos2d::CCMenu*, cocos2d::CCNode*, cocos2d::CCPoint, float, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
@@ -12531,7 +12531,7 @@ class GJStoreItem : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GJThreadCell {
+class GJThreadCell : TableViewCell {
     // virtual ~GJThreadCell();
     GJThreadCell(char const*, float, float);
 
@@ -12548,7 +12548,7 @@ class GJThreadCell {
 }
 
 [[link(android)]]
-class GJThreadMessage {
+class GJThreadMessage : cocos2d::CCObject {
     // virtual ~GJThreadMessage();
 }
 
@@ -12860,7 +12860,7 @@ class GJWorldNode : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
+class GJWriteMessagePopup : FLAlertLayer, UploadMessageDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
     // virtual ~GJWriteMessagePopup();
 
     static GJWriteMessagePopup* create(int accountID, int messageID);
@@ -12901,7 +12901,7 @@ class GJWriteMessagePopup : FLAlertLayer, TextInputDelegate, UploadMessageDelega
 }
 
 [[link(android)]]
-class GlobalKeybindSource {
+class GlobalKeybindSource : KeybindSource {
     // virtual ~GlobalKeybindSource();
 
     virtual TodoReturn chordsForAction(int);
@@ -13027,7 +13027,7 @@ class GravityEffectSprite : cocos2d::CCSprite {
 }
 
 [[link(android)]]
-class GridSettingsLayer {
+class GridSettingsLayer : EditorWindowPopup {
     // virtual ~GridSettingsLayer();
 
     static GridSettingsLayer* create(EditorUI*);
@@ -13230,7 +13230,7 @@ class IDNameBrowserDelegate {
 }
 
 [[link(android)]]
-class IDNameBrowserPopup {
+class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     // virtual ~IDNameBrowserPopup();
 
     static IDNameBrowserPopup* create(int, int, IDNameBrowserDelegate*);
@@ -13265,7 +13265,7 @@ class IDNameBrowserPopup {
 }
 
 [[link(android)]]
-class IDNameInput {
+class IDNameInput : cocos2d::CCNode, TextInputDelegate, IDNameBrowserDelegate, DropdownListPopupOwner {
     // virtual ~IDNameInput();
 
     static IDNameInput* create(FLAlertLayer*, TextInputDelegate*, int, int, std::string const&, cocos2d::CCPoint, float, int, int, int, bool);
@@ -13319,7 +13319,7 @@ class InfoAlertButton : CCMenuItemSpriteExtra {
 }
 
 [[link(android)]]
-class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLAlertLayerProtocol {
+class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLAlertLayerProtocol, AdminActionConfirmDelegate {
     // virtual ~InfoLayer();
 
     static InfoLayer* create(GJGameLevel*, GJUserScore*, GJLevelList*, GJEditorSoundConfig*) = win 0x123790;
@@ -13429,7 +13429,7 @@ class InputCaptureDelegate {
 }
 
 [[link(android)]]
-class InvitesPopup {
+class InvitesPopup : PagedListPopup, ThreadMessageDelegate, FLAlertLayerProtocol {
     // virtual ~InvitesPopup();
 
     static InvitesPopup* create();
@@ -13527,7 +13527,7 @@ class ItemTriggerGameObject : EffectGameObject {
 }
 
 [[link(android)]]
-class KeybindCapturePopup {
+class KeybindCapturePopup : SetupTriggerPopup, InputCaptureDelegate {
     // virtual ~KeybindCapturePopup();
 
     static KeybindCapturePopup* create(KeybindSource*, int, int, KeybindingsLayer*, KeybindCaptureMode);
@@ -13548,7 +13548,7 @@ class KeybindCapturePopup {
 }
 
 [[link(android)]]
-class KeybindingsLayer : FLAlertLayer {
+class KeybindingsLayer : TabbedPopupLayer {
     // virtual ~KeybindingsLayer();
 
     static KeybindingsLayer* create(GameSettingsLayer*);
@@ -13628,7 +13628,7 @@ class KeybindingsManager : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class KeybindingsSettingsPopup {
+class KeybindingsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
     // virtual ~KeybindingsSettingsPopup();
 
     static KeybindingsSettingsPopup* create(KeybindingsLayer*, std::vector<KeybindSettingsEntry> const&);
@@ -13645,7 +13645,7 @@ class KeybindingsSettingsPopup {
 }
 
 [[link(android)]]
-class KeybindSet {
+class KeybindSet : KeybindSource {
     // virtual ~KeybindSet();
 
     virtual TodoReturn chordsForAction(int);
@@ -13922,7 +13922,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 }
 
 [[link(android)]]
-class LevelBadgePopup {
+class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
     // virtual ~LevelBadgePopup();
 
     static LevelBadgePopup* create(int, bool);
@@ -13939,7 +13939,7 @@ class LevelBadgePopup {
 }
 
 [[link(android)]]
-class LevelBindingsLayer {
+class LevelBindingsLayer : KeybindingsLayer {
     // virtual ~LevelBindingsLayer();
 
     static LevelBindingsLayer* create(KeybindSet*, bool);
@@ -14120,7 +14120,7 @@ class LevelCommentDelegate {
 }
 
 [[link(android)]]
-class LevelControlConfig {
+class LevelControlConfig : cocos2d::CCObject {
     // virtual ~LevelControlConfig();
 
     static LevelControlConfig* create();
@@ -14489,7 +14489,7 @@ class LevelFeatureLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate {
+class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDelegate, RateLevelDelegate, LikeItemDelegate, FLAlertLayerProtocol, LevelDeleteDelegate, NumberInputDelegate, SetIDPopupDelegate, TableViewCellDelegate, AdminActionConfirmDelegate {
     LevelInfoLayer() = ios 0x2e2d8, inline;
     ~LevelInfoLayer() = win inline;
 
@@ -14668,7 +14668,7 @@ class LevelListDeleteDelegate {
 }
 
 [[link(android)]]
-class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate {
+class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate, AdminActionConfirmDelegate {
     LevelListLayer() = ios 0x2e4c70, inline;
     ~LevelListLayer() = win inline, imac 0x2a9940;
 
@@ -14831,7 +14831,7 @@ class LevelPickerDelegate {
 }
 
 [[link(android)]]
-class LevelPickerPopup {
+class LevelPickerPopup : PagedListPopup, LevelManagerDelegate, TableViewCellDelegate {
     // virtual ~LevelPickerPopup();
 
     static LevelPickerPopup* create(LevelPickerDelegate*);
@@ -14969,7 +14969,7 @@ class LevelSettingsDelegate {
 }
 
 [[link(android)]]
-class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate, SelectSettingDelegate, FLAlertLayerProtocol, CustomSongLayerDelegate, TextInputDelegate {
+class LevelSettingsLayer : FLAlertLayer, ColorSelectDelegate, SelectArtDelegate, SelectSettingDelegate, FLAlertLayerProtocol, CustomSongLayerDelegate {
     // virtual ~LevelSettingsLayer();
 
     static LevelSettingsLayer* create(LevelSettingsObject* object, LevelEditorLayer* layer) = m1 0x290dc8, ios 0x3e34c;
@@ -15152,7 +15152,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class LevelStatsInfoPopup {
+class LevelStatsInfoPopup : FLAlertLayer {
     // virtual ~LevelStatsInfoPopup();
 
     static LevelStatsInfoPopup* create(GJGameLevel*);
@@ -15356,7 +15356,7 @@ class LoadingLayer : cocos2d::CCLayer {
 }
 
 [[link(android)]]
-class LocalLevelManager : GManager {
+class LocalLevelManager : GManager, PlatformFileDelegate {
     static LocalLevelManager* get() = inline;
     // virtual ~LocalLevelManager();
     static LocalLevelManager* sharedState() = ios 0x25c384;
@@ -15458,7 +15458,7 @@ class MapSelectLayer : cocos2d::CCLayer {
 }
 
 [[link(android)]]
-class MemberListPopup {
+class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDelegate, FLAlertLayerProtocol {
     // virtual ~MemberListPopup();
 
     static MemberListPopup* create(GJMessageThread*, ThreadViewPopup*, bool);
@@ -15532,7 +15532,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 }
 
 [[link(android)]]
-class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate {
+class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, MusicDownloadDelegate {
     // static MenuLayer* create() = ios 0x2655a4;
     // virtual ~MenuLayer();
 
@@ -15661,7 +15661,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 }
 
 [[link(android)]]
-class MessageThreadsPage {
+class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProtocol, FriendPickerDelegate {
     // virtual ~MessageThreadsPage();
 
     static MessageThreadsPage* create();
@@ -15720,7 +15720,7 @@ class MessageThreadsPage {
 }
 
 [[link(android)]]
-class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJDropDownLayerDelegate {
+class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelegate {
     MoreOptionsLayer() = inline;
     ~MoreOptionsLayer() = win inline, imac 0x87a7d0;
 
@@ -15772,7 +15772,7 @@ class MoreOptionsLayer : FLAlertLayer, TextInputDelegate, GooglePlayDelegate, GJ
 }
 
 [[link(android)]]
-class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
+class MoreSearchLayer : FLAlertLayer {
     MoreSearchLayer() = inline;
     ~MoreSearchLayer() = win inline;
 
@@ -15818,7 +15818,7 @@ class MoreSearchLayer : FLAlertLayer, TextInputDelegate {
 }
 
 [[link(android)]]
-class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
+class MoreVideoOptionsLayer : FLAlertLayer {
     MoreVideoOptionsLayer() = inline;
     ~MoreVideoOptionsLayer() = win inline;
 
@@ -15858,7 +15858,7 @@ class MoreVideoOptionsLayer : FLAlertLayer, TextInputDelegate {
 }
 
 [[link(android)]]
-class MoveStepPopup {
+class MoveStepPopup : EditorWindowPopup {
     // virtual ~MoveStepPopup();
 
     static MoveStepPopup* create(EditorUI*);
@@ -15983,7 +15983,7 @@ class MusicArtistObject : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SetTextPopupDelegate, FLAlertLayerProtocol, SliderDelegate {
+class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, FLAlertLayerProtocol, SliderDelegate, SelectSFXSortDelegate {
     // virtual ~MusicBrowser();
 
     static MusicBrowser* create(int songID, GJSongType songType) = win 0x476f50, m1 0x98928, ios 0x3f4334;
@@ -16054,7 +16054,7 @@ class MusicBrowserDelegate {
 }
 
 [[link(android)]]
-class MusicChangelogEntry {
+class MusicChangelogEntry : cocos2d::CCObject {
     // virtual ~MusicChangelogEntry();
 
     static MusicChangelogEntry* create(int, int, int);
@@ -16063,7 +16063,7 @@ class MusicChangelogEntry {
 }
 
 [[link(android)]]
-class MusicChangelogLine {
+class MusicChangelogLine : cocos2d::CCObject {
     // virtual ~MusicChangelogLine();
 
     static MusicChangelogLine* create(int, std::string, int);
@@ -16072,7 +16072,7 @@ class MusicChangelogLine {
 }
 
 [[link(android)]]
-class MusicChangelogPopup {
+class MusicChangelogPopup : ScrollViewPopup {
     // virtual ~MusicChangelogPopup();
 
     static MusicChangelogPopup* create(cocos2d::CCArray*);
@@ -16333,7 +16333,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
 }
 
 [[link(android)]]
-class MyStuffPopup {
+class MyStuffPopup : FLAlertLayer {
     // virtual ~MyStuffPopup();
 
     static MyStuffPopup* create(GJUserScore*);
@@ -16365,7 +16365,7 @@ class NCSInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
 }
 
 [[link(android)]]
-class NewgroundsInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
+class NewgroundsInfoLayer : FLAlertLayer {
     // virtual ~NewgroundsInfoLayer();
     NewgroundsInfoLayer() = inline;
 
@@ -16395,7 +16395,7 @@ class NewsItem {
 }
 
 [[link(android)]]
-class NewsPopup {
+class NewsPopup : FLAlertLayer, FLAlertLayerProtocol, MusicDownloadDelegate {
     // virtual ~NewsPopup();
 
     static NewsPopup* create();
@@ -16424,7 +16424,7 @@ class NewsPopup {
 }
 
 [[link(android)]]
-class NewThreadPopup {
+class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate, LevelPickerDelegate, EmotePickerDelegate {
     // virtual ~NewThreadPopup();
 
     static NewThreadPopup* create(int, std::string const&, std::string const&);
@@ -16477,7 +16477,7 @@ class NodePoint : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class NotificationFilterPopup {
+class NotificationFilterPopup : SetupTriggerPopup {
     // virtual ~NotificationFilterPopup();
 
     static NotificationFilterPopup* create(NotificationsPage*);
@@ -16508,7 +16508,7 @@ class NotificationListDelegate {
 }
 
 [[link(android)]]
-class NotificationsPage {
+class NotificationsPage : FLAlertLayer, NotificationListDelegate {
     // virtual ~NotificationsPage();
 
     static NotificationsPage* create();
@@ -16675,7 +16675,7 @@ class OptionsCell : TableViewCell {
 }
 
 [[link(android)]]
-class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol {
+class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate {
     // virtual ~OptionsLayer();
     OptionsLayer() = inline;
 
@@ -16761,7 +16761,7 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
 }
 
 [[link(android)]]
-class PagedListPopup {
+class PagedListPopup : FLAlertLayer {
     // virtual ~PagedListPopup();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -16791,7 +16791,7 @@ class PagedListPopup {
 }
 
 [[link(android)]]
-class ParentalGateLayer {
+class ParentalGateLayer : NumberInputLayer {
     // virtual ~ParentalGateLayer();
 
     static ParentalGateLayer* create();
@@ -16845,7 +16845,7 @@ class ParentalOptionsLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class ParentalPrivacyPopup {
+class ParentalPrivacyPopup : UploadActionPopup, GJAccountSettingsDelegate, UserInfoDelegate {
     // virtual ~ParentalPrivacyPopup();
 
     static ParentalPrivacyPopup* create(bool);
@@ -16939,7 +16939,7 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 }
 
 [[link(android)]]
-class PauseLayer : CCBlockLayer, FLAlertLayerProtocol {
+class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, CreateStartPosPopupDelegate, VolumeChangeDelegate {
     // virtual ~PauseLayer();
     PauseLayer() = inline;
 
@@ -16995,7 +16995,7 @@ class PlatformDownloadDelegate {
 }
 
 [[link(android)]]
-class PlatformerControlsPopup {
+class PlatformerControlsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopupDelegate, LevelControlsDelegate, FLAlertLayerProtocol {
     // virtual ~PlatformerControlsPopup();
 
     static PlatformerControlsPopup* create(GJGameLevel*, bool);
@@ -18184,7 +18184,7 @@ class PriceLabel : cocos2d::CCNode {
 }
 
 [[link(android)]]
-class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate {
+class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate, FollowUserDelegate {
     // virtual ~ProfilePage();
     // ProfilePage() = ios 0x1a9c90;
 
@@ -18283,7 +18283,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 }
 
 [[link(android)]]
-class ProgressGameObject {
+class ProgressGameObject : EffectGameObject {
     // virtual ~ProgressGameObject();
 
     static ProgressGameObject* create();
@@ -18464,7 +18464,7 @@ class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
 }
 
 [[link(android)]]
-class RateStarsModLayer {
+class RateStarsModLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     // virtual ~RateStarsModLayer();
 
     static RateStarsModLayer* create(int, bool);
@@ -18546,7 +18546,7 @@ class ReadArchive {
 }
 
 [[link(android)]]
-class RenameThreadPopup {
+class RenameThreadPopup : SetupTriggerPopup, ThreadMessageDelegate {
     // virtual ~RenameThreadPopup();
 
     static RenameThreadPopup* create(GJMessageThread*, ThreadViewPopup*);
@@ -18568,7 +18568,7 @@ class RenameThreadPopup {
 }
 
 [[link(android)]]
-class ReportPopup {
+class ReportPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     // virtual ~ReportPopup();
 
     static ReportPopup* create(ReportPopupConfig const&);
@@ -18606,7 +18606,7 @@ class ReportPopupConfig {
 }
 
 [[link(android)]]
-class ReportQueuePopup {
+class ReportQueuePopup : PagedListPopup, CommentAdminDelegate, DropdownDelegate {
     // virtual ~ReportQueuePopup();
 
     static ReportQueuePopup* create();
@@ -18661,7 +18661,7 @@ class ReviewChoiceDelegate {
 }
 
 [[link(android)]]
-class ReviewChoiceSheet {
+class ReviewChoiceSheet : SetupTriggerPopup {
     // virtual ~ReviewChoiceSheet();
 
     static ReviewChoiceSheet* create(ReviewChoiceDelegate*, int, char const*, std::string const&, std::vector<std::string> const&, std::vector<char const*> const&, bool, char const*);
@@ -18810,7 +18810,7 @@ class RotateGameplayGameObject : EffectGameObject {
 }
 
 [[link(android)]]
-class RowPressItem {
+class RowPressItem : CCMenuItemSpriteExtra {
     // virtual ~RowPressItem();
 
     static RowPressItem* create(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
@@ -18820,7 +18820,7 @@ class RowPressItem {
 }
 
 [[link(android)]]
-class ScrollableContentLayer {
+class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     // virtual ~ScrollableContentLayer();
 
     static ScrollableContentLayer* create(cocos2d::CCSize);
@@ -18909,7 +18909,7 @@ class ScrollingLayer : cocos2d::CCLayerColor {
 }
 
 [[link(android)]]
-class ScrollViewPopup {
+class ScrollViewPopup : FLAlertLayer {
     // virtual ~ScrollViewPopup();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
@@ -19318,7 +19318,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 }
 
 [[link(android)]]
-class SectionedContentNode {
+class SectionedContentNode : cocos2d::CCNode {
     // virtual ~SectionedContentNode();
 
     virtual void addChild(cocos2d::CCNode*, int, int);
@@ -19397,7 +19397,7 @@ class SelectFontLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class SelectFontLayer2 {
+class SelectFontLayer2 : FLAlertLayer, TableViewCellDelegate {
     // virtual ~SelectFontLayer2();
 
     static SelectFontLayer2* create(LevelEditorLayer*);
@@ -19510,7 +19510,7 @@ class SelectSFXSortLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class SelectSmartTemplateLayer {
+class SelectSmartTemplateLayer : GJDropDownLayer {
     // virtual ~SelectSmartTemplateLayer();
 
     static SelectSmartTemplateLayer* create();
@@ -19581,7 +19581,7 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 }
 
 [[link(android)]]
-class SetGroupIDLayer : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDelegate {
+class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     SetGroupIDLayer() = inline;
     ~SetGroupIDLayer() = win inline, imac 0x2fc850;
 
@@ -19673,7 +19673,7 @@ class SetGroupIDLayer : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDele
 }
 
 [[link(android)]]
-class SetIDPopup : FLAlertLayer, TextInputDelegate {
+class SetIDPopup : FLAlertLayer {
     SetIDPopup() = win 0x396e40, inline;
     ~SetIDPopup() = win 0x3a2880;
 
@@ -19752,7 +19752,7 @@ class SetTargetIDLayer : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class SetTextPopup : FLAlertLayer, TextInputDelegate {
+class SetTextPopup : FLAlertLayer, EmotePickerDelegate {
     SetTextPopup() = inline;
     ~SetTextPopup();
 
@@ -20441,7 +20441,7 @@ class SetupGradientPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class SetupGravityModPopup : FLAlertLayer, TextInputDelegate {
+class SetupGravityModPopup : FLAlertLayer {
     // virtual ~SetupGravityModPopup();
 
     static SetupGravityModPopup* create(EffectGameObject* object, cocos2d::CCArray* objects, bool gravityTrigger);
@@ -20695,7 +20695,7 @@ class SetupObjectOptions2Popup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class SetupObjectOptionsPopup : FLAlertLayer, TextInputDelegate {
+class SetupObjectOptionsPopup : FLAlertLayer {
     SetupObjectOptionsPopup() = inline;
     ~SetupObjectOptionsPopup() = win inline, ios 0x42a2c;
 
@@ -20864,7 +20864,7 @@ class SetupPlayerControlPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
+class SetupPortalPopup : FLAlertLayer {
     // virtual ~SetupPortalPopup();
 
     static SetupPortalPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
@@ -20899,7 +20899,7 @@ class SetupPortalPopup : FLAlertLayer, TextInputDelegate {
 }
 
 [[link(android)]]
-class SetupProgressPopup {
+class SetupProgressPopup : SetupTriggerPopup {
     // virtual ~SetupProgressPopup();
 
     static SetupProgressPopup* create(ProgressGameObject*, cocos2d::CCArray*);
@@ -21265,7 +21265,7 @@ class SetupShakePopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate {
+class SetupSmartBlockLayer : FLAlertLayer, SelectArtDelegate {
     // virtual ~SetupSmartBlockLayer();
 
     static SetupSmartBlockLayer* create(SmartGameObject* object, cocos2d::CCArray* objects) = win 0x5e8430;
@@ -21303,7 +21303,7 @@ class SetupSmartBlockLayer : FLAlertLayer, TextInputDelegate, SelectArtDelegate 
 }
 
 [[link(android)]]
-class SetupSmartTemplateLayer : FLAlertLayer, TextInputDelegate, FLAlertLayerProtocol {
+class SetupSmartTemplateLayer : FLAlertLayer, FLAlertLayerProtocol {
     // virtual ~SetupSmartTemplateLayer();
 
     static SetupSmartTemplateLayer* create(GJSmartTemplate* smartTemplate) = win 0x5ea660, ios 0x1c19c0;
@@ -21510,7 +21510,7 @@ class SetupTransformPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class SetupTriggerPopup : FLAlertLayer, TextInputDelegate, ConfigureValuePopupDelegate, SliderDelegate {
+class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDelegate {
     SetupTriggerPopup() = win 0x9a980, inline;
     ~SetupTriggerPopup() = win 0x606ea0;
 
@@ -21695,7 +21695,7 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SetTextPopupDelegate, SelectSFXSortDelegate {
+class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SelectSFXSortDelegate, SetTextPopupDelegate, FLAlertLayerProtocol, SFXFolderPickerDelegate {
     SFXBrowser() = inline;
     ~SFXBrowser() = win inline, imac 0x8b11b0;
 
@@ -21793,7 +21793,7 @@ class SFXBrowserDelegate {
 }
 
 [[link(android)]]
-class SFXChangelogEntry {
+class SFXChangelogEntry : cocos2d::CCObject {
     // virtual ~SFXChangelogEntry();
 
     static SFXChangelogEntry* create(int, int, int);
@@ -21802,7 +21802,7 @@ class SFXChangelogEntry {
 }
 
 [[link(android)]]
-class SFXChangelogPopup {
+class SFXChangelogPopup : ScrollViewPopup {
     // virtual ~SFXChangelogPopup();
 
     static SFXChangelogPopup* create(cocos2d::CCArray*);
@@ -21832,7 +21832,7 @@ class SFXFolderPickerDelegate {
 }
 
 [[link(android)]]
-class SFXFolderPickerPopup {
+class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     // virtual ~SFXFolderPickerPopup();
 
     static SFXFolderPickerPopup* create(SFXFolderPickerMode, std::string const&, std::set<int> const&, SFXFolderPickerDelegate*, int);
@@ -21895,7 +21895,7 @@ class SFXSearchResult : MusicSearchResult {
 }
 
 [[link(android)]]
-class SFXSettingsPopup {
+class SFXSettingsPopup : GJOptionsLayer {
     // virtual ~SFXSettingsPopup();
 
     static SFXSettingsPopup* create(SFXBrowser*);
@@ -22312,7 +22312,7 @@ class ShareCommentDelegate {
 }
 
 [[link(android)]]
-class ShareCommentLayer : FLAlertLayer, TextInputDelegate, UploadActionDelegate, UploadPopupDelegate, EmotePickerDelegate {
+class ShareCommentLayer : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, EmotePickerDelegate {
     // virtual ~ShareCommentLayer();
 
     static ShareCommentLayer* create(std::string title, int charLimit, CommentType type, int ID, std::string desc) = win 0x629ea0, imac 0x6af230, m1 0x5c8f5c, ios 0x26a72c;
@@ -22665,7 +22665,7 @@ class SmartTemplateCell : TableViewCell {
 }
 
 [[link(android)]]
-class SocialLinksPopup {
+class SocialLinksPopup : FLAlertLayer {
     // virtual ~SocialLinksPopup();
 
     static SocialLinksPopup* create(GJAccountSettingsLayer*);
@@ -22901,7 +22901,7 @@ class SongUsageDelegate {
 }
 
 [[link(android)]]
-class SongUsagePopup {
+class SongUsagePopup : FLAlertLayer, SongUsageDelegate {
     // virtual ~SongUsagePopup();
 
     static SongUsagePopup* create(int, std::string const&, std::string const&);
@@ -22924,7 +22924,7 @@ class SoundPackDescDelegate {
 }
 
 [[link(android)]]
-class SoundPackDescPopup {
+class SoundPackDescPopup : SetupTriggerPopup, EmotePickerDelegate {
     // virtual ~SoundPackDescPopup();
 
     static SoundPackDescPopup* create(std::string const&, std::string const&, SoundPackDescDelegate*);
@@ -23126,7 +23126,7 @@ class StarInfoPopup : FLAlertLayer {
 }
 
 [[link(android)]]
-class StartPosBrowser {
+class StartPosBrowser : FLAlertLayer, TableViewCellDelegate, OptionsObjectDelegate {
     // virtual ~StartPosBrowser();
 
     static StartPosBrowser* create(cocos2d::CCArray*, int);
@@ -23149,7 +23149,7 @@ class StartPosBrowserDelegate {
 }
 
 [[link(android)]]
-class StartPosLayer {
+class StartPosLayer : SetupTriggerPopup {
     // virtual ~StartPosLayer();
 
     static StartPosLayer* create(StartPosObject*);
@@ -23250,7 +23250,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 }
 
 [[link(android)]]
-class TabbedPopupLayer {
+class TabbedPopupLayer : SetupTriggerPopup {
     // virtual ~TabbedPopupLayer();
 
     virtual TodoReturn pageChanged();
@@ -23571,7 +23571,7 @@ class TextStyleSection : cocos2d::CCObject {
 }
 
 [[link(android)]]
-class ThreadDescPopup {
+class ThreadDescPopup : SetupTriggerPopup, ThreadMessageDelegate, EmotePickerDelegate {
     // virtual ~ThreadDescPopup();
 
     static ThreadDescPopup* create(GJMessageThread*, ThreadViewPopup*);
@@ -23620,7 +23620,7 @@ class ThreadMessageDelegate {
 }
 
 [[link(android)]]
-class ThreadMessageOptionsPopup {
+class ThreadMessageOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     // virtual ~ThreadMessageOptionsPopup();
 
     static ThreadMessageOptionsPopup* create(GJThreadMessage*, std::string const&, ThreadViewPopup*);
@@ -23641,7 +23641,7 @@ class ThreadOpenHelper {
 }
 
 [[link(android)]]
-class ThreadOptionsPopup {
+class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLayerProtocol {
     // virtual ~ThreadOptionsPopup();
 
     static ThreadOptionsPopup* create(GJMessageThread*, ThreadViewPopup*, bool);
@@ -23674,7 +23674,7 @@ class ThreadOptionsPopup {
 }
 
 [[link(android)]]
-class ThreadRequestPopup {
+class ThreadRequestPopup : FLAlertLayer {
     // virtual ~ThreadRequestPopup();
 
     static ThreadRequestPopup* create(GJMessageThread*, InvitesPopup*);
@@ -23691,7 +23691,7 @@ class ThreadRequestPopup {
 }
 
 [[link(android)]]
-class ThreadSearchPopup {
+class ThreadSearchPopup : SetupTriggerPopup {
     // virtual ~ThreadSearchPopup();
 
     static ThreadSearchPopup* create(ThreadViewPopup*);
@@ -23708,7 +23708,7 @@ class ThreadSearchPopup {
 }
 
 [[link(android)]]
-class ThreadViewPopup {
+class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, LevelPickerDelegate, EmotePickerDelegate {
     // virtual ~ThreadViewPopup();
 
     static ThreadViewPopup* create(GJMessageThread*);
@@ -23849,7 +23849,7 @@ class TimerTriggerGameObject : EffectGameObject {
 }
 
 [[link(android)]]
-class TimeSpeedControl {
+class TimeSpeedControl : cocos2d::CCNode {
     // virtual ~TimeSpeedControl();
 
     static TimeSpeedControl* create(GJBaseGameLayer*);
@@ -23926,7 +23926,7 @@ class TOSPopup : FLAlertLayer {
 }
 
 [[link(android)]]
-class TouchControlEditLayer {
+class TouchControlEditLayer : SetupTriggerPopup {
     // virtual ~TouchControlEditLayer();
 
     static TouchControlEditLayer* create(bool, LevelControlConfig*);
@@ -24105,7 +24105,7 @@ class UIButtonConfig {
 }
 
 [[link(android)]]
-class UILayer : cocos2d::CCLayerColor {
+class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     UILayer() = ios 0x53638, inline;
     ~UILayer() = win inline, ios 0x310928;
 
@@ -24498,7 +24498,7 @@ class VideoOptionsLayer : FLAlertLayer {
 }
 
 [[link(android)]]
-class VirtualKeyboardNode {
+class VirtualKeyboardNode : cocos2d::CCNode {
     // virtual ~VirtualKeyboardNode();
 
     static VirtualKeyboardNode* create(InputCaptureDelegate*);
@@ -24638,3 +24638,4 @@ class WriteArchive {
     TodoReturn processGOArr(cocos2d::CCArray*&);
     TodoReturn processString(std::string&);
 }
+
