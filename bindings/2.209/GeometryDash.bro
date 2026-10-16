@@ -15702,9 +15702,9 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     void onSearch(cocos2d::CCObject* sender) = win 0xd68e0;
     void onSelectAll(cocos2d::CCObject* sender);
     void onSelectFilter(cocos2d::CCObject* sender);
-    void onSelectionChanged(cocos2d::CCObject* sender);
+    void onSelectionChanged(cocos2d::CCObject* sender) = win 0xd54c0;
     void onShowInvites(cocos2d::CCObject* sender);
-    void onThreadsChanged(cocos2d::CCObject* sender);
+    void onThreadsChanged(cocos2d::CCObject* sender) = win 0xd5030;
     void onUserFilter(cocos2d::CCObject* sender) = win = 0xd6920;
     TodoReturn refetchIfQueued();
     TodoReturn refreshUserFilterBtn();
