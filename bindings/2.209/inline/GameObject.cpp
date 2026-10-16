@@ -98,7 +98,7 @@ bool GameObject::didScaleYChange() {
 }
 
 bool GameObject::dontCountTowardsLimit() {
-    return m_objectID == 31;
+    return m_objectID == ObjectID::StartPos;
 }
 
 cocos2d::CCRect GameObject::getBoundingRect() {
@@ -157,7 +157,7 @@ void GameObject::setupColorSprite(int id, bool mainColor) {
 }
 
 bool GameObject::shouldNotHideAnimFreeze() {
-    return m_objectID == 1855;
+    return m_objectID == ObjectID::DripAnimation2;
 }
 
 double GameObject::slopeYPos(GameObject* object) {
@@ -389,13 +389,13 @@ const char* GameObject::getBallFrame(int index) {
 
 int GameObject::getColorIndex() {
     switch (m_objectID) {
-        case 29: return 1000;
-        case 30: return 1001;
-        case 105: return 1004;
-        case 744: return 1003;
-        case 899: return m_targetColor;
-        case 900: return 1009;
-        case 915: return 1002;
+        case ObjectID::LegacyBackgroundTrigger: return std::to_underlying(GJColorIndex::BG);
+        case ObjectID::LegacyGroundTrigger: return std::to_underlying(GJColorIndex::G1);
+        case ObjectID::LegacyObjColorTrigger: return std::to_underlying(GJColorIndex::Obj);
+        case ObjectID::Legacy3DLTrigger: return std::to_underlying(GJColorIndex::TDL);
+        case ObjectID::ColorTrigger: return m_targetColor;
+        case ObjectID::LegacyGround2Trigger: return std::to_underlying(GJColorIndex::G2);
+        case ObjectID::LegacyLineTrigger2: return std::to_underlying(GJColorIndex::L);
         default: return 0;
     }
 }
@@ -523,45 +523,46 @@ bool GameObject::isColorObject() {
     else if (m_customColorType == 1) return false;
     if (this->hasSecondaryColor()) return false;
     auto defaultColorID = m_baseColor->m_defaultColorID;
-    return defaultColorID != 1004 && defaultColorID != 0;
+    return defaultColorID != std::to_underlying(GJColorIndex::Obj) && defaultColorID != 0;
 }
 
 bool GameObject::isColorTrigger() {
-    return m_objectID == 29 || m_objectID == 30 || m_objectID == 105 || m_objectID == 744 || m_objectID == 899 || m_objectID == 900 || m_objectID == 915;
+    const auto id = m_objectID;
+    return id == ObjectID::LegacyBackgroundTrigger || id == ObjectID::LegacyGroundTrigger || id == ObjectID::LegacyObjColorTrigger || id == ObjectID::Legacy3DLTrigger || id == ObjectID::ColorTrigger || id == ObjectID::LegacyGround2Trigger || id == ObjectID::LegacyLineTrigger2;
 }
 
 bool GameObject::isConfigurablePortal() {
-    auto id = m_objectID;
-    return id == 12 || id == 13 || id == 47 || id == 111 || id == 286 || id == 287 || id == 660 || id == 745 || id == 1331 || id == 1933;
+    const auto id = m_objectID;
+    return id == ObjectID::CubePortal || id == ObjectID::ShipPortal || id == ObjectID::BallPortal || id == ObjectID::UFOPortal || id == ObjectID::DualPortal || id == ObjectID::ExitDualPortal || id == ObjectID::WavePortal || id == ObjectID::RobotPortal || id == ObjectID::SpiderPortal || id == ObjectID::SwingPortal;
 }
 
 bool GameObject::isEditorSpawnableTrigger() {
-    auto id = m_objectID;
-    return id == 29 || id == 30 || id == 105 || id == 744 || id == 899 || id == 900 || id == 901 || id == 915 || id == 1006 || id == 1007 || id == 1049 || id == 1268 || id == 1346 ||
-        id == 1347 || id == 1585 || id == 1595 || id == 1611 || id == 1612 || id == 1613 || id == 1616 || id == 1811 || id == 1814 || id == 1815 || id == 1817 || id == 1912 ||
-        id == 1913 || id == 1914 || id == 1916 || id == 1917 || id == 1932 || id == 1934 || id == 1935 || id == 2015 || id == 2062 || id == 2066 || id == 2067 || id == 2068 ||
-        id == 2899 || id == 2900 || id == 2901 || id == 2903 || id == 2904 || id == 2905 || id == 2907 || id == 2909 || id == 2910 || id == 2911 || id == 2912 || id == 2913 ||
-        id == 2914 || id == 2915 || id == 2916 || id == 2917 || id == 2919 || id == 2920 || id == 2921 || id == 2922 || id == 2923 || id == 2924 || id == 2925 || id == 2999 ||
-        id == 3006 || id == 3007 || id == 3008 || id == 3009 || id == 3010 || id == 3011 || id == 3012 || id == 3013 || id == 3014 || id == 3015 || id == 3016 || id == 3022 ||
-        id == 3024 || id == 3029 || id == 3030 || id == 3031 || id == 3033 || id == 3602 || id == 3603 || id == 3604 || id == 3605 || id == 3606 || id == 3607 || id == 3608 ||
-        id == 3609 || id == 3612 || id == 3613 || id == 3614 || id == 3615 || id == 3617 || id == 3618 || id == 3619 || id == 3620 || id == 3640 || id == 3641 || id == 3655 ||
-        id == 3660 || id == 3661 || id == 3662;
+    const auto id = m_objectID;
+    return id == ObjectID::LegacyBackgroundTrigger || id == ObjectID::LegacyGroundTrigger || id == ObjectID::LegacyObjColorTrigger || id == ObjectID::Legacy3DLTrigger || id == ObjectID::ColorTrigger || id == ObjectID::LegacyGround2Trigger || id == ObjectID::MoveTrigger || id == ObjectID::LegacyLineTrigger2 || id == ObjectID::PulseTrigger || id == ObjectID::AlphaTrigger || id == ObjectID::ToggleTrigger || id == ObjectID::SpawnTrigger || id == ObjectID::RotateTrigger ||
+        id == ObjectID::FollowTrigger || id == ObjectID::AnimateTrigger || id == ObjectID::TouchTrigger || id == ObjectID::CountTrigger || id == ObjectID::HidePlayerTrigger || id == ObjectID::ShowPlayerTrigger || id == ObjectID::StopTrigger || id == ObjectID::InstantCountTrigger || id == ObjectID::FollowPlayerYTrigger || id == ObjectID::CollisionTrigger || id == ObjectID::PickupTrigger || id == ObjectID::RandomTrigger ||
+        id == ObjectID::ZoomCameraTrigger || id == ObjectID::StaticCameraTrigger || id == ObjectID::OffsetCameraTrigger || id == ObjectID::ReverseTrigger || id == ObjectID::PlayerControlTrigger || id == ObjectID::SongTrigger || id == ObjectID::TimeWarpTrigger || id == ObjectID::RotateCameraTrigger || id == ObjectID::EdgeCameraTrigger || id == ObjectID::GravityTrigger || id == ObjectID::ScaleTrigger || id == ObjectID::AdvancedRandomTrigger ||
+        id == ObjectID::OptionsTrigger || id == ObjectID::GameplayRotationTrigger || id == ObjectID::GameplayOffsetCameraTrigger || id == ObjectID::GradientTrigger || id == ObjectID::ShaderTrigger || id == ObjectID::ShockWaveShaderTrigger || id == ObjectID::ShockLineShaderTrigger || id == ObjectID::GlitchShaderTrigger || id == ObjectID::ChromaticAberrationShaderTrigger || id == ObjectID::ChromaticGlitchShaderTrigger || id == ObjectID::PixelateShaderTrigger || id == ObjectID::LensCircleShaderTrigger ||
+        id == ObjectID::RadialBlurShaderTrigger || id == ObjectID::MotionBlurShaderTrigger || id == ObjectID::BulgeShaderTrigger || id == ObjectID::PinchShaderTrigger || id == ObjectID::GrayscaleShaderTrigger || id == ObjectID::SepiaShaderTrigger || id == ObjectID::InvertColorTrigger || id == ObjectID::HueShaderTrigger || id == ObjectID::EditColorShaderTrigger || id == ObjectID::SplitScreenShaderTrigger || id == ObjectID::ModeCameraTrigger || id == ObjectID::EditMiddlegroundTrigger ||
+        id == ObjectID::AreaMoveTrigger || id == ObjectID::AreaRotateTrigger || id == ObjectID::AreaScaleTrigger || id == ObjectID::AreaFadeTrigger || id == ObjectID::AreaTintTrigger || id == ObjectID::EditAreaMoveTrigger || id == ObjectID::EditAreaRotateTrigger || id == ObjectID::EditAreaScaleTrigger || id == ObjectID::EditAreaFadeTrigger || id == ObjectID::EditAreaTintTrigger || id == ObjectID::AdvancedFollowTrigger || id == ObjectID::TeleportTrigger ||
+        id == ObjectID::AreaStopTrigger || id == ObjectID::ChangeBackgroundTrigger || id == ObjectID::ChangeGroundTrigger || id == ObjectID::ChangeMiddlegroundTrigger || id == ObjectID::KeyframeAnimationTrigger || id == ObjectID::SFXTrigger || id == ObjectID::EditSFXTrigger || id == ObjectID::EventTrigger || id == ObjectID::EditSongTrigger || id == ObjectID::BackgroundSpeedTrigger || id == ObjectID::SequenceTrigger || id == ObjectID::SpawnParticleTrigger ||
+        id == ObjectID::InstantCollisionTrigger || id == ObjectID::MiddlegroundSpeedTrigger || id == ObjectID::UITrigger || id == ObjectID::TimeTrigger || id == ObjectID::TimeEventTrigger || id == ObjectID::TimeControlTrigger || id == ObjectID::ResetTrigger || id == ObjectID::ItemEditTrigger || id == ObjectID::ItemCompareTrigger || id == ObjectID::CollisionStateBlock || id == ObjectID::PersistentItemSetupTrigger || id == ObjectID::ObjectControlTrigger ||
+        id == ObjectID::EditAdvancedFollowTrigger || id == ObjectID::ReTargetAdvancedFollowTrigger || id == ObjectID::LinkVisibleTrigger;
 }
 
 bool GameObject::isSettingsObject() {
-    return m_objectID == 3662 || m_objectID == 3613;
+    return m_objectID == ObjectID::LinkVisibleTrigger || m_objectID == ObjectID::UITrigger;
 }
 
 bool GameObject::isSpeedObject() {
-    auto id = m_objectID;
-    return id == 200 || id == 201 || id == 202 || id == 203 || id == 1334 || id == 1917 || id == 1934 || id == 1935 || id == 2900 || id == 2902 || id == 3022 || id == 3027;
+    const auto id = m_objectID;
+    return id == ObjectID::SlowSpeedPortal || id == ObjectID::NormalSpeedPortal || id == ObjectID::FastSpeedPortal || id == ObjectID::FasterSpeedPortal || id == ObjectID::FastestSpeedPortal || id == ObjectID::ReverseTrigger || id == ObjectID::SongTrigger || id == ObjectID::TimeWarpTrigger || id == ObjectID::GameplayRotationTrigger || id == ObjectID::UnlinkedBlueTeleportPortal || id == ObjectID::TeleportTrigger || id == ObjectID::TeleportOrb;
 }
 
 bool GameObject::isStoppableTrigger() {
-    auto id = m_objectID;
-    return id == 29 || id == 30 || id == 105 || id == 744 || id == 899 || id == 900 || id == 901 || id == 915 || id == 1006 || id == 1007 || id == 1268 || id == 1346 || id == 1347 ||
-        id == 1595 || id == 1611 || id == 1615 || id == 1812 || id == 1814 || id == 1815 || id == 1913 || id == 1916 || id == 2015 || id == 2067 || id == 2903 || id == 2999 ||
-        id == 3006 || id == 3007 || id == 3008 || id == 3009 || id == 3010 || id == 3016 || id == 3033 || id == 3602 || id == 3604 || id == 3614 || id == 3615;
+    const auto id = m_objectID;
+    return id == ObjectID::LegacyBackgroundTrigger || id == ObjectID::LegacyGroundTrigger || id == ObjectID::LegacyObjColorTrigger || id == ObjectID::Legacy3DLTrigger || id == ObjectID::ColorTrigger || id == ObjectID::LegacyGround2Trigger || id == ObjectID::MoveTrigger || id == ObjectID::LegacyLineTrigger2 || id == ObjectID::PulseTrigger || id == ObjectID::AlphaTrigger || id == ObjectID::SpawnTrigger || id == ObjectID::RotateTrigger || id == ObjectID::FollowTrigger ||
+        id == ObjectID::TouchTrigger || id == ObjectID::CountTrigger || id == ObjectID::CounterLabel || id == ObjectID::OnDeathTrigger || id == ObjectID::FollowPlayerYTrigger || id == ObjectID::CollisionTrigger || id == ObjectID::ZoomCameraTrigger || id == ObjectID::OffsetCameraTrigger || id == ObjectID::RotateCameraTrigger || id == ObjectID::ScaleTrigger || id == ObjectID::GradientTrigger || id == ObjectID::EditMiddlegroundTrigger ||
+        id == ObjectID::AreaMoveTrigger || id == ObjectID::AreaRotateTrigger || id == ObjectID::AreaScaleTrigger || id == ObjectID::AreaFadeTrigger || id == ObjectID::AreaTintTrigger || id == ObjectID::AdvancedFollowTrigger || id == ObjectID::KeyframeAnimationTrigger || id == ObjectID::SFXTrigger || id == ObjectID::EventTrigger || id == ObjectID::TimeTrigger || id == ObjectID::TimeEventTrigger;
 }
 
 void GameObject::makeInvisible() {
@@ -693,7 +694,7 @@ void GameObject::updateBlendMode() {
         m_shouldBlendDetail = false;
         return;
     }
-    m_shouldBlendDetail = m_detailColor->getColorMode() != 1012 ? this->shouldBlendColor(m_detailColor, false) : shouldBlend;
+    m_shouldBlendDetail = m_detailColor->getColorMode() != std::to_underlying(GJColorIndex::Lighter) ? this->shouldBlendColor(m_detailColor, false) : shouldBlend;
 }
 
 void GameObject::updateHSVState() {
@@ -718,17 +719,17 @@ void GameObject::updateSecondaryColor() {
 }
 
 bool GameObject::usesFreezeAnimation() {
-    auto id = m_objectID;
-    return id == 921 || id == 1519 || id == 1618 || id == 1851 || id == 1852 || id == 1854 || id == 1855 || id == 1856 || id == 1860 || id == 2020 || id == 2021 || id == 2022 ||
-        id == 2024 || id == 2025 || id == 2026 || id == 2027 || id == 2028 || id == 2029 || id == 2030 || id == 2031 || id == 2033 || id == 2035 || id == 2036 || id == 2037 ||
-        id == 2038 || id == 2039 || id == 2040 || id == 2043 || id == 2044 || id == 2045 || id == 2046 || id == 2047 || id == 2048 || id == 2049 || id == 2050 || id == 2051 ||
-        id == 2052 || id == 2053 || id == 2054 || id == 2055 || id == 2867 || id == 2868 || id == 2869 || id == 2870 || id == 2871 || id == 2872 || id == 2875 || id == 2876 ||
-        id == 2877 || id == 2878 || id == 2880 || id == 2882 || id == 2883 || id == 2885 || id == 2886 || id == 2887;
+    const auto id = m_objectID;
+    return id == ObjectID::ThinFireBurstAnimation || id == ObjectID::TinySparkleAnimation || id == ObjectID::DoubleRingPulseAnimation || id == ObjectID::SmallSplashAnimation1 || id == ObjectID::SmallSplashAnimation2 || id == ObjectID::DripSplashAnimation || id == ObjectID::DripAnimation2 || id == ObjectID::BubblePoppingAnimation || id == ObjectID::LargeGlowingElectricBurstAnimation || id == ObjectID::ActionLinesAnimation1 || id == ObjectID::ActionLinesAnimation2 || id == ObjectID::SlashParticleAnimation1 ||
+        id == ObjectID::ShineAnimation || id == ObjectID::FanParticleAnimation || id == ObjectID::SlashParticleAnimation2 || id == ObjectID::SlashParticleAnimation3 || id == ObjectID::SlashParticleAnimation4 || id == ObjectID::SmokePuffAnimation1 || id == ObjectID::ShockwaveParticleAnimation1 || id == ObjectID::ShockwaveParticleAnimation2 || id == ObjectID::SmokeParticleAnimation1 || id == ObjectID::EnergyBurstAnimation1 || id == ObjectID::EnergyBurstAnimation2 || id == ObjectID::SmokePuffAnimation2 ||
+        id == ObjectID::EnergyBurstAnimation3 || id == ObjectID::SmokePuffAnimation3 || id == ObjectID::EnergyBurstAnimation4 || id == ObjectID::EnergyBurstAnimation5 || id == ObjectID::EnergyBurstAnimation6 || id == ObjectID::SmokePuffAnimation4 || id == ObjectID::FireballParticleAnimation1 || id == ObjectID::FireballParticleAnimation2 || id == ObjectID::EnergyBurstAnimation7 || id == ObjectID::EnergyBurstAnimation8 || id == ObjectID::EnergyBurstAnimation9 || id == ObjectID::SplatParticleAnimation1 ||
+        id == ObjectID::SplatParticleAnimation2 || id == ObjectID::SplashParticleAnimation || id == ObjectID::FireballParticleAnimation3 || id == ObjectID::FastCenterExplosionAnimation || id == ObjectID::ExplosionAnimation || id == ObjectID::SmallExplosionAnimation || id == ObjectID::TallExplosionAnimation || id == ObjectID::SimpleExplosionAnimation || id == ObjectID::TallExplosion2Animation || id == ObjectID::ExplosiveBurstAnimation || id == ObjectID::ShootingStarAnimation || id == ObjectID::SwooshAnimation ||
+        id == ObjectID::CenterExplosionAnimation || id == ObjectID::SlitherAnimation || id == ObjectID::Swoosh2Animation || id == ObjectID::ElectricBurstAnimation || id == ObjectID::ElectricBurst2Animation || id == ObjectID::ElectricBurst3Animation || id == ObjectID::ElectricBurst4Animation || id == ObjectID::ElectricBurst5Animation;
 }
 
 bool GameObject::usesSpecialAnimation() {
-    auto id = m_objectID;
-    return id == 1591 || id == 1593 || id == 1839 || id == 1840 || id == 1841 || id == 1842 || id == 2892 || id == 2893;
+    const auto id = m_objectID;
+    return id == ObjectID::LavaAnimation1 || id == ObjectID::LavaAnimation2 || id == ObjectID::LargeHollowExpandingCircleAnimation || id == ObjectID::SmallHollowExpandingCircleAnimation || id == ObjectID::LargeExpandingCircleAnimation || id == ObjectID::SmallExpandingCircleAnimation || id == ObjectID::ElectricityCircleAnimation || id == ObjectID::ElectricitySquareAnimation;
 }
 #endif
 
