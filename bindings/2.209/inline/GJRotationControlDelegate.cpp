@@ -1,6 +1,6 @@
 #include <Geode/Bindings.hpp>
 
-void GJRotationControlDelegate::angleChanged(float angle) {}
+void GJRotationControlDelegate::angleChanged(float angle, bool) {}
 
 void GJRotationControlDelegate::angleChangeBegin() {}
 

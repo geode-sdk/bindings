@@ -49,17 +49,18 @@ void LevelInfoLayer::incrementLikes() {
 }
 
 void LevelInfoLayer::onPlayReplay(cocos2d::CCObject* sender) {
-    if (m_isBusy) return;
-    if (this->shouldDownloadLevel()) {
-        this->downloadLevel();
-    }
-    else {
-        auto audioEngine = FMODAudioEngine::sharedEngine();
-        audioEngine->stopAllMusic(true);
-        audioEngine->playEffect("playSound_01.ogg", 1.f, 0.f, .3f);
-        GameManager::sharedState()->m_sceneEnum = 3;
-        cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, true, false)));
-    }
+    // TODO: 2.209 (it's empty)
+    // if (m_isBusy) return;
+    // if (this->shouldDownloadLevel()) {
+    //     this->downloadLevel();
+    // }
+    // else {
+    //     auto audioEngine = FMODAudioEngine::sharedEngine();
+    //     audioEngine->stopAllMusic(true);
+    //     audioEngine->playEffect("playSound_01.ogg", 1.f, 0.f, .3f);
+    //     GameManager::sharedState()->m_sceneEnum = 3;
+    //     cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, true, false)));
+    // }
 }
 
 void LevelInfoLayer::tryShowAd() {
@@ -107,7 +108,8 @@ void LevelInfoLayer::onOwnerDelete(cocos2d::CCObject* sender) {
     if (m_isBusy) return;
     auto glm = GameLevelManager::sharedState();
     glm->m_levelDeleteDelegate = this;
-    glm->deleteServerLevel(m_level->m_levelID.value());
+    // TODO: 2.209
+    // glm->deleteServerLevel(m_level->m_levelID.value());
     m_circle->setVisible(true);
 }
 

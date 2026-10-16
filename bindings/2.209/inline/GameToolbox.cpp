@@ -125,7 +125,8 @@ bool GameToolbox::isIOS() {
     #endif
 }
 
-bool GameToolbox::saveStringToFile(std::string const& path, std::string const& content) {
+// TODO: 2.209
+bool GameToolbox::saveStringToFile(std::string const& path, std::string const& content, bool p0, bool p1) {
     #ifdef GEODE_IS_WINDOWS
     FILE* file = nullptr;
     fopen_s(&file, (cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath() + path).c_str(), "w");
@@ -173,6 +174,7 @@ float GameToolbox::fast_rand_minus1_1() {
 }
 
 void GameToolbox::fast_srand(uint64_t seed) {
+    // TODO: 2.209
     *reinterpret_cast<uint64_t*>(geode::base::get() + 0x6c2e90) = seed;
 }
 

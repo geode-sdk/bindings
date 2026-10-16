@@ -12,7 +12,7 @@ bool GameLevelOptionsLayer::init(GJGameLevel* level) {
         m_level = level;
         level->retain();
     }
-    if (!GJOptionsLayer::init(2)) return false;
+    if (!GJOptionsLayer::init(2, 280.f)) return false;
     this->preSetup();
     this->postSetup();
     return true;

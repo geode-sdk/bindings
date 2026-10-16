@@ -41,7 +41,8 @@ void GJRotationControl::updateSliderPosition(cocos2d::CCPoint position) {
     auto rotation = m_currentRotation;
     if (degrees != m_currentRotation) {
         m_currentRotation = degrees;
-        if (m_delegate) m_delegate->angleChanged(degrees - rotation);
+        // TODO: 2.209
+        // if (m_delegate) m_delegate->angleChanged(degrees - rotation);
     }
 }
 #endif

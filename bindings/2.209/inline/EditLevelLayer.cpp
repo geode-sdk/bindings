@@ -18,7 +18,7 @@ void EditLevelLayer::onMoveToTop() {
 void EditLevelLayer::onTest(cocos2d::CCObject* sender) {
     this->closeTextInputs();
     GameManager::sharedState()->m_sceneEnum = 3;
-    cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, false, false)));
+    cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, false)));
 }
 
 void EditLevelLayer::updateDescText(char const* text) {}

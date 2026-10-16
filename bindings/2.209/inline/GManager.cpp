@@ -34,7 +34,8 @@ void GManager::saveData(DS_Dictionary* dict, std::string filename) {
     dict->saveRootSubDictToCompressedFile(filename.c_str());
 }
 
-void GManager::saveGMTo(std::string filename) {
+// TODO: 2.209
+void GManager::saveGMTo(std::string filename, bool p0) {
     auto dict = new DS_Dictionary();
     this->encodeDataTo(dict);
     this->saveData(dict, filename);

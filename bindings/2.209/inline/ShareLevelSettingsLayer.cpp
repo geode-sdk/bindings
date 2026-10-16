@@ -6,9 +6,9 @@ ShareLevelSettingsLayer::ShareLevelSettingsLayer() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-ShareLevelSettingsLayer* ShareLevelSettingsLayer::create(GJGameLevel* level) {
+ShareLevelSettingsLayer* ShareLevelSettingsLayer::create(GJGameLevel* level, ShareLevelLayer* p1) {
     auto ret = new ShareLevelSettingsLayer();
-    if (ret->init(level)) {
+    if (ret->init(level, p1)) {
         ret->autorelease();
         return ret;
     }

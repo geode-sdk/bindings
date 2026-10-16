@@ -16,11 +16,12 @@ cocos2d::CCArray* OptionsScrollLayer::getRelevantObjects(cocos2d::CCArray* objec
     return relevantObjects;
 }
 
-bool OptionsScrollLayer::init(cocos2d::CCArray* objects, bool recreate, int minimum) {
+// TODO: 2.209
+bool OptionsScrollLayer::init(cocos2d::CCArray* objects, bool recreate, std::string p0, MusicSearchResult* p1) {
     if (!FLAlertLayer::init(150)) return false;
     m_noElasticity = true;
     m_recreateList = recreate;
-    m_minCount = minimum;
+    // m_minCount = minimum;
     if (objects) {
         m_optionObjects = objects;
         objects->retain();
