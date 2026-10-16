@@ -15687,7 +15687,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn applyThreadList(cocos2d::CCArray*, int, int, int, bool);
     TodoReturn checkActivityAbove(float);
     bool isCovered();
-    TodoReturn loadPage(int, bool);
+    void loadPage(int, bool) = win 0xd4e00;
     void onClearSearch(cocos2d::CCObject* sender) = win 0xd7010;
     void onClose(cocos2d::CCObject* sender);
     void onDeleteSelected(cocos2d::CCObject* sender);
