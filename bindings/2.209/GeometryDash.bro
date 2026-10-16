@@ -15669,9 +15669,9 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
 
     virtual bool init() = win 0xd3660;
     virtual void keyBackClicked();
-    virtual TodoReturn show();
-    virtual TodoReturn ownsTouchPrio();
-    virtual TodoReturn textInputClosed(CCTextInputNode*);
+    virtual void show();
+    virtual bool ownsTouchPrio();
+    virtual void textInputClosed(CCTextInputNode*);
     virtual TodoReturn friendPicked(GJUserScore*);
     virtual bool isRecipientSelected(int);
     virtual TodoReturn selectedRecipientCount();
