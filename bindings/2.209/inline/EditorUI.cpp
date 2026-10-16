@@ -294,7 +294,7 @@ cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
     auto extras = cocos2d::CCArray::create();
     for (int i = 0; i < objects->count(); i++) {
         auto object = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (std::to_underlying(object->m_objectID) > 2807 && std::to_underlying(object->m_objectID) < 2838) {
+        if (ObjectID::BubblyLiquidBlockLeftEdgeTop4Light < object->m_objectID && object->m_objectID < ObjectID::BrickPieceLeftCorner) {
             this->createExtrasForObject(std::to_underlying(object->m_objectID), object, extras);
         }
     }
