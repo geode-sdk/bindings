@@ -6417,7 +6417,8 @@ class FontObject : cocos2d::CCObject {
     bool initWithConfigFile(char const* font, float scale) = win inline, imac 0x203a00, ios inline;
     void parseConfigFile(char const* font, float scale);
 
-    std::array<int, 300> m_fontWidths;
+    std::unordered_map<unsigned int, unsigned int> m_fontWidths;
+    std::unordered_map<unsigned int, unsigned int> m_fontAdvances;
 }
 
 [[link(android)]]
@@ -15922,15 +15923,19 @@ class MultilineBitmapFont : cocos2d::CCSprite {
 
     virtual void setOpacity(unsigned char opacity) = win 0x79990, imac 0x47dec0, m1 0x3e8098, ios 0x2cfe20;
 
-    static MultilineBitmapFont* createWithFont(char const*, std::string, float, float, cocos2d::CCPoint, int, bool, bool, int, float) = win inline, m1 0x5e5e8;
+    static MultilineBitmapFont* createWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor, bool, int, float) = win inline, m1 0x5e5e8;
 
-    bool initWithFont(char const*, std::string, float, float, cocos2d::CCPoint, int, bool, bool, int, float) = win 0x78cb0, m1 0x4f902c;
+    bool initWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor, bool, int, float) = win 0x78cb0, m1 0x4f902c;
     void moveSpecialDescriptors(int index, int size) = win 0x7ac10, imac 0x47e040, m1 0x3e81f4, ios 0x2cfe98;
     std::string readColorInfo(std::string text);
     TodoReturn readEmoteInfo(std::string);
     std::string stringWithMaxWidth(std::string text, float width, float scale) = imac 0x886ff0, ios 0x378d18;
 
-    std::array<int, 300> m_fontWidths;
+    FontObject* m_fontObject;
+    bool m_unk260;
+    int m_unk264;
+    float m_unk268;
+    cocos2d::CCNode* m_emoteNode;
     cocos2d::CCArray* m_specialDescriptors;
     cocos2d::CCArray* m_characters;
     cocos2d::CCArray* m_lines;
@@ -23466,7 +23471,7 @@ class TextArea : cocos2d::CCSprite {
     // virtual ~TextArea();
     // TextArea();
 
-    static TextArea* create(std::string, char const*, float, float, cocos2d::CCPoint, float, bool, int) = win 0x89cc0;
+    static TextArea* create(std::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor, int) = win 0x89cc0;
 
     virtual void update(float dt) = win 0x828f0, imac 0x30d740, m1 0x2a0520, ios 0x11acd4;
     virtual void draw() = win inline, imac 0x30d730, m1 0x2a051c, ios 0x11acd0;
@@ -23481,7 +23486,7 @@ class TextArea : cocos2d::CCSprite {
     void finishFade() = win 0x8a6c0, imac 0x30d400, m1 0x2a01e4, ios 0x11ab10;
     TodoReturn fitString(std::string, float, float, float, float);
     void hideAll() = win inline, imac 0x30ccf0, m1 0x29fb30, ios inline;
-    bool init(std::string, char const*, float, float, cocos2d::CCPoint, float, bool, int) = win inline;
+    bool init(std::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor, int) = win inline;
     void setEmoteMaxAspect(float);
     void setIgnoreColorCode(bool ignore) = win inline, imac 0x30ccb0, m1 0x29fb0c, ios inline;
     void setParseEmotes(int);
@@ -23490,6 +23495,9 @@ class TextArea : cocos2d::CCSprite {
     void stopAllCharacterActions() = win 0x8a600, imac 0x30d130, m1 0x29ff0c, ios 0x11aa1c;
 
     bool m_disableColor;
+    bool m_unk259;
+    int m_unk25c;
+    float m_unk260;
     MultilineBitmapFont* m_label;
     float m_width;
     // this was unused even in 1.0
