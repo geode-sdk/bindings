@@ -13970,7 +13970,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     ~LevelBrowserLayer() = win 0x3e1d20, imac 0x480220;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = imac 0x1dcb70, m1 0x190a00;
-    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3e1f40, m1 0x1909b4;
+    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3e1f40, imac 0x1dcb30, m1 0x1909b4;
 
     virtual void onEnter() = win 0x3eaa60, imac 0x4885d0, m1 0x3f1e3c;
     virtual void onEnterTransitionDidFinish() = win 0x3533a0, imac 0x488bb0, m1 0x3f248c;
