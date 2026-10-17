@@ -2,15 +2,20 @@
 
 CCTextInputNode::CCTextInputNode() {
     m_numberInput = false;
-    m_keyboardOffset = 0;
+    m_keyboardOffset = 0.f;
     m_selected = false;
     m_keyboardShowing = false;
     m_fontValue1 = -0.5f;
-    m_fontValue2 = 8.0f;
+    m_fontValue2 = 8.f;
     m_isChatFont = false;
-    m_maxLabelWidth = 0.0f;
-    m_maxLabelScale = 0.0f;
-    m_placeholderScale = 0.0f;
+
+    m_unkDelegate = nullptr;
+    m_parseEmotes = 0;
+    m_emoteContainer = nullptr;
+
+    m_maxLabelWidth = 0.f;
+    m_maxLabelScale = 0.f;
+    m_placeholderScale = 0.f;
     m_cursor = nullptr;
     m_textField = nullptr;
     m_delegate = nullptr;
@@ -20,6 +25,25 @@ CCTextInputNode::CCTextInputNode() {
     m_usePasswordChar = false;
     m_forceOffset = false;
     m_textArea = nullptr;
+
+    m_allowNewlines = false;
+    m_unicodeText = false;
+    m_deselectOnOutsideTap = true;
+    m_hitPadding = cocos2d::CCSize(0.f, 0.f);
+    m_scrollableLayer = nullptr;
+    m_cursorTargetX = -1.f;
+    m_maxTextAreaHeight = 0.f;
+    m_unkTextareaMember = 0;
+    m_wheelRangeSet = false;
+    m_wheelRangeMin = 0.f;
+    m_wheelRangeMax = 0.f;
+    m_maxDigits = 0;
+    m_doneFromIME = false;
+    m_editMenu = nullptr;
+    m_holdMenuSpawn = cocos2d::CCPoint(0.f, 0.f);
+    m_holdTimerArmed = false;
+    m_holdTimerFired = false;
+
     m_valueType = (InputValueType)0;
     m_kerningAmount = 0;
 }
