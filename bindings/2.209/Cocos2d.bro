@@ -854,10 +854,10 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     virtual bool init() = imac 0x4769e0, m1 0x3e13cc, ios 0x2047c4;
     virtual cocos2d::CCScheduler* getScheduler() = imac 0x478f00, m1 0x3e341c, ios 0x205e78;
     virtual void setScheduler(cocos2d::CCScheduler*) = imac 0x478ec0, m1 0x3e3424, ios 0x205e30;
-    virtual cocos2d::CCActionManager* getActionManager() = imac 0x478f00;
+    virtual cocos2d::CCActionManager* getActionManager() = m1 0x3e346c, imac 0x478f00;
     virtual void setActionManager(cocos2d::CCActionManager*) = imac 0x478ec0, m1 0x3e3424, ios 0x205e30;
-    virtual cocos2d::CCTouchDispatcher* getTouchDispatcher() = ios 0x205fac;
-    virtual void setTouchDispatcher(cocos2d::CCTouchDispatcher*);
+    virtual cocos2d::CCTouchDispatcher* getTouchDispatcher() = m1 0x3e34bc, imac 0x478f50, ios 0x205fac;
+    virtual void setTouchDispatcher(cocos2d::CCTouchDispatcher*) = m1 0x3e3474, imac 0x478f10;
     virtual cocos2d::CCKeypadDispatcher* getKeypadDispatcher() = imac 0x4790d0, m1 0x3e362c, ios 0x206034;
     virtual void setKeypadDispatcher(cocos2d::CCKeypadDispatcher*) = imac 0x479090, m1 0x3e35f0, ios 0x205ff8;
     virtual cocos2d::CCKeyboardDispatcher* getKeyboardDispatcher() = imac 0x479030, m1 0x3e35a4, ios 0x205fac;
@@ -2332,7 +2332,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x6d58e0, m1 0x5cbc20, ios inline;
     void alignItemsVertically() = imac 0x8721c0, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8721e0;
-    void giveMenuTouchPriority() = m1 0x346da0, ios 0x26e980;
+    void giveMenuTouchPriority(int) = m1 0x346da0, ios 0x26e980;
     bool initWithArray(cocos2d::CCArray*) = imac 0x8719d0, m1 0x7680d0, ios 0x26e7b8;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x871f70, m1 0x76868c, ios 0x26ec8c;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0xd9570, m1 0x769820, ios 0x26f1f8;
@@ -2719,6 +2719,8 @@ class cocos2d::CCNode : cocos2d::CCObject {
     virtual void removeAllComponents() = imac 0x261480, m1 0x208ce0, ios 0x2d7e08;
     virtual void updateTweenAction(float, char const*) = imac 0x261390, m1 0x208c40, ios 0x2d7d78;
     virtual void updateTweenActionInt(float, int) = imac 0x2613a0, m1 0x208c44, ios 0x2d7d7c;
+    virtual void offsetPosition(float, float) = m1 0x206708, imac 0x25ed10;
+    virtual void applyScale(float) = m1 0x206754, imac 0x25ed50;
 
     cocos2d::CCRect boundingBox() = imac 0x25f1e0, m1 0x206b28, ios 0x2d635c;
     void childrenAlloc() = imac 0x25f3a0, m1 0x206ce4, ios inline;
@@ -4802,7 +4804,7 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     bool isDispatchEvents() = imac 0x4c6bb0, m1 0x429854, ios inline;
     bool isUsingForcePrio() = imac 0x4c7180, ios 0x1cbca0;
     void rearrangeHandlers(cocos2d::CCArray* handlers) = imac 0x4c7920, m1 0x42a624, ios inline;
-    void registerForcePrio(cocos2d::CCObject*, int) = m1 0xe0880, imac 0x4c6df0;
+    void registerForcePrio(cocos2d::CCObject*, int, int) = m1 0xe0880, imac 0x4c6df0;
     void removeAllDelegates() = imac 0x4c7830, m1 0x42a508, ios 0x1cc1a0;
     void removeDelegate(cocos2d::CCTouchDelegate*) = imac 0x4c76e0, m1 0x42a390, ios 0x1cc0b8;
     // int getTargetPrio() const;
@@ -5932,14 +5934,14 @@ class DS_Dictionary {
     std::string getStringForKey(char const*) = m1 0x1283fc, ios 0x1e8d10;
     std::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*) = m1 0x128acc;
     cocos2d::CCPoint getVec2ForKey(char const*) = m1 0x128584;
-    bool loadRootSubDictFromCompressedFile(char const*) = imac 0x159e30;
+    bool loadRootSubDictFromCompressedFile(char const*, bool) = imac 0x159e30;
     bool loadRootSubDictFromFile(char const*) = imac 0x159e30, m1 0x125984;
     bool loadRootSubDictFromString(std::string const&) = imac 0x15a520, m1 0x125fc4, ios 0x1dbf58;
     bool rectFromString(std::string const&, cocos2d::CCRect&) = imac 0x159690, m1 0x12523c;
     void removeAllKeys() = imac 0x15cb70, m1 0x128034;
     void removeKey(char const*) = imac 0x15ca80, m1 0x127f50, ios 0x1e8948;
     void removeKey(unsigned int) = imac 0x15c9a0, m1 0x127e74;
-    bool saveRootSubDictToCompressedFile(char const*) = m1 0x50a3e4;
+    bool saveRootSubDictToCompressedFile(char const*, bool) = m1 0x50a3e4;
     bool saveRootSubDictToFile(char const*) = imac 0x15a740, m1 0x126194;
     std::string saveRootSubDictToString() = imac 0x15bb50, m1 0x127238, ios 0x1e8334;
     void setArrayForKey(char const*, cocos2d::CCArray*) = imac 0x15fa70, m1 0x12aa6c, ios 0x1e96fc;

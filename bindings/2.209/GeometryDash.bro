@@ -1430,7 +1430,7 @@ class CCExtenderNode : cocos2d::CCNode {
 class CCIndexPath : cocos2d::CCObject {
     CCIndexPath() = inline;
 
-    virtual ~CCIndexPath() = win 0x87600;
+    virtual ~CCIndexPath() = win 0x87600, m1 0x50258, imac 0x566e0;
     static CCIndexPath* CCIndexPathWithSectionRow(int section, int row) = ios 0x3992d4, inline;
 
     int m_row;
@@ -1533,7 +1533,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 class CCMenuItemToggler : cocos2d::CCMenuItem {
     CCMenuItemToggler() = inline;
 
-    virtual ~CCMenuItemToggler() = win 0x48f30;
+    virtual ~CCMenuItemToggler() = win 0x48f30, m1 0x1adc4, imac 0x1f140;
     static CCMenuItemToggler* create(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x48f70, imac 0x1e950, m1 0x1a574, ios 0x222388;
     static CCMenuItemToggler* createWithSize(const char* spr1, const char* spr2, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) = inline;
     static CCMenuItemToggler* createWithStandardSprites(cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) = inline;
@@ -1663,7 +1663,7 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual void registerWithTouchDispatcher() = win 0x4b3b0, imac 0x41b410, m1 0x393418, ios 0x39b984;
     virtual void preVisitWithClippingRect(cocos2d::CCRect rect) = win 0x4bcf0, imac 0x41bee0, m1 0x393e5c, ios 0x39c24c;
     virtual void postVisit() = win 0x4bda0, imac 0x41bf60, m1 0x393ef0, ios 0x39c2e0;
-    virtual bool touchInsideClip(cocos2d::CCPoint const&) = win 0x4bc20;
+    virtual bool touchInsideClip(cocos2d::CCPoint const&) = win 0x4bc20, m1 0x393d64, imac 0x41bdd0;
 
     void constraintContent() = win 0x9999999, imac 0x41b160, m1 0x39318c, ios 0x39b714;
     void doConstraintContent(bool instant) = imac 0x41b170, m1 0x393194, ios 0x39b71c;
@@ -6088,9 +6088,9 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b350, imac 0x4946d0, m1 0x3fcb70, ios 0x3494dc;
     virtual void show() = win 0x5b730, imac 0x494bd0, m1 0x3fd0cc, ios 0x34989c;
     virtual void rebuildContent() = inline;
-    virtual TodoReturn ownsTouchPrio() = win 0x5a230;
-    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x5b9a0;
-    virtual void textInputReturn(CCTextInputNode*) = win 0x5bb00;
+    virtual TodoReturn ownsTouchPrio() = win 0x5a230, m1 0x28f4, imac 0x2bc0;
+    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x5b9a0, m1 0x3fd348, imac 0x494e70;
+    virtual void textInputReturn(CCTextInputNode*) = win 0x5bb00, m1 0x3fd4a0, imac 0x495000;
     TodoReturn addCloseButton();
     TodoReturn cancelKeyboardSlide();
     TodoReturn containsNode(cocos2d::CCNode*);
@@ -7823,7 +7823,7 @@ class GameObject : CCSpritePlus {
     void addNewSlope01Glow(bool dontDraw) = win inline, m1 0x5b8d10, ios 0x2fd954;
     void addNewSlope02(bool dontDraw) = win inline, m1 0x5b8e54, ios 0x2fda6c;
     void addNewSlope02Glow(bool dontDraw) = win inline, m1 0x5b8f5c, ios 0x2fdb18;
-    void addRotation(float rotation) = win 0x292820, imac 0x25ed50, m1 0x206754, ios 0x2d5f98;
+    void addRotation(float rotation) = win 0x292820, ios 0x2d5f98;
     void addRotation(float rotationX, float rotationY) = win inline, imac 0x68b610, m1 0x5ab80c, ios inline;
     void addToColorGroup(int group) = imac 0x68de70, m1 0x5ae1b8, ios 0x2f842c;
     void addToCustomScaleX(float scale) = win inline, imac 0x68bcd0, m1 0x5abf48, ios 0x2f6780;
@@ -15536,7 +15536,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 [[link(android)]]
 class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, MusicDownloadDelegate {
     // static MenuLayer* create() = ios 0x2655a4;
-    virtual ~MenuLayer() = win 0x46ebe0;
+    virtual ~MenuLayer() = win 0x46ebe0, m1 0x305ce8, imac 0x37a410;
 
     static MenuLayer* get() = inline;
     static cocos2d::CCScene* scene(bool isVideoOptionsOpen) = win 0x46ed30, imac 0x37a5d0, m1 0x305e10, ios 0x30144c;
@@ -22596,7 +22596,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
     static SliderThumb* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0x2ede40, m1 0x283bf0, ios 0x387a88;
 
     float getRawValue() = win 0x83e20, imac 0x2ee0e0, m1 0x283e4c, ios 0x387ddc;
-    float getValue() = win 0x83eb0;
+    float getValue() = win 0x83eb0, m1 0x283e4c, imac 0x2ee0e0;
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0xb9c0, m1 0x283cf8, ios inline;
     void setMaxOffset(float offset) = win inline, imac 0x2ee320, m1 0x284048, ios 0x387d70;
     void setRotated(bool rotated) = win inline, imac 0x2edf90, m1 0xfed8, ios 0x387b7c;
