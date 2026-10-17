@@ -7267,7 +7267,7 @@ class GameManager : GManager {
     /// Gets the active GameManager
     /// @returns The current instance pointer of the GameManager
     static GameManager* get() = inline;
-    static GameManager* sharedState() = win 0x273c50, m1 0x2ee438, imac 0x35f8a0;
+    static GameManager* sharedState() = win 0x2762c0, m1 0x2ee438, imac 0x35f8a0;
 
     /// Updates the GameManager for the current frame.
     /// @param dt Delta time (Time elapsed between the last frame and the current one)
@@ -7339,7 +7339,7 @@ class GameManager : GManager {
     const char* getFontFile(int index) = win inline, imac 0x36bf40, m1 0x2f9044, ios 0x3b2c70;
     const char* getFontTexture(int index) = win inline, imac 0x36bf90, m1 0x2f90b0, ios 0x3b2cdc;
     GJBaseGameLayer* getGameLayer() = inline;
-    bool getGameVariable(char const* key) = win 0x27bf50, imac 0x35ffc0, m1 0x2eebac, ios 0x3acc30;
+    bool getGameVariable(char const* key) = win 0x27e5c0, imac 0x35ffc0, m1 0x2eebac, ios 0x3acc30;
     bool getGameVariableDefault(const char* key, bool defaultValue) = inline;
     const char* getGTexture(int index) = win inline, imac 0x36ca30, m1 0x2f9ba8, ios 0x3b37c0;
     int getIconRequestID() = win inline, imac 0x36bd80, m1 0x2f8ea4, ios 0x3b2bb4;
@@ -14770,7 +14770,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
     void onDeathTracker(cocos2d::CCObject* sender);
     void onInfo(cocos2d::CCObject* sender);
     void onMoreGames(cocos2d::CCObject* sender) = win inline, imac 0x423c70, m1 0x39b3b8, ios inline;
-    void onPlay(cocos2d::CCObject* sender) = win 0x443c10, imac 0x421e80, m1 0x1ec4bc, ios 0x139ea0;
+    void onPlay(cocos2d::CCObject* sender) = win 0x446d50, imac 0x421e80, m1 0x1ec4bc, ios 0x139ea0;
     void onSecretDoor(cocos2d::CCObject* sender) = imac 0x424120, m1 0x39b854, ios 0x483684;
     void onTheTower(cocos2d::CCObject* sender) = imac 0x423560, m1 0x39ad00, ios 0x482d04;
     void playCoinEffect() = imac 0x423cd0, m1 0x39b41c, ios 0x483254;
@@ -15516,7 +15516,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     static MenuLayer* get() = inline;
     static cocos2d::CCScene* scene(bool isVideoOptionsOpen) = win 0x46ed30, imac 0x37a5d0, m1 0x305e10, ios 0x30144c;
 
-    virtual bool init() = win 0x46eee0, imac 0x37a7a0, m1 0x305fcc;
+    virtual bool init() = win 0x4720c0, imac 0x37a7a0, m1 0x305fcc;
     virtual void keyBackClicked() = win 0x471f60, imac 0x37ca60, m1 0x30819c, ios 0x30335c;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x472360, imac 0x37cd30, m1 0x308418, ios 0x3035e4;
     virtual void googlePlaySignedIn() = win 0x471940, imac 0x37c7d0, m1 0x307f50, ios 0x3031c0;
