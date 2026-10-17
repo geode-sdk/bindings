@@ -13942,8 +13942,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     LevelBrowserLayer() = win 0x9999999, inline;
     ~LevelBrowserLayer() = win 0x3df260, imac 0x47fd10;
 
-    static LevelBrowserLayer* create(GJSearchObject* object) = win 0xd82f0, imac 0x1dcac0;
-    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3df480, imac 0x1dca80;
+    static LevelBrowserLayer* create(GJSearchObject* object) = win 0xd82f0, imac 0x1dcac0, m1 0x19077c;
+    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3df480, imac 0x1dca80, m1 0x190730;
 
     virtual void onEnter() = win 0x3e7fa0, imac 0x4880c0, m1 0x3f1734, ios 0x498c1c;
     virtual void onEnterTransitionDidFinish() = win 0x350940, imac 0x4886a0, m1 0x3f1d84, ios 0x499110;
@@ -17973,7 +17973,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void onQuit() = win 0x517450;
     void optimizeColorGroups();
     void optimizeOpacityGroups();
-    void pauseGame(bool unfocused) = win 0x516710, m1 0x82c90, ios 0x14b788;
+    void pauseGame(bool unfocused) = win 0x516710, imac 0x8d7a0, m1 0x82c90, ios 0x14b788;
     void playEndAnimationToPos(cocos2d::CCPoint position) = win 0x506920, imac 0x83590, m1 0x79c88, ios 0x143c1c;
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint position, bool instant) = win 0x507360, imac 0x83b60, m1 0x7a1ac, ios 0x14402c;
     TodoReturn playPracticeMusic();
