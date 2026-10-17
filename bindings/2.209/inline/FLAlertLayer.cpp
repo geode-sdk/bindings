@@ -13,16 +13,6 @@ void FLAlertLayer::rebuildContent() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
-#if defined(GEODE_IS_WINDOWS)
-// TODO: 2.209
-void FLAlertLayer::incrementForcePrio() {
-    if (!m_forcePrioRegistered) {
-        m_forcePrioRegistered = true;
-        // cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->registerForcePrio(this, 2);
-    }
-}
-#endif
-
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 FLAlertLayer::FLAlertLayer() {
     m_buttonMenu = nullptr;

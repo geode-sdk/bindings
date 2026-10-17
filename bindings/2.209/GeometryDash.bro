@@ -6069,35 +6069,36 @@ class FindObjectPopup : EditorWindowPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
-    FLAlertLayer() = win 0x5a110, inline;
-    ~FLAlertLayer() = win 0x5a240, imac 0x4931e0, m1 0x3fb7c8;
+    FLAlertLayer() = win 0x5a280, inline;
+    ~FLAlertLayer() = win 0x5a3f0, imac 0x4931e0, m1 0x3fb7c8;
 
     static FLAlertLayer* create(char const* title, const std::string& desc, char const* btn) = inline;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2) = inline;
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width) = win 0x5a340, imac 0x493860, m1 0x3fbd44, ios 0x3487e0;
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a4a0;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width) = win 0x5a560, imac 0x493860, m1 0x3fbd44, ios 0x3487e0;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a610;
 
     [[missing(win)]]
-    virtual void onEnter() = win 0x5bb80, m1 0x5e6468, imac 0x495130;
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b570, imac 0x4948d0, m1 0x3fcd54, ios 0x3495e0;
-    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b6f0, imac 0x494b50, m1 0x3fd034, ios 0x349820;
-    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b610, imac 0x4949f0, m1 0x3fceac;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b680, imac 0x494aa0, m1 0x3fcf70, ios 0x349820;
-    virtual void registerWithTouchDispatcher() = win 0x5b940, imac 0x3fd2b0, m1 0x338040;
-    virtual void keyBackClicked() = win 0x5b3e0, m1 0x3fcc80, imac 0x4947f0, ios 0x349580;
-    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b350, imac 0x4946d0, m1 0x3fcb70, ios 0x3494dc;
-    virtual void show() = win 0x5b730, imac 0x494bd0, m1 0x3fd0cc, ios 0x34989c;
+    virtual void onEnter() = win 0x5bcf0, m1 0x5e6468, imac 0x495130;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b6e0, imac 0x4948d0, m1 0x3fcd54, ios 0x3495e0;
+    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b860, imac 0x494b50, m1 0x3fd034, ios 0x349820;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b780, imac 0x4949f0, m1 0x3fceac;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b7f0, imac 0x494aa0, m1 0x3fcf70, ios 0x349820;
+    virtual void registerWithTouchDispatcher() = win 0x5bab0, imac 0x3fd2b0, m1 0x338040;
+    virtual void keyBackClicked() = win 0x5b550, m1 0x3fcc80, imac 0x4947f0, ios 0x349580;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b4c0, imac 0x4946d0, m1 0x3fcb70, ios 0x3494dc;
+    // Windows places rebuildContent before show in the vtable.
     virtual void rebuildContent() = inline;
-    virtual TodoReturn ownsTouchPrio() = win 0x5a230, m1 0x28f4, imac 0x2bc0;
-    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x5b9a0, m1 0x3fd348, imac 0x494e70;
-    virtual void textInputReturn(CCTextInputNode*) = win 0x5bb00, m1 0x3fd4a0, imac 0x495000;
+    virtual void show() = win 0x5b8a0, imac 0x494bd0, m1 0x3fd0cc, ios 0x34989c;
+    virtual TodoReturn ownsTouchPrio() = win 0x5a3a0, m1 0x28f4, imac 0x2bc0;
+    virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x5bb10, m1 0x3fd348, imac 0x494e70;
+    virtual void textInputReturn(CCTextInputNode*) = win 0x5bc70, m1 0x3fd4a0, imac 0x495000;
     TodoReturn addCloseButton();
     TodoReturn cancelKeyboardSlide();
     TodoReturn containsNode(cocos2d::CCNode*);
 
-    void incrementForcePrio() = win inline;
-    bool init(int opacity) = win 0x5a5b0, ios 0x349278;
-    bool init(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a6a0, imac 0x493920, m1 0x3fbe2c, ios 0x3488a8;
+    void incrementForcePrio() = win 0x5bd10;
+    bool init(int opacity) = win 0x5a720, ios 0x349278;
+    bool init(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a810, imac 0x493920, m1 0x3fbe2c, ios 0x3488a8;
     TodoReturn keyboardRaise(float, float);
     void onBtn1(cocos2d::CCObject* sender);
     void onBtn2(cocos2d::CCObject* sender);
@@ -22524,7 +22525,7 @@ class Slider : cocos2d::CCLayer {
 
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) = win inline, imac 0x2eef30, m1 0x284b08, ios 0x388354;
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = win inline, imac 0x2ef050, m1 0x284c0c, ios 0x38837c;
-    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x9999999, imac 0x2ef170, m1 0x284d20, ios 0x3883a0;
+    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x84700, imac 0x2ef170, m1 0x284d20, ios 0x3883a0;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x84960, imac 0x2ef810, m1 0x2852fc, ios 0x388880;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x849a0, m1 0x428fac, ios 0x3888c0;
@@ -22572,14 +22573,14 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 
     static SliderThumb* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0x2ede40, m1 0x283bf0, ios 0x387a88;
 
-    float getRawValue() = win 0x83e20, imac 0x2ee0e0, m1 0x283e4c, ios 0x387ddc;
-    float getValue() = win 0x83eb0, m1 0x283e4c, imac 0x2ee0e0;
+    float getRawValue() = win 0x83f90, imac 0x2ee0e0, m1 0x283e4c, ios 0x387ddc;
+    float getValue() = win 0x84020, m1 0x283e4c, imac 0x2ee0e0;
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0xb9c0, m1 0x283cf8, ios inline;
     void setMaxOffset(float offset) = win inline, imac 0x2ee320, m1 0x284048, ios 0x387d70;
     void setRotated(bool rotated) = win inline, imac 0x2edf90, m1 0xfed8, ios 0x387b7c;
     void setSnap(float, float);
     void setSnapStep(float);
-    void setValue(float value) = win 0x83f50, imac 0x2ee1e0, m1 0x283f38, ios 0x387c60;
+    void setValue(float value) = win 0x840c0, imac 0x2ee1e0, m1 0x283f38, ios 0x387c60;
 
     float m_length;
     bool m_vertical;
