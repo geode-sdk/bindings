@@ -28,9 +28,13 @@ void GJTransformControlDelegate::updateTransformControl() {}
 
 void GJTransformControlDelegate::anchorPointMoved(cocos2d::CCPoint anchorPoint) {}
 
-cocos2d::CCNode* GJTransformControlDelegate::getTransformNode() { return nullptr; }
+cocos2d::CCNode* GJTransformControlDelegate::getTransformNode() {
+    return nullptr;
+}
 
-EditorUI* GJTransformControlDelegate::getUI() { return nullptr; }
+EditorUI* GJTransformControlDelegate::getUI() {
+    return nullptr;
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

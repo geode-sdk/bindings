@@ -268,7 +268,9 @@ int GameManager::keyForIcon(int id, int type) {
     return m_keyStartForIcon[type] + id - 1;
 }
 
-bool GameManager::levelIsPremium(int unk1, int unk2) { return false; }
+bool GameManager::levelIsPremium(int unk1, int unk2) {
+    return false;
+}
 
 void GameManager::resetAdTimer() {
     m_adTimer = 0.0;
@@ -296,13 +298,19 @@ void GameManager::shortenAdTimer(float time) {
     m_adTimer -= time;
 }
 
-bool GameManager::shouldShowInterstitial(int unk1, int unk2, int unk3) { return false; }
+bool GameManager::shouldShowInterstitial(int unk1, int unk2, int unk3) {
+    return false;
+}
 
 bool GameManager::showInterstitial() { return true; }
 
-bool GameManager::showInterstitialForced() { return false; }
+bool GameManager::showInterstitialForced() {
+    return false;
+}
 
-bool GameManager::showMainMenuAd() { return false; }
+bool GameManager::showMainMenuAd() {
+    return false;
+}
 
 void GameManager::switchScreenMode(bool fullscreen, bool borderless, bool fix, bool unused) {
     this->reloadAll(true, fullscreen, borderless, fix, unused);

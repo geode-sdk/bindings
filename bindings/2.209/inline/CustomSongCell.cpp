@@ -8,7 +8,9 @@ bool CustomSongCell::shouldReload() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-LevelSettingsObject* CustomSongCell::getLevelSettings() { return nullptr; }
+LevelSettingsObject* CustomSongCell::getLevelSettings() {
+    return nullptr;
+}
 
 void CustomSongCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 50, 50, 50 } : cocos2d::ccColor3B { 75, 75, 75 });

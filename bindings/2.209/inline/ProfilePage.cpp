@@ -3,7 +3,9 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-bool ProfilePage::isOnWatchlist(int id) { return false; }
+bool ProfilePage::isOnWatchlist(int id) {
+    return false;
+}
 
 void ProfilePage::toggleMainPageVisibility(bool visible) {
     for (auto node : geode::cocos::CCArrayExt<cocos2d::CCNode, false>(m_arrayWithUsernameLabel)) {

@@ -304,7 +304,13 @@ void GJBaseGameLayer::updateInternalCamOffsetY(float offsetY, float duration, fl
     }
 }
 
-void GJBaseGameLayer::updateReplay() {}
+void GJBaseGameLayer::updateReplay() {
+    if (!m_useReplay) return;
+            for (auto it = m_queuedReplayButtons.begin(); it != m_queuedReplayButtons.end() && it->m_step <= m_gameState.m_unkUint2;) {
+                this->handleButton(it->m_isPush, (int)it->m_button, it->m_isPlayer2);
+                it = m_queuedReplayButtons.erase(it);
+            }
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

@@ -2,9 +2,13 @@
 
 void CustomSFXDelegate::sfxObjectSelected(SFXInfoObject* object) {}
 
-int CustomSFXDelegate::getActiveSFXID() { return 0; }
+int CustomSFXDelegate::getActiveSFXID() {
+    return 0;
+}
 
-bool CustomSFXDelegate::overridePlaySFX(SFXInfoObject* object) { return false; }
+bool CustomSFXDelegate::overridePlaySFX(SFXInfoObject* object) {
+    return false;
+}
 
 int CustomSFXDelegate::getActiveCustomSFXID() { return 0; }
 
