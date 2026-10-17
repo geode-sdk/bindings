@@ -19,11 +19,11 @@ class cocos2d {
     static cocos2d::CCPoint __CCPointApplyAffineTransform(cocos2d::CCPoint const&, cocos2d::CCAffineTransform const&) = imac 0x225660, m1 0x1d2cd8;
     static cocos2d::CCSize __CCSizeApplyAffineTransform(cocos2d::CCSize const&, cocos2d::CCAffineTransform const&) = imac 0x2256d0, m1 0x1d2d34, ios inline;
     static char* cc_utf16_to_utf8(unsigned short const*, long, long*, long*) = imac 0x73fe90, m1 0x64d7a0;
-    static gd::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*) = imac 0x73fb00, m1 0x64d474;
-    static unsigned int cc_utf8_find_last_not_char(gd::vector<unsigned short>, unsigned short);
+    static std::vector<unsigned short> cc_utf16_vec_from_utf16_str(unsigned short const*) = imac 0x73fb00, m1 0x64d474;
+    static unsigned int cc_utf8_find_last_not_char(std::vector<unsigned short>, unsigned short) = imac 0x73f600, m1 0x64d05c;
     static long cc_utf8_strlen(char const*, int) = imac 0x73f9c0, m1 0x64d394;
     static unsigned short* cc_utf8_to_utf16(char const*, int*) = imac 0x73fcb0, m1 0x64d5e4;
-    static void cc_utf8_trim_ws(gd::vector<unsigned short>*);
+    static void cc_utf8_trim_ws(std::vector<unsigned short>*) = imac 0x73f740, m1 0x64d198;
     static int cc_wcslen(unsigned short const*) = imac 0x73f990, m1 0x64d368;
     static cocos2d::CCAffineTransform CCAffineTransformConcat(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&) = imac 0x225a90, m1 0x1d3040;
     static bool CCAffineTransformEqualToTransform(cocos2d::CCAffineTransform const&, cocos2d::CCAffineTransform const&) = imac 0x225b00, m1 0x1d3098, ios inline;
@@ -281,7 +281,7 @@ class cocos2d::CCAnimate : cocos2d::CCActionInterval {
 
     bool initWithAnimation(cocos2d::CCAnimation*) = imac 0x3a56b0, m1 0x32d2a4;
 
-    gd::vector<float>* m_pSplitTimes;
+    std::vector<float>* m_pSplitTimes;
     int m_nNextFrame;
     cocos2d::CCSpriteFrame* m_pOrigFrame;
     uint32_t m_uExecutedLoops;
@@ -362,9 +362,9 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
     virtual void openURL(char const*) = imac 0x315940, m1 0x2a7a84;
 
     [[missing(android, ios)]]
-    gd::string const& getResourceRootPath() = imac 0x315230, m1 0x2a779c;
+    std::string const& getResourceRootPath() = imac 0x315230, m1 0x2a779c;
     [[missing(android, ios)]]
-    gd::string const& getStartupScriptFilename() = imac 0x315930, m1 0x2a7a7c;
+    std::string const& getStartupScriptFilename() = imac 0x315930, m1 0x2a7a7c;
     [[missing(android, mac, ios)]]
     int getTimeElapsed();
     [[missing(android, mac, ios)]]
@@ -372,15 +372,15 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
     [[missing(android, mac, ios)]]
     void leftMouseUp();
     [[missing(android, mac, ios)]]
-    void logTimeElapsed(gd::string);
+    void logTimeElapsed(std::string);
     [[missing(android, mac, ios)]]
     void moveMouse(int relX, int relY);
     [[missing(android, mac, ios)]]
     void resetForceTimer();
     [[missing(android, ios)]]
-    void setResourceRootPath(gd::string const&);
+    void setResourceRootPath(std::string const&) = imac 0x314e70, m1 0x2a73ec;
     [[missing(android, ios)]]
-    void setStartupScriptFilename(gd::string const&);
+    void setStartupScriptFilename(std::string const&) = imac 0x315240, m1 0x2a77a4;
     [[missing(android, mac, ios)]]
     void setupVerticalSync();
     [[missing(android, mac, ios)]]
@@ -546,12 +546,12 @@ class cocos2d::CCBMFontConfiguration : cocos2d::CCObject {
 
     char const* description() = imac 0x6a7970, m1 0x5c278c, ios inline;
     bool initWithFNTfile(char const*) = imac 0x6a68e0, m1 0x5c15a8, ios inline;
-    void parseCharacterDefinition(gd::string, cocos2d::_BMFontDef*);
-    void parseCommonArguments(gd::string);
-    gd::set<unsigned int>* parseConfigFile(char const*) = imac 0x6a6910, m1 0x5c15dc;
-    void parseImageFileName(gd::string, char const*);
-    void parseInfoArguments(gd::string);
-    void parseKerningEntry(gd::string);
+    void parseCharacterDefinition(std::string, cocos2d::_BMFontDef*) = imac 0x6a8520, m1 0x5c32cc;
+    void parseCommonArguments(std::string) = imac 0x6a7bc0, m1 0x5c29d0;
+    std::set<unsigned int>* parseConfigFile(char const*) = imac 0x6a6910, m1 0x5c15dc;
+    void parseImageFileName(std::string, char const*) = imac 0x6a82b0, m1 0x5c3054;
+    void parseInfoArguments(std::string) = imac 0xf1850, m1 0x5c27e8;
+    void parseKerningEntry(std::string) = imac 0x6a9410, m1 0x5c3fa8;
     void purgeFontDefDictionary() = imac 0x6a76a0, m1 0x5c24f4;
     void purgeKerningDictionary() = imac 0x6a7800, m1 0x5c263c;
 }
@@ -736,7 +736,7 @@ class cocos2d::CCConfiguration : cocos2d::CCObject {
     static void purgeConfiguration() = imac 0x51ae10, m1 0x475b44;
     static cocos2d::CCConfiguration* sharedConfiguration() = imac 0x51ad80, m1 0x475ac4;
 
-    bool checkForGLExtension(gd::string const&) const;
+    bool checkForGLExtension(std::string const&) const = imac 0x51ad50, m1 0x475a90;
     void dumpInfo() const = imac 0x51a4e0, m1 0x475154;
     void gatherGPUInfo() = imac 0x51a560, m1 0x4751f4;
     bool getBool(char const*, bool) const = imac 0x51afe0, m1 0x475ccc;
@@ -820,23 +820,23 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
 
     cocos2d::CCArray* allKeys() = imac 0x2f86a0, m1 0x28cfe4;
     cocos2d::CCArray* allKeysForObject(cocos2d::CCObject*) = imac 0x2f8830, m1 0x28d17c, ios inline;
-    char const* charForKey(gd::string const&) = ios inline;
+    char const* charForKey(std::string const&) = imac 0x2f8970, m1 0x28d2d8, ios inline;
     unsigned int count() = imac 0x2f8680, m1 0x28cfc8;
-    gd::string getFirstKey() = imac 0x2f87d0, m1 0x28d114;
-    cocos2d::CCObject* objectForKey(gd::string const&);
+    std::string getFirstKey() = imac 0x2f87d0, m1 0x28d114;
     cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2f8de0;
+    cocos2d::CCObject* objectForKey(std::string const&) = imac 0x2f8a10, m1 0x28d418;
     cocos2d::CCObject* randomObject() = imac 0x2fa890, m1 0x28f050, ios inline;
     void removeAllObjects() = imac 0x2f8490, m1 0x28ce08;
     void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x2fa2d0, m1 0x28eaec;
-    void removeObjectForKey(gd::string const&);
     void removeObjectForKey(intptr_t) = imac 0x2fa400;
+    void removeObjectForKey(std::string const&) = imac 0x2f9eb0, m1 0x28e788;
     void removeObjectsForKeys(cocos2d::CCArray*) = imac 0x2fa540, m1 0x28ed60;
-    void setObject(cocos2d::CCObject*, gd::string const&);
     void setObject(cocos2d::CCObject*, intptr_t) = imac 0x2f9990, m1 0x28e2b8;
-    void setObjectUnSafe(cocos2d::CCObject*, gd::string const&);
+    void setObject(cocos2d::CCObject*, std::string const&) = imac 0x2f8f90, m1 0x28d96c;
     void setObjectUnSafe(cocos2d::CCObject*, intptr_t) = imac 0x2f9b40, m1 0x28e448;
-    cocos2d::CCString const* valueForKey(gd::string const&);
+    void setObjectUnSafe(cocos2d::CCObject*, std::string const&) = imac 0x2f93c0, m1 0x28ddb8;
     cocos2d::CCString const* valueForKey(intptr_t) = imac 0x2f8f10, m1 0x28d8d0;
+    cocos2d::CCString const* valueForKey(std::string const&) = imac 0x2f8990, m1 0x28d37c;
     bool writeToFile(char const*) = imac 0x2fab50, m1 0x28f388, ios inline;
 
     cocos2d::CCDictElement* m_pElements;
@@ -951,7 +951,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void setViewport() = imac 0x478660, m1 0x3e2f68;
     void showFPSLabel() = imac 0x477df0, m1 0x3e280c;
     void showStats() = imac 0x477d40, m1 0x3e2768;
-    void toggleShowFPS(bool, gd::string, cocos2d::CCPoint);
+    void toggleShowFPS(bool, std::string, cocos2d::CCPoint) = imac 0x4780e0, m1 0x3e2aa4;
     void updateContentScale(cocos2d::TextureQuality) = imac 0x478500, m1 0x3e2e50;
     void updateScreenScale(cocos2d::CCSize) = imac 0x478430, m1 0x3e2da0;
     void willSwitchToScene(cocos2d::CCScene*) = imac 0x478a40, m1 0x2368e4;
@@ -1260,11 +1260,11 @@ class cocos2d::CCEGLView {
     protected virtual ~CCEGLView() = imac 0x502210, m1 0x45e154, ios inline;
 
     // [[missing(android, mac, ios)]]
-    // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool);
+    // static cocos2d::CCEGLView* createWithFullScreen(std::string const&, bool);
     // [[missing(android, mac, ios)]]
-    // static cocos2d::CCEGLView* createWithFullScreen(gd::string const&, bool, GLFWvidmode const&, GLFWmonitor*);
+    // static cocos2d::CCEGLView* createWithFullScreen(std::string const&, bool, GLFWvidmode const&, GLFWmonitor*);
     // [[missing(android, mac, ios)]]
-    // static cocos2d::CCEGLView* createWithRect(gd::string const&, cocos2d::CCRect, float);
+    // static cocos2d::CCEGLView* createWithRect(std::string const&, cocos2d::CCRect, float);
     static cocos2d::CCEGLView* sharedOpenGLView() = imac 0x502140, m1 0x45e094;
 
     virtual void end() = imac 0x5022c0, m1 0x45e1d8;
@@ -1436,42 +1436,42 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual void purgeCachedEntries() = imac 0x4287d0, m1 0x39fb44;
     virtual unsigned char* getFileData(char const* pszFileName, char const* pszMode, unsigned long* pSize) = imac 0x428800, m1 0x39fb74;
     virtual unsigned char* getFileDataFromZip(char const* pszZipFilePath, char const* pszFileName, unsigned long* pSize) = imac 0x428940, m1 0x39fce0;
-    virtual gd::string fullPathForFilename(char const* pszFileName, bool skipSuffix) = imac 0x4292b0, m1 0x3a0578;
+    virtual std::string fullPathForFilename(char const* pszFileName, bool skipSuffix) = imac 0x4292b0, m1 0x3a0578;
     virtual void removeFullPath(char const* path) = imac 0x42a0c0, m1 0x3a1284;
     virtual void loadFilenameLookupDictionaryFromFile(char const* filename) = imac 0x42b3d0, m1 0x3a2634;
     virtual void setFilenameLookupDictionary(cocos2d::CCDictionary* pFilenameLookupDict) = imac 0x42b360, m1 0x3a25cc;
     virtual char const* fullPathFromRelativeFile(char const* pszFilename, char const* pszRelativeFile) = imac 0x42a220, m1 0x3a14f4;
-    virtual void setSearchResolutionsOrder(gd::vector<gd::string> const& searchResolutionsOrder);
+    virtual void setSearchResolutionsOrder(std::vector<std::string> const& searchResolutionsOrder) = imac 0x42a480, m1 0x3a1760;
     virtual void addSearchResolutionsOrder(char const* order) = imac 0x42a6c0, m1 0x3a19a0;
-    virtual gd::vector<gd::string> const& getSearchResolutionsOrder() = imac 0x42a7a0, m1 0x3a1a98;
-    virtual void setSearchPaths(gd::vector<gd::string> const& searchPaths);
+    virtual std::vector<std::string> const& getSearchResolutionsOrder() = imac 0x42a7a0, m1 0x3a1a98;
+    virtual void setSearchPaths(std::vector<std::string> const& searchPaths) = imac 0x42a7c0, m1 0x3a1aa8;
     virtual void addSearchPath(char const* path);
     virtual void removeSearchPath(char const* path);
-    virtual gd::vector<gd::string> const& getSearchPaths() = imac 0x42a7b0, m1 0x3a1aa0;
-    virtual gd::string getWritablePath() = inline;
-    virtual gd::string getWritablePath2() = imac 0x42b770, m1 0x3a2a48;
-    virtual bool isFileExist(gd::string const& strFilePath) = inline;
-    virtual bool isAbsolutePath(gd::string const& strPath);
+    virtual std::vector<std::string> const& getSearchPaths() = imac 0x42a7b0, m1 0x3a1aa0;
+    virtual std::string getWritablePath() = inline;
+    virtual std::string getWritablePath2() = imac 0x42b770, m1 0x3a2a48;
+    virtual bool isFileExist(std::string const& strFilePath) = inline;
+    virtual bool isAbsolutePath(std::string const& strPath) = imac 0x42b6b0, m1 0x3a2980;
     virtual void setPopupNotify(bool bNotify) = imac 0x42b6d0;
     virtual bool isPopupNotify() = imac 0x42b6e0, m1 0x3a29ac;
     virtual bool init() = imac 0x428700, m1 0x39fa64;
-    virtual gd::string getNewFilename(char const* pszFileName) = imac 0x428a70, m1 0x39fe00;
+    virtual std::string getNewFilename(char const* pszFileName) = imac 0x428a70, m1 0x39fe00;
     virtual bool shouldUseHD() = imac 0x428bf0, m1 0x39ff78;
-    virtual gd::string addSuffix(gd::string, gd::string);
-    virtual gd::string getPathForFilename(gd::string const& filename, gd::string const& resolutionDirectory, gd::string const& searchPath);
-    virtual gd::string getFullPathForDirectoryAndFilename(gd::string const& strDirectory, gd::string const& strFilename);
-    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const& filename);
-    virtual bool writeToFile(cocos2d::CCDictionary* dict, gd::string const& fullPath);
-    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const& filename);
+    virtual std::string addSuffix(std::string, std::string) = imac 0x428c20, m1 0x39ff9c;
+    virtual std::string getPathForFilename(std::string const& filename, std::string const& resolutionDirectory, std::string const& searchPath) = imac 0x428e60, m1 0x3a01a0;
+    virtual std::string getFullPathForDirectoryAndFilename(std::string const& strDirectory, std::string const& strFilename) = imac 0x42b540, m1 0x3a2818;
+    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename) = imac 0x428530, m1 0x39f88c;
+    virtual bool writeToFile(cocos2d::CCDictionary* dict, std::string const& fullPath) = imac 0x428540, m1 0x39f894;
+    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const& filename) = imac 0x428550;
 
     void removeAllPaths() = imac 0x42b310, m1 0x3a2580, ios inline;
 
     cocos2d::CCDictionary* m_pFilenameLookupDict;
-    gd::vector<gd::string> m_searchResolutionsOrderArray;
-    gd::vector<gd::string> m_searchPathArray;
-    gd::string m_strDefaultResRootPath;
-    gd::map<gd::string, gd::string> m_fullPathCache;
-    gd::string m_strAndroidPath;
+    std::vector<std::string> m_searchResolutionsOrderArray;
+    std::vector<std::string> m_searchPathArray;
+    std::string m_strDefaultResRootPath;
+    std::map<std::string, std::string> m_fullPathCache;
+    std::string m_strAndroidPath;
     cocos2d::CCFileUtils* s_sharedFileUtils;
 }
 
@@ -1482,9 +1482,9 @@ class cocos2d::CCFileUtilsAndroid : cocos2d::CCFileUtils {
 
     virtual bool init();
     virtual unsigned char* getFileData(char const* pszFileName, char const* pszMode, unsigned long* pSize);
-    virtual gd::string getWritablePath();
-    virtual bool isFileExist(gd::string const& strFilePath);
-    virtual bool isAbsolutePath(gd::string const& strPath);
+    virtual std::string getWritablePath();
+    virtual bool isFileExist(std::string const& strFilePath);
+    virtual bool isAbsolutePath(std::string const& strPath);
 
     unsigned char* doGetFileData(char const* pszFileName, char const* pszMode, unsigned long* pSize, bool forAsync);
     unsigned char* getFileDataForAsync(char const* pszFileName, char const* pszMode, unsigned long* pSize);
@@ -1492,24 +1492,24 @@ class cocos2d::CCFileUtilsAndroid : cocos2d::CCFileUtils {
 
 [[missing(win, android, mac)]]
 class cocos2d::CCFileUtilsIOS : cocos2d::CCFileUtils {
-    virtual gd::string getWritablePath();
-    virtual bool isFileExist(gd::string const& strFilePath);
-    virtual bool isAbsolutePath(gd::string const& strPath);
-    virtual gd::string getFullPathForDirectoryAndFilename(gd::string const& strDirectory, gd::string const& strFilename);
-    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const& filename);
-    virtual bool writeToFile(cocos2d::CCDictionary* dict, gd::string const& fullPath);
-    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const& filename);
+    virtual std::string getWritablePath();
+    virtual bool isFileExist(std::string const& strFilePath);
+    virtual bool isAbsolutePath(std::string const& strPath);
+    virtual std::string getFullPathForDirectoryAndFilename(std::string const& strDirectory, std::string const& strFilename);
+    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename);
+    virtual bool writeToFile(cocos2d::CCDictionary* dict, std::string const& fullPath);
+    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const& filename);
 }
 
 [[missing(win, android, ios)]]
 class cocos2d::CCFileUtilsMac : cocos2d::CCFileUtils {
-    virtual gd::string getWritablePath() = imac 0x6e5140, m1 0x5f949c;
-    virtual bool isFileExist(gd::string const& strFilePath);
-    virtual bool isAbsolutePath(gd::string const& strPath);
-    virtual gd::string getFullPathForDirectoryAndFilename(gd::string const& strDirectory, gd::string const& strFilename);
-    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(gd::string const& filename);
-    virtual bool writeToFile(cocos2d::CCDictionary* dict, gd::string const& fullPath);
-    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(gd::string const& filename);
+    virtual std::string getWritablePath() = imac 0x6e5140, m1 0x5f949c;
+    virtual bool isFileExist(std::string const& strFilePath) = imac 0x64d970, m1 0x5f9580;
+    virtual bool isAbsolutePath(std::string const& strPath) = imac 0x6e5890, m1 0x5f9b58;
+    virtual std::string getFullPathForDirectoryAndFilename(std::string const& strDirectory, std::string const& strFilename) = imac 0x6e55b0, m1 0x5f98fc;
+    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename) = imac 0x6e58e0, m1 0x5f9b84;
+    virtual bool writeToFile(cocos2d::CCDictionary* dict, std::string const& fullPath) = imac 0x6e6440, m1 0x5fa474;
+    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const& filename) = imac 0x6e6690, m1 0xbced0;
 }
 
 [[link(win), missing(android, mac, ios), since("5.6.0")]]
@@ -1519,14 +1519,14 @@ class cocos2d::CCFileUtilsWin32 : cocos2d::CCFileUtils {
     virtual bool init();
     virtual void addSearchPath(char const* path);
     virtual void removeSearchPath(char const* path);
-    virtual gd::string getWritablePath();
-    virtual gd::string getWritablePath2();
-    virtual bool isFileExist(gd::string const& strFilePath);
-    virtual bool isAbsolutePath(gd::string const& strPath);
-    virtual gd::string getPathForFilename(gd::string const& filename, gd::string const& resolutionDirectory, gd::string const& searchPath);
-    virtual gd::string fullPathForFilename(char const* pszFileName);
+    virtual std::string getWritablePath();
+    virtual std::string getWritablePath2();
+    virtual bool isFileExist(std::string const& strFilePath);
+    virtual bool isAbsolutePath(std::string const& strPath);
+    virtual std::string getPathForFilename(std::string const& filename, std::string const& resolutionDirectory, std::string const& searchPath);
+    virtual std::string fullPathForFilename(char const* pszFileName);
 
-    gd::string utf8Togbk(char const* src);
+    std::string utf8Togbk(char const* src);
 }
 
 [[link(win, android)]]
@@ -1961,9 +1961,9 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     void setFntFile(char const* filename) = imac 0x6acd50, m1 0x5c7268, ios inline;
 
     uint16_t* m_sString;
-    gd::string m_sFntFile;
+    std::string m_sFntFile;
     uint16_t* m_sInitialString;
-    gd::string m_sInitialStringUTF8;
+    std::string m_sInitialStringUTF8;
     cocos2d::CCTextAlignment m_pAlignment;
     float m_fWidth;
     cocos2d::CCBMFontConfiguration* m_pConfiguration;
@@ -2028,9 +2028,9 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
     cocos2d::CCSize m_tDimensions;
     cocos2d::CCTextAlignment m_hAlignment;
     cocos2d::CCVerticalTextAlignment m_vAlignment;
-    gd::string* m_pFontName;
+    std::string* m_pFontName;
     float m_fFontSize;
-    gd::string m_string;
+    std::string m_string;
     bool m_shadowEnabled;
     cocos2d::CCSize m_shadowOffset;
     float m_shadowOpacity;
@@ -2332,7 +2332,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x6d77b0, m1 0x5cd9b0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8740b0;
-    void giveMenuTouchPriority();
+    void giveMenuTouchPriority(int) = m1 0x346e98;
     bool initWithArray(cocos2d::CCArray*) = imac 0x8738a0, m1 0x769e84;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x873e40, m1 0x76a440;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0xd98c0, m1 0x76b5d4;
@@ -2640,6 +2640,8 @@ class cocos2d::CCNode : cocos2d::CCObject {
     virtual float getPositionX() = imac 0x25ed20, m1 0x2068f0;
     virtual void setPositionY(float) = imac 0x25ed80, m1 0x206944;
     virtual float getPositionY() = imac 0x25ed30, m1 0x2068f8;
+    virtual void offsetPosition(float, float) = imac 0x25edc0, m1 0x20698c;
+    virtual void applyScale(float) = imac 0x25ee00, m1 0x2069d8;
     virtual void setSkewX(float) = imac 0x25ea60, m1 0x206704;
     virtual float getSkewX() = imac 0x25ea50, m1 0x2066fc;
     virtual void setSkewY(float) = imac 0x25ea90, m1 0x206720;
@@ -3256,7 +3258,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     // void toggleUniformColorMode(bool);
     void updateVisible() = imac 0xd2cf0, m1 0x7a3434, ios inline;
 
-    gd::string m_sPlistFile;
+    std::string m_sPlistFile;
     float m_fElapsed;
     cocos2d::CCPoint modeA_gravity;
     float modeA_speed;
@@ -3411,14 +3413,14 @@ class cocos2d::CCPointArray : cocos2d::CCObject {
     void addControlPoint(cocos2d::CCPoint) = imac 0x2bdc20, m1 0x25dfe4;
     unsigned int count() = imac 0x2be110, m1 0x25e46c;
     cocos2d::CCPoint getControlPointAtIndex(unsigned int) = imac 0x2be030, m1 0x25e390;
-    gd::vector<cocos2d::CCPoint*> const* getControlPoints() = imac 0x2bdc10, m1 0x25dfdc;
+    std::vector<cocos2d::CCPoint*> const* getControlPoints() = imac 0x2bdc10, m1 0x25dfdc;
     bool initWithCapacity(unsigned int) = imac 0x2bd7a0, m1 0x25dba4;
     void insertControlPoint(cocos2d::CCPoint&, unsigned int) = imac 0x2bdd60, m1 0x25e0ec;
     void removeControlPointAtIndex(unsigned int) = imac 0x2be0b0, m1 0x25e404;
     void replaceControlPoint(cocos2d::CCPoint&, unsigned int) = imac 0x2be080, m1 0x25e3d0;
     cocos2d::CCPointArray* reverse() = imac 0x2be130, m1 0x25e480;
     void reverseInline() = imac 0x2be3a0, m1 0x25e690;
-    void setControlPoints(gd::vector<cocos2d::CCPoint*>*);
+    void setControlPoints(std::vector<cocos2d::CCPoint*>*) = imac 0x2bd9d0, m1 0x25dd8c;
 }
 
 [[link(win, android)]]
@@ -3442,7 +3444,7 @@ class cocos2d::CCPrettyPrinter : cocos2d::CCDataVisitor {
     CCPrettyPrinter(int) = win inline, imac 0x4ae300, m1 0x4139b8;
 
     virtual void clear() = imac 0x4ae4b0, m1 0x413ba8;
-    virtual gd::string getResult() = imac 0x4ae4e0, m1 0x413bcc;
+    virtual std::string getResult() = imac 0x4ae4e0, m1 0x413bcc;
     virtual void visitObject(cocos2d::CCObject const*) = imac 0x4ae520, m1 0x413bf4;
     virtual void visit(cocos2d::CCBool const*) = imac 0x4ae5a0, m1 0x413c74;
     virtual void visit(cocos2d::CCInteger const*) = imac 0x4ae630, m1 0x413d04;
@@ -3860,7 +3862,7 @@ class cocos2d::CCSet : cocos2d::CCObject {
     void removeAllObjects() = imac 0x898a80, m1 0x78c1d8;
     void removeObject(cocos2d::CCObject*) = imac 0x898d20, m1 0x78c464;
 
-    gd::set<cocos2d::CCObject*> m_pSet;
+    std::set<cocos2d::CCObject*> m_pSet;
 }
 
 [[link(win, android)]]
@@ -4294,7 +4296,7 @@ class cocos2d::CCString : cocos2d::CCObject {
     unsigned int length() const = imac 0x88e330, m1 0x7827a0;
     unsigned int uintValue() const = imac 0x88e350, m1 0x7827b8, ios inline;
 
-    gd::string m_sString;
+    std::string m_sString;
 }
 
 [[link(win, android)]]
@@ -4361,8 +4363,8 @@ class cocos2d::CCTextFieldTTF : cocos2d::CCLabelTTF, cocos2d::CCIMEDelegate {
 
     cocos2d::CCTextFieldDelegate* m_pDelegate;
     int m_nCharCount;
-    gd::string* m_pInputText;
-    gd::string* m_pPlaceHolder;
+    std::string* m_pInputText;
+    std::string* m_pPlaceHolder;
     cocos2d::ccColor3B m_ColorSpaceHolder;
     bool m_bSecureTextEntry;
     cocos2d::CCTextFieldTTF::LengthStack* m_pLens;
@@ -4802,7 +4804,7 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     bool isDispatchEvents() = imac 0x4c70c0, m1 0x429f5c, ios inline;
     bool isUsingForcePrio() = imac 0x4c7690;
     void rearrangeHandlers(cocos2d::CCArray* handlers) = imac 0x4c7e30, m1 0x42ad2c, ios inline;
-    void registerForcePrio(cocos2d::CCObject*, int);
+    void registerForcePrio(cocos2d::CCObject*, int, int) = imac 0x4c7300, m1 0xe0cec;
     void removeAllDelegates() = imac 0x4c7d40, m1 0x42ac10;
     void removeDelegate(cocos2d::CCTouchDelegate*) = imac 0x4c7bf0, m1 0x42aa98;
     // int getTargetPrio() const;
@@ -5312,7 +5314,7 @@ class cocos2d::CCUserDefault {
     ~CCUserDefault() = imac 0x6afc60, m1 0x5c9b34;
 
     static bool createXMLFile() = imac 0x6b0ec0, m1 0x5cab40;
-    static gd::string const& getXMLFilePath() = imac 0x6b0ed0, m1 0x5cab48;
+    static std::string const& getXMLFilePath() = imac 0x6b0ed0, m1 0x5cab48;
     static void initXMLFilePath() = imac 0x6b0de0, m1 0x5caa68;
     static bool isXMLFileExist() = imac 0x6b0e70, m1 0x5caaec;
     static void purgeSharedUserDefault() = imac 0x6afcf0, m1 0x5c9b94;
@@ -5327,13 +5329,13 @@ class cocos2d::CCUserDefault {
     float getFloatForKey(char const*, float) = imac 0x6b0400, m1 0x5ca2c8;
     int getIntegerForKey(char const*) = imac 0x6b0170, m1 0x5ca0f0;
     int getIntegerForKey(char const*, int) = imac 0x6b0180, m1 0x5ca0f8;
-    gd::string getStringForKey(char const*) = imac 0x6b0910, m1 0x5ca688;
-    gd::string getStringForKey(char const*, gd::string const&);
+    std::string getStringForKey(char const*) = imac 0x6b0910, m1 0x5ca688;
+    std::string getStringForKey(char const*, std::string const&) = imac 0x6b0940, m1 0x5ca6b0;
     void setBoolForKey(char const*, bool) = imac 0x6b0050, m1 0x5c9f58;
     void setDoubleForKey(char const*, double) = imac 0x6b0820, m1 0x5ca5f4;
     void setFloatForKey(char const*, float) = imac 0x41e740, m1 0x5ca410;
     void setIntegerForKey(char const*, int) = imac 0x6b0310, m1 0x5ca234;
-    void setStringForKey(char const*, gd::string const&);
+    void setStringForKey(char const*, std::string const&) = imac 0x6b0c30, m1 0x5ca91c;
 }
 
 [[link(win, android)]]
@@ -5422,7 +5424,7 @@ class cocos2d::extension::CCControlButton : cocos2d::extension::CCControl {
     static cocos2d::extension::CCControlButton* create() = imac 0x340be0, m1 0x2d25a0;
     static cocos2d::extension::CCControlButton* create(cocos2d::extension::CCScale9Sprite*) = imac 0x33f4e0, m1 0x2d0f10;
     static cocos2d::extension::CCControlButton* create(cocos2d::CCNode*, cocos2d::extension::CCScale9Sprite*) = imac 0x33f160, m1 0x2d0c28;
-    static cocos2d::extension::CCControlButton* create(gd::string, char const*, float);
+    static cocos2d::extension::CCControlButton* create(std::string, char const*, float) = imac 0x33f300, m1 0x2d0d70;
 
     virtual void needsLayout() = imac 0x3400d0, m1 0x2d1afc;
     virtual void setEnabled(bool) = imac 0x33f640, m1 0x2d100c;
@@ -5441,7 +5443,7 @@ class cocos2d::extension::CCControlButton : cocos2d::extension::CCControl {
     virtual void setMargins(int, int) = imac 0x33f620, m1 0x2d0ff8;
     virtual bool init() = imac 0x33ecd0, m1 0x2d07bc;
     virtual bool initWithLabelAndBackgroundSprite(cocos2d::CCNode*, cocos2d::extension::CCScale9Sprite*) = imac 0x33ed20, m1 0x2d080c;
-    virtual bool initWithTitleAndFontNameAndFontSize(gd::string, char const*, float);
+    virtual bool initWithTitleAndFontNameAndFontSize(std::string, char const*, float) = imac 0x33f2b0, m1 0x2d0d20;
     virtual bool initWithBackgroundSprite(cocos2d::extension::CCScale9Sprite*) = imac 0x33f490, m1 0x2d0ec4;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x6c160, m1 0x65364;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x340790, m1 0x2d2168;
@@ -5694,13 +5696,13 @@ class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::extension::CCHttpRequest : cocos2d::CCObject {
     int _requestType;
-    gd::string _url;
-    gd::vector<char> _requestData;
-    gd::string _tag;
+    std::string _url;
+    std::vector<char> _requestData;
+    std::string _tag;
     cocos2d::CCObject* _pTarget;
     cocos2d::extension::SEL_HttpResponse _pSelector;
     void* _pUserData;
-    gd::vector<gd::string> _headers;
+    std::vector<std::string> _headers;
     int _type;
     bool _shouldCancel;
     int _downloadProgress;
@@ -5712,10 +5714,10 @@ class cocos2d::extension::CCHttpRequest : cocos2d::CCObject {
 class cocos2d::extension::CCHttpResponse : cocos2d::CCObject {
     cocos2d::extension::CCHttpRequest* _pHttpRequest;
     bool _succeed;
-    gd::vector<char> _responseData;
-    gd::vector<char> _responseHeader;
+    std::vector<char> _responseData;
+    std::vector<char> _responseHeader;
     int _responseCode;
-    gd::string _errorBuffer;
+    std::string _errorBuffer;
 }
 
 [[link(win, android)]]
@@ -5882,10 +5884,10 @@ class cocos2d::extension::CCTableViewCell : cocos2d::CCNode, cocos2d::extension:
 
 [[link(win, android)]]
 class cocos2d::ZipUtils {
-    static gd::string base64DecodeEnc(gd::string const&, gd::string);
-    static gd::string base64EncodeEnc(gd::string const&, gd::string);
-    static gd::string base64URLDecode(gd::string const&);
-    static gd::string base64URLEncode(gd::string const&);
+    static std::string base64DecodeEnc(std::string const&, std::string) = imac 0x1e8c80, m1 0x19b234;
+    static std::string base64EncodeEnc(std::string const&, std::string) = imac 0x1e8ec0, m1 0x19b4a8;
+    static std::string base64URLDecode(std::string const&) = imac 0x1e9100;
+    static std::string base64URLEncode(std::string const&) = imac 0x1e91e0;
     // static void ccDecodeEncodedPvr(unsigned int*, int);
     static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out);
     // static int ccInflateCCZFile(char const*, unsigned char**);
@@ -5895,13 +5897,13 @@ class cocos2d::ZipUtils {
     // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     // static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     // static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-    static gd::string compressString(gd::string const& data, bool encrypt, int encryptionKey);
-    static gd::string decompressString(gd::string const& data, bool encrypt, int encryptionKey);
-    static gd::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1e86e0, m1 0x19ac8c;
-    static gd::string encryptDecrypt(gd::string const& data, int encryptionKey) = inline;
-    static gd::string encryptDecryptWKey(gd::string const&, gd::string) = inline;
-    static unsigned char hexToChar(gd::string const&);
-    static gd::string urlDecode(gd::string const&);
+    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey);
+    static std::string decompressString(std::string const& data, bool encrypt, int encryptionKey) = imac 0x1e8a00, m1 0x19afac;
+    static std::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1e86e0, m1 0x19ac8c;
+    static std::string encryptDecrypt(std::string const& data, int encryptionKey) = inline;
+    static std::string encryptDecryptWKey(std::string const&, std::string) = inline;
+    static unsigned char hexToChar(std::string const&) = imac 0x1e9650, m1 0x19bc9c;
+    static std::string urlDecode(std::string const&) = imac 0x1e92c0, m1 0x19b930;
 }
 
 [[link(win, android)]]
@@ -5910,12 +5912,12 @@ class DS_Dictionary {
 
     static void copyFile(char const*, char const*) = imac 0x15bc70, m1 0x127534;
 
-    void addBoolValuesToMapForKey(gd::map<gd::string, bool>&, char const*, bool);
-    void addBoolValuesToMapForKeySpecial(gd::map<gd::string, bool>&, char const*, bool);
+    void addBoolValuesToMapForKey(std::map<std::string, bool>&, char const*, bool) = imac 0x160b90, m1 0x12bc54;
+    void addBoolValuesToMapForKeySpecial(std::map<std::string, bool>&, char const*, bool) = imac 0x160830, m1 0x12b92c;
     void checkCompatibility() = imac 0x159e90, m1 0x125ba8;
-    gd::string cleanStringWhiteSpace(gd::string const&);
+    std::string cleanStringWhiteSpace(std::string const&) = imac 0x158ec0, m1 0x124cdc;
     cocos2d::CCObject* decodeObjectForKey(char const*, bool, int) = imac 0x161250, m1 0x12c268;
-    gd::vector<gd::string> getAllKeys() = imac 0x15c760, m1 0x127e28;
+    std::vector<std::string> getAllKeys() = imac 0x15c760, m1 0x127e28;
     cocos2d::CCArray* getArrayForKey(char const*, bool) = imac 0x15fe80, m1 0x12b060;
     bool getBoolForKey(char const*) = imac 0x15ce40, m1 0x128468;
     cocos2d::CCDictionary* getDictForKey(char const*, bool) = imac 0x160d60, m1 0x12bdf8;
@@ -5923,55 +5925,55 @@ class DS_Dictionary {
     unsigned int getIndexOfKey(char const*) = imac 0x15c8d0, m1 0x127f84;
     unsigned int getIndexOfKeyWithClosestAlphaNumericalMatch(char const*) = imac 0x15c990, m1 0x12803c;
     int getIntegerForKey(char const*) = imac 0x15cd00, m1 0x12835c;
-    gd::string getKey(unsigned int) = imac 0x15c640, m1 0x127d0c;
+    std::string getKey(unsigned int) = imac 0x15c640, m1 0x127d0c;
     unsigned int getNumKeys() = imac 0x15c5c0, m1 0x127ca0;
     cocos2d::CCObject* getObjectForKey(char const*) = imac 0x160000, m1 0x12b1c8;
-    gd::vector<cocos2d::CCRect> getRectArrayForKey(char const*) = m1 0x128ec0;
+    std::vector<cocos2d::CCRect> getRectArrayForKey(char const*) = m1 0x128ec0;
     cocos2d::CCRect getRectForKey(char const*) = m1 0x12893c;
-    gd::vector<gd::string> getStringArrayForKey(char const*) = imac 0x15d590, m1 0x128b30;
-    gd::string getStringForKey(char const*) = m1 0x128680;
-    gd::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*) = m1 0x128d50;
+    std::vector<std::string> getStringArrayForKey(char const*) = imac 0x15d590, m1 0x128b30;
+    std::string getStringForKey(char const*) = m1 0x128680;
+    std::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*) = m1 0x128d50;
     cocos2d::CCPoint getVec2ForKey(char const*) = m1 0x128808;
-    bool loadRootSubDictFromCompressedFile(char const*);
+    bool loadRootSubDictFromCompressedFile(char const*, bool) = imac 0x159ee0;
     bool loadRootSubDictFromFile(char const*) = imac 0x159ee0, m1 0x125c08;
-    bool loadRootSubDictFromString(gd::string const&);
-    bool rectFromString(gd::string const&, cocos2d::CCRect&);
+    bool loadRootSubDictFromString(std::string const&) = imac 0x15a5d0, m1 0x126248;
+    bool rectFromString(std::string const&, cocos2d::CCRect&) = imac 0x159740, m1 0x1254c0;
     void removeAllKeys() = imac 0x15cc20, m1 0x1282b8;
     void removeKey(char const*) = imac 0x15cb30, m1 0x1281d4;
     void removeKey(unsigned int) = imac 0x15ca50, m1 0x1280f8;
-    bool saveRootSubDictToCompressedFile(char const*);
+    bool saveRootSubDictToCompressedFile(char const*, bool) = m1 0x50b398;
     bool saveRootSubDictToFile(char const*) = imac 0x15a7f0, m1 0x126418;
-    gd::string saveRootSubDictToString() = imac 0x15bc00, m1 0x1274bc;
+    std::string saveRootSubDictToString() = imac 0x15bc00, m1 0x1274bc;
     void setArrayForKey(char const*, cocos2d::CCArray*) = imac 0x15fb20, m1 0x12acf0;
     void setBoolForKey(char const*, bool) = imac 0x15e0e0, m1 0x12953c;
     void setBoolForKey(char const*, bool, bool) = imac 0x15e190, m1 0x1295e4;
-    void setBoolMapForKey(char const*, gd::map<gd::string, bool>&);
+    void setBoolMapForKey(char const*, std::map<std::string, bool>&) = imac 0x1605f0, m1 0x12b704;
     void setDictForKey(char const*, cocos2d::CCDictionary*) = imac 0x1603b0, m1 0x12b510;
     void setFloatForKey(char const*, float) = imac 0x15e310, m1 0x129724;
     void setFloatForKey(char const*, float, bool) = imac 0x15e320, m1 0x12972c;
     void setIntegerForKey(char const*, int) = imac 0x15de00, m1 0x1292d0;
     void setIntegerForKey(char const*, int, bool) = imac 0x15de10, m1 0x1292d8;
     void setObjectForKey(char const*, cocos2d::CCObject*) = imac 0x15fc70, m1 0x12ae2c;
-    void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&);
-    void setRectArrayForKey(char const*, gd::vector<cocos2d::CCRect> const&, bool);
+    void setRectArrayForKey(char const*, std::vector<cocos2d::CCRect> const&) = m1 0x12a958;
+    void setRectArrayForKey(char const*, std::vector<cocos2d::CCRect> const&, bool) = m1 0x12a960;
     void setRectForKey(char const*, cocos2d::CCRect const&) = imac 0x15ed00, m1 0x12a07c;
     void setRectForKey(char const*, cocos2d::CCRect const&, bool) = imac 0x15ed10, m1 0x12a084;
-    void setStringArrayForKey(char const*, gd::vector<gd::string> const&);
-    void setStringArrayForKey(char const*, gd::vector<gd::string> const&, bool);
-    void setStringForKey(char const*, gd::string const&);
-    void setStringForKey(char const*, gd::string const&, bool);
+    void setStringArrayForKey(char const*, std::vector<std::string> const&) = imac 0x15f060, m1 0x12a418;
+    void setStringArrayForKey(char const*, std::vector<std::string> const&, bool) = imac 0x15f070, m1 0x12a420;
+    void setStringForKey(char const*, std::string const&) = imac 0x15e610, m1 0x1299a8;
+    void setStringForKey(char const*, std::string const&, bool) = imac 0x15e620, m1 0x1299b0;
     void setSubDictForKey(char const*) = imac 0x15dae0, m1 0x129030, ios inline;
     void setSubDictForKey(char const*, bool, bool) = imac 0x15db90, m1 0x1290d4;
-    void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&);
-    void setVec2ArrayForKey(char const*, gd::vector<cocos2d::CCPoint> const&, bool);
+    void setVec2ArrayForKey(char const*, std::vector<cocos2d::CCPoint> const&) = m1 0x12a610;
+    void setVec2ArrayForKey(char const*, std::vector<cocos2d::CCPoint> const&, bool) = m1 0x12a618;
     void setVec2ForKey(char const*, cocos2d::CCPoint const&) = imac 0x15e800, m1 0x129b34;
     void setVec2ForKey(char const*, cocos2d::CCPoint const&, bool) = imac 0x15e810, m1 0x129b3c;
-    void split(gd::string const&, char const*, gd::vector<gd::string>&);
-    bool splitWithForm(gd::string const&, gd::vector<gd::string>&);
+    void split(std::string const&, char const*, std::vector<std::string>&) = imac 0x159050, m1 0x124e4c;
+    bool splitWithForm(std::string const&, std::vector<std::string>&) = imac 0x159500, m1 0x125254;
     void stepBackToRootSubDict() = imac 0x15c440, m1 0x127b74;
     bool stepIntoSubDictWithKey(char const*) = imac 0x15c200, m1 0x1279b0;
     void stepOutOfSubDict() = imac 0x15c410, m1 0x127b58, ios inline;
-    bool vec2FromString(gd::string const&, cocos2d::CCPoint&);
+    bool vec2FromString(std::string const&, cocos2d::CCPoint&) = imac 0x159d60, m1 0x125a4c;
 }
 
 [[link(win, android)]]
