@@ -1181,6 +1181,7 @@ class ButtonSprite : cocos2d::CCSprite {
     float m_scale;
     float m_height;
     bool m_absolute;
+    PAD = win 0x4;
     cocos2d::CCLabelBMFont* m_label;
     cocos2d::CCSprite* m_subSprite;
     cocos2d::CCSprite* m_subBGSprite;
