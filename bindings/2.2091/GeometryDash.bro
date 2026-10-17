@@ -15539,8 +15539,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void onGooglePlayGames(cocos2d::CCObject* sender) = win inline, imac 0x37cd20, m1 0x308654, ios inline;
     void onMoreGames(cocos2d::CCObject* sender) = imac 0x37cb00, m1 0x30846c;
     void onMyProfile(cocos2d::CCObject* sender) = win 0x4742c0, imac 0x37c710, m1 0x3080d0;
-    void onNewgrounds(cocos2d::CCObject* sender) = imac 0x37c460, m1 0x307e00;
-    void onNews(cocos2d::CCObject* sender);
+    void onNewgrounds(cocos2d::CCObject* sender) = win 0x475020, imac 0x37c460, m1 0x307e00;
+    void onNews(cocos2d::CCObject* sender) = win 0x474480;
     void onOptions(cocos2d::CCObject* sender) = imac 0x37c3e0, m1 0x307d68;
     void onOptionsInstant() = imac 0x37acb0, m1 0x306678;
     void onPlay(cocos2d::CCObject* sender) = imac 0x37c210;
@@ -15558,7 +15558,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void showTOS() = win 0x474190, imac 0x37c930;
     void syncPlatformAchievements(float dt) = win inline, imac 0x37ce20, m1 0x308748;
     void tryShowAd(float dt) = win inline, imac 0x37caa0, m1 0x72a8, ios inline;
-    TodoReturn updateNewsBadge();
+    void updateNewsBadge() = win 0x474840;
     void updateUserProfileButton() = win 0xd7140, m1 0x791f94;
     void videoOptionsClosed() = win inline, imac 0x37cf10, m1 0x308810;
     void videoOptionsOpened() = win inline, imac 0x37cef0, m1 0x308800;
