@@ -4420,8 +4420,8 @@ class EditorSFXManager {
     unsigned long long importFromString(std::string const&, EditorSFXImportOptions const&, std::string*) = win 0x189df0, imac 0x8eaf50, m1 0x7d4404, ios 0x4c8198;
     bool init();
     bool overwriteMyConfigFromLive(int, std::string*) = win 0x18a790, imac 0x8ebd20, m1 0x7d51f4, ios 0x4c8ca0;
-    void playAction(int, int) = win 0x183fe0;
-    void playAction(int);
+    void playAction(int, int);
+    void playAction(int) = win 0x183fe0;
     void releaseBinding(EditorSFXBinding*);
     void removeFavoriteConfig(int) = win 0x18a170;
     void removeMyConfig(int);
