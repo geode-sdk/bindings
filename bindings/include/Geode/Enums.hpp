@@ -1310,6 +1310,15 @@ namespace GameVar {
     constexpr auto HitboxOnDeath = "0179";
     constexpr auto LinkControlsQuickToggle = "0180";
     constexpr auto StaticTraceArrows = "0181";
+    constexpr auto LegacyMoveMenu = "0191";
+    constexpr auto DisableZoomLabel = "0195";
+    constexpr auto SkipDeathTriggers = "0212";
+    constexpr auto HitboxTrail = "0215";
+    constexpr auto SafeMode = "0218";
+    constexpr auto OfflineMode = "0219";
+    constexpr auto DisableAnchorSnap = "0242";
+    constexpr auto DisableMessaging = "0243";
+    constexpr auto DisablePinch = "0245";
 }
 
 // frozen archaic versions of enums
