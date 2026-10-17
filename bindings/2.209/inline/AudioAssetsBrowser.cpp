@@ -29,9 +29,13 @@ AudioAssetsBrowser* AudioAssetsBrowser::create(std::vector<int>& songIds, std::v
     return nullptr;
 }
 
-bool AudioAssetsBrowser::cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) { return false; }
+bool AudioAssetsBrowser::cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) {
+    return false;
+}
 
-int AudioAssetsBrowser::getSelectedCellIdx() { return 0; }
+int AudioAssetsBrowser::getSelectedCellIdx() {
+    return 0;
+}
 
 int AudioAssetsBrowser::getCellDelegateType() { return 1; }
 

@@ -2,7 +2,9 @@
 
 void RewardedVideoDelegate::rewardedVideoFinished() {}
 
-bool RewardedVideoDelegate::shouldOffsetRewardCurrency() { return false; }
+bool RewardedVideoDelegate::shouldOffsetRewardCurrency() {
+    return false;
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

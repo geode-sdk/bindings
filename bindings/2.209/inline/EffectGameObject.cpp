@@ -15,7 +15,9 @@ EffectGameObject* EffectGameObject::create(char const* frame) {
     return nullptr;
 }
 
-bool EffectGameObject::isSpecialSpawnObject() { return false; }
+bool EffectGameObject::isSpecialSpawnObject() {
+    return false;
+}
 
 int EffectGameObject::getTargetColorIndex() {
     switch (m_objectID) {

@@ -12,11 +12,17 @@ void GameObject::animationTriggered() {}
 
 void GameObject::activatedByPlayer(PlayerObject* player) {}
 
-bool GameObject::hasBeenActivatedByPlayer(PlayerObject* player) { return false; }
+bool GameObject::hasBeenActivatedByPlayer(PlayerObject* player) {
+    return false;
+}
 
-bool GameObject::hasBeenActivated() { return false; }
+bool GameObject::hasBeenActivated() {
+    return false;
+}
 
-bool GameObject::canAllowMultiActivate() { return false; }
+bool GameObject::canAllowMultiActivate() {
+    return false;
+}
 
 void GameObject::blendModeChanged() {}
 
@@ -24,25 +30,41 @@ void GameObject::updateMainParticleOpacity(unsigned char opacity) {}
 
 void GameObject::updateSecondaryParticleOpacity(unsigned char opacity) {}
 
-bool GameObject::canReverse() { return false; }
+bool GameObject::canReverse() {
+    return false;
+}
 
-bool GameObject::isSpecialSpawnObject() { return false; }
+bool GameObject::isSpecialSpawnObject() {
+    return false;
+}
 
-bool GameObject::canBeOrdered() { return false; }
+bool GameObject::canBeOrdered() {
+    return false;
+}
 
 void GameObject::setObjectLabel(cocos2d::CCLabelBMFont* label) {}
 
-bool GameObject::getHasSyncedAnimation() { return false; }
+bool GameObject::getHasSyncedAnimation() {
+    return false;
+}
 
-bool GameObject::getHasRotateAction() { return false; }
+bool GameObject::getHasRotateAction() {
+    return false;
+}
 
-bool GameObject::canMultiActivate(bool multiActivate) { return false; }
+bool GameObject::canMultiActivate(bool multiActivate) {
+    return false;
+}
 
 void GameObject::updateTextKerning(int kerning) {}
 
-int GameObject::getTextKerning() { return false; }
+int GameObject::getTextKerning() {
+    return false;
+}
 
-cocos2d::CCLabelBMFont* GameObject::getObjectLabel() { return nullptr; }
+cocos2d::CCLabelBMFont* GameObject::getObjectLabel() {
+    return nullptr;
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::CCSprite* GameObject::addCustomBlackChild(std::string frame, float opacity, bool color) {

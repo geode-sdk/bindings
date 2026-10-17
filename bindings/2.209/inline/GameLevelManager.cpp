@@ -135,7 +135,9 @@ void GameLevelManager::setActiveSmartTemplate(GJSmartTemplate* smartTemplate) {
 
 void GameLevelManager::setLevelFeatured(int id, int rank, bool epic) {}
 
-bool GameLevelManager::setLevelStars(int id, int stars, bool coins) { return false; }
+bool GameLevelManager::setLevelStars(int id, int stars, bool coins) {
+    return false;
+}
 
 int GameLevelManager::specialFromLikeKey(char const* key) {
     std::string keyStr = key;

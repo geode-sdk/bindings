@@ -10,7 +10,9 @@ void TableViewDelegate::TableViewDidDisplayCellForRowAtIndexPath(CCIndexPath& in
 
 void TableViewDelegate::TableViewWillReloadCellForRowAtIndexPath(CCIndexPath& indexPath, TableViewCell* cell, TableView* tableView) {}
 
-float TableViewDelegate::cellHeightForRowAtIndexPath(CCIndexPath& indexPath, TableView* tableView) { return 0; }
+float TableViewDelegate::cellHeightForRowAtIndexPath(CCIndexPath& indexPath, TableView* tableView) {
+    return 0;
+}
 
 void TableViewDelegate::didSelectRowAtIndexPath(CCIndexPath& indexPath, TableView* tableView) {}
 
