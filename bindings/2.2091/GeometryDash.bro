@@ -7267,7 +7267,7 @@ class GameManager : GManager {
     /// Gets the active GameManager
     /// @returns The current instance pointer of the GameManager
     static GameManager* get() = inline;
-    static GameManager* sharedState() = win 0x9999999, imac 0x35fe10, m1 0x2eeb4c;
+    static GameManager* sharedState() = win 0x2762c0, imac 0x35fe10, m1 0x2eeb4c;
 
     /// Updates the GameManager for the current frame.
     /// @param dt Delta time (Time elapsed between the last frame and the current one)
@@ -22527,7 +22527,7 @@ class Slider : cocos2d::CCLayer {
 
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) = win inline, imac 0x2ef3f0, m1 0x285180;
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = win inline, imac 0x2ef510, m1 0x285284;
-    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x9999999, imac 0x2ef630, m1 0x285398;
+    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x84700, imac 0x2ef630, m1 0x285398;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x84ad0, imac 0x2efcd0, m1 0x285974;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x84b10, m1 0x4296b4;
