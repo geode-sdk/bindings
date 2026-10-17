@@ -7,7 +7,6 @@ CCTextInputNode::CCTextInputNode() {
     m_keyboardShowing = false;
     m_fontValue1 = -0.5f;
     m_fontValue2 = 8.f;
-    m_isChatFont = false;
 
     m_unkDelegate = nullptr;
     m_parseEmotes = 0;
