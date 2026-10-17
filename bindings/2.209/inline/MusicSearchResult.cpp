@@ -10,10 +10,6 @@ bool MusicSearchResult::init(GJSongType songType) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-MusicSearchResult::~MusicSearchResult() {
-    CC_SAFE_RELEASE(m_filterObjects);
-}
-
 MusicSearchResult* MusicSearchResult::create(GJSongType songType) {
     auto ret = new MusicSearchResult();
     if (ret->init(songType)) {

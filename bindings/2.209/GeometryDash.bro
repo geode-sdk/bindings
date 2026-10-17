@@ -10361,7 +10361,7 @@ class GJFlyGroundLayer : GJGroundLayer {
 
 [[link(android)]]
 class GJFollowCommandLayer : SetupTriggerPopup {
-    virtual ~GJFollowCommandLayer() = win 0x377f50;
+    virtual ~GJFollowCommandLayer();
 
     static GJFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects);
 
@@ -10386,20 +10386,6 @@ class GJFollowCommandLayer : SetupTriggerPopup {
     void updateXModLabel();
     void updateYMod();
     void updateYModLabel();
-
-    CCTextInputNode* m_moveTimeInput;
-    Slider* m_moveTimeSlider;
-    float m_moveTime;
-    CCTextInputNode* m_xModInput;
-    CCTextInputNode* m_yModInput;
-    Slider* m_xModSlider;
-    Slider* m_yModSlider;
-    float m_xMod;
-    float m_yMod;
-    CCTextInputNode* m_targetIDInput;
-    int m_targetGroupID;
-    CCTextInputNode* m_followIDInput;
-    int m_followGroupID;
 }
 
 [[link(android)]]
@@ -11156,7 +11142,12 @@ class GJLevelScoreCell : TableViewCell {
 class GJLinkObject {
     // ~GJLinkObject();
 
-    TodoReturn getTitle();
+    std::string getTitle();
+
+    int m_unk000;
+    int m_linkType;
+    std::string m_title;
+    std::string m_link;
 }
 
 [[link(android)]]
@@ -11600,7 +11591,7 @@ class GJPathSprite : CCSpriteCOpacity {
 
 [[link(android)]]
 class GJPFollowCommandLayer : SetupTriggerPopup {
-    virtual ~GJPFollowCommandLayer() = win 0x3959b0;
+    virtual ~GJPFollowCommandLayer();
 
     static GJPFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects);
 
@@ -11626,22 +11617,6 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     void updateXModLabel();
     void updateYMod();
     void updateYModLabel();
-
-    CCTextInputNode* m_moveTimeInput;
-    Slider* m_moveTimeSlider;
-    float m_moveTime;
-    CCTextInputNode* m_speedInput;
-    CCTextInputNode* m_delayInput;
-    CCTextInputNode* m_offsetInput;
-    CCTextInputNode* m_maxSpeedInput;
-    Slider* m_speedSlider;
-    Slider* m_delaySlider;
-    float m_delay;
-    float m_speed;
-    int m_offset;
-    float m_maxSpeed;
-    CCTextInputNode* m_targetIDInput;
-    int m_targetGroupID;
 }
 
 [[link(android)]]
@@ -15976,16 +15951,15 @@ class MultiTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class MusicArtistObject : cocos2d::CCObject {
-    virtual ~MusicArtistObject() = win 0x47dca0;
+    virtual ~MusicArtistObject();
 
-    static MusicArtistObject* create(int, std::string) = imac 0x3a7a50;
+    static MusicArtistObject* create(int id, std::string name) = imac 0x3a7a50;
 
-    bool init(int, std::string) = win inline, ios inline;
+    bool init(int id, std::string name) = win inline, ios inline;
 
     int m_artistID;
     std::string m_artistName;
-    std::string m_artistURL;
-    std::string m_artistYouTube;
+    std::vector<GJLinkObject> m_artistLinks;
 }
 
 [[link(android)]]
@@ -16309,7 +16283,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 [[link(android)]]
 class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     MusicSearchResult() = win 0x47dbc0, inline;
-    ~MusicSearchResult() = win inline;
+    ~MusicSearchResult() = win 0x4947e0;
 
     static MusicSearchResult* create(GJSongType songType) = win inline, imac 0x665000;
 
@@ -16329,6 +16303,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     cocos2d::CCArray* m_filterObjects;
     cocos2d::CCArray* m_tagFilterObjects;
     cocos2d::CCArray* m_artistFilterObjects;
+    cocos2d::CCArray* m_viewFilterObjects;
     int m_startIndex;
     int m_audioType;
     std::string m_searchQuery;
@@ -16336,6 +16311,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     bool m_tagFilter;
     bool m_artistFilter;
     GJSongType m_songType;
+    std::vector<int> m_filterIDs;
 }
 
 [[link(android)]]
@@ -22700,7 +22676,6 @@ class SongInfoLayer : FLAlertLayer {
     virtual ~SongInfoLayer() = win 0x62fbe0;
 
     static SongInfoLayer* create(int artistID) = m1 0x259564;
-    static SongInfoLayer* create(std::string songName, std::string artistName, std::string songURL, std::string newgroundsURL, std::string youtubeURL, std::string facebookURL, int songID, std::string songTags, int nongType);
     static SongInfoLayer* create(SongInfoObject*);
     static SongInfoLayer* create(std::string, std::string, std::vector<GJLinkObject>, std::vector<GJLinkObject>, int, std::string, int);
 
@@ -22721,12 +22696,11 @@ class SongInfoLayer : FLAlertLayer {
     void onYT(cocos2d::CCObject* sender);
     void showCustomMusicUnlockInfo() = imac 0x6d7840, m1 0x5edeb0, ios 0x44d378;
 
-    std::string m_downloadLink;
-    std::string m_newgroundsLink;
-    std::string m_youtubeLink;
-    std::string m_facebookLink;
+    std::string m_songName;
+    std::string m_artistName;
     int m_songID;
     int m_musicCustomizerMessageIndex;
+    std::vector<GJLinkObject> m_artistLinks;
 }
 
 [[link(android)]]
@@ -22735,10 +22709,7 @@ class SongInfoObject : cocos2d::CCNode {
 
     static SongInfoObject* create(cocos2d::CCDictionary* dict) = win 0x2fd670, imac 0x64a660;
     static SongInfoObject* create(int songID) = win 0x490ff0, m1 0x2992dc;
-
-    /// @param downloadLinkOverride The user-friendly page URL for the song
-    static SongInfoObject* create(int songID, std::string songName, std::string artistName, int artistID, float filesize, std::string youtubeVideo, std::string youtubeChannel, std::string url, std::string downloadLinkOverride, int nongType, std::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = m1 0x7bc1a8;
-    static SongInfoObject* create(int, std::string, std::string, int, float, std::string, int, std::string, bool, int, int);
+    static SongInfoObject* create(int, std::string, std::string, int, float, std::string, int, std::string, bool, int, int) = m1 0x7bc1a8;
     static SongInfoObject* createWithCoder(DS_Dictionary* dict) = ios 0x1e0808;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x492d50, imac 0x663690, m1 0x59c344, ios 0x1e0fcc;
@@ -22753,7 +22724,7 @@ class SongInfoObject : cocos2d::CCNode {
     std::string getArtistNames(int unused) = imac 0x663860, m1 0x59c4c8, ios 0x1e1150;
     int getExtraArtistCount() = win 0x493560, imac 0x663ea0, m1 0x59c994, ios 0x1e14c4;
     TodoReturn getSongLinks();
-    std::string getTagsString(bool shortTags) = imac 0x6645d0, m1 0x59d070, ios 0x1e1a5c;
+    std::string getTagsString(bool shortTags) = win 0x494190, imac 0x6645d0, m1 0x59d070, ios 0x1e1a5c;
 
     /// @param downloadLinkOverride The user-friendly page URL for the song
     bool init(int, std::string, std::string, int, float, std::string, int, std::string, bool, int, int) = win 0xa8dd0, m1 0x1ad494;
@@ -22764,14 +22735,11 @@ class SongInfoObject : cocos2d::CCNode {
     int m_songID;
     std::string m_songName;
     std::string m_artistName;
-    std::string m_youtubeVideo;
-    std::string m_youtubeChannel;
     std::string m_songUrl;
-    std::string m_downloadLinkOverride;
     int m_artistID;
     float m_fileSize;
     int m_nongType;
-    std::string m_extraArtists;
+    std::string m_downloadLinkOverride;
     bool m_unloaded;
     bool m_verified;
     bool m_isBlocked;
@@ -22783,9 +22751,15 @@ class SongInfoObject : cocos2d::CCNode {
     int m_songOrder;
     std::string m_extraArtistNames;
     std::unordered_set<int> m_artistIDs;
+    std::string m_songLinksString;
+    std::string m_artistLinksString;
+    std::vector<GJLinkObject> m_songLinks;
+    std::vector<GJLinkObject> m_artistLinks;
     std::set<int> m_tags;
     std::string m_longTagsString;
     std::string m_shortTagsString;
+    std::string m_unk318;
+    std::string m_unk338;
 }
 
 [[link(android)]]
