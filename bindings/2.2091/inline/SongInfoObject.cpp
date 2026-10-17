@@ -10,20 +10,21 @@ bool SongInfoObject::containsTag(int tag) {
 #if defined(GEODE_IS_WINDOWS)
 bool SongInfoObject::canEncode() { return true; }
 
+// TODO: 2.209
 void SongInfoObject::copyValues(SongInfoObject* object) {
     if (!object) return;
-    m_youtubeVideo = object->m_youtubeVideo;
-    m_youtubeChannel = object->m_youtubeChannel;
+    // m_youtubeVideo = object->m_youtubeVideo;
+    // m_youtubeChannel = object->m_youtubeChannel;
     m_downloadLinkOverride = object->m_downloadLinkOverride;
     m_songUrl = object->m_songUrl;
-    m_extraArtists = object->m_extraArtists;
+    // m_extraArtists = object->m_extraArtists;
     m_extraArtistNames = object->m_extraArtistNames;
 }
 
 void SongInfoObject::updateArtists(std::string artists) {
-    m_extraArtists = artists;
+    // m_extraArtists = artists;
     m_artistIDs.clear();
-    if (m_extraArtists.empty()) return;
+    // if (m_extraArtists.empty()) return;
     std::vector<std::string> splitArtists;
     auto start = 0;
     auto index = artists.find_first_of(".");

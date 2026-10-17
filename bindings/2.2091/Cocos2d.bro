@@ -2245,25 +2245,25 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint) = win inline, imac 0x6af2f0, m1 0x5c9394, ios inline;
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x48270, imac 0x6af4b0, m1 0x5c9500;
 
-    virtual void draw() = imac 0x6af7a0, m1 0x5c97b0;
-    virtual bool isOpacityModifyRGB() = imac 0x6afac0, m1 0x5c9a28;
-    virtual void setOpacityModifyRGB(bool) = imac 0x6afae0, m1 0x5c9a38;
-    virtual unsigned char getOpacity() = imac 0x6af9f0, m1 0x5c99b0;
-    virtual unsigned char getDisplayedOpacity() = imac 0x6afa10, m1 0x5c99c0;
-    virtual void setOpacity(unsigned char) = imac 0x6afa40, m1 0x5c99dc;
-    virtual void updateDisplayedOpacity(unsigned char) = imac 0x6afb00, m1 0x5c9a48;
-    virtual bool isCascadeOpacityEnabled() = imac 0x6afb20, m1 0x5c9a58;
-    virtual void setCascadeOpacityEnabled(bool) = imac 0x6afb40, m1 0x5c9a68;
-    virtual cocos2d::ccColor3B const& getColor() = imac 0x6afa60, m1 0x5c99ec;
-    virtual cocos2d::ccColor3B const& getDisplayedColor() = imac 0x6afb60, m1 0x5c9a78;
-    virtual void setColor(cocos2d::ccColor3B const&) = imac 0x6afa80, m1 0x5c99fc;
-    virtual void updateDisplayedColor(cocos2d::ccColor3B const&) = imac 0x6afb80, m1 0x5c9a88;
-    virtual bool isCascadeColorEnabled() = imac 0x6afbc0, m1 0x5c9ab0;
-    virtual void setCascadeColorEnabled(bool) = imac 0x6afbe0, m1 0x5c9ac0;
+    virtual void draw() = win 0x9999999, imac 0x6af7a0, m1 0x5c97b0;
+    virtual bool isOpacityModifyRGB() = win 0x9999999, imac 0x6afac0, m1 0x5c9a28;
+    virtual void setOpacityModifyRGB(bool) = win 0x9999999, imac 0x6afae0, m1 0x5c9a38;
+    virtual unsigned char getOpacity() = win 0x9999999, imac 0x6af9f0, m1 0x5c99b0;
+    virtual unsigned char getDisplayedOpacity() = win 0x9999999, imac 0x6afa10, m1 0x5c99c0;
+    virtual void setOpacity(unsigned char) = win 0x9999999, imac 0x6afa40, m1 0x5c99dc;
+    virtual void updateDisplayedOpacity(unsigned char) = win 0x9999999, imac 0x6afb00, m1 0x5c9a48;
+    virtual bool isCascadeOpacityEnabled() = win 0x9999999, imac 0x6afb20, m1 0x5c9a58;
+    virtual void setCascadeOpacityEnabled(bool) = win 0x9999999, imac 0x6afb40, m1 0x5c9a68;
+    virtual cocos2d::ccColor3B const& getColor() = win 0x9999999, imac 0x6afa60, m1 0x5c99ec;
+    virtual cocos2d::ccColor3B const& getDisplayedColor() = win 0x9999999, imac 0x6afb60, m1 0x5c9a78;
+    virtual void setColor(cocos2d::ccColor3B const&) = win 0x9999999, imac 0x6afa80, m1 0x5c99fc;
+    virtual void updateDisplayedColor(cocos2d::ccColor3B const&) = win 0x9999999, imac 0x6afb80, m1 0x5c9a88;
+    virtual bool isCascadeColorEnabled() = win 0x9999999, imac 0x6afbc0, m1 0x5c9ab0;
+    virtual void setCascadeColorEnabled(bool) = win 0x9999999, imac 0x6afbe0, m1 0x5c9ac0;
 
     bool initWithStrikePoint(cocos2d::CCPoint) = win inline, imac 0x6af450, m1 0x5c94ac, ios inline;
     bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x48310, imac 0x6af600, m1 0x5c9620;
-    void strike() = imac 0x6af740, m1 0x5c9744;
+    void strike() = win 0x9999999, imac 0x6af740, m1 0x5c9744;
     void strikeFinished() = imac 0x6af9d0, m1 0x5c9994;
     void strikeRandom() = win inline, imac 0x6af8f0, m1 0x5c98ac, ios inline;
     void strikeWithSeed(uint64_t seed) = win inline, imac 0x6af960, m1 0x5c9924, ios inline;
@@ -4512,8 +4512,8 @@ class cocos2d::CCTexturePVR : cocos2d::CCObject {
     static cocos2d::CCTexturePVR* create(char const*) = win inline, imac 0x272380, m1 0x218e54, ios inline;
 
     bool createGLTexture() = win 0x144020, imac 0x271d10, m1 0x218880;
-    bool initWithContentsOfFile(char const*) = imac 0x272050, m1 0x218b40;
-    bool unpackPVRv2Data(unsigned char*, unsigned int) = imac 0x2717c0, m1 0x218408;
+    bool initWithContentsOfFile(char const*) = win 0x9999999, imac 0x272050, m1 0x218b40;
+    bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0x9999999, imac 0x2717c0, m1 0x218408;
     bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0x144880, imac 0x271a30, m1 0x218628;
 }
 
