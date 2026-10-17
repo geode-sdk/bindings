@@ -11,25 +11,25 @@ float kmDegreesToRadians(float);
 [[link(win, android)]]
 void kmGLFreeAll();
 [[link(win, android)]]
-void kmGLGetMatrix(unsigned int, kmMat4*);
+void kmGLGetMatrix(unsigned int, kmMat4*) = imac 0x1eb3e0, m1 0x19da08;
 [[link(win, android)]]
-void kmGLLoadIdentity();
+void kmGLLoadIdentity() = imac 0x1eb320, m1 0x19d940;
 [[link(win, android)]]
 void kmGLLoadMatrix(kmMat4 const*);
 [[link(win, android)]]
-void kmGLMatrixMode(unsigned int);
+void kmGLMatrixMode(unsigned int) = imac 0x1eb280, m1 0x19d88c;
 [[link(win, android)]]
-void kmGLMultMatrix(kmMat4 const*);
+void kmGLMultMatrix(kmMat4 const*) = imac 0x1eb380, m1 0x19d9a4;
 [[link(win, android)]]
-void kmGLPopMatrix();
+void kmGLPopMatrix() = imac 0x1eb300, m1 0x19d918;
 [[link(win, android)]]
-void kmGLPushMatrix();
+void kmGLPushMatrix() = imac 0x1eb2c0, m1 0x19d8d4;
 [[link(win, android)]]
 void kmGLRotatef(float, float, float, float);
 [[link(win, android)]]
 void kmGLScalef(float, float, float);
 [[link(win, android)]]
-void kmGLTranslatef(float, float, float);
+void kmGLTranslatef(float, float, float) = imac 0x1eb430, m1 0x19da5c;
 [[link(win, android)]]
 kmMat3* const kmMat3Adjugate(kmMat3*, kmMat3 const*);
 [[link(win, android)]]
@@ -97,7 +97,7 @@ kmMat4* const kmMat4LookAt(kmMat4*, kmVec3 const*, kmVec3 const*, kmVec3 const*)
 [[link(win, android)]]
 kmMat4* const kmMat4Multiply(kmMat4*, kmMat4 const*, kmMat4 const*);
 [[link(win, android)]]
-kmMat4* const kmMat4OrthographicProjection(kmMat4*, float, float, float, float, float, float);
+kmMat4* const kmMat4OrthographicProjection(kmMat4*, float, float, float, float, float, float) = imac 0x3bd790, m1 0x342b84;
 [[link(win, android)]]
 kmMat4* const kmMat4PerspectiveProjection(kmMat4*, float, float, float, float);
 [[link(win, android)]]

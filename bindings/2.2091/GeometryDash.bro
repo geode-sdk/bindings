@@ -943,7 +943,7 @@ class BoomListLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     BoomListView() = win 0x3f5d0, inline;
-    ~BoomListView() = win 0x3f6c0, m1 0x28ba58;
+    ~BoomListView() = win 0x3f6c0, m1 0x28ba58, imac 0x2f6c40;
 
     static BoomListView* create(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win inline, imac 0x2f6f60, m1 0x28bc68, ios inline;
 
@@ -1289,7 +1289,7 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 [[link(android)]]
 class CCBlockLayer : cocos2d::CCLayerColor {
     CCBlockLayer() = win 0x46020, inline;
-    ~CCBlockLayer() = win 0x460f0;
+    ~CCBlockLayer() = win 0x460f0, imac 0x518a90, m1 0x473954;
 
     static CCBlockLayer* create() = win inline, imac 0x518e10, ios inline;
 
@@ -1651,7 +1651,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 [[link(android), depends(CCContentLayer)]]
 class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     CCScrollLayerExt(cocos2d::CCRect rect) = win 0x4a880, imac 0x41aad0, m1 0x392df4;
-    ~CCScrollLayerExt() = win 0x4aed0, m1 0x31744c;
+    ~CCScrollLayerExt() = win 0x4aed0, imac 0x4b1330, m1 0x393638;
 
     virtual void visit() = win 0x4baf0, imac 0x41c130, m1 0x39429c;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x4b410, imac 0x41b960, m1 0x393b58;
@@ -1974,7 +1974,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setAllowNewlines(bool);
     void setDelegate(TextInputDelegate* delegate) = inline;
     void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, imac 0x68e90, ios inline;
-    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x68e70;
+    void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x68e70, m1 0x62464;
     void setLabelPlaceholderScale(float v) = win inline, imac 0x68e50, m1 0x6245c;
     void setMaxLabelLength(int v) = inline;
     void setMaxLabelScale(float v) = win inline, imac 0x68e10, m1 0x6244c;
@@ -6103,7 +6103,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b860, imac 0x495060, m1 0x3fd73c;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b780, imac 0x494f00, m1 0x3fd5b4;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b7f0, imac 0x494fb0, m1 0x3fd678;
-    virtual void registerWithTouchDispatcher() = win 0x5bab0, m1 0x33876c;
+    virtual void registerWithTouchDispatcher() = win 0x5bab0, imac 0x4952d0, m1 0x33876c;
     virtual void keyBackClicked() = win 0x5b550, imac 0x494d00, m1 0x3fd388;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b4c0, imac 0x494be0, m1 0x3fd278;
     virtual void show() = win 0x5b8a0, imac 0x4950e0, m1 0x3fd7d4;
@@ -13964,7 +13964,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     ~LevelBrowserLayer() = win 0x3e1d20, imac 0x480220;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = imac 0x1dcb70, m1 0x190a00;
-    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3e1f40, m1 0x1909b4;
+    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3e1f40, imac 0x1dcb30, m1 0x1909b4;
 
     virtual void onEnter() = win 0x3eaa60, imac 0x4885d0, m1 0x3f1e3c;
     virtual void onEnterTransitionDidFinish() = win 0x3533a0, imac 0x488bb0, m1 0x3f248c;
@@ -16945,7 +16945,7 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, CreateStartPosPopupDelegate, VolumeChangeDelegate {
     PauseLayer() = inline;
-    virtual ~PauseLayer() = win 0x4d6600;
+    virtual ~PauseLayer() = win 0x4d6600, imac 0x3bf480, m1 0x3444e0;
 
     static PauseLayer* create(bool unfocused) = win inline, imac 0x3bf660;
 
