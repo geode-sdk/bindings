@@ -2640,6 +2640,8 @@ class cocos2d::CCNode : cocos2d::CCObject {
     virtual float getPositionX() = imac 0x25ec70, m1 0x20666c, ios 0x2d5eb0;
     virtual void setPositionY(float) = m1 0x2066c0, imac 0x25ecd0, ios 0x2d5f04;
     virtual float getPositionY() = imac 0x25ec80, m1 0x206674, ios 0x2d5eb8;
+    virtual void offsetPosition(float, float) = m1 0x206708, imac 0x25ed10;
+    virtual void applyScale(float) = m1 0x206754, imac 0x25ed50;
     virtual void setSkewX(float) = imac 0x25e9b0, m1 0x206480, ios 0x2d5cc4;
     virtual float getSkewX() = imac 0x25e9a0, m1 0x206478, ios 0x2d5cbc;
     virtual void setSkewY(float) = imac 0x25e9e0, m1 0x20649c, ios 0x2d5ce0;
@@ -2719,8 +2721,6 @@ class cocos2d::CCNode : cocos2d::CCObject {
     virtual void removeAllComponents() = imac 0x261480, m1 0x208ce0, ios 0x2d7e08;
     virtual void updateTweenAction(float, char const*) = imac 0x261390, m1 0x208c40, ios 0x2d7d78;
     virtual void updateTweenActionInt(float, int) = imac 0x2613a0, m1 0x208c44, ios 0x2d7d7c;
-    virtual void offsetPosition(float, float) = m1 0x206708, imac 0x25ed10;
-    virtual void applyScale(float) = m1 0x206754, imac 0x25ed50;
 
     cocos2d::CCRect boundingBox() = imac 0x25f1e0, m1 0x206b28, ios 0x2d635c;
     void childrenAlloc() = imac 0x25f3a0, m1 0x206ce4, ios inline;
