@@ -3,6 +3,8 @@
 // Needed for GEODE_IS_MACOS
 #include <Geode/platform/cplatform.h>
 
+#include <Geode/ObjectIDs.hpp>
+
 struct TodoReturnPlaceholder;
 using TodoReturn = TodoReturnPlaceholder;
 
