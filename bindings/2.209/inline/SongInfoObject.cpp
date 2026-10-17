@@ -11,33 +11,24 @@ bool SongInfoObject::containsTag(int tag) {
 bool SongInfoObject::canEncode() { return true; }
 
 void SongInfoObject::copyValues(SongInfoObject* object) {
+    // Fill missing metadata without overwriting existing values.
     if (!object) return;
-    m_youtubeVideo = object->m_youtubeVideo;
-    m_youtubeChannel = object->m_youtubeChannel;
-    m_downloadLinkOverride = object->m_downloadLinkOverride;
-    m_songUrl = object->m_songUrl;
-    m_extraArtists = object->m_extraArtists;
-    m_extraArtistNames = object->m_extraArtistNames;
-}
 
-void SongInfoObject::updateArtists(std::string artists) {
-    m_extraArtists = artists;
-    m_artistIDs.clear();
-    if (m_extraArtists.empty()) return;
-    std::vector<std::string> splitArtists;
-    auto start = 0;
-    auto index = artists.find_first_of(".");
-    auto size = artists.size();
-    while (index != std::string::npos) {
-        auto str = artists.substr(start, index - start);
-        if (!str.empty() || start != size) {
-            splitArtists.push_back(str);
-        }
-        start = index + 1;
-        index = artists.find_first_of(".", start);
+    // Keep serialized and parsed links in sync.
+    if (m_songLinksString.empty()) {
+        this->setSongLinks(object->m_songLinksString);
     }
-    for (auto& artistID : splitArtists) {
-        m_artistIDs.insert(atoi(artistID.c_str()));
+    if (m_artistLinksString.empty()) {
+        this->setArtistLinks(object->m_artistLinksString);
+    }
+    if (m_songUrl.empty()) {
+        m_songUrl = object->m_songUrl;
+    }
+    if (m_extraArtists.empty()) {
+        m_extraArtists = object->m_extraArtists;
+    }
+    if (m_extraArtistNames.empty()) {
+        m_extraArtistNames = object->m_extraArtistNames;
     }
 }
 #endif
