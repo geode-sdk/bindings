@@ -1194,7 +1194,7 @@ namespace GameVar {
     constexpr auto PlaytestNoUI = "0046";
     constexpr auto ShownLevelProfile = "0047";
     constexpr auto ShownMyProfile = "0048";
-    constexpr auto EditorButtonColumns = "0049";
+    constexpr auto EditorButtonsPerRow = "0049";
     constexpr auto EditorButtonRows = "0050";
     constexpr auto ShownNewgroundsDisclaimer = "0051";
     constexpr auto FastReset = "0052";
