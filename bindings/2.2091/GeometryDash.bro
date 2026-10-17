@@ -22310,15 +22310,15 @@ class ShareCommentLayer : FLAlertLayer, UploadActionDelegate, UploadPopupDelegat
     virtual void onClosePopup(UploadActionPopup* popup) = win 0x6301b0, imac 0x6b3aa0, m1 0x5cd424;
     virtual void emotePickerClosed(EmotePickerPopup*) = win 0x630050;
 
-    bool init(std::string title, int charLimit, CommentType type, int ID, std::string desc) = imac 0x6b1260, m1 0x5b1424;
+    bool init(std::string title, int charLimit, CommentType type, int ID, std::string desc) = imac 0x6b1260, m1 0x5cbf24;
     TodoReturn lockInput(std::string const&);
     void onClear(cocos2d::CCObject* sender) = win 0x62f300, imac 0x6b2930, m1 0x5cc304;
-    void onClose(cocos2d::CCObject* sender);
-    void onEmotes(cocos2d::CCObject* sender);
-    void onPercent(cocos2d::CCObject* sender) = imac 0x6b27a0, m1 0x346730;
-    void onShare(cocos2d::CCObject* sender) = win 0x16bcd0, imac 0x3ac0c0;
-    void updateCharCountLabel() = win inline, imac 0xe040;
-    void updateDescText(std::string desc) = win 0x77700, ios inline;
+    void onClose(cocos2d::CCObject* sender) = m1 0x5cc3bc;
+    void onEmotes(cocos2d::CCObject* sender) = m1 0x5cc9a0;
+    void onPercent(cocos2d::CCObject* sender) = imac 0x6b27a0, m1 0x5cc168;
+    void onShare(cocos2d::CCObject* sender) = win 0x16bcd0, imac 0x3ac0c0, m1 0x5cc428;
+    void updateCharCountLabel() = win inline, imac 0xe040, m1 0x5cd038;
+    void updateDescText(std::string desc) = win 0x77700, ios inline, m1 0x5cc9f4;
     void updatePercentLabel() = win 0x81420, imac 0x6b2870, m1 0x5cc238;
 
     int m_charLimit;
