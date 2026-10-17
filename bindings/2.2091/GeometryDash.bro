@@ -1909,7 +1909,7 @@ class CCTextInputMenu : cocos2d::CCLayer {
     void onPaste(cocos2d::CCObject* sender);
 }
 
-[[link(android)]]
+[[link(android), depends(EmoteToken)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
     CCTextInputNode() = inline;
     ~CCTextInputNode() = win inline, imac 0x65690, m1 0x5e3e0;
