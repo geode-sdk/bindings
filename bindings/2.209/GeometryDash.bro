@@ -17632,9 +17632,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
-    android, ios {
-        bool m_collidingBetweenSteps;
-    }
+    bool m_collidingBetweenSteps;
     double m_scaleXRelated4;
     double m_scaleXRelated5;
     bool m_isCollidingWithSlope;
