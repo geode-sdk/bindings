@@ -7944,7 +7944,7 @@ class GameObject : CCSpritePlus {
     void playDestroyObjectAnim(GJBaseGameLayer* layer) = win 0x2a7830, imac 0x2484c0, m1 0x1f1afc;
     void playPickupAnimation(cocos2d::CCSprite* target, float offset, float duration, float randomValue1, float randomValue2) = win 0x2a7260, imac 0x247fc0, m1 0x1f162c, ios inline;
     void playPickupAnimation(cocos2d::CCSprite* target, float xOffset, float yOffset, float controlYOffset1, float controlYOffset2, float endYOffset, float duration, float fadeDelay, float fadeDuration, bool rotate, float randomValue1, float randomValue2) = win 0x2a7350, imac 0x248050, m1 0x1f16b4;
-    void playShineEffect() = imac 0x68ea60, m1 0x305270;
+    void playShineEffect() = win 0x296460, imac 0x68ea60, m1 0x305270;
     void quickUpdatePosition() = win inline, imac 0x68d390, m1 0x5ad484;
     void quickUpdatePosition2() = win inline, imac 0x68d400, m1 0x5ad4ec, ios inline;
     void removeColorSprite() = win inline, imac 0x6760b0, m1 0x5a7514, ios inline;
@@ -9150,7 +9150,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void calculateColorGroups() = imac 0xfa050, m1 0xd8de0;
     void cameraMoveX(float value, float duration, float rate, bool unused) = win inline, imac 0x13b1e0, m1 0x1101a0, ios inline;
     void cameraMoveY(float value, float duration, float rate, bool force) = win inline, imac 0x13b290, m1 0x11023c, ios inline;
-    bool canBeActivatedByPlayer(PlayerObject* player, EffectGameObject* object) = win 0x9999999, imac 0x105760, m1 0xe3844;
+    bool canBeActivatedByPlayer(PlayerObject* player, EffectGameObject* object) = win 0x31ef50, imac 0x105760, m1 0xe3844;
     bool canProcessSFX(SFXTriggerState& state, std::unordered_map<int, int>& stateIndices, std::unordered_map<int, float>& times, std::vector<SFXTriggerState>& states) = imac 0x13ef50, m1 0x113754;
     bool canTouchObject(GameObject* object) = win inline, imac 0x105730, m1 0xe3814, ios inline;
     void checkCameraLimitAfterTeleport(PlayerObject* player, float yOffset) = win 0x3427b0, imac 0xfd7e0, m1 0xdc6a4;
@@ -9405,7 +9405,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void sortStickyGroups() = win 0x1a2090, imac 0xf67a0, m1 0xd63b0;
     void spawnGroupTriggered(int targetID, float delay, bool spawnOrdered, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline;
     void spawnObjectsInOrder(cocos2d::CCArray* objects, double delay, std::vector<int> const& remapKeys, int uniqueID, int controlID) = imac 0x10a770, m1 0xe8320;
-    cocos2d::CCParticleSystemQuad* spawnParticle(char const* plist, int zOrder, cocos2d::tCCPositionType positionType, cocos2d::CCPoint position) = imac 0x13c0a0, m1 0x110c70;
+    cocos2d::CCParticleSystemQuad* spawnParticle(char const* plist, int zOrder, cocos2d::tCCPositionType positionType, cocos2d::CCPoint position) = win 0x349ef0, imac 0x13c0a0, m1 0x110c70;
     void spawnParticleTrigger(SpawnParticleGameObject* object) = win inline, imac 0x13bec0, m1 0x110b0c;
     void spawnParticleTrigger(int particleID, cocos2d::CCPoint position, float rotation, float scale) = win 0xec5e0, imac 0x1065c0, m1 0xe4648;
     void spawnPlayer2() = win inline, imac 0x107210, m1 0xe5184;
@@ -13152,7 +13152,7 @@ class HardStreak : cocos2d::CCDrawNode {
 
     virtual bool init() = win 0x3bfa70, imac 0x251f40, m1 0x3df2c0;
 
-    void addPoint(cocos2d::CCPoint point) = win 0x9999999;
+    void addPoint(cocos2d::CCPoint point) = win 0x3c0710;
     TodoReturn appendQuad(cocos2d::CCPoint const*, cocos2d::ccColor4F const&);
     void clearAboveXPos(float x) = win inline;
     void clearBehindXPos(float x) = win inline, imac 0x65110, m1 0x5de9c;
@@ -13165,7 +13165,7 @@ class HardStreak : cocos2d::CCDrawNode {
     void resumeStroke() = win inline, imac 0x64d50, m1 0x5db50;
     void scheduleAutoUpdate() = win inline, imac 0x641b0, m1 0x5d1cc;
     void stopStroke() = win 0x27ed60, imac 0x64d70, m1 0x5db5c;
-    callback void updateStroke(float dt) = win 0x9999999, imac 0x641d0, m1 0x5d1dc;
+    callback void updateStroke(float dt) = win 0x3bfb60, imac 0x641d0, m1 0x5d1dc;
 
     cocos2d::CCArray* m_pointArray;
     cocos2d::CCPoint m_currentPoint;
@@ -16581,7 +16581,7 @@ class OBB2D : cocos2d::CCNode {
 
     static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b2b0, imac 0x6c6240, m1 0x5de79c;
 
-    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x9999999, imac 0x6c6370, m1 0x5de920;
+    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b480, imac 0x6c6370, m1 0x5de920;
     void computeAxes() = win inline, imac 0x6c6520, m1 0x5dea98;
     cocos2d::CCRect getBoundingRect() = win 0x7bd30, imac 0x6c6c20, m1 0x5df0b8;
     bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win inline, imac 0x6c6300, m1 0x5de8a0;
@@ -16974,7 +16974,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     void onCreateStartpos(cocos2d::CCObject* sender);
     void onEdit(cocos2d::CCObject* sender) = win 0x4db250, imac 0x3c2fe0, m1 0x347c08;
     void onHelp(cocos2d::CCObject* sender) = imac 0x3c3140, m1 0x308130;
-    void onNormalMode(cocos2d::CCObject* sender);
+    void onNormalMode(cocos2d::CCObject* sender) = win 0x4dab90;
     void onPracticeMode(cocos2d::CCObject* sender) = win 0x4daac0, imac 0x3c11f0;
     void onQuit(cocos2d::CCObject* sender) = win 0x4db760, imac 0x3c3160, m1 0x347d68;
     void onRecordReplays(cocos2d::CCObject* sender) = imac 0x3c2fb0;
@@ -24147,7 +24147,7 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     bool init(GJBaseGameLayer* layer) = win 0x66ff70, imac 0x4c1fd0, m1 0x42556c;
     bool isJumpButtonPressed() = win inline, imac 0x4c4f70, m1 0x427f30;
     bool isJumpButtonPressed(bool player1) = win inline, imac 0x4c4fa0, m1 0x427f80, ios inline;
-    void onCheck(cocos2d::CCObject* sender) = imac 0x4c2800;
+    void onCheck(cocos2d::CCObject* sender) = win 0x673050, imac 0x4c2800;
     void onDeleteCheck(cocos2d::CCObject* sender) = imac 0x4c2860, m1 0x425dac;
     void onPause(cocos2d::CCObject* sender) = win 0x672f30, imac 0x4c27b0, m1 0x425d0c;
     bool processUINodesTouch(GJUITouchEvent event, cocos2d::CCTouch* touch) = win 0x673510, imac 0x4c5110, m1 0x4280ec;
