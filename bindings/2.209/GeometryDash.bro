@@ -2001,8 +2001,12 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool m_keyboardShowing;
     float m_fontValue1;
     float m_fontValue2;
-    bool m_isChatFont;
+    bool m_isChatFont; // THIS IS 2.209 ONLY, NOT IN 2.2091
     std::string m_allowedChars;
+    void* m_unkDelegate;
+    int m_parseEmotes;
+    std::vector<EmoteToken> m_emoteVector;
+    cocos2d::CCNode* m_emoteContainer;
     float m_maxLabelWidth;
     float m_maxLabelScale;
     float m_placeholderScale;
@@ -2017,6 +2021,23 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool m_usePasswordChar;
     bool m_forceOffset;
     TextArea* m_textArea;
+    bool m_allowNewlines;
+    bool m_unicodeText;
+    bool m_deselectOnOutsideTap;
+    cocos2d::CCSize m_hitPadding;
+    ScrollableContentLayer* m_scrollableLayer;
+    float m_cursorTargetX;
+    float m_maxTextAreaHeight;
+    int m_unkTextareaMember;
+    bool m_wheelRangeSet;
+    float m_wheelRangeMin;
+    float m_wheelRangeMax;
+    int m_maxDigits;
+    bool m_doneFromIME;
+    CCTextInputMenu* m_editMenu;
+    cocos2d::CCPoint m_holdMenuSpawn;
+    bool m_holdTimerArmed;
+    bool m_holdTimerFired;
     InputValueType m_valueType;
     int m_decimalPlaces;
     int m_kerningAmount;
@@ -17611,9 +17632,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
-    android, ios {
-        bool m_collidingBetweenSteps;
-    }
+    bool m_collidingBetweenSteps;
     double m_scaleXRelated4;
     double m_scaleXRelated5;
     bool m_isCollidingWithSlope;

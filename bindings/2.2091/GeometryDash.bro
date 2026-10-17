@@ -1178,8 +1178,8 @@ class ButtonSprite : cocos2d::CCSprite {
     float m_minWidth;
     float m_scale;
     float m_height;
+    float m_unk26c;
     bool m_absolute;
-    PAD = win 0x4;
     cocos2d::CCLabelBMFont* m_label;
     cocos2d::CCSprite* m_subSprite;
     cocos2d::CCSprite* m_subBGSprite;
@@ -2000,7 +2000,6 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool m_keyboardShowing;
     float m_fontValue1;
     float m_fontValue2;
-    bool m_isChatFont;
     std::string m_allowedChars;
     void* m_unkDelegate;
     int m_parseEmotes;
