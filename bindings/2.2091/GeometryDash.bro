@@ -16673,12 +16673,12 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     void exitLayer() = win inline, imac 0x87bea0, m1 0x771644, ios inline;
     void musicSliderChanged(cocos2d::CCObject* sender) = win 0x4cbb20, imac 0x87bd90, m1 0x77154c;
     void onAccount(cocos2d::CCObject* sender) = imac 0x87b800, m1 0x770f7c;
-    void onHelp(cocos2d::CCObject* sender);
-    void onMenuMusic(cocos2d::CCObject* sender) = win 0x11dfa0, imac 0x87b8a0, m1 0x50a7fc;
-    void onOptions(cocos2d::CCObject* sender);
-    void onParental(cocos2d::CCObject* sender);
+    void onHelp(cocos2d::CCObject* sender) = m1 0x770f8c;
+    void onMenuMusic(cocos2d::CCObject* sender) = win 0x11dfa0, imac 0x87b8a0, m1 0x7715fc;
+    void onOptions(cocos2d::CCObject* sender) = m1 0x770fa8;
+    void onParental(cocos2d::CCObject* sender) = m1 0x770ffc;
     void onProgressBar(cocos2d::CCObject* sender) = win inline, imac 0x87c520, ios inline;
-    void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0;
+    void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0, m1 0x770fe8;
     void onRecordReplays(cocos2d::CCObject* sender) = win inline, imac 0x87bb40, ios inline;
     void onSecretVault(cocos2d::CCObject* sender) = win 0x4cbd30, imac 0x87bb70, m1 0x771304;
     void onSoundtracks(cocos2d::CCObject* sender) = m1 0x771634;
@@ -16777,9 +16777,9 @@ class PagedListPopup : FLAlertLayer {
 class ParentalGateLayer : NumberInputLayer {
     virtual ~ParentalGateLayer() = win 0x4a11a0;
 
-    static ParentalGateLayer* create();
+    static ParentalGateLayer* create() = m1 0x77164c;
 
-    virtual bool init() = win 0x4d3ca0;
+    virtual bool init() = win 0x4d3ca0, m1 0x3f2a94;
     virtual void onDone(cocos2d::CCObject* sender) = win 0x4d3ee0;
 
     TodoReturn generateChallenge();
