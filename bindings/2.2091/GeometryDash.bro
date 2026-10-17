@@ -1179,6 +1179,7 @@ class ButtonSprite : cocos2d::CCSprite {
     float m_scale;
     float m_height;
     bool m_absolute;
+    PAD = win 0x4;
     cocos2d::CCLabelBMFont* m_label;
     cocos2d::CCSprite* m_subSprite;
     cocos2d::CCSprite* m_subBGSprite;
@@ -7532,7 +7533,7 @@ class GameManager : GManager {
     void setPlayerStreak(int id) = inline;
     void setPlayerSwing(int id) = inline;
     void setPlayerUserID(int id) = inline;
-    void setUGV(char const* key, bool value) = imac 0x36d350, m1 0x2fa6a4;
+    void setUGV(char const* key, bool value) = win 0x27e830, imac 0x36d350, m1 0x2fa6a4;
     void setupGameAnimations() = imac 0x249540;
     std::string sheetNameForIcon(int id, int type) = win 0x27d910, imac 0x36a7b0, m1 0x2f7b98;
     void shortenAdTimer(float time) = win inline, imac 0x369410, m1 0x2f6a20, ios inline;
@@ -8505,7 +8506,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isGauntletChestUnlocked(int id) = win inline, imac 0x3d280;
     bool isGauntletUnlocked(int id) = win inline, imac 0x3e780, m1 0x383bc;
     bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x3d8e0, m1 0x37494;
-    bool isItemUnlocked(UnlockType type, int id) = win 0x9999999, imac 0x30ff0, m1 0x2aaa8;
+    bool isItemUnlocked(UnlockType type, int id) = win 0x2e9470, imac 0x30ff0, m1 0x2aaa8;
     bool isPathChestUnlocked(int path) = win inline, imac 0x3e870;
     bool isPathUnlocked(StatKey key) = win inline, imac 0x30fd0, m1 0x2aa80, ios inline;
     bool isSecretChestUnlocked(int id) = win 0x9999999;
@@ -8697,7 +8698,7 @@ class GameToolbox {
     static TodoReturn pathSegmentCount(std::string const&, char const*);
     static std::string pointsToString(int points) = win 0x748e0, imac 0x4f5fb0, m1 0x4532ec;
     static void postClipVisit() = win inline, imac 0x46bf60;
-    static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = imac 0x2787f0, m1 0x448edc;
+    static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = win 0x6db10, imac 0x2787f0, m1 0x448edc;
     static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, imac 0x4eacd0, m1 0x448fb0;
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x6f940, imac 0x4ef2c0, m1 0x44d364;
     static bool saveStringToFile(std::string const&, std::string const&, bool, bool) = win inline, ios inline;
@@ -9250,7 +9251,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCArray* getTargetGroupOrigin(int index, int uniqueID) = win inline, imac 0x11c890, ios inline;
     void gravBumpPlayer(PlayerObject* player, EffectGameObject* object) = win inline, imac 0x105c60, m1 0xe3cac;
     void groupStickyObjects(cocos2d::CCArray* objects) = imac 0x11c210, m1 0xf6978;
-    void handleButton(bool down, int button, bool isPlayer1);
+    void handleButton(bool down, int button, bool isPlayer1) = win 0x33c5b0;
     bool hasItem(int id) = win inline;
     bool hasUniqueCoin(EffectGameObject* object) = win 0x124b10, imac 0x1063b0, m1 0xe4400;
     void increaseBatchNodeCapacity() = win 0x312d10, imac 0xf16b0, m1 0xd22b8;
@@ -11638,6 +11639,11 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     void updateXModLabel();
     void updateYMod();
     void updateYModLabel();
+
+    float m_maxSpeed;
+    CCTextInputNode* m_maxSpeedInput;
+    int m_offset;
+    CCTextInputNode* m_offsetInput;
 }
 
 [[link(android)]]
@@ -13964,7 +13970,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     ~LevelBrowserLayer() = win 0x3e1d20, imac 0x480220;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = imac 0x1dcb70, m1 0x190a00;
-    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3e1f40, imac 0x1dcb30, m1 0x1909b4;
+    static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3e1f40, m1 0x1909b4;
 
     virtual void onEnter() = win 0x3eaa60, imac 0x4885d0, m1 0x3f1e3c;
     virtual void onEnterTransitionDidFinish() = win 0x3533a0, imac 0x488bb0, m1 0x3f248c;
@@ -15781,8 +15787,8 @@ class MoreSearchLayer : FLAlertLayer {
     virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x5bb10;
     virtual void textInputReturn(CCTextInputNode* node) = win 0x5bc70;
 
-    void audioNext(cocos2d::CCObject* sender) = imac 0x70b950, m1 0x61c6cc;
-    void audioPrevious(cocos2d::CCObject* sender) = imac 0x70b8e0, m1 0x61c658;
+    void audioNext(cocos2d::CCObject* sender) = win 0x43f970,imac 0x70b950, m1 0x61c6cc;
+    void audioPrevious(cocos2d::CCObject* sender) = win 0x43fab0, imac 0x70b8e0, m1 0x61c658;
     CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler callback, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win 0x4404e0;
     void onClose(cocos2d::CCObject* sender) = win 0x93e80, imac 0x70b130, m1 0x61be5c;
     void onCoins(cocos2d::CCObject* sender) = imac 0x70b4f0, m1 0x61c278;
@@ -15800,7 +15806,7 @@ class MoreSearchLayer : FLAlertLayer {
     void onSongMode(cocos2d::CCObject* sender) = imac 0x70b790, m1 0x61c508;
     void onTwoPlayer(cocos2d::CCObject* sender) = imac 0x70b530, m1 0x61c2b8;
     void onUncompleted(cocos2d::CCObject* sender);
-    void selectSong(int songID) = imac 0x70bc30, m1 0x61c988;
+    void selectSong(int songID) = win 0x43fbf0, imac 0x70bc30, m1 0x61c988;
     void toggleSongNodes(bool custom, bool disable) = win 0xfc840, imac 0x70baf0, m1 0x61c890;
     void updateAudioLabel() = win 0x491720, imac 0x70bc80, m1 0x61c9d0;
 
@@ -18046,7 +18052,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void toggleDebugDraw();
     void toggleGhostEffect(int type) = win inline, imac 0x8d750, m1 0x82c60;
     void toggleIgnoreDamage(bool value) = win inline;
-    void togglePracticeMode(bool practiceMode) = imac 0x101f00;
+    void togglePracticeMode(bool practiceMode) = win 0x519ff0, imac 0x101f00;
     TodoReturn tracksPercent();
     TodoReturn tryShowDeathMarkers(cocos2d::CCPoint const&, int, bool);
     void tryStartRecord() = win inline, imac 0x8d720, ios inline;
@@ -22775,9 +22781,12 @@ class SongInfoObject : cocos2d::CCNode {
     int m_libraryOrder;
     int m_songOrder;
     std::string m_extraArtistNames;
+    std::string m_extraArtists;
     std::unordered_set<int> m_artistIDs;
     std::string m_songLinksString;
     std::string m_artistLinksString;
+    std::string m_youtubeVideo;
+    std::string m_youtubeChannel;
     std::vector<GJLinkObject> m_songLinks;
     std::vector<GJLinkObject> m_artistLinks;
     std::set<int> m_tags;
