@@ -2245,25 +2245,25 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint) = win inline, imac 0x6ad420, m1 0x5c7604, ios inline;
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x48270, imac 0x6ad5e0, m1 0x5c7770, ios 0x3e395c;
 
-    virtual void draw() = win 0x9999999, imac 0x6ad8d0, m1 0x5c7a20, ios 0x1fa82c;
-    virtual bool isOpacityModifyRGB() = win 0x9999999, imac 0x6adbf0, m1 0x5c7c98, ios 0x3e3cd0;
-    virtual void setOpacityModifyRGB(bool) = win 0x9999999, imac 0x6adc10, m1 0x5c7ca8, ios 0x3e3ce0;
-    virtual unsigned char getOpacity() = win 0x9999999, imac 0x6adb20, m1 0x5c7c20, ios 0x3e3c58;
-    virtual unsigned char getDisplayedOpacity() = win 0x9999999, imac 0x6adb40, m1 0x5c7c30, ios 0x3e3c68;
-    virtual void setOpacity(unsigned char) = win 0x9999999, imac 0x6adb70, m1 0x5c7c4c, ios 0x3e3c84;
-    virtual void updateDisplayedOpacity(unsigned char) = win 0x9999999, imac 0x6adc30, m1 0x5c7cb8, ios 0x3e3cf0;
-    virtual bool isCascadeOpacityEnabled() = win 0x9999999, imac 0x6adc50, m1 0x5c7cc8, ios 0x3e3d00;
-    virtual void setCascadeOpacityEnabled(bool) = win 0x9999999, imac 0x6adc70, m1 0x5c7cd8, ios 0x3e3d10;
-    virtual cocos2d::ccColor3B const& getColor() = win 0x9999999, imac 0x6adb90, m1 0x5c7c5c, ios 0x3e3c94;
-    virtual cocos2d::ccColor3B const& getDisplayedColor() = win 0x9999999, imac 0x6adc90, m1 0x5c7ce8, ios 0x3e3d20;
-    virtual void setColor(cocos2d::ccColor3B const&) = win 0x9999999, imac 0x6adbb0, m1 0x5c7c6c, ios 0x3e3ca4;
-    virtual void updateDisplayedColor(cocos2d::ccColor3B const&) = win 0x9999999, imac 0x6adcb0, m1 0x5c7cf8, ios 0x3e3d30;
-    virtual bool isCascadeColorEnabled() = win 0x9999999, imac 0x6adcf0, m1 0x5c7d20, ios 0x3e3d58;
-    virtual void setCascadeColorEnabled(bool) = win 0x9999999, imac 0x6add10, m1 0x5c7d30, ios 0x3e3d68;
+    virtual void draw() = win 0x48430, imac 0x6ad8d0, m1 0x5c7a20, ios 0x1fa82c;
+    virtual bool isOpacityModifyRGB() = win 0x486b0, imac 0x6adbf0, m1 0x5c7c98, ios 0x3e3cd0;
+    virtual void setOpacityModifyRGB(bool) = win 0x486c0, imac 0x6adc10, m1 0x5c7ca8, ios 0x3e3ce0;
+    virtual unsigned char getOpacity() = win 0x48660, imac 0x6adb20, m1 0x5c7c20, ios 0x3e3c58;
+    virtual unsigned char getDisplayedOpacity() = win 0x48670, imac 0x6adb40, m1 0x5c7c30, ios 0x3e3c68;
+    virtual void setOpacity(unsigned char) = win 0x48680, imac 0x6adb70, m1 0x5c7c4c, ios 0x3e3c84;
+    virtual void updateDisplayedOpacity(unsigned char) = win 0x486d0, imac 0x6adc30, m1 0x5c7cb8, ios 0x3e3cf0;
+    virtual bool isCascadeOpacityEnabled() = win 0x486e0, imac 0x6adc50, m1 0x5c7cc8, ios 0x3e3d00;
+    virtual void setCascadeOpacityEnabled(bool) = win 0x486f0, imac 0x6adc70, m1 0x5c7cd8, ios 0x3e3d10;
+    virtual cocos2d::ccColor3B const& getColor() = win 0x48690, imac 0x6adb90, m1 0x5c7c5c, ios 0x3e3c94;
+    virtual cocos2d::ccColor3B const& getDisplayedColor() = win 0x48700, imac 0x6adc90, m1 0x5c7ce8, ios 0x3e3d20;
+    virtual void setColor(cocos2d::ccColor3B const&) = win 0x486a0, imac 0x6adbb0, m1 0x5c7c6c, ios 0x3e3ca4;
+    virtual void updateDisplayedColor(cocos2d::ccColor3B const&) = win 0x48710, imac 0x6adcb0, m1 0x5c7cf8, ios 0x3e3d30;
+    virtual bool isCascadeColorEnabled() = win 0x48720, imac 0x6adcf0, m1 0x5c7d20, ios 0x3e3d58;
+    virtual void setCascadeColorEnabled(bool) = win 0x48730, imac 0x6add10, m1 0x5c7d30, ios 0x3e3d68;
 
     bool initWithStrikePoint(cocos2d::CCPoint) = win inline, imac 0x6ad580, m1 0x5c771c, ios inline;
     bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x48310, imac 0x6ad730, m1 0x5c7890, ios 0x3e39f4;
-    void strike() = win 0x9999999, imac 0x6ad870, m1 0x5c79b4, ios 0x3e3ad4;
+    void strike() = win 0x485c0, imac 0x6ad870, m1 0x5c79b4, ios 0x3e3ad4;
     void strikeFinished() = imac 0x6adb00, m1 0x5c7c04, ios 0x3e3c3c;
     void strikeRandom() = win inline, imac 0x6ada20, m1 0x5c7b1c, ios inline;
     void strikeWithSeed(uint64_t seed) = win inline, imac 0x6ada90, m1 0x5c7b94, ios inline;
@@ -4506,11 +4506,15 @@ class cocos2d::CCTextureETC : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCTexturePVR : cocos2d::CCObject {
-    CCTexturePVR() = win 0x142a50, imac 0x2715f0, m1 0x218088, ios 0x412b64;
+    CCTexturePVR() = win 0xad710, imac 0x2715f0, m1 0x218088, ios 0x412b64;
     virtual ~CCTexturePVR() = win inline, imac 0x271620, m1 0x2180b4, ios 0x412b90;
 
     static cocos2d::CCTexturePVR* create(char const*) = win inline, imac 0x2722d0, m1 0x218bd0, ios inline;
 
+    bool createGLTexture() = win 0xad7b0, imac 0x271c60, m1 0x2185fc, ios 0x412fcc;
+    bool initWithContentsOfFile(char const*) = imac 0x271fa0, m1 0x2188bc, ios 0x41319c;
+    bool unpackPVRv2Data(unsigned char*, unsigned int) = imac 0x271710, m1 0x218184, ios 0x412bec;
+    bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0xadf40, imac 0x271980, m1 0x2183a4, ios 0x412dfc;
     bool createGLTexture() = win 0x142af0, imac 0x271c60, m1 0x2185fc, ios 0x412fcc;
     bool initWithContentsOfFile(char const*) = win 0x9999999, imac 0x271fa0, m1 0x2188bc, ios 0x41319c;
     bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0x9999999, imac 0x271710, m1 0x218184, ios 0x412bec;
