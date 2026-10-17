@@ -872,7 +872,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void calculateDeltaTime() = imac 0x4775d0, m1 0x3e1e14, ios inline;
     void calculateMPF() = imac 0x4779d0, m1 0x3e21bc, ios inline;
     void checkSceneReference() = imac 0x4787f0, m1 0x3e2e1c, ios inline;
-    cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x478240, m1 0x315744, ios 0x2055c4;
+    cocos2d::CCPoint convertToGL(cocos2d::CCPoint const&) = imac 0x478240, m1 0x3e2934, ios 0x2055c4;
     cocos2d::CCPoint convertToUI(cocos2d::CCPoint const&) = imac 0x478360, m1 0x3e2a10, ios inline;
     void createStatsLabel() = imac 0x477bc0, m1 0x3e2398, ios 0x2052a8;
     void drawScene() = imac 0x477240, m1 0x3e1ad8, ios 0x204e3c;
@@ -1245,7 +1245,7 @@ class cocos2d::CCEaseSineInOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval* pAction) = ios inline;
+    static cocos2d::CCEaseSineOut* create(cocos2d::CCActionInterval* pAction) = m1 0x471148, imac 0x516410, ios inline;
 
     // CCEaseSineOut(cocos2d::CCEaseSineOut const&);
     // CCEaseSineOut();
@@ -2554,7 +2554,7 @@ class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     virtual ~CCMouseDispatcher();
 
     void addDelegate(cocos2d::CCMouseDelegate*) = imac 0x1e5c50, m1 0x4ec290;
-    bool dispatchScrollMSG(float, float) = m1 0x4ec328, ios inline;
+    bool dispatchScrollMSG(float, float) = m1 0x4ec328, imac 0x59d100, ios inline;
     void forceAddDelegate(cocos2d::CCMouseDelegate*) = imac 0x1e5ca0, m1 0x4ec2ec, ios inline;
     void forceRemoveDelegate(cocos2d::CCMouseDelegate*);
     void removeDelegate(cocos2d::CCMouseDelegate*);

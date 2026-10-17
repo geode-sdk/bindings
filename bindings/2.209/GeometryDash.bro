@@ -1291,7 +1291,7 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 [[link(android)]]
 class CCBlockLayer : cocos2d::CCLayerColor {
     CCBlockLayer() = win 0x46020, inline;
-    ~CCBlockLayer() = win 0x460f0;
+    ~CCBlockLayer() = win 0x460f0, m1 0x47324c, mac 0x518580;
 
     static CCBlockLayer* create() = win inline, imac 0x518900, ios inline;
 
@@ -1496,7 +1496,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 
     bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x9999999, imac 0x263110, m1 0x20a6cc, ios 0x2ae14c;
     void setClickColor(cocos2d::ccColor3B);
-    void setSizeMult(float mult) = win inline, imac 0x30cce0, ios 0x4681b8;
+    void setSizeMult(float mult) = win inline, imac 0x30cce0, m1 0x20a850, ios 0x4681b8;
 
     /// Set a new image for this button
     /// Prefer using this over `setNormalImage` as the latter does not actually
@@ -6765,7 +6765,7 @@ class GameLevelManager : cocos2d::CCNode {
     void deleteLevelList(GJLevelList* list) = win 0x21afe0, imac 0x53ecc0, m1 0x4959ec, ios 0xa6750;
     bool deleteSentFriendRequest(int accountID) = win inline, imac 0x5796e0, m1 0x4cb7dc, ios 0xc90d0;
     TodoReturn deleteServerEditorSound(int, std::string const&, std::vector<int> const&);
-    TodoReturn deleteServerLevel(int, std::string const&, std::vector<int> const&) = win 0x19a6c0, imac 0x477040, m1 0x4c8618, ios 0xcc65c;
+    TodoReturn deleteServerLevel(int, std::string const&, std::vector<int> const&) = win 0x19a6c0, m1 0x4c8618, ios 0xcc65c;
     TodoReturn deleteServerLevelList(int, std::string const&, std::vector<int> const&) = win 0x244a90, imac 0x906550, m1 0x4137b8, ios 0x433f78;
     void deleteSmartTemplate(GJSmartTemplate* smartTemplate) = win inline, imac 0x54e360, m1 0x4a3eb4, ios 0xb00cc;
     bool deleteUserMessages(GJUserMessage* message, cocos2d::CCArray* messages, bool isSender) = imac 0x568920, m1 0x4bb848, ios 0xbed30;
@@ -8675,7 +8675,7 @@ class GameToolbox {
     static TodoReturn pathSegmentCount(std::string const&, char const*);
     static std::string pointsToString(int points) = win 0x74770, imac 0x4f5aa0, m1 0x452be4, ios 0x4ef20;
     static void postClipVisit() = win inline, imac 0x46ba50, ios 0x48918;
-    static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = m1 0x3d7330, ios 0x39c24c;
+    static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = imac 0x278740, m1 0x21e380, ios 0x39c24c;
     static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, imac 0x4ea7c0, m1 0x4488a8, ios 0x488e0;
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x6f7d0, imac 0x4eedb0, m1 0x44cc5c, ios 0x4b8d4;
     static bool saveStringToFile(std::string const&, std::string const&, bool, bool) = win inline, ios inline;
@@ -16946,7 +16946,7 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, CreateStartPosPopupDelegate, VolumeChangeDelegate {
-    virtual ~PauseLayer() = win 0x4d3410;
+    virtual ~PauseLayer() = win 0x4d3410, m1 0x47324c, imac 0x3bef00;
     PauseLayer() = inline;
 
     static PauseLayer* create(bool unfocused) = win inline, imac 0x3bf0e0;
