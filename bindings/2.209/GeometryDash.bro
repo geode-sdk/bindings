@@ -22528,7 +22528,7 @@ class Slider : cocos2d::CCLayer {
 
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) = win inline, imac 0x2eef30, m1 0x284b08, ios 0x388354;
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = win inline, imac 0x2ef050, m1 0x284c0c, ios 0x38837c;
-    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x9999999, imac 0x2ef170, m1 0x284d20, ios 0x3883a0;
+    static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x84590, imac 0x2ef170, m1 0x284d20, ios 0x3883a0;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x84960, imac 0x2ef810, m1 0x2852fc, ios 0x388880;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x849a0, m1 0x428fac, ios 0x3888c0;
