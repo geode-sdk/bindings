@@ -5510,7 +5510,7 @@ class EmotePickerPopup : EditorWindowPopup {
     void onPickEmote(cocos2d::CCObject* sender);
     TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
     TodoReturn refreshEnabled();
-    EmotePickerPopup* togglePicker(EmotePickerDelegate*, cocos2d::CCNode*) = m1 0x7e9b08;
+    TodoReturn togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
 }
 
 [[link(android)]]
