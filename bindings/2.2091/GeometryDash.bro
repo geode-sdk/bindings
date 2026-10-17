@@ -5490,7 +5490,8 @@ class EmotePickerDelegate {
 class EmotePickerPopup : EditorWindowPopup {
     virtual ~EmotePickerPopup() = win 0x1236e0;
 
-    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int);
+    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e9568;
+    static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = m1 0x7e9a38;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x124390;
     virtual void keyDown(cocos2d::enumKeyCodes, double) = win 0x124a30;
@@ -5504,12 +5505,11 @@ class EmotePickerPopup : EditorWindowPopup {
     TodoReturn buttonAnchor(cocos2d::CCNode*);
     TodoReturn canAddEmote();
     TodoReturn createPicker(cocos2d::CCPoint);
-    bool init(CCTextInputNode*, cocos2d::CCPoint, int, int);
+    bool init(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e96b8;
     TodoReturn layoutEmoteGrid();
     void onPickEmote(cocos2d::CCObject* sender);
     TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
     TodoReturn refreshEnabled();
-    TodoReturn toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int);
     TodoReturn togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
 }
 
@@ -16694,12 +16694,12 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     void exitLayer() = win inline, imac 0x87bea0, m1 0x771644, ios inline;
     void musicSliderChanged(cocos2d::CCObject* sender) = win 0x4cbb20, imac 0x87bd90, m1 0x77154c;
     void onAccount(cocos2d::CCObject* sender) = imac 0x87b800, m1 0x770f7c;
-    void onHelp(cocos2d::CCObject* sender);
-    void onMenuMusic(cocos2d::CCObject* sender) = win 0x11dfa0, imac 0x87b8a0, m1 0x50a7fc;
-    void onOptions(cocos2d::CCObject* sender);
-    void onParental(cocos2d::CCObject* sender);
+    void onHelp(cocos2d::CCObject* sender) = m1 0x770f8c;
+    void onMenuMusic(cocos2d::CCObject* sender) = win 0x11dfa0, imac 0x87b8a0, m1 0x7715fc;
+    void onOptions(cocos2d::CCObject* sender) = m1 0x770fa8;
+    void onParental(cocos2d::CCObject* sender) = m1 0x770ffc;
     void onProgressBar(cocos2d::CCObject* sender) = win inline, imac 0x87c520, ios inline;
-    void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0;
+    void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0, m1 0x770fe8;
     void onRecordReplays(cocos2d::CCObject* sender) = win inline, imac 0x87bb40, ios inline;
     void onSecretVault(cocos2d::CCObject* sender) = win 0x4cbd30, imac 0x87bb70, m1 0x771304;
     void onSoundtracks(cocos2d::CCObject* sender) = m1 0x771634;
@@ -16798,9 +16798,9 @@ class PagedListPopup : FLAlertLayer {
 class ParentalGateLayer : NumberInputLayer {
     virtual ~ParentalGateLayer() = win 0x4a11a0;
 
-    static ParentalGateLayer* create();
+    static ParentalGateLayer* create() = m1 0x77164c;
 
-    virtual bool init() = win 0x4d3ca0;
+    virtual bool init() = win 0x4d3ca0, m1 0x3f2a94;
     virtual void onDone(cocos2d::CCObject* sender) = win 0x4d3ee0;
 
     TodoReturn generateChallenge();
@@ -22331,15 +22331,15 @@ class ShareCommentLayer : FLAlertLayer, UploadActionDelegate, UploadPopupDelegat
     virtual void onClosePopup(UploadActionPopup* popup) = win 0x6301b0, imac 0x6b3aa0, m1 0x5cd424;
     virtual void emotePickerClosed(EmotePickerPopup*) = win 0x630050;
 
-    bool init(std::string title, int charLimit, CommentType type, int ID, std::string desc) = imac 0x6b1260, m1 0x5b1424;
+    bool init(std::string title, int charLimit, CommentType type, int ID, std::string desc) = imac 0x6b1260, m1 0x5cbf24;
     TodoReturn lockInput(std::string const&);
     void onClear(cocos2d::CCObject* sender) = win 0x62f300, imac 0x6b2930, m1 0x5cc304;
-    void onClose(cocos2d::CCObject* sender);
-    void onEmotes(cocos2d::CCObject* sender);
-    void onPercent(cocos2d::CCObject* sender) = imac 0x6b27a0, m1 0x346730;
-    void onShare(cocos2d::CCObject* sender) = win 0x16bcd0, imac 0x3ac0c0;
-    void updateCharCountLabel() = win inline, imac 0xe040;
-    void updateDescText(std::string desc) = win 0x77700, ios inline;
+    void onClose(cocos2d::CCObject* sender) = m1 0x5cc3bc;
+    void onEmotes(cocos2d::CCObject* sender) = m1 0x5cc9a0;
+    void onPercent(cocos2d::CCObject* sender) = imac 0x6b27a0, m1 0x5cc168;
+    void onShare(cocos2d::CCObject* sender) = win 0x16bcd0, imac 0x3ac0c0, m1 0x5cc428;
+    void updateCharCountLabel() = win inline, imac 0xe040, m1 0x5cd038;
+    void updateDescText(std::string desc) = win 0x77700, ios inline, m1 0x5cc9f4;
     void updatePercentLabel() = win 0x81420, imac 0x6b2870, m1 0x5cc238;
 
     int m_charLimit;
