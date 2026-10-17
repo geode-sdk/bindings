@@ -11,10 +11,10 @@ bool SongInfoObject::containsTag(int tag) {
 bool SongInfoObject::canEncode() { return true; }
 
 void SongInfoObject::copyValues(SongInfoObject* object) {
-    // Fill missing metadata without overwriting existing values.
+    // Fill missing metadata.
     if (!object) return;
 
-    // Keep serialized and parsed links in sync.
+    // Keep links in sync.
     if (m_songLinksString.empty()) {
         this->setSongLinks(object->m_songLinksString);
     }

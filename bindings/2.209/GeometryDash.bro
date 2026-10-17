@@ -6086,7 +6086,6 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     virtual void registerWithTouchDispatcher() = win 0x5bab0, imac 0x3fd2b0, m1 0x338040;
     virtual void keyBackClicked() = win 0x5b550, m1 0x3fcc80, imac 0x4947f0, ios 0x349580;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b4c0, imac 0x4946d0, m1 0x3fcb70, ios 0x3494dc;
-    // Windows places rebuildContent before show in the vtable.
     virtual void rebuildContent() = inline;
     virtual void show() = win 0x5b8a0, imac 0x494bd0, m1 0x3fd0cc, ios 0x34989c;
     virtual TodoReturn ownsTouchPrio() = win 0x5a3a0, m1 0x28f4, imac 0x2bc0;
