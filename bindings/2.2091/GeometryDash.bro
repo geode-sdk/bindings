@@ -5469,7 +5469,9 @@ class EmotePickerDelegate {
 class EmotePickerPopup : EditorWindowPopup {
     virtual ~EmotePickerPopup() = win 0x1236e0;
 
-    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int);
+    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e9568;
+    static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = m1 0x7e9a38;
+    static EmotePickerPopup* togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = m1 0x7e9b08;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x124390;
     virtual void keyDown(cocos2d::enumKeyCodes, double) = win 0x124a30;
@@ -5483,13 +5485,11 @@ class EmotePickerPopup : EditorWindowPopup {
     TodoReturn buttonAnchor(cocos2d::CCNode*);
     TodoReturn canAddEmote();
     TodoReturn createPicker(cocos2d::CCPoint);
-    bool init(CCTextInputNode*, cocos2d::CCPoint, int, int);
+    bool init(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e96b8;
     TodoReturn layoutEmoteGrid();
     void onPickEmote(cocos2d::CCObject* sender);
     TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
     TodoReturn refreshEnabled();
-    TodoReturn toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int);
-    TodoReturn togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
 }
 
 [[link(android)]]
