@@ -71,7 +71,7 @@ FMODAudioEngine::~FMODAudioEngine() {
 }
 
 FMODAudioEngine* FMODAudioEngine::sharedEngine() {
-    auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x6c2e88);
+    auto** instancePtr = reinterpret_cast<FMODAudioEngine**>(geode::base::get() + 0x906f60);
     if (!*instancePtr) {
         *instancePtr = new FMODAudioEngine();
         (*instancePtr)->init();

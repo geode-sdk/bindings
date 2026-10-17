@@ -31,8 +31,7 @@ void GManager::loadFromString(std::string& str) {
 }
 
 void GManager::saveData(DS_Dictionary* dict, std::string filename) {
-    // TODO: 2.209
-    dict->saveRootSubDictToCompressedFile(filename.c_str(), false);
+    dict->saveRootSubDictToCompressedFile(filename.c_str(), true);
 }
 
 // TODO: 2.209
@@ -45,8 +44,7 @@ void GManager::saveGMTo(std::string filename, bool p0) {
 }
 
 bool GManager::tryLoadData(DS_Dictionary* dict, std::string const& filename) {
-    // TODO: 2.209
-    return dict->loadRootSubDictFromCompressedFile(filename.c_str(), false);
+    return dict->loadRootSubDictFromCompressedFile(filename.c_str(), true);
 }
 #endif
 
