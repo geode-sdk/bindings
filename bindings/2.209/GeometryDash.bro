@@ -24132,11 +24132,6 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     void updateDualMode(bool dual) = win inline, m1 0x643824;
     void updateUINodeVisibility(bool visible) = imac 0xe770, m1 0xcd78, ios 0x510a0;
 
-    // This member is here because rob managed to inhert CCKeyboardDelegate twice
-    // in this class, which ended up breaking addresser when trying to hook it.
-    // so instead, we removed the second CCKeyboardDelegate from the base class list
-    // and put this member here to take the place of its vtable
-    void* m_stupidDelegate;
     void* m_pUnknown1;
     cocos2d::CCMenu* m_checkpointMenu;
     CCMenuItemSpriteExtra* m_pauseBtn;
