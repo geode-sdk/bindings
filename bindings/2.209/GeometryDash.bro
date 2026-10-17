@@ -15314,11 +15314,11 @@ class LoadingLayer : cocos2d::CCLayer {
     ~LoadingLayer() = win inline, m1 0x316d20, imac 0x38c730, ios 0x26d624;
 
     static LoadingLayer* create(bool refresh) = win inline, imac 0x38b640;
-    static cocos2d::CCScene* scene(bool refresh) = win 0x465e30, imac 0x38b540, m1 0x315bdc, ios 0x26c6a0;
+    static cocos2d::CCScene* scene(bool refresh) = win 0x468f70, imac 0x38b540, m1 0x315bdc, ios 0x26c6a0;
 
-    const char* getLoadingString() = win 0x467340, imac 0x38be90, m1 0x3164f8, ios 0x26ce70;
-    bool init(bool refresh) = win 0x465f40, imac 0x38b720, m1 0x315d74, ios 0x26c798;
-    void loadAssets() = win 0x466800, imac 0x38bf50, m1 0x3165d4, ios 0x26cf4c;
+    const char* getLoadingString() = win 0x46a480, imac 0x38be90, m1 0x3164f8, ios 0x26ce70;
+    bool init(bool refresh) = win 0x469080, imac 0x38b720, m1 0x315d74, ios 0x26c798;
+    void loadAssets() = win 0x469940, imac 0x38bf50, m1 0x3165d4, ios 0x26cf4c;
     void loadingFinished() = win inline, imac 0x38c700, m1 0x316cec, ios 0x26d5f0;
     void updateProgress(int progress) = imac 0x38bef0, m1 0x316568, ios 0x26cee0;
 
