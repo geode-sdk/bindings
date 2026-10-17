@@ -1347,7 +1347,6 @@ namespace GameVar {
     constexpr auto HitboxTrailHighlight = "0217";
     constexpr auto SafeMode = "0218";
     constexpr auto OfflineMode = "0219";
-    constexpr auto OfflineMode = "0222";
     constexpr auto ParentalControlUnk1 = "0222";
     constexpr auto ParentalControlUnk2 = "0223";
     constexpr auto ParentalControlUnk3 = "0224";
