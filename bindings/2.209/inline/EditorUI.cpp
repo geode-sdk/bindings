@@ -587,7 +587,7 @@ cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
 void EditorUI::recreateButtonTabs() {
     m_reloadItems = false;
     auto gameManager = GameManager::sharedState();
-    auto buttonsPerRow = gameManager->getIntGameVariable(GameVar::EditorButtonsPerRow);
+    auto buttonsPerRow = gameManager->getIntGameVariable(GameVar::EditorButtonColumns);
     auto buttonRows = gameManager->getIntGameVariable(GameVar::EditorButtonRows);
     for (int i = 0; i < m_createButtonBars->count(); i++) {
         static_cast<EditButtonBar*>(m_createButtonBars->objectAtIndex(i))->reloadItems(buttonsPerRow, buttonRows);
