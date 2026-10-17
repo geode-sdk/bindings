@@ -1999,7 +1999,6 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool m_keyboardShowing;
     float m_fontValue1;
     float m_fontValue2;
-    bool m_isChatFont;
     std::string m_allowedChars;
     void* m_unkDelegate;
     int m_parseEmotes;
