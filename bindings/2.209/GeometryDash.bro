@@ -11617,6 +11617,11 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     void updateXModLabel();
     void updateYMod();
     void updateYModLabel();
+
+    float m_maxSpeed;
+    CCTextInputNode* m_maxSpeedInput;
+    int m_offset;
+    CCTextInputNode* m_offsetInput;
 }
 
 [[link(android)]]
@@ -22750,9 +22755,12 @@ class SongInfoObject : cocos2d::CCNode {
     int m_libraryOrder;
     int m_songOrder;
     std::string m_extraArtistNames;
+    std::string m_extraArtists;
     std::unordered_set<int> m_artistIDs;
     std::string m_songLinksString;
     std::string m_artistLinksString;
+    std::string m_youtubeVideo;
+    std::string m_youtubeChannel;
     std::vector<GJLinkObject> m_songLinks;
     std::vector<GJLinkObject> m_artistLinks;
     std::set<int> m_tags;
