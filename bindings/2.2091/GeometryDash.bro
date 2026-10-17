@@ -1668,8 +1668,8 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void doConstraintContent(bool instant) = imac 0x41b680, m1 0x39389c;
     float getMaxY() = win inline, imac 0x41b110, m1 0x39343c;
     float getMinY() = win inline, imac 0x41b120, m1 0x393444, ios inline;
-    void moveToTop() = win 0x41650, imac 0x41b210, m1 0x393540;
-    void moveToTopWithOffset(float offset) = win 0x5cb130, imac 0x41b170, m1 0x393498;
+    void moveToTop() = win 0x4ae30, imac 0x41b210, m1 0x393540;
+    void moveToTopWithOffset(float offset) = win 0x4ad80, imac 0x41b170, m1 0x393498;
     TodoReturn scissorRect();
     void scrollingEnd() = win 0x4b140, imac 0x41b820;
     void scrollLayer(float offset) = win inline, imac 0x41bf90, m1 0x394110;
@@ -1969,7 +1969,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     TodoReturn openEditMenu(cocos2d::CCPoint);
     TodoReturn pasteText();
     TodoReturn rawToDisplayIndex(int);
-    void refreshLabel() = win 0x6fd10, imac 0x68ae0, m1 0x62124;
+    void refreshLabel() = win 0x565a0, imac 0x68ae0, m1 0x62124;
     TodoReturn scrollToCursor();
     void setAllowedChars(std::string filter) = win inline;
     void setAllowNewlines(bool);
@@ -1989,7 +1989,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     TodoReturn showHoldMenu(float);
     void updateBlinkLabel() = win inline, imac 0x67dc0, ios inline;
     void updateBlinkLabelToChar(int index) = win 0x9999999;
-    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x9999999, imac 0x2782d0, m1 0x21e264;
+    void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x583a0, imac 0x2782d0, m1 0x21e264;
     void updateDefaultFontValues(std::string font) = win 0x54c30, imac 0x65cb0, m1 0x5e944;
     void updateLabel(std::string text) = win 0x55d20, imac 0x65f90, m1 0x5ec2c;
 
