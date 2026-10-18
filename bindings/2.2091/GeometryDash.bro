@@ -11638,13 +11638,6 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     void updateXModLabel();
     void updateYMod();
     void updateYModLabel();
-
-    mac, android, ios {
-        float m_maxSpeed;
-        CCTextInputNode* m_maxSpeedInput;
-        int m_offset;
-        CCTextInputNode* m_offsetInput;
-    }
 }
 
 [[link(android)]]
@@ -21658,9 +21651,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     bool m_multiTriggered;
     float m_width;
     float m_height;
-    win {
-        float m_verticalOffset;
-    }
+    float m_verticalOffset;
     bool m_disableTextDelegate;
     cocos2d::CCDictionary* m_valueToggles;
     cocos2d::CCDictionary* m_inputNodes;
@@ -22773,13 +22764,8 @@ class SongInfoObject : cocos2d::CCNode {
     int m_artistID;
     float m_fileSize;
     int m_nongType;
-    win {
-        // Dot-separated extra artist IDs (key 12).
-        std::string m_extraArtists;
-    }
-    mac, android, ios {
-        std::string m_downloadLinkOverride;
-    }
+    // Dot-separated extra artist IDs (key 12).
+    std::string m_extraArtists;
     bool m_unloaded;
     bool m_verified;
     bool m_isBlocked;
@@ -22790,29 +22776,16 @@ class SongInfoObject : cocos2d::CCNode {
     int m_libraryOrder;
     int m_songOrder;
     std::string m_extraArtistNames;
-    mac, android, ios {
-        std::string m_extraArtists;
-    }
     std::unordered_set<int> m_artistIDs;
     std::string m_songLinksString;
     std::string m_artistLinksString;
-    mac, android, ios {
-        std::string m_youtubeVideo;
-        std::string m_youtubeChannel;
-    }
     std::vector<GJLinkObject> m_songLinks;
     std::vector<GJLinkObject> m_artistLinks;
     std::set<int> m_tags;
     std::string m_longTagsString;
     std::string m_shortTagsString;
-    win {
-        std::string m_songNameLower;
-        std::string m_artistNameLower;
-    }
-    mac, android, ios {
-        std::string m_unk318;
-        std::string m_unk338;
-    }
+    std::string m_songNameLower;
+    std::string m_artistNameLower;
 }
 
 [[link(android)]]
