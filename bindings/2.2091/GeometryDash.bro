@@ -16036,7 +16036,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     void onToggleView(cocos2d::CCObject* sender);
     void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x9999999;
     TodoReturn refreshLevelIDList();
-    void setupList(MusicSearchResult* result) = win 0x175110, imac 0x6e9bc0, m1 0x5fd720;
+    void setupList(MusicSearchResult* result) = win 0x47ca30, imac 0x6e9bc0, m1 0x5fd720;
     void setupMusicBrowser() = win inline, m1 0x504ba0;
     void setupSongControls();
     void sliderChanged(cocos2d::CCObject* sender) = imac 0x6e9320, m1 0x5fcf0c;
@@ -16775,7 +16775,7 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
     void onClearSearchText(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender) = win 0x9999999;
     void onMatchToggle(cocos2d::CCObject* sender);
-    void setupList(cocos2d::CCArray* objects) = win 0x1be180, m1 0x65ab4;
+    void setupList(cocos2d::CCArray* objects) = win 0x47f160, m1 0x65ab4;
 
     cocos2d::CCArray* m_optionObjects;
     GJCommentListLayer* m_listLayer;
