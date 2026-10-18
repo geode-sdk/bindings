@@ -18255,7 +18255,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onRequests(cocos2d::CCObject* sender) = m1 0x796fdc;
     void onSendMessage(cocos2d::CCObject* sender) = imac 0x8a21c0, m1 0x794e80;
     void onSettings(cocos2d::CCObject* sender) = win 0x559690, imac 0x8a4630, m1 0x7970f0;
-    void onSocialPage(cocos2d::CCObject* sender) = m1 0x0796048;
+    void onSocialPage(cocos2d::CCObject* sender) = m1 0x796048;
     void onStatInfo(cocos2d::CCObject* sender) = m1 0x795a4c;
     void onUnblockUser(cocos2d::CCObject* sender) = m1 0x7952c4;
     void onUpdate(cocos2d::CCObject* sender) = win 0x551c60, imac 0x89edc0, m1 0x792100;
