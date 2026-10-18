@@ -9528,6 +9528,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_allowStaticRotate;
     bool m_fixNegativeScale;
     bool m_startingFromBeginning;
+    PAD = win 0x18;
     std::vector<SFXTriggerGameObject*> m_activeSfxTriggers;
     std::vector<void*> m_unk8a0;
     cocos2d::CCNode* m_hoverNode;
@@ -9685,6 +9686,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     LevelSettingsObject* m_levelSettings;
     cocos2d::CCArray* m_objects;
     cocos2d::CCArray* m_collisionBlocks;
+    PAD = win 0x8;
     cocos2d::CCArray* m_spawnObjectsArray;
     cocos2d::CCDictionary* m_spawnObjects;
     cocos2d::CCNode* m_unkdd0;
@@ -9719,6 +9721,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCDictionary* m_parentGroupsDict;
     cocos2d::CCDictionary* m_parentGroupIDs;
     cocos2d::CCDictionary* m_removedParentGroupIDs;
+    PAD = win 0xc0;
     cocos2d::CCArray* m_targetGroupsArray;
     std::unordered_map<int, std::pair<int, int>> m_targetGroups;
     cocos2d::CCDictionary* m_linkedGroupDict;
@@ -9761,6 +9764,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_particleCount;
     int m_customParticleCount;
     int m_particleSystemLimit;
+    PAD = win 0x8;
     cocos2d::CCDictionary* m_particlesDict;
     cocos2d::CCDictionary* m_customParticles;
     cocos2d::CCArray* m_unclaimedParticles;
@@ -9774,6 +9778,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_objectsDeactivated;
     bool m_areaObjectsUpdated;
     StartPosObject* m_startPosObject;
+    PAD = win 0x8;
     bool m_useReplay;
     bool m_unk3189;
     int m_solidCollisionObjectsCount;
@@ -9867,6 +9872,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_keepGroupParents;
     cocos2d::CCDictionary* m_keyframeGroups;
     int m_keyframeGroup;
+    PAD = win 0x10;
     UILayer* m_uiLayer;
     cocos2d::CCArray* m_uiObjects;
     cocos2d::CCDictionary* m_uiObjectLayers;
@@ -9932,11 +9938,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_isDebugDrawEnabled;
     bool m_disablePlayerHitbox;
     bool m_hitboxesOnDeath;
+    PAD = win 0x58;
     GameObject* m_anticheatSpike;
     double m_timestamp;
     bool m_isBetweenSteps;
     bool m_clickBetweenSteps;
     bool m_clickOnSteps;
+    PAD = win 0x40;
 }
 
 [[link(android)]]
@@ -17656,7 +17664,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
-    android, ios {
+    win, android, ios {
         bool m_collidingBetweenSteps;
     }
     double m_scaleXRelated4;
@@ -18138,6 +18146,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool m_doNot;
     float m_unk383c;
     bool m_skipAudioStep;
+    PAD = win 0xc0;
     std::unordered_set<int> m_blendingColors;
     int m_jumps;
     bool m_hasJumped;
