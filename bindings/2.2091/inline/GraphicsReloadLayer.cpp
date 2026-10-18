@@ -58,7 +58,7 @@ void GraphicsReloadLayer::performReload() {
     else if (!m_fullscreen || m_borderless == gameManager->getGameVariable(GameVar::BorderlessFullscreen) || m_fix == gameManager->getGameVariable(GameVar::BorderlessFix)) {
         gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
         gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
-        if (oldQuality == newQuality) gameManager->queueReloadMenu();
+        if (oldQuality == newQuality) gameManager->queueReloadMenu(true);
         else gameManager->reloadAll(false, false, false, false, true);
     }
     if (gameManager->getGameVariable(GameVar::ShowFPS)) director->toggleShowFPS(1, "chatFont.fnt", { 0.f, 0.f });
