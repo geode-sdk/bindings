@@ -1649,7 +1649,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
     cocos2d::CCArray* m_spriteParts;
 }
 
-[[link(android), depends(CCContentLayer)]]
+[[link(android), depends(CCContentLayer, cocos2d::CCTime)]]
 class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     CCScrollLayerExt(cocos2d::CCRect rect) = win 0x4a880, imac 0x41aad0, m1 0x392df4;
     ~CCScrollLayerExt() = win 0x4aed0, imac 0x4b1330, m1 0x393638;
@@ -7743,7 +7743,7 @@ class GameManager : GManager {
     int m_unk664;
 }
 
-[[link(android)]]
+[[link(android), depends(cocos2d::CCParticleSystem)]]
 class GameObject : CCSpritePlus {
     GameObject() = win 0x208980, imac 0x1d67f0, m1 0x18afb8;
     ~GameObject() = win 0x288810, imac 0x47e820, m1 0x5a63ac;
@@ -8646,7 +8646,7 @@ class GameStatsManager : cocos2d::CCNode {
 // class GameStatsManager::OrbInfo {
 // TodoReturn locked();
 // }
-[[link(android)]]
+[[link(android), depends(cocos2d::ParticleStruct)]]
 class GameToolbox {
     static void addBackButton(cocos2d::CCLayer* parent, cocos2d::CCMenuItem* menuItem) = win 0x5b3a0, imac 0x4ebf90, m1 0x44a1a0;
     static TodoReturn addProgressBarFill(cocos2d::CCSprite*, int, cocos2d::ccColor3B, int);
@@ -9042,7 +9042,7 @@ class GJAssetDownloadAction {
     int m_status;
 }
 
-[[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint)]]
+[[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint, cocos2d::CCParticleSystem, cocos2d::ParticleStruct)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJBaseGameLayer() = win 0x3eb6f0, m1 0x7cb6ec;
     ~GJBaseGameLayer() = win 0x30b850, imac 0xeaaf0, m1 0xcc67c;
@@ -14182,7 +14182,7 @@ class LevelDownloadDelegate {
     virtual void levelDownloadFailed(int response) = inline;
 }
 
-[[link(android)]]
+[[link(android), depends(cocos2d::ParticleStruct)]]
 class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     LevelEditorLayer() = imac 0xde790, m1 0xc4258;
     virtual ~LevelEditorLayer() = win 0x3ecff0;
@@ -16136,7 +16136,7 @@ class MusicDownloadDelegate {
     virtual TodoReturn newsImageFailed(std::string) = win 0x98e10;
 }
 
-[[link(android)]]
+[[link(android), depends(cocos2d::extension::CCHttpRequest)]]
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     virtual ~MusicDownloadManager() = win 0x482350;
 
@@ -16890,7 +16890,7 @@ class ParentalPrivacyPopup : UploadActionPopup, GJAccountSettingsDelegate, UserI
     TodoReturn startWithScore(GJUserScore*);
 }
 
-[[link(android)]]
+[[link(android), depends(cocos2d::ParticleStruct)]]
 class ParticleGameObject : EnhancedGameObject {
     ParticleGameObject() = inline;
     virtual ~ParticleGameObject() = win 0x637610;

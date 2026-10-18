@@ -5902,6 +5902,11 @@ class cocos2d::ZipUtils {
 }
 
 [[link(win, android)]]
+class cocos2d::ParticleStruct {
+
+}
+
+[[link(win, android)]]
 class DS_Dictionary {
     DS_Dictionary() = imac 0x158cb0, m1 0x124b20;
 
