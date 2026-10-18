@@ -12,6 +12,7 @@ SetupTriggerPopup::SetupTriggerPopup() {
     m_multiTriggered = false;
     m_width = 0.f;
     m_height = 0.f;
+    m_verticalOffset = 0.f;
     m_disableTextDelegate = false;
     m_valueToggles = nullptr;
     m_inputNodes = nullptr;
