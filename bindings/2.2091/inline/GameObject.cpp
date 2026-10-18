@@ -696,6 +696,22 @@ void GameObject::updateBlendMode() {
     m_shouldBlendDetail = m_detailColor->getColorMode() != 1012 ? this->shouldBlendColor(m_detailColor, false) : shouldBlend;
 }
 
+void GameObject::updateCustomScaleX(float scaleX) {
+    m_customScaleX = std::round(m_customScaleX * 1000.f) / 1000.f;
+    m_scaleX = m_customScaleX;
+    this->setScaleX(scaleX);
+    m_isObjectRectDirty = true;
+    m_isOrientedBoxDirty = true;
+}
+
+void GameObject::updateCustomScaleY(float scaleY) {
+    m_customScaleY = std::round(m_customScaleY * 1000.f) / 1000.f;
+    m_scaleY = m_customScaleY;
+    this->setScaleY(scaleY);
+    m_isObjectRectDirty = true;
+    m_isOrientedBoxDirty = true;
+}
+
 void GameObject::updateHSVState() {
     if (auto color = m_baseColor) {
         color->m_usesHSV = color->m_hsv.h != 0.f || color->m_hsv.s != 1.f || color->m_hsv.v != 1.f || color->m_hsv.absoluteSaturation || color->m_hsv.absoluteBrightness;

@@ -4,6 +4,12 @@ GameStatsManager* GameStatsManager::get() {
     return GameStatsManager::sharedState();
 }
 
+#if defined(GEODE_IS_WINDOWS)
+GameStatsManager* GameStatsManager::sharedState() { /* 2.2091 only */
+    return *reinterpret_cast<GameStatsManager**>(geode::base::get() + 0x90BFE0);
+}
+#endif
+
 void GameStatsManager::setAwardedBonusKeys(int keys) {
     m_bonusKey = keys;
 }
@@ -215,6 +221,19 @@ int GameStatsManager::getBaseCurrency(int stars, bool mainLevel, int levelID) {
             default: return 0;
         }
     }
+}
+
+int GameStatsManager::getBaseCurrencyForLevel(GJGameLevel* level) {
+    auto stars = level->m_stars.value();
+    auto attempts = level->m_attempts.value() - level->m_jumps.value();
+    auto mainlevel = level->m_levelType == GJLevelType::Main;
+    if (!mainlevel) {
+        auto key = this->getCurrencyKey(level);
+        auto dict = stars - level->m_stars.value() > 0 ? m_onlineCurrencyScores : m_mainCurrencyScores;
+        auto cur = dict->valueForKey(key.c_str())->intValue();
+        if (attempts < cur) attempts = cur;
+    }
+    return this->getBaseCurrency(attempts, mainlevel, level->m_levelID.value() - level->m_levelID.value() - static_cast<int>(level->m_levelType));
 }
 
 int GameStatsManager::getBaseDiamonds(int stars) {
