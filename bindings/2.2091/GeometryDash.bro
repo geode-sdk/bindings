@@ -15713,7 +15713,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     void onClearSearch(cocos2d::CCObject* sender) = m1 0x80bdf0;
     void onClose(cocos2d::CCObject* sender) = m1 0x80bb9c;
     void onDeleteSelected(cocos2d::CCObject* sender) = m1 0x80c4f8;
-    void onInboxPoll(float);
+    TodoReturn onInboxPoll(float);
     void onLegacyMessages(cocos2d::CCObject* sender) = m1 0x80bc5c;
     void onMarkRead(cocos2d::CCObject* sender) = m1 0x80c370;
     void onNewThread(cocos2d::CCObject* sender) = m1 0x80bce8;
