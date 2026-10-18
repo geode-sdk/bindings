@@ -3937,7 +3937,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void animateIn(DialogAnimationType type) = win inline, imac 0x3b1950, m1 0x3388f0;
     void animateInDialog() = win inline, imac 0x3b1b60, m1 0x338af0, ios inline;
     void animateInRandomSide() = imac 0x3b1900, m1 0x338898;
-    void displayDialogObject(DialogObject* object) = imac 0x3b0d80, m1 0x337d90;
+    void displayDialogObject(DialogObject* object) = win 0x175110, imac 0x3b0d80, m1 0x337d90;
     void displayNextObject() = win 0x1750b0, imac 0x3b0cd0, m1 0x337cf0;
     void finishCurrentAnimation() = win inline, imac 0x3b13e0, m1 0x3383d4;
     void handleDialogTap();
@@ -6130,7 +6130,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     void onBtn1(cocos2d::CCObject* sender);
     void onBtn2(cocos2d::CCObject* sender);
     void onButton(cocos2d::CCObject* sender) = win 0x5b640;
-    TodoReturn onButtonTag(int tag) = win 0x5b670;
+    void onButtonTag(int tag) = win 0x5b670;
     TodoReturn ownedTouchPrio(int);
     TodoReturn rebuildContentDeferred(float);
     TodoReturn requestRebuild();
