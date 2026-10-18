@@ -1,5 +1,11 @@
 #include <Geode/binding/GameToolbox.hpp>
+
+#include <Geode/mapping/CCEaseExponentialIn.hpp>
 #include <Geode/utils/cocos.hpp>
+
+#if defined(GEODE_IS_WINDOWS)
+#include <Geode/cocos/platform/win32/CCEGLView.h>
+#endif
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

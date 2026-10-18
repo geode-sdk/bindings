@@ -5,6 +5,7 @@
 #include <Geode/binding/LocalLevelManager.hpp>
 #include <Geode/binding/PlayLayer.hpp>
 #include <Geode/binding/UploadActionPopup.hpp>
+#include <Geode/mapping/CCTransitionFade.hpp>
 
 EditLevelLayer::EditLevelLayer() {
     m_buttonMenu = nullptr;

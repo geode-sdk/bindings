@@ -13016,7 +13016,7 @@ class GradientTriggerObject : EffectGameObject {
     float m_previewOpacity;
 }
 
-[[link(android)]]
+[[link(android), depends(cocos2d::CCDirector)]]
 class GraphicsReloadLayer : cocos2d::CCLayer {
     GraphicsReloadLayer() = inline;
     virtual ~GraphicsReloadLayer() = win 0x4cad60;
