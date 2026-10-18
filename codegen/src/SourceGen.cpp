@@ -3,7 +3,6 @@
 namespace { namespace format_strings {
 	constexpr char const* source_start = R"GEN(
 #include <stdexcept>
-// #include <Geode/Bindings.hpp>
 #include <Geode/utils/addresser.hpp>
 #include <Geode/modify/Traits.hpp>
 #include <Geode/loader/Tulip.hpp>
