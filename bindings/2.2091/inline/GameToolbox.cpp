@@ -91,7 +91,7 @@ cocos2d::CCActionInterval* GameToolbox::getEasedAction(cocos2d::CCActionInterval
 }
 
 uint64_t GameToolbox::getfast_srand() {
-    return *reinterpret_cast<uint64_t*>(geode::base::get() + GEODE_WINDOWS(0x906f68) GEODE_IOS(0x86a7e0));
+    return *reinterpret_cast<uint64_t*>(geode::base::get() + GEODE_WINDOWS(0x90bf68) GEODE_IOS(0x86a7e0));
 }
 
 int GameToolbox::getInvertedEasing(int easingType) {
@@ -180,7 +180,7 @@ float GameToolbox::fast_rand_minus1_1() {
 }
 
 void GameToolbox::fast_srand(uint64_t seed) {
-    *reinterpret_cast<uint64_t*>(geode::base::get() + 0x906f68) = seed;
+    *reinterpret_cast<uint64_t*>(geode::base::get() + 0x90bf68) = seed;
 }
 
 cocos2d::ccHSVValue GameToolbox::getMultipliedHSV(cocos2d::ccHSVValue const& value, float factor) {

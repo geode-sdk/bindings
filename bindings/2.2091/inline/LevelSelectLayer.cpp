@@ -44,7 +44,7 @@ cocos2d::ccColor3B LevelSelectLayer::getColorValue(int page1, int page2, float p
 }
 
 void LevelSelectLayer::onPlay(cocos2d::CCObject* sender) {
-    if (!*reinterpret_cast<bool*>(geode::base::get() + 0x6c10b8)) {
+    if (!*reinterpret_cast<bool*>(geode::base::get() + 0x9097a4)) {
         static_cast<LevelPage*>(m_scrollLayer->getPage(m_scrollLayer->m_page))->onPlay(nullptr);
     }
 }
