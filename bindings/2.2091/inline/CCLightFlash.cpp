@@ -1,6 +1,7 @@
-#include <Geode/mapping/CCObject.hpp>
 #include <Geode/binding/CCLightFlash.hpp>
 #include <Geode/binding/CCLightStrip.hpp>
+#include <Geode/cocos/actions/CCActionTween.h>
+#include <Geode/mapping/CCObject.hpp>
 
 CCLightFlash::CCLightFlash() {
     m_lightStripArray = nullptr;

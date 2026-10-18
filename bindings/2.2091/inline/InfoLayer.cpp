@@ -1,8 +1,8 @@
-#include <Geode/binding/InfoLayer.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
 #include <Geode/binding/GJLevelList.hpp>
+#include <Geode/binding/InfoLayer.hpp>
 #include <Geode/binding/LevelBrowserLayer.hpp>
-
+#include <Geode/mapping/CCTransitionFade.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 int InfoLayer::getAccountID() {

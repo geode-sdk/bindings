@@ -1,5 +1,6 @@
 #include <Geode/binding/DialogLayer.hpp>
 #include <Geode/binding/TextArea.hpp>
+#include <Geode/mapping/CCEaseElasticOut.hpp>
 
 #if !defined(GEODE_IS_IOS)
 DialogLayer::DialogLayer() {

@@ -1,5 +1,6 @@
 #include <Geode/binding/ExplodeItemNode.hpp>
 
+#include <Geode/cocos/misc_nodes/CCRenderTexture.h>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
