@@ -4,12 +4,6 @@ GameStatsManager* GameStatsManager::get() {
     return GameStatsManager::sharedState();
 }
 
-#if defined(GEODE_IS_WINDOWS)
-GameStatsManager* GameStatsManager::sharedState() { /* 2.2091 only */
-    return *reinterpret_cast<GameStatsManager**>(geode::base::get() + 0x90BFE0);
-}
-#endif
-
 void GameStatsManager::setAwardedBonusKeys(int keys) {
     m_bonusKey = keys;
 }
