@@ -172,7 +172,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
     void show() = win 0x81c70, imac 0x61a2e0, m1 0x53e590, ios 0x26b818;
 
     cocos2d::CCLayerColor* m_layerColor;
-    int m_unkUnused;
+    float m_offsetUnused;
     cocos2d::CCScene* m_nextScene;
     cocos2d::extension::CCScale9Sprite* m_bg;
     cocos2d::extension::CCScale9Sprite* m_bg2;
@@ -566,7 +566,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     bool m_gamePaused;
     cocos2d::CCScene* m_runningScene;
     bool m_loadingFinished;
-    bool m_unk0e9;
+    bool m_managersLoadedUnused;
     bool m_ios;
     bool m_unk0eb;
     bool m_unk0ec;
@@ -656,13 +656,13 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
     void triggerEffect(float pulse) = win inline, imac 0x4afa20, m1 0x411a64, ios 0x3c47c8;
 
     cocos2d::CCSpriteBatchNode* m_batchNode;
-    cocos2d::CCArray* m_unk1bc;
-    cocos2d::CCArray* m_unk1c0;
+    cocos2d::CCArray* m_masterTicks;
+    cocos2d::CCArray* m_tickArray;
     float m_timeElapsed;
     float m_audioPulseMod;
     bool m_goingDown;
     float m_audioScale;
-    bool m_unk1d4;
+    bool m_audioRainUnused;
 }
 
 [[link(android)]]
@@ -1710,9 +1710,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 
     bool m_numberInput;
     gd::string m_caption;
-    int m_unknown1;
+    float m_keyboardOffset;
     bool m_selected;
-    bool m_unknown2;
+    bool m_keyboardShowing;
     float m_fontValue1;
     float m_fontValue2;
     bool m_isChatFont;
@@ -3354,7 +3354,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     cocos2d::CCArray* m_effectGameObjects;
     cocos2d::CCArray* m_guideObjects;
     cocos2d::CCArray* m_speedObjects;
-    double m_unk258;
+    double m_beatWidth;
     float m_currentSpeed;
     float m_slowSpeed;
     float m_normalSpeed;
@@ -4255,6 +4255,7 @@ class EffectGameObject : EnhancedGameObject {
     int m_secretCoinID;
     bool m_unk6f4;
     bool m_unk6f5;
+    bool m_isPost2208Remap;
     cocos2d::CCPoint m_endPosition;
     float m_spawnTriggerDelay;
     float m_gravityMod;
@@ -5723,21 +5724,32 @@ class GameLevelOptionsLayer : GJOptionsLayer {
     GJGameLevel* m_level;
 }
 
+/// This class handles most game logic, and events.
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
     // virtual ~GameManager();
     // GameManager() = win 0x17ab40, ios 0x32eafc;
 
+    /// Gets the active GameManager
+    /// @returns The current instance pointer of the GameManager
     static GameManager* get() = inline;
     static GameManager* sharedState() = win 0x17b4a0, imac 0x376a80, m1 0x300128, ios 0x311ce8;
 
+    /// Updates the GameManager for the current frame.
+    /// @param dt Delta time (Time elapsed between the last frame and the current one)
     virtual void update(float dt) = win 0x189bc0, imac 0x38bb20, m1 0x312910, ios 0x31d358;
+    /// Initializes the GameManager.
+    /// @returns A true or false value for whether initialization was successful or not.
     virtual bool init() = win 0x17b4f0, imac 0x376ae0, m1 0x300194, ios 0x311d48;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x188fb0, imac 0x38af20, m1 0x311d34, ios 0x31cb0c;
     virtual void dataLoaded(DS_Dictionary* dict) = win 0x186a90, imac 0x389140, m1 0x310294, ios 0x31b408;
     virtual void firstLoad() = win 0x1886b0, imac 0x38a600, m1 0x311520, ios 0x31c5f8;
 
+    /// When the client's account status is changed (e.g. logged in or logged out), this will be called.
     void accountStatusChanged() = win inline, imac 0x384e20, m1 0x30cb20, ios 0x319740;
+    /// Gets the ID for one of the client's current icons.
+    /// @param type The type of icon to get the ID for
+    /// @returns Icon ID
     int activeIconForType(IconType type) = win 0x181a90, imac 0x380b80, m1 0x308b74, ios 0x317640;
     void addCustomAnimationFrame(int objectID, int frameIndex, gd::string mainFrame, gd::string detailFrame) = win 0x1aeb60, imac 0x266460, m1 0x20a000, ios 0x34f588;
     void addDuplicateLastFrame(int objectID) = win inline, imac 0x266590, m1 0x20a118, ios inline;
@@ -5760,6 +5772,7 @@ class GameManager : GManager {
     int countForType(IconType type) = win 0x181c00, imac 0x380df0, m1 0x308c84, ios 0x317750;
     int defaultFrameForAnimation(int objectID) = win inline, imac 0x25d9c0, m1 0x201d2c, ios inline;
     void didExitPlayscene() = win inline, imac 0x38ba90, m1 0x312860, ios 0x31d310;
+    /// Performs a "Quick Save" and saves the progress of the client.
     void doQuickSave() = win inline, imac 0x38ba60, m1 0x312834, ios 0x31d2e4;
     gd::string dpadConfigToString(UIButtonConfig& config) = win 0x186490, imac 0x3878b0, m1 0x30ecf4, ios 0x31a98c;
     void eventUnlockFeature(char const* key) = win inline, imac 0x37fb20, m1 0x307af0, ios inline;
@@ -5794,22 +5807,54 @@ class GameManager : GManager {
     int getNextUniqueObjectKey() = win inline, imac 0x384440, m1 0x30c174, ios 0x319208;
     int getNextUsedKey(int index, bool up) = win inline, imac 0x384530, m1 0x30c26c, ios 0x3192c4;
     cocos2d::CCArray* getOrderedCustomObjectKeys() = win inline, imac 0x3844e0, m1 0x30c220, ios 0x319278;
+    /// Gets the icon ID for the client's current ball icon.
+    /// @returns Icon ID
     int getPlayerBall() = inline;
+    /// Gets the icon ID for the client's current bird/ufo icon.
+    /// @returns Icon ID
     int getPlayerBird() = inline;
+    /// Gets the color ID for the client's current primary color.
+    /// @returns Color ID
     int getPlayerColor() = inline;
+    /// Gets the color ID for the client's current secondary color.
+    /// @returns Color ID
     int getPlayerColor2() = inline;
+    /// Gets the icon ID for the client's current dart/wave icon.
+    /// @returns Icon ID
     int getPlayerDart() = inline;
+    /// Gets the death effect ID for the client's current death effect.
+    /// @returns Death effect ID
     int getPlayerDeathEffect() = inline;
+    /// Gets the icon ID for the client's current cube icon.
+    /// @returns Icon ID
     int getPlayerFrame() = inline;
+    /// Gets the "Glow Enabled" state for the client's icons.
+    /// @returns Glow enabled state
     bool getPlayerGlow() = inline;
+    /// Gets the color ID for the client's current glow color.
+    /// @returns Color ID
     int getPlayerGlowColor() = inline;
+    /// Gets the icon ID for the client's current jetpack icon.
+    /// @returns Icon ID
     int getPlayerJetpack() = inline;
+    /// Gets the icon ID for the client's current robot icon.
+    /// @returns Icon ID
     int getPlayerRobot() = inline;
+    /// Gets the icon ID for the client's current ship icon.
+    /// @returns Icon ID
     int getPlayerShip() = inline;
     int getPlayerShipFire() = inline;
+    /// Gets the ID for the client's current spider icon.
+    /// @returns Icon ID
     int getPlayerSpider() = inline;
+    /// Gets the ID for the client's current streak/trail.
+    /// @returns Streak ID
     int getPlayerStreak() = inline;
+    /// Gets the ID for the client's current swing icon.
+    /// @returns Icon ID
     int getPlayerSwing() = inline;
+    /// Gets the active PlayLayer. Returns nullptr if none.
+    /// @returns PlayLayer pointer
     PlayLayer* getPlayLayer() = inline;
     gd::string getPracticeMusicFile() = win inline, imac 0x376ec0, m1 0x30055c, ios 0x311fcc;
     bool getUGV(char const* key) = win 0x1834a0, imac 0x3840b0, m1 0x30bd78, ios 0x318fe8;
@@ -6434,7 +6479,8 @@ class GameObject : CCSpritePlus {
     bool m_shouldBlendBase;
     bool m_shouldBlendDetail;
     bool m_hasCustomChild;
-    bool m_unk367;
+    [[renamed_from(m_unk367)]]
+    bool m_hasAnimatedChild;
     cocos2d::CCSprite* m_colorSprite;
     bool m_unk370;
     float m_objectRadius;
@@ -6531,7 +6577,8 @@ class GameObject : CCSpritePlus {
     int m_zOrder;
     bool m_wasSelected;
     bool m_isSelected;
-    float m_unk460;
+    [[renamed_from(m_unk460)]] // float -> int
+    int m_cycleIndex;
     cocos2d::CCPoint m_unk464;
     bool m_updateParents;
     bool m_updateEditorColor;
@@ -6558,11 +6605,13 @@ class GameObject : CCSpritePlus {
     // property 61
     short m_editorLayer2;
     int m_enabledGroupsCounter;
-    bool m_updateCustomContentSize;
+    [[renamed_from(m_updateCustomContentSize)]]
+    bool m_useObjectRect;
     bool m_hasContentSize;
     // property 121
     bool m_isNoTouch;
-    cocos2d::CCSize m_lastSize;
+    [[renamed_from(m_lastSize)]]
+    cocos2d::CCSize m_contentSize;
     cocos2d::CCPoint m_lastPosition;
     int m_unk4C0;
     int m_unk4C4;
@@ -6581,7 +6630,9 @@ class GameObject : CCSpritePlus {
     ColorActionSprite* m_mainActionSprite;
     ColorActionSprite* m_detailActionSprite;
     GJEffectManager* m_goEffectManager;
-    bool m_unk4F8;
+    // true for some 2.1 rock objects & animated fireball
+    [[renamed_from(m_unk4F8)]]
+    bool m_useTextureRectForSelection;
     bool m_isDecoration;
     bool m_isDecoration2;
     bool m_unk4fb;
@@ -6619,7 +6670,7 @@ class GameObject : CCSpritePlus {
     float m_areaOpacityValue;
     int m_areaOpacityIndex;
     int m_unk52C;
-    bool m_unk530;
+    bool m_hasDynamicallySaved; // m_unk530
     bool m_isUIObject;
     bool m_greenDebugDraw;
 }
@@ -8871,7 +8922,8 @@ class GJGameState {
     cocos2d::CCPoint m_unkPoint1;
     cocos2d::CCPoint m_unkPoint2;
     cocos2d::CCPoint m_unkPoint3;
-    cocos2d::CCPoint m_unkPoint4;
+    [[renamed_from(m_unkPoint4)]]
+    cocos2d::CCPoint m_cameraDeltaPosition;
     cocos2d::CCPoint m_unkPoint5;
     cocos2d::CCPoint m_unkPoint6;
     cocos2d::CCPoint m_unkPoint7;
@@ -8908,16 +8960,20 @@ class GJGameState {
     int m_unkInt4;
     bool m_unkBool4;
     bool m_unkBool5;
-    float m_unkFloat2;
-    float m_unkFloat3;
+    [[renamed_from(m_unkFloat2)]]
+    float m_cameraPadding;
+    [[renamed_from(m_unkFloat3)]]
+    float m_cameraEasing;
     int m_unkInt5;
     int m_unkInt6;
     int m_unkInt7;
     int m_unkInt8;
     int m_unkInt9;
     int m_unkInt10;
-    int m_unkInt11;
-    float m_unkFloat4;
+    [[renamed_from(m_unkInt11)]]
+    float m_lastModeHeight;
+    [[renamed_from(m_unkFloat4)]]
+    float m_lastCameraZoom;
     float m_unkUint1;
     float m_portalY;
     bool m_unkBool6;
@@ -8927,12 +8983,18 @@ class GJGameState {
     int m_unkInt14;
     int m_unkInt15;
     bool m_unkBool7;
-    bool m_isFreeMode; // m_unkBool8
-    bool m_unkBool9;
-    float m_unkFloat5;
-    float m_unkFloat6;
-    float m_unkFloat7;
-    float m_unkFloat8;
+    [[renamed_from(m_unkBool8)]]
+    bool m_isFreeMode;
+    [[renamed_from(m_unkBool9)]]
+    bool m_disableCameraGridSnap;
+    [[renamed_from(m_unkFloat5)]]
+    float m_backgroundSpeedX;
+    [[renamed_from(m_unkFloat6)]]
+    float m_backgroundSpeedY;
+    [[renamed_from(m_unkFloat7)]]
+    float m_middlegroundSpeedX;
+    [[renamed_from(m_unkFloat8)]]
+    float m_middlegroundSpeedY;
     float m_cameraAngle;
     float m_targetCameraAngle;
     bool m_playerStreakBlend;
@@ -8957,12 +9019,17 @@ class GJGameState {
     GameObject* m_lastActivatedPortal1;
     GameObject* m_lastActivatedPortal2;
     cocos2d::CCPoint m_cameraPosition;
-    bool m_unkBool10;
-    float m_levelFlipping;
-    bool m_unkBool11;
-    bool m_unkBool12;
+    [[renamed_from(m_unkBool10)]]
+    bool m_isFlipped;
+    [[renamed_from(m_levelFlipping)]]
+    float m_levelFlipProgress;
+    [[renamed_from(m_unkBool11)]]
+    bool m_inSecondHalfOfFlipAnimation;
+    [[renamed_from(m_unkBool12)]]
+    bool m_isFlipping;
     bool m_isDualMode;
-    float m_unkFloat9;
+    [[renamed_from(m_unkFloat9)]]
+    float m_dualAnimationProgress;
     gd::unordered_map<int, GJValueTween> m_tweenActions;
     int m_cameraEdgeValue0;
     int m_cameraEdgeValue1;
@@ -8974,24 +9041,32 @@ class GJGameState {
     int m_unkUint11;
     int m_unkUint12;
     cocos2d::CCPoint m_cameraStepDiff;
-    float m_unkFloat10;
+    [[renamed_from(m_unkFloat10)]]
+    float m_backgroundWidth;
     float m_timeModRelated;
     bool m_timeModRelated2;
     gd::map<std::pair<int, int>, int> m_activatedObjectIDs;
     float m_unkUint13;
     cocos2d::CCPoint m_unkPoint32;
-    // same as m_cameraPosition but still updates in the editor when not playtesting?
-    cocos2d::CCPoint m_cameraPosition2;
+    [[renamed_from(m_cameraPosition2)]]
+    cocos2d::CCPoint m_cameraLastPosition;
     bool m_unkBool20;
     bool m_unkBool21;
-    bool m_unkBool22;
-    float m_unkUint14;
-    bool m_unkBool26;
+    [[renamed_from(m_unkBool22)]]
+    bool m_audioOnDeath;
+    [[renamed_from(m_unkUint14)]]
+    float m_respawnTime;
+    [[renamed_from(m_unkBool26)]]
+    bool m_noDeathSFX;
     bool m_cameraShakeEnabled;
-    float m_cameraShakeFactor;
-    float m_unkUint15;
-    float m_unkUint16;
-    double m_unkUint64_1;
+    [[renamed_from(m_cameraShakeFactor)]]
+    float m_cameraShakeDuration;
+    [[renamed_from(m_unkUint15)]]
+    float m_cameraShakeStrength;
+    [[renamed_from(m_unkUint16)]]
+    float m_cameraShakeInterval;
+    [[renamed_from(m_unkUint64_1)]]
+    double m_lastShakeTime;
     cocos2d::CCPoint m_unkPoint34;
     unsigned int m_dualRelated;
     gd::unordered_map<int, EnhancedGameObject*> m_stateObjects;
@@ -9011,8 +9086,10 @@ class GJGameState {
     gd::vector<AdvancedFollowInstance> m_advanceFollowInstances;
     gd::vector<DynamicObjectAction> m_dynamicMoveActions;
     gd::vector<DynamicObjectAction> m_dynamicRotateActions;
-    bool m_unkBool28;
-    bool m_unkBool29;
+    [[renamed_from(m_unkBool28)]]
+    bool m_instantExitStaticCameraX;
+    [[renamed_from(m_unkBool29)]]
+    bool m_instantExitStaticCameraY;
     float m_unkUint17;
     gd::unordered_map<int, gd::vector<int>> m_unkUMap8;
     gd::map<std::pair<int,int>, SFXTriggerInstance> m_proximityVolumeRelated;
@@ -9023,9 +9100,11 @@ class GJGameState {
     int m_background;
     int m_ground;
     int m_middleground;
-    bool m_unkBool31;
+    [[renamed_from(m_unkBool31)]]
+    bool m_unlinkDualGravity;
     int m_points;
-    bool m_unkBool32;
+    [[renamed_from(m_unkBool32)]]
+    bool m_hasObtainedPoints;
     unsigned int m_pauseCounter;
     unsigned int m_pauseBufferTimer;
 }
@@ -12842,7 +12921,7 @@ class ListCell : TableViewCell {
     void loadFromObject(cocos2d::CCObject* object, int id, int page, int index) = win inline, imac 0x30d280, m1 0x29c904, ios inline;
     void updateBGColor(int index) = win inline, imac 0x30d340, m1 0x29c95c, ios inline;
 
-    int m_unk230;
+    cocos2d::ccColor4B m_bgColor;
 }
 
 [[link(android)]]
@@ -13357,8 +13436,8 @@ class MultilineBitmapFont : cocos2d::CCSprite {
     cocos2d::CCArray* m_specialDescriptors;
     cocos2d::CCArray* m_characters;
     cocos2d::CCArray* m_lines;
-    int m_unkInt;
-    bool m_unkBool;
+    int m_lineMetric;
+    bool m_metricWritten;
     void* m_unkPtr;
     int m_height;
     int m_width;
@@ -14894,7 +14973,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCPoint m_stateForceVector;
     bool m_affectedByForces;
     gd::map<int, bool> m_jumpPadRelated;
-    float m_somethingPlayerSpeedTime;
+    [[renamed_from(m_somethingPlayerSpeedTime)]]
+    float m_lastMovedTime;
     float m_playerSpeedAC;
     bool m_fixRobotJump;
     gd::map<int, bool> m_holdingButtons;
@@ -19692,9 +19772,11 @@ class TableViewCell : cocos2d::CCLayer {
 
     void updateVisibility() = win inline, imac 0x6273a0, m1 0x54a7ac, ios 0x33eac;
 
+    // potential candidate: cocos2d::CCNode* m_deleteMenu; - needs verification
     void* m_unknown;
     TableView* m_tableView;
     CCIndexPath m_indexPath;
+    // potential candidates: bool m_editable; cocos2d::ccColor3B m_delBtnColor; cocos2d::CCMenuItem* m_deleteButton;
     void* m_unknown2;
     gd::string m_cellIdentifier;
     float m_width;
@@ -19833,17 +19915,19 @@ class TextArea : cocos2d::CCSprite {
     bool m_disableColor;
     MultilineBitmapFont* m_label;
     float m_width;
+    // this was unused even in 1.0
     float m_unknown;
     gd::string m_fontFile;
     float m_height;
-    bool m_unkBool;
+    // unused but name extracted from 1.0 virtual getter
+    bool m_onTimerUnused;
     cocos2d::CCPoint m_anchorPoint;
     bool m_allShown;
     float m_scale;
     int m_rectHeight;
     int m_rectWidth;
     float m_maxWidth;
-    cocos2d::CCPoint m_unkPoint;
+    cocos2d::CCPoint m_textPos;
     TextAreaDelegate* m_delegate;
     cocos2d::CCDictionary* m_shakeCharacters;
     float m_shakeElapsed;

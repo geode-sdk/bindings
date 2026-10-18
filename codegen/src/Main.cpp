@@ -1,6 +1,7 @@
 #include "Shared.hpp"
 
 #include <filesystem>
+#include <iostream>
 
 using namespace codegen;
 
@@ -47,6 +48,7 @@ int main(int argc, char** argv) try {
 
     std::string p = argv[1];
 
+    // NOTE: add geode::Result stuff for broma::parse_file if you restore this
     // if (p == "--into-json") {
     //     auto rootDir = std::filesystem::path(argv[2]);
     //     std::filesystem::current_path(rootDir);
@@ -115,7 +117,14 @@ int main(int argc, char** argv) try {
     // std::filesystem::create_directories(writeDir / "inline");
 
     auto rootDir = std::filesystem::path(argv[2]);
-    Root root = broma::parse_file(rootDir / "Entry.bro");
+    auto parsed = broma::parse_file(rootDir / "Entry.bro");
+    if (parsed.isErr()) {
+        std::string msg;
+        for (auto& e : parsed.unwrapErr().messages)
+            msg += e + "\n";
+        throw codegen::error("Failed to parse bindings file: {}", msg);
+    }
+    Root root = parsed.unwrap();
     bool skipInlines = std::filesystem::exists(rootDir / "inline");
 
     for (auto cls : root.classes) {

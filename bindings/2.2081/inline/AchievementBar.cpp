@@ -2,7 +2,7 @@
 
 AchievementBar::AchievementBar() {
     m_layerColor = nullptr;
-    m_unkUnused = 0;
+    m_offsetUnused = 0;
     m_nextScene = nullptr;
 }
 

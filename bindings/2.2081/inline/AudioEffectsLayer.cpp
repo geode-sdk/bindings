@@ -2,13 +2,13 @@
 
 AudioEffectsLayer::AudioEffectsLayer() {
     m_batchNode = nullptr;
-    m_unk1bc = nullptr;
-    m_unk1c0 = nullptr;
+    m_masterTicks = nullptr;
+    m_tickArray = nullptr;
     m_timeElapsed = 0;
     m_audioPulseMod = 0;
     m_goingDown = false;
     m_audioScale = 0;
-    m_unk1d4 = false;
+    m_audioRainUnused = false;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -16,8 +16,8 @@ AudioEffectsLayer::AudioEffectsLayer() {
 
 #if defined(GEODE_IS_WINDOWS)
 AudioEffectsLayer::~AudioEffectsLayer() {
-    CC_SAFE_RELEASE(m_unk1bc);
-    CC_SAFE_RELEASE(m_unk1c0);
+    CC_SAFE_RELEASE(m_masterTicks);
+    CC_SAFE_RELEASE(m_tickArray);
 }
 
 AudioEffectsLayer* AudioEffectsLayer::create(gd::string audioString) {

@@ -12,7 +12,7 @@ void GJGameState::updateTweenAction(float value, int action) {
     switch (action) {
         case 1: m_cameraPosition.x = value; break;
         case 2: m_cameraPosition.y = value; break;
-        case 7: m_levelFlipping = value; break;
+        case 7: m_levelFlipProgress = value; break;
         case 9: m_portalY = value; break;
         case 10: m_unkPoint6.x = value; break;
         case 11: m_unkPoint6.y = value; break;
@@ -27,7 +27,7 @@ void GJGameState::updateTweenAction(float value, int action) {
         case 20: m_middleGroundOffsetY = value; break;
         case 21: m_unkPoint12.x = value; break;
         case 22: m_unkPoint12.y = value; break;
-        case 25: m_unkFloat9 = value; break;
+        case 25: m_dualAnimationProgress = value; break;
     }
 }
 

@@ -5,8 +5,8 @@ MultilineBitmapFont::MultilineBitmapFont() {
     m_specialDescriptors = nullptr;
     m_characters = nullptr;
     m_lines = nullptr;
-    m_unkInt = 0;
-    m_unkBool = false;
+    m_lineMetric = 0;
+    m_metricWritten = false;
     m_unkPtr = nullptr;
     m_height = 0;
     m_width = 0;
