@@ -6094,7 +6094,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
 
     static FLAlertLayer* create(char const* title, const std::string& desc, char const* btn) = inline;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2) = inline;
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width) = win 0x5a4b0, imac 0x493d70, m1 0x3fc44c;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width) = win 0x5a560, imac 0x493d70, m1 0x3fc44c;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a610;
 
     [[missing(win)]]
@@ -6106,8 +6106,8 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     virtual void registerWithTouchDispatcher() = win 0x5bab0, imac 0x4952d0, m1 0x33876c;
     virtual void keyBackClicked() = win 0x5b550, imac 0x494d00, m1 0x3fd388;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b4c0, imac 0x494be0, m1 0x3fd278;
-    virtual void show() = win 0x5b8a0, imac 0x4950e0, m1 0x3fd7d4;
     virtual void rebuildContent() = inline;
+    virtual void show() = win 0x5b8a0, imac 0x4950e0, m1 0x3fd7d4;
     virtual TodoReturn ownsTouchPrio() = win 0x5a3a0, imac 0x2bc0, m1 0x28f4;
     virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x5bb10, imac 0x495380, m1 0x3fda50;
     virtual void textInputReturn(CCTextInputNode*) = win 0x5bc70, imac 0x495510, m1 0x3fdba8;
@@ -6115,7 +6115,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     TodoReturn addCloseButton();
     TodoReturn cancelKeyboardSlide();
     TodoReturn containsNode(cocos2d::CCNode*);
-    void incrementForcePrio() = win inline;
+    void incrementForcePrio() = win 0x5bd10;
     bool init(int opacity) = win 0x5a720;
     bool init(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a810, imac 0x493e30, m1 0x3fc534;
     TodoReturn keyboardRaise(float, float);
@@ -11614,24 +11614,24 @@ class GJPathSprite : CCSpriteCOpacity {
 class GJPFollowCommandLayer : SetupTriggerPopup {
     virtual ~GJPFollowCommandLayer() = win 0x398470;
 
-    static GJPFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects);
+    static GJPFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x398540;
 
     virtual void determineStartValues() = win 0x60c860;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x60cea0;
     virtual void textChanged(CCTextInputNode* node) = win 0x60cce0;
-    virtual void valueDidChange(int, float) = win 0x37b280;
+    virtual void valueDidChange(int property, float value) = win 0x37b280;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects);
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x398650;
     void onUpdateGroupID(cocos2d::CCObject* sender);
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x5ae5b0;
+    void sliderChanged(cocos2d::CCObject* sender);
     void sliderXModChanged(cocos2d::CCObject* sender);
     void sliderYModChanged(cocos2d::CCObject* sender);
     void updateDuration();
     void updateDurLabel(bool decimals);
-    void updateMaxSpeed() = win inline;
-    void updateMaxSpeedLabel() = win inline;
-    void updateOffsetLabel() = win inline;
-    void updatePlayerOffset() = win inline;
+    void updateMaxSpeed();
+    void updateMaxSpeedLabel();
+    void updateOffsetLabel();
+    void updatePlayerOffset();
     void updateTargetGroupID();
     void updateTextInputLabel();
     void updateXMod();
@@ -11639,10 +11639,12 @@ class GJPFollowCommandLayer : SetupTriggerPopup {
     void updateYMod();
     void updateYModLabel();
 
-    float m_maxSpeed;
-    CCTextInputNode* m_maxSpeedInput;
-    int m_offset;
-    CCTextInputNode* m_offsetInput;
+    mac, android, ios {
+        float m_maxSpeed;
+        CCTextInputNode* m_maxSpeedInput;
+        int m_offset;
+        CCTextInputNode* m_offsetInput;
+    }
 }
 
 [[link(android)]]
@@ -21656,6 +21658,9 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     bool m_multiTriggered;
     float m_width;
     float m_height;
+    win {
+        float m_verticalOffset;
+    }
     bool m_disableTextDelegate;
     cocos2d::CCDictionary* m_valueToggles;
     cocos2d::CCDictionary* m_inputNodes;
@@ -22733,34 +22738,33 @@ class SongInfoLayer : FLAlertLayer {
     std::vector<GJLinkObject> m_artistLinks;
 }
 
-[[link(android)]]
+[[link(android), depends(GJLinkObject)]]
 class SongInfoObject : cocos2d::CCNode {
     virtual ~SongInfoObject() = win 0x480a20;
 
-    static SongInfoObject* create(cocos2d::CCDictionary* dict) = win 0x2fffb0, imac 0x64c600;
+    static SongInfoObject* create(cocos2d::CCDictionary* dict) = win 0x494330, imac 0x64c600;
     static SongInfoObject* create(int songID) = win 0x4941e0, m1 0x2999f4;
-    static SongInfoObject* create(int, std::string, std::string, int, float, std::string, int, std::string, bool, int, int) = m1 0x7bdfb4;
-    static SongInfoObject* createWithCoder(DS_Dictionary* dict);
+    static SongInfoObject* create(int songID, std::string songName, std::string artistName, int artistID, float fileSize, std::string songUrl, int nongType, std::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x4952a0, m1 0x7bdfb4;
+    static SongInfoObject* createWithCoder(DS_Dictionary* dict) = win 0x495750;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x495f40, imac 0x665630, m1 0x59e1bc;
     virtual bool canEncode() = win inline, imac 0x579b90, m1 0x59e338;
 
     TodoReturn addArtistLink(GJLinkObject const&);
-    TodoReturn addSongLink(GJLinkObject const&);
-    void addTags(std::string tags) = imac 0x65db90, m1 0x5974cc;
+    void addSongLink(GJLinkObject const& link) = win 0x4969b0;
+    void addTags(std::string tags) = win 0x497150, imac 0x65db90, m1 0x5974cc;
     bool containsTag(int tag) = win inline, imac 0x4333e0, m1 0x3a9cd0, ios inline;
     void copyValues(SongInfoObject* object) = win inline, imac 0x8da790;
-    TodoReturn getArtistLinks();
-    std::string getArtistNames(int unused) = imac 0x665800, m1 0x59e340;
+    std::vector<GJLinkObject> getArtistLinks() = win 0x496d80;
+    std::string getArtistNames(int unused) = win 0x4962c0, imac 0x665800, m1 0x59e340;
     int getExtraArtistCount() = win 0x496750, imac 0x665e40, m1 0x59e80c;
-    TodoReturn getSongLinks();
+    std::vector<GJLinkObject> getSongLinks() = win 0x496ad0;
     std::string getTagsString(bool shortTags) = win 0x497380, imac 0x666570, m1 0x59eee8;
 
-    /// @param downloadLinkOverride The user-friendly page URL for the song
-    bool init(int, std::string, std::string, int, float, std::string, int, std::string, bool, int, int) = win 0xa95f0, m1 0x1ad718;
-    void setArtistLinks(std::string const&);
-    void setSongLinks(std::string const&);
-    void updateArtists(std::string artists) = win inline, imac 0x664870;
+    bool init(int songID, std::string songName, std::string artistName, int artistID, float fileSize, std::string songUrl, int nongType, std::string extraArtistIDs, bool isNew, int libraryOrder, int priority) = win 0x495460, m1 0x1ad718;
+    void setArtistLinks(std::string const& links) = win 0x496860;
+    void setSongLinks(std::string const& links) = win 0x4967c0;
+    void updateArtists(std::string artists) = win 0x496120, imac 0x664870;
 
     int m_songID;
     std::string m_songName;
@@ -22769,7 +22773,13 @@ class SongInfoObject : cocos2d::CCNode {
     int m_artistID;
     float m_fileSize;
     int m_nongType;
-    std::string m_downloadLinkOverride;
+    win {
+        // Dot-separated extra artist IDs (key 12).
+        std::string m_extraArtists;
+    }
+    mac, android, ios {
+        std::string m_downloadLinkOverride;
+    }
     bool m_unloaded;
     bool m_verified;
     bool m_isBlocked;
@@ -22780,19 +22790,29 @@ class SongInfoObject : cocos2d::CCNode {
     int m_libraryOrder;
     int m_songOrder;
     std::string m_extraArtistNames;
-    std::string m_extraArtists;
+    mac, android, ios {
+        std::string m_extraArtists;
+    }
     std::unordered_set<int> m_artistIDs;
     std::string m_songLinksString;
     std::string m_artistLinksString;
-    std::string m_youtubeVideo;
-    std::string m_youtubeChannel;
+    mac, android, ios {
+        std::string m_youtubeVideo;
+        std::string m_youtubeChannel;
+    }
     std::vector<GJLinkObject> m_songLinks;
     std::vector<GJLinkObject> m_artistLinks;
     std::set<int> m_tags;
     std::string m_longTagsString;
     std::string m_shortTagsString;
-    std::string m_unk318;
-    std::string m_unk338;
+    win {
+        std::string m_songNameLower;
+        std::string m_artistNameLower;
+    }
+    mac, android, ios {
+        std::string m_unk318;
+        std::string m_unk338;
+    }
 }
 
 [[link(android)]]
