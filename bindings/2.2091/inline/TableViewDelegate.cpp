@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/TableViewDelegate.hpp>
 
 void TableViewDelegate::willTweenToIndexPath(CCIndexPath& indexPath, TableViewCell* cell, TableView* tableView) {}
 

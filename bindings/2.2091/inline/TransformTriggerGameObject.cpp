@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/TransformTriggerGameObject.hpp>
 
 TransformTriggerGameObject::TransformTriggerGameObject() {
     m_objectScaleX = 1.f;

@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SongOptionsLayer.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
 
 SongOptionsLayer::SongOptionsLayer() {
     m_delegate = nullptr;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SmartGameObject.hpp>
 
 SmartGameObject::SmartGameObject() {
     m_referenceOnly = false;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GameRateDelegate.hpp>
 
 void GameRateDelegate::updateRate() {}
 

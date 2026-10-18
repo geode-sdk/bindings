@@ -1,5 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/LocalLevelManager.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GJLevelList.hpp>
 
 LocalLevelManager* LocalLevelManager::get() {
     return LocalLevelManager::sharedState();

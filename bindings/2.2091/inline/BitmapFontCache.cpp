@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/BitmapFontCache.hpp>
 
 BitmapFontCache::BitmapFontCache() {
     m_cache = nullptr;

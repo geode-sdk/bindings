@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/KeyframeGameObject.hpp>
 
 KeyframeGameObject::KeyframeGameObject() {
     m_shadowObjects = nullptr;

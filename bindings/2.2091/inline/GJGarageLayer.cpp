@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJGarageLayer.hpp>
+#include <Geode/binding/AchievementManager.hpp>
+#include <Geode/binding/CCCircleWave.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/ItemInfoPopup.hpp>
+#include <Geode/binding/SimplePlayer.hpp>
 
 #if !defined(GEODE_IS_IOS)
 GJGarageLayer::GJGarageLayer() {

@@ -1,5 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/HardStreak.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/PointNode.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

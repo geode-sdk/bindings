@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AudioAssetsBrowser.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
 
 AudioAssetsBrowser::AudioAssetsBrowser() {
     m_songInfoObjects = nullptr;

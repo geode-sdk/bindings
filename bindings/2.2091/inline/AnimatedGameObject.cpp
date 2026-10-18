@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AnimatedGameObject.hpp>
+#include <Geode/binding/CCSpritePart.hpp>
 
 AnimatedGameObject::AnimatedGameObject() {
     m_animatedSprite = nullptr;

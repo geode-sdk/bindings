@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ParentalOptionsLayer.hpp>
 
 ParentalOptionsLayer::ParentalOptionsLayer() {
     m_page = -1;

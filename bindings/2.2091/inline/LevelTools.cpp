@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCPoint.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/mapping/ZipUtils.hpp>
+#include <Geode/binding/LevelTools.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

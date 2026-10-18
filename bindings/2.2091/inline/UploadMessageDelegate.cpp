@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/UploadMessageDelegate.hpp>
 
 void UploadMessageDelegate::uploadMessageFinished(int accountID) {}
 

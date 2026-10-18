@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MusicBrowser.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
+#include <Geode/binding/MusicSearchResult.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

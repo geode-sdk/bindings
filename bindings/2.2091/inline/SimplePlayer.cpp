@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SimplePlayer.hpp>
+#include <Geode/binding/GJRobotSprite.hpp>
+#include <Geode/binding/GJSpiderSprite.hpp>
 
 SimplePlayer::SimplePlayer() {
     m_firstLayer = nullptr;

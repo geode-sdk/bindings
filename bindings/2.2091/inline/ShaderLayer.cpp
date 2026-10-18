@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ShaderLayer.hpp>
+#include <Geode/binding/GJBaseGameLayer.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
 ShaderLayer::ShaderLayer() {

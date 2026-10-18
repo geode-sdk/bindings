@@ -345,10 +345,27 @@ namespace codegen {
         return std::string("tulip::hook::") + getModifyConventionName(f) + "Convention";
     }
 
+    inline std::string getNamespaceName(std::string const& s) {
+        auto index = s.rfind("::");
+        if (index == std::string::npos) return "";
+        return s.substr(0, index);
+    }
+
     inline std::string getUnqualifiedClassName(std::string const& s) {
         auto index = s.rfind("::");
-        if (index == std::string::npos) return s;
-        return s.substr(index + 2);
+        auto index2 = s.find("<");
+        if (index == std::string::npos) return s.substr(0, index2);
+        return s.substr(index + 2, index2 - (index + 2));
+    }
+
+    inline std::string getClassIncludeString(std::string const& s) {
+        if (s == "cocos2d") return "";
+        if (is_cocos_or_fmod_class(s))  {
+            return "#include <Geode/mapping/" + codegen::getUnqualifiedClassName(s) + ".hpp>";
+        }
+        else {
+            return "#include <Geode/binding/" + codegen::getUnqualifiedClassName(s) + ".hpp>";
+        }
     }
 
     inline std::string getIncludes(Root const& root) {

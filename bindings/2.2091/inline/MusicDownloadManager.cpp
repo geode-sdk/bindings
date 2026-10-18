@@ -1,4 +1,14 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCHttpRequest.hpp>
+#include <Geode/mapping/CCHttpResponse.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
+#include <Geode/binding/GJHttpResult.hpp>
+#include <Geode/binding/GJMultiplayerManager.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/OptionsObject.hpp>
+#include <Geode/binding/SFXFolderObject.hpp>
+#include <Geode/binding/SFXInfoObject.hpp>
+#include <Geode/binding/SongInfoObject.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

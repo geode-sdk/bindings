@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CCMoveCNode.hpp>
 
 CCMoveCNode::CCMoveCNode() {
     m_unk038 = 0.0;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/FollowUserDelegate.hpp>
 
 void FollowUserDelegate::followUserFinished(int, bool) {}
 

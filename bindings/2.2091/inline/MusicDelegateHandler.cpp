@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MusicDelegateHandler.hpp>
 
 MusicDelegateHandler::MusicDelegateHandler() {
     m_delegate = nullptr;

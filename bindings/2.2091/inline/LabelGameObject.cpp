@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LabelGameObject.hpp>
 
 LabelGameObject::LabelGameObject() {
     m_label = nullptr;

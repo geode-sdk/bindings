@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/FindObjectPopup.hpp>
 
 #if !defined(GEODE_IS_IOS)
 FindObjectPopup::FindObjectPopup() {

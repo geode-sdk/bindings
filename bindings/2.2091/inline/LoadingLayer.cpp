@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCDirector.hpp>
+#include <Geode/binding/LoadingLayer.hpp>
+#include <Geode/binding/MenuLayer.hpp>
 
 LoadingLayer::LoadingLayer() {
     m_unknown = false;

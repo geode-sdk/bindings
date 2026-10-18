@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DownloadMessageDelegate.hpp>
 
 void DownloadMessageDelegate::downloadMessageFinished(GJUserMessage* message) {}
 

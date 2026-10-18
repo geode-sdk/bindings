@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MusicDownloadDelegate.hpp>
 
 void MusicDownloadDelegate::loadSongInfoFinished(SongInfoObject* object) {}
 

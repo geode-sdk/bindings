@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EditorSoundDeleteDelegate.hpp>
 
 void EditorSoundDeleteDelegate::deleteEditorSoundFinished(int) {}
 

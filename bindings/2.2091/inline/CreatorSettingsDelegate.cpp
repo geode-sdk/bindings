@@ -1,3 +1,3 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CreatorSettingsDelegate.hpp>
 
 void CreatorSettingsDelegate::creatorDescriptionChanged(std::string const&) {}

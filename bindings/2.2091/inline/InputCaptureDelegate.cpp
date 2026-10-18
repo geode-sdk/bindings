@@ -1,3 +1,3 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/InputCaptureDelegate.hpp>
 
 void InputCaptureDelegate::inputKeySelected(int) {}

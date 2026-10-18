@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MusicBrowserDelegate.hpp>
 
 void MusicBrowserDelegate::musicBrowserClosed(MusicBrowser* browser) {}
 

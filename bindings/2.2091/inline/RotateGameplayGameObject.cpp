@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/RotateGameplayGameObject.hpp>
 
 RotateGameplayGameObject::RotateGameplayGameObject() {
     m_moveDirection = 0;

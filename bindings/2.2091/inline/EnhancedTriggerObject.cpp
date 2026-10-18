@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EnhancedTriggerObject.hpp>
 
 EnhancedTriggerObject::EnhancedTriggerObject() {
     m_minXID = 0;

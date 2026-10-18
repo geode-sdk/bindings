@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GameOptionsLayer.hpp>
 
 GameOptionsLayer::GameOptionsLayer() {
     m_practiceDialogIndex = 0;

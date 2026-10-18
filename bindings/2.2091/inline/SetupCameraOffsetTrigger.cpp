@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/binding/SetupCameraOffsetTrigger.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

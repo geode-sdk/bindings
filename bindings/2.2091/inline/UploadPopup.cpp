@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/UploadPopup.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 
 UploadPopup::UploadPopup() {
     m_level = nullptr;

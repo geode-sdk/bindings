@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/PlatformFileDelegate.hpp>
 
 void PlatformFileDelegate::filesPicked(std::vector<std::string> const&) {}
 

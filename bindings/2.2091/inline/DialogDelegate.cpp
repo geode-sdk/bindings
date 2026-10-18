@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DialogDelegate.hpp>
 
 void DialogDelegate::dialogClosed(DialogLayer* layer) {}
 

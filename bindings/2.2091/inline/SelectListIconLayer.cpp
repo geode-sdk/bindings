@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SelectListIconLayer.hpp>
 
 SelectListIconLayer::SelectListIconLayer() {
     m_difficulties = nullptr;

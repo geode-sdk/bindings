@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelPage.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
 
 #if !defined(GEODE_IS_IOS)
 LevelPage::LevelPage() {

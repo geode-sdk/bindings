@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/UndoObject.hpp>
+#include <Geode/binding/GameObjectCopy.hpp>
 
 #if !defined(GEODE_IS_IOS)
 UndoObject::UndoObject() {

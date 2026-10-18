@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/TextInputDelegate.hpp>
 
 void TextInputDelegate::textChanged(CCTextInputNode* node) {}
 

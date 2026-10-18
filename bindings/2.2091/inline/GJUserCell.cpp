@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJUserCell.hpp>
+#include <Geode/binding/GJUserScore.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/UploadActionPopup.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

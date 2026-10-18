@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJGradientLayer.hpp>
 
 GJGradientLayer::GJGradientLayer() {
     m_baseColor = 0;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/NumberInputDelegate.hpp>
 
 void NumberInputDelegate::numberInputClosed(NumberInputLayer* layer) {}
 

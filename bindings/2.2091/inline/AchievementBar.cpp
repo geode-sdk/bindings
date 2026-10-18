@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AchievementBar.hpp>
 
 AchievementBar::AchievementBar() {
     m_layerColor = nullptr;

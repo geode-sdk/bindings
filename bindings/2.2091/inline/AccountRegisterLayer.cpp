@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AccountRegisterLayer.hpp>
+#include <Geode/binding/GJAccountManager.hpp>
+#include <Geode/binding/LoadingCircle.hpp>
 
 #if !defined(GEODE_IS_IOS)
 AccountRegisterLayer::AccountRegisterLayer() {

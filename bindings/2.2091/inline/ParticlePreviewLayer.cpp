@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ParticlePreviewLayer.hpp>
 
 ParticlePreviewLayer::ParticlePreviewLayer() {
     m_particleMode = 0;

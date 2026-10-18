@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CCCounterLabel.hpp>
 
 CCCounterLabel::CCCounterLabel() {
     m_stepSize = 0;

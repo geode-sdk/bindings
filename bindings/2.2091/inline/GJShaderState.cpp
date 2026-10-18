@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJShaderState.hpp>
 
 
 #if defined(GEODE_IS_ANDROID)

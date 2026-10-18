@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CCAnimatedSprite.hpp>
+#include <Geode/binding/CCPartAnimSprite.hpp>
+#include <Geode/binding/SpriteAnimationManager.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

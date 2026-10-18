@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJAccountManager.hpp>
+#include <Geode/binding/GJHttpResult.hpp>
+#include <Geode/binding/GJMultiplayerManager.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/LocalLevelManager.hpp>
 
 GJAccountManager* GJAccountManager::get() {
     return GJAccountManager::sharedState();

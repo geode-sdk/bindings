@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetLevelOrderPopup.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SetLevelOrderPopup::SetLevelOrderPopup() {

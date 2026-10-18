@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DungeonBarsSprite.hpp>
 
 DungeonBarsSprite::DungeonBarsSprite() {
     m_barsSprite = nullptr;

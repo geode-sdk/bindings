@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCAnimate.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCSpriteFrame.hpp>
+#include <Geode/binding/SpriteAnimationManager.hpp>
+#include <Geode/binding/CCAnimatedSprite.hpp>
+#include <Geode/binding/CCPartAnimSprite.hpp>
 
 SpriteAnimationManager::SpriteAnimationManager() {
     m_sprite = nullptr;

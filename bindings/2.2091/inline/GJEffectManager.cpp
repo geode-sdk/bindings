@@ -1,5 +1,11 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/GJEffectManager.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/CCMoveCNode.hpp>
+#include <Geode/binding/ColorAction.hpp>
+#include <Geode/binding/ColorActionSprite.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/binding/InheritanceNode.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

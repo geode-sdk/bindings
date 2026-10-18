@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EndPortalObject.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/PlayerObject.hpp>
+#include <Geode/binding/UILayer.hpp>
 
 EndPortalObject::EndPortalObject() {
     m_gradientBar = nullptr;

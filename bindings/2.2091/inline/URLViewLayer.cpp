@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCDirector.hpp>
+#include <Geode/binding/URLViewLayer.hpp>
+#include <Geode/binding/CustomListView.hpp>
+#include <Geode/binding/GJListLayer.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

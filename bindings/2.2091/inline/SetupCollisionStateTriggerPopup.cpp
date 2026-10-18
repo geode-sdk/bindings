@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupCollisionStateTriggerPopup.hpp>
 
 SetupCollisionStateTriggerPopup::SetupCollisionStateTriggerPopup() {}
 

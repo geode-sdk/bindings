@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/RateDemonLayer.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 
 RateDemonLayer::RateDemonLayer() {
     m_uploadFinished = false;

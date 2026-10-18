@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCEGLView.hpp>
+#include <Geode/binding/UILayer.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
+#include <Geode/binding/GJBaseGameLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/PlayLayer.hpp>
 
 #if !defined(GEODE_IS_IOS)
 UILayer::UILayer() {

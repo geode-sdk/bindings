@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
+#include <Geode/mapping/CCSprite.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/binding/CurrencyRewardLayer.hpp>
+#include <Geode/binding/CurrencySprite.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

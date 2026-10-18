@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/UploadPopupDelegate.hpp>
 
 void UploadPopupDelegate::onClosePopup(UploadActionPopup* popup) {}
 

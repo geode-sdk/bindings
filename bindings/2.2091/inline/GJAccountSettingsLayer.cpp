@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJAccountSettingsLayer.hpp>
 
 GJAccountSettingsLayer::GJAccountSettingsLayer() {
     m_accountID = 0;

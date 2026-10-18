@@ -1,9 +1,12 @@
 #include "Shared.hpp"
 #include <iostream>
+#include <string>
 #include <set>
 
 namespace { namespace format_strings {
 	constexpr char const* class_predeclare = "class {class_name};\n";
+
+	constexpr char const* namespace_class_predeclare = "namespace {namespace_name} {{ class {class_name}; }} \n";
 
     constexpr char const* todo_return_begin = R"GEN(
 struct TodoReturnPlaceholder {
@@ -26,12 +29,20 @@ std::string generatePredeclareHeader(Root const& root) {
     std::string output("#pragma once\n");
 
     for (auto& cls : root.classes) {
-        if (is_cocos_or_fmod_class(cls.name))
-            continue;
+        if (cls == "cocos2d") continue;
 
-        output += fmt::format(::format_strings::class_predeclare,
-            fmt::arg("class_name", cls.name)
-        );
+        size_t idx;
+        if ((idx = cls.name.rfind("::")) != std::string::npos) {
+            output += fmt::format(::format_strings::namespace_class_predeclare,
+                fmt::arg("namespace_name", codegen::getNamespaceName(cls.name)),
+                fmt::arg("class_name", codegen::getUnqualifiedClassName(cls.name))
+            );
+        }
+        else {
+            output += fmt::format(::format_strings::class_predeclare,
+                fmt::arg("class_name", cls.name)
+            );
+        }
     }
 
     output += ::format_strings::todo_return_begin;

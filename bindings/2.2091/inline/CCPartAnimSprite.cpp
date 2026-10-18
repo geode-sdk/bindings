@@ -1,5 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/CCPartAnimSprite.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/CCSpritePart.hpp>
+#include <Geode/binding/SpriteDescription.hpp>
 
 #if !defined(GEODE_IS_IOS)
 CCPartAnimSprite::CCPartAnimSprite() {

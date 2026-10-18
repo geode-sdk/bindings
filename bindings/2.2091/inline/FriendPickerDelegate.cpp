@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/FriendPickerDelegate.hpp>
 
 void FriendPickerDelegate::friendPicked(GJUserScore*) {}
 

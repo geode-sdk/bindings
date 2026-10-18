@@ -1,5 +1,7 @@
-#include <Geode/Bindings.hpp>
-
+#include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/binding/PlatformToolbox.hpp>
+#include <Geode/mapping/CCDirector.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void AppDelegate::setIdleTimerDisabled(bool disabled) {}
@@ -31,4 +33,3 @@ void AppDelegate::showLoadingCircle(bool unk1, bool unk2, bool unk3) {}
 #if defined(GEODE_IS_IOS)
 void AppDelegate::platformShutdown() {}
 #endif
-

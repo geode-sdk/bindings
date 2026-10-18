@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DialogObject.hpp>
 
 DialogObject::DialogObject() {
     m_characterFrame = 0;
