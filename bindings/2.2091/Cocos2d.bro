@@ -2703,7 +2703,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     virtual void onExitTransitionDidStart() = imac 0x2602f0, m1 0x207e04;
     virtual void cleanup() = imac 0x25f360, m1 0x206e8c;
     virtual void draw() = imac 0x25ff20, m1 0x207a2c;
-    virtual void visit() = imac 0x8dd0, m1 0x207a30;
+    virtual void visit() = imac 0x25ff30, m1 0x207a30;
     virtual void setActionManager(cocos2d::CCActionManager*) = imac 0x2604f0, m1 0x208000;
     virtual cocos2d::CCActionManager* getActionManager() = imac 0x260540, m1 0x208050;
     virtual void setScheduler(cocos2d::CCScheduler*) = imac 0x260600, m1 0x2080bc;
@@ -4280,7 +4280,7 @@ class cocos2d::CCString : cocos2d::CCObject {
     CCString() = inline;
 
     static cocos2d::CCString* createWithContentsOfFile(char const*) = imac 0x88e970, m1 0x782d64;
-    static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x616c60, m1 0x782b24;
+    static cocos2d::CCString* createWithData(unsigned char const*, unsigned long) = imac 0x88e6a0, m1 0x782b24;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x88e460, m1 0x7828e0;
     virtual bool isEqual(cocos2d::CCObject const*) = imac 0x88e560, m1 0x7829e0;
@@ -4475,7 +4475,7 @@ class cocos2d::CCTextureCache : cocos2d::CCObject {
     static cocos2d::CCTextureCache* sharedTextureCache() = imac 0x6bf8a0, m1 0x5d84f4;
 
     cocos2d::CCTexture2D* addETCImage(char const*);
-    cocos2d::CCTexture2D* addImage(char const*, bool) = imac 0x79640, m1 0x5d96bc;
+    cocos2d::CCTexture2D* addImage(char const*, bool) = imac 0x6c0b60, m1 0x5d96bc;
     void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat) = imac 0x6bfd60, m1 0x5d8990;
     void addImageAsyncCallBack(float) = imac 0x6c0870, m1 0x5a01fc;
     cocos2d::CCTexture2D* addPVRImage(char const*);
@@ -4804,7 +4804,7 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     bool isDispatchEvents() = imac 0x4c70c0, m1 0x429f5c, ios inline;
     bool isUsingForcePrio() = imac 0x4c7690;
     void rearrangeHandlers(cocos2d::CCArray* handlers) = imac 0x4c7e30, m1 0x42ad2c, ios inline;
-    void registerForcePrio(cocos2d::CCObject*, int, int) = imac 0x4c7300, m1 0xe0cec;
+    void registerForcePrio(cocos2d::CCObject*, int, int) = imac 0x4c7300, m1 0x42a108;
     void removeAllDelegates() = imac 0x4c7d40, m1 0x42ac10;
     void removeDelegate(cocos2d::CCTouchDelegate*) = imac 0x4c7bf0, m1 0x42aa98;
     // int getTargetPrio() const;
