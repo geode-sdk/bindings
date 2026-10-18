@@ -191,8 +191,8 @@ cocos2d::CCScene* LevelEditorLayer::scene(GJGameLevel* level, bool noUI) {
 GameObject* LevelEditorLayer::addObjectFromVector(std::vector<std::string>& values, std::vector<void*>& exists) {
     auto object = GameObject::objectFromVector(values, exists, this, false);
     if (!object) return nullptr;
-    if (object->m_objectID == 1329 && m_coinCount.value() > 2) return nullptr;
-    if (object->m_objectID == 142) return nullptr;
+    if (object->m_objectID == ObjectID::UserCoin && m_coinCount.value() > 2) return nullptr;
+    if (object->m_objectID == ObjectID::GoldCoin) return nullptr;
     object->setVisible(false);
     this->addToSection(object);
     this->addSpecial(object);
@@ -259,7 +259,7 @@ StartPosObject* LevelEditorLayer::findStartPosObject() {
     auto xPos = 0.0f;
     auto order = -1;
     for (auto object : geode::cocos::CCArrayExt<StartPosObject, false>(m_objects)) {
-        if (object->m_objectID == 31 && !object->m_startSettings->m_disableStartPos) {
+        if (object->m_objectID == ObjectID::StartPos && !object->m_startSettings->m_disableStartPos) {
             auto currentXPos = object->getPosition().x;
             auto currentOrder = object->m_startSettings->m_targetOrder;
             auto reverseGameplay = object->m_startSettings->m_reverseGameplay;
@@ -349,19 +349,19 @@ int LevelEditorLayer::getSectionCount() {
 
 int LevelEditorLayer::getSelectedEditorOrder() {
     if (!m_playbackObject) return 0;
-    if (m_playbackObject->m_objectID != 31) return m_playbackObject->m_ordValue;
+    if (m_playbackObject->m_objectID != ObjectID::StartPos) return m_playbackObject->m_ordValue;
     return static_cast<StartPosObject*>(m_playbackObject)->m_startSettings->m_targetOrder;
 }
 
 cocos2d::CCPoint LevelEditorLayer::getSelectedEffectPos() {
     if (!m_playbackObject) return cocos2d::CCPoint { 0.f, 0.f };
-    if (m_playbackObject->m_objectID != 31) return m_playbackObject->m_speedStart;
+    if (m_playbackObject->m_objectID != ObjectID::StartPos) return m_playbackObject->m_speedStart;
     return m_playbackObject->getRealPosition();
 }
 
 int LevelEditorLayer::getSelectedOrderChannel() {
     if (!m_playbackObject) return 0;
-    if (m_playbackObject->m_objectID != 31) return m_playbackObject->m_channelValue;
+    if (m_playbackObject->m_objectID != ObjectID::StartPos) return m_playbackObject->m_channelValue;
     return static_cast<StartPosObject*>(m_playbackObject)->m_startSettings->m_targetChannel;
 }
 
