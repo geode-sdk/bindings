@@ -24103,7 +24103,7 @@ class TutorialPopup : FLAlertLayer {
     CCMenuItemSpriteExtra* m_closeButton;
 }
 
-[[link(android)]]
+[[link(android), depends(cocos2d::CCPoint)]]
 class UIButtonConfig {
     void reset() = win 0x275900, inline;
     void resetOneBtn() = win 0x9999999, inline;

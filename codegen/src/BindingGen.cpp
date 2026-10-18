@@ -217,9 +217,13 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             single_output += codegen::getClassIncludeString(dep) + "\n";
         }
 
-        for (auto member_type : {"SeedValue", "unordered_map", "unordered_set", "vector"}) {
+        for (auto member_type : {"SeedValue", "unordered_map", "unordered_set", "vector", "cc_timeval"}) {
             for (auto field : cls.fields) {
                 if (auto fn = field.get_as<FunctionBindField>()) {
+                    if (fn->prototype.ret.name.find(member_type) != std::string::npos) {
+                        single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                        goto break_whole;
+                    }
                     for (auto [type, param] : fn->prototype.args) {
                         if (type.name.find(member_type) != std::string::npos) {
                             single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
