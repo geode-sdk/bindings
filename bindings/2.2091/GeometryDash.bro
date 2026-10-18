@@ -14228,7 +14228,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void addPlayer2Point(cocos2d::CCPoint point, bool newGroup) = win inline, imac 0xc76d0, m1 0xb2498;
     void addPlayerCollisionBlock() = win inline, imac 0xc5370, ios inline;
     void addPlayerPoint(cocos2d::CCPoint point) = win inline, imac 0xc7670, ios inline;
-    void addSpecial(GameObject* object) = win 0x9999999, imac 0xaf4d0, m1 0x9d840;
+    void addSpecial(GameObject* object) = win 0x3f4b80, imac 0xaf4d0, m1 0x9d840;
     void addToRedoList(UndoObject* object) = win inline, imac 0xb2380;
     void addTouchPoint(cocos2d::CCPoint point) = win inline, imac 0xc5590, ios inline;
     void addToUndoList(UndoObject* object, bool keepRedo) = win inline, imac 0xaf350, m1 0x9d6ec;
@@ -14244,9 +14244,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void clearTouchPoints() = win inline, imac 0xc6220, ios inline;
     void copyObjectState(GameObject* object) = win 0xc6270, imac 0xc78b0, m1 0xb2634;
     void copyParticleState(ParticleGameObject* object) = win inline, imac 0xc7e80, m1 0xb2c24;
-    GameObject* createObject(int key, cocos2d::CCPoint position, bool noUndo) = imac 0xafac0, m1 0x9ddfc;
+    GameObject* createObject(int key, cocos2d::CCPoint position, bool noUndo) = win 0x3f0820, imac 0xafac0, m1 0x9ddfc;
     void createObjectsFromSetup(std::string& setup) = imac 0xabbb0, m1 0x9a7e8;
-    cocos2d::CCArray* createObjectsFromString(std::string const& str, bool noUndo, bool noLimit) = imac 0xaeb00;
+    cocos2d::CCArray* createObjectsFromString(std::string const& str, bool noUndo, bool noLimit) = win 0x3f0150, imac 0xaeb00;
     void dirtifyTriggers() = win inline, m1 0xb06f0;
     TodoReturn doAutoBackup();
     TodoReturn doAutoSave();
@@ -14360,7 +14360,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateArt(float dt) = win inline, imac 0xae430, ios inline;
     void updateBlendValues() = imac 0xc3390, m1 0xae78c;
     TodoReturn updateCustomSFXMappings();
-    void updateEditor(float dt);
+    void updateEditor(float dt) = win 0x3f5f00;
     void updateEditorMode() = win 0x36bc50, imac 0xad9b0, m1 0x9bfd0;
     void updateGameObjects() = imac 0xacab0, m1 0x9b4c0;
     void updateGridLayer() = win inline;
