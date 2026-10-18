@@ -358,6 +358,16 @@ namespace codegen {
         return s.substr(index + 2, index2 - (index + 2));
     }
 
+    inline std::string getClassIncludeString(std::string const& s) {
+        if (s == "cocos2d") return "";
+        if (is_cocos_or_fmod_class(s))  {
+            return "#include <Geode/mapping/" + codegen::getUnqualifiedClassName(s) + ".hpp>";
+        }
+        else {
+            return "#include <Geode/binding/" + codegen::getUnqualifiedClassName(s) + ".hpp>";
+        }
+    }
+
     inline std::string getIncludes(Root const& root) {
         std::string includes;
 

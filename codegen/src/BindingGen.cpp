@@ -8,7 +8,6 @@ namespace { namespace format_strings {
 )GEN";
 
     constexpr char const* class_includes = R"GEN(#pragma once
-#include <stdexcept>
 #include <Geode/platform/platform.hpp>
 #include <Geode/GeneratedPredeclare.hpp>
 #include <Geode/Enums.hpp>
@@ -17,7 +16,6 @@ namespace { namespace format_strings {
 
     constexpr char const* class_no_includes = R"GEN(#pragma once
 #include <Geode/platform/platform.hpp>
-#include <stdexcept>
 
 )GEN";
 
@@ -216,23 +214,27 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
         }
 
         for (auto dep : cls.attributes.depends) {
-            if (is_cocos_or_fmod_class(dep))  {
-                single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", codegen::getUnqualifiedClassName(dep)));
-            }
-            else {
-                single_output += fmt::format(format_strings::class_include_prereq, fmt::arg("file_name", codegen::getUnqualifiedClassName(dep)));
-            }
+            single_output += codegen::getClassIncludeString(dep) + "\n";
         }
 
         for (auto member_type : {"SeedValue", "unordered_map", "unordered_set", "vector"}) {
             for (auto field : cls.fields) {
+                if (auto fn = field.get_as<FunctionBindField>()) {
+                    for (auto [type, param] : fn->prototype.args) {
+                        if (type.name.find(member_type) != std::string::npos) {
+                            single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                            goto break_whole;
+                        }
+                    }
+                }
                 if (auto m = field.get_as<MemberField>()) {
                     if (m->type.name.find(member_type) != std::string::npos) {
-                        single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", codegen::getUnqualifiedClassName(m->type.name)));
-                        break;
+                        single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                        goto break_whole;
                     }
                 }
             }
+            break_whole:
         }
 
 
