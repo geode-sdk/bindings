@@ -190,11 +190,11 @@ void EditorUI::updateEditMenu() {
     m_editButtonBar->setVisible(m_selectedMode == 3);
 }
 
-void EditorUI::updateGridNodeSize(int objectID) {
+/*void EditorUI::updateGridNodeSize(int objectID) {
     auto size = ObjectToolbox::sharedState()->gridNodeSizeForKey(objectID);
     m_gridSize = size;
     m_editorLayer->m_drawGridLayer->m_gridSize = size;
-}
+}*/
 
 void EditorUI::updateGroupIDBtn2() {
     m_goToBaseBtn->setVisible(m_editorLayer->m_currentLayer >= 0);
@@ -312,13 +312,13 @@ cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
     return extras;
 }
 
-void EditorUI::deactivateRotationControl() {
+/*void EditorUI::deactivateRotationControl() {
     m_rotationTouchID = -1;
     if (m_rotationControl->isVisible()) {
         m_rotationControl->setVisible(false);
         m_rotationControl->finishTouch();
     }
-}
+}*/
 
 void EditorUI::deleteObject(GameObject* object, bool noUndo) {
     if (!object) return;
