@@ -13152,7 +13152,7 @@ class HardStreak : cocos2d::CCDrawNode {
 
     virtual bool init() = win 0x3bfa70, imac 0x251f40, m1 0x3df2c0;
 
-    void addPoint(cocos2d::CCPoint point) = win 0x9999999;
+    void addPoint(cocos2d::CCPoint point) = win 0x3c0710;
     TodoReturn appendQuad(cocos2d::CCPoint const*, cocos2d::ccColor4F const&);
     void clearAboveXPos(float x) = win inline;
     void clearBehindXPos(float x) = win inline, imac 0x65110, m1 0x5de9c;
@@ -17405,13 +17405,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void disableCustomGlowColor() = win inline, imac 0x406d80, m1 0x3811f4, ios inline;
     void disablePlayerControls() = win 0xdb480, imac 0x4075c0;
     void disableSwingFire() = win 0x4f91a0, imac 0x400dd0, m1 0x37b958;
-    void doReversePlayer(bool reverse) = win 0x9999999, imac 0x3ef650;
+    void doReversePlayer(bool reverse) = win 0x4f6830, imac 0x3ef650;
     void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, imac 0x406d50, m1 0x3811d4;
     void enablePlayerControls() = win 0x4fd940, imac 0x407620;
     void exitPlatformerAnimateJump() = win 0x4eb1f0, imac 0x3ef780, m1 0x36c9b4;
-    void fadeOutStreak2(float duration) = win 0x777c0, imac 0x400d40, m1 0x37b8bc;
+    void fadeOutStreak2(float duration) = win 0x4fe600, imac 0x400d40, m1 0x37b8bc;
     void flashPlayer(float flashDuration, float flashDelay, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win inline, imac 0x3fbd90, m1 0x377150, ios inline;
-    void flipGravity(bool flip, bool noEffects) = win 0x9999999, imac 0x403110;
+    void flipGravity(bool flip, bool noEffects) = win 0x4f8440, imac 0x403110;
     int flipMod() = win inline, imac 0x3ee920, m1 0x36bb3c, ios inline;
     void gameEventTriggered(int gameEvent, int material) = win inline, imac 0x3f0c20, m1 0x36dd44, ios inline;
     GameObjectType getActiveMode() = win inline, imac 0x4030b0, m1 0x37d8e4;
@@ -17463,7 +17463,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void logValues() = win inline, imac 0x40a400, m1 0x383f70, ios inline;
     void modeDidChange() = win inline, imac 0x403bf0, m1 0x37e3a0;
     void performSlideCheck() = win inline, imac 0x3f3880, m1 0x3702e8;
-    void placeStreakPoint() = win 0x9999999, m1 0x370048;
+    void placeStreakPoint() = win 0x4fec10, m1 0x370048;
     void playBumpEffect(int objectType, GameObject* player) = win 0x4fde90, imac 0x407a90, m1 0x381f30;
     void playBurstEffect() = win inline, imac 0x3f1090, m1 0x36e13c;
     void playCompleteEffect(bool noEffects, bool instant) = win 0x4e2420, imac 0x1f7550, m1 0x1a90c8;
@@ -17502,11 +17502,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int reverseMod() = win inline, imac 0x3f1410, m1 0x36e484, ios inline;
     void reversePlayer(EffectGameObject* object) = win 0x4f6740, imac 0x402790, m1 0x37d030;
     void ringJump(RingObject* object, bool skipCheck) = win 0x4f6f50, imac 0x401420, m1 0x37bf2c;
-    void rotateGameplay(int moveDirection, int groundDirection, bool editVelocity, float velocityModX, float velocityModY, bool overrideVelocity, bool dontSlide) = win 0x35ac20, imac 0x3ff650, m1 0x37a3c0;
+    void rotateGameplay(int moveDirection, int groundDirection, bool editVelocity, float velocityModX, float velocityModY, bool overrideVelocity, bool dontSlide) = win 0x4f7fa0, imac 0x3ff650, m1 0x37a3c0;
     void rotateGameplayObject(GameObject* object) = win 0x9999999, imac 0x3f3da0, m1 0x370868;
     void rotateGameplayOnly(bool sideways) = win inline, m1 0x37d71c;
     void rotatePreSlopeObjects() = win inline, imac 0x3f4090, m1 0x370abc, ios inline;
-    void runBallRotation(float speed) = win 0x4eb600, imac 0x3f12f0, m1 0x36e36c;
+    void runBallRotation(float speed) = win 0x4eb4d0, imac 0x3f12f0, m1 0x36e36c;
     void runBallRotation2() = win 0x4eb730, imac 0x3f1430;
     void runNormalRotation() = win inline, imac 0x3f11e0, m1 0x36e290, ios inline;
     void runNormalRotation(bool notNormalMode, float speed) = win 0x4eb4d0, imac 0x3ed0a0, m1 0x36a6d8;
@@ -17520,7 +17520,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void spawnDualCircle() = win 0x4f5e20, imac 0x400a00, m1 0x37b5ac;
     void spawnFromPlayer(PlayerObject* player, bool flip) = win inline, imac 0x4085d0, m1 0x1607f8;
     void spawnPortalCircle(cocos2d::ccColor3B color, float startRadius) = win 0x4f5a00, imac 0x400780, m1 0x37b34c;
-    void spawnScaleCircle() = imac 0x4008b0, m1 0x37b46c;
+    void spawnScaleCircle() = win 0x4f5c10, imac 0x4008b0, m1 0x37b46c;
     void specialGroundHit() = win inline, imac 0x408300, m1 0x382704, ios inline;
     void speedDown() = win inline, imac 0x40a450, m1 0x383fb4, ios inline;
     void speedUp() = win inline, imac 0x40a430, m1 0x383f94, ios inline;
@@ -17528,11 +17528,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void spiderTestJumpInternal(bool dynamic) = win 0x4f25f0, imac 0x3fa7b0, m1 0x375de4;
     void spiderTestJumpX(bool dynamic) = imac 0x3fbe80, m1 0x37720c;
     void spiderTestJumpY(bool dynamic) = imac 0x3fcd40, m1 0x377f24;
-    void startDashing(DashRingObject* object) = imac 0x3fe4a0, m1 0x379490;
+    void startDashing(DashRingObject* object) = win 0x4f3b20, imac 0x3fe4a0, m1 0x379490;
     void stopBurstEffect() = win 0x4f97b0, imac 0x405340, m1 0x37f9a4;
     void stopDashing() = win 0x4f4850, imac 0x3eec40, m1 0x36be40;
     void stopParticles() = win 0x4e9ae0, imac 0x3f0760;
-    void stopPlatformerJumpAnimation() = imac 0x3f1130, m1 0x36e1f8;
+    void stopPlatformerJumpAnimation() = win 0x4eb320, imac 0x3f1130, m1 0x36e1f8;
     void stopRotation(bool ground, int type) = win inline, imac 0x3f11c0, m1 0x36e280;
     void stopStreak2() = win inline, imac 0x4081e0, m1 0x3825e4;
     void storeCollision(PlayerCollisionDirection direction, int id) = win inline, imac 0x3f15c0, m1 0x36e628, ios inline;
@@ -17545,10 +17545,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleFlyMode(bool enable, bool noEffects) = win 0x4f8790, imac 0x403110;
     void toggleGhostEffect(GhostType type) = win 0x4fd180, imac 0x400300, m1 0x37aef4;
     void togglePlatformerMode(bool val) = win inline, imac 0x3e9d90;
-    void togglePlayerScale(bool enable, bool noEffects) = win 0x8cd00, imac 0x3ffec0, m1 0x37ab68;
-    void toggleRobotMode(bool enable, bool noEffects) = win 0x11ef00, imac 0x405730, m1 0x37fd68;
+    void togglePlayerScale(bool enable, bool noEffects) = win 0x4fecb0, imac 0x3ffec0, m1 0x37ab68;
+    void toggleRobotMode(bool enable, bool noEffects) = win 0x4f99d0, imac 0x405730, m1 0x37fd68;
     void toggleRollMode(bool enable, bool noEffects) = win 0x4f9840, imac 0x3f0920, m1 0x37f9ac;
-    void toggleSpiderMode(bool enable, bool noEffects) = win 0x3ad5c0, imac 0x405ba0, m1 0x380198;
+    void toggleSpiderMode(bool enable, bool noEffects) = win 0x4f9d80, imac 0x405ba0, m1 0x380198;
     void toggleSwingMode(bool enable, bool noEffects) = win 0x4f8dd0, imac 0x404310, m1 0x37ea28;
     void toggleVisibility(bool visible) = win 0x4e9680, imac 0x3f01c0;
     void touchedObject(GameObject* object) = win inline, imac 0x40a040, m1 0x383c28;
@@ -17563,11 +17563,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateCollideRight(float x, GameObject* object) = win 0x4f24a0, imac 0x3fa580, m1 0x375c08;
     void updateCollideTop(float y, GameObject* object) = win inline, imac 0x3fa350, m1 0x375a18;
     void updateDashAnimation() = win 0x4f4f40, imac 0x3ee9d0, m1 0x36bbf8;
-    void updateDashArt() = win 0x9999999, imac 0x3fdda0, m1 0x378dcc;
+    void updateDashArt() = win 0x4f43c0, imac 0x3fdda0, m1 0x378dcc;
     void updateEffects(float param) = win inline, imac 0x3efd90, m1 0x36cf70;
     void updateGlowColor() = imac 0x406d90, m1 0x3811fc;
     void updateInternalActions(float dt) = win 0x502570, imac 0x40a9e0, m1 0x3844f8;
-    void updateJump(float dt) = imac 0x3eb2b0, m1 0x1b28e4;
+    void updateJump(float dt) = win 0x4e9b80, imac 0x3eb2b0, m1 0x1b28e4;
     void updateJumpVariables() = win inline, imac 0x3eeb90, m1 0x36bda4, ios inline;
     void updateLastGroundObject(GameObject* object) = win inline, imac 0x3fa470, m1 0x375b30, ios inline;
     void updateMove(float dt) = win 0x4e8310, imac 0x3ed1b0, m1 0x36a7c4;
@@ -17581,11 +17581,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerRobotFrame(int frame) = win inline, imac 0x407450, m1 0x3818cc;
     void updatePlayerRollFrame(int frame) = win 0x4fc8f0, imac 0x4054f0, m1 0x37fb3c;
     void updatePlayerScale() = win 0x4fe7c0, imac 0x402f40, m1 0x37d758, ios inline;
-    void updatePlayerShipFrame(int frame) = imac 0x403560, m1 0x37dd58;
+    void updatePlayerShipFrame(int frame) = win 0x4fc1e0, imac 0x403560, m1 0x37dd58;
     void updatePlayerSpiderFrame(int frame) = win inline, imac 0x407470, m1 0x3818e4;
     void updatePlayerSpriteExtra(std::string frameName) = imac 0x3e8ff0, m1 0x366e48;
     void updatePlayerSwingFrame(int frame) = m1 0x37ee30;
-    void updateRobotAnimationSpeed() = imac 0x408770, m1 0x382aec;
+    void updateRobotAnimationSpeed() = win 0x4ff700, imac 0x408770, m1 0x382aec;
     void updateRotation(float dt) = win 0x4ef390, imac 0x3f9cd0, m1 0x3753e8;
     void updateRotation(float dt, float rotation) = imac 0x3efac0, m1 0x36ccac;
     void updateShipRotation(float dt) = imac 0x8d960, m1 0x375018;
