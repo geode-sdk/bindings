@@ -15569,12 +15569,12 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void onDiscord(cocos2d::CCObject* sender) = win 0x474450, imac 0x3837d0, m1 0x307f8c;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x37ce60, m1 0x308774, ios inline;
     void onFacebook(cocos2d::CCObject* sender) = win 0x474390, m1 0x307efc;
-    void onFreeLevels(cocos2d::CCObject* sender) = win inline, imac 0x37cf30, m1 0x30881c;
-    void onFullVersion(cocos2d::CCObject* sender) = win inline, imac 0x37cf50, m1 0x30883c;
+    void onFreeLevels(cocos2d::CCObject* sender) = imac 0x37cf30, m1 0x30881c;
+    void onFullVersion(cocos2d::CCObject* sender) = imac 0x37cf50, m1 0x30883c;
     void onGameCenter(cocos2d::CCObject* sender) = win inline, imac 0x37cbc0, m1 0x308514;
     void onGarage(cocos2d::CCObject* sender) = win 0x474F90, imac 0x37c2a0;
     void onGooglePlayGames(cocos2d::CCObject* sender) = win inline, imac 0x37cd20, m1 0x308654, ios inline;
-    void onMoreGames(cocos2d::CCObject* sender) = win inline, imac 0x37cb00, m1 0x30846c;
+    void onMoreGames(cocos2d::CCObject* sender) = imac 0x37cb00, m1 0x30846c;
     void onMyProfile(cocos2d::CCObject* sender) = win 0x4742c0, imac 0x37c710, m1 0x3080d0;
     void onNewgrounds(cocos2d::CCObject* sender) = win 0x475020, imac 0x37c460, m1 0x307e00;
     void onNews(cocos2d::CCObject* sender) = win 0x474480;
