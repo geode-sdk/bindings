@@ -18237,7 +18237,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onComment(cocos2d::CCObject* sender) = win 0x556c60, imac 0x8a4650, m1 0x797110;
     void onCommentHistory(cocos2d::CCObject* sender) = imac 0x8a3420, m1 0x796078;
     void onCopyName(cocos2d::CCObject* sender) = win 0xbf4a0, imac 0x8a3df0, m1 0x7968fc;
-    void onFollow(cocos2d::CCObject* sender) = win 0x41f3a0, imac 0x9a920, m1 0x0791f94;
+    void onFollow(cocos2d::CCObject* sender) = win 0x41f3a0, imac 0x9a920, m1 0x791f94;
     void onFriend(cocos2d::CCObject* sender) = imac 0x8a2290, m1 0x794f60;
     void onFriends(cocos2d::CCObject* sender) = m1 0x796f50;
     void onIconInfo(cocos2d::CCObject* sender) = m1 0x795f38;
