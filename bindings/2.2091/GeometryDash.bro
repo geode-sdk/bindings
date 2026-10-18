@@ -1961,16 +1961,16 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     TodoReturn getWorldRect();
     TodoReturn holdTimerFired(float);
     bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x54510, imac 0x659e0, m1 0x5e694;
-    TodoReturn insertAtCursor(std::string);
+    TodoReturn insertAtCursor(std::string) = win 0x54F50;
     bool isCoveredByPopup();
     bool isVisibleInTree();
     TodoReturn moveCursorToEnd();
     TodoReturn moveCursorVertical(int);
     TodoReturn openEditMenu(cocos2d::CCPoint);
     TodoReturn pasteText();
-    TodoReturn rawToDisplayIndex(int);
+    TodoReturn rawToDisplayIndex(int) = win 0x55460;
     void refreshLabel() = win 0x565a0, imac 0x68ae0, m1 0x62124;
-    TodoReturn scrollToCursor();
+    TodoReturn scrollToCursor() = win 0x54AA0;
     void setAllowedChars(std::string filter) = win inline;
     void setAllowNewlines(bool);
     void setDelegate(TextInputDelegate* delegate) = inline;
@@ -1988,7 +1988,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setWheelRange(float, float);
     TodoReturn showHoldMenu(float);
     void updateBlinkLabel() = win inline, imac 0x67dc0, ios inline;
-    void updateBlinkLabelToChar(int index) = win 0x9999999;
+    void updateBlinkLabelToChar(int index) = win 0x568B0;
     void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x583a0, imac 0x2782d0, m1 0x21e264;
     void updateDefaultFontValues(std::string font) = win 0x54c30, imac 0x65cb0, m1 0x5e944;
     void updateLabel(std::string text) = win 0x55d20, imac 0x65f90, m1 0x5ec2c;
@@ -5505,13 +5505,13 @@ class EmotePickerPopup : EditorWindowPopup {
     virtual void onBuildWindowContent() = win 0x123c70;
     virtual void onWindowResized() = win 0x124380;
 
-    TodoReturn addCell(EmoteDef const*, int);
+    TodoReturn addCell(EmoteDef const*, int) = win 0x123F70;
     TodoReturn buttonAnchor(cocos2d::CCNode*);
     TodoReturn canAddEmote();
     TodoReturn createPicker(cocos2d::CCPoint);
     bool init(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e96b8;
-    TodoReturn layoutEmoteGrid();
-    void onPickEmote(cocos2d::CCObject* sender);
+    TodoReturn layoutEmoteGrid() = win 0x124050;
+    void onPickEmote(cocos2d::CCObject* sender) = win 0x124780;
     TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
     TodoReturn refreshEnabled();
     TodoReturn togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
@@ -5521,28 +5521,32 @@ class EmotePickerPopup : EditorWindowPopup {
 class EmoteSprite : cocos2d::CCSprite {
     virtual ~EmoteSprite() = win 0x7e780;
 
+    static EmoteSprite* createWithDef(EmoteDef const*) = win 0x7F0E0;
+    static EmoteSprite* createWithName(std::string const&) = win inline;
+
+    static void attachToLabel(cocos2d::CCLabelBMFont*, cocos2d::CCNode*, std::vector<EmoteToken> const&, float) = win 0x80140;
+    static EmoteDef* defForName(std::string const&) = win 0x7EFA0;
+
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x3f5c0;
 
-    TodoReturn attachToLabel(cocos2d::CCLabelBMFont*, cocos2d::CCNode*, std::vector<EmoteToken> const&, float);
     TodoReturn characterCount(std::string const&);
     TodoReturn charIndexForByte(std::string const&, int);
-    TodoReturn createWithDef(EmoteDef const*);
-    TodoReturn createWithName(std::string const&);
     TodoReturn defAtIndex(int);
     TodoReturn defCount();
-    TodoReturn defForName(std::string const&);
-    TodoReturn effectiveLength(std::string const&, int);
-    TodoReturn fitToHeight(float, float);
+    TodoReturn effectiveLength(std::string const&, int) = win 0x7FC10;
+    TodoReturn fitToHeight(float, float) = win 0x7F200;
     TodoReturn heightFactor();
-    TodoReturn initWithDef(EmoteDef const*);
-    TodoReturn jumboMaxAspect();
-    TodoReturn jumboMultiScale();
-    TodoReturn jumboScale();
-    TodoReturn maxEmotesComment();
-    TodoReturn maxEmotesMessage();
-    TodoReturn parseTokens(std::string const&, std::vector<EmoteToken>*, int);
-    TodoReturn replaceTokens(std::string const&, std::vector<EmoteToken>&, float);
-    TodoReturn translateUnicodeEmoji(std::string const&);
+    bool initWithDef(EmoteDef const*);
+    TodoReturn parseTokens(std::string const&, std::vector<EmoteToken>*, int) = win 0x7F9B0;
+    TodoReturn replaceTokens(std::string const&, std::vector<EmoteToken>&, float) = win 0x7FD40;
+    TodoReturn translateUnicodeEmoji(std::string const&) = win 0x7F330;
+
+    float jumboMaxAspect();
+    float jumboMultiScale();
+    float jumboScale();
+
+    int maxEmotesComment();
+    int maxEmotesMessage();
 }
 
 [[link(android)]]
@@ -15556,21 +15560,21 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x475320, imac 0x37d010, m1 0x3088d4;
     virtual void musicActionFinished(GJMusicAction) = win 0x4749b0;
 
-    TodoReturn checkParentalPending();
+    TodoReturn checkParentalPending() = win 0x474180;
     void endGame() = win 0x4755c0, imac 0x37d280, m1 0x308b38;
-    void firstNetworkTest() = m1 0x4d46cc;
+    void firstNetworkTest() = win 0x473FA0, m1 0x4d46cc;
     void onAchievements(cocos2d::CCObject* sender) = win 0x4749d0, imac 0x37c3a0, m1 0x307d1c;
-    void onCreator(cocos2d::CCObject* sender) = imac 0x37c320, m1 0x307ca8;
-    void onDaily(cocos2d::CCObject* sender) = win 0x473b70, imac 0x37c910;
-    void onDiscord(cocos2d::CCObject* sender) = imac 0x3837d0, m1 0x307f8c;
+    void onCreator(cocos2d::CCObject* sender) = win 0x474F00, imac 0x37c320, m1 0x307ca8;
+    void onDaily(cocos2d::CCObject* sender) = win 0x473B70, imac 0x37c910;
+    void onDiscord(cocos2d::CCObject* sender) = win 0x474450, imac 0x3837d0, m1 0x307f8c;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x37ce60, m1 0x308774, ios inline;
-    void onFacebook(cocos2d::CCObject* sender) = m1 0x307efc;
-    void onFreeLevels(cocos2d::CCObject* sender) = imac 0x37cf30, m1 0x30881c;
-    void onFullVersion(cocos2d::CCObject* sender) = imac 0x37cf50, m1 0x30883c;
+    void onFacebook(cocos2d::CCObject* sender) = win 0x474390, m1 0x307efc;
+    void onFreeLevels(cocos2d::CCObject* sender) = win inline, imac 0x37cf30, m1 0x30881c;
+    void onFullVersion(cocos2d::CCObject* sender) = win inline, imac 0x37cf50, m1 0x30883c;
     void onGameCenter(cocos2d::CCObject* sender) = win inline, imac 0x37cbc0, m1 0x308514;
-    void onGarage(cocos2d::CCObject* sender) = imac 0x37c2a0;
+    void onGarage(cocos2d::CCObject* sender) = win 0x474F90, imac 0x37c2a0;
     void onGooglePlayGames(cocos2d::CCObject* sender) = win inline, imac 0x37cd20, m1 0x308654, ios inline;
-    void onMoreGames(cocos2d::CCObject* sender) = imac 0x37cb00, m1 0x30846c;
+    void onMoreGames(cocos2d::CCObject* sender) = win inline, imac 0x37cb00, m1 0x30846c;
     void onMyProfile(cocos2d::CCObject* sender) = win 0x4742c0, imac 0x37c710, m1 0x3080d0;
     void onNewgrounds(cocos2d::CCObject* sender) = win 0x475020, imac 0x37c460, m1 0x307e00;
     void onNews(cocos2d::CCObject* sender) = win 0x474480;
@@ -15579,13 +15583,13 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void onPlay(cocos2d::CCObject* sender) = imac 0x37c210;
     void onQuit(cocos2d::CCObject* sender) = imac 0x37c640, m1 0x307ff8;
     void onReportQueue(cocos2d::CCObject* sender);
-    void onRobTop(cocos2d::CCObject* sender) = imac 0x37c530, m1 0x307ed8;
+    void onRobTop(cocos2d::CCObject* sender) = win 0x474360, imac 0x37c530, m1 0x307ed8;
     void onStats(cocos2d::CCObject* sender) = win 0x474de0, imac 0x37c420, m1 0x307db4;
     void onTrailer(cocos2d::CCObject* sender) = win inline, imac 0x37cfa0, m1 0x308888, ios inline;
-    void onTwitch(cocos2d::CCObject* sender) = imac 0x3837b0, m1 0x307f68;
-    void onTwitter(cocos2d::CCObject* sender) = m1 0x307f20;
-    void onYouTube(cocos2d::CCObject* sender) = m1 0x307f44;
-    void openOptions(bool videoOptions) = win 0x474c40, imac 0x37ce70, m1 0x308778;
+    void onTwitch(cocos2d::CCObject* sender) = win 0x474420, imac 0x3837b0, m1 0x307f68;
+    void onTwitter(cocos2d::CCObject* sender) = win 0x4743C0, m1 0x307f20;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x4743F0, m1 0x307f44;
+    void openOptions(bool videoOptions) = win 0x474C40, imac 0x37ce70, m1 0x308778;
     void showGCQuestion() = win inline, imac 0x37cc10, m1 0x30855c;
     void showMeltdownPromo() = win inline, imac 0x37ca90, m1 0x308410, ios inline;
     void showTOS() = win 0x474190, imac 0x37c930;
@@ -18606,7 +18610,7 @@ class ReportPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     TodoReturn createForSoundConfig(GJEditorSoundConfig*);
     TodoReturn createForThread(GJMessageThread*, GJThreadMessage*, std::string const&);
     TodoReturn createForUser(GJUserScore*);
-    bool init(ReportPopupConfig const&);
+    bool init(ReportPopupConfig const&) = win 0xC07F0;
     void onReasonToggle(cocos2d::CCObject* sender);
     void onSubmit(cocos2d::CCObject* sender);
     TodoReturn reasonIndicesForTextModeration();
@@ -18848,8 +18852,8 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual bool touchInsideClip(cocos2d::CCPoint const&) = win 0x81ea0;
     virtual bool scrollWheel(float, float) = win 0x81ed0;
 
-    TodoReturn applyContentPosition();
-    TodoReturn clampOffset();
+    TodoReturn applyContentPosition() = win 0x81140;
+    TodoReturn clampOffset() = win 0x810D0;
     TodoReturn consumePendingCancel();
     TodoReturn contentWiped();
     TodoReturn createOwnedMenu();
@@ -18891,7 +18895,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void setVirtualRows(VirtualRowSource*, float, float, float);
     TodoReturn unmountAllRows();
     TodoReturn unmountRowSlot(int);
-    TodoReturn updateScrollThumb();
+    TodoReturn updateScrollThumb() = win 0x81420;
     TodoReturn updateSectionVisibility();
     TodoReturn updateVirtualRows();
     TodoReturn worldClipRect();
