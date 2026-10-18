@@ -1,5 +1,6 @@
 #include <Geode/binding/GJScaleControl.hpp>
 #include <Geode/binding/GJScaleControlDelegate.hpp>
+#include <algorithm>
 
 #if !defined(GEODE_IS_IOS)
 GJScaleControl::GJScaleControl() {
@@ -63,4 +64,3 @@ GJScaleControl* GJScaleControl::create() {
 
 #if defined(GEODE_IS_IOS)
 #endif
-
