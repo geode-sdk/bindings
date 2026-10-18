@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJRateLevelLayer.hpp>
+#include <Geode/binding/ButtonSprite.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/LoadingCircle.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
 GJRateLevelLayer::GJRateLevelLayer() {

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCRenderTexture.hpp>
 
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 bool cocos2d::CCRenderTexture::saveToFile(const char* filePath) {

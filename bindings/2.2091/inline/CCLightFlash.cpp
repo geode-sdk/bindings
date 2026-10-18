@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/CCLightFlash.hpp>
+#include <Geode/binding/CCLightStrip.hpp>
 
 CCLightFlash::CCLightFlash() {
     m_lightStripArray = nullptr;

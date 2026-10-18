@@ -1,3 +1,3 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AutoBackupOptionsDelegate.hpp>
 
 void AutoBackupOptionsDelegate::backupsChanged() {}

@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJShopLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
 
 GJShopLayer::GJShopLayer() {
     m_closing = false;

@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AccountLayer.hpp>
+#include <Geode/binding/CCMenuItemToggler.hpp>
+#include <Geode/binding/GJAccountManager.hpp>
+#include <Geode/binding/LoadingCircle.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

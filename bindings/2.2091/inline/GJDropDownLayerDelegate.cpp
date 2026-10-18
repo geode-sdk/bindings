@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJDropDownLayerDelegate.hpp>
 
 void GJDropDownLayerDelegate::dropDownLayerWillClose(GJDropDownLayer* layer) {}
 

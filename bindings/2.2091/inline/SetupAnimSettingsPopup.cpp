@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/SetupAnimSettingsPopup.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
+#include <Geode/binding/EnhancedGameObject.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

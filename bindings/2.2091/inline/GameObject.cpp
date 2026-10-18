@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GameObject.hpp>
+#include <Geode/binding/ColorActionSprite.hpp>
+#include <Geode/binding/GJEffectManager.hpp>
+#include <Geode/binding/OBB2D.hpp>
 
 void GameObject::firstSetup() {}
 

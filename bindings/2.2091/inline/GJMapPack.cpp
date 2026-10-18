@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/binding/GJMapPack.hpp>
 
 #if !defined(GEODE_IS_IOS)
 GJMapPack::GJMapPack() {

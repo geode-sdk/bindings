@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJRewardDelegate.hpp>
 
 void GJRewardDelegate::rewardsStatusFinished(int type) {}
 

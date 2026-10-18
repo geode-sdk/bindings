@@ -1,3 +1,3 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/VolumeChangeDelegate.hpp>
 
 void VolumeChangeDelegate::volumeChanged() {}

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCMenuItemToggle.hpp>
 
 #if defined(GEODE_IS_MACOS)
 cocos2d::CCMenuItemToggle* cocos2d::CCMenuItemToggle::createWithTarget(cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenuItem* item, ...) {

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/HSVLiveOverlay.hpp>
 
 HSVLiveOverlay::HSVLiveOverlay() {
     m_object = nullptr;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/FLAlertLayerProtocol.hpp>
 
 void FLAlertLayerProtocol::FLAlert_Clicked(FLAlertLayer* layer, bool btn2) {}
 

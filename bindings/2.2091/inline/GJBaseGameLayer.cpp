@@ -1,5 +1,28 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/AdvancedFollowEditObject.hpp>
+#include <Geode/binding/AdvancedFollowTriggerObject.hpp>
+#include <Geode/binding/AnimatedGameObject.hpp>
+#include <Geode/binding/ChanceObject.hpp>
+#include <Geode/binding/CountTriggerGameObject.hpp>
+#include <Geode/binding/GJEffectManager.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GJGroundLayer.hpp>
+#include <Geode/binding/GJMGLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GameObject.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/binding/GradientTriggerObject.hpp>
+#include <Geode/binding/KeyframeGameObject.hpp>
+#include <Geode/binding/LabelGameObject.hpp>
+#include <Geode/binding/OBB2D.hpp>
+#include <Geode/binding/PlayerObject.hpp>
+#include <Geode/binding/SFXTriggerGameObject.hpp>
+#include <Geode/binding/SpawnParticleGameObject.hpp>
+#include <Geode/binding/StartPosObject.hpp>
+#include <Geode/binding/TeleportPortalObject.hpp>
+#include <Geode/binding/GJGradientLayer.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;

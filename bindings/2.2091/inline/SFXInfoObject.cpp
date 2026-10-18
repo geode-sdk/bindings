@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SFXInfoObject.hpp>
 
 SFXInfoObject::SFXInfoObject() {
     m_sfxID = 0;

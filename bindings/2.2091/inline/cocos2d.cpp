@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+
+#include <Geode/cocos/cocoa/CCAffineTransform.h>
+#include <Geode/cocos/draw_nodes/CCDrawingPrimitives.h>
+#include <Geode/cocos/shaders/ccGLStateCache.h>
+#include <Geode/cocos/support/CCPointExtension.h>
+#include <Geode/platform/platform.hpp>
 
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 cocos2d::CCPoint ccpCompOp(cocos2d::CCPoint const& p, float (*opFunc)(float)) {
@@ -86,4 +91,3 @@ float cocos2d::ccpAngle(cocos2d::CCPoint const& a, cocos2d::CCPoint const& b) {
     return fabs(angle) < FLT_EPSILON ? 0.f : angle;
 }
 #endif
-

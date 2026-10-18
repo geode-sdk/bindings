@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/TextGameObject.hpp>
 
 TextGameObject::TextGameObject() {
     m_kerning = 0;

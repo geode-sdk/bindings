@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ExplodeItemSprite.hpp>
 
 ExplodeItemSprite::ExplodeItemSprite() {
     m_xVelocity = 0.f;

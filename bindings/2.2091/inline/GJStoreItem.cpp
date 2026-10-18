@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJStoreItem.hpp>
 
 GJStoreItem::GJStoreItem() {
     m_index = 0;

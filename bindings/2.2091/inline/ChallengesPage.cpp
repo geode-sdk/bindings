@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ChallengesPage.hpp>
+#include <Geode/binding/CurrencyRewardLayer.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 
 ChallengesPage::ChallengesPage() {
     m_dots = nullptr;

@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/StartPosObject.hpp>
+#include <Geode/binding/LevelSettingsObject.hpp>
 
 StartPosObject::StartPosObject() {
     m_startSettings = nullptr;

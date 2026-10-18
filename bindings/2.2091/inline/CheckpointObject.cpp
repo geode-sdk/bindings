@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CheckpointObject.hpp>
+#include <Geode/binding/PlayerCheckpoint.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

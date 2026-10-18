@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupAreaMoveTriggerPopup.hpp>
 
 #if !defined(GEODE_IS_WINDOWS)
 SetupAreaMoveTriggerPopup::SetupAreaMoveTriggerPopup() {

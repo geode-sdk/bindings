@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SFXBrowser.hpp>
+#include <Geode/binding/SFXSearchResult.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SFXBrowser::SFXBrowser() {

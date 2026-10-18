@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetIDPopup.hpp>
 
 #if !defined(GEODE_IS_WINDOWS)
 SetIDPopup::SetIDPopup() {

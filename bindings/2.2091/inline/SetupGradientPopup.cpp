@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/SetupGradientPopup.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
+#include <Geode/binding/GradientTriggerObject.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SetupGradientPopup::SetupGradientPopup() {

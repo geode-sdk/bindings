@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelSettingsLayer.hpp>
+#include <Geode/binding/ColorSelectPopup.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

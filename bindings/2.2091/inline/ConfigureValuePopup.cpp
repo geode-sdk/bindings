@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ConfigureValuePopup.hpp>
+#include <Geode/binding/InfoAlertButton.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

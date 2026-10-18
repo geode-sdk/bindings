@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GooglePlayDelegate.hpp>
 
 void GooglePlayDelegate::googlePlaySignedIn() {}
 

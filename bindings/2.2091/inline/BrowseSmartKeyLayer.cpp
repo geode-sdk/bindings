@@ -1,4 +1,11 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCNode.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/BrowseSmartKeyLayer.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
+#include <Geode/binding/GJSmartTemplate.hpp>
+#include <Geode/binding/TextAlertPopup.hpp>
+#include <Geode/binding/GJSmartBlockPreview.hpp>
+#include <Geode/binding/GJSmartPrefab.hpp>
 
 BrowseSmartKeyLayer::BrowseSmartKeyLayer() {
     m_templatePage = 0;

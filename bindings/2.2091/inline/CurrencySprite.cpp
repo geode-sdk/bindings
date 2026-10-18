@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCRepeatForever.hpp>
+#include <Geode/mapping/CCRotateBy.hpp>
+#include <Geode/binding/CurrencySprite.hpp>
 
 #if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_IOS)
 CurrencySprite::CurrencySprite() {

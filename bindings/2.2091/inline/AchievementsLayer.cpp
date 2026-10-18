@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AchievementsLayer.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
+#include <Geode/binding/CustomListView.hpp>
+#include <Geode/binding/GJListLayer.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ColorSetupDelegate.hpp>
 
 void ColorSetupDelegate::colorSetupClosed(int id) {}
 

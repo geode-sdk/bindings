@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SpawnTriggerGameObject.hpp>
 
 SpawnTriggerGameObject::SpawnTriggerGameObject() {
     m_remapKey = 0;

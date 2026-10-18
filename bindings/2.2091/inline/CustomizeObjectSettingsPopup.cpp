@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CustomizeObjectSettingsPopup.hpp>
 
 CustomizeObjectSettingsPopup::CustomizeObjectSettingsPopup() {
     m_customizeLayer = nullptr;

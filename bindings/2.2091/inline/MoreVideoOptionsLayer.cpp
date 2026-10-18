@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MoreVideoOptionsLayer.hpp>
 
 MoreVideoOptionsLayer::MoreVideoOptionsLayer() {
     m_page = 0;

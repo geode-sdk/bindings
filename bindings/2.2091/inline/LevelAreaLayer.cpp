@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelAreaLayer.hpp>
 
 LevelAreaLayer::LevelAreaLayer() {
     m_towerSprite = nullptr;

@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCMenu.hpp>
+#include <Geode/binding/ListButtonPage.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AchievementManager.hpp>
+#include <Geode/binding/AchievementNotifier.hpp>
+#include <Geode/binding/GameToolbox.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

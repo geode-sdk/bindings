@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SliderThumb.hpp>
 
 SliderThumb::SliderThumb() {
     m_length = 0.f;

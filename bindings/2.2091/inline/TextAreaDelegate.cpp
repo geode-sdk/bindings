@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/TextAreaDelegate.hpp>
 
 void TextAreaDelegate::fadeInTextFinished(TextArea* textArea) {}
 

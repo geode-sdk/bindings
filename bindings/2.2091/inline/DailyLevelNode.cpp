@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DailyLevelNode.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
 
 #if !defined(GEODE_IS_IOS)
 DailyLevelNode::DailyLevelNode() {

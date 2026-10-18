@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJTransformState.hpp>
 
 GJTransformState::GJTransformState() {
 		m_scaleX = 1.f;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetTextPopupDelegate.hpp>
 
 void SetTextPopupDelegate::setTextPopupClosed(SetTextPopup* popup, std::string text) {}
 

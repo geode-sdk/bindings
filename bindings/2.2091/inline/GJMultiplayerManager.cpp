@@ -1,4 +1,12 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCActionManager.hpp>
+#include <Geode/mapping/CCCallFuncND.hpp>
+#include <Geode/mapping/CCDelayTime.hpp>
+#include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+#include <Geode/binding/GJMultiplayerManager.hpp>
+#include <Geode/binding/GJHttpResult.hpp>
+#include <Geode/binding/GJComment.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

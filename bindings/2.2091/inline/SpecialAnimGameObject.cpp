@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SpecialAnimGameObject.hpp>
 
 SpecialAnimGameObject::SpecialAnimGameObject() {
     m_skipMainColorUpdate = false;

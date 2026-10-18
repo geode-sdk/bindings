@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCControlColourPicker.hpp>
+#include <Geode/binding/ColorSelectPopup.hpp>
 
 #if !defined(GEODE_IS_IOS)
 ColorSelectPopup::ColorSelectPopup() {

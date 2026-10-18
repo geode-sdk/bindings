@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/GJRewardItem.hpp>
+#include <Geode/binding/GJRewardObject.hpp>
+#include <Geode/binding/GameStatsManager.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

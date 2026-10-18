@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJLocalScore.hpp>
 
 GJLocalScore::GJLocalScore() {
     m_points = 0;

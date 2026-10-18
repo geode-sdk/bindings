@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/PlatformDownloadDelegate.hpp>
 
 void PlatformDownloadDelegate::downloadFinished(char const* key) {}
 

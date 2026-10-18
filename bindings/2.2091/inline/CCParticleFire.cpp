@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCParticleFire.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

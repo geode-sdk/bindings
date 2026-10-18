@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupAreaRotateTriggerPopup.hpp>
 
 SetupAreaRotateTriggerPopup::SetupAreaRotateTriggerPopup() {}
 

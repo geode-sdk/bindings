@@ -1,5 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ProfilePage.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/GJCommentListLayer.hpp>
+#include <Geode/binding/GJUserScore.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/UploadActionPopup.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/InfoLayer.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GJLevelList.hpp>
+#include <Geode/binding/LevelBrowserLayer.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

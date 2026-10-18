@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GraphicsReloadLayer.hpp>
+#include <Geode/binding/AppDelegate.hpp>
 
 GraphicsReloadLayer::GraphicsReloadLayer() {}
 

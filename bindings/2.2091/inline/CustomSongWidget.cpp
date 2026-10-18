@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
+#include <Geode/mapping/CCScale9Sprite.hpp>
+#include <Geode/binding/CustomSongWidget.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
+#include <Geode/binding/SongInfoObject.hpp>
 
 #if !defined(GEODE_IS_IOS)
 CustomSongWidget::CustomSongWidget() {

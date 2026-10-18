@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DialogLayer.hpp>
+#include <Geode/binding/TextArea.hpp>
 
 #if !defined(GEODE_IS_IOS)
 DialogLayer::DialogLayer() {
