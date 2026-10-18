@@ -1326,6 +1326,18 @@ void GJBaseGameLayer::switchToFlyMode(PlayerObject* player, GameObject* object, 
     this->toggleGlitter(true);
 }
 
+void GJBaseGameLayer::switchToRobotMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::RobotPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRobotMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
+void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::BallPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
 void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     auto itemCount = m_effectManager->countForItem(itemID);
     switch (triggerMode) {
