@@ -34,8 +34,8 @@ std::string generatePredeclareHeader(Root const& root) {
         size_t idx;
         if ((idx = cls.name.rfind("::")) != std::string::npos) {
             output += fmt::format(::format_strings::namespace_class_predeclare,
-                fmt::arg("namespace_name", cls.name.substr(0, idx)),
-                fmt::arg("class_name", cls.name.substr(idx+2))
+                fmt::arg("namespace_name", codegen::getNamespaceName(cls.name)),
+                fmt::arg("class_name", codegen::getUnqualifiedClassName(cls.name))
             );
         }
         else {
