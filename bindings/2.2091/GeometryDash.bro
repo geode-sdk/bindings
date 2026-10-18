@@ -14291,7 +14291,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* getTriggerGroup(int id) = win 0x3fd600, imac 0xc3c50, m1 0xaef74;
     void handleAction(bool undo, cocos2d::CCArray* undoObjects) = win 0x3f2580, m1 0x597c24;
     bool hasAction(bool redo) = win inline, imac 0xb23f0, m1 0xa0420;
-    bool init(GJGameLevel* level, bool noUI) = win 0x30ce90;
+    bool init(GJGameLevel* level, bool noUI) = win 0x3ed8e0;
     bool isLayerLocked(int layer) = win inline, imac 0xbc400;
     TodoReturn lockedLayerForObject(int, int);
     TodoReturn lockedLayerForObjectString(std::string const&);
