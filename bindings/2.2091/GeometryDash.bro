@@ -15692,19 +15692,19 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     virtual void clearRecipients() = win 0xd7af0;
     virtual void friendPickerClosed() = win 0xd7b20;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xd6c90;
-    virtual void threadListFinished(cocos2d::CCArray*, int, int, int) = win 0xd8510;
+    virtual void threadListFinished(cocos2d::CCArray*, int, int, int) = win 0xd8510, m1 0x80e6e8;
     virtual void threadListFailed() = win 0xd8c90;
     virtual void threadUpdateFinished(int, int) = win 0xd7310;
     virtual void threadUpdateFailed(int, int) = win 0xd7470;
 
-    TodoReturn applyThreadList(cocos2d::CCArray*, int, int, int, bool);
+    void applyThreadList(cocos2d::CCArray*, int, int, int, bool) = m1 0x80eca8;
     TodoReturn checkActivityAbove(float);
     bool isCovered();
     void loadPage(int, bool) = m1 0x80ccb8;
     void onClearSearch(cocos2d::CCObject* sender) = m1 0x80bdf0;
     void onClose(cocos2d::CCObject* sender) = m1 0x80bb9c;
     void onDeleteSelected(cocos2d::CCObject* sender) = m1 0x80c4f8;
-    TodoReturn onInboxPoll(float);
+    void onInboxPoll(float);
     void onLegacyMessages(cocos2d::CCObject* sender) = m1 0x80bc5c;
     void onMarkRead(cocos2d::CCObject* sender) = m1 0x80c370;
     void onNewThread(cocos2d::CCObject* sender) = m1 0x80bce8;
