@@ -239,6 +239,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
                 }
             }
             break_whole:
+            int a = 5;
         }
 
 
