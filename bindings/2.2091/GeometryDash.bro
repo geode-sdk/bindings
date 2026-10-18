@@ -10526,6 +10526,10 @@ class GJGameLevel : cocos2d::CCNode {
     std::string m_recordString;
     std::string m_uploadDate;
     std::string m_updateDate;
+    win {
+        int m_unkInt98;
+        int m_unkInt99;
+    }
     std::string m_lockedEditorLayers;
     std::string m_savedCameraPositions;
     cocos2d::CCPoint m_previewLock;
@@ -15178,7 +15182,7 @@ class LevelTools {
     static cocos2d::CCDictionary* createStarPackDict() = win inline, imac 0x500bf0, m1 0x45cca4;
     static std::string fbURLForArtist(int id) = imac 0x4feb80, m1 0x45af7c;
     static int getAudioBPM(int id) = win inline, imac 0x4fef00, m1 0x45b2d4, ios inline;
-    static std::string getAudioFileName(int id) = imac 0x4fd2c0, m1 0x459948;
+    static std::string getAudioFileName(int id) = win 0x4633d0, imac 0x4fd2c0, m1 0x459948;
     static std::string getAudioString(int id) = imac 0x4fef20, m1 0x45b2f4;
     static std::string getAudioTitle(int id) = win 0x462870, imac 0x4fcd00, m1 0x4591f8;
     static bool getLastGameplayReversed() = win inline, imac 0x500520, m1 0x448030, ios inline;
@@ -16190,7 +16194,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     std::string getSFXFolderPathForID(int id, bool nextFolder);
     SFXInfoObject* getSFXObject(int id) = win inline, m1 0x597b68;
     char const* getSongDownloadKey(int id) = win inline, imac 0x64b700, m1 0x5865c0, ios inline;
-    void getSongInfo(int id, bool download) = imac 0x64bb20, m1 0x586a14;
+    void getSongInfo(int id, bool download) = win 0x482950, imac 0x64bb20, m1 0x586a14;
     char const* getSongInfoKey(int id) = win inline, imac 0x64b6e0, m1 0x586598, ios inline;
     SongInfoObject* getSongInfoObject(int id) = win 0x484480, imac 0x64b9c0, m1 0x5868d0;
     int getSongPriority() = win inline, imac 0x64bb00, m1 0x586a00, ios inline;
@@ -16240,7 +16244,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void onDownloadSongCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x484030, m1 0x589f20;
     TodoReturn onGetAudioFilesizeCompleted(std::string, std::string);
     void onGetCustomContentURLCompleted(std::string response, std::string tag) = imac 0x64ab50, m1 0x585b6c;
-    void onGetSongInfoCompleted(std::string response, std::string tag) = win 0x3cb460, imac 0x64a8b0, m1 0x5858dc;
+    void onGetSongInfoCompleted(std::string response, std::string tag) = win 0x482c30, imac 0x64a8b0, m1 0x5858dc;
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response);
     void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response);
     TodoReturn onTryUpdateNewsFeedCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
