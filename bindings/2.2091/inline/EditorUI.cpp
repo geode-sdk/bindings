@@ -95,7 +95,7 @@ GJTransformState& EditorUI::getTransformState() {
 }
 
 bool EditorUI::isLiveColorSelectTrigger(GameObject* object) {
-    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == 1006);
+    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == ObjectID::PulseTrigger);
 }
 
 bool EditorUI::liveEditColorUsable() {
@@ -290,8 +290,8 @@ cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
     auto extras = cocos2d::CCArray::create();
     for (int i = 0; i < objects->count(); i++) {
         auto object = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (object->m_objectID > 2807 && object->m_objectID < 2838) {
-            this->createExtrasForObject(object->m_objectID, object, extras);
+        if (ObjectID::BubblyLiquidBlockLeftEdgeTop4Light < object->m_objectID && object->m_objectID < ObjectID::BrickPieceLeftCorner) {
+            this->createExtrasForObject(std::to_underlying(object->m_objectID), object, extras);
         }
     }
     return extras;
@@ -317,7 +317,7 @@ void EditorUI::deleteObject(GameObject* object, bool noUndo) {
 void EditorUI::deleteTypeFromObjects(int id, cocos2d::CCArray* objects) {
     for (int i = 0; i < objects->count(); i++) {
         auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (obj->m_objectID != id) continue;
+        if (std::to_underlying(obj->m_objectID) != id) continue;
         if (obj->m_linkedGroup > 0) {
             if (auto stickyGroup = m_editorLayer->getStickyGroup(obj->m_linkedGroup)) stickyGroup->removeObject(obj, true);
         }
@@ -488,15 +488,15 @@ GameObject* EditorUI::getCycledObject(cocos2d::CCArray* objects, bool dontSkipSe
 void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) {
     objectID = classType = objectType = -1;
     if (selectedObject) {
-        objectID = selectedObject->m_objectID;
+        objectID = std::to_underlying(selectedObject->m_objectID);
         classType = (int)selectedObject->m_classType;
         objectType = (int)selectedObject->m_savedObjectType;
     } else if (selectedObjects) {
         for (int i = 0; i < selectedObjects->count(); i++) {
             auto obj = static_cast<GameObject*>(selectedObjects->objectAtIndex(i));
             if (objectID != 0) {
-                if (objectID == -1) objectID = obj->m_objectID;
-                else if (objectID != obj->m_objectID) objectID = 0;
+                if (objectID == -1) objectID = std::to_underlying(obj->m_objectID);
+                else if (objectID != std::to_underlying(obj->m_objectID)) objectID = 0;
             }
             if (classType != 0) {
                 if (classType == -1) classType = (int)obj->m_classType;
