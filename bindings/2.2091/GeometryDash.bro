@@ -6729,7 +6729,7 @@ class GameLevelManager : cocos2d::CCNode {
 
     static GameLevelManager* get() = inline;
     static cocos2d::CCDictionary* responseToDict(std::string response, bool colon) = imac 0x542920, m1 0x499334;
-    static GameLevelManager* sharedState() = win inline;
+    static GameLevelManager* sharedState() = win inline, m1 0x4767c4;
 
     virtual bool init() = win 0x21b9a0, imac 0x53d9b0, m1 0x494bc0;
 
@@ -6915,7 +6915,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getThreadMessages(int, long long, long long, int, long long, std::string const&);
     TodoReturn getThreadPastMembers(int);
     TodoReturn getThreadPendingInvites(int);
-    TodoReturn getThreads(int, std::string const&, int, std::string const&);
+    bool getThreads(int, std::string const&, int, std::string const&) = m1 0x4c53d0;
     int getTimeLeft(char const* key, float length);
     void getTopArtists(int page, int total) = win 0x239730, imac 0x566bd0, m1 0x4b9db4;
     const char* getTopArtistsKey(int page) = win inline, imac 0x566fa0, m1 0x4ba15c;
@@ -7032,7 +7032,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn onGetSongUsageCompleted(std::string, std::string);
     TodoReturn onGetThreadInvitesCompleted(std::string, std::string);
     TodoReturn onGetThreadMessagesCompleted(std::string, std::string);
-    TodoReturn onGetThreadsCompleted(std::string, std::string);
+    void onGetThreadsCompleted(std::string, std::string) = m1 0x4900a8;
     void onGetTopArtistsCompleted(std::string response, std::string tag) = win 0x230ff0, imac 0x52ec00, m1 0x487814;
     void onGetUserListCompleted(std::string response, std::string tag) = win 0x257480, m1 0x4826a4;
     void onGetUserMessagesCompleted(std::string response, std::string tag) = imac 0x52a540, m1 0x483670;
@@ -15700,7 +15700,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn applyThreadList(cocos2d::CCArray*, int, int, int, bool);
     TodoReturn checkActivityAbove(float);
     bool isCovered();
-    TodoReturn loadPage(int, bool);
+    void loadPage(int, bool) = m1 0x80ccb8;
     void onClearSearch(cocos2d::CCObject* sender) = m1 0x80bdf0;
     void onClose(cocos2d::CCObject* sender) = m1 0x80bb9c;
     void onDeleteSelected(cocos2d::CCObject* sender) = m1 0x80c4f8;
