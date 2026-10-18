@@ -6,6 +6,10 @@ void CommentUploadDelegate::commentUploadFailed(int parentID, CommentError error
 
 void CommentUploadDelegate::commentDeleteFailed(int id, int parentID) {}
 
+void CommentUploadDelegate::bulkCommentDeleteFinished(int) {}
+
+void CommentUploadDelegate::bulkCommentDeleteFailed() {}
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 

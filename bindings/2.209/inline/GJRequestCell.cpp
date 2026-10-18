@@ -14,7 +14,8 @@ void GJRequestCell::updateToggle() {
 #if defined(GEODE_IS_WINDOWS)
 GJRequestCell::~GJRequestCell() {
     auto glm = GameLevelManager::sharedState();
-    if (glm->m_uploadActionDelegate == this) glm->m_uploadActionDelegate = nullptr;
+    // TODO: 2.209
+    // if (glm->m_uploadActionDelegate == this) glm->m_uploadActionDelegate = nullptr;
     if (m_popup) m_popup->m_delegate = nullptr;
     CC_SAFE_RELEASE(m_score);
 }

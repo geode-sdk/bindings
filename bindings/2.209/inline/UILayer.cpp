@@ -89,6 +89,8 @@ bool UILayer::isJumpButtonPressed() {
     return this->isJumpButtonPressed(true) || this->isJumpButtonPressed(false);
 }
 
+void UILayer::keyUp(cocos2d::enumKeyCodes key, double timestamp) {}
+
 void UILayer::refreshDpad() {}
 
 void UILayer::resetAllButtons() {
