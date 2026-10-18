@@ -14577,6 +14577,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     CCMenuItemSpriteExtra* m_starRateBtn;
     CCMenuItemSpriteExtra* m_demonRateBtn;
     void* m_unk2;
+    PAD = win 0x8;
     cocos2d::CCLabelBMFont* m_lengthLabel;
     cocos2d::CCLabelBMFont* m_exactLengthLabel;
     cocos2d::CCLabelBMFont* m_downloadsLabel;
@@ -14603,6 +14604,9 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     cocos2d::CCSprite* m_playSprite;
     cocos2d::CCProgressTimer* m_progressTimer;
     CustomSongWidget* m_songWidget;
+    win {
+        bool m_unkBool;
+    }
 }
 
 [[link(android)]]
@@ -16123,7 +16127,7 @@ class MusicDownloadDelegate {
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     virtual ~MusicDownloadManager() = win 0x482350;
 
-    static MusicDownloadManager* sharedState() = win 0x6cdd0, imac 0x649cd0;
+    static MusicDownloadManager* sharedState() = win 0x481e60, imac 0x649cd0;
 
     virtual bool init() = win 0x482560, imac 0x64b320, m1 0x586200;
 

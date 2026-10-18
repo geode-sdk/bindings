@@ -34,6 +34,9 @@ LevelInfoLayer::LevelInfoLayer() {
     m_playSprite = nullptr;
     m_progressTimer = nullptr;
     m_songWidget = nullptr;
+#if defined(GEODE_IS_WINDOWS)
+    m_unkBool = false;
+#endif
 }
 #endif
 
