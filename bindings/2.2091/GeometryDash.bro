@@ -17395,7 +17395,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void collidedWithSlopeInternal(float dt, GameObject* object, bool forced) = win 0x9999999, imac 0x3f40d0, m1 0x370af4;
     float convertToClosestRotation(float rotation) = win 0x4eb3b0, imac 0x3efbf0, m1 0x36cdf8;
     void copyAttributes(PlayerObject* player) = win 0x4fea30, imac 0x4083e0, m1 0x3827a4;
-    void createFadeOutDartStreak() = imac 0x402880, m1 0x37d108;
+    void createFadeOutDartStreak() = win 0x4f69a0, imac 0x402880, m1 0x37d108;
     void createRobot(int frame) = win 0x9999999, imac 0x3e9190, m1 0x367010;
     void createSpider(int frame) = win 0x9999999, imac 0x3e9540, m1 0x367354;
     void deactivateParticle() = win inline, imac 0x3ee9a0;
@@ -17497,7 +17497,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void resetCollisionValues() = win inline, imac 0x3fa790, ios inline;
     void resetPlayerIcon() = win 0x4f95b0, imac 0x4039f0, m1 0x37e1b8;
     void resetStateVariables() = win inline, imac 0x3ffa00, m1 0x37a7b8;
-    void resetStreak() = imac 0x3f03d0, m1 0x36d52c;
+    void resetStreak() = win 0x4e9840, imac 0x3f03d0, m1 0x36d52c;
     void resetTouchedRings(bool removeAll) = win 0x4f6600, imac 0x3ffa80, m1 0x37a81c;
     int reverseMod() = win inline, imac 0x3f1410, m1 0x36e484, ios inline;
     void reversePlayer(EffectGameObject* object) = win 0x4f6740, imac 0x402790, m1 0x37d030;
