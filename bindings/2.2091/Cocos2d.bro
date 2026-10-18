@@ -964,7 +964,7 @@ class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
 class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     // CCDrawNode(cocos2d::CCDrawNode const&);
     CCDrawNode();
-    virtual ~CCDrawNode() = m1 0x600c84;
+    virtual ~CCDrawNode() = imac 0x6ed690, m1 0x600c84;
 
     static cocos2d::CCDrawNode* create() = m1 0x600dcc;
 
@@ -1919,7 +1919,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     virtual void setString(char const*, bool) = imac 0x6ab0a0, m1 0x5c5a2c;
     virtual char const* getString() = imac 0x6ab2d0, m1 0x5c5c54;
     virtual void setCString(char const*) = imac 0x6ab320, m1 0x5c5c8c;
-    virtual void updateLabel() = imac 0x6abb60, m1 0x250c20;
+    virtual void updateLabel() = imac 0x6abb60, m1 0x5c6488;
     virtual void setAlignment(cocos2d::CCTextAlignment) = imac 0x6acc90, m1 0x5c71b4;
     virtual void setWidth(float) = imac 0x6accb0, m1 0x5c71c4;
     virtual void setLineBreakWithoutSpace(bool) = imac 0x6accd0, m1 0x5c71d4;
@@ -2040,7 +2040,7 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCAccelerometerDelegate, cocos2d::CCKeypadDelegate, cocos2d::CCKeyboardDelegate, cocos2d::CCMouseDelegate {
     // CCLayer(cocos2d::CCLayer const&);
     CCLayer() = imac 0x4a9260, m1 0x40f6cc;
-    virtual ~CCLayer() = imac 0x4a9420, m1 0x40f824;
+    virtual ~CCLayer() = imac 0x4a9420, m1 0x40f8fc;
 
     static cocos2d::CCLayer* create() = imac 0x4a9820, m1 0x40fae8;
 
