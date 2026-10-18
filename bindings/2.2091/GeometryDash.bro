@@ -18196,7 +18196,7 @@ class PriceLabel : cocos2d::CCNode {
 
 [[link(android)]]
 class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate, FollowUserDelegate {
-    virtual ~ProfilePage() = win 0x550490, m1 0x79c830;
+    virtual ~ProfilePage() = win 0x550490;
 
     // ProfilePage() = ios 0x1a9c90;
     static ProfilePage* create(int accountID, bool ownProfile) = win 0x5506e0, imac 0x89dad0, m1 0x790e9c;
