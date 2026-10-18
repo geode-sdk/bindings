@@ -2849,7 +2849,7 @@ class CountTriggerGameObject : EffectGameObject {
     static CountTriggerGameObject* create(char const* frame) = win inline, imac 0x1b79c0;
 
     virtual void triggerObject(GJBaseGameLayer* layer, int uniqueID, std::vector<int> const* remapKeys) = win 0x65c2b0, imac 0x1b7ae0, m1 0x1726c8;
-    virtual void customObjectSetup(std::vector<std::string>& values, std::vector<void*>& exists) = win 0x65c877, imac 0x1b7d50, m1 0x15515c;
+    virtual void customObjectSetup(std::vector<std::string>& values, std::vector<void*>& exists) = win 0x65c730, imac 0x1b7d50, m1 0x15515c;
     virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x65cac0;
 
     bool init(char const* frame) = win inline, imac 0x1b7a90, m1 0x172680, ios inline;
