@@ -10,6 +10,7 @@ CustomSongWidget::CustomSongWidget() {
     m_selectSongBtn = nullptr;
     m_playbackBtn = nullptr;
     m_deleteBtn = nullptr;
+    m_favoriteBtn = nullptr;
     m_sliderGroove = nullptr;
     m_sliderBar = nullptr;
     m_ncsLogo = nullptr;
@@ -21,12 +22,15 @@ CustomSongWidget::CustomSongWidget() {
     m_isNotDownloading = false;
     m_isRobtopSong = false;
     m_isMusicLibrary = false;
+    m_showFavoriteBtn = false;
     m_customSongID = 0;
     m_lengthMod = 0.f;
     m_isInCell = false;
     m_playbackDelegate = nullptr;
     m_hasLibrarySongs = false;
     m_hasSFX = false;
+    m_usageBtn = nullptr;
+    m_showUsageBtn = false;
     m_unkBool2 = false;
     m_totalBytes = 0;
 }
