@@ -2094,7 +2094,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x9f410, imac 0x388360, m1 0x313020;
 
     TodoReturn canCollectQuests();
-    void claimItem(ChallengeNode* node, GJChallengeItem* item, cocos2d::CCPoint position) = imac 0x388240, m1 0x312ef0;
+    void claimItem(ChallengeNode* node, GJChallengeItem* item, cocos2d::CCPoint position) = win 0x9f0f0, imac 0x388240, m1 0x312ef0;
     ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x9e790, imac 0x3877a0, m1 0x31243c;
     void exitNodeAtSlot(int position, float delay) = win 0x9eac0, imac 0x387cd0, m1 0x31291c;
     void onClose(cocos2d::CCObject* sender) = win 0x9f060, imac 0x387510, m1 0x3121b4;
@@ -2994,7 +2994,7 @@ class CreateParticlePopup : FLAlertLayer, ColorSelectDelegate, SliderDelegate {
     void updateColorSprite(int tag) = win inline, imac 0x467f70, m1 0x3d40d0;
     void updateInputNodeStringForType(gjParticleValue type) = imac 0x469680, m1 0x3d5724;
     void updateParticleValueForType(float value, gjParticleValue type, cocos2d::CCParticleSystemQuad* particle) = win 0x5c95e0, imac 0x469b70, m1 0x3d5be4;
-    void updateSliderForType(gjParticleValue type) = imac 0x469950, m1 0x3d59f8;
+    void updateSliderForType(gjParticleValue type) = win 0x5ca250, imac 0x469950, m1 0x3d59f8;
     float valueForParticleValue(gjParticleValue type) = win 0x5c8d60, imac 0x46b090, m1 0x3d6d14;
     void willClose() = win 0x5caa00, imac 0x46a810, m1 0x3d6510;
 
@@ -3564,7 +3564,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void onToggleFavorite(cocos2d::CCObject* sender);
     void onUsage(cocos2d::CCObject* sender);
     void positionInfoObjects() = imac 0x6f9380, m1 0x60b184;
-    void processNextMultiAsset() = imac 0x6fd7e0, m1 0x60f24c;
+    void processNextMultiAsset() = win 0x16e4d0, imac 0x6fd7e0, m1 0x60f24c;
     void setMultiAssetFilesize(int, int);
     void showError(bool fast) = imac 0x6fafe0, m1 0x60cd10;
     void startDownload() = imac 0x6fb6d0, m1 0x5d1a30;
@@ -8920,8 +8920,8 @@ class GJAccountManager : cocos2d::CCNode {
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0xa2c10, m1 0x923a4;
     void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0xa2bb0, m1 0x9234c;
     void firstSetup() = win inline, imac 0xa2ba0, m1 0x92348;
-    bool getAccountBackupURL() = win 0x9999999;
-    bool getAccountSyncURL() = win 0x9999999;
+    bool getAccountBackupURL() = win 0x306e70;
+    bool getAccountSyncURL() = win 0x307ef0;
     cocos2d::CCObject* getDLObject(char const* tag) = win inline;
     std::string getShaPassword(std::string password) = win 0x30a0b0, imac 0xa2dd0, m1 0x92578;
     void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x305500;
@@ -8932,7 +8932,7 @@ class GJAccountManager : cocos2d::CCNode {
     void loginAccount(std::string username, std::string gjp2) = win 0x3065e0, imac 0xa0c90, m1 0x905d0;
     void onBackupAccountCompleted(std::string response, std::string tag) = imac 0x9ea10, m1 0x8e654;
     void onGetAccountBackupURLCompleted(std::string response, std::string tag) = win 0x3071e0, imac 0x9fca0, m1 0x8f60c;
-    void onGetAccountSyncURLCompleted(std::string response, std::string tag) = imac 0x9feb0, m1 0x8f834;
+    void onGetAccountSyncURLCompleted(std::string response, std::string tag) = win 0x308260, imac 0x9feb0, m1 0x8f834;
     void onLoginAccountCompleted(std::string response, std::string tag) = win 0x306a60, imac 0x9e670, m1 0x8e2f8;
     TodoReturn onOpenRegisterCompleted(std::string, std::string);
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response);
@@ -11434,7 +11434,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
     void addComment(std::string str, int lobbyID) = win 0x3919d0, imac 0x73a550, m1 0x648228;
     void addDLToActive(char const* tag) = win inline, ios inline;
     void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win inline, ios inline;
-    void createAndAddComment(std::string text, int lobbyID) = imac 0x73b3d0, m1 0x648eb4;
+    void createAndAddComment(std::string text, int lobbyID) = win 0x3917d0, imac 0x73b3d0, m1 0x648eb4;
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x73b5a0, m1 0x64906c;
     void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0x73b590, m1 0x649068;
     bool exitLobby(int id) = imac 0x73a760, m1 0x648428;
@@ -15078,7 +15078,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     TodoReturn removeFromIDUseOrder(int, int);
     TodoReturn sanitizeIDName(std::string const&);
     void setIDName(int, std::string const&, int);
-    void setupColorsFromLegacyMode(cocos2d::CCDictionary* dict) = imac 0xddeb0, m1 0xc387c;
+    void setupColorsFromLegacyMode(cocos2d::CCDictionary* dict) = win 0x412c60, imac 0xddeb0, m1 0xc387c;
     bool shouldUseYSection() = win inline, imac 0xda200;
     TodoReturn touchIDUsage(int, int);
 
@@ -19122,13 +19122,13 @@ class SecretLayer3 : cocos2d::CCLayer, DialogDelegate {
     void firstInteractionStep1() = win inline, imac 0x49efd0, m1 0x406d2c;
     void firstInteractionStep2() = win 0x581570, imac 0x49f090, m1 0x406de8;
     void firstInteractionStep3() = win inline, imac 0x49f4b0, m1 0x4071c0;
-    void firstInteractionStep4() = win 0x9999999, imac 0x49f620, m1 0x407330;
+    void firstInteractionStep4() = win 0x581a40, imac 0x49f620, m1 0x407330;
     void onBack(cocos2d::CCObject* sender) = win 0x584e50, imac 0x49ee90, m1 0x406bdc;
-    void onChest01(cocos2d::CCObject* sender) = imac 0x49ecf0, m1 0x406a04;
-    void onChest02(cocos2d::CCObject* sender) = imac 0x49edc0, m1 0x406af0;
+    void onChest01(cocos2d::CCObject* sender) = win 0x581150, imac 0x49ecf0, m1 0x406a04;
+    void onChest02(cocos2d::CCObject* sender) = win 0x5812d0, imac 0x49edc0, m1 0x406af0;
     void onClick(cocos2d::CCObject* sender) = win 0x581ee0, imac 0x49dd60, m1 0x405ce4;
     void revealStep1() = win 0x583680, imac 0x49f9f0, m1 0x4076f4;
-    void revealStep2() = imac 0x4a0000, m1 0x407cc8;
+    void revealStep2() = win 0x583870, imac 0x4a0000, m1 0x407cc8;
     void revealStep3() = win inline, imac 0x4a0320, m1 0x407fd0;
     void revealStep4() = win 0x583c40, imac 0x4a03c0, m1 0x40806c;
     void revealStep5() = win 0x5843e0, imac 0x4a0bd0, m1 0x408798;
@@ -20245,7 +20245,7 @@ class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
 
     static SetupCollisionStateTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects);
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = m1 0x1890c;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b10c0, m1 0x1890c;
 }
 
 [[link(android)]]
