@@ -4515,7 +4515,6 @@ class cocos2d::CCTexturePVR : cocos2d::CCObject {
     bool initWithContentsOfFile(char const*) = win 0x9999999, imac 0x271fa0, m1 0x2188bc, ios 0x41319c;
     bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0x9999999, imac 0x271710, m1 0x218184, ios 0x412bec;
     bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0xadf40, imac 0x271980, m1 0x2183a4, ios 0x412dfc;
-    bool createGLTexture() = win 0x142af0, imac 0x271c60, m1 0x2185fc, ios 0x412fcc;
 }
 
 [[link(win, android)]]
