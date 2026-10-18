@@ -659,15 +659,6 @@ void GameManager::openEditorGuide() {
 
 void GameManager::printGJLog() {}
 
-// TODO: 2.209
-void GameManager::queueReloadMenu(bool p0) {
-    // m_pActionManager->addAction(cocos2d::CCSequence::create(
-    //     cocos2d::CCDelayTime::create(.1f),
-    //     cocos2d::CCCallFunc::create(this, callfunc_selector(GameManager::reloadMenu)),
-    //     nullptr
-    // ), this, false);
-}
-
 void GameManager::rateGame() {
     if (GameToolbox::doWeHaveInternet()) {
         GameToolbox::openAppPage();
