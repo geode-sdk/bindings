@@ -3079,24 +3079,24 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     TodoReturn checkTimedStatus();
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x138140, imac 0x2834b0, m1 0x228790;
     void onBack(cocos2d::CCObject* sender) = imac 0x2846c0, m1 0x229974;
-    void onChallenge(cocos2d::CCObject* sender) = imac 0x283520, m1 0x228824;
-    void onDailyLevel(cocos2d::CCObject* sender);
-    void onEventLevel(cocos2d::CCObject* sender) = imac 0x37cf30;
+    void onChallenge(cocos2d::CCObject* sender) = win 0x138460, imac 0x283520, m1 0x228824;
+    void onDailyLevel(cocos2d::CCObject* sender) = win 0x1382b0;
+    void onEventLevel(cocos2d::CCObject* sender) = win 0x1383d0, imac 0x37cf30;
     void onFameLevels(cocos2d::CCObject* sender) = win inline, ios inline;
-    void onFeaturedLevels(cocos2d::CCObject* sender) = imac 0x2836d0, m1 0x2289c0;
+    void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x137740, imac 0x2836d0, m1 0x2289c0;
     void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50;
     void onLeaderboards(cocos2d::CCObject* sender) = win 0x137550, imac 0x2830f0, m1 0x228388;
-    void onMapPacks(cocos2d::CCObject* sender) = imac 0x2837b0, m1 0x228a88;
+    void onMapPacks(cocos2d::CCObject* sender) = win 0x137980, imac 0x2837b0, m1 0x228a88;
     void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x192554;
-    void onMyLevels(cocos2d::CCObject* sender);
+    void onMyLevels(cocos2d::CCObject* sender) = win 0x136aa0;
     void onOnlineLevels(cocos2d::CCObject* sender) = win 0x137900, imac 0x283810, m1 0x228ad4;
     void onOnlyFullVersion(cocos2d::CCObject* sender) = imac 0x283940, m1 0x228bec;
-    void onPaths(cocos2d::CCObject* sender) = imac 0x283730, m1 0x228a0c;
-    void onSavedLevels(cocos2d::CCObject* sender);
+    void onPaths(cocos2d::CCObject* sender) = win 0x137810, imac 0x283730, m1 0x228a0c;
+    void onSavedLevels(cocos2d::CCObject* sender) = win 0x137000;
     void onSecretVault(cocos2d::CCObject* sender) = win 0x1384a0, imac 0x283ea0, m1 0x229194;
     void onTopLists(cocos2d::CCObject* sender) = win 0x137830, imac 0x283750, m1 0x228a28;
     void onTreasureRoom(cocos2d::CCObject* sender) = win 0x138cd0, imac 0x2840c0, m1 0x2293e0;
-    void onWeeklyLevel(cocos2d::CCObject* sender) = imac 0x37cf30;
+    void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x138340, imac 0x37cf30;
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
@@ -7442,7 +7442,7 @@ class GameManager : GManager {
     /// @returns PlayLayer pointer
     PlayLayer* getPlayLayer() = inline;
     std::string getPracticeMusicFile() = win inline, imac 0x360250, m1 0x2eef7c;
-    bool getUGV(char const* key) = imac 0x36d4c0, m1 0x2fa848;
+    bool getUGV(char const* key) = win 0x27e9c0, imac 0x36d4c0, m1 0x2fa848;
     void getUnlockForAchievement(std::string key, int& id, UnlockType& type) = win 0x18b3d0, imac 0x361ae0, m1 0x2f04c4;
     bool groundHasSecondaryColor(int index) = win inline, imac 0x36cbb0, m1 0x2f9ec4, ios inline;
     void iconAndTypeForKey(int key, int& id, int& type) = win inline, imac 0x36b220, m1 0x2f84d4, ios inline;
@@ -8399,7 +8399,7 @@ class GameStatsManager : cocos2d::CCNode {
 
     static GameStatsManager* get() = inline;
     // GameStatsManager() = win 0x1d0ae0;
-    static GameStatsManager* sharedState() = win 0x9999999, imac 0x1f250, m1 0x1aebc;
+    static GameStatsManager* sharedState() = win 0x2d6890, imac 0x1f250, m1 0x1aebc;
 
     virtual bool init() = win 0x2d6ae0, imac 0x1f730, m1 0x1b200;
 
@@ -10906,8 +10906,8 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onRewardedVideo(cocos2d::CCObject* sender) = m1 0x2e4f18;
     void onSelect(cocos2d::CCObject* sender) = imac 0x3572d0, m1 0x2e69d8;
     void onSelectTab(cocos2d::CCObject* sender) = imac 0x355ea0, m1 0x2e5674;
-    void onShards(cocos2d::CCObject* sender) = imac 0x355500, m1 0x2e4c84;
-    void onShop(cocos2d::CCObject* sender) = imac 0x3554a0, m1 0x2e4c24;
+    void onShards(cocos2d::CCObject* sender) = win 0x381670, imac 0x355500, m1 0x2e4c84;
+    void onShop(cocos2d::CCObject* sender) = win 0x381940, imac 0x3554a0, m1 0x2e4c24;
     void onSpecial(cocos2d::CCObject* sender) = imac 0x357200, m1 0x2e6924;
     void onToggleItem(cocos2d::CCObject* sender) = win 0x380210, imac 0x357b30, m1 0x2e7044;
     void playRainbowEffect() = win 0x381480, imac 0x357f10, m1 0x2e73dc;
@@ -15561,7 +15561,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void firstNetworkTest() = m1 0x4d46cc;
     void onAchievements(cocos2d::CCObject* sender) = win 0x4749d0, imac 0x37c3a0, m1 0x307d1c;
     void onCreator(cocos2d::CCObject* sender) = imac 0x37c320, m1 0x307ca8;
-    void onDaily(cocos2d::CCObject* sender) = imac 0x37c910;
+    void onDaily(cocos2d::CCObject* sender) = win 0x473b70, imac 0x37c910;
     void onDiscord(cocos2d::CCObject* sender) = imac 0x3837d0, m1 0x307f8c;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x37ce60, m1 0x308774, ios inline;
     void onFacebook(cocos2d::CCObject* sender) = m1 0x307efc;
@@ -15574,7 +15574,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void onMyProfile(cocos2d::CCObject* sender) = win 0x4742c0, imac 0x37c710, m1 0x3080d0;
     void onNewgrounds(cocos2d::CCObject* sender) = win 0x475020, imac 0x37c460, m1 0x307e00;
     void onNews(cocos2d::CCObject* sender) = win 0x474480;
-    void onOptions(cocos2d::CCObject* sender) = imac 0x37c3e0, m1 0x307d68;
+    void onOptions(cocos2d::CCObject* sender) = win 0x474c20, imac 0x37c3e0, m1 0x307d68;
     void onOptionsInstant() = imac 0x37acb0, m1 0x306678;
     void onPlay(cocos2d::CCObject* sender) = imac 0x37c210;
     void onQuit(cocos2d::CCObject* sender) = imac 0x37c640, m1 0x307ff8;
