@@ -8924,7 +8924,7 @@ class GJAccountManager : cocos2d::CCNode {
     bool getAccountSyncURL() = win 0x9999999;
     cocos2d::CCObject* getDLObject(char const* tag) = win inline;
     std::string getShaPassword(std::string password) = win 0x30a0b0, imac 0xa2dd0, m1 0x92578;
-    void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x3eab00;
+    void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x305500;
     void handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) = win inline, ios inline;
     void handleItND(cocos2d::CCNode* node, void* data) = win inline, ios inline;
     bool isDLActive(char const* tag) = win inline, ios inline;
@@ -13373,7 +13373,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     int getID() = win inline, imac 0x8945e0, m1 0x7881d4, ios inline;
     int getRealID() = win inline, imac 0x8958a0, m1 0x789314, ios inline;
     CCMenuItemSpriteExtra* getSpriteButton(char const* frame, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, cocos2d::CCPoint position) = win 0x3cffc0, imac 0x894100, m1 0x787d30;
-    bool init(GJGameLevel*, GJUserScore*, GJLevelList*, GJEditorSoundConfig*) = win 0x124e20;
+    bool init(GJGameLevel*, GJUserScore*, GJLevelList*, GJEditorSoundConfig*) = win 0x3cdd50;
     bool isCorrect(char const* key);
     void loadPage(int page, bool noSetup) = win 0x3d1560, imac 0x894640, m1 0x788228;
     void onBulkDelete(cocos2d::CCObject* sender);
@@ -21399,7 +21399,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
     void onPasteRemap(cocos2d::CCObject* sender) = win 0x5f4ff0, imac 0x27b6e0, m1 0x2210c0;
     void onSelectRemap(cocos2d::CCObject* sender) = win 0x5f58c0, imac 0x27bff0, m1 0x7c4c;
     void queueUpdateButtons() = win 0x1bfa60, imac 0x27bfa0, m1 0x2218ec;
-    void updateRemapButtons(float dt) = win 0x42cf30, imac 0x27b730, m1 0x221100;
+    void updateRemapButtons(float dt) = win 0x5f5090, imac 0x27b730, m1 0x221100;
 
     bool m_isBusy;
     cocos2d::CCArray* m_remapButtons;
@@ -23419,7 +23419,7 @@ class TeleportPortalObject : RingObject {
     TeleportPortalObject() = inline;
     virtual ~TeleportPortalObject() = win 0x637f40;
 
-    static TeleportPortalObject* create(char const* frame, bool trigger) = win 0x503930, imac 0x19e3b0, m1 0x15d460;
+    static TeleportPortalObject* create(char const* frame, bool trigger) = win 0x6536b0, imac 0x19e3b0, m1 0x15d460;
 
     virtual void setPosition(cocos2d::CCPoint const& position) = win 0x653890, imac 0x19e750, m1 0x15d7c0;
     virtual void setRotation(float rotation) = win 0x653a10, imac 0x19e800, m1 0x15d86c;
