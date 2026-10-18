@@ -3550,9 +3550,9 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void downloadAssetFinished(int id, GJAssetType type) = imac 0x6fd1c0, m1 0x60ece4;
     void downloadFailed() = win inline, imac 0x6fb870, m1 0x60d494;
     void getSongInfoIfUnloaded() = win 0x16b590, imac 0x6fb220, m1 0x60cf10;
-    bool init(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool, int, bool, bool) = win 0xd93b0;
+    bool init(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool, int, bool, bool) = win 0x1692e0;
     void onCancelDownload(cocos2d::CCObject* sender) = m1 0x60a7a4;
-    void onDelete(cocos2d::CCObject* sender) = imac 0x6f8910, m1 0x60a7e0;
+    void onDelete(cocos2d::CCObject* sender) = win 0x16b140, imac 0x6f8910, m1 0x60a7e0;
     void onDownload(cocos2d::CCObject* sender) = win 0x1afc20, imac 0x6f8640, m1 0x60a554;
     void onGetSongInfo(cocos2d::CCObject* sender) = imac 0x6f8a50, m1 0x60a920;
     void onInfo(cocos2d::CCObject* sender) = imac 0x6f8de0, m1 0x60acb4;
@@ -3578,7 +3578,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updateSongInfo() = win 0x16c380, m1 0x60b8bc;
     void updateSongObject(SongInfoObject* songInfo) = win inline, imac 0x6f9a30, m1 0x60b818;
     TodoReturn updateUsageButton();
-    void updateWithMultiAssets(std::string songList, std::string sfxList, int bytes) = imac 0x6fb930, m1 0x60d534;
+    void updateWithMultiAssets(std::string songList, std::string sfxList, int bytes) = win 0x16d380, imac 0x6fb930, m1 0x60d534;
     bool verifySongID(int id) = win inline, imac 0x6fc960, m1 0x60e4d8, ios inline;
 
     SongInfoObject* m_songInfoObject;
@@ -3595,6 +3595,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     CCMenuItemSpriteExtra* m_moreBtn;
     CCMenuItemSpriteExtra* m_deleteBtn;
     CCMenuItemSpriteExtra* m_infoBtn;
+    CCMenuItemSpriteExtra* m_favoriteBtn;
     cocos2d::CCSprite* m_sliderGroove;
     cocos2d::CCSprite* m_sliderBar;
     cocos2d::CCSprite* m_ncsLogo;
@@ -3606,12 +3607,15 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     bool m_isNotDownloading;
     bool m_isRobtopSong;
     bool m_isMusicLibrary;
+    bool m_showFavoriteBtn;
     int m_customSongID;
     float m_lengthMod;
     bool m_isInCell;
     SongPlaybackDelegate* m_playbackDelegate;
     bool m_hasLibrarySongs;
     bool m_hasSFX;
+    CCMenuItemSpriteExtra* m_usageBtn;
+    bool m_showUsageBtn;
     bool m_unkBool2;
     std::map<int, bool> m_songs;
     std::map<int, bool> m_sfx;
@@ -10465,7 +10469,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn ensureSessionLog();
     TodoReturn generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
-    std::string getAudioFileName() = imac 0x5842c0, m1 0x4d5978;
+    std::string getAudioFileName() = win 0x264790, imac 0x5842c0, m1 0x4d5978;
     int getAverageDifficulty() = imac 0x583fe0, m1 0x4d5680;
     char const* getCoinKey(int coinNumber) = win 0x9999999, imac 0x566b60, m1 0x4b9d18;
     TodoReturn getCoinKey(int, int);
