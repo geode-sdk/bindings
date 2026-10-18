@@ -15662,12 +15662,12 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProtocol, FriendPickerDelegate {
     virtual ~MessageThreadsPage() = win 0xd1cb0;
 
-    static MessageThreadsPage* create();
+    static MessageThreadsPage* create() = win 0xd3440;
 
     virtual bool init() = win 0xd3660;
     virtual void keyBackClicked() = win 0xd82e0;
     virtual void show() = win 0xd8170;
-    virtual TodoReturn ownsTouchPrio() = win 0x3ff70;
+    virtual bool ownsTouchPrio() = win 0x3ff70;
     virtual void textInputClosed(CCTextInputNode*) = win 0x9999999;
     virtual void friendPicked(GJUserScore*) = win 0xd6960;
     virtual bool isRecipientSelected(int) = win 0xd6b10;
@@ -15684,37 +15684,37 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn applyThreadList(cocos2d::CCArray*, int, int, int, bool);
     TodoReturn checkActivityAbove(float);
     bool isCovered();
-    TodoReturn loadPage(int, bool);
-    void onClearSearch(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onDeleteSelected(cocos2d::CCObject* sender);
+    void loadPage(int, bool) = win 0xd4e00;
+    void onClearSearch(cocos2d::CCObject* sender) = win 0xd7010;
+    void onClose(cocos2d::CCObject* sender) = win 0xd8200;
+    void onDeleteSelected(cocos2d::CCObject* sender) = win 0xd5810;
     TodoReturn onInboxPoll(float);
-    void onLegacyMessages(cocos2d::CCObject* sender);
-    void onMarkRead(cocos2d::CCObject* sender);
-    void onNewThread(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onRefresh(cocos2d::CCObject* sender);
-    void onScrollToTop(cocos2d::CCObject* sender);
-    void onSearch(cocos2d::CCObject* sender);
-    void onSelectAll(cocos2d::CCObject* sender);
-    void onSelectFilter(cocos2d::CCObject* sender);
-    void onSelectionChanged(cocos2d::CCObject* sender);
-    void onShowInvites(cocos2d::CCObject* sender);
-    void onThreadsChanged(cocos2d::CCObject* sender);
-    void onUserFilter(cocos2d::CCObject* sender);
+    void onLegacyMessages(cocos2d::CCObject* sender) = win 0xd7400;
+    void onMarkRead(cocos2d::CCObject* sender) = win 0xd6210;
+    void onNewThread(cocos2d::CCObject* sender) = win 0xd74a0;
+    void onNextPage(cocos2d::CCObject* sender) = win 0xd70a0;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0xd7090;
+    void onRefresh(cocos2d::CCObject* sender) = win 0xd7240;
+    void onScrollToTop(cocos2d::CCObject* sender) = win 0xd8120;
+    void onSearch(cocos2d::CCObject* sender) = win 0xd68e0;
+    void onSelectAll(cocos2d::CCObject* sender) = win 0xd53c0;
+    void onSelectFilter(cocos2d::CCObject* sender) = win 0xd6fc0;
+    void onSelectionChanged(cocos2d::CCObject* sender) = win 0xd54c0;
+    void onShowInvites(cocos2d::CCObject* sender) = win 0xd5690;
+    void onThreadsChanged(cocos2d::CCObject* sender) = win 0xd5030;
+    void onUserFilter(cocos2d::CCObject* sender) = win = 0xd6920;
     TodoReturn refetchIfQueued();
     TodoReturn refreshUserFilterBtn();
     TodoReturn selectedCount();
     void setActivityAbove(bool);
     void setInboxPoll(float);
     TodoReturn setupThreadBrowser(cocos2d::CCArray*, float);
-    TodoReturn syncSearchFromBox();
-    TodoReturn updateFilterButtons();
+    TodoReturn syncSearchFromBox() = win 0xd6650;
+    TodoReturn updateFilterButtons() = win 0xd6e30;
     TodoReturn updateInviteButton();
     TodoReturn updatePageArrows(int, int, int);
     TodoReturn updateSelectUI();
-    TodoReturn userFilterCSV();
+    TodoReturn userFilterCSV() = win 0xd6d40;
 }
 
 [[link(android)]]
