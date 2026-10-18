@@ -614,7 +614,7 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
     bool init(int id) = win 0x9999999, imac 0x196ac0, m1 0x156c04;
     void playAnimation(int type) = win 0x646fd0, imac 0x199190, m1 0x158f78;
     void setupAnimatedSize(int id) = win inline, imac 0x196c60, m1 0x156da0;
-    void setupChildSprites() = imac 0x196e20, m1 0x156f30;
+    void setupChildSprites() = win 0x644cc0, imac 0x196e20, m1 0x156f30;
     void updateChildSpriteColor(cocos2d::ccColor3B color) = win inline, imac 0x1976c0, m1 0x157818;
     void updateObjectAnimation() = win 0x6455c0, imac 0x197740, m1 0x157898;
 
@@ -3204,7 +3204,7 @@ class CurrencySprite : CCSpritePlus {
     static CurrencySpriteType rewardToSpriteType(int rewardType) = win 0x13edf0, imac 0x88daf0, m1 0x781fd8;
     static std::string spriteTypeToStat(CurrencySpriteType type) = win 0x13eea0, imac 0x88ade0;
 
-    bool init(CurrencySpriteType type, bool burst) = win 0x9999999, imac 0x88d000, m1 0x781560;
+    bool init(CurrencySpriteType type, bool burst) = win 0x13d450, imac 0x88d000, m1 0x781560;
     bool initWithSprite(cocos2d::CCSprite* sprite) = win inline, imac 0x8be10, m1 0x781e28;
 
     float m_unkFloat1;
@@ -3246,7 +3246,7 @@ class CustomizeObjectLayer : FLAlertLayer, HSVWidgetDelegate, ColorSelectDelegat
     void onClose(cocos2d::CCObject* sender) = win 0x1441a0, imac 0x1d9680, m1 0x18d950;
     void onCopy(cocos2d::CCObject* sender) = imac 0x1da750, m1 0x18e9a0;
     void onEditColor(cocos2d::CCObject* sender) = win 0x142530, imac 0x1da1b0, m1 0x18e44c;
-    void onHSV(cocos2d::CCObject* sender) = imac 0x3c1590, m1 0x5133c0;
+    void onHSV(cocos2d::CCObject* sender) = win 0x142c20, imac 0x3c1590, m1 0x5133c0;
     void onLiveEdit(cocos2d::CCObject* sender) = win 0x141fa0, imac 0x1da210, m1 0x18e4a0;
     void onNextColorChannel(cocos2d::CCObject* sender) = win 0x142ff0, imac 0x1da620, m1 0x18e878;
     void onPaste(cocos2d::CCObject* sender) = win 0x142110, imac 0x1da780, m1 0x18e9c8;
@@ -3563,7 +3563,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void onSelect(cocos2d::CCObject* sender) = win 0x1621e0, imac 0x6f89f0, m1 0x60a8c0;
     void onToggleFavorite(cocos2d::CCObject* sender);
     void onUsage(cocos2d::CCObject* sender);
-    void positionInfoObjects() = imac 0x6f9380, m1 0x60b184;
+    void positionInfoObjects() = win 0x16a6f0, imac 0x6f9380, m1 0x60b184;
     void processNextMultiAsset() = win 0x16e4d0, imac 0x6fd7e0, m1 0x60f24c;
     void setMultiAssetFilesize(int, int);
     void showError(bool fast) = imac 0x6fafe0, m1 0x60cd10;
@@ -5582,8 +5582,8 @@ class EndLevelLayer : GJDropDownLayer {
     void onReplay(cocos2d::CCObject* sender) = win 0x2061b0, imac 0x4bae40, m1 0x41f0ec;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x206800, imac 0x4bb0c0, m1 0x41f398;
     void playCoinEffect(float duration) = win 0x1a8090, imac 0x4bb8b0, m1 0x41fb80;
-    void playCurrencyEffect(float duration) = m1 0x41fd10;
-    void playDiamondEffect(float duration) = m1 0x420048;
+    void playCurrencyEffect(float duration) = win 0x2074a0, m1 0x41fd10;
+    void playDiamondEffect(float duration) = win 0x207950, m1 0x420048;
     void playEndEffect() = win 0x455c80, imac 0x4bc350, m1 0x420554;
     void playStarEffect(float duration) = win 0x206a40, imac 0x4bb550, m1 0x41f828;
     void starEnterFinished() = win 0x206de0, imac 0x4bc220, m1 0x420438;
@@ -7127,7 +7127,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn searchThreadMessages(int, std::string const&, long long);
     TodoReturn searchTypeIsCurated(SearchType);
     TodoReturn sendAdminAction(char const*, char const*, GJHttpType, int, std::string const&, std::string const&, std::vector<int> const&);
-    bool sendThreadMessage(int, int, std::string const&, std::string const&, uint64_t, std::string const&, bool, std::string const&, std::string const&) = m1 0x4c4bc0;
+    bool sendThreadMessage(int, int, std::string const&, std::string const&, uint64_t, std::string const&, bool, std::string const&, std::string const&) = win 0x249630, m1 0x4c4bc0;
     void setActiveSmartTemplate(GJSmartTemplate* smartTemplate) = win inline, imac 0x54ef50, m1 0x4a4b00, ios inline;
     void setBoolForKey(bool value, char const* key) = win inline;
     void setDiffVal(int diff, bool value);
@@ -7171,7 +7171,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool updateLevelRankAdmin(int id, int rank) = win inline;
     void updateLevelRewards(GJGameLevel* level) = win 0x21dde0, imac 0x540930, m1 0x49776c;
     void updateSavedLevelList(GJLevelList* list);
-    bool updateThread(int, int, std::string const&) = m1 0x4ca540;
+    bool updateThread(int, int, std::string const&) = win 0x2527b0, m1 0x4ca540;
     void updateUsernames() = win inline, imac 0x54e4e0, m1 0x3ec9fc;
     void updateUserScore() = win 0x236270, imac 0x5634a0;
     void uploadAccountComment(std::string content) = win inline, imac 0x56d290, m1 0x4c00b4;
@@ -7504,7 +7504,7 @@ class GameManager : GManager {
     void removeIconDelegate(int requestID) = win inline, imac 0x36bf70;
     int reorderKey(int index, bool up) = win 0x27f1f0, imac 0x36dfe0, m1 0x2fb444;
     void reportAchievementWithID(char const* key, int percent, bool dontNotify) = win 0x9999999, imac 0x3631d0, m1 0x22bf08;
-    void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = imac 0x362770, m1 0x2f12ac;
+    void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = win 0x278580, imac 0x362770, m1 0x2f12ac;
     void resetAchievement(std::string key) = imac 0x362600, m1 0x2f110c;
     void resetAdTimer() = win inline, imac 0x3693f0, m1 0x2f6a18, ios inline;
     void resetAllIcons() = win 0x27f630, imac 0x36e490, m1 0x2fb8bc;
@@ -7902,7 +7902,7 @@ class GameObject : CCSpritePlus {
     int getColorIndex() = win inline, imac 0x69cd10, m1 0x5ba8c8;
     std::string getColorKey(bool isMainColor, bool colorGroups) = imac 0x4ee800, m1 0x5b0a9c;
     ZLayer getCustomZLayer() = win inline, imac 0x68fb10, m1 0x5afd28;
-    std::string getGlowFrame(std::string frame) = win 0x9999999;
+    std::string getGlowFrame(std::string frame) = win 0x637120;
     bool getGroupDisabled() = win inline, imac 0x690000, m1 0x5b0220;
     int getGroupID(int index) = win inline, imac 0x68fce0, m1 0x5aff04;
     std::string getGroupString() = win inline, imac 0x690050, m1 0x5b025c;
@@ -8699,7 +8699,7 @@ class GameToolbox {
     static TodoReturn lowercaseASCII(std::string const&);
     static void mergeDictsSaveLargestInt(cocos2d::CCDictionary* toDict, cocos2d::CCDictionary* fromDict) = win 0x9999999, imac 0x4eba80;
     static void mergeDictsSkipConflict(cocos2d::CCDictionary* toDict, cocos2d::CCDictionary* fromDict) = imac 0x4ebd10;
-    static std::string msToTimeString(int milliseconds, int formattingMode) = imac 0x4f5e60, m1 0x453198;
+    static std::string msToTimeString(int milliseconds, int formattingMode) = win 0x74770, imac 0x4f5e60, m1 0x453198;
     static cocos2d::ccColor3B multipliedColorValue(cocos2d::ccColor3B minColor, cocos2d::ccColor3B maxColor, float factor) = win inline, imac 0x4ec610, m1 0x44a824;
     static void openAppPage() = win inline, imac 0x4e98d0, m1 0x447d64;
     static void openRateURL(std::string str1, std::string str2) = imac 0x4e97d0, m1 0x447c6c;
@@ -10142,7 +10142,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 
     bool init(int difficulty, GJDifficultyName name) = win inline, imac 0x2a4b90, m1 0x2476a8;
     void updateDifficultyFrame(int difficulty, GJDifficultyName name) = imac 0x2a4d30, m1 0x247880;
-    void updateFeatureState(GJFeatureState state) = win 0x9999999, imac 0x2a4eb0, m1 0x2479fc;
+    void updateFeatureState(GJFeatureState state) = win 0x3ab1f0, imac 0x2a4eb0, m1 0x2479fc;
     void updateFeatureStateFromLevel(GJGameLevel* level) = win inline, imac 0x2a4e60, m1 0x2479c0;
 
     GJFeatureState m_featureState;
@@ -12007,7 +12007,7 @@ class GJScaleControl : cocos2d::CCLayer {
     TodoReturn hasActiveInput();
     void loadValues(GameObject* object, cocos2d::CCArray* objects, std::unordered_map<int, GameObjectEditorState>& editorStates) = win 0x1a36f0, imac 0x642360;
     void onApplyScale(cocos2d::CCObject* sender);
-    void onToggleLockScale(cocos2d::CCObject* sender) = imac 0x642000, m1 0x57ce54;
+    void onToggleLockScale(cocos2d::CCObject* sender) = win 0x1a5a30, imac 0x642000, m1 0x57ce54;
     TodoReturn releaseInputFocus();
     float scaleFromValue(float value) = win inline, imac 0x642c60, m1 0x57ec40, ios inline;
     float skewFromValue(float value) = win inline, imac 0x642ca0, m1 0x57ec7c, ios inline;
@@ -12678,7 +12678,7 @@ class GJUINode : cocos2d::CCNode {
     void toggleModeB(bool modeB) = win inline, imac 0x420330, m1 0x429398;
     void touchEnded() = win 0x674460, imac 0x4c5be0, m1 0x428ca8;
     int touchTest(cocos2d::CCPoint position) = win 0x674170, imac 0x4c5920, m1 0x4289b0;
-    void updateButtonFrames() = win 0x9999999, imac 0x4c6a00, m1 0x42994c;
+    void updateButtonFrames() = win 0x673f90, imac 0x4c6a00, m1 0x42994c;
     void updateButtonPositions() = win 0x9999999, imac 0x4c6200, m1 0x4291d8;
     void updateButtonScale(float scale) = win inline, imac 0x4c64f0, m1 0x42949c;
     void updateDeadzone(int deadzone) = win inline, imac 0x4c63d0, m1 0x42938c, ios inline;
@@ -14048,7 +14048,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onSafeMode(cocos2d::CCObject* sender);
     void onSaved(cocos2d::CCObject* sender);
     void onSavedMode(cocos2d::CCObject* sender) = win 0x3e8140, imac 0x483610, m1 0x3ed3c4;
-    void onSearch(cocos2d::CCObject* sender) = m1 0x3edf64;
+    void onSearch(cocos2d::CCObject* sender) = win 0x3e8e50, m1 0x3edf64;
     void onSelectionChanged(cocos2d::CCObject* sender);
     void onToggleAllObjects(cocos2d::CCObject* sender);
     TodoReturn recallCell(int);
@@ -15204,7 +15204,7 @@ class LevelTools {
     static std::string fbURLForArtist(int id) = imac 0x4feb80, m1 0x45af7c;
     static int getAudioBPM(int id) = win inline, imac 0x4fef00, m1 0x45b2d4, ios inline;
     static std::string getAudioFileName(int id) = win 0x4633d0, imac 0x4fd2c0, m1 0x459948;
-    static std::string getAudioString(int id) = imac 0x4fef20, m1 0x45b2f4;
+    static std::string getAudioString(int id) = win 0x466470, imac 0x4fef20, m1 0x45b2f4;
     static std::string getAudioTitle(int id) = win 0x462870, imac 0x4fcd00, m1 0x4591f8;
     static bool getLastGameplayReversed() = win inline, imac 0x500520, m1 0x448030, ios inline;
     static bool getLastGameplayRotated() = win inline, imac 0x500530;
@@ -15710,20 +15710,20 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     virtual void threadUpdateFinished(int, int) = win 0xd7310, m1 0x80d7b0;
     virtual void threadUpdateFailed(int, int) = win 0xd7470, m1 0x80d9bc;
 
-    void applyThreadList(cocos2d::CCArray*, int, int, int, bool) = m1 0x80eca8;
+    void applyThreadList(cocos2d::CCArray*, int, int, int, bool) = win 0xd87b0, m1 0x80eca8;
     void checkActivityAbove(float) = m1 0x80f5e8;
     bool isCovered();
     void loadPage(int, bool) = m1 0x80ccb8;
     void onClearSearch(cocos2d::CCObject* sender) = m1 0x80bdf0;
     void onClose(cocos2d::CCObject* sender) = m1 0x80bb9c;
-    void onDeleteSelected(cocos2d::CCObject* sender) = m1 0x80c4f8;
+    void onDeleteSelected(cocos2d::CCObject* sender) = win 0xd6740, m1 0x80c4f8;
     TodoReturn onInboxPoll(float);
     void onLegacyMessages(cocos2d::CCObject* sender) = m1 0x80bc5c;
     void onMarkRead(cocos2d::CCObject* sender) = m1 0x80c370;
     void onNewThread(cocos2d::CCObject* sender) = m1 0x80bce8;
     void onNextPage(cocos2d::CCObject* sender) = m1 0x80c048;
     void onPrevPage(cocos2d::CCObject* sender) = m1 0x80c038;
-    void onRefresh(cocos2d::CCObject* sender) = m1 0x80c058;
+    void onRefresh(cocos2d::CCObject* sender) = win 0xd8170, m1 0x80c058;
     void onScrollToTop(cocos2d::CCObject* sender) = m1 0x80c1d0;
     void onSearch(cocos2d::CCObject* sender) = m1 0x80bda8;
     void onSelectAll(cocos2d::CCObject* sender) = m1 0x80c224;
@@ -16487,7 +16487,7 @@ class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate
     void onEmotes(cocos2d::CCObject* sender);
     void onOpenPicker(cocos2d::CCObject* sender);
     void onPickIcon(cocos2d::CCObject* sender);
-    void onSend(cocos2d::CCObject* sender) = m1 0x826410;
+    void onSend(cocos2d::CCObject* sender) = win 0xf2020, m1 0x826410;
     void onShareLevel(cocos2d::CCObject* sender);
     void onToggleMode(cocos2d::CCObject* sender);
     TodoReturn refreshIconSlot();
@@ -18083,7 +18083,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateDebugDrawSettings() = win 0x505c40, imac 0x7a220;
     void updateEffectPositions() = win inline, imac 0x88670, m1 0x7e6a8;
     TodoReturn updateGameSettings();
-    void updateInfoLabel() = m1 0x74460;
+    void updateInfoLabel() = win 0x511520, m1 0x74460;
     void updateInvisibleBlock(GameObject* object, float rightFadeBound, float leftFadeBound, float rightFadeWidth, float leftFadeWidth, cocos2d::ccColor3B const& lbgColor) = win 0x50ee60, imac 0x85780, m1 0x7bb50;
     void updateProgressbar() = win 0x510e50, imac 0x7ef90, m1 0x75d74;
     void updateScreenRotation(int rotation, bool add, bool convert, float duration, int easingType, float easingRate, int uniqueID, int controlID) = win inline, imac 0x83710, m1 0x79de4, ios inline;
@@ -19032,7 +19032,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
     virtual void textChanged(CCTextInputNode* node) = win 0x575570;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win inline;
 
-    std::string getBasicMessage() = imac 0x6d4090, m1 0x5eade8;
+    std::string getBasicMessage() = win 0x576910, imac 0x6d4090, m1 0x5eade8;
     std::string getMessage() = imac 0x6d23d0, m1 0x5e94c8;
     std::string getThreadMessage() = win 0x575b80, imac 0x6d4a30, m1 0x5eb80c;
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, imac 0x6d2350, m1 0x5e943c, ios inline;
@@ -19159,7 +19159,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win inline;
     virtual void dialogClosed(DialogLayer* layer) = win inline, imac 0x39cd00, m1 0x3255fc;
 
-    std::string getBasicMessage() = imac 0x39d8c0, m1 0x326244;
+    std::string getBasicMessage() = win 0x588530, imac 0x39d8c0, m1 0x326244;
     std::string getErrorMessage() = win 0x57e3b0;
     std::string getMessage();
     std::string getThreadMessage() = win 0x587c50, imac 0x39dce0, m1 0x3266a8;
@@ -19322,7 +19322,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void showShop(int shop) = win inline, imac 0x716d30, m1 0x626524;
     void switchToOpenedState(CCMenuItemSpriteExtra* button) = win 0x56c960, imac 0x70edc0, m1 0x61f758;
     void updateBackButton() = win 0x56abd0, imac 0x70ffd0, m1 0x620a14;
-    void updateUnlockedGoldLabel() = imac 0x70f3a0, m1 0x61fd70;
+    void updateUnlockedGoldLabel() = win 0x56d590, imac 0x70f3a0, m1 0x61fd70;
     void updateUnlockedLabel() = win 0x56ca40, imac 0x70ee80, m1 0x61f838;
 
     cocos2d::CCLayer* m_mainLayer;
@@ -19668,7 +19668,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void updateEditorLayerID2() = imac 0x3019b0, m1 0x295b08;
     void updateEditorOrder() = imac 0x301a30;
     void updateEditorOrderLabel();
-    void updateGroupIDButtons() = win 0x9999999;
+    void updateGroupIDButtons() = win 0x592230;
     void updateGroupIDLabel();
     void updateOrderChannel() = imac 0x301ae0, m1 0x17408;
     void updateOrderChannelLabel();
@@ -20611,7 +20611,7 @@ class SetupItemEditTriggerPopup : SetupTriggerPopup {
 
     bool init(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x600fc0, m1 0x4f8d58;
     void onOpButton(cocos2d::CCObject* sender) = win 0x602250, imac 0x5abe00, m1 0x4f9d14;
-    void updateFormulaLabel() = imac 0x5ac0d0, m1 0x4f9fe0;
+    void updateFormulaLabel() = win 0x602920, imac 0x5ac0d0, m1 0x4f9fe0;
     void updateOpButton(CCMenuItemSpriteExtra* button, int key, int objectID) = imac 0x5abed0, m1 0x4f9dd4;
 
     cocos2d::CCLabelBMFont* m_formulaLabel;
@@ -21059,7 +21059,7 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     void onRemoveFromGroup(cocos2d::CCObject* sender) = imac 0x37a320;
     void removeGroupID(int id) = win inline, imac 0x37a110, m1 0x305d54;
     void removeGroupIDFromObject(RandTriggerGameObject* object, int id) = win inline, imac 0x37a290, m1 0x305eac;
-    void updateGroupIDButtons() = win 0x9999999;
+    void updateGroupIDButtons() = win 0x5d3830;
 
     bool m_performedAction;
     cocos2d::CCArray* m_groupButtons;
@@ -24064,7 +24064,7 @@ class TriggerControlGameObject : EffectGameObject {
     virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x664000;
 
     bool init(char const* frame) = win inline, imac 0x66ef0, m1 0x186aa0;
-    void updateTriggerControlFrame() = imac 0x1d1e20, m1 0x187378;
+    void updateTriggerControlFrame() = win 0x664340, imac 0x1d1e20, m1 0x187378;
 
     std::string m_triggerControlFrame;
     // property 580 (The type of a stop trigger for example)
