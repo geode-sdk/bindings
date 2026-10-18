@@ -1191,7 +1191,7 @@ void GJBaseGameLayer::restoreAllUIObjects() {
     m_calcCollisionBlockObjects2Size = 0;
 }
 
-void GJBaseGameLayer::setStartPosObject(StartPosObject* startPos) {
+void GJBaseGameLayer::setActiveStartPosObject(StartPosObject* startPos) {
     if (startPos != m_startPosObject) {
         if (startPos) {
             startPos->retain();
