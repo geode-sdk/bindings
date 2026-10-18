@@ -3100,6 +3100,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
+    PAD = win 0x20;
     int m_vaultDialogIndex;
     int m_versusDialogIndex;
 }
@@ -8621,6 +8622,8 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_completedLists;
     cocos2d::CCDictionary* m_weeklyChest;
     cocos2d::CCDictionary* m_eventChest;
+    // GS_33 dictionary
+    PAD = win 0x8;
     cocos2d::CCDictionary* m_treasureRoomChests;
     geode::SeedValueRSV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
