@@ -6727,7 +6727,7 @@ class GameLevelManager : cocos2d::CCNode {
 
     bool acceptFriendRequest(int accountID, int requestID) = imac 0x56f560, m1 0x4c2128;
     int accountIDForUserID(int userID) = win inline, imac 0x540740, m1 0x4975d8;
-    void addDLToActive(char const* key);
+    void addDLToActive(char const* key) = m1 0x4a06c4;
     TodoReturn addThreadMembers(int, cocos2d::CCArray*);
     TodoReturn adminClearReportedContent(int, std::string const&);
     TodoReturn adminCloseCase(int, int, std::string const&);
@@ -6936,7 +6936,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateRequests(bool sent, bool reload);
     void invalidateUserList(UserListType type, bool reload) = win inline, imac 0x576120, m1 0x4c870c;
     bool isDeathDataFetched(int);
-    bool isDLActive(char const* tag) = imac 0x54a6a0;
+    bool isDLActive(char const* tag) = imac 0x54a6a0, m1 0x4a05d0;
     bool isFollowingUser(int id);
     bool isPastDailyCopy(GJGameLevel*);
     bool isTimeValid(char const* key, float length) = win 0x9999999;
