@@ -747,7 +747,7 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x899970, m1 0x78d068;
     void onInfo(cocos2d::CCObject* sender) = imac 0x8999a0, m1 0x78d0a4;
     void onPage(cocos2d::CCObject* sender) = win inline, imac 0x89a380, m1 0x78d934, ios inline;
-    void setupList() = win 0x9999999, imac 0x89a0c0, m1 0x78d6e4;
+    void setupList() = win 0x995f0, imac 0x89a0c0, m1 0x78d6e4;
     void trySetupAudioBrowser() = win inline, imac 0x89a280, m1 0x78d878;
     void updatePageLabel() = win inline, ios inline;
 
@@ -3084,7 +3084,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onEventLevel(cocos2d::CCObject* sender) = imac 0x37cf30;
     void onFameLevels(cocos2d::CCObject* sender) = win inline, ios inline;
     void onFeaturedLevels(cocos2d::CCObject* sender) = imac 0x2836d0, m1 0x2289c0;
-    void onGauntlets(cocos2d::CCObject* sender);
+    void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50;
     void onLeaderboards(cocos2d::CCObject* sender) = win 0x137550, imac 0x2830f0, m1 0x228388;
     void onMapPacks(cocos2d::CCObject* sender) = imac 0x2837b0, m1 0x228a88;
     void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x192554;
@@ -6527,7 +6527,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void onUpdate(cocos2d::CCObject* sender);
     TodoReturn removeFromNewCount(int);
     TodoReturn selectedCount();
-    void setupCommentsBrowser(cocos2d::CCArray* scores) = m1 0x767808;
+    void setupCommentsBrowser(cocos2d::CCArray* scores) = win 0x212a40, m1 0x767808;
     void untoggleAll() = imac 0x213840;
     void updateLevelsLabel() = win inline, ios inline;
     TodoReturn updateModeButtons();
@@ -8788,7 +8788,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
     ~GauntletSelectLayer() = win inline, imac 0x59e390, m1 0x22701c;
 
     static GauntletSelectLayer* create(int unused) = win inline, m1 0x2273f0;
-    static cocos2d::CCScene* scene(int unused) = imac 0x59e520, m1 0x4ed710;
+    static cocos2d::CCScene* scene(int unused) = win 0x2fd8c0, imac 0x59e520, m1 0x4ed710;
 
     virtual void onExit() = win 0x2fff60, imac 0x5a0b90, m1 0x4efbfc;
     virtual void keyBackClicked() = win 0x2ff660, imac 0x5a04f0, m1 0x4ef4f4;
@@ -13379,7 +13379,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     TodoReturn refreshUserTitle();
     void reloadWindow();
     TodoReturn setupBulkUI();
-    void setupCommentsBrowser(cocos2d::CCArray* comments) = m1 0x788630;
+    void setupCommentsBrowser(cocos2d::CCArray* comments) = win 0x3d1af0, m1 0x788630;
     void setupLevelInfo() = win 0x3d0110, imac 0x8936f0, m1 0x787388;
     void toggleCommentMode(cocos2d::CCObject* sender) = win 0x3d29b0, imac 0x8941e0, m1 0x4fb014;
     void toggleExtendedMode(cocos2d::CCObject* sender) = imac 0x8942c0, m1 0x787ef8;
@@ -13792,7 +13792,7 @@ class LabelGameObject : EffectGameObject {
     virtual void updateTextKerning(int kerning) = win 0x654cc0, imac 0x1a1c20, m1 0x160244;
     virtual int getTextKerning() = win 0x638040, imac 0x1d61e0, m1 0x18ab58;
 
-    void createLabel(std::string text) = imac 0x1a1890, m1 0x15fee4;
+    void createLabel(std::string text) = win 0x6549b0, imac 0x1a1890, m1 0x15fee4;
     void queueUpdateLabel(std::string text) = win inline, imac 0x1a1b70, m1 0x16018c;
     void removeLabel() = win 0x654ba0, imac 0x1a19b0, m1 0x62ebc;
     void unlockLabelColor() = win inline, imac 0x1a34c0, m1 0x1616cc, ios inline;
@@ -14637,7 +14637,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
     void onDeleteLocalScores(cocos2d::CCObject* sender) = imac 0x1df790, m1 0x34c564;
     void onUpdate(cocos2d::CCObject* sender) = win 0x2519c0, imac 0x3c8410, m1 0x34c678;
     void reloadLeaderboard(LevelLeaderboardType type, LevelLeaderboardMode mode) = imac 0x3c8d20, m1 0x34cf94;
-    void setupLeaderboard(cocos2d::CCArray* scores) = imac 0x3c8750, m1 0x34c9c4;
+    void setupLeaderboard(cocos2d::CCArray* scores) = win 0x42a960, imac 0x3c8750, m1 0x34c9c4;
 
     GJGameLevel* m_level;
     LevelLeaderboardType m_type;
@@ -15645,7 +15645,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void onToggleAllObjects(cocos2d::CCObject* sender);
     void onUpdate(cocos2d::CCObject* sender);
     TodoReturn selectedCount();
-    void setupCommentsBrowser(cocos2d::CCArray* messages) = m1 0x1c2d74;
+    void setupCommentsBrowser(cocos2d::CCArray* messages) = win 0x477610, m1 0x1c2d74;
     void untoggleAll() = imac 0x213840;
     void updateLevelsLabel() = win inline, imac 0x8967d0, m1 0x78a294, ios inline;
     void updatePageArrows() = win inline, imac 0x214370, m1 0x1c3720, ios inline;
@@ -18237,7 +18237,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     bool isCorrect(char const* key);
     bool isOnWatchlist(int id) = win inline, imac 0x89e9c0, m1 0x791d1c, ios inline;
     void loadPage(int page) = win 0x559f40, imac 0x8a68f0, m1 0x7992dc;
-    void loadPageFromUserInfo(GJUserScore* score) = imac 0x232ab0, m1 0x79252c;
+    void loadPageFromUserInfo(GJUserScore* score) = win 0x552b60, imac 0x232ab0, m1 0x79252c;
     void onAdminPanel(cocos2d::CCObject* sender) = m1 0x79585c;
     void onBlockUser(cocos2d::CCObject* sender) = win 0x5573e0, imac 0x893a60, m1 0x795538;
     void onClose(cocos2d::CCObject* sender) = imac 0x89e9d0, m1 0x791d24;
@@ -18268,7 +18268,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onUpdate(cocos2d::CCObject* sender) = win 0x551c60, imac 0x89edc0, m1 0x792100;
     void setupAccountButtons() = m1 0x794914;
     void setupComments() = win inline, imac 0x89ea50, m1 0x791d9c;
-    void setupCommentsBrowser(cocos2d::CCArray* comments) = imac 0x89f0c0, m1 0x7923b0;
+    void setupCommentsBrowser(cocos2d::CCArray* comments) = win 0x55a240, imac 0x89f0c0, m1 0x7923b0;
     void showNoAccountError() = win 0x27edf0, imac 0x36d9d0;
     void toggleMainPageVisibility(bool visible) = win inline, imac 0x8a60f0, m1 0x798ac0, ios inline;
     void toggleShip(cocos2d::CCObject* sender) = imac 0x96ca40;
@@ -21769,7 +21769,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     TodoReturn refreshLevelIDList(SFXSearchResult*);
     TodoReturn restoreListScroll(float);
     TodoReturn searchSettingsChanged();
-    void setupList(SFXSearchResult* result);
+    void setupList(SFXSearchResult* result) = win 0x619900;
     void setupSFXBrowser();
     TodoReturn switchToView(AudioViewType);
     void trySetupSFXBrowser();
