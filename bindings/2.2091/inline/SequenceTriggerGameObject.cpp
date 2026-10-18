@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SequenceTriggerGameObject.hpp>
 
 SequenceTriggerGameObject::SequenceTriggerGameObject() {
     m_sequenceMode = 0;

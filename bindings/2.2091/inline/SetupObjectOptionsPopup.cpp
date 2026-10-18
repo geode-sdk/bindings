@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupObjectOptionsPopup.hpp>
+#include <Geode/binding/GameObject.hpp>
 
 SetupObjectOptionsPopup::SetupObjectOptionsPopup() {
     m_gameObject = nullptr;

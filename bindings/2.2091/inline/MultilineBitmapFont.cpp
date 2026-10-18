@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MultilineBitmapFont.hpp>
 
 #if !defined(GEODE_IS_IOS)
 MultilineBitmapFont::MultilineBitmapFont() {

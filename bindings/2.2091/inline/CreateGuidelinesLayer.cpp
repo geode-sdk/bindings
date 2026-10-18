@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CreateGuidelinesLayer.hpp>
+#include <Geode/binding/CustomSongDelegate.hpp>
+#include <Geode/binding/LevelSettingsObject.hpp>
 
 #if !defined(GEODE_IS_WINDOWS)
 CreateGuidelinesLayer::CreateGuidelinesLayer() {

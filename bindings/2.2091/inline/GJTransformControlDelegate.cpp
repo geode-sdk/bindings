@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJTransformControlDelegate.hpp>
 
 void GJTransformControlDelegate::transformScaleXChanged(float scaleX) {}
 

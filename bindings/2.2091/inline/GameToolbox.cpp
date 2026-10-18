@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GameToolbox.hpp>
 #include <Geode/utils/cocos.hpp>
 
 

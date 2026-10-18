@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelUploadDelegate.hpp>
 
 void LevelUploadDelegate::levelUploadFinished(GJGameLevel* level) {}
 

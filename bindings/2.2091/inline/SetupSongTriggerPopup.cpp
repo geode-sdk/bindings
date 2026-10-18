@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupSongTriggerPopup.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
+#include <Geode/binding/SongSelectNode.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

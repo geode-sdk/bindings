@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCDirector.hpp>
+#include <Geode/mapping/CCTargetedTouchHandler.hpp>
+#include <Geode/mapping/CCTouchDispatcher.hpp>
+#include <Geode/binding/TableView.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

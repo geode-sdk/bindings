@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LikeItemDelegate.hpp>
 
 void LikeItemDelegate::likedItem(LikeItemType type, int id, bool liked) {}
 

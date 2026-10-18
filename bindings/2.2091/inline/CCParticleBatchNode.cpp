@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCParticleBatchNode.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

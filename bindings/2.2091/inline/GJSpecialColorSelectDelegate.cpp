@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJSpecialColorSelectDelegate.hpp>
 
 void GJSpecialColorSelectDelegate::colorSelectClosed(GJSpecialColorSelect* select, int id) {}
 

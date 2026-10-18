@@ -1,4 +1,10 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EditLevelLayer.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/LocalLevelManager.hpp>
+#include <Geode/binding/PlayLayer.hpp>
+#include <Geode/binding/UploadActionPopup.hpp>
 
 EditLevelLayer::EditLevelLayer() {
     m_buttonMenu = nullptr;

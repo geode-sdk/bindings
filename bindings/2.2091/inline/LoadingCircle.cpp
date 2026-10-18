@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LoadingCircle.hpp>
 
 LoadingCircle::LoadingCircle() {
     m_sprite = nullptr;

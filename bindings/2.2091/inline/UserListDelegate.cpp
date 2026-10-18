@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/UserListDelegate.hpp>
 
 void UserListDelegate::getUserListFinished(cocos2d::CCArray* scores, UserListType type) {}
 

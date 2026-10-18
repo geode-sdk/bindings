@@ -3,10 +3,10 @@
 namespace { namespace format_strings {
 	constexpr char const* source_start = R"GEN(
 #include <stdexcept>
-#include <Geode/Bindings.hpp>
 #include <Geode/utils/addresser.hpp>
 #include <Geode/modify/Traits.hpp>
 #include <Geode/loader/Tulip.hpp>
+{class_include}
 {includes}
 using namespace geode;
 using namespace geode::modifier;
@@ -149,7 +149,8 @@ bool areSuperclassesEmpty(Class const& c) {
 
 std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, bool skipPugixml, bool skipInlines, std::unordered_set<std::string>* generatedFiles) {
 	std::string output = fmt::format(format_strings::source_start,
-		fmt::arg("includes", codegen::getIncludes(root))
+		fmt::arg("includes", codegen::getIncludes(root)),
+		fmt::arg("class_include", "")
 	);
 
 	for (auto& f : root.functions) {
@@ -184,7 +185,8 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 			}
 		}
 		std::string output = fmt::format(format_strings::source_start,
-			fmt::arg("includes", codegen::getIncludes(root))
+			fmt::arg("includes", codegen::getIncludes(root)),
+			fmt::arg("class_include", codegen::getClassIncludeString(c.name))
 		);
 
 		std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".cpp");

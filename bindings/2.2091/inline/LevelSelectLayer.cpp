@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelSelectLayer.hpp>
+#include <Geode/binding/BoomScrollLayer.hpp>
 
 LevelSelectLayer::LevelSelectLayer() {
     m_width = 0.f;

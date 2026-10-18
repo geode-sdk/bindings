@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ShardsPage.hpp>
 
 ShardsPage::ShardsPage() {
     m_pages = nullptr;

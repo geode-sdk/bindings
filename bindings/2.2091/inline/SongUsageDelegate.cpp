@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SongUsageDelegate.hpp>
 
 void SongUsageDelegate::songUsageFinished(int, std::string) {}
 

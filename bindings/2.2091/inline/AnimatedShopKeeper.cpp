@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AnimatedShopKeeper.hpp>
+#include <Geode/binding/SpriteAnimationManager.hpp>
 
 AnimatedShopKeeper::AnimatedShopKeeper() {
     m_type = ShopType::Normal;

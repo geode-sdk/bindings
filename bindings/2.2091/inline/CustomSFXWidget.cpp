@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
+#include <Geode/binding/CustomSFXWidget.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
+#include <Geode/binding/SFXInfoObject.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

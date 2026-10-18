@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCDirector.hpp>
+#include <Geode/mapping/CCSprite.hpp>
+#include <Geode/mapping/CCSpriteBatchNode.hpp>
+#include <Geode/binding/GJMGLayer.hpp>
 
 GJMGLayer::GJMGLayer() {
     m_ground1Sprite = nullptr;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EditorOptionsLayer.hpp>
 
 EditorOptionsLayer::EditorOptionsLayer() {
     m_buttonsPerRow = 0;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GauntletLayer.hpp>
 
 GauntletLayer::GauntletLayer() {
     m_levels = nullptr;

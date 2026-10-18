@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/UpdateAccountSettingsPopup.hpp>
+#include <Geode/binding/GJAccountManager.hpp>
 
 UpdateAccountSettingsPopup::UpdateAccountSettingsPopup() {
     m_updateSuccess = false;

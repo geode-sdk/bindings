@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CommentUploadDelegate.hpp>
 
 void CommentUploadDelegate::commentUploadFinished(int parentID) {}
 

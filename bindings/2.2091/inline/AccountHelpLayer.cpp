@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AccountHelpLayer.hpp>
+#include <Geode/binding/FLAlertLayer.hpp>
+#include <Geode/binding/GJAccountManager.hpp>
+#include <Geode/binding/ButtonSprite.hpp>
 
 AccountHelpLayer::AccountHelpLayer() {
     m_unk290 = false;

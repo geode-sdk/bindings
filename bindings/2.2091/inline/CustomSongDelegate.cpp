@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CustomSongDelegate.hpp>
 
 void CustomSongDelegate::songIDChanged(int id) {}
 

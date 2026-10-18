@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SecretLayer5.hpp>
+#include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/TextArea.hpp>
 #ifdef GEODE_IS_WINDOWS
 #include <random>
 #endif

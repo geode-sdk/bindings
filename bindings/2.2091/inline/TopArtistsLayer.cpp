@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
+#include <Geode/binding/TopArtistsLayer.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 
 TopArtistsLayer::TopArtistsLayer() {
     m_topArtists = nullptr;

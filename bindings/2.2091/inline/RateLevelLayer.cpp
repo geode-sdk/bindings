@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/RateLevelLayer.hpp>
 
 RateLevelLayer::RateLevelLayer() {
     m_submitButton = nullptr;

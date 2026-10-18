@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/FLAlertLayer.hpp>
 
 FLAlertLayer* FLAlertLayer::create(char const* title, const std::string& desc, char const* btn) {
     return FLAlertLayer::create(nullptr, title, desc, btn, nullptr, 300.0);

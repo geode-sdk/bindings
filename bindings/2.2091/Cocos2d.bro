@@ -1,8 +1,3 @@
-#import win <Geode/cocos/platform/win32/CCFileUtilsWin32.h>
-#import android <Geode/cocos/platform/android/CCFileUtilsAndroid.h>
-#import mac <Geode/cocos/platform/mac/CCFileUtilsMac.h>
-#import ios <Geode/cocos/platform/ios/CCFileUtilsIOS.h>
-
 [[link(win, android)]]
 class CCContentManager : cocos2d::CCObject {
     static CCContentManager* sharedManager() = imac 0x1635f0, m1 0x12e424;
@@ -6009,4 +6004,3 @@ class pugi::xml_node {
     xml_node() = imac 0x717ff0, m1 0x627690;
     ~xml_node() = inline;
 }
-

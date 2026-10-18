@@ -1,5 +1,16 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EditorUI.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/ButtonSprite.hpp>
+#include <Geode/binding/CCCircleWave.hpp>
+#include <Geode/binding/CreateMenuItem.hpp>
+#include <Geode/binding/GJBaseGameLayer.hpp>
+#include <Geode/binding/GJRotationControl.hpp>
+#include <Geode/binding/GJScaleControl.hpp>
+#include <Geode/binding/GJTransformControl.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/binding/LevelEditorLayer.hpp>
+#include <Geode/binding/ObjectToolbox.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();

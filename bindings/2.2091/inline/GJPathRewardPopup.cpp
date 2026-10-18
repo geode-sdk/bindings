@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJPathRewardPopup.hpp>
 
 GJPathRewardPopup::GJPathRewardPopup() {
     m_pathNumber = 0;

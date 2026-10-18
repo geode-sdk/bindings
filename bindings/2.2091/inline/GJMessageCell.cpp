@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJMessageCell.hpp>
+#include <Geode/binding/CCMenuItemToggler.hpp>
+#include <Geode/binding/GJUserMessage.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/UploadActionPopup.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

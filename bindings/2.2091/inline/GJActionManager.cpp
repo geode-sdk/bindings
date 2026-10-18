@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJActionManager.hpp>
 #include <Geode/utils/cocos.hpp>
 
 GJActionManager::GJActionManager() {

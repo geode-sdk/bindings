@@ -1,5 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/SetupEventLinkPopup.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
+#include <Geode/binding/EventLinkTrigger.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

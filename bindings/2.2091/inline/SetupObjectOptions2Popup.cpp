@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupObjectOptions2Popup.hpp>
 
 SetupObjectOptions2Popup::SetupObjectOptions2Popup() {}
 

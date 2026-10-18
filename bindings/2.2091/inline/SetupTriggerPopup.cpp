@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/SetupTriggerPopup.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/binding/Slider.hpp>
 
 #if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS)
 SetupTriggerPopup::SetupTriggerPopup() {

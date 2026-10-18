@@ -1,4 +1,12 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCDirector.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
+#include <Geode/mapping/CCMenu.hpp>
+#include <Geode/mapping/CCTouchDispatcher.hpp>
+#include <Geode/binding/CustomizeObjectLayer.hpp>
+#include <Geode/binding/CCMenuItemToggler.hpp>
+#include <Geode/binding/ConfigureHSVWidget.hpp>
+#include <Geode/binding/GJSpecialColorSelect.hpp>
+#include <Geode/binding/GameObject.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

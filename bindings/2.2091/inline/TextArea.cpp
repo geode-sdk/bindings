@@ -1,4 +1,11 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCActionTween.hpp>
+#include <Geode/mapping/CCCallFunc.hpp>
+#include <Geode/mapping/CCDelayTime.hpp>
+#include <Geode/mapping/CCFadeIn.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+#include <Geode/binding/TextArea.hpp>
+#include <Geode/binding/MultilineBitmapFont.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

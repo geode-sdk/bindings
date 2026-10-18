@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJComment.hpp>
+#include <Geode/binding/GJUserScore.hpp>
 
 GJComment::GJComment() {
     m_commentID = 0;

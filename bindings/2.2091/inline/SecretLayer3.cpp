@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SecretLayer3.hpp>
+#include <Geode/binding/AppDelegate.hpp>
 
 SecretLayer3::SecretLayer3() {
     m_lockInput = false;

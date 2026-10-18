@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CommunityCreditsPage.hpp>
 
 CommunityCreditsPage::CommunityCreditsPage() {
     m_pageObjects = nullptr;

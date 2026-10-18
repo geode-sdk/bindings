@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelManagerDelegate.hpp>
 
 void LevelManagerDelegate::loadLevelsFinished(cocos2d::CCArray* levels, char const* key) {
     this->loadLevelsFinished(levels, key, 0);

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/xml_node.hpp>
 
 pugi::xml_node::~xml_node() {
     // because xml_document uses bindings addresses it uses the destructor lock, and since xml_node 

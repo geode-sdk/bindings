@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SliderDelegate.hpp>
 
 void SliderDelegate::sliderBegan(Slider* slider) {}
 

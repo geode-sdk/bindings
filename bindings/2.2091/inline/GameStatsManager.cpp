@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GameStatsManager.hpp>
+#include <Geode/binding/GJChallengeItem.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GJLevelList.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/binding/LevelTools.hpp>
 
 GameStatsManager* GameStatsManager::get() {
     return GameStatsManager::sharedState();

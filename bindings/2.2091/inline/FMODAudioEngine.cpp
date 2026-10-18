@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
 
 FMODAudioEngine* FMODAudioEngine::get() {
     return FMODAudioEngine::sharedEngine();

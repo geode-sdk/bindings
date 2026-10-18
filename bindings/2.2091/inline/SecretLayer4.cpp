@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SecretLayer4.hpp>
+#include <Geode/binding/AppDelegate.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SecretLayer4::SecretLayer4() {

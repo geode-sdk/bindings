@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/NotificationListDelegate.hpp>
 
 void NotificationListDelegate::loadNotificationsFinished(cocos2d::CCArray*, int, int, int) {}
 void NotificationListDelegate::loadNotificationsFailed(int, GJErrorCode) {}

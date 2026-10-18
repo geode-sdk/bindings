@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/PlayerControlGameObject.hpp>
 
 PlayerControlGameObject::PlayerControlGameObject() {
     m_stopJump = false;

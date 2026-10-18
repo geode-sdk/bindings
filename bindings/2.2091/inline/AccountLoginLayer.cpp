@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AccountLoginLayer.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/binding/LoadingCircle.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

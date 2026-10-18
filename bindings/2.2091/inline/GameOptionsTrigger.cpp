@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GameOptionsTrigger.hpp>
 
 GameOptionsTrigger::GameOptionsTrigger() {
     m_streakAdditive = GameOptionsSetting::Disabled;

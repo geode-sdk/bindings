@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CustomSongLayer.hpp>
 
 CustomSongLayer::CustomSongLayer() {
     m_songDelegate = nullptr;

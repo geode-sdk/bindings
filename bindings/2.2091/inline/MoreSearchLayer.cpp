@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MoreSearchLayer.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 
 MoreSearchLayer::MoreSearchLayer() {}
 

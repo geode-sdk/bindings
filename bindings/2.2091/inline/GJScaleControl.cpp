@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJScaleControl.hpp>
+#include <Geode/binding/GJScaleControlDelegate.hpp>
 
 #if !defined(GEODE_IS_IOS)
 GJScaleControl::GJScaleControl() {

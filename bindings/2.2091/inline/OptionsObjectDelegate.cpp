@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/OptionsObjectDelegate.hpp>
 
 void OptionsObjectDelegate::stateChanged(OptionsObject* object) {}
 

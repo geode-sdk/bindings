@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CameraTriggerGameObject.hpp>
 
 CameraTriggerGameObject::CameraTriggerGameObject() {
     m_exitStatic = false;

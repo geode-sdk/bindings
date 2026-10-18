@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SelectSettingDelegate.hpp>
 
 void SelectSettingDelegate::selectSettingClosed(SelectSettingLayer* layer) {}
 

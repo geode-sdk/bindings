@@ -15986,7 +15986,7 @@ class MultiTriggerPopup : SetupTriggerPopup {
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5ff990, m1 0x4f7ac0;
 }
 
-[[link(android)]]
+[[link(android), depends(GJLinkObject)]]
 class MusicArtistObject : cocos2d::CCObject {
     virtual ~MusicArtistObject() = win 0x480e90;
 
@@ -19540,7 +19540,7 @@ class SelectSmartTemplateLayer : GJDropDownLayer {
     virtual void customSetup();
 }
 
-[[link(android)]]
+[[link(android), depends(SequenceTriggerState)]]
 class SequenceTriggerGameObject : ChanceTriggerGameObject {
     SequenceTriggerGameObject() = inline;
     virtual ~SequenceTriggerGameObject() = win 0x6381a0;
@@ -22713,7 +22713,7 @@ class SongCell : TableViewCell {
     SongObject* m_songObject;
 }
 
-[[link(android)]]
+[[link(android), depends(GJLinkObject)]]
 class SongInfoLayer : FLAlertLayer {
     virtual ~SongInfoLayer() = win 0x633980;
 
@@ -24107,7 +24107,7 @@ class TutorialPopup : FLAlertLayer {
     CCMenuItemSpriteExtra* m_closeButton;
 }
 
-[[link(android)]]
+[[link(android), depends(cocos2d::CCPoint)]]
 class UIButtonConfig {
     void reset() = win 0x275900, inline;
     void resetOneBtn() = win 0x9999999, inline;
@@ -24655,4 +24655,3 @@ class WriteArchive {
     TodoReturn processGOArr(cocos2d::CCArray*&);
     TodoReturn processString(std::string&);
 }
-

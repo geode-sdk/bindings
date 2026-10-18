@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SelectArtDelegate.hpp>
 
 void SelectArtDelegate::selectArtClosed(SelectArtLayer* layer) {}
 

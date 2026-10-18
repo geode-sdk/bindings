@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/InheritanceNode.hpp>
 
 InheritanceNode::InheritanceNode() {
     m_colorID = 0;
