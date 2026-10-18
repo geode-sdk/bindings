@@ -1,4 +1,5 @@
 #include <Geode/binding/ButtonSprite.hpp>
+#include <Geode/mapping/CCScale9Sprite.hpp>
 
 ButtonSprite* ButtonSprite::create(char const* caption) {
     return ButtonSprite::create(caption, 0, false, "goldFont.fnt", "GJ_button_01.png", .0f, 1.f);
@@ -72,4 +73,3 @@ ButtonSprite::ButtonSprite() {
     m_BGSprite = nullptr;
 }
 #endif
-

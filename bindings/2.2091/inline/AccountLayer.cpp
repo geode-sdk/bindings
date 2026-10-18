@@ -2,7 +2,8 @@
 #include <Geode/binding/CCMenuItemToggler.hpp>
 #include <Geode/binding/GJAccountManager.hpp>
 #include <Geode/binding/LoadingCircle.hpp>
-
+#include <Geode/mapping/CCMenu.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void AccountLayer::createToggleButton(std::string text, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) {
@@ -60,4 +61,3 @@ void AccountLayer::doSync() {
 
 #if defined(GEODE_IS_IOS)
 #endif
-

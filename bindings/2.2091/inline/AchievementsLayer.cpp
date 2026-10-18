@@ -2,6 +2,7 @@
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/CustomListView.hpp>
 #include <Geode/binding/GJListLayer.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
@@ -42,4 +43,3 @@ void AchievementsLayer::setupPageInfo(int itemCount, int pageStartIdx, int pageE
 
 #if defined(GEODE_IS_IOS)
 #endif
-

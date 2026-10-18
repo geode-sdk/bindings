@@ -1,4 +1,5 @@
 #include <Geode/binding/AchievementNotifier.hpp>
+#include <Geode/mapping/CCScene.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -21,4 +22,3 @@ void AchievementNotifier::willSwitchToScene(cocos2d::CCScene* scene) {
 
 #if defined(GEODE_IS_IOS)
 #endif
-
