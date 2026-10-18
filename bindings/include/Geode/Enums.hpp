@@ -1150,7 +1150,8 @@ enum class AudioViewType {};
 enum class SFXFolderPickerMode {};
 
 // Geode Addition
-// these IDs are handed to UILayer::handleAction
+// action ids for handleAction. the game passes a plain int and has no enum type,
+// so dont change handleActions signature to use this
 enum class GJActionID {
     Player1Jump = 10001,
     Player2Jump = 10002,
@@ -1167,12 +1168,15 @@ enum class GJActionID {
     TogglePracticeMode = 10013,
     Reserved14 = 10014,
     Reserved15 = 10015,
+    // these three land on one block, they all cycle the start pos
     CycleStartPos = 10016,
     CycleStartPosAlt1 = 10017,
     CycleStartPosAlt2 = 10018,
     ToggleAutoCheckpoints = 10019,
     ToggleCheckpoints = 10020,
     ToggleIgnoreDamage = 10021,
+    // one block, sign comes off the id, nudges an unnamed float on the game
+    // layer and calls updateTestModeLabel
     TestModeIncrease = 10022,
     TestModeDecrease = 10023,
     ToggleHitboxOnDeath = 10024,
