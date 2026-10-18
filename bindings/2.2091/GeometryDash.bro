@@ -7065,7 +7065,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUpdateDescriptionCompleted(std::string response, std::string tag) = imac 0x5276a0, m1 0x48092c;
     TodoReturn onUpdateEditorSoundDescriptionCompleted(std::string, std::string);
     void onUpdateLevelCompleted(std::string response, std::string tag) = win inline, imac 0x524b30;
-    TodoReturn onUpdateThreadCompleted(std::string, std::string);
+    void onUpdateThreadCompleted(std::string, std::string) = m1 0x491ed8;
     void onUpdateUserScoreCompleted(std::string response, std::string tag) = win 0x6fac0, imac 0x5250a0, m1 0x47e4cc;
     void onUploadCommentCompleted(std::string response, std::string tag) = win 0x23ed90, imac 0x526030, m1 0x47f3c8;
     TodoReturn onUploadDeathDataCompleted(std::string, std::string);
@@ -7171,7 +7171,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool updateLevelRankAdmin(int id, int rank) = win inline;
     void updateLevelRewards(GJGameLevel* level) = win 0x21dde0, imac 0x540930, m1 0x49776c;
     void updateSavedLevelList(GJLevelList* list);
-    TodoReturn updateThread(int, int, std::string const&);
+    bool updateThread(int, int, std::string const&) = m1 0x4ca540;
     void updateUsernames() = win inline, imac 0x54e4e0, m1 0x3ec9fc;
     void updateUserScore() = win 0x236270, imac 0x5634a0;
     void uploadAccountComment(std::string content) = win inline, imac 0x56d290, m1 0x4c00b4;
@@ -15702,9 +15702,9 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     virtual void friendPickerClosed() = win 0xd7b20;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xd6c90;
     virtual void threadListFinished(cocos2d::CCArray*, int, int, int) = win 0xd8510, m1 0x80e6e8;
-    virtual void threadListFailed() = win 0xd8c90;
-    virtual void threadUpdateFinished(int, int) = win 0xd7310;
-    virtual void threadUpdateFailed(int, int) = win 0xd7470;
+    virtual void threadListFailed() = win 0xd8c90, m1 0x80f488;
+    virtual void threadUpdateFinished(int, int) = win 0xd7310, m1 0x80d7b0;
+    virtual void threadUpdateFailed(int, int) = win 0xd7470, m1 0x80d9bc;
 
     void applyThreadList(cocos2d::CCArray*, int, int, int, bool) = m1 0x80eca8;
     void checkActivityAbove(float) = m1 0x80f5e8;
@@ -15735,7 +15735,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     void setInboxPoll(float);
     TodoReturn setupThreadBrowser(cocos2d::CCArray*, float);
     TodoReturn syncSearchFromBox();
-    TodoReturn updateFilterButtons();
+    TodoReturn updateFilterButtons() = m1 0x80db70;
     TodoReturn updateInviteButton();
     TodoReturn updatePageArrows(int, int, int);
     TodoReturn updateSelectUI();
