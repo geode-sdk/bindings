@@ -86,7 +86,8 @@ LevelInfoLayer::~LevelInfoLayer() {
 }
 
 void LevelInfoLayer::onClone(cocos2d::CCObject* sender) {
-    if (this->shouldDownloadLevel() || m_isBusy) return;
+    // TODO: 2.209, does it exist?
+    // if (this->shouldDownloadLevel() || m_isBusy) return;
     this->setKeypadEnabled(false);
     m_isBusy = true;
     GameManager::sharedState()->m_sceneEnum = 2;
@@ -137,4 +138,3 @@ void LevelInfoLayer::showSongWarning() {
 
 #if defined(GEODE_IS_IOS)
 #endif
-
