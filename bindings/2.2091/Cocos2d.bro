@@ -5884,7 +5884,7 @@ class cocos2d::ZipUtils {
     static std::string base64URLDecode(std::string const&) = imac 0x1e9100;
     static std::string base64URLEncode(std::string const&) = imac 0x1e91e0;
     // static void ccDecodeEncodedPvr(unsigned int*, int);
-    static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out);
+    static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out, int level);
     // static int ccInflateCCZFile(char const*, unsigned char**);
     // static int ccInflateGZipFile(char const*, unsigned char**);
     // static int ccInflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3660, m1 0x1a91b0;
@@ -5892,7 +5892,7 @@ class cocos2d::ZipUtils {
     // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     // static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     // static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey);
+    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey, int level);
     static std::string decompressString(std::string const& data, bool encrypt, int encryptionKey) = imac 0x1e8a00, m1 0x19afac;
     static std::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1e86e0, m1 0x19ac8c;
     static std::string encryptDecrypt(std::string const& data, int encryptionKey) = inline;
