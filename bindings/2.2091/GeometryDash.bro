@@ -1729,7 +1729,7 @@ class CCSpriteGrayscale : CCSpriteWithHue {
     static CCSpriteGrayscale* create(std::string const& file) = win inline, ios inline;
     static CCSpriteGrayscale* create(std::string const& file, cocos2d::CCRect const& rect) = win inline, ios inline;
     static CCSpriteGrayscale* createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) = win inline;
-    static CCSpriteGrayscale* createWithSpriteFrameName(std::string const& frameName) = imac 0x6c4260, m1 0x5dcaa4;
+    static CCSpriteGrayscale* createWithSpriteFrameName(std::string const& frameName) = win 0x4d150 imac 0x6c4260, m1 0x5dcaa4;
     static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture) = win inline, ios inline;
     static CCSpriteGrayscale* createWithTexture(cocos2d::CCTexture2D* texture, cocos2d::CCRect const& rect, bool rotated) = win inline, ios inline;
 
@@ -6125,8 +6125,8 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     TodoReturn keyboardRaise(float, float);
     void onBtn1(cocos2d::CCObject* sender);
     void onBtn2(cocos2d::CCObject* sender);
-    void onButton(cocos2d::CCObject* sender);
-    TodoReturn onButtonTag(int);
+    void onButton(cocos2d::CCObject* sender) = win 0x5b640;
+    void onButtonTag(int) = win 0x5b670;
     TodoReturn ownedTouchPrio(int);
     TodoReturn rebuildContentDeferred(float);
     TodoReturn requestRebuild();
