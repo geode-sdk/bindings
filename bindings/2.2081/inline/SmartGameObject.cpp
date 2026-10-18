@@ -22,7 +22,7 @@ bool SmartGameObject::init(char const* frame) {
     if (!GameObject::init(frame)) return false;
     m_baseFrame = frame;
     m_classType = GameObjectClassType::Smart;
-    m_bDisableScheduling = false;
+    m_bUnkBool2 = false;
     return true;
 }
 #endif

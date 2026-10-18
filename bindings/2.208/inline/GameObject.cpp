@@ -512,7 +512,7 @@ bool GameObject::ignoreFade() {
 bool GameObject::init(char const* frame) {
     if (!CCSpritePlus::initWithSpriteFrameName(frame)) return false;
     this->commonSetup();
-    m_bDisableScheduling = true;
+    m_bUnkBool2 = true;
     return true;
 }
 
