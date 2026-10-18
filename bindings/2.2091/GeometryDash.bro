@@ -7032,7 +7032,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn onGetUserSearchCompleted(std::string, std::string);
     void onLikeItemCompleted(std::string response, std::string tag) = imac 0x5271b0, m1 0x4803bc;
     TodoReturn onMuteUserCompleted(std::string, std::string, bool);
-    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x2195e0;
+    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x2195e0, m1 0x476b24;
     void onRateDemonCompleted(std::string response, std::string tag) = imac 0x52e190, m1 0x486da8;
     TodoReturn onRateEditorSoundAdminCompleted(std::string, std::string);
     void onRateLevelAdminCompleted(std::string response, std::string tag) = win inline, imac 0x8640a0, m1 0x758dac, ios inline;
@@ -7069,7 +7069,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn parseEventReward(std::string, std::string);
     void parseRestoreData(std::string str) = win inline, imac 0x581310, m1 0x3f9394, ios inline;
     void performNetworkTest() = win inline, imac 0x3491d0, m1 0x4769a0;
-    void ProcessHttpRequest(std::string endpoint, std::string params, std::string tag, GJHttpType httpType);
+    void ProcessHttpRequest(std::string endpoint, std::string params, std::string tag, GJHttpType httpType) = m1 0x476d14;
     void processOnDownloadLevelCompleted(std::string response, std::string tag, bool update) = win 0x232220;
     TodoReturn prunePlatformerJournalKeys(std::vector<std::pair<std::string, int>> const&);
     TodoReturn purgeFriendRequestSearchCache(bool, int);
