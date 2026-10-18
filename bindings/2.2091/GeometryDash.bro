@@ -14516,8 +14516,8 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     LevelInfoLayer() = inline;
     ~LevelInfoLayer() = win inline;
 
-    static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win 0x1b3e20, imac 0x2a9ca0, m1 0x201718;
-    static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = imac 0x2a9c50, m1 0x24b34c;
+    static LevelInfoLayer* create(GJGameLevel* level, bool challenge) = win inline, imac 0x2a9ca0, m1 0x201718;
+    static cocos2d::CCScene* scene(GJGameLevel* level, bool challenge) = win 0x41bc20, imac 0x2a9c50, m1 0x24b34c;
 
     virtual void keyBackClicked() = win 0x4265c0, imac 0x2b1c10, m1 0x252f18;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x4265d0, imac 0x2b1c40, m1 0x252f24;
