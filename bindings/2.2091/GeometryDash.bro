@@ -2065,7 +2065,7 @@ class ChallengeNode : cocos2d::CCNode {
 
     static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win inline, imac 0x387ec0, m1 0x312b88;
 
-    bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win 0x9999999, imac 0x388490, m1 0x313108;
+    bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win 0x9F430, imac 0x388490, m1 0x313108;
     void onClaimReward(cocos2d::CCObject* sender) = imac 0x389090, m1 0x313dcc;
     void updateTimeLabel(std::string text) = win inline, imac 0x387f90, m1 0x312c5c, ios inline;
 
@@ -2738,7 +2738,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 
     void createTextInputNode(cocos2d::CCPoint position, int tag) = imac 0x41dae0, m1 0x395a5c;
     TodoReturn hostPopup();
-    bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = imac 0x41d1c0, m1 0x395198;
+    bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12FBB0, imac 0x41d1c0, m1 0x395198;
     void onClose() = win inline, imac 0x41cee0, m1 0x394f1c, ios inline;
     void onResetHSV(cocos2d::CCObject* sender) = win 0x130de0, imac 0x41df70;
     void onToggleSConst(cocos2d::CCObject* sender) = imac 0x41de90, m1 0x395e3c;
@@ -3901,7 +3901,7 @@ class DemonInfoPopup : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x99f90, imac 0x8a87f0, m1 0x79b268;
 
-    bool init(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x78e20, imac 0x8a7e60, m1 0x79a8f4;
+    bool init(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x55AFF0, imac 0x8a7e60, m1 0x79a8f4;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x8a87c0, m1 0x79b22c;
 }
 
@@ -4206,7 +4206,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void confirmDelete(cocos2d::CCObject* sender) = imac 0x1df410, m1 0x1930f4;
     TodoReturn confirmMoveToBottom(cocos2d::CCObject*);
     void confirmMoveToTop(cocos2d::CCObject* sender) = imac 0x1df500, m1 0x1931dc;
-    bool init(GJGameLevel* level) = win 0x9999999, imac 0x25c540, m1 0x190af8;
+    bool init(GJGameLevel* level) = win 0x1784A0, imac 0x25c540, m1 0x190af8;
     void onBack(cocos2d::CCObject* sender) = win 0x17cdf0, imac 0x1dfaa0, m1 0x1937b8;
     void onClone() = win inline, imac 0x4006e0;
     void onCreatorSettings(cocos2d::CCObject* sender);
@@ -6609,7 +6609,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x3a3210;
 
     void blockUser() = win inline, imac 0x294960;
-    bool init(GJFriendRequest*, bool) = imac 0x291260, m1 0x235270;
+    bool init(GJFriendRequest*, bool) = win 0x3A16E0, imac 0x291260, m1 0x235270;
     void loadFromGJFriendRequest(GJFriendRequest* request) = win 0x631390;
     void onAccept(cocos2d::CCObject* sender) = imac 0x2923f0, m1 0x2363a4;
     void onBlock(cocos2d::CCObject* sender) = imac 0x2925c0, m1 0x236554;
