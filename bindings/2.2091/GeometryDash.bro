@@ -15698,7 +15698,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     virtual void threadUpdateFailed(int, int) = win 0xd7470;
 
     void applyThreadList(cocos2d::CCArray*, int, int, int, bool) = m1 0x80eca8;
-    TodoReturn checkActivityAbove(float);
+    void checkActivityAbove(float) = m1 0x80f5e8;
     bool isCovered();
     void loadPage(int, bool) = m1 0x80ccb8;
     void onClearSearch(cocos2d::CCObject* sender) = m1 0x80bdf0;
@@ -15722,7 +15722,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn refetchIfQueued();
     TodoReturn refreshUserFilterBtn();
     TodoReturn selectedCount();
-    void setActivityAbove(bool);
+    void setActivityAbove(bool) = m1 0x80f410;
     void setInboxPoll(float);
     TodoReturn setupThreadBrowser(cocos2d::CCArray*, float);
     TodoReturn syncSearchFromBox();
