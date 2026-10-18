@@ -1,5 +1,9 @@
 #include <Geode/binding/AudioEffectsLayer.hpp>
 
+#include <Geode/cocos/actions/CCActionTween.h>
+#include <Geode/mapping/CCCallFuncN.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+
 AudioEffectsLayer::AudioEffectsLayer() {
     m_batchNode = nullptr;
     m_masterTicks = nullptr;

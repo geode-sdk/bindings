@@ -217,7 +217,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             single_output += codegen::getClassIncludeString(dep) + "\n";
         }
 
-        for (auto member_type : {"SeedValue", "unordered_map", "unordered_set", "vector", "cc_timeval", "tCCPositionType", "SEL_HttpResponse", "ParticleStruct", "enumKeyCodes"}) {
+        for (auto member_type : {"SeedValue", "unordered_map", "unordered_set", "vector", "enumKeyCodes"}) {
             for (auto field : cls.fields) {
                 if (auto fn = field.get_as<FunctionBindField>()) {
                     if (fn->prototype.ret.name.find(member_type) != std::string::npos) {

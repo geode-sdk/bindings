@@ -1,15 +1,19 @@
-#include <Geode/mapping/CCObject.hpp>
-#include <Geode/binding/GameManager.hpp>
-#include <Geode/utils/cocos.hpp>
 #include <Geode/binding/AchievementManager.hpp>
 #include <Geode/binding/AppDelegate.hpp>
 #include <Geode/binding/FMODAudioEngine.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GameManager.hpp>
 #include <Geode/binding/GameStatsManager.hpp>
 #include <Geode/binding/GameToolbox.hpp>
 #include <Geode/binding/MenuLayer.hpp>
 #include <Geode/binding/MusicDownloadManager.hpp>
 #include <Geode/binding/SimplePlayer.hpp>
+#include <Geode/cocos/CCScheduler.h>
+#include <Geode/cocos/cocoa/CCInteger.h>
+#include <Geode/cocos/platform/CCFileUtils.h>
+#include <Geode/cocos/textures/CCTextureCache.h>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/utils/cocos.hpp>
 
 GameManager* GameManager::get() {
     return GameManager::sharedState();
