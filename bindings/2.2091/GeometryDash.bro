@@ -7487,7 +7487,7 @@ class GameManager : GManager {
     TodoReturn parentalOptionsActive();
     void playMenuMusic() = win 0x2766c0, imac 0x360390, m1 0xc9b4;
     int playSFXTrigger(SFXTriggerGameObject* object) = imac 0x360880, m1 0x2ef690;
-    void prepareDPadSettings() = imac 0x372200;
+    void prepareDPadSettings() = win 0x282620, imac 0x372200;
     void printGJLog() = win inline, imac 0x370190, m1 0x2fd018;
     TodoReturn privacyPushWanted();
     void queueReloadMenu(bool) = win 0x287700;
@@ -24143,7 +24143,7 @@ class UIButtonConfig {
 [[link(android)]]
 class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     UILayer() = inline;
-    ~UILayer() = win inline;
+    ~UILayer() = win 0x66fe70;
 
     static UILayer* create(GJBaseGameLayer* layer) = win inline, imac 0x4c1e90, m1 0x425460;
     static UILayer* get() = inline;
@@ -24159,14 +24159,14 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win inline;
     virtual bool handleAction(int, bool, double) = win 0x6713c0;
 
-    TodoReturn announceLevelControls();
-    TodoReturn applyLevelBindings();
+    void announceLevelControls() = win 0x670c60;
+    void applyLevelBindings() = win 0x670be0;
     void disableMenu() = win inline, imac 0x708eb0;
     void doPause() = win inline, imac 0x4c4cd0, m1 0x427cb4;
     void editorPlaytest(bool visible) = win inline;
     void enableEditorMode() = win inline;
     void enableMenu() = win inline, imac 0x4c4de0, m1 0x426ba4;
-    void handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp);
+    void handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) = win inline;
     bool init(GJBaseGameLayer* layer) = win 0x66ff70, imac 0x4c1fd0, m1 0x42556c;
     bool isJumpButtonPressed() = win inline, imac 0x4c4f70, m1 0x427f30;
     bool isJumpButtonPressed(bool player1) = win inline, imac 0x4c4fa0, m1 0x427f80, ios inline;
@@ -24175,15 +24175,15 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     void onPause(cocos2d::CCObject* sender) = win 0x672f30, imac 0x4c27b0, m1 0x425d0c;
     bool processUINodesTouch(GJUITouchEvent event, cocos2d::CCTouch* touch) = win 0x673510, imac 0x4c5110, m1 0x4280ec;
     bool processUINodeTouch(GJUITouchEvent event, int touchID, cocos2d::CCPoint position, GJUINode* node, double timestamp) = win 0x6735e0;
-    TodoReturn reapplyLevelControls();
+    void reapplyLevelControls() = win inline;
     void refreshDpad() = win inline, imac 0x4780d0;
     void resetAllButtons() = win inline, imac 0x4c2f20, m1 0x42642c;
     void resetUINodeState() = win 0x6710a0, imac 0x4c3510, m1 0x4269f4;
-    TodoReturn resolveLevelControls();
-    TodoReturn showTextAlert(std::string, bool, bool, float);
+    void resolveLevelControls() = win 0x670a70;
+    void showTextAlert(std::string text, bool isOn, bool useRawText, float delay) = win 0x6711d0;
     void toggleCheckpointsMenu(bool visible) = win 0x672eb0, imac 0x4c28a0, m1 0x425df4;
     void toggleMenuVisibility(bool visible) = win 0x673140, imac 0x4c4e00, m1 0x427dd0;
-    void togglePlatformerMode(bool platformer) = win 0xf1f40, imac 0x4c2a70, m1 0x425fb4;
+    void togglePlatformerMode(bool platformer) = win 0x670fd0, imac 0x4c2a70, m1 0x425fb4;
     void updateCheckState() = win 0x670870, imac 0x4c28e0, m1 0x425e38;
     void updateDualMode(bool dual) = win inline, m1 0x6455d8;
     void updateUINodeVisibility(bool visible) = imac 0xe770, m1 0xcd78;
@@ -24206,7 +24206,10 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     bool m_dualMode;
     bool m_dpadType;
     bool m_editorMode;
+    bool m_editorPlaytest;
     cocos2d::CCArray* m_controllerButtons;
+    LevelControlConfig* m_levelControls;
+    bool m_didAnnounceLevelControls;
 }
 
 [[link(android)]]
