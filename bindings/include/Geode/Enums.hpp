@@ -1149,6 +1149,43 @@ enum class KeybindCaptureMode {};
 enum class AudioViewType {};
 enum class SFXFolderPickerMode {};
 
+// Geode Addition
+// these IDs are handed to UILayer::handleAction
+enum class GJActionID {
+    Player1Jump = 10001,
+    Player2Jump = 10002,
+    Player1Left = 10003,
+    Player1Right = 10004,
+    Player2Left = 10005,
+    Player2Right = 10006,
+    PlaceCheckpoint = 10007,
+    DeleteCheckpoint = 10008,
+    Pause = 10009,
+    Retry = 10010,
+    FullReset = 10011,
+    TogglePracticeHitboxes = 10012,
+    TogglePracticeMode = 10013,
+    Reserved14 = 10014,
+    Reserved15 = 10015,
+    CycleStartPos = 10016,
+    CycleStartPosAlt1 = 10017,
+    CycleStartPosAlt2 = 10018,
+    ToggleAutoCheckpoints = 10019,
+    ToggleCheckpoints = 10020,
+    ToggleIgnoreDamage = 10021,
+    TestModeIncrease = 10022,
+    TestModeDecrease = 10023,
+    ToggleHitboxOnDeath = 10024,
+    ToggleDeathMarkers = 10025,
+    ToggleGlobalMarkers = 10026,
+    ToggleLocalMarkers = 10027,
+    ToggleMarkerLabels = 10028,
+    Reserved29 = 10029,
+    ToggleLiveMarkers = 10030,
+    ToggleHitboxTrail = 10031,
+    ToggleHitboxTrailOnDeath = 10032,
+};
+
 namespace GameVar {
     constexpr auto FollowPlayer = "0001";
     constexpr auto PlaytestMusic = "0002";
