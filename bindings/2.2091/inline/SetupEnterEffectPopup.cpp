@@ -2,7 +2,7 @@
 
 #if !defined(GEODE_IS_IOS)
 SetupEnterEffectPopup::SetupEnterEffectPopup() {
-    m_objectID = 0;
+    m_objectID = ObjectID{};
     m_enterOnlyToggler = nullptr;
     m_exitOnlyToggler = nullptr;
     m_enterType = 0;
