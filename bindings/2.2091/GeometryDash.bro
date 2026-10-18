@@ -1698,6 +1698,7 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     float m_scrollLimitBottom;
     float m_peekLimitTop;
     float m_peekLimitBottom;
+    PAD = win 0x8;
 }
 
 [[link(android)]]
@@ -3100,6 +3101,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
+    PAD = win 0x20;
     int m_vaultDialogIndex;
     int m_versusDialogIndex;
 }
@@ -8621,6 +8623,8 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_completedLists;
     cocos2d::CCDictionary* m_weeklyChest;
     cocos2d::CCDictionary* m_eventChest;
+    // GS_33 dictionary
+    PAD = win 0x8;
     cocos2d::CCDictionary* m_treasureRoomChests;
     geode::SeedValueRSV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
@@ -9524,6 +9528,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_allowStaticRotate;
     bool m_fixNegativeScale;
     bool m_startingFromBeginning;
+    PAD = win 0x18;
     std::vector<SFXTriggerGameObject*> m_activeSfxTriggers;
     std::vector<void*> m_unk8a0;
     cocos2d::CCNode* m_hoverNode;
@@ -9681,6 +9686,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     LevelSettingsObject* m_levelSettings;
     cocos2d::CCArray* m_objects;
     cocos2d::CCArray* m_collisionBlocks;
+    PAD = win 0x8;
     cocos2d::CCArray* m_spawnObjectsArray;
     cocos2d::CCDictionary* m_spawnObjects;
     cocos2d::CCNode* m_unkdd0;
@@ -9715,6 +9721,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCDictionary* m_parentGroupsDict;
     cocos2d::CCDictionary* m_parentGroupIDs;
     cocos2d::CCDictionary* m_removedParentGroupIDs;
+    PAD = win 0xc0;
     cocos2d::CCArray* m_targetGroupsArray;
     std::unordered_map<int, std::pair<int, int>> m_targetGroups;
     cocos2d::CCDictionary* m_linkedGroupDict;
@@ -9757,6 +9764,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_particleCount;
     int m_customParticleCount;
     int m_particleSystemLimit;
+    PAD = win 0x8;
     cocos2d::CCDictionary* m_particlesDict;
     cocos2d::CCDictionary* m_customParticles;
     cocos2d::CCArray* m_unclaimedParticles;
@@ -9770,6 +9778,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_objectsDeactivated;
     bool m_areaObjectsUpdated;
     StartPosObject* m_startPosObject;
+    PAD = win 0x8;
     bool m_useReplay;
     bool m_unk3189;
     int m_solidCollisionObjectsCount;
@@ -9863,6 +9872,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_keepGroupParents;
     cocos2d::CCDictionary* m_keyframeGroups;
     int m_keyframeGroup;
+    PAD = win 0x10;
     UILayer* m_uiLayer;
     cocos2d::CCArray* m_uiObjects;
     cocos2d::CCDictionary* m_uiObjectLayers;
@@ -9928,11 +9938,13 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_isDebugDrawEnabled;
     bool m_disablePlayerHitbox;
     bool m_hitboxesOnDeath;
+    PAD = win 0x58;
     GameObject* m_anticheatSpike;
     double m_timestamp;
     bool m_isBetweenSteps;
     bool m_clickBetweenSteps;
     bool m_clickOnSteps;
+    PAD = win 0x40;
 }
 
 [[link(android)]]
@@ -13395,6 +13407,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     GJGameLevel* m_level;
     GJUserScore* m_score;
     GJLevelList* m_levelList;
+    PAD = win 0x8;
     std::string m_commentKey;
     LoadingCircle* m_loadingCircle;
     cocos2d::CCLabelBMFont* m_pageLabel;
@@ -14278,7 +14291,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* getTriggerGroup(int id) = win 0x3fd600, imac 0xc3c50, m1 0xaef74;
     void handleAction(bool undo, cocos2d::CCArray* undoObjects) = win 0x3f2580, m1 0x597c24;
     bool hasAction(bool redo) = win inline, imac 0xb23f0, m1 0xa0420;
-    bool init(GJGameLevel* level, bool noUI) = win 0x30ce90;
+    bool init(GJGameLevel* level, bool noUI) = win 0x3ed8e0;
     bool isLayerLocked(int layer) = win inline, imac 0xbc400;
     TodoReturn lockedLayerForObject(int, int);
     TodoReturn lockedLayerForObjectString(std::string const&);
@@ -16033,7 +16046,7 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     void onToggleView(cocos2d::CCObject* sender);
     void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x9999999;
     TodoReturn refreshLevelIDList();
-    void setupList(MusicSearchResult* result) = win 0x175110, imac 0x6e9bc0, m1 0x5fd720;
+    void setupList(MusicSearchResult* result) = win 0x47ca30, imac 0x6e9bc0, m1 0x5fd720;
     void setupMusicBrowser() = win inline, m1 0x504ba0;
     void setupSongControls();
     void sliderChanged(cocos2d::CCObject* sender) = imac 0x6e9320, m1 0x5fcf0c;
@@ -16772,7 +16785,7 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
     void onClearSearchText(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender) = win 0x9999999;
     void onMatchToggle(cocos2d::CCObject* sender);
-    void setupList(cocos2d::CCArray* objects) = win 0x1be180, m1 0x65ab4;
+    void setupList(cocos2d::CCArray* objects) = win 0x47f160, m1 0x65ab4;
 
     cocos2d::CCArray* m_optionObjects;
     GJCommentListLayer* m_listLayer;
@@ -17651,7 +17664,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
-    android, ios {
+    win, android, ios {
         bool m_collidingBetweenSteps;
     }
     double m_scaleXRelated4;
@@ -17915,12 +17928,12 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 
 [[link(android), depends(DynamicBitset, SavedActiveObjectState, SavedObjectStateRef, SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
-    PlayLayer() = win 0xabc50;
+    PlayLayer() = win 0x502f50;
     ~PlayLayer() = win 0x503640, imac 0x4e00, m1 0x70bec;
 
     static PlayLayer* create(GJGameLevel* level, bool dontCreateObjects) = win inline;
     static PlayLayer* get() = inline;
-    static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x9999999;
+    static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x503930;
 
     virtual void onEnterTransitionDidFinish() = win 0x51b510, imac 0x3e33e0;
     virtual void onExit() = win 0x51b550;
@@ -17975,7 +17988,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void commitJumps() = imac 0x819a0, m1 0x782cc, ios inline;
     void compareStateSnapshot() = win inline, ios inline;
     CheckpointObject* createCheckpoint() = win 0x5141a0;
-    void createObjectsFromSetupFinished() = win 0x11daa0, imac 0x842f0, m1 0x7a860;
+    void createObjectsFromSetupFinished() = win 0x50c1f0, imac 0x842f0, m1 0x7a860;
     void delayedFullReset() = win inline, imac 0x8c400;
     void delayedResetLevel() = win 0x518a30,imac 0x88550, m1 0x7e5e0;
     TodoReturn dtBumpCell(int, int, int);
@@ -17999,7 +18012,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     double getTempMilliTime() = inline;
     void gravityEffectFinished() = win 0x510e30, imac 0x87020, m1 0x7d19c;
     void incrementJumps() = win inline, imac 0x8d850, m1 0x82d58;
-    bool init(GJGameLevel* level, bool dontCreateObjects) = win 0x30ce90;
+    bool init(GJGameLevel* level, bool dontCreateObjects) = win 0x5039e0;
     bool isGameplayActive() = win inline, imac 0x8ddd0, m1 0x832b4;
     bool isJumpHeldForPlayer(bool);
     void levelComplete() = win 0x5061b0;
@@ -18133,6 +18146,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool m_doNot;
     float m_unk383c;
     bool m_skipAudioStep;
+    PAD = win 0xc0;
     std::unordered_set<int> m_blendingColors;
     int m_jumps;
     bool m_hasJumped;
