@@ -4305,33 +4305,33 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     virtual void volumeChanged() = win 0x180dc0;
 
     void doResetUnused() = win inline, imac 0x4addf0, m1 0x6ff970, ios inline;
-    TodoReturn editorSFXSliderChanged(cocos2d::CCObject*);
+    void editorSFXSliderChanged(cocos2d::CCObject*) = win 0x182440;
     bool init(LevelEditorLayer* layer) = win 0x180e80, imac 0x27ca90, m1 0x2222c0;
-    TodoReturn musicSliderChanged(cocos2d::CCObject*);
+    void musicSliderChanged(cocos2d::CCObject*) = win 0x1822f0;
     void onAlignX(cocos2d::CCObject* sender);
     void onAlignY(cocos2d::CCObject* sender);
-    void onAutoSaveSettings(cocos2d::CCObject* sender);
+    void onAutoSaveSettings(cocos2d::CCObject* sender) = win 0x1831b0;
     void onBuildHelper(cocos2d::CCObject* sender);
-    void onControls(cocos2d::CCObject* sender);
+    void onControls(cocos2d::CCObject* sender) = win 0x1824b0;
     void onCopyWColor(cocos2d::CCObject* sender);
     void onCreateExtras(cocos2d::CCObject* sender);
     void onCreateLoop(cocos2d::CCObject* sender);
     void onCreateTemplate(cocos2d::CCObject* sender) = win inline, ios inline;
-    void onDeathStats(cocos2d::CCObject* sender);
-    void onDownloadAudio(cocos2d::CCObject* sender);
-    void onEditorSounds(cocos2d::CCObject* sender);
-    void onExitEditor(cocos2d::CCObject* sender);
+    void onDeathStats(cocos2d::CCObject* sender) = win 0x183050;
+    void onDownloadAudio(cocos2d::CCObject* sender) = win 0x183210;
+    void onEditorSounds(cocos2d::CCObject* sender) = win 0x1831d0;
+    void onExitEditor(cocos2d::CCObject* sender) = win 0x182b90;
     void onExitNoSave(cocos2d::CCObject* sender) = win 0x182c80, imac 0x27e4d0, m1 0x223d1c;
-    void onExport(cocos2d::CCObject* sender);
-    void onHelp(cocos2d::CCObject* sender);
-    void onKeybindings(cocos2d::CCObject* sender);
+    void onExport(cocos2d::CCObject* sender) = win 0x182930;
+    void onHelp(cocos2d::CCObject* sender) = win 0x182f10;
+    void onKeybindings(cocos2d::CCObject* sender) = win inline;
     void onNewGroupX(cocos2d::CCObject* sender);
     void onNewGroupY(cocos2d::CCObject* sender);
-    void onOptions(cocos2d::CCObject* sender) = imac 0x27e820;
+    void onOptions(cocos2d::CCObject* sender) = win 0x1822c0, imac 0x27e820;
     void onPasteWColor(cocos2d::CCObject* sender);
     void onReGroup(cocos2d::CCObject* sender);
     void onResetUnusedColors(cocos2d::CCObject* sender);
-    void onResume(cocos2d::CCObject* sender);
+    void onResume(cocos2d::CCObject* sender) = win 0x1824e0;
     void onSave(cocos2d::CCObject* sender) = win 0x182800, imac 0x27e400, m1 0x223c3c;
     void onSaveAndExit(cocos2d::CCObject* sender) = win 0x182b30;
     void onSaveAndPlay(cocos2d::CCObject* sender) = win 0x182590;
@@ -4342,8 +4342,8 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void onUnlockAllLayers(cocos2d::CCObject* sender);
     void playStep2() = win 0x182630, imac 0x1de8b0, m1 0x224ac8;
     void playStep3() = win 0x182760, imac 0x27f3a0, m1 0x224b98;
-    void saveLevel() = win 0x3009b0;
-    TodoReturn sfxSliderChanged(cocos2d::CCObject*);
+    void saveLevel();
+    void sfxSliderChanged(cocos2d::CCObject*) = win 0x182390;
     void toggleDebugDraw(cocos2d::CCObject* sender);
     void toggleEditorBackground(cocos2d::CCObject* sender) = win inline, imac 0x27f120, m1 0x224948, ios inline;
     void toggleEditorColorMode(cocos2d::CCObject* sender) = imac 0x27efa0, m1 0x2247e4;
@@ -4356,7 +4356,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void toggleHideInvisible(cocos2d::CCObject* sender);
     void toggleIgnoreDamage(cocos2d::CCObject* sender) = imac 0x27ef40, m1 0x224790;
     void togglePlaytestMusic(cocos2d::CCObject* sender) = win inline, imac 0x27f070, m1 0x2248ac, ios inline;
-    void togglePreviewAnim(cocos2d::CCObject* sender) = win 0x400e80, m1 0x5f3c68;
+    void togglePreviewAnim(cocos2d::CCObject* sender) = win inline, m1 0x5f3c68;
     void togglePreviewParticles(cocos2d::CCObject* sender) = m1 0x5f3c68;
     void togglePreviewShaders(cocos2d::CCObject* sender) = imac 0x27ef80, m1 0x2247c8;
     void toggleRecordOrder(cocos2d::CCObject* sender) = win inline, m1 0x7b8c44, ios inline;
@@ -4366,10 +4366,13 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void updateSongButton();
 
     bool m_saved;
+    LevelEditorLayer* m_editorLayer;
     CCMenuItemSpriteExtra* m_guidelinesOffButton;
     CCMenuItemSpriteExtra* m_guidelinesOnButton;
-    LevelEditorLayer* m_editorLayer;
-    PAD = win 0x20, android64 0x20, android32 0x10, mac 0x20, ios 0x20;
+    PAD = win 0x10, android64 0x10, android32 0x8, mac 0x10, ios 0x10;
+    Slider* m_musicSlider;
+    Slider* m_sfxSlider;
+    Slider* m_editorSFXSlider;
 }
 
 [[link(android)]]
@@ -4637,7 +4640,7 @@ class EditorSoundsLayer : TabbedPopupLayer {
     virtual void rebuildContent() = win 0x19e0f0;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x19ef00;
     virtual void textChanged(CCTextInputNode*) = win 0x19e5e0;
-    virtual TodoReturn showTab(int) = win 0x19e100;
+    virtual void showTab(int) = win 0x19e100;
 
     TodoReturn buildContentForTab(int);
     bool init(EditorUI*);
@@ -8382,7 +8385,7 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     virtual void onCustomButton(cocos2d::CCObject* sender) = win 0x2c7ad0;
     virtual void valueDidChange(int, float) = win 0x2c70b0;
     virtual float getValue(int) = win 0x2c6d70;
-    virtual TodoReturn showTab(int) = win 0x2c8420;
+    virtual void showTab(int) = win 0x2c8420;
     virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x2c7e10;
 
     TodoReturn addGVToggle(char const*, char const*, char const*);
@@ -13548,7 +13551,7 @@ class KeybindCapturePopup : SetupTriggerPopup, InputCaptureDelegate {
 class KeybindingsLayer : TabbedPopupLayer {
     virtual ~KeybindingsLayer() = win 0x3d53a0;
 
-    static KeybindingsLayer* create(GameSettingsLayer*);
+    static KeybindingsLayer* create(GameSettingsLayer*) = win 0x3d5650;
 
     virtual void keyBackClicked() = win 0xa6580;
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d8630;
@@ -13557,37 +13560,37 @@ class KeybindingsLayer : TabbedPopupLayer {
     virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x3d88e0;
     virtual void rebuildContent() = win 0x19e0f0;
     virtual void textChanged(CCTextInputNode*) = win 0x3d8480;
-    virtual TodoReturn showTab(int) = win 0x3d77e0;
-    virtual TodoReturn setupTabs() = win 0x3d6050;
-    virtual TodoReturn actionsToShow(int) = win 0x3d7db0;
-    virtual TodoReturn nameForAction(int) = win 0x3d80a0;
-    virtual TodoReturn openBindingEditor(int, int) = win 0x3d80f0;
-    virtual TodoReturn showControllerChords() = win 0x3d8120;
-    virtual TodoReturn settingsEntries() = win 0x3d8140;
-    virtual TodoReturn crossCheckGlobalConflicts() = win 0x5a3a0;
+    virtual void showTab(int) = win 0x3d77e0;
+    virtual void setupTabs() = win 0x3d6050;
+    virtual std::vector<int> actionsToShow(int) = win 0x3d7db0;
+    virtual std::string nameForAction(int) = win 0x3d80a0;
+    virtual void openBindingEditor(int, int) = win 0x3d80f0;
+    virtual bool showControllerChords() = win 0x3d8120;
+    virtual void settingsEntries() = win 0x3d8140;
+    virtual bool crossCheckGlobalConflicts() = win 0x5a3a0;
 
     cocos2d::CCLabelBMFont* addKeyPair(char const* action, char const* key) = m1 0x3483d0;
-    TodoReturn buildContentForTab(int);
-    TodoReturn buildControllerGlyph(int, bool&);
+    void buildContentForTab(int) = win 0x3d6750;
+    cocos2d::CCSprite* buildControllerGlyph(int, bool&) = win 0x3d6350;
     int countForPage(int page) = win 0x9999999;
     TodoReturn getActionTable(int&);
     void goToPage(int page);
     void incrementCountForPage(int page) = win inline;
     const char* infoKey(int index) = win inline, imac 0x64b700;
-    bool init(GameSettingsLayer*);
+    bool init(GameSettingsLayer*) = win 0x3d57f0;
     cocos2d::CCLayer* layerForPage(int page);
     const char* layerKey(int page) = win inline, imac 0x64b6e0, m1 0x77b374;
     cocos2d::CCPoint nextPosition(int page) = win inline, m1 0x1fbca0;
     const char* objectKey(int page) = win inline, imac 0x886700, m1 0x77b34c;
     cocos2d::CCArray* objectsForPage(int page) = win inline;
     void onAddBinding(cocos2d::CCObject* sender);
-    void onClearSearch(cocos2d::CCObject* sender);
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x3d8440;
     void onClose(cocos2d::CCObject* sender) = win 0x3d8980;
-    void onEditBinding(cocos2d::CCObject* sender);
+    void onEditBinding(cocos2d::CCObject* sender) = win 0x3d7cb0;
     void onInfo(cocos2d::CCObject* sender) = win inline;
     void onNextPage(cocos2d::CCObject* sender);
     void onPrevPage(cocos2d::CCObject* sender);
-    void onSettings(cocos2d::CCObject* sender);
+    void onSettings(cocos2d::CCObject* sender) = win 0x3d8230;
     void onToggle(cocos2d::CCObject* sender) = win inline;
     const char* pageKey(int page) = win inline, imac 0x561fc0, m1 0x2dbdc;
     TodoReturn tintGlyph(cocos2d::CCSprite*, cocos2d::ccColor3B);
@@ -13942,12 +13945,12 @@ class LevelBindingsLayer : KeybindingsLayer {
     static LevelBindingsLayer* create(KeybindSet*, bool);
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x44d1a0;
-    virtual TodoReturn setupTabs() = win 0x44c730;
-    virtual TodoReturn actionsToShow(int) = win 0x44c8b0;
-    virtual TodoReturn openBindingEditor(int, int) = win 0x44c920;
-    virtual TodoReturn showControllerChords() = win 0x3ff70;
-    virtual TodoReturn settingsEntries() = win 0x44c440;
-    virtual TodoReturn crossCheckGlobalConflicts() = win 0x3ff70;
+    virtual void setupTabs() = win 0x44c730;
+    virtual std::vector<int> actionsToShow(int) = win 0x44c8b0;
+    virtual void openBindingEditor(int, int) = win 0x44c920;
+    virtual bool showControllerChords() = win 0x3ff70;
+    virtual void settingsEntries() = win 0x44c440;
+    virtual bool crossCheckGlobalConflicts() = win 0x3ff70;
 
     bool init(KeybindSet*, bool);
     void onApplyGlobal(cocos2d::CCObject* sender);
@@ -14306,7 +14309,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     float rotationForSlopeNearObject(GameObject* object) = win 0x3f1050, imac 0xb02f0, m1 0x9e594;
     ColorAction* runColorEffect(EffectGameObject* object, int colorID, float delay, float interval, bool instant) = win 0x3fc300, imac 0xc3440, m1 0xae894;
     void saveEditorPosition(cocos2d::CCPoint& position, int index) = win inline, imac 0xbbec0, m1 0xa830c;
-    TodoReturn saveLevel();
+    bool saveLevel() = win 0x3ff1f0;
     void setObjectCount(int count) = inline;
     bool shouldBlend(int colorID) = imac 0xae620, m1 0x9caa8;
     void sortBatchnodeChildren(float unused) = win inline, imac 0xbd550, m1 0xa9500;
@@ -14346,7 +14349,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x3f7460, imac 0xbe6e0, m1 0xaa6c0;
     void updateOptions() = win 0x3eef70, imac 0xab1d0;
     TodoReturn updatePlayerState(GJPlayerState);
-    void updatePreviewAnim() = win inline, imac 0xc8240;
+    void updatePreviewAnim() = win 0x400e80, imac 0xc8240;
     void updatePreviewParticle(ParticleGameObject* object) = win 0x4011a0, imac 0xbcc70, m1 0xa8eb0;
     void updatePreviewParticles() = win 0x401090, imac 0xc1f30, m1 0xad7bc;
     void updateToggledGroups() = imac 0xc3250, m1 0xae674;
@@ -23263,7 +23266,7 @@ class TabbedPopupLayer : SetupTriggerPopup {
     virtual ~TabbedPopupLayer() = win 0x19cd00;
 
     virtual void pageChanged() = win 0x66d090;
-    virtual TodoReturn showTab(int) = win 0x66cc10;
+    virtual void showTab(int) = win 0x66cc10;
 
     TodoReturn addCloseButton();
     TodoReturn addTab(std::string const&, char const*);
