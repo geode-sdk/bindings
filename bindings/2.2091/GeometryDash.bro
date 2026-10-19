@@ -4769,7 +4769,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     std::string copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort) = win 0x1c5700, imac 0x5b5f80, m1 0x5033d4;
     std::string copyObjectsDetailed(cocos2d::CCArray* objects) = win inline, imac 0x53b360, m1 0x4a3a34;
     cocos2d::CCArray* createCustomItems() = imac 0x638500, m1 0x574e58;
-    TodoReturn createDpadMoveMenu(cocos2d::CCArray*);
+    void createDpadMoveMenu(cocos2d::CCArray*) = win 0x1f33b0;
     GameObject* createEdgeForObject(GameObject* object, int type) = win 0x1fa160, imac 0x6f0f40, m1 0x603d30;
     void createExtraObject(int id, cocos2d::CCPoint position, GameObject* object, cocos2d::CCArray* objects, int zOrder, int editorLayer) = win 0x1fe9e0, imac 0x6f54a0, m1 0x6075b8;
     cocos2d::CCArray* createExtras(cocos2d::CCArray* objects) = win inline, imac 0x6f2af0, m1 0x587fac;
@@ -4779,7 +4779,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createLoop() = win 0x1b9360, imac 0x16860, m1 0x14244;
     void createMoveMenu() = win 0x1f1a70;
     void createNewKeyframeAnim() = win 0x1b90b0, imac 0x165d0, m1 0x14028;
-    GameObject* createObject(int objectID, cocos2d::CCPoint position) = imac 0x11ca0, m1 0x10074;
+    GameObject* createObject(int objectID, cocos2d::CCPoint position) = win 0x1b32a0, imac 0x11ca0, m1 0x10074;
     cocos2d::CCArray* createOutlines(cocos2d::CCArray* objects) = win 0x1fa7a0, imac 0x6f12b0, m1 0x604058;
     void createPrefab(GJSmartTemplate* smartTemplate, std::string key, int id) = win 0x1b7380, imac 0x147a0, m1 0x125cc;
     cocos2d::CCArray* createRockBases(cocos2d::CCArray* objects) = win 0x1fb1f0, m1 0x489520;
@@ -4818,7 +4818,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void editObject3(cocos2d::CCObject* sender) = win inline, ios inline;
     void editObjectSpecial(int type) = win 0x1bd1a0;
     int editorLayerForArray(cocos2d::CCArray* objects, bool layer2) = win inline, imac 0xc600, m1 0xad80;
-    void enableButton(CreateMenuItem* button) = win inline, imac 0xd5a0, m1 0xbc54;
+    void enableButton(CreateMenuItem* button) = win 0x1adb90, imac 0xd5a0, m1 0xbc54;
     void findAndSelectObject(int id, bool useUniqueID);
     TodoReturn findObject(int, bool, int);
     TodoReturn findPassesFilters(GameObject*);
@@ -4908,7 +4908,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onResetSpecialFilter(cocos2d::CCObject* sender) = imac 0x10770, m1 0xed38;
     void onSelectBuildTab(cocos2d::CCObject* sender);
     void onSettings(cocos2d::CCObject* sender) = win 0x1ac4f0, m1 0x828c;
-    void onShowUIBtn(cocos2d::CCObject* sender);
+    void onShowUIBtn(cocos2d::CCObject* sender) = win 0x1b3d10;
     void onStickyToggle(cocos2d::CCObject* sender) = imac 0x8b70;
     void onStopPlaytest(cocos2d::CCObject* sender) = win 0x1b4990;
     void onTargetIDChange(int change) = win 0x195710, imac 0x1a000, m1 0x16cb4;
@@ -4932,7 +4932,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn processSelectObject(GameObject*);
     void processSelectObjects(cocos2d::CCArray* objects) = imac 0x5b90a0, m1 0x505dac;
     void processSmartObjectsFromType(int type, cocos2d::CCArray* objects, cocos2d::CCArray* objects2, cocos2d::CCArray* objects3, cocos2d::CCArray* objects4) = win 0x1b7d50, imac 0x152d0, m1 0x13014;
-    void recreateButtonTabs() = win inline;
+    void recreateButtonTabs() = win 0x1f69e0;
     void redoLastAction(cocos2d::CCObject* sender);
     TodoReturn refreshGridWindow();
     void reloadCustomItems() = win 0x1f6770, imac 0x63c900, m1 0x578e84;
@@ -4955,7 +4955,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void setCustomGridEnabled(bool) = win 0x1ae520;
     void setCustomGridNodeSize(float) = win 0x1ae390;
     void setCustomMoveStep(float);
-    void setDpadStep(int);
+    void setDpadStep(int) = win 0x1f3e60;
     void setupCreateMenu() = win 0x1ca6c0, imac 0x61af40;
     void setupDeleteMenu() = win 0x1f42a0, imac 0x63b320, m1 0x5779ec;
     void setupEditMenu() = win inline, ios inline;
@@ -5004,7 +5004,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void undoLastAction(cocos2d::CCObject* object);
     void updateButtons() = win 0x1ad160, imac 0xad60, m1 0x96e4;
     TodoReturn updateControlsAfterAlign();
-    void updateCreateMenu(bool selectTab) = imac 0x46ab60;
+    void updateCreateMenu(bool selectTab) = win 0x1b2140, imac 0x46ab60;
     void updateDeleteButtons() = win 0x1f5100, imac 0x63bd80, m1 0x5783d4;
     void updateDeleteMenu() = win inline, imac 0x929b80, m1 0x80bfe4, ios inline;
     TodoReturn updateDpadStepLabel();
@@ -5022,8 +5022,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateSlider() = win 0x1ae100, imac 0x9200, m1 0x81e0;
     void updateSpecialUIElements() = win inline, imac 0x33f660, ios inline;
     void updateStickyControls() = win inline, imac 0xb6b0;
-    TodoReturn updateViewButtons();
-    TodoReturn updateViewMenu();
+    void updateViewButtons() = win 0x1f80f0;
+    void updateViewMenu();
     void updateZoom(float zoom) = win 0x9999999;
     TodoReturn updateZoom(float, cocos2d::CCPoint);
     float valueFromXPos(float xPos) = win inline, imac 0xdd00, m1 0xc404;
@@ -5035,11 +5035,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
     std::unordered_map<int, GameObjectEditorState> m_objectEditorStates;
     GJTransformState m_transformState;
+    std::unordered_map<int, cocos2d::CCNode*> m_unkMap;
     bool m_isPlayingMusic;
     EditButtonBar* m_customTabBar;
     bool m_alertShown;
     cocos2d::CCArray* m_uiItems;
     float m_gridSize;
+    float m_customGridSize;
+    bool m_customGridEnabled;
     int m_playerTouchID1;
     int m_playerTouchID2;
     bool m_playbackActive;
@@ -5054,7 +5057,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     int m_rotationTouchID;
     int m_scaleTouchID;
     int m_touchID;
+    bool m_unk2f4;
     int m_transformTouchID;
+    int m_unk2fc;
+    cocos2d::CCPoint m_unkPoint300;
+    cocos2d::CCPoint m_unkPoint308;
+    float m_unk310;
+    float m_unk314;
+    float m_unk318;
+    bool m_unk31c;
+    bool m_unk31d;
+    bool m_unk31e;
     cocos2d::CCLabelBMFont* m_objectInfoLabel;
     GJRotationControl* m_rotationControl;
     cocos2d::CCPoint m_pivotPoint;
@@ -5089,6 +5102,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_deleteModeBtn;
     CCMenuItemSpriteExtra* m_buildModeBtn;
     CCMenuItemSpriteExtra* m_editModeBtn;
+    CCMenuItemSpriteExtra* m_viewModeBtn;
     CCMenuItemSpriteExtra* m_swipeBtn;
     CCMenuItemSpriteExtra* m_freeMoveBtn;
     CCMenuItemSpriteExtra* m_deselectBtn;
@@ -5097,7 +5111,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_playbackBtn;
     CCMenuItemSpriteExtra* m_playtestBtn;
     CCMenuItemSpriteExtra* m_playtestStopBtn;
+    CCMenuItemSpriteExtra* m_playtestPauseBtn;
     CCMenuItemSpriteExtra* m_trashBtn;
+    CCMenuItemSpriteExtra* m_hideUIBtn;
+    cocos2d::CCMenu* m_showUIMenu;
     CCMenuItemSpriteExtra* m_linkBtn;
     CCMenuItemSpriteExtra* m_unlinkBtn;
     CCMenuItemSpriteExtra* m_enableLinkBtn;
@@ -5115,6 +5132,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* m_pasteStateBtn;
     CCMenuItemSpriteExtra* m_pasteColorBtn;
     CCMenuItemSpriteExtra* m_goToLayerBtn;
+    CCMenuItemSpriteExtra* m_layerPlusBtn;
     cocos2d::CCArray* m_createButtonBars;
     cocos2d::CCMenu* m_tabsMenu;
     cocos2d::CCArray* m_tabsArray;
@@ -5138,6 +5156,10 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCArray* m_createButtonArray;
     cocos2d::CCArray* m_customObjectButtonArray;
     cocos2d::CCArray* m_deleteObjects;
+    cocos2d::CCDictionary* m_viewButtons;
+    cocos2d::CCNode* m_viewMenu;
+    std::unordered_map<int, void*> m_unk5a0;
+    int m_unk5e0;
     int m_selectedMode;
     LevelEditorLayer* m_editorLayer;
     cocos2d::CCPoint m_swipeStart;
@@ -5152,19 +5174,29 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool m_continueSwipe;
     bool m_findSnap;
     void* m_unk540;
+    cocos2d::CCLabelBMFont* m_zoomLabel;
     int m_selectedTab;
     int m_cycledObjectIndex;
     ColorSelectLiveOverlay* m_colorOverlay;
     HSVLiveOverlay* m_hsvOverlay;
     double m_keyTime;
-    double m_keyTime2;
     bool m_swipeModeTriggered;
     cocos2d::CCSprite* m_layerLockSprite;
-    void* m_unk580;
-    bool m_pressedSpace;
     float m_editorZoom;
     bool m_isPaused;
+    bool m_uiHidden;
+    bool m_uiHiddenButton;
     bool m_reloadItems;
+    cocos2d::CCNode* m_dpadMoveNode;
+    int m_dpadStep;
+    bool m_legacyMoveMenu;
+    cocos2d::CCArray* m_dpadArrowButtons;
+    cocos2d::CCArray* m_dpadStepButtons;
+    cocos2d::CCLabelBMFont* m_dpadLabel;
+    float m_unk6a8;
+    int m_unk6ac;
+    int m_unk6b0;
+    bool m_unk6b4;
 }
 
 [[link(android)]]
