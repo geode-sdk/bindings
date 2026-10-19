@@ -8862,7 +8862,7 @@ class GJDropDownLayerDelegate {
 	virtual void dropDownLayerWillClose(GJDropDownLayer*) {}
 }
 
-[[link(android), depends(DynamicMoveCalculation)]]
+[[link(android), depends(DynamicMoveCalculation), depends(EffectManagerState), depends(PulseEffectAction), depends(TouchToggleAction), depends(CollisionTriggerAction), depends(ToggleTriggerAction), depends(SpawnTriggerAction), depends(GroupCommandObject2), depends(OpacityEffectAction), depends(CountTriggerAction), depends(TimerItem), depends(TimerTriggerAction)]]
 class GJEffectManager : cocos2d::CCNode {
 	// virtual ~GJEffectManager();
 	// GJEffectManager();
@@ -16300,7 +16300,7 @@ class SelectSFXSortLayer : FLAlertLayer {
 	SelectSFXSortDelegate* m_delegate;
 }
 
-[[link(android)]]
+[[link(android), depends(SequenceTriggerState)]]
 class SequenceTriggerGameObject : ChanceTriggerGameObject {
 	// virtual ~SequenceTriggerGameObject();
 
