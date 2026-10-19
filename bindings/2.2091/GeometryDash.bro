@@ -7632,6 +7632,7 @@ class GameManager : GManager {
     cocos2d::CCDictionary* m_frameTimeForAnimation;
     cocos2d::CCDictionary* m_framesForAnimation;
     cocos2d::CCDictionary* m_defaultFrames;
+    PAD = win 0x18;
     bool m_switchModes;
     bool m_toFullscreen;
     bool m_reloading;
@@ -7641,9 +7642,11 @@ class GameManager : GManager {
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
     cocos2d::CCDictionary* m_unlockValueKeeper;
+    PAD = win 0x8;
     cocos2d::CCDictionary* m_customObjectDict;
     double m_adTimer;
     double m_adCache;
+    PAD = win 0x8;
     bool m_unkBool3;
     int m_unkSize4_1;
     double m_unkDouble2;
@@ -7720,8 +7723,10 @@ class GameManager : GManager {
     bool m_showedLowDetailDialog;
     GameRateDelegate* m_gameRateDelegate1;
     GameRateDelegate* m_gameRateDelegate2;
+    PAD = win 0x8;
     cocos2d::ccColor3B m_copiedColor;
     int m_currentLevelID;
+    PAD = win 0x4;
     int m_currentColorChannel;
     int m_currentGroupID;
     int m_loadedBgID;
@@ -7746,6 +7751,7 @@ class GameManager : GManager {
     bool m_unkBool7;
     bool m_unkBool8;
     geode::SeedValueRSV m_hasRP;
+    PAD = win 0x7;
     bool m_hasDRP;
     bool m_canGetLevelSaveData;
     int m_resolution;
@@ -7759,9 +7765,11 @@ class GameManager : GManager {
     int m_unkSize4_14;
     bool m_disableThumbstick;
     float m_customFPSTarget;
+    PAD = win 0x14;
     bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
+    PAD = win 0xc;
     std::map<int, int> m_iconLoadCounts;
     std::map<int, std::map<int, int>> m_iconRequests;
     std::map<int, bool> m_isIconBeingLoaded;
@@ -7784,6 +7792,7 @@ class GameManager : GManager {
     std::string m_dpadLayoutDual1;
     std::string m_dpadLayoutDual2;
     std::string m_dpadLayoutDual3;
+    PAD = win 0x20;
     int m_leaderboardLevelID;
     int m_leaderboardLevelTime;
     int m_leaderboardLevelPoints;
