@@ -909,6 +909,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void popScene() = imac 0x478d40, m1 0x3e3560;
     bool popSceneWithTransition(float, cocos2d::PopTransition) = imac 0x478dd0, m1 0x3e35ec;
     void popToRootScene() = imac 0x478eb0, m1 0x3e36bc;
+    [[missing(win)]]
     void popToSceneInStack(cocos2d::CCScene*) = imac 0x479030, m1 0x3e3824;
     void popToSceneStackLevel(int) = imac 0x478ec0, m1 0x3e36c4;
     void purgeCachedData() = imac 0x4786e0, m1 0x3e2fdc;
@@ -2327,7 +2328,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x6d77b0, m1 0x5cd9b0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8740b0;
-    void giveMenuTouchPriority(int) = m1 0x346e98;
+    void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0;
     bool initWithArray(cocos2d::CCArray*) = imac 0x8738a0, m1 0x769e84;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x873e40, m1 0x76a440;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0xd98c0, m1 0x76b5d4;

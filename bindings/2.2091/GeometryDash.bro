@@ -1382,7 +1382,7 @@ class CCCountdown : cocos2d::CCSprite {
     virtual void setOpacity(unsigned char opacity) = imac 0x8ae1b0, m1 0x7a0450;
 
     void lapFinished() = imac 0x8ae0a0, m1 0x7a0328;
-    void startTimerWithSeconds(float seconds, cocos2d::SEL_CallFunc selector, cocos2d::CCNode* target) = imac 0x601840, m1 0x7a02bc;
+    void startTimerWithSeconds(float seconds, cocos2d::SEL_CallFunc selector, cocos2d::CCNode* target) = m1 0x7a02bc;
 
     cocos2d::CCProgressTimer* m_progressTimer;
     float m_unk260;
@@ -2640,7 +2640,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 
     void incrementDislikes() = win inline, imac 0x23e550, m1 0x1e9ae4, ios inline;
     void incrementLikes() = win inline, imac 0x23e4a0, m1 0x1e9a30, ios inline;
-    void loadFromComment(GJComment* comment) = win 0x151ea0, imac 0x22d440, m1 0x7c02e8;
+    void loadFromComment(GJComment* comment) = win 0x151ea0, imac 0x22d440, m1 0x1d9f24;
     void onBulkSelectToggle(cocos2d::CCObject* sender);
     void onConfirmDelete(cocos2d::CCObject* sender) = win 0x154b90, imac 0x23e0d0, m1 0x1e9690;
     void onDelete() = win inline;
@@ -8426,7 +8426,7 @@ class GameRateDelegate {
 class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     virtual ~GameSettingsLayer() = win 0x2c2530;
 
-    static GameSettingsLayer* create(GJBaseGameLayer*, int);
+    static GameSettingsLayer* create(GJBaseGameLayer*, int) = imac 0x5fe320, m1 0x543b18;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x2c7e80;
     virtual void onCustomButton(cocos2d::CCObject* sender) = win 0x2c7ad0;
@@ -8435,16 +8435,16 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     virtual void showTab(int tab) = win 0x2c8420, imac 0x6035d0, m1 0x548b14;
     virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x2c7e10;
 
-    TodoReturn addGVToggle(char const*, char const*, char const*);
-    TodoReturn addSpecialContent();
-    TodoReturn addToggle(char const*, int, char const*, bool);
-    TodoReturn buildTabContent();
+    void addGVToggle(char const* name, char const* gameVar, char const* desc) = imac 0x601840, m1 0x54726c; // inlined on macos
+    void addSpecialContent() = imac 0x6005e0, m1 0x546110;
+    void addToggle(char const* name, int id, char const* desc, bool disabled) = imac 0x6018b0, m1 0x5472f0;
+    void buildTabContent() = imac 0x5fe890, m1 0x544098;
     TodoReturn didChangeGV(char const*, bool);
-    bool init(GJBaseGameLayer*, int);
+    bool init(GJBaseGameLayer*, int) = imac 0x5fe4c0, m1 0x543c5c;
     TodoReturn nextPosition(int);
     void onButtonRows(cocos2d::CCObject* sender);
     void onButtonsPerRow(cocos2d::CCObject* sender);
-    TodoReturn setupTabs();
+    void setupTabs() = imac 0x5fe5c0, m1 0x543d74;
     TodoReturn showPracticeMusicSyncUnlockInfo();
     TodoReturn toggleVisibility(bool);
 }
@@ -11935,7 +11935,7 @@ class GJRewardObject : cocos2d::CCObject {
 
 [[link(android)]]
 class GJRobotSprite : CCAnimatedSprite {
-    virtual ~GJRobotSprite() = win 0x3ac690;
+    virtual ~GJRobotSprite() = win 0x3ac690, imac 0x6add40, m1 0x5c7924;
 
     // GJRobotSprite();
     static GJRobotSprite* create(int frame) = win 0x185e70, imac 0x6ad560, m1 0x5c798c;
@@ -16781,7 +16781,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     void onAccount(cocos2d::CCObject* sender) = imac 0x87b800, m1 0x770f7c;
     void onHelp(cocos2d::CCObject* sender) = m1 0x770f8c;
     void onMenuMusic(cocos2d::CCObject* sender) = win 0x4cba10, imac 0x87b8a0, m1 0x7715fc;
-    void onOptions(cocos2d::CCObject* sender) = m1 0x770fa8;
+    void onOptions(cocos2d::CCObject* sender) = m1 0x770fa8, imac 0x87b840;
     void onParental(cocos2d::CCObject* sender) = m1 0x770ffc;
     void onProgressBar(cocos2d::CCObject* sender) = win inline, imac 0x87c520, ios inline;
     void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0, m1 0x770fe8;
@@ -21688,7 +21688,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     float getTruncatedValueByTag(int tag, float value) = win inline, imac 0x21e1d0, m1 0x1cc338;
     void goToPage(int page, bool hideAll) = win 0x60b770, imac 0x219e40, m1 0x1c9524;
     void hideAll() = win inline, imac 0x21a0b0, m1 0x1c9788;
-    bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int, float) = win 0x60ae90;
+    bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int, float) = win 0x60ae90, imac 0x219540, m1 0x1c8c84;
     void onCustomEaseArrow(int property, bool up) = win 0x6156e0, imac 0x2254e0, m1 0x1d2b9c;
     void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x6156b0, imac 0x225220, m1 0x1d286c;
     void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x615680, imac 0x225180, m1 0x1d27b8;
@@ -21702,19 +21702,19 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     void onSpawnedByTrigger(cocos2d::CCObject* sender) = imac 0x21b350;
     void onToggleTriggerValue(cocos2d::CCObject* sender) = win 0x9999999, imac 0x220160, m1 0x1ce220;
     void onTouchTriggered(cocos2d::CCObject* sender) = imac 0x21b300;
-    void postSetup() = win inline, imac 0x220c70;
+    void postSetup() = win inline, imac 0x220c70, m1 0x1ced38;
     void preSetup() = win inline, imac 0x220c50, m1 0x1ced24;
     void refreshGroupVisibility() = win inline, imac 0x21a0d0, m1 0x1c9794;
     TodoReturn registerIDNameInput(int, IDNameInput*);
     void removeObjectFromGroup(cocos2d::CCObject* object, int group) = win inline, imac 0x21a6a0, m1 0x1c9d04, ios inline;
     void removeObjectFromPage(cocos2d::CCObject* object, int page) = win inline, imac 0x21a520, m1 0x1c9bb0;
     void resetDisabledValues() = win inline, imac 0x21fc40, m1 0x1cdcac;
-    void setCustomBGColor(cocos2d::ccColor3B const&);
+    void setCustomBGColor(cocos2d::ccColor3B const&) = imac 0x219a00, m1 0x1c90b8;
     void setMaxSliderValue(float value, int property) = win inline, imac 0x21fae0, m1 0x1cdb2c;
     void setMinSliderValue(float value, int property) = win inline, imac 0x21fa60, m1 0x1cdaac, ios inline;
     TodoReturn shouldLimitArrowValue(int);
     bool shouldLimitValue(int property) = win inline, imac 0x21e5f0, m1 0x1cc714, ios inline;
-    void toggleBG(bool visible) = win inline, imac 0x3b2bd0, m1 0x1c90b8;
+    void toggleBG(bool visible) = win inline, imac 0x3b2bd0;
     void toggleCustomEaseRateVisibility(int property, int tag) = win 0x615aa0, imac 0x2253c0, m1 0x1d2a60;
     void toggleDisableButtons(bool visible) = win 0x36ade0, imac 0x21fd00, m1 0x1cdd90;
     void toggleEaseRateVisibility();
@@ -23362,9 +23362,9 @@ class TabbedPopupLayer : SetupTriggerPopup {
     virtual void pageChanged() = win 0x66d090;
     virtual void showTab(int tab) = win 0x66cc10, imac 0x63fc00, m1 0x57be84;
 
-    TodoReturn addCloseButton();
+    void addCloseButton() = imac 0x219a00, m1 0x57b320;
     TodoReturn addTab(std::string const&, char const*);
-    TodoReturn beginTab(int);
+    void beginTab(int tab) = imac 0x63f3e0, m1 0x57b68c;
     TodoReturn createTabButtons();
     TodoReturn createTabButtons(float, float, float, float, float, float);
     TodoReturn ensurePopupPage(int, int);
