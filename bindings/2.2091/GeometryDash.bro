@@ -4251,9 +4251,26 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 
 [[link(android)]]
 class EditorBuildStats {
-    TodoReturn fromString(std::string const&);
-    TodoReturn noteAction();
-    TodoReturn toString();
+    void fromString(std::string const&);
+    void noteAction();
+    std::string toString();
+
+    int m_unk00;
+    int m_unk04;
+    int m_unk08;
+    int m_unk0C;
+    int m_unk10;
+    int m_unk14;
+    int m_unk18;
+    float m_unk1C;
+    int m_timeThing;
+    int m_unk24;
+    int m_unk28;
+    uint64_t m_unk30;
+    int m_unk38;
+    int m_unk3C;
+    std::array<int, 8> m_actionGaps;
+    int m_lastActionTime;
 }
 
 [[link(android)]]
@@ -10446,7 +10463,7 @@ class GJFriendRequest : cocos2d::CCNode {
     bool m_isRead;
 }
 
-[[link(android)]]
+[[link(android), depends(EditorBuildStats)]]
 class GJGameLevel : cocos2d::CCNode {
     GJGameLevel() = win 0x217820, imac 0x590e80, m1 0x4e12a4;
     ~GJGameLevel() = win inline, imac 0x5826d0, m1 0x4d4384;
@@ -10541,10 +10558,8 @@ class GJGameLevel : cocos2d::CCNode {
     std::string m_recordString;
     std::string m_uploadDate;
     std::string m_updateDate;
-    win {
-        int m_unkInt98;
-        int m_unkInt99;
-    }
+    int m_uploadDateUnix;
+    int m_updateDateUnix;
     std::string m_lockedEditorLayers;
     std::string m_savedCameraPositions;
     cocos2d::CCPoint m_previewLock;
@@ -10566,6 +10581,7 @@ class GJGameLevel : cocos2d::CCNode {
     bool m_gauntletLevel2;
     int m_workingTime;
     int m_workingTime2;
+    EditorBuildStats m_buildStats;
     bool m_lowDetailMode;
     bool m_lowDetailModeToggled;
     bool m_disableShakeToggled;
@@ -10641,6 +10657,7 @@ class GJGameLevel : cocos2d::CCNode {
     std::string m_songIDs;
     std::string m_sfxIDs;
     int m_songSize;
+    int m_unk50C;
     int m_bestTime;
     int m_ticksTime;
     int m_clicksTime;
@@ -10656,9 +10673,41 @@ class GJGameLevel : cocos2d::CCNode {
     std::string m_localBestPoints;
     bool m_savedTime;
     bool m_savedPoints;
-    android, ios {
-        int m_cbsOverride;
-    } // 0 none, 1 enabled, 2 disabled
+    int m_cbsOverride;
+    std::string m_unkK126;
+    int m_unkK127;
+    std::string m_unkK128;
+    std::string m_unkK131;
+    int m_unkK130;
+    int m_unkK132;
+    bool m_unkK129;
+    int m_unkK154;
+    int m_unkK133;
+    std::string m_unkK134;
+    std::string m_unkK135;
+    std::string m_unkK136;
+    std::string m_unkK137;
+    int m_firstPlayedUnix;
+    int m_lastExitedUnix;
+    int m_unkK142;
+    int m_unkK143;
+    int m_unkK145;
+    int m_unk67C; // (could be padding)
+    std::string m_unk680;
+    std::string m_unkK146;
+    void* m_unk6B0;
+    std::string m_unkK140;
+    bool m_unkK141;
+    int m_unkK151; // stored as 1000 - k151
+    int m_unkK152a;
+    int m_unkK152b;
+    std::string m_unkK152c;
+    std::string m_unkK147;
+    int m_unkK148;
+    std::string m_unkK149;
+    int m_unkK150;
+    bool m_unkK153;
+    int m_unkK155;
 }
 
 [[link(android)]]
@@ -15159,7 +15208,7 @@ class LevelStatsInfoPopup : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x4281a0;
 
-    TodoReturn buildInfoText();
+    std::string buildInfoText() = win 0x427250;
     TodoReturn buildStatsText();
     TodoReturn decodeProgress(std::string const&);
     bool init(GJGameLevel*);
@@ -19053,7 +19102,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, imac 0x496ff0, m1 0x3ff4f0, ios inline;
     void onBack(cocos2d::CCObject* sender) = imac 0x497390, m1 0x3ff84c;
     void onDoor(cocos2d::CCObject* sender) = win 0x57a3e0, imac 0x498ae0, m1 0x400d1c;
-    void onSecretLevel(cocos2d::CCObject* sender) = win 0x27be00, imac 0x498d10, m1 0x400f78;
+    void onSecretLevel(cocos2d::CCObject* sender) = win 0x57a130, imac 0x498d10, m1 0x400f78;
     void onSubmit(cocos2d::CCObject* sender) = win 0x57ad00, imac 0x497400, m1 0x3ff8c0;
     void playCoinEffect();
     void selectAThread() = win inline, imac 0x49b330, m1 0x4033c0;
@@ -22577,7 +22626,7 @@ class Slider : cocos2d::CCLayer {
     void setValue(float val) = win inline, imac 0x2efa70, m1 0x285770;
     void sliderBegan() = win inline, imac 0x2eedf0, m1 0x284c4c, ios inline;
     void sliderEnded() = win inline, imac 0x2eef10, m1 0x284d58, ios inline;
-    void updateBar() = win inline, imac 0x2ef230, m1 0x285008;
+    void updateBar() = win 0x84a50, imac 0x2ef230, m1 0x285008;
 
     SliderTouchLogic* m_touchLogic;
     cocos2d::CCSprite* m_sliderBar;

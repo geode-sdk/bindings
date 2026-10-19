@@ -70,15 +70,6 @@ void Slider::setBarVisibility(bool visibility) {
     m_sliderBar->setVisible(visibility);
 }
 
-void Slider::updateBar() {
-    float val = this->getThumb()->getValue();
-    float width = val * this->m_width;
-    if(this->m_width <= width) {
-        width = this->m_width;
-    }
-    this->m_sliderBar->setVertexRect({0, 0, width, this->m_height});
-}
-
 void Slider::setValue(float val) {
     this->getThumb()->setValue(val);
     this->updateBar();
