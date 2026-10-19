@@ -501,7 +501,7 @@ CreateMenuItem* EditorUI::getCreateMenuItemButton(cocos2d::CCSprite* sprite, coc
         case 6: backgroundImage = "GJ_button_06.png"; break;
         default: backgroundImage = "GJ_button_01.png"; break;
     }
-    auto buttonSprite = ButtonSprite::create(sprite, 32, 0, 32.f, 1.f, true, backgroundImage, true);
+    auto buttonSprite = ButtonSprite::create(sprite, 32, 0, 32.f, 1.f, true, backgroundImage, true, 0.f);
     auto button = CreateMenuItem::create(buttonSprite, nullptr, this, selector);
     button->setScale(scale);
     button->m_baseScale = scale;
