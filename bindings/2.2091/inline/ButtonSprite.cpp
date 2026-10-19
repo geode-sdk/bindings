@@ -6,7 +6,7 @@ ButtonSprite* ButtonSprite::create(char const* caption) {
 }
 
 ButtonSprite* ButtonSprite::create(cocos2d::CCSprite* topSprite) {
-    return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false);
+    return ButtonSprite::create(topSprite, 0, 0, .0f, 1.f, false, "GJ_button_01.png", false, .0f);
 }
 
 ButtonSprite* ButtonSprite::create(char const* caption, float scale) {
@@ -26,11 +26,11 @@ ButtonSprite* ButtonSprite::create(char const* caption, int width, int minWidth,
 }
 
 ButtonSprite* ButtonSprite::create(cocos2d::CCSprite* topSprite, int width, bool absolute, float height, const char* texture, float scale) {
-    return create(topSprite, width, 0, height, scale, absolute, texture, true);
+    return create(topSprite, width, 0, height, scale, absolute, texture, true, .0f);
 }
 
 ButtonSprite* ButtonSprite::create(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute) {
-    return ButtonSprite::create(topSprite, width, minWidth, height, scale, absolute, "GJ_button_01.png", false);
+    return ButtonSprite::create(topSprite, width, minWidth, height, scale, absolute, "GJ_button_01.png", false, 0.f);
 }
 
 ButtonSprite* ButtonSprite::create(char const* caption, int width, int minWidth, float scale, bool absolute, char const* font, char const* bg) {

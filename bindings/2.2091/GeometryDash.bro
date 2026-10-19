@@ -1161,12 +1161,10 @@ class ButtonSprite : cocos2d::CCSprite {
     /// @returns Pointer to the created ButtonSprite, or nullptr on error
     static ButtonSprite* create(const char* caption, int width, bool absolute, const char* font, const char* texture, float height, float scale) = inline;
     static ButtonSprite* create(char const* caption, int width, int minWidth, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x42be0, imac 0x59e80, m1 0x53380;
-    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0x428a0, imac 0x595c0, m1 0x52b88;
-    static ButtonSprite* create(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool, float);
+    static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG, float unk) = win 0x428a0, imac 0x595c0, m1 0x52b88;
 
     bool init(char const* caption, int width, int minWidth, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x42cb0, imac 0x59fe0, m1 0x534c4;
-    bool init(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG) = win 0xe76b0;
-    bool init(cocos2d::CCSprite*, int, int, float, float, bool, char const*, bool, float);
+    bool init(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG, float unk) = win 0xe76b0;
     void setColor(cocos2d::ccColor3B color) = win inline, imac 0x5a7d0, m1 0x53c40;
     void setString(char const* text) = win 0x43550, imac 0x5a280, m1 0x5372c;
     void updateBGImage(char const* filename) = win 0x42fc0, imac 0x5a690, m1 0x53afc;
