@@ -1,3 +1,5 @@
+#import mac <Geode/cocos/kazmath/include/kazmath/mat4.h>
+
 [[link(win, android)]]
 kmAABB* const kmAABBAssign(kmAABB*, kmAABB const*);
 [[link(win, android)]]

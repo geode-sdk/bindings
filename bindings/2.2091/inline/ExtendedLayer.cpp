@@ -7,6 +7,10 @@ ExtendedLayer::ExtendedLayer() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+ExtendedLayer::~ExtendedLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ExtendedLayer* ExtendedLayer::create() {
     auto ret = new ExtendedLayer();

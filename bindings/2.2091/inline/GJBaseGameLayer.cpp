@@ -731,7 +731,7 @@ TeleportPortalObject* GJBaseGameLayer::getPortalTarget(TeleportPortalObject* obj
         if (count > 0) {
             if (count == 1) return static_cast<TeleportPortalObject*>(group->objectAtIndex(0));
             else {
-                auto seed = reinterpret_cast<uint64_t*>(geode::base::get() + 0x6c2ef8);
+                auto seed = reinterpret_cast<uint64_t*>(geode::base::get() + 0x90bff0);
                 *seed = *seed * 214013 + 2531011;
                 auto num = ((*seed >> 16) & 32767) / 32767.f;
                 if (num == 1.f) num = 0.f;
@@ -1191,7 +1191,7 @@ void GJBaseGameLayer::restoreAllUIObjects() {
     m_calcCollisionBlockObjects2Size = 0;
 }
 
-void GJBaseGameLayer::setStartPosObject(StartPosObject* startPos) {
+void GJBaseGameLayer::setActiveStartPosObject(StartPosObject* startPos) {
     if (startPos != m_startPosObject) {
         if (startPos) {
             startPos->retain();
@@ -1324,6 +1324,18 @@ void GJBaseGameLayer::switchToFlyMode(PlayerObject* player, GameObject* object, 
             break;
     }
     this->toggleGlitter(true);
+}
+
+void GJBaseGameLayer::switchToRobotMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::RobotPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRobotMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
+void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::BallPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
 }
 
 void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {

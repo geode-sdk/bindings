@@ -1,4 +1,3 @@
-#include <Geode/mapping/CCEGLView.hpp>
 #include <Geode/binding/UILayer.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/GJBaseGameLayer.hpp>
@@ -25,7 +24,10 @@ UILayer::UILayer() {
     m_dualMode = false;
     m_dpadType = false;
     m_editorMode = false;
+    m_editorPlaytest = false;
     m_controllerButtons = nullptr;
+    m_levelControls = nullptr;
+    m_didAnnounceLevelControls = false;
 }
 #endif
 
@@ -36,16 +38,11 @@ UILayer* UILayer::get() {
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool UILayer::isJumpButtonPressed(bool player1) {
-    return player1 ? (m_p2TouchId != -1 || m_p1Jumping) : (m_p1TouchId != -1 || m_p2Jumping);
+    return player1 ? (m_p1TouchId != -1 || m_p1Jumping) : (m_p2TouchId != -1 || m_p2Jumping);
 }
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-UILayer::~UILayer() {
-    CC_SAFE_RELEASE(m_uiNodes);
-    CC_SAFE_RELEASE(m_controllerButtons);
-}
-
 UILayer* UILayer::create(GJBaseGameLayer* layer) {
     auto ret = new UILayer();
     if (ret->init(layer)) {
@@ -76,7 +73,9 @@ void UILayer::editorPlaytest(bool visible) {
     this->resetAllButtons();
     this->toggleMenuVisibility(visible);
     this->setVisible(visible);
-    cocos2d::CCEGLView::sharedOpenGLView()->toggleGameplayActive(false);
+    m_editorPlaytest = visible;
+    if (visible) this->resolveLevelControls();
+    this->applyLevelBindings();
 }
 
 void UILayer::enableEditorMode() {
@@ -90,11 +89,21 @@ void UILayer::enableMenu() {
     m_pauseBtn->setEnabled(true);
 }
 
+void UILayer::handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) {
+    if (key == cocos2d::KEY_Escape && down) this->handleAction(static_cast<int>(GJActionID::Pause), true, timestamp);
+}
+
 bool UILayer::isJumpButtonPressed() {
     return this->isJumpButtonPressed(true) || this->isJumpButtonPressed(false);
 }
 
 void UILayer::keyUp(cocos2d::enumKeyCodes key, double timestamp) {}
+
+void UILayer::reapplyLevelControls() {
+    if (m_inPlatformer) this->resolveLevelControls();
+    this->applyLevelBindings();
+    this->resetAllButtons();
+}
 
 void UILayer::refreshDpad() {}
 
@@ -113,7 +122,3 @@ void UILayer::updateDualMode(bool dual) {
     this->togglePlatformerMode(m_inPlatformer);
 }
 #endif
-
-#if defined(GEODE_IS_IOS)
-#endif
-
