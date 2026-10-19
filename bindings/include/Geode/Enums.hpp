@@ -1413,6 +1413,7 @@ namespace GameVar {
     constexpr auto ParentalControlUnk7 = "0244";
     constexpr auto DisablePinch = "0245";
     constexpr auto MessagingRulesAgreed = "0246";
+    constexpr auto UseLegacyMove = "0247";
 }
 
 // frozen archaic versions of enums
