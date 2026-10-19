@@ -123,8 +123,9 @@ class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLay
     virtual void textInputOpened(CCTextInputNode* node) = win inline, imac 0x3ac0, m1 0x3dde84;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x8f0c0, imac 0x4900f0, m1 0x3f8d34;
     virtual void textChanged(CCTextInputNode* node) = win inline;
-    virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x5bb10;
-    virtual void textInputReturn(CCTextInputNode* node) = win 0x5bc70;
+    // TODO: removed on android, verify other platforms
+    // virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x5bb10;
+    // virtual void textInputReturn(CCTextInputNode* node) = win 0x5bc70;
     virtual bool allowTextInput(CCTextInputNode* node) = win 0x908a0, imac 0x490cb0, m1 0x3f97c0;
     virtual void registerAccountFinished() = win 0x8dda0, imac 0x48e170, m1 0x3f6f78;
     virtual void registerAccountFailed(AccountError errorType) = win 0x8dfe0;
@@ -21599,8 +21600,9 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     virtual void onClose(cocos2d::CCObject* sender) = win 0x60cea0;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x1265d0, imac 0x21b870, m1 0x1cad20;
     virtual void textChanged(CCTextInputNode* node) = win 0x60cce0, imac 0x21b8b0, m1 0x1cad3c;
-    virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x5bb10;
-    virtual void textInputReturn(CCTextInputNode* node) = win 0x5bc70;
+    // TODO: removed on android, verify other platforms
+    // virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x5bb10;
+    // virtual void textInputReturn(CCTextInputNode* node) = win 0x5bc70;
     virtual void updateInputValue(int tag, float& value) = inline;
     virtual void sliderBegan(Slider* slider) = win 0x60d0c0, imac 0x21de10, m1 0x1cbfa4;
     virtual void sliderEnded(Slider* slider) = win 0x60d200, imac 0x21df40, m1 0x1cc0cc;
