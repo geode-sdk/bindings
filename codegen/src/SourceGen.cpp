@@ -6,6 +6,7 @@ namespace { namespace format_strings {
 #include <Geode/utils/addresser.hpp>
 #include <Geode/modify/Traits.hpp>
 #include <Geode/loader/Tulip.hpp>
+#include <Geode/fmod/fmod.hpp>
 {class_include}
 {includes}
 using namespace geode;
