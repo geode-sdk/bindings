@@ -15,9 +15,7 @@ EditorPauseLayer::EditorPauseLayer() {
 void EditorPauseLayer::doResetUnused() {
     m_editorLayer->resetUnusedColorChannels();
 }
-#endif
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorPauseLayer::onCreateTemplate(cocos2d::CCObject* sender) {
     auto objects = cocos2d::CCArray::create();
     auto lel = GameManager::sharedState()->m_levelEditorLayer;
@@ -28,7 +26,9 @@ void EditorPauseLayer::onCreateTemplate(cocos2d::CCObject* sender) {
         objects->addObjectsFromArray(selectedObjects);
     }
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorPauseLayer::toggleEditorBackground(cocos2d::CCObject* sender) {
     auto gameManager = GameManager::sharedState();
     gameManager->toggleGameVariable(GameVar::HideBackground);

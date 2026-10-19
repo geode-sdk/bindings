@@ -4333,7 +4333,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void onCopyWColor(cocos2d::CCObject* sender);
     void onCreateExtras(cocos2d::CCObject* sender);
     void onCreateLoop(cocos2d::CCObject* sender);
-    void onCreateTemplate(cocos2d::CCObject* sender) = win inline, ios inline;
+    void onCreateTemplate(cocos2d::CCObject* sender) = win inline, imac inline, m1 inline, ios inline;
     void onDeathStats(cocos2d::CCObject* sender) = win 0x183050;
     void onDownloadAudio(cocos2d::CCObject* sender) = win 0x183210;
     void onEditorSounds(cocos2d::CCObject* sender) = win 0x1831d0;
