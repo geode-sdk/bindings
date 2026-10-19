@@ -11935,7 +11935,7 @@ class GJRewardObject : cocos2d::CCObject {
 
 [[link(android)]]
 class GJRobotSprite : CCAnimatedSprite {
-    virtual ~GJRobotSprite() = win 0x3ac690, imac 0x6add40, m1 0x5c7924;
+    virtual ~GJRobotSprite() = win 0x3ac690, imac 0x6ad4d0, m1 0x5c7924;
 
     // GJRobotSprite();
     static GJRobotSprite* create(int frame) = win 0x185e70, imac 0x6ad560, m1 0x5c798c;
