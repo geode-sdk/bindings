@@ -228,6 +228,9 @@ elseif (APPLE)
 	target_link_options(${PROJECT_NAME} PUBLIC -dead_strip)
 	if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS)
 		add_definitions(-DGLES_SILENCE_DEPRECATION)
+		# GeneratedSource.cpp references FMOD C types without including fmod.hpp.
+		# Other platforms get them through their PCH; iOS does not.
+		target_compile_options(${PROJECT_NAME} PRIVATE -include Geode/fmod/fmod.hpp)
 	endif()
 elseif (ANDROID)
 	target_compile_options(${PROJECT_NAME} PUBLIC -ffunction-sections -fdata-sections)
