@@ -7525,7 +7525,7 @@ class GameManager : GManager {
     void resetAchievement(std::string key) = imac 0x362600, m1 0x2f110c;
     void resetAdTimer() = win inline, imac 0x3693f0, m1 0x2f6a18, ios inline;
     void resetAllIcons() = win 0x27f630, imac 0x36e490, m1 0x2fb8bc;
-    void resetCoinUnlocks() = imac 0x367930, m1 0x2f4f18;
+    void resetCoinUnlocks() = win 0x27be00, imac 0x367930, m1 0x2f4f18;
     void resetDPadSettings(bool dual) = win inline, imac 0x3725f0, m1 0x2feee8;
     cocos2d::CCSize resolutionForKey(int key) = win 0x287bd0, imac 0x377170, m1 0x303498;
     void resumeAudio() = win inline, ios inline;
@@ -14042,7 +14042,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void exitLayer(cocos2d::CCObject* sender) = win inline, imac 0x487250, m1 0x3f0b58;
     cocos2d::CCArray* getItemsMatchingSearch(cocos2d::CCArray* items, std::string query, GJSearchObject* object) = win 0x227360, imac 0x485900, m1 0x3ef444;
     std::string getSearchTitle() = win 0x3e5750, imac 0x485fb0, m1 0x3efaa0;
-    bool init(GJSearchObject* object) = imac 0x480690, m1 0x3ea564;
+    bool init(GJSearchObject* object) = win 0x3e2000, imac 0x480690, m1 0x3ea564;
     bool isCorrect(char const* key) = imac 0x485730, m1 0x3ef28c;
     bool isSafeType();
     bool isVaultType();
