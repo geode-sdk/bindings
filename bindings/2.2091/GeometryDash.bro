@@ -1483,7 +1483,7 @@ class CCLightStrip : cocos2d::CCNode {
 
 [[link(android)]]
 class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
-    CCMenuItemSpriteExtra() = win 0x48740, imac 0x243700, m1 0x1edf80;
+    CCMenuItemSpriteExtra() = win 0x48740, imac 0x243700, m1 0x1edf80, inline;
 
     static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = inline;
     static CCMenuItemSpriteExtra* create(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x488a0, imac 0x263130, m1 0x20a898;
@@ -10465,7 +10465,7 @@ class GJFriendRequest : cocos2d::CCNode {
 
 [[link(android), depends(EditorBuildStats)]]
 class GJGameLevel : cocos2d::CCNode {
-    GJGameLevel() = win 0x217820, imac 0x590e80, m1 0x4e12a4;
+    GJGameLevel() = win 0x217820, imac 0x590e80, m1 0x4e12a4, inline;
     ~GJGameLevel() = win inline, imac 0x5826d0, m1 0x4d4384;
 
     static GJGameLevel* create() = win inline, imac 0x643d70;
@@ -12178,7 +12178,7 @@ class GJSelectionStrip : cocos2d::CCNode {
 
 [[link(android), depends(GJValueTween)]]
 class GJShaderState {
-    GJShaderState() = win 0x9999999, imac 0x905f0, m1 0x3414ac;
+    GJShaderState() = win 0x9999999, imac 0x905f0, m1 0x3414ac, inline;
 
     void reset() = win inline, imac 0x3b36f0, m1 0x33a4d4;
     void stopTweenAction(int action) = win inline, imac 0x3b3000, m1 0x33a028, ios inline;
@@ -17403,7 +17403,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    PlayerObject() = win 0x3ec2f0, imac 0x40aa00, m1 0x384504;
+    PlayerObject() = win 0x3ec2f0, imac 0x40aa00, m1 0x384504, inline;
     ~PlayerObject() = win 0x4e4710, imac 0x3e7540, m1 0x3656e8;
 
     static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x4e4940, imac 0x3e7820, m1 0x3658dc;
