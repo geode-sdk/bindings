@@ -4321,7 +4321,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x182df0, imac 0x27f460, m1 0x224c40;
     virtual void volumeChanged() = win 0x180dc0;
 
-    void doResetUnused() = win inline, ios inline;
+    void doResetUnused() = win inline, imac inline, m1 inline, ios inline;
     void editorSFXSliderChanged(cocos2d::CCObject*) = win 0x182440;
     bool init(LevelEditorLayer* layer) = win 0x180e80, imac 0x27ca90, m1 0x2222c0;
     void musicSliderChanged(cocos2d::CCObject*) = win 0x1822f0;
@@ -4341,7 +4341,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void onExitNoSave(cocos2d::CCObject* sender) = win 0x182c80, imac 0x27e4d0, m1 0x223d1c;
     void onExport(cocos2d::CCObject* sender) = win 0x182930;
     void onHelp(cocos2d::CCObject* sender) = win 0x182f10;
-    void onKeybindings(cocos2d::CCObject* sender) = win inline;
+    void onKeybindings(cocos2d::CCObject* sender) = win inline, imac 0x27e640, m1 0x223e58;
     void onNewGroupX(cocos2d::CCObject* sender);
     void onNewGroupY(cocos2d::CCObject* sender);
     void onOptions(cocos2d::CCObject* sender) = win 0x1822c0, imac 0x27e820;

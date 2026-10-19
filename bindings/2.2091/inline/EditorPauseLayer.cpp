@@ -11,11 +11,13 @@ EditorPauseLayer::EditorPauseLayer() {
     m_editorLayer = nullptr;
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS)
 void EditorPauseLayer::doResetUnused() {
     m_editorLayer->resetUnusedColorChannels();
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorPauseLayer::onCreateTemplate(cocos2d::CCObject* sender) {
     auto objects = cocos2d::CCArray::create();
     auto lel = GameManager::sharedState()->m_levelEditorLayer;
