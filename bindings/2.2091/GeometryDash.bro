@@ -3694,10 +3694,10 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 [[link(android)]]
 class DailyRecallUnlockPopup : FLAlertLayer {
     virtual ~DailyRecallUnlockPopup() = win 0x5a3f0;
+    DailyRecallUnlockPopup() = win inline;
 
-    static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*);
-
-    bool init(FLAlertLayerProtocol*, GJGameLevel*);
+    static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*) = win inline;
+    bool init(FLAlertLayerProtocol*, GJGameLevel*) = win 0x173c90;
 }
 
 [[link(android)]]
