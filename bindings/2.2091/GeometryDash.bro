@@ -6295,7 +6295,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void resumeAllAudio() = win inline, imac 0x3cb3e0;
     void resumeAllEffects() = win inline, m1 0x7e69c;
     void resumeAllMusic() = win 0x62ab0, imac 0x3d4040, m1 0x356154;
-    void resumeAudio() = win 0x5dfc0;
+    void resumeAudio() = win inline;
     void resumeEffect(unsigned int effect) = win inline, imac 0xc3e20, ios inline;
     void resumeMusic(int musicChannel) = win inline, imac 0x3cecc0, m1 0x351cb4;
     TodoReturn resumeSuspendedAudio() = win 0x5e030;
@@ -6308,7 +6308,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void setMusicTimeMS(unsigned int time, bool dontWait, int musicID) = win 0x64fa0, imac 0x3cfbf0, m1 0x3527f0;
     void setup() = win 0x5c8c0, imac 0x3c9e30, m1 0x230ca0;
     void setupAudioEngine() = win 0x5cdc0, imac 0x3ca280, m1 0x34e118;
-    void start() = win 0x9999999;
+    void start() = win 0x5dfc0;
     void startMusic(int start, int end, int fadeIn, int fadeOut, bool loop, int musicID, bool noResume, bool dontReset) = imac 0x3d4c00, m1 0x356c14;
     void stop() = win inline, imac 0x3cb390;
     void stopAllEffects() = win 0x9999999, imac 0x3cb500, m1 0x34f168;
