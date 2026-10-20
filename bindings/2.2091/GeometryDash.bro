@@ -3074,7 +3074,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     virtual void contentStatusFinished() = win 0x1396b0;
 
     bool canPlayOnlineLevels() = win inline, imac 0x284720, m1 0x2299d4, ios inline;
-    void checkQuestsStatus() = win 0xec260, imac 0x3c18d0;
+    void checkQuestsStatus() = imac 0x3c18d0;
     TodoReturn checkTimedStatus();
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x138140, imac 0x2834b0, m1 0x228790;
     void onBack(cocos2d::CCObject* sender) = imac 0x2846c0, m1 0x229974;
@@ -5281,7 +5281,7 @@ class EffectGameObject : EnhancedGameObject {
     int getTargetColorIndex() = win inline, imac 0x19b640, m1 0x15ac00;
     bool hasSpawnTargetID(int id) = imac 0x19baf0, m1 0x15b190;
     bool init(char const* frame) = win 0x647650, imac 0x163ce0, m1 0x12eab4, ios inline;
-    void playTriggerEffect() = win 0x2c2df0, imac 0x199760, m1 0x159608;
+    void playTriggerEffect() = win 0x647760, imac 0x199760, m1 0x159608;
     void resetSpawnTrigger() = win inline, imac 0x19b8a0, m1 0x15ae70;
     void setTargetID(int id) = win inline, imac 0x182b20, m1 0x146a0c;
     void setTargetID2(int id) = win inline, imac 0x182b40, m1 0x146a24;
@@ -13400,7 +13400,7 @@ class InfoAlertButton : CCMenuItemSpriteExtra {
 class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLAlertLayerProtocol, AdminActionConfirmDelegate {
     virtual ~InfoLayer() = win 0x3cd910;
 
-    static InfoLayer* create(GJGameLevel*, GJUserScore*, GJLevelList*, GJEditorSoundConfig*) = win 0x124cc0;
+    static InfoLayer* create(GJGameLevel*, GJUserScore*, GJLevelList*, GJEditorSoundConfig*) = win 0x3cdb00;
 
     virtual void registerWithTouchDispatcher() = win 0x46290;
     virtual void keyBackClicked() = win 0x3d1410, imac 0x3c4450, m1 0x348e0c;
@@ -18542,7 +18542,7 @@ class RateLevelLayer : FLAlertLayer {
 class RateStarsLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     virtual ~RateStarsLayer() = win 0x55e3a0;
 
-    static RateStarsLayer* create(int levelID, bool platformer, bool moderator) = win 0xeb970;
+    static RateStarsLayer* create(int levelID, bool platformer, bool moderator);
 
     virtual void keyBackClicked() = win 0x55f300;
     virtual void uploadActionFinished(int id, int response) = win 0x55f100, imac 0x277c20;
