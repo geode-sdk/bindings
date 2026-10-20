@@ -6781,6 +6781,7 @@ class GameEffectsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameLevelManager : cocos2d::CCNode {
+    GameLevelManager() = win 0x217310;
     virtual ~GameLevelManager() = win 0x21b720;
 
     static GameLevelManager* get() = inline;
@@ -6952,7 +6953,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJMapPack* getSavedGauntlet(int id) = win inline;
     GJGameLevel* getSavedGauntletLevel(int id) = win 0x9999999;
     GJGameLevel* getSavedLevel(GJGameLevel* level) = win inline, imac 0x542e90, m1 0x4997ec;
-    GJGameLevel* getSavedLevel(int id) = win 0x9999999, imac 0x548fb0, m1 0x49f0a4;
+    GJGameLevel* getSavedLevel(int id) = win 0x220700, imac 0x548fb0, m1 0x49f0a4;
     GJLevelList* getSavedLevelList(int listID) = win inline;
     cocos2d::CCArray* getSavedLevelLists(int folder) = win 0x21f120, imac 0x5468e0, m1 0x49cdec;
     cocos2d::CCArray* getSavedLevels(bool favorite, int folder) = imac 0x5466f0, m1 0x49cc18;
@@ -6962,7 +6963,7 @@ class GameLevelManager : cocos2d::CCNode {
     int getSplitIntFromKey(char const* key, int index) = win 0x23dde0, imac 0x562e60, m1 0x4b6844;
     std::string getStarLevelsString() = win 0x21f760, imac 0x5471b0, m1 0x49d698;
     cocos2d::CCArray* getStoredLevelComments(char const* key) = m1 0x4bf034;
-    cocos2d::CCArray* getStoredOnlineLevels(char const* key) = win 0x9999999, m1 0x4a018c;
+    cocos2d::CCArray* getStoredOnlineLevels(char const* key) = win 0x2217d0, m1 0x4a018c;
     cocos2d::CCArray* getStoredUserList(UserListType type);
     GJUserMessage* getStoredUserMessage(int id) = win inline, imac 0x567da0, m1 0x4baeb4;
     GJUserMessage* getStoredUserMessageReply(int id) = win inline, imac 0x567df0, m1 0x4baedc;
@@ -7001,7 +7002,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateUserList(UserListType type, bool reload) = win inline, imac 0x576120, m1 0x4c870c;
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = imac 0x54a6a0, m1 0x4a05d0;
-    bool isFollowingUser(int id);
+    bool isFollowingUser(int id) = win 0x224320;
     bool isPastDailyCopy(GJGameLevel*);
     bool isTimeValid(char const* key, float length) = win 0x9999999;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
@@ -7249,6 +7250,9 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn writePlatformerSaveJournal(GJGameLevel*);
     std::string writeSpecialFilters(GJSearchObject* object) = win 0x22a8b0, imac 0x558000, m1 0x4ac8a0;
 
+    win {
+        PAD = 0x1f8;
+    }
     std::set<std::string> m_queuedLists;
     cocos2d::CCDictionary* m_mainLevels;
     cocos2d::CCDictionary* m_searchFilters;
@@ -7274,11 +7278,17 @@ class GameLevelManager : cocos2d::CCNode {
     int m_eventID;
     int m_activeEventID;
     cocos2d::CCDictionary* m_gauntletLevels;
+    win {
+        PAD = 0x28;
+    }
     std::map<std::string, bool> m_availableFilters;
     cocos2d::CCDictionary* m_timerDict;
     cocos2d::CCDictionary* m_knownUsers;
     cocos2d::CCDictionary* m_accountIDtoUserIDDict;
     cocos2d::CCDictionary* m_userIDtoAccountIDDict;
+    win {
+        PAD = 0x40;
+    }
     cocos2d::CCDictionary* m_storedLevels;
     cocos2d::CCDictionary* m_pageInfo;
     cocos2d::CCDictionary* m_unkDict20;
@@ -7286,6 +7296,9 @@ class GameLevelManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_savedGauntlets;
     cocos2d::CCDictionary* m_downloadObjects;
     cocos2d::CCDictionary* m_friendReqAndUserBlocks;
+    win {
+        PAD = 0x18;
+    }
     cocos2d::CCDictionary* m_storedUserInfo;
     cocos2d::CCDictionary* m_friendRequests;
     cocos2d::CCDictionary* m_userMessages;
@@ -7319,6 +7332,9 @@ class GameLevelManager : cocos2d::CCNode {
     GJDailyLevelDelegate* m_GJDailyLevelDelegate;
     OnlineListDelegate* m_onlineListDelegate;
     LevelRateInfoDelegate* m_levelRateInfoDelegate;
+    win {
+        PAD = 0x48;
+    }
     SearchType m_searchType;
     int m_mapPack;
     std::string m_tempSave;
