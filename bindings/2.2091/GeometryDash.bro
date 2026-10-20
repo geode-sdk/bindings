@@ -8426,7 +8426,7 @@ class GameRateDelegate {
 class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     virtual ~GameSettingsLayer() = win 0x2c2530, imac 0x5fe120, m1 0x5439c0;
 
-    static GameSettingsLayer* create(GJBaseGameLayer*, int) = imac 0x5fe320, m1 0x543b18;
+    static GameSettingsLayer* create(GJBaseGameLayer*, int) = win 0x2c2640, imac 0x5fe320, m1 0x543b18;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x2c7e80;
     virtual void onCustomButton(cocos2d::CCObject* sender) = win 0x2c7ad0;
@@ -8437,10 +8437,10 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
 
     void addGVToggle(char const* name, char const* gameVar, char const* desc) = imac 0x601840, m1 0x54726c; // inlined on macos
     void addSpecialContent() = imac 0x6005e0, m1 0x546110;
-    void addToggle(char const* name, int id, char const* desc, bool disabled) = imac 0x6018b0, m1 0x5472f0;
-    void buildTabContent() = imac 0x5fe890, m1 0x544098;
+    void addToggle(char const* name, int id, char const* desc, bool disabled) = win 0x2c6720, imac 0x6018b0, m1 0x5472f0;
+    void buildTabContent() = win 0x2c2df0, imac 0x5fe890, m1 0x544098;
     TodoReturn didChangeGV(char const*, bool);
-    bool init(GJBaseGameLayer*, int) = imac 0x5fe4c0, m1 0x543c5c;
+    bool init(GJBaseGameLayer*, int) = win inline, imac 0x5fe4c0, m1 0x543c5c;
     TodoReturn nextPosition(int);
     void onButtonRows(cocos2d::CCObject* sender);
     void onButtonsPerRow(cocos2d::CCObject* sender);
