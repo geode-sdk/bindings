@@ -247,6 +247,20 @@ void PlayLayer::stopRecording() {
     this->stopActionByTag(31);
 }
 
+void PlayLayer::switchToStartPosObject(StartPosObject* obj)
+{
+    if (m_startPosObject == obj) {
+        this->resetLevel();
+        return;
+    }
+
+    this->setActiveStartPosObject(obj);
+    this->resetLevelFromStart();
+    this->updateVisibility(0.f);
+    this->updateCamera(0.f);
+    this->updateTestModeLabel();
+}
+
 void PlayLayer::toggleBGEffectVisibility(bool enabled) {
     m_bgEffectDisabled = !enabled;
     if (!enabled) m_glitterParticles->stopSystem();

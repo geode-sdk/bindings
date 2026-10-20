@@ -215,7 +215,7 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     void onDeleteRow(cocos2d::CCObject* sender);
     void onDeleteSelected(cocos2d::CCObject* sender);
     void onDone(cocos2d::CCObject* sender);
-    void onHistoryJump(cocos2d::CCObject* sender);
+    void onHistoryJump(cocos2d::CCObject* sender) = win 0xbbce0;
     void onJumpFilterRow(cocos2d::CCObject* sender);
     void onJumpRow(cocos2d::CCObject* sender);
     void onModActionTaken(cocos2d::CCObject* sender);
@@ -4358,7 +4358,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void onUnlockAllLayers(cocos2d::CCObject* sender);
     void playStep2() = win 0x182630, imac 0x27f2d0, m1 0x224ac8;
     void playStep3() = win 0x182760, imac 0x27f3a0, m1 0x224b98;
-    void saveLevel() = imac 0x27f290, m1 0x224a8c;
+    void saveLevel() = win 0x3ff1f0, imac 0x27f290, m1 0x224a8c;
     void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x27eaa0, m1 0x2242d4;
     void toggleDebugDraw(cocos2d::CCObject* sender) = imac 0x27f070, m1 0x2248ac;
     void toggleEditorBackground(cocos2d::CCObject* sender) = win inline, imac 0x27f120, m1 0x224948, ios inline;
@@ -7628,6 +7628,7 @@ class GameManager : GManager {
     void videoAdHidden() = win inline, imac 0x8de00, m1 0x2f6b84, ios inline;
     void videoAdShowed() = win inline, imac 0x369530, m1 0x2f6b40, ios inline;
 
+    std::vector<std::string> m_unkStringVector;
     cocos2d::CCDictionary* m_mainFramesForAnimation;
     cocos2d::CCDictionary* m_detailFramesForAnimation;
     cocos2d::CCDictionary* m_frameTimeForAnimation;
@@ -7642,6 +7643,8 @@ class GameManager : GManager {
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
     cocos2d::CCDictionary* m_unlockValueKeeper;
+    bool m_unkBool2point5;
+    void* unkPtrProbably;
     cocos2d::CCDictionary* m_customObjectDict;
     double m_adTimer;
     double m_adCache;
@@ -7723,6 +7726,7 @@ class GameManager : GManager {
     GameRateDelegate* m_gameRateDelegate2;
     cocos2d::ccColor3B m_copiedColor;
     int m_currentLevelID;
+    PAD = win 0xc;
     int m_currentColorChannel;
     int m_currentGroupID;
     int m_loadedBgID;
@@ -7749,6 +7753,7 @@ class GameManager : GManager {
     geode::SeedValueRSV m_hasRP;
     bool m_hasDRP;
     bool m_canGetLevelSaveData;
+    PAD = win 0x8;
     int m_resolution;
     int m_texQuality;
     bool m_somethingInMenuLayer;
@@ -7760,9 +7765,11 @@ class GameManager : GManager {
     int m_unkSize4_14;
     bool m_disableThumbstick;
     float m_customFPSTarget;
+    std::map<int, void*> m_unkMap;
     bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
+    PAD = win 0xc;
     std::map<int, int> m_iconLoadCounts;
     std::map<int, std::map<int, int>> m_iconRequests;
     std::map<int, bool> m_isIconBeingLoaded;
@@ -7785,6 +7792,7 @@ class GameManager : GManager {
     std::string m_dpadLayoutDual1;
     std::string m_dpadLayoutDual2;
     std::string m_dpadLayoutDual3;
+    std::string m_unkStr;
     int m_leaderboardLevelID;
     int m_leaderboardLevelTime;
     int m_leaderboardLevelPoints;
@@ -9251,7 +9259,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void createPlayerCollisionBlock() = win 0x31fb30, imac 0x1089e0, m1 0xe66bc;
     void createTextLayers() = win 0x314df0, imac 0xfbcb0, m1 0xda598;
     cocos2d::CCArray* damagingObjectsInRect(cocos2d::CCRect rect, bool enabledGroups) = win 0x318510, imac 0xff8d0, m1 0xde3dc;
-    void destroyObject(GameObject* object) = win 0xbbce0, imac 0x1061d0, m1 0xe4208;
+    void destroyObject(GameObject* object) = win 0x31d460, imac 0x1061d0, m1 0xe4208;
     TodoReturn didPickupItem(int);
     TodoReturn drawHitboxTrail(std::vector<PlayerTrailState>&, int, cocos2d::CCRect const&, float);
     void enterDualMode(GameObject* object, bool unused) = win inline, imac 0x107760, m1 0xe56dc;
@@ -17473,7 +17481,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     virtual float getObjectRotation() = win 0x4fec00, imac 0x408720, m1 0x382a70;
     virtual void animationFinished(char const* key) = win 0x501f90, imac 0x40a4b0, m1 0x384014;
 
-    void activateStreak() = win 0x4d3ca0, imac 0x21db70, m1 0x36d614;
+    void activateStreak() = win 0x4fe4a0, imac 0x21db70, m1 0x36d614;
     void addAllParticles() = win 0x4e68b0, imac 0x3e9da0, m1 0x367b5c;
     void addToTouchedRings(RingObject* object) = win inline, imac 0x402730, m1 0x37cfd8;
     void addToYVelocity(double yVelocity, int type) = win inline, imac 0x3ea0c0, m1 0x367e6c, ios inline;
@@ -18139,7 +18147,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void startRecording() = win inline, imac 0x8d7d0, ios inline;
     void startRecordingDelayed() = win inline, imac 0x8d7e0, m1 0x82ce4, ios inline;
     void stopRecording() = win inline, imac 0x7a180, m1 0x719a4;
-    void storeCheckpoint(CheckpointObject* checkpoint) = win 0x6730d0;
+    void storeCheckpoint(CheckpointObject* checkpoint) = win 0x516510;
     void switchToStartPosObject(StartPosObject*) = win inline, imac 0x8c090, m1 0x81664;
     void takeStateSnapshot() = win inline, ios inline;
     void toggleBGEffectVisibility(bool enabled) = win inline, imac 0x8d790, m1 0x82ca8;
@@ -24260,7 +24268,7 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     bool isJumpButtonPressed() = win inline, imac 0x4c4f70, m1 0x427f30;
     bool isJumpButtonPressed(bool player1) = win inline, imac 0x4c4fa0, m1 0x427f80, ios inline;
     void onCheck(cocos2d::CCObject* sender) = win 0x673050, imac 0x4c2800;
-    void onDeleteCheck(cocos2d::CCObject* sender) = imac 0x4c2860, m1 0x425dac;
+    void onDeleteCheck(cocos2d::CCObject* sender) = win 0x6730d0, imac 0x4c2860, m1 0x425dac;
     void onPause(cocos2d::CCObject* sender) = win 0x672f30, imac 0x4c27b0, m1 0x425d0c;
     bool processUINodesTouch(GJUITouchEvent event, cocos2d::CCTouch* touch) = win 0x673510, imac 0x4c5110, m1 0x4280ec;
     bool processUINodeTouch(GJUITouchEvent event, int touchID, cocos2d::CCPoint position, GJUINode* node, double timestamp) = win 0x6735e0;

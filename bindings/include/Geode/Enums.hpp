@@ -1414,6 +1414,8 @@ namespace GameVar {
     constexpr auto DisablePinch = "0245";
     constexpr auto MessagingRulesAgreed = "0246";
     constexpr auto UseLegacyMove = "0247";
+    constexpr auto HideCenterCross = "0248";
+    constexpr auto LegacyPauseProgress = "0249";
 }
 
 // frozen archaic versions of enums
