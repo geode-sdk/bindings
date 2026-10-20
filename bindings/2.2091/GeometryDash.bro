@@ -1696,7 +1696,7 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     float m_scrollLimitBottom;
     float m_peekLimitTop;
     float m_peekLimitBottom;
-    PAD = win 0x8;
+    PAD = win 0x8, mac 0x8;
 }
 
 [[link(android)]]
