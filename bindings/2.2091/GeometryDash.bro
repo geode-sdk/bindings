@@ -663,8 +663,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 
     virtual bool applicationDidFinishLaunching() = win 0x981f0, imac 0x73b760, m1 0x6491e8;
     virtual void applicationDidEnterBackground();
-    virtual void applicationWillEnterForeground() = imac 0x73bb40, m1 0x649588;
-    virtual void applicationWillBecomeActive() = imac 0x73b920, m1 0x649398;
+    virtual void applicationWillEnterForeground() = win 0x98810, imac 0x73bb40, m1 0x649588;
+    virtual void applicationWillBecomeActive() = win 0x98560, imac 0x73b920, m1 0x649398;
     virtual void applicationWillResignActive() = imac 0x73b940;
     virtual void trySaveGame(bool force) = win 0x98ad0, imac 0x73bc70, m1 0x64969c;
     virtual void willSwitchToScene(cocos2d::CCScene* scene);
