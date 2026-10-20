@@ -1,3 +1,5 @@
+#ifndef GEODE_IS_WINDOWS
+
 #include <Geode/binding/MoreOptionsLayer.hpp>
 #include <Geode/binding/GameManager.hpp>
 #include <Geode/binding/GooglePlayManager.hpp>
@@ -62,7 +64,7 @@ void MoreOptionsLayer::toggleGP() {
 }
 #endif
 
-#if defined(GEODE_IS_WINDOWS)
+#if /*defined(GEODE_IS_WINDOWS)*/ 0 // layer fully optimized out in 2.209
 MoreOptionsLayer::~MoreOptionsLayer() {
     CC_SAFE_RELEASE(m_objects);
     CC_SAFE_RELEASE(m_variables);
@@ -96,3 +98,4 @@ cocos2d::CCPoint MoreOptionsLayer::nextPosition(int page) {
 #if defined(GEODE_IS_IOS)
 #endif
 
+#endif
