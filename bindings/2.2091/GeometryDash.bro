@@ -15802,22 +15802,22 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn userFilterCSV();
 }
 
-[[link(android)]]
+[[link(android), missing(win)]]
 class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelegate {
     MoreOptionsLayer() = inline;
-    ~MoreOptionsLayer() = win inline, imac 0x87c6a0;
+    ~MoreOptionsLayer() = imac 0x87c6a0;
 
     static MoreOptionsLayer* create() = win inline, m1 0x771d74, imac 0x87c820;
 
-    virtual bool init() = win 0x9999999, imac 0x87ca40, m1 0x771f04;
-    virtual void keyBackClicked() = win 0x9999999;
-    virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x9999999;
-    virtual void textInputReturn(CCTextInputNode* node) = win 0x9999999;
-    virtual void googlePlaySignedIn() = win 0x9999999, imac 0x87fd10, m1 0x7750c0;
-    virtual void dropDownLayerWillClose(GJDropDownLayer* layer) = win 0x9999999, imac 0x73bc30, m1 0x649674;
+    virtual bool init() = imac 0x87ca40, m1 0x771f04;
+    virtual void keyBackClicked();
+    virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset);
+    virtual void textInputReturn(CCTextInputNode* node);
+    virtual void googlePlaySignedIn() = imac 0x87fd10, m1 0x7750c0;
+    virtual void dropDownLayerWillClose(GJDropDownLayer* layer) = imac 0x73bc30, m1 0x649674;
 
     void addToggle(char const* label, char const* key, char const* description) = m1 0x773314;
-    int countForPage(int page) = win 0x9999999;
+    int countForPage(int page);
     void goToPage(int page);
     void incrementCountForPage(int page) = win inline;
     const char* infoKey(int index) = win inline, ios inline;
