@@ -943,7 +943,7 @@ class BoomListLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     BoomListView() = win 0x3f5d0, inline;
-    ~BoomListView() = win 0x3f6c0, m1 0x28ba58, imac 0x2f6c40;
+    ~BoomListView() = win 0x3f6c0, m1 0x28ba58, imac 0x2f6ce0;
 
     static BoomListView* create(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win inline, imac 0x2f6f60, m1 0x28bc68, ios inline;
 
@@ -1130,7 +1130,7 @@ class ButtonPage : cocos2d::CCLayer {
 [[link(android)]]
 class ButtonSprite : cocos2d::CCSprite {
     ButtonSprite() = win 0x42780, inline;
-    virtual ~ButtonSprite() = win 0x42850, imac 0x5a8b0, m1 0x53d18;
+    virtual ~ButtonSprite() = win 0x42850, imac 0x5a850, m1 0x53d18;
 
     static ButtonSprite* create(char const* caption) = inline;
     static ButtonSprite* create(cocos2d::CCSprite* topSprite) = inline;
@@ -1288,7 +1288,7 @@ class CCAnimateFrameCache : cocos2d::CCObject {
 [[link(android)]]
 class CCBlockLayer : cocos2d::CCLayerColor {
     CCBlockLayer() = win 0x46020, inline;
-    ~CCBlockLayer() = win 0x460f0, imac 0x518a90, m1 0x473954;
+    ~CCBlockLayer() = win 0x460f0, imac 0x518b40, m1 0x473954;
 
     static CCBlockLayer* create() = win inline, imac 0x518e10, ios inline;
 
@@ -1529,7 +1529,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
 [[link(android)]]
 class CCMenuItemToggler : cocos2d::CCMenuItem {
     CCMenuItemToggler() = inline;
-    virtual ~CCMenuItemToggler() = win 0x48f30, imac 0x1f1c0, m1 0x1ae44;
+    virtual ~CCMenuItemToggler() = win 0x48f30, imac 0x1f1b0, m1 0x1ae44;
 
     static CCMenuItemToggler* create(cocos2d::CCNode* off, cocos2d::CCNode* on, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x48f70, imac 0x1e9d0, m1 0x1a5f4;
     static CCMenuItemToggler* createWithSize(const char* spr1, const char* spr2, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback, float scale) = inline;
@@ -1650,7 +1650,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 [[link(android), depends(CCContentLayer, cocos2d::CCTime)]]
 class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     CCScrollLayerExt(cocos2d::CCRect rect) = win 0x4a880, imac 0x41aad0, m1 0x392df4;
-    ~CCScrollLayerExt() = win 0x4aed0, imac 0x41b4c0, m1 0x393638;
+    ~CCScrollLayerExt() = win 0x4aed0, imac 0x41b330, m1 0x393638;
 
     virtual void visit() = win 0x4baf0, imac 0x41c130, m1 0x39429c;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x4b410, imac 0x41b960, m1 0x393b58;
@@ -3043,7 +3043,7 @@ class CreateParticlePopup : FLAlertLayer, ColorSelectDelegate, SliderDelegate {
 
 [[link(android)]]
 class CreateStartPosPopup : SetupTriggerPopup {
-    virtual ~CreateStartPosPopup() = win 0x4d6750, imac 0x3c45e0, m1 0x348f40;
+    virtual ~CreateStartPosPopup() = win 0x4d6750, imac 0x3c45b0, m1 0x348f40;
 
     static CreateStartPosPopup* create() = win inline, imac 0x3c1ea0, m1 0x346c08;
 
@@ -3898,7 +3898,7 @@ class DemonFilterSelectLayer : FLAlertLayer {
 
 [[link(android)]]
 class DemonInfoPopup : FLAlertLayer {
-    ~DemonInfoPopup() = win 0x5a3f0, imac 0x1fd050, m1 0x1ae6b0;
+    ~DemonInfoPopup() = win 0x5a3f0, imac 0x1fd040, m1 0x1ae6b0;
 
     static DemonInfoPopup* create(int easyClassic, int mediumClassic, int hardClassic, int insaneClassic, int extremeClassic, int easyPlatformer, int mediumPlatformer, int hardPlatformer, int insanePlatformer, int extremePlatformer, int weekly, int gauntlet) = win 0x55ae80, m1 0x79a724;
     static DemonInfoPopup* createFromString(std::string str) = imac 0x8a4cf0, m1 0x79778c;
@@ -6151,7 +6151,7 @@ class FindObjectPopup : EditorWindowPopup {
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     FLAlertLayer() = win 0x5a280, inline;
-    ~FLAlertLayer() = win 0x5a3f0, imac 0x4936f0, m1 0x3fbed0;
+    ~FLAlertLayer() = win 0x5a3f0, imac 0x4937b0, m1 0x3fbed0;
 
     static FLAlertLayer* create(char const* title, const std::string& desc, char const* btn) = inline;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2) = inline;
@@ -7797,7 +7797,7 @@ class GameManager : GManager {
 [[link(android), depends(cocos2d::CCParticleSystem)]]
 class GameObject : CCSpritePlus {
     GameObject() = win 0x208980, imac 0x1d67f0, m1 0x18afb8;
-    ~GameObject() = win 0x288810, imac 0x47e820, m1 0x5a63ac;
+    ~GameObject() = win 0x288810, imac 0x66ea30, m1 0x5a63ac;
 
     static GameObject* createWithFrame(char const* name) = win 0x28ada0, imac 0x6736c0, m1 0x5a6958;
     static GameObject* createWithKey(int key) = win 0x288930, imac 0x66eb50, m1 0x5a6484;
@@ -8425,7 +8425,7 @@ class GameRateDelegate {
 
 [[link(android)]]
 class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
-    virtual ~GameSettingsLayer() = win 0x2c2530, imac 0x5fe120, m1 0x5439c0;
+    virtual ~GameSettingsLayer() = win 0x2c2530, imac 0x5fdf30, m1 0x5439c0;
 
     static GameSettingsLayer* create(GJBaseGameLayer*, int) = win 0x2c2640, imac 0x5fe320, m1 0x543b18;
 
@@ -8820,7 +8820,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
 [[link(android)]]
 class GauntletNode : cocos2d::CCNode {
     GauntletNode() = inline;
-    virtual ~GauntletNode() = win 0x301220, imac 0x907f10, m1 0x4f04e0;
+    virtual ~GauntletNode() = win 0x301220, imac 0x5a13b0, m1 0x4f04e0;
 
     static GauntletNode* create(GJMapPack* gauntlet) = win inline, imac 0x907300;
     static std::string frameForType(GauntletType type) = win 0x302f30, imac 0x5a2e80, m1 0x4f1f38;
@@ -9095,7 +9095,7 @@ class GJAssetDownloadAction {
 [[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint, PlayerTrailState, cocos2d::CCParticleSystem, cocos2d::ParticleStruct)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJBaseGameLayer() = win 0x3eb6f0, m1 0x7cb6ec;
-    ~GJBaseGameLayer() = win 0x30b850, imac 0xeaaf0, m1 0xcc67c;
+    ~GJBaseGameLayer() = win 0x30b850, imac 0xebd40, m1 0xcc67c;
 
     static float convertToClosestDirection(float angle, float bound) = win 0x3373e0, imac 0x115da0, m1 0xf0e94;
     static std::string gameEventToString(GJGameEvent event) = win 0x33b3d0, imac 0x129860, m1 0x101e00;
@@ -10213,7 +10213,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
 [[link(android)]]
 class GJDropDownLayer : cocos2d::CCLayerColor {
     GJDropDownLayer() = win 0x928d0, inline;
-    ~GJDropDownLayer() = win 0x35f8b0, imac 0x6bb0d0, m1 0x5d42e8;
+    ~GJDropDownLayer() = win 0x35f8b0, imac 0x6bb180, m1 0x5d42e8;
 
     static GJDropDownLayer* create(const char* title) = win inline, imac 0x6bb970, m1 0x5d4a6c, ios inline;
     static GJDropDownLayer* create(const char* title, float height, bool noBack) = win inline, imac 0x6bb430, m1 0x5d4548, ios inline;
@@ -11073,7 +11073,7 @@ class GJGradientLayer : cocos2d::CCLayerGradient {
 
 [[link(android)]]
 class GJGroundLayer : cocos2d::CCLayer {
-    virtual ~GJGroundLayer() = win 0x386ca0, imac 0x6bd9c0, m1 0x5d6708;
+    virtual ~GJGroundLayer() = win 0x386ca0, imac 0x6bd990, m1 0x5d6708;
 
     static GJGroundLayer* create(int groundID, int lineType) = imac 0x6bda10, m1 0x5d6734;
 
@@ -11291,7 +11291,7 @@ class GJLinkObject {
 
 [[link(android)]]
 class GJListLayer : cocos2d::CCLayerColor {
-    virtual ~GJListLayer() = win 0x38dad0, imac 0x6a4730, m1 0x5bf9f8;
+    virtual ~GJListLayer() = win 0x38dad0, imac 0x6a45f0, m1 0x5bf9f8;
 
     static GJListLayer* create(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, int type) = win 0x38db90, imac 0x6a3e80, m1 0x5bf210;
 
@@ -11949,7 +11949,7 @@ class GJRewardObject : cocos2d::CCObject {
 
 [[link(android)]]
 class GJRobotSprite : CCAnimatedSprite {
-    virtual ~GJRobotSprite() = win 0x3ac690, imac 0x6ad4d0, m1 0x5c7924;
+    virtual ~GJRobotSprite() = win 0x3ac690, imac 0x6ad450, m1 0x5c7924;
 
     // GJRobotSprite();
     static GJRobotSprite* create(int frame) = win 0x185e70, imac 0x6ad560, m1 0x5c798c;
@@ -13235,7 +13235,7 @@ class GroupCommandObject2 {
 
 [[link(android)]]
 class HardStreak : cocos2d::CCDrawNode {
-    virtual ~HardStreak() = win 0x3bf930, imac 0x63f60, m1 0x5cf98;
+    virtual ~HardStreak() = win 0x3bf930, imac 0x63f10, m1 0x5cf98;
 
     static HardStreak* create() = win 0x3bf9a0, imac 0x63fb0, m1 0x5cfe0;
 
@@ -13396,7 +13396,7 @@ class IDNameInput : cocos2d::CCNode, TextInputDelegate, IDNameBrowserDelegate, D
 
 [[link(android)]]
 class InfoAlertButton : CCMenuItemSpriteExtra {
-    virtual ~InfoAlertButton() = win 0x3cd5b0, imac 0x5a3360, m1 0x4f242c;
+    virtual ~InfoAlertButton() = win 0x3cd5b0, imac 0x5a3300, m1 0x4f242c;
 
     static InfoAlertButton* create(std::string title, std::string desc, float spriteScale) = win 0x3cd630, imac 0x5a2f20, m1 0x4f1fcc;
 
@@ -15391,7 +15391,7 @@ class ListUploadDelegate {
 [[link(android)]]
 class LoadingCircle : cocos2d::CCLayerColor {
     LoadingCircle() = inline;
-    virtual ~LoadingCircle() = win 0x78680, imac 0x4b8120, m1 0x4116c4;
+    virtual ~LoadingCircle() = win 0x78680, imac 0x4b80f0, m1 0x4116c4;
 
     static LoadingCircle* create() = win 0x78790, imac 0x4b8000, m1 0x41c688;
 
@@ -17044,7 +17044,7 @@ class ParticlePreviewLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, CreateStartPosPopupDelegate, VolumeChangeDelegate {
     PauseLayer() = inline;
-    virtual ~PauseLayer() = win 0x4d6600, imac 0x3bf480, m1 0x3444e0;
+    virtual ~PauseLayer() = win 0x4d6600, imac 0x3bf270, m1 0x3444e0;
 
     static PauseLayer* create(bool unfocused) = win inline, imac 0x3bf660;
 
@@ -17999,7 +17999,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
 [[link(android), depends(DynamicBitset, SavedActiveObjectState, SavedObjectStateRef, SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
     PlayLayer() = win 0x502f50;
-    ~PlayLayer() = win 0x503640, imac 0x4e00, m1 0x70bec;
+    ~PlayLayer() = win 0x503640, imac 0x79130, m1 0x70bec;
 
     static PlayLayer* create(GJGameLevel* level, bool dontCreateObjects) = win inline;
     static PlayLayer* get() = inline;
@@ -19004,7 +19004,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
 [[link(android)]]
 class ScrollingLayer : cocos2d::CCLayerColor {
     ScrollingLayer() = imac 0x7ffd70, m1 0x700854, inline;
-    virtual ~ScrollingLayer() = win 0x83870, imac 0x144ec0, m1 0x1181f0;
+    virtual ~ScrollingLayer() = win 0x83870, imac 0x144eb0, m1 0x1181f0;
 
     static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline, imac 0x7ff550, m1 0x700174;
 
@@ -19797,7 +19797,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
 [[link(android)]]
 class SetIDPopup : FLAlertLayer {
     SetIDPopup() = win 0x399900, inline;
-    ~SetIDPopup() = win 0x3a5340, imac 0x297c30, m1 0x23b818;
+    ~SetIDPopup() = win 0x3a5340, imac 0x297ae0, m1 0x23b818;
 
     static SetIDPopup* create(int current, int begin, int end, std::string title, std::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows) = win 0x3a53e0, imac 0x297d80, m1 0x23b904;
 
@@ -22584,7 +22584,7 @@ class SimpleObject : cocos2d::CCObject {
 [[link(android)]]
 class SimplePlayer : cocos2d::CCSprite {
     SimplePlayer() = inline;
-    ~SimplePlayer() = win 0x381b70, imac 0x359370, m1 0x2e8720;
+    ~SimplePlayer() = win 0x381b70, imac 0x3593f0, m1 0x2e8720;
 
     static SimplePlayer* create(int id) = win 0x381d40, imac 0x3540a0;
 
@@ -22661,7 +22661,7 @@ class SlideInLayer : cocos2d::CCLayerColor {
 
 [[link(android), depends(SliderTouchLogic)]]
 class Slider : cocos2d::CCLayer {
-    virtual ~Slider() = win 0x83f50, imac 0x2ef4dc, m1 0x285a84;
+    virtual ~Slider() = win 0x83f50, imac 0x78fa0, m1 0x285a84;
 
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) = win inline, imac 0x2ef3f0, m1 0x285180;
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = win inline, imac 0x2ef510, m1 0x285284;
@@ -23232,7 +23232,7 @@ class SpritePartDelegate {
 
 [[link(android)]]
 class StarInfoPopup : FLAlertLayer {
-    virtual ~StarInfoPopup() = win 0x5a3f0, imac 0x1fd050, m1 0x1ae6b0;
+    virtual ~StarInfoPopup() = win 0x5a3f0, imac 0x1fd040, m1 0x1ae6b0;
 
     static StarInfoPopup* create(int autos, int easies, int normals, int hards, int harders, int insanes, int dailies, int gauntlets, int maps, bool platformer) = win 0x55bf40;
     static StarInfoPopup* createFromString(std::string str) = imac 0x8a4810, m1 0x7972f4;
@@ -23246,7 +23246,7 @@ class StarInfoPopup : FLAlertLayer {
 
 [[link(android)]]
 class StartPosBrowser : FLAlertLayer, TableViewCellDelegate, OptionsObjectDelegate {
-    virtual ~StartPosBrowser() = win 0x4d6510, imac 0x3c3820, m1 0x34834c;
+    virtual ~StartPosBrowser() = win 0x4d6510, imac 0x3c35c0, m1 0x34834c;
 
     static StartPosBrowser* create(cocos2d::CCArray*, int) = win inline, imac 0x3c1fa0, m1 0x46cd8;
 
@@ -23269,7 +23269,7 @@ class StartPosBrowserDelegate {
 
 [[link(android)]]
 class StartPosLayer : SetupTriggerPopup {
-    virtual ~StartPosLayer() = win 0x457a00, imac 0x25c410, m1 0x20445c;
+    virtual ~StartPosLayer() = win 0x457a00, imac 0x25c150, m1 0x20445c;
 
     static StartPosLayer* create(StartPosObject*) = win inline, imac 0x25c430, m1 0x204464;
 
@@ -23456,7 +23456,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 [[link(android), depends(CCIndexPath)]]
 class TableViewCell : cocos2d::CCLayer {
     TableViewCell(char const* identifier, float width, float height) = win inline, imac 0x7037a0, m1 0x614b24;
-    ~TableViewCell() = win 0x89d10, imac 0x703a00, m1 0x614d14;
+    ~TableViewCell() = win 0x89d10, imac 0x703aa0, m1 0x614d14;
 
     void updateVisibility() = win inline, imac 0x703d30, m1 0x614fa4;
 
