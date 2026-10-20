@@ -1,3 +1,5 @@
+#ifndef GEODE_IS_WINDOWS // not used in 2.209
+
 #include <Geode/binding/GameOptionsLayer.hpp>
 
 GameOptionsLayer::GameOptionsLayer() {
@@ -32,3 +34,4 @@ bool GameOptionsLayer::init(GJBaseGameLayer* baseGameLayer) {
 #if defined(GEODE_IS_IOS)
 #endif
 
+#endif
