@@ -1164,7 +1164,7 @@ class ButtonSprite : cocos2d::CCSprite {
     static ButtonSprite* create(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG, float unk) = win 0x428a0, imac 0x595c0, m1 0x52b88;
 
     bool init(char const* caption, int width, int minWidth, float scale, bool absolute, char const* font, char const* bg, float height) = win 0x42cb0, imac 0x59fe0, m1 0x534c4;
-    bool init(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG, float unk) = win 0xe76b0;
+    bool init(cocos2d::CCSprite* topSprite, int width, int minWidth, float height, float scale, bool absolute, char const* bgSprite, bool noScaleSpriteForBG, float unk) = win 0x42960;
     void setColor(cocos2d::ccColor3B color) = win inline, imac 0x5a7d0, m1 0x53c40;
     void setString(char const* text) = win 0x43550, imac 0x5a280, m1 0x5372c;
     void updateBGImage(char const* filename) = win 0x42fc0, imac 0x5a690, m1 0x53afc;
@@ -4919,8 +4919,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onUngroupSticky(cocos2d::CCObject* sender) = m1 0x7895b0;
     void onUpdateDeleteFilter(cocos2d::CCObject* sender) = imac 0x107d0, m1 0xed98;
     void onViewButton(cocos2d::CCObject* sender);
-    void orderDownCustomItem(cocos2d::CCObject* sender) = imac 0x63cad0;
-    void orderUpCustomItem(cocos2d::CCObject* sender) = imac 0x63ca10, m1 0x578f78;
+    void orderDownCustomItem(cocos2d::CCObject* sender) = win 0x1f6180, imac 0x63cad0;
+    void orderUpCustomItem(cocos2d::CCObject* sender) = win 0x1f60f0, imac 0x63ca10, m1 0x578f78;
     cocos2d::CCArray* pasteObjects(std::string str, bool withColor, bool noUndo) = win 0x1c6100, m1 0x5039ac;
     void playCircleAnim(cocos2d::CCPoint position, float radius, float duration) = win inline, ios inline;
     void playerTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x60b3e0, m1 0x54b4c0, ios inline;
