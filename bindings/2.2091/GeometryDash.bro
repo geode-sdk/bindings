@@ -4053,18 +4053,18 @@ class DrawGridLayer : cocos2d::CCLayer {
 class Dropdown : cocos2d::CCNode, DropdownListPopupOwner {
     virtual ~Dropdown() = win 0x120620;
 
-    static Dropdown* create(FLAlertLayer*, cocos2d::CCMenu*, std::vector<std::string> const&, int, float, DropdownDelegate*, int);
+    static Dropdown* create(FLAlertLayer* parent, cocos2d::CCMenu* menu, std::vector<std::string> const& items, int selectedIndex, float width, DropdownDelegate* delegate, int tag) = win 0x120700;
 
     virtual void setPosition(cocos2d::CCPoint const&) = win 0x120c30;
     virtual void setVisible(bool) = win 0x120c90;
     virtual void dropdownListPopupClosed(DropdownListPopup*) = win 0x121360;
 
     TodoReturn closeList();
-    bool init(FLAlertLayer*, cocos2d::CCMenu*, std::vector<std::string> const&, int, float, DropdownDelegate*, int);
-    void onRowSelected(cocos2d::CCObject* sender);
+    bool init(FLAlertLayer* parent, cocos2d::CCMenu* menu, std::vector<std::string> const& items, int selectedIndex, float width, DropdownDelegate* delegate, int tag) = win 0x120830;
+    void onRowSelected(cocos2d::CCObject* sender) = win 0x121380;
     void onToggle(cocos2d::CCObject* sender);
-    TodoReturn openList();
-    TodoReturn refreshValueLabel();
+    TodoReturn openList() = win 0x120dc0;
+    TodoReturn refreshValueLabel() = win 0x120d10;
     void setSelectedIndex(int);
 }
 
@@ -6638,7 +6638,7 @@ class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
 
     TodoReturn buildRows();
     TodoReturn delayedRebuild(float);
-    bool init(FriendPickerDelegate*, bool, bool, bool, bool);
+    bool init(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6c60;
     void onClearAll(cocos2d::CCObject* sender);
     void onDone(cocos2d::CCObject* sender);
     void onGlobalSearch(cocos2d::CCObject* sender);
@@ -7617,7 +7617,7 @@ class GameManager : GManager {
     void unlockColor(int id, UnlockType type) = win inline;
     void unlockedPremium() = win inline, imac 0x368ec0, m1 0x2f6514, ios inline;
     void unlockIcon(int id, IconType type) = win inline;
-    IconType unlockTypeToIconType(int type) = imac 0x3615a0, m1 0x2eff5c;
+    IconType unlockTypeToIconType(int type) = win 0x2775d0, imac 0x3615a0, m1 0x2eff5c;
     void updateCustomFPS() = win 0x288000, imac 0x377440, m1 0x30374c;
     void updateMusic() = win inline, imac 0x369a70, m1 0x2f70d8;
     void verifyAchievementUnlocks() = win inline, imac 0x363410, m1 0x2f1e78;
@@ -8426,7 +8426,7 @@ class GameRateDelegate {
 class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     virtual ~GameSettingsLayer() = win 0x2c2530, imac 0x5fe120, m1 0x5439c0;
 
-    static GameSettingsLayer* create(GJBaseGameLayer*, int) = imac 0x5fe320, m1 0x543b18;
+    static GameSettingsLayer* create(GJBaseGameLayer*, int) = win 0x2c2640, imac 0x5fe320, m1 0x543b18;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x2c7e80;
     virtual void onCustomButton(cocos2d::CCObject* sender) = win 0x2c7ad0;
@@ -8437,10 +8437,10 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
 
     void addGVToggle(char const* name, char const* gameVar, char const* desc) = imac 0x601840, m1 0x54726c; // inlined on macos
     void addSpecialContent() = imac 0x6005e0, m1 0x546110;
-    void addToggle(char const* name, int id, char const* desc, bool disabled) = imac 0x6018b0, m1 0x5472f0;
+    void addToggle(char const* name, int id, char const* desc, bool disabled) = win 0x2c6720, imac 0x6018b0, m1 0x5472f0;
     void buildTabContent() = win 0x2c2df0, imac 0x5fe890, m1 0x544098;
     TodoReturn didChangeGV(char const*, bool);
-    bool init(GJBaseGameLayer*, int) = imac 0x5fe4c0, m1 0x543c5c;
+    bool init(GJBaseGameLayer*, int) = win inline, imac 0x5fe4c0, m1 0x543c5c;
     TodoReturn nextPosition(int);
     void onButtonRows(cocos2d::CCObject* sender);
     void onButtonsPerRow(cocos2d::CCObject* sender);
@@ -8534,7 +8534,7 @@ class GameStatsManager : cocos2d::CCNode {
     std::string getSecretOnlineRewardKey(int id) = win inline, imac 0x3ec20, m1 0x38870;
     cocos2d::CCString* getSpecialChestKeyForItem(int id, UnlockType type) = win inline, imac 0x2bae0, m1 0x25e50;
     std::string getSpecialRewardDescription(std::string key, bool unused) = win inline, imac 0x3e070, m1 0x37c48;
-    std::string getSpecialUnlockDescription(int id, UnlockType type, bool unused) = imac 0x3e0d0, m1 0x37cb0;
+    std::string getSpecialUnlockDescription(int id, UnlockType type, bool unused) = win 0x2ee5d0, imac 0x3e0d0, m1 0x37cb0;
     char const* getStarLevelKey(GJGameLevel* level) = win inline, imac 0x32dc0, m1 0x2c9f8;
     int getStat(char const* key) = win 0x2db160, imac 0x2c310, m1 0x26634;
     int getStatFromKey(StatKey key) = win inline, imac 0x31f70, m1 0x2bbb8;
@@ -13523,13 +13523,13 @@ class InvitesPopup : PagedListPopup, ThreadMessageDelegate, FLAlertLayerProtocol
     virtual void threadUpdateFailed(int, int) = win 0xf9bd0;
 
     TodoReturn acceptInvite(GJMessageThread*);
-    TodoReturn buildRows();
+    TodoReturn buildRows() = win 0xf7a30;
     TodoReturn declineInvite(GJMessageThread*);
     TodoReturn layoutTitleInfo();
     void onAccept(cocos2d::CCObject* sender);
-    void onClearSearch(cocos2d::CCObject* sender);
+    void onClearSearch(cocos2d::CCObject* sender) = win 0xf74f0;
     void onDecline(cocos2d::CCObject* sender);
-    void onToggleIgnored(cocos2d::CCObject* sender);
+    void onToggleIgnored(cocos2d::CCObject* sender) = win 0xf7200;
     void onViewInviter(cocos2d::CCObject* sender);
     void onViewMembers(cocos2d::CCObject* sender);
     void onViewRequest(cocos2d::CCObject* sender);
@@ -15544,7 +15544,7 @@ class MapSelectLayer : cocos2d::CCLayer {
 class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDelegate, FLAlertLayerProtocol {
     virtual ~MemberListPopup() = win 0xd3900;
 
-    static MemberListPopup* create(GJMessageThread*, ThreadViewPopup*, bool);
+    static MemberListPopup* create(GJMessageThread*, ThreadViewPopup*, bool) = win 0xeb970;
 
     virtual int requestPage(int) = win 0x5a3a0;
     virtual void friendPicked(GJUserScore*) = win 0xed9c0;
@@ -15569,7 +15569,7 @@ class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDeleg
 
     TodoReturn applyAddOutcome(GJMessageThread*);
     TodoReturn buildRows();
-    bool init(GJMessageThread*, ThreadViewPopup*, bool);
+    bool init(GJMessageThread*, ThreadViewPopup*, bool) = win 0xebaf0;
     void onAddMember(cocos2d::CCObject* sender);
     void onAddPolicy(cocos2d::CCObject* sender);
     void onKickMember(cocos2d::CCObject* sender);
@@ -15578,7 +15578,7 @@ class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDeleg
     void onTransferOwner(cocos2d::CCObject* sender);
     TodoReturn opPending();
     TodoReturn refreshHost();
-    TodoReturn refreshPolicyBtn();
+    void refreshPolicyBtn() = win 0xec260;
 }
 
 [[link(android), depends(GJGroundLayer, GameToolbox)]]
@@ -18376,6 +18376,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     CCMenuItemSpriteExtra* m_rightArrow;
     CCMenuItemSpriteExtra* m_leftArrow;
     CCMenuItemSpriteExtra* m_followBtn;
+    cocos2d::CCSprite* m_followHint;
     bool m_unk;
     cocos2d::CCArray* m_buttons;
     cocos2d::CCArray* m_arrayWithUsernameLabel;
@@ -23699,7 +23700,7 @@ class ThreadDescPopup : SetupTriggerPopup, ThreadMessageDelegate, EmotePickerDel
     virtual void threadSendFinished(int, long long) = win 0xfe7c0;
     virtual void threadSendFailed() = win 0xfe870;
 
-    TodoReturn buildUI(bool, std::string const&, std::string const&);
+    bool buildUI(bool, std::string const&, std::string const&) = win 0xfc920;
     TodoReturn finishSave(char const*);
     TodoReturn handBackSlot();
     bool init(GJMessageThread*, ThreadViewPopup*);
@@ -23753,7 +23754,7 @@ class ThreadOpenHelper {
 class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLayerProtocol {
     virtual ~ThreadOptionsPopup() = win 0xd3c00;
 
-    static ThreadOptionsPopup* create(GJMessageThread*, ThreadViewPopup*, bool);
+    static ThreadOptionsPopup* create(GJMessageThread*, ThreadViewPopup*, bool) = win 0xf41d0;
 
     virtual void keyBackClicked() = win 0xa6580;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xf6b30;
@@ -23768,7 +23769,7 @@ class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLaye
     virtual void threadSendFailed() = win 0xf69e0;
 
     TodoReturn handBackSlot();
-    bool init(GJMessageThread*, ThreadViewPopup*, bool);
+    bool init(GJMessageThread*, ThreadViewPopup*, bool) = win 0xf4340;
     void onCancelRequest(cocos2d::CCObject* sender);
     void onDismissRemoved(cocos2d::CCObject* sender);
     void onHide(cocos2d::CCObject* sender);
@@ -23811,7 +23812,7 @@ class ThreadSearchPopup : SetupTriggerPopup {
 
     TodoReturn clampDayField();
     TodoReturn fieldValue(CCTextInputNode*, int, int);
-    bool init(ThreadViewPopup*);
+    bool init(ThreadViewPopup*) = win 0xfaff0;
     void onGoToDate(cocos2d::CCObject* sender);
     void onSearch(cocos2d::CCObject* sender);
 }
@@ -23820,7 +23821,7 @@ class ThreadSearchPopup : SetupTriggerPopup {
 class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, LevelPickerDelegate, EmotePickerDelegate {
     virtual ~ThreadViewPopup() = win 0xd3020;
 
-    static ThreadViewPopup* create(GJMessageThread*);
+    static ThreadViewPopup* create(GJMessageThread*) = win 0xd92b0;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe3e40;
     virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe3eb0;
@@ -23850,7 +23851,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0xe1750;
     virtual void unmountVirtualRow(int, cocos2d::CCNode*) = win 0xe1670;
 
-    TodoReturn buildMemberButton();
+    void buildMemberButton() = win 0xe34b0;
     TodoReturn buildRows(bool);
     TodoReturn checkMessageTap(cocos2d::CCTouch*);
     TodoReturn checkUnseenBelow(float);
@@ -23859,7 +23860,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn exitSearch(bool);
     // TodoReturn expandShareTokens(std::string const&, std::vector<ThreadViewPopup::ShareToken>&);
     TodoReturn goToDate(std::string const&);
-    bool init(GJMessageThread*);
+    bool init(GJMessageThread*) = win 0xd93b0;
     TodoReturn insertShareToken(std::string const&);
     TodoReturn jumpToLatest();
     TodoReturn layoutComposeBar();
