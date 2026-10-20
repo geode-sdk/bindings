@@ -24255,7 +24255,6 @@ class TutorialPopup : FLAlertLayer {
     std::string m_currentSprite;
     bool m_callbackRegistered;
     cocos2d::SEL_MenuHandler m_callbackSelector;
-    cocos2d::CCNode* m_targetNode;
     CCMenuItemSpriteExtra* m_closeButton;
 }
 
