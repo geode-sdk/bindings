@@ -5222,21 +5222,21 @@ class EditorWindowPopup : SetupTriggerPopup {
     bool isInCloseButton(cocos2d::CCPoint point) = win 0x17e7f0;
 
     TodoReturn activeField();
-    TodoReturn applyWindowSize();
+    TodoReturn applyWindowSize() = win 0x17e6d0;
     TodoReturn blurField();
-    TodoReturn clampWindowCenter(cocos2d::CCPoint);
-    TodoReturn clampWindowOnScreen(cocos2d::CCPoint);
-    TodoReturn contentCenter();
-    TodoReturn dismissDropdowns();
+    TodoReturn clampWindowCenter(cocos2d::CCPoint) = win 0x17e930;
+    TodoReturn clampWindowOnScreen(cocos2d::CCPoint) = win 0x17eaa0;
+    TodoReturn contentCenter() = win 0x17e420;
+    TodoReturn dismissDropdowns() = win 0x17ec40;
     TodoReturn fieldHoldsKeys();
     TodoReturn getResizeCorner(cocos2d::CCPoint);
     bool isInDragHandle(cocos2d::CCPoint);
-    TodoReturn layoutWindow();
+    TodoReturn layoutWindow() = win 0x17e520;
     TodoReturn moveWindowTo(cocos2d::CCPoint);
     void setLockAspectRatio(bool);
     void setWindowScaleBounds(float, float);
     void setWindowSizeBounds(float, float, float, float);
-    TodoReturn syncWindowCenter();
+    TodoReturn syncWindowCenter() = win 0x17e4a0;
     TodoReturn touchIsOnField(cocos2d::CCPoint);
     TodoReturn touchRect();
 }
