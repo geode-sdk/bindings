@@ -1696,7 +1696,9 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     float m_scrollLimitBottom;
     float m_peekLimitTop;
     float m_peekLimitBottom;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
 }
 
 [[link(android)]]
@@ -3099,7 +3101,9 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
-    PAD = win 0x20;
+    win {
+        PAD = 0x20;
+    }
     int m_vaultDialogIndex;
     int m_versusDialogIndex;
 }
@@ -7627,7 +7631,9 @@ class GameManager : GManager {
     void videoAdHidden() = win inline, imac 0x8de00, m1 0x2f6b84, ios inline;
     void videoAdShowed() = win inline, imac 0x369530, m1 0x2f6b40, ios inline;
 
-    PAD = win 0x18;
+    win {
+        PAD = 0x18;
+    }
     cocos2d::CCDictionary* m_mainFramesForAnimation;
     cocos2d::CCDictionary* m_detailFramesForAnimation;
     cocos2d::CCDictionary* m_frameTimeForAnimation;
@@ -7641,7 +7647,9 @@ class GameManager : GManager {
     bool m_unkBool2;
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
-    PAD = win 0x10;
+    win {
+        PAD = 0x10;
+    }
     cocos2d::CCDictionary* m_unlockValueKeeper;
     cocos2d::CCDictionary* m_customObjectDict;
     double m_adTimer;
@@ -7726,7 +7734,9 @@ class GameManager : GManager {
     int m_currentLevelID;
     int m_currentColorChannel;
     int m_currentGroupID;
-    PAD = win 0xc;
+    win {
+        PAD = 0xc;
+    }
     int m_loadedBgID;
     int m_loadedGroundID;
     int m_loadedMG;
@@ -7767,12 +7777,14 @@ class GameManager : GManager {
     float m_customFPSTarget;
     win {
         float m_scrollSensitivity;
+        PAD = 0x10;
     }
-    PAD = win 0x10;
     bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
-    PAD = win 0xc;
+    win {
+        PAD = 0xc;
+    }
     std::map<int, int> m_iconLoadCounts;
     std::map<int, std::map<int, int>> m_iconRequests;
     std::map<int, bool> m_isIconBeingLoaded;
@@ -8688,7 +8700,9 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_weeklyChest;
     cocos2d::CCDictionary* m_eventChest;
     // GS_33 dictionary
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     cocos2d::CCDictionary* m_treasureRoomChests;
     geode::SeedValueRSV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
@@ -9591,7 +9605,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_allowStaticRotate;
     bool m_fixNegativeScale;
     bool m_startingFromBeginning;
-    PAD = win 0x18;
+    win {
+        PAD = 0x18;
+    }
     std::vector<SFXTriggerGameObject*> m_activeSfxTriggers;
     std::vector<void*> m_unk8a0;
     cocos2d::CCNode* m_hoverNode;
@@ -9749,7 +9765,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     LevelSettingsObject* m_levelSettings;
     cocos2d::CCArray* m_objects;
     cocos2d::CCArray* m_collisionBlocks;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     cocos2d::CCArray* m_spawnObjectsArray;
     cocos2d::CCDictionary* m_spawnObjects;
     cocos2d::CCNode* m_unkdd0;
@@ -9784,7 +9802,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCDictionary* m_parentGroupsDict;
     cocos2d::CCDictionary* m_parentGroupIDs;
     cocos2d::CCDictionary* m_removedParentGroupIDs;
-    PAD = win 0xc0;
+    win {
+        PAD = 0xc0;
+    }
     cocos2d::CCArray* m_targetGroupsArray;
     std::unordered_map<int, std::pair<int, int>> m_targetGroups;
     cocos2d::CCDictionary* m_linkedGroupDict;
@@ -9827,7 +9847,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_particleCount;
     int m_customParticleCount;
     int m_particleSystemLimit;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     cocos2d::CCDictionary* m_particlesDict;
     cocos2d::CCDictionary* m_customParticles;
     cocos2d::CCArray* m_unclaimedParticles;
@@ -9865,7 +9887,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_resetActiveObjects;
     bool m_skipArtReload;
     EndPortalObject* m_endPortal;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     bool m_isTestMode;
     bool m_freezeStartCamera;
     bool m_unk322a;
@@ -9936,7 +9960,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_keepGroupParents;
     cocos2d::CCDictionary* m_keyframeGroups;
     int m_keyframeGroup;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     UILayer* m_uiLayer;
     cocos2d::CCArray* m_uiObjects;
     cocos2d::CCDictionary* m_uiObjectLayers;
@@ -10002,13 +10028,17 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_isDebugDrawEnabled;
     bool m_disablePlayerHitbox;
     bool m_hitboxesOnDeath;
-    PAD = win 0x58;
+    win {
+        PAD = 0x58;
+    }
     GameObject* m_anticheatSpike;
     double m_timestamp;
     bool m_isBetweenSteps;
     bool m_clickBetweenSteps;
     bool m_clickOnSteps;
-    PAD = win 0x40;
+    win {
+        PAD = 0x40;
+    }
 }
 
 [[link(android)]]
@@ -12380,7 +12410,9 @@ class GJShaderState {
     float m_splitTargetRows;
     float m_splitTargetCols;
     bool m_splitActive;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     int m_minBlendingLayer;
     int m_maxBlendingLayer;
     bool m_zLayerDirty;
@@ -13479,7 +13511,9 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     GJGameLevel* m_level;
     GJUserScore* m_score;
     GJLevelList* m_levelList;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     std::string m_commentKey;
     LoadingCircle* m_loadingCircle;
     cocos2d::CCLabelBMFont* m_pageLabel;
@@ -14666,7 +14700,9 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     CCMenuItemSpriteExtra* m_starRateBtn;
     CCMenuItemSpriteExtra* m_demonRateBtn;
     void* m_unk2;
-    PAD = win 0x8;
+    win {
+        PAD = 0x8;
+    }
     cocos2d::CCLabelBMFont* m_lengthLabel;
     cocos2d::CCLabelBMFont* m_exactLengthLabel;
     cocos2d::CCLabelBMFont* m_downloadsLabel;
