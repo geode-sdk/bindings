@@ -8436,7 +8436,7 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     virtual void dropDownLayerWillClose(GJDropDownLayer*) = win 0x2c7e10;
 
     void addGVToggle(char const* name, char const* gameVar, char const* desc) = imac 0x601840, m1 0x54726c; // inlined on macos
-    void addSpecialContent() = imac 0x6005e0, m1 0x546110;
+    void addSpecialContent() = win 0x2c5200, imac 0x6005e0, m1 0x546110;
     void addToggle(char const* name, int id, char const* desc, bool disabled) = win 0x2c6720, imac 0x6018b0, m1 0x5472f0;
     void buildTabContent() = win 0x2c2df0, imac 0x5fe890, m1 0x544098;
     TodoReturn didChangeGV(char const*, bool);
@@ -19242,7 +19242,7 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void playCoinEffect();
     void selectAThread() = win inline, imac 0x39d7d0, m1 0x326174;
     void showDialog(int index);
-    void showFirstDialog() = imac 0x39ace0, m1 0x3238f0;
+    void showFirstDialog() = win 0x588070, imac 0x39ace0, m1 0x3238f0;
     void updateMessageLabel(std::string text);
     void updateSearchLabel(char const* text);
 
