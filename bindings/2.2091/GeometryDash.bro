@@ -16771,18 +16771,18 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     CCMenuItemToggler* createToggleButton(std::string text, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win inline, ios inline;
     void exitLayer() = win inline, imac 0x87bea0, m1 0x771644, ios inline;
     void musicSliderChanged(cocos2d::CCObject* sender) = win 0x4cbb20, imac 0x87bd90, m1 0x77154c;
-    void onAccount(cocos2d::CCObject* sender) = imac 0x87b800, m1 0x770f7c;
-    void onHelp(cocos2d::CCObject* sender) = m1 0x770f8c;
+    void onAccount(cocos2d::CCObject* sender) = win 0x4cc4a0, imac 0x87b800, m1 0x770f7c;
+    void onHelp(cocos2d::CCObject* sender) = win 0x4cc570, m1 0x770f8c;
     void onMenuMusic(cocos2d::CCObject* sender) = win 0x4cba10, imac 0x87b8a0, m1 0x7715fc;
-    void onOptions(cocos2d::CCObject* sender) = m1 0x770fa8, imac 0x87b840;
+    void onOptions(cocos2d::CCObject* sender) = win 0x4cbc30, m1 0x770fa8, imac 0x87b840;
     void onParental(cocos2d::CCObject* sender) = win 0x4cbc60, m1 0x770ffc;
     void onProgressBar(cocos2d::CCObject* sender) = win inline, imac 0x87c520, ios inline;
     void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0, m1 0x770fe8;
     void onRecordReplays(cocos2d::CCObject* sender) = win inline, imac 0x87bb40, ios inline;
     void onSecretVault(cocos2d::CCObject* sender) = win 0x4cbd30, imac 0x87bb70, m1 0x771304;
     void onSoundtracks(cocos2d::CCObject* sender) = m1 0x771634;
-    void onSupport(cocos2d::CCObject* sender) = imac 0x87b900, m1 0x77104c;
-    void onVideo(cocos2d::CCObject* sender) = imac 0x87b860, m1 0x770fcc, ios inline;
+    void onSupport(cocos2d::CCObject* sender) = win 0x4cc450, imac 0x87b900, m1 0x77104c;
+    void onVideo(cocos2d::CCObject* sender) = win 0x4cc430, imac 0x87b860, m1 0x770fcc, ios inline;
     void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x87be00, m1 0x7715bc;
     void tryEnableRecord() = win inline, imac 0x87c550, ios inline;
 
