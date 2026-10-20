@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/SecretLayer.hpp>
+#include <Geode/cocos/cocoa/CCInteger.h>
 
 SecretLayer::SecretLayer() {
     m_basicMessageIndex = -1;

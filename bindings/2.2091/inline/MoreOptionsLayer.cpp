@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/MoreOptionsLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GooglePlayManager.hpp>
+#include <Geode/binding/PlatformToolbox.hpp>
 
 #if !defined(GEODE_IS_IOS)
 MoreOptionsLayer::MoreOptionsLayer() {

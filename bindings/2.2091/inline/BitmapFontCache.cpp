@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/BitmapFontCache.hpp>
 
 BitmapFontCache::BitmapFontCache() {
     m_cache = nullptr;
@@ -18,7 +18,7 @@ BitmapFontCache::~BitmapFontCache() {
 }
 
 void BitmapFontCache::purgeSharedFontCache() {
-    auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x6c2e78);
+    auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x90bf50);
     if (*instancePtr) {
         (*instancePtr)->release();
         *instancePtr = nullptr;
@@ -26,7 +26,7 @@ void BitmapFontCache::purgeSharedFontCache() {
 }
 
 BitmapFontCache* BitmapFontCache::sharedFontCache() {
-    auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x6c2e78);
+    auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x90bf50);
     if (!*instancePtr) {
         *instancePtr = new BitmapFontCache();
         (*instancePtr)->init();

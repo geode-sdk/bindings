@@ -1,4 +1,11 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CCCircleWave.hpp>
+#include <Geode/binding/ForceBlockGameObject.hpp>
+#include <Geode/binding/GJSpiderSprite.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GameObject.hpp>
+#include <Geode/binding/HardStreak.hpp>
+#include <Geode/binding/PlayerObject.hpp>
+#include <Geode/cocos/misc_nodes/CCMotionStreak.h>
 
 #if defined(GEODE_IS_ANDROID)
 PlayerObject::PlayerObject() {

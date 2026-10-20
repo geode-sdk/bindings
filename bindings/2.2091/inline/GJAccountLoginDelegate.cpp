@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJAccountLoginDelegate.hpp>
 
 void GJAccountLoginDelegate::loginAccountFinished(int accountID, int userID) {}
 

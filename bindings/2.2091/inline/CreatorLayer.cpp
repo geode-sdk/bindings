@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CreatorLayer.hpp>
+#include <Geode/binding/GJSearchObject.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/LevelBrowserLayer.hpp>
 
 CreatorLayer::CreatorLayer() {
     m_secretDoorSprite = nullptr;

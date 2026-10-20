@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EditorPauseLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/LevelEditorLayer.hpp>
+#include <Geode/binding/EditorUI.hpp>
 
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;

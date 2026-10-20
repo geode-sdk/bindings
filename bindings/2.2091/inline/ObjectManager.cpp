@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ObjectManager.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -14,7 +14,7 @@ cocos2d::CCDictionary* ObjectManager::getGlobalAnimCopy(char const* anim) {
 }
 
 void ObjectManager::purgeObjectManager() {
-    auto objectManager = reinterpret_cast<ObjectManager**>(geode::base::get() + 0x6c2ea0);
+    auto objectManager = reinterpret_cast<ObjectManager**>(geode::base::get() + 0x90bf78);
     if (*objectManager) {
         (*objectManager)->release();
         *objectManager = nullptr;

@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCPoint.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/mapping/ZipUtils.hpp>
+#include <Geode/binding/LevelTools.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -20,7 +25,7 @@ int LevelTools::getAudioBPM(int id) {
 }
 
 bool LevelTools::getLastGameplayReversed() {
-    return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x6c2c77) GEODE_IOS(0x86c010));
+    return *reinterpret_cast<bool*>(geode::base::get() + GEODE_WINDOWS(0x90bd0c) GEODE_IOS(0x86c010));
 }
 
 float LevelTools::offsetBPMForTrack(int id) {
@@ -74,11 +79,11 @@ cocos2d::CCDictionary* LevelTools::createStarPackDict() {
 }
 
 bool LevelTools::getLastGameplayRotated() {
-    return *reinterpret_cast<bool*>(geode::base::get() + 0x6c2c76);
+    return *reinterpret_cast<bool*>(geode::base::get() + 0x9097df);
 }
 
 float LevelTools::getLastTimewarp() {
-    return *reinterpret_cast<float*>(geode::base::get() + 0x6ba198);
+    return *reinterpret_cast<float*>(geode::base::get() + 0x8fe4f8);
 }
 
 cocos2d::CCPoint LevelTools::posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& rotateChannel) {

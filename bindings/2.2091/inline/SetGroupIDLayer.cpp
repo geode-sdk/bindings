@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetGroupIDLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GameObject.hpp>
+#include <Geode/binding/TeleportPortalObject.hpp>
+#include <Geode/binding/LevelEditorLayer.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SetGroupIDLayer::SetGroupIDLayer() {

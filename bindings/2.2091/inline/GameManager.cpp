@@ -1,4 +1,18 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/AchievementManager.hpp>
+#include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GameStatsManager.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/binding/MenuLayer.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
+#include <Geode/binding/SimplePlayer.hpp>
+#include <Geode/cocos/CCScheduler.h>
+#include <Geode/cocos/cocoa/CCInteger.h>
+#include <Geode/cocos/platform/CCFileUtils.h>
+#include <Geode/cocos/textures/CCTextureCache.h>
+#include <Geode/mapping/CCObject.hpp>
 #include <Geode/utils/cocos.hpp>
 
 GameManager* GameManager::get() {
@@ -644,15 +658,6 @@ void GameManager::openEditorGuide() {
 }
 
 void GameManager::printGJLog() {}
-
-// TODO: 2.209
-void GameManager::queueReloadMenu(bool p0) {
-    // m_pActionManager->addAction(cocos2d::CCSequence::create(
-    //     cocos2d::CCDelayTime::create(.1f),
-    //     cocos2d::CCCallFunc::create(this, callfunc_selector(GameManager::reloadMenu)),
-    //     nullptr
-    // ), this, false);
-}
 
 void GameManager::rateGame() {
     if (GameToolbox::doWeHaveInternet()) {

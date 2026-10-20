@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CharacterColorPage.hpp>
+#include <Geode/binding/GameManager.hpp>
 
 CharacterColorPage::CharacterColorPage() {
     m_colorMode = 0;

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DemonFilterSelectLayer.hpp>
 
 DemonFilterSelectLayer::DemonFilterSelectLayer() {
     m_demons = nullptr;

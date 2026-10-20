@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
 
 FMODAudioEngine* FMODAudioEngine::get() {
     return FMODAudioEngine::sharedEngine();
@@ -10,7 +10,7 @@ FMOD::Channel* FMODAudioEngine::channelForUniqueID(int id) {
 }
 
 int FMODAudioEngine::getNextChannelID() {
-    return (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x6ba0e4) GEODE_IOS(0x84be08)))++;
+    return (*reinterpret_cast<int*>(geode::base::get() + GEODE_WINDOWS(0x8fe35c) GEODE_IOS(0x84be08)))++;
 }
 
 std::map<std::pair<int, int>, FMODSoundTween>& FMODAudioEngine::getTweenContainer(AudioTargetType type) {
@@ -91,7 +91,7 @@ void FMODAudioEngine::activateQueuedMusic(int channel) {
 
 void FMODAudioEngine::channelLinkSound(int id, FMODSound* sound) {
     sound->m_playCount++;
-    sound->m_playIndex = (*reinterpret_cast<int*>(geode::base::get() + 0x6c2e74))++;
+    sound->m_playIndex = (*reinterpret_cast<int*>(geode::base::get() + 0x90bf4c))++;
     m_channelIDToSoundPath[id] = sound->m_filePath;
 }
 

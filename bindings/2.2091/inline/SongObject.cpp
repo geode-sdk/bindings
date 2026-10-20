@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SongObject.hpp>
 
 SongObject::SongObject() {
     m_audioID = 0;

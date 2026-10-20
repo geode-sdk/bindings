@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SecretLayer2.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SecretLayer2::SecretLayer2() {

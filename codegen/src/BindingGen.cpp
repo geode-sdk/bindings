@@ -8,25 +8,21 @@ namespace { namespace format_strings {
 )GEN";
 
     constexpr char const* class_includes = R"GEN(#pragma once
-#include <stdexcept>
 #include <Geode/platform/platform.hpp>
-#include <unordered_map>
-#include <unordered_set>
-#include <cocos2d.h>
-#include <cocos-ext.h>
 #include <Geode/GeneratedPredeclare.hpp>
 #include <Geode/Enums.hpp>
-#include <Geode/utils/SeedValue.hpp>
 
 )GEN";
 
     constexpr char const* class_no_includes = R"GEN(#pragma once
 #include <Geode/platform/platform.hpp>
-#include <stdexcept>
 
 )GEN";
-    
-    constexpr char const* class_include_prereq = R"GEN(#include "{file_name}"
+
+    constexpr char const* class_include_prereq = R"GEN(#include "{file_name}.hpp"
+)GEN";
+
+    constexpr char const* class_mapping_include_prereq = R"GEN(#include <Geode/mapping/{file_name}.hpp>
 )GEN";
 
     constexpr char const* class_start = R"GEN(
@@ -50,7 +46,7 @@ public:
     {static}{virtual}{return_type} {function_name}({parameters}){const};
 )GEN";
 
-    constexpr char const* error_definition = R"GEN(    
+    constexpr char const* error_definition = R"GEN(
 private:
     [[deprecated("{class_name}::{function_name} not implemented")]]
     /**
@@ -64,7 +60,7 @@ public:
 {docs}{docs_addresses}     */
     {function_name}({parameters});
 )GEN";
-    
+
     // requires: type, member_name, array
     constexpr char const* member_definition = R"GEN({private}    {type} {member_name};{public}
 )GEN";
@@ -106,23 +102,23 @@ std::string generateAddressDocs(T const& f, PlatformNumber pn) {
 
         switch (status) {
             case BindStatus::NeedsBinding:
-                ret += fmt::format("     * @note[short] {}: 0x{:x}\n", 
+                ret += fmt::format("     * @note[short] {}: 0x{:x}\n",
                     nameForPlatform(platform),
                     num
                 );
                 break;
             case BindStatus::NeedsRebinding:
-                ret += fmt::format("     * @note[short] {}: Rebinded\n", 
+                ret += fmt::format("     * @note[short] {}: Rebinded\n",
                     nameForPlatform(platform)
                 );
                 break;
             case BindStatus::Binded:
-                ret += fmt::format("     * @note[short] {}\n", 
+                ret += fmt::format("     * @note[short] {}\n",
                     nameForPlatform(platform)
                 );
                 break;
             case BindStatus::Inlined:
-                ret += fmt::format("     * @note[short] {}: Out of line\n", 
+                ret += fmt::format("     * @note[short] {}: Out of line\n",
                     nameForPlatform(platform)
                 );
                 break;
@@ -141,7 +137,7 @@ std::string generateDocs(std::string const& docs) {
     for (auto next = ret.find("        "); next != std::string::npos; next = ret.find("        ")) {
         ret.replace(next, 8, "     * ");
     }
-        
+
     return ret;
 }
 
@@ -218,12 +214,34 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
         }
 
         for (auto dep : cls.attributes.depends) {
-            if (is_cocos_or_fmod_class(dep)) continue;
-
-            std::string depfilename = (codegen::getUnqualifiedClassName(dep) + ".hpp");
-
-            single_output += fmt::format(format_strings::class_include_prereq, fmt::arg("file_name", depfilename));
+            single_output += codegen::getClassIncludeString(dep) + "\n";
         }
+
+        for (auto member_type : {"SeedValue", "unordered_map", "unordered_set", "vector", "enumKeyCodes"}) {
+            for (auto field : cls.fields) {
+                if (auto fn = field.get_as<FunctionBindField>()) {
+                    if (fn->prototype.ret.name.find(member_type) != std::string::npos) {
+                        single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                        goto break_whole;
+                    }
+                    for (auto [type, param] : fn->prototype.args) {
+                        if (type.name.find(member_type) != std::string::npos) {
+                            single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                            goto break_whole;
+                        }
+                    }
+                }
+                if (auto m = field.get_as<MemberField>()) {
+                    if (m->type.name.find(member_type) != std::string::npos) {
+                        single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                        goto break_whole;
+                    }
+                }
+            }
+            break_whole:
+            int a = 5;
+        }
+
 
         std::string supers = str_if(
             fmt::format(" : public {}", fmt::join(cls.superclasses, ", public ")),
@@ -239,7 +257,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
         // what.
         if (!cls.superclasses.empty()) {
             single_output += fmt::format(
-                fmt::runtime(is_cocos_class(cls.superclasses[0]) 
+                fmt::runtime(is_cocos_class(cls.superclasses[0])
                     ? format_strings::custom_constructor_cutoff
                     : format_strings::custom_constructor),
                 fmt::arg("class_name", cls.name),

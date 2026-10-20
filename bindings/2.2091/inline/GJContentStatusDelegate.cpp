@@ -1,3 +1,3 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJContentStatusDelegate.hpp>
 
 void GJContentStatusDelegate::contentStatusFinished() {}

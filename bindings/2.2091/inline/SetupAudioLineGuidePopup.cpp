@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupAudioLineGuidePopup.hpp>
 
 SetupAudioLineGuidePopup::SetupAudioLineGuidePopup() {
     m_speedSprite = nullptr;

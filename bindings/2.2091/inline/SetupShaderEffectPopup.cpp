@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupShaderEffectPopup.hpp>
 
 SetupShaderEffectPopup::SetupShaderEffectPopup() {
     m_zLayerSprites = nullptr;

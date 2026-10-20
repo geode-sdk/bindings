@@ -1,4 +1,17 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCHttpClient.hpp>
+#include <Geode/mapping/CCHttpRequest.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/GJFriendRequest.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GJHttpResult.hpp>
+#include <Geode/binding/GJLevelList.hpp>
+#include <Geode/binding/GameStatsManager.hpp>
+#include <Geode/binding/LevelBrowserLayer.hpp>
+#include <Geode/binding/LevelListDeleteDelegate.hpp>
+#include <Geode/binding/ListUploadDelegate.hpp>
+#include <Geode/binding/LocalLevelManager.hpp>
+#include <Geode/binding/UserListDelegate.hpp>
 
 GameLevelManager* GameLevelManager::get() {
     return GameLevelManager::sharedState();
@@ -774,7 +787,7 @@ void GameLevelManager::verifyLevelState(GJGameLevel* level) {
 }
 
 GameLevelManager* GameLevelManager::sharedState() {
-    auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x906fb0);
+    auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x90bfb0);
     if(!ref) {
         ref = new GameLevelManager(geode::ZeroConstructor);
         ref->init();

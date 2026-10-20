@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelPickerDelegate.hpp>
 
 void LevelPickerDelegate::levelPicked(GJGameLevel*) {}
 void LevelPickerDelegate::listPicked(GJLevelList*) {}

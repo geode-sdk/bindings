@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ShareLevelLayer.hpp>
+#include <Geode/binding/ButtonSprite.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
 
 ShareLevelLayer::ShareLevelLayer() {
     m_level = nullptr;

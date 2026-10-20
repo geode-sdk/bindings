@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/SetupSmartBlockLayer.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/SmartGameObject.hpp>
+#include <Geode/binding/GJSmartTemplate.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

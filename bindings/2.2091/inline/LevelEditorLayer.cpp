@@ -1,5 +1,25 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/AnimatedGameObject.hpp>
+#include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/DelayedSpawnNode.hpp>
+#include <Geode/binding/DrawGridLayer.hpp>
+#include <Geode/binding/EditorUI.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
+#include <Geode/binding/EnhancedGameObject.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/binding/GJGroundLayer.hpp>
+#include <Geode/binding/LevelSettingsObject.hpp>
+#include <Geode/binding/OBB2D.hpp>
+#include <Geode/binding/ParticleGameObject.hpp>
+#include <Geode/binding/PlayerObject.hpp>
+#include <Geode/binding/ShaderLayer.hpp>
+#include <Geode/binding/StartPosObject.hpp>
+#include <Geode/binding/UILayer.hpp>
+#include <Geode/binding/UndoObject.hpp>
+#include <Geode/binding/SFXTriggerGameObject.hpp>
 
 LevelEditorLayer* LevelEditorLayer::get() {
     return GameManager::sharedState()->m_levelEditorLayer;

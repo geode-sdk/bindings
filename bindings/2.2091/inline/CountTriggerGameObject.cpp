@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CountTriggerGameObject.hpp>
 
 CountTriggerGameObject::CountTriggerGameObject() {
     m_pickupCount = 0;

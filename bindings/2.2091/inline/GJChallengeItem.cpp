@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJChallengeItem.hpp>
 
 void GJChallengeItem::setCount(int value) {
     m_count = value;

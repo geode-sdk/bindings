@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/binding/OptionsScrollLayer.hpp>
 #include <Geode/utils/cocos.hpp>
 
 

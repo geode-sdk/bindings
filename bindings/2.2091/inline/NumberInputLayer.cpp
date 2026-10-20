@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/NumberInputLayer.hpp>
 
 NumberInputLayer::NumberInputLayer() {
     m_okButton = nullptr;

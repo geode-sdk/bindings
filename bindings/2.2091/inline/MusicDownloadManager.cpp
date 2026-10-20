@@ -1,5 +1,16 @@
-#include <Geode/Bindings.hpp>
-
+#include <Geode/binding/GJHttpResult.hpp>
+#include <Geode/binding/GJMultiplayerManager.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/MusicDownloadManager.hpp>
+#include <Geode/binding/OptionsObject.hpp>
+#include <Geode/binding/SFXFolderObject.hpp>
+#include <Geode/binding/SFXInfoObject.hpp>
+#include <Geode/binding/SongInfoObject.hpp>
+#include <Geode/cocos/actions/CCActionManager.h>
+#include <Geode/cocos/robtop/xml/DS_Dictionary.h>
+#include <Geode/mapping/CCHttpRequest.hpp>
+#include <Geode/mapping/CCHttpResponse.hpp>
+#include <Geode/mapping/CCObject.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void MusicDownloadManager::addDLToActive(char const* tag) {
@@ -110,11 +121,11 @@ void MusicDownloadManager::firstSetup() {
 }
 
 void MusicDownloadManager::generateResourceAssetList() {
-    auto sfxStart = reinterpret_cast<int*>(geode::base::get() + 0x623b10);
+    auto sfxStart = reinterpret_cast<int*>(geode::base::get() + 0x8360f0);
     m_resourceSfxUnorderedSet.clear();
     m_resourceSfxUnorderedSet.insert(sfxStart, sfxStart + 260);
 
-    auto songStart = reinterpret_cast<int*>(geode::base::get() + 0x624050);
+    auto songStart = reinterpret_cast<int*>(geode::base::get() + 0x8368f0);
     m_resourceSongUnorderedSet.clear();
     m_resourceSongUnorderedSet.insert(songStart, songStart + 8);
     m_resourceSongUnorderedSet.insert(10006555);

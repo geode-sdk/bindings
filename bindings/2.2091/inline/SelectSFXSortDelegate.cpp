@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SelectSFXSortDelegate.hpp>
 
 void SelectSFXSortDelegate::sortSelectClosed(SelectSFXSortLayer* layer) {}
 

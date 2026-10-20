@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/BoomScrollLayer.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/binding/GJShopLayer.hpp>
+#include <Geode/binding/SecretRewardsLayer.hpp>
+#include <Geode/mapping/CCTransitionMoveInT.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SecretRewardsLayer::SecretRewardsLayer() {

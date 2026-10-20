@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SmartGameObject.hpp>
 
 SmartGameObject::SmartGameObject() {
     m_referenceOnly = false;
@@ -20,9 +20,9 @@ SmartGameObject* SmartGameObject::create(char const* frame) {
 
 bool SmartGameObject::init(char const* frame) {
     if (!GameObject::init(frame)) return false;
-    m_baseFrame = frame;
+    m_smartFrame = frame;
     m_classType = GameObjectClassType::Smart;
-    m_bUnkBool2 = false;
+    m_bDisableScheduling = false;
     return true;
 }
 #endif

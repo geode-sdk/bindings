@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/KeyframeAnimTriggerObject.hpp>
 
 KeyframeAnimTriggerObject::KeyframeAnimTriggerObject() {
     m_timeMod = 1.0f;

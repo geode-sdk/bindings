@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCAnimationCache.hpp>
 #include <Geode/utils/cocos.hpp>
 
 

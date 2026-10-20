@@ -1,5 +1,9 @@
-#include <Geode/Bindings.hpp>
-
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/binding/SetupCameraOffsetTrigger.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
+#include <algorithm>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 int SetupCameraOffsetTrigger::posFromSliderValue(float value) {
@@ -48,4 +52,3 @@ void SetupCameraOffsetTrigger::updateMoveCommandEasingRate() {
 
 #if defined(GEODE_IS_IOS)
 #endif
-

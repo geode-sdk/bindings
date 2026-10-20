@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SongPlaybackDelegate.hpp>
 
 void SongPlaybackDelegate::onPlayback(SongInfoObject* object) {}
 

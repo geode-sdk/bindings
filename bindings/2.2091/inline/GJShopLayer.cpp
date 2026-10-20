@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJShopLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/cocos/touch_dispatcher/CCTouchDispatcher.h>
 
 GJShopLayer::GJShopLayer() {
     m_closing = false;

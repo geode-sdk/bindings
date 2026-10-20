@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ParticleGameObject.hpp>
 
 ParticleGameObject::ParticleGameObject() {
     m_updatedParticleData = false;

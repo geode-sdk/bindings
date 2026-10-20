@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/TableViewCellDelegate.hpp>
 
 bool TableViewCellDelegate::cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) { return false; }
 

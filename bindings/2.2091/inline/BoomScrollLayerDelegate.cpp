@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/BoomScrollLayerDelegate.hpp>
 
 void BoomScrollLayerDelegate::scrollLayerScrollingStarted(BoomScrollLayer* layer) {}
 

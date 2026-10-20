@@ -1,5 +1,16 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/PlayLayer.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/AnimatedGameObject.hpp>
+#include <Geode/binding/CCCircleWave.hpp>
+#include <Geode/binding/CheckpointObject.hpp>
+#include <Geode/binding/EndPortalObject.hpp>
+#include <Geode/binding/GJEffectManager.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GameObject.hpp>
+#include <Geode/binding/LabelGameObject.hpp>
+#include <Geode/binding/PlayerObject.hpp>
 
 PlayLayer* PlayLayer::get() {
     return GameManager::get()->m_playLayer;

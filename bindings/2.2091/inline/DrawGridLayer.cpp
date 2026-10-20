@@ -1,4 +1,8 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/DrawGridLayer.hpp>
+#include <Geode/binding/AudioLineGuideGameObject.hpp>
+#include <Geode/binding/LevelEditorLayer.hpp>
+#include <Geode/binding/LevelTools.hpp>
+#include <Geode/binding/LevelSettingsObject.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

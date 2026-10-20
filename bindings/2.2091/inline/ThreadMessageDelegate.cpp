@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ThreadMessageDelegate.hpp>
 
 void ThreadMessageDelegate::threadListFinished(cocos2d::CCArray*, int, int, int) {}
 

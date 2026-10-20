@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SetupEnterTriggerPopup.hpp>
 
 SetupEnterTriggerPopup::SetupEnterTriggerPopup() {
     m_enterOnlyToggler = nullptr;

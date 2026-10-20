@@ -1,3 +1,3 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CreateStartPosPopupDelegate.hpp>
 
 void CreateStartPosPopupDelegate::createStartPosPopupClosed(CreateStartPosPopup*) {}

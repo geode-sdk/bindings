@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJScoreCell.hpp>
+#include <Geode/binding/GJUserScore.hpp>
+#include <Geode/binding/ProfilePage.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

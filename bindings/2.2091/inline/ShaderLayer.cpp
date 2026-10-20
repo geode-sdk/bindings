@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJBaseGameLayer.hpp>
+#include <Geode/binding/ShaderLayer.hpp>
+#include <Geode/cocos/misc_nodes/CCRenderTexture.h>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
 ShaderLayer::ShaderLayer() {

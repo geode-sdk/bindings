@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJActionManager.hpp>
+
+#include <Geode/cocos/cocoa/CCInteger.h>
 #include <Geode/utils/cocos.hpp>
 
 GJActionManager::GJActionManager() {

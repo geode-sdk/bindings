@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EventLinkTrigger.hpp>
 
 EventLinkTrigger::EventLinkTrigger() {
     m_resetRemap = false;

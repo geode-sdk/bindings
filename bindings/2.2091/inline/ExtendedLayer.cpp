@@ -1,10 +1,14 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/ExtendedLayer.hpp>
 
 ExtendedLayer::ExtendedLayer() {
     m_delegate = nullptr;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#endif
+
+#ifdef GEODE_IS_MACOS
+ExtendedLayer::~ExtendedLayer() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

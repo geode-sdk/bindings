@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/RewardsPage.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 
 RewardsPage::RewardsPage() {
     m_leftLabel = nullptr;

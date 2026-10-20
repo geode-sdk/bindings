@@ -1,5 +1,6 @@
-#include <Geode/Bindings.hpp>
-
+#include <Geode/binding/GJPathSprite.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/cocos/label_nodes/CCLabelBMFont.h>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

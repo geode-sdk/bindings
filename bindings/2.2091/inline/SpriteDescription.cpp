@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCNS.hpp>
+#include <Geode/mapping/CCSpriteFrame.hpp>
+#include <Geode/mapping/CCSpriteFrameCache.hpp>
+#include <Geode/binding/SpriteDescription.hpp>
 
 #if !defined(GEODE_IS_IOS)
 SpriteDescription::SpriteDescription() {

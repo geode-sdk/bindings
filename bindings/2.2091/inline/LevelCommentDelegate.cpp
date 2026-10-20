@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelCommentDelegate.hpp>
 
 void LevelCommentDelegate::loadCommentsFinished(cocos2d::CCArray* comments, char const* key) {}
 

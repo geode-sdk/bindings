@@ -1,5 +1,8 @@
-#include <Geode/Bindings.hpp>
-
+#include <Geode/binding/BoomScrollLayer.hpp>
+#include <Geode/binding/ExtendedLayer.hpp>
+#include <Geode/cocos/touch_dispatcher/CCTouchDispatcher.h>
+#include <Geode/cocos/touch_dispatcher/CCTouchHandler.h>
+#include <algorithm>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void BoomScrollLayer::addPage(cocos2d::CCLayer* page) {
@@ -150,4 +153,3 @@ void BoomScrollLayer::setPagesIndicatorPosition(cocos2d::CCPoint pos) {
 
 #if defined(GEODE_IS_IOS)
 #endif
-

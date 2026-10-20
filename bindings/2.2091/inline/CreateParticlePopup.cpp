@@ -1,5 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CreateParticlePopup.hpp>
 
+#include <Geode/cocos/particle_nodes/CCParticleSystemQuad.h>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 CreateParticlePopup* CreateParticlePopup::create(std::string str) {

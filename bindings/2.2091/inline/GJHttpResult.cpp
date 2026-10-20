@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJHttpResult.hpp>
 
 GJHttpResult::GJHttpResult() {
     m_success = false;

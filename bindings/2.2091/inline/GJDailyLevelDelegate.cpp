@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJDailyLevelDelegate.hpp>
 
 void GJDailyLevelDelegate::dailyStatusFinished(GJTimedLevelType type) {}
 

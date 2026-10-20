@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJSpriteColor.hpp>
 
 GJSpriteColor::GJSpriteColor() {
     m_colorID = 0;

@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/OptionsLayer.hpp>
+#include <Geode/binding/GameManager.hpp>
 
 OptionsLayer::OptionsLayer() {
     m_optionsMenu = nullptr;

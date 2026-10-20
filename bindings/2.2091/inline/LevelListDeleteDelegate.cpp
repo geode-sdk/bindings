@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/LevelListDeleteDelegate.hpp>
 
 void LevelListDeleteDelegate::levelListDeleteFinished(int id) {}
 

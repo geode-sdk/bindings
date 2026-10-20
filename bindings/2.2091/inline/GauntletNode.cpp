@@ -1,4 +1,5 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCScale9Sprite.hpp>
+#include <Geode/binding/GauntletNode.hpp>
 
 GauntletNode::GauntletNode() {
     m_gauntletInfoNode = nullptr;

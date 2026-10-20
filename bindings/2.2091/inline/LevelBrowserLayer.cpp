@@ -1,5 +1,12 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/binding/LevelBrowserLayer.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/binding/BoomListView.hpp>
+#include <Geode/binding/CustomListView.hpp>
+#include <Geode/binding/EditLevelLayer.hpp>
+#include <Geode/binding/LevelListLayer.hpp>
+#include <Geode/binding/SetupSmartTemplateLayer.hpp>
+#include <Geode/binding/ShareCommentLayer.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

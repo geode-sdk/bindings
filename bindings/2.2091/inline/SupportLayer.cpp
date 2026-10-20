@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SupportLayer.hpp>
+#include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/GJAccountManager.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
+#include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/PlatformToolbox.hpp>
 
 SupportLayer::SupportLayer() {
     m_uploadPopup = nullptr;

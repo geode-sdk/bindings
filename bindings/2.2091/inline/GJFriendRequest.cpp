@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/GJFriendRequest.hpp>
 
 GJFriendRequest::GJFriendRequest() {
     m_requestID = 0;

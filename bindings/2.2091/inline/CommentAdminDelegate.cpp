@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CommentAdminDelegate.hpp>
 
 void CommentAdminDelegate::adminDeleteCommentsFinished(int) {}
 void CommentAdminDelegate::adminDeleteCommentsFailed() {}

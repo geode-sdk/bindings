@@ -1,8 +1,3 @@
-#import win <Geode/cocos/platform/win32/CCFileUtilsWin32.h>
-#import android <Geode/cocos/platform/android/CCFileUtilsAndroid.h>
-#import mac <Geode/cocos/platform/mac/CCFileUtilsMac.h>
-#import ios <Geode/cocos/platform/ios/CCFileUtilsIOS.h>
-
 [[link(win, android)]]
 class CCContentManager : cocos2d::CCObject {
     static CCContentManager* sharedManager() = imac 0x1635f0, m1 0x12e424;
@@ -969,7 +964,7 @@ class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
 class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     // CCDrawNode(cocos2d::CCDrawNode const&);
     CCDrawNode();
-    virtual ~CCDrawNode() = m1 0x600c84;
+    virtual ~CCDrawNode() = imac 0x6ed690, m1 0x600c84;
 
     static cocos2d::CCDrawNode* create() = m1 0x600dcc;
 
@@ -1924,7 +1919,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     virtual void setString(char const*, bool) = imac 0x6ab0a0, m1 0x5c5a2c;
     virtual char const* getString() = imac 0x6ab2d0, m1 0x5c5c54;
     virtual void setCString(char const*) = imac 0x6ab320, m1 0x5c5c8c;
-    virtual void updateLabel() = imac 0x6abb60, m1 0x250c20;
+    virtual void updateLabel() = imac 0x6abb60, m1 0x5c6488;
     virtual void setAlignment(cocos2d::CCTextAlignment) = imac 0x6acc90, m1 0x5c71b4;
     virtual void setWidth(float) = imac 0x6accb0, m1 0x5c71c4;
     virtual void setLineBreakWithoutSpace(bool) = imac 0x6accd0, m1 0x5c71d4;
@@ -2045,7 +2040,7 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCAccelerometerDelegate, cocos2d::CCKeypadDelegate, cocos2d::CCKeyboardDelegate, cocos2d::CCMouseDelegate {
     // CCLayer(cocos2d::CCLayer const&);
     CCLayer() = imac 0x4a9260, m1 0x40f6cc;
-    virtual ~CCLayer() = imac 0x4a9420, m1 0x40f824;
+    virtual ~CCLayer() = imac 0x4a9420, m1 0x40f8fc;
 
     static cocos2d::CCLayer* create() = imac 0x4a9820, m1 0x40fae8;
 
@@ -5889,7 +5884,7 @@ class cocos2d::ZipUtils {
     static std::string base64URLDecode(std::string const&) = imac 0x1e9100;
     static std::string base64URLEncode(std::string const&) = imac 0x1e91e0;
     // static void ccDecodeEncodedPvr(unsigned int*, int);
-    static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out);
+    static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out, int level);
     // static int ccInflateCCZFile(char const*, unsigned char**);
     // static int ccInflateGZipFile(char const*, unsigned char**);
     // static int ccInflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3660, m1 0x1a91b0;
@@ -5897,13 +5892,18 @@ class cocos2d::ZipUtils {
     // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     // static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     // static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey);
+    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey, int level);
     static std::string decompressString(std::string const& data, bool encrypt, int encryptionKey) = imac 0x1e8a00, m1 0x19afac;
     static std::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1e86e0, m1 0x19ac8c;
     static std::string encryptDecrypt(std::string const& data, int encryptionKey) = inline;
     static std::string encryptDecryptWKey(std::string const&, std::string) = inline;
     static unsigned char hexToChar(std::string const&) = imac 0x1e9650, m1 0x19bc9c;
     static std::string urlDecode(std::string const&) = imac 0x1e92c0, m1 0x19b930;
+}
+
+[[link(win, android)]]
+class cocos2d::ParticleStruct {
+
 }
 
 [[link(win, android)]]
@@ -6009,4 +6009,3 @@ class pugi::xml_node {
     xml_node() = imac 0x717ff0, m1 0x627690;
     ~xml_node() = inline;
 }
-

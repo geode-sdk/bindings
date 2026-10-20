@@ -1,4 +1,7 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/CCLightStrip.hpp>
+
+#include <Geode/cocos/actions/CCActionManager.h>
+#include <Geode/mapping/CCEaseOut.hpp>
 
 CCLightStrip::CCLightStrip() {
     m_objectWidth = .0f;

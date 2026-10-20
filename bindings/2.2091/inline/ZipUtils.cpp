@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/ZipUtils.hpp>
 
 #if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
 std::string cocos2d::ZipUtils::encryptDecrypt(std::string const& p0, int p1) {

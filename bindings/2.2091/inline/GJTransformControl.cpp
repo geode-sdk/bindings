@@ -1,4 +1,9 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/GJTransformControl.hpp>
+#include <Geode/binding/GJTransformControlDelegate.hpp>
+#include <Geode/binding/GJTransformState.hpp>
+#include <Geode/binding/GameObject.hpp>
+#include <Geode/binding/GameObjectEditorState.hpp>
 
 #if defined(GEODE_IS_WINDOWS)
 GJTransformControl::GJTransformControl() {

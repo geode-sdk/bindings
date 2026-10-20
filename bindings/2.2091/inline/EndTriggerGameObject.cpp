@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/EndTriggerGameObject.hpp>
 
 EndTriggerGameObject::EndTriggerGameObject() {
     m_noEffects = false;

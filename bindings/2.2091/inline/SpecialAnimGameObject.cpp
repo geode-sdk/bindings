@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/SpecialAnimGameObject.hpp>
 
 SpecialAnimGameObject::SpecialAnimGameObject() {
     m_skipMainColorUpdate = false;
@@ -8,7 +8,7 @@ SpecialAnimGameObject::SpecialAnimGameObject() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool SpecialAnimGameObject::init(char const* frame) {
     if (!EnhancedGameObject::init(frame)) return false;
-    m_bUnkBool2 = false;
+    m_bDisableScheduling = false;
     return true;
 }
 #endif

@@ -1,4 +1,4 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/binding/UserInfoDelegate.hpp>
 
 void UserInfoDelegate::getUserInfoFinished(GJUserScore* score) {}
 

@@ -1,4 +1,6 @@
-#include <Geode/Bindings.hpp>
+#include <Geode/mapping/CCObject.hpp>
+#include <Geode/binding/SetItemIDLayer.hpp>
+#include <Geode/binding/LabelGameObject.hpp>
 
 SetItemIDLayer::SetItemIDLayer() {}
 
