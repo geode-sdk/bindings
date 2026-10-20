@@ -5589,6 +5589,8 @@ class EmoteSprite : cocos2d::CCSprite {
 
     int maxEmotesComment();
     int maxEmotesMessage();
+
+    EmoteDef* m_emoteDef;
 }
 
 [[link(android)]]
