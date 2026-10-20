@@ -3344,7 +3344,7 @@ class CustomMusicCell : CustomSongCell {
 
 [[link(android)]]
 class CustomSFXCell : TableViewCell, CustomSFXDelegate {
-    CustomSFXCell(char const* identifier, float width, float height) = ios inline;
+    CustomSFXCell(char const* identifier, float width, float height) = win 0x150870, ios inline;
     virtual ~CustomSFXCell() = win 0x1507d0;
 
     virtual bool init() = win 0x150900;
@@ -15809,7 +15809,7 @@ class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelega
 
     static MoreOptionsLayer* create() = win inline, m1 0x771d74, imac 0x87c820;
 
-    virtual bool init() = win 0x111610, imac 0x87ca40, m1 0x771f04;
+    virtual bool init() = win 0x2c2df0, imac 0x87ca40, m1 0x771f04;
     virtual void keyBackClicked() = win 0x9999999;
     virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x9999999;
     virtual void textInputReturn(CCTextInputNode* node) = win 0x9999999;
@@ -19294,7 +19294,7 @@ class SecretLayer5 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     void playWinSFX() = imac 0x471fc0, m1 0x3dd0e4;
     void showDialog(int index);
     void showFailAnimation() = imac 0x4719e0, m1 0x14948;
-    void showFirstDialog() = win 0x588070, imac 0x470370, m1 0x3db720;
+    void showFirstDialog() = win 0x58d1d0, imac 0x470370, m1 0x3db720;
     void showSuccessAnimation() = win 0x58b540, imac 0x4710e0, m1 0x3dc350;
     void showTextInput() = win 0x58c470, imac 0x471f50, m1 0x3dd078;
     void unlockUI() = imac 0x472230, m1 0x3dd380;
@@ -20296,7 +20296,7 @@ class SetupCheckpointPopup : SetupTriggerPopup {
 
     static SetupCheckpointPopup* create(CheckpointGameObject* object, cocos2d::CCArray* objects) = win inline;
 
-    bool init(CheckpointGameObject* object, cocos2d::CCArray* objects) = win 0x5fdf40, m1 0x348f6c;
+    bool init(CheckpointGameObject* object, cocos2d::CCArray* objects) = win 0x5ff1a0, m1 0x348f6c;
 }
 
 [[link(android)]]
@@ -20784,7 +20784,7 @@ class SetupObjectControlPopup : SetupTriggerPopup {
 
     static SetupObjectControlPopup* create(ObjectControlGameObject* object, cocos2d::CCArray* objects);
 
-    bool init(ObjectControlGameObject* object, cocos2d::CCArray* objects) = win 0x264f80;
+    bool init(ObjectControlGameObject* object, cocos2d::CCArray* objects) = win 0x609a80;
 }
 
 [[link(android)]]
@@ -20956,7 +20956,7 @@ class SetupPlatformerEndPopup : SetupTriggerPopup {
 
     static SetupPlatformerEndPopup* create(EndTriggerGameObject* object, cocos2d::CCArray* objects);
 
-    bool init(EndTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5af210, m1 0x4fd80c;
+    bool init(EndTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5b2cd0, m1 0x4fd80c;
 }
 
 [[link(android)]]
@@ -21208,7 +21208,7 @@ class SetupRotateCommandPopup : SetupTriggerPopup {
     virtual float triggerSliderValueFromValue(int tag, float value) = win 0x3af1c0, imac 0x2820, m1 0x2638;
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x164f00, imac 0x2b80, m1 0x28d0;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0xc02c0, m1 0x15ec;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x3adee0, m1 0x15ec;
     void onInfiniteDuration(cocos2d::CCObject* sender) = win 0x3af540, imac 0x26e0, m1 0x2538;
     void updateControlVisibility() = win 0x3af460, imac 0x2700, m1 0x2544;
 }
