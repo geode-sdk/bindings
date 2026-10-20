@@ -11,14 +11,15 @@ LevelPage::LevelPage() {
 }
 #endif
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+// technically correct BUT GJMoreGamesLayer is not available on Windows, which makes this much more annoying
+/*#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void LevelPage::onMoreGames(cocos2d::CCObject* sender) {
     GameManager::sharedState()->reportAchievementWithID("geometry.ach.moreGames", 100, false);
     auto layer = GJMoreGamesLayer::create();
     cocos2d::CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 100);
     layer->showLayer(false);
 }
-#endif
+#endif*/
 
 #if defined(GEODE_IS_WINDOWS)
 LevelPage::~LevelPage() {
