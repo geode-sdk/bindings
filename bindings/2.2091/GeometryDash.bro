@@ -15887,7 +15887,7 @@ class MoreSearchLayer : FLAlertLayer {
     void onCoins(cocos2d::CCObject* sender) = win 0x43ed00, imac 0x70b4f0, m1 0x61c278;
     void onCompleted(cocos2d::CCObject* sender) = win 0x43dae0;
     void onEpic(cocos2d::CCObject* sender) = win 0x43df70, imac 0x70b6d0, m1 0x61c448;
-    void onFeatured(cocos2d::CCObject* sender) win 0x43dd20;
+    void onFeatured(cocos2d::CCObject* sender) = win 0x43dd20;
     void onFollowed(cocos2d::CCObject* sender) = win inline, imac 0x70ba70, m1 0x61c810, ios inline;
     void onFriends(cocos2d::CCObject* sender) = win inline, imac 0x70bab0, m1 0x61c850, ios inline;
     void onInfo(cocos2d::CCObject* sender) = win 0x4403a0, imac 0x70b9c0, m1 0x61c734;
