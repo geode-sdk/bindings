@@ -21,25 +21,6 @@ CCMenuItemToggler* CollisionBlockPopup::createToggleButton(std::string label, co
 }
 #endif
 
-#if defined(GEODE_IS_WINDOWS)
-void CollisionBlockPopup::determineStartValues() {
-    if (m_gameObject) {
-        m_blockID = m_gameObject->m_itemID;
-        m_dynamicBlock = m_gameObject->m_isDynamicBlock;
-    }
-    else if (m_gameObjects && m_gameObjects->count() != 0) {
-        m_blockID = -1;
-        m_dynamicBlock = true;
-        for (int i = 0; i < m_gameObjects->count(); i++) {
-            auto obj = static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i));
-            if (!obj->m_isDynamicBlock) m_dynamicBlock = false;
-            if (m_blockID == -1) m_blockID = obj->m_itemID;
-            else if (m_blockID != obj->m_itemID) m_blockID = 0;
-        }
-    }
-}
-#endif
-
 #if defined(GEODE_IS_IOS)
 #endif
 

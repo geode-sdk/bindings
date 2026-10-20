@@ -2273,7 +2273,6 @@ class CollisionBlockPopup : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0xa5170;
 
     CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win inline, imac 0x597020, m1 0x4e6adc, ios inline;
-    void determineStartValues() = win inline;
     bool init(EffectGameObject* object, cocos2d::CCArray* objects);
     void onClose(cocos2d::CCObject* sender) = win 0x60cea0;
     void onDynamicBlock(cocos2d::CCObject* sender);
