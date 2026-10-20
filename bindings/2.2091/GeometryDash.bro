@@ -1013,7 +1013,7 @@ class BoomScrollLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void selectPage(int page) = win inline, imac 0x38ffb0, m1 0x31a374;
     void setDotScale(float scale) = win inline, imac 0x38f390, m1 0x3198b0;
     void setPagesIndicatorPosition(cocos2d::CCPoint pos) = win inline, imac 0x38e6c0, m1 0x318c28;
-    void setupDynamicScrolling(cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = imac 0x38ee80, m1 0x3193c0;
+    void setupDynamicScrolling(cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x40ec0, imac 0x38ee80, m1 0x3193c0;
     void togglePageIndicators(bool visible) = imac 0x38f9f0, m1 0x319dac;
     void updateDots(float dt) = win 0x41290, imac 0x38f0f0, m1 0x319624;
     void updatePages() = win 0x41170, imac 0x38e6f0, m1 0x318c50;
@@ -1097,7 +1097,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
     virtual void keyBackClicked() = win 0x5f0f00, imac 0x4e54e0, m1 0x4441ac;
     virtual void onBack(cocos2d::CCObject* sender) = win 0x5f0f20, imac 0x4e5520, m1 0x4441d0;
 
-    void addObjectToPage(cocos2d::CCObject* object, int page) = imac 0x4e4e40, m1 0x443b48;
+    void addObjectToPage(cocos2d::CCObject* object, int page) = win 0x5f1da0, imac 0x4e4e40, m1 0x443b48;
     void addPrefabMenuItem(SmartPrefabResult result, int index) = win 0x5eff20, imac 0x4e4490, m1 0x4431a8;
     void baseSetup() = win 0x102320, imac 0x4e4150, m1 0x442e88;
     void createDots() = win inline, imac 0x4e4f10, m1 0x443c38;
@@ -1663,7 +1663,7 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual bool touchInsideClip(cocos2d::CCPoint const&) = win 0x4bc20, imac 0x41c2e0, m1 0x39446c;
 
     void constraintContent() = win 0x9999999, imac 0x41b670, m1 0x393894;
-    void doConstraintContent(bool instant) = imac 0x41b680, m1 0x39389c;
+    void doConstraintContent(bool instant) = win 0x4af80, imac 0x41b680, m1 0x39389c;
     float getMaxY() = win inline, imac 0x41b110, m1 0x39343c;
     float getMinY() = win inline, imac 0x41b120, m1 0x393444, ios inline;
     void moveToTop() = win 0x4ae30, imac 0x41b210, m1 0x393540;
@@ -3564,7 +3564,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void positionInfoObjects() = win 0x16a6f0, imac 0x6f9380, m1 0x60b184;
     void processNextMultiAsset() = win 0x16e4d0, imac 0x6fd7e0, m1 0x60f24c;
     void setMultiAssetFilesize(int, int);
-    void showError(bool fast) = imac 0x6fafe0, m1 0x60cd10;
+    void showError(bool fast) = win 0x16ead0, imac 0x6fafe0, m1 0x60cd10;
     void startDownload() = win 0x16bb80, imac 0x6fb6d0, m1 0x5d1a30;
     void startMonitorDownload() = win inline, imac 0x6faaf0;
     void startMultiAssetDownload() = win 0x16e310, imac 0x6fb370, m1 0x60d074;
@@ -4231,7 +4231,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onShare(cocos2d::CCObject* sender) = win 0x17b9b0, imac 0x37c790, m1 0x794f60;
     void onTest(cocos2d::CCObject* sender) = win inline, ios inline;
     void onUpdateDescription(cocos2d::CCObject* sender) = imac 0x1df5e0, m1 0x19447c;
-    void playStep2() = m1 0x194330;
+    void playStep2() = win 0x17b440, m1 0x194330;
     void playStep3();
     void setupLevelInfo() = win 0x179dc0, imac 0x1dec70, m1 0x1928d4;
     void updateDescText(char const* text) = win inline, imac 0x1de490, m1 0x1921a4, ios inline;
