@@ -2643,18 +2643,18 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     void incrementDislikes() = win inline, imac 0x23e550, m1 0x1e9ae4, ios inline;
     void incrementLikes() = win inline, imac 0x23e4a0, m1 0x1e9a30, ios inline;
     void loadFromComment(GJComment* comment) = win 0x151ea0, imac 0x22d440, m1 0x1d9f24;
-    void onBulkSelectToggle(cocos2d::CCObject* sender);
+    void onBulkSelectToggle(cocos2d::CCObject* sender) = win 0x154850;
     void onConfirmDelete(cocos2d::CCObject* sender) = win 0x154b90, imac 0x23e0d0, m1 0x1e9690;
     void onDelete() = win inline;
     void onGoToLevel(cocos2d::CCObject* sender);
     void onLike(cocos2d::CCObject* sender);
-    void onMoreOptions(cocos2d::CCObject* sender);
+    void onMoreOptions(cocos2d::CCObject* sender) = win 0x154d10;
     void onUndelete() = win inline, imac 0x23e780, m1 0x1e9cdc, ios inline;
     void onUnhide(cocos2d::CCObject* sender) = win 0x1550b0, imac 0x23df50, m1 0x1e9538;
     void onViewProfile(cocos2d::CCObject* sender) = imac 0x23ddd0, m1 0x1e93c0;
     void updateBGColor(int index) = win inline, imac 0x22f7a0, m1 0x1dbe34;
     TodoReturn updateBulkToggle();
-    void updateLabelValues() = win 0x1b0e60, imac 0x23e620, m1 0x1e9ba0;
+    void updateLabelValues() = win 0x154ad0, imac 0x23e620, m1 0x1e9ba0;
 
     cocos2d::CCSprite* m_iconSprite;
     cocos2d::CCLabelBMFont* m_likeLabel;
@@ -2662,6 +2662,9 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     bool m_accountComment;
     bool m_unk259;
     bool m_compactMode;
+    win {
+        CCMenuItemToggler* m_bulkSelectToggle;
+    }
 }
 
 [[link(android)]]
@@ -10181,7 +10184,7 @@ class GJComment : cocos2d::CCNode {
     ~GJComment() = win inline, imac 0x58e4c0, m1 0x4de91c;
 
     static GJComment* create() = win inline, imac 0x58e580, m1 0x4de9c0;
-    static GJComment* create(cocos2d::CCDictionary* dict) = win 0x17cfa0, imac 0x56b180, m1 0x4be0f4;
+    static GJComment* create(cocos2d::CCDictionary* dict) = win 0x270a60, imac 0x56b180, m1 0x4be0f4;
 
     virtual bool init() = win 0x271920, imac 0x58e680, m1 0x4dea88;
 
@@ -10197,10 +10200,18 @@ class GJComment : cocos2d::CCNode {
     bool m_commentDeleted;
     int m_percentage;
     int m_modBadge;
+    win {
+        bool m_isFriend;
+    }
     cocos2d::ccColor3B m_color;
     bool m_hasLevelID;
     bool m_unkMultiplayerBool;
     bool m_canDelete;
+    win {
+        int m_commentType;
+        bool m_isSelected;
+        int m_unk1d4;
+    }
     GJUserScore* m_userScore;
 }
 
