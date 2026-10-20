@@ -470,27 +470,6 @@ int EditorUI::editorLayerForArray(cocos2d::CCArray* objects, bool layer2) {
     return currentLayer != -1 ? currentLayer : 0;
 }
 
-void EditorUI::enableButton(CreateMenuItem* button) {
-    auto sprite = static_cast<ButtonSprite*>(button->getNormalImage());
-    if (sprite->m_subBGSprite) sprite->m_subBGSprite->setColor({ 255, 255, 255 });
-    else if (sprite->m_BGSprite) sprite->m_BGSprite->setColor({ 255, 255, 255 });
-    if (button->m_objectID < 0) return;
-    auto object = static_cast<EffectGameObject*>(sprite->m_subSprite);
-    if (object->m_classType == GameObjectClassType::Effect && object->isColorObject() && object->m_shouldPreview) {
-        object->setObjectColor({ 200, 200, 255 });
-    }
-    else {
-        auto objectID = object->m_objectID;
-        if (objectID == 918 || objectID == 919 || (objectID != 1584 && objectID != 2012) && object->getMainColorMode() != 1010) {
-            object->setObjectColor({ 255, 255, 255 });
-        }
-        else {
-            object->setObjectColor({ 0, 0, 0 });
-        }
-    }
-    object->setChildColor({ 200, 200, 255 });
-}
-
 CreateMenuItem* EditorUI::getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) {
     const char* backgroundImage;
     switch (background) {
@@ -501,7 +480,7 @@ CreateMenuItem* EditorUI::getCreateMenuItemButton(cocos2d::CCSprite* sprite, coc
         case 6: backgroundImage = "GJ_button_06.png"; break;
         default: backgroundImage = "GJ_button_01.png"; break;
     }
-    auto buttonSprite = ButtonSprite::create(sprite, 32, 0, 32.f, 1.f, true, backgroundImage, true);
+    auto buttonSprite = ButtonSprite::create(sprite, 32, 0, 32.f, 1.f, true, backgroundImage, true, 0.f);
     auto button = CreateMenuItem::create(buttonSprite, nullptr, this, selector);
     button->setScale(scale);
     button->m_baseScale = scale;
@@ -593,17 +572,6 @@ bool EditorUI::positionIsInSnapped(cocos2d::CCPoint position) {
 
 cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
     return object->getPosition() - this->getRelativeOffset(object);
-}
-
-void EditorUI::recreateButtonTabs() {
-    m_reloadItems = false;
-    auto gameManager = GameManager::sharedState();
-    auto buttonsPerRow = gameManager->getIntGameVariable(GameVar::EditorButtonsPerRow);
-    auto buttonRows = gameManager->getIntGameVariable(GameVar::EditorButtonRows);
-    for (int i = 0; i < m_createButtonBars->count(); i++) {
-        static_cast<EditButtonBar*>(m_createButtonBars->objectAtIndex(i))->reloadItems(buttonsPerRow, buttonRows);
-    }
-    m_editButtonBar->reloadItems(buttonsPerRow, buttonRows);
 }
 
 void EditorUI::resetObjectEditorValues(cocos2d::CCArray* objects) {

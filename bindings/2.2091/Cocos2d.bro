@@ -2040,7 +2040,7 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCAccelerometerDelegate, cocos2d::CCKeypadDelegate, cocos2d::CCKeyboardDelegate, cocos2d::CCMouseDelegate {
     // CCLayer(cocos2d::CCLayer const&);
     CCLayer() = imac 0x4a9260, m1 0x40f6cc;
-    virtual ~CCLayer() = imac 0x4a9420, m1 0x40f8fc;
+    virtual ~CCLayer() = imac 0x4a96d0, m1 0x40f8fc;
 
     static cocos2d::CCLayer* create() = imac 0x4a9820, m1 0x40fae8;
 
@@ -2121,8 +2121,8 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
     virtual bool initWithColor(cocos2d::ccColor4B const&) = imac 0x4ac1d0, m1 0x411e6c;
     virtual void updateColor() = imac 0x4ac370, m1 0x411fe8;
     virtual void setColor(cocos2d::ccColor3B const&) = imac 0x4ac490, m1 0x412130;
-    virtual void setOpacity(unsigned char) = imac 0x376d40, m1 0x4122e4;
-    virtual void setBlendFunc(cocos2d::ccBlendFunc) = imac 0x4abaf0, m1 0x194680;
+    virtual void setOpacity(unsigned char) = imac 0x4ac610, m1 0x4122e4;
+    virtual void setBlendFunc(cocos2d::ccBlendFunc) = imac 0x4abaf0, m1 0x4118e4;
     virtual cocos2d::ccBlendFunc getBlendFunc() = imac 0x4abad0, m1 0x4118d4;
 
     void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = imac 0x4ac240, m1 0x411ed8;
@@ -2202,7 +2202,7 @@ class cocos2d::CCLayerRGBA : cocos2d::CCLayer, cocos2d::CCRGBAProtocol {
     virtual bool init() = imac 0x4aacd0, m1 0x410e18;
     virtual void setColor(cocos2d::ccColor3B const&) = imac 0x4aaf10, m1 0x411050;
     virtual cocos2d::ccColor3B const& getColor() = imac 0x4aaed0, m1 0x411030;
-    virtual cocos2d::ccColor3B const& getDisplayedColor() = imac 0x4aaef9, m1 0x411040;
+    virtual cocos2d::ccColor3B const& getDisplayedColor() = imac 0x4aaef0, m1 0x411040;
     virtual unsigned char getDisplayedOpacity() = imac 0x4aad70, m1 0x410eb4;
     virtual unsigned char getOpacity() = imac 0x4aad50, m1 0x410ea4;
     virtual void setOpacity(unsigned char) = imac 0x4aad90, m1 0x410ec4;
@@ -2327,7 +2327,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x6d77b0, m1 0x5cd9b0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8740b0;
-    void giveMenuTouchPriority(int) = m1 0x346e98;
+    void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0;
     bool initWithArray(cocos2d::CCArray*) = imac 0x8738a0, m1 0x769e84;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x873e40, m1 0x76a440;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0xd98c0, m1 0x76b5d4;
