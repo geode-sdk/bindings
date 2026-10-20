@@ -3788,7 +3788,7 @@ class DeathStatsPopup : SetupTriggerPopup {
     virtual void keyBackClicked() = win 0xa6580;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x11fb20;
 
-    bool init(LevelEditorLayer*);
+    bool init(LevelEditorLayer*) = win 0x11e430;
     void onClearFetched(cocos2d::CCObject* sender);
     void onClearLocal(cocos2d::CCObject* sender);
     void onFetch(cocos2d::CCObject* sender);
