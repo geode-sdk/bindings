@@ -16950,6 +16950,10 @@ class ParentalGateLayer : NumberInputLayer {
     virtual void onDone(cocos2d::CCObject* sender) = win 0x4d3ee0;
 
     void generateChallenge() = win 0x4d3d00;
+
+    std::string m_inputtedValue;
+    void* m_unknown; // this may be incorrect
+    int m_solution;
 }
 
 [[link(android)]]
