@@ -662,13 +662,13 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     static AppDelegate* get() = win inline, imac 0x73b8f0;
 
     virtual bool applicationDidFinishLaunching() = win 0x981f0, imac 0x73b760, m1 0x6491e8;
-    virtual void applicationDidEnterBackground();
+    virtual void applicationDidEnterBackground() = win 0x98630;
     virtual void applicationWillEnterForeground() = win 0x98810, imac 0x73bb40, m1 0x649588;
     virtual void applicationWillBecomeActive() = win 0x98560, imac 0x73b920, m1 0x649398;
     virtual void applicationWillResignActive() = imac 0x73b940;
     virtual void trySaveGame(bool force) = win 0x98ad0, imac 0x73bc70, m1 0x64969c;
-    virtual void willSwitchToScene(cocos2d::CCScene* scene);
-    virtual void applicationWillTerminate();
+    virtual void willSwitchToScene(cocos2d::CCScene* scene) = win 0x98cc0;
+    virtual void applicationWillTerminate() = win 0x985c0;
 
     float bgScale() = win inline, imac 0x73b8d0;
     void checkSound() = win inline;
@@ -676,7 +676,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     void loadingIsFinished() = win inline;
     bool musicTest() = win 0x9999999, m1 0xbb6c;
     void pauseGame() = win 0x989f0;
-    void pauseSound();
+    void pauseSound() = win inline;
     void platformShutdown() = imac 0x73b650, m1 0x6490f0, ios inline;
     void resumeSound() = win 0x9999999;
     void setIdleTimerDisabled(bool disabled) = win inline, m1 0x421e10, ios inline;
@@ -4358,7 +4358,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void onUnlockAllLayers(cocos2d::CCObject* sender);
     void playStep2() = win 0x182630, imac 0x27f2d0, m1 0x224ac8;
     void playStep3() = win 0x182760, imac 0x27f3a0, m1 0x224b98;
-    void saveLevel() = imac 0x27f290, m1 0x224a8c;
+    void saveLevel() = win inline, imac 0x27f290, m1 0x224a8c;
     void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x27eaa0, m1 0x2242d4;
     void toggleDebugDraw(cocos2d::CCObject* sender) = imac 0x27f070, m1 0x2248ac;
     void toggleEditorBackground(cocos2d::CCObject* sender) = win inline, imac 0x27f120, m1 0x224948, ios inline;
@@ -6229,7 +6229,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     virtual void update(float dt) = win 0x5e180, imac 0x3cbc20, m1 0x34f670;
 
     void activateQueuedMusic(int channel) = win inline, imac 0x3d6880, m1 0x35824c;
-    FMOD::Channel* channelForChannelID(int id) = win 0x9999999, imac 0x3cb1c0, m1 0x34ef04;
+    FMOD::Channel* channelForChannelID(int id) = win 0x60f50, imac 0x3cb1c0, m1 0x34ef04;
     FMOD::Channel* channelForUniqueID(int id) = win inline, imac 0x3d2cc0, m1 0x355064, ios inline;
     int channelIDForUniqueID(int id) = win 0x9999999, m1 0x35433c;
     void channelLinkSound(int id, FMODSound* sound) = win inline, imac 0x3d2130, m1 0x35474c;
@@ -6295,10 +6295,10 @@ class FMODAudioEngine : cocos2d::CCNode {
     void resumeAllAudio() = win inline, imac 0x3cb3e0;
     void resumeAllEffects() = win inline, m1 0x7e69c;
     void resumeAllMusic() = win 0x62ab0, imac 0x3d4040, m1 0x356154;
-    void resumeAudio() = win inline;
+    void resumeAudio() = win 0x5dfc0;
     void resumeEffect(unsigned int effect) = win inline, imac 0xc3e20, ios inline;
     void resumeMusic(int musicChannel) = win inline, imac 0x3cecc0, m1 0x351cb4;
-    TodoReturn resumeSuspendedAudio();
+    TodoReturn resumeSuspendedAudio() = win 0x5e030;
     void saveAudioState(FMODAudioState& state) = win 0x101280, imac 0x3ccec0, m1 0x3506ec;
     void setBackgroundMusicVolume(float volume) = win inline, imac 0x3d3ee0, m1 0x356010;
     void setChannelPitch(int id, AudioTargetType type, float pitch) = win 0x61d70, imac 0x3d08a0, m1 0x353270;
@@ -7381,7 +7381,7 @@ class GameManager : GManager {
     TodoReturn addRecentEmote(char const*);
     void addToGJLog(cocos2d::CCString* str) = win inline, imac 0x370180, m1 0x2fd014, ios inline;
     void applicationDidEnterBackground() = win inline, imac 0x376570, m1 0x3027f4;
-    void applicationWillEnterForeground() = imac 0x376580, m1 0x3027f8;
+    void applicationWillEnterForeground() = win 0x286b50, imac 0x376580, m1 0x3027f8;
     void calculateBaseKeyForIcons() = win inline, imac 0x35ff60, m1 0x2eec88;
     bool canShowRewardedVideo() = imac 0x369670, m1 0x2f6c80;
     void checkSteamAchievementUnlock() = imac 0x3632f0, m1 0x2f1d50, ios inline;
@@ -8559,7 +8559,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasSecretCoin(char const* key) = win 0x9999999;
     bool hasUserCoin(char const* key) = win 0x9999999;
     void incrementActivePath(int amount) = win inline, imac 0x30f50, m1 0x2a9d4;
-    void incrementChallenge(GJChallengeType type, int amount) = imac 0x30d00, m1 0x2a3e4;
+    void incrementChallenge(GJChallengeType type, int amount) = win 0x2e5ae0, imac 0x30d00, m1 0x2a3e4;
     void incrementStat(char const* key) = win inline, imac 0x2c650, m1 0x2696c;
     void incrementStat(char const* key, int amount) = win 0x2da460, imac 0x2c660, m1 0x26974;
     bool isDailyRecall(int) = win 0x2e7080;
@@ -8620,8 +8620,8 @@ class GameStatsManager : cocos2d::CCNode {
     void tempClear() = win inline, imac 0x36400, m1 0x300b8, ios inline;
     void toggleEnableItem(UnlockType type, int id, bool enabled) = win 0x2e9810, imac 0x3d970, m1 0x3753c;
     void tryFixPathBug() = win 0x2da780, imac 0x316b0, m1 0x2b2d4;
-    void trySelectActivePath() = win 0x9999999, imac 0x31220, m1 0x2ad24;
-    void uncompleteLevel(GJGameLevel* level) = win 0x9999999, m1 0x2d8b0;
+    void trySelectActivePath() = win 0x2da5f0, imac 0x31220, m1 0x2ad24;
+    void uncompleteLevel(GJGameLevel* level) = win 0x2e2450, m1 0x2d8b0;
     TodoReturn unlockDailyRecall(int);
     void unlockGauntlet(int id) = win inline, imac 0x3e630, m1 0x3823c, ios inline;
     GJRewardItem* unlockGauntletChest(int id) = win inline, imac 0x3e790, m1 0x383c4;
@@ -8763,7 +8763,7 @@ class GameToolbox {
     static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, imac 0x4eacd0, m1 0x448fb0;
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x70ad0, imac 0x4ef2c0, m1 0x44d364;
     static bool saveStringToFile(std::string const&, std::string const&, bool, bool) = win inline, ios inline;
-    static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*);
+    static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = win 0x6cdd0;
     static void setOnOffSprite(cocos2d::CCNode*, bool);
     static TodoReturn showFolderDialog(char const*, std::string&);
     static TodoReturn showOpenFileDialog(char const*, char const*, std::string const&, std::string&);
@@ -13024,7 +13024,7 @@ class GManager : cocos2d::CCNode {
     void saveData(DS_Dictionary* dict, std::string filename) = win inline;
     void saveGMTo(std::string, bool) = win inline;
     bool tryLoadData(DS_Dictionary* dict, std::string const& filename) = win inline, imac 0x4a57e0, m1 0x40c998;
-    TodoReturn waitForSave(double);
+    void waitForSave(double) = win 0x777c0;
 
     std::string m_fileName;
     bool m_setup;
@@ -15456,7 +15456,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     virtual ~LocalLevelManager() = win 0x46ab30;
 
     static LocalLevelManager* get() = inline;
-    static LocalLevelManager* sharedState() = win 0x9999999;
+    static LocalLevelManager* sharedState() = win 0x46ac00;
 
     virtual bool init() = win 0x46ad90, imac 0x6c98a0, m1 0x5e1874;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x46b790, m1 0x7ee990;
@@ -15662,10 +15662,10 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void onNewgrounds(cocos2d::CCObject* sender) = win 0x475020, imac 0x37c460, m1 0x307e00;
     void onNews(cocos2d::CCObject* sender) = win 0x474480;
     void onOptions(cocos2d::CCObject* sender) = win 0x474c20, imac 0x37c3e0, m1 0x307d68;
-    void onOptionsInstant() = imac 0x37acb0, m1 0x306678;
+    void onOptionsInstant() = win 0x474c30, imac 0x37acb0, m1 0x306678;
     void onPlay(cocos2d::CCObject* sender) = win 0x474b80, imac 0x37c210;
     void onQuit(cocos2d::CCObject* sender) = win 0x475160, imac 0x37c640, m1 0x307ff8;
-    void onReportQueue(cocos2d::CCObject* sender);
+    void onReportQueue(cocos2d::CCObject* sender) = win 0x473cd0;
     void onRobTop(cocos2d::CCObject* sender) = win 0x474360, imac 0x37c530, m1 0x307ed8;
     void onStats(cocos2d::CCObject* sender) = win 0x474de0, imac 0x37c420, m1 0x307db4;
     void onTrailer(cocos2d::CCObject* sender) = win inline, imac 0x37cfa0, m1 0x308888, ios inline;
@@ -15884,21 +15884,21 @@ class MoreSearchLayer : FLAlertLayer {
     void audioPrevious(cocos2d::CCObject* sender) = win 0x43fab0, imac 0x70b8e0, m1 0x61c658;
     CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler callback, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win 0x4404e0;
     void onClose(cocos2d::CCObject* sender) = win 0x43ef40, imac 0x70b130, m1 0x61be5c;
-    void onCoins(cocos2d::CCObject* sender) = imac 0x70b4f0, m1 0x61c278;
-    void onCompleted(cocos2d::CCObject* sender);
-    void onEpic(cocos2d::CCObject* sender) = imac 0x70b6d0, m1 0x61c448;
-    void onFeatured(cocos2d::CCObject* sender);
+    void onCoins(cocos2d::CCObject* sender) = win 0x43ed00, imac 0x70b4f0, m1 0x61c278;
+    void onCompleted(cocos2d::CCObject* sender) = win 0x43dae0;
+    void onEpic(cocos2d::CCObject* sender) = win 0x43df70, imac 0x70b6d0, m1 0x61c448;
+    void onFeatured(cocos2d::CCObject* sender) win 0x43dd20;
     void onFollowed(cocos2d::CCObject* sender) = win inline, imac 0x70ba70, m1 0x61c810, ios inline;
     void onFriends(cocos2d::CCObject* sender) = win inline, imac 0x70bab0, m1 0x61c850, ios inline;
     void onInfo(cocos2d::CCObject* sender) = win 0x4403a0, imac 0x70b9c0, m1 0x61c734;
-    void onLegendary(cocos2d::CCObject* sender) = imac 0x70b710, m1 0x61c488;
-    void onMythic(cocos2d::CCObject* sender) = imac 0x70b750, m1 0x61c4c8;
-    void onNoStar(cocos2d::CCObject* sender);
-    void onOriginal(cocos2d::CCObject* sender) = imac 0x70b4b0, m1 0x61c238;
-    void onSongFilter(cocos2d::CCObject* sender) = imac 0x70b570, m1 0x61c2f8;
-    void onSongMode(cocos2d::CCObject* sender) = imac 0x70b790, m1 0x61c508;
-    void onTwoPlayer(cocos2d::CCObject* sender) = imac 0x70b530, m1 0x61c2b8;
-    void onUncompleted(cocos2d::CCObject* sender);
+    void onLegendary(cocos2d::CCObject* sender) = win 0x43e1b0, imac 0x70b710, m1 0x61c488;
+    void onMythic(cocos2d::CCObject* sender) = win 0x43e3f0, imac 0x70b750, m1 0x61c4c8;
+    void onNoStar(cocos2d::CCObject* sender) = win 0x43eac0;
+    void onOriginal(cocos2d::CCObject* sender) = win 0x43e630, imac 0x70b4b0, m1 0x61c238;
+    void onSongFilter(cocos2d::CCObject* sender) = win 0x440750, imac 0x70b570, m1 0x61c2f8;
+    void onSongMode(cocos2d::CCObject* sender) = win 0x43fd50, imac 0x70b790, m1 0x61c508;
+    void onTwoPlayer(cocos2d::CCObject* sender) = win 0x43e880, imac 0x70b530, m1 0x61c2b8;
+    void onUncompleted(cocos2d::CCObject* sender) = win 0x43d880;
     void selectSong(int songID) = win 0x43fbf0, imac 0x70bc30, m1 0x61c988;
     void toggleSongNodes(bool custom, bool disable) = win 0x440250, imac 0x70baf0, m1 0x61c890;
     void updateAudioLabel() = win 0x491720, imac 0x70bc80, m1 0x61c9d0;
@@ -18731,7 +18731,7 @@ class ReportPopupConfig {
 class ReportQueuePopup : PagedListPopup, CommentAdminDelegate, DropdownDelegate {
     virtual ~ReportQueuePopup() = win 0xc74e0;
 
-    static ReportQueuePopup* create();
+    static ReportQueuePopup* create() = win inline;
 
     virtual bool init() = win 0xc7640;
     virtual void rebuildContent() = win 0x9999999;
