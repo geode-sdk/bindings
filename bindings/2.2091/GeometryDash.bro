@@ -16796,7 +16796,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     void onHelp(cocos2d::CCObject* sender) = m1 0x770f8c;
     void onMenuMusic(cocos2d::CCObject* sender) = win 0x4cba10, imac 0x87b8a0, m1 0x7715fc;
     void onOptions(cocos2d::CCObject* sender) = m1 0x770fa8, imac 0x87b840;
-    void onParental(cocos2d::CCObject* sender) = m1 0x770ffc;
+    void onParental(cocos2d::CCObject* sender) = win 0x4cbc60, m1 0x770ffc;
     void onProgressBar(cocos2d::CCObject* sender) = win inline, imac 0x87c520, ios inline;
     void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0, m1 0x770fe8;
     void onRecordReplays(cocos2d::CCObject* sender) = win inline, imac 0x87bb40, ios inline;
