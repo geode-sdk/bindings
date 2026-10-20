@@ -8438,7 +8438,7 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     void addGVToggle(char const* name, char const* gameVar, char const* desc) = imac 0x601840, m1 0x54726c; // inlined on macos
     void addSpecialContent() = imac 0x6005e0, m1 0x546110;
     void addToggle(char const* name, int id, char const* desc, bool disabled) = imac 0x6018b0, m1 0x5472f0;
-    void buildTabContent() = imac 0x5fe890, m1 0x544098;
+    void buildTabContent() = win 0x2c2df0, imac 0x5fe890, m1 0x544098;
     TodoReturn didChangeGV(char const*, bool);
     bool init(GJBaseGameLayer*, int) = imac 0x5fe4c0, m1 0x543c5c;
     TodoReturn nextPosition(int);
@@ -15809,7 +15809,7 @@ class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelega
 
     static MoreOptionsLayer* create() = win inline, m1 0x771d74, imac 0x87c820;
 
-    virtual bool init() = win 0x2c2df0, imac 0x87ca40, m1 0x771f04;
+    virtual bool init() = imac 0x87ca40, m1 0x771f04;
     virtual void keyBackClicked() = win 0x9999999;
     virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x9999999;
     virtual void textInputReturn(CCTextInputNode* node) = win 0x9999999;
