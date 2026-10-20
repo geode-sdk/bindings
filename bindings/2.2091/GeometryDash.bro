@@ -5204,11 +5204,11 @@ class EditorWindowPopup : SetupTriggerPopup {
     EditorWindowPopup() = win 0x9999999;
 
     virtual void onExit() = win 0x17fcc0;
-    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x17eca0;
-    virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x17f360;
-    virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x17f7c0;
-    virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0x17f980;
-    virtual void keyDown(cocos2d::enumKeyCodes, double) = win 0x17faf0;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17eca0;
+    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17f360;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17f7c0;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17f980;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x17faf0;
     virtual void show() = win 0x17fcb0;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x17fd00;
     virtual void textInputClosed(CCTextInputNode*) = win 0x17fc80;
@@ -5216,10 +5216,12 @@ class EditorWindowPopup : SetupTriggerPopup {
     virtual void onBuildWindowContent() = win 0x9999999;
     virtual void onWindowResized() = win 0x3f5c0;
     virtual TodoReturn onFieldEnter() = win 0x17fc70;
+    bool initWindow(EditorUI* editorUI, float width, float height, int windowID, int unused) = win 0x17dde0, m1 0x7e73f4;
+    bool beginTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17edd0;
+    bool isInCloseButton(cocos2d::CCPoint point) = win 0x17e7f0;
 
     TodoReturn activeField();
     TodoReturn applyWindowSize();
-    TodoReturn beginTouch(cocos2d::CCTouch*, cocos2d::CCEvent*);
     TodoReturn blurField();
     TodoReturn clampWindowCenter(cocos2d::CCPoint);
     TodoReturn clampWindowOnScreen(cocos2d::CCPoint);
@@ -5227,8 +5229,6 @@ class EditorWindowPopup : SetupTriggerPopup {
     TodoReturn dismissDropdowns();
     TodoReturn fieldHoldsKeys();
     TodoReturn getResizeCorner(cocos2d::CCPoint);
-    TodoReturn initWindow(EditorUI*, float, float, int, int);
-    bool isInCloseButton(cocos2d::CCPoint);
     bool isInDragHandle(cocos2d::CCPoint);
     TodoReturn layoutWindow();
     TodoReturn moveWindowTo(cocos2d::CCPoint);
