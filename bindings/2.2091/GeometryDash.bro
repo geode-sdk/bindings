@@ -15809,7 +15809,7 @@ class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelega
 
     static MoreOptionsLayer* create() = win inline, m1 0x771d74, imac 0x87c820;
 
-    virtual bool init() = imac 0x87ca40, m1 0x771f04;
+    virtual bool init() = win 0x9999999, imac 0x87ca40, m1 0x771f04;
     virtual void keyBackClicked() = win 0x9999999;
     virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x9999999;
     virtual void textInputReturn(CCTextInputNode* node) = win 0x9999999;
