@@ -1,3 +1,5 @@
+#ifndef GEODE_IS_WINDOWS // no longer used in 2.209
+
 #include <Geode/binding/EditorOptionsLayer.hpp>
 
 EditorOptionsLayer::EditorOptionsLayer() {
@@ -23,3 +25,4 @@ EditorOptionsLayer* EditorOptionsLayer::create() {
 #if defined(GEODE_IS_IOS)
 #endif
 
+#endif

@@ -1,3 +1,5 @@
+#ifndef GEODE_IS_WINDOWS // not used in 2.209
+
 #include <Geode/binding/UIOptionsLayer.hpp>
 
 
@@ -19,3 +21,4 @@ GJUINode* UIOptionsLayer::getNode(int type) {
 #if defined(GEODE_IS_IOS)
 #endif
 
+#endif

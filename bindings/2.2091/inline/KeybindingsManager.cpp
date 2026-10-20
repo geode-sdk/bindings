@@ -1,3 +1,5 @@
+#ifndef GEODE_IS_WINDOWS // not used in 2.209
+
 #include <Geode/binding/KeybindingsManager.hpp>
 
 
@@ -46,3 +48,4 @@ void KeybindingsManager::firstSetup() {
 #if defined(GEODE_IS_IOS)
 #endif
 
+#endif
