@@ -2040,7 +2040,7 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
 class cocos2d::CCLayer : cocos2d::CCNode, cocos2d::CCTouchDelegate, cocos2d::CCAccelerometerDelegate, cocos2d::CCKeypadDelegate, cocos2d::CCKeyboardDelegate, cocos2d::CCMouseDelegate {
     // CCLayer(cocos2d::CCLayer const&);
     CCLayer() = imac 0x4a9260, m1 0x40f6cc;
-    virtual ~CCLayer() = imac 0x4a9420, m1 0x40f8fc;
+    virtual ~CCLayer() = imac 0x4a96d0, m1 0x40f8fc;
 
     static cocos2d::CCLayer* create() = imac 0x4a9820, m1 0x40fae8;
 
@@ -2121,8 +2121,8 @@ class cocos2d::CCLayerColor : cocos2d::CCLayerRGBA, cocos2d::CCBlendProtocol {
     virtual bool initWithColor(cocos2d::ccColor4B const&) = imac 0x4ac1d0, m1 0x411e6c;
     virtual void updateColor() = imac 0x4ac370, m1 0x411fe8;
     virtual void setColor(cocos2d::ccColor3B const&) = imac 0x4ac490, m1 0x412130;
-    virtual void setOpacity(unsigned char) = imac 0x376d40, m1 0x4122e4;
-    virtual void setBlendFunc(cocos2d::ccBlendFunc) = imac 0x4abaf0, m1 0x194680;
+    virtual void setOpacity(unsigned char) = imac 0x4ac610, m1 0x4122e4;
+    virtual void setBlendFunc(cocos2d::ccBlendFunc) = imac 0x4abaf0, m1 0x4118e4;
     virtual cocos2d::ccBlendFunc getBlendFunc() = imac 0x4abad0, m1 0x4118d4;
 
     void addToVertices(cocos2d::CCPoint, cocos2d::CCPoint, cocos2d::CCPoint) = imac 0x4ac240, m1 0x411ed8;

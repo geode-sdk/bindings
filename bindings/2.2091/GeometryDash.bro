@@ -1650,7 +1650,7 @@ class CCPartAnimSprite : cocos2d::CCSprite {
 [[link(android), depends(CCContentLayer, cocos2d::CCTime)]]
 class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     CCScrollLayerExt(cocos2d::CCRect rect) = win 0x4a880, imac 0x41aad0, m1 0x392df4;
-    ~CCScrollLayerExt() = win 0x4aed0, imac 0x4b1330, m1 0x393638;
+    ~CCScrollLayerExt() = win 0x4aed0, imac 0x41b4c0, m1 0x393638;
 
     virtual void visit() = win 0x4baf0, imac 0x41c130, m1 0x39429c;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x4b410, imac 0x41b960, m1 0x393b58;
@@ -6158,12 +6158,12 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a610;
 
     [[missing(win)]]
-    virtual void onEnter() = win 0x5bcf0, imac 0x495640, m1 0x5e81f8;
+    virtual void onEnter() = win 0x5bcf0, imac 0x495640, m1 0x3fdce8;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b6e0, imac 0x494de0, m1 0x3fd45c;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b860, imac 0x495060, m1 0x3fd73c;
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b780, imac 0x494f00, m1 0x3fd5b4;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x5b7f0, imac 0x494fb0, m1 0x3fd678;
-    virtual void registerWithTouchDispatcher() = win 0x5bab0, imac 0x4952d0, m1 0x33876c;
+    virtual void registerWithTouchDispatcher() = win 0x5bab0, imac 0x4952d0, m1 0x3fd9b8;
     virtual void keyBackClicked() = win 0x5b550, imac 0x494d00, m1 0x3fd388;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b4c0, imac 0x494be0, m1 0x3fd278;
     virtual void rebuildContent() = inline;
@@ -8424,7 +8424,7 @@ class GameRateDelegate {
 
 [[link(android)]]
 class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
-    virtual ~GameSettingsLayer() = win 0x2c2530;
+    virtual ~GameSettingsLayer() = win 0x2c2530, imac 0x5fe120, m1 0x5439c0;
 
     static GameSettingsLayer* create(GJBaseGameLayer*, int) = imac 0x5fe320, m1 0x543b18;
 
@@ -9170,7 +9170,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activateEventTrigger(EventLinkTrigger* object, std::vector<int> const& remapKeys) = win 0x22ff90, imac 0x129380, m1 0x1019bc;
     void activateItemCompareTrigger(ItemTriggerGameObject* object, std::vector<int> const& remapKeys) = win 0x33d310, imac 0x12aa70, m1 0x102d10;
     void activateItemEditTrigger(ItemTriggerGameObject* object) = win 0x33cf40, imac 0x12a230, m1 0x1026d8;
-    void activateObjectControlTrigger(ObjectControlGameObject* object) = win inline, imac 0x261450;
+    void activateObjectControlTrigger(ObjectControlGameObject* object) = win inline;
     void activatePersistentItemTrigger(ItemTriggerGameObject* object) = win 0x33d730, imac 0x12b160, m1 0x103264;
     void activatePlayerControlTrigger(PlayerControlGameObject* object) = win 0x31eac0, imac 0x1077d0, m1 0xe5748;
     TodoReturn activateProgressTrigger(ProgressGameObject*);
@@ -15377,7 +15377,7 @@ class ListUploadDelegate {
 [[link(android)]]
 class LoadingCircle : cocos2d::CCLayerColor {
     LoadingCircle() = inline;
-    virtual ~LoadingCircle() = win 0x78680, imac 0x4ab790, m1 0x4116c4;
+    virtual ~LoadingCircle() = win 0x78680, imac 0x4b8120, m1 0x4116c4;
 
     static LoadingCircle* create() = win 0x78790, imac 0x4b8000, m1 0x41c688;
 
@@ -18989,7 +18989,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
 [[link(android)]]
 class ScrollingLayer : cocos2d::CCLayerColor {
     ScrollingLayer() = imac 0x7ffd70, m1 0x700854, inline;
-    virtual ~ScrollingLayer() = win 0x83870, imac 0x4ab790, m1 0x4116c4;
+    virtual ~ScrollingLayer() = win 0x83870, imac 0x144ec0, m1 0x1181f0;
 
     static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline, imac 0x7ff550, m1 0x700174;
 
@@ -21617,7 +21617,7 @@ class SetupTransformPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDelegate {
     SetupTriggerPopup() = win 0x9aaf0, inline;
-    ~SetupTriggerPopup() = win 0x60ac50;
+    ~SetupTriggerPopup() = win 0x60ac50, imac 0x2191e0, m1 0x1c8a08;
 
     static SetupTriggerPopup* create(float width, float height) = win inline, ios inline;
     static SetupTriggerPopup* create(EffectGameObject* trigger, cocos2d::CCArray* triggers, float width, float height, int background) = win inline, imac 0x2194a0, m1 0x1c8bc8, ios inline;
@@ -21656,8 +21656,8 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     void addInfoLabel(std::string text, float scale, cocos2d::CCPoint position, int page, int group) = win 0x60ea40, imac 0x2204b0, m1 0x1ce594;
     void addObjectsToGroup(cocos2d::CCArray* objects, int group) = win inline, m1 0x1c9c94;
     void addObjectsToPage(cocos2d::CCArray* objects, int page) = win inline, m1 0x1c9b40;
-    void addObjectToGroup(cocos2d::CCObject* object, int group) = win inline;
-    void addObjectToPage(cocos2d::CCObject* object, int page);
+    void addObjectToGroup(cocos2d::CCObject* object, int group) = win inline, imac 0x21a5a0, m1 0x1c9c24;
+    void addObjectToPage(cocos2d::CCObject* object, int page) = imac 0x21a420, m1 0x1c9ad0;
     void addTitle(std::string title) = win 0x60bc30, imac 0x21a720, m1 0x1c9d78;
     void closeInputNodes() = win inline, imac 0x21dcf0, m1 0x1cbec4, ios inline;
     void createCustomButton(int tag, std::string text, std::string frame, cocos2d::CCPoint position, float buttonScale, float labelScale, bool vertical, int page, int group) = win 0x60ec90, imac 0x2207b0, m1 0x1ce890;
@@ -23357,7 +23357,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
 [[link(android)]]
 class TabbedPopupLayer : SetupTriggerPopup {
-    virtual ~TabbedPopupLayer() = win 0x19cd00;
+    virtual ~TabbedPopupLayer() = win 0x19cd00, imac 0x5fdda0, m1 0x543738;
 
     virtual void pageChanged() = win 0x66d090;
     virtual void showTab(int tab) = win 0x66cc10, imac 0x63fc00, m1 0x57be84;
