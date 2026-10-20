@@ -643,22 +643,6 @@ void LevelEditorLayer::updateGridLayer() {
     }
 }
 
-void LevelEditorLayer::updatePreviewAnim() {
-    auto previewAnimations = GameManager::sharedState()->getGameVariable(GameVar::PreviewAnimations);
-    if (m_previewAnimations == previewAnimations) return;
-    m_previewAnimations = previewAnimations;
-    for (int i = 0; i < m_objects->count(); i++) {
-        auto object = static_cast<EnhancedGameObject*>(m_objects->objectAtIndex(i));
-        if (object->m_classType == GameObjectClassType::Animated) {
-            static_cast<AnimatedGameObject*>(object)->updateObjectAnimation();
-        }
-        if (!m_previewAnimations) {
-            if (object->getHasSyncedAnimation()) object->resetSyncedAnimation();
-            if (object->getHasRotateAction()) object->updateRotateAction(0.f);
-        }
-    }
-}
-
 bool LevelEditorLayer::validGroup(GameObject* object, bool checkLockedLayers) {
     int currentLayer = m_currentLayer;
     int editorLayer = object->m_editorLayer;

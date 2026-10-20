@@ -1,5 +1,6 @@
 #include <Geode/binding/EditorPauseLayer.hpp>
 #include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/KeybindingsLayer.hpp>
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/binding/EditorUI.hpp>
 
@@ -10,7 +11,7 @@ EditorPauseLayer::EditorPauseLayer() {
     m_editorLayer = nullptr;
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS)
 void EditorPauseLayer::doResetUnused() {
     m_editorLayer->resetUnusedColorChannels();
 }
@@ -25,7 +26,9 @@ void EditorPauseLayer::onCreateTemplate(cocos2d::CCObject* sender) {
         objects->addObjectsFromArray(selectedObjects);
     }
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorPauseLayer::toggleEditorBackground(cocos2d::CCObject* sender) {
     auto gameManager = GameManager::sharedState();
     gameManager->toggleGameVariable(GameVar::HideBackground);
@@ -68,6 +71,15 @@ EditorPauseLayer* EditorPauseLayer::create(LevelEditorLayer* layer) {
     }
     CC_SAFE_DELETE(ret);
     return nullptr;
+}
+
+void EditorPauseLayer::onKeybindings(cocos2d::CCObject* sender) {
+    KeybindingsLayer::create(nullptr)->show();
+}
+
+void EditorPauseLayer::togglePreviewAnim(cocos2d::CCObject* sender) {
+    GameManager::sharedState()->toggleGameVariable(GameVar::PreviewAnimations);
+    m_editorLayer->updatePreviewAnim();
 }
 #endif
 
