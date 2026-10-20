@@ -8674,8 +8674,7 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_completedLists;
     cocos2d::CCDictionary* m_weeklyChest;
     cocos2d::CCDictionary* m_eventChest;
-    // GS_33 dictionary
-    PAD = win 0x8;
+    cocos2d::CCDictionary* m_unlockedTimelyLevels;
     cocos2d::CCDictionary* m_treasureRoomChests;
     geode::SeedValueRSV m_bonusKey;
     cocos2d::CCDictionary* m_miscChests;
