@@ -332,7 +332,7 @@ GEODE_SIZE_CHECK(OptionsCell, 0x238);
 GEODE_SIZE_CHECK(OptionsLayer, 0x2a0);
 GEODE_SIZE_CHECK(OptionsObject, 0x78);
 GEODE_SIZE_CHECK(OptionsScrollLayer, 0x300);
-GEODE_SIZE_CHECK(PagedListPopup, 0x338);
+GEODE_SIZE_CHECK(PagedListPopup, 0x308);
 GEODE_SIZE_CHECK(ParentalGateLayer, 0x308);
 GEODE_SIZE_CHECK(ParentalOptionsLayer, 0x2f0);
 GEODE_SIZE_CHECK(ParentalPrivacyPopup, 0x2d8);

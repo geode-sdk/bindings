@@ -16878,6 +16878,8 @@ class PagedListPopup : FLAlertLayer {
     TodoReturn showStatus(char const*);
     TodoReturn updatePageArrows(bool, bool);
     TodoReturn updatePageUI(int, int, int);
+
+    PAD = win 0x70, android64 0x70, android32 0x4c;
 }
 
 [[link(android)]]
