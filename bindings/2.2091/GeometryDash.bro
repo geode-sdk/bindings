@@ -15669,6 +15669,9 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     cocos2d::CCLabelBMFont* m_profileLabel;
     CCMenuItemSpriteExtra* m_profileButton;
     void* m_unknown;
+    void* m_unknown2;
+    cocos2d::CCSprite* m_newsButton;
+    void* m_unknown3;
     MenuGameLayer* m_menuGameLayer;
 }
 
