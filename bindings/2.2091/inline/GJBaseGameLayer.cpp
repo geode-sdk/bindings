@@ -257,8 +257,8 @@ void GJBaseGameLayer::removeCustomEnterEffects(int id, bool enter) {
 
 void GJBaseGameLayer::resetRecordFull() {
     m_queuedRecordedButtons.clear();
-    m_unk3330.clear();
-    m_unk3370 = 0;
+    m_recordedCheckpoints.clear();
+    m_replayParseCounter = 0;
     m_queuedRecordedButtonsSize = 0;
     m_currentStep = 0;
 }
