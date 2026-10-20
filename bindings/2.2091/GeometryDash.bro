@@ -7343,6 +7343,8 @@ class GameLevelOptionsLayer : GJOptionsLayer, FLAlertLayerProtocol {
 [[link(android), depends(UIButtonConfig)]]
 class GameManager : GManager {
     virtual ~GameManager() = win 0x2880c0;
+    GameManager() = win 0x275a10;
+
 
     // GameManager() = win 0x17ab40, ios 0x32eafc;
     /// Gets the active GameManager
@@ -7534,7 +7536,7 @@ class GameManager : GManager {
     TodoReturn offlineModeEnabled();
     TodoReturn onlyCuratedLevels();
     void openEditorGuide() = win inline, imac 0x369e00;
-    TodoReturn parentalOptionsActive();
+    bool parentalOptionsActive() = win 0x27ed60;
     void playMenuMusic() = win 0x2766c0, imac 0x360390, m1 0xc9b4;
     int playSFXTrigger(SFXTriggerGameObject* object) = win 0x276b50, imac 0x360880, m1 0x2ef690;
     void prepareDPadSettings() = win 0x282620, imac 0x372200;
@@ -7600,7 +7602,7 @@ class GameManager : GManager {
     bool showInterstitial() = win inline, imac 0x369490, m1 0x2f6a94, ios inline;
     bool showInterstitialForced() = win inline, imac 0x369520, m1 0x2f6b38, ios inline;
     bool showMainMenuAd() = win inline, imac 0x3693e0, m1 0x2f6a10, ios inline;
-    TodoReturn showParentalRestrictedAlert();
+    void showParentalRestrictedAlert() = win 0x27edf0;
     void startUpdate() = win inline, imac 0x3600b0, m1 0x2eedc0;
     std::string stringForCustomObject(int customObjectID) = win 0x27f090, imac 0x36de50, m1 0x2fb2bc;
     TodoReturn subSpotlight();
@@ -16631,7 +16633,7 @@ class NumberInputDelegate {
 
 [[link(android)]]
 class NumberInputLayer : FLAlertLayer {
-    NumberInputLayer() = inline;
+    NumberInputLayer() = win 0x4a1060, inline;
     virtual ~NumberInputLayer() = win 0x4a11a0;
 
     static NumberInputLayer* create() = win inline;
@@ -16782,7 +16784,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     void onHelp(cocos2d::CCObject* sender) = m1 0x770f8c;
     void onMenuMusic(cocos2d::CCObject* sender) = win 0x4cba10, imac 0x87b8a0, m1 0x7715fc;
     void onOptions(cocos2d::CCObject* sender) = m1 0x770fa8, imac 0x87b840;
-    void onParental(cocos2d::CCObject* sender) = m1 0x770ffc;
+    void onParental(cocos2d::CCObject* sender) = win 0x4cbc60, m1 0x770ffc;
     void onProgressBar(cocos2d::CCObject* sender) = win inline, imac 0x87c520, ios inline;
     void onRate(cocos2d::CCObject* sender) = win 0x4cc4f0, m1 0x770fe8;
     void onRecordReplays(cocos2d::CCObject* sender) = win inline, imac 0x87bb40, ios inline;
@@ -16881,14 +16883,15 @@ class PagedListPopup : FLAlertLayer {
 
 [[link(android)]]
 class ParentalGateLayer : NumberInputLayer {
+    ParentalGateLayer() = win inline;
     virtual ~ParentalGateLayer() = win 0x4a11a0;
 
-    static ParentalGateLayer* create() = m1 0x77164c;
+    static ParentalGateLayer* create() = win 0x4d3ba0, m1 0x77164c;
 
     virtual bool init() = win 0x4d3ca0, m1 0x3f2a94;
     virtual void onDone(cocos2d::CCObject* sender) = win 0x4d3ee0;
 
-    TodoReturn generateChallenge();
+    void generateChallenge() = win 0x4d3d00;
 }
 
 [[link(android)]]
@@ -16896,7 +16899,7 @@ class ParentalOptionsLayer : FLAlertLayer {
     ParentalOptionsLayer() = inline;
     ~ParentalOptionsLayer() = win inline;
 
-    static ParentalOptionsLayer* create() = win inline;
+    static ParentalOptionsLayer* create() = win 0x4d13f0;
 
     virtual bool init() = win 0x4d1530;
     virtual void keyBackClicked() = win 0x4d3b90, m1 0x79b268;
