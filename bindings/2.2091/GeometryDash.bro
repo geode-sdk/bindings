@@ -9092,7 +9092,7 @@ class GJAssetDownloadAction {
     int m_status;
 }
 
-[[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint, cocos2d::CCParticleSystem, cocos2d::ParticleStruct)]]
+[[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint, PlayerTrailState, cocos2d::CCParticleSystem, cocos2d::ParticleStruct)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GJBaseGameLayer() = win 0x3eb6f0, m1 0x7cb6ec;
     ~GJBaseGameLayer() = win 0x30b850, imac 0xeaaf0, m1 0xcc67c;
@@ -9569,6 +9569,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
     GJGameState m_gameState;
     GJGameLevel* m_level;
+    void* m_unk798;
+    void* m_unk7a0;
+    void* m_unk7a8;
+    int m_unk7b0;
     PlaybackMode m_playbackMode;
     bool m_lowDetailMode;
     bool m_extraLDM;
@@ -9576,8 +9580,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_enable22Changes;
     bool m_allowStaticRotate;
     bool m_fixNegativeScale;
+    bool m_unk7be;
     bool m_startingFromBeginning;
-    PAD = win 0x18;
     std::vector<SFXTriggerGameObject*> m_activeSfxTriggers;
     std::vector<void*> m_unk8a0;
     cocos2d::CCNode* m_hoverNode;
@@ -9589,9 +9593,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     OBB2D* m_obb2;
     std::vector<std::unordered_map<int,int>> m_spawnRemapTriggers;
     std::unordered_map<int, cocos2d::CCPoint> m_uiObjectPositions;
-    android, ios {
-        std::unordered_set<int> m_allowedButtons;
-    }
     GJEffectManager* m_effectManager;
     cocos2d::CCSpriteBatchNode* m_gameBlendingLayerT5;
     cocos2d::CCSpriteBatchNode* m_fireBlendingLayerT5;
@@ -9735,7 +9736,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     LevelSettingsObject* m_levelSettings;
     cocos2d::CCArray* m_objects;
     cocos2d::CCArray* m_collisionBlocks;
-    PAD = win 0x8;
+    int m_unkObjId;
     cocos2d::CCArray* m_spawnObjectsArray;
     cocos2d::CCDictionary* m_spawnObjects;
     cocos2d::CCNode* m_unkdd0;
@@ -9770,7 +9771,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCDictionary* m_parentGroupsDict;
     cocos2d::CCDictionary* m_parentGroupIDs;
     cocos2d::CCDictionary* m_removedParentGroupIDs;
-    PAD = win 0xc0;
+    std::unordered_set<int> m_groupParents;
+    std::unordered_map<int, std::unordered_set<int>> m_unkIntToUsetIntUmap;
+    std::unordered_set<int> m_unkUsetGroupParent;
     cocos2d::CCArray* m_targetGroupsArray;
     std::unordered_map<int, std::pair<int, int>> m_targetGroups;
     cocos2d::CCDictionary* m_linkedGroupDict;
@@ -9811,9 +9814,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GameObject* m_player1CollisionBlock;
     GameObject* m_player2CollisionBlock;
     int m_particleCount;
+    bool m_disableCustomParticles;
+    int m_unk2fe8;
     int m_customParticleCount;
     int m_particleSystemLimit;
-    PAD = win 0x8;
     cocos2d::CCDictionary* m_particlesDict;
     cocos2d::CCDictionary* m_customParticles;
     cocos2d::CCArray* m_unclaimedParticles;
@@ -9847,6 +9851,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float m_cameraHeightOffset;
     bool m_updateGroundShadows;
     cocos2d::CCDictionary* m_collectedItems;
+    cocos2d::CCDictionary* m_collectibleLog;
     float m_levelLength;
     bool m_resetActiveObjects;
     bool m_skipArtReload;
@@ -9854,6 +9859,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_isTestMode;
     bool m_freezeStartCamera;
     bool m_unk322a;
+    int m_unk314c;
+    int m_unk3150;
     float m_cameraUnzoomedHeightOffset;
     float m_targetCameraHeightOffset;
     bool m_calculateTargetHeightOffset;
@@ -9891,22 +9898,18 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_currentStep;
     std::vector<PlayerButtonCommand> m_queuedButtons;
     std::vector<RecordButtonCommand> m_queuedRecordedButtons;
-    std::unordered_map<int, RecordCheckpoint> m_unk3330;
-    int m_unk3370;
+    std::unordered_map<int, RecordCheckpoint> m_recordedCheckpoints;
+    int m_replayParseCounter;
     std::vector<RecordButtonCommand> m_queuedReplayButtons;
-    std::unordered_map<int, RecordCheckpoint> m_unk3390;
+    std::unordered_map<int, RecordCheckpoint> m_recordedCheckpoints2;
     std::vector<void*> m_unk3340;
     std::vector<void*> m_unk3358;
     int m_queuedRecordedButtonsSize;
     std::string m_persistentStateString;
     std::string m_savedPersistentStateString;
     int m_savedAttempts;
-    android, ios {
-        int m_spawnCount;
-    }
-    android, ios {
-        bool m_spawnAbuse;
-    }
+    int m_spawnCount;
+    bool m_spawnAbuse;
     bool m_portalIndicators;
     bool m_orbIndicators;
     cocos2d::CCArray* m_indicatorSprites;
@@ -9918,10 +9921,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCArray* m_objectsToMove;
     std::unordered_map<int, GameObject*> m_savePositionObjects;
     std::unordered_map<int, int> m_savePositionValues;
-    bool m_keepGroupParents;
     cocos2d::CCDictionary* m_keyframeGroups;
     int m_keyframeGroup;
-    PAD = win 0x10;
     UILayer* m_uiLayer;
     cocos2d::CCArray* m_uiObjects;
     cocos2d::CCDictionary* m_uiObjectLayers;
@@ -9983,17 +9984,29 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_startOptimization;
     GJGameLoadingLayer* m_loadingLayer;
     cocos2d::CCDrawNode* m_debugDrawNode;
+    cocos2d::CCDrawNode* m_debugDrawNode2;
     std::array<cocos2d::CCPoint, 400>* m_debugDrawPoints;
     bool m_isDebugDrawEnabled;
     bool m_disablePlayerHitbox;
     bool m_hitboxesOnDeath;
-    PAD = win 0x58;
+    bool m_hitboxTrailInPractice;
+    bool m_hitboxTrailOnDeath;
+    bool m_hitboxTrailHighlight;
+    std::vector<PlayerTrailState> m_player1HitboxTrail;
+    std::vector<PlayerTrailState> m_player2HitboxTrail;
+    int m_player1HitboxTrailLimit;
+    int m_player2HitboxTrailLimit;
+    bool m_hitboxTrailDirty;
+    bool m_unk3651;
+    cocos2d::CCRect m_hitboxTrailDrawArea;
+    bool m_lastHitboxTrailHighlight;
+    bool m_lastHitboxTrailDied;
     GameObject* m_anticheatSpike;
     double m_timestamp;
     bool m_isBetweenSteps;
     bool m_clickBetweenSteps;
     bool m_clickOnSteps;
-    PAD = win 0x40;
+    std::unordered_map<int, GameObject*> m_unk3680;
 }
 
 [[link(android)]]
