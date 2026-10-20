@@ -8542,7 +8542,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x2e9730, imac 0x3d550, m1 0x370a4;
     int getItemUnlockStateLite(int id, UnlockType type) = imac 0x3d610, m1 0x371a0;
     std::string getLevelKey(GJGameLevel* level) = win inline, m1 0x2c6a4;
-    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x9999999, imac 0x32aa0, m1 0x2c6e8;
+    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x2e1530, imac 0x32aa0, m1 0x2c6e8;
     std::string getListRewardKey(GJLevelList* list) = win inline, imac 0x395a0, m1 0x33430;
     const char* getMapPackKey(int id) = win inline, imac 0x33e80, m1 0x2dbdc, ios inline;
     int getNextGoldChestID() = win inline, imac 0x52820, m1 0x4c928;
@@ -8574,11 +8574,11 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedDailyStars(int) = win 0x2e7190;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
     bool hasCompletedGauntletLevel(int id) = imac 0x33070, m1 0x2cd4c;
-    bool hasCompletedLevel(GJGameLevel* level) = win 0x9999999, imac 0x32f40, m1 0x2cbe4;
+    bool hasCompletedLevel(GJGameLevel* level) = win 0x2e17a0, imac 0x32f40, m1 0x2cbe4;
     bool hasCompletedMainLevel(int levelID) = win 0x2e1660, imac 0x32ec0, m1 0x2cb48;
     bool hasCompletedMapPack(int id);
     bool hasCompletedOnlineLevel(int id) = win 0x2e1850, imac 0x32ff0, m1 0x2ccb0;
-    bool hasCompletedStarLevel(GJGameLevel* level) = win 0x2e17a0;
+    bool hasCompletedStarLevel(GJGameLevel* level) = win 0x2e1ad0;
     bool hasPendingUserCoin(char const* key) = win 0x9999999;
     bool hasRewardBeenCollected(GJRewardType type, int id) = win 0x2e5450, imac 0x38080, m1 0x31d4c;
     bool hasSecretCoin(char const* key) = win 0x9999999;
