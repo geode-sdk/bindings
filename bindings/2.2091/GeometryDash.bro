@@ -1701,7 +1701,8 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     float m_scrollLimitBottom;
     float m_peekLimitTop;
     float m_peekLimitBottom;
-    PAD = win 0x8, android64 0x8, android32 0x8, mac 0x8;
+    float m_scrollDecay;
+    bool m_scrolling;
 }
 
 [[link(android)]]
@@ -4386,9 +4387,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
 
     bool m_saved;
     LevelEditorLayer* m_editorLayer;
-    CCMenuItemSpriteExtra* m_guidelinesOffButton;
-    CCMenuItemSpriteExtra* m_guidelinesOnButton;
-    PAD = win 0x10, android64 0x10, android32 0x8, mac 0x10;
+    PAD = win 0x20, android64 0x20, android32 0x10, mac 0x20;
     Slider* m_musicSlider;
     Slider* m_sfxSlider;
     Slider* m_editorSFXSlider;
@@ -14783,7 +14782,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     CCMenuItemSpriteExtra* m_starRateBtn;
     CCMenuItemSpriteExtra* m_demonRateBtn;
     void* m_unk2;
-    PAD = win 0x8;
+    CCMenuItemSpriteExtra* m_editBtn;
     cocos2d::CCLabelBMFont* m_lengthLabel;
     cocos2d::CCLabelBMFont* m_exactLengthLabel;
     cocos2d::CCLabelBMFont* m_downloadsLabel;
@@ -14810,9 +14809,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     cocos2d::CCSprite* m_playSprite;
     cocos2d::CCProgressTimer* m_progressTimer;
     CustomSongWidget* m_songWidget;
-    win {
-        bool m_unkBool;
-    }
+    bool m_loadPlatformerSave;
 }
 
 [[link(android)]]
@@ -20487,33 +20484,7 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x5b0260;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5afa20;
-    void onActivateOnExit(cocos2d::CCObject* sender) = imac 0x397400;
-    void onEnableGroup(cocos2d::CCObject* sender);
-    void onItemID2Arrow(cocos2d::CCObject* sender);
-    void onItemIDArrow(cocos2d::CCObject* sender);
-    void onTargetIDArrow(cocos2d::CCObject* sender);
-    void onTargetP1(cocos2d::CCObject* sender);
-    void onTargetP2(cocos2d::CCObject* sender);
-    void onTargetPP(cocos2d::CCObject* sender);
-    void updateItemID();
-    void updateItemID2() = imac 0x6bd540, m1 0x5d6328;
-    void updateItemID2InputLabel();
-    void updateItemIDInputLabel();
-    TodoReturn updateSpecialNodes();
-    void updateTargetID();
-    void updateTargetIDInputLabel();
-
-    CCTextInputNode* m_blockAInput;
-    CCTextInputNode* m_blockBInput;
-    CCTextInputNode* m_targetIDInput;
-    int m_blockAID;
-    int m_blockBID;
-    int m_targetID;
-    bool m_activateGroup;
-    bool m_triggerOnExit;
-    bool m_targetP1;
-    bool m_targetP2;
-    bool m_targetPP;
+    void updateSpecialNodes();
 }
 
 [[link(android)]]
@@ -22862,6 +22833,9 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 
     float m_length;
     bool m_vertical;
+    float m_snapValue;
+    float m_snapThreshold;
+    float m_snapStep;
 }
 
 [[link(android), depends(SliderThumb)]]
