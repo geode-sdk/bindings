@@ -2634,18 +2634,18 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     void incrementDislikes() = win inline, imac 0x23e550, m1 0x1e9ae4, ios inline;
     void incrementLikes() = win inline, imac 0x23e4a0, m1 0x1e9a30, ios inline;
     void loadFromComment(GJComment* comment) = win 0x151ea0, imac 0x22d440, m1 0x1d9f24;
-    void onBulkSelectToggle(cocos2d::CCObject* sender);
+    void onBulkSelectToggle(cocos2d::CCObject* sender) = win 0x154850;
     void onConfirmDelete(cocos2d::CCObject* sender) = win 0x154b90, imac 0x23e0d0, m1 0x1e9690;
     void onDelete() = win inline;
     void onGoToLevel(cocos2d::CCObject* sender);
     void onLike(cocos2d::CCObject* sender);
-    void onMoreOptions(cocos2d::CCObject* sender);
+    void onMoreOptions(cocos2d::CCObject* sender) = win 0x154d10;
     void onUndelete() = win inline, imac 0x23e780, m1 0x1e9cdc, ios inline;
     void onUnhide(cocos2d::CCObject* sender) = win 0x1550b0, imac 0x23df50, m1 0x1e9538;
     void onViewProfile(cocos2d::CCObject* sender) = imac 0x23ddd0, m1 0x1e93c0;
     void updateBGColor(int index) = win inline, imac 0x22f7a0, m1 0x1dbe34;
     TodoReturn updateBulkToggle();
-    void updateLabelValues() = win 0x1b0e60, imac 0x23e620, m1 0x1e9ba0;
+    void updateLabelValues() = win 0x154ad0, imac 0x23e620, m1 0x1e9ba0;
 
     cocos2d::CCSprite* m_iconSprite;
     cocos2d::CCLabelBMFont* m_likeLabel;
@@ -2653,6 +2653,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     bool m_accountComment;
     bool m_unk259;
     bool m_compactMode;
+    CCMenuItemToggler* m_bulkSelectToggle;
 }
 
 [[link(android)]]
@@ -6767,6 +6768,7 @@ class GameEffectsManager : cocos2d::CCNode {
 
 [[link(android)]]
 class GameLevelManager : cocos2d::CCNode {
+    GameLevelManager() = win 0x217310;
     virtual ~GameLevelManager() = win 0x21b720;
 
     static GameLevelManager* get() = inline;
@@ -6938,7 +6940,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJMapPack* getSavedGauntlet(int id) = win inline;
     GJGameLevel* getSavedGauntletLevel(int id) = win 0x9999999;
     GJGameLevel* getSavedLevel(GJGameLevel* level) = win inline, imac 0x542e90, m1 0x4997ec;
-    GJGameLevel* getSavedLevel(int id) = win 0x9999999, imac 0x548fb0, m1 0x49f0a4;
+    GJGameLevel* getSavedLevel(int id) = win 0x220700, imac 0x548fb0, m1 0x49f0a4;
     GJLevelList* getSavedLevelList(int listID) = win inline;
     cocos2d::CCArray* getSavedLevelLists(int folder) = win 0x21f120, imac 0x5468e0, m1 0x49cdec;
     cocos2d::CCArray* getSavedLevels(bool favorite, int folder) = imac 0x5466f0, m1 0x49cc18;
@@ -6948,7 +6950,7 @@ class GameLevelManager : cocos2d::CCNode {
     int getSplitIntFromKey(char const* key, int index) = win 0x23dde0, imac 0x562e60, m1 0x4b6844;
     std::string getStarLevelsString() = win 0x21f760, imac 0x5471b0, m1 0x49d698;
     cocos2d::CCArray* getStoredLevelComments(char const* key) = m1 0x4bf034;
-    cocos2d::CCArray* getStoredOnlineLevels(char const* key) = win 0x9999999, m1 0x4a018c;
+    cocos2d::CCArray* getStoredOnlineLevels(char const* key) = win 0x2217d0, m1 0x4a018c;
     cocos2d::CCArray* getStoredUserList(UserListType type);
     GJUserMessage* getStoredUserMessage(int id) = win inline, imac 0x567da0, m1 0x4baeb4;
     GJUserMessage* getStoredUserMessageReply(int id) = win inline, imac 0x567df0, m1 0x4baedc;
@@ -6987,7 +6989,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateUserList(UserListType type, bool reload) = win inline, imac 0x576120, m1 0x4c870c;
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = imac 0x54a6a0, m1 0x4a05d0;
-    bool isFollowingUser(int id);
+    bool isFollowingUser(int id) = win 0x224320;
     bool isPastDailyCopy(GJGameLevel*);
     bool isTimeValid(char const* key, float length) = win 0x9999999;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
@@ -7684,6 +7686,7 @@ class GameManager : GManager {
     void videoAdHidden() = win inline, imac 0x8de00, m1 0x2f6b84, ios inline;
     void videoAdShowed() = win inline, imac 0x369530, m1 0x2f6b40, ios inline;
 
+    PAD = win 0x18;
     cocos2d::CCDictionary* m_mainFramesForAnimation;
     cocos2d::CCDictionary* m_detailFramesForAnimation;
     cocos2d::CCDictionary* m_frameTimeForAnimation;
@@ -7697,6 +7700,7 @@ class GameManager : GManager {
     bool m_unkBool2;
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
+    PAD = win 0x10;
     cocos2d::CCDictionary* m_unlockValueKeeper;
     cocos2d::CCDictionary* m_customObjectDict;
     double m_adTimer;
@@ -7781,6 +7785,7 @@ class GameManager : GManager {
     int m_currentLevelID;
     int m_currentColorChannel;
     int m_currentGroupID;
+    PAD = win 0xc;
     int m_loadedBgID;
     int m_loadedGroundID;
     int m_loadedMG;
@@ -7804,6 +7809,7 @@ class GameManager : GManager {
     bool m_unkBool8;
     geode::SeedValueRSV m_hasRP;
     bool m_hasDRP;
+    int m_specialPermKey;
     bool m_canGetLevelSaveData;
     int m_resolution;
     int m_texQuality;
@@ -7816,9 +7822,12 @@ class GameManager : GManager {
     int m_unkSize4_14;
     bool m_disableThumbstick;
     float m_customFPSTarget;
+    float m_scrollSensitivity;
+    PAD = win 0x10;
     bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
+    PAD = win 0xc;
     std::map<int, int> m_iconLoadCounts;
     std::map<int, std::map<int, int>> m_iconRequests;
     std::map<int, bool> m_isIconBeingLoaded;
@@ -7841,6 +7850,7 @@ class GameManager : GManager {
     std::string m_dpadLayoutDual1;
     std::string m_dpadLayoutDual2;
     std::string m_dpadLayoutDual3;
+    std::string m_recentEmotes;
     int m_leaderboardLevelID;
     int m_leaderboardLevelTime;
     int m_leaderboardLevelPoints;
@@ -8573,7 +8583,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x2e9730, imac 0x3d550, m1 0x370a4;
     int getItemUnlockStateLite(int id, UnlockType type) = imac 0x3d610, m1 0x371a0;
     std::string getLevelKey(GJGameLevel* level) = win inline, m1 0x2c6a4;
-    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x9999999, imac 0x32aa0, m1 0x2c6e8;
+    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x2e1530, imac 0x32aa0, m1 0x2c6e8;
     std::string getListRewardKey(GJLevelList* list) = win inline, imac 0x395a0, m1 0x33430;
     const char* getMapPackKey(int id) = win inline, imac 0x33e80, m1 0x2dbdc, ios inline;
     int getNextGoldChestID() = win inline, imac 0x52820, m1 0x4c928;
@@ -8605,11 +8615,11 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedDailyStars(int) = win 0x2e7190;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
     bool hasCompletedGauntletLevel(int id) = imac 0x33070, m1 0x2cd4c;
-    bool hasCompletedLevel(GJGameLevel* level) = win 0x9999999, imac 0x32f40, m1 0x2cbe4;
+    bool hasCompletedLevel(GJGameLevel* level) = win 0x2e17a0, imac 0x32f40, m1 0x2cbe4;
     bool hasCompletedMainLevel(int levelID) = win 0x2e1660, imac 0x32ec0, m1 0x2cb48;
     bool hasCompletedMapPack(int id);
-    bool hasCompletedOnlineLevel(int id) = imac 0x32ff0, m1 0x2ccb0;
-    bool hasCompletedStarLevel(GJGameLevel* level) = win 0x2e17a0;
+    bool hasCompletedOnlineLevel(int id) = win 0x2e1850, imac 0x32ff0, m1 0x2ccb0;
+    bool hasCompletedStarLevel(GJGameLevel* level) = win 0x2e1ad0;
     bool hasPendingUserCoin(char const* key) = win 0x9999999;
     bool hasRewardBeenCollected(GJRewardType type, int id) = win 0x2e5450, imac 0x38080, m1 0x31d4c;
     bool hasSecretCoin(char const* key) = win 0x9999999;
@@ -10187,7 +10197,7 @@ class GJComment : cocos2d::CCNode {
     ~GJComment() = win inline, imac 0x58e4c0, m1 0x4de91c;
 
     static GJComment* create() = win inline, imac 0x58e580, m1 0x4de9c0;
-    static GJComment* create(cocos2d::CCDictionary* dict) = win 0x17cfa0, imac 0x56b180, m1 0x4be0f4;
+    static GJComment* create(cocos2d::CCDictionary* dict) = win 0x270a60, imac 0x56b180, m1 0x4be0f4;
 
     virtual bool init() = win 0x271920, imac 0x58e680, m1 0x4dea88;
 
@@ -10203,10 +10213,14 @@ class GJComment : cocos2d::CCNode {
     bool m_commentDeleted;
     int m_percentage;
     int m_modBadge;
+    bool m_isFriend;
     cocos2d::ccColor3B m_color;
     bool m_hasLevelID;
     bool m_unkMultiplayerBool;
     bool m_canDelete;
+    int m_commentType;
+    bool m_isSelected;
+    int m_unk1d4;
     GJUserScore* m_userScore;
 }
 
@@ -12423,6 +12437,7 @@ class GJShaderState {
     float m_splitTargetRows;
     float m_splitTargetCols;
     bool m_splitActive;
+    PAD = win 0x8;
     int m_minBlendingLayer;
     int m_maxBlendingLayer;
     bool m_zLayerDirty;
@@ -19860,7 +19875,7 @@ class SetIDPopup : FLAlertLayer {
     virtual void textChanged(CCTextInputNode* node) = win 0x3a5f70, imac 0x298c80, m1 0x23c750;
     virtual void valueChanged() = win inline, imac 0x298db0, m1 0x23c880;
 
-    bool init(int current, int begin, int end, std::string title, std::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows) = win 0xc1fc0, imac 0x2980c0, m1 0x23bbcc;
+    bool init(int current, int begin, int end, std::string title, std::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows) = win 0x3a5520, imac 0x2980c0, m1 0x23bbcc;
     void onCancel(cocos2d::CCObject* sender) = imac 0x298a60;
     void onClose(cocos2d::CCObject* sender) = imac 0x298960, m1 0x23c464;
     void onItemIDArrow(cocos2d::CCObject* sender) = imac 0x298a10, m1 0x23c508;
@@ -22255,7 +22270,7 @@ class ShaderLayer : cocos2d::CCLayer {
     virtual void visit() = win 0x629b10, imac 0x3bb110, m1 0x340ff0;
 
     cocos2d::CCPoint objectPosToShaderPos(cocos2d::CCPoint position) = win 0x623d40, imac 0x3b57a0, m1 0x33c378;
-    void performCalculations() = win 0x4ccf0, imac 0x3bae00, m1 0x340d4c;
+    void performCalculations() = win 0x6292e0, imac 0x3bae00, m1 0x340d4c;
     void preBulgeShader() = win inline, imac 0x3ba130, m1 0x340218;
     void preChromaticGlitchShader() = imac 0x3b8c40, m1 0x33ef50;
     void preChromaticShader() = win inline, imac 0x3b8970, m1 0x33ecc4;
