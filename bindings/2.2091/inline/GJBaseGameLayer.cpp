@@ -1200,6 +1200,7 @@ void GJBaseGameLayer::setActiveStartPosObject(StartPosObject* startPos) {
             m_startPosObject->release();
         }
         m_startPosObject = startPos;
+        m_isTestMode = startPos != nullptr;
     }
 }
 
@@ -1790,13 +1791,6 @@ float GJBaseGameLayer::getGroundHeightForMode(int type) {
         }
     }
     return 270.f;
-}
-
-bool GJBaseGameLayer::isButtonAllowed(bool down, int button, bool isPlayer1) {
-    auto id = (int)down + button * 1000 + (int)isPlayer1 * 10;
-    if (m_allowedButtons.contains(id)) return false;
-    m_allowedButtons.insert(id);
-    return true;
 }
 #endif
 

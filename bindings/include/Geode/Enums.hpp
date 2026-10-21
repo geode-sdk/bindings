@@ -673,38 +673,36 @@ enum class CommentType {
 
 enum class BoomListType {
     Default = 0x0,
-    User = 0x2,
-    Stats = 0x3,
-    Achievement = 0x4,
-    Level = 0x5,
-    Level2 = 0x6,
-    Comment = 0x7,
-    Comment2 = 0x8,
-    Comment3 = 0x9,
-    List = 0xa,
-    Game = 0xb,
-    Song = 0xc,
-    Score = 0xd,
-    MapPack = 0xe,
-    CustomSong = 0xf,
-    Comment4 = 0x10,
-    User2 = 0x11,
-    Request = 0x12,
-    Message = 0x13,
-    LevelScore = 0x14,
-    Artist = 0x15,
-    SmartTemplate = 0x16,
-    SFX = 0x17,
-    SFX2 = 0x18,
-    CustomMusic = 0x19,
-    Options = 0x1a,
-    LevelList = 0x1b,
-    Level3 = 0x1c,
-    LevelList2 = 0x1d,
-    LevelList3 = 0x1e,
-    Level4 = 0x1f,
-    LocalLevelScore = 0x21,
-    URL = 0x22,
+    Stats = 0x2,
+    Achievement = 0x3,
+    Level = 0x4,
+    Level2 = 0x5,
+    Comment = 0x6,
+    Comment2 = 0x7,
+    Comment3 = 0x8,
+    List = 0x9,
+    Game = 0xa,
+    Song = 0xb,
+    Score = 0xc,
+    MapPack = 0xd,
+    CustomSong = 0xe,
+    Comment4 = 0xf,
+    Request = 0x10,
+    Message = 0x11,
+    LevelScore = 0x12,
+    Artist = 0x13,
+    SmartTemplate = 0x14,
+    SFX = 0x15,
+    SFX2 = 0x16,
+    CustomMusic = 0x17,
+    Options = 0x18,
+    LevelList = 0x19,
+    Level3 = 0x1a,
+    LevelList2 = 0x1b,
+    LevelList3 = 0x1c,
+    Level4 = 0x1d,
+    LocalLevelScore = 0x1f,
+    URL = 0x20,
 };
 
 enum class CurrencySpriteType {
@@ -1414,6 +1412,8 @@ namespace GameVar {
     constexpr auto DisablePinch = "0245";
     constexpr auto MessagingRulesAgreed = "0246";
     constexpr auto UseLegacyMove = "0247";
+    constexpr auto HideCenterCross = "0248";
+    constexpr auto LegacyPauseProgress = "0249";
 }
 
 // frozen archaic versions of enums
