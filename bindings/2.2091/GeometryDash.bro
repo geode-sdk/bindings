@@ -4427,7 +4427,7 @@ class EditorSFXManager {
     // ~EditorSFXManager();
     // EditorSFXManager();
 
-    static EditorSFXManager* sharedState() = win 0x185140, m1 0x7cd268;
+    static EditorSFXManager* sharedState() = win 0x185140, m1 0x7cd268, imac 0x8e0df0;
 
     TodoReturn actionToString(int);
     TodoReturn addFavoriteConfig(GJEditorSoundConfig*);
@@ -4467,7 +4467,7 @@ class EditorSFXManager {
     TodoReturn importFromString(std::string const&, EditorSFXImportOptions const&, std::string*);
     bool init();
     TodoReturn overwriteMyConfigFromLive(int, std::string*);
-    void playAction(int) = win 0x1855c0, m1 0x7ce64c;
+    void playAction(int) = win 0x1855c0, m1 0x7ce64c, imac 0x8e27a0;
     TodoReturn playAction(int, int);
     TodoReturn releaseBinding(EditorSFXBinding*);
     TodoReturn removeFavoriteConfig(int);
@@ -5029,13 +5029,13 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateViewButtons() = win 0x1f80f0;
     void updateViewMenu();
     void updateZoom(float zoom) = win 0x1b4c00, m1 inline, imac inline;
-    void updateZoom(float, cocos2d::CCPoint) = win 0x1b4c70, m1 0x10464, imac 0x263130;
+    void updateZoom(float, cocos2d::CCPoint) = win 0x1b4c70, m1 0x10464, imac 0x120c0;
     float valueFromXPos(float xPos) = win inline, imac 0xdd00, m1 0xc404;
     TodoReturn windowClosed(EditorWindowPopup*);
     float xPosFromValue(float value) = win inline, imac 0xdb40, m1 0xc280;
     void zoomGameLayer(bool zoomingIn) = win inline, m1 inline, imac inline, ios inline;
-    void zoomIn(cocos2d::CCObject* sender) = win 0x1b4b00, m1 0x7a7c;
-    void zoomOut(cocos2d::CCObject* sender) = win 0x1b4b80, m1 0x7b3c;
+    void zoomIn(cocos2d::CCObject* sender) = win 0x1b4b00, m1 0x7a7c, imac 0x89b0;
+    void zoomOut(cocos2d::CCObject* sender) = win 0x1b4b80, m1 0x7b3c, imac 0x8a90;
 
     std::unordered_map<int, GameObjectEditorState> m_objectEditorStates;
     GJTransformState m_transformState;
