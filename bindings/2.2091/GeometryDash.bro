@@ -770,7 +770,10 @@ class AudioAssetsPopup : SetupTriggerPopup, MusicDownloadDelegate {
     virtual void onClose(cocos2d::CCObject* sender) = win 0xbe4f0;
     virtual void musicActionFinished(GJMusicAction) = win 0xbe420;
 
-    bool init(int, int, std::string const&, std::string const&);
+    // one of the song IDs must be 0, depends if you want a robtop song id, or a custom song id. song / sfx list is delimited by ','
+    bool init(int songID, int officialSongID, std::string const& songList, std::string const& sfxList) = win 0xbde40;
+
+    CustomSongWidget* m_customSongWidget;
 }
 
 [[link(android)]]
@@ -3547,22 +3550,22 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void downloadFailed() = win inline, imac 0x6fb870, m1 0x60d494;
     void getSongInfoIfUnloaded() = win 0x16b590, imac 0x6fb220, m1 0x60cf10;
     bool init(SongInfoObject*, CustomSongDelegate*, bool, bool, bool, bool, bool, bool, int, bool, bool) = win 0x1692e0, m1 0x609350, imac 0x6f7380;
-    void onCancelDownload(cocos2d::CCObject* sender) = m1 0x60a7a4;
+    void onCancelDownload(cocos2d::CCObject* sender) = win 0x16b650, m1 0x60a7a4;
     void onDelete(cocos2d::CCObject* sender) = win 0x16b140, imac 0x6f8910, m1 0x60a7e0;
     void onDownload(cocos2d::CCObject* sender) = win 0x16b890, imac 0x6f8640, m1 0x60a554;
-    void onGetSongInfo(cocos2d::CCObject* sender) = imac 0x6f8a50, m1 0x60a920;
-    void onInfo(cocos2d::CCObject* sender) = imac 0x6f8de0, m1 0x60acb4;
-    void onMore(cocos2d::CCObject* sender);
-    void onPlayback(cocos2d::CCObject* sender) = win 0x448c00, imac 0x6f8ae0, m1 0x60a9ac;
-    void onSelect(cocos2d::CCObject* sender) = win 0x1621e0, imac 0x6f89f0, m1 0x60a8c0;
-    void onToggleFavorite(cocos2d::CCObject* sender);
-    void onUsage(cocos2d::CCObject* sender);
+    void onGetSongInfo(cocos2d::CCObject* sender) = win 0x16b710, imac 0x6f8a50, m1 0x60a920;
+    void onInfo(cocos2d::CCObject* sender) = win 0x16ae60, imac 0x6f8de0, m1 0x60acb4;
+    void onMore(cocos2d::CCObject* sender) = win 0x16b4f0;
+    void onPlayback(cocos2d::CCObject* sender) = win 0x16bcd0, imac 0x6f8ae0, m1 0x60a9ac;
+    void onSelect(cocos2d::CCObject* sender) = win 0x16bc40, imac 0x6f89f0, m1 0x60a8c0;
+    void onToggleFavorite(cocos2d::CCObject* sender) = win 0x16b7e0;
+    void onUsage(cocos2d::CCObject* sender) = win 0x16adb0;
     void positionInfoObjects() = win 0x16a6f0, imac 0x6f9380, m1 0x60b184;
     void processNextMultiAsset() = win 0x16e4d0, imac 0x6fd7e0, m1 0x60f24c;
     void setMultiAssetFilesize(int, int);
     void showError(bool fast) = win 0x16ead0, imac 0x6fafe0, m1 0x60cd10;
-    void startDownload() = win 0x16bb80, imac 0x6fb6d0, m1 0x5d1a30;
-    void startMonitorDownload() = win inline, imac 0x6faaf0;
+    void startDownload() = win 0x16bb10, imac 0x6fb6d0, m1 0x5d1a30;
+    void startMonitorDownload() = win 0x16bb80, imac 0x6faaf0;
     void startMultiAssetDownload() = win 0x16e310, imac 0x6fb370, m1 0x60d074;
     void toggleUpdateButton(bool enabled) = win inline, imac 0x6fb320, m1 0x60d01c, ios inline;
     void updateDownloadProgress(float dt) = win 0x16c280, imac 0x6fb7a0, m1 0x60d3d0;
@@ -3573,7 +3576,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updateProgressBar(int progress) = win 0x162550, imac 0x6f99b0, m1 0x60b7a0;
     void updateSongInfo() = win 0x16c380, m1 0x60b8bc;
     void updateSongObject(SongInfoObject* songInfo) = win inline, imac 0x6f9a30, m1 0x60b818;
-    TodoReturn updateUsageButton();
+    void updateUsageButton() = win 0x16acc0;
     void updateWithMultiAssets(std::string songList, std::string sfxList, int bytes) = win 0x16d380, imac 0x6fb930, m1 0x60d534;
     bool verifySongID(int id) = win inline, imac 0x6fc960, m1 0x60e4d8, ios inline;
 
@@ -3609,14 +3612,17 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     bool m_isInCell;
     SongPlaybackDelegate* m_playbackDelegate;
     bool m_hasLibrarySongs;
-    bool m_hasSFX;
+    [[renamed_from(m_hasSFX)]]
+    bool m_hasMultiAssets;
     CCMenuItemSpriteExtra* m_usageBtn;
     bool m_showUsageBtn;
-    bool m_unkBool2;
+    [[renamed_from(m_unkBool2)]]
+    bool m_hasUndownloadedAssets;
     std::map<int, bool> m_songs;
     std::map<int, bool> m_sfx;
     std::vector<GJAssetDownloadAction> m_undownloadedAssets;
     int m_totalBytes;
+    int m_uploadLimit;
     std::set<int> m_nextSongIDs;
 }
 
@@ -9164,6 +9170,7 @@ class GJAssetDownloadAction {
     int m_id;
     GJAssetType m_assetType;
     int m_status;
+    bool m_inProgress;
 }
 
 [[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint, PlayerTrailState, cocos2d::CCParticleSystem, cocos2d::ParticleStruct)]]
@@ -11356,6 +11363,7 @@ class GJLinkObject {
 
     std::string getTitle();
 
+    // Sometimes falls back to SongInfoObject::m_songID / SongInfoObject::m_artistID
     int m_unk000;
     int m_linkType;
     std::string m_title;
@@ -22952,7 +22960,7 @@ class SongInfoObject : cocos2d::CCNode {
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x495f40, imac 0x665630, m1 0x59e1bc;
     virtual bool canEncode() = win inline, imac 0x579b90, m1 0x59e338;
 
-    TodoReturn addArtistLink(GJLinkObject const&);
+    void addArtistLink(GJLinkObject const& link) = win inline;
     void addSongLink(GJLinkObject const& link) = win 0x4969b0;
     void addTags(std::string tags) = win 0x497150, imac 0x65db90, m1 0x5974cc;
     bool containsTag(int tag) = win inline, imac 0x4333e0, m1 0x3a9cd0, ios inline;
