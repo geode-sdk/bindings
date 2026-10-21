@@ -1,5 +1,7 @@
 #include <Geode/binding/NumberInputLayer.hpp>
 
+// i wouldnt be surprised if these inlines are incorrect for 2.209
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
