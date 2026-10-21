@@ -2187,7 +2187,7 @@ class CheckpointGameObject : EffectGameObject {
     virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x65bc00;
     virtual void triggerActivated(float xPosition) = win 0x65ae30, imac 0x1b5cf0, m1 0x170c4c;
     virtual void restoreObject() = win 0x65c270, imac 0x1b7980;
-    virtual void updateSyncedAnimation(float totalTime, int frameIndex) = win 0x65b8c0, imac 0x1b6650, m1 0x9af90;
+    virtual void updateSyncedAnimation(float totalTime, int frameIndex) = win 0x65b8c0, imac 0x1b6650;
 
     void resetCheckpoint() = imac 0x1b7960, m1 0x172570, ios inline;
     void updateCheckpointSpriteVisibility() = win inline, imac 0x1b5f10, m1 0x170e7c;
@@ -4690,7 +4690,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     EditorUI() = win 0x1a8dd0, imac 0x1a900, m1 0x2d353c;
     ~EditorUI() = win inline, imac 0x286570;
 
-    static EditorUI* create(LevelEditorLayer* editorLayer) = win inline, imac 0x5210;
+    static EditorUI* create(LevelEditorLayer* editorLayer) = win inline, imac 0x5210, m1 0x459c;
     static EditorUI* get() = inline;
     static int getRandomStartKey(int specialTemplate) = win 0x1f8f90, imac 0x6efbb0, m1 0x602b78;
     static int getSmartObjectKey(int key, GJSmartDirection direction) = win 0x1f9230, imac 0x6efde0, m1 0x602db4;
@@ -4734,7 +4734,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void scaleChangeEnded() = win inline, imac 0x6130f0, m1 0x551c58;
     virtual void scaleXChanged(float scaleX, bool lock) = win 0x202ff0, imac 0x613110;
     virtual void scaleYChanged(float scaleY, bool lock) = win 0x2030f0, imac 0x613250;
-    virtual void scaleXYChanged(float scaleX, float scaleY, bool lock) = win 0x2031f0, imac 0xac550, m1 0x551ec8;
+    virtual void scaleXYChanged(float scaleX, float scaleY, bool lock) = win 0x2031f0, m1 0x551ec8, imac 0x613390;
     virtual bool handleAction(int, bool, double) = win 0x1c1bf0;
 
     void activateRotationControl(cocos2d::CCObject* sender) = win 0x2025e0, imac 0x60ea80, m1 0x54dc4c;
@@ -4919,7 +4919,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onViewButton(cocos2d::CCObject* sender);
     void orderDownCustomItem(cocos2d::CCObject* sender) = win 0x1f6180, imac 0x63cad0;
     void orderUpCustomItem(cocos2d::CCObject* sender) = win 0x1f60f0, imac 0x63ca10, m1 0x578f78;
-    cocos2d::CCArray* pasteObjects(std::string str, bool withColor, bool noUndo) = win 0x1c6100, m1 0x5039ac;
+    cocos2d::CCArray* pasteObjects(std::string str, bool withColor, bool noUndo) = win 0x1c6100, m1 0x5039ac, imac 0x5b6630;
     void playCircleAnim(cocos2d::CCPoint position, float radius, float duration) = win inline, ios inline;
     void playerTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x60b3e0, m1 0x54b4c0, ios inline;
     void playerTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x60b4f0, m1 0x54b5b8, ios inline;
@@ -9354,7 +9354,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float getGroundHeight(PlayerObject* player, int type) = win inline, imac 0x100060, m1 0xdeaf4;
     float getGroundHeightForMode(int type) = win 0x318c30, imac 0x100000, m1 0xdea80, ios inline;
     cocos2d::CCArray* getGroup(int id) = win 0x32bf10, imac 0xfa290, m1 0xd9074;
-    GameObject* getGroupParent(int groupId) = win inline, imac 0x11c1f0;
+    GameObject* getGroupParent(int groupId) = win inline, m1 inline, imac inline, ios inline;
     std::string getGroupParentsString(GameObject* object) = win inline;
     double getItemValue(int type, int id) = win 0x33ceb0, imac 0x12a0f0, m1 0x1025ac;
     float getMaxPortalY() = win 0x31aa60, imac 0x1031c0, m1 0xe1844;
@@ -11844,7 +11844,7 @@ class GJPromoPopup : FLAlertLayer {
     virtual void keyBackClicked() = win 0x393180;
     virtual void show() = win 0x9eec0;
 
-    bool init(std::string filename) = win 0x2fd2d0, imac 0xc5a00;
+    bool init(std::string filename) = win 0x2fd2d0;
     void onClose(cocos2d::CCObject* sender) = win 0x393120, imac 0x2a4780, m1 0x24725c;
 
     std::string m_promoFrame;
@@ -14392,7 +14392,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void copyParticleState(ParticleGameObject* object) = win inline, imac 0xc7e80, m1 0xb2c24;
     GameObject* createObject(int key, cocos2d::CCPoint position, bool noUndo) = win 0x3f0820, imac 0xafac0, m1 0x9ddfc;
     void createObjectsFromSetup(std::string& setup) = win 0x3ef940, imac 0xabbb0, m1 0x9a7e8;
-    cocos2d::CCArray* createObjectsFromString(std::string const& str, bool noUndo, bool noLimit) = win 0x3f0150, imac 0xaeb00;
+    cocos2d::CCArray* createObjectsFromString(std::string const& str, bool noUndo, bool noLimit) = win 0x3f0150, imac 0xaeb00, m1 0x9cf6c;
     void dirtifyTriggers() = win inline, m1 0xb06f0;
     TodoReturn doAutoBackup();
     TodoReturn doAutoSave();
@@ -14437,7 +14437,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* getTriggerGroup(int id) = win 0x3fd600, imac 0xc3c50, m1 0xaef74;
     void handleAction(bool undo, cocos2d::CCArray* undoObjects) = win 0x3f2580, m1 0x597c24;
     bool hasAction(bool redo) = win inline, imac 0xb23f0, m1 0xa0420;
-    bool init(GJGameLevel* level, bool noUI) = win 0x3ed8e0;
+    bool init(GJGameLevel* level, bool noUI) = win 0x3ed8e0, imac 0xa9d50, m1 0x98be0;
     bool isLayerLocked(int layer) = win inline, imac 0xbc400, m1 0xa8718;
     TodoReturn lockedLayerForObject(int, int);
     TodoReturn lockedLayerForObjectString(std::string const&);
@@ -14446,7 +14446,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* objectsAtPosition(cocos2d::CCPoint position) = imac 0xb1170, m1 0x9f388;
     cocos2d::CCArray* objectsInRect(cocos2d::CCRect rect, bool ignoreGroups) = win 0x3f1db0, imac 0xb0470, m1 0x9e728;
     void onPausePlaytest() = win inline, m1 0xb17d4;
-    void onPlaytest() = win 0x3fe7e0;
+    void onPlaytest() = win 0x3fe7e0, imac 0xc5a00, m1 0xb0a30;
     void onResumePlaytest() = win inline, m1 0xb1980;
     void onStopPlaytest() = win 0x3ffeb0, m1 0xb1ab4;
     void pasteAttributeState(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc7be0, m1 0xb2988;
@@ -14493,7 +14493,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void toggleGround(bool enable) = win inline, imac 0xadd80, m1 0x9c384;
     void toggleGroupPreview(int id, bool enable) = imac 0xc3580, m1 0xae99c;
     TodoReturn toggleLocalDeaths();
-    void toggleLockActiveLayer() = win inline;
+    void toggleLockActiveLayer() = win inline, m1 0xa86ac, imac 0xbc390;
     void transferDefaultColors(GJEffectManager* src, GJEffectManager* dest) = win 0x3fa630, imac 0xc20a0, m1 0xad910;
     void triggerFollowCommand(EffectGameObject* object) = win inline, imac 0xc5450, m1 0xb059c, ios inline;
     void triggerPlayerFollowCommand(EffectGameObject* object) = win inline, imac 0xc54a0, m1 0xb05c8, ios inline;
@@ -14506,7 +14506,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateArt(float dt) = win inline, imac 0xae430, ios inline;
     void updateBlendValues() = imac 0xc3390, m1 0xae78c;
     TodoReturn updateCustomSFXMappings();
-    void updateEditor(float dt) = win 0x3f5f00;
+    void updateEditor(float dt) = win 0x3f5f00, m1 0x9af90, imac 0xac550;
     void updateEditorMode() = win 0x36bc50, imac 0xad9b0, m1 0x9bfd0;
     void updateGameObjects() = win 0x3fa960, imac 0xacab0, m1 0x9b4c0;
     void updateGridLayer() = win inline;
