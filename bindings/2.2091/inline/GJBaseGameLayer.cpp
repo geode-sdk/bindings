@@ -1200,6 +1200,7 @@ void GJBaseGameLayer::setActiveStartPosObject(StartPosObject* startPos) {
             m_startPosObject->release();
         }
         m_startPosObject = startPos;
+        m_isTestMode = startPos != nullptr;
     }
 }
 
