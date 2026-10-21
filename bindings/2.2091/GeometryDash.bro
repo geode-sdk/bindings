@@ -18211,7 +18211,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void playReplay(std::string inputs) = win inline, ios inline;
     void prepareCreateObjectsFromSetup(std::string& levelString) = win 0x50b770, imac 0x7a380, m1 0x71ba0;
     void prepareMusic(bool dontWait) = win 0x51ad50, imac 0x802b0;
-    void processCreateObjectsFromSetup() = win 0x7c8a0, imac 0x7a7b0, m1 0x72024;
+    void processCreateObjectsFromSetup() = win 0x50ba30, imac 0x7a7b0, m1 0x72024;
     void processLoadedMoveActions() = win 0x50dbd0, imac 0x84780, m1 0x7ace0;
     void queueCheckpoint() = win inline, imac 0x8ae20;
     TodoReturn releaseAllPlayerButtons();
