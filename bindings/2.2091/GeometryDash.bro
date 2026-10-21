@@ -6572,7 +6572,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void deleteSelected() = win 0x211400, imac 0x2132a0, m1 0x767a74;
     TodoReturn doSearch(float);
     TodoReturn exitGlobalMode();
-    bool init(bool sent) = win 0x20f420;
+    bool init(bool sent) = win 0x20f420, imac 0x86ef70, m1 0x765698;
     bool isCorrect(char const* key);
     void loadPage(int page);
     void onClearSearch(cocos2d::CCObject* sender);
@@ -6720,7 +6720,7 @@ class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtoco
 
     TodoReturn filterUsersWithQuery(std::string const&);
     TodoReturn getActiveUserList();
-    bool init(UserListType type) = win 0x213620;
+    bool init(UserListType type) = win 0x213620, imac 0x734bd0, m1 0x642b54;
     void onBlocked(cocos2d::CCObject* sender) = m1 0x80bc5c;
     void onClearSearch(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender) = win 0x217060;
@@ -7001,7 +7001,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateUserList(UserListType type, bool reload) = win inline, imac 0x576120, m1 0x4c870c;
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = imac 0x54a6a0, m1 0x4a05d0;
-    bool isFollowingUser(int id);
+    bool isFollowingUser(int id) = imac 0x54e5f0, m1 0x4a41a4;
     bool isPastDailyCopy(GJGameLevel*);
     bool isTimeValid(char const* key, float length) = win 0x9999999;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
@@ -10238,7 +10238,7 @@ class GJComment : cocos2d::CCNode {
 
 [[link(android)]]
 class GJCommentListLayer : cocos2d::CCLayerColor {
-    virtual ~GJCommentListLayer() = win 0x398f90;
+    virtual ~GJCommentListLayer() = win 0x398f90, imac 0x289550, m1 0x22e1d8;
 
     static GJCommentListLayer* create(BoomListView* listView, char const* title, cocos2d::ccColor4B color, float width, float height, bool blueBorder) = win 0x39c470, imac 0x288fc0, m1 0x22dc44;
 
@@ -11481,7 +11481,7 @@ class GJMessageCell : TableViewCell, FLAlertLayerProtocol, UploadPopupDelegate, 
     virtual void uploadActionFailed(int id, int response) = win 0x15daa0;
     virtual void onClosePopup(UploadActionPopup* popup) = win 0x15db70, imac 0x242af0, m1 0x1ed66c;
 
-    void loadFromMessage(GJUserMessage* message) = win 0x15caa0, imac 0x231d80, m1 0x1de768;
+    void loadFromMessage(GJUserMessage* message) = win 0x15caa0, imac 0x2320e0, m1 0x1de768;
     void markAsRead() = win 0x15d470, imac 0x2424b0, m1 0x1ed080;
     void onDeleteMessage(cocos2d::CCObject* sender) = win 0x3a44d0, imac 0x242330, m1 0x1ecf08;
     void onToggle(cocos2d::CCObject* sender) = win 0x15d720, m1 0x1ed04c;
@@ -11951,7 +11951,7 @@ class GJRequestCell : TableViewCell {
     virtual bool init() = win 0x158d20, m1 0x1ece20;
     virtual void draw() = win 0x1487a0;
 
-    void loadFromScore(GJUserScore* score) = win 0x158d40, m1 0x438b18;
+    void loadFromScore(GJUserScore* score) = win 0x158d40, imac 0x231d80, m1 0x1d3434;
     void markAsRead() = win 0x504490, imac 0x240820, m1 0x1eb810;
     void onDeleteRequest(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
