@@ -375,7 +375,7 @@ GEODE_SIZE_CHECK(EditorSoundsLayer, 0x31c);
 GEODE_SIZE_CHECK(EditorSoundsSettingsPopup, 0x214);
 GEODE_SIZE_CHECK(EditorSoundUploadDelegate, 0x4);
 GEODE_SIZE_CHECK(EditorUI, 0x448);
-GEODE_SIZE_CHECK(EditorWindowPopup, 0x344);
+GEODE_SIZE_CHECK(EditorWindowPopup, 0x348);
 GEODE_SIZE_CHECK(EditTriggersPopup, 0x2c8);
 GEODE_SIZE_CHECK(EffectGameObject, 0x670);
 GEODE_SIZE_CHECK(EmotePickerDelegate, 0x4);
