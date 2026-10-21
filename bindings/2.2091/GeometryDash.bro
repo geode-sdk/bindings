@@ -1525,6 +1525,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     MenuAnimationType m_animationType;
     cocos2d::CCPoint m_startPosition;
     IconType m_iconType;
+    cocos2d::ccColor3B m_clickColor;
 }
 
 [[link(android)]]
@@ -13467,7 +13468,6 @@ class InfoAlertButton : CCMenuItemSpriteExtra {
     std::string m_description;
     float m_textScale;
     bool m_scroll;
-    int m_unk;
 }
 
 [[link(android)]]
