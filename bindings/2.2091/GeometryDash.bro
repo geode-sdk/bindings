@@ -10238,10 +10238,12 @@ class GJCompactUserCell : TableViewCell {
     TodoReturn addStat(int, char const*, cocos2d::CCNode*, float&, float, bool);
     TodoReturn buildUserRow(GJUserScore*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, float, bool, bool);
     TodoReturn createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool);
-    TodoReturn loadFromScore(GJUserScore*) = win 0x157c60;
+    void loadFromScore(GJUserScore*) = win 0x157c60;
     void onSendMessage(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender);
-    TodoReturn updateBGColor(int);
+    void updateBGColor(int);
+
+    GJUserScore* m_userScore;
 }
 
 [[link(android)]]
@@ -11632,13 +11634,16 @@ class GJNotificationCell : TableViewCell, FLAlertLayerProtocol {
     virtual void draw() = win 0x1487a0;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x15c4c0;
 
-    TodoReturn loadFromNotification(GJNotification*) = win 0x15b0d0;
+    void loadFromNotification(GJNotification*) = win 0x15b0d0;
     void onClaimReward(cocos2d::CCObject* sender);
     void onMute(cocos2d::CCObject* sender);
     void onShowBody(cocos2d::CCObject* sender);
     void onViewTarget(cocos2d::CCObject* sender);
     TodoReturn refreshChest();
-    TodoReturn updateBGColor(int);
+    void updateBGColor(int);
+
+    GJNotification* m_notification;
+    CCMenuItemSpriteExtra* m_claimBtn;
 }
 
 [[link(android)]]
@@ -12706,13 +12711,16 @@ class GJThreadCell : TableViewCell {
     virtual bool init() = win 0x3ff70;
     virtual void draw() = win 0x1487a0;
 
-    TodoReturn loadFromThread(GJMessageThread*) = win 0x1597d0;
+    void loadFromThread(GJMessageThread*) = win 0x1597d0;
     void onShowMembers(cocos2d::CCObject* sender);
     void onThreadOptions(cocos2d::CCObject* sender);
     void onToggleSelect(cocos2d::CCObject* sender);
     void onViewProfile(cocos2d::CCObject* sender);
     void onViewThread(cocos2d::CCObject* sender);
-    TodoReturn updateBGColor(int);
+    void updateBGColor(int);
+
+    GJMessageThread* m_thread;
+    CCMenuItemToggler* m_toggler;
 }
 
 [[link(android)]]
@@ -13459,6 +13467,7 @@ class InfoAlertButton : CCMenuItemSpriteExtra {
     std::string m_description;
     float m_textScale;
     bool m_scroll;
+    int m_unk;
 }
 
 [[link(android)]]
