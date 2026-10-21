@@ -16855,8 +16855,8 @@ class ObjectManager : cocos2d::CCNode {
     bool animLoaded(char const* anim) = win inline, imac 0x877d70, m1 0x76db78;
     cocos2d::CCDictionary* getDefinition(char const* definitionKey) = imac 0x877ba0;
     cocos2d::CCDictionary* getGlobalAnimCopy(char const* anim) = win inline, imac 0x876d80, m1 0x76ccec;
-    void loadCopiedAnimations() = imac 0x8761a0, m1 0x76c1a8;
-    void loadCopiedSets() = imac 0x876610, m1 0x76c614;
+    void loadCopiedAnimations() = win 0x7c2a0, imac 0x8761a0, m1 0x76c1a8;
+    void loadCopiedSets() = win 0x7c8a0, imac 0x876610, m1 0x76c614;
     void purgeObjectManager() = win inline, imac 0x876110, m1 0x76c12c;
     void setLoaded(char const* objectName) = win inline;
     void setup() = win 0x7bfb0, imac 0x8769b0, m1 0x76c960;
@@ -18249,7 +18249,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void playReplay(std::string inputs) = win inline, ios inline;
     void prepareCreateObjectsFromSetup(std::string& levelString) = win 0x50b770, imac 0x7a380, m1 0x71ba0;
     void prepareMusic(bool dontWait) = win 0x51ad50, imac 0x802b0;
-    void processCreateObjectsFromSetup() = win 0x7c8a0, imac 0x7a7b0, m1 0x72024;
+    void processCreateObjectsFromSetup() = win 0x50ba30, imac 0x7a7b0, m1 0x72024;
     void processLoadedMoveActions() = win 0x50dbd0, imac 0x84780, m1 0x7ace0;
     void queueCheckpoint() = win inline, imac 0x8ae20;
     TodoReturn releaseAllPlayerButtons();
