@@ -4767,7 +4767,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     std::string copyObjects(cocos2d::CCArray* objects, bool copyColors, bool sort) = win 0x1c5700, imac 0x5b5f80, m1 0x5033d4;
     std::string copyObjectsDetailed(cocos2d::CCArray* objects) = win inline, imac 0x53b360, m1 0x4a3a34;
     cocos2d::CCArray* createCustomItems() = imac 0x638500, m1 0x574e58;
-    void createDpadMoveMenu(cocos2d::CCArray*) = win 0x1f33b0;
+    void createDpadMoveMenu(cocos2d::CCArray* buttons) = win 0x1f33b0, m1 0x576a78, imac 0x63a1e0;
     GameObject* createEdgeForObject(GameObject* object, int type) = win 0x1fa160, imac 0x6f0f40, m1 0x603d30;
     void createExtraObject(int id, cocos2d::CCPoint position, GameObject* object, cocos2d::CCArray* objects, int zOrder, int editorLayer) = win 0x1fe9e0, imac 0x6f54a0, m1 0x6075b8;
     cocos2d::CCArray* createExtras(cocos2d::CCArray* objects) = win inline, imac 0x6f2af0, m1 0x587fac;
@@ -4775,7 +4775,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void createGlow() = win inline, imac 0x15730, m1 0x13410, ios inline;
     TodoReturn createGradientFromSelection();
     void createLoop() = win 0x1b9360, imac 0x16860, m1 0x14244;
-    void createMoveMenu() = win 0x1f1a70;
+    void createMoveMenu() = win 0x1f1a70, m1 0x5759ac, imac 0x6390e0;
     void createNewKeyframeAnim() = win 0x1b90b0, imac 0x165d0, m1 0x14028;
     GameObject* createObject(int objectID, cocos2d::CCPoint position) = win 0x1b32a0, imac 0x11ca0, m1 0x10074;
     cocos2d::CCArray* createOutlines(cocos2d::CCArray* objects) = win 0x1fa7a0, imac 0x6f12b0, m1 0x604058;
@@ -4784,17 +4784,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCArray* createRockEdges(cocos2d::CCArray* objects) = win 0x1f9df0, imac 0x6f0ba0, m1 0x6039f8;
     void createSmartObjectsFromTemplate(GJSmartTemplate* smartTemplate, cocos2d::CCArray* objects, bool useNearby, bool dontDelete, bool referenceOnly, bool dontPaste) = win 0x1b6820, m1 0x11b6c;
     void createSmartObjectsFromType(int type, cocos2d::CCArray* objects, bool extras, bool dontDelete) = win 0x1b7870, m1 0x12b70;
-    UndoObject* createUndoObject(UndoCommand command, bool addToList) = win 0x1b37e0;
+    UndoObject* createUndoObject(UndoCommand command, bool addToList) = win 0x1b37e0, m1 0x100f8, imac 0x11d30;
     void createUndoSelectObject(bool redo) = win 0x1b3a50, imac 0xd470, m1 0xbb30;
     TodoReturn createViewButton(std::string, int, std::string, cocos2d::CCPoint, float, cocos2d::CCArray*);
     TodoReturn cycleCustomGridPreset(bool);
-    void deactivateRotationControl() = win 0x202720, m1 0x550a14;
+    void deactivateRotationControl() = win 0x202720, m1 0x550a14, imac 0x611ba0;
     void deactivateScaleControl() = win 0x202dd0, imac 0x612e60, m1 0x551a78;
     void deactivateTransformControl() = win 0x2034c0, imac 0x6111a0, m1 0x550124;
     void deleteObject(GameObject* object, bool noUndo) = win inline;
     void deleteSmartBlocksFromObjects(cocos2d::CCArray* objects) = imac 0x14660, m1 0x12488;
     void deleteTypeFromObjects(int id, cocos2d::CCArray* objects) = win inline, imac 0x14d00, m1 0x12a78;
-    void deselectAll() = win 0x1c82b0, imac 0x10020;
+    void deselectAll() = win 0x1c82b0, imac 0x5b88f0, m1 0x505698;
     void deselectObject() = win inline;
     void deselectObject(GameObject* object) = win 0x1c81d0, imac 0x5b9420, m1 0x506128;
     void deselectObjectsColor() = win 0x1c9840, imac 0x5b9d60, m1 0x5069bc;
@@ -4851,8 +4851,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     GJTransformState& getTransformState() = win inline, ios inline;
     TodoReturn getViewButtonState(int);
     float getXMin(int offset) = win 0x9999999, imac 0xdbe0, m1 0xc30c;
-    TodoReturn handleEditorAction(int, bool, double);
-    bool init(LevelEditorLayer* editorLayer) = win 0x1a9630, imac 0x5270;
+    bool handleEditorAction(int, bool, double) = win 0x1c2270, imac 0x60bbd0, m1 0x54b9d8;
+    bool init(LevelEditorLayer* editorLayer) = win 0x1a9630, imac 0x5270, m1 0x461c;
     bool isFreeMoveTouch();
     bool isLiveColorSelectTrigger(GameObject* object) = win inline, imac 0x18bf0, m1 0x15b24, ios inline;
     bool isSpecialSnapObject(int id);
@@ -4930,7 +4930,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn processSelectObject(GameObject*);
     void processSelectObjects(cocos2d::CCArray* objects) = imac 0x5b90a0, m1 0x505dac;
     void processSmartObjectsFromType(int type, cocos2d::CCArray* objects, cocos2d::CCArray* objects2, cocos2d::CCArray* objects3, cocos2d::CCArray* objects4) = win 0x1b7d50, imac 0x152d0, m1 0x13014;
-    void recreateButtonTabs() = win 0x1f69e0;
+    void recreateButtonTabs() = win 0x1f69e0, m1 0x5790f8;
     void redoLastAction(cocos2d::CCObject* sender);
     TodoReturn refreshGridWindow();
     void reloadCustomItems() = win 0x1f6770, imac 0x63c900, m1 0x578e84;
@@ -4940,7 +4940,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void resetObjectEditorValues(cocos2d::CCArray* objects) = win inline, imac 0x613880;
     void resetSelectedObjectsColor() = win 0x1bedd0, imac 0x19f50, m1 0x16c24;
     void resetUI() = win 0x1afc20, imac 0x8c60;
-    TodoReturn rotateObjects(cocos2d::CCArray*, float, cocos2d::CCPoint, bool);
+    void rotateObjects(cocos2d::CCArray* objects, float rotation, cocos2d::CCPoint center, bool lock) = win 0x2002e0, imac 0x60f4d0, m1 0x54e5e4;
     float rotationforCommand(EditCommand command) = win inline, imac 0x60f060, m1 0x2e69b8, ios inline;
     void scaleObjects(cocos2d::CCArray* objects, float scaleX, float scaleY, cocos2d::CCPoint pivotPoint, ObjectScaleType type, bool lockMove) = win 0x2007d0, imac 0x610150, m1 0x54f2fc;
     void selectAll() = win inline, imac 0x5b9160, m1 0x505e74;
@@ -4985,7 +4985,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void toggleMode(cocos2d::CCObject* sender) = win 0x1afd40, m1 0x6f3c;
     void toggleObjectInfoLabel() = win 0x1ae9b0, imac 0xb560, m1 0x9e14;
     void toggleSnap(cocos2d::CCObject* sender) = win 0x1b3590, imac 0x7fd0, m1 0x7180;
-    TodoReturn toggleSpecialEditButtons(bool) = win 0x1bb050;
+    void toggleSpecialEditButtons(bool forceRotationControl) = win 0x1bb050, imac 0xc0e0, m1 0xa8dc;
     void toggleSwipe(cocos2d::CCObject* sender);
     TodoReturn toggleTraceSelected(bool);
     TodoReturn toggleViewOption(int);
@@ -9315,7 +9315,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void controlTriggersWithControlID(int controlID, GJActionCommand command) = win 0x326030, imac 0x114910, m1 0xef6fc;
     int countCollectedUserCoins() = win inline, imac 0x106f30, m1 0xe4edc;
     void createBackground(int background) = win 0x3119b0, imac 0xf0630, m1 0xd1364;
-    void createGroundLayer(int ground, int line) = win 0x311df0, imac 0x11d30, m1 0xd1898;
+    void createGroundLayer(int ground, int line) = win 0x311df0, imac 0xf0bb0, m1 0xd1898;
     StartPosObject* createLiveStartPosObject() = win inline, imac 0x100770, m1 0xdf1d0;
     void createMiddleground(int middleground) = win 0x311c70, imac 0xf0dc0, m1 0xd1a7c;
     cocos2d::CCArray* createNewKeyframeAnim() = win inline, imac 0x1299f0, m1 0x101f50;
