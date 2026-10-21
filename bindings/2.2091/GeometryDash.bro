@@ -8763,7 +8763,7 @@ class GameToolbox {
     static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, imac 0x4eacd0, m1 0x448fb0;
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x70ad0, imac 0x4ef2c0, m1 0x44d364;
     static bool saveStringToFile(std::string const&, std::string const&, bool, bool) = win inline, ios inline;
-    static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = win 0x6cdd0;
+    static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = win inline;
     static void setOnOffSprite(cocos2d::CCNode*, bool);
     static TodoReturn showFolderDialog(char const*, std::string&);
     static TodoReturn showOpenFileDialog(char const*, char const*, std::string const&, std::string&);
