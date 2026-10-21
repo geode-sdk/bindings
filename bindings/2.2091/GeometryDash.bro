@@ -5550,6 +5550,7 @@ class EffectGameObject : EnhancedGameObject {
     bool m_ignoreLinkedObjects;
     bool m_channelChanged;
     bool m_canSpawnTriggers;
+    int m_collisionUpdateID;
 }
 
 [[link(android), depends(CAState, PulseEffectAction, CountTriggerAction, OpacityEffectAction, TouchToggleAction, CollisionTriggerAction, ToggleTriggerAction, SpawnTriggerAction, GroupCommandObject2, TimerItem, TimerTriggerAction)]]
