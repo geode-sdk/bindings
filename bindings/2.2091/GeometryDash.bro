@@ -10780,40 +10780,39 @@ class GJGameLevel : cocos2d::CCNode {
     bool m_savedTime;
     bool m_savedPoints;
     int m_cbsOverride;
-    std::string m_unkK126;
-    int m_unkK127;
-    std::string m_unkK128;
-    std::string m_unkK131;
-    int m_unkK130;
-    int m_unkK132;
-    bool m_unkK129;
-    int m_unkK154;
-    int m_unkK133;
-    std::string m_unkK134;
-    std::string m_unkK135;
-    std::string m_unkK136;
-    std::string m_unkK137;
-    int m_firstPlayedUnix;
-    int m_lastExitedUnix;
-    int m_unkK142;
-    int m_unkK143;
-    int m_unkK145;
-    int m_unk67C; // (could be padding)
-    std::string m_unk680;
-    std::string m_unkK146;
+    std::string m_autoBackupID; //k126, also editor level id api is out of a job now
+    int m_lastAutoBackupUnix; //k127
+    std::string m_platformerSave; //k128
+    std::string m_platformerSaveReplay; //k131
+    int m_platformerSaveLevelVersion; //k130
+    int m_platformerSaveFormatVersion; //k132
+    bool m_enablePlatformerSave; //k129
+    int m_practiceAttempts; //k154
+    int m_deathTrackerFormatVersion; //k133
+    std::string m_deathsPerPercent; //k134
+    std::string m_startPosDeathCounts; //k135
+    std::string m_currentSessionAttempts; //k136
+    std::string m_startPosAttemptHistory; //k137
+    int m_firstPlayedUnix; //k138
+    int m_lastExitedUnix; //k139
+    int m_sessionPlayTime; //k142
+    int m_totalPlayTime; //k143
+    int m_completions; //k145
+    std::string m_sessionLog; //k146 but uncompressed?
+    std::string m_compressedSessionLog; //k146
     void* m_unk6B0;
-    std::string m_unkK140;
-    bool m_unkK141;
-    int m_unkK151; // stored as 1000 - k151
-    int m_unkK152a;
+    std::string m_deathMarkers; //k140
+    bool m_deathDataPendingUpload; //k141
+    int m_deathUploadRate; // stored as 1000 - k151
+    int m_unkK152a; //global death stats
     int m_unkK152b;
     std::string m_unkK152c;
-    std::string m_unkK147;
-    int m_unkK148;
-    std::string m_unkK149;
-    int m_unkK150;
-    bool m_unkK153;
-    int m_unkK155;
+    std::string m_creatorLevelControls; //k147
+    int m_levelControlsVersion; //k148
+    std::string m_customLevelControls; //k149
+    int m_customLevelControlsVersion; //k150
+    bool m_editedCustomControls; //k153
+    int m_customControlsType; //k155
 }
 
 [[link(android)]]
