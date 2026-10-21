@@ -1,12 +1,5 @@
 #include <Geode/binding/NumberInputLayer.hpp>
 
-// NumberInputLayer::NumberInputLayer() {
-//     m_okButton = nullptr;
-//     m_minimum = 4;
-//     m_maximum = 4;
-//     m_delegate = nullptr;
-// }
-
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
@@ -34,13 +27,19 @@ void NumberInputLayer::inputNumber(int num) {
         this->updateNumberState();
     }
 }
+#endif
+
+#if defined(GEODE_IS_IOS)
+NumberInputLayer::NumberInputLayer() {
+    m_okButton = nullptr;
+    m_minimum = 4;
+    m_maximum = 4;
+    m_delegate = nullptr;
+}
 
 void NumberInputLayer::onDone(cocos2d::CCObject* sender) {
     if (m_delegate) m_delegate->numberInputClosed(this);
     this->onClose(nullptr);
 }
-#endif
-
-#if defined(GEODE_IS_IOS)
 #endif
 
