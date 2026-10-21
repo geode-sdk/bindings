@@ -2653,9 +2653,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     bool m_accountComment;
     bool m_unk259;
     bool m_compactMode;
-    win {
-        CCMenuItemToggler* m_bulkSelectToggle;
-    }
+    CCMenuItemToggler* m_bulkSelectToggle;
 }
 
 [[link(android)]]
@@ -3093,9 +3091,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
-    win {
-        PAD = 0x20;
-    }
+    PAD = win 0x20;
     int m_vaultDialogIndex;
     int m_versusDialogIndex;
 }
@@ -7690,9 +7686,7 @@ class GameManager : GManager {
     void videoAdHidden() = win inline, imac 0x8de00, m1 0x2f6b84, ios inline;
     void videoAdShowed() = win inline, imac 0x369530, m1 0x2f6b40, ios inline;
 
-    win {
-        PAD = 0x18;
-    }
+    PAD = win 0x18;
     cocos2d::CCDictionary* m_mainFramesForAnimation;
     cocos2d::CCDictionary* m_detailFramesForAnimation;
     cocos2d::CCDictionary* m_frameTimeForAnimation;
@@ -7706,9 +7700,7 @@ class GameManager : GManager {
     bool m_unkBool2;
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
-    win {
-        PAD = 0x10;
-    }
+    PAD = win 0x10;
     cocos2d::CCDictionary* m_unlockValueKeeper;
     cocos2d::CCDictionary* m_customObjectDict;
     double m_adTimer;
@@ -7793,9 +7785,7 @@ class GameManager : GManager {
     int m_currentLevelID;
     int m_currentColorChannel;
     int m_currentGroupID;
-    win {
-        PAD = 0xc;
-    }
+    PAD = win 0xc;
     int m_loadedBgID;
     int m_loadedGroundID;
     int m_loadedMG;
@@ -7819,9 +7809,7 @@ class GameManager : GManager {
     bool m_unkBool8;
     geode::SeedValueRSV m_hasRP;
     bool m_hasDRP;
-    win {
-        int m_specialPermKey;
-    }
+    int m_specialPermKey;
     bool m_canGetLevelSaveData;
     int m_resolution;
     int m_texQuality;
@@ -7834,16 +7822,12 @@ class GameManager : GManager {
     int m_unkSize4_14;
     bool m_disableThumbstick;
     float m_customFPSTarget;
-    win {
-        float m_scrollSensitivity;
-        PAD = 0x10;
-    }
+    float m_scrollSensitivity;
+    PAD = win 0x10;
     bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
-    win {
-        PAD = 0xc;
-    }
+    PAD = win 0xc;
     std::map<int, int> m_iconLoadCounts;
     std::map<int, std::map<int, int>> m_iconRequests;
     std::map<int, bool> m_isIconBeingLoaded;
@@ -7866,9 +7850,7 @@ class GameManager : GManager {
     std::string m_dpadLayoutDual1;
     std::string m_dpadLayoutDual2;
     std::string m_dpadLayoutDual3;
-    win {
-        std::string m_recentEmotes;
-    }
+    std::string m_recentEmotes;
     int m_leaderboardLevelID;
     int m_leaderboardLevelTime;
     int m_leaderboardLevelPoints;
@@ -10231,18 +10213,14 @@ class GJComment : cocos2d::CCNode {
     bool m_commentDeleted;
     int m_percentage;
     int m_modBadge;
-    win {
-        bool m_isFriend;
-    }
+    bool m_isFriend;
     cocos2d::ccColor3B m_color;
     bool m_hasLevelID;
     bool m_unkMultiplayerBool;
     bool m_canDelete;
-    win {
-        int m_commentType;
-        bool m_isSelected;
-        int m_unk1d4;
-    }
+    int m_commentType;
+    bool m_isSelected;
+    int m_unk1d4;
     GJUserScore* m_userScore;
 }
 
@@ -12459,9 +12437,7 @@ class GJShaderState {
     float m_splitTargetRows;
     float m_splitTargetCols;
     bool m_splitActive;
-    win {
-        PAD = 0x8;
-    }
+    PAD = win 0x8;
     int m_minBlendingLayer;
     int m_maxBlendingLayer;
     bool m_zLayerDirty;
@@ -13560,9 +13536,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     GJGameLevel* m_level;
     GJUserScore* m_score;
     GJLevelList* m_levelList;
-    win {
-        PAD = 0x8;
-    }
+    PAD = win 0x8;
     std::string m_commentKey;
     LoadingCircle* m_loadingCircle;
     cocos2d::CCLabelBMFont* m_pageLabel;
@@ -14753,9 +14727,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     CCMenuItemSpriteExtra* m_starRateBtn;
     CCMenuItemSpriteExtra* m_demonRateBtn;
     void* m_unk2;
-    win {
-        PAD = 0x8;
-    }
+    PAD = win 0x8;
     cocos2d::CCLabelBMFont* m_lengthLabel;
     cocos2d::CCLabelBMFont* m_exactLengthLabel;
     cocos2d::CCLabelBMFont* m_downloadsLabel;
