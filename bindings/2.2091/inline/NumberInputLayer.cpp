@@ -1,11 +1,11 @@
 #include <Geode/binding/NumberInputLayer.hpp>
 
-NumberInputLayer::NumberInputLayer() {
-    m_okButton = nullptr;
-    m_minimum = 4;
-    m_maximum = 4;
-    m_delegate = nullptr;
-}
+// NumberInputLayer::NumberInputLayer() {
+//     m_okButton = nullptr;
+//     m_minimum = 4;
+//     m_maximum = 4;
+//     m_delegate = nullptr;
+// }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

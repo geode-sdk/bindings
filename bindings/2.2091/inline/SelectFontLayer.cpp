@@ -1,3 +1,5 @@
+#ifndef GEODE_IS_WINDOWS // unused in 2.209
+
 #include <Geode/binding/SelectFontLayer.hpp>
 
 SelectFontLayer::SelectFontLayer() {
@@ -28,3 +30,4 @@ SelectFontLayer* SelectFontLayer::create(LevelEditorLayer* editorLayer) {
 #if defined(GEODE_IS_IOS)
 #endif
 
+#endif
