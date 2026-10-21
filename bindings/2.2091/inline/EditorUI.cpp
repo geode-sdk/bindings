@@ -18,6 +18,11 @@ EditorUI* EditorUI::get() {
     return lel->m_editorUI;
 }
 
+void EditorUI::zoomGameLayer(bool zoomingIn) {
+    auto scale = m_editorLayer->m_objectLayer->getScale();
+    this->updateZoom(std::clamp(zoomingIn ? scale + .1f : scale - .1f, .1f, 4.f));
+}
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorUI::addSnapPosition(cocos2d::CCPoint position) {
     auto node = cocos2d::CCNode::create();
@@ -203,11 +208,6 @@ void EditorUI::updateGroupIDBtn2() {
 void EditorUI::updateSpecialUIElements() {
     this->updateObjectInfoLabel();
     this->updateScaleControl();
-}
-
-void EditorUI::zoomGameLayer(bool zoomingIn) {
-    auto scale = m_editorLayer->m_objectLayer->getScale();
-    this->updateZoom(std::clamp(zoomingIn ? scale + .1f : scale - .1f, .1f, 4.f));
 }
 #endif
 
@@ -704,6 +704,12 @@ float EditorUI::xPosFromValue(float value) {
     auto scale = m_editorLayer->m_objectLayer->getScale();
     return sectionCount * 100.f * scale * value - xMin;
 }
+#endif
+
+#if defined(GEODE_IS_MACOS)
+    void EditorUI::updateZoom(float zoom) {
+        this->updateZoom(zoom, CCDirector::sharedDirector()->getWinSize() / 2);
+    }
 #endif
 
 #if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)

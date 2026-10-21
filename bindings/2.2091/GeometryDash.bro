@@ -4421,7 +4421,7 @@ class EditorSFXManager {
     // ~EditorSFXManager();
     // EditorSFXManager();
 
-    static EditorSFXManager* sharedState() = win 0x185140;
+    static EditorSFXManager* sharedState() = win 0x185140, m1 0x7cd268;
 
     TodoReturn actionToString(int);
     TodoReturn addFavoriteConfig(GJEditorSoundConfig*);
@@ -4461,7 +4461,7 @@ class EditorSFXManager {
     TodoReturn importFromString(std::string const&, EditorSFXImportOptions const&, std::string*);
     bool init();
     TodoReturn overwriteMyConfigFromLive(int, std::string*);
-    void playAction(int) = win 0x1855c0;
+    void playAction(int) = win 0x1855c0, m1 0x7ce64c;
     TodoReturn playAction(int, int);
     TodoReturn releaseBinding(EditorSFXBinding*);
     TodoReturn removeFavoriteConfig(int);
@@ -4981,7 +4981,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void toggleEditObjectButton() = win 0x1baf50, imac 0xbe90, m1 0xa6a0;
     void toggleEnableRotate(cocos2d::CCObject* sender) = win 0x1b36a0, imac 0x8060, m1 0x7204;
     void toggleFreeMove(cocos2d::CCObject* sender);
-    void toggleLockUI(bool lockUI) = win inline, imac 0xbe80;
+    void toggleLockUI(bool lockUI) = win inline, imac 0xbe80, m1 0xa698;
     void toggleMode(cocos2d::CCObject* sender) = win 0x1afd40, m1 0x6f3c;
     void toggleObjectInfoLabel() = win 0x1ae9b0, imac 0xb560, m1 0x9e14;
     void toggleSnap(cocos2d::CCObject* sender) = win 0x1b3590, imac 0x7fd0, m1 0x7180;
@@ -5012,24 +5012,24 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateGridNodeSize() = win 0x1ae1c0, imac 0xdd90, m1 0xc494;
     void updateGridNodeSize(int objectID) = win 0x1ae330, m1 0x21aa78, ios inline;
     void updateGroupIDBtn2() = win inline, imac 0xff3a0, ios inline;
-    void updateGroupIDLabel() = win 0x1beaf0, imac 0xac40;
+    void updateGroupIDLabel() = win 0x1beaf0, imac 0xac40, m1 0x95c4;
     void updateObjectInfoLabel() = win 0x1aea40, imac 0xe8b0, m1 0xcee8;
     TodoReturn updatePanDecay(float);
     void updatePlaybackBtn() = win 0x1b4630, imac 0xbd70, m1 0xa578;
     TodoReturn updateSelectionUI();
     void updateSlider() = win 0x1ae100, imac 0x9200, m1 0x81e0;
-    void updateSpecialUIElements() = win inline, imac 0x33f660, ios inline;
-    void updateStickyControls() = win inline, imac 0xb6b0;
+    void updateSpecialUIElements() = win inline, ios inline;
+    void updateStickyControls() = win inline, imac 0xb6b0, m1 0x9f68;
     void updateViewButtons() = win 0x1f80f0;
     void updateViewMenu();
-    void updateZoom(float zoom) = win 0x9999999;
-    TodoReturn updateZoom(float, cocos2d::CCPoint);
+    void updateZoom(float zoom) = win 0x1b4c00, m1 inline, imac inline;
+    void updateZoom(float, cocos2d::CCPoint) = win 0x1b4c70, m1 0x10464, imac 0x263130;
     float valueFromXPos(float xPos) = win inline, imac 0xdd00, m1 0xc404;
     TodoReturn windowClosed(EditorWindowPopup*);
     float xPosFromValue(float value) = win inline, imac 0xdb40, m1 0xc280;
-    void zoomGameLayer(bool zoomingIn) = win inline, ios inline;
-    void zoomIn(cocos2d::CCObject* sender);
-    void zoomOut(cocos2d::CCObject* sender);
+    void zoomGameLayer(bool zoomingIn) = win inline, m1 inline, imac inline, ios inline;
+    void zoomIn(cocos2d::CCObject* sender) = win 0x1b4b00, m1 0x7a7c;
+    void zoomOut(cocos2d::CCObject* sender) = win 0x1b4b80, m1 0x7b3c;
 
     std::unordered_map<int, GameObjectEditorState> m_objectEditorStates;
     GJTransformState m_transformState;
@@ -14438,7 +14438,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void handleAction(bool undo, cocos2d::CCArray* undoObjects) = win 0x3f2580, m1 0x597c24;
     bool hasAction(bool redo) = win inline, imac 0xb23f0, m1 0xa0420;
     bool init(GJGameLevel* level, bool noUI) = win 0x3ed8e0;
-    bool isLayerLocked(int layer) = win inline, imac 0xbc400;
+    bool isLayerLocked(int layer) = win inline, imac 0xbc400, m1 0xa8718;
     TodoReturn lockedLayerForObject(int, int);
     TodoReturn lockedLayerForObjectString(std::string const&);
     GameObject* objectAtPosition(cocos2d::CCPoint position) = win 0x3f11f0, imac 0xb09f0, m1 0x9ec9c;
@@ -14516,7 +14516,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateLevelFont(int index) = win 0x3fd9c0, imac 0xc4890, m1 0xafa60;
     TodoReturn updateLevelSaveInfo();
     void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x3f7460, imac 0xbe6e0, m1 0xaa6c0;
-    void updateOptions() = win 0x3eef70, imac 0xab1d0;
+    void updateOptions() = win 0x3eef70, imac 0xab1d0, m1 0x99e64;
     TodoReturn updatePlayerState(GJPlayerState);
     void updatePreviewAnim() = win 0x400e80, imac 0xc8240, m1 0xb2f70;
     void updatePreviewParticle(ParticleGameObject* object) = win 0x4011a0, imac 0xbcc70, m1 0xa8eb0;
@@ -22367,7 +22367,7 @@ class ShaderLayer : cocos2d::CCLayer {
     void triggerSplitScreenRows(float fadeTime, float targetY, int easingType, float easingRate) = win inline, imac 0x3baac0, m1 0x340ac0;
     void tweenValue(float fromValue, float toValue, int action, float duration, int easingType, float easingRate) = win 0x62a500, imac 0x3bb3b0, m1 0x34125c, ios inline;
     void tweenValueAuto(float value, int action, float duration, int easingType, float easingRate) = win 0x629df0, imac 0x3b70c0, m1 0x33d730;
-    void updateEffectOffsets(cocos2d::CCPoint center) = win 0x623ef0, imac 0x3b58f0, m1 0x10464;
+    void updateEffectOffsets(cocos2d::CCPoint center) = win 0x623ef0, imac 0x3b58f0;
     void updateMotionBlurSpeedX(float x, float dt) = win inline, imac 0x3b9fc0, m1 0x3400e4;
     void updateMotionBlurSpeedY(float y, float dt) = win inline, imac 0x3ba010, m1 0x340118;
     void updateShockLineCenter(cocos2d::CCPoint center) = win inline, m1 0x33e39c;
@@ -23376,8 +23376,8 @@ class StartPosLayer : SetupTriggerPopup {
     void addModeButtons() = win 0x45f710, imac 0x25d3f0, m1 0x2051d8;
     void addSpeedButtons() = win 0x45f9f0, imac 0x25d660, m1 0x205544;
     bool init(StartPosObject*) = win 0x45de00, imac 0x25c540, m1 0x204544, m1 0x204544;
-    void onSelectMode(cocos2d::CCObject* sender) = win 0x45f990, imac 0x263130, m1 0x205f74;
-    void onSelectSpeed(cocos2d::CCObject* sender) = win 0x45fc90, imac 0x263130, m1 0x206074;
+    void onSelectMode(cocos2d::CCObject* sender) = win 0x45f990, m1 0x205f74;
+    void onSelectSpeed(cocos2d::CCObject* sender) = win 0x45fc90, m1 0x206074;
 
     StartPosObject* m_startPosObject;
 }
