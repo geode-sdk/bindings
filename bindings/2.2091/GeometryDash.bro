@@ -16724,10 +16724,12 @@ class NumberInputLayer : FLAlertLayer {
     void updateNumberState() = win 0x9999999;
 
     cocos2d::CCLabelBMFont* m_inputLabel;
+    cocos2d::CCLabelBMFont* m_title;
     CCMenuItemSpriteExtra* m_okButton;
     int m_minimum;
     int m_maximum;
     std::string m_inputString;
+    std::string m_prefixString;
     NumberInputDelegate* m_delegate;
 }
 
@@ -16969,8 +16971,6 @@ class ParentalGateLayer : NumberInputLayer {
 
     void generateChallenge() = win 0x4d3d00;
 
-    std::string m_inputtedValue;
-    void* m_unknown; // this may be incorrect
     int m_solution;
 }
 
