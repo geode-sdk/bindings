@@ -2195,6 +2195,8 @@ class CheckpointGameObject : EffectGameObject {
     bool m_checkpointActivated;
     // property 448
     int m_respawnID;
+    // property 604
+    int m_preSpawnID;
 }
 
 [[link(android), depends(GJGameState, GJShaderState, FMODAudioState, EffectManagerState, SavedObjectStateRef, SavedActiveObjectState, SavedSpecialObjectState, SequenceTriggerState)]]
@@ -2654,6 +2656,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     bool m_accountComment;
     bool m_unk259;
     bool m_compactMode;
+    CCMenuItemToggler* m_bulkSelectToggler;
 }
 
 [[link(android)]]
@@ -4163,6 +4166,7 @@ class EditButtonBar : cocos2d::CCNode {
     cocos2d::CCArray* m_buttonArray;
     BoomScrollLayer* m_scrollLayer;
     cocos2d::CCArray* m_pagesArray;
+    cocos2d::CCMenu* m_dotMenu;
 }
 
 [[link(android)]]
@@ -10210,6 +10214,7 @@ class GJComment : cocos2d::CCNode {
     bool m_commentDeleted;
     int m_percentage;
     int m_modBadge;
+    bool m_isFriend;
     cocos2d::ccColor3B m_color;
     bool m_hasLevelID;
     bool m_unkMultiplayerBool;
@@ -10481,6 +10486,7 @@ class GJEffectManager : cocos2d::CCNode {
     std::unordered_map<int, int> m_itemCountMap;
     std::unordered_map<int, int> m_persistentItemCountMap;
     std::unordered_set<int> m_persistentTimerItemSet;
+    int m_platformerProgress;
     std::unordered_set<int> m_unk3f0;
     std::unordered_set<int> m_unk430;
     std::unordered_map<int, TimerItem> m_timerItemMap;
@@ -11941,7 +11947,7 @@ class GJRequestCell : TableViewCell {
 
     GJUserScore* m_score;
     UploadActionPopup* m_popup;
-    CCMenuItemToggler* m_toggler;
+    bool m_groupRequest;
 }
 
 [[link(android)]]
