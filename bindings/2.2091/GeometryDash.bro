@@ -11307,6 +11307,7 @@ class GJLevelList : cocos2d::CCNode {
     bool m_featured;
     bool m_onlineLevelsLoaded;
     bool m_modified;
+    int m_unk;
     std::string m_creatorName;
     std::string m_listName;
     std::string m_unkString;
