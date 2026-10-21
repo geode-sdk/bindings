@@ -16728,8 +16728,8 @@ class NumberInputLayer : FLAlertLayer {
     CCMenuItemSpriteExtra* m_okButton;
     int m_minimum;
     int m_maximum;
+    std::string m_prefixString; // the text before the code, e.g. "69 x 420 = "
     std::string m_inputString;
-    std::string m_prefixString;
     NumberInputDelegate* m_delegate;
 }
 
