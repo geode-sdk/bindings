@@ -15910,7 +15910,7 @@ class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelega
 
     static MoreOptionsLayer* create() = win inline, m1 0x771d74, imac 0x87c820;
 
-    virtual bool init() = win 0x9999999, imac 0x87ca40, m1 0x771f04;
+    virtual bool init() = win inline, imac 0x87ca40, m1 0x771f04;
     virtual void keyBackClicked();
     virtual void googlePlaySignedIn() = imac 0x87fd10, m1 0x7750c0;
     virtual void dropDownLayerWillClose(GJDropDownLayer* layer) = imac 0x73bc30, m1 0x649674;
