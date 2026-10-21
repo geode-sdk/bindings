@@ -18054,7 +18054,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     PlayLayer() = win 0x502f50;
     ~PlayLayer() = win 0x503640, imac 0x79130, m1 0x70bec;
 
-    static PlayLayer* create(GJGameLevel* level, bool dontCreateObjects) = win inline;
+    static PlayLayer* create(GJGameLevel* level, bool dontCreateObjects) = win 0x5039e0;
     static PlayLayer* get() = inline;
     static cocos2d::CCScene* scene(GJGameLevel*, bool) = win 0x503930;
 
