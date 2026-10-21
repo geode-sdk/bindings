@@ -19872,7 +19872,7 @@ class SetIDPopup : FLAlertLayer {
     virtual void textChanged(CCTextInputNode* node) = win 0x3a5f70, imac 0x298c80, m1 0x23c750;
     virtual void valueChanged() = win inline, imac 0x298db0, m1 0x23c880;
 
-    bool init(int current, int begin, int end, std::string title, std::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows) = win 0xc1fc0, imac 0x2980c0, m1 0x23bbcc;
+    bool init(int current, int begin, int end, std::string title, std::string button, bool resetButton, int defaultValue, float offset, bool numberInput, bool arrows) = win 0x3a5520, imac 0x2980c0, m1 0x23bbcc;
     void onCancel(cocos2d::CCObject* sender) = imac 0x298a60;
     void onClose(cocos2d::CCObject* sender) = imac 0x298960, m1 0x23c464;
     void onItemIDArrow(cocos2d::CCObject* sender) = imac 0x298a10, m1 0x23c508;
