@@ -10763,7 +10763,7 @@ class GJGameLevel : cocos2d::CCNode {
     std::string m_songIDs;
     std::string m_sfxIDs;
     int m_songSize;
-    int m_unk50C;
+    int m_replayDailyID; // server key 65
     int m_bestTime;
     int m_ticksTime;
     int m_clicksTime;
@@ -10800,7 +10800,7 @@ class GJGameLevel : cocos2d::CCNode {
     int m_completions; //k145
     std::string m_sessionLog; //k146 but uncompressed?
     std::string m_compressedSessionLog; //k146
-    void* m_unk6B0;
+    bool m_sessionLogDirty;
     std::string m_deathMarkers; //k140
     bool m_deathDataPendingUpload; //k141
     int m_deathUploadRate; // stored as 1000 - k151
