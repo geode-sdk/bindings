@@ -9237,7 +9237,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void objectsCollided(int blockAID, int blockBID) = win 0x320700, imac 0x109580, m1 0xe71d8;
     virtual void updateColor(cocos2d::ccColor3B& color, float fadeTime, int colorID, bool blending, float opacity, cocos2d::ccHSVValue& copyHSV, int colorIDToCopy, bool copyOpacity, EffectGameObject* callerObject, int unk1, int unk2) = win 0x32b610, imac 0x119d30, m1 0xf4990;
     virtual void toggleGroupTriggered(int group, bool activate, std::vector<int> const& remapKeys, int triggerID, int controlID) = win 0x32b7f0, imac 0x119ed0, m1 0xf4af8;
-    [[missing(win, mac)]]
     virtual bool checkSpawnAbuse() = win 0x322360;
     virtual void spawnGroup(int group, bool ordered, double delay, std::vector<int> const& remapKeys, int triggerID, int controlID) = win 0x322370, imac 0x2651b0, m1 0xe8064;
     virtual void spawnObject(GameObject* object, double delay, std::vector<int> const& remapKeys) = win 0x3227a0;
@@ -11737,7 +11736,6 @@ class GJOptionsLayer : SetupTriggerPopup {
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, imac 0x287820, m1 0x22c4f8;
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x4d2330;
     int countForPage(int page) = win 0x9999999;
-    [[missing(win, mac)]]
     CCMenuItemToggler* getToggleButton(int id) = ios inline;
     void goToPage(int page);
     void incrementCountForPage(int page);
@@ -11767,9 +11765,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
     float m_offset;
-    android, ios {
-        std::unordered_map<int, CCMenuItemToggler*> m_toggleButtons;
-    }
+    std::unordered_map<int, CCMenuItemToggler*> m_toggleButtons;
 }
 
 [[link(android)]]
@@ -12492,8 +12488,8 @@ class GJShaderState {
     float m_colorChangeBR;
     float m_colorChangeBG;
     float m_colorChangeBB;
-    float m_splitTargetRows;
-    float m_splitTargetCols;
+    double m_splitTargetRows;
+    double m_splitTargetCols;
     bool m_splitActive;
     int m_minBlendingLayer;
     int m_maxBlendingLayer;
@@ -15140,6 +15136,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     int m_type;
     CCTextInputNode* m_searchInput;
     cocos2d::CCSprite* m_starsSprite;
+    cocos2d::CCSprite* m_noStarSprite;
     cocos2d::CCArray* m_difficultySprites;
     cocos2d::CCArray* m_lengthSprites;
     cocos2d::CCDictionary* m_difficultyDict;
@@ -15180,6 +15177,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     int m_unknown;
     int m_scrolls;
     bool m_masterDetectiveUnlocked;
+    CCMenuItemSpriteExtra* m_deathTrackerButton;
 }
 
 [[link(android)]]
@@ -16971,7 +16969,9 @@ class OptionsObject : cocos2d::CCObject {
     bool m_enabled;
     std::string m_name;
     OptionsObjectDelegate* m_delegate;
+    int m_type;
     int m_count;
+    StartPosObject* m_startPosObject;
 }
 
 [[link(android)]]
@@ -17434,9 +17434,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
-    android, ios {
-        bool m_collidingBetweenSteps;
-    }
+    bool m_collidingBetweenSteps;
     double m_scaleXRelated4;
     double m_scaleXRelated5;
     bool m_isCollidingWithSlope;
@@ -17881,9 +17879,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_groundYVelocity;
     double m_yVelocityRelated;
     double m_scaleXRelated3;
-    win, android, ios {
-        bool m_collidingBetweenSteps;
-    }
+    bool m_collidingBetweenSteps;
     double m_scaleXRelated4;
     double m_scaleXRelated5;
     bool m_isCollidingWithSlope;
@@ -23724,6 +23720,7 @@ class TextAlertPopup : cocos2d::CCNode {
     float m_width;
     float m_height;
     cocos2d::CCLabelBMFont* m_label;
+    cocos2d::extension::CCScale9Sprite* m_background;
 }
 
 [[link(android)]]
@@ -23824,8 +23821,8 @@ class TextStyleSection : cocos2d::CCObject {
     static TextStyleSection* createDelaySection(int start, float delay) = win inline, imac 0x47e790, m1 0x3e8b34, ios inline;
     static TextStyleSection* createInstantSection(int start, int end, float duration) = win inline, imac 0x47e670, m1 0x3e8a20, ios inline;
     static TextStyleSection* createShakeSection(int start, int end, int intensity, int perSecond) = win inline, imac 0x47e700, m1 0x3e8aa8, ios inline;
+    static TextStyleSection* createEmoteSection(int, EmoteDef const*);
 
-    TodoReturn createEmoteSection(int, EmoteDef const*);
     bool init(int start, int end, TextStyleType type) = win inline, imac 0x47e960, m1 0x3e8cb4, ios inline;
 
     TextStyleType m_styleType;
@@ -23836,6 +23833,7 @@ class TextStyleSection : cocos2d::CCObject {
     float m_delay;
     int m_shakeIntensity;
     int m_shakesPerSecond;
+    EmoteDef* m_emoteDefinition;
 }
 
 [[link(android)]]
@@ -24308,7 +24306,6 @@ class TriggerEffectDelegate {
     virtual void toggleGroupTriggered(int group, bool activate, std::vector<int> const& remapKeys, int triggerID, int controlID) = inline;
     virtual void spawnGroup(int group, bool ordered, double delay, std::vector<int> const& remapKeys, int triggerID, int controlID) = inline;
     virtual void spawnObject(GameObject* object, double delay, std::vector<int> const& remapKeys) = inline;
-    [[missing(win, mac)]]
     virtual bool checkSpawnAbuse() = inline;
 }
 
