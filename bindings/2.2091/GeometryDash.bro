@@ -16817,8 +16817,8 @@ class ObjectManager : cocos2d::CCNode {
     bool animLoaded(char const* anim) = win inline, imac 0x877d70, m1 0x76db78;
     cocos2d::CCDictionary* getDefinition(char const* definitionKey) = imac 0x877ba0;
     cocos2d::CCDictionary* getGlobalAnimCopy(char const* anim) = win inline, imac 0x876d80, m1 0x76ccec;
-    void loadCopiedAnimations() = imac 0x8761a0, m1 0x76c1a8;
-    void loadCopiedSets() = imac 0x876610, m1 0x76c614;
+    void loadCopiedAnimations() = win 0x7c2a0, imac 0x8761a0, m1 0x76c1a8;
+    void loadCopiedSets() = win 0x7c8a0, imac 0x876610, m1 0x76c614;
     void purgeObjectManager() = win inline, imac 0x876110, m1 0x76c12c;
     void setLoaded(char const* objectName) = win inline;
     void setup() = win 0x7bfb0, imac 0x8769b0, m1 0x76c960;
