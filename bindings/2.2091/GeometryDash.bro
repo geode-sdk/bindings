@@ -16719,9 +16719,9 @@ class NumberInputLayer : FLAlertLayer {
     void deleteLast() = win inline, imac 0x2922b0;
     void inputNumber(int num) = win inline;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x4357b0, m1 0x3abbd8;
-    void onDone(cocos2d::CCObject* sender) = win inline;
-    void onNumber(cocos2d::CCObject* sender) = win 0x2157c0, imac 0x895b60;
-    void updateNumberState() = win 0x9999999;
+    void onDone(cocos2d::CCObject* sender) = win 0x4a1820;
+    void onNumber(cocos2d::CCObject* sender) = win 0x4a1820, imac 0x895b60;
+    void updateNumberState() = win 0x4a1990;
 
     cocos2d::CCLabelBMFont* m_inputLabel;
     cocos2d::CCLabelBMFont* m_title;
