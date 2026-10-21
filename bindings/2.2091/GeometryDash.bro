@@ -16853,7 +16853,7 @@ class ObjectManager : cocos2d::CCNode {
     virtual bool init() = win 0x7bf50, imac 0x876140, m1 0x76c158;
 
     bool animLoaded(char const* anim) = win inline, imac 0x877d70, m1 0x76db78;
-    cocos2d::CCDictionary* getDefinition(char const* definitionKey) = imac 0x877ba0;
+    cocos2d::CCDictionary* getDefinition(char const* definitionKey) = win 0x7d490, imac 0x877ba0;
     cocos2d::CCDictionary* getGlobalAnimCopy(char const* anim) = win inline, imac 0x876d80, m1 0x76ccec;
     void loadCopiedAnimations() = win 0x7c2a0, imac 0x8761a0, m1 0x76c1a8;
     void loadCopiedSets() = win 0x7c8a0, imac 0x876610, m1 0x76c614;
