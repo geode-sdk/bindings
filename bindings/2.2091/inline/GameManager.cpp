@@ -29,15 +29,19 @@ GJBaseGameLayer* GameManager::getGameLayer() {
 
 bool GameManager::getGameVariableDefault(const char* key, bool defaultValue) {
     //helper function
-    auto object = static_cast<cocos2d::CCString*>(m_valueKeeper->objectForKey(std::string("gv_") + key));
+    auto object = m_valueKeeper->valueForKey(std::string("gv_") + key);
     if (object == nullptr)
         return defaultValue;
     return object->boolValue();
 }
 
+int GameManager::getIntGameVariable(const char* key) {
+    return m_valueKeeper->valueForKey(std::string("gv_") + key)->intValue();
+}
+
 int GameManager::getIntGameVariableDefault(const char* key, int defaultValue) {
     //helper function
-    auto object = static_cast<cocos2d::CCString*>(m_valueKeeper->objectForKey(std::string("gv_") + key));
+    auto object = m_valueKeeper->valueForKey(std::string("gv_") + key);
     if (object == nullptr)
         return defaultValue;
     return object->intValue();
@@ -702,6 +706,16 @@ void GameManager::subYouTube() {
     if (GameToolbox::doWeHaveInternet()) {
         cocos2d::CCApplication::sharedApplication()->openURL("https://www.youtube.com/user/RobTopGames");
         m_clickedYouTube = true;
+        __timeb64 current;
+        _ftime64_s(&current);
+        m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
+    }
+}
+
+void GameManager::subSpotlight() {
+    if (GameToolbox::doWeHaveInternet()) {
+        cocos2d::CCApplication::sharedApplication()->openURL("https://www.youtube.com/@GeometryDashSpotlight");
+        m_clickedSpotlight = true;
         __timeb64 current;
         _ftime64_s(&current);
         m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;

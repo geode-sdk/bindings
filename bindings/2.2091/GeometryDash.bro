@@ -3094,7 +3094,10 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
-    PAD = win 0x20;
+    cocos2d::CCSprite* m_dailySprite;
+    cocos2d::CCSprite* m_weeklySprite;
+    cocos2d::CCSprite* m_eventSprite;
+    cocos2d::CCSprite* m_gauntletSprite;
     int m_vaultDialogIndex;
     int m_versusDialogIndex;
 }
@@ -7439,7 +7442,7 @@ class GameManager : GManager {
     void addGameAnimation(int objectID, int frames, float frameTime, std::string mainAnimFrame, std::string detailAnimFrame, int defaultFrame) = win 0x2ac640, imac 0x250220, m1 0x1f93ec;
     void addIconDelegate(cocos2d::CCObject* delegate, int key) = imac 0x36aca0, m1 0x2f7fa4;
     void addNewCustomObject(std::string str) = win 0x27ef00, imac 0x36dcc0, m1 0x2fb128;
-    TodoReturn addRecentEmote(char const*);
+    void addRecentEmote(char const*) = win 0x281b50;
     void addToGJLog(cocos2d::CCString* str) = win inline, imac 0x370180, m1 0x2fd014, ios inline;
     void applicationDidEnterBackground() = win inline, imac 0x376570, m1 0x3027f4;
     void applicationWillEnterForeground() = imac 0x376580, m1 0x3027f8;
@@ -7452,7 +7455,7 @@ class GameManager : GManager {
     cocos2d::ccColor3B colorForIdx(int index) = win 0x27c5b0, imac 0x368f00, m1 0x2f6528;
     int colorForPos(int pos) = win inline, imac 0x3693c0, m1 0x2f69f4, ios inline;
     std::string colorKey(int id, UnlockType type) = win 0x277680, imac 0x3616b0, m1 0x2f00a0;
-    TodoReturn commentsRestricted();
+    bool commentsRestricted();
     void completedAchievement(std::string key) = win 0x9999999, imac 0x362470, m1 0x2f0f5c;
     int countForType(IconType type) = win 0x27d010, imac 0x36a1d0, m1 0x2f770c;
     int defaultFrameForAnimation(int objectID) = win inline, imac 0x247950, m1 0x1f12f4, ios inline;
@@ -7476,7 +7479,7 @@ class GameManager : GManager {
     void followTwitter() = win inline;
     int framesForAnimation(int objectID) = win inline, imac 0x247b50, m1 0x1f14cc, ios inline;
     float frameTimeForAnimation(int objectID) = win inline, imac 0x247b80, m1 0x1f14fc, ios inline;
-    TodoReturn friendRequestsRestricted();
+    bool friendRequestsRestricted();
     int generateSecretNumber() = win 0x281680, imac 0x36ff10, m1 0x2fce58;
     const char* getBGTexture(int index) = win inline, imac 0x36cf00, m1 0x2fa224;
     LevelEditorLayer* getEditorLayer() = inline;
@@ -7487,7 +7490,7 @@ class GameManager : GManager {
     bool getGameVariableDefault(const char* key, bool defaultValue) = inline;
     const char* getGTexture(int index) = win inline, imac 0x36cfa0, m1 0x2fa2bc;
     int getIconRequestID() = win inline, imac 0x36c2f0, m1 0x2f95b8;
-    int getIntGameVariable(char const* key) = win 0x9999999;
+    int getIntGameVariable(char const* key) = win inline;
     int getIntGameVariableDefault(const char* key, int defaultValue) = inline;
     std::string getMenuMusicFile() = win 0x54d20, imac 0x360100, m1 0x2eee08;
     const char* getMGTexture(int index) = win inline, imac 0x36cf50, m1 0x2fa270;
@@ -7591,17 +7594,17 @@ class GameManager : GManager {
     void lockColor(int id, UnlockType type) = win inline, imac 0x361a80, m1 0x2f0450;
     void lockIcon(int id, IconType type) = win inline, imac 0x361650, m1 0x2f002c;
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
-    TodoReturn messagesRestricted();
-    TodoReturn modUIRank();
-    TodoReturn offlineModeEnabled();
-    TodoReturn onlyCuratedLevels();
+    bool messagesRestricted();
+    int modUIRank();
+    bool offlineModeEnabled();
+    bool onlyCuratedLevels();
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
     void playMenuMusic() = win 0x2766c0, imac 0x360390, m1 0xc9b4;
     int playSFXTrigger(SFXTriggerGameObject* object) = win 0x276b50, imac 0x360880, m1 0x2ef690;
     void prepareDPadSettings() = win 0x282620, imac 0x372200;
     void printGJLog() = win inline, imac 0x370190, m1 0x2fd018;
-    TodoReturn privacyPushWanted();
+    bool privacyPushWanted();
     void queueReloadMenu(bool) = win 0x287700;
     void rateGame() = win inline, imac 0x369ac0, m1 0x2f711c;
     void recountUserStats(std::string str) = win 0x2803a0, imac 0x36ec80, m1 0x2fc00c;
@@ -7629,7 +7632,7 @@ class GameManager : GManager {
     void rewardedVideoAdFinished(int unused) = imac 0x97e210, m1 0x2f6ce8;
     void rewardedVideoHidden() = imac 0x3697e0, m1 0x2f6e28;
     void rewardedVideoHiddenDelayed() = imac 0x369770, m1 0x2f6da4;
-    TodoReturn safeModeEnabled();
+    bool safeModeEnabled();
     // partially inlined on windows
     bool safePopScene() = win 0x287680, imac 0x376cd0, m1 0x303004;
     void saveAdTimer();
@@ -7665,7 +7668,7 @@ class GameManager : GManager {
     void showParentalRestrictedAlert() = win 0x27edf0;
     void startUpdate() = win inline, imac 0x3600b0, m1 0x2eedc0;
     std::string stringForCustomObject(int customObjectID) = win 0x27f090, imac 0x36de50, m1 0x2fb2bc;
-    TodoReturn subSpotlight();
+    void subSpotlight() = win inline;
     void subYouTube() = win inline;
     void switchCustomObjects(int key1, int key2) = win 0x27f2f0, imac 0x36e010, m1 0x2fb490;
     void switchScreenMode(bool fullscreen, bool borderless, bool fix, bool unused) = win inline, imac 0x376df0, ios inline;
@@ -7703,9 +7706,9 @@ class GameManager : GManager {
     bool m_unkBool2;
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
-    cocos2d::CCDictionary* m_unlockValueKeeper;
+    cocos2d::CCDictionary* m_unkDict;
     bool m_unkBool2point5;
-    void* unkPtrProbably;
+    cocos2d::CCDictionary* m_unlockValueKeeper;
     cocos2d::CCDictionary* m_customObjectDict;
     double m_adTimer;
     double m_adCache;
@@ -7743,6 +7746,7 @@ class GameManager : GManager {
     bool m_clickedTwitch;
     bool m_clickedDiscord;
     bool m_clickedReddit;
+    bool m_clickedSpotlight;
     double m_socialsDuration;
     bool m_musicPaused;
     bool m_isParticleObject;
@@ -7785,9 +7789,10 @@ class GameManager : GManager {
     bool m_showedLowDetailDialog;
     GameRateDelegate* m_gameRateDelegate1;
     GameRateDelegate* m_gameRateDelegate2;
+    VolumeChangeDelegate* m_volumeChangeDelegate;
     cocos2d::ccColor3B m_copiedColor;
     int m_currentLevelID;
-    PAD = win 0xc;
+    int m_unkInt2;
     int m_currentColorChannel;
     int m_currentGroupID;
     int m_loadedBgID;
@@ -7830,7 +7835,9 @@ class GameManager : GManager {
     bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
-    PAD = win 0xc;
+    int m_unkInt3;
+    int m_newsItemCount;
+    int m_unkInt5;
     std::map<int, int> m_iconLoadCounts;
     std::map<int, std::map<int, int>> m_iconRequests;
     std::map<int, bool> m_isIconBeingLoaded;
@@ -7853,7 +7860,7 @@ class GameManager : GManager {
     std::string m_dpadLayoutDual1;
     std::string m_dpadLayoutDual2;
     std::string m_dpadLayoutDual3;
-    std::string m_unkStr;
+    std::string m_recentEmotes;
     int m_leaderboardLevelID;
     int m_leaderboardLevelTime;
     int m_leaderboardLevelPoints;
@@ -16291,7 +16298,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void addMusicDownloadDelegate(MusicDownloadDelegate* delegate) = win 0x482700, imac 0x64b4d0, m1 0x586380;
     SongInfoObject* addSongObjectFromString(std::string str) = win 0x3a48d0, imac 0x64c080, m1 0x4c6374;
     void clearSong(int songID) = win inline, imac 0x64ea10;
-    TodoReturn clearSortedMusicCache();
+    void clearSortedMusicCache();
     void clearUnusedSongs() = win 0x483950, imac 0x64ebc0, m1 0x589708;
     cocos2d::CCDictionary* createArtistsInfo(std::string str);
     TodoReturn createCustomSFXFolder(std::string, int, int);
@@ -16360,7 +16367,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x482210;
     void handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) = win inline, ios inline;
     void handleItND(cocos2d::CCNode* node, void* data) = win inline, ios inline;
-    TodoReturn hasUnreadNews();
+    bool hasUnreadNews() = win inline;
     TodoReturn importCustomSFXFromFile(std::string&, int&, int&);
     TodoReturn importCustomSFXMappings(std::map<std::pair<int, int>, std::string> const&, std::string const&, int&, int&);
     TodoReturn importCustomSFXSetup(std::string const&, std::string const&, bool, int&, int&);
@@ -16440,9 +16447,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void tryLoadLibraries() = win inline, imac 0x660c80, m1 0x59a0e4;
     TodoReturn tryLoadNewsFeed();
     void tryUpdateMusicLibrary() = imac 0x659e90, m1 0x593ed8;
-    TodoReturn tryUpdateNewsFeed();
+    void tryUpdateNewsFeed();
     void tryUpdateSFXLibrary();
-    TodoReturn urlEncode(std::string const&);
+    std::string urlEncode(std::string const&);
 
     cocos2d::CCDictionary* m_activeDownloads;
     cocos2d::CCArray* m_musicDownloadDelegates;
@@ -16452,12 +16459,16 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     std::string m_customContentURL;
     cocos2d::CCDictionary* m_sfxObjects;
     cocos2d::CCArray* m_sfxArtists;
+    cocos2d::CCObject* m_unk1a0;
+    cocos2d::CCObject* m_unk1a8;
     int m_sfxLibraryVersion;
     int m_sfxObjectCount;
     bool m_requestedSfxLibraryDownloaded;
     cocos2d::CCDictionary* m_musicObjects;
     cocos2d::CCDictionary* m_musicArtists;
+    cocos2d::CCObject* m_unk1d0;
     std::map<int, std::string> m_musicTags;
+    std::map<int, cocos2d::CCArray*> m_sortedMusicCache;
     int m_musicLibraryVersion;
     int m_musicObjectCount;
     int m_ncsSongCount;
@@ -16466,6 +16477,21 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     bool m_unkBool;
     std::unordered_set<int> m_resourceSfxUnorderedSet;
     std::unordered_set<int> m_resourceSongUnorderedSet;
+    std::unordered_set<int> m_unk288;
+    std::unordered_set<int> m_unk2c8;
+    std::unordered_set<int> m_unk308;
+    std::vector<int> m_unk348;
+    std::vector<int> m_unk360;
+    std::set<int> m_unk378;
+    std::set<int> m_unk388;
+    cocos2d::CCObject* m_unk398;
+    PAD = win 0x24;
+    int m_newsPages;
+    PAD = win 0x8;
+    bool m_updatingNewsFeed;
+    bool m_unkBool2;
+    bool m_requestedNewsFeedUpdate;
+    int m_unkInt5;
 }
 
 [[link(android)]]
