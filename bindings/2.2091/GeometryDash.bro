@@ -16796,7 +16796,7 @@ class NumberInputLayer : FLAlertLayer {
     void deleteLast() = win inline, imac 0x2922b0;
     void inputNumber(int num) = win inline;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x4357b0, m1 0x3abbd8;
-    void onDone(cocos2d::CCObject* sender) = win 0x4a1820;
+    void onDone(cocos2d::CCObject* sender);
     void onNumber(cocos2d::CCObject* sender) = win 0x4a1820, imac 0x895b60;
     void updateNumberState() = win 0x4a1990;
 
@@ -22595,7 +22595,7 @@ class ShareCommentLayer : FLAlertLayer, UploadActionDelegate, UploadPopupDelegat
     void onClose(cocos2d::CCObject* sender) = m1 0x5cc3bc;
     void onEmotes(cocos2d::CCObject* sender) = m1 0x5cc9a0;
     void onPercent(cocos2d::CCObject* sender) = imac 0x6b27a0, m1 0x5cc168;
-    void onShare(cocos2d::CCObject* sender) = win 0x16bcd0, imac 0x3ac0c0, m1 0x5cc428;
+    void onShare(cocos2d::CCObject* sender) = win 0x62f470, imac 0x3ac0c0, m1 0x5cc428;
     void updateCharCountLabel() = win inline, imac 0xe040, m1 0x5cd038;
     void updateDescText(std::string desc) = win 0x77700, ios inline, m1 0x5cc9f4;
     void updatePercentLabel() = win 0x81420, imac 0x6b2870, m1 0x5cc238;
