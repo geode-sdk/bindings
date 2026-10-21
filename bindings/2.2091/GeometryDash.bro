@@ -11953,7 +11953,7 @@ class GJRequestCell : TableViewCell {
     void updateToggle() = win inline, imac 0x236440, m1 0x1e259c, ios inline;
 
     GJUserScore* m_score;
-    UploadActionPopup* m_popup;
+    CCMenuItemToggler* m_toggler;
     bool m_groupRequest;
 }
 
