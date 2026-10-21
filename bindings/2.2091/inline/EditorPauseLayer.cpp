@@ -60,6 +60,13 @@ void EditorPauseLayer::togglePlaytestMusic(cocos2d::CCObject* sender) {
 void EditorPauseLayer::toggleRecordOrder(cocos2d::CCObject* sender) {
     GameManager::sharedState()->toggleGameVariable(GameVar::RecordOrder);
 }
+
+void EditorPauseLayer::saveLevel() {
+    LocalLevelManager::sharedState()->waitForSave(30.0);
+    if(auto layer = m_editorLayer) {
+        layer->saveLevel();
+    }
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
