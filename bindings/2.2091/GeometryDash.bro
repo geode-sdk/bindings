@@ -4745,7 +4745,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
     void activateRotationControl(cocos2d::CCObject* sender) = win 0x2025e0, imac 0x60ea80, m1 0x54dc4c;
     void activateScaleControl(cocos2d::CCObject* sender) = win 0x202bc0, imac 0x612bc0, m1 0x55180c;
-    void activateTransformControl(cocos2d::CCObject* sender) = win 0x2032b0;
+    void activateTransformControl(cocos2d::CCObject* sender) = win 0x2032b0, m1 0x5506dc, imac 0x6117f0;
     void addObjectsToSmartTemplate(GJSmartTemplate* smartTemplate, cocos2d::CCArray* objects) = win 0x1b5860, imac 0x124f0, m1 0x10850;
     void addSnapPosition(cocos2d::CCPoint position) = win inline, imac 0x11c60, m1 0x1002c, ios inline;
     TodoReturn adjustCustomGridSize(int);
@@ -4976,7 +4976,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void showMaxCoinError() = win inline, imac 0x10cf0;
     void showMaxError() = win 0x1b50d0, imac 0x10a50, m1 0xefcc;
     TodoReturn showTextAlert(std::string, bool, bool, int);
-    TodoReturn showTransformControl() = win 0x203340;
+    bool showTransformControl() = win 0x203340, m1 0x552054, imac 0x613520;
     void showUI(bool show) = win 0x1b3e20, imac 0x1920d0;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x1ae000, imac 0x7bb0, m1 0x6d4c;
     cocos2d::CCSprite* spriteFromObjectString(std::string str, bool absoluteCenter, bool useGroup, int objLimit, cocos2d::CCArray* objects, cocos2d::CCArray* group, GameObject* groupParent) = win 0x1f0860, imac 0x638870, m1 0x5751c4;
