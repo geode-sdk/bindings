@@ -17268,7 +17268,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     virtual void startPosSelected(StartPosBrowser*, int, StartPosObject*) = win 0x4d92c0, imac 0x3c21d0, m1 0x346e78;
     virtual void createStartPosPopupClosed(CreateStartPosPopup*) = win 0x4d92e0, imac 0x3c2210, m1 0x346e98;
 
-    TodoReturn checkQuestsStatus() = win 0x9999999;
+    void checkQuestsStatus() = win inline;
     void createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win inline, m1 0x346f8c, ios inline;
     StartPosObject* getQueuedStartPos() = win 0x4d8f90;
     void goEdit() = win 0x4db450, imac 0x3c30c0, m1 0x347ce4;
@@ -17286,19 +17286,32 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     void onRestart(cocos2d::CCObject* sender) = win 0x4dae30;
     void onRestartFull(cocos2d::CCObject* sender) = win 0x4daf60;
     void onResume(cocos2d::CCObject* sender) = win 0x4dac50;
-    void onSettings(cocos2d::CCObject* sender);
     void onShowStartposBrowser(cocos2d::CCObject* sender) = win 0x4d9150, imac 0x3c1cf0, m1 0x346aa0;
-    void onSideButtonPressed(cocos2d::CCObject* sender);
+    void onSideButtonPressed(cocos2d::CCObject* sender) = win 0x4d9520;
     void onTime(cocos2d::CCObject* sender) = imac 0x3c2330, m1 0x346f84;
     void onToggleUI(cocos2d::CCObject* sender);
     void onTryEdit(cocos2d::CCObject* sender) = win 0x4db090, imac 0x3c1020, m1 0x345dec;
-    void setupProgressBars();
+    void setupLegacyProgressBars() = win 0x4da1e0;
+    void setupPlatformerLabels(bool) = win 0x4da5d0;
+    void setupProgressBars() = win inline;
+    void setupSessionProgressBar() = win 0x4d9d60;
     void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390;
     void tryQuit(cocos2d::CCObject* sender) = win 0x4db520, imac 0x929c20;
     void tryShowBanner(float dt) = imac 0x3c2300, m1 0x346f54;
 
     bool m_unfocused;
     bool m_tryingQuit;
+    bool m_uiHidden;
+    cocos2d::CCLabelBMFont* m_startposLabel;
+    int m_startPosIndex;
+    cocos2d::CCArray* m_startPositions;
+    bool m_isEditorLevel;
+    TimeSpeedControl* m_timeSpeedControls;
+    cocos2d::CCLayer* m_layer;
+    Slider* m_musicSlider;
+    Slider* m_sfxSlider;
+    cocos2d::CCMenu* m_showUIMenu;
+    CCMenuItemSpriteExtra* m_platformSettingsButton;
 }
 
 [[link(android)]]
@@ -24143,9 +24156,9 @@ class TimerTriggerGameObject : EffectGameObject {
 class TimeSpeedControl : cocos2d::CCNode {
     virtual ~TimeSpeedControl() = win 0x47080;
 
-    static TimeSpeedControl* create(GJBaseGameLayer*);
+    static TimeSpeedControl* create(GJBaseGameLayer*) = win 0x66d6e0;
 
-    bool init(GJBaseGameLayer*);
+    bool init(GJBaseGameLayer*) = win 0x66d790;
     void onAudioTimeSpeedToggle(cocos2d::CCObject* sender);
     TodoReturn timeSliderChanged(cocos2d::CCObject*);
 }
