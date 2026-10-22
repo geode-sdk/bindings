@@ -1340,6 +1340,12 @@ void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal,
     player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
 }
 
+void GJBaseGameLayer::switchToSpiderMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::SpiderPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleSpiderMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
 void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     auto itemCount = m_effectManager->countForItem(itemID);
     switch (triggerMode) {

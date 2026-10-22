@@ -2229,8 +2229,8 @@ class CheckpointObject : cocos2d::CCNode {
     std::vector<SavedActiveObjectState> m_vectorActiveSaveObjectState;
     std::vector<SavedSpecialObjectState> m_vectorSpecialSaveObjectState;
     EffectManagerState m_effectManagerState;
-    cocos2d::CCArray* m_gradientTriggerObjectArray;
     bool m_unk11e8;
+    cocos2d::CCArray* m_gradientTriggerObjectArray;
     std::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
     int m_commandIndex;
 }
@@ -3460,6 +3460,11 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     CCMenuItemSpriteExtra* m_selectButton;
     CCMenuItemSpriteExtra* m_playButton;
     CCMenuItemSpriteExtra* m_deleteButton;
+    CCMenuItemSpriteExtra* m_toggleFavoriteButton;
+    CCMenuItemSpriteExtra* m_addToFolderButton;
+    CCMenuItemSpriteExtra* m_editCustomButton;
+    CCMenuItemSpriteExtra* m_toggleSelectButton;
+    CCMenuItemSpriteExtra* m_infoButton;
     cocos2d::CCSprite* m_progressOutlineSprite;
     cocos2d::CCSprite* m_progressBarSprite;
     cocos2d::CCSprite* m_clockSprite;
@@ -3469,6 +3474,8 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     bool m_showDownload;
     bool m_showCancel;
     bool m_compactMode;
+    bool m_unk1ed;
+    bool m_unk1ee;
     int m_sfxID;
     float m_lengthMod;
 }
@@ -4746,7 +4753,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual bool scrollWheel(float y, float x) = win 0x1c50b0;
     virtual void angleChangeBegin() = win 0x202790, imac 0x611c00, m1 0x550a78;
     virtual void angleChangeEnded() = win inline;
-    virtual void angleChanged(float rotation, bool lock) = win 0x2027a0;
+    virtual void angleChanged(float rotation, bool lock) = win 0x2027a0, imac 0x611c60, m1 0x550a9c;
     virtual void updateScaleControl() = win 0x202e80, imac 0x612ef0, m1 0x551af8;
     virtual void anchorPointMoved(cocos2d::CCPoint anchorPoint) = win 0x203990, imac 0x6139f0;
     virtual void scaleChangeBegin() = win 0x202fe0, imac 0x6130b0, m1 0x551c3c;
@@ -4754,7 +4761,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void scaleXChanged(float scaleX, bool lock) = win 0x202ff0, imac 0x613110;
     virtual void scaleYChanged(float scaleY, bool lock) = win 0x2030f0, imac 0x613250;
     virtual void scaleXYChanged(float scaleX, float scaleY, bool lock) = win 0x2031f0, m1 0x551ec8, imac 0x613390;
-    virtual bool handleAction(int, bool, double) = win 0x1c1bf0;
+    virtual bool handleAction(int action, bool down, double timestamp) = win 0x1c1bf0;
 
     void activateRotationControl(cocos2d::CCObject* sender) = win 0x2025e0, imac 0x60ea80, m1 0x54dc4c;
     void activateScaleControl(cocos2d::CCObject* sender) = win 0x202bc0, imac 0x612bc0, m1 0x55180c;
@@ -4870,7 +4877,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     GJTransformState& getTransformState() = win inline, ios inline;
     TodoReturn getViewButtonState(int);
     float getXMin(int offset) = win 0x1bf270, imac 0xdbe0, m1 0xc30c;
-    bool handleEditorAction(int, bool, double) = win 0x1c2270, imac 0x60bbd0, m1 0x54b9d8;
+    bool handleEditorAction(int action, bool down, double timestamp) = win 0x1c2270, imac 0x60bbd0, m1 0x54b9d8;
     bool init(LevelEditorLayer* editorLayer) = win 0x1a9630, imac 0x5270, m1 0x461c;
     bool isFreeMoveTouch();
     bool isLiveColorSelectTrigger(GameObject* object) = win inline, imac 0x18bf0, m1 0x15b24, ios inline;
@@ -4880,17 +4887,17 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint moveForCommand(EditCommand command) = imac 0x60e630, m1 0x54d87c;
     void moveGamelayer(cocos2d::CCPoint offset) = win 0x1ae930, imac 0xe840, m1 0xce6c;
     void moveObject(GameObject* object, cocos2d::CCPoint offset) = win 0x1fee70, imac 0x60e950, m1 0x54db00;
-    void moveObjectCall(EditCommand command) = win 0x1feb10, imac 0x60e410;
+    void moveObjectCall(EditCommand command) = win 0x1feb10, imac 0x60e410, m1 0x54d678;
     void moveObjectCall(cocos2d::CCObject* sender) = m1 0x82dfd0;
     TodoReturn nextDpadStep();
-    cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0;
+    cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e7, imac 0x603db0;
     void onAssignNewGroupID() = win 0x15c530, imac 0x1a140, m1 0x16df8, ios inline;
     void onColorFilter(cocos2d::CCObject* sender) = imac 0x10710, m1 0xece0;
     void onCopy(cocos2d::CCObject* sender);
     void onCopyState(cocos2d::CCObject* sender) = win 0x1964f0;
     bool onCreate() = win 0x1b2460, imac 0xce30, m1 0xb4d8;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x1b20f0, imac 0x10880, m1 0xee38;
-    void onCreateObject(int id) = win 0x1b2930, imac 0x10e30;
+    void onCreateObject(int id) = win 0x1b2930, imac 0x10e30, m1 0xf3b0;
     void onDelete(cocos2d::CCObject* sender);
     void onDeleteAll(cocos2d::CCObject* sender) = win inline, imac 0x64db0, ios inline;
     void onDeleteCustomItem(cocos2d::CCObject* sender) = imac 0x63c970, m1 0x578ef0;
@@ -4959,7 +4966,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void resetObjectEditorValues(cocos2d::CCArray* objects) = win inline, imac 0x613880;
     void resetSelectedObjectsColor() = win 0x1bedd0, imac 0x19f50, m1 0x16c24;
     void resetUI() = win 0x1afc20, imac 0x8c60;
-    void rotateObjects(cocos2d::CCArray* objects, float rotation, cocos2d::CCPoint center, bool lock);
+    void rotateObjects(cocos2d::CCArray* objects, float rotation, cocos2d::CCPoint center, bool lock) = m1 0x54e5e4, win 0x2002e0, imac 0x60f4d0;
     float rotationforCommand(EditCommand command) = win inline, imac 0x60f060, m1 0x2e69b8, ios inline;
     void scaleObjects(cocos2d::CCArray* objects, float scaleX, float scaleY, cocos2d::CCPoint pivotPoint, ObjectScaleType type, bool lockMove) = win 0x2007d0, imac 0x610150, m1 0x54f2fc;
     void selectAll() = win inline, imac 0x5b9160, m1 0x505e74;
@@ -5009,9 +5016,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn toggleTraceSelected(bool);
     TodoReturn toggleViewOption(int);
     TodoReturn toggleWindow(int);
-    void transformObject(GameObject* object, EditCommand command, bool noOffset) = win 0x1ff8c0, imac 0x60f850, m1 0x54e978;
-    void transformObjectCall(EditCommand command) = imac 0x60e410;
-    void transformObjectCall(cocos2d::CCObject* sender);
+    void transformObject(GameObject* object, EditCommand command, bool noOffset) = win 0x664b10, imac 0x60f850, m1 0x54e978;
+    void transformObjectCall(EditCommand command);    void transformObjectCall(cocos2d::CCObject* sender);
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x200d60, imac 0x6107f0, m1 0x54f87c;
     void transformObjectsActive() = imac 0x610740;
     void transformObjectsReset() = win inline, imac 0x610c20, m1 0x54fc44;
@@ -5218,7 +5224,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
 
 [[link(android)]]
 class EditorWindowPopup : SetupTriggerPopup {
-    EditorWindowPopup() = win 0x9999999;
+    EditorWindowPopup() = win 0x123530, m1 0x7cb6ec, imac 0x8def40;
 
     virtual void onExit() = win 0x17fcc0, imac 0x902190, m1 0x7e92bc;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17eca0, imac 0x900ff0, m1 0x7e8294;
@@ -5229,10 +5235,10 @@ class EditorWindowPopup : SetupTriggerPopup {
     virtual void show() = win 0x17fcb0, imac 0x902170, m1 0x7e92b0;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x17fd00, imac 0x9021d0, m1 0x7e92d8;
     virtual void textInputClosed(CCTextInputNode*) = win 0x17fc80, imac 0x902110, m1 0x7e9254;
-    virtual bool handleAction(int, bool, double) = win 0x17fba0, imac 0x901f10, m1 0x7e901c;
+    virtual bool handleAction(int action, bool down, double timestamp) = win 0x17fba0, imac 0x901f10, m1 0x7e901c;
     virtual void onBuildWindowContent() = win 0x9999999;
     virtual void onWindowResized() = win 0x3f5c0;
-    virtual TodoReturn onFieldEnter() = win 0x17fc70, imac 0x9020d0, m1 0x7e9204;
+    virtual void onFieldEnter() = win 0x17fc70, imac 0x9020d0, m1 0x7e9204;
     bool initWindow(EditorUI* editorUI, float width, float height, int windowID, int unused) = win 0x17dde0, imac 0x8ffeb0, m1 0x7e73f4;
     bool beginTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17edd0, imac 0x901160, m1 0x7e83dc;
     bool isInCloseButton(cocos2d::CCPoint point) = win 0x17e7f0, m1 0x7e7e60;
@@ -6193,7 +6199,7 @@ class FindObjectPopup : EditorWindowPopup {
 
     virtual void valueDidChange(int, float) = win 0x1809e0;
     virtual void onBuildWindowContent() = win 0x180330;
-    virtual TodoReturn onFieldEnter() = win 0x180a90;
+    virtual void onFieldEnter() = win 0x180a90;
 
     bool init(EditorUI*) = win 0x9999999;
     void onFindObjectID(cocos2d::CCObject* sender) = win inline, ios inline;
@@ -9190,11 +9196,14 @@ class GJAccountSettingsLayer : FLAlertLayer {
     int m_messageStatus;
     int m_friendStatus;
     int m_commentHistoryStatus;
+    int m_groupStatus;
+    int m_unk2ac;
     cocos2d::CCArray* m_inputs;
     std::map<int, std::string> m_links;
     cocos2d::CCArray* m_messageSettings;
     cocos2d::CCArray* m_friendRequestSettings;
     cocos2d::CCArray* m_commentSettings;
+    cocos2d::CCArray* m_groupInviteSettings;
 }
 
 [[link(android)]]
@@ -9231,7 +9240,7 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint, PlayerTrailState, cocos2d::CCParticleSystem, cocos2d::ParticleStruct)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-    GJBaseGameLayer() = win 0x3eb6f0, m1 0x7cb6ec;
+    GJBaseGameLayer() = win 0x3eb6f0, m1 0x839b8, imac 0x8e720;
     ~GJBaseGameLayer() = win 0x30b850, imac 0xebd40, m1 0xcc67c;
 
     static float convertToClosestDirection(float angle, float bound) = win 0x3373e0, imac 0x115da0, m1 0xf0e94;
@@ -9617,7 +9626,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void switchToFlyMode(PlayerObject* player, GameObject* object, bool noPortal, int type) = win inline, imac 0x101bb0, m1 0xe0474;
     void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe066c;
     void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe05c0;
-    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x3ad5c0, m1 0xe0718;
+    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe0718;
     void syncBGTextures() = win 0x344f00, imac 0x1383e0, m1 0x10dbfc;
     void teleportPlayer(TeleportPortalObject* object, PlayerObject* player) = win 0x315f20, imac 0xfcdd0, m1 0xdbcc0;
     void testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x129d90, m1 0x102288;
@@ -12172,7 +12181,7 @@ class GJRotateCommandLayer : SetupTriggerPopup {
     CCMenuItemToggler* m_followP2Toggler;
 }
 
-[[link(android)]]
+[[link(android), depends(ControlMenuTouch)]]
 class GJRotationControl : cocos2d::CCLayer {
     GJRotationControl() = inline;
     virtual ~GJRotationControl() = win 0x1a1ea0;
@@ -12261,6 +12270,14 @@ class GJScaleControl : cocos2d::CCLayer {
     cocos2d::CCLabelBMFont* m_scaleXLabel;
     cocos2d::CCLabelBMFont* m_scaleYLabel;
     cocos2d::CCLabelBMFont* m_scaleLabel;
+    CCTextInputNode* m_scaleXInput;
+    CCTextInputNode* m_scaleYInput;
+    CCTextInputNode* m_scaleInput;
+    CCMenuItemSpriteExtra* m_applyScaleXButton;
+    CCMenuItemSpriteExtra* m_applyScaleYButton;
+    CCMenuItemSpriteExtra* m_applyScaleButton;
+    cocos2d::CCMenu* m_controlMenu;
+    ControlMenuTouch m_controlMenuTouch;
     GJScaleControlDelegate* m_delegate;
     float m_upperBound;
     float m_lowerBound;
@@ -12854,18 +12871,30 @@ class GJTransformControl : cocos2d::CCLayer {
     cocos2d::CCPoint m_bottomLeft;
     cocos2d::CCPoint m_topRightPosition;
     cocos2d::CCPoint m_bottomLeftPosition;
+    cocos2d::CCPoint m_rotationOffset;
     cocos2d::CCPoint m_topRightOrigin;
     cocos2d::CCPoint m_bottomLeftOrigin;
     cocos2d::CCArray* m_warpSprites;
     cocos2d::CCPoint m_rotatePosition;
     CCMenuItemSpriteExtra* m_warpLockButton;
+    CCMenuItemSpriteExtra* m_oppositeAnchorButton;
+    CCMenuItemSpriteExtra* m_gridSnapButton;
+    CCMenuItemSpriteExtra* m_freeRotationButton;
+    ControlMenuTouch m_controlMenuTouch;
     float m_scaleX;
     float m_scaleY;
     bool m_warpLocked;
+    bool m_oppositeAnchor;
+    bool m_gridSnap;
+    bool m_freeRotation;
     float m_rotationX;
     float m_rotationY;
     float m_rotation;
     float m_buttonScale;
+    cocos2d::CCPoint m_unk26c;
+    bool m_anchoring;
+    int m_nearestVertex;
+    cocos2d::CCPoint m_unk27c;
 }
 
 [[link(android)]]
@@ -13441,6 +13470,8 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
     bool m_unkBool1;
     bool m_unkBool2;
     bool m_unkBool3;
+    cocos2d::ccColor3B m_startColor1;
+    cocos2d::ccColor3B m_startColor2;
 }
 
 [[link(android)]]
@@ -14314,11 +14345,11 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     float m_initialListViewY;
     TableViewCellDelegate* m_delegate;
     bool m_cached;
-    void* m_unk320;
-    void* m_unk328;
+    cocos2d::CCSprite* m_background;
+    cocos2d::CCNode* m_safeModeNode;
     void* m_unk330;
     void* m_unk338;
-    void* m_unk340;
+    GJGameLevel* m_recalledLevel;
 }
 
 [[link(android)]]
@@ -14406,8 +14437,8 @@ class LevelDownloadDelegate {
 
 [[link(android), depends(cocos2d::ParticleStruct)]]
 class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
-    LevelEditorLayer() = imac 0xde790, m1 0xc4258;
-    virtual ~LevelEditorLayer() = win 0x3ecff0;
+    LevelEditorLayer() = win 0x3ec2f0, imac 0xde790, m1 0xc4258;
+    virtual ~LevelEditorLayer() = win 0x3ecff0, imac 0xa92f0, m1 0x9836c;
 
     static LevelEditorLayer* create(GJGameLevel* level, bool noUI) = win 0x3ed850, imac 0xa9ce0;
     static LevelEditorLayer* get() = inline;
@@ -17232,7 +17263,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x4db6f0, imac 0x3c3200, m1 0x347e1c;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win inline, imac 0x3c3480;
     virtual void volumeChanged() = win 0x4d6820;
-    virtual bool handleAction(int, bool, double) = win 0x4db8b0;
+    virtual bool handleAction(int action, bool down, double timestamp) = win 0x4db8b0;
     virtual void startPosSelected(StartPosBrowser*, int, StartPosObject*) = win 0x4d92c0, imac 0x3c21d0, m1 0x346e78;
     virtual void createStartPosPopupClosed(CreateStartPosPopup*) = win 0x4d92e0, imac 0x3c2210, m1 0x346e98;
 
@@ -18353,7 +18384,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool m_isIgnoreDamageEnabled;
     CheckpointObject* m_lastSavedCheckpoint;
     bool m_unk3768n;
-    void* m_unk3770;
+    bool m_unk3769;
+    bool m_unk376a;
+    int m_unk376c;
+    bool m_unk3770;
     cocos2d::CCLabelBMFont* m_statusLabel;
     float m_unk3778;
     int m_unk377c;
@@ -24375,7 +24409,7 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
     virtual void keyBackClicked() = win 0x672e70, imac 0x4c4c10, m1 0x427bf4;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x6711b0, imac 0x6fd620;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win inline;
-    virtual bool handleAction(int, bool, double) = win 0x6713c0;
+    virtual bool handleAction(int action, bool down, double timestamp) = win 0x6713c0;
 
     void announceLevelControls() = win 0x670c60;
     void applyLevelBindings() = win 0x670be0;
