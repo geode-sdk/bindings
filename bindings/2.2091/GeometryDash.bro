@@ -3460,6 +3460,11 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     CCMenuItemSpriteExtra* m_selectButton;
     CCMenuItemSpriteExtra* m_playButton;
     CCMenuItemSpriteExtra* m_deleteButton;
+    CCMenuItemSpriteExtra* m_toggleFavoriteButton;
+    CCMenuItemSpriteExtra* m_addToFolderButton;
+    CCMenuItemSpriteExtra* m_editCustomButton;
+    CCMenuItemSpriteExtra* m_toggleSelectButton;
+    CCMenuItemSpriteExtra* m_infoButton;
     cocos2d::CCSprite* m_progressOutlineSprite;
     cocos2d::CCSprite* m_progressBarSprite;
     cocos2d::CCSprite* m_clockSprite;
@@ -3469,6 +3474,8 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     bool m_showDownload;
     bool m_showCancel;
     bool m_compactMode;
+    bool m_unk1ed;
+    bool m_unk1ee;
     int m_sfxID;
     float m_lengthMod;
 }
@@ -9190,11 +9197,14 @@ class GJAccountSettingsLayer : FLAlertLayer {
     int m_messageStatus;
     int m_friendStatus;
     int m_commentHistoryStatus;
+    int m_groupStatus;
+    int m_unk2ac;
     cocos2d::CCArray* m_inputs;
     std::map<int, std::string> m_links;
     cocos2d::CCArray* m_messageSettings;
     cocos2d::CCArray* m_friendRequestSettings;
     cocos2d::CCArray* m_commentSettings;
+    cocos2d::CCArray* m_groupInviteSettings;
 }
 
 [[link(android)]]
@@ -12261,6 +12271,14 @@ class GJScaleControl : cocos2d::CCLayer {
     cocos2d::CCLabelBMFont* m_scaleXLabel;
     cocos2d::CCLabelBMFont* m_scaleYLabel;
     cocos2d::CCLabelBMFont* m_scaleLabel;
+    CCTextInputNode* m_scaleXInput;
+    CCTextInputNode* m_scaleYInput;
+    CCTextInputNode* m_scaleInput;
+    CCMenuItemSpriteExtra* m_applyScaleXButton;
+    CCMenuItemSpriteExtra* m_applyScaleYButton;
+    CCMenuItemSpriteExtra* m_applyScaleButton;
+    cocos2d::CCMenu* m_controlMenu;
+    ControlMenuTouch m_controlMenuTouch;
     GJScaleControlDelegate* m_delegate;
     float m_upperBound;
     float m_lowerBound;
@@ -12854,18 +12872,30 @@ class GJTransformControl : cocos2d::CCLayer {
     cocos2d::CCPoint m_bottomLeft;
     cocos2d::CCPoint m_topRightPosition;
     cocos2d::CCPoint m_bottomLeftPosition;
+    cocos2d::CCPoint m_rotationOffset;
     cocos2d::CCPoint m_topRightOrigin;
     cocos2d::CCPoint m_bottomLeftOrigin;
     cocos2d::CCArray* m_warpSprites;
     cocos2d::CCPoint m_rotatePosition;
     CCMenuItemSpriteExtra* m_warpLockButton;
+    CCMenuItemSpriteExtra* m_oppositeAnchorButton;
+    CCMenuItemSpriteExtra* m_gridSnapButton;
+    CCMenuItemSpriteExtra* m_freeRotationButton;
+    ControlMenuTouch m_controlMenuTouch;
     float m_scaleX;
     float m_scaleY;
     bool m_warpLocked;
+    bool m_oppositeAnchor;
+    bool m_gridSnap;
+    bool m_freeRotation;
     float m_rotationX;
     float m_rotationY;
     float m_rotation;
     float m_buttonScale;
+    cocos2d::CCPoint m_unk26c;
+    bool m_anchoring;
+    int m_nearestVertex;
+    cocos2d::CCPoint m_unk27c;
 }
 
 [[link(android)]]
@@ -13441,6 +13471,8 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
     bool m_unkBool1;
     bool m_unkBool2;
     bool m_unkBool3;
+    cocos2d::ccColor3B m_startColor1;
+    cocos2d::ccColor3B m_startColor2;
 }
 
 [[link(android)]]
@@ -14314,11 +14346,11 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     float m_initialListViewY;
     TableViewCellDelegate* m_delegate;
     bool m_cached;
-    void* m_unk320;
-    void* m_unk328;
+    cocos2d::CCSprite* m_background;
+    cocos2d::CCNode* m_safeModeNode;
     void* m_unk330;
     void* m_unk338;
-    void* m_unk340;
+    GJGameLevel* m_recalledLevel;
 }
 
 [[link(android)]]
