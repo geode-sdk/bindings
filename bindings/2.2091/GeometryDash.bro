@@ -11780,7 +11780,7 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
     void onBack(cocos2d::CCObject* sender) = win 0x396dc0, imac 0x2eb820, m1 0x281a20;
     void onIconInfo(cocos2d::CCObject* sender) = win 0x395040, imac 0x2eb8b0, m1 0x1ec260;
     void onUnlock(cocos2d::CCObject* sender) = win 0x395260, imac 0x2eba60, m1 0x281c78;
-    void playUnlockAnimation() = imac 0x2ebb90, m1 0x281db0;
+    void playUnlockAnimation() = win 0x395ab0, imac 0x2ebb90, m1 0x281db0;
     void showCantAffordMessage(GJStoreItem* item);
     void unlockAnimationFinished() = win 0x396c90, imac 0x2ecbd0;
     void unlockAnimationStep2() = win 0x396110, imac 0x2ec8e0, m1 0x282a10;
