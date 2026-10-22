@@ -12492,10 +12492,6 @@ class GJShaderState {
     bool m_zLayerDirty;
     bool m_noPlayerParticles;
     bool m_usesShaders;
-    int m_unk298;
-    bool m_unk29c;
-    bool m_unk29d;
-    bool m_unk29e;
 }
 
 [[link(android)]]
