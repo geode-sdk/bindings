@@ -4835,7 +4835,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool editButtonUsable() = win 0x1ba320, imac 0x179c0, m1 0x150b4;
     void editColor() = win 0x1be180, imac 0x19a00, m1 0x167b4;
     bool editColorButtonUsable() = win inline, imac 0x195c0, m1 0x16444, ios inline;
-    void editGroup(cocos2d::CCObject* sender) = win 0x1be710; imac 0x900b10, m1 0x9210;
+    void editGroup(cocos2d::CCObject* sender) = win 0x1be710, imac 0x900b10, m1 0x9210;
     void editHSV();
     void editObject(cocos2d::CCObject* sender) = win 0x1bb3e0, imac 0x93f0, m1 0x83a0;
     void editObject2(cocos2d::CCObject* sender) = win 0x1bd190, imac 0x93e0, m1 0x8398;
