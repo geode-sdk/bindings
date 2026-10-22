@@ -14527,7 +14527,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     int getNextFreeGradientID(const std::unordered_set<int>& exclude) = win 0x3f96c0, imac 0xc06a0;
     int getNextFreeGroupID(const std::unordered_set<int>& exclude) = win 0x3f7d10, m1 0xaabc0;
     int getNextFreeItemID(const std::unordered_set<int>& exclude) = imac 0xbfc40;
-    int getNextFreeOrderChannel(const std::unordered_set<int>& exclude) = imac 0xbfc40, m1 0xaba98;
+    int getNextFreeOrderChannel(const std::unordered_set<int>& exclude) = win 0x3f8850, imac 0xbfc40, m1 0xaba98;
     int getNextFreeSFXGroupID(const std::unordered_set<int>& exclude) = win inline, imac 0xc0910, m1 0xac65c;
     int getNextFreeSFXID(const std::unordered_set<int>& exclude) = win inline, imac 0xc06a0, m1 0xac434;
     TodoReturn getNextFreeTimerID(std::unordered_set<int> const&);
@@ -19957,7 +19957,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void onGroupIDOptions(cocos2d::CCObject* sender) = win 0x593a20, imac 0x2ff510, m1 0x293890;
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = m1 0x2936b8;
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = m1 0x2937a4;
-    void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x594180, imac 0x300470, m1 0x294764;
+    void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x594230, imac 0x300470, m1 0x294764;
     void onNextGroupID1(cocos2d::CCObject* sender) = imac 0x3023c0, m1 0x296384;
     void onPaste(cocos2d::CCObject* sender) = win 0x591980, imac 0x301100, m1 0x295354;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x5930b0, imac 0x37a320;
@@ -19978,7 +19978,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void updateGroupIDButtons() = win 0x592230;
     void updateGroupIDLabel();
     void updateOrderChannel() = win 0x594440, imac 0x301ae0, m1 0x17408;
-    void updateOrderChannelLabel();
+    void updateOrderChannelLabel() = win 0x594180;
     void updateZLayerButtons() = win 0x5b7470, imac 0x300a70, m1 0x294d5c;
     void updateZOrder();
     void updateZOrderLabel();
