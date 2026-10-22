@@ -708,7 +708,7 @@ float EditorUI::xPosFromValue(float value) {
 
 #if defined(GEODE_IS_MACOS)
     void EditorUI::updateZoom(float zoom) {
-        this->updateZoom(zoom, CCDirector::sharedDirector()->getWinSize() / 2);
+        this->updateZoom(zoom, cocos2d::CCDirector::sharedDirector()->getWinSize() / 2);
     }
 #endif
 
