@@ -6,8 +6,6 @@
 
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;
-    m_guidelinesOffButton = nullptr;
-    m_guidelinesOnButton = nullptr;
     m_editorLayer = nullptr;
 }
 
