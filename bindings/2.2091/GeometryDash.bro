@@ -693,7 +693,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     bool m_unk0eb;
     bool m_unk0ec;
     bool m_needsSafeArea;
-    float m_saveTime;
+    double m_saveTime;
 }
 
 [[link(android)]]
@@ -3949,7 +3949,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void updateChatPlacement(DialogChatPlacement placement) = win inline, imac 0x3b11e0, m1 0x3381c0;
     void updateNavButtonFrame() = win 0x175460, imac 0x3b1170, m1 0x338160;
 
-    float m_animateTime;
+    double m_animateTime;
     cocos2d::CCLayer* m_mainLayer;
     cocos2d::CCLabelBMFont* m_characterLabel;
     TextArea* m_textArea;
@@ -16567,6 +16567,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     bool m_tagFilter;
     bool m_artistFilter;
     GJSongType m_songType;
+    int m_viewFilter;
     std::vector<int> m_filterIDs;
 }
 
