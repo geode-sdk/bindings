@@ -7879,8 +7879,8 @@ class GameManager : GManager {
     bool m_unkBool8;
     geode::SeedValueRSV m_hasRP;
     bool m_hasDRP;
+    int m_specialPermKey;
     bool m_canGetLevelSaveData;
-    PAD = win 0x8;
     int m_resolution;
     int m_texQuality;
     bool m_somethingInMenuLayer;
