@@ -12182,7 +12182,7 @@ class GJRotateCommandLayer : SetupTriggerPopup {
     CCMenuItemToggler* m_followP2Toggler;
 }
 
-[[link(android)]]
+[[link(android), depends(ControlMenuTouch)]]
 class GJRotationControl : cocos2d::CCLayer {
     GJRotationControl() = inline;
     virtual ~GJRotationControl() = win 0x1a1ea0;
