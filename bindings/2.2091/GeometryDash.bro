@@ -2229,8 +2229,8 @@ class CheckpointObject : cocos2d::CCNode {
     std::vector<SavedActiveObjectState> m_vectorActiveSaveObjectState;
     std::vector<SavedSpecialObjectState> m_vectorSpecialSaveObjectState;
     EffectManagerState m_effectManagerState;
-    cocos2d::CCArray* m_gradientTriggerObjectArray;
     bool m_unk11e8;
+    cocos2d::CCArray* m_gradientTriggerObjectArray;
     std::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
     int m_commandIndex;
 }
@@ -6593,7 +6593,7 @@ class ForceBlockGameObject : EffectGameObject {
     virtual void customObjectSetup(std::vector<std::string>& values, std::vector<void*>& exists) = win 0x662890, m1 0x183c80;
     virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x662530;
 
-    cocos2d::CCPoint calculateForceToTarget(GameObject* target) = win 0x10dfb0, imac 0x1cdfe0, m1 0x183efc;
+    cocos2d::CCPoint calculateForceToTarget(GameObject* target) = win 0x662b00, imac 0x1cdfe0, m1 0x183efc;
     bool init(char const* frame) = win inline, ios inline;
 
     // property 149
@@ -9627,7 +9627,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void switchToFlyMode(PlayerObject* player, GameObject* object, bool noPortal, int type) = win inline, imac 0x101bb0, m1 0xe0474;
     void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe066c;
     void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe05c0;
-    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win 0x3ad5c0, m1 0xe0718;
+    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe0718;
     void syncBGTextures() = win 0x344f00, imac 0x1383e0, m1 0x10dbfc;
     void teleportPlayer(TeleportPortalObject* object, PlayerObject* player) = win 0x315f20, imac 0xfcdd0, m1 0xdbcc0;
     void testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x129d90, m1 0x102288;
@@ -16884,7 +16884,7 @@ class OBB2D : cocos2d::CCNode {
     bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win inline, imac 0x6c6300, m1 0x5de8a0;
     void orderCorners() = win 0x7b790, imac 0x6c6680, m1 0x5deb98;
     bool overlaps(OBB2D* other) = win inline, imac 0x6c6a00, m1 0x5def2c;
-    bool overlaps1Way(OBB2D* other) = win 0x9999999, imac 0x6c6a30, m1 0x5def68;
+    bool overlaps1Way(OBB2D* other) = win 0x7bb70, imac 0x6c6a30, m1 0x5def68;
 
     std::array<cocos2d::CCPoint, 4> m_corners;
     std::array<cocos2d::CCPoint, 4> m_positions;
