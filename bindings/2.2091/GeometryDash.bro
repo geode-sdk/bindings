@@ -2193,7 +2193,7 @@ class CheckpointGameObject : EffectGameObject {
     virtual void restoreObject() = win 0x65c270, imac 0x1b7980;
     virtual void updateSyncedAnimation(float totalTime, int frameIndex) = win 0x65b8c0, imac 0x1b6650, m1 0x9af90;
 
-    void resetCheckpoint() = imac 0x1b7960, m1 0x172570, ios inline;
+    void resetCheckpoint() = win 0x65c0b0, imac 0x1b7960, m1 0x172570, ios inline;
     void updateCheckpointSpriteVisibility() = win inline, imac 0x1b5f10, m1 0x170e7c;
 
     bool m_checkpointActivated;
@@ -2221,9 +2221,6 @@ class CheckpointObject : cocos2d::CCNode {
     GameObject* m_physicalCheckpointObject;
     PlayerCheckpoint* m_player1Checkpoint;
     PlayerCheckpoint* m_player2Checkpoint;
-    int m_unke78;
-    int m_unke7c;
-    float m_unke80;
     bool m_ground2Invisible;
     bool m_streakBlend;
     int m_uniqueID;
@@ -5555,7 +5552,7 @@ class EffectGameObject : EnhancedGameObject {
 [[link(android), depends(CAState, PulseEffectAction, CountTriggerAction, OpacityEffectAction, TouchToggleAction, CollisionTriggerAction, ToggleTriggerAction, SpawnTriggerAction, GroupCommandObject2, TimerItem, TimerTriggerAction)]]
 class EffectManagerState {
     // ~EffectManagerState();
-    // EffectManagerState();
+    EffectManagerState() = win 0x503390;
 
     std::vector<CAState> m_unkVecCAState;
     std::vector<PulseEffectAction> m_unkVecPulseEffectAction;
@@ -6261,7 +6258,7 @@ class FLAlertLayerProtocol {
 
 [[link(android), depends(FMODAudioState, FMODSoundState, FMODMusic, FMODSound, FMODQueuedEffect, FMODQueuedMusic, FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
-    FMODAudioEngine() = win 0x114ba0, inline;
+    FMODAudioEngine() = win 0x5bf90, inline;
     ~FMODAudioEngine() = win inline, imac 0x3c95c0, m1 0x34d7d8;
 
     static FMODAudioEngine* get() = inline;
@@ -6342,7 +6339,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void resumeEffect(unsigned int effect) = win inline, imac 0xc3e20, ios inline;
     void resumeMusic(int musicChannel) = win inline, imac 0x3cecc0, m1 0x351cb4;
     TodoReturn resumeSuspendedAudio();
-    void saveAudioState(FMODAudioState& state) = win 0x101280, imac 0x3ccec0, m1 0x3506ec;
+    void saveAudioState(FMODAudioState& state) = win 0x5e6d0, imac 0x3ccec0, m1 0x3506ec;
     void setBackgroundMusicVolume(float volume) = win inline, imac 0x3d3ee0, m1 0x356010;
     void setChannelPitch(int id, AudioTargetType type, float pitch) = win 0x61d70, imac 0x3d08a0, m1 0x353270;
     void setChannelVolume(int id, AudioTargetType type, float volume);
@@ -6432,7 +6429,7 @@ class FMODAudioEngine : cocos2d::CCNode {
 [[link(android), depends(FMODSoundTween, FMODQueuedMusic, FMODSoundState)]]
 class FMODAudioState {
     // ~FMODAudioState();
-    FMODAudioState() = win 0x9999999, inline;
+    FMODAudioState() = win 0x5bdc0, inline;
 
     float m_interval;
     float m_elapsed;
@@ -9377,7 +9374,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void flipFinished() = win inline, imac 0x134380, m1 0x10a4b0;
     void flipGravity(PlayerObject* object, bool flip, bool noEffects) = win 0x319e20, imac 0x102310, m1 0xe0b7c;
     void flipObjects() = imac 0x142bd0, m1 0x1163dc;
-    void gameEventTriggered(GJGameEvent event, int material, int playerID) = win 0x9999999, imac 0xfd8a0, m1 0xdc778;
+    void gameEventTriggered(GJGameEvent event, int material, int playerID) = win 0x33ac80, imac 0xfd8a0, m1 0xdc778;
     int generateEnterEasingBuffer(int easingType, float easingRate) = win 0x9999999, imac 0xfb4c0, m1 0xd9f48;
     void generateEnterEasingBuffers(EnterEffectObject* object) = win inline, imac 0xfb430, m1 0xd9ec0;
     void generatePickupAnimRandVal(GameObject* object, float& randomValue1, float& randomValue2) = win inline, imac 0x1069d0, m1 0xe49e8;
@@ -9467,7 +9464,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     double performMathRounding(double value, int type) = win inline, imac 0x12a1c0, m1 0x102684, ios inline;
     void pickupItem(EffectGameObject* object) = win inline;
     void playAnimationCommand(int id, int groupID) = win inline, imac 0x108190, m1 0xe5fa0;
-    bool playerCircleCollision(PlayerObject* player, GameObject* object) = imac 0x1001a0, m1 0xdec20;
+    bool playerCircleCollision(PlayerObject* player, GameObject* object) = win 0x318cd0, imac 0x1001a0, m1 0xdec20;
     bool playerIntersectsCircle(PlayerObject* player, GameObject* object) = win inline, imac 0x100240, m1 0xdecd8;
     void playerTouchedObject(PlayerObject* player, GameObject* object) = win inline, imac 0x107fd0, m1 0xe5dc0, ios inline;
     void playerTouchedRing(PlayerObject* player, RingObject* object) = win 0x31f5a0, imac 0x105e90, m1 0xe3ed4;
@@ -9679,7 +9676,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateTimeMod(float speed, bool players, bool noEffects) = win inline, imac 0x102290, m1 0xe0b08;
     void updateTimerLabels() = imac 0x12b690, m1 0x103688;
     void updateZoom(float zoom, float duration, int easing, float rate, int uniqueID, int controlID) = win 0x33eac0, imac 0x12c9a0, m1 0x1045f0;
-    void visitWithColorFlash() = imac 0x1444d0, m1 0x117978;
+    void visitWithColorFlash() = win 0x352590, imac 0x1444d0, m1 0x117978;
     float volumeForProximityEffect(SFXTriggerInstance& instance) = win 0x34c740, imac 0x13e170, m1 0x112c60;
 
     PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
@@ -10483,7 +10480,7 @@ class GJEffectManager : cocos2d::CCNode {
     void runTimerTrigger(int id, double targetTime, bool multiActivate, int targetID, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x2d7a40, m1 0x273c90;
     void runTouchTriggerCommand(int targetID, bool holdMode, TouchTriggerType touchType, TouchTriggerControl touchControl, bool dualMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x2d4290, m1 0x27127c;
     void saveCompletedMove(int groupId, double dx, double dy) = win inline, imac 0x2d2580, m1 0x26fa18;
-    void saveToState(EffectManagerState& state) = imac 0x2d9620, m1 0x27544c;
+    void saveToState(EffectManagerState& state) = win 0x36e720, imac 0x2d9620, m1 0x27544c;
     void setColorAction(ColorAction* action, int id) = win 0x366100, imac 0x2c9fe0, m1 0x269048;
     void setFollowing(int targetID, int targetPosID, bool following) = win inline, imac 0x2d8a70, m1 0x2748f0;
     void setPlatformerProgress(int);
@@ -12336,7 +12333,7 @@ class GJSelectionStrip : cocos2d::CCNode {
 
 [[link(android), depends(GJValueTween)]]
 class GJShaderState {
-    GJShaderState() = win 0x9999999, imac 0x905f0, m1 0x3414ac, inline;
+    GJShaderState() = win 0x5206b0, imac 0x905f0, m1 0x3414ac, inline;
 
     void reset() = win inline, imac 0x3b36f0, m1 0x33a4d4;
     void stopTweenAction(int action) = win inline, imac 0x3b3000, m1 0x33a028, ios inline;
@@ -12495,6 +12492,10 @@ class GJShaderState {
     bool m_zLayerDirty;
     bool m_noPlayerParticles;
     bool m_usesShaders;
+    int m_unk298;
+    bool m_unk29c;
+    bool m_unk29d;
+    bool m_unk29e;
 }
 
 [[link(android)]]
@@ -17352,7 +17353,7 @@ class PlayerButtonCommand {
 
 [[link(android), depends(DashRingObject)]]
 class PlayerCheckpoint : cocos2d::CCNode {
-    PlayerCheckpoint() = inline;
+    PlayerCheckpoint() = win 0x520a60;
     virtual ~PlayerCheckpoint() = win 0x520ed0;
 
     static PlayerCheckpoint* create() = imac 0x53e5d0;
@@ -17590,7 +17591,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    PlayerObject() = win 0x3ec2f0, imac 0x40aa00, m1 0x384504, inline;
+    PlayerObject() = win 0x4e36c0, imac 0x40aa00, m1 0x384504, inline;
     ~PlayerObject() = win 0x4e4710, imac 0x3e7540, m1 0x3656e8;
 
     static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x4e4940, imac 0x3e7820, m1 0x3658dc;
@@ -17711,7 +17712,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void playingEndEffect() = win inline, imac 0x407840, m1 0x381cd8;
     void playSpawnEffect() = win 0x4f5710, imac 0x400480, m1 0x37b034;
     void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x4f3370, imac 0x3fb5b0, m1 0x376a20;
-    void postCollision(float dt, bool betweenSteps);
+    void postCollision(float dt, bool betweenSteps) = win 0x4eb830;
     void preCollision() = win inline, imac 0x3f1680;
     bool preSlopeCollision(float dt, GameObject* object) = win 0x4ed660, imac 0x3f87d0, m1 0x3740c0;
     void propellPlayer(float yVelocity, bool noEffects, int objectType) = win 0x4fdc90, imac 0x407bd0, m1 0x382054;
@@ -17745,7 +17746,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runNormalRotation() = win inline, imac 0x3f11e0, m1 0x36e290, ios inline;
     void runNormalRotation(bool notNormalMode, float speed) = win 0x4eb4d0, imac 0x3ed0a0, m1 0x36a6d8;
     void runRotateAction(bool ground, int type) = win inline, imac 0x3ef890, m1 0x36cab4;
-    void saveToCheckpoint(PlayerCheckpoint* checkpoint);
+    void saveToCheckpoint(PlayerCheckpoint* checkpoint) = win 0x4ffd80;
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x4fb6c0, imac 0x3eb240, m1 0x368dc8;
     void setupStreak() = win 0x4e6a00, imac 0x3e99f0, m1 0x3677b8;
     void setYVelocity(double velocity, int type) = win 0x4e6f50, imac 0x3e9810, m1 0x3675b8;
@@ -18251,8 +18252,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void resetLevelFromStart() = win 0x518a50, m1 0x7180;
     void resume() = win 0x51aa00, imac 0x8dc30, m1 0x8313c;
     void resumeAndRestart(bool fromStart) = win 0x51a750, imac 0x400b40, m1 0x305d54;
-    void saveActiveSaveObjects(std::vector<SavedActiveObjectState>& activeObjects, std::vector<SavedSpecialObjectState>& specialObjects) = imac 0x8a760, m1 0x7ffb0;
-    void saveDynamicSaveObjects(std::vector<SavedObjectStateRef>& dynamicObjects) = imac 0x8a500, m1 0x7fdd8;
+    void saveActiveSaveObjects(std::vector<SavedActiveObjectState>& activeObjects, std::vector<SavedSpecialObjectState>& specialObjects) = win 0x517b60, imac 0x8a760, m1 0x7ffb0;
+    void saveDynamicSaveObjects(std::vector<SavedObjectStateRef>& dynamicObjects) = win 0x517870, imac 0x8a500, m1 0x7fdd8;
     TodoReturn savePersistentCheckpoint(CheckpointObject*);
     void scanActiveSaveObjects() = win inline, imac 0x7cd40, m1 0x74244;
     void scanDynamicSaveObjects() = win 0x517270, imac 0x7c3c0, m1 0x73980;
