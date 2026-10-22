@@ -16561,6 +16561,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     AudioSortType m_sortType;
     bool m_tagFilter;
     bool m_artistFilter;
+    bool m_unk86;
     GJSongType m_songType;
     int m_viewFilter;
     std::vector<int> m_filterIDs;
