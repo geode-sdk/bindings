@@ -6,9 +6,7 @@ void TriggerEffectDelegate::spawnGroup(int group, bool ordered, double delay, st
 
 void TriggerEffectDelegate::spawnObject(GameObject* object, double delay, std::vector<int> const& remapKeys) {}
 
-#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_IOS)
 bool TriggerEffectDelegate::checkSpawnAbuse() { return false; }
-#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
