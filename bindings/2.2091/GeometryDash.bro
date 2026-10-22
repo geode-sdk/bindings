@@ -15113,8 +15113,6 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onMostDownloaded(cocos2d::CCObject* sender);
     void onMostLikes(cocos2d::CCObject* sender);
     void onMostRecent(cocos2d::CCObject* sender);
-    [[missing(win, mac)]]
-    void onPasteClipboard(cocos2d::CCObject* sender);
     void onSearch(cocos2d::CCObject* sender) = imac 0x7070c0, m1 0x6181a8;
     void onSearchMode(cocos2d::CCObject* sender) = win 0x436ad0, imac 0x706cf0, m1 0x617e30;
     void onSearchUser(cocos2d::CCObject* sender) = imac 0x707230, m1 0x618330;
@@ -17292,7 +17290,6 @@ class PlatformToolbox {
     static bool doesFileExist(std::string path) = win inline, imac 0x4bd450, m1 0x421400;
     static void downloadAndSavePromoImage(std::string url, std::string path) = win inline, imac 0x4bd540, m1 0x4214b8, ios inline;
     static void gameDidSave() = win inline;
-    [[missing(win, mac)]]
     static std::string getClipboardString();
     static float getDeviceRefreshRate() = inline;
     static cocos2d::CCSize getDisplaySize() = win 0x8bb90, imac 0x4bdf20, m1 0x421d18;
