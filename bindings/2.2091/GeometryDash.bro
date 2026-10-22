@@ -20497,26 +20497,6 @@ class SetupCountTriggerPopup : SetupTriggerPopup {
     virtual void valueDidChange(int, float) = win 0x5b1d30;
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b16e0, m1 0x850824;
-    void onEnableGroup(cocos2d::CCObject* sender) = imac 0x748770;
-    void onItemIDArrow(cocos2d::CCObject* sender);
-    void onMultiActivate(cocos2d::CCObject* sender);
-    void onTargetCountArrow(cocos2d::CCObject* sender) = imac 0x6bcb60;
-    void onTargetIDArrow(cocos2d::CCObject* sender) = m1 0x5d5a74;
-    void updateCountTextInputLabel();
-    void updateItemID() = imac 0x6bd540, m1 0x5d6328;
-    void updateItemIDInputLabel();
-    void updateTargetCount();
-    void updateTargetID();
-    void updateTargetIDInputLabel();
-
-    CCTextInputNode* m_itemIDInput;
-    CCTextInputNode* m_targetIDInput;
-    CCTextInputNode* m_targetCountInput;
-    int m_itemID;
-    int m_targetID;
-    int m_targetCount;
-    bool m_activateGroup;
-    bool m_multiActivate;
 }
 
 [[link(android)]]
