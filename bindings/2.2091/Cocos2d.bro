@@ -323,7 +323,7 @@ class cocos2d::CCAnimationCache : cocos2d::CCObject {
     static void purgeSharedAnimationCache() = imac 0x461540, m1 0x3cde34;
     static cocos2d::CCAnimationCache* sharedAnimationCache() = imac 0x461430, m1 0x3cdd24;
 
-    void addAnimation(cocos2d::CCAnimation*, const char*) = imac 0x1e5920;
+    void addAnimation(cocos2d::CCAnimation*, const char*);
     void addAnimationsWithDictionary(cocos2d::CCDictionary*, const char*) = imac 0x461fe0, m1 0x3ce8d8, ios inline;
     void addAnimationsWithFile(const char*) = imac 0x462200, m1 0x3ceb38, ios inline;
     cocos2d::CCAnimation* animationByName(const char*) = imac 0x461830;
@@ -818,7 +818,7 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
     char const* charForKey(std::string const&) = imac 0x2f8970, m1 0x28d2d8, ios inline;
     unsigned int count() = imac 0x2f8680, m1 0x28cfc8;
     std::string getFirstKey() = imac 0x2f87d0, m1 0x28d114;
-    cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2f8de0;
+    cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2f8de0, m1 0x28d794;
     cocos2d::CCObject* objectForKey(std::string const&) = imac 0x2f8a10, m1 0x28d418;
     cocos2d::CCObject* randomObject() = imac 0x2fa890, m1 0x28f050, ios inline;
     void removeAllObjects() = imac 0x2f8490, m1 0x28ce08;
@@ -963,10 +963,10 @@ class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
 [[link(win, android)]]
 class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     // CCDrawNode(cocos2d::CCDrawNode const&);
-    CCDrawNode();
+    CCDrawNode() = imac 0x6ed610, m1 0x600b94;
     virtual ~CCDrawNode() = imac 0x6ed720, m1 0x600c84;
 
-    static cocos2d::CCDrawNode* create() = m1 0x600dcc;
+    static cocos2d::CCDrawNode* create() = m1 0x600dcc, imac 0x6ed850;
 
     virtual bool init() = imac 0x6ed970, m1 0x600efc;
     virtual void draw() = imac 0x6edb60, m1 0x6010c0;
@@ -3869,7 +3869,7 @@ class cocos2d::CCShaderCache : cocos2d::CCObject {
     static void purgeSharedShaderCache() = imac 0x1e4a80, m1 0x1980a4;
     static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1e4960, m1 0x197f84;
 
-    void addProgram(cocos2d::CCGLProgram*, char const*) = imac 0x308520;
+    void addProgram(cocos2d::CCGLProgram*, char const*) = imac 0x1e5920, m1 0x199020;
     bool init() = imac 0x1e4a30, m1 0x198054;
     void loadDefaultShader(cocos2d::CCGLProgram*, int) = imac 0x1e52e0, m1 0x198930;
     void loadDefaultShaders() = imac 0x1e4ba0, m1 0x1981a0;
