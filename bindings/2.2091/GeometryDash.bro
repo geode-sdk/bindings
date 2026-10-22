@@ -18353,7 +18353,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     bool m_isIgnoreDamageEnabled;
     CheckpointObject* m_lastSavedCheckpoint;
     bool m_unk3768n;
-    void* m_unk3770;
+    bool m_unk3769;
+    bool m_unk376a;
+    int m_unk376c;
+    bool m_unk3770;
     cocos2d::CCLabelBMFont* m_statusLabel;
     float m_unk3778;
     int m_unk377c;
