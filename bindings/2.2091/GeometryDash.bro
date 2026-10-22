@@ -9272,6 +9272,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void toggleGlitter(bool visible) = inline;
     virtual void destroyPlayer(PlayerObject* player, GameObject* object) = inline;
     virtual void updateDebugDraw() = win 0x3169c0, imac 0xfdc30, m1 0xdcab0;
+    virtual bool shouldDrawDebugHitboxes() = win 0x317660;
+    virtual bool shouldDrawHitboxTrail() = win 0x5a3a0;
+    virtual bool shouldRecordHitboxTrail() = win 0x5a3a0;
+    virtual TodoReturn getHitboxTrailMax() = win 0x317680;
     virtual void addToSection(GameObject* object) = win 0x32f280, imac 0x11d090, m1 0xf7654;
     virtual void addToGroup(GameObject* object, int groupID, bool triggerGroup) = win 0x32bc50, imac 0x11a450, m1 0xf500c;
     virtual void removeFromGroup(GameObject* object, int groupID) = win 0x32bdd0, imac 0x11a6a0;
@@ -9306,10 +9310,6 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual void toggleMusicInPractice() = inline;
     virtual void processCheckpoints() = inline;
     virtual void resetLevel() = inline;
-    virtual TodoReturn shouldDrawDebugHitboxes() = win 0x317660;
-    virtual TodoReturn shouldDrawHitboxTrail() = win 0x5a3a0;
-    virtual TodoReturn shouldRecordHitboxTrail() = win 0x5a3a0;
-    virtual TodoReturn getHitboxTrailMax() = win 0x317680;
 
     void activateCustomRing(RingObject* object) = win inline, imac 0x113730, m1 0xee728;
     void activatedAudioTrigger(SFXTriggerGameObject* object, float levelTime) = win 0x34cf80, imac 0x13ea60;
@@ -14452,6 +14452,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void playerTookDamage(PlayerObject* player) = win 0x4008b0, imac 0xc72f0;
     virtual void updateColor(cocos2d::ccColor3B& color, float fadeTime, int colorID, bool blending, float opacity, cocos2d::ccHSVValue& copyHSV, int colorIDToCopy, bool copyOpacity, EffectGameObject* callerObject, int unk1, int unk2) = win 0x3fc4a0, imac 0xc3b50, m1 0xaee80;
     virtual void updateDebugDraw() = win 0x406bd0, imac 0xd2d20;
+    virtual bool shouldDrawDebugHitboxes() = win 0x406b80;
+    virtual bool shouldDrawHitboxTrail() = win 0x406b90;
+    virtual bool shouldRecordHitboxTrail() = win 0x406ba0;
+    virtual TodoReturn getHitboxTrailMax() = win 0x406bc0;
     virtual void addToGroup(GameObject* object, int groupID, bool triggerGroup) = win 0x3fd340, imac 0xc43d0, m1 0xaf628;
     virtual void removeFromGroup(GameObject* object, int groupID) = win 0x3fd4a0, imac 0xc4480, m1 0xaf6e0;
     virtual void updateObjectSection(GameObject* object) = win 0x3fe460, imac 0xc56a0, m1 0xb0794;
@@ -14467,10 +14471,6 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual void checkpointActivated(CheckpointGameObject* object) = win 0x400720, imac 0xc71f0, m1 0xb2004;
     virtual void addKeyframe(KeyframeGameObject* object) = win 0x401340, imac 0xc8410, m1 0xb3164;
     virtual void levelSettingsUpdated() = win 0x3ef860, imac 0xae660, m1 0x9caec;
-    virtual TodoReturn shouldDrawDebugHitboxes() = win 0x406b80;
-    virtual TodoReturn shouldDrawHitboxTrail() = win 0x406b90;
-    virtual TodoReturn shouldRecordHitboxTrail() = win 0x406ba0;
-    virtual TodoReturn getHitboxTrailMax() = win 0x406bc0;
 
     bool activateTriggerEffect(EffectGameObject* object, float currentTime, float playTime, float boundTime, bool active) = win 0x3fb900, imac 0xc2ac0, m1 0xae18c;
     void addDelayedSpawn(EffectGameObject* object, float delay) = win 0x3fc210, ios inline;
@@ -18224,6 +18224,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void activatePlatformerEndTrigger(EndTriggerGameObject* object, std::vector<int> const& remapKeys) = win 0x50abd0, imac 0x83cf0, m1 0x7a2ec;
     virtual void toggleGlitter(bool visible) = win 0x512260, imac 0x87710, m1 0x7d860;
     virtual void destroyPlayer(PlayerObject* player, GameObject* object) = win 0x512390;
+    virtual bool shouldDrawDebugHitboxes() = win 0x505bc0;
+    virtual bool shouldDrawHitboxTrail() = win 0x505bf0;
+    virtual bool shouldRecordHitboxTrail() = win 0x505c20;
+    virtual TodoReturn getHitboxTrailMax() = win 0x317680;
     virtual void toggleGroundVisibility(bool visible) = win 0x5120a0, imac 0x87620, m1 0x7d758;
     virtual void toggleMGVisibility(bool visible) = win 0x512120, imac 0x87650, m1 0x7d788;
     virtual void toggleHideAttempts(bool hide) = win 0x512160, imac 0x87670, m1 0x7d798;
@@ -18246,10 +18250,6 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x5136a0, imac 0x88570, m1 0x7e600;
     virtual void circleWaveWillBeRemoved(CCCircleWave* circleWave) = win 0x513870, imac 0x88630, m1 0x7e690;
     virtual void dialogClosed(DialogLayer* layer) = win 0x5136c0, imac 0x885c0;
-    virtual TodoReturn shouldDrawDebugHitboxes() = win 0x505bc0;
-    virtual TodoReturn shouldDrawHitboxTrail() = win 0x505bf0;
-    virtual TodoReturn shouldRecordHitboxTrail() = win 0x505c20;
-    virtual TodoReturn getHitboxTrailMax() = win 0x317680;
 
     void addCircle(CCCircleWave* cw) = win inline, imac 0x88610, m1 0x7e688;
     void addLiveStartPosObject(StartPosObject*) = win 0x518730, imac 0x8c1a0, m1 0x81794;
