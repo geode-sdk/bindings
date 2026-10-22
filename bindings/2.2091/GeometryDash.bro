@@ -17350,7 +17350,7 @@ class PlayerButtonCommand {
 
 [[link(android), depends(DashRingObject)]]
 class PlayerCheckpoint : cocos2d::CCNode {
-    PlayerCheckpoint() = win 0x520a60;
+    PlayerCheckpoint() = win 0x520a60, android inline;
     virtual ~PlayerCheckpoint() = win 0x520ed0;
 
     static PlayerCheckpoint* create() = imac 0x53e5d0;
