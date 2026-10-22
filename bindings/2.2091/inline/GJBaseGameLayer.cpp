@@ -93,6 +93,11 @@ void GJBaseGameLayer::addToObjectsToShow(GameObject* object) {
     m_activeObjectsCount++;
 }
 
+GameObject* GJBaseGameLayer::getGroupParent(int groupId) {
+    return static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupId));
+}
+
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJBaseGameLayer::animateInGroundNew(bool unk1, float unk2, bool unk3) {}
 
@@ -662,10 +667,6 @@ float GJBaseGameLayer::getGroundHeight(PlayerObject* player, int type) {
         return std::max(height1, height2);
     }
     return this->getGroundHeightForMode(type);
-}
-
-GameObject* GJBaseGameLayer::getGroupParent(int groupId) {
-    return static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupId));
 }
 
 std::string GJBaseGameLayer::getGroupParentsString(GameObject* object) {
