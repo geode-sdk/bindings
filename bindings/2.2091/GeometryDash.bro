@@ -2758,6 +2758,10 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     bool m_addInputs;
     bool m_updating;
     cocos2d::CCDictionary* m_inputs;
+    cocos2d::ccColor3B m_baseColor;
+    cocos2d::CCSprite* m_basePreview;
+    cocos2d::CCSprite* m_hsvPreview;
+    bool m_hasHSVPreview;
 }
 
 [[link(android)]]
@@ -2804,6 +2808,19 @@ class ControllerInputNode : cocos2d::CCNode {
     TodoReturn refreshVisuals();
     void setActiveKey(int);
     void setController2(bool);
+}
+
+[[link(android)]]
+class ControlMenuTouch {
+    void addMenu(cocos2d::CCMenu* menu);
+    bool began(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    void cancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    void ended(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    void moved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    bool tracking();
+
+    std::vector<cocos2d::CCMenu*> m_menus;
+    cocos2d::CCMenu* m_activeMenu;
 }
 
 [[link(android)]]
@@ -6398,12 +6415,15 @@ class FMODAudioEngine : cocos2d::CCNode {
     FMOD::DSP* m_globalChannelDSP;
     FMOD::ChannelGroup* m_globalChannel;
     FMOD::ChannelGroup* m_reverbChannel;
+    FMOD::ChannelGroup* m_unkChannel;
     FMOD_RESULT m_lastResult;
     int m_sampleRate;
     bool m_reducedQuality;
     bool m_allAudioPaused;
     int m_musicOffset;
     bool m_stopped;
+    bool m_globalChannelPaused;
+    std::vector<int> m_stoppedChannelIDs;
     FMODAudioState m_audioState;
     std::vector<FMOD::Sound*> m_removedSounds;
     std::unordered_map<int, FMOD::DSP*> m_channelIDToDSP;
@@ -9130,6 +9150,7 @@ class GJAccountManager : cocos2d::CCNode {
     int m_gameManagerSize;
     int m_localLevelsSize;
     std::string m_password;
+    std::string m_hash;
 }
 
 [[link(android)]]
@@ -12181,6 +12202,11 @@ class GJRotationControl : cocos2d::CCLayer {
     float m_startingRotation;
     float m_currentRotation;
     int m_touchID;
+    CCMenuItemSpriteExtra* m_lockRotationButton;
+    bool m_rotationLocked;
+    CCTextInputNode* m_angleInput;
+    CCMenuItemSpriteExtra* m_applyAngleButton;
+    ControlMenuTouch m_controlMenuTouch;
     GJRotationControlDelegate* m_delegate;
 }
 
@@ -12980,6 +13006,9 @@ class GJUserScore : cocos2d::CCNode {
     int m_messageState;
     int m_friendStatus;
     int m_commentHistoryStatus;
+    int m_groupStatus;
+    int m_property63;
+    int m_friendTimestamp;
     std::string m_youtubeURL;
     std::string m_twitterURL;
     std::string m_twitchURL;
@@ -13005,6 +13034,14 @@ class GJUserScore : cocos2d::CCNode {
     int m_newMsgCount;
     int m_friendReqCount;
     int m_newFriendCount;
+    int m_property65;
+    int m_property66;
+    int m_followerCount;
+    int m_followingCount;
+    bool m_following;
+    bool m_property70;
+    bool m_property71;
+    bool m_unk31b;
     bool m_newFriendRequest;
     bool m_toggled;
     std::string m_unkString;
@@ -15802,10 +15839,10 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     cocos2d::CCSprite* m_viewProfileSprite;
     cocos2d::CCLabelBMFont* m_profileLabel;
     CCMenuItemSpriteExtra* m_profileButton;
-    void* m_unknown;
-    void* m_unknown2;
+    CCMenuItemSpriteExtra* m_reportQueueButton;
+    cocos2d::CCSprite* m_characterSelectSprite;
     cocos2d::CCSprite* m_newsButton;
-    void* m_unknown3;
+    void* m_unknown;
     MenuGameLayer* m_menuGameLayer;
 }
 
@@ -22130,6 +22167,8 @@ class SFXTriggerGameObject : EffectGameObject {
     std::string m_soundPath;
     // property 392
     int m_soundID;
+    // property 601
+    int m_property601;
     float m_pitch;
     // property 404
     int m_speed;
@@ -22209,6 +22248,7 @@ class SFXTriggerGameObject : EffectGameObject {
     float m_volumeVariance;
     // property 599
     bool m_pitchSteps;
+    std::string m_unk7e8;
 }
 
 [[link(android)]]
