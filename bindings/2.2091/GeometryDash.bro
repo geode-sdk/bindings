@@ -4023,9 +4023,9 @@ class DpadMenu : cocos2d::CCMenu {
 
 [[link(android)]]
 class DrawGridLayer : cocos2d::CCLayer {
-    virtual ~DrawGridLayer() = win 0x3ec960;
+    virtual ~DrawGridLayer() = win 0x3ec960, m1 0xbd600, imac 0xd6ac0;
 
-    static DrawGridLayer* create(cocos2d::CCNode* parent, LevelEditorLayer* layer) = imac 0xaba40;
+    static DrawGridLayer* create(cocos2d::CCNode* parent, LevelEditorLayer* layer) = win 0x409080, imac 0xaba40, m1 0x9a6a4;
 
     virtual void update(float dt) = win 0x40a690, imac 0xd6f80, m1 0xbd988;
     virtual void draw() = win 0x40a8a0, imac 0xd7110, m1 0xbda9c;
@@ -4897,7 +4897,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void moveObjectCall(EditCommand command) = win 0x1feb10, imac 0x60e410, m1 0x54d678;
     void moveObjectCall(cocos2d::CCObject* sender) = m1 0x82dfd0;
     TodoReturn nextDpadStep();
-    cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e7, imac 0x603db0;
+    cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e74, imac 0x603db0;
     void onAssignNewGroupID() = win 0x15c530, imac 0x1a140, m1 0x16df8, ios inline;
     void onColorFilter(cocos2d::CCObject* sender) = imac 0x10710, m1 0xece0;
     void onCopy(cocos2d::CCObject* sender);
