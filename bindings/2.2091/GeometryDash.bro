@@ -5634,7 +5634,7 @@ class EmotePickerPopup : EditorWindowPopup {
 
 [[link(android)]]
 class EmoteSprite : cocos2d::CCSprite {
-    virtual ~EmoteSprite() = win 0x7e780;
+    virtual ~EmoteSprite() = win 0x7e780, imac 0x8e100, m1 0x8357c;
 
     static EmoteSprite* createWithDef(EmoteDef const*) = win 0x7F0E0;
     static EmoteSprite* createWithName(std::string const&) = win inline;
@@ -8867,7 +8867,7 @@ class GameToolbox {
     static float fast_rand_minus1_1() = win inline, imac 0x4ef280, m1 0x44d31c;
     static void fast_srand(uint64_t seed) = win inline, imac 0x4ef1f0, m1 0x44d2a0;
     static TodoReturn gameVersionToString(int);
-    static std::string gen_random(int length) = imac 0x94bc80;
+    static std::string gen_random(int length);
     static cocos2d::CCSequence* getDropActionWDelay(float delay, float duration, float scale, cocos2d::CCNode* target, cocos2d::SEL_CallFunc selector) = win inline, imac 0x4e8d00, m1 0x4471fc, ios inline;
     static cocos2d::CCSequence* getDropActionWEnd(float delay, float duration, float scale, cocos2d::CCAction* action, float actionDelay) = win inline, imac 0x4e8dc0, m1 0x4472b8, ios inline;
     static cocos2d::CCActionInterval* getEasedAction(cocos2d::CCActionInterval* action, int easingType, float easingRate) = win inline, imac 0x4eeec0, m1 0x44cfd4, ios inline;
@@ -12013,7 +12013,7 @@ class GJRequestCell : TableViewCell {
     virtual bool init() = win 0x158d20, m1 0x1ece20;
     virtual void draw() = win 0x1487a0;
 
-    void loadFromScore(GJUserScore* score) = win 0x158d40, imac 0x231d80, m1 0x1d3434;
+    void loadFromScore(GJUserScore* score) = win 0x158d40, imac 0x231d80, m1 0x1de434;
     void markAsRead() = win 0x504490, imac 0x240820, m1 0x1eb810;
     void onDeleteRequest(cocos2d::CCObject* sender);
     void onToggle(cocos2d::CCObject* sender);
@@ -12807,7 +12807,7 @@ class GJThreadCell : TableViewCell {
     virtual bool init() = win 0x3ff70;
     virtual void draw() = win 0x1487a0;
 
-    void loadFromThread(GJMessageThread*) = win 0x1597d0;
+    void loadFromThread(GJMessageThread*) = win 0x1597d0, imac 0x232ab0, m1 0x1df140;
     void onShowMembers(cocos2d::CCObject* sender);
     void onThreadOptions(cocos2d::CCObject* sender);
     void onToggleSelect(cocos2d::CCObject* sender);
@@ -13657,7 +13657,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     GJGameLevel* m_level;
     GJUserScore* m_score;
     GJLevelList* m_levelList;
-    PAD = win 0x8;
+    PAD = win 0x8, mac 0x8;
     std::string m_commentKey;
     LoadingCircle* m_loadingCircle;
     cocos2d::CCLabelBMFont* m_pageLabel;
@@ -13707,7 +13707,7 @@ class InvitesPopup : PagedListPopup, ThreadMessageDelegate, FLAlertLayerProtocol
 
     static InvitesPopup* create();
 
-    virtual bool init() = win 0xf6b60;
+    virtual bool init() = win 0xf6b60, imac 0x94bc80, m1 0x82bc24;
     virtual int requestPage(int) = win 0x5a3a0;
     virtual void textChanged(CCTextInputNode*) = win 0xf7380;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xf9730;
@@ -15765,7 +15765,7 @@ class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDeleg
 
     TodoReturn applyAddOutcome(GJMessageThread*);
     TodoReturn buildRows();
-    bool init(GJMessageThread*, ThreadViewPopup*, bool) = win 0xebaf0;
+    bool init(GJMessageThread*, ThreadViewPopup*, bool) = win 0xebaf0, imac 0x941680, m1 0x8221a4;
     void onAddMember(cocos2d::CCObject* sender);
     void onAddPolicy(cocos2d::CCObject* sender);
     void onKickMember(cocos2d::CCObject* sender);
@@ -15774,7 +15774,7 @@ class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDeleg
     void onTransferOwner(cocos2d::CCObject* sender);
     TodoReturn opPending();
     TodoReturn refreshHost();
-    void refreshPolicyBtn() = win 0xec260;
+    void refreshPolicyBtn() = win 0xec260, imac 0x941a80, m1 0x82253c;
 }
 
 [[link(android), depends(GJGroundLayer, GameToolbox)]]
@@ -15905,7 +15905,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual bool ownsTouchPrio() = win 0x3ff70;
 
     void deleteSelected() = win 0x476a10, imac 0x2132a0, m1 0x1c25d4;
-    bool init(bool sent) = win 0x475940, m1 0x1c11fc;
+    bool init(bool sent) = win 0x475940, imac 0x211d20, m1 0x1c11fc;
     bool isCorrect(char const* key);
     void loadPage(int page);
     void onClose(cocos2d::CCObject* sender);
@@ -15948,7 +15948,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
 
     static MessageThreadsPage* create() = win 0xd42e0, m1 0x80a544;
 
-    virtual bool init() = win 0xd4500, m1 0x80a6ec;
+    virtual bool init() = win 0xd4500, imac 0x9281c0, m1 0x80a6ec;
     virtual void keyBackClicked() = win 0xd92a0;
     virtual void show() = win 0xd9130;
     virtual bool ownsTouchPrio() = win 0x3ff70;
@@ -18561,7 +18561,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     bool isCorrect(char const* key);
     bool isOnWatchlist(int id) = win inline, imac 0x89e9c0, m1 0x791d1c, ios inline;
     void loadPage(int page) = win 0x559f40, imac 0x8a68f0, m1 0x7992dc;
-    void loadPageFromUserInfo(GJUserScore* score) = win 0x552b60, imac 0x232ab0, m1 0x79252c;
+    void loadPageFromUserInfo(GJUserScore* score) = win 0x552b60, imac 0x89f240, m1 0x79252c;
     void onAdminPanel(cocos2d::CCObject* sender) = m1 0x79585c;
     void onBlockUser(cocos2d::CCObject* sender) = win 0x5573e0, imac 0x893a60, m1 0x795538;
     void onClose(cocos2d::CCObject* sender) = win 0x558f40, imac 0x89e9d0, m1 0x791d24;
@@ -23595,7 +23595,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
     TableViewCell* cellForTouch(cocos2d::CCTouch* touch) = win inline, imac 0x6fe7e0, m1 0x610124;
     int checkBoundaryOfCell(TableViewCell* cell) = win 0x88b50, imac 0x41c220, m1 0x611858;
     int checkBoundaryOfCell(cocos2d::CCPoint& position, float height) = win 0x88c70, imac 0x700240, m1 0x611990;
-    void checkBoundaryOfContent(float dt) = win 0x88d70, imac 0x6ff510, m1 0x1df140;
+    void checkBoundaryOfContent(float dt) = win 0x88d70, imac 0x6ff510;
     void checkFirstCell(TableViewCell* cell) = win 0x89330, imac 0x700910, m1 0x61200c;
     void checkLastCell(TableViewCell* cell) = win 0x895e0, imac 0x700360, m1 0x611aa0;
     void claimTouch(cocos2d::CCTouch* touch) = win inline;
@@ -23894,7 +23894,7 @@ class ThreadDescPopup : SetupTriggerPopup, ThreadMessageDelegate, EmotePickerDel
     virtual void threadSendFinished(int, long long) = win 0xfe7c0;
     virtual void threadSendFailed() = win 0xfe870;
 
-    bool buildUI(bool, std::string const&, std::string const&) = win 0xfc920;
+    bool buildUI(bool, std::string const&, std::string const&) = win 0xfc920, imac 0x952390, m1 0x8316b4;
     TodoReturn finishSave(char const*);
     TodoReturn handBackSlot();
     bool init(GJMessageThread*, ThreadViewPopup*);
@@ -23963,7 +23963,7 @@ class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLaye
     virtual void threadSendFailed() = win 0xf69e0;
 
     TodoReturn handBackSlot();
-    bool init(GJMessageThread*, ThreadViewPopup*, bool) = win 0xf4340;
+    bool init(GJMessageThread*, ThreadViewPopup*, bool) = win 0xf4340, imac 0x949430, m1 0x829734;
     void onCancelRequest(cocos2d::CCObject* sender);
     void onDismissRemoved(cocos2d::CCObject* sender);
     void onHide(cocos2d::CCObject* sender);
@@ -24006,7 +24006,7 @@ class ThreadSearchPopup : SetupTriggerPopup {
 
     TodoReturn clampDayField();
     TodoReturn fieldValue(CCTextInputNode*, int, int);
-    bool init(ThreadViewPopup*) = win 0xfaff0;
+    bool init(ThreadViewPopup*) = win 0xfaff0, imac 0x9508e0, m1 0x82fdf0;
     void onGoToDate(cocos2d::CCObject* sender);
     void onSearch(cocos2d::CCObject* sender);
 }
@@ -24045,7 +24045,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0xe1750;
     virtual void unmountVirtualRow(int, cocos2d::CCNode*) = win 0xe1670;
 
-    void buildMemberButton() = win 0xe34b0;
+    void buildMemberButton() = win 0xe34b0, imac 0x92f370, m1 0x81151c;
     TodoReturn buildRows(bool);
     TodoReturn checkMessageTap(cocos2d::CCTouch*);
     TodoReturn checkUnseenBelow(float);
@@ -24054,7 +24054,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn exitSearch(bool);
     // TodoReturn expandShareTokens(std::string const&, std::vector<ThreadViewPopup::ShareToken>&);
     TodoReturn goToDate(std::string const&);
-    bool init(GJMessageThread*) = win 0xd93b0;
+    bool init(GJMessageThread*) = win 0xd93b0, imac 0x92d740, m1 0x80fa9c;
     TodoReturn insertShareToken(std::string const&);
     TodoReturn jumpToLatest();
     TodoReturn layoutComposeBar();
