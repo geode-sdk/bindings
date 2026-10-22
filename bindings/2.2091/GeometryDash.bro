@@ -17273,12 +17273,12 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     cocos2d::CCLabelBMFont* m_startposLabel;
     int m_startPosIndex;
     cocos2d::CCArray* m_startPositions;
-    bool m_isInEditor;
+    bool m_isEditorLevel;
     TimeSpeedControl* m_timeSpeedControls;
     cocos2d::CCLayer* m_layer;
     Slider* m_musicSlider;
     Slider* m_sfxSlider;
-    cocos2d::CCMenu* m_someMenu;
+    cocos2d::CCMenu* m_showUIMenu;
     CCMenuItemSpriteExtra* m_platformSettingsButton;
 }
 
