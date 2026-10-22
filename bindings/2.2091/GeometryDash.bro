@@ -3037,6 +3037,9 @@ class CreateParticlePopup : FLAlertLayer, ColorSelectDelegate, SliderDelegate {
     CCMenuItemToggler* m_gravityToggler;
     CCMenuItemToggler* m_radiusToggler;
     cocos2d::CCSprite* m_selectSprite;
+    std::vector<CCMenuItemSpriteExtra*> m_particleButtons;
+    cocos2d::CCLabelBMFont* m_texturePageLabel;
+    int m_texturePage;
     cocos2d::CCSprite* m_particleColorSprite;
     cocos2d::CCSprite* m_startColorSprite;
     cocos2d::CCSprite* m_endColorSprite;
@@ -4271,6 +4274,10 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     GJLevelType m_levelType;
     std::string m_levelName;
     UploadActionPopup* m_descriptionPopup;
+    bool m_loadPlatformerSave;
+    CCMenuItemSpriteExtra* m_emoteButton;
+    EmotePickerPopup* m_emotePicker;
+    std::string m_levelDesc;
 }
 
 [[link(android)]]
@@ -17153,6 +17160,11 @@ class ParentalOptionsLayer : FLAlertLayer {
     int m_maxPage;
     cocos2d::CCDictionary* m_values;
     cocos2d::CCDictionary* m_variables;
+    CCMenuItemToggler* m_safeModeToggler;
+    CCMenuItemToggler* m_offlineModeToggler;
+    CCMenuItemToggler* m_lockToggler;
+    cocos2d::CCArray* m_safeModeNodes;
+    cocos2d::CCArray* m_toggleNodes;
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
 }
@@ -20000,6 +20012,8 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     int m_editorLayerValue;
     int m_editorLayer2Value;
     int m_zOrderValue;
+    int m_zOrderRelated;
+    bool m_useDefaultZLayer;
     ZLayer m_zLayerValue;
     int m_orderValue;
     bool m_channelOrderEdited;
@@ -20007,12 +20021,16 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     bool m_removeGroupsLock;
     int m_groupToRemove;
     bool m_addedGroup;
-    bool m_reverseChanged;
     bool m_hasTargetObjects;
     bool m_unk2ff;
     bool m_unk300;
     int m_nextFreeID;
     cocos2d::CCDictionary* m_parentGroups;
+    cocos2d::CCDictionary* m_childGroups;
+    ScrollableContentLayer* m_scrollableContentLayer;
+    cocos2d::CCMenu* m_groupIDMenu;
+    bool m_scrolling;
+    IDNameInput* m_idNameInput;
 }
 
 [[link(android)]]
@@ -20120,7 +20138,13 @@ class SetTextPopup : FLAlertLayer, EmotePickerDelegate {
     CCTextInputNode* m_input;
     bool m_disableDelegate;
     bool m_cancelled;
+    float m_unk2ac;
+    float m_unk2b0;
     std::string m_value;
+    int m_unk2d8;
+    int m_unk2dc;
+    CCMenuItemSpriteExtra* m_emoteButton;
+    EmotePickerPopup* m_emotePicker;
     SetTextPopupDelegate* m_delegate;
 }
 
@@ -21322,6 +21346,9 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     CCTextInputNode* m_chanceInput;
     int m_groupToRemove;
     bool m_removingGroup;
+    CCMenuItemSpriteExtra* m_scrollUpButton;
+    CCMenuItemSpriteExtra* m_scrollDownButton;
+    int m_groupIDScrollIndex;
 }
 
 [[link(android)]]
@@ -22166,6 +22193,8 @@ class SFXInfoObject : cocos2d::CCObject {
     bool m_folder;
     bool m_unk049;
     std::string m_name;
+    std::string m_lowerCaseName;
+    std::string m_unk090;
 }
 
 [[link(android)]]
