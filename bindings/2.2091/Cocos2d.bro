@@ -3499,7 +3499,7 @@ class cocos2d::CCProgressTimer : cocos2d::CCNodeRGBA {
     virtual cocos2d::ccColor3B const& getColor() const = imac 0x6dc1f0, m1 0x5f1afc;
     virtual unsigned char getOpacity() const = imac 0x6dc2f0, m1 0x5f1bec;
     virtual void draw() = imac 0x6de0d0, m1 0x5f31c8;
-    virtual cocos2d::CCPoint getMidpoint() = imac 0x6ddfb0, m1 0x3e2ba4;
+    virtual cocos2d::CCPoint getMidpoint() = imac 0x6ddfb0;
     virtual void setMidpoint(cocos2d::CCPoint) = imac 0x6ddfd0, m1 0x5f30ec;
     virtual void setColor(cocos2d::ccColor3B const&) = imac 0x6dc0c0, m1 0x5f19d4;
     virtual void setOpacity(unsigned char) = imac 0x6dc210, m1 0x5f1b0c;
