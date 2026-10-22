@@ -2927,7 +2927,7 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
 class CreateMenuItem : CCMenuItemSpriteExtra {
     virtual ~CreateMenuItem() = win 0x19f0f0;
 
-    static CreateMenuItem* create(cocos2d::CCNode* normal, cocos2d::CCNode* selected, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector) = imac 0x603cd0, m1 0x548d90;
+    static CreateMenuItem* create(cocos2d::CCNode* normal, cocos2d::CCNode* selected, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector) = win 0x19f300, imac 0x603cd0, m1 0x548d90;
 
     bool init(cocos2d::CCNode* normal, cocos2d::CCNode* selected, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector) = win inline, imac 0x97c410, ios inline;
 
@@ -4033,7 +4033,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     void addToSpeedObjects(EffectGameObject* object) = win inline, imac 0xbd500, m1 0xa94b0;
     cocos2d::CCPoint getPortalMinMax(GameObject* object) = win inline, imac 0xd6ea0, m1 0xbd8bc;
     bool init(cocos2d::CCNode* parent, LevelEditorLayer* layer) = win inline, imac 0xd6d00, m1 0xbd75c;
-    void loadTimeMarkers(std::string markers) = imac 0xae770, m1 0x9cbf4;
+    void loadTimeMarkers(std::string markers) = win 0x40a3a0, imac 0xae770, m1 0x9cbf4;
     cocos2d::CCPoint posForTime(float time) = win inline, imac 0xc3f30, m1 0xaf1cc, ios inline;
     void postUpdate() = win inline, imac 0xd6f60, m1 0xbd97c, ios inline;
     void removeAudioLineObject(AudioLineGuideGameObject* object) = win inline, imac 0xbd430, m1 0xa93ec, ios inline;
@@ -5017,7 +5017,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn toggleViewOption(int);
     TodoReturn toggleWindow(int);
     void transformObject(GameObject* object, EditCommand command, bool noOffset) = win 0x664b10, imac 0x60f850, m1 0x54e978;
-    void transformObjectCall(EditCommand command);    void transformObjectCall(cocos2d::CCObject* sender);
+    void transformObjectCall(EditCommand command);
+    void transformObjectCall(cocos2d::CCObject* sender);
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x200d60, imac 0x6107f0, m1 0x54f87c;
     void transformObjectsActive() = imac 0x610740;
     void transformObjectsReset() = win inline, imac 0x610c20, m1 0x54fc44;
