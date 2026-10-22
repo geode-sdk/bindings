@@ -2927,7 +2927,7 @@ class CreateGuidelinesLayer : FLAlertLayer, FLAlertLayerProtocol {
 class CreateMenuItem : CCMenuItemSpriteExtra {
     virtual ~CreateMenuItem() = win 0x19f0f0;
 
-    static CreateMenuItem* create(cocos2d::CCNode* normal, cocos2d::CCNode* selected, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector) = win 0x12aa40, imac 0x603cd0, m1 0x548d90;
+    static CreateMenuItem* create(cocos2d::CCNode* normal, cocos2d::CCNode* selected, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector) = imac 0x603cd0, m1 0x548d90;
 
     bool init(cocos2d::CCNode* normal, cocos2d::CCNode* selected, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler selector) = win inline, imac 0x97c410, ios inline;
 
@@ -4026,7 +4026,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     void addToSpeedObjects(EffectGameObject* object) = win inline, imac 0xbd500, m1 0xa94b0;
     cocos2d::CCPoint getPortalMinMax(GameObject* object) = win inline, imac 0xd6ea0, m1 0xbd8bc;
     bool init(cocos2d::CCNode* parent, LevelEditorLayer* layer) = win inline, imac 0xd6d00, m1 0xbd75c;
-    void loadTimeMarkers(std::string markers) = win 0x1f6210, imac 0xae770, m1 0x9cbf4;
+    void loadTimeMarkers(std::string markers) = imac 0xae770, m1 0x9cbf4;
     cocos2d::CCPoint posForTime(float time) = win inline, imac 0xc3f30, m1 0xaf1cc, ios inline;
     void postUpdate() = win inline, imac 0xd6f60, m1 0xbd97c, ios inline;
     void removeAudioLineObject(AudioLineGuideGameObject* object) = win inline, imac 0xbd430, m1 0xa93ec, ios inline;
@@ -4312,7 +4312,7 @@ class EditorOptionsLayer : GJOptionsLayer {
 
     static EditorOptionsLayer* create() = m1 0x242564;
 
-    virtual bool init() = win 0x180c20, m1 0x22d134;
+    virtual bool init() = m1 0x22d134;
     virtual void onClose(cocos2d::CCObject* sender) = imac 0x288ed0, m1 0x22db78;
     virtual void setupOptions() = imac 0x2884f0, m1 0x22d158;
 
@@ -7452,7 +7452,7 @@ class GameLevelManager : cocos2d::CCNode {
 class GameLevelOptionsLayer : GJOptionsLayer, FLAlertLayerProtocol {
     virtual ~GameLevelOptionsLayer() = win 0x399cc0;
 
-    static GameLevelOptionsLayer* create(GJGameLevel* level) = win 0x3b1e20;
+    static GameLevelOptionsLayer* create(GJGameLevel* level);
 
     virtual void setupOptions() = win 0x3aa5f0, m1 0x7f137c;
     virtual void didToggle(int tag) = win 0x3aa720, imac 0x908c90;
@@ -19774,7 +19774,7 @@ class SelectSettingLayer : FLAlertLayer {
     int getSelectedValue() = win inline, imac 0x258b80, m1 0x201268;
     bool init(SelectSettingType type, int value) = win 0x45c400, imac 0x25aa10, m1 0x202c7c;
     void onClose(cocos2d::CCObject* sender) = win 0x45d060, imac 0x25b2b0, m1 0x203558;
-    void onSelect(cocos2d::CCObject* sender) = win 0x45c0b0, imac 0x25b200, m1 0x203480;
+    void onSelect(cocos2d::CCObject* sender) = imac 0x25b200, m1 0x203480;
 
     cocos2d::CCArray* m_settingSprites;
     int m_settingID;
@@ -20755,7 +20755,7 @@ class SetupInstantCountPopup : SetupTriggerPopup {
     void onCountType(cocos2d::CCObject* sender) = win 0x5b8ca0, imac 0x6bcfd0, m1 0x5d5e88;
     void onEnableGroup(cocos2d::CCObject* sender) = win 0x5b8710, imac 0x6bcf40, m1 0x5d5e10;
     void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x5b87a0, imac 0x6bcb60;
-    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x5b87a0, m1 0x343bf8;
+    void onTargetID2Arrow(cocos2d::CCObject* sender) = m1 0x343bf8;
     void onTargetIDArrow(cocos2d::CCObject* sender);
     void updateCountTextInputLabel();
     void updateItemID();
@@ -21034,7 +21034,7 @@ class SetupOpacityPopup : SetupTriggerPopup {
     void updateDurLabel(bool decimals);
     void updateOpacity() = win inline, m1 0x19758;
     void updateOpacityLabel() = win 0x5c0f20, imac 0x1d6d0, m1 0x195b0;
-    void updateTargetID() = win 0x5ab230, imac 0x6ba100, m1 0x5d34d0;
+    void updateTargetID() = imac 0x6ba100, m1 0x5d34d0;
     void updateTextInputLabel();
 
     CCTextInputNode* m_groupIDInput;
