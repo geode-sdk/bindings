@@ -14494,7 +14494,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void onPausePlaytest() = win inline, m1 0xb17d4;
     void onPlaytest() = win 0x3fe7e0, imac 0xc5a00, m1 0xb0a30;
     void onResumePlaytest() = win inline, m1 0xb1980;
-    void onStopPlaytest() = win 0x3ffeb0, m1 0xb1ab4, 0xc6bf0;
+    void onStopPlaytest() = win 0x3ffeb0, m1 0xb1ab4, imac 0xc6bf0;
     void pasteAttributeState(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc7be0, m1 0xb2988;
     void pasteColorState(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc7b50, m1 0xb28f0;
     void pasteGroupState(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc7ce0, m1 0xb2a90;
