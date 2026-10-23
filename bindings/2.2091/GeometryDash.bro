@@ -2443,8 +2443,8 @@ class ColorSelectLiveOverlay : FLAlertLayer {
     void onSelectTab(cocos2d::CCObject* sender) = win 0x126150, imac 0x596d10, m1 0x4e6794;
     void selectColor(cocos2d::ccColor3B color) = win 0x126340, imac 0x596a80, m1 0x4e65d0;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x125e00, imac 0x5966e0, m1 0x4e6324;
-    void textChanged(CCTextInputNode* node) = win inline, imac 0x597430, m1 0x4e6ea0, ios inline, ios 0x11ad30;
-    void textInputClosed(CCTextInputNode* node) = win inline, imac 0x597440, m1 0x4e6ea4, ios inline, ios 0x11ad14;
+    void textChanged(CCTextInputNode* node) = win inline, imac 0x597430, m1 0x4e6ea0, ios inline;
+    void textInputClosed(CCTextInputNode* node) = win inline, imac 0x597440, m1 0x4e6ea4, ios inline;
     void toggleControls(bool visible) = win 0x126790, m1 0x4e6ea8;
     void updateColorLabel() = win 0x1265e0, imac 0x596e40, m1 0x4e68e0;
     void updateColorValue() = win inline, imac 0x597250, m1 0x4e6d1c, ios inline;

@@ -1902,7 +1902,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     CCLabelBMFont() = imac 0x6aa3f0, m1 0x5c4f14, ios 0x397e14;
     virtual ~CCLabelBMFont() = imac 0x6aa520, m1 0x5c4ff0, ios 0x397ed8;
 
-    static cocos2d::CCLabelBMFont* create() = imac 0x5dddd0, m1 0x5c47c0, ios inline, ios 0x397a08;
+    static cocos2d::CCLabelBMFont* create() = imac 0x5dddd0, m1 0x5c47c0, ios inline;
     static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x6a9f80, m1 0x5c4a88, ios 0x397a08;
     static cocos2d::CCLabelBMFont* create(char const* str, char const* fntFile, float width) = imac 0x6a9ed0, m1 0x5c49c8, ios inline;
     static cocos2d::CCLabelBMFont* create(char const* str, char const* fntFile, float width, cocos2d::CCTextAlignment alignment) = imac 0x6a9d80, m1 0x5c4844, ios inline;
@@ -3350,7 +3350,7 @@ class cocos2d::CCParticleSystemQuad : cocos2d::CCParticleSystem {
     CCParticleSystemQuad() = imac 0x6da320, m1 0x5f03bc, ios 0x2f0728;
     virtual ~CCParticleSystemQuad() = imac 0x6da420, m1 0x5f04a4, ios 0x2f07a4;
 
-    static cocos2d::CCParticleSystemQuad* create() = imac 0x6db8b0, m1 0x5f12d0, ios inline, ios 0x2f083c;
+    static cocos2d::CCParticleSystemQuad* create() = imac 0x6db8b0, m1 0x5f12d0, ios inline;
     static cocos2d::CCParticleSystemQuad* create(char const*, bool) = imac 0x6da500, m1 0x5f053c, ios 0x2f083c;
     static cocos2d::CCParticleSystemQuad* createWithTotalParticles(unsigned int, bool) = imac 0x6da5e0, m1 0x5f0624, ios 0x2f08c0;
 
