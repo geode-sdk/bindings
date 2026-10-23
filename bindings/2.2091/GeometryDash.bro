@@ -3037,6 +3037,9 @@ class CreateParticlePopup : FLAlertLayer, ColorSelectDelegate, SliderDelegate {
     CCMenuItemToggler* m_gravityToggler;
     CCMenuItemToggler* m_radiusToggler;
     cocos2d::CCSprite* m_selectSprite;
+    std::vector<CCMenuItemSpriteExtra*> m_particleButtons;
+    cocos2d::CCLabelBMFont* m_texturePageLabel;
+    int m_texturePage;
     cocos2d::CCSprite* m_particleColorSprite;
     cocos2d::CCSprite* m_startColorSprite;
     cocos2d::CCSprite* m_endColorSprite;
@@ -4187,7 +4190,7 @@ class EditButtonBar : cocos2d::CCNode {
     void loadFromItems(cocos2d::CCArray* objects, int rows, int columns, bool keepPage) = win 0x177060;
     void onDotClicked(cocos2d::CCObject* sender);
     void onLeft(cocos2d::CCObject* sender) = win 0x177b90, m1 0x35c5f0;
-    void onRight(cocos2d::CCObject* sender);
+    void onRight(cocos2d::CCObject* sender) = win 0x177b10;
     void reloadItems(int rowCount, int columnCount) = win inline, imac 0x584030, m1 0x5ce0a0;
     TodoReturn updateDotState();
 
@@ -4271,6 +4274,10 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     GJLevelType m_levelType;
     std::string m_levelName;
     UploadActionPopup* m_descriptionPopup;
+    bool m_loadPlatformerSave;
+    CCMenuItemSpriteExtra* m_emoteButton;
+    EmotePickerPopup* m_emotePicker;
+    std::string m_levelDesc;
 }
 
 [[link(android)]]
@@ -17153,6 +17160,11 @@ class ParentalOptionsLayer : FLAlertLayer {
     int m_maxPage;
     cocos2d::CCDictionary* m_values;
     cocos2d::CCDictionary* m_variables;
+    CCMenuItemToggler* m_safeModeToggler;
+    CCMenuItemToggler* m_offlineModeToggler;
+    CCMenuItemToggler* m_lockToggler;
+    cocos2d::CCArray* m_safeModeNodes;
+    cocos2d::CCArray* m_toggleNodes;
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
 }
@@ -19957,7 +19969,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void onGroupIDOptions(cocos2d::CCObject* sender) = win 0x593a20, imac 0x2ff510, m1 0x293890;
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x593720, m1 0x2936b8;
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x5938a0, m1 0x2937a4;
-    void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x594180, imac 0x300470, m1 0x294764;
+    void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x594230, imac 0x300470, m1 0x294764;
     void onNextGroupID1(cocos2d::CCObject* sender) = imac 0x3023c0, m1 0x296384;
     void onPaste(cocos2d::CCObject* sender) = win 0x591980, imac 0x301100, m1 0x295354;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x5930b0, imac 0x37a320;
@@ -20000,6 +20012,8 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     int m_editorLayerValue;
     int m_editorLayer2Value;
     int m_zOrderValue;
+    int m_zOrderRelated;
+    bool m_useDefaultZLayer;
     ZLayer m_zLayerValue;
     int m_orderValue;
     bool m_channelOrderEdited;
@@ -20007,12 +20021,16 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     bool m_removeGroupsLock;
     int m_groupToRemove;
     bool m_addedGroup;
-    bool m_reverseChanged;
     bool m_hasTargetObjects;
     bool m_unk2ff;
     bool m_unk300;
     int m_nextFreeID;
     cocos2d::CCDictionary* m_parentGroups;
+    cocos2d::CCDictionary* m_childGroups;
+    ScrollableContentLayer* m_scrollableContentLayer;
+    cocos2d::CCMenu* m_groupIDMenu;
+    bool m_scrolling;
+    IDNameInput* m_idNameInput;
 }
 
 [[link(android)]]
@@ -20120,7 +20138,13 @@ class SetTextPopup : FLAlertLayer, EmotePickerDelegate {
     CCTextInputNode* m_input;
     bool m_disableDelegate;
     bool m_cancelled;
+    float m_unk2ac;
+    float m_unk2b0;
     std::string m_value;
+    int m_unk2d8;
+    int m_unk2dc;
+    CCMenuItemSpriteExtra* m_emoteButton;
+    EmotePickerPopup* m_emotePicker;
     SetTextPopupDelegate* m_delegate;
 }
 
@@ -21322,6 +21346,9 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     CCTextInputNode* m_chanceInput;
     int m_groupToRemove;
     bool m_removingGroup;
+    CCMenuItemSpriteExtra* m_scrollUpButton;
+    CCMenuItemSpriteExtra* m_scrollDownButton;
+    int m_groupIDScrollIndex;
 }
 
 [[link(android)]]
@@ -22166,6 +22193,8 @@ class SFXInfoObject : cocos2d::CCObject {
     bool m_folder;
     bool m_unk049;
     std::string m_name;
+    std::string m_lowerCaseName;
+    std::string m_unk090;
 }
 
 [[link(android)]]
@@ -24408,51 +24437,51 @@ class UIButtonConfig {
 
 [[link(android)]]
 class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
-    UILayer() = inline;
-    ~UILayer() = win 0x66fe70;
+    UILayer() = win inline, imac inline, m1 inline, ios 0x53b98;
+    ~UILayer() = win 0x66fe70, imac 0x4c5cf0, m1 0x428db0, ios 0x53110;
 
-    static UILayer* create(GJBaseGameLayer* layer) = win inline, imac 0x4c1e90, m1 0x425460;
+    static UILayer* create(GJBaseGameLayer* layer) = win inline, imac 0x4c1e90, m1 0x425460, ios 0x50574;
     static UILayer* get() = inline;
 
-    virtual void draw() = win inline, imac 0x4c4f60, m1 0x427f2c;
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x673220, imac 0x4c4fd0, m1 0x427fcc;
-    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x673410, imac 0x4c51d0, m1 0x428250;
-    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x673430, imac 0x4c52e0, m1 0x4283a4;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x83ef0, m1 0x428d5c;
-    virtual void registerWithTouchDispatcher() = win 0x134dc0, imac 0x4c5cb0, m1 0x428d78;
-    virtual void keyBackClicked() = win 0x672e70, imac 0x4c4c10, m1 0x427bf4;
-    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x6711b0, imac 0x6fd620;
-    virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win inline;
-    virtual bool handleAction(int action, bool down, double timestamp) = win 0x6713c0;
+    virtual void draw() = win inline, imac 0x4c4f60, m1 0x427f2c, ios 0x527b0;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x673220, imac 0x4c4fd0, m1 0x427fcc, ios 0x52820;
+    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x673410, imac 0x4c51d0, m1 0x428250, ios 0x52a54;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x673430, imac 0x4c52e0, m1 0x4283a4, ios 0x52a90;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x83ef0, imac 0x4c5c70, m1 0x428d5c, ios 0x530bc;
+    virtual void registerWithTouchDispatcher() = win 0x134dc0, imac 0x4c5cb0, m1 0x428d78, ios 0x530d8;
+    virtual void keyBackClicked() = win 0x672e70, imac 0x4c4c10, m1 0x427bf4, ios 0x52678;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x6711b0, imac 0x4c38a0, m1 0x426d58, ios 0x51830;
+    virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = inline;
+    virtual bool handleAction(int action, bool down, double timestamp) = win 0x6713c0, imac 0x4c3960, m1 0x426dcc, ios 0x518a4;
 
-    void announceLevelControls() = win 0x670c60;
-    void applyLevelBindings() = win 0x670be0;
-    void disableMenu() = win inline, imac 0x4c36c0;
-    void doPause() = win inline, imac 0x4c4cd0, m1 0x427cb4;
-    void editorPlaytest(bool visible) = win inline;
-    void enableEditorMode() = win inline;
-    void enableMenu() = win inline, imac 0x4c4de0, m1 0x426ba4;
-    void handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) = win inline;
-    bool init(GJBaseGameLayer* layer) = win 0x66ff70, imac 0x4c1fd0, m1 0x42556c;
-    bool isJumpButtonPressed() = win inline, imac 0x4c4f70, m1 0x427f30;
-    bool isJumpButtonPressed(bool player1) = win inline, imac 0x4c4fa0, m1 0x427f80, ios inline;
-    void onCheck(cocos2d::CCObject* sender) = win 0x673050, imac 0x4c2800;
-    void onDeleteCheck(cocos2d::CCObject* sender) = win 0x6730d0, imac 0x4c2860, m1 0x425dac;
-    void onPause(cocos2d::CCObject* sender) = win 0x672f30, imac 0x4c27b0, m1 0x425d0c;
-    bool processUINodesTouch(GJUITouchEvent event, cocos2d::CCTouch* touch) = win 0x673510, imac 0x4c5110, m1 0x4280ec;
-    bool processUINodeTouch(GJUITouchEvent event, int touchID, cocos2d::CCPoint position, GJUINode* node, double timestamp) = win 0x6735e0;
-    void reapplyLevelControls() = win inline;
-    void refreshDpad() = win inline, imac 0x4780d0;
-    void resetAllButtons() = win inline, imac 0x4c2f20, m1 0x42642c;
-    void resetUINodeState() = win 0x6710a0, imac 0x4c3510, m1 0x4269f4;
-    void resolveLevelControls() = win 0x670a70;
-    void showTextAlert(std::string text, bool isOn, bool useRawText, float delay) = win 0x6711d0;
-    void toggleCheckpointsMenu(bool visible) = win 0x672eb0, imac 0x4c28a0, m1 0x425df4;
-    void toggleMenuVisibility(bool visible) = win 0x673140, imac 0x4c4e00, m1 0x427dd0;
-    void togglePlatformerMode(bool platformer) = win 0x670fd0, imac 0x4c2a70, m1 0x425fb4;
-    void updateCheckState() = win 0x670870, imac 0x4c28e0, m1 0x425e38;
-    void updateDualMode(bool dual) = win inline, m1 0x6455d8;
-    void updateUINodeVisibility(bool visible) = imac 0xe770, m1 0xcd78;
+    void announceLevelControls() = win 0x670c60, imac 0x4c3010, m1 0x42650c, ios 0x51140;
+    void applyLevelBindings() = win 0x670be0, imac 0x4c2d10, m1 0x426234, ios 0x50f50;
+    void disableMenu() = win inline, imac 0x4c36c0, m1 0x426ba4, ios 0x517b4;
+    void doPause() = win inline, imac 0x4c4cd0, m1 0x427cb4, ios 0x526f8;
+    void editorPlaytest(bool visible) = win inline, imac 0x4c36e0, m1 0x426bb8, ios 0x517c8;
+    void enableEditorMode() = win inline, imac 0x4c3670, m1 0x426b50, ios 0x51760;
+    void enableMenu() = win inline, imac 0x4c4de0, m1 0x427dbc, ios 0x52744;
+    void handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) = inline;
+    bool init(GJBaseGameLayer* layer) = win 0x66ff70, imac 0x4c1fd0, m1 0x42556c, ios 0x505e8;
+    bool isJumpButtonPressed() = win inline, imac 0x4c4f70, m1 0x427f30, ios 0x527b4;
+    bool isJumpButtonPressed(bool player1) = win inline, imac 0x4c4fa0, m1 0x427f80, ios 0x527e8;
+    void onCheck(cocos2d::CCObject* sender) = win 0x673050, imac 0x4c2800, m1 0x425d58, ios 0x50b80;
+    void onDeleteCheck(cocos2d::CCObject* sender) = win 0x6730d0, imac 0x4c2860, m1 0x425dac, ios 0x50bd4;
+    void onPause(cocos2d::CCObject* sender) = win 0x672f30, imac 0x4c27b0, m1 0x425d0c, ios 0x50b34;
+    bool processUINodesTouch(GJUITouchEvent event, cocos2d::CCTouch* touch) = win 0x673510, imac 0x4c5110, m1 0x4280ec, ios 0x52990;
+    bool processUINodeTouch(GJUITouchEvent event, int touchID, cocos2d::CCPoint position, GJUINode* node, double timestamp) = win 0x6735e0, imac 0x4c5480, m1 0x428590, ios 0x52b20;
+    void reapplyLevelControls() = win inline, imac 0x4c2d90, m1 0x4262ac, ios 0x50fc8;
+    void refreshDpad() = win inline, imac 0x4c2f00, m1 0x426418, ios 0x51004;
+    void resetAllButtons() = win inline, imac 0x4c2f20, m1 0x42642c, ios 0x5112c;
+    void resetUINodeState() = win 0x6710a0, imac 0x4c3510, m1 0x4269f4, ios 0x51684;
+    void resolveLevelControls() = win 0x670a70, imac 0x4c2be0, m1 0x426100, ios 0x50e34;
+    void showTextAlert(std::string text, bool isOn, bool useRawText, float delay) = win 0x6711d0, imac 0x4c3270, m1 0x42673c, ios 0x51384;
+    void toggleCheckpointsMenu(bool visible) = win 0x672eb0, imac 0x4c28a0, m1 0x425df4, ios 0x50c1c;
+    void toggleMenuVisibility(bool visible) = win 0x673140, imac 0x4c4e00, m1 0x427dd0, ios 0x52758;
+    void togglePlatformerMode(bool platformer) = win 0x670fd0, imac 0x4c2a70, m1 0x425fb4, ios 0x50da4;
+    void updateCheckState() = win 0x670870, imac 0x4c28e0, m1 0x425e38, ios 0x50c2c;
+    void updateDualMode(bool dual) = win inline, imac 0x4c2bb0, m1 0x4260e4, ios 0x50e18;
+    void updateUINodeVisibility(bool visible) = imac 0x4c3430, m1 0x42692c, ios 0x51600;
 
     void* m_pUnknown1;
     cocos2d::CCMenu* m_checkpointMenu;

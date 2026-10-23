@@ -1166,10 +1166,9 @@ enum class GJActionID {
     TogglePracticeMode = 10013,
     Reserved14 = 10014,
     Reserved15 = 10015,
-    // same block for all three, they all cycle start pos
-    CycleStartPos = 10016,
-    CycleStartPosAlt1 = 10017,
-    CycleStartPosAlt2 = 10018,
+    StartPosPrev = 10016,
+    StartPosNext = 10017,
+    StartPosNone = 10018,
     ToggleAutoCheckpoints = 10019,
     ToggleCheckpoints = 10020,
     ToggleIgnoreDamage = 10021,

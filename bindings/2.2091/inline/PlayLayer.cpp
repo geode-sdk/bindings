@@ -251,14 +251,15 @@ void PlayLayer::switchToStartPosObject(StartPosObject* obj)
 {
     if (m_startPosObject == obj) {
         this->resetLevel();
-        return;
     }
-
-    this->setActiveStartPosObject(obj);
-    this->resetLevelFromStart();
-    this->updateVisibility(0.f);
-    this->updateCamera(0.f);
-    this->updateTestModeLabel();
+    else {
+        this->setActiveStartPosObject(obj);
+        this->resetLevelFromStart();
+        this->updateVisibility(0.f);
+        this->updateCamera(0.f);
+        this->updateTestModeLabel();
+    }
+    this->startMusic();
 }
 
 void PlayLayer::toggleBGEffectVisibility(bool enabled) {
