@@ -2203,7 +2203,7 @@ class CheckpointGameObject : EffectGameObject {
     int m_preSpawnID;
 }
 
-[[link(android), depends(GJGameState, GJShaderState, FMODAudioState, EffectManagerState, SavedObjectStateRef, SavedActiveObjectState, SavedSpecialObjectState, SequenceTriggerState)]]
+[[link(android), depends(GJGameState, GJShaderState, FMODAudioState, EffectManagerState, SavedObjectStateRef, SavedActiveObjectState, SavedSpecialObjectState, SequenceTriggerState, TimerItem)]]
 class CheckpointObject : cocos2d::CCNode {
     CheckpointObject() = win 0x520f70, imac 0x90010, m1 0x540d6c;
     ~CheckpointObject() = win inline, imac 0x5d7100;
@@ -2229,10 +2229,20 @@ class CheckpointObject : cocos2d::CCNode {
     std::vector<SavedActiveObjectState> m_vectorActiveSaveObjectState;
     std::vector<SavedSpecialObjectState> m_vectorSpecialSaveObjectState;
     EffectManagerState m_effectManagerState;
-    bool m_unk11e8;
     cocos2d::CCArray* m_gradientTriggerObjectArray;
     std::unordered_map<int,SequenceTriggerState> m_sequenceTriggerStateUnorderedMap;
     int m_commandIndex;
+    int m_attempts;
+    double m_levelTime;
+    double m_bestTime;
+    int m_totalClicks;
+    double m_timePlayed;
+    int m_tickIndex;
+    int m_clickIndex;
+    int m_jumps;
+    std::unordered_map<int, int> m_persistentCounts;
+    std::unordered_set<int> m_persistentIDs;
+    std::unordered_map<int, TimerItem> m_persistentItems;
 }
 
 [[link(android)]]
@@ -5603,6 +5613,7 @@ class EffectManagerState {
     std::unordered_set<int> m_unorderedSet_int2;
     std::unordered_map<int,TimerItem> m_timerItemMap;
     std::unordered_map<int,std::vector<TimerTriggerAction>> m_unorderedMapInt_vectorTimerTriggerAction;
+    int m_platformerProgress;
 }
 
 [[link(android)]]
@@ -6666,9 +6677,12 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     TodoReturn updateSelectUI();
 
     bool m_sent;
+    bool m_ignored;
     std::string m_key;
+    std::string m_query;
     cocos2d::CCLabelBMFont* m_pageLabel;
     cocos2d::CCLabelBMFont* m_errorLabel;
+    cocos2d::CCLabelBMFont* m_wrongLabel;
     GJCommentListLayer* m_listLayer;
     LoadingCircle* m_circle;
     UploadActionPopup* m_uploadPopup;
@@ -6676,11 +6690,18 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     CCMenuItemSpriteExtra* m_nextButton;
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_refreshButton;
+    cocos2d::CCNode* m_inboxNode;
+    cocos2d::CCNode* m_sentNode;
+    cocos2d::CCNode* m_ignoredNode;
+    CCTextInputNode* m_searchInput;
+    cocos2d::CCArray* m_userScores;
+    bool m_triedToLoadUsers;
+    GJSelectionStrip* m_selectionStrip;
+    CCMenuItemSpriteExtra* m_markReadButton;
     int m_itemCount;
     int m_pageStartIdx;
     int m_pageEndIdx;
     int m_page;
-    bool m_toggledAll;
 }
 
 [[link(android)]]
@@ -11030,7 +11051,7 @@ class GJGameState {
     std::unordered_map<int, bool> m_spawnChannelRelated1;
     double m_totalTime;
     double m_levelTime;
-    double m_unkDouble3;
+    double m_bestTime;
     unsigned int m_commandIndex;
     float m_unkUint3;
     unsigned int m_currentProgress;
@@ -12234,7 +12255,7 @@ class GJRotationControlDelegate {
     virtual void angleChangeEnded() = inline;
 }
 
-[[link(android)]]
+[[link(android), depends(ControlMenuTouch)]]
 class GJScaleControl : cocos2d::CCLayer {
     GJScaleControl() = inline;
     virtual ~GJScaleControl() = win 0x1a1f00;
@@ -12831,7 +12852,7 @@ class GJThreadMessage : cocos2d::CCObject {
     virtual ~GJThreadMessage() = win 0xd2af0;
 }
 
-[[link(android)]]
+[[link(android), depends(ControlMenuTouch)]]
 class GJTransformControl : cocos2d::CCLayer {
     GJTransformControl() = win inline, imac 0x647df0, m1 0x5833b4;
     ~GJTransformControl() = win inline;
@@ -13597,7 +13618,7 @@ class InfoAlertButton : CCMenuItemSpriteExtra {
     bool m_scroll;
 }
 
-[[link(android)]]
+[[link(android), depends(BulkCommentKey)]]
 class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLAlertLayerProtocol, AdminActionConfirmDelegate {
     virtual ~InfoLayer() = win 0x3cd910;
 
@@ -13664,7 +13685,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     GJGameLevel* m_level;
     GJUserScore* m_score;
     GJLevelList* m_levelList;
-    PAD = win 0x8, mac 0x8;
+    GJEditorSoundConfig* m_soundConfig;
     std::string m_commentKey;
     LoadingCircle* m_loadingCircle;
     cocos2d::CCLabelBMFont* m_pageLabel;
@@ -13674,8 +13695,10 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     CCMenuItemSpriteExtra* m_leftArrow;
     CCMenuItemSpriteExtra* m_likeBtn;
     CCMenuItemSpriteExtra* m_timeBtn;
-    CCMenuItemSpriteExtra* m_reportBtn;
+    CCMenuItemSpriteExtra* m_modRoomBtn;
     CCMenuItemSpriteExtra* m_commentsBtn;
+    CCMenuItemSpriteExtra* m_reportBtn;
+    CCMenuItemSpriteExtra* m_loadCommentsBtn;
     CCMenuItemSpriteExtra* m_refreshCommentsBtn;
     int m_itemCount;
     int m_pageStartIdx;
@@ -13683,6 +13706,14 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     int m_page;
     bool m_canUpdateUserScore;
     CommentKeyType m_mode;
+    bool m_modRoomEnabled;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    CustomListView* m_bulkList;
+    cocos2d::CCLabelBMFont* m_bulkLabel;
+    CCMenuItemSpriteExtra* m_bulkSelectAllBtn;
+    CCMenuItemSpriteExtra* m_bulkDeleteBtn;
+    std::map<std::pair<int, int>, BulkCommentKey> m_bulkSelection;
+    cocos2d::CCLayer* m_bulkLayer;
 }
 
 [[link(android)]]
@@ -16321,9 +16352,17 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
     CCMenuItemSpriteExtra* m_refreshButton;
+    CCMenuItemSpriteExtra* m_searchButton;
+    CCTextInputNode* m_searchInput;
+    cocos2d::extension::CCScale9Sprite* m_searchBackground;
     CCMenuItemSpriteExtra* m_clearSearchButton;
+    bool m_searching;
+    cocos2d::CCSprite* m_ncsSprite;
     CCMenuItemSpriteExtra* m_tagFilterButton;
     CCMenuItemSpriteExtra* m_artistFilterButton;
+    CCMenuItemSpriteExtra* m_favoriteFilterButton;
+    CCMenuItemSpriteExtra* m_recentFilterButton;
+    CCMenuItemSpriteExtra* m_createdFilterButton;
     LoadingCircleSprite* m_circleSprite;
     int m_songID;
     int m_libraryVersion;
@@ -16637,7 +16676,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     AudioSortType m_sortType;
     bool m_tagFilter;
     bool m_artistFilter;
-    bool m_unk86;
+    bool m_matchAny;
     GJSongType m_songType;
     int m_viewFilter;
     std::vector<int> m_filterIDs;
@@ -17072,7 +17111,12 @@ class OptionsScrollLayer : FLAlertLayer, TableViewCellDelegate {
     cocos2d::CCArray* m_optionObjects;
     GJCommentListLayer* m_listLayer;
     bool m_recreateList;
-    int m_minCount;
+    CCTextInputNode* m_searchInput;
+    cocos2d::extension::CCScale9Sprite* m_searchBackground;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    std::string m_searchQuery;
+    CCMenuItemSpriteExtra* m_matchToggleButton;
+    MusicSearchResult* m_searchResult;
 }
 
 [[link(android)]]
