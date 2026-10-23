@@ -735,7 +735,7 @@ class cocos2d::CCConfiguration : cocos2d::CCObject {
     void dumpInfo() const = imac 0x51a4e0, m1 0x475154;
     void gatherGPUInfo() = imac 0x51a560, m1 0x4751f4;
     bool getBool(char const*, bool) const = imac 0x51afe0, m1 0x475ccc;
-    char const* getCString(char const*, char const*) const = imac 0x51aec0, m1 0x475bb0;
+    char const* getCString(char const*, char const*) const = imac 0x51aec0, m1 0x475bb0, ios 0x306190;
     int getMaxModelviewStackDepth() const = imac 0x51ae50, m1 0x475b78, ios inline;
     int getMaxTextureSize() const = imac 0x51ae40, m1 0x475b70;
     int getMaxTextureUnits() const = imac 0x51ae60, m1 0x475b80, ios inline;
@@ -1426,7 +1426,7 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
 
     static void purgeFileUtils() = imac 0x428560, m1 0x39f8a4;
     // CCFileUtils(cocos2d::CCFileUtils const&);
-    static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x6e50b0, m1 0x5f9410;
+    static cocos2d::CCFileUtils* sharedFileUtils() = imac 0x6e50b0, m1 0x5f9410, ios 0x2d2c1c;
 
     virtual void purgeCachedEntries() = imac 0x4287d0, m1 0x39fb44;
     virtual unsigned char* getFileData(char const* pszFileName, char const* pszMode, unsigned long* pSize) = imac 0x428800, m1 0x39fb74;
@@ -4286,7 +4286,7 @@ class cocos2d::CCString : cocos2d::CCObject {
     double doubleValue() const = imac 0x88e3b0, m1 0x782824;
     float floatValue() const = imac 0x88e380, m1 0x7827e4;
     // static cocos2d::CCString* createWithFormat(char const*, ...) = ios 0x2680c0, m1 0x6a8cd0;
-    char const* getCString() const = imac 0x88e010, m1 0x7824dc;
+    char const* getCString() const = imac 0x88e010, m1 0x7824dc, ios 0x306190;
     int intValue() const = imac 0x88e300, m1 0x782774;
     unsigned int length() const = imac 0x88e330, m1 0x7827a0;
     unsigned int uintValue() const = imac 0x88e350, m1 0x7827b8, ios inline;

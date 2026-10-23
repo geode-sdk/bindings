@@ -6354,7 +6354,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     int playEffectAsync(std::string path) = win inline, imac 0x3d1710, m1 0x353e88;
     void playMusic(std::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x62d50, imac 0x3d4460, m1 0x3564fc;
     TodoReturn playUIEffect(std::string, float, float, float);
-    FMODSound* preloadEffect(std::string path) = win 0x61e80, imac 0x3ca5a0, m1 0x34e3a8;
+    FMODSound* preloadEffect(std::string path) = win 0x61e80, imac 0x3ca5a0, m1 0x34e3a8, ios 0x1b5170;
     FMOD::Sound* preloadEffectAsync(std::string path) = win 0x622b0, imac 0x3d21b0, m1 0x3547d4;
     FMOD::Sound* preloadMusic(std::string path, bool noRelease, int musicID) = win 0x65730, imac 0x3d48b0, m1 0x356904;
     void printResult(FMOD_RESULT result) = win inline, imac 0x2456c0, ios inline;
@@ -6377,8 +6377,8 @@ class FMODAudioEngine : cocos2d::CCNode {
     void setChannelVolumeMod(int id, AudioTargetType type, float volumeMod);
     void setEffectsVolume(float volume) = win inline, imac 0x6accb0;
     void setMusicTimeMS(unsigned int time, bool dontWait, int musicID) = win 0x64fa0, imac 0x3cfbf0, m1 0x3527f0;
-    void setup() = win 0x5c8c0, imac 0x3c9e30, m1 0x230ca0;
-    void setupAudioEngine() = win 0x5cdc0, imac 0x3ca280, m1 0x34e118;
+    void setup() = win 0x5c8c0, imac 0x3c9e30, m1 0x230ca0, ios 0x1b4c48;
+    void setupAudioEngine() = win 0x5cdc0, imac 0x3ca280, m1 0x34e118, ios 0x1b4ed4;
     void start() = win 0x5dfc0;
     void startMusic(int start, int end, int fadeIn, int fadeOut, bool loop, int musicID, bool noResume, bool dontReset) = win 0x63270, imac 0x3d4c00, m1 0x356c14;
     void stop() = win inline, imac 0x3cb390;
@@ -6393,7 +6393,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void stopChannelTweens(int id, AudioTargetType target) = win inline, imac 0x3d0670, m1 0x353050, ios inline;
     void stopMusic(int id) = win inline, imac 0x3d5900, m1 0x35766c;
     void stopMusicNotInSet(std::unordered_set<int>& musicIDs) = win inline, imac 0x3d6ea0, m1 0x358730;
-    FMODSound* storeEffect(FMOD::Sound* sound, std::string path) = win 0x62170, imac 0x3d3aa0, m1 0x355c3c;
+    FMODSound* storeEffect(FMOD::Sound* sound, std::string path) = win 0x62170, imac 0x3d3aa0, m1 0x355c3c, ios 0x1b9980;
     void swapMusicIndex(int musicID, int channelID) = win 0x64b00, imac 0x3d5910, m1 0x357670;
     void testFunction(int unknown) = win inline, imac 0x368ef0, ios inline;
     void triggerQueuedMusic(FMODQueuedMusic music) = win 0x64620, imac 0x3cfd10, m1 0x35291c;
@@ -6406,7 +6406,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void updateMetering() = win inline, imac 0x3ccb50, m1 0x350390;
     void updateQueuedEffects() = win 0x63b30, imac 0x3cc110, m1 0x34fadc;
     void updateQueuedMusic() = win 0x64320, imac 0x3cc640, m1 0x34ff98;
-    void updateReverb(FMODReverbPreset preset, bool force) = win 0x5d140, imac 0x3ca870, m1 0x34e628;
+    void updateReverb(FMODReverbPreset preset, bool force) = win 0x5d140, imac 0x3ca870, m1 0x34e628, ios 0x1b5344;
     TodoReturn updateSystemPitch(float);
     void updateTemporaryEffects() = win 0x64090, imac 0x3cc2f0, m1 0x34fc80;
     FMOD_OPENSTATE waitUntilSoundReady(FMOD::Sound* sound) = win inline, imac 0x3d6c80, m1 0x358528;
@@ -7488,7 +7488,7 @@ class GameManager : GManager {
     /// Gets the active GameManager
     /// @returns The current instance pointer of the GameManager
     static GameManager* get() = inline;
-    static GameManager* sharedState() = win 0x2762c0, imac 0x35fe10, m1 0x2eeb4c;
+    static GameManager* sharedState() = win 0x2762c0, imac 0x35fe10, m1 0x2eeb4c, ios 0x3aea00;
 
     /// Updates the GameManager for the current frame.
     /// @param dt Delta time (Time elapsed between the last frame and the current one)
@@ -7561,7 +7561,7 @@ class GameManager : GManager {
     const char* getFontFile(int index) = win inline, imac 0x36c4b0, m1 0x2f9758;
     const char* getFontTexture(int index) = win inline, imac 0x36c500, m1 0x2f97c4;
     GJBaseGameLayer* getGameLayer() = inline;
-    bool getGameVariable(char const* key) = win 0x27e5c0, imac 0x360530, m1 0x2ef2c0;
+    bool getGameVariable(char const* key) = win 0x27e5c0, imac 0x360530, m1 0x2ef2c0, ios 0x3aef14;
     bool getGameVariableDefault(const char* key, bool defaultValue) = inline;
     const char* getGTexture(int index) = win inline, imac 0x36cfa0, m1 0x2fa2bc;
     int getIconRequestID() = win inline, imac 0x36c2f0, m1 0x2f95b8;
