@@ -7671,7 +7671,7 @@ class GameManager : GManager {
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
     bool messagesRestricted();
     int modUIRank();
-    bool offlineModeEnabled() = ios 0x;
+    bool offlineModeEnabled() = ios 0x3b5ff8;
     bool onlyCuratedLevels();
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
