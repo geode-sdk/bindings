@@ -4190,7 +4190,7 @@ class EditButtonBar : cocos2d::CCNode {
     void loadFromItems(cocos2d::CCArray* objects, int rows, int columns, bool keepPage) = win 0x177060;
     void onDotClicked(cocos2d::CCObject* sender);
     void onLeft(cocos2d::CCObject* sender) = win 0x177b90, m1 0x35c5f0;
-    void onRight(cocos2d::CCObject* sender);
+    void onRight(cocos2d::CCObject* sender) = win 0x177b10;
     void reloadItems(int rowCount, int columnCount) = win inline, imac 0x584030, m1 0x5ce0a0;
     TodoReturn updateDotState();
 
