@@ -403,7 +403,26 @@ class EmoteDef {}
 class EmoteToken {}
 class BulkCommentKey {}
 class PlayerTrailState {}
-class KeybindSettingsEntry {}
-class LevelTouchSlot {}
+class KeybindSettingsEntry {
+	char const* m_label;
+	char const* m_sprite;
+	// null = the KeybindingsSettingsPopup itself
+	cocos2d::CCObject* m_target;
+	cocos2d::SEL_MenuHandler m_callback;
+	bool m_closePopup;
+}
+[[depends(UIButtonConfig)]]
+class LevelTouchSlot {
+	UIButtonConfig m_config;
+	// distance from the anchor, in LevelControlConfig::m_canvasSize units
+	cocos2d::CCPoint m_offset;
+	// 2 = left, 3 = right, anything else = centre
+	int m_anchorX;
+	// 2 = bottom, 3 = top, anything else = centre
+	int m_anchorY;
+	// scale m_offset by winSize / m_canvasSize on that axis
+	bool m_scaleX;
+	bool m_scaleY;
+}
 class GJPlayerState {}
 class SongUsageEntry {}

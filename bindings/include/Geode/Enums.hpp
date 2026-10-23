@@ -1143,7 +1143,10 @@ enum class EditorCommand {};
 enum class EditorSoundBrowseMode {};
 enum class EditorSoundInfoKind {};
 enum class AdminDeleteScope {};
-enum class KeybindCaptureMode {};
+enum class KeybindCaptureMode {
+    Keyboard = 0,
+    Controller = 1,
+};
 enum class AudioViewType {};
 enum class SFXFolderPickerMode {};
 
