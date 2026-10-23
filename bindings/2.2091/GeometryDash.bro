@@ -4842,7 +4842,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool editButtonUsable() = win 0x1ba320, imac 0x179c0, m1 0x150b4;
     void editColor() = win 0x1be180, imac 0x19a00, m1 0x167b4;
     bool editColorButtonUsable() = win inline, imac 0x195c0, m1 0x16444, ios inline;
-    void editGroup(cocos2d::CCObject* sender) = imac 0x900b10, m1 0x9210;
+    void editGroup(cocos2d::CCObject* sender) = win 0x1be710, imac 0x900b10, m1 0x9210;
     void editHSV();
     void editObject(cocos2d::CCObject* sender) = win 0x1bb3e0, imac 0x93f0, m1 0x83a0;
     void editObject2(cocos2d::CCObject* sender) = win 0x1bd190, imac 0x93e0, m1 0x8398;
@@ -14531,10 +14531,10 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn getNextFreeControlID(std::unordered_set<int> const&);
     int getNextFreeEditorLayer(const std::unordered_set<int>& exclude) = imac 0xbfed0, m1 0xabcf8;
     int getNextFreeEnterChannel(const std::unordered_set<int>& exclude) = imac 0xbfed0, m1 0xaba98;
-    int getNextFreeGradientID(const std::unordered_set<int>& exclude) = imac 0xc06a0;
+    int getNextFreeGradientID(const std::unordered_set<int>& exclude) = win 0x3f96c0, imac 0xc06a0;
     int getNextFreeGroupID(const std::unordered_set<int>& exclude) = win 0x3f7d10, m1 0xaabc0;
     int getNextFreeItemID(const std::unordered_set<int>& exclude) = imac 0xbfc40;
-    int getNextFreeOrderChannel(const std::unordered_set<int>& exclude) = imac 0xbfc40, m1 0xaba98;
+    int getNextFreeOrderChannel(const std::unordered_set<int>& exclude) = win 0x3f8850, imac 0xbfc40, m1 0xaba98;
     int getNextFreeSFXGroupID(const std::unordered_set<int>& exclude) = win inline, imac 0xc0910, m1 0xac65c;
     int getNextFreeSFXID(const std::unordered_set<int>& exclude) = win inline, imac 0xc06a0, m1 0xac434;
     TodoReturn getNextFreeTimerID(std::unordered_set<int> const&);
@@ -19969,7 +19969,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void onGroupIDOptions(cocos2d::CCObject* sender) = win 0x593a20, imac 0x2ff510, m1 0x293890;
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = m1 0x2936b8;
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = m1 0x2937a4;
-    void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x594180, imac 0x300470, m1 0x294764;
+    void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x594230, imac 0x300470, m1 0x294764;
     void onNextGroupID1(cocos2d::CCObject* sender) = imac 0x3023c0, m1 0x296384;
     void onPaste(cocos2d::CCObject* sender) = win 0x591980, imac 0x301100, m1 0x295354;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x5930b0, imac 0x37a320;
@@ -19990,7 +19990,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void updateGroupIDButtons() = win 0x592230;
     void updateGroupIDLabel();
     void updateOrderChannel() = win 0x594440, imac 0x301ae0, m1 0x17408;
-    void updateOrderChannelLabel();
+    void updateOrderChannelLabel() = win 0x594180;
     void updateZLayerButtons() = win 0x5b7470, imac 0x300a70, m1 0x294d5c;
     void updateZOrder();
     void updateZOrderLabel();
