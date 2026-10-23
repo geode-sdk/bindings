@@ -489,9 +489,10 @@ public class Broma {
             if (prev != null) {
                 ScriptWrapper.rtassert(
                     !patch.range.overlaps(prev),
-                    "There are overlapping patches: {0}..{1} and {2}..{3}",
+                    "There are overlapping patches: {0}..{1} and {2}..{3}  - {4}",
                     patch.range.start, patch.range.end, 
-                    prev.start, prev.end
+                    prev.start, prev.end,
+                    patch.patch
                 );
             }
             prev = patch.range;

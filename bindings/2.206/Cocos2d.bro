@@ -1050,8 +1050,8 @@ class cocos2d::CCLayer {
 
 	virtual void didAccelerate(cocos2d::CCAcceleration*) = m1 0x41bb2c, imac 0x4baa90, ios 0x1535d4;
 
-	virtual void keyBackClicked() = m1 0x41bd98, imac 0x4bad10, ios 0x1537c8, ios 0x1537c8;
-	virtual void keyMenuClicked() = m1 0x41be40, imac 0x4badb0, ios 0x153824, ios 0x153824;
+	virtual void keyBackClicked() = m1 0x41bd98, imac 0x4bad10, ios 0x1537c8;
+	virtual void keyMenuClicked() = m1 0x41be40, imac 0x4badb0, ios 0x153824;
 
 	virtual void keyDown(cocos2d::enumKeyCodes) = m1 0x41bed0, imac 0x4bae30, ios 0x1538b4;
 }

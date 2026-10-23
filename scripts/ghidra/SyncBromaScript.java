@@ -763,6 +763,7 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     // If no match found, ask for manual resolution
                     if (bromaFun == null) {
+                        goTo(fun.getEntryPoint());
                         bromaFun = bromaFuns.get(askChoiceBetter(
                             "Select overload",
                             bromaFuns.stream()
