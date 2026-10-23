@@ -27,7 +27,7 @@ SetGroupIDLayer::SetGroupIDLayer() {
     m_editorLayerEdited = false;
     m_removeGroupsLock = false;
     m_addedGroup = false;
-    m_reverseChanged = false;
+    // m_reverseChanged = false;
     m_unk2ff = false;
     m_unk300 = false;
     m_nextFreeID = 0;

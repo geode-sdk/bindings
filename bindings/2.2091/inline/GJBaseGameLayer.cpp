@@ -93,6 +93,11 @@ void GJBaseGameLayer::addToObjectsToShow(GameObject* object) {
     m_activeObjectsCount++;
 }
 
+GameObject* GJBaseGameLayer::getGroupParent(int groupId) {
+    return static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupId));
+}
+
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJBaseGameLayer::animateInGroundNew(bool unk1, float unk2, bool unk3) {}
 
@@ -662,10 +667,6 @@ float GJBaseGameLayer::getGroundHeight(PlayerObject* player, int type) {
         return std::max(height1, height2);
     }
     return this->getGroundHeightForMode(type);
-}
-
-GameObject* GJBaseGameLayer::getGroupParent(int groupId) {
-    return static_cast<GameObject*>(m_parentGroupsDict->objectForKey(groupId));
 }
 
 std::string GJBaseGameLayer::getGroupParentsString(GameObject* object) {
@@ -1337,6 +1338,12 @@ void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal,
     player->switchedToMode(GameObjectType::BallPortal);
     auto lastPortal = this->processCameraObject(portal, player);
     player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
+void GJBaseGameLayer::switchToSpiderMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::SpiderPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleSpiderMode(true, lastPortal && lastPortal->m_hasNoEffects);
 }
 
 void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
