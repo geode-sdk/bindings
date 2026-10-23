@@ -3586,8 +3586,8 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void processNextMultiAsset() = win 0x16e4d0, imac 0x6fd7e0, m1 0x60f24c;
     void setMultiAssetFilesize(int, int);
     void showError(bool fast) = win 0x16ead0, imac 0x6fafe0, m1 0x60cd10;
-    void startDownload() = win 0x16bb80, imac 0x6fb6d0, m1 0x5d1a30;
-    void startMonitorDownload() = win 0x16bb10, imac 0x6faaf0;
+    void startDownload() = win 0x16bb10, imac 0x6fb6d0, m1 0x5d1a30;
+    void startMonitorDownload() = win 0x16bb80, imac 0x6faaf0;
     void startMultiAssetDownload() = win 0x16e310, imac 0x6fb370, m1 0x60d074;
     void toggleUpdateButton(bool enabled) = win inline, imac 0x6fb320, m1 0x60d01c, ios inline;
     void updateDownloadProgress(float dt) = win 0x16c280, imac 0x6fb7a0, m1 0x60d3d0;
@@ -7165,7 +7165,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn onRateLevelListAdminCompleted(std::string, std::string);
     void onRateStarsCompleted(std::string response, std::string tag) = win 0x2345c0, imac 0x524c20, m1 0x47e034;
     void onReadFriendRequestCompleted(std::string response, std::string tag) = win inline, imac 0x528ad0, m1 0x481d18;
-    void onRemoveFriendCompleted(std::string response, std::string tag) = win 0x9999999;
+    void onRemoveFriendCompleted(std::string response, std::string tag) = win 0x256310;
     TodoReturn onReportContentCompleted(std::string, std::string);
     void onReportLevelCompleted(std::string response, std::string tag) = win 0x260f70, imac 0x527530, m1 0x4807b8;
     TodoReturn onRequestThreadMembersCompleted(std::string, std::string);
@@ -14519,15 +14519,15 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     std::string getLevelString();
     std::string getLockedLayers() = win inline, imac 0xbade0, m1 0xa74a8;
     int getNextColorChannel() = win 0x3f98e0, imac 0xc0e00;
-    int getNextFreeAreaEffectID(const std::unordered_set<int>& exclude) = win 0x3f91e0, imac 0xc06a0;
+    int getNextFreeAreaEffectID(const std::unordered_set<int>& exclude) = win 0x3f8f50, imac 0xc06a0;
     int getNextFreeBlockID(const std::unordered_set<int>& exclude) = win inline, imac 0xc06a0, m1 0xac434;
     TodoReturn getNextFreeControlID(std::unordered_set<int> const&);
     int getNextFreeEditorLayer(const std::unordered_set<int>& exclude) = win 0x3f8ac0, imac 0xbfed0, m1 0xabcf8;
-    int getNextFreeEnterChannel(const std::unordered_set<int>& exclude) = win 0x3f8f50, imac 0xbfed0, m1 0xaba98;
-    int getNextFreeGradientID(const std::unordered_set<int>& exclude) = win 0x3f9450, imac 0xc06a0;
+    int getNextFreeEnterChannel(const std::unordered_set<int>& exclude) = win 0x3f8d20, imac 0xbfed0, m1 0xaba98;
+    int getNextFreeGradientID(const std::unordered_set<int>& exclude) = win 0x3f96c0, imac 0xc06a0;
     int getNextFreeGroupID(const std::unordered_set<int>& exclude) = win 0x3f7d10, m1 0xaabc0;
-    int getNextFreeItemID(const std::unordered_set<int>& exclude) = win 0x3f8400, imac 0xbfc40;
-    int getNextFreeOrderChannel(const std::unordered_set<int>& exclude) = win 0x3f8630, imac 0xbfc40, m1 0xaba98;
+    int getNextFreeItemID(const std::unordered_set<int>& exclude) = win 0x3f7f90, imac 0xbfc40;
+    int getNextFreeOrderChannel(const std::unordered_set<int>& exclude) = win 0x3f8850, imac 0xbfc40, m1 0xaba98;
     int getNextFreeSFXGroupID(const std::unordered_set<int>& exclude) = win inline, imac 0xc0910, m1 0xac65c;
     int getNextFreeSFXID(const std::unordered_set<int>& exclude) = win inline, imac 0xc06a0, m1 0xac434;
     TodoReturn getNextFreeTimerID(std::unordered_set<int> const&);
@@ -17123,7 +17123,7 @@ class ParentalOptionsLayer : FLAlertLayer {
     static ParentalOptionsLayer* create() = win 0x4d13f0;
 
     virtual bool init() = win 0x4d1530;
-    virtual void keyBackClicked() = win 0x99f90, m1 0x79b268;
+    virtual void keyBackClicked() = win 0x4d3b90, m1 0x79b268;
 
     TodoReturn addMasterToggle(char const*, char const*, char const*, char const*);
     TodoReturn addToggle(char const*, char const*, int, char const*) = win 0x4d1b60;
@@ -20803,8 +20803,8 @@ class SetupInstantCountPopup : SetupTriggerPopup {
     void onCountType(cocos2d::CCObject* sender) = win 0x5b8ca0, imac 0x6bcfd0, m1 0x5d5e88;
     void onEnableGroup(cocos2d::CCObject* sender) = win 0x5b8710, imac 0x6bcf40, m1 0x5d5e10;
     void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x5b87a0, imac 0x6bcb60, m1 0x5d5a74;
-    void onTargetID2Arrow(cocos2d::CCObject* sender) = win 0x9999999;
-    void onTargetIDArrow(cocos2d::CCObject* sender) = win 0x9999999;
+    void onTargetID2Arrow(cocos2d::CCObject* sender);
+    void onTargetIDArrow(cocos2d::CCObject* sender);
     void updateCountTextInputLabel() = win 0x5b8b90, imac 0x6bce30, m1 0x5d5d0c;
     void updateItemID() = win inline, imac 0x6bd540, m1 0x5d6328;
     void updateItemIDInputLabel() = win inline, imac 0x6bcc10, m1 0x5d5b04;
@@ -21341,7 +21341,7 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     void updateChance() = win 0x5aefe0;
     void updateChanceLabel(bool decimals) = win 0x5d5b50;
     void updateTargetID() = imac 0x6ba100, m1 0x5d34d0;
-    void updateTargetID2() = imac inline, m1 inline;
+    void updateTargetID2() = imac 0x6ba1a0, m1 0x5d3554;
     void updateTextInputLabel();
     void updateTextInputLabel2();
 
