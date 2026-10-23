@@ -217,29 +217,49 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             single_output += codegen::getClassIncludeString(dep) + "\n";
         }
 
-        for (auto member_type : {"SeedValue", "unordered_map", "unordered_set", "vector", "enumKeyCodes"}) {
+        constexpr std::pair<char const*, char const*> member_types[] = {
+            {"SeedValue", "SeedValue"},
+            {"unordered_map", "unordered_map"},
+            {"unordered_set", "unordered_set"},
+            {"vector", "vector"},
+            {"enumKeyCodes", "enumKeyCodes"},
+            {"std::map", "map"},
+            {"std::set", "set"},
+            {"std::array", "array"},
+            {"cocos2d::cc", "ccTypes"},
+            {"cocos2d::CCPoint", "CCPoint"},
+            {"cocos2d::CCSize", "CCPoint"},
+            {"cocos2d::CCRect", "CCPoint"},
+            {"cocos2d::SEL_", "CCObject"},
+        };
+        std::set<std::string> mapping_includes;
+        for (auto [member_type, mapping] : member_types) {
+            if (mapping_includes.contains(mapping)) continue;
             for (auto field : cls.fields) {
                 if (auto fn = field.get_as<FunctionBindField>()) {
                     if (fn->prototype.ret.name.find(member_type) != std::string::npos) {
-                        single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                        mapping_includes.insert(mapping);
                         goto break_whole;
                     }
                     for (auto [type, param] : fn->prototype.args) {
                         if (type.name.find(member_type) != std::string::npos) {
-                            single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                            mapping_includes.insert(mapping);
                             goto break_whole;
                         }
                     }
                 }
                 if (auto m = field.get_as<MemberField>()) {
                     if (m->type.name.find(member_type) != std::string::npos) {
-                        single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", member_type));
+                        mapping_includes.insert(mapping);
                         goto break_whole;
                     }
                 }
             }
             break_whole:
             int a = 5;
+        }
+        for (auto& mapping : mapping_includes) {
+            single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", mapping));
         }
 
 
