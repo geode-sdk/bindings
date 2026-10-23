@@ -24481,7 +24481,7 @@ class UIButtonConfig {
 
 [[link(android)]]
 class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
-    UILayer() = ios 0x53b98;
+    UILayer() = win inline, imac inline, m1 inline, ios 0x53b98;
     ~UILayer() = win 0x66fe70, imac 0x4c5cf0, m1 0x428db0, ios 0x531a4;
 
     static UILayer* create(GJBaseGameLayer* layer) = win inline, imac 0x4c1e90, m1 0x425460, ios 0x50574;
