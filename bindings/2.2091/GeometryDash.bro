@@ -13982,7 +13982,8 @@ class KeybindingsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
 
 [[link(android)]]
 class KeybindSet : KeybindSource {
-    virtual ~KeybindSet() = win 0x44a370;
+    KeybindSet() = win 0x44a260, inline;
+    virtual ~KeybindSet() = win inline;
 
     virtual std::vector<int> chordsForAction(int action) = win 0x4493e0;
     virtual std::vector<int> actionsForChord(int chord) = win 0x4494d0;
@@ -13996,6 +13997,7 @@ class KeybindSet : KeybindSource {
 
 [[link(android)]]
 class KeybindSource {
+    KeybindSource() = inline;
     virtual ~KeybindSource() = inline;
 
     virtual std::vector<int> chordsForAction(int action) = inline;

@@ -1,6 +1,14 @@
 #include <Geode/binding/KeybindSource.hpp>
+#include <Geode/cocos/cocoa/CCObject.h>
 
-KeybindSource::~KeybindSource() {}
+KeybindSource::KeybindSource() {}
+
+KeybindSource::~KeybindSource() {
+    // same fix like xml_node
+    if (geode::DestructorLock::isLocked(this)) {
+        geode::DestructorLock::removeLock(this);
+    }
+}
 
 std::vector<int> KeybindSource::chordsForAction(int action) { return {}; }
 
