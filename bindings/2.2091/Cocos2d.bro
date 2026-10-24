@@ -1438,26 +1438,26 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual char const* fullPathFromRelativeFile(char const* pszFilename, char const* pszRelativeFile) = imac 0x42a220, m1 0x3a14f4, ios 0x1d05bc;
     virtual void setSearchResolutionsOrder(std::vector<std::string> const& searchResolutionsOrder) = imac 0x42a480, m1 0x3a1760, ios 0x1d0720;
     virtual void addSearchResolutionsOrder(char const* order) = imac 0x42a6c0, m1 0x3a19a0, ios 0x1d08a8;
-    virtual std::vector<std::string> const& getSearchResolutionsOrder() = imac 0x42a7a0, m1 0x3a1a98;
+    virtual std::vector<std::string> const& getSearchResolutionsOrder() = imac 0x42a7a0, m1 0x3a1a98, ios 0x1d090c;
     virtual void setSearchPaths(std::vector<std::string> const& searchPaths) = imac 0x42a7c0, m1 0x3a1aa8, ios 0x1d091c;
     virtual void addSearchPath(char const* path) = imac 0x42ac60, ios 0x1d0b2c;
     virtual void removeSearchPath(char const* path) = imac 0x42af70, ios 0x1d0c64;
-    virtual std::vector<std::string> const& getSearchPaths() = imac 0x42a7b0, m1 0x3a1aa0;
+    virtual std::vector<std::string> const& getSearchPaths() = imac 0x42a7b0, m1 0x3a1aa0, ios 0x1d0914;
     virtual std::string getWritablePath() = inline;
-    virtual std::string getWritablePath2() = imac 0x42b770, m1 0x3a2a48;
+    virtual std::string getWritablePath2() = imac 0x42b770, m1 0x3a2a48, ios 0x1d10f0;
     virtual bool isFileExist(std::string const& strFilePath) = inline;
     virtual bool isAbsolutePath(std::string const& strPath) = imac 0x42b6b0, m1 0x3a2980, ios 0x1d1034;
-    virtual void setPopupNotify(bool bNotify) = imac 0x42b6d0;
+    virtual void setPopupNotify(bool bNotify) = imac 0x42b6d0, ios 0x1d1054;
     virtual bool isPopupNotify() = imac 0x42b6e0, m1 0x3a29ac, ios 0x1d1060;
     virtual bool init() = imac 0x428700, m1 0x39fa64, ios 0x1cf6ec;
     virtual std::string getNewFilename(char const* pszFileName) = imac 0x428a70, m1 0x39fe00, ios 0x1cfa04;
-    virtual bool shouldUseHD() = imac 0x428bf0, m1 0x39ff78;
+    virtual bool shouldUseHD() = imac 0x428bf0, m1 0x39ff78, ios 0x1cfaac;
     virtual std::string addSuffix(std::string, std::string) = imac 0x428c20, m1 0x39ff9c, ios 0x1cfad0;
     virtual std::string getPathForFilename(std::string const& filename, std::string const& resolutionDirectory, std::string const& searchPath) = imac 0x428e60, m1 0x3a01a0, ios 0x1cfcd4;
     virtual std::string getFullPathForDirectoryAndFilename(std::string const& strDirectory, std::string const& strFilename) = imac 0x42b540, m1 0x3a2818, ios 0x1d0fc4;
-    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename) = imac 0x428530, m1 0x39f88c;
-    virtual bool writeToFile(cocos2d::CCDictionary* dict, std::string const& fullPath) = imac 0x428540, m1 0x39f894;
-    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const& filename) = imac 0x428550;
+    virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename) = imac 0x428530, m1 0x39f88c, ios 0x1cf5cc;
+    virtual bool writeToFile(cocos2d::CCDictionary* dict, std::string const& fullPath) = imac 0x428540, m1 0x39f894, ios 0x1cf5d4;
+    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const& filename) = imac 0x428550, ios 0x1cf5dc;
 
     void removeAllPaths() = imac 0x42b310, m1 0x3a2580, ios inline;
 
