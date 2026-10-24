@@ -1,4 +1,5 @@
 #import mac <Geode/cocos/kazmath/include/kazmath/kazmath.h>
+#import ios <Geode/cocos/kazmath/include/kazmath/kazmath.h>
 
 [[link(win, android)]]
 kmAABB* const kmAABBAssign(kmAABB*, kmAABB const*) = imac 0x6c94a0, m1 0x5e14e4;
