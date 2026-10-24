@@ -36,11 +36,17 @@ UILayer* UILayer::get() {
     return nullptr;
 }
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_WINDOWS)
 bool UILayer::isJumpButtonPressed(bool player1) {
     return player1 ? (m_p1TouchId != -1 || m_p1Jumping) : (m_p2TouchId != -1 || m_p2Jumping);
 }
 #endif
+
+void UILayer::handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) {
+    if (key == cocos2d::KEY_Escape && down) this->handleAction(static_cast<int>(GJActionID::Pause), true, timestamp);
+}
+
+void UILayer::keyUp(cocos2d::enumKeyCodes key, double timestamp) {}
 
 #if defined(GEODE_IS_WINDOWS)
 UILayer* UILayer::create(GJBaseGameLayer* layer) {
@@ -89,15 +95,9 @@ void UILayer::enableMenu() {
     m_pauseBtn->setEnabled(true);
 }
 
-void UILayer::handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) {
-    if (key == cocos2d::KEY_Escape && down) this->handleAction(static_cast<int>(GJActionID::Pause), true, timestamp);
-}
-
 bool UILayer::isJumpButtonPressed() {
     return this->isJumpButtonPressed(true) || this->isJumpButtonPressed(false);
 }
-
-void UILayer::keyUp(cocos2d::enumKeyCodes key, double timestamp) {}
 
 void UILayer::reapplyLevelControls() {
     if (m_inPlatformer) this->resolveLevelControls();
