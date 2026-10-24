@@ -2,6 +2,8 @@
 #include <Geode/binding/LevelTools.hpp>
 
 #if defined(GEODE_IS_WINDOWS)
+LevelControlConfig::~LevelControlConfig() {}
+
 std::string LevelControlConfig::encodeB64() const {
     return LevelTools::base64EncodeString(this->encode());
 }

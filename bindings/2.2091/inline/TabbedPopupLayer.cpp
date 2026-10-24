@@ -3,6 +3,8 @@
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 
 #if defined(GEODE_IS_WINDOWS)
+TabbedPopupLayer::~TabbedPopupLayer() {}
+
 void TabbedPopupLayer::beginTab(int tab) {
     if (tab >= 0 && tab < static_cast<int>(m_tabs.size())) m_buildTab = tab;
 }

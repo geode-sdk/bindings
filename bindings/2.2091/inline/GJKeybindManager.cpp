@@ -3,6 +3,10 @@
 #include <cstring>
 
 #if defined(GEODE_IS_WINDOWS)
+GJKeybindManager::~GJKeybindManager() {
+    *reinterpret_cast<GJKeybindManager**>(geode::base::get() + 0x90c000) = nullptr;
+}
+
 void GJKeybindManager::applyImportBlob(std::string const& blob, int version) {
     this->parseBindsBlob(blob, true, nullptr, nullptr);
     this->applyNewDefaults(version);

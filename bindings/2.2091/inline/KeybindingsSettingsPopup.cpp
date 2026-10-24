@@ -7,6 +7,8 @@ KeybindingsSettingsPopup::KeybindingsSettingsPopup() {
     m_importVersion = 0;
 }
 
+KeybindingsSettingsPopup::~KeybindingsSettingsPopup() {}
+
 KeybindingsSettingsPopup* KeybindingsSettingsPopup::create(KeybindingsLayer* layer, std::vector<KeybindSettingsEntry> const& entries) {
     auto ret = new KeybindingsSettingsPopup();
     if (ret->init(layer, entries)) {

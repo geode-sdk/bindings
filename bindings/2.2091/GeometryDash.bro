@@ -11332,7 +11332,7 @@ class GJItemIcon : cocos2d::CCSprite {
 
 [[link(android)]]
 class GJKeybindManager : cocos2d::CCKeyboardActionManager {
-    virtual ~GJKeybindManager() = win 0x388420;
+    virtual ~GJKeybindManager() = win inline;
 
     static GJKeybindManager* sharedState() = win 0x388320;
     static char const* actionToString(int action) = win 0x38a0e0;
@@ -13207,7 +13207,7 @@ class GJWriteMessagePopup : FLAlertLayer, UploadMessageDelegate, UploadPopupDele
 
 [[link(android)]]
 class GlobalKeybindSource : KeybindSource {
-    virtual ~GlobalKeybindSource() = win 0x3d51d0;
+    virtual ~GlobalKeybindSource() = win inline;
 
     virtual std::vector<int> chordsForAction(int action) = win 0x3d5200;
     virtual std::vector<int> actionsForChord(int chord) = win 0x3d5240;
@@ -13846,7 +13846,7 @@ class ItemTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class KeybindCapturePopup : SetupTriggerPopup, InputCaptureDelegate {
-    virtual ~KeybindCapturePopup() = win 0x44e250;
+    virtual ~KeybindCapturePopup() = win inline;
 
     static KeybindCapturePopup* create(KeybindSource* source, int action, int chord, KeybindingsLayer* layer, KeybindCaptureMode mode) = win 0x44e090;
 
@@ -13959,7 +13959,7 @@ class KeybindingsManager : cocos2d::CCNode {
 [[link(android), depends(KeybindSettingsEntry)]]
 class KeybindingsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
     KeybindingsSettingsPopup() = win inline;
-    virtual ~KeybindingsSettingsPopup() = win 0x3d8e30;
+    virtual ~KeybindingsSettingsPopup() = win inline;
 
     static KeybindingsSettingsPopup* create(KeybindingsLayer* layer, std::vector<KeybindSettingsEntry> const& entries) = win inline;
 
@@ -14471,7 +14471,7 @@ class LevelCommentDelegate {
 
 [[link(android), depends(KeybindSet, LevelTouchSlot, UIButtonConfig)]]
 class LevelControlConfig : cocos2d::CCObject {
-    virtual ~LevelControlConfig() = win 0x44a2c0;
+    virtual ~LevelControlConfig() = win inline;
 
     static LevelControlConfig* create() = win 0x44a1d0;
     static void bindGlobalBinds(KeybindSource* target, bool controller) = win 0x44b3e0;
@@ -23672,7 +23672,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
 [[link(android), depends(TabbedPopupTab)]]
 class TabbedPopupLayer : SetupTriggerPopup {
-    virtual ~TabbedPopupLayer() = win 0x19cd00, imac 0x5fdda0, m1 0x543738;
+    virtual ~TabbedPopupLayer() = win inline, imac 0x5fdda0, m1 0x543738;
 
     virtual void pageChanged() = win 0x66d090;
     virtual void showTab(int tab) = win 0x66cc10, imac 0x63fc00, m1 0x57be84;
