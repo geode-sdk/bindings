@@ -1,4 +1,5 @@
 #include <Geode/mapping/CCTransitionShrinkGrow.hpp>
+#include <Geode/mapping/CCEaseOut.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

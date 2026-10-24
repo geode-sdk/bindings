@@ -1,6 +1,7 @@
 #include <Geode/mapping/CCGridBase.hpp>
 #include <Geode/mapping/CCShaderCache.hpp>
 #include <Geode/cocos/kazmath/include/kazmath/kazmath.h>
+#include <Geode/cocos/kazmath/include/kazmath/GL/matrix.h>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

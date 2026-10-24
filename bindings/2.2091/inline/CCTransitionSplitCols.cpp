@@ -1,5 +1,5 @@
 #include <Geode/mapping/CCTransitionSplitCols.hpp>
-
+#include <Geode/mapping/CCEaseInOut.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
