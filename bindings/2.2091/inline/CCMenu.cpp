@@ -1,4 +1,5 @@
 #include <Geode/mapping/CCMenu.hpp>
+#include <Geode/mapping/CCInteger.hpp>
 #include <Geode/utils/cocos.hpp>
 
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
