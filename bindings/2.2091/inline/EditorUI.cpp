@@ -11,6 +11,8 @@
 #include <Geode/binding/GameToolbox.hpp>
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/binding/ObjectToolbox.hpp>
+#include <Geode/mapping/ColorSelectLiveOverlay.hpp>
+#include <Geode/mapping/HSVLiveOverlay.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();

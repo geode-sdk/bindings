@@ -1,5 +1,5 @@
 #include <Geode/mapping/CCTransitionFlipAngular.hpp>
-
+#include <Geode/mapping/CCOrbitCamera.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

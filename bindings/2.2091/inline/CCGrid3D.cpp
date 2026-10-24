@@ -1,5 +1,5 @@
 #include <Geode/mapping/CCGrid3D.hpp>
-
+#include <Geode/mapping/CCPoint.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

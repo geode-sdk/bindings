@@ -1,5 +1,5 @@
 #include <Geode/mapping/CCGridAction.hpp>
-
+#include <Geode/mapping/CCZone.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

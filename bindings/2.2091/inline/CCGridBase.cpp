@@ -1,5 +1,5 @@
 #include <Geode/mapping/CCGridBase.hpp>
-
+#include <Geode/mapping/CCShaderCache.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
