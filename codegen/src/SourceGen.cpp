@@ -175,7 +175,7 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 			fmt::arg("parameter_types", codegen::getParameterTypes(f.prototype)),
 			fmt::arg("arguments", codegen::getParameterNames(f.prototype)),
 			fmt::arg("parameter_comma", str_if(", ", !f.prototype.args.empty())),
-            fmt::arg("extern_def", str_if("extern \"C\" ", is_kazmath_func(f.prototype.name)));
+            fmt::arg("extern_def", str_if("extern \"C\" ", is_kazmath_func(f.prototype.name)))
 		);
     }
 
