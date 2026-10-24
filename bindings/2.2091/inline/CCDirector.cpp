@@ -1,4 +1,5 @@
 #include <Geode/mapping/CCDirector.hpp>
+#include <Geode/mapping/CCTime.hpp>
 #include <Geode/utils/cocos.hpp>
 
 

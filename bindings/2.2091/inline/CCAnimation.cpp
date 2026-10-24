@@ -1,4 +1,5 @@
 #include <Geode/mapping/CCAnimation.hpp>
+#include <Geode/mapping/CCTextureCache.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
