@@ -3527,7 +3527,7 @@ class CustomSongLayer : FLAlertLayer, GJDropDownLayerDelegate, MusicBrowserDeleg
     CustomSongLayer() = inline;
     virtual ~CustomSongLayer() = win 0x163a30, ios 0x1c24b0;
 
-    static CustomSongLayer* create(CustomSongDelegate* delegate) = win inline;
+    static CustomSongLayer* create(CustomSongDelegate* delegate) = win inline, ios 0x1c24e8;
 
     virtual void keyBackClicked() = win 0x165580, imac 0x1f9a70, m1 0x1ab2ec, ios 0x1c37c8;
     virtual void show() = win 0x165590, imac 0x1f9b60, m1 0x1ab3d8, ios 0x1c37d4;
@@ -7733,7 +7733,7 @@ class GameManager : GManager {
     bool safePopScene() = win 0x287680, imac 0x376cd0, m1 0x303004;
     void saveAdTimer();
     void saveDPadLayout(int index, bool dual) = win 0x2817b0, imac 0x3701c0, m1 0x2fd024;
-    void setGameVariable(char const* key, bool value) = win 0x27e320, imac 0x36cff0, m1 0x2fa308;
+    void setGameVariable(char const* key, bool value) = win 0x27e320, imac 0x36cff0, m1 0x2fa308, ios 0x3b5af0;
     void setHasRatingPower(int hasRP) = inline;
     void setIntGameVariable(char const* key, int value);
     void setPlayerBall(int id) = inline;
@@ -23193,7 +23193,7 @@ class SongPlaybackDelegate {
     virtual void onPlayback(SongInfoObject* object) = inline;
 }
 
-[[link(android)]]
+[[link(android), depends(CustomSongLayer)]]
 class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDelegate, CustomSongDelegate {
     virtual ~SongSelectNode() = win 0x163bf0, ios 0x1c56c8;
 
