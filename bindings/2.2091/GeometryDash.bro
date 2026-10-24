@@ -11625,6 +11625,39 @@ class GJMessageThread : cocos2d::CCObject {
     virtual ~GJMessageThread() = win 0xabf30;
 
     TodoReturn createRoleBadge(float);
+
+    int m_threadID;
+    int m_accountID;
+    std::string m_userName;
+    std::string m_groupName;
+    int m_unreadCount;
+    int m_unk84;
+    std::string m_requestMessage;
+    std::string m_lastActivity;
+    int m_memberCount;
+    std::string m_unkd0;
+    int m_ownerAccountID;
+    bool m_isMuted;
+    int m_unkf8;
+    std::string m_description;
+    std::string m_emoteName;
+    bool m_isDM;
+    bool m_isRequestPending;
+    int m_dmStatus;
+    bool m_isLocked;
+    bool m_isIgnored;
+    bool m_isPinned;
+    long long m_unk150;
+    int m_modBadge;
+    long long m_unk160;
+    bool m_isSelected;
+    bool m_hasIcon;
+    int m_iconID;
+    int m_color1;
+    int m_color2;
+    int m_glowColor;
+    int m_iconType;
+    int m_special;
 }
 
 [[link(android)]]
@@ -12836,10 +12869,11 @@ class GJThreadCell : TableViewCell {
     virtual void draw() = win 0x1487a0, ios 0x13a648;
 
     void loadFromThread(GJMessageThread*) = win 0x1597d0, imac 0x232ab0, m1 0x1df140;
-    void onShowMembers(cocos2d::CCObject* sender);
+    void onShowMembers(cocos2d::CCObject* sender) = win 0x15ab80;
+
     void onThreadOptions(cocos2d::CCObject* sender);
     void onToggleSelect(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x15ab40;
     void onViewThread(cocos2d::CCObject* sender);
     void updateBGColor(int);
 
@@ -24130,9 +24164,9 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     bool init(GJMessageThread*) = win 0xd93b0, imac 0x92d740, m1 0x80fa9c;
     TodoReturn insertShareToken(std::string const&);
     TodoReturn jumpToLatest();
-    TodoReturn layoutComposeBar();
+    void layoutComposeBar() = win 0xe3960;
     TodoReturn layoutRows();
-    TodoReturn layoutTitleRow();
+    void layoutTitleRow() = win 0xe2fb0;
     // TodoReturn markShareLinks(TextArea*, std::string const&, std::vector<ThreadViewPopup::ShareToken> const&, int);
     TodoReturn measureBody(GJThreadMessage*);
     TodoReturn messageWithID(long long);
@@ -24154,7 +24188,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     void onSenderProfile(cocos2d::CCObject* sender);
     void onShareLevel(cocos2d::CCObject* sender);
     void onShowDescription(cocos2d::CCObject* sender);
-    void onShowMembers(cocos2d::CCObject* sender);
+    void onShowMembers(cocos2d::CCObject* sender) = win 0xdd200;
     void onThreadOptions(cocos2d::CCObject* sender);
     TodoReturn openAt(long long);
     TodoReturn pastScoreFor(int);
@@ -24174,6 +24208,54 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn sortMessagesByID();
     TodoReturn startSearch(std::string const&);
     TodoReturn updateComposeCount();
+
+    std::vector<void*> m_rows;
+    std::map<long long, void*> m_bodyMeasures;
+    float m_unk2e0;
+    GJMessageThread* m_thread;
+    cocos2d::CCArray* m_messages;
+    long long m_unk2f8;
+    long long m_newestMessageID;
+    int m_unk308;
+    bool m_unk30c;
+    bool m_unk30d;
+    bool m_sendPending;
+    bool m_isModView;
+    long long m_modViewMessageID;
+    cocos2d::CCLabelBMFont* m_lockNoticeLabel;
+    InfoAlertButton* m_lockInfoButton;
+    bool m_refetchQueued;
+    ScrollableContentLayer* m_messagesLayer;
+    LoadingCircle* m_loadingCircle;
+    float m_listWidth;
+    float m_listHeight;
+    cocos2d::CCPoint m_listCenter;
+    cocos2d::CCLabelBMFont* m_unk350;
+    cocos2d::CCLabelBMFont* m_subtitleLabel;
+    CCMenuItemSpriteExtra* m_membersButton;
+    cocos2d::CCPoint m_titleRowPos;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    EmoteSprite* m_titleEmote;
+    cocos2d::CCSprite* m_roleBadge;
+    CCMenuItemSpriteExtra* m_sendButton;
+    EmotePickerPopup* m_emotePicker;
+    CCTextInputNode* m_messageInput;
+    int m_unk3a0;
+    float m_pollInterval;
+    float m_unk3a8;
+    float m_unk3ac;
+    float m_unk3b0;
+    long long m_unreadLineMessageID;
+    long long m_unk3c0;
+    std::string m_unk3c8;
+    bool m_unk3e8;
+    bool m_unk3e9;
+    cocos2d::extension::CCScale9Sprite* m_composeBg;
+    cocos2d::CCLabelBMFont* m_charCountLabel;
+    CCMenuItemSpriteExtra* m_scrollToBottomButton;
+    CCMenuItemSpriteExtra* m_hideKeyboardButton;
+    GJThreadMessage* m_unk410;
+    cocos2d::extension::CCScale9Sprite* m_messagesBg;
 }
 
 [[link(android)]]
