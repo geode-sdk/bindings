@@ -131,7 +131,7 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 )GEN";
 
 	constexpr char const* declare_standalone = R"GEN(
-{return} {function_name}({parameters}) {{
+{extern_def}{return} {function_name}({parameters}) {{
 	using FunctionType = decltype({function_name}({arguments}))(*)({parameter_types});
 	static auto func = wrapFunction<FunctionType>({address_inline}, tulip::hook::TulipConvention::{convention});
 	return reinterpret_cast<FunctionType>(func)({arguments});
@@ -174,7 +174,8 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 			fmt::arg("parameters", codegen::getParameters(f.prototype)),
 			fmt::arg("parameter_types", codegen::getParameterTypes(f.prototype)),
 			fmt::arg("arguments", codegen::getParameterNames(f.prototype)),
-			fmt::arg("parameter_comma", str_if(", ", !f.prototype.args.empty()))
+			fmt::arg("parameter_comma", str_if(", ", !f.prototype.args.empty())),
+            fmt::arg("extern_def", str_if("extern \"C\" ", is_kazmath_func(f.prototype.name)));
 		);
     }
 
