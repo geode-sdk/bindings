@@ -17723,7 +17723,7 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
     float m_size;
 }
 
-[[link(android), depends(GJPointDouble), depends(GJActionManager)]]
+[[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
     PlayerObject() = win 0x4e36c0, imac 0x40aa00, m1 0x384504, inline;

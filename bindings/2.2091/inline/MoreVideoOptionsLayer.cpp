@@ -1,4 +1,5 @@
 #include <Geode/binding/MoreVideoOptionsLayer.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
 
 MoreVideoOptionsLayer::MoreVideoOptionsLayer() {
     m_page = 0;
