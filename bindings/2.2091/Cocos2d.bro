@@ -819,7 +819,7 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
     unsigned int count() = imac 0x2f8680, m1 0x28cfc8, ios 0x4a4d38;
     std::string getFirstKey() = imac 0x2f87d0, m1 0x28d114, ios 0x4a4e74;
     cocos2d::CCObject* objectForKey(intptr_t) = imac 0x2f8de0, m1 0x28d794, ios 0x4a5288;
-    cocos2d::CCObject* objectForKey(std::string const&) = imac 0x2f8a10, m1 0x28d418;
+    cocos2d::CCObject* objectForKey(std::string const&) = imac 0x2f8a10, m1 0x28d418, ios 0x4a4f7c;
     cocos2d::CCObject* randomObject() = imac 0x2fa890, m1 0x28f050, ios inline;
     void removeAllObjects() = imac 0x2f8490, m1 0x28ce08, ios 0x4a4bf0;
     void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x2fa2d0, m1 0x28eaec, ios 0x4a64a4;
