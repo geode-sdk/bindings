@@ -13909,8 +13909,6 @@ class KeybindingsLayer : TabbedPopupLayer {
     virtual bool crossCheckGlobalConflicts() = win 0x5a3a0, imac 0x2bc0, m1 0x28f4;
 
     void buildContentForTab(int tab) = win 0x3d6750, imac 0x6e2550, m1 0x5f6ea0;
-    // returns null for non-controller keys; isPlayer2 is set for controller 2 codes
-    cocos2d::CCSprite* buildControllerGlyph(int key, bool& isPlayer2) = win 0x3d6350, imac 0x6e20c0, m1 0x5f6b70;
     // returns `count` {actionId, tabIndex} pairs
     static int const* getActionTable(int& count) = win inline;
     bool init(GameSettingsLayer* settings) = win 0x3d57f0, imac 0x6e16a0, m1 0x5f614c;
@@ -13918,6 +13916,7 @@ class KeybindingsLayer : TabbedPopupLayer {
     void onClearSearch(cocos2d::CCObject* sender) = win 0x3d8440, imac 0x6e1e80, m1 0x5f689c;
     void onEditBinding(cocos2d::CCObject* sender) = win 0x3d7cb0, imac 0x6e3a80, m1 0x5f8004;
     void onSettings(cocos2d::CCObject* sender) = win 0x3d8230, imac 0x6e1ee0, m1 0x5f6910;
+    static cocos2d::CCSprite* buildControllerGlyph(int key, bool& isPlayer2) = win 0x3d6350, imac 0x6e20c0, m1 0x5f6b70;
     static void tintGlyph(cocos2d::CCSprite* sprite, cocos2d::ccColor3B color) = win inline;
 
     GameSettingsLayer* m_settingsLayer;
@@ -13928,8 +13927,10 @@ class KeybindingsLayer : TabbedPopupLayer {
     CCMenuItemSpriteExtra* m_clearSearchButton;
     ScrollableContentLayer* m_scrollLayer;
     cocos2d::CCMenu* m_contentMenu;
-    bool m_unk470;
+    // set when m_contentMenu claimed the current touch
+    bool m_contentMenuTouched;
     std::string m_searchQuery;
+    // -1 when setupTabs adds no search tab, e.g. LevelBindingsLayer
     int m_searchTab;
 }
 
@@ -14283,17 +14284,18 @@ class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
 class LevelBindingsLayer : KeybindingsLayer {
     virtual ~LevelBindingsLayer() = win 0x3d53a0;
 
-    static LevelBindingsLayer* create(KeybindSet* keybindSet, bool controller);
+    static LevelBindingsLayer* create(KeybindSet* keybindSet, bool controller) = win 0x44c580;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x44d1a0, imac 0x91ff40, m1 0x8041b8;
     virtual void setupTabs() = win 0x44c730, imac 0x91fda0, m1 0x80401c;
+    // always the 6 movement actions 10001-10006, whatever the tab or m_controller
     virtual std::vector<int> actionsToShow(int tab) = win 0x44c8b0, imac 0x91feb0, m1 0x80413c;
     virtual void openBindingEditor(int action, int chord) = win 0x44c920, imac 0x91ff10, m1 0x804190;
     virtual bool showControllerChords() = win 0x3ff70, imac 0x2bf0, m1 0x290c;
     virtual std::vector<KeybindSettingsEntry> settingsEntries() = win 0x44c440, imac 0x91ee60, m1 0x8030c0;
     virtual bool crossCheckGlobalConflicts() = win 0x3ff70, imac 0x2bf0, m1 0x290c;
 
-    bool init(KeybindSet* keybindSet, bool controller);
+    bool init(KeybindSet* keybindSet, bool controller) = win inline;
     void onApplyGlobal(cocos2d::CCObject* sender);
     void onClear(cocos2d::CCObject* sender);
     void onCopy(cocos2d::CCObject* sender) = win 0x44c960;
@@ -19280,53 +19282,97 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual bool touchInsideClip(cocos2d::CCPoint const& point) = win 0x81ea0, imac 0x96c970, m1 0x8494ac;
     virtual bool scrollWheel(float y, float x) = win 0x81ed0, imac 0x96cb10, m1 0x84961c;
 
-    TodoReturn applyContentPosition() = win 0x81140;
-    TodoReturn clampOffset() = win 0x810D0;
-    TodoReturn consumePendingCancel();
-    TodoReturn contentWiped();
-    TodoReturn createOwnedMenu();
-    TodoReturn ensureOwnedContentNode();
-    TodoReturn ensureScrollThumb();
+    void applyContentPosition() = win 0x81140;
+    void clampOffset() = win 0x810D0;
+    bool consumePendingCancel() = win inline;
+    void contentWiped();
+    cocos2d::CCMenu* createOwnedMenu();
+    void ensureOwnedContentNode();
+    void ensureScrollThumb() = win 0x81310;
     TodoReturn feedTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn feedTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn feedTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn feedTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    TodoReturn getOrCreateSection(int);
-    TodoReturn getOrCreateSectionMenu(int);
-    TodoReturn handleTouchBegan(cocos2d::CCTouch*);
-    TodoReturn handleTouchCancelled(cocos2d::CCTouch*);
-    TodoReturn handleTouchEnded(cocos2d::CCTouch*);
-    TodoReturn handleTouchMoved(cocos2d::CCTouch*);
+    cocos2d::CCNode* getOrCreateSection(int section);
+    cocos2d::CCMenu* getOrCreateSectionMenu(int section);
+    bool handleTouchBegan(cocos2d::CCTouch* touch) = win 0x817b0;
+    void handleTouchCancelled(cocos2d::CCTouch* touch) = win inline;
+    void handleTouchEnded(cocos2d::CCTouch* touch) = win 0x81c60;
+    void handleTouchMoved(cocos2d::CCTouch* touch) = win 0x819a0;
     bool init(cocos2d::CCSize);
     TodoReturn itemTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    TodoReturn mountedVirtualRow(int);
-    TodoReturn mountRowSlot(int);
-    TodoReturn persistScrollOffset(std::string const&);
-    TodoReturn reloadVirtualRows(float);
-    TodoReturn remountVirtualRow(int);
-    TodoReturn restoreScrollOffset(std::string const&);
-    TodoReturn scrollTo(float);
-    TodoReturn sectionAddChild(cocos2d::CCNode*, int, int);
-    TodoReturn sectionClear();
-    TodoReturn sectionIndexForY(float);
-    void setContentHeight(float) = imac 0x96b270, m1 0x847efc;
+    // the row's node, or null if it isn't mounted
+    cocos2d::CCNode* mountedVirtualRow(int row);
+    void mountRowSlot(int row);
+    void persistScrollOffset(std::string const& key);
+    // offset < 0 keeps the current offset
+    void reloadVirtualRows(float offset);
+    void remountVirtualRow(int row);
+    bool restoreScrollOffset(std::string const& key) = win 0x81000;
+    void scrollTo(float offset) = win inline;
+    void sectionAddChild(cocos2d::CCNode* child, int zOrder, int tag);
+    void sectionClear();
+    int sectionIndexForY(float y);
+    void setContentHeight(float height) = win inline, imac 0x96b270, m1 0x847efc;
     void setForwardedTouchesOnly(bool);
     void setHorizontal(bool);
     void setSectionHeight(float);
     void setThumbColor(cocos2d::ccColor3B);
     void setThumbOffset(cocos2d::CCPoint);
     void setThumbOpacity(unsigned char);
-    void setViewSize(cocos2d::CCSize);
-    void setVirtualRows(VirtualRowSource*, float, float, float);
-    TodoReturn unmountAllRows();
-    TodoReturn unmountRowSlot(int);
-    TodoReturn updateScrollThumb() = win 0x81420;
-    TodoReturn updateSectionVisibility();
-    TodoReturn updateVirtualRows();
+    void setViewSize(cocos2d::CCSize size) = win inline;
+    void setVirtualRows(VirtualRowSource* source, float buffer, float topPadding, float bottomPadding);
+    void unmountAllRows();
+    void unmountRowSlot(int row);
+    void updateScrollThumb() = win 0x81420;
+    void updateSectionVisibility();
+    void updateVirtualRows();
     TodoReturn worldClipRect();
+
+    // origin is the top of the view; children use negative y going down
+    cocos2d::CCNode* m_content;
+    cocos2d::CCSize m_viewSize;
+    float m_contentHeight;
+    float m_offset;
+    // -1 = no touch
+    int m_touchID;
+    cocos2d::CCPoint m_touchStart;
+    cocos2d::CCPoint m_touchLast;
+    double m_lastMoveTime;
+    float m_velocity;
+    float m_wheelVelocity;
+    // the drag passed the 8px threshold
+    bool m_isDragging;
+    // set with m_isDragging; consumePendingCancel clears it so the owner cancels its menu touch
+    bool m_pendingCancel;
+    cocos2d::CCLayerColor* m_thumb;
+    cocos2d::ccColor4B m_thumbColor;
+    cocos2d::CCPoint m_thumbOffset;
+    bool m_draggingThumb;
+    float m_thumbDragStartY;
+    float m_thumbDragStartOffset;
+    // > 0 enables sections (children grouped into culled per-section nodes)
+    float m_sectionHeight;
+    // menus from createOwnedMenu get setTouchEnabled(false)
+    bool m_forwardedTouchesOnly;
+    std::map<int, cocos2d::CCNode*> m_sections;
+    std::map<int, cocos2d::CCMenu*> m_sectionMenus;
+    int m_sectionUnk1;
+    int m_sectionUnk2;
+    bool m_horizontal;
+    VirtualRowSource* m_rowSource;
+    // extra distance mounted beyond each edge of the view
+    float m_rowBuffer;
+    float m_rowTopPadding;
+    float m_rowBottomPadding;
+    std::vector<float> m_rowEdges;
+    std::map<int, std::pair<cocos2d::CCNode*, cocos2d::CCMenu*>> m_mountedRows;
+    int m_firstMountedRow;
+    int m_lastMountedRow;
+    bool m_updatingRows;
 }
 
 [[link(android)]]
