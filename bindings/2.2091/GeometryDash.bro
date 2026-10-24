@@ -4198,11 +4198,11 @@ class EditButtonBar : cocos2d::CCNode {
     void goToPage(int page) = win 0x177aa0, imac 0x6b4cd0, m1 0x5ce4a0;
     bool init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows) = win inline, imac 0x6b4040, m1 0x5cd904;
     void loadFromItems(cocos2d::CCArray* objects, int rows, int columns, bool keepPage) = win 0x177060, imac 0x6b40f0, m1 0x5cd9b0;
-    void onDotClicked(cocos2d::CCObject* sender);
-    void onLeft(cocos2d::CCObject* sender) = win 0x177b90, m1 0x35c5f0;
+    void onDotClicked(cocos2d::CCObject* sender) = win 0x177b90;
+    void onLeft(cocos2d::CCObject* sender) = win 0x177b50, m1 0x35c5f0;
     void onRight(cocos2d::CCObject* sender) = win 0x177b10;
     void reloadItems(int rowCount, int columnCount) = win inline, imac 0x584030, m1 0x5ce0a0;
-    TodoReturn updateDotState();
+    TodoReturn updateDotState() = win 0x177c40;
 
     cocos2d::CCPoint m_position;
     int m_tabIndex;
