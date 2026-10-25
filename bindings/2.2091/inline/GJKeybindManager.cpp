@@ -1,6 +1,7 @@
 #include <Geode/binding/GJKeybindManager.hpp>
 #include <Geode/cocos/robtop/xml/DS_Dictionary.h>
 #include <cstring>
+#include <unordered_set>
 
 #if defined(GEODE_IS_WINDOWS)
 GJKeybindManager::~GJKeybindManager() {
