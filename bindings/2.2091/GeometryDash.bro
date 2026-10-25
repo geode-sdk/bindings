@@ -14392,7 +14392,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onGoToLastPage(cocos2d::CCObject* sender);
     void onGoToPage(cocos2d::CCObject* sender) = win 0x3e64d0, imac 0x482970, m1 0x3ec6ec;
     void onHelp(cocos2d::CCObject* sender) = win inline, imac 0x4873e0, m1 0x3f0ca8, ios inline;
-    void onImportLevels(cocos2d::CCObject* sender);
+    void onImportLevels(cocos2d::CCObject* sender) = win 0x3e9ae0;
     void onInfo(cocos2d::CCObject* sender) = win 0x3e6da0, imac 0x483a40, m1 0x3ed800;
     void onLevelsImported(cocos2d::CCObject* sender) = m1 0x3ed08c;
     void onLocalMode(cocos2d::CCObject* sender) = win 0x3e8220, imac 0x483330, m1 0x3ed094;
@@ -14418,7 +14418,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void setupLevelBrowser(cocos2d::CCArray* items) = win 0x3e5440, imac 0x485cc0, m1 0x3ef800;
     void show() = win 0x3eb640, imac 0x488c10, m1 0x3f24d8;
     TodoReturn showExportResult(int);
-    void showImportResult(int) = m1 0x3f12e0;
+    void showImportResult(int) = win 0x3e9b20, m1 0x3f12e0;
     TodoReturn updateBackgroundColor();
     void updateLevelsLabel() = win inline, imac 0x486fe0, m1 0x3f0930;
     void updatePageLabel() = win 0x3e6a20, imac 0x482850, m1 0x3ec5e0;
@@ -15781,7 +15781,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     cocos2d::CCArray* getCreatedLists(int folder) = win inline, imac 0x6cac90, m1 0x5e29e8;
     cocos2d::CCDictionary* getLevelsInNameGroups() = win inline, imac 0x573a30, m1 0x5e1d9c;
     std::string getMainLevelString(int id) = win 0x46b070, imac 0x6c9cf0, m1 0x5e1c18;
-    int importLevelsFromFile(int) = m1 0x5e62a4;
+    int importLevelsFromFile(int) = win 0x46ecf0, m1 0x5e62a4;
     int importLevelsFromPaths(std::vector<std::string> const&, int) = m1 0x5e6390;
     void markLevelsAsUnmodified() = win inline, imac 0x6caa90;
     TodoReturn moveLevelToBottom(GJGameLevel*);
