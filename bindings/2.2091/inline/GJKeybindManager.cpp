@@ -1,9 +1,10 @@
 #include <Geode/binding/GJKeybindManager.hpp>
 #include <Geode/cocos/robtop/xml/DS_Dictionary.h>
 #include <cstring>
-#include <unordered_set>
 
 #if defined(GEODE_IS_WINDOWS)
+#include <unordered_set>
+
 GJKeybindManager::~GJKeybindManager() {
     *reinterpret_cast<GJKeybindManager**>(geode::base::get() + 0x90c000) = nullptr;
 }
