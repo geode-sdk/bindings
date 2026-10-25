@@ -10762,7 +10762,7 @@ class GJGameLevel : cocos2d::CCNode {
     void setOriginalLevel(int id) = inline;
     void setPassword(int password) = inline;
     void setStars(int stars) = inline;
-    TodoReturn shippedControls();
+    std::string shippedControls() const = win 0x266530;
     bool shouldCheatReset() = win inline, imac 0x5408a0, m1 0x4976dc, ios inline;
     void storeNewLocalScore(int value, int type) = win 0x264ce0, imac 0x584a20, m1 0x4d60ec;
     TodoReturn syncUneditedControls();
@@ -11332,42 +11332,49 @@ class GJItemIcon : cocos2d::CCSprite {
 
 [[link(android)]]
 class GJKeybindManager : cocos2d::CCKeyboardActionManager {
-    virtual ~GJKeybindManager() = win 0x388420, ios 0x18b1d0;
+    virtual ~GJKeybindManager() = win inline, ios 0x18b1d0;
 
-    static GJKeybindManager* sharedState() = ios 0x18b0b8;
+    static GJKeybindManager* sharedState() = ios 0x18b0b8 = win 0x388320;
+    static char const* actionToString(int action) = win 0x38a0e0;
+    static std::string chordToString(int chord) = win 0x389bc0;
+    static int encodeChord(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win inline;
+    static bool groupsConflict(int groupA, int groupB) = win inline;
+    static bool handleGlobalAudioAction(int action, bool down) = win 0x388cc0;
+    static bool isControllerChord(int chord) = win inline;
+    static bool isExclusive(int action) = win inline;
+    static bool isKnownAction(int action) = win inline;
+    static bool isMovementAction(int action) = win inline;
 
-    virtual TodoReturn actionsForKey(cocos2d::enumKeyCodes, bool, bool, bool) = win 0x388550, ios 0x18b900;
-    virtual bool handleGlobalAction(int, bool) = win 0x388310, ios 0x18e250;
+    virtual std::vector<int> actionsForKey(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win 0x388550, ios 0x18b900;
+    virtual bool handleGlobalAction(int action, bool down) = win 0x388310, ios 0x18e250;
 
-    TodoReturn actionsForChord(int);
-    TodoReturn actionToString(int);
-    TodoReturn applyImportBlob(std::string const&, int);
-    TodoReturn applyMovementOverride(KeybindSource*, KeybindSource*);
-    TodoReturn applyNewDefaults(int);
-    TodoReturn bindChord(int, int);
-    TodoReturn bindKey(cocos2d::enumKeyCodes, bool, bool, bool, int);
-    TodoReturn buildBindsBlob();
-    TodoReturn chordsForAction(int);
-    TodoReturn chordToString(int);
-    TodoReturn clearMovementOverride();
-    TodoReturn dataLoaded(DS_Dictionary*);
-    TodoReturn encodeChord(cocos2d::enumKeyCodes, bool, bool, bool);
-    TodoReturn encodeDataTo(DS_Dictionary*);
-    TodoReturn exportBindingsToFile();
-    TodoReturn firstSetup();
-    TodoReturn globalChordsForAction(int);
-    TodoReturn groupForAction(int);
-    TodoReturn groupsConflict(int, int);
-    TodoReturn handleGlobalAudioAction(int, bool);
-    bool init();
-    bool isControllerChord(int);
-    bool isExclusive(int);
-    bool isKnownAction(int);
-    bool isMovementAction(int);
-    TodoReturn loadDefaults();
-    TodoReturn parseBindsBlob(std::string const&, bool, int*, int*);
-    TodoReturn parseImportFile(std::string&, int&, int&, int&);
-    TodoReturn unbindChord(int, int);
+    std::vector<int> actionsForChord(int chord) = win 0x388920;
+    void applyImportBlob(std::string const& blob, int version) = win inline;
+    void applyMovementOverride(KeybindSource* keyboardSource, KeybindSource* controllerSource) = win 0x388f40;
+    void applyNewDefaults(int version) = win 0x38bc80;
+    void bindChord(int chord, int action) = win 0x388ed0;
+    void bindKey(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift, int action) = win inline;
+    std::string buildBindsBlob() = win 0x38b380;
+    std::vector<int> chordsForAction(int action) = win 0x388790;
+    void clearMovementOverride() = win 0x3896b0;
+    void dataLoaded(DS_Dictionary* dict) = win inline;
+    void encodeDataTo(DS_Dictionary* dict) = win inline;
+    // 1 = written, 0 = dialog cancelled, -1 i/o error
+    int exportBindingsToFile() = win 0x38bfb0;
+    void firstSetup() = win inline;
+    std::vector<int> globalChordsForAction(int action) = win inline;
+    int groupForAction(int action) = win inline;
+    bool init() = win inline;
+    void loadDefaults() = win 0x38ab70;
+    void parseBindsBlob(std::string const& blob, bool apply, int* outApplied, int* outUnknown) = win 0x38b840;
+    int parseImportFile(std::string& outBlob, int& outApplied, int& outUnknown, int& outExtra) = win 0x38c590;
+    void unbindChord(int chord, int action) = win 0x389a30;
+
+    std::unordered_map<int, std::set<int>> m_chordToActions;
+    std::unordered_map<int, std::set<int>> m_actionToChords;
+    std::map<int, std::set<int>> m_savedMovementBinds;
+    std::map<int, std::set<int>> m_displacedBinds;
+    bool m_movementOverrideActive;
 }
 
 [[link(android)]]
@@ -13234,12 +13241,12 @@ class GJWriteMessagePopup : FLAlertLayer, UploadMessageDelegate, UploadPopupDele
 
 [[link(android)]]
 class GlobalKeybindSource : KeybindSource {
-    virtual ~GlobalKeybindSource() = win 0x3d51d0;
+    virtual ~GlobalKeybindSource() = win inline;
 
-    virtual TodoReturn chordsForAction(int) = win 0x3d5200;
-    virtual TodoReturn actionsForChord(int) = win 0x3d5240;
-    virtual TodoReturn bindChord(int, int) = win 0x3d5280;
-    virtual TodoReturn unbindChord(int, int) = win 0x3d52b0;
+    virtual std::vector<int> chordsForAction(int action) = win 0x3d5200;
+    virtual std::vector<int> actionsForChord(int chord) = win 0x3d5240;
+    virtual void bindChord(int chord, int action) = win 0x3d5280;
+    virtual void unbindChord(int chord, int action) = win 0x3d52b0;
 }
 
 [[link(android)]]
@@ -13873,26 +13880,47 @@ class ItemTriggerGameObject : EffectGameObject {
 
 [[link(android)]]
 class KeybindCapturePopup : SetupTriggerPopup, InputCaptureDelegate {
-    virtual ~KeybindCapturePopup() = win 0x44e250, ios 0x1a5174;
+    virtual ~KeybindCapturePopup() = win inline, ios 0x1a5174;
 
-    static KeybindCapturePopup* create(KeybindSource*, int, int, KeybindingsLayer*, KeybindCaptureMode);
+    static KeybindCapturePopup* create(KeybindSource* source, int action, int chord, KeybindingsLayer* layer, KeybindCaptureMode mode) = win 0x44e090;
 
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x44ee50, ios 0x1a58a4;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x44ee00, ios 0x1a5854;
-    virtual void inputKeySelected(int) = win 0x44e380, ios 0x1a51cc;
-    virtual void keyUp(cocos2d::enumKeyCodes, double) = win 0x44f0c0, ios 0x1a5a04;
+    virtual void inputKeySelected(int chord) = win 0x44e380, ios 0x1a51cc;
+    virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win 0x44f0c0, ios 0x1a5a04;
 
-    TodoReturn fadeButtonSprite(ButtonSprite*, bool);
-    bool init(KeybindSource*, int, int, KeybindingsLayer*, KeybindCaptureMode);
-    void onRemove(cocos2d::CCObject* sender);
-    void onSet(cocos2d::CCObject* sender);
-    void onToggleController(cocos2d::CCObject* sender);
-    TodoReturn updateButtonStates();
-    TodoReturn updateChordDisplay();
-    TodoReturn updateConflictLabel();
+    void fadeButtonSprite(ButtonSprite* sprite, bool enabled) = win 0x44eb30;
+    bool init(KeybindSource* source, int action, int chord, KeybindingsLayer* layer, KeybindCaptureMode mode) = win 0x44d2c0;
+    void onRemove(cocos2d::CCObject* sender) = win 0x44ecf0;
+    void onSet(cocos2d::CCObject* sender) = win 0x44ec20;
+    void onToggleController(cocos2d::CCObject* sender) = win 0x44ed50;
+    void updateButtonStates() = win inline;
+    void updateChordDisplay() = win 0x44e3b0;
+    void updateConflictLabel() = win 0x44e510;
+
+    KeybindSource* m_keybindSource;
+    KeybindingsLayer* m_keybindingsLayer;
+    int m_action;
+    int m_originalChord;
+    int m_chord;
+    bool m_isNewBind;
+    bool m_awaitingConfirm;
+    bool m_controllerMode;
+    bool m_isLevelSet;
+    bool m_isBlocked;
+    VirtualKeyboardNode* m_virtualKeyboard;
+    ControllerInputNode* m_controllerInput;
+    CCMenuItemToggler* m_controllerToggler;
+    cocos2d::CCLabelBMFont* m_chordLabel;
+    cocos2d::CCLabelBMFont* m_promptLabel;
+    cocos2d::CCLabelBMFont* m_conflictLabel;
+    CCMenuItemSpriteExtra* m_setButton;
+    CCMenuItemSpriteExtra* m_removeButton;
+    ButtonSprite* m_setSprite;
+    ButtonSprite* m_removeSprite;
 }
 
-[[link(android)]]
+[[link(android), depends(KeybindSettingsEntry)]]
 class KeybindingsLayer : TabbedPopupLayer {
     virtual ~KeybindingsLayer() = win 0x3d53a0, ios 0x235a0;
 
@@ -13903,49 +13931,41 @@ class KeybindingsLayer : TabbedPopupLayer {
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x3d8840, imac 0x6e4b90, m1 0x5f8f14, ios 0x25c58;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x3d88e0, imac 0x6e4cb0, m1 0x5f9024, ios 0x25ce8;
     virtual void rebuildContent() = win 0x19e0f0, imac 0x6e3b40, m1 0x5f80d4, ios 0x25188;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x3d8980, imac 0x6e4d90, m1 0x5f9104, ios 0x25d60;
     virtual void textChanged(CCTextInputNode* node) = win 0x3d8480, imac 0x6e47f0, m1 0x5f8bdc, ios 0x259cc;
     virtual void showTab(int tab) = win 0x3d77e0, imac 0x6e3b60, m1 0x5f80e4, ios 0x25198;
     virtual void setupTabs() = win 0x3d6050, imac 0x6e1f60, m1 0x5f6994, ios 0x23dd4;
     virtual std::vector<int> actionsToShow(int tab) = win 0x3d7db0, imac 0x6e3ff0, m1 0x5f856c, ios 0x25598;
     virtual std::string nameForAction(int action) = win 0x3d80a0, imac 0x6e4660, m1 0x5f8a4c, ios 0x258b8;
-    virtual void openBindingEditor(int index, int action) = win 0x3d80f0, imac 0x6e4710, m1 0x5f8af4, ios 0x258e4;
+    virtual void openBindingEditor(int action, int chord) = win 0x3d80f0, imac 0x6e4710, m1 0x5f8af4, ios 0x258e4;
     virtual bool showControllerChords() = win 0x3d8120, imac 0x6e4740, m1 0x5f8b1c, ios 0x2590c;
-    virtual void settingsEntries() = win 0x3d8140, imac 0x6e4750, m1 0x5f8b20, ios 0x25910;
+    virtual std::vector<KeybindSettingsEntry> settingsEntries() = win 0x3d8140, imac 0x6e4750, m1 0x5f8b20, ios 0x25910;
     virtual bool crossCheckGlobalConflicts() = win 0x5a3a0, imac 0x2bc0, m1 0x28f4;
 
-    cocos2d::CCLabelBMFont* addKeyPair(char const* action, char const* key) = win 0x4d2910, m1 0x3483d0;
     void buildContentForTab(int tab) = win 0x3d6750, imac 0x6e2550, m1 0x5f6ea0;
-    cocos2d::CCSprite* buildControllerGlyph(int action, bool& isChord) = win 0x3d6350, imac 0x6e20c0, m1 0x5f6b70;
-    int countForPage(int page) = win 0x4cfb00;
-    TodoReturn getActionTable(int&);
-    void goToPage(int page);
-    void incrementCountForPage(int page) = win inline;
-    const char* infoKey(int index) = win inline, imac 0x64b700;
+    // returns `count` {actionId, tabIndex} pairs
+    static int const* getActionTable(int& count) = win inline;
     bool init(GameSettingsLayer* settings) = win 0x3d57f0, imac 0x6e16a0, m1 0x5f614c;
-    cocos2d::CCLayer* layerForPage(int page);
-    const char* layerKey(int page) = win inline, imac 0x64b6e0, m1 0x77b374;
-    cocos2d::CCPoint nextPosition(int page) = win inline, m1 0x1fbca0;
-    const char* objectKey(int page) = win inline, imac 0x886700, m1 0x77b34c;
-    cocos2d::CCArray* objectsForPage(int page) = win inline;
-    void onAddBinding(cocos2d::CCObject* sender);
+    void onAddBinding(cocos2d::CCObject* sender) = win 0x3d7d50;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x3d8440, imac 0x6e1e80, m1 0x5f689c;
-    void onClose(cocos2d::CCObject* sender) = win 0x3d8980, imac 0x6e4d90, m1 0x5f9104, ios 0x25d60;
     void onEditBinding(cocos2d::CCObject* sender) = win 0x3d7cb0, imac 0x6e3a80, m1 0x5f8004;
-    void onInfo(cocos2d::CCObject* sender) = win inline;
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
     void onSettings(cocos2d::CCObject* sender) = win 0x3d8230, imac 0x6e1ee0, m1 0x5f6910;
-    void onToggle(cocos2d::CCObject* sender) = win inline;
-    const char* pageKey(int page) = win inline, imac 0x561fc0, m1 0x2dbdc;
-    TodoReturn tintGlyph(cocos2d::CCSprite*, cocos2d::ccColor3B);
+    static cocos2d::CCSprite* buildControllerGlyph(int key, bool& isPlayer2) = win 0x3d6350, imac 0x6e20c0, m1 0x5f6b70;
+    static void tintGlyph(cocos2d::CCSprite* sprite, cocos2d::ccColor3B color) = win inline;
 
-    int m_page;
-    int m_keyCount;
-    int m_maxPage;
-    cocos2d::CCDictionary* m_values;
-    cocos2d::CCDictionary* m_variables;
-    CCMenuItemSpriteExtra* m_prevButton;
-    CCMenuItemSpriteExtra* m_nextButton;
+    GameSettingsLayer* m_settingsLayer;
+    KeybindSource* m_keybindSource;
+    bool m_ownsKeybindSource;
+    CCTextInputNode* m_searchInput;
+    cocos2d::extension::CCScale9Sprite* m_searchBG;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCMenu* m_contentMenu;
+    // set when m_contentMenu claimed the current touch
+    bool m_contentMenuTouched;
+    std::string m_searchQuery;
+    // -1 when setupTabs adds no search tab, e.g. LevelBindingsLayer
+    int m_searchTab;
 }
 
 [[link(android), missing(win)]]
@@ -13971,43 +13991,55 @@ class KeybindingsManager : cocos2d::CCNode {
     cocos2d::CCDictionary* m_commandToKeyDict;
 }
 
-[[link(android)]]
+[[link(android), depends(KeybindSettingsEntry)]]
 class KeybindingsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
-    virtual ~KeybindingsSettingsPopup() = win 0x3d8e30, ios 0x4eed28;
+    KeybindingsSettingsPopup() = win inline;
+    virtual ~KeybindingsSettingsPopup() = win inline, ios 0x4eed28;
 
-    static KeybindingsSettingsPopup* create(KeybindingsLayer*, std::vector<KeybindSettingsEntry> const&);
+    static KeybindingsSettingsPopup* create(KeybindingsLayer* layer, std::vector<KeybindSettingsEntry> const& entries) = win inline;
 
     virtual void keyBackClicked() = win 0x99f90, ios 0x4eecac;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x3d9d80, ios 0x4eebc0;
 
-    bool init(KeybindingsLayer*, std::vector<KeybindSettingsEntry> const&);
-    void onClose(cocos2d::CCObject* sender);
-    void onEntry(cocos2d::CCObject* sender);
-    void onExport(cocos2d::CCObject* sender);
-    void onImport(cocos2d::CCObject* sender);
-    void onReset(cocos2d::CCObject* sender);
+    bool init(KeybindingsLayer* layer, std::vector<KeybindSettingsEntry> const& entries) = win 0x3d8e80;
+    void onClose(cocos2d::CCObject* sender) = win 0x99f60;
+    void onEntry(cocos2d::CCObject* sender) = win 0x3d93c0;
+    void onExport(cocos2d::CCObject* sender) = win 0x3d9480;
+    void onImport(cocos2d::CCObject* sender) = win 0x3d9640;
+    void onReset(cocos2d::CCObject* sender) = win 0x3d9c60;
+
+    KeybindingsLayer* m_layer;
+    std::vector<KeybindSettingsEntry> m_entries;
+    int m_pendingAction;
+    std::string m_importBlob;
+    int m_importVersion;
 }
 
 [[link(android)]]
 class KeybindSet : KeybindSource {
-    virtual ~KeybindSet() = win 0x44a370;
+    KeybindSet() = win 0x44a260, inline;
+    virtual ~KeybindSet() = win inline;
 
-    virtual TodoReturn chordsForAction(int) = win 0x4493e0;
-    virtual TodoReturn actionsForChord(int) = win 0x4494d0;
-    virtual TodoReturn bindChord(int, int) = win 0x4495e0;
-    virtual TodoReturn unbindChord(int, int) = win 0x449620;
+    virtual std::vector<int> chordsForAction(int action) = win 0x4493e0;
+    virtual std::vector<int> actionsForChord(int chord) = win 0x4494d0;
+    virtual void bindChord(int chord, int action) = win 0x4495e0;
+    virtual void unbindChord(int chord, int action) = win 0x449620;
+    virtual bool isLevelSet() = win 0x3ff70;
 
-    bool isLevelSet() = win 0x3ff70;
+    std::map<int, std::set<int>> m_actionToChords;
+    bool m_dirty;
 }
 
 [[link(android)]]
 class KeybindSource {
-    virtual TodoReturn chordsForAction(int) = win 0x9999999;
-    virtual TodoReturn actionsForChord(int) = win 0x9999999;
-    virtual TodoReturn bindChord(int, int) = win 0x9999999;
-    virtual TodoReturn unbindChord(int, int) = win 0x9999999;
+    KeybindSource() = inline;
+    virtual ~KeybindSource() = inline;
 
-    bool isLevelSet() = win 0x5a3a0;
+    virtual std::vector<int> chordsForAction(int action) = inline;
+    virtual std::vector<int> actionsForChord(int chord) = inline;
+    virtual void bindChord(int chord, int action) = inline;
+    virtual void unbindChord(int chord, int action) = inline;
+    virtual bool isLevelSet() = inline;
 }
 
 [[link(android)]]
@@ -14081,7 +14113,7 @@ class KeyframeGameObject : EffectGameObject {
     float m_lineOpacity;
 }
 
-[[link(android), depends(tk_spline)]]
+[[link(android), depends(tk_spline, cocos2d::CCPoint)]]
 class KeyframeObject {
     // KeyframeObject();
     // KeyframeObject(KeyframeObject const&);
@@ -14282,26 +14314,31 @@ class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
     void onClose(cocos2d::CCObject* sender);
 }
 
-[[link(android)]]
+[[link(android), depends(KeybindSettingsEntry)]]
 class LevelBindingsLayer : KeybindingsLayer {
     virtual ~LevelBindingsLayer() = win 0x3d53a0, ios 0x4efc44;
 
-    static LevelBindingsLayer* create(KeybindSet*, bool);
+    static LevelBindingsLayer* create(KeybindSet* keybindSet, bool controller) = win 0x44c580;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x44d1a0, imac 0x91ff40, m1 0x8041b8, ios 0x4efbe0;
     virtual void setupTabs() = win 0x44c730, imac 0x91fda0, m1 0x80401c, ios 0x4efa88;
+    // always the 6 movement actions 10001-10006, whatever the tab or m_controller
     virtual std::vector<int> actionsToShow(int tab) = win 0x44c8b0, imac 0x91feb0, m1 0x80413c, ios 0x4efb98;
-    virtual void openBindingEditor(int index, int action) = win 0x44c920, imac 0x91ff10, m1 0x804190, ios 0x4efbb8;
+    virtual void openBindingEditor(int action, int chord) = win 0x44c920, imac 0x91ff10, m1 0x804190, ios 0x4efbb8;
     virtual bool showControllerChords() = win 0x3ff70, imac 0x2bf0, m1 0x290c;
-    virtual void settingsEntries() = win 0x44c440, imac 0x91ee60, m1 0x8030c0, ios 0x4ef024;
+    virtual std::vector<KeybindSettingsEntry> settingsEntries() = win 0x44c440, imac 0x91ee60, m1 0x8030c0, ios 0x4ef024;
     virtual bool crossCheckGlobalConflicts() = win 0x3ff70, imac 0x2bf0, m1 0x290c;
 
-    bool init(KeybindSet*, bool);
+    bool init(KeybindSet* keybindSet, bool controller) = win inline;
     void onApplyGlobal(cocos2d::CCObject* sender);
     void onClear(cocos2d::CCObject* sender);
-    void onCopy(cocos2d::CCObject* sender);
+    void onCopy(cocos2d::CCObject* sender) = win 0x44c960;
     void onPaste(cocos2d::CCObject* sender);
-    void onReset(cocos2d::CCObject* sender);
+    void onReset(cocos2d::CCObject* sender) = win 0x44ce30;
+
+    KeybindSet* m_keybindSet;
+    bool m_controller;
+    bool m_seededFromGlobal;
 }
 
 [[link(android)]]
@@ -14468,27 +14505,43 @@ class LevelCommentDelegate {
     virtual void setupPageInfo(std::string info, char const* key) = inline;
 }
 
-[[link(android)]]
+[[link(android), depends(KeybindSet, LevelTouchSlot, UIButtonConfig)]]
 class LevelControlConfig : cocos2d::CCObject {
-    virtual ~LevelControlConfig() = win 0x44a2c0;
+    virtual ~LevelControlConfig() = win inline;
 
-    static LevelControlConfig* create();
+    static LevelControlConfig* create() = win 0x44a1d0;
+    static void bindGlobalBinds(KeybindSource* target, bool controller) = win 0x44b3e0;
+    static void bindDefaultController(KeybindSource* target) = win 0x44b2b0;
+    static void bindDefaultKeyboard(KeybindSource* target) = win 0x44b210;
+    static LevelControlConfig* createFromB64(std::string const& data) = win 0x44b0f0;
+    static LevelControlConfig* createFromGlobal(bool dualMode) = win 0x44b6d0;
 
-    TodoReturn bindDefaultController(KeybindSource*);
-    TodoReturn bindDefaultKeyboard(KeybindSource*);
-    TodoReturn bindGlobalBinds(KeybindSource*, bool);
-    TodoReturn createFromB64(std::string const&);
-    TodoReturn createFromGlobal(bool);
-    TodoReturn decode(std::string const&);
-    TodoReturn encode();
-    TodoReturn encodeB64();
-    bool init();
-    TodoReturn keepClasses(int);
-    TodoReturn presentClasses();
-    TodoReturn resolveSlot(LevelTouchSlot const&, cocos2d::CCSize const&);
-    TodoReturn seedBase();
-    TodoReturn seedDefaults();
-    TodoReturn slotFromConfig(UIButtonConfig const&, cocos2d::CCSize const&, int, int, bool, bool);
+    // always returns true
+    bool decode(std::string const& data) = win 0x44aa20;
+    // "1:version|2:keyboard binds|3:canvas size;touch slots|4:jumpL|5:controller binds"
+    std::string encode() const = win 0x44a430;
+    std::string encodeB64() const = win inline;
+    bool init() = win inline;
+    // clears the classes whose bit isn't set in `classes` (see presentClasses)
+    void keepClasses(int classes) = win inline;
+    // bit 0 = keyboard binds, bit 1 = touch slots, bit 2 = controller binds
+    int presentClasses() const = win inline;
+    UIButtonConfig resolveSlot(LevelTouchSlot const& slot, cocos2d::CCSize const& winSize) const = win 0x44bad0;
+    // created from version 1, current window size, game variable "0113"
+    void seedBase() = win 0x44b640;
+    // possibly unused?
+    void seedDefaults() = win inline;
+    // win 0x44bc00 is a copy with anchorX = anchorY = 0 and scaleX = scaleY = true folded in
+    LevelTouchSlot slotFromConfig(UIButtonConfig const& config, cocos2d::CCSize const& winSize, int anchorX, int anchorY, bool scaleX, bool scaleY) const;
+
+    int m_version;
+    // the window size the touch slots were saved at
+    cocos2d::CCSize m_canvasSize;
+    // GameVar::JumpL
+    int m_jumpL;
+    KeybindSet m_keyboardBinds;
+    KeybindSet m_controllerBinds;
+    std::vector<LevelTouchSlot> m_touchSlots;
 }
 
 [[link(android)]]
@@ -17425,9 +17478,9 @@ class PlatformerControlsPopup : SetupTriggerPopup, UploadActionDelegate, UploadP
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x451fa0, ios 0x51d4f4;
 
     TodoReturn commitCustomDraft();
-    TodoReturn ensureCustomDraft();
-    bool init(GJGameLevel*, bool);
-    void onApplyCreator(cocos2d::CCObject* sender);
+    void ensureCustomDraft() = win 0x450470;
+    bool init(GJGameLevel*, bool) = win 0x44f100;
+    void onApplyCreator(cocos2d::CCObject* sender) = win 0x4511f0;
     void onController(cocos2d::CCObject* sender);
     void onInfo(cocos2d::CCObject* sender);
     void onKeyboard(cocos2d::CCObject* sender);
@@ -19263,53 +19316,97 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual bool touchInsideClip(cocos2d::CCPoint const& point) = win 0x81ea0, imac 0x96c970, m1 0x8494ac, ios 0x525aa4;
     virtual bool scrollWheel(float y, float x) = win 0x81ed0, imac 0x96cb10, m1 0x84961c, ios 0x525b18;
 
-    TodoReturn applyContentPosition() = win 0x81140;
-    TodoReturn clampOffset() = win 0x810D0;
-    TodoReturn consumePendingCancel();
-    TodoReturn contentWiped();
-    TodoReturn createOwnedMenu();
-    TodoReturn ensureOwnedContentNode();
-    TodoReturn ensureScrollThumb();
+    void applyContentPosition() = win 0x81140;
+    void clampOffset() = win 0x810D0;
+    bool consumePendingCancel() = win inline;
+    void contentWiped();
+    cocos2d::CCMenu* createOwnedMenu();
+    void ensureOwnedContentNode();
+    void ensureScrollThumb() = win 0x81310;
     TodoReturn feedTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn feedTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn feedTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn feedTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    TodoReturn getOrCreateSection(int);
-    TodoReturn getOrCreateSectionMenu(int);
-    TodoReturn handleTouchBegan(cocos2d::CCTouch*);
-    TodoReturn handleTouchCancelled(cocos2d::CCTouch*);
-    TodoReturn handleTouchEnded(cocos2d::CCTouch*);
-    TodoReturn handleTouchMoved(cocos2d::CCTouch*);
+    cocos2d::CCNode* getOrCreateSection(int section);
+    cocos2d::CCMenu* getOrCreateSectionMenu(int section);
+    bool handleTouchBegan(cocos2d::CCTouch* touch) = win 0x817b0;
+    void handleTouchCancelled(cocos2d::CCTouch* touch) = win inline;
+    void handleTouchEnded(cocos2d::CCTouch* touch) = win 0x81c60;
+    void handleTouchMoved(cocos2d::CCTouch* touch) = win 0x819a0;
     bool init(cocos2d::CCSize);
     TodoReturn itemTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    TodoReturn mountedVirtualRow(int);
-    TodoReturn mountRowSlot(int);
-    TodoReturn persistScrollOffset(std::string const&);
-    TodoReturn reloadVirtualRows(float);
-    TodoReturn remountVirtualRow(int);
-    TodoReturn restoreScrollOffset(std::string const&);
-    TodoReturn scrollTo(float);
-    TodoReturn sectionAddChild(cocos2d::CCNode*, int, int);
-    TodoReturn sectionClear();
-    TodoReturn sectionIndexForY(float);
-    void setContentHeight(float) = imac 0x96b270, m1 0x847efc;
+    // the row's node, or null if it isn't mounted
+    cocos2d::CCNode* mountedVirtualRow(int row);
+    void mountRowSlot(int row);
+    void persistScrollOffset(std::string const& key);
+    // offset < 0 keeps the current offset
+    void reloadVirtualRows(float offset);
+    void remountVirtualRow(int row);
+    bool restoreScrollOffset(std::string const& key) = win 0x81000;
+    void scrollTo(float offset) = win inline;
+    void sectionAddChild(cocos2d::CCNode* child, int zOrder, int tag);
+    void sectionClear();
+    int sectionIndexForY(float y);
+    void setContentHeight(float height) = win inline, imac 0x96b270, m1 0x847efc;
     void setForwardedTouchesOnly(bool);
     void setHorizontal(bool);
     void setSectionHeight(float);
     void setThumbColor(cocos2d::ccColor3B);
     void setThumbOffset(cocos2d::CCPoint);
     void setThumbOpacity(unsigned char);
-    void setViewSize(cocos2d::CCSize);
-    void setVirtualRows(VirtualRowSource*, float, float, float);
-    TodoReturn unmountAllRows();
-    TodoReturn unmountRowSlot(int);
-    TodoReturn updateScrollThumb() = win 0x81420;
-    TodoReturn updateSectionVisibility();
-    TodoReturn updateVirtualRows();
+    void setViewSize(cocos2d::CCSize size) = win inline;
+    void setVirtualRows(VirtualRowSource* source, float buffer, float topPadding, float bottomPadding);
+    void unmountAllRows();
+    void unmountRowSlot(int row);
+    void updateScrollThumb() = win 0x81420;
+    void updateSectionVisibility();
+    void updateVirtualRows();
     TodoReturn worldClipRect();
+
+    // origin is the top of the view; children use negative y going down
+    cocos2d::CCNode* m_content;
+    cocos2d::CCSize m_viewSize;
+    float m_contentHeight;
+    float m_offset;
+    // -1 = no touch
+    int m_touchID;
+    cocos2d::CCPoint m_touchStart;
+    cocos2d::CCPoint m_touchLast;
+    double m_lastMoveTime;
+    float m_velocity;
+    float m_wheelVelocity;
+    // the drag passed the 8px threshold
+    bool m_isDragging;
+    // set with m_isDragging; consumePendingCancel clears it so the owner cancels its menu touch
+    bool m_pendingCancel;
+    cocos2d::CCLayerColor* m_thumb;
+    cocos2d::ccColor4B m_thumbColor;
+    cocos2d::CCPoint m_thumbOffset;
+    bool m_draggingThumb;
+    float m_thumbDragStartY;
+    float m_thumbDragStartOffset;
+    // > 0 enables sections (children grouped into culled per-section nodes)
+    float m_sectionHeight;
+    // menus from createOwnedMenu get setTouchEnabled(false)
+    bool m_forwardedTouchesOnly;
+    std::map<int, cocos2d::CCNode*> m_sections;
+    std::map<int, cocos2d::CCMenu*> m_sectionMenus;
+    int m_sectionUnk1;
+    int m_sectionUnk2;
+    bool m_horizontal;
+    VirtualRowSource* m_rowSource;
+    // extra distance mounted beyond each edge of the view
+    float m_rowBuffer;
+    float m_rowTopPadding;
+    float m_rowBottomPadding;
+    std::vector<float> m_rowEdges;
+    std::map<int, std::pair<cocos2d::CCNode*, cocos2d::CCMenu*>> m_mountedRows;
+    int m_firstMountedRow;
+    int m_lastMountedRow;
+    bool m_updatingRows;
 }
 
 [[link(android)]]
@@ -23653,28 +23750,45 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
     UploadActionPopup* m_uploadPopup;
 }
 
-[[link(android)]]
+[[link(android), depends(TabbedPopupTab)]]
 class TabbedPopupLayer : SetupTriggerPopup {
-    virtual ~TabbedPopupLayer() = win 0x19cd00, imac 0x5fdda0, m1 0x543738, ios 0x1aa8e0;
+    virtual ~TabbedPopupLayer() = win inline, imac 0x5fdda0, m1 0x543738, ios 0x1aa8e0;
 
     virtual void pageChanged() = win 0x66d090, ios 0x1aa8ac;
     virtual void showTab(int tab) = win 0x66cc10, imac 0x63fc00, m1 0x57be84, ios 0x1aa59c;
 
-    void addCloseButton() = imac 0x219a00, m1 0x57b320;
-    TodoReturn addTab(std::string const&, char const*);
-    void beginTab(int tab) = imac 0x63f3e0, m1 0x57b68c;
-    TodoReturn createTabButtons();
-    TodoReturn createTabButtons(float, float, float, float, float, float);
-    TodoReturn ensurePopupPage(int, int);
-    TodoReturn getPopupPage(int, int);
-    TodoReturn offsetToNextPage(int);
-    void onTab(cocos2d::CCObject* sender);
-    void onTabPage(cocos2d::CCObject* sender);
-    TodoReturn pageForButtonCount(int, int);
-    TodoReturn refreshPageButtons();
-    TodoReturn refreshTabButtons(char const*, char const*);
+    void addCloseButton() = win 0x66c2a0, imac 0x219a00, m1 0x57b320;
+    int addTab(std::string const& name, char const* icon) = win 0x66c3a0;
+    void beginTab(int tab) = win inline, imac 0x63f3e0, m1 0x57b68c;
+    void createTabButtons() = win 0x66c5b0;
+    void createTabButtons(float, float, float, float, float, float) = win 0x66c650;
+    int ensurePopupPage(int tab, int page) = win inline;
+    int getPopupPage(int tab, int page) const = win inline;
+    void offsetToNextPage(int perPage) = win inline;
+    void onTab(cocos2d::CCObject* sender) = win 0x66cfa0;
+    void onTabPage(cocos2d::CCObject* sender) = win 0x66cfe0;
+    int pageForButtonCount(int count, int perPage) const = win inline;
+    void refreshPageButtons() = win 0x66ced0;
+    void refreshTabButtons(char const* selectedBG, char const* normalBG) = win inline;
 
-    PAD = win 0x50, android64 0x48, android32 0x28;
+    std::vector<TabbedPopupTab> m_tabs;
+    std::vector<std::vector<int>> m_tabPages;
+    int m_currentTab;
+    int m_buildTab;
+    CCMenuItemSpriteExtra* m_prevPageButton;
+    CCMenuItemSpriteExtra* m_nextPageButton;
+}
+
+[[link(android)]]
+class TabbedPopupTab {
+    std::string m_name;
+    std::string m_icon;
+    int m_groupID;
+    int m_page;
+    int m_pageCount;
+    int m_itemCount;
+    // the button that switches to this specific tab
+    CCMenuItemSpriteExtra* m_button;
 }
 
 [[link(android), depends(CCIndexPath)]]

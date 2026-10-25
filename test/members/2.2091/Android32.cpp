@@ -548,7 +548,7 @@ GEODE_SIZE_CHECK(ItemTriggerGameObject, 0x6a8);
 GEODE_SIZE_CHECK(KeybindCapturePopup, 0x310);
 GEODE_SIZE_CHECK(KeybindingsLayer, 0x324);
 GEODE_SIZE_CHECK(KeybindingsSettingsPopup, 0x230);
-GEODE_SIZE_CHECK(KeybindSet, 0x4);
+GEODE_SIZE_CHECK(KeybindSet, 0x14);
 GEODE_SIZE_CHECK(KeybindSource, 0x4);
 GEODE_SIZE_CHECK(KeyframeAnimTriggerObject, 0x688);
 GEODE_SIZE_CHECK(KeyframeGameObject, 0x6a0);

@@ -1,5 +1,6 @@
 #include <Geode/binding/LevelSearchLayer.hpp>
 #include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 
 LevelSearchLayer::LevelSearchLayer() {
     m_type = 0;
