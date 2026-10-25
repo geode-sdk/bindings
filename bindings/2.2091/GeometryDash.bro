@@ -11334,7 +11334,7 @@ class GJItemIcon : cocos2d::CCSprite {
 class GJKeybindManager : cocos2d::CCKeyboardActionManager {
     virtual ~GJKeybindManager() = win inline, ios 0x18b1d0;
 
-    static GJKeybindManager* sharedState() = ios 0x18b0b8 = win 0x388320;
+    static GJKeybindManager* sharedState() = win 0x388320, ios 0x18b0b8;
     static char const* actionToString(int action) = win 0x38a0e0;
     static std::string chordToString(int chord) = win 0x389bc0;
     static int encodeChord(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win inline;
