@@ -4906,7 +4906,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void moveObjectCall(EditCommand command) = win 0x1feb10, imac 0x60e410, m1 0x54d678;
     void moveObjectCall(cocos2d::CCObject* sender) = m1 0x82dfd0;
     TodoReturn nextDpadStep();
-    cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e7, imac 0x603db0;
+    cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e74, imac 0x603db0;
     void onAssignNewGroupID() = win 0x15c530, imac 0x1a140, m1 0x16df8, ios inline;
     void onColorFilter(cocos2d::CCObject* sender) = imac 0x10710, m1 0xece0;
     void onCopy(cocos2d::CCObject* sender);
@@ -16125,10 +16125,10 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn userFilterCSV();
 }
 
-[[link(android), missing(win)]]
+[[link(android), missing(win, ios)]]
 class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelegate {
     MoreOptionsLayer() = inline;
-    ~MoreOptionsLayer() = imac 0x87c6a0;
+    ~MoreOptionsLayer() = imac 0x87c6a0, m1 0x771c80;
 
     static MoreOptionsLayer* create() = win inline, m1 0x771d74, imac 0x87c820;
 
@@ -16139,14 +16139,14 @@ class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelega
 
     void addToggle(char const* label, char const* key, char const* description) = m1 0x773314;
     int countForPage(int page);
-    void goToPage(int page);
+    void goToPage(int page) = imac 0x87ea40, m1 0x773e68;
     void incrementCountForPage(int page) = win inline;
     const char* infoKey(int index) = win inline, ios inline;
     cocos2d::CCLayer* layerForPage(int page);
     const char* layerKey(int page) = win inline, imac 0x87fc80, m1 0x775064, ios inline;
     cocos2d::CCPoint nextPosition(int page) = win inline, m1 0x77432c;
     const char* objectKey(int page) = win inline, imac 0x87fc60, m1 0x77503c, ios inline;
-    cocos2d::CCArray* objectsForPage(int page);
+    cocos2d::CCArray* objectsForPage(int page) = imac 0x87e440, m1 0x773898;
     void offsetToNextPage() = win inline, imac 0x87e400, m1 0x773860, ios inline;
     void onClose(cocos2d::CCObject* sender) = imac 0x87e960, m1 0x773da4;
     void onFMODDebug(cocos2d::CCObject* sender) = imac 0x87e680, m1 0x773ab4;
