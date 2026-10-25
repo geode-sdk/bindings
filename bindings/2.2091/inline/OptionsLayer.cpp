@@ -1,4 +1,5 @@
 #include <Geode/binding/OptionsLayer.hpp>
+#include <Geode/binding/VideoOptionsLayer.hpp>
 #include <Geode/binding/GameManager.hpp>
 
 OptionsLayer::OptionsLayer() {

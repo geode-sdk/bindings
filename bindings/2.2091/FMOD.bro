@@ -1,3 +1,5 @@
+#import ios <Geode/fmod/fmod.hpp>
+
 [[link(win, android, mac)]]
 class FMOD::Channel {
     FMOD_RESULT getChannelGroup(FMOD::ChannelGroup**) = ios 0x57b650;

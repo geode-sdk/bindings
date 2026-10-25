@@ -1,5 +1,5 @@
 #include <Geode/mapping/CCTransitionPageTurn.hpp>
-
+#include <Geode/mapping/CCPageTurn3D.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

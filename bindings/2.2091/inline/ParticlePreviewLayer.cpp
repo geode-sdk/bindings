@@ -4,6 +4,10 @@
 #include <Geode/cocos/platform/win32/CCEGLView.h>
 #endif
 
+#ifdef GEODE_IS_IOS
+#include <Geode/cocos/platform/ios/CCEGLView.h>
+#endif
+
 ParticlePreviewLayer::ParticlePreviewLayer() {
     m_particleMode = 0;
     m_particleSystem = nullptr;

@@ -1,4 +1,6 @@
 #include <Geode/mapping/CCFadeOutTRTiles.hpp>
+#include <Geode/mapping/CCGridBase.hpp>
+#include <Geode/mapping/CCPoint.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

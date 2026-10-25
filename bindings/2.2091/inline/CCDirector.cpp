@@ -1,6 +1,9 @@
 #include <Geode/mapping/CCDirector.hpp>
+#include <Geode/mapping/CCTime.hpp>
+#include <Geode/mapping/CCEGLView.hpp>
 #include <Geode/utils/cocos.hpp>
-
+#include <Geode/cocos/kazmath/include/kazmath/kazmath.h>
+#include <Geode/cocos/kazmath/include/kazmath/GL/matrix.h>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

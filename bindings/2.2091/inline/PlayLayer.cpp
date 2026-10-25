@@ -11,6 +11,7 @@
 #include <Geode/binding/GameObject.hpp>
 #include <Geode/binding/LabelGameObject.hpp>
 #include <Geode/binding/PlayerObject.hpp>
+#include <Geode/binding/GameStatsManager.hpp>
 
 PlayLayer* PlayLayer::get() {
     return GameManager::get()->m_playLayer;
