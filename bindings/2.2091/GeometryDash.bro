@@ -10715,7 +10715,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn dtExpandOrder(std::string const&, std::vector<int>&);
     TodoReturn dtParseGlobalBlob(std::string const&, std::vector<int>&);
     TodoReturn dtSetCells(std::vector<int> const&);
-    TodoReturn duplicate();
+    GJGameLevel* duplicate() = win 0x263800;
     TodoReturn ensureSessionLog();
     TodoReturn generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
