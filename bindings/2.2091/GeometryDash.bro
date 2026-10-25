@@ -11333,28 +11333,28 @@ class GJItemIcon : cocos2d::CCSprite {
 class GJKeybindManager : cocos2d::CCKeyboardActionManager {
     virtual ~GJKeybindManager() = win inline, ios 0x18b1d0;
 
-    static GJKeybindManager* sharedState() = win 0x388320, ios 0x18b0b8;
-    static char const* actionToString(int action) = win 0x38a0e0;
-    static std::string chordToString(int chord) = win 0x389bc0;
-    static int encodeChord(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win inline;
-    static bool groupsConflict(int groupA, int groupB) = win inline;
+    static GJKeybindManager* sharedState() = win 0x388320, ios 0x18b0b8, m1 0x552854, imac 0x613e60;
+    static char const* actionToString(int action) = win 0x38a0e0, imac 0x617450, m1 0x5556b4;
+    static std::string chordToString(int chord) = win 0x389bc0, imac 0x617360, m1 0x5555cc;
+    static int encodeChord(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win inline, m1 0x553534;
+    static bool groupsConflict(int groupA, int groupB) = win inline, m1 0x553b44, imac 0x615690;
     static bool handleGlobalAudioAction(int action, bool down) = win 0x388cc0;
-    static bool isControllerChord(int chord) = win inline;
+    static bool isControllerChord(int chord) = win inline, m1 0x555188, imac 0x616dc0;
     static bool isExclusive(int action) = win inline;
-    static bool isKnownAction(int action) = win inline;
-    static bool isMovementAction(int action) = win inline;
+    static bool isKnownAction(int action) = win inline, imac 0x618d10, m1 0x556d2c;
+    static bool isMovementAction(int action) = win inline, m1 0x553fd4, imac 0x615b50;
 
     virtual std::vector<int> actionsForKey(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win 0x388550, ios 0x18b900;
     virtual bool handleGlobalAction(int action, bool down) = win 0x388310, ios 0x18e250;
 
-    std::vector<int> actionsForChord(int chord) = win 0x388920;
+    std::vector<int> actionsForChord(int chord) = win 0x388920, m1 0x5538c0, imac 0x615310;
     void applyImportBlob(std::string const& blob, int version) = win inline;
-    void applyMovementOverride(KeybindSource* keyboardSource, KeybindSource* controllerSource) = win 0x388f40;
+    void applyMovementOverride(KeybindSource* keyboardSource, KeybindSource* controllerSource) = win 0x388f40, imac 0x615b70, m1 0x553fe8;
     void applyNewDefaults(int version) = win 0x38bc80;
-    void bindChord(int chord, int action) = win 0x388ed0;
-    void bindKey(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift, int action) = win inline;
+    void bindChord(int chord, int action) = win 0x388ed0, imac 0x6159e0, m1 0x553e40;
+    void bindKey(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift, int action) = win inline, imac 0x6180c0;
     std::string buildBindsBlob() = win 0x38b380;
-    std::vector<int> chordsForAction(int action) = win 0x388790;
+    std::vector<int> chordsForAction(int action) = win 0x388790, m1 0x553658, imac 0x614fb0;
     void clearMovementOverride() = win 0x3896b0;
     void dataLoaded(DS_Dictionary* dict) = win inline;
     void encodeDataTo(DS_Dictionary* dict) = win inline;
@@ -11362,12 +11362,12 @@ class GJKeybindManager : cocos2d::CCKeyboardActionManager {
     int exportBindingsToFile() = win 0x38bfb0;
     void firstSetup() = win inline;
     std::vector<int> globalChordsForAction(int action) = win inline;
-    int groupForAction(int action) = win inline;
+    int groupForAction(int action) = win inline, m1 0x553b28, imac 0x615670;
     bool init() = win inline;
     void loadDefaults() = win 0x38ab70;
-    void parseBindsBlob(std::string const& blob, bool apply, int* outApplied, int* outUnknown) = win 0x38b840;
+    void parseBindsBlob(std::string const& blob, bool apply, int* outApplied, int* outUnknown) = win 0x38b840, imac 0x6187d0, m1 0x5568d8;
     int parseImportFile(std::string& outBlob, int& outApplied, int& outUnknown, int& outExtra) = win 0x38c590;
-    void unbindChord(int chord, int action) = win 0x389a30;
+    void unbindChord(int chord, int action) = win 0x389a30, m1 0x55519c, imac 0x616de0;
 
     std::unordered_map<int, std::set<int>> m_chordToActions;
     std::unordered_map<int, std::set<int>> m_actionToChords;
@@ -13921,7 +13921,7 @@ class KeybindCapturePopup : SetupTriggerPopup, InputCaptureDelegate {
 
 [[link(android), depends(KeybindSettingsEntry)]]
 class KeybindingsLayer : TabbedPopupLayer {
-    virtual ~KeybindingsLayer() = win 0x3d53a0, ios 0x235a0;
+    virtual ~KeybindingsLayer() = win 0x3d53a0, ios 0x235a0, m1 0x5f5e48, imac 0x6e12c0;
 
     static KeybindingsLayer* create(GameSettingsLayer* settings) = win 0x3d5650, imac 0x6e1530, m1 0x5f6028;
 
@@ -13945,12 +13945,12 @@ class KeybindingsLayer : TabbedPopupLayer {
     // returns `count` {actionId, tabIndex} pairs
     static int const* getActionTable(int& count) = win inline;
     bool init(GameSettingsLayer* settings) = win 0x3d57f0, imac 0x6e16a0, m1 0x5f614c;
-    void onAddBinding(cocos2d::CCObject* sender) = win 0x3d7d50;
+    void onAddBinding(cocos2d::CCObject* sender) = win 0x3d7d50, imac 0x6e3a30, m1 0x5f7fa8;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x3d8440, imac 0x6e1e80, m1 0x5f689c;
     void onEditBinding(cocos2d::CCObject* sender) = win 0x3d7cb0, imac 0x6e3a80, m1 0x5f8004;
     void onSettings(cocos2d::CCObject* sender) = win 0x3d8230, imac 0x6e1ee0, m1 0x5f6910;
     static cocos2d::CCSprite* buildControllerGlyph(int key, bool& isPlayer2) = win 0x3d6350, imac 0x6e20c0, m1 0x5f6b70;
-    static void tintGlyph(cocos2d::CCSprite* sprite, cocos2d::ccColor3B color) = win inline;
+    static void tintGlyph(cocos2d::CCSprite* sprite, cocos2d::ccColor3B color) = win inline, imac 0x6e24c0, m1 0x5f6e10;
 
     GameSettingsLayer* m_settingsLayer;
     KeybindSource* m_keybindSource;
@@ -14315,7 +14315,7 @@ class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
 
 [[link(android), depends(KeybindSettingsEntry)]]
 class LevelBindingsLayer : KeybindingsLayer {
-    virtual ~LevelBindingsLayer() = win 0x3d53a0, ios 0x4efc44;
+    virtual ~LevelBindingsLayer() = win 0x3d53a0, ios 0x4efc44, imac 0x91ffb0, m1 0x804224;
 
     static LevelBindingsLayer* create(KeybindSet* keybindSet, bool controller) = win 0x44c580;
 
@@ -23757,9 +23757,9 @@ class TabbedPopupLayer : SetupTriggerPopup {
     virtual void showTab(int tab) = win 0x66cc10, imac 0x63fc00, m1 0x57be84, ios 0x1aa59c;
 
     void addCloseButton() = win 0x66c2a0, imac 0x219a00, m1 0x57b320;
-    int addTab(std::string const& name, char const* icon) = win 0x66c3a0;
+    int addTab(std::string const& name, char const* icon) = win 0x66c3a0, m1 0x57b41c, imac 0x63f120;
     void beginTab(int tab) = win inline, imac 0x63f3e0, m1 0x57b68c;
-    void createTabButtons() = win 0x66c5b0;
+    void createTabButtons() = win 0x66c5b0, m1 0x57b904, imac 0x63f670;
     void createTabButtons(float, float, float, float, float, float) = win 0x66c650;
     int ensurePopupPage(int tab, int page) = win inline;
     int getPopupPage(int tab, int page) const = win inline;
