@@ -3815,7 +3815,7 @@ class DeathMarkerSettingsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     void onFrequencySlider(cocos2d::CCObject* sender);
     void onTimescaleSlider(cocos2d::CCObject* sender);
     void onToggleAnimation(cocos2d::CCObject* sender);
-    void onToggleColor(cocos2d::CCObject* sender);
+    void onToggleColor(cocos2d::CCObject* sender) = win 0x11dd20;
     void onToggleDisabled(cocos2d::CCObject* sender);
     void onToggleGlobal(cocos2d::CCObject* sender);
     void onToggleLabels(cocos2d::CCObject* sender);
@@ -4373,7 +4373,6 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void onControls(cocos2d::CCObject* sender) = win 0x1824b0, imac 0x27ea30, m1 0x22426c;
     void onCopyWColor(cocos2d::CCObject* sender);
     void onCreateExtras(cocos2d::CCObject* sender);
-    void onCreateLoop(cocos2d::CCObject* sender) = win 0x1b9360;
     void onCreateTemplate(cocos2d::CCObject* sender) = win inline, imac inline, m1 inline, ios inline;
     void onDeathStats(cocos2d::CCObject* sender) = win 0x183050, imac 0x27e840, m1 0x22406c;
     void onDownloadAudio(cocos2d::CCObject* sender) = win 0x183210, imac 0x27e870, m1 0x224098;
@@ -4418,7 +4417,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
     void togglePreviewParticles(cocos2d::CCObject* sender) = imac 0x27eff0, m1 0x224830;
     void togglePreviewShaders(cocos2d::CCObject* sender) = imac 0x27f020, m1 0x224860;
     void toggleRecordOrder(cocos2d::CCObject* sender) = win inline, imac 0x27f270, m1 0x224a70, ios inline;
-    void toggleSelectFilter(cocos2d::CCObject* sender) = win 0x11dd20, imac 0x27f250, m1 0x224a54;
+    void toggleSelectFilter(cocos2d::CCObject* sender) = imac 0x27f250, m1 0x224a54;
     void toggleShowObjectInfo(cocos2d::CCObject* sender) = imac 0x27f210, m1 0x224a20;
     void uncheckAllPortals(cocos2d::CCObject* sender);
     void updateSongButton();
@@ -6653,7 +6652,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     TodoReturn doSearch(float);
     TodoReturn exitGlobalMode();
     bool init(bool sent) = win 0x20f420, imac 0x86ef70, m1 0x765698;
-    bool isCorrect(char const* key) = win 0x477000;
+    bool isCorrect(char const* key) = win 0x2121b0;
     void loadPage(int page);
     void onClearSearch(cocos2d::CCObject* sender);
     void onClose(cocos2d::CCObject* sender);
@@ -7085,7 +7084,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn hasNewGauntlets();
     bool hasRatedDemon(int id) = win 0x2348a0;
     bool hasRatedLevelStars(int id) = win 0x2347c0;
-    bool hasReportedLevel(int id) = win 0x2e3630;
+    bool hasReportedLevel(int id);
     void invalidateMessages(bool sent, bool reload) = win 0x23c1a0;
     void invalidateRequests(bool sent, bool reload);
     void invalidateUserList(UserListType type, bool reload) = win inline, imac 0x576120, m1 0x4c870c;
@@ -16136,7 +16135,7 @@ class MoreOptionsLayer : FLAlertLayer, GooglePlayDelegate, GJDropDownLayerDelega
     virtual bool init() = win inline, imac 0x87ca40, m1 0x771f04;
     virtual void keyBackClicked();
     virtual void googlePlaySignedIn() = imac 0x87fd10, m1 0x7750c0;
-    virtual void dropDownLayerWillClose(GJDropDownLayer* layer) = win 0x2c7e10, imac 0x73bc30, m1 0x649674;
+    virtual void dropDownLayerWillClose(GJDropDownLayer* layer) = imac 0x73bc30, m1 0x649674;
 
     void addToggle(char const* label, char const* key, char const* description) = m1 0x773314;
     int countForPage(int page);
@@ -16991,7 +16990,7 @@ class NumberInputLayer : FLAlertLayer {
     void deleteLast() = win inline, imac 0x2922b0;
     void inputNumber(int num) = win inline;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x4357b0, m1 0x3abbd8;
-    void onDone(cocos2d::CCObject* sender) = ios 0x11e128;
+    void onDone(cocos2d::CCObject* sender) = win 0x4a1b10, ios 0x11e128;
     void onNumber(cocos2d::CCObject* sender) = win 0x4a1820, imac 0x895b60;
     void updateNumberState() = win 0x4a1990;
 
@@ -22222,7 +22221,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void onChangelog(cocos2d::CCObject* sender);
     void onClearSearch(cocos2d::CCObject* sender);
     void onClearSearchText(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender) = win 0x4a1b10;
+    void onClose(cocos2d::CCObject* sender) = win 0x620830;
     void onCredits(cocos2d::CCObject* sender) = win 0x1b07f0, m1 0x3a603c;
     void onExitFolder(cocos2d::CCObject* sender);
     void onExportFile(cocos2d::CCObject* sender);
