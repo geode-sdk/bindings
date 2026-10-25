@@ -118,6 +118,7 @@ GEODE_SIZE_CHECK(Dropdown, 0x230);
 GEODE_SIZE_CHECK(DropdownListPopup, 0x3b8);
 GEODE_SIZE_CHECK(DungeonBarsSprite, 0x148);
 GEODE_SIZE_CHECK(EasingSelectPopup, 0x428);
+GEODE_SIZE_CHECK(EditButtonBar, 0x170);
 GEODE_SIZE_CHECK(EditGameObjectPopup, 0x3e8);
 GEODE_SIZE_CHECK(EditLevelLayer, 0x258);
 GEODE_SIZE_CHECK(EditorCommandsPopup, 0x480);
