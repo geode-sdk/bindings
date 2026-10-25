@@ -1348,6 +1348,7 @@ class cocos2d::CCEGLViewProtocol {
     char const* getViewName() = imac 0x5110a0, m1 0x46c3d4, ios inline;
     cocos2d::CCRect const& getViewPortRect() const = imac 0x511850, m1 0x46cba4, ios 0x382438;
     void updateDesignResolutionSize() = imac 0x511890, m1 0x46cbc0, ios inline;
+    void handleRightClick(float, float) = m1 0x46cb44, imac 0x5117e0;
 }
 
 [[link(win, android)]]

@@ -8937,10 +8937,10 @@ class GameToolbox {
     static bool saveStringToFile(std::string const&, std::string const&, bool, bool) = win inline, ios inline;
     static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = ios 0x4827c;
     static void setOnOffSprite(cocos2d::CCNode*, bool);
-    static TodoReturn showFolderDialog(char const*, std::string&);
-    static TodoReturn showOpenFileDialog(char const*, char const*, std::string const&, std::string&);
-    static TodoReturn showOpenFileDialogMulti(char const*, char const*, std::vector<std::string>&);
-    static TodoReturn showSaveFileDialog(char const*, char const*, char const*, std::string const&, std::string&);
+    static bool showFolderDialog(char const*, std::string&) = m1 0x453654, imac 0x4f6390;
+    static bool showOpenFileDialog(char const*, char const*, std::string const&, std::string&) = m1 0x4535c4, imac 0x4f6300;
+    static bool showOpenFileDialogMulti(char const*, char const*, std::vector<std::string>&) = m1 0x4535ec, imac 0x4f6330;
+    static bool showSaveFileDialog(char const*, char const*, char const*, std::string const&, std::string&) = m1 0x4535a0, imac 0x4f62d0;
     static TodoReturn singleLineSnippet(std::string const&, unsigned long);
     static TodoReturn stringEndsWith(std::string const&, std::string const&);
     static std::string stringFromHSV(cocos2d::ccHSVValue value, char const* separator) = win 0x6f940, imac 0x4ece30, m1 0x44b088;
@@ -14394,7 +14394,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onHelp(cocos2d::CCObject* sender) = win inline, imac 0x4873e0, m1 0x3f0ca8, ios inline;
     void onImportLevels(cocos2d::CCObject* sender);
     void onInfo(cocos2d::CCObject* sender) = win 0x3e6da0, imac 0x483a40, m1 0x3ed800;
-    void onLevelsImported(cocos2d::CCObject* sender);
+    void onLevelsImported(cocos2d::CCObject* sender) = m1 0x3ed08c;
     void onLocalMode(cocos2d::CCObject* sender) = win 0x3e8220, imac 0x483330, m1 0x3ed094;
     void onMyOnlineLevels(cocos2d::CCObject* sender) = win 0x3e8420, imac 0x240e20, m1 0x3ecd78;
     void onNew(cocos2d::CCObject* sender) = win 0x3e7d60, imac 0x482f20, m1 0x3ecc7c;
@@ -14418,7 +14418,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void setupLevelBrowser(cocos2d::CCArray* items) = win 0x3e5440, imac 0x485cc0, m1 0x3ef800;
     void show() = win 0x3eb640, imac 0x488c10, m1 0x3f24d8;
     TodoReturn showExportResult(int);
-    TodoReturn showImportResult(int);
+    void showImportResult(int) = m1 0x3f12e0;
     TodoReturn updateBackgroundColor();
     void updateLevelsLabel() = win inline, imac 0x486fe0, m1 0x3f0930;
     void updatePageLabel() = win 0x3e6a20, imac 0x482850, m1 0x3ec5e0;
@@ -15763,7 +15763,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     virtual ~LocalLevelManager() = win 0x46ab30, ios 0x25e2f0;
 
     static LocalLevelManager* get() = inline;
-    static LocalLevelManager* sharedState() = win 0x46ac00, ios 0x25e134;
+    static LocalLevelManager* sharedState() = win 0x46ac00, ios 0x25e134, m1 0x5e1588;
 
     virtual bool init() = win 0x46ad90, imac 0x6c98a0, m1 0x5e1874, ios 0x25e308;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x46b790, m1 0x7ee990, ios 0x25f00c;
@@ -15781,8 +15781,8 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     cocos2d::CCArray* getCreatedLists(int folder) = win inline, imac 0x6cac90, m1 0x5e29e8;
     cocos2d::CCDictionary* getLevelsInNameGroups() = win inline, imac 0x573a30, m1 0x5e1d9c;
     std::string getMainLevelString(int id) = win 0x46b070, imac 0x6c9cf0, m1 0x5e1c18;
-    TodoReturn importLevelsFromFile(int);
-    TodoReturn importLevelsFromPaths(std::vector<std::string> const&, int);
+    int importLevelsFromFile(int) = m1 0x5e62a4;
+    int importLevelsFromPaths(std::vector<std::string> const&, int) = m1 0x5e6390;
     void markLevelsAsUnmodified() = win inline, imac 0x6caa90;
     TodoReturn moveLevelToBottom(GJGameLevel*);
     void moveLevelToTop(GJGameLevel* level) = win inline, imac 0x6ca870, m1 0x5e25ec;
@@ -22226,7 +22226,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void onCredits(cocos2d::CCObject* sender) = win 0x1b07f0, m1 0x3a603c;
     void onExitFolder(cocos2d::CCObject* sender);
     void onExportFile(cocos2d::CCObject* sender);
-    void onImportFile(cocos2d::CCObject* sender);
+    void onImportFile(cocos2d::CCObject* sender) = m1 0x3a64cc;
     void onImportSetup(cocos2d::CCObject* sender);
     void onMoveToFolder(cocos2d::CCObject* sender);
     void onNewFolder(cocos2d::CCObject* sender);
