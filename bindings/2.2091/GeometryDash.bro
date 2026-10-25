@@ -10446,7 +10446,7 @@ class GJEditorSoundConfig : cocos2d::CCNode {
     TodoReturn showSoundInfo();
 }
 
-[[link(android), depends(DynamicMoveCalculation, PulseEffectAction, TouchToggleAction, CollisionTriggerAction, ToggleTriggerAction, SpawnTriggerAction, GroupCommandObject2, OpacityEffectAction, CountTriggerAction, TimerItem, TimerTriggerAction)]]
+[[link(android), depends(DynamicMoveCalculation, PulseEffectAction, TouchToggleAction, CollisionTriggerAction, ToggleTriggerAction, SpawnTriggerAction, GroupCommandObject2, OpacityEffectAction, CountTriggerAction, TimerItem, TimerTriggerAction, EffectManagerState)]]
 class GJEffectManager : cocos2d::CCNode {
     virtual ~GJEffectManager() = win 0x364750, imac 0x2c6d00, m1 0x2668d4, ios 0xef30;
 
