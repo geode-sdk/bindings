@@ -1278,6 +1278,8 @@ class cocos2d::CCEGLView {
     virtual void setMultiTouchMask(bool) = imac 0x502690, m1 0x45e468;
 
     [[missing(android, mac, ios)]]
+    void clearQueuedInput();
+    [[missing(android, mac, ios)]]
     bool initGlew();
     [[missing(android, mac, ios)]]
     void onGLFWCharCallback(GLFWwindow* window, unsigned int entered);
