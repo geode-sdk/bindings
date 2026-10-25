@@ -1,4 +1,5 @@
 #include <Geode/binding/GJLevelList.hpp>
+#include <Geode/binding/GJGameLevel.hpp>
 #include <Geode/binding/GameToolbox.hpp>
 
 GJLevelList::GJLevelList() {
