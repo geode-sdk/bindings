@@ -64,7 +64,7 @@ bool GManager::tryLoadData(DS_Dictionary* dict, std::string const& filename) {
 #if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 GManager::GManager() {
     m_setup = false;
-    m_saved = false;
+    m_isSaving = false;
     m_quickSave = false;
 }
 #endif
