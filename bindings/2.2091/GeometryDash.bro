@@ -663,13 +663,13 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     static AppDelegate* get() = win inline, imac 0x73b8f0, m1 0x649374, ios inline;
 
     virtual bool applicationDidFinishLaunching() = win 0x981f0, imac 0x73b760, m1 0x6491e8, ios 0x306f5c;
-    virtual void applicationDidEnterBackground() = ios 0x307190;
+    virtual void applicationDidEnterBackground() = win 0x98630, ios 0x307190;
     virtual void applicationWillEnterForeground() = win 0x98810, imac 0x73bb40, m1 0x649588, ios 0x3072b4;
     virtual void applicationWillBecomeActive() = win 0x98560, imac 0x73b920, m1 0x649398, ios 0x3070dc;
     virtual void applicationWillResignActive() = win 0x985b0, imac 0x73b940, ios 0x3070f4;
-    virtual void trySaveGame(bool force) = win 0x98ad0, imac 0x73bc70, m1 0x64969c, ios 0x3073b0;
-    virtual void willSwitchToScene(cocos2d::CCScene* scene) = ios 0x3074bc;
-    virtual void applicationWillTerminate() = ios 0x30715c;
+    virtual void trySaveGame(bool force) = win 0x98ad0, imac 0x73bc70, m1 0x64969c;
+    virtual void willSwitchToScene(cocos2d::CCScene* scene) = win 0x98cc0, ios 0x3074bc;
+    virtual void applicationWillTerminate() = win 0x985c0, ios 0x30715c;
 
     float bgScale() = win inline, imac 0x73b8d0, ios 0x3070a4;
     void checkSound() = win inline;
@@ -677,7 +677,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     void loadingIsFinished() = win inline, ios 0x3070bc;
     bool musicTest() = win 0x9999999, m1 0xbb6c;
     void pauseGame() = win 0x989f0;
-    void pauseSound();
+    void pauseSound() = win inline;
     void platformShutdown() = imac 0x73b650, m1 0x6490f0, ios inline;
     void resumeSound() = win 0x9999999;
     void setIdleTimerDisabled(bool disabled) = win inline, m1 0x421e10, ios inline;
@@ -6379,7 +6379,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void resumeAudio() = win inline;
     void resumeEffect(unsigned int effect) = win inline, imac 0xc3e20, ios inline;
     void resumeMusic(int musicChannel) = win inline, imac 0x3cecc0, m1 0x351cb4;
-    TodoReturn resumeSuspendedAudio();
+    TodoReturn resumeSuspendedAudio() = win 0x5e030;
     void saveAudioState(FMODAudioState& state) = win 0x5e6d0, imac 0x3ccec0, m1 0x3506ec;
     void setBackgroundMusicVolume(float volume) = win inline, imac 0x3d3ee0, m1 0x356010;
     void setChannelPitch(int id, AudioTargetType type, float pitch) = win 0x61d70, imac 0x3d08a0, m1 0x353270;
@@ -8934,7 +8934,7 @@ class GameToolbox {
     static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, imac 0x4eacd0, m1 0x448fb0;
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x70ad0, imac 0x4ef2c0, m1 0x44d364;
     static bool saveStringToFile(std::string const&, std::string const&, bool, bool) = win inline, ios inline;
-    static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = ios 0x4827c;
+    static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = win inline, ios 0x4827c;
     static void setOnOffSprite(cocos2d::CCNode*, bool);
     static bool showFolderDialog(char const*, std::string&) = m1 0x453654, imac 0x4f6390;
     static bool showOpenFileDialog(char const*, char const*, std::string const&, std::string&) = m1 0x4535c4, imac 0x4f6300;
@@ -19094,7 +19094,7 @@ class ReportPopupConfig {
 class ReportQueuePopup : PagedListPopup, CommentAdminDelegate, DropdownDelegate {
     virtual ~ReportQueuePopup() = win 0xc74e0, ios 0x522fc4;
 
-    static ReportQueuePopup* create();
+    static ReportQueuePopup* create() = win inline;
 
     virtual bool init() = win 0xc7640, ios 0x5230c8;
     virtual void rebuildContent() = win 0x9999999, ios 0x524660;

@@ -28,6 +28,10 @@ void AppDelegate::loadingIsFinished() {
     PlatformToolbox::reportLoadingFinished();
 }
 
+void AppDelegate::pauseSound() {
+    FMODAudioEngine::sharedEngine()->stop();
+}
+
 void AppDelegate::showLoadingCircle(bool unk1, bool unk2, bool unk3) {}
 #endif
 
