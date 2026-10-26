@@ -3249,10 +3249,10 @@ class CurrencySprite : CCSpritePlus {
 
 [[link(android)]]
 class CustomizeObjectLayer : FLAlertLayer, HSVWidgetDelegate, ColorSelectDelegate, ColorSetupDelegate {
-    virtual ~CustomizeObjectLayer() = win 0x13f100, ios 0x55c60;
+    virtual ~CustomizeObjectLayer() = win 0x13f100, m1 0x18b844, imac 0x1d7290, ios 0x55c60;
 
     // CustomizeObjectLayer() = ios 0x577b8;
-    static CustomizeObjectLayer* create(GameObject* object, cocos2d::CCArray* objects) = win 0x13f280, m1 0x1fe080;
+    static CustomizeObjectLayer* create(GameObject* object, cocos2d::CCArray* objects) = win 0x13f280, m1 0x1fe080, imac 0x1d7430;
 
     virtual void keyBackClicked() = win 0x144280, imac 0x1dbab0, m1 0x18fbe0, ios 0x594ac;
     virtual void textInputOpened(CCTextInputNode* node) = win 0x1437b0, imac 0x1d9b80, m1 0x18ddd4, ios 0x591c8;
@@ -21132,7 +21132,7 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
     SetupOptionsTriggerPopup() = inline;
     virtual ~SetupOptionsTriggerPopup() = win 0x60ac50;
 
-    static SetupOptionsTriggerPopup* create(GameOptionsTrigger* object, cocos2d::CCArray* objects) = win inline, imac 0x1d7430, m1 0x18b938;
+    static SetupOptionsTriggerPopup* create(GameOptionsTrigger* object, cocos2d::CCArray* objects) = win inline, m1 0x18b938;
 
     virtual void onCustomToggleTriggerValue(cocos2d::CCObject* sender) = win 0x5cc230, imac 0x6bafc0, m1 0x5d41d0, ios 0x494c00;
 
@@ -23872,7 +23872,7 @@ class TextGameObject : GameObject {
     virtual int getTextKerning() = win 0x2887b0, imac 0x6a3e10, m1 0x5bf1a4, ios 0x3029b0;
 
     bool init(cocos2d::CCTexture2D* texture) = win inline, imac 0x6a2ee0, m1 0x5be454, ios inline;
-    void updateTextObject(std::string text, bool defaultFont);
+    void updateTextObject(std::string text, bool defaultFont) = win 0x2a4530, imac 0x6a2f20, m1 0x5be490;
 
     // property 31
     std::string m_text;
