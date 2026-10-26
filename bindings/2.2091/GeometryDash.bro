@@ -7518,10 +7518,10 @@ class GameManager : GManager {
     /// @returns A true or false value for whether initialization was successful or not.
     virtual bool init() = win 0x276310, imac 0x35fe70, m1 0x4dd4a0, ios 0x3aea60;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x285900, ios 0x3ba3ec;
+    virtual void didEncodeForSave() = win 0x2868a0, ios 0x3baecc;
+    virtual void saveFinished(bool) = win 0x286940, ios 0x3baf30;
     virtual void dataLoaded(DS_Dictionary* dict) = win 0x2826b0, ios 0x3b869c;
     virtual void firstLoad() = win 0x284d80, imac 0x374800, m1 0x300c5c, ios 0x3b9e88;
-    virtual TodoReturn didEncodeForSave() = win 0x2868a0, ios 0x3baecc;
-    virtual TodoReturn saveFinished(bool) = win 0x286940, ios 0x3baf30;
 
     TodoReturn accountPostsRestricted();
 
@@ -13255,10 +13255,10 @@ class GManager : cocos2d::CCNode {
     virtual bool init() = win 0x77340, imac 0x4a4e80, m1 0x40c028, ios 0x2e78ac;
     virtual void setup() = win 0x77360, imac 0x4a4ea0, m1 0x40c040, ios 0x2e78c4;
     virtual void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0x4a5540, m1 0x40c6d0, ios 0x2e7ec4;
+    virtual void didEncodeForSave() = win 0x3f5c0, imac 0x4a5550, ios 0x2e7ec8;
+    virtual void saveFinished(bool) = win 0x3f5c0, imac 0x4a5560, ios 0x2e7ecc;
     virtual void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x4a5bf0, m1 0x40cd80, ios 0x2e8300;
     virtual void firstLoad() = win inline, imac 0x4a5c00, m1 0x40cd84, ios 0x2e8304;
-    virtual TodoReturn didEncodeForSave() = win 0x3f5c0, imac 0x4a5550, ios 0x2e7ec8;
-    virtual TodoReturn saveFinished(bool) = win 0x3f5c0, imac 0x4a5560, ios 0x2e7ecc;
 
     std::string getCompressedSaveString() = win 0x77380, imac 0x4a4f70, m1 0x40c0dc;
     std::string getSaveString() = win inline, imac 0x4a4ee0, m1 0x40c058;
@@ -15767,10 +15767,10 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
 
     virtual bool init() = win 0x46ad90, imac 0x6c98a0, m1 0x5e1874, ios 0x25e308;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x46b790, m1 0x7ee990, ios 0x25f00c;
+    virtual void didEncodeForSave() = win 0x46b840, ios 0x25f07c;
+    virtual void saveFinished(bool) = win 0x46df80, ios 0x260870;
     virtual void dataLoaded(DS_Dictionary* dict) = win 0x46bb90, imac 0x6cb0c0, ios 0x25f250;
     virtual void firstLoad() = win 0x46b700, m1 0x5e2a78, ios 0x25ef44;
-    virtual TodoReturn didEncodeForSave() = win 0x46b840, ios 0x25f07c;
-    virtual TodoReturn saveFinished(bool) = win 0x46df80, ios 0x260870;
     virtual void filesPicked(std::vector<std::string> const&) = win 0x46f110, ios 0x261898;
     virtual void fileShareFinished(bool) = win 0x46f680, ios 0x261a20;
 
