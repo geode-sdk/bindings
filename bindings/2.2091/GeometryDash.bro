@@ -4260,7 +4260,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onExportLevel(cocos2d::CCObject* sender) = win 0x17cc10;
     void onGuidelines(cocos2d::CCObject* sender);
     void onHelp(cocos2d::CCObject* sender) = m1 0x77c974;
-    void onLevelInfo(cocos2d::CCObject* sender);
+    void onLevelInfo(cocos2d::CCObject* sender) = win 0x179cd0;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x179b40, imac 0x1df860, m1 0x193548;
     void onLevelOptions(cocos2d::CCObject* sender) = imac 0x1dfc20, m1 0x193924;
     TodoReturn onMoveToBottom();
@@ -10730,7 +10730,7 @@ class GJGameLevel : cocos2d::CCNode {
     int getNormalPercent() = win inline, imac 0x53f070;
     TodoReturn getSessionBest();
     std::string getSongName() = win 0x264890, imac 0x5843e0, m1 0x4d5aa8;
-    std::string getUnpackedLevelDescription() = m1 0x4dca80;
+    std::string getUnpackedLevelDescription() = win inline, m1 0x4dca80;
     void handleStatsConflict(GJGameLevel* level) = win 0x26a650, imac 0x551010, m1 0x4a6700;
     bool isPlatformer() = win inline, imac 0x548810, m1 0x49e964;
     TodoReturn levelHasDiamonds();
@@ -11911,7 +11911,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
     virtual ~GJPathsLayer() = win 0x3921c0, ios 0x45ebcc;
 
     static GJPathsLayer* create() = imac 0x2e8d00, m1 0x27f1ac;
-    static std::string nameForPath(int path) = imac 0x2e8b20, m1 0x27ef9c;
+    static std::string nameForPath(int path) = win 0x3925b0, imac 0x2e8b20, m1 0x27ef9c;
 
     virtual bool init() = win 0x392930, imac 0x2e8f00, m1 0x27f320, ios 0x45ecc4;
     virtual void onExit() = win 0x392e70, imac 0x2e9620, m1 0x27fa40, ios 0x45f33c;
@@ -13266,7 +13266,7 @@ class GManager : cocos2d::CCNode {
     void loadDataFromFile(std::string const& filename) = win 0x77850, imac 0x4a5570, m1 0x40c6dc;
     void loadFromCompressedString(std::string& str) = win 0x77450, imac 0x6c080, m1 0x40c208;
     void loadFromString(std::string& str) = win inline, imac 0x4a4fe0, m1 0x40c15c;
-    void save(bool) = win 0x9999999, imac 0x4a5110, m1 0x40c2ac;
+    void save(bool) = win 0x77530, imac 0x4a5110, m1 0x40c2ac;
     void saveData(DS_Dictionary* dict, std::string filename) = win inline;
     void saveGMTo(std::string, bool) = win inline;
     bool tryLoadData(DS_Dictionary* dict, std::string const& filename) = win inline, imac 0x4a57e0, m1 0x40c998;
@@ -14935,7 +14935,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onFavorite(cocos2d::CCObject* sender) = win 0x41eab0, imac 0x2aefe0, m1 0x250354;
     void onGarage(cocos2d::CCObject* sender) = win 0x41ee90, imac 0x2aef90, m1 0x250308;
     void onInfo(cocos2d::CCObject* sender) = win 0x422640, imac 0x2ae540;
-    void onLevelInfo(cocos2d::CCObject* sender);
+    void onLevelInfo(cocos2d::CCObject* sender) = win 0x424690;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x41eb50, imac 0x2ae570, m1 0x24f8d8;
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x424530, imac 0x2af220, m1 0x250590;
     void onLike(cocos2d::CCObject* sender) = win 0x423f90, imac 0x2ae5e0, m1 0x24f93c;
@@ -15557,7 +15557,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 class LevelStatsInfoPopup : FLAlertLayer {
     virtual ~LevelStatsInfoPopup() = win 0x5a3f0, ios 0x1c65ac;
 
-    static LevelStatsInfoPopup* create(GJGameLevel*);
+    static LevelStatsInfoPopup* create(GJGameLevel*) = win 0x4267b0;
 
     virtual void keyBackClicked() = win 0x4281a0, ios 0x4f3b50;
 
@@ -15574,7 +15574,7 @@ class LevelStatsInfoPopup : FLAlertLayer {
 [[link(android)]]
 class LevelTools {
     static int artistForAudio(int id) = win 0x463f70, imac 0x4fd830, m1 0x459fd4;
-    static std::string base64DecodeString(std::string str) = win inline, imac 0x500ba0, m1 0x45cc70;
+    static std::string base64DecodeString(std::string str) = win 0x4680a0, imac 0x500ba0, m1 0x45cc70;
     static std::string base64EncodeString(std::string str) = win inline, imac 0x500b50, m1 0x45cc3c;
     static cocos2d::CCDictionary* createStarPackDict() = win inline, imac 0x500bf0, m1 0x45cca4;
     static std::string fbURLForArtist(int id) = win 0x465f90, imac 0x4feb80, m1 0x45af7c;
@@ -23986,7 +23986,7 @@ class TextArea : cocos2d::CCSprite {
     virtual ~TextArea() = win 0x89db0, imac 0x30cb30, m1 0x29fbb8, ios 0x11aef4;
 
     // TextArea();
-    static TextArea* create(std::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor, int) = win 0x89e30, imac 0x30cc20, m1 0x29fc98, ios 0x11af0c;
+    static TextArea* create(std::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor, int maxEmoji) = win 0x89e30, imac 0x30cc20, m1 0x29fc98, ios 0x11af0c;
 
     virtual void update(float dt) = win 0x8a940, imac 0x30dcb0, m1 0x2a0c34, ios 0x11b978;
     virtual void draw() = win inline, imac 0x30dca0, m1 0x2a0c30, ios 0x11b974;

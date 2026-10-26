@@ -61,6 +61,13 @@ void GJGameLevel::setStars(int stars) {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+std::string GJGameLevel::getUnpackedLevelDescription() {
+    if (m_levelDesc.empty()) {
+        return "";
+    }
+    return LevelTools::base64DecodeString(m_levelDesc);
+}
+
 std::string GJGameLevel::generateSettingsString() { return ""; }
 
 void GJGameLevel::levelWasSubmitted() {
