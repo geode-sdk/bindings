@@ -4253,7 +4253,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onBack(cocos2d::CCObject* sender) = win 0x17cdf0, imac 0x1dfaa0, m1 0x1937b8;
     void onClone() = win inline, imac 0x4006e0;
     void onCreatorSettings(cocos2d::CCObject* sender);
-    void onDeathTracker(cocos2d::CCObject* sender);
+    void onDeathTracker(cocos2d::CCObject* sender) = win 0x179d00;
     void onDelete() = win inline, imac 0x1e0c20, m1 0x194894;
     void onEdit(cocos2d::CCObject* sender) = win 0x17b800, imac 0x1de4a0, m1 0x1921a8;
     void onEmotes(cocos2d::CCObject* sender);
@@ -5705,7 +5705,7 @@ class EndLevelLayer : GJDropDownLayer {
     const char* getEndText() = win 0x208110, imac 0x4bad90, m1 0x41f008;
     void goEdit() = win 0x206640, imac 0x4bc130, m1 0x420388;
     bool init(PlayLayer* playLayer) = win inline, imac 0x4b8bb0, m1 0x41d1c4, ios inline;
-    void onDeathTracker(cocos2d::CCObject* sender);
+    void onDeathTracker(cocos2d::CCObject* sender) = win 0x205c40;
     void onEdit(cocos2d::CCObject* sender) = win 0x206540, imac 0x4949f0, m1 0x41f304;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x4bc120, m1 0x420384, ios inline;
     void onHideLayer(cocos2d::CCObject* sender) = win 0x206710, imac 0x4bb2d0, m1 0x41f5ac;
@@ -7249,7 +7249,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn replaceFollowedUsers(std::string const&);
     TodoReturn replayPlatformerSaveJournal();
     TodoReturn reportContent(int, int, int, std::vector<int> const&, long long);
-    void reportLevel(int id) = win 0x260f70, imac 0x581320, m1 0x4d2fc8;
+    void reportLevel(int id) = imac 0x581320, m1 0x4d2fc8;
     TodoReturn requestThreadMembers(int);
     bool requestUserAccess() = win 0x25b6a0, imac 0x575610, m1 0x4d12cc;
     TodoReturn resetAccountCaches();
@@ -15355,7 +15355,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     cocos2d::ccColor3B getColorValue(int page1, int page2, float progress) = win inline, imac 0x421dc0, m1 0x3999bc;
     bool init(int page) = win 0x4416a0, imac 0x41f370, m1 0x39707c;
     void onBack(cocos2d::CCObject* sender) = win 0x442e20, imac 0x420250, m1 0x397e08;
-    void onDeathTracker(cocos2d::CCObject* sender);
+    void onDeathTracker(cocos2d::CCObject* sender) = win 0x443010;
     void onDownload(cocos2d::CCObject* sender) = win 0x442550, imac 0x4201a0, m1 0x397d50;
     void onInfo(cocos2d::CCObject* sender) = win 0x442fa0, imac 0x4202a0;
     void onNext(cocos2d::CCObject* sender) = win 0x442d20, imac 0x420220, m1 0x397dd8;
@@ -21552,8 +21552,8 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
     void updateChanceLabel(bool decimals) = win 0x5d5b50;
     void updateTargetID() = imac 0x6ba100, m1 0x5d34d0;
     void updateTargetID2() = imac 0x6ba1a0, m1 0x5d3554;
-    void updateTextInputLabel();
-    void updateTextInputLabel2();
+    void updateTextInputLabel() = win 0x5d6060;
+    void updateTextInputLabel2() = win 0x5d6220;
 
     CCTextInputNode* m_chanceInput;
     Slider* m_chanceSlider;
