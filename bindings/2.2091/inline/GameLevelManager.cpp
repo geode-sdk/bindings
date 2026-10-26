@@ -789,7 +789,7 @@ void GameLevelManager::verifyLevelState(GJGameLevel* level) {
 GameLevelManager* GameLevelManager::sharedState() {
     auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x90bfb0);
     if(!ref) {
-        ref = new GameLevelManager(geode::ZeroConstructor);
+        ref = new GameLevelManager();
         ref->init();
     }
     return ref;
