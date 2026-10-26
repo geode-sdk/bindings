@@ -18,5 +18,5 @@ void KeybindSource::bindChord(int chord, int action) {}
 
 void KeybindSource::unbindChord(int chord, int action) {}
 
-bool KeybindSource::isLevelSet() { return false; }
+bool KeybindSource::isLevelSet() const { return false; }
 

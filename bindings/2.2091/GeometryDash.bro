@@ -14023,7 +14023,7 @@ class KeybindSet : KeybindSource {
     virtual std::vector<int> actionsForChord(int chord) = win 0x4494d0;
     virtual void bindChord(int chord, int action) = win 0x4495e0;
     virtual void unbindChord(int chord, int action) = win 0x449620;
-    virtual bool isLevelSet() = win 0x3ff70;
+    virtual bool isLevelSet() const = win 0x3ff70;
 
     std::map<int, std::set<int>> m_actionToChords;
     bool m_dirty;
@@ -14038,7 +14038,7 @@ class KeybindSource {
     virtual std::vector<int> actionsForChord(int chord) = inline;
     virtual void bindChord(int chord, int action) = inline;
     virtual void unbindChord(int chord, int action) = inline;
-    virtual bool isLevelSet() = inline;
+    virtual bool isLevelSet() const = inline;
 }
 
 [[link(android)]]
