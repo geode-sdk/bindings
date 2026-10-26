@@ -4294,22 +4294,22 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 class EditorBuildStats {
     void fromString(std::string const&);
     void noteAction();
-    std::string toString();
+    std::string toString() const;
 
-    int m_unk00;
-    int m_unk04;
-    int m_unk08;
-    int m_unk0C;
-    int m_unk10;
-    int m_unk14;
-    int m_unk18;
-    float m_unk1C;
-    int m_timeThing;
-    int m_unk24;
-    int m_unk28;
-    uint64_t m_unk30;
-    int m_unk38;
-    int m_unk3C;
+    int m_objectsCreated;
+    int m_objectsPasted;
+    int m_objectsDeleted;
+    int m_transformActions;
+    int m_editPopupsOpened;
+    int m_undoRedo;
+    int m_playtestCount;
+    float m_playtestTime;
+    int m_editorFrames;
+    int m_editorInputs;
+    int m_editorSessions;
+    uint64_t m_firstOpen;
+    int m_originalLevelID;
+    int m_originalLevelVersion;
     std::array<int, 8> m_actionGaps;
     int m_lastActionTime;
 }
@@ -14410,7 +14410,7 @@ class LevelDownloadDelegate {
     virtual void levelDownloadFailed(int response) = inline;
 }
 
-[[link(android), depends(cocos2d::ParticleStruct)]]
+[[link(android), depends(cocos2d::ParticleStruct, EditorBuildStats, TraceDrawObject, TraceGroupOutline)]]
 class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     LevelEditorLayer() = win 0x3ec2f0, imac 0xde790, m1 0xc4258;
     virtual ~LevelEditorLayer() = win 0x3ecff0, imac 0xa92f0, m1 0x9836c, ios 0x3f65a4;
@@ -14639,7 +14639,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* m_cameraGuideTriggers;
     cocos2d::CCArray* m_particleObjects;
     cocos2d::CCArray* m_keyframeObjects;
-    cocos2d::CCArray* m_spawnOrderTriggers;
+    cocos2d::CCDictionary* m_spawnOrderTriggers;
     cocos2d::CCArray* m_playtestTriggers;
     GameObject* m_copyStateObject;
     ParticleGameObject* m_particleObject;
@@ -14687,6 +14687,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     std::vector<bool> m_sortedGroups;
     std::vector<bool> m_toggledGroups;
     std::vector<bool> m_lockedLayers;
+    int m_lockedLayerCount;
     std::vector<cocos2d::CCPoint> m_savedPositions;
     cocos2d::CCPoint m_previewPosition;
     std::vector<bool> m_blendingColors;
@@ -14694,6 +14695,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     std::vector<unsigned char> m_toggledGroupStates;
     std::vector<float> m_spawnGroupDelays;
     double m_sessionTime;
+    int m_lastFrameCount;
+    EditorBuildStats m_buildStats;
     bool m_removingAll;
     EffectGameObject* m_playbackObject;
     EffectGameObject* m_traceInObject;
@@ -14702,15 +14705,21 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     int m_duplicateKeyframeGroup;
     std::vector<DelayedSpawnNode*> m_delayedSpawnNodes;
     std::vector<DelayedSpawnNode*> m_delayedSpawnNodes2;
-    std::unordered_map<int, int> m_unk3ae0;
+    std::unordered_map<int, int> m_lastGroupRemap;
     bool m_playbackActive;
     bool m_activateAudioTriggers;
-    bool m_unk3b22;
-    int m_unk3b24;
-    int m_unk3b28;
-    int m_unk3b2c;
-    std::vector<int> m_unk3b30;
-    std::vector<int> m_unk3b48;
+    bool m_groupsChanged;
+    int m_groupsVersion;
+    int m_traceInVersion;
+    int m_traceOutVersion;
+    EffectGameObject* m_lastTraceInObject;
+    EffectGameObject* m_lastTraceOutObject;
+    std::vector<TraceDrawObject> m_traceInLines;
+    std::vector<TraceDrawObject> m_traceOutLines;
+    std::unordered_map<int, TraceGroupOutline> m_traceGroupOutlines;
+    float m_autoSaveTimer;
+    std::string m_lastAutoSaveString;
+    std::string m_lastBackupString;
 }
 
 [[link(android), missing(win)]]
