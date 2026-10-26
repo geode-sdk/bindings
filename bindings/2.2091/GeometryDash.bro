@@ -16620,10 +16620,10 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     bool isResourceSFX(int id) = win inline, m1 0x58a9a8, ios inline;
     bool isResourceSong(int id) = win inline, m1 0x58a474, ios inline;
     bool isRunningActionForSongID(int id) = win 0x482870, imac 0x64b650, m1 0x5864f4;
-    bool isSFXDownloaded(int id);
+    bool isSFXDownloaded(int id) = win 0x4848e0, imac 0x64fd60, m1 0x58a73c;
     bool isSFXFavorite(int);
     bool isSFXLibraryLoaded() = win inline, imac 0x660b80, m1 0x599fdc, ios inline;
-    bool isSongDownloaded(int id) = win 0x4845a0;
+    bool isSongDownloaded(int id) = win 0x4845a0, imac 0x64e570, m1 0x5890c4;
     TodoReturn joinIDString(std::vector<int> const&);
     void limitDownloadedSongs() = win inline, imac 0x64e880, m1 0x589380;
     TodoReturn linkRowString(GJLinkObject const&);
