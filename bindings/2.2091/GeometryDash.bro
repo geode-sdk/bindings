@@ -4271,7 +4271,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onTest(cocos2d::CCObject* sender) = win inline, ios inline;
     void onUpdateDescription(cocos2d::CCObject* sender) = imac 0x1df5e0, m1 0x19447c;
     void playStep2() = win 0x17b440, m1 0x194330;
-    void playStep3();
+    void playStep3() = win 0x17b520;
     void setupLevelInfo() = win 0x179dc0, imac 0x1dec70, m1 0x1928d4;
     void updateDescText(char const* text) = win inline, imac 0x1de490, m1 0x1921a4, ios inline;
     void verifyLevelName() = win 0x17cfa0, imac 0x1e02e0, m1 0x193ffc;
@@ -7492,7 +7492,7 @@ class GameLevelManager : cocos2d::CCNode {
 class GameLevelOptionsLayer : GJOptionsLayer, FLAlertLayerProtocol {
     virtual ~GameLevelOptionsLayer() = win 0x399cc0, ios 0x37f710;
 
-    static GameLevelOptionsLayer* create(GJGameLevel* level);
+    static GameLevelOptionsLayer* create(GJGameLevel* level) = win 0x3aa2b0;
 
     virtual void setupOptions() = win 0x3aa5f0, m1 0x7f137c, ios 0x37f9ac;
     virtual void didToggle(int tag) = win 0x3aa720, imac 0x908c90, ios 0x37fac0;
@@ -15209,7 +15209,7 @@ class LevelPage : cocos2d::CCLayer, DialogDelegate {
     void onSecretDoor(cocos2d::CCObject* sender) = win 0x446250, imac 0x424630, m1 0x39bf5c;
     void onTheTower(cocos2d::CCObject* sender) = win 0x445240, imac 0x423a70, m1 0x39b408, ios 0x48540c;
     void playCoinEffect() = win 0x445b50, imac 0x4241e0, m1 0x39bb24;
-    void playStep2();
+    void playStep2() = win 0x447100;
     void playStep3() = win 0x4471e0;
     void updateDynamicPage(GJGameLevel* level) = win 0x443df0, imac 0x420450, m1 0x398008;
 
@@ -15566,17 +15566,17 @@ class LevelSettingsObject : cocos2d::CCNode {
 class LevelStatsInfoPopup : FLAlertLayer {
     virtual ~LevelStatsInfoPopup() = win 0x5a3f0, ios 0x1c65ac;
 
-    static LevelStatsInfoPopup* create(GJGameLevel*);
+    static LevelStatsInfoPopup* create(GJGameLevel*) = win 0x4267b0;
 
     virtual void keyBackClicked() = win 0x4281a0, ios 0x4f3b50;
 
     std::string buildInfoText() = win 0x427250;
     TodoReturn buildStatsText();
     TodoReturn decodeProgress(std::string const&);
-    bool init(GJGameLevel*);
-    void onClose(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
+    bool init(GJGameLevel*) = win 0x426920;
+    void onClose(cocos2d::CCObject* sender) = win 0x428190;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x428170;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x428180;
     TodoReturn updatePage();
 }
 
