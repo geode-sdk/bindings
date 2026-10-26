@@ -6,8 +6,9 @@
 
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;
-    m_guidelinesOffButton = nullptr;
-    m_guidelinesOnButton = nullptr;
+    // commented out for 2.209 since these members were removed(?)
+    // m_guidelinesOffButton = nullptr;
+    // m_guidelinesOnButton = nullptr;
     m_editorLayer = nullptr;
 }
 
@@ -59,6 +60,13 @@ void EditorPauseLayer::togglePlaytestMusic(cocos2d::CCObject* sender) {
 
 void EditorPauseLayer::toggleRecordOrder(cocos2d::CCObject* sender) {
     GameManager::sharedState()->toggleGameVariable(GameVar::RecordOrder);
+}
+
+void EditorPauseLayer::saveLevel() {
+    LocalLevelManager::sharedState()->waitForSave(30.0);
+    if(auto layer = m_editorLayer) {
+        layer->saveLevel();
+    }
 }
 #endif
 

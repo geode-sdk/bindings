@@ -2457,7 +2457,7 @@ class GameLevelManager : cocos2d::CCNode {
 	TodoReturn createAndGetLevels(gd::string);
 	TodoReturn createAndGetMapPacks(gd::string, bool);
 	TodoReturn createAndGetScores(gd::string, GJScoreType);
-	GJGameLevel* createNewLevel() = win 0x56590;
+	GJGameLevel* createNewLevel() = win 0x56590, imac 0x177d40;
 	TodoReturn createPageInfo(int, int, int);
 	void dataLoaded(DS_Dictionary*);
 	void deleteComment(int, long) = win 0x5e0f0, imac 0x185d80;
@@ -4646,7 +4646,7 @@ class LevelBrowserLayer : cocos2d::CCLayer, LevelManagerDelegate, FLAlertLayerPr
 	static LevelBrowserLayer* create(GJSearchObject*) = win 0x894f0;
 	static cocos2d::CCScene* scene(GJSearchObject*) = win 0x894b0, imac 0x884b0;
 
-	bool init(GJSearchObject*) = win 0x89590;
+	bool init(GJSearchObject*) = win 0x89590, imac 0x88760;
 	bool isCorrect(char const*);
 	void loadPage(GJSearchObject*) = win 0x8a000;
 	void onBack(cocos2d::CCObject* sender);

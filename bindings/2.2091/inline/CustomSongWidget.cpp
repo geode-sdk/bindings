@@ -82,13 +82,6 @@ void CustomSongWidget::downloadFailed() {
     this->updateSongInfo();
 }
 
-void CustomSongWidget::startMonitorDownload() {
-    this->updateProgressBar(0);
-    m_sliderGroove->setVisible(true);
-    this->unschedule(schedule_selector(CustomSongWidget::updateDownloadProgress));
-    this->schedule(schedule_selector(CustomSongWidget::updateDownloadProgress), 1.f / 30.f);
-}
-
 void CustomSongWidget::updateLengthMod(float lengthMod) {
     this->m_lengthMod = lengthMod;
     this->updateSongInfo();

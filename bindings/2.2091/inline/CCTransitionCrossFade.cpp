@@ -8,6 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+#include <Geode/cocos/misc_nodes/CCRenderTexture.h>
+
 using namespace cocos2d;
 const unsigned int kSceneFade = 0xFADEFADE;
 

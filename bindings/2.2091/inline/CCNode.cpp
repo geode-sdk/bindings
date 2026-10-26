@@ -1,4 +1,6 @@
 #include <Geode/mapping/CCNode.hpp>
+#include <Geode/mapping/CCComponent.hpp>
+#include <Geode/mapping/CCComponentContainer.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

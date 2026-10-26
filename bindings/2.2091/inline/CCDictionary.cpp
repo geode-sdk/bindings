@@ -1,4 +1,6 @@
 #include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCInteger.hpp>
+#include <Geode/mapping/CCFileUtils.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

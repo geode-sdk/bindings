@@ -8,6 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+#include <Geode/cocos/effects/CCGrid.h>
+
 using namespace cocos2d;
 
 void CCStopGrid::startWithTarget(CCNode *pTarget)

@@ -1,4 +1,5 @@
 #include <Geode/mapping/CCProgressFromTo.hpp>
+#include <Geode/mapping/CCProgressTimer.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

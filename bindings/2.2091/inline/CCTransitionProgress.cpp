@@ -1,4 +1,8 @@
 #include <Geode/mapping/CCTransitionProgress.hpp>
+#include <Geode/mapping/CCProgressFromTo.hpp>
+#include <Geode/mapping/CCProgressTimer.hpp>
+// how the fucking fuck is this not already included
+#include <Geode/mapping/CCNode.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

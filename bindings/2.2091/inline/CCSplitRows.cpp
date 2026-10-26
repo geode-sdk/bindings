@@ -1,5 +1,7 @@
 #include <Geode/mapping/CCSplitRows.hpp>
-
+#include <Geode/mapping/CCPoint.hpp>
+#include <Geode/mapping/CCZone.hpp>
+#include <Geode/mapping/CCDirector.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

@@ -8,6 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+#include <Geode/cocos/textures/CCTextureCache.h>
+
 cocos2d::CCTextureAtlas* cocos2d::CCTextureAtlas::create(const char* file, unsigned int capacity) {
     auto ret = new CCTextureAtlas();
     if (ret->initWithFile(file, capacity)) {

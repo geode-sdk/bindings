@@ -1,5 +1,5 @@
 #include <Geode/mapping/CCFadeOutUpTiles.hpp>
-
+#include <Geode/mapping/CCGridBase.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

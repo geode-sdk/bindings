@@ -7,7 +7,7 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-cocos2d::CCArray* OptionsScrollLayer::getRelevantObjects(cocos2d::CCArray* objects) {
+/*cocos2d::CCArray* OptionsScrollLayer::getRelevantObjects(cocos2d::CCArray* objects) {
     auto relevantObjects = cocos2d::CCArray::create();
     for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(objects)) {
         if (object->m_count > m_minCount || object->m_enabled) {
@@ -15,7 +15,7 @@ cocos2d::CCArray* OptionsScrollLayer::getRelevantObjects(cocos2d::CCArray* objec
         }
     }
     return relevantObjects;
-}
+}*/
 
 // TODO: 2.209
 bool OptionsScrollLayer::init(cocos2d::CCArray* objects, bool recreate, std::string p0, MusicSearchResult* p1) {

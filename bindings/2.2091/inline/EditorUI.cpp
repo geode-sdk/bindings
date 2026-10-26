@@ -11,11 +11,18 @@
 #include <Geode/binding/GameToolbox.hpp>
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/binding/ObjectToolbox.hpp>
+#include <Geode/binding/ColorSelectLiveOverlay.hpp>
+#include <Geode/binding/HSVLiveOverlay.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
     if (!lel) return nullptr;
     return lel->m_editorUI;
+}
+
+void EditorUI::zoomGameLayer(bool zoomingIn) {
+    auto scale = m_editorLayer->m_objectLayer->getScale();
+    this->updateZoom(std::clamp(zoomingIn ? scale + .1f : scale - .1f, .1f, 4.f));
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -203,11 +210,6 @@ void EditorUI::updateGroupIDBtn2() {
 void EditorUI::updateSpecialUIElements() {
     this->updateObjectInfoLabel();
     this->updateScaleControl();
-}
-
-void EditorUI::zoomGameLayer(bool zoomingIn) {
-    auto scale = m_editorLayer->m_objectLayer->getScale();
-    this->updateZoom(std::clamp(zoomingIn ? scale + .1f : scale - .1f, .1f, 4.f));
 }
 #endif
 

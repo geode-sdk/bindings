@@ -79,6 +79,10 @@ inline bool is_cocos_or_fmod_class(std::string const& str) {
     return is_cocos_class(str) || is_fmod_class(str);
 }
 
+inline bool is_kazmath_func(std::string const& str) {
+    return str.starts_with("km");
+}
+
 enum class BindStatus {
     Binded,
     Inlined,

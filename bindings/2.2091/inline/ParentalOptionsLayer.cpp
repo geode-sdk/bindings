@@ -30,16 +30,6 @@ ParentalOptionsLayer::~ParentalOptionsLayer() {
     CC_SAFE_RELEASE(m_values);
 }
 
-ParentalOptionsLayer* ParentalOptionsLayer::create() {
-    auto ret = new ParentalOptionsLayer();
-    if (ret->init()) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
-
 void ParentalOptionsLayer::incrementCountForPage(int page) {
     m_values->setObject(cocos2d::CCString::createWithFormat("%i", this->countForPage(page) + 1), this->pageKey(page));
 }

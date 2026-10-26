@@ -1,4 +1,12 @@
 #include <Geode/mapping/CCDataVisitor.hpp>
+#include <Geode/mapping/CCBool.hpp>
+#include <Geode/mapping/CCInteger.hpp>
+#include <Geode/mapping/CCFloat.hpp>
+#include <Geode/mapping/CCDouble.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCSet.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

@@ -8,6 +8,9 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+#include <Geode/cocos/robtop/content/CCContentManager.h>
+#include <Geode/cocos/textures/CCTextureCache.h>
+
 void cocos2d::CCSpriteFrameCache::addSpriteFrame(cocos2d::CCSpriteFrame* pobFrame, char const* pszFrameName) {
     m_pSpriteFrames->setObject(pobFrame, pszFrameName);
 }

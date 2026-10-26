@@ -5,6 +5,7 @@
 #include <Geode/binding/GameObject.hpp>
 #include <Geode/binding/HardStreak.hpp>
 #include <Geode/binding/PlayerObject.hpp>
+#include <Geode/binding/GJActionManager.hpp>
 #include <Geode/cocos/misc_nodes/CCMotionStreak.h>
 
 #if defined(GEODE_IS_ANDROID)

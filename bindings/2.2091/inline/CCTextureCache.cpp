@@ -8,6 +8,8 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+#include <Geode/cocos/platform/CCFileUtils.h>
+
 const char* cocos2d::CCTextureCache::description() {
     return CCString::createWithFormat("<CCTextureCache | Number of textures = %u>", m_pTextures->count())->getCString();
 }
