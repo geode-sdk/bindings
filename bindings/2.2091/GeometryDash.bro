@@ -17489,14 +17489,14 @@ class PlatformerControlsPopup : SetupTriggerPopup, UploadActionDelegate, UploadP
     void ensureCustomDraft() = win 0x450470;
     bool init(GJGameLevel*, bool) = win 0x44f100;
     void onApplyCreator(cocos2d::CCObject* sender) = win 0x4511f0;
-    void onController(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender);
-    void onKeyboard(cocos2d::CCObject* sender);
-    void onToggleSource(cocos2d::CCObject* sender);
-    void onToggleUpload(cocos2d::CCObject* sender);
-    void onTouch(cocos2d::CCObject* sender);
-    void onUpdate(cocos2d::CCObject* sender);
-    void onUpload(cocos2d::CCObject* sender);
+    void onController(cocos2d::CCObject* sender) = win 0x451870;
+    void onInfo(cocos2d::CCObject* sender) = win 0x451600;
+    void onKeyboard(cocos2d::CCObject* sender) = win 0x451810;
+    void onToggleSource(cocos2d::CCObject* sender) = win 0x451730;
+    void onToggleUpload(cocos2d::CCObject* sender) = win 0x4517c0;
+    void onTouch(cocos2d::CCObject* sender) = win 0x4518c0;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x451390;
+    void onUpload(cocos2d::CCObject* sender) = win 0x451920;
     TodoReturn presentClasses();
     TodoReturn reapplyRuntime();
     TodoReturn refreshApplyVisible();
@@ -24510,7 +24510,7 @@ class TOSPopup : FLAlertLayer {
 class TouchControlEditLayer : SetupTriggerPopup {
     virtual ~TouchControlEditLayer() = win 0x452460, ios 0x52cd1c;
 
-    static TouchControlEditLayer* create(bool, LevelControlConfig*);
+    static TouchControlEditLayer* create(bool, LevelControlConfig*) = win 0x452140;
 
     virtual void onEnter() = win 0x4566d0, ios 0x52e7cc;
     virtual void onExit() = win 0x4567c0, ios 0x52e8bc;
@@ -24533,11 +24533,11 @@ class TouchControlEditLayer : SetupTriggerPopup {
     TodoReturn globalDpad(int);
     TodoReturn hideSiblings();
     bool init(bool, LevelControlConfig*);
-    void onApplyGlobal(cocos2d::CCObject* sender);
-    void onCopy(cocos2d::CCObject* sender);
-    void onOK(cocos2d::CCObject* sender);
-    void onPaste(cocos2d::CCObject* sender);
-    void onReset(cocos2d::CCObject* sender);
+    void onApplyGlobal(cocos2d::CCObject* sender) = win 0x456590;
+    void onCopy(cocos2d::CCObject* sender) = win 0x4559f0;
+    void onOK(cocos2d::CCObject* sender) = win 0x454f30;
+    void onPaste(cocos2d::CCObject* sender) = win 0x455c80;
+    void onReset(cocos2d::CCObject* sender) = win 0x454fa0;
     void onSlots(cocos2d::CCObject* sender) = win 0x4563a0;
     TodoReturn refreshHud();
     TodoReturn reloadNodes();
