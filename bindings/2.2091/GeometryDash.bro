@@ -14338,10 +14338,10 @@ class LevelBindingsLayer : KeybindingsLayer {
     virtual bool crossCheckGlobalConflicts() = win 0x3ff70, imac 0x2bf0, m1 0x290c;
 
     bool init(KeybindSet* keybindSet, bool controller) = win inline;
-    void onApplyGlobal(cocos2d::CCObject* sender);
-    void onClear(cocos2d::CCObject* sender);
+    void onApplyGlobal(cocos2d::CCObject* sender) = win 0x44cf50;
+    void onClear(cocos2d::CCObject* sender) = win 0x44d090;
     void onCopy(cocos2d::CCObject* sender) = win 0x44c960;
-    void onPaste(cocos2d::CCObject* sender);
+    void onPaste(cocos2d::CCObject* sender) = win 0x44cbc0;
     void onReset(cocos2d::CCObject* sender) = win 0x44ce30;
 
     KeybindSet* m_keybindSet;
@@ -17475,7 +17475,7 @@ class PlatformDownloadDelegate {
 class PlatformerControlsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopupDelegate, LevelControlsDelegate, FLAlertLayerProtocol {
     virtual ~PlatformerControlsPopup() = win 0x4502c0, ios 0x51cc5c;
 
-    static PlatformerControlsPopup* create(GJGameLevel*, bool);
+    static PlatformerControlsPopup* create(GJGameLevel*, bool) = win 0x450060;
 
     virtual void update(float dt) = win 0x4511a0, ios 0x51d144;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x451ce0, ios 0x51d2e8;
@@ -23205,9 +23205,9 @@ class SongCell : TableViewCell {
 class SongInfoLayer : FLAlertLayer {
     virtual ~SongInfoLayer() = win 0x633980, ios 0x44d8f8;
 
-    static SongInfoLayer* create(SongInfoObject*);
+    static SongInfoLayer* create(SongInfoObject*) = win 0x6346c0;
     static SongInfoLayer* create(int artistID) = win 0x634300, m1 0x259a90;
-    static SongInfoLayer* create(std::string, std::string, std::vector<GJLinkObject>, std::vector<GJLinkObject>, int, std::string, int);
+    static SongInfoLayer* create(std::string, std::string, std::vector<GJLinkObject>, std::vector<GJLinkObject>, int, std::string, int) = win 0x634980;
 
     virtual void keyBackClicked() = win 0x99f90, imac 0x6d99a0, m1 0x5eff74, ios 0x44fc40;
 
@@ -23215,14 +23215,14 @@ class SongInfoLayer : FLAlertLayer {
     bool init(std::string, std::string, std::vector<GJLinkObject>, std::vector<GJLinkObject>, int, std::string, int) = win 0x634c10, imac 0x653bf0;
     void onBPM(cocos2d::CCObject* sender) = win 0x636750, imac 0x6d91d0, m1 0x5ef6d0;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x6d91a0, m1 0x5ef694;
-    void onCopySongID(cocos2d::CCObject* sender);
+    void onCopySongID(cocos2d::CCObject* sender) = win 0x635b70;
     void onDownload(cocos2d::CCObject* sender);
     void onFB(cocos2d::CCObject* sender) = imac 0x2f7eb0, m1 0x1c2554;
-    void onLink(cocos2d::CCObject* sender);
+    void onLink(cocos2d::CCObject* sender) = win 0x6366e0;
     void onMenuMusic(cocos2d::CCObject* sender) = win 0x636230, imac 0x6d9500, m1 0x5ef9e0;
     void onNG(cocos2d::CCObject* sender);
     void onPracticeMusic(cocos2d::CCObject* sender) = win 0x636300, imac 0x6d9590, m1 0x5efa88;
-    void onSongUsage(cocos2d::CCObject* sender);
+    void onSongUsage(cocos2d::CCObject* sender) = win 0x636800;
     void onYT(cocos2d::CCObject* sender);
     void showCustomMusicUnlockInfo() = win 0x635c60, imac 0x6d9710, m1 0x5efc40;
 
@@ -23411,7 +23411,7 @@ class SongUsageDelegate {
 class SongUsagePopup : FLAlertLayer, SongUsageDelegate {
     virtual ~SongUsagePopup() = win 0x101c00, ios 0x52a020;
 
-    static SongUsagePopup* create(int, std::string const&, std::string const&);
+    static SongUsagePopup* create(int, std::string const&, std::string const&) = win 0x101d30;
 
     virtual void keyBackClicked() = win 0x99f90, ios 0x52b494;
     virtual void songUsageFinished(int, std::string) = win 0x102570, ios 0x52a670;
@@ -23419,9 +23419,9 @@ class SongUsagePopup : FLAlertLayer, SongUsageDelegate {
 
     TodoReturn buildStatRow(std::string const*, std::string const*, int, float);
     TodoReturn buildUsageGrid(std::vector<SongUsageEntry> const&);
-    bool init(int, std::string const&, std::string const&);
+    bool init(int, std::string const&, std::string const&) = win 0x101e80;
     TodoReturn layoutPopup(float);
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     TodoReturn showStatus(char const*);
 }
 
