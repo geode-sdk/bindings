@@ -69,8 +69,6 @@ float PlayLayer::getRelativeModNew(cocos2d::CCPoint position, float mod, float o
     return cocos2d::clampf(result / mod, 0.f, 1.f);
 }
 
-void PlayLayer::playReplay(std::string inputs) {}
-
 void PlayLayer::removeFromGroupOld(GameObject* object) {
     for (int i = 0; i < object->m_groupCount; i++) {
         this->getGroup(object->getGroupID(i))->removeObject(object);

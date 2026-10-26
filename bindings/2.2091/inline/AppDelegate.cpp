@@ -18,7 +18,7 @@ float AppDelegate::bgScale() {
 }
 
 void AppDelegate::checkSound() {
-    if (this->musicTest()) FMODAudioEngine::sharedEngine()->pauseAllMusic(true);
+    FMODAudioEngine::sharedEngine()->resumeAudio();
 }
 
 void AppDelegate::hideLoadingCircle() {}
@@ -26,6 +26,10 @@ void AppDelegate::hideLoadingCircle() {}
 void AppDelegate::loadingIsFinished() {
     m_loadingFinished = true;
     PlatformToolbox::reportLoadingFinished();
+}
+
+void AppDelegate::pauseSound() {
+    FMODAudioEngine::sharedEngine()->stop();
 }
 
 void AppDelegate::showLoadingCircle(bool unk1, bool unk2, bool unk3) {}

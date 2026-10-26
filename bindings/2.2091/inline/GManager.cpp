@@ -1,5 +1,5 @@
 #include <Geode/binding/GManager.hpp>
-
+#include <thread>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GManager::load() {
@@ -30,17 +30,30 @@ void GManager::loadFromString(std::string& str) {
     delete dict;
 }
 
-void GManager::saveData(DS_Dictionary* dict, std::string filename) {
-    dict->saveRootSubDictToCompressedFile(filename.c_str(), true);
-}
-
-// TODO: 2.209
-void GManager::saveGMTo(std::string filename, bool p0) {
+void GManager::saveGMTo(std::string filename, bool async) {
     auto dict = new DS_Dictionary();
     this->encodeDataTo(dict);
-    this->saveData(dict, filename);
-    m_saved = false;
-    delete dict;
+    this->didEncodeForSave();
+
+    auto save = [this, dict](std::string path) mutable {
+        // raii guard confirmed because m_isSaving gets reset to false
+        // even if this func throws (even though it realistically won't)
+        struct Guard {
+            GManager* self;
+            ~Guard() { self->m_isSaving.store(false, std::memory_order_release); }
+        } guard{this};
+
+        auto success = dict->saveRootSubDictToCompressedFile(path.c_str(), true);
+        delete dict;
+        dict = nullptr;
+        this->saveFinished(success);
+    };
+
+    if (async) {
+        std::thread(std::move(save), std::move(filename)).detach();
+    } else {
+        save(std::move(filename));
+    }
 }
 
 bool GManager::tryLoadData(DS_Dictionary* dict, std::string const& filename) {

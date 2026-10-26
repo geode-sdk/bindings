@@ -20,7 +20,7 @@ bool EditButtonBar::init(cocos2d::CCArray* objects, cocos2d::CCPoint position, i
     m_position = position;
     m_tabIndex = tab;
     m_hasCreateItems = hasCreateItems;
-    this->loadFromItems(m_buttonArray, rows, columns, false);
+    this->loadFromItems(m_buttonArray, columns, rows, false);
     return true;
 }
 
