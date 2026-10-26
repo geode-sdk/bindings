@@ -2841,9 +2841,9 @@ class ControlSlotsPopup : SetupTriggerPopup {
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x39a390;
 
-    bool init(TouchControlEditLayer*, bool);
-    void onLoad(cocos2d::CCObject* sender);
-    void onSave(cocos2d::CCObject* sender);
+    bool init(TouchControlEditLayer*, bool) = win 0x456860;
+    void onLoad(cocos2d::CCObject* sender) = win 0x456fb0;
+    void onSave(cocos2d::CCObject* sender) = win 0x456e60;
 }
 
 [[link(android)]]
@@ -15109,7 +15109,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     void cloneList() = win 0x4300b0, imac 0x34b670, m1 0x2dbda4;
     void confirmClone(cocos2d::CCObject* sender) = win 0x42ffb0, imac 0x349050, m1 0x2d988c;
     void confirmDelete(cocos2d::CCObject* sender) = win 0x430340, imac 0x3493b0, m1 0x2d9be8;
-    void confirmOwnerDelete(cocos2d::CCObject* sender);
+    void confirmOwnerDelete(cocos2d::CCObject* sender) = win 0x430470;
     bool init(GJLevelList* list) = win 0x42b2b0, imac 0x347270, m1 0x2d7c80;
     void onClaimReward(cocos2d::CCObject* sender) = win 0x42df10, imac 0x34a620, m1 0x2dae64;
     void onDelete() = win inline, imac 0x34b620, m1 0x2dbd4c;
@@ -22874,9 +22874,9 @@ class ShareLevelLayer : FLAlertLayer {
     CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0x26dc30, m1 0x214e4c;
     bool init(GJGameLevel* level) = win 0x630540, imac 0x26c960;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x26d950, m1 0x214b18;
-    void onGuidelines(cocos2d::CCObject* sender);
-    void onNotifyFollowers(cocos2d::CCObject* sender);
-    void onNotifyFriends(cocos2d::CCObject* sender);
+    void onGuidelines(cocos2d::CCObject* sender) = win 0x631230;
+    void onNotifyFollowers(cocos2d::CCObject* sender) = win 0x631990;
+    void onNotifyFriends(cocos2d::CCObject* sender) = win 0x631970;
     void onSettings(cocos2d::CCObject* sender) = win 0x631b60;
     void onShare(cocos2d::CCObject* sender) = win 0x631ce0, imac 0x26d980, m1 0x214b54;
     void selectRating(cocos2d::CCObject* sender) = win 0x6319b0, imac 0x26dd00, m1 0x214f14;
@@ -22933,8 +22933,8 @@ class ShareListLayer : FLAlertLayer {
     bool init(GJLevelList* list) = win 0x431ca0, imac 0x26c960, m1 0x2ddc84;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x34ea70, m1 0x234c14;
     void onInfo(cocos2d::CCObject* sender) = win 0x432ea0, m1 0x2dee70;
-    void onNotifyFollowers(cocos2d::CCObject* sender);
-    void onNotifyFriends(cocos2d::CCObject* sender);
+    void onNotifyFollowers(cocos2d::CCObject* sender) = win 0x433230;
+    void onNotifyFriends(cocos2d::CCObject* sender) = win 0x433210;
     void onShare(cocos2d::CCObject* sender) = win 0x433250, imac 0x34eaa0, m1 0x2ded58;
     void onUnlisted(cocos2d::CCObject* sender) = win 0x433000, m1 0x77b2d4;
     TodoReturn updateNotifyToggles();
@@ -24538,7 +24538,7 @@ class TouchControlEditLayer : SetupTriggerPopup {
     void onOK(cocos2d::CCObject* sender);
     void onPaste(cocos2d::CCObject* sender);
     void onReset(cocos2d::CCObject* sender);
-    void onSlots(cocos2d::CCObject* sender);
+    void onSlots(cocos2d::CCObject* sender) = win 0x4563a0;
     TodoReturn refreshHud();
     TodoReturn reloadNodes();
     TodoReturn restoreSiblings();
@@ -24829,7 +24829,7 @@ class UISaveLoadLayer : SetupTriggerPopup {
 
     static UISaveLoadLayer* create(UIOptionsLayer* layer);
 
-    bool init(UIOptionsLayer* layer) = win 0x456860, imac 0x2a2fc0, m1 0x245cbc;
+    bool init(UIOptionsLayer* layer) = imac 0x2a2fc0, m1 0x245cbc;
     void onLoad(cocos2d::CCObject* sender);
     void onSave(cocos2d::CCObject* sender);
 
