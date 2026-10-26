@@ -6407,7 +6407,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void swapMusicIndex(int musicID, int channelID) = win 0x64b00, imac 0x3d5910, m1 0x357670;
     void testFunction(int unknown) = win inline, imac 0x368ef0, ios inline;
     void triggerQueuedMusic(FMODQueuedMusic music) = win 0x64620, imac 0x3cfd10, m1 0x35291c;
-    void unloadAllEffects() = win 0x76500, imac 0x3d3c50, m1 0x355de0;
+    void unloadAllEffects() = win 0x627b0, imac 0x3d3c50, m1 0x355de0;
     void unloadEffect(std::string path) = win inline, imac 0x3d3c40, m1 0x355ddc, ios inline;
     void unregisterChannel(int id) = win 0x60800, imac 0x3d2450, m1 0x354a04;
     void updateBackgroundFade() = win inline, imac 0x3ccaa0, m1 0x350304;
