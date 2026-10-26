@@ -426,3 +426,33 @@ class LevelTouchSlot {
 }
 class GJPlayerState {}
 class SongUsageEntry {}
+
+class TraceDrawObject {
+	TraceDrawObject() {}
+	TraceDrawObject(int type, GameObject* fromObject, GameObject* toObject, cocos2d::ccColor4F color) {
+		m_type = type;
+		m_fromObject = fromObject;
+		m_toObject = toObject;
+		m_groupID = 0;
+		m_color = color;
+	}
+	TraceDrawObject(int groupID, cocos2d::ccColor4F color) {
+		m_type = 2;
+		m_fromObject = nullptr;
+		m_toObject = nullptr;
+		m_groupID = groupID;
+		m_color = color;
+	}
+
+	int m_type;
+	GameObject* m_fromObject;
+	GameObject* m_toObject;
+	int m_groupID;
+	cocos2d::ccColor4F m_color;
+}
+
+class TraceGroupOutline {
+	uint64_t m_version;
+	std::vector<cocos2d::CCPoint> m_points;
+	std::vector<cocos2d::CCPoint> m_points2;
+}
