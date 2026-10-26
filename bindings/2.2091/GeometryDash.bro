@@ -3144,7 +3144,7 @@ class CreatorSettingsDelegate {
 class CreatorSettingsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopupDelegate, SetTextPopupDelegate {
     virtual ~CreatorSettingsPopup() = win 0x448a90, ios 0x4abe40;
 
-    static CreatorSettingsPopup* create(GJGameLevel*, CreatorSettingsDelegate*);
+    static CreatorSettingsPopup* create(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448910;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x39a390;
     virtual void setTextPopupClosed(SetTextPopup*, std::string) = win 0x448f50, ios 0x4abe7c;
@@ -3152,9 +3152,9 @@ class CreatorSettingsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopu
     virtual void uploadActionFailed(int, int) = win 0x4492b0, ios 0x4ac128;
     virtual void onClosePopup(UploadActionPopup*) = win 0x449390, ios 0x4ac1d4;
 
-    bool init(GJGameLevel*, CreatorSettingsDelegate*);
-    void onControls(cocos2d::CCObject* sender);
-    void onDescription(cocos2d::CCObject* sender);
+    bool init(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448490;
+    void onControls(cocos2d::CCObject* sender) = win 0x448f20;
+    void onDescription(cocos2d::CCObject* sender) = win 0x448c00;
 }
 
 [[link(android)]]
@@ -14938,7 +14938,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onAddToList(cocos2d::CCObject* sender) = win 0x41e800, imac 0x2af380, m1 0x250704;
     void onBack(cocos2d::CCObject* sender) = win 0x4264d0, imac 0x2aeee0, m1 0x250258;
     void onClone(cocos2d::CCObject* sender) = win inline, imac 0x2b13d0, m1 0x2526d4;
-    void onCreatorSettings(cocos2d::CCObject* sender);
+    void onCreatorSettings(cocos2d::CCObject* sender) = win 0x423320;
     void onDeathTracker(cocos2d::CCObject* sender) = win 0x41edc0;
     void onDelete(cocos2d::CCObject* sender) = win inline, imac 0x2b1540, m1 0x252818;
     void onFavorite(cocos2d::CCObject* sender) = win 0x41eab0, imac 0x2aefe0, m1 0x250354;
@@ -20311,10 +20311,10 @@ class SetTextPopup : FLAlertLayer, EmotePickerDelegate {
     TodoReturn addInfoButton(std::string const&, std::string const&);
     TodoReturn addInfoLabel(std::string const&);
     TodoReturn addPathLabel(std::string const&);
-    bool init(std::string, std::string, int, std::string, std::string, bool, float, bool, int, int);
-    void onCancel(cocos2d::CCObject* sender) = imac 0x29b8b0, m1 0x23eed0;
-    void onClose(cocos2d::CCObject* sender);
-    void onEmotes(cocos2d::CCObject* sender);
+    bool init(std::string, std::string, int, std::string, std::string, bool, float, bool, int, int) = win 0x3a71f0;
+    void onCancel(cocos2d::CCObject* sender) = win 0x3a8460, imac 0x29b8b0, m1 0x23eed0;
+    void onClose(cocos2d::CCObject* sender) = win 0x3a85a0;
+    void onEmotes(cocos2d::CCObject* sender) = win 0x3a8470;
     void onResetValue(cocos2d::CCObject* sender) = win 0x3a7eb0, imac 0x29b800, m1 0x23ee04;
     void updateTextInputLabel() = win inline, imac 0x29b8d0;
 
