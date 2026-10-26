@@ -4776,7 +4776,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool arrayContainsClass(cocos2d::CCArray* objects, int classType) = win inline, imac 0x18ad0, m1 0x159e4;
     void assignNewGroups(bool groupY) = win 0x1b8e70, imac 0x60e410, m1 0x13e60;
     bool canAllowMultiActivate(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x18b40, m1 0x15a5c;
-    bool canSelectObject(GameObject* object) = win 0x9999999, imac 0x5b8830, m1 0x5055c4;
+    bool canSelectObject(GameObject* object) = win 0x1c8500, imac 0x5b8830, m1 0x5055c4;
     void centerCameraOnObject(GameObject* object) = win inline, imac 0x10420, m1 0xe9e0;
     TodoReturn centerCameraOnPoint(cocos2d::CCPoint);
     void changeSelectedObjects(cocos2d::CCArray* objects, bool ignoreFilter) = win inline, imac 0x119970, m1 0x5068b0;
@@ -4879,14 +4879,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool isLiveColorSelectTrigger(GameObject* object) = win inline, imac 0x18bf0, m1 0x15b24, ios inline;
     bool liveEditColorUsable() = win inline, imac 0x18bc0, m1 0x15af4, ios inline;
     CreateMenuItem* menuItemFromObjectString(std::string str, int id) = win 0x1f1160, imac 0x638ef0, m1 0x5757a0;
-    cocos2d::CCPoint moveForCommand(EditCommand command) = imac 0x60e630, m1 0x54d87c;
+    cocos2d::CCPoint moveForCommand(EditCommand command) = win 0x201d60, imac 0x60e630, m1 0x54d87c;
     void moveGamelayer(cocos2d::CCPoint offset) = win 0x1ae930, imac 0xe840, m1 0xce6c;
     void moveObject(GameObject* object, cocos2d::CCPoint offset) = win 0x1fee70, imac 0x60e950, m1 0x54db00;
     void moveObjectCall(EditCommand command) = win 0x1feb10, imac 0x60e410, m1 0x54d678;
-    void moveObjectCall(cocos2d::CCObject* sender) = m1 0x82dfd0;
+    void moveObjectCall(cocos2d::CCObject* sender) = win 0x1feae0, m1 0x82dfd0;
     TodoReturn nextDpadStep();
     void onAssignNewGroupID() = win 0x15c530, imac 0x1a140, m1 0x16df8, ios inline;
-    void onColorFilter(cocos2d::CCObject* sender) = imac 0x10710, m1 0xece0;
+    void onColorFilter(cocos2d::CCObject* sender) = win 0x1b1770, imac 0x10710, m1 0xece0;
     void onCopy(cocos2d::CCObject* sender) = win 0x1c5c50;
     void onCopyState(cocos2d::CCObject* sender) = win 0x1964f0;
     bool onCreate() = win 0x1b2460, imac 0xce30, m1 0xb4d8;
@@ -4923,7 +4923,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onPause(cocos2d::CCObject* sender) = win 0x1accb0, m1 0x7e54, imac 0x8dd0;
     void onPlayback(cocos2d::CCObject* sender) = win 0x1b4170, imac 0x8540, m1 0x7688;
     void onPlaytest(cocos2d::CCObject* sender) = win 0x1b4770, imac 0x8780, m1 0x787c;
-    void onResetSpecialFilter(cocos2d::CCObject* sender) = imac 0x10770, m1 0xed38;
+    void onResetSpecialFilter(cocos2d::CCObject* sender) = win 0x1b19c0, imac 0x10770, m1 0xed38;
     void onSelectBuildTab(cocos2d::CCObject* sender) = win 0x1b56c0;
     void onSettings(cocos2d::CCObject* sender) = win 0x1ac4f0, m1 0x828c;
     void onShowUIBtn(cocos2d::CCObject* sender) = win 0x1b3d10;
@@ -4935,7 +4935,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onToggleTraceIn(GameObject* object) = win inline;
     void onToggleTraceOut(EffectGameObject* object) = win inline;
     void onUngroupSticky(cocos2d::CCObject* sender) = win 0x1b4fd0, m1 0x7895b0;
-    void onUpdateDeleteFilter(cocos2d::CCObject* sender) = imac 0x107d0, m1 0xed98;
+    void onUpdateDeleteFilter(cocos2d::CCObject* sender) = win 0x1b1c30, imac 0x107d0, m1 0xed98;
     void onViewButton(cocos2d::CCObject* sender);
     void orderDownCustomItem(cocos2d::CCObject* sender) = win 0x1f6180, imac 0x63cad0;
     void orderUpCustomItem(cocos2d::CCObject* sender) = win 0x1f60f0, imac 0x63ca10, m1 0x578f78;
@@ -4978,7 +4978,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void setupDeleteMenu() = win 0x1f42a0, imac 0x63b320, m1 0x5779ec;
     void setupEditMenu() = win inline, ios inline;
     TodoReturn setupViewMenu() = win 0x1f6e80;
-    bool shouldDeleteObject(GameObject* object) = imac 0xfe30, m1 0xe390;
+    bool shouldDeleteObject(GameObject* object) = win 0x1b0530, imac 0xfe30, m1 0xe390;
     bool shouldSnap(GameObject* object) = win inline, imac 0x1a7c0, m1 0x173bc, ios inline;
     void showDeleteConfirmation() = win inline, imac 0x10090, m1 0xe628, ios inline;
     TodoReturn showGridSizeAlert();
@@ -14576,7 +14576,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void saveEditorPosition(cocos2d::CCPoint& position, int index) = win inline, imac 0xbbec0, m1 0xa830c;
     bool saveLevel() = win 0x3ff1f0, imac 0xc6250, m1 0xb11f0;
     void setObjectCount(int count) = inline;
-    bool shouldBlend(int colorID) = win 0x3ef7a0, imac 0xae620, m1 0x9caa8;
+    bool shouldBlend(int colorID) = win inline, imac 0xae620, m1 0x9caa8;
     void sortBatchnodeChildren(float unused) = win inline, imac 0xbd550, m1 0xa9500;
     void spawnGroupPreview(int groupID, float xPos, float delay, float currentTime, float playTime, float boundTime, bool ordered, bool active) = win 0x3fc9d0, imac 0xc2690;
     void stopPlayback() = win inline, imac 0xc5340, m1 0xb04bc;
