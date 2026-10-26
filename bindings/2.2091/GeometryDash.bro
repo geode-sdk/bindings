@@ -4326,7 +4326,7 @@ class EditorCommandsPopup : EditorWindowPopup {
     TodoReturn addCommandButton(char const*, EditorCommand);
     bool init(EditorUI*);
     TodoReturn layoutCommandButtons();
-    void onCommand(cocos2d::CCObject* sender);
+    void onCommand(cocos2d::CCObject* sender) = win 0x17daf0;
 }
 
 [[link(android), missing(win)]]
