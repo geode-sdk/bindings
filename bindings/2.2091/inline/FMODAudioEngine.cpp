@@ -175,10 +175,6 @@ void FMODAudioEngine::pauseAllAudio() {
     m_globalChannel->setPaused(true);
 }
 
-void FMODAudioEngine::pauseAllEffects() {
-    m_globalChannel->setPaused(true);
-}
-
 void FMODAudioEngine::pauseAllMusic(bool force) {
     for (auto& [id, music] : m_fmodMusic) {
         if (force || !music.m_dontReset) {
@@ -209,10 +205,6 @@ void FMODAudioEngine::resumeAllAudio() {
     if (!m_allAudioPaused) return;
     m_allAudioPaused = false;
     m_backgroundMusicChannel->setPaused(false);
-    m_globalChannel->setPaused(false);
-}
-
-void FMODAudioEngine::resumeAllEffects() {
     m_globalChannel->setPaused(false);
 }
 

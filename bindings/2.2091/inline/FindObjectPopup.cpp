@@ -6,12 +6,6 @@ FindObjectPopup::FindObjectPopup() {
 }
 #endif
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-void FindObjectPopup::onFindObjectID(cocos2d::CCObject* sender) {
-    m_unknownBool = !m_unknownBool;
-}
-#endif
-
 #if defined(GEODE_IS_WINDOWS)
 FindObjectPopup* FindObjectPopup::create(EditorUI* ui) {
     auto ret = new FindObjectPopup();

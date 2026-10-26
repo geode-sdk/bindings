@@ -33,8 +33,6 @@ void GJTransformControl::finishTouch() {
     }
 }
 
-void GJTransformControl::logCurrentZeroPos() {}
-
 cocos2d::CCSprite* GJTransformControl::spriteByTag(int tag) {
     return static_cast<cocos2d::CCSprite*>(m_warpSprites->objectAtIndex(tag - 1));
 }
