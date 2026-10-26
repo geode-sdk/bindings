@@ -14760,6 +14760,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     bool m_drawTriggerBoxes;
     bool m_showGrid;
     bool m_hideGridOnPlay;
+    bool m_hideCenterCross;
     bool m_drawEffectLines;
     bool m_showGround;
     bool m_showDurationLines;
