@@ -6,9 +6,6 @@
 
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;
-    // commented out for 2.209 since these members were removed(?)
-    // m_guidelinesOffButton = nullptr;
-    // m_guidelinesOnButton = nullptr;
     m_editorLayer = nullptr;
 }
 

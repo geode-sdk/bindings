@@ -228,10 +228,6 @@ double GJBaseGameLayer::performMathRounding(double value, int type) {
     }
 }
 
-void GJBaseGameLayer::pickupItem(EffectGameObject* object) {
-    m_collectedItems->setObject(object, fmt::format("{}", object->m_uniqueID));
-}
-
 void GJBaseGameLayer::playerTouchedObject(PlayerObject* player, GameObject* object) {
     m_gameState.m_activatedObjectIDs[{ object->m_uniqueID, player->m_uniqueID }] = m_gameState.m_commandIndex;
 }
