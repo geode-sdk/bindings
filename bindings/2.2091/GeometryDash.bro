@@ -667,9 +667,9 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     virtual void applicationWillEnterForeground() = win 0x98810, imac 0x73bb40, m1 0x649588, ios 0x3072b4;
     virtual void applicationWillBecomeActive() = win 0x98560, imac 0x73b920, m1 0x649398, ios 0x3070dc;
     virtual void applicationWillResignActive() = win 0x985b0, imac 0x73b940, ios 0x3070f4;
+    virtual void applicationWillTerminate() = win 0x985c0, ios 0x30715c;
     virtual void trySaveGame(bool force) = win 0x98ad0, imac 0x73bc70, m1 0x64969c;
     virtual void willSwitchToScene(cocos2d::CCScene* scene) = win 0x98cc0, ios 0x3074bc;
-    virtual void applicationWillTerminate() = win 0x985c0, ios 0x30715c;
 
     float bgScale() = win inline, imac 0x73b8d0, ios 0x3070a4;
     void checkSound() = win inline;
@@ -2619,6 +2619,10 @@ class CommentAdminDelegate {
     virtual void adminNameLockFailed() = inline;
     virtual void adminNameUnlockFinished() = inline;
     virtual void adminNameUnlockFailed() = inline;
+    virtual void adminQueueMuteFinished() = inline;
+    virtual void adminQueueMuteFailed() = inline;
+    virtual void adminQueueUnmuteFinished() = inline;
+    virtual void adminQueueUnmuteFailed() = inline;
     virtual void adminUserHistoryFinished(int, cocos2d::CCArray*, int, int, int) = inline;
     virtual void adminUserHistoryFailed(int) = inline;
     virtual void adminReportedContentFinished(int, cocos2d::CCArray*, AdminReportedMeta const&) = inline;
@@ -3401,8 +3405,8 @@ class CustomSFXCell : TableViewCell, CustomSFXDelegate {
 class CustomSFXDelegate {
     virtual void sfxObjectSelected(SFXInfoObject* object) = inline;
     virtual int getActiveSFXID() = inline;
-    virtual bool overridePlaySFX(SFXInfoObject* object) = inline;
     virtual int getActiveCustomSFXID() = inline;
+    virtual bool overridePlaySFX(SFXInfoObject* object) = inline;
     virtual void sfxAddToFolder(SFXInfoObject*) = inline;
     virtual void sfxEditCustomObject(SFXInfoObject*) = inline;
     virtual void sfxToggleCustomSelect(SFXInfoObject*) = inline;
@@ -4766,7 +4770,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void songStateChanged() = win 0x1b4760, imac 0x11e20, ios 0x477c8c;
     virtual void colorSelectClosed(cocos2d::CCNode* popup) = win 0x1bed60, imac 0x19e00, m1 0x16ae4, ios 0x47cc48;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win 0x3f5c0, ios 0x16251c;
-    virtual bool scrollWheel(float y, float x) = win 0x1c50b0, ios 0x164038;
+    virtual bool handleAction(int action, bool down, double timestamp) = win 0x1c1bf0, ios 0x162524;
     virtual void angleChangeBegin() = win 0x202790, imac 0x611c00, m1 0x550a78, ios 0x15fbb4;
     virtual void angleChangeEnded() = win inline, ios 0x15fbd0;
     virtual void angleChanged(float rotation, bool lock) = win 0x2027a0, imac 0x611c60, m1 0x550a9c, ios 0x15fbd8;
@@ -4777,7 +4781,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void scaleXChanged(float scaleX, bool lock) = win 0x202ff0, imac 0x613110, ios 0x160290;
     virtual void scaleYChanged(float scaleY, bool lock) = win 0x2030f0, imac 0x613250, ios 0x160338;
     virtual void scaleXYChanged(float scaleX, float scaleY, bool lock) = win 0x2031f0, m1 0x551ec8, imac 0x613390, ios 0x1603e0;
-    virtual bool handleAction(int action, bool down, double timestamp) = win 0x1c1bf0, ios 0x162524;
+    virtual bool scrollWheel(float y, float x) = win 0x1c50b0, ios 0x164038;
 
     void activateRotationControl(cocos2d::CCObject* sender) = win 0x2025e0, imac 0x60ea80, m1 0x54dc4c;
     void activateScaleControl(cocos2d::CCObject* sender) = win 0x202bc0, imac 0x612bc0, m1 0x55180c;
@@ -16987,11 +16991,11 @@ class NumberInputLayer : FLAlertLayer {
     virtual bool init() = win 0x4a1250, imac 0x489360, m1 0x3f2a94, ios 0x11d910;
     virtual void registerWithTouchDispatcher() = win 0x5bab0, imac 0x48a260, m1 0x3f38d8, ios 0x11e1fc;
     virtual void keyBackClicked() = win 0x99f90, ios 0x11e180;
+    virtual void onDone(cocos2d::CCObject* sender) = win 0x4a1b10, ios 0x11e128;
 
     void deleteLast() = win inline, imac 0x2922b0;
     void inputNumber(int num) = win inline;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x4357b0, m1 0x3abbd8;
-    void onDone(cocos2d::CCObject* sender) = win 0x4a1b10, ios 0x11e128;
     void onNumber(cocos2d::CCObject* sender) = win 0x4a1820, imac 0x895b60;
     void updateNumberState() = win 0x4a1990;
 
@@ -21193,6 +21197,7 @@ class SetupObjectOptionsPopup : FLAlertLayer {
     virtual void show() = win 0x1262f0, imac 0x3c6500, ios 0x453e4;
     virtual void determineStartValues() = win 0x5964b0, imac 0x305d50, m1 0x299584, ios 0x45144;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5976e0, ios 0x45430;
+    virtual bool handleAction(int, bool, double);
 
     bool init(GameObject* object, cocos2d::CCArray* objects, SetGroupIDLayer* layer) = win 0x594a20, imac 0x3030c0, m1 0x296ee0;
     void onAlwaysHide(cocos2d::CCObject* sender);
@@ -23877,13 +23882,13 @@ class TableViewCell : cocos2d::CCLayer {
 class TableViewCellDelegate {
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = inline;
     virtual int getSelectedCellIdx() = inline;
-    virtual bool shouldSnapToSelected() = inline;
-    virtual int getCellDelegateType() = inline;
     virtual TodoReturn getSelectedCellCustomIdx() = win 0x98e00;
     virtual TodoReturn allowsCustomSFXActions() = win 0x5a3a0;
     virtual bool isCustomIDSelected(int) = win 0x5a3a0;
     virtual TodoReturn inCustomSFXTree() = win 0x5a3a0;
     virtual TodoReturn showsSFXInfoButton() = win 0x5a3a0;
+    virtual bool shouldSnapToSelected() = inline;
+    virtual int getCellDelegateType() = inline;
 }
 
 [[link(android)]]
@@ -23901,8 +23906,6 @@ class TableViewDelegate {
     virtual void TableViewWillDisplayCellForRowAtIndexPath(CCIndexPath& indexPath, TableViewCell* cell, TableView* tableView) = inline;
     virtual void TableViewDidDisplayCellForRowAtIndexPath(CCIndexPath& indexPath, TableViewCell* cell, TableView* tableView) = inline;
     virtual void TableViewWillReloadCellForRowAtIndexPath(CCIndexPath& indexPath, TableViewCell* cell, TableView* tableView) = inline;
-    virtual float cellHeightForRowAtIndexPath(CCIndexPath& indexPath, TableView* tableView) = inline;
-    virtual void didSelectRowAtIndexPath(CCIndexPath& indexPath, TableView* tableView) = inline;
 }
 
 [[link(android)]]

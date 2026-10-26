@@ -40,3 +40,7 @@ void CommentAdminDelegate::adminAccountReviewFinished(int, AccountReviewCard con
 void CommentAdminDelegate::adminAccountReviewFailed(int) {}
 void CommentAdminDelegate::adminCloseCaseFinished(int, int, bool) {}
 void CommentAdminDelegate::adminCloseCaseFailed(int) {}
+void CommentAdminDelegate::adminQueueMuteFinished() {}
+void CommentAdminDelegate::adminQueueMuteFailed() {}
+void CommentAdminDelegate::adminQueueUnmuteFinished() {}
+void CommentAdminDelegate::adminQueueUnmuteFailed() {}
