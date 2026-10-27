@@ -3582,7 +3582,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 
 [[link(android)]]
 class CustomSongCell : TableViewCell, CustomSongDelegate {
-    CustomSongCell(char const* identifier, float width, float height) = win 0x150230, imac 0x23c9c0, m1 0x1e9dc4, ios inline;
+    CustomSongCell(char const* identifier, float width, float height) = win 0x1502e0, imac 0x23c9c0, m1 0x1e9dc4, ios inline;
     virtual ~CustomSongCell() = win 0x150230, ios 0x137a60;
 
     virtual bool init() = win 0x150360, imac 0x23ca40, m1 0x1e85c8, ios 0x137a98;
@@ -7219,7 +7219,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetFriendRequestsCompleted(std::string response, std::string tag) = win 0x254400, imac 0x529cc0, m1 0x482ea0;
     void onGetGauntletsCompleted(std::string response, std::string tag) = win 0x230ff0, imac 0x577350, m1 0x7fa73c;
     void onGetGJChallengesCompleted(std::string response, std::string tag) = win 0x25e700;
-    void onGetGJDailyLevelStateCompleted(std::string response, std::string tag) = win 0x22b650, m1 0x85f08c;
+    void onGetGJDailyLevelStateCompleted(std::string response, std::string tag) = m1 0x85f08c;
     void onGetGJRewardsCompleted(std::string response, std::string tag) = win 0x25d450, m1 0x485204;
     void onGetGJSecretRewardCompleted(std::string response, std::string tag) = imac 0x736f80;
     void onGetGJUserInfoCompleted(std::string response, std::string tag) = win 0x23a830, imac 0x5282b0, m1 0x4814e4;
@@ -7233,7 +7233,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetMapPacksCompleted(std::string response, std::string tag) = win 0x22c900, imac 0x523f40, m1 0x47d4b4;
     void onGetNewsCompleted(std::string response, std::string tag) = win inline, imac 0x490870, ios inline;
     TodoReturn onGetNotificationsCompleted(std::string, std::string);
-    void onGetOnlineLevelsCompleted(std::string response, std::string tag) = win 0x243180, imac 0x523250, m1 0x47c9c4;
+    void onGetOnlineLevelsCompleted(std::string response, std::string tag) = win 0x22b650, imac 0x523250, m1 0x47c9c4;
     TodoReturn onGetSongUsageCompleted(std::string, std::string);
     TodoReturn onGetThreadInvitesCompleted(std::string, std::string);
     TodoReturn onGetThreadMessagesCompleted(std::string, std::string);
@@ -23969,7 +23969,7 @@ class TextAreaDelegate {
 [[link(android)]]
 class TextGameObject : GameObject {
     TextGameObject() = inline;
-    virtual ~TextGameObject() = win 0x288810, ios 0x302914;
+    virtual ~TextGameObject() = win 0x2887c0, ios 0x302914;
 
     static TextGameObject* create(cocos2d::CCTexture2D* texture) = win 0x2a4440, imac 0x6734f0, m1 0x5a67a0;
 
