@@ -219,6 +219,20 @@ namespace codegen {
         return 0;
     }
 
+    inline std::vector<std::string> getSuperclassesWithPlatform(Platform p, Class const& c) {
+        std::vector<std::string> ret;
+        for (auto& s : c.superclasses) {
+            if ((s.platform & p) == p) {
+                ret.push_back(s.name);
+            }
+        }
+        return ret;
+    }
+
+    inline std::vector<std::string> getSuperclasses(Class const& c) {
+        return getSuperclassesWithPlatform(codegen::platform, c);
+    }
+
     inline BindStatus getStatusWithPlatform(Platform p, FunctionBindField const& fn) {
         if (
             codegen::sdkVersion < fn.prototype.attributes.since ||

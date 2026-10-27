@@ -167,7 +167,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
                 continue;
             }
 
-            for (auto dep : f.attributes.depends) {
+            for (auto dep : f.prototype.attributes.depends) {
                 beginning_output += codegen::getClassIncludeString(dep) + "\n";
             }
 
@@ -267,10 +267,10 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", mapping));
         }
 
-
+        auto superclasses = codegen::getSuperclasses(cls);
         std::string supers = str_if(
-            fmt::format(" : public {}", fmt::join(cls.superclasses, ", public ")),
-            !cls.superclasses.empty()
+            fmt::format(" : public {}", fmt::join(superclasses, ", public ")),
+            !superclasses.empty()
         );
 
         single_output += fmt::format(::format_strings::class_start,
@@ -280,13 +280,13 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
         );
 
         // what.
-        if (!cls.superclasses.empty()) {
+        if (!superclasses.empty()) {
             single_output += fmt::format(
-                fmt::runtime(is_cocos_class(cls.superclasses[0])
+                fmt::runtime(is_cocos_class(superclasses[0])
                     ? format_strings::custom_constructor_cutoff
                     : format_strings::custom_constructor),
                 fmt::arg("class_name", cls.name),
-                fmt::arg("first_base", cls.superclasses[0])
+                fmt::arg("first_base", superclasses[0])
             );
         } else {
             // TODO: handle case where a class has no base, but has children
