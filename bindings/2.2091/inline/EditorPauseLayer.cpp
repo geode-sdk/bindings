@@ -6,28 +6,8 @@
 
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;
-    // commented out for 2.209 since these members were removed(?)
-    // m_guidelinesOffButton = nullptr;
-    // m_guidelinesOnButton = nullptr;
     m_editorLayer = nullptr;
 }
-
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS)
-void EditorPauseLayer::doResetUnused() {
-    m_editorLayer->resetUnusedColorChannels();
-}
-
-void EditorPauseLayer::onCreateTemplate(cocos2d::CCObject* sender) {
-    auto objects = cocos2d::CCArray::create();
-    auto lel = GameManager::sharedState()->m_levelEditorLayer;
-    if (auto selectedObject = lel->m_editorUI->m_selectedObject) {
-        objects->addObject(selectedObject);
-    }
-    else if (auto selectedObjects = lel->m_editorUI->getSelectedObjects()) {
-        objects->addObjectsFromArray(selectedObjects);
-    }
-}
-#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorPauseLayer::toggleEditorBackground(cocos2d::CCObject* sender) {

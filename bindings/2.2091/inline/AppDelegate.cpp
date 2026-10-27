@@ -18,7 +18,7 @@ float AppDelegate::bgScale() {
 }
 
 void AppDelegate::checkSound() {
-    if (this->musicTest()) FMODAudioEngine::sharedEngine()->pauseAllMusic(true);
+    FMODAudioEngine::sharedEngine()->resumeAudio();
 }
 
 void AppDelegate::hideLoadingCircle() {}

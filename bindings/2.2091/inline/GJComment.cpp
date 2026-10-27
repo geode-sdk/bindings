@@ -11,6 +11,10 @@ GJComment::GJComment() {
     m_commentDeleted = false;
     m_percentage = 0;
     m_modBadge = 0;
+    m_isFriend = false;
+    m_commentType = 0;
+    m_isSelected = false;
+    m_unk1d4 = 0;
     m_color.r = 255;
     m_color.g = 255;
     m_color.b = 255;

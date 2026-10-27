@@ -70,12 +70,6 @@ CCMenuItemSpriteExtra* EditorUI::getButton(char const* text, int width, cocos2d:
     return button;
 }
 
-CCMenuItemSpriteExtra* EditorUI::getModeBtn(char const* frameName, int tag) {
-    auto button = CCMenuItemSpriteExtra::create(cocos2d::CCSprite::createWithSpriteFrameName(frameName), this, menu_selector(EditorUI::toggleMode));
-    button->setTag(tag);
-    return button;
-}
-
 CCMenuItemSpriteExtra* EditorUI::getSimpleButton(std::string frameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) {
     auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(frameName.c_str());
     sprite->setScale(std::min(18.f / sprite->getContentSize().width, 18.f / sprite->getContentSize().height));
@@ -85,7 +79,7 @@ CCMenuItemSpriteExtra* EditorUI::getSimpleButton(std::string frameName, cocos2d:
 }
 
 CCMenuItemSpriteExtra* EditorUI::getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) {
-    return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0});
+    return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0}, 0.0f);
 }
 
 GJTransformState& EditorUI::getTransformState() {
@@ -169,8 +163,6 @@ void EditorUI::setupEditMenu() {
     this->updateEditMenu();
 }
 
-void EditorUI::setupTransformControl() {}
-
 bool EditorUI::shouldSnap(GameObject* object) {
     return (int)object->getRotation() % 90 == 0;
 }
@@ -185,8 +177,6 @@ void EditorUI::showDeleteConfirmation() {
         300.f
     )->show();
 }
-
-void EditorUI::tryUpdateTimeMarkers() {}
 
 void EditorUI::updateDeleteMenu() {
     m_deleteMenu->setVisible(m_selectedMode == 1);
@@ -534,9 +524,14 @@ void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* select
     }
 }
 
-cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
+// TODO: uncomment once free-standing offsetForKey is fixed in broma
+/* cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
     return GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
-}
+} 
+
+cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
+    return object->getPosition() - this->getRelativeOffset(object);
+} */
 
 float EditorUI::getSnapAngle(GameObject* object, cocos2d::CCArray* objects) {
     if (objects && objects->count() > 0) {
@@ -554,11 +549,12 @@ cocos2d::CCPoint EditorUI::getTouchPoint(cocos2d::CCTouch* touch, cocos2d::CCEve
     return this->convertToWorldSpace(cocos2d::CCDirector::sharedDirector()->convertToGL(touch->getLocationInView()));
 }
 
-void EditorUI::onToggleGuide(EffectGameObject* object) {
+// TODO: 2.209
+/* void EditorUI::onToggleGuide(EffectGameObject* object) {
     object->m_shouldPreview = !object->m_shouldPreview;
     if (m_editorLayer->tryUpdateSpeedObject(object, false)) m_speedObjectsUpdated = true;
     this->tryUpdateTimeMarkers();
-}
+} */
 
 void EditorUI::onToggleSelectedOrder(EffectGameObject* object) {
     auto playbackObject = m_editorLayer->m_playbackObject;
@@ -570,10 +566,6 @@ bool EditorUI::positionIsInSnapped(cocos2d::CCPoint position) {
         if (snapPos.x == position.x && snapPos.y == position.y) return true;
     }
     return false;
-}
-
-cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
-    return object->getPosition() - this->getRelativeOffset(object);
 }
 
 void EditorUI::resetObjectEditorValues(cocos2d::CCArray* objects) {
