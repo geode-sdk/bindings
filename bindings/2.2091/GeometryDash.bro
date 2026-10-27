@@ -14250,7 +14250,7 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
     virtual ~LevelBadgePopup() = win 0xd3380, ios 0x502500;
 
-    static LevelBadgePopup* create(int, bool);
+    static LevelBadgePopup* create(int, bool) = win 0xe5d70;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xe6890, ios 0x502ce4;
     virtual void keyBackClicked() = win 0x99f90, ios 0x502e00;
@@ -15235,7 +15235,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     static LevelSearchLayer* create(int type) = win inline, imac 0x7042f0, m1 0x396fb0;
     static cocos2d::CCScene* scene(int type) = win 0x434300, imac 0x7041c0, m1 0x396ec4;
 
-    virtual void keyDown(cocos2d::enumKeyCodes, double);
+    virtual void keyDown(cocos2d::enumKeyCodes, double) = win 0x43b5c0;
     virtual void keyBackClicked() = win 0x43b5b0, imac 0x7096d0, m1 0x61a76c, ios 0x5d9b8;
     virtual void textInputOpened(CCTextInputNode* node) = win 0x437f40, ios 0x5d26c;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x4380a0, ios 0x5d358;
@@ -21128,7 +21128,7 @@ class SetupObjectOptionsPopup : FLAlertLayer {
 
     static SetupObjectOptionsPopup* create(GameObject* object, cocos2d::CCArray* objects) = win 0x5948e0;
 
-    virtual void keyDown(cocos2d::enumKeyCodes, double);
+    virtual void keyDown(cocos2d::enumKeyCodes, double) = win 0x597690;
     virtual void keyBackClicked() = win 0x597670, imac 0x306160, ios 0x45328;
     virtual void show() = win 0x1262f0, imac 0x3c6500, ios 0x453e4;
     virtual void determineStartValues() = win 0x5964b0, imac 0x305d50, m1 0x299584, ios 0x45144;
@@ -24129,9 +24129,9 @@ class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLaye
 class ThreadRequestPopup : FLAlertLayer {
     virtual ~ThreadRequestPopup() = win 0xd3ef0, ios 0x514310;
 
-    static ThreadRequestPopup* create(GJMessageThread*, InvitesPopup*);
+    static ThreadRequestPopup* create(GJMessageThread*, InvitesPopup*) = win 0xf9220;
 
-    virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+    virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xffee0;
     virtual void keyBackClicked() = win 0x99f90, ios 0x515358;
 
     bool init(GJMessageThread*, InvitesPopup*) = win 0xfe990;
