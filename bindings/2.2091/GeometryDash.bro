@@ -13685,13 +13685,13 @@ class InvitesPopup : PagedListPopup, ThreadMessageDelegate, FLAlertLayerProtocol
     TodoReturn buildRows() = win 0xf7a30;
     TodoReturn declineInvite(GJMessageThread*) = win 0xf9580;
     TodoReturn layoutTitleInfo();
-    void onAccept(cocos2d::CCObject* sender);
+    void onAccept(cocos2d::CCObject* sender) = win 0xf9370;
     void onClearSearch(cocos2d::CCObject* sender) = win 0xf74f0;
-    void onDecline(cocos2d::CCObject* sender);
+    void onDecline(cocos2d::CCObject* sender) = win 0xf9550;
     void onToggleIgnored(cocos2d::CCObject* sender) = win 0xf7200;
-    void onViewInviter(cocos2d::CCObject* sender);
-    void onViewMembers(cocos2d::CCObject* sender);
-    void onViewRequest(cocos2d::CCObject* sender);
+    void onViewInviter(cocos2d::CCObject* sender) = win 0xf9190;
+    void onViewMembers(cocos2d::CCObject* sender) = win 0xf91d0;
+    void onViewRequest(cocos2d::CCObject* sender) = win 0xf9220;
     TodoReturn removeInviteRow(int);
 }
 
@@ -15768,10 +15768,10 @@ class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDeleg
     TodoReturn applyAddOutcome(GJMessageThread*) = win 0xee170;
     TodoReturn buildRows() = win 0xec5e0;
     bool init(GJMessageThread*, ThreadViewPopup*, bool) = win 0xebaf0, imac 0x941680, m1 0x8221a4;
-    void onAddMember(cocos2d::CCObject* sender);
-    void onAddPolicy(cocos2d::CCObject* sender);
+    void onAddMember(cocos2d::CCObject* sender) = win 0xed910;
+    void onAddPolicy(cocos2d::CCObject* sender) = win 0xec400;
     void onKickMember(cocos2d::CCObject* sender) = win 0xed070;
-    void onMemberProfile(cocos2d::CCObject* sender);
+    void onMemberProfile(cocos2d::CCObject* sender) = win 0xe8810;
     void onRevokeInvite(cocos2d::CCObject* sender) = win 0xece60;
     void onTransferOwner(cocos2d::CCObject* sender) = win 0xed2a0;
     TodoReturn opPending();
@@ -24031,13 +24031,13 @@ class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLaye
     void onDismissRemoved(cocos2d::CCObject* sender) = win 0xf51e0;
     void onHide(cocos2d::CCObject* sender) = win 0xf5620;
     void onLeave(cocos2d::CCObject* sender) = win 0xf5000;
-    void onMembers(cocos2d::CCObject* sender);
+    void onMembers(cocos2d::CCObject* sender) = win 0xf4fc0;
     void onModLock(cocos2d::CCObject* sender) = win 0xf5510;
-    void onMuteRow(cocos2d::CCObject* sender);
-    void onPinRow(cocos2d::CCObject* sender);
-    void onRename(cocos2d::CCObject* sender);
-    void onReport(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onMuteRow(cocos2d::CCObject* sender) = win 0xf4c80;
+    void onPinRow(cocos2d::CCObject* sender) = win 0xf4e20;
+    void onRename(cocos2d::CCObject* sender) = win 0xf5380;
+    void onReport(cocos2d::CCObject* sender) = win 0xf5950;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0xf5a30;
 }
 
 [[link(android)]]
@@ -24050,12 +24050,12 @@ class ThreadRequestPopup : FLAlertLayer {
     virtual void keyBackClicked() = win 0x99f90, ios 0x515358;
 
     bool init(GJMessageThread*, InvitesPopup*) = win 0xfe990;
-    void onAccept(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onIgnore(cocos2d::CCObject* sender);
-    void onReport(cocos2d::CCObject* sender);
-    void onViewMembers(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onAccept(cocos2d::CCObject* sender) = win 0xffce0;
+    void onClose(cocos2d::CCObject* sender) = win 0x99f60;
+    void onIgnore(cocos2d::CCObject* sender) = win 0xffd40;
+    void onReport(cocos2d::CCObject* sender) = win 0xffda0;
+    void onViewMembers(cocos2d::CCObject* sender) = win 0xffea0;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0xffe60;
 }
 
 [[link(android)]]
