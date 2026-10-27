@@ -4799,7 +4799,7 @@ class EditorSoundUploadDelegate {
 [[link(android), depends(GameObjectEditorState, GJTransformState)]]
 class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJRotationControlDelegate, GJScaleControlDelegate, GJTransformControlDelegate, MusicDownloadDelegate, SetIDPopupDelegate {
     EditorUI() = win 0x1a8dd0, imac 0x1a900, m1 0x2d353c;
-    ~EditorUI() = win inline, imac 0x286570, ios 0x46e3d0;
+    ~EditorUI() = win inline, imac 0x4e00, m1 0x42e0, ios 0x46e3d0;
 
     static EditorUI* create(LevelEditorLayer* editorLayer) = win inline, imac 0x5210, m1 0x459c;
     static EditorUI* get() = inline;
@@ -4920,7 +4920,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     bool editButtonUsable() = win 0x1ba320, imac 0x179c0, m1 0x150b4;
     void editColor() = win 0x1be180, imac 0x19a00, m1 0x167b4;
     bool editColorButtonUsable() = win inline, imac 0x195c0, m1 0x16444, ios inline;
-    void editGroup(cocos2d::CCObject* sender) = win 0x1be710, imac 0x900b10, m1 0x9210;
+    void editGroup(cocos2d::CCObject* sender) = win 0x1be710, imac 0xa820, m1 0x9210;
     void editHSV() = win 0x1be410;
     void editObject(cocos2d::CCObject* sender) = win 0x1bb3e0, imac 0x93f0, m1 0x83a0;
     void editObject2(cocos2d::CCObject* sender) = win 0x1bd190, imac 0x93e0, m1 0x8398;
@@ -5320,7 +5320,7 @@ class EditorWindowPopup : SetupTriggerPopup {
     virtual void onFieldEnter() = win 0x17fc70, imac 0x9020d0, m1 0x7e9204, ios 0x4dab5c;
     bool initWindow(EditorUI* editorUI, float width, float height, int windowID, int unused) = win 0x17dde0, imac 0x8ffeb0, m1 0x7e73f4;
     bool beginTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17edd0, imac 0x901160, m1 0x7e83dc;
-    bool isInCloseButton(cocos2d::CCPoint point) = win 0x17e7f0, m1 0x7e7e60;
+    bool isInCloseButton(cocos2d::CCPoint point) = win 0x17e7f0, m1 0x7e7e60, imac 0x900b10;
 
     TodoReturn activeField();
     TodoReturn applyWindowSize() = win 0x17e6d0, imac 0x9005e0, m1 0x7e7a20;
@@ -5344,8 +5344,8 @@ class EditorWindowPopup : SetupTriggerPopup {
     EditorUI* m_editorUI;
     cocos2d::extension::CCScale9Sprite* m_background;
     cocos2d::CCSprite* m_closeSprite;
-    ScrollableContentLayer* m_scrollLayer;
-    cocos2d::CCMenu* m_scrolContentMenu;
+    ScrollableContentLayer* m_scrollContentLayer;
+    cocos2d::CCMenu* m_scrollContentMenu;
     float m_windowWidth;
     float m_windowHeight;
     float m_windowScale;
@@ -5686,7 +5686,7 @@ class EmotePickerDelegate {
 
 [[link(android)]]
 class EmotePickerPopup : EditorWindowPopup {
-    virtual ~EmotePickerPopup() = win 0x1236e0, ios 0x4dbe6c;
+    virtual ~EmotePickerPopup() = win 0x1236e0, m1 0x7ead00, imac 0x903d40, ios 0x4dbe6c;
 
     static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e9568;
     static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = m1 0x7e9a38;
@@ -5704,11 +5704,19 @@ class EmotePickerPopup : EditorWindowPopup {
     TodoReturn canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
     TodoReturn createPicker(cocos2d::CCPoint);
     bool init(CCTextInputNode*, cocos2d::CCPoint, int, int) = win 0x123970, imac 0x902680, m1 0x7e96b8;
-    TodoReturn layoutEmoteGrid() = win 0x124050, imac 0x9034d0, m1 0x7ea548;
+    void layoutEmoteGrid() = win 0x124050, imac 0x9034d0, m1 0x7ea548;
     void onPickEmote(cocos2d::CCObject* sender) = win 0x124780;
     TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = imac 0x902b60, m1 0x7e9b08;
     TodoReturn refreshEnabled();
     TodoReturn togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
+
+    CCTextInputNode* m_input;
+    int m_maxEmotes;
+    int m_maxLength;
+    EmotePickerDelegate* m_delegate;
+    cocos2d::CCRect m_openPickerButtonRect;
+    int m_canAdd;
+    std::vector<CCMenuItemSpriteExtra*> m_recentEmoteButtons;
 }
 
 [[link(android)]]
@@ -19287,7 +19295,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     TodoReturn feedTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     cocos2d::CCNode* getOrCreateSection(int section);
     cocos2d::CCMenu* getOrCreateSectionMenu(int section);
-    bool handleTouchBegan(cocos2d::CCTouch* touch) = win 0x817b0;
+    bool handleTouchBegan(cocos2d::CCTouch* touch) = win 0x817b0, m1 0x8489fc, imac 0x96bdb0;
     void handleTouchCancelled(cocos2d::CCTouch* touch) = win inline;
     void handleTouchEnded(cocos2d::CCTouch* touch) = win 0x81c60;
     void handleTouchMoved(cocos2d::CCTouch* touch) = win 0x819a0;
