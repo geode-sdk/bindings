@@ -156,8 +156,8 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             generatedFiles->insert(filename);
         }
 
+        std::string beginning_output = format_strings::class_includes;
         std::string single_output;
-        single_output += format_strings::class_includes;
 
         for (auto& f : root.functions) {
             if (codegen::getStatus(f) == BindStatus::Missing) continue;
@@ -165,6 +165,10 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             FunctionProto const* fb = &f.prototype;
             if ((fb->attributes.links & Platform::Windows) != Platform::None) {
                 continue;
+            }
+
+            for (auto dep : f.attributes.depends) {
+                beginning_output += codegen::getClassIncludeString(dep) + "\n";
             }
 
             std::string addressDocs = generateAddressDocs(f, f.binds);
@@ -184,7 +188,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
 
         }
 
-        writeFile(singleFolder / filename, single_output);
+        writeFile(singleFolder / filename, beginning_output + single_output);
     }
 
     for (auto& cls : root.classes) {
@@ -226,6 +230,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             {"std::map", "map"},
             {"std::set", "set"},
             {"std::array", "array"},
+            {"std::atomic", "atomic"},
             {"cocos2d::cc", "ccTypes"},
             {"cocos2d::CCPoint", "CCPoint"},
             {"cocos2d::CCSize", "CCPoint"},
