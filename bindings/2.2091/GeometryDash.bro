@@ -2,8 +2,8 @@
 bool isSpecialSnapObject(int id) = win 0x1a1a50;
 
 // TODO: depends is likely broken for free standing funcs
-// [[link(android), depends(CCPoint)]]
-// cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e74, imac 0x603db0;
+[[link(android), depends(cocos2d::CCPoint)]]
+cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e74, imac 0x603db0;
 
 [[link(android)]]
 class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDelegate, DropdownDelegate, AdminActionConfirmDelegate {

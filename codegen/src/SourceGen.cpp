@@ -151,7 +151,7 @@ bool areSuperclassesEmpty(Class const& c) {
 std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, bool skipPugixml, bool skipInlines, std::unordered_set<std::string>* generatedFiles) {
 	std::string output = fmt::format(format_strings::source_start,
 		fmt::arg("includes", codegen::getIncludes(root)),
-		fmt::arg("class_include", "")
+		fmt::arg("class_include", "#include <Geode/binding/Standalones.hpp>\n")
 	);
 
 	for (auto& f : root.functions) {
