@@ -3,6 +3,7 @@ build**/
 __scripts
 **/.DS_Store
 scripts/Bindings.json
+scripts/out/
 __optcall.xml
 __membercall.xml
 /.vs

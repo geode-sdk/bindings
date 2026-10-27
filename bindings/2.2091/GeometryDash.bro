@@ -6,6 +6,70 @@ bool isSpecialSnapObject(int id) = win 0x1a1a50;
 // cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, m1 0x548e74, imac 0x603db0;
 
 [[link(android)]]
+class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDelegate, DropdownDelegate, AdminActionConfirmDelegate {
+	virtual ~AccountBanPopup();
+
+	static AccountBanPopup* create(int, std::string const&, int, int, int, int, int, int);
+
+	virtual void keyBackClicked();
+	virtual void pageChanged();
+	virtual void onClose(cocos2d::CCObject*);
+	virtual void adminActionConfirmed(int, std::vector<int> const&, std::string const&);
+	virtual void adminCommentBanFinished();
+	virtual void adminCommentBanFailed();
+	virtual void adminCommentUnbanFinished();
+	virtual void adminCommentUnbanFailed();
+	virtual void adminUploadBanFinished();
+	virtual void adminUploadBanFailed();
+	virtual void adminUploadUnbanFinished();
+	virtual void adminUploadUnbanFailed();
+	virtual void adminMessageBanFinished();
+	virtual void adminMessageBanFailed();
+	virtual void adminMessageUnbanFinished();
+	virtual void adminMessageUnbanFailed();
+	virtual void adminFreezeFinished();
+	virtual void adminFreezeFailed();
+	virtual void adminUnfreezeFinished();
+	virtual void adminUnfreezeFailed();
+	virtual void adminTrendingBanFinished();
+	virtual void adminTrendingBanFailed();
+	virtual void adminTrendingUnbanFinished();
+	virtual void adminTrendingUnbanFailed();
+	virtual void adminNameLockFinished();
+	virtual void adminNameLockFailed();
+	virtual void adminNameUnlockFinished();
+	virtual void adminNameUnlockFailed();
+	virtual void adminQueueMuteFinished();
+	virtual void adminQueueMuteFailed();
+	virtual void adminQueueUnmuteFinished();
+	virtual void adminQueueUnmuteFailed();
+	virtual void onClosePopup(UploadActionPopup*);
+	virtual void dropdownSelectionChanged(Dropdown*, int);
+
+	TodoReturn actionFailed();
+	TodoReturn banLanded(std::string const&);
+	TodoReturn banStateShort(int);
+	TodoReturn banStateText(int);
+	TodoReturn executeAction(int, std::vector<int> const&, std::string const&);
+	bool init(int, std::string const&, int, int, int, int, int, int);
+	void onCommentBan(cocos2d::CCObject* sender);
+	void onCommentUnban(cocos2d::CCObject* sender);
+	void onFreeze(cocos2d::CCObject* sender);
+	void onLevelUploadBan(cocos2d::CCObject* sender);
+	void onLevelUploadUnban(cocos2d::CCObject* sender);
+	void onMessageBan(cocos2d::CCObject* sender);
+	void onMessageUnban(cocos2d::CCObject* sender);
+	void onNameLock(cocos2d::CCObject* sender);
+	void onNameUnlock(cocos2d::CCObject* sender);
+	void onQueueMute(cocos2d::CCObject* sender);
+	void onQueueUnmute(cocos2d::CCObject* sender);
+	void onTrendingBan(cocos2d::CCObject* sender);
+	void onTrendingUnban(cocos2d::CCObject* sender);
+	void onUnfreeze(cocos2d::CCObject* sender);
+	TodoReturn refreshBanRows();
+}
+
+[[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() = inline;
     ~AccountHelpLayer() = win inline, ios 0x1efd04;
@@ -1486,6 +1550,27 @@ class CCLightStrip : cocos2d::CCNode {
     float m_opacity;
     float m_width;
     float m_height;
+}
+
+[[link(android), missing(win, mac)]]
+class CCMenuExtra : cocos2d::CCMenu {
+	virtual ~CCMenuExtra();
+
+	static CCMenuExtra* create();
+
+	virtual void onExit();
+	virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*);
+	virtual void ccTouchCancelled(cocos2d::CCTouch*, cocos2d::CCEvent*);
+
+	TodoReturn disableRepeatPress();
+	TodoReturn enableRepeatPress();
+	TodoReturn enableRepeatPress(float, float);
+	TodoReturn fireSelectedItem();
+	TodoReturn repeatSelectionChanged();
+	TodoReturn repeatTick(float);
+	TodoReturn stopRepeat();
 }
 
 [[link(android)]]
