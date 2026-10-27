@@ -148,7 +148,7 @@ matjson::Value generateJsonInterface(Root const& root) {
             }
         }
         for (auto& sc : c.superclasses) {
-            bases.push_back(sc);
+            bases.push_back(sc.name);
         }
 
         classes.push_back(matjson::makeObject({
