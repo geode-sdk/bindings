@@ -156,8 +156,8 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             generatedFiles->insert(filename);
         }
 
+        std::string beginning_output = format_strings::class_includes;
         std::string single_output;
-        single_output += format_strings::class_includes;
 
         for (auto& f : root.functions) {
             if (codegen::getStatus(f) == BindStatus::Missing) continue;
@@ -165,6 +165,10 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             FunctionProto const* fb = &f.prototype;
             if ((fb->attributes.links & Platform::Windows) != Platform::None) {
                 continue;
+            }
+
+            for (auto dep : f.prototype.attributes.depends) {
+                beginning_output += codegen::getClassIncludeString(dep) + "\n";
             }
 
             std::string addressDocs = generateAddressDocs(f, f.binds);
@@ -184,7 +188,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
 
         }
 
-        writeFile(singleFolder / filename, single_output);
+        writeFile(singleFolder / filename, beginning_output + single_output);
     }
 
     for (auto& cls : root.classes) {
@@ -226,6 +230,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             {"std::map", "map"},
             {"std::set", "set"},
             {"std::array", "array"},
+            {"std::atomic", "atomic"},
             {"cocos2d::cc", "ccTypes"},
             {"cocos2d::CCPoint", "CCPoint"},
             {"cocos2d::CCSize", "CCPoint"},
@@ -262,10 +267,10 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             single_output += fmt::format(format_strings::class_mapping_include_prereq, fmt::arg("file_name", mapping));
         }
 
-
+        auto superclasses = codegen::getSuperclasses(cls);
         std::string supers = str_if(
-            fmt::format(" : public {}", fmt::join(cls.superclasses, ", public ")),
-            !cls.superclasses.empty()
+            fmt::format(" : public {}", fmt::join(superclasses, ", public ")),
+            !superclasses.empty()
         );
 
         single_output += fmt::format(::format_strings::class_start,
@@ -275,13 +280,13 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
         );
 
         // what.
-        if (!cls.superclasses.empty()) {
+        if (!superclasses.empty()) {
             single_output += fmt::format(
-                fmt::runtime(is_cocos_class(cls.superclasses[0])
+                fmt::runtime(is_cocos_class(superclasses[0])
                     ? format_strings::custom_constructor_cutoff
                     : format_strings::custom_constructor),
                 fmt::arg("class_name", cls.name),
-                fmt::arg("first_base", cls.superclasses[0])
+                fmt::arg("first_base", superclasses[0])
             );
         } else {
             // TODO: handle case where a class has no base, but has children
