@@ -9193,9 +9193,9 @@ class GJAccountSettingsLayer : FLAlertLayer {
     void onClose(cocos2d::CCObject* sender) = win 0x39edc0, imac 0x28c1e0, m1 0x230c58;
     void onCommentSetting(cocos2d::CCObject* sender) = win 0x39eae0;
     void onFriendRequests(cocos2d::CCObject* sender) = win 0x39ea40;
-    void onGroupFriends(cocos2d::CCObject* sender);
+    void onGroupFriends(cocos2d::CCObject* sender) = win 0x39eb80;
     void onMessageSetting(cocos2d::CCObject* sender) = win 0x39e9a0;
-    void onSocialLinks(cocos2d::CCObject* sender);
+    void onSocialLinks(cocos2d::CCObject* sender) = win 0x39e670;
     void onUpdate(cocos2d::CCObject* sender) = win 0x39ee00, imac 0x28c220;
     void updateScoreValues() = win 0x39eff0, imac 0x28d4c0, m1 0x231c68;
 
@@ -15229,7 +15229,7 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     void onPlay(cocos2d::CCObject* sender) = win inline, imac 0x422340, m1 0x399e7c;
     void onPrev(cocos2d::CCObject* sender) = win 0x442da0, imac 0x4201f0, m1 0x397da8;
     void tryShowAd() = win inline, imac 0x4203c0, m1 0x397f6c, ios inline;
-    TodoReturn updateDeathButton(int);
+    void updateDeathButton(int page) = win 0x4430b0;
 
     float m_width;
     cocos2d::CCSprite* m_backgroundSprite;
@@ -18922,7 +18922,7 @@ class RenameThreadPopup : SetupTriggerPopup, ThreadMessageDelegate {
     virtual void threadSendFailed() = win 0xfadb0, ios 0x51181c;
 
     TodoReturn handBackSlot();
-    bool init(GJMessageThread*, ThreadViewPopup*);
+    bool init(GJMessageThread*, ThreadViewPopup*) = win 0xf9db0;
     void onSave(cocos2d::CCObject* sender) = win 0xfa370;
 }
 
@@ -23961,8 +23961,8 @@ class ThreadDescPopup : SetupTriggerPopup, ThreadMessageDelegate, EmotePickerDel
     TodoReturn finishSave(char const*);
     TodoReturn handBackSlot();
     bool init(GJMessageThread*, ThreadViewPopup*);
-    void onEmotes(cocos2d::CCObject* sender);
-    void onPickIcon(cocos2d::CCObject* sender);
+    void onEmotes(cocos2d::CCObject* sender) = win 0xfda40;
+    void onPickIcon(cocos2d::CCObject* sender) = win 0xfd940;
     void onSave(cocos2d::CCObject* sender) = win 0xfdbd0;
     TodoReturn refreshIconSlot();
     TodoReturn sendDescription();
@@ -23998,7 +23998,7 @@ class ThreadMessageOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
 
     bool init(GJThreadMessage*, std::string const&, ThreadViewPopup*) = win 0xe53e0;
     void onAction(cocos2d::CCObject* sender) = win 0xe5a50;
-    void onCopy(cocos2d::CCObject* sender);
+    void onCopy(cocos2d::CCObject* sender) = win 0xe5c70;
 }
 
 [[link(android)]]
@@ -24071,8 +24071,8 @@ class ThreadSearchPopup : SetupTriggerPopup {
     TodoReturn clampDayField();
     TodoReturn fieldValue(CCTextInputNode*, int, int);
     bool init(ThreadViewPopup*) = win 0xfaff0, imac 0x9508e0, m1 0x82fdf0;
-    void onGoToDate(cocos2d::CCObject* sender);
-    void onSearch(cocos2d::CCObject* sender);
+    void onGoToDate(cocos2d::CCObject* sender) = win 0xfc5e0;
+    void onSearch(cocos2d::CCObject* sender) = win 0xfbf90;
 }
 
 [[link(android)]]
@@ -24129,24 +24129,24 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn messageWithID(long long);
     TodoReturn onAutoRefresh(float);
     void onClearSearch(cocos2d::CCObject* sender);
-    void onClose(cocos2d::CCObject* sender);
-    void onEmotes(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0xe2da0;
+    void onEmotes(cocos2d::CCObject* sender) = win 0xde2e0;
     void onHideKeyboard(cocos2d::CCObject* sender);
     TodoReturn onHighlightFaded();
-    void onJumpToLatest(cocos2d::CCObject* sender);
-    void onJumpToMessage(cocos2d::CCObject* sender);
+    void onJumpToLatest(cocos2d::CCObject* sender) = win 0xdb8e0;
+    void onJumpToMessage(cocos2d::CCObject* sender) = win 0xdbab0;
     void onLoadEarlier(cocos2d::CCObject* sender) = win 0xdb760;
-    void onLoadNewer(cocos2d::CCObject* sender);
-    void onMessageOptions(cocos2d::CCObject* sender);
+    void onLoadNewer(cocos2d::CCObject* sender) = win 0xdb8c0;
+    void onMessageOptions(cocos2d::CCObject* sender) = win 0xdc720;
     void onRefresh(cocos2d::CCObject* sender) = win 0xdb590;
-    void onScrollToBottom(cocos2d::CCObject* sender);
-    void onSearch(cocos2d::CCObject* sender);
+    void onScrollToBottom(cocos2d::CCObject* sender) = win 0xdffd0;
+    void onSearch(cocos2d::CCObject* sender) = win 0xdb910;
     void onSend(cocos2d::CCObject* sender) = win 0xddac0;
-    void onSenderProfile(cocos2d::CCObject* sender);
-    void onShareLevel(cocos2d::CCObject* sender);
-    void onShowDescription(cocos2d::CCObject* sender);
+    void onSenderProfile(cocos2d::CCObject* sender) = win 0xdc6e0;
+    void onShareLevel(cocos2d::CCObject* sender) = win 0xdc8f0;
+    void onShowDescription(cocos2d::CCObject* sender) = win 0xdcfe0;
     void onShowMembers(cocos2d::CCObject* sender) = win 0xdd200;
-    void onThreadOptions(cocos2d::CCObject* sender);
+    void onThreadOptions(cocos2d::CCObject* sender) = win 0xdc6b0;
     TodoReturn openAt(long long);
     TodoReturn pastScoreFor(int);
     TodoReturn refetchLatest();
