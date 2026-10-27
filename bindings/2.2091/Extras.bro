@@ -51,40 +51,59 @@ class EventTriggerInstance {
 
 class SongChannelState {
 	SongTriggerGameObject* m_songTriggerGameObject1;
-	double m_unkDouble1;
+	[[renamed_from(m_unkDouble1)]]
+	double m_startTime;
 	SongTriggerGameObject* m_songTriggerGameObject2;
-	double m_unkDouble2;
+	[[renamed_from(m_unkDouble2)]]
+	double m_prepareTime;
 }
 
 class SongTriggerState {
 	SongTriggerGameObject* m_songTriggerGameObject;
-	double m_unkDouble;
+	[[renamed_from(m_unkDouble)]]
+	double m_startTime;
 }
 
 // not an official name, I just had to make it a class cause there's 3 of em
 class SFXStateContainer {
-	double m_unkDouble1;
-	double m_unkDouble2;
-	float m_unkFloat1;
-	float m_unkFloat2;
-	bool m_unkBool;
+	[[renamed_from(m_unkDouble1)]]
+	double m_startTime;
+	[[renamed_from(m_unkDouble2)]]
+	double m_duration;
+	[[renamed_from(m_unkFloat1)]]
+	float m_target;
+	[[renamed_from(m_unkFloat2)]]
+	float m_unusedFrom; // always 0
+	[[renamed_from(m_unkBool)]]
+	bool m_active;
 }
 
 [[depends(SFXStateContainer)]]
 class SFXTriggerState {
 	SFXTriggerGameObject* m_sfxTriggerGameObject;
-	int m_unkInt1;
-	double m_unkDouble1;
-	double m_unkDouble2;
-	double m_unkDouble3;
-	double m_unkDouble4;
-	float m_unkFloat1;
-	float m_unkFloat2;
-	float m_unkFloat3;
-	float m_unkFloat4;
-	int m_unkInt2;
+	[[renamed_from(m_unkInt1)]]
+	int m_instanceID;
+	[[renamed_from(m_unkDouble1)]]
+	double m_startTime;
+	[[renamed_from(m_unkDouble2)]]
+	double m_playPosition; // playback position in ms
+	[[renamed_from(m_unkDouble3)]]
+	double m_positionTime; // time m_playPosition was last updated
+	[[renamed_from(m_unkDouble4)]]
+	double m_lastUpdateTime;
+	[[renamed_from(m_unkFloat1)]]
+	float m_speed; // SFX speed multiplier
+	[[renamed_from(m_unkFloat2)]]
+	float m_groupSpeed; // SFX-group speed multiplier
+	[[renamed_from(m_unkFloat3)]]
+	float m_volume;
+	[[renamed_from(m_unkFloat4)]]
+	float m_length; // sound length in ms
+	[[renamed_from(m_unkInt2)]]
+	int m_index;
 	bool m_processed;
-	bool m_unkBool1;
+	[[renamed_from(m_unkBool1)]]
+	bool m_loop;
 	std::array<SFXStateContainer, 3> m_sfxStateContainers;
 }
 
@@ -117,13 +136,19 @@ class SmartPrefabResult {
 
 class GameObjectPhysics {
 	GameObject* m_gameObject;
-	cocos2d::CCPoint m_unkPoint1;
-	cocos2d::CCPoint m_unkPoint2;
-	float m_unkFloat1;
-	float m_unkFloat2;
-	int m_unkInt1;
-	int m_unkInt2;
-	int m_unkInt3;
+	[[renamed_from(m_unkPoint1)]]
+	cocos2d::CCPoint m_velocity;
+	[[renamed_from(m_unkPoint2)]]
+	cocos2d::CCPoint m_direction;
+	[[renamed_from(m_unkFloat1)]]
+	float m_targetAngle;
+	[[renamed_from(m_unkFloat2)]]
+	float m_turnSpeed;
+	int m_unkInt1; // unused as of 2.2091
+	[[renamed_from(m_unkInt2)]]
+	int m_lastUpdateStep;
+	[[renamed_from(m_unkInt3)]]
+	int m_exclusiveStep; // exclusive follow claim
 }
 
 class DynamicObjectAction {
@@ -167,12 +192,18 @@ class DynamicObjectAction {
 	GameObject* m_maxYObject;
 	[[renamed_from(m_unkFloat1)]]
 	float m_elapsed;
-	float m_unkFloat2;
-	float m_unkFloat3;
-	bool m_unkBool1;
-	bool m_unkBool2;
-	bool m_unkBool3;
-	bool m_unkBool4;
+	[[renamed_from(m_unkFloat2)]]
+	float m_easedElapsed; // eased progress * duration that was already applied
+	[[renamed_from(m_unkFloat3)]]
+	float m_easedProgress; // eased progress, 0-1
+	[[renamed_from(m_unkBool1)]]
+	bool m_justStarted; // set until elapsed advances
+	[[renamed_from(m_unkBool2)]]
+	bool m_stopped;
+	[[renamed_from(m_unkBool3)]]
+	bool m_paused;
+	[[renamed_from(m_unkBool4)]]
+	bool m_pausePending;
 	int m_controlID;
 	int m_targetGroupID;
 	int m_centerGroupID;
@@ -244,8 +275,10 @@ class SavedObjectStateRef {
 	float m_rotationYOffset;
 	float m_addToCustomScaleX;
 	float m_addToCustomScaleY;
-	float m_unkFloat3;
-	float m_unkFloat4;
+	[[renamed_from(m_unkFloat3)]]
+	float m_stepStartX; // object X at the start of the step
+	[[renamed_from(m_unkFloat4)]]
+	float m_stepStartY; // object Y at the start of the step
 }
 
 class SavedActiveObjectState {
@@ -276,7 +309,7 @@ class FMODSoundTween {
 class FMODQueuedMusic {
 	std::string m_filePath;
 	float m_pitch;
-	float m_unkFloat2;
+	float m_unkFloat2; // unused as of 2.2091
 	float m_volume;
 	int m_start;
 	int m_end;
@@ -310,7 +343,7 @@ class SoundStateContainer {
 class FMODSoundState {
 	std::string m_filePath;
 	float m_speed;
-	float m_unkFloat1;
+	float m_unkFloat1; // unused as of 2.2091
 	float m_volume;
 	bool m_shouldLoop;
 	int m_channelID;
@@ -323,7 +356,7 @@ class FMODSoundState {
 	int m_effectID;
 	bool m_isMusic;
 	int m_musicID;
-	bool m_unkBool2;
+	bool m_unkBool2;  // unused as of 2.2091
 }
 
 class TimerItem {
@@ -382,7 +415,8 @@ class RecordCheckpoint {
 	uint64_t m_time;
 	int m_clicks;
 	int m_points;
-	std::string m_inputs;
+	[[renamed_from(m_inputs)]]
+	std::string m_persistentState; // persistent item / timer state string
 }
 
 class RecordButtonCommand {
@@ -390,7 +424,8 @@ class RecordButtonCommand {
     bool m_isPush;
     bool m_isPlayer2;
     int m_step;
-	int m_unk00c;
+	[[renamed_from(m_unk00c)]]
+	int m_checkpointID; // set by 98 / 99 replay actions
 }
 
 class AccountReviewCard {}

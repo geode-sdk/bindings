@@ -5656,8 +5656,11 @@ class EffectManagerState {
     // ~EffectManagerState();
     EffectManagerState() = win 0x503390;
 
-    std::vector<CAState> m_unkVecCAState;
-    std::vector<PulseEffectAction> m_unkVecPulseEffectAction;
+
+    [[renamed_from(m_unkVecCAState)]]
+    std::vector<CAState> m_colorActions; // running color triggers
+    [[renamed_from(m_unkVecPulseEffectAction)]]
+    std::vector<PulseEffectAction> m_pulseActions; // running pulse triggers
     std::unordered_map<int,std::vector<PulseEffectAction>> m_unorderedMapInt_vectorPulseEffectAction;
     std::unordered_map<int,std::vector<CountTriggerAction>> m_unorderedMapInt_vectorCountTriggerAction;
     std::unordered_set<int> m_unorderedSet_int1;
@@ -6003,7 +6006,8 @@ class EnterEffectInstance {
     float m_rotation;
     float m_rotationVariance;
     float m_tint;
-    float m_unk074;
+    [[renamed_from(m_unk074)]]
+    float m_unusedKey285; // trigger key 285, unused as of 2.2091
     float m_toOpacity;
     float m_fromOpacity;
     cocos2d::ccHSVValue m_hsvValue;
@@ -6014,11 +6018,12 @@ class EnterEffectInstance {
     bool m_reversed;
     int m_targetID;
     int m_centerID;
-    int m_unkFloat3;
+    [[renamed_from(m_unkFloat3)]]
+    int m_startOrder; // m_areaEffectCounter when the area effect started
     int m_easeIndex;
     bool m_paused;
     bool m_paused2;
-    bool m_unkBool4;
+    bool m_unkBool4; // unused as of 2.2091
     int m_targetGroupIndex;
     std::vector<int> m_easeIndices;
     int m_controlID;
@@ -6555,7 +6560,7 @@ class FMODAudioState {
     std::unordered_map<int,FMODQueuedMusic> m_queuedMusicForChannels1;
     std::unordered_map<int,FMODQueuedMusic> m_queuedMusicForChannels2;
     std::unordered_map<int,FMODSoundState> m_soundStateForChannels;
-    uint64_t m_unkUint64_1;
+    uint64_t m_unkUint64_1; // copied from FMODAudioEngine+0x4a0, which nothing else reads or writes
 }
 
 [[link(android)]]
@@ -6973,9 +6978,9 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn claimNotificationReward(int) = win 0x251df0;
     void cleanupDailyLevels() = win 0x224050, imac 0x54e1e0, m1 0x4a3df4;
     TodoReturn clearDeathDataInstances(GJGameLevel*, bool);
-    TodoReturn clearPlatformerSaveJournal();
-    TodoReturn clearPlatformerSaves(int);
-    TodoReturn collectPlatformerJournalKeys(bool);
+    void clearPlatformerSaveJournal();
+    int clearPlatformerSaves(int mode);
+    std::vector<std::pair<std::string, int>> collectPlatformerJournalKeys(bool local);
     cocos2d::CCArray* createAndGetAccountComments(std::string str, int accountID) = win inline, imac 0x56aa60;
     cocos2d::CCArray* createAndGetCommentsFull(std::string, int, bool, CommentKeyType) = win 0x23d680;
     cocos2d::CCArray* createAndGetEditorSoundConfigs(std::string);
@@ -7092,7 +7097,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getNotifications(int, int) = win 0x24f310;
     void getOnlineLevels(GJSearchObject* object) = win 0x22ab80;
     const char* getPageInfo(char const* key) = win 0x2218d0, imac 0x54a4f0, m1 0x4a03e8;
-    TodoReturn getPlatformerSaveStats(int, int&, unsigned long&);
+    void getPlatformerSaveStats(int mode, int& count, unsigned long& size);
     const char* getPostCommentKey(int parentID) = win inline, imac 0x56bdf0, m1 0x4bec68;
     const char* getRateStarsKey(int levelID) = win inline, imac 0x561fc0, m1 0x4b5a84, ios inline;
     const char* getReportKey(int levelID) = win inline, imac 0x569070, ios inline;
@@ -7284,7 +7289,7 @@ class GameLevelManager : cocos2d::CCNode {
     void performNetworkTest() = win inline, imac 0x3491d0, m1 0x4769a0;
     void ProcessHttpRequest(std::string endpoint, std::string params, std::string tag, GJHttpType httpType) = win 0x2192d0, m1 0x476d14, ios 0x912e0;
     void processOnDownloadLevelCompleted(std::string response, std::string tag, bool update) = win 0x232220;
-    TodoReturn prunePlatformerJournalKeys(std::vector<std::pair<std::string, int>> const&);
+    void prunePlatformerJournalKeys(std::vector<std::pair<std::string, int>> const& keys);
     TodoReturn purgeFriendRequestSearchCache(bool, int) = win 0x2583d0;
     void purgeUnusedLevels() = win 0x222670, imac 0x54b9e0, m1 0x4a1800;
     bool rateDemon(int id, int diff, bool moderator) = win 0x2358f0, imac 0x562f70, m1 0x4b6984;
@@ -7298,10 +7303,10 @@ class GameLevelManager : cocos2d::CCNode {
     void removeDLFromActive(char const* key) = win 0x221b70, imac 0x54a870, m1 0x4a07c8;
     bool removeFriend(int accountID) = win 0x255fd0;
     void removeLevelDownloadedKeysFromDict(cocos2d::CCDictionary* dict) = imac 0x54e940, m1 0x4a4538;
-    TodoReturn removePlatformerSaveJournalEntry(GJGameLevel*);
+    void removePlatformerSaveJournalEntry(GJGameLevel* level);
     void removeUserFromList(int id, UserListType type) = win 0x2571a0, imac 0x57c590, m1 0x4ce578;
     TodoReturn replaceFollowedUsers(std::string const&);
-    TodoReturn replayPlatformerSaveJournal() = win 0x223740;
+    void replayPlatformerSaveJournal() = win 0x223740;
     TodoReturn reportContent(int, int, int, std::vector<int> const&, long long) = win 0x261100;
     void reportLevel(int id) = imac 0x581320, m1 0x4d2fc8;
     TodoReturn requestThreadMembers(int) = win 0x252270;
@@ -7395,7 +7400,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn vaultTimedType(SearchType, GJTimedLevelType&);
     bool verifyContainerOnlyHasLevels(cocos2d::CCDictionary* dict) = win 0x224e80, imac 0x54f750, m1 0x4a5210;
     void verifyLevelState(GJGameLevel* level) = win inline, imac 0x540760, m1 0x4975f4;
-    TodoReturn writePlatformerSaveJournal(GJGameLevel*);
+    void writePlatformerSaveJournal(GJGameLevel* level);
     std::string writeSpecialFilters(GJSearchObject* object) = win 0x22a8b0, imac 0x558000, m1 0x4ac8a0;
     void adminQueueMute(int, std::string const&);
     void adminQueueUnmute(int, std::string const&);
@@ -7866,7 +7871,8 @@ class GameManager : GManager {
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
     cocos2d::CCDictionary* m_unkDict;
-    bool m_unkBool2point5;
+    [[renamed_from(m_unkBool2point5)]]
+    bool m_isBackingUp; // set while GJAccountManager::backupAccount encodes the save
     cocos2d::CCDictionary* m_unlockValueKeeper;
     cocos2d::CCDictionary* m_customObjectDict;
     double m_adTimer;
@@ -9580,7 +9586,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void optimizeMoveGroups() = win 0x339520, imac 0x7c3c0, m1 0xd44ec;
     void orderSpawnObjects() = win 0x350080, imac 0x141b90, m1 0x115530;
     cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode, int uiObject) = win 0x3152d0, imac 0xfc0f0, m1 0xda980;
-    TodoReturn parseRecording(std::string, bool);
+    void parseRecording(std::string record, bool restore);
     void pauseAudio() = win 0x340330, imac 0x12f080, m1 0x1064dc;
     double performMathOperation(double operand1, double operand2, int operation) = win inline, imac 0x12a160, m1 0x102634, ios inline;
     double performMathRounding(double value, int type) = win inline, imac 0x12a1c0, m1 0x102684, ios inline;
@@ -9671,7 +9677,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void resetLevelVariables() = win 0x344fa0, imac 0x1384f0;
     void resetMoveOptimizedValue() = win inline, imac 0x128910, m1 0x100f60;
     void resetPlayer() = win 0x318f90, imac 0x1004e0, m1 0xdef64;
-    void resetRecord(int steps, bool noFullReset) = win 0x342ad0, imac 0x134ba0;
+    void resetRecord(int steps, bool loadedSave) = win 0x342ad0, imac 0x134ba0;
     void resetRecordFull() = win inline, imac 0x134ae0, m1 0x10aa4c, ios inline;
     void resetSongTriggerValues() = win inline, imac 0x12c8e0, m1 0x104560, ios inline;
     void resetSpawnChannelIndex() = win 0x350130, imac 0x684c0, m1 0x10ea58;
@@ -9680,7 +9686,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void restoreAllUIObjects() = win inline, imac 0x11cee0, m1 0xf74f8;
     void restoreDefaultGameplayOffsetX() = win inline, imac 0x12d080, m1 0x104bdc, ios inline;
     void restoreDefaultGameplayOffsetY() = win inline, imac 0x12d0c0, m1 0x104bf8, ios inline;
-    TodoReturn restoreRecording(std::string);
+    void restoreRecording(std::string record);
     void restoreRemap(EffectGameObject* object, std::unordered_map<int, int>& remap) = imac 0x1111b0, m1 0xeca30;
     void resumeAudio() = win 0x340480, imac 0x12f0c0, m1 0x106508;
     void rotateAreaObjects(GameObject* object, cocos2d::CCArray* objects, float rotation, bool reset) = win 0x332d40, imac 0x122740, m1 0xfc084;
@@ -10128,7 +10134,8 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_unk32d0;
     bool m_unk32d4;
     uint64_t m_randomSeed;
-    uint64_t m_unk32e0;
+    [[renamed_from(m_unk32e0)]]
+    uint64_t m_recordSeed; // seed at the last full reset, written to the replay metadata
     uint64_t m_replayRandSeed;
     int m_unk32ec;
     int m_currentStep;
@@ -10758,7 +10765,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn clearDeathMarkerData();
     TodoReturn clearDeathsNear(std::vector<int>&, int, int, int);
     TodoReturn clearDeathTrackerData();
-    TodoReturn clearPlatformerSave();
+    void clearPlatformerSave();
     void copyLevelInfo(GJGameLevel* level) = win 0x267010;
     TodoReturn countDeathsNear(std::vector<int> const&, int, int, int);
     TodoReturn createFromFullSaveString(std::string const&) = win 0x26a560;
@@ -10771,7 +10778,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn dtSetCells(std::vector<int> const&);
     GJGameLevel* duplicate() = win 0x263800;
     TodoReturn ensureSessionLog();
-    TodoReturn generateAutoSaveUID();
+    std::string generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
     std::string getAudioFileName() = win 0x264790, imac 0x5842c0, m1 0x4d5978;
     int getAverageDifficulty() = imac 0x583fe0, m1 0x4d5680;
@@ -11017,70 +11024,113 @@ class GJGameState {
     float m_cameraZoom;
     float m_targetCameraZoom;
     cocos2d::CCPoint m_cameraOffset;
-    cocos2d::CCPoint m_unkPoint1;
-    cocos2d::CCPoint m_unkPoint2;
-    cocos2d::CCPoint m_unkPoint3;
+    [[renamed_from(m_unkPoint1)]]
+    cocos2d::CCPoint m_cameraOffsetTarget; // camera offset trigger target
+    [[renamed_from(m_unkPoint2)]]
+    cocos2d::CCPoint m_lastCameraTarget; // camera target position computed last frame
+    [[renamed_from(m_unkPoint3)]]
+    cocos2d::CCPoint m_lastCameraOffset; // m_cameraOffset last frame
     // Keep GJGameState copy-assignable.
     cocos2d::CCPoint m_cameraDeltaPosition;
-    cocos2d::CCPoint m_unkPoint5;
-    cocos2d::CCPoint m_unkPoint6;
-    cocos2d::CCPoint m_unkPoint7;
-    cocos2d::CCPoint m_unkPoint8;
-    cocos2d::CCPoint m_unkPoint9;
-    cocos2d::CCPoint m_unkPoint10;
-    cocos2d::CCPoint m_unkPoint11;
-    cocos2d::CCPoint m_unkPoint12;
-    cocos2d::CCPoint m_unkPoint13;
-    cocos2d::CCPoint m_unkPoint14;
-    cocos2d::CCPoint m_unkPoint15;
-    cocos2d::CCPoint m_unkPoint16;
-    cocos2d::CCPoint m_unkPoint17;
-    cocos2d::CCPoint m_unkPoint18;
-    cocos2d::CCPoint m_unkPoint19;
-    cocos2d::CCPoint m_unkPoint20;
-    cocos2d::CCPoint m_unkPoint21;
-    cocos2d::CCPoint m_unkPoint22;
-    cocos2d::CCPoint m_unkPoint23;
-    cocos2d::CCPoint m_unkPoint24;
-    cocos2d::CCPoint m_unkPoint25;
-    cocos2d::CCPoint m_unkPoint26;
-    cocos2d::CCPoint m_unkPoint27;
-    cocos2d::CCPoint m_unkPoint28;
-    cocos2d::CCPoint m_unkPoint29;
-    bool m_unkBool1;
-    int m_unkInt1;
-    bool m_unkBool2;
-    int m_unkInt2;
-    bool m_unkBool3;
-    cocos2d::CCPoint m_unkPoint30;
+    [[renamed_from(m_unkPoint5)]]
+    cocos2d::CCPoint m_staticCameraStart; // static camera position when the move started
+    [[renamed_from(m_unkPoint6)]]
+    cocos2d::CCPoint m_staticCameraPosition; // static camera current position
+    [[renamed_from(m_unkPoint7)]]
+    cocos2d::CCPoint m_staticCameraTarget; // static camera target position
+    [[renamed_from(m_unkPoint8)]]
+    cocos2d::CCPoint m_staticExitOffset; // exit static offset from the normal camera, eased back to 0
+    [[renamed_from(m_unkPoint9)]]
+    cocos2d::CCPoint m_appliedStaticExitOffset; // m_staticExitOffset applied last frame
+    [[renamed_from(m_unkPoint10)]]
+    cocos2d::CCPoint m_staticStartVelocity; // m_cameraVelocity clamped to +-10000 when static enter / exit starts
+    [[renamed_from(m_unkPoint11)]]
+    cocos2d::CCPoint m_staticCameraDuration; // static camera move duration, per axis
+    [[renamed_from(m_unkPoint12)]]
+    cocos2d::CCPoint m_staticTransitionProgress; // 0 to 1 progress of a follow / smooth-velocity transition
+    [[renamed_from(m_unkPoint13)]]
+    cocos2d::CCPoint m_lastStaticTransitionProgress; // m_staticTransitionProgress last frame
+    [[renamed_from(m_unkPoint14)]]
+    cocos2d::CCPoint m_staticFollowEasing; // static camera follow easing
+    [[renamed_from(m_unkPoint15)]]
+    cocos2d::CCPoint m_staticFollow; // static camera follows its target group
+    [[renamed_from(m_unkPoint16)]]
+    cocos2d::CCPoint m_staticFollowGroup; // static camera target group ID
+    [[renamed_from(m_unkPoint17)]]
+    cocos2d::CCPoint m_staticCameraActive; // static camera on
+    [[renamed_from(m_unkPoint18)]]
+    cocos2d::CCPoint m_staticExitPending; // exit static requested, handled on the next camera update
+    [[renamed_from(m_unkPoint19)]]
+    cocos2d::CCPoint m_staticExitDuration; // exit static duration
+    [[renamed_from(m_unkPoint20)]]
+    cocos2d::CCPoint m_staticExitEasingRate; // exit static easing rate
+    [[renamed_from(m_unkPoint21)]]
+    cocos2d::CCPoint m_staticExitEasing; // exit static easing type
+    [[renamed_from(m_unkPoint22)]]
+    cocos2d::CCPoint m_staticSmoothVelocity; // smooth velocity on
+    [[renamed_from(m_unkPoint23)]]
+    cocos2d::CCPoint m_staticSmoothVelocityMod; // smooth velocity modifier
+    [[renamed_from(m_unkPoint24)]]
+    cocos2d::CCPoint m_staticExitStartOffset; // exit static with smooth velocity: offset the curve starts from
+    cocos2d::CCPoint m_unkPoint25; // unused as of 2.2091
+    [[renamed_from(m_unkPoint26)]]
+    cocos2d::CCPoint m_internalCameraOffset; // current internal camera offset
+    [[renamed_from(m_unkPoint27)]]
+    cocos2d::CCPoint m_internalCameraOffsetTarget; // internal camera offset target
+    [[renamed_from(m_unkPoint28)]]
+    cocos2d::CCPoint m_lastInternalCameraOffsetTarget; // m_internalCameraOffsetTarget last frame
+    cocos2d::CCPoint m_unkPoint29; // unused as of 2.2091
+    [[renamed_from(m_unkBool1)]]
+    bool m_dualStaticCamera; // if Y static camera was set by dual mode instead of static camera
+    [[renamed_from(m_unkInt1)]]
+    int m_gameplayOffsetX; // gameplay offset trigger X
+    [[renamed_from(m_unkBool2)]]
+    bool m_gameplayOffsetXDontZoom; // gameplay offset X is not divided by the zoom
+    [[renamed_from(m_unkInt2)]]
+    int m_gameplayOffsetY; // gameplay offset trigger Y
+    [[renamed_from(m_unkBool3)]]
+    bool m_gameplayOffsetYDontZoom; // gameplay offset Y is not divided by the zoom
+    [[renamed_from(m_unkPoint30)]]
+    cocos2d::CCPoint m_snapInternalCameraOffset; // apply m_internalCameraOffsetTarget at once this frame
     float m_middleGroundOffsetY;
-    int m_unkInt3;
-    int m_unkInt4;
-    bool m_unkBool4;
-    bool m_unkBool5;
+    [[renamed_from(m_unkInt3)]]
+    float m_middleGroundOffsetYTarget;
+    [[renamed_from(m_unkInt4)]]
+    float m_middleGroundOffsetYDuration;
+    [[renamed_from(m_unkBool4)]]
+    bool m_cameraMoveXActive; // set when the camera is scripted to move in X
+    [[renamed_from(m_unkBool5)]]
+    bool m_cameraMoveYActive; // same for Y
     [[renamed_from(m_unkFloat2)]]
     float m_cameraPadding;
     [[renamed_from(m_unkFloat3)]]
     float m_cameraEasing;
-    int m_unkInt5;
-    int m_unkInt6;
-    int m_unkInt7;
-    int m_unkInt8;
-    int m_unkInt9;
-    int m_unkInt10;
+    int m_unkInt5; // unused as of 2.2091
+    int m_unkInt6; // unused as of 2.2091
+    int m_unkInt7; // unused as of 2.2091
+    int m_unkInt8; // unused as of 2.2091
+    int m_unkInt9; // unused as of 2.2091
+    [[renamed_from(m_unkInt10)]]
+    float m_flyCameraY; // camera Y for the current fly mode
     [[renamed_from(m_unkInt11)]]
     float m_lastModeHeight;
     [[renamed_from(m_unkFloat4)]]
     float m_lastCameraZoom;
-    float m_unkUint1;
+    [[renamed_from(m_unkUint1)]]
+    float m_zoomDuration; // duration of the last zoom trigger
     float m_portalY;
-    bool m_unkBool6;
+    [[renamed_from(m_unkBool6)]]
+    bool m_portalYDuringZoom; // portal Y changed while a zoom was in progress
     bool m_gravityRelated;
-    int m_unkInt12;
-    float m_unkInt13;
-    int m_unkInt14;
-    int m_unkInt15;
-    bool m_unkBool7;
+    [[renamed_from(m_unkInt12)]]
+    float m_cameraCenterY; // camera position Y + half the visible height - m_cameraOffset.y
+    [[renamed_from(m_unkInt13)]]
+    float m_cameraMoveYTarget; // target Y of the scripted camera move
+    [[renamed_from(m_unkInt14)]]
+    float m_flyCameraTargetY; // static camera Y for fly modes / dual
+    float m_unkInt15; // unused as of 2.2091
+    [[renamed_from(m_unkBool7)]]
+    bool m_flyGroundActive; // whether the ground and ceiling move in transition is active when switching gamemodes
     [[renamed_from(m_unkBool8)]]
     bool m_isFreeMode;
     [[renamed_from(m_unkBool9)]]
@@ -11107,13 +11157,18 @@ class GJGameState {
     double m_levelTime;
     double m_bestTime;
     unsigned int m_commandIndex;
-    float m_unkUint3;
+    float m_unkUint3; // unused as of 2.2091
     unsigned int m_currentProgress;
-    int m_unkUint4;
-    int m_unkUint5;
-    int m_unkUint6;
-    int m_unkUint7;
-    int m_unkUint8; // i don't know
+    [[renamed_from(m_unkUint4)]]
+    int m_stepCommandIndex; // m_commandIndex at the start of the current step
+    [[renamed_from(m_unkUint5)]]
+    unsigned int m_positionHistoryTime; // m_positionHistoryClock when the last position sample was taken
+    [[renamed_from(m_unkUint6)]]
+    unsigned int m_positionHistoryClock; // time-warped step clock, x1000 per step
+    [[renamed_from(m_unkUint7)]]
+    unsigned int m_areaEffectCounter; // incremented for every area effect started
+    [[renamed_from(m_unkUint8)]]
+    unsigned int m_advancedFollowCounter; // incremented for every advanced follow start
     GameObject* m_lastActivatedPortal1;
     GameObject* m_lastActivatedPortal2;
     cocos2d::CCPoint m_cameraPosition;
@@ -11134,21 +11189,28 @@ class GJGameState {
     int m_cameraEdgeValue2;
     int m_cameraEdgeValue3;
     std::unordered_map<int, GameObjectPhysics> m_gameObjectPhysics;
-    std::vector<float> m_unkVecFloat1;
-    float m_unkUint10;
-    int m_unkUint11;
-    int m_unkUint12;
+    [[renamed_from(m_unkVecFloat1)]]
+    std::vector<float> m_positionHistory; // ring buffer of x, y samples per tracked object
+    int m_unkUint10;  // unused as of 2.2091
+    [[renamed_from(m_unkUint11)]]
+    int m_positionHistoryIndex; // number of samples taken
+    [[renamed_from(m_unkUint12)]]
+    int m_cameraHistorySlot; // camera's slot in m_positionHistory, -1 if not tracked
     cocos2d::CCPoint m_cameraStepDiff;
     [[renamed_from(m_unkFloat10)]]
     float m_backgroundWidth;
     float m_timeModRelated;
     bool m_timeModRelated2;
     std::map<std::pair<int, int>, int> m_activatedObjectIDs;
-    float m_unkUint13;
-    cocos2d::CCPoint m_unkPoint32;
+    [[renamed_from(m_unkUint13)]]
+    float m_teleportCameraEaseTimer; // 0.5 after a teleport portal with smooth ease
+    [[renamed_from(m_unkPoint32)]]
+    cocos2d::CCPoint m_lastCameraEase; // camera easing divisor per axis last frame
     cocos2d::CCPoint m_cameraLastPosition;
-    bool m_unkBool20;
-    bool m_unkBool21;
+    [[renamed_from(m_unkBool20)]]
+    bool m_player1GoingSideways; // player 1 movement is gameplay rotated
+    [[renamed_from(m_unkBool21)]]
+    bool m_player1GoingLeft; // player 1 movement is reversed
     [[renamed_from(m_unkBool22)]]
     bool m_audioOnDeath;
     [[renamed_from(m_unkUint14)]]
@@ -11164,11 +11226,14 @@ class GJGameState {
     float m_cameraShakeInterval;
     [[renamed_from(m_unkUint64_1)]]
     double m_lastShakeTime;
-    cocos2d::CCPoint m_unkPoint34;
+    [[renamed_from(m_unkPoint34)]]
+    cocos2d::CCPoint m_cameraShakeOffset; // current shake offset, re-rolled every m_cameraShakeInterval
     unsigned int m_dualRelated;
     std::unordered_map<int, EnhancedGameObject*> m_stateObjects;
-    std::map<std::pair<GJGameEvent, int>, std::vector<EventTriggerInstance>> m_unkMapPairGJGameEventIntVectorEventTriggerInstance;
-    std::map<std::pair<GJGameEvent, int>, int> m_unkMapPairGJGameEventIntInt;
+    [[renamed_from(m_unkMapPairGJGameEventIntVectorEventTriggerInstance)]]
+    std::map<std::pair<GJGameEvent, int>, std::vector<EventTriggerInstance>> m_gameEventTriggers; // (event, value) -> event link triggers
+    [[renamed_from(m_unkMapPairGJGameEventIntInt)]]
+    std::map<std::pair<GJGameEvent, int>, int> m_gameEventCounts; // (event, value) -> count
     std::unordered_map<int, std::vector<EnterEffectInstance>> m_enterEffectInstanceVectors;
     std::unordered_map<int, std::vector<EnterEffectInstance>> m_exitEffectInstanceVectors;
     std::vector<int> m_enterChannelMap;
@@ -11179,7 +11244,8 @@ class GJGameState {
     std::vector<EnterEffectInstance> m_fadeEffectInstances;
     std::vector<EnterEffectInstance> m_tintEffectInstances;
     std::unordered_set<int> m_unsortedAreaEffects;
-    bool m_unkBool27;
+    [[renamed_from(m_unkBool27)]]
+    bool m_advancedFollowNeedsSort; // advanced follow added dirty tag
     std::vector<AdvancedFollowInstance> m_advanceFollowInstances;
     std::vector<DynamicObjectAction> m_dynamicMoveActions;
     std::vector<DynamicObjectAction> m_dynamicRotateActions;
@@ -11187,13 +11253,16 @@ class GJGameState {
     bool m_instantExitStaticCameraX;
     [[renamed_from(m_unkBool29)]]
     bool m_instantExitStaticCameraY;
-    float m_unkUint17;
-    std::unordered_map<int, std::vector<int>> m_unkUMap8;
+    [[renamed_from(m_unkUint17)]]
+    float m_maxPortalY; // getMaxPortalY() cached each step
+    [[renamed_from(m_unkUMap8)]]
+    std::unordered_map<int, std::vector<int>> m_sfxTriggerChannels; // SFX trigger unique ID -> FMOD channels it started
     std::map<std::pair<int,int>, SFXTriggerInstance> m_proximityVolumeRelated;
     std::unordered_map<int, SongChannelState> m_songChannelStates;
     std::unordered_map<int, std::vector<SongTriggerState>> m_songTriggerStateVectors;
     std::vector<SFXTriggerState> m_sfxTriggerStates;
-    bool m_unkBool30;
+    [[renamed_from(m_unkBool30)]]
+    bool m_mainSongStopped; // an edit song trigger stopped channel 0
     int m_background;
     int m_ground;
     int m_middleground;
@@ -13448,7 +13517,8 @@ class GroupCommandObject2 {
     float m_gameObjectRotation;
     std::vector<int> m_remapKeys;
     bool m_someInterpValue2RelatedTrue;
-    int m_unkInt204;
+    [[renamed_from(m_unkInt204)]]
+    int m_stepStamp; // command index of the step that queued it
 }
 
 [[link(android)]]
@@ -14069,28 +14139,48 @@ class KeyframeObject {
 
     void setupSpline(std::vector<KeyframeObject*>& objects) = win 0x3d9f10, imac 0xe9740, m1 0xcb680;
 
-    double m_unk000;
-    int m_unk008;
-    float m_unk00c;
-    bool m_unk010;
-    int m_unk014;
-    float m_unk018;
-    bool m_unk01c;
-    bool m_unk01d;
-    bool m_unk01e;
+
+    [[renamed_from(m_unk000)]]
+    double m_duration; // key 10 * time mod
+    [[renamed_from(m_unk008)]]
+    int m_easingType; // key 30
+    [[renamed_from(m_unk00c)]]
+    float m_easingRate; // key 85
+    [[renamed_from(m_unk010)]]
+    bool m_refOnly; // key 375
+    [[renamed_from(m_unk014)]]
+    int m_spawnGroup; // key 71, next keyframe's pending spawn group
+    [[renamed_from(m_unk018)]]
+    float m_spawnDelay; // key 557, next keyframe's spawn delay
+    [[renamed_from(m_unk01c)]]
+    bool m_proximity; // key 377, next keyframe's proximity
+    [[renamed_from(m_unk01d)]]
+    bool m_spawned; // m_spawnGroup already fired
+    [[renamed_from(m_unk01e)]]
+    bool m_curve; // key 378
     tk_spline m_spline1;
     tk_spline m_spline2;
-    double m_unk170;
-    double m_unk178;
-    int m_unk180;
-    int m_unk184;
-    cocos2d::CCPoint m_unk188;
-    cocos2d::CCPoint m_unk190;
-    double m_unk198;
-    double m_unk1a0;
-    double m_unk1a8;
-    double m_unk1b0;
-    float m_unk1b8;
+    [[renamed_from(m_unk170)]]
+    double m_curveLength; // spline parameter length
+    [[renamed_from(m_unk178)]]
+    double m_refRunDuration; // eased duration of a ref-only run
+    [[renamed_from(m_unk180)]]
+    int m_timeMode; // key 379
+    [[renamed_from(m_unk184)]]
+    int m_keyframeObject; // unique ID of the KeyframeGameObject
+    [[renamed_from(m_unk188)]]
+    cocos2d::CCPoint m_positionDelta; // offset from the previous keyframe
+    [[renamed_from(m_unk190)]]
+    cocos2d::CCPoint m_position; // absolute position
+    [[renamed_from(m_unk198)]]
+    double m_scaleX; // ratio to the previous keyframe
+    [[renamed_from(m_unk1a0)]]
+    double m_scaleY; // ratio to the previous keyframe
+    [[renamed_from(m_unk1a8)]]
+    double m_rotation; // delta, + 360 * key 537, wrapped by key 536
+    double m_unk1b0; // unused as of 2.2091
+    [[renamed_from(m_unk1b8)]]
+    float m_opacity; // object opacity * key 524
 }
 
 [[link(android)]]
@@ -15406,18 +15496,18 @@ class LevelSettingsObject : cocos2d::CCNode {
 
     virtual bool init() = win 0x40ea10, imac 0x64080, m1 0xc0134, ios 0x40e310;
 
-    TodoReturn findIDByName(std::string const&, int);
+    int findIDByName(std::string const& name, int type) const;
     TodoReturn getCustomSFXPathRaw(int, int);
-    TodoReturn getIDName(int, int);
-    TodoReturn getIDNames(int);
-    TodoReturn getIDUseOrder(int);
+    std::string getIDName(int id, int type) const;
+    std::unordered_map<int, std::string> const& getIDNames(int type) const;
+    std::vector<int> const& getIDUseOrder(int type) const;
     std::string getSaveString() = win 0x40ed20, imac 0xb3430;
-    TodoReturn removeFromIDUseOrder(int, int);
-    TodoReturn sanitizeIDName(std::string const&);
-    void setIDName(int, std::string const&, int);
+    void removeFromIDUseOrder(int id, int type);
+    static std::string sanitizeIDName(std::string const& name);
+    void setIDName(int type, std::string const& name, int id);
     void setupColorsFromLegacyMode(cocos2d::CCDictionary* dict) = win 0x412c60, imac 0xddeb0, m1 0xc387c;
     bool shouldUseYSection() = win inline, imac 0xda200;
-    TodoReturn touchIDUsage(int, int);
+    void touchIDUsage(int id, int type);
 
     GJEffectManager* m_effectManager;
     // property kA2
@@ -17581,7 +17671,8 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_decreaseBoostSlide;
     int m_followRelated;
     std::vector<float> m_playerFollowFloats;
-    float m_unk838;
+    [[renamed_from(m_unk838)]]
+    float m_followSampleTimer; // time since the player's last position was fetched
     bool m_isOnSlope;
     bool m_wasOnSlope;
     float m_slopeVelocity;
@@ -17596,8 +17687,10 @@ class PlayerCheckpoint : cocos2d::CCNode {
     int m_lastCollisionTop;
     int m_lastCollisionLeft;
     int m_lastCollisionRight;
-    int m_unk50C;
-    int m_unk510;
+    [[renamed_from(m_unk50C)]]
+    int m_prevCollisionBottom; // m_lastCollisionBottom of the previous step
+    [[renamed_from(m_unk510)]]
+    int m_prevCollisionTop; // m_lastCollisionTop of the previous step
     GameObject* m_currentSlope2;
     GameObject* m_preLastGroundObject;
     float m_slopeAngle;
@@ -17616,40 +17709,42 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_scaleXRelated5;
     bool m_isCollidingWithSlope;
     bool m_isBallRotating;
-    bool m_unk669;
+    [[renamed_from(m_unk669)]]
+    bool m_noPotentialSlope; // set every step, cleared when a slope is found below
     GameObject* m_currentPotentialSlope;
     GameObject* m_currentSlope;
-    double unk_584;
+    double m_slopeCenterOffset; // how much higher the player's center sits on the current slope
     int m_collidingWithSlopeId;
-    bool m_slopeFlipGravityRelated;
+    bool m_slopeIsDownhill; // the current slope goes down in the player's direction
     float m_slopeAngleRadians;
     float m_rotationSpeed;
     float m_rotateSpeed;
     bool m_isRotating;
-    bool m_isBallRotating2;
+    bool m_ballSpinning; // ball spins at m_rotationSpeed
     double m_speedMultiplier;
     double m_yStart;
     double m_gravity;
     float m_trailingParticleLife;
     double m_gameModeChangedTime;
-    bool m_padRingRelated;
-    bool m_maybeIsFalling;
+    bool m_ringJumpedSincePress; // a normal ring was used since the last button press
+    bool m_hasStartedFalling; // set the first time a jump / boost ends and the player starts falling
     bool m_shouldTryPlacingCheckpoint;
     bool m_playEffects;
-    bool m_isOnGround3;
+    bool m_landedSinceFlip; // set on landing, cleared by a spider / gravity jump flip
     double m_lastSpiderFlipTime;
-    bool m_unkBool5;
-    bool m_ringJumpRelated;
-    std::unordered_set<int> m_ringRelatedSet;
-    bool m_maybeSpriteRelated;
+    bool m_unkBool5; // unused as of 2.2091
+    bool m_usedRingThisStep; // a ring was activated this step
+    std::unordered_set<int> m_usedRings; // unique IDs of rings used during the current button press
+    bool m_specialGroundHit; // landed on special ground this step
     float m_landParticlesAngle;
-    float m_landParticleRelatedY;
+    float m_landParticlesGravityY; // landing particle gravity Y
     double m_slopeRotation;
     double m_currentSlopeYVelocity;
-    double m_unk3d0;
-    double m_blackOrbRelated;
-    bool m_unk3e0;
-    bool m_unk3e1;
+    [[renamed_from(m_blackOrbRelated)]]
+    double m_lastSlopeSnapY; // player center Y the last slope collision snapped to
+    double m_lastSlopeSnapOffset; // m_lastSlopeSnapY relative to the slope's stored position
+    bool m_lastSlopeSnapAtFarEdge; // last slope snap was clamped to the slope's far edge
+    bool m_lastSlopeSnapAtNearEdge; // last slope snap was clamped to the slope's near edge
     bool m_isAccelerating;
     bool m_isCurrentSlopeTop;
     double m_collidedTopMinY;
@@ -17658,27 +17753,27 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_collidedRightMinX;
     bool m_wasJumpBuffered;
     bool m_wasRobotJump;
-    unsigned char m_stateJumpBuffered;
-    bool m_stateRingJump2;
+    bool m_stateJumpBuffered;
+    bool m_statePreJump; // input buffered but no jump triggered yet
     bool m_touchedRing;
     bool m_touchedCustomRing;
     bool m_touchedGravityPortal;
-    bool m_maybeTouchedBreakableBlock;
+    bool m_brokeBlockSincePress; // broke a breakable block with the head since the last button press
     bool m_touchedPad;
     double m_yVelocity;
     double m_fallSpeed;
-    bool m_maybeUpsideDownSlope;
-    int m_reverseRelated;
-    double m_maybeReverseAcceleration;
-    float m_xVelocityRelated2;
+    bool m_slopeResnapped; // player re-snapped to moving slope collision
+    int m_reverseCooldown; // set to 2 when the direction flips, decremented every step
+    double m_reverseSyncStep; // part of m_reverseSyncRemaining added to the next step's X move
+    float m_ballRollSpeed; // ball sprite roll speed: equals m_platformerXVelocity, lags behind it on ice
     cocos2d::CCPoint m_shipRotation;
     cocos2d::CCPoint m_lastPortalPos;
-    float m_unkUnused3;
-    bool m_isOnGround2;
+    float m_unkUnused3; // unused as of 2.2091
+    bool m_touchingGround; // set on any landing, cleared by jumps / boosts
     double m_lastLandTime;
-    float m_platformerVelocityRelated;
-    bool m_maybeIsBoosted;
-    double m_scaleXRelatedTime;
+    float m_decelerationRamp; // platformer: builds up while no direction is held, friction = min(1, value + 0.2)
+    bool m_isRising; // set by a jump, pad, ring, boost or gravity flip
+    double m_lastGroundXDeltaTime; // m_totalTime of the last non-zero m_groundXDelta
     bool m_isLocked;
     bool m_controlsDisabled;
     cocos2d::CCPoint m_lastGroundedPos;
@@ -17686,42 +17781,40 @@ class PlayerCheckpoint : cocos2d::CCNode {
     std::unordered_set<int> m_touchedRings;
     GameObject* m_lastActivatedPortal;
     double m_totalTime;
-    float m_yVelocityRelated3;
+    float m_diagonalYStep; // Y distance moved this step by the wave / dash direction, 0 otherwise
     bool m_defaultMiniIcon;
     bool m_swapColors;
     bool m_switchDashFireColor;
     int m_stateOnGround;
-    unsigned char m_stateUnk;
-    unsigned char m_stateNoStickX;
-    unsigned char m_stateNoStickY;
-    unsigned char m_stateUnk2;
+    float m_unusedFloatA80;  // unused as of 2.2091
     int m_stateBoostX;
     int m_stateBoostY;
-    int m_maybeStateForce2;
+    int m_stateNoWallPush; // state counter
     int m_stateScale;
     double m_platformerXVelocity;
     bool m_holdingRight;
     bool m_holdingLeft;
     bool m_leftPressedFirst;
-    double m_scaleXRelated;
-    bool m_maybeHasStopped;
-    float m_xVelocityRelated;
-    bool m_maybeGoingCorrectSlopeDirection;
+    double m_platformXMove; // the x movement on this step of the platform that holds a player
+    [[renamed_from(m_maybeGoingCorrectSlopeDirection)]]
+    bool m_hasPlatformMomentum; // whether player left a moving platform with >= 2 X speed
+    float m_platformMomentum; // X speed inherited from that platform, decays with friction
+    bool m_forcedSlopeSlide; // movement is forced down steep slopes in platformer mode
     bool m_isSliding;
-    double m_maybeSlopeForce;
+    double m_slopeSpeedBonus; // extra speed built up running down a slope at full speed
     bool m_isOnIce;
-    double m_physDeltaRelated;
-    bool m_isOnGround4;
-    int m_maybeSlidingTime;
-    double m_maybeSlidingStartTime;
+    double m_platformRideTime; // time spent on a moving platform
+    bool m_wasTouchingGround; // m_touchingGround of the previous step
+    int m_slopeJumpCount; // jumps made while a steep slope forces a slide in platformer mode
+    double m_slopeJumpResetTime; // m_totalTime when m_slopeJumpCount was reset
     double m_changedDirectionsTime;
     double m_slopeEndTime;
     bool m_isMoving;
-    bool m_platformerMovingLeft;
-    bool m_platformerMovingRight;
-    bool m_isSlidingRight;
-    double m_maybeChangedDirectionAngle;
-    double m_unkUnused2;
+    bool m_forcedSlideLeft; // a slope steeper than 40 degrees is pushing the player left in platformer mode
+    bool m_forcedSlideRight; // right counterpart of m_forcedSlideLeft
+    bool m_lastSlideLeft; // direction of the last forced slide: 1 = left, 0 = right
+    double m_slideSlopeAngle; // angle of the forced slide slope in degrees
+    double m_unkUnused2; // unused as of 2.2091
     int m_stateNoAutoJump;
     int m_stateDartSlide;
     int m_stateHitHead;
@@ -17729,7 +17822,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     int m_stateForce;
     cocos2d::CCPoint m_stateForceVector;
     bool m_affectedByForces;
-    std::map<int, bool> m_jumpPadRelated;
+    std::map<int, bool> m_touchedForceIds; // force IDs of force blocks applied this step
     float m_fallStartY;
 }
 
@@ -18412,7 +18505,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void loadDynamicSaveObjects(std::vector<SavedObjectStateRef>& dynamicObjects) = win inline, imac 0x8b610, m1 0x80cc0;
     void loadFromCheckpoint(CheckpointObject* object) = win 0x516820, imac 0x8ae80, m1 0x80570;
     CheckpointObject* loadLastCheckpoint() = win inline, imac 0x8ae30, m1 0x80518;
-    TodoReturn loadPersistentCheckpoint(std::string&) = win 0x5182b0;
+    void loadPersistentCheckpoint(std::string& save) = win 0x5182b0;
     CheckpointObject* markCheckpoint() = win 0x516630, imac 0x88a00, m1 0x7e9e0;
     void onQuit() = win 0x51b0b0;
     void optimizeColorGroups();
@@ -18435,7 +18528,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void resumeAndRestart(bool fromStart) = win 0x51a750, imac 0x400b40, m1 0x305d54;
     void saveActiveSaveObjects(std::vector<SavedActiveObjectState>& activeObjects, std::vector<SavedSpecialObjectState>& specialObjects) = win 0x517b60, imac 0x8a760, m1 0x7ffb0;
     void saveDynamicSaveObjects(std::vector<SavedObjectStateRef>& dynamicObjects) = win 0x517870, imac 0x8a500, m1 0x7fdd8;
-    TodoReturn savePersistentCheckpoint(CheckpointObject*);
+    void savePersistentCheckpoint(CheckpointObject* checkpoint);
     void scanActiveSaveObjects() = win inline, imac 0x7cd40, m1 0x74244;
     void scanDynamicSaveObjects() = win 0x517270, imac 0x7c3c0, m1 0x73980;
     void screenFlipObject(GameObject* object) = win 0x50f1f0, imac 0x868d0, m1 0x7caec;
@@ -18478,7 +18571,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateProgressbar() = win 0x510e50, imac 0x7ef90, m1 0x75d74;
     void updateScreenRotation(int rotation, bool add, bool convert, float duration, int easingType, float easingRate, int uniqueID, int controlID) = win inline, imac 0x83710, m1 0x79de4, ios inline;
     void updateTestModeLabel() = win 0x505ed0, ios 0x142288;
-    TodoReturn writePersistentSave();
+    void writePersistentSave();
 
     int m_unk36c8;
     bool m_unk36cc;
