@@ -3784,11 +3784,11 @@ class DeathHistogram : cocos2d::CCNode {
 class DeathMarkerLayer : cocos2d::CCNode {
     virtual ~DeathMarkerLayer() = win 0x114d80, ios 0x4b1004;
 
-    static DeathMarkerLayer* create(std::vector<int> const&, cocos2d::ccColor3B, bool, bool, cocos2d::CCRect const&, int, int, float, float, float, int, int, cocos2d::CCNode*, bool);
+    static DeathMarkerLayer* create(std::vector<int> const&, cocos2d::ccColor3B, bool, bool, cocos2d::CCRect const&, int, int, float, float, float, int, int, cocos2d::CCNode*, bool, bool);
 
     // TodoReturn badgeWorthy(DeathMarkerLayer::DMCell const&);
     // TodoReturn buildCell(DeathMarkerLayer::DMCell&);
-    bool init(std::vector<int> const&, cocos2d::ccColor3B, bool, bool, cocos2d::CCRect const&, int, int, float, float, float, int, int, cocos2d::CCNode*, bool) = win 0x114ee0;
+    bool init(std::vector<int> const&, cocos2d::ccColor3B, bool, bool, cocos2d::CCRect const&, int, int, float, float, float, int, int, cocos2d::CCNode*, bool, bool) = win 0x114ee0;
     // TodoReturn labeled(DeathMarkerLayer::DMCell const&);
     TodoReturn mountSection(unsigned int);
     TodoReturn playMarkerSound();
@@ -10471,7 +10471,7 @@ class GJEffectManager : cocos2d::CCNode {
     CCMoveCNode* getMoveCommandNode(GroupCommandObject2* command) = win 0x3697c0, imac 0x2ccf00, m1 0x26b620;
     CCMoveCNode* getMoveCommandObject() = win 0x3696c0, imac 0x2cf180, m1 0x26d26c;
     OpacityEffectAction* getOpacityActionForGroup(int id) = win inline, imac 0x2d28b0, m1 0x26fd2c;
-    void getPersistentState(std::unordered_map<int, int>& counts, std::unordered_map<int, TimerItem>& items);
+    void getPersistentState(std::unordered_map<int, int>& counts, std::unordered_set<int>&, std::unordered_map<int, TimerItem>& items);
     std::string getPersistentStateString() = win 0x36d060, imac 0x2d5550, m1 0x2721ac;
     std::string getSaveString() = win inline, imac 0x2d8c00, m1 0x274a24;
     GroupCommandObject2* getTempGroupCommand() = imac 0x2cf330, m1 0x26d3d4;
@@ -17795,6 +17795,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void modeDidChange() = win inline, imac 0x403bf0, m1 0x37e3a0;
     void performSlideCheck() = win inline, imac 0x3f3880, m1 0x3702e8;
     void placeStreakPoint() = win 0x4fec10, m1 0x370048;
+    void placeStreakPoint(cocos2d::CCPoint);
     void playBumpEffect(int objectType, GameObject* player) = win 0x4fde90, imac 0x407a90, m1 0x381f30;
     void playBurstEffect() = win inline, imac 0x3f1090, m1 0x36e13c;
     void playCompleteEffect(bool noEffects, bool instant) = win 0x4e2420, imac 0x1f7550, m1 0x1a90c8;
