@@ -19295,7 +19295,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     TodoReturn feedTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     cocos2d::CCNode* getOrCreateSection(int section);
     cocos2d::CCMenu* getOrCreateSectionMenu(int section);
-    bool handleTouchBegan(cocos2d::CCTouch* touch) = win 0x817b0, m1 0x849320, imac 0x96c7a0;
+    bool handleTouchBegan(cocos2d::CCTouch* touch) = win 0x817b0, m1 0x8489fc, imac 0x96bdb0;
     void handleTouchCancelled(cocos2d::CCTouch* touch) = win inline;
     void handleTouchEnded(cocos2d::CCTouch* touch) = win 0x81c60;
     void handleTouchMoved(cocos2d::CCTouch* touch) = win 0x819a0;
