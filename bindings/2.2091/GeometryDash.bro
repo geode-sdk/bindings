@@ -5657,9 +5657,7 @@ class EffectManagerState {
     EffectManagerState() = win 0x503390;
 
 
-    [[renamed_from(m_unkVecCAState)]]
     std::vector<CAState> m_colorActions; // running color triggers
-    [[renamed_from(m_unkVecPulseEffectAction)]]
     std::vector<PulseEffectAction> m_pulseActions; // running pulse triggers
     std::unordered_map<int,std::vector<PulseEffectAction>> m_unorderedMapInt_vectorPulseEffectAction;
     std::unordered_map<int,std::vector<CountTriggerAction>> m_unorderedMapInt_vectorCountTriggerAction;
@@ -8502,7 +8500,6 @@ class GameObject : CCSpritePlus {
     bool m_hasContentSize;
     // property 121
     bool m_isNoTouch;
-    [[renamed_from(m_lastSize)]]
     cocos2d::CCSize m_contentSize;
     cocos2d::CCPoint m_lastPosition;
     int m_unk4C0;
@@ -11024,60 +11021,34 @@ class GJGameState {
     float m_cameraZoom;
     float m_targetCameraZoom;
     cocos2d::CCPoint m_cameraOffset;
-    [[renamed_from(m_unkPoint1)]]
     cocos2d::CCPoint m_cameraOffsetTarget; // camera offset trigger target
-    [[renamed_from(m_unkPoint2)]]
     cocos2d::CCPoint m_lastCameraTarget; // camera target position computed last frame
-    [[renamed_from(m_unkPoint3)]]
     cocos2d::CCPoint m_lastCameraOffset; // m_cameraOffset last frame
     // Keep GJGameState copy-assignable.
     cocos2d::CCPoint m_cameraDeltaPosition;
-    [[renamed_from(m_unkPoint5)]]
     cocos2d::CCPoint m_staticCameraStart; // static camera position when the move started
-    [[renamed_from(m_unkPoint6)]]
     cocos2d::CCPoint m_staticCameraPosition; // static camera current position
-    [[renamed_from(m_unkPoint7)]]
     cocos2d::CCPoint m_staticCameraTarget; // static camera target position
-    [[renamed_from(m_unkPoint8)]]
     cocos2d::CCPoint m_staticExitOffset; // exit static offset from the normal camera, eased back to 0
-    [[renamed_from(m_unkPoint9)]]
     cocos2d::CCPoint m_appliedStaticExitOffset; // m_staticExitOffset applied last frame
-    [[renamed_from(m_unkPoint10)]]
     cocos2d::CCPoint m_staticStartVelocity; // m_cameraVelocity clamped to +-10000 when static enter / exit starts
-    [[renamed_from(m_unkPoint11)]]
     cocos2d::CCPoint m_staticCameraDuration; // static camera move duration, per axis
-    [[renamed_from(m_unkPoint12)]]
     cocos2d::CCPoint m_staticTransitionProgress; // 0 to 1 progress of a follow / smooth-velocity transition
-    [[renamed_from(m_unkPoint13)]]
     cocos2d::CCPoint m_lastStaticTransitionProgress; // m_staticTransitionProgress last frame
-    [[renamed_from(m_unkPoint14)]]
     cocos2d::CCPoint m_staticFollowEasing; // static camera follow easing
-    [[renamed_from(m_unkPoint15)]]
     cocos2d::CCPoint m_staticFollow; // static camera follows its target group
-    [[renamed_from(m_unkPoint16)]]
     cocos2d::CCPoint m_staticFollowGroup; // static camera target group ID
-    [[renamed_from(m_unkPoint17)]]
     cocos2d::CCPoint m_staticCameraActive; // static camera on
-    [[renamed_from(m_unkPoint18)]]
     cocos2d::CCPoint m_staticExitPending; // exit static requested, handled on the next camera update
-    [[renamed_from(m_unkPoint19)]]
     cocos2d::CCPoint m_staticExitDuration; // exit static duration
-    [[renamed_from(m_unkPoint20)]]
     cocos2d::CCPoint m_staticExitEasingRate; // exit static easing rate
-    [[renamed_from(m_unkPoint21)]]
     cocos2d::CCPoint m_staticExitEasing; // exit static easing type
-    [[renamed_from(m_unkPoint22)]]
     cocos2d::CCPoint m_staticSmoothVelocity; // smooth velocity on
-    [[renamed_from(m_unkPoint23)]]
     cocos2d::CCPoint m_staticSmoothVelocityMod; // smooth velocity modifier
-    [[renamed_from(m_unkPoint24)]]
     cocos2d::CCPoint m_staticExitStartOffset; // exit static with smooth velocity: offset the curve starts from
     cocos2d::CCPoint m_unkPoint25; // unused as of 2.2091
-    [[renamed_from(m_unkPoint26)]]
     cocos2d::CCPoint m_internalCameraOffset; // current internal camera offset
-    [[renamed_from(m_unkPoint27)]]
     cocos2d::CCPoint m_internalCameraOffsetTarget; // internal camera offset target
-    [[renamed_from(m_unkPoint28)]]
     cocos2d::CCPoint m_lastInternalCameraOffsetTarget; // m_internalCameraOffsetTarget last frame
     cocos2d::CCPoint m_unkPoint29; // unused as of 2.2091
     [[renamed_from(m_unkBool1)]]
@@ -11090,7 +11061,6 @@ class GJGameState {
     int m_gameplayOffsetY; // gameplay offset trigger Y
     [[renamed_from(m_unkBool3)]]
     bool m_gameplayOffsetYDontZoom; // gameplay offset Y is not divided by the zoom
-    [[renamed_from(m_unkPoint30)]]
     cocos2d::CCPoint m_snapInternalCameraOffset; // apply m_internalCameraOffsetTarget at once this frame
     float m_middleGroundOffsetY;
     [[renamed_from(m_unkInt3)]]
@@ -11189,7 +11159,6 @@ class GJGameState {
     int m_cameraEdgeValue2;
     int m_cameraEdgeValue3;
     std::unordered_map<int, GameObjectPhysics> m_gameObjectPhysics;
-    [[renamed_from(m_unkVecFloat1)]]
     std::vector<float> m_positionHistory; // ring buffer of x, y samples per tracked object
     int m_unkUint10;  // unused as of 2.2091
     [[renamed_from(m_unkUint11)]]
@@ -11204,7 +11173,6 @@ class GJGameState {
     std::map<std::pair<int, int>, int> m_activatedObjectIDs;
     [[renamed_from(m_unkUint13)]]
     float m_teleportCameraEaseTimer; // 0.5 after a teleport portal with smooth ease
-    [[renamed_from(m_unkPoint32)]]
     cocos2d::CCPoint m_lastCameraEase; // camera easing divisor per axis last frame
     cocos2d::CCPoint m_cameraLastPosition;
     [[renamed_from(m_unkBool20)]]
@@ -11226,13 +11194,10 @@ class GJGameState {
     float m_cameraShakeInterval;
     [[renamed_from(m_unkUint64_1)]]
     double m_lastShakeTime;
-    [[renamed_from(m_unkPoint34)]]
     cocos2d::CCPoint m_cameraShakeOffset; // current shake offset, re-rolled every m_cameraShakeInterval
     unsigned int m_dualRelated;
     std::unordered_map<int, EnhancedGameObject*> m_stateObjects;
-    [[renamed_from(m_unkMapPairGJGameEventIntVectorEventTriggerInstance)]]
     std::map<std::pair<GJGameEvent, int>, std::vector<EventTriggerInstance>> m_gameEventTriggers; // (event, value) -> event link triggers
-    [[renamed_from(m_unkMapPairGJGameEventIntInt)]]
     std::map<std::pair<GJGameEvent, int>, int> m_gameEventCounts; // (event, value) -> count
     std::unordered_map<int, std::vector<EnterEffectInstance>> m_enterEffectInstanceVectors;
     std::unordered_map<int, std::vector<EnterEffectInstance>> m_exitEffectInstanceVectors;
@@ -11255,7 +11220,6 @@ class GJGameState {
     bool m_instantExitStaticCameraY;
     [[renamed_from(m_unkUint17)]]
     float m_maxPortalY; // getMaxPortalY() cached each step
-    [[renamed_from(m_unkUMap8)]]
     std::unordered_map<int, std::vector<int>> m_sfxTriggerChannels; // SFX trigger unique ID -> FMOD channels it started
     std::map<std::pair<int,int>, SFXTriggerInstance> m_proximityVolumeRelated;
     std::unordered_map<int, SongChannelState> m_songChannelStates;
@@ -14168,9 +14132,7 @@ class KeyframeObject {
     int m_timeMode; // key 379
     [[renamed_from(m_unk184)]]
     int m_keyframeObject; // unique ID of the KeyframeGameObject
-    [[renamed_from(m_unk188)]]
     cocos2d::CCPoint m_positionDelta; // offset from the previous keyframe
-    [[renamed_from(m_unk190)]]
     cocos2d::CCPoint m_position; // absolute position
     [[renamed_from(m_unk198)]]
     double m_scaleX; // ratio to the previous keyframe
