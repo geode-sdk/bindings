@@ -5704,7 +5704,7 @@ class EmotePickerPopup : EditorWindowPopup {
     TodoReturn canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
     TodoReturn createPicker(cocos2d::CCPoint);
     bool init(CCTextInputNode*, cocos2d::CCPoint, int, int) = win 0x123970, imac 0x902680, m1 0x7e96b8;
-    TodoReturn layoutEmoteGrid() = win 0x124050, imac 0x9034d0, m1 0x7ea548;
+    void layoutEmoteGrid() = win 0x124050, imac 0x9034d0, m1 0x7ea548;
     void onPickEmote(cocos2d::CCObject* sender) = win 0x124780;
     TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = imac 0x902b60, m1 0x7e9b08;
     TodoReturn refreshEnabled();
