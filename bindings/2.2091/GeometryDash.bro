@@ -1758,17 +1758,17 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
 
     void constraintContent() = win 0x4af70, imac 0x41b670, m1 0x393894;
     void doConstraintContent(bool instant) = win 0x4af80, imac 0x41b680, m1 0x39389c;
-    float getMaxY() = win inline, imac 0x41b110, m1 0x39343c;
+    float getMaxY() = win inline, imac 0x41b110, m1 0x39343c, ios inline;
     float getMinY() = win inline, imac 0x41b120, m1 0x393444, ios inline;
     void moveToTop() = win 0x4ae30, imac 0x41b210, m1 0x393540, ios 0x39d898;
     void moveToTopWithOffset(float offset) = win 0x4ad80, imac 0x41b170, m1 0x393498, ios 0x39d7f0;
-    TodoReturn scissorRect();
+    cocos2d::CCRect scissorRect();
     void scrollingEnd() = win 0x4b140, imac 0x41b820;
     void scrollLayer(float offset) = win inline, imac 0x41bf90, m1 0x394110, ios 0x39e21c;
     void setContentLayerSize(cocos2d::CCSize size) = win inline, imac 0x41b870, m1 0x393a74, ios inline;
     void setContentOffset(cocos2d::CCPoint offset, bool animate) = win inline, imac 0x41b890, m1 0x393a84;
     void updateIndicators(float dt) = win 0x4b180, imac 0x41aeb0, m1 0x3931f0;
-    TodoReturn updateScrollDecay(float);
+    void updateScrollDecay(float dt) = win 0x4b9a0, m1 0x394174, imac 0x41bff0, ios 0x39e280;
 
     cocos2d::CCTouch* m_touch;
     cocos2d::CCPoint m_touchPosition;

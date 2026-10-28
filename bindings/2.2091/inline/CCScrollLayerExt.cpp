@@ -1,4 +1,6 @@
 #include <Geode/binding/CCScrollLayerExt.hpp>
+#include <Geode/mapping/CCNode.hpp>
+#include <Geode/binding/GameManager.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -17,10 +19,12 @@ float CCScrollLayerExt::getMaxY() {
 }
 
 void CCScrollLayerExt::scrollLayer(float offset) {
-    float y = m_contentLayer->getPositionY() + offset;
-    float minY = getMinY();
-    float maxY = getMaxY();
-    m_contentLayer->setPositionY(y < minY ? minY : y > maxY ? maxY : y);
+    m_scrollDecay += offset;// * GameManager::get()->m_; // this member isnt in the bindings yet
+
+    if (!m_scrolling) {
+        schedule(schedule_selector(CCScrollLayerExt::updateScrollDecay));
+        m_scrolling = true;
+    }
 }
 
 void CCScrollLayerExt::setContentOffset(cocos2d::CCPoint offset, bool animate) {
