@@ -240,7 +240,7 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     virtual int requestPage(int) = win 0xb3200, ios 0x545038, m1 0x876198, imac 0x99bb00;
     virtual TodoReturn clearPageContent() = win 0xb32d0, ios 0x5450c0, m1 0x876220, imac 0x99bb90;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xaf060, ios 0x540bf0, m1 0x86f530, imac 0x994570;
-    virtual void dropdownSelectionChanged(Dropdown*, int) = win 0x9999999, ios 0x545148, m1 0x8762bc, imac 0x99bc60;
+    virtual void dropdownSelectionChanged(Dropdown*, int) = win 0xb34a0, ios 0x545148, m1 0x8762bc, imac 0x99bc60;
     virtual void reviewChoicePicked(int, int, std::string const&) = win 0xba500, ios 0x54a3d8;
     virtual void adminActionConfirmed(int, std::vector<int> const&, std::string const&) = win 0xbc670, ios 0x54b3e4;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xbb0e0, ios 0x54aa34, m1 0x87d478, imac 0x9a32f0;
@@ -1161,7 +1161,7 @@ class BrowseSmartKeyLayer : BrowseSmartTemplateLayer {
 
 [[link(android), depends(SmartPrefabResult)]]
 class BrowseSmartTemplateLayer : FLAlertLayer {
-    BrowseSmartTemplateLayer() = win 0x9999999, inline;
+    BrowseSmartTemplateLayer() = win 0x5ec020, inline;
     ~BrowseSmartTemplateLayer() = win 0x5ef780, ios 0x79bb8;
 
     static BrowseSmartTemplateLayer* create(GJSmartTemplate* smartTemplate, SmartBrowseFilter browseFilter) = win inline;
@@ -15115,7 +15115,7 @@ class LevelManagerDelegate {
 
 [[link(android)]]
 class LevelOptionsLayer : GJOptionsLayer {
-    LevelOptionsLayer() = win 0x9999999, inline;
+    LevelOptionsLayer() = win 0x457900, inline;
     virtual ~LevelOptionsLayer() = win 0x45d100, ios 0x20ece8;
 
     static LevelOptionsLayer* create(LevelSettingsObject* object) = win inline;
@@ -19063,7 +19063,7 @@ class ReportQueuePopup : PagedListPopup, CommentAdminDelegate, DropdownDelegate 
     static ReportQueuePopup* create() = win inline;
 
     virtual bool init() = win 0xc7640, ios 0x5230c8, m1 0x845a18, imac 0x968ca0;
-    virtual void rebuildContent() = win 0x9999999, ios 0x524660, m1 0x847a88, imac 0x96adf0;
+    virtual void rebuildContent() = win 0xc95b0, ios 0x524660, m1 0x847a88, imac 0x96adf0;
     virtual int requestPage(int) = win 0xc7ee0, ios 0x52369c, m1 0x846084, imac 0x969320;
     virtual void dropdownSelectionChanged(Dropdown*, int) = win 0xc9610, ios 0x524668, m1 0x847a90, imac 0x96ae00;
     virtual void adminReportQueueFinished(cocos2d::CCArray*, int, int, int) = win 0xc7f70, ios 0x5236d8, m1 0x8460c0, imac 0x969360;
@@ -22160,7 +22160,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     TodoReturn currentListScrollY();
     TodoReturn executeBatchDelete();
     TodoReturn fitFolderPath();
-    bool init(int, int) = win 0x9999999;
+    bool init(int, int) = win 0x616760;
     void onBatchDelete(cocos2d::CCObject* sender) = win 0x61c940;
     void onChangelog(cocos2d::CCObject* sender);
     void onClearSearchText(cocos2d::CCObject* sender);
@@ -24594,7 +24594,7 @@ class TutorialPopup : FLAlertLayer {
 [[link(android), depends(cocos2d::CCPoint)]]
 class UIButtonConfig {
     void reset() = win 0x275900, inline;
-    void resetOneBtn() = win 0x9999999, inline;
+    void resetOneBtn() = win 0x275970, inline;
 
     int m_width;
     int m_height;
