@@ -4515,12 +4515,12 @@ class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
     virtual void sfxBrowserClosed(SFXBrowser*) = win 0x184990, ios 0x4c6fd0, m1 0x7ccc78, imac 0x8e07b0;
 
     bool init(int, EditorSoundsLayer*) = win 0x183510;
-    void onAddSound(cocos2d::CCObject* sender);
-    void onDeleteSound(cocos2d::CCObject* sender);
-    void onEditSound(cocos2d::CCObject* sender);
-    void onOpenSettings(cocos2d::CCObject* sender);
-    void onPreviewSound(cocos2d::CCObject* sender);
-    void onToggleMode(cocos2d::CCObject* sender);
+    void onAddSound(cocos2d::CCObject* sender) = win 0x184950;
+    void onDeleteSound(cocos2d::CCObject* sender) = win 0x184bd0;
+    void onEditSound(cocos2d::CCObject* sender) = win 0x184b30;
+    void onOpenSettings(cocos2d::CCObject* sender) = win 0x184ca0;
+    void onPreviewSound(cocos2d::CCObject* sender) = win 0x184a70;
+    void onToggleMode(cocos2d::CCObject* sender) = win 0x1848c0;
     TodoReturn refreshModeButtons() = win 0x184830;
     TodoReturn refreshRows();
     TodoReturn refreshRowsAddedDeferred(float);
@@ -4604,7 +4604,7 @@ class EditorSFXSettingsPopup : SetupTriggerPopup {
 class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, EditorSoundConfigCellDelegate, TableViewCellDelegate, SetTextPopupDelegate {
     virtual ~EditorSoundBrowserLayer() = win 0x18d880, ios 0x4ccf8c;
 
-    static EditorSoundBrowserLayer* create(std::string, EditorSoundsLayer*);
+    static EditorSoundBrowserLayer* create(std::string, EditorSoundsLayer*) = win 0x18da30;
 
     virtual void registerWithTouchDispatcher() = win 0x46290, ios 0x4cd4f4, m1 0x7d93ac, imac 0x8f0980;
     virtual void rebuildContent() = win 0x1903f0, ios 0x4ce11c, m1 0x7da198, imac 0x8f18b0;
@@ -4622,12 +4622,12 @@ class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, Edit
     TodoReturn loadCurrentPage(bool, bool) = win 0x18f2b0;
     TodoReturn onConfigCopiedToMyLists(GJEditorSoundConfig*);
     TodoReturn onConfigListChanged();
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onRefresh(cocos2d::CCObject* sender);
+    void onNextPage(cocos2d::CCObject* sender) = win 0x18fe70;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x18fe50;
+    void onRefresh(cocos2d::CCObject* sender) = win 0x1903e0;
     void onSaveActive(cocos2d::CCObject* sender) = win 0x18fee0;
     void onSelectMode(cocos2d::CCObject* sender) = win 0x18f070;
-    void setMode(EditorSoundBrowseMode);
+    void setMode(EditorSoundBrowseMode) = win 0x18ef50;
     TodoReturn showLoading(bool);
     TodoReturn updateFooterButtonVisibility();
     TodoReturn updatePageLabel() = win 0x18fbe0;
@@ -4635,7 +4635,7 @@ class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, Edit
 
 [[link(android)]]
 class EditorSoundConfigCell : TableViewCell {
-    EditorSoundConfigCell(char const*, float, float);
+    EditorSoundConfigCell(char const*, float, float) = win 0x190600;
     virtual ~EditorSoundConfigCell() = win 0x190690, ios 0x4ce520;
 
     static EditorSoundConfigCell* create(float, float);
@@ -4643,9 +4643,9 @@ class EditorSoundConfigCell : TableViewCell {
     virtual bool init() = win 0x3ff70, ios 0x4ce558, m1 0x7da7ac, imac 0x8f2060;
 
     TodoReturn loadFromConfig(GJEditorSoundConfig*) = win 0x190730;
-    void onInfoPopup(cocos2d::CCObject* sender);
-    void onView(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onInfoPopup(cocos2d::CCObject* sender) = win 0x1919e0;
+    void onView(cocos2d::CCObject* sender) = win 0x191970;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x1919a0;
     TodoReturn updateBGColor(int);
 }
 
@@ -4658,7 +4658,7 @@ class EditorSoundConfigCellDelegate {
 class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegate, EditorSoundDeleteDelegate, FLAlertLayerProtocol, AdminActionConfirmDelegate, LikeItemDelegate, SoundPackDescDelegate, UploadActionDelegate, UploadPopupDelegate, MusicDownloadDelegate {
     virtual ~EditorSoundConfigInfoLayer() = win 0x191db0, ios 0x4d1700;
 
-    static EditorSoundConfigInfoLayer* create(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*);
+    static EditorSoundConfigInfoLayer* create(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*) = win 0x191b80;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x194ea0, ios 0x4d2d2c, m1 0x7df818, imac 0x8f7720;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x194f70, ios 0x4d2ddc, m1 0x7df8c8, imac 0x8f7800;
@@ -4685,24 +4685,24 @@ class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegat
     TodoReturn downloadMissingSFX() = win 0x196a30;
     TodoReturn editsServerDescription();
     bool init(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*) = win 0x1920b0;
-    bool isOwner();
+    bool isOwner() = win 0x196160;
     TodoReturn missingSFXIDs();
     void onDeleteServer(cocos2d::CCObject* sender) = win 0x197ac0;
-    void onDescription(cocos2d::CCObject* sender);
+    void onDescription(cocos2d::CCObject* sender) = win 0x195c20;
     void onDownloadSFX(cocos2d::CCObject* sender) = win 0x1967a0;
     void onDuplicate(cocos2d::CCObject* sender) = win 0x1955e0;
     void onFavorite(cocos2d::CCObject* sender) = win 0x1950c0;
     void onFeatureAdmin(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender);
-    void onLike(cocos2d::CCObject* sender);
+    void onInfo(cocos2d::CCObject* sender) = win 0x195b80;
+    void onLike(cocos2d::CCObject* sender) = win 0x1959d0;
     void onLoad(cocos2d::CCObject* sender) = win 0x196ec0;
     void onLocalDelete(cocos2d::CCObject* sender) = win 0x195420;
     void onMerge(cocos2d::CCObject* sender) = win 0x197000;
     void onOverwrite(cocos2d::CCObject* sender) = win 0x1976d0;
-    void onShowDescription(cocos2d::CCObject* sender);
-    void onUpdate(cocos2d::CCObject* sender);
-    void onUpload(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onShowDescription(cocos2d::CCObject* sender) = win 0x195c00;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x1950b0;
+    void onUpload(cocos2d::CCObject* sender) = win 0x197800;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x1964f0;
     TodoReturn refreshActionButtons() = win 0x195710;
     TodoReturn refreshLikeState() = win 0x194690;
     TodoReturn reloadWindow();
@@ -4723,11 +4723,11 @@ class EditorSoundConfigUploadPopup : SetupTriggerPopup, EditorSoundUploadDelegat
     virtual void uploadEditorSoundFailed(int) = win 0x19c620, ios 0x4d6c94, m1 0x7e4880, imac 0x8fd040;
 
     bool init(GJEditorSoundConfig*, EditorSoundConfigInfoLayer*) = win 0x19a7d0;
-    void onCancel(cocos2d::CCObject* sender);
-    void onToggleFriendsOnly(cocos2d::CCObject* sender);
+    void onCancel(cocos2d::CCObject* sender) = win 0x46360;
+    void onToggleFriendsOnly(cocos2d::CCObject* sender) = win 0x19bc80;
     void onToggleUnlisted(cocos2d::CCObject* sender) = win 0x19ba70;
-    void onUpload(cocos2d::CCObject* sender);
-    void onUploadAsUpdate(cocos2d::CCObject* sender);
+    void onUpload(cocos2d::CCObject* sender) = win 0x19b860;
+    void onUploadAsUpdate(cocos2d::CCObject* sender) = win 0x19b880;
     TodoReturn performUpload(int) = win 0x19bca0;
     TodoReturn updateVisibilityState();
 }
@@ -4754,7 +4754,7 @@ class EditorSoundListDelegate {
 class EditorSoundsLayer : TabbedPopupLayer {
     virtual ~EditorSoundsLayer() = win 0x19c7b0, ios 0x4d7004;
 
-    static EditorSoundsLayer* create(EditorUI*);
+    static EditorSoundsLayer* create(EditorUI*) = win 0x19ca70;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e790, ios 0x4d86d0, m1 0x7e6510, imac 0x8feeb0;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e8c0, ios 0x4d87b8, m1 0x7e65f8, imac 0x8fefd0;
@@ -4766,11 +4766,11 @@ class EditorSoundsLayer : TabbedPopupLayer {
     virtual void showTab(int tab) = win 0x19e100, imac 0x8fe8d0, m1 0x7e5f6c, ios 0x4d81d0;
 
     TodoReturn buildContentForTab(int);
-    bool init(EditorUI*);
-    void onActionRow(cocos2d::CCObject* sender);
-    void onBrowse(cocos2d::CCObject* sender);
-    void onClearSearch(cocos2d::CCObject* sender);
-    void onSettings(cocos2d::CCObject* sender);
+    bool init(EditorUI*) = win 0x19cd50;
+    void onActionRow(cocos2d::CCObject* sender) = win 0x19eae0;
+    void onBrowse(cocos2d::CCObject* sender) = win 0x19ec80;
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x19eec0;
+    void onSettings(cocos2d::CCObject* sender) = win 0x19ed80;
     TodoReturn setupTabs();
 }
 
@@ -4785,7 +4785,7 @@ class EditorSoundsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
 
     bool init(EditorSoundsLayer*) = win 0x3d4970;
     void onClearAll(cocos2d::CCObject* sender) = win 0x3d4ff0;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void onDownloadAll(cocos2d::CCObject* sender) = win 0x3d4dc0;
 }
 
@@ -6788,7 +6788,7 @@ class FriendPickerDelegate {
 class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     virtual ~FriendPickerPopup() = win 0xd3780, ios 0x502f50;
 
-    static FriendPickerPopup* create(FriendPickerDelegate*, bool, bool, bool, bool);
+    static FriendPickerPopup* create(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6ab0;
 
     virtual int requestPage(int) = win 0x5a3a0, ios 0x5039d8, m1 0x81e1a8, imac 0x93d140;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xe8b20, ios 0x504740, m1 0x81f0d8, imac 0x93e180;
@@ -6802,12 +6802,12 @@ class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     TodoReturn buildRows() = win 0xe8120;
     TodoReturn delayedRebuild(float);
     bool init(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6c60;
-    void onClearAll(cocos2d::CCObject* sender);
-    void onDone(cocos2d::CCObject* sender);
-    void onGlobalSearch(cocos2d::CCObject* sender);
-    void onPickFriend(cocos2d::CCObject* sender);
-    void onShowProfile(cocos2d::CCObject* sender);
-    void onToggleSelectedView(cocos2d::CCObject* sender);
+    void onClearAll(cocos2d::CCObject* sender) = win 0xe8ae0;
+    void onDone(cocos2d::CCObject* sender) = win 0xe8a40;
+    void onGlobalSearch(cocos2d::CCObject* sender) = win 0xe79e0;
+    void onPickFriend(cocos2d::CCObject* sender) = win 0xe8850;
+    void onShowProfile(cocos2d::CCObject* sender) = win 0xe8810;
+    void onToggleSelectedView(cocos2d::CCObject* sender) = win 0xe7980;
     TodoReturn updateCountLabel();
 }
 
@@ -6836,10 +6836,10 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     void loadFromGJFriendRequest(GJFriendRequest* request) = win 0x3a1ed0;
     void onAccept(cocos2d::CCObject* sender) = win 0x3a2a30, imac 0x2923f0, m1 0x2363a4;
     void onBlock(cocos2d::CCObject* sender) = win 0x3a2c60, imac 0x2925c0, m1 0x236554;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x3a28a0;
     void onIgnore(cocos2d::CCObject* sender) = win 0x3a2720;
     void onRemove(cocos2d::CCObject* sender) = win 0x3a2b30, imac 0x2923f0;
-    void onReport(cocos2d::CCObject* sender);
+    void onReport(cocos2d::CCObject* sender) = win 0x3a2ed0;
 
     void* m_unk;
     GJFriendRequest* m_request;
@@ -6859,7 +6859,7 @@ class FriendRowEdges : cocos2d::CCNode {
 class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
     virtual ~FriendsProfilePage() = win 0x213240, ios 0x271548;
 
-    static FriendsProfilePage* create(UserListType type);
+    static FriendsProfilePage* create(UserListType type) = win 0x213430;
 
     virtual void getUserListFinished(cocos2d::CCArray* scores, UserListType type) = win 0x214d40, imac 0x737340, ios 0x273484, m1 0x6451b0;
     virtual void getUserListFailed(UserListType type, GJErrorCode errorType) = win 0x215600, ios 0x273704, m1 0x6454b4, imac 0x737680;
@@ -6878,18 +6878,18 @@ class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtoco
     TodoReturn filterUsersWithQuery(std::string const&);
     TodoReturn getActiveUserList();
     bool init(UserListType type) = win 0x213620, imac 0x734bd0, m1 0x642b54;
-    void onClearSearch(cocos2d::CCObject* sender);
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x216b80;
     void onClose(cocos2d::CCObject* sender) = win 0x217060, ios 0x273cd8;
-    void onGlobalSearch(cocos2d::CCObject* sender);
-    void onSendMessage(cocos2d::CCObject* sender);
-    void onSwitchList(cocos2d::CCObject* sender);
-    void onToggleSort(cocos2d::CCObject* sender);
+    void onGlobalSearch(cocos2d::CCObject* sender) = win 0x216440;
+    void onSendMessage(cocos2d::CCObject* sender) = win 0x2157c0;
+    void onSwitchList(cocos2d::CCObject* sender) = win 0x216fa0;
+    void onToggleSort(cocos2d::CCObject* sender) = win 0x214ba0;
     void onToggleSortDir(cocos2d::CCObject* sender) = win 0x214c40;
     void onUnblock(cocos2d::CCObject* sender) = win 0x215cc0;
     void onUnfollow(cocos2d::CCObject* sender) = win 0x215840;
     void onUnmute(cocos2d::CCObject* sender) = win 0x215a80;
     void onUpdate(cocos2d::CCObject* sender) = win 0x216e80, imac 0x735fb0, m1 0x643ea8;
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onViewProfile(cocos2d::CCObject* sender) = win 0xe8810;
     TodoReturn rebuildList();
     TodoReturn sortUsers();
     TodoReturn updateCountLabel() = win 0x2145a0;
@@ -16378,22 +16378,22 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 
     bool init(int songID, GJSongType songType) = win 0x47a340, imac 0x42bfb0;
     void onArtistFilters(cocos2d::CCObject* sender) = win 0x47db80;
-    void onChangelog(cocos2d::CCObject* sender);
-    void onClearSearchText(cocos2d::CCObject* sender);
+    void onChangelog(cocos2d::CCObject* sender) = win 0x47dc60;
+    void onClearSearchText(cocos2d::CCObject* sender) = win 0x47d740;
     void onClose(cocos2d::CCObject* sender) = win 0x47dff0;
     void onPage(cocos2d::CCObject* sender) = win 0x47d480, imac 0x6e8930, m1 0x5fc518;
     void onPlaybackControl(cocos2d::CCObject* sender) = win 0x47c100, imac 0x6e9330, m1 0x5fcf14;
-    void onSorting(cocos2d::CCObject* sender);
-    void onTagFilters(cocos2d::CCObject* sender) = imac 0x23e220;
+    void onSorting(cocos2d::CCObject* sender) = win 0x47dee0;
+    void onTagFilters(cocos2d::CCObject* sender) = win 0x47d940, imac 0x23e220;
     void onToggleSearch(cocos2d::CCObject* sender) = win 0x47d530;
-    void onToggleView(cocos2d::CCObject* sender);
+    void onToggleView(cocos2d::CCObject* sender) = win 0x47d190;
     void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x47c280;
     TodoReturn refreshLevelIDList();
     void setupList(MusicSearchResult* result) = win 0x47ca30, imac 0x6e9bc0, m1 0x5fd720;
     void setupMusicBrowser() = win inline, m1 0x504ba0;
     void setupSongControls() = win 0x47be00;
     void sliderChanged(cocos2d::CCObject* sender) = imac 0x6e9320, m1 0x5fcf0c;
-    void trySetupMusicBrowser() = imac 0x42fc50, m1 0x3a6b60;
+    void trySetupMusicBrowser() = win 0x47c300, imac 0x42fc50, m1 0x3a6b60;
     void updatePageLabel() = win inline, imac 0x6ea580, m1 0x5fdfbc;
     TodoReturn updateSongControlLayout();
     TodoReturn updateViewItems();
@@ -20464,7 +20464,7 @@ class SetupAreaTriggerPopup : SetupAreaMoveTriggerPopup {
 class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
     virtual ~SetupArtSwitchPopup() = win 0x60ac50;
 
-    static SetupArtSwitchPopup* create(ArtTriggerGameObject* object, cocos2d::CCArray* objects, int id) = win 0x5dc5a0;
+    static SetupArtSwitchPopup* create(ArtTriggerGameObject* object, cocos2d::CCArray* objects, int id) = win 0x608160;
 
     virtual void selectArtClosed(SelectArtLayer* layer) = win 0x608ec0, imac 0x5b2020, m1 0x4ffa7c, ios 0x491d24;
 
@@ -21604,7 +21604,7 @@ class SetupSFXEditPopup : SetupAudioTriggerPopup {
 class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDelegate {
     virtual ~SetupSFXPopup() = win 0x5da2b0, ios 0x21279c;
 
-    static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, int);
+    static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, int) = win 0x5dc5a0;
 
     virtual void pageChanged() = win 0x5dd970, imac 0x4b32f0, m1 0x417fa0, ios 0x213aec;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5dd9e0, imac 0x4b3350, m1 0x417ff8, ios 0x213b44;
@@ -22160,26 +22160,26 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     TodoReturn currentListScrollY();
     TodoReturn executeBatchDelete();
     TodoReturn fitFolderPath();
-    bool init(int, int) = win 0x9999999;
+    bool init(int, int) = win 0x616760;
     void onBatchDelete(cocos2d::CCObject* sender) = win 0x61c940;
-    void onChangelog(cocos2d::CCObject* sender);
-    void onClearSearchText(cocos2d::CCObject* sender);
+    void onChangelog(cocos2d::CCObject* sender) = win 0x61eeb0;
+    void onClearSearchText(cocos2d::CCObject* sender) = win 0x61f760;
     void onClose(cocos2d::CCObject* sender) = win 0x620830;
     void onExitFolder(cocos2d::CCObject* sender) = win 0x620590;
     void onExportFile(cocos2d::CCObject* sender) = win 0x61df90;
     void onImportFile(cocos2d::CCObject* sender) = win 0x61e1a0, m1 0x3a64cc;
     void onImportSetup(cocos2d::CCObject* sender) = win 0x61cf40;
-    void onMoveToFolder(cocos2d::CCObject* sender);
+    void onMoveToFolder(cocos2d::CCObject* sender) = win 0x61c120;
     void onNewFolder(cocos2d::CCObject* sender) = win 0x61bd50;
     void onPage(cocos2d::CCObject* sender) = win 0x6202e0, imac 0x42e1f0, m1 0x3a5174;
     void onReplaceSetup(cocos2d::CCObject* sender) = win 0x61d400;
-    void onSelectAll(cocos2d::CCObject* sender);
-    void onSettings(cocos2d::CCObject* sender);
-    void onShareSetup(cocos2d::CCObject* sender);
-    void onSorting(cocos2d::CCObject* sender) = imac 0x42e300, m1 0x3a5298;
+    void onSelectAll(cocos2d::CCObject* sender) = win 0x61bee0;
+    void onSettings(cocos2d::CCObject* sender) = win 0x61f560;
+    void onShareSetup(cocos2d::CCObject* sender) = win 0x61d5c0;
+    void onSorting(cocos2d::CCObject* sender) = win 0x61f210, imac 0x42e300, m1 0x3a5298;
     void onToggleCompactMode(cocos2d::CCObject* sender) = win 0x61f2a0, imac 0x42e350, m1 0x3a52dc;
     void onToggleSearch(cocos2d::CCObject* sender) = win 0x61f340;
-    void onToggleView(cocos2d::CCObject* sender);
+    void onToggleView(cocos2d::CCObject* sender) = win 0x61b360;
     void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x618920, imac 0x42e290, m1 0x3a5238;
     TodoReturn refreshCustomList();
     TodoReturn refreshLevelIDList(SFXSearchResult*);
@@ -22188,7 +22188,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void setupList(SFXSearchResult* result) = win 0x619900;
     void setupSFXBrowser() = win 0x618a20;
     TodoReturn switchToView(AudioViewType);
-    void trySetupSFXBrowser();
+    void trySetupSFXBrowser() = win 0x6189a0;
     void updatePageLabel() = win 0x6203b0, imac 0x432480, m1 0x3a8e98;
     TodoReturn updateSelectionUI();
     TodoReturn updateShareItem();
@@ -22238,7 +22238,7 @@ class SFXChangelogEntry : cocos2d::CCObject {
 class SFXChangelogPopup : ScrollViewPopup {
     virtual ~SFXChangelogPopup() = win 0x6218d0, ios 0x5178b8;
 
-    static SFXChangelogPopup* create(cocos2d::CCArray*) = win 0x61eeb0;
+    static SFXChangelogPopup* create(cocos2d::CCArray*);
 
     virtual float buildContent(cocos2d::CCNode*, float, float) = win 0x621370, ios 0x5279ac, m1 0x84cd30, imac 0x970e10;
 
@@ -22268,7 +22268,7 @@ class SFXFolderPickerDelegate {
 class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     virtual ~SFXFolderPickerPopup() = win 0xc3c00, ios 0x527e3c;
 
-    static SFXFolderPickerPopup* create(SFXFolderPickerMode, std::string const&, std::set<int> const&, SFXFolderPickerDelegate*, int);
+    static SFXFolderPickerPopup* create(SFXFolderPickerMode, std::string const&, std::set<int> const&, SFXFolderPickerDelegate*, int) = win 0xc3ce0;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xc6920, ios 0x529d30, m1 0x84faf0, imac 0x973fa0;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xc6990, ios 0x529d9c, m1 0x84fbac, imac 0x974050;
@@ -22278,12 +22278,12 @@ class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     virtual void setTextPopupClosed(SetTextPopup*, std::string) = win 0xc6780, ios 0x529c44;
 
     bool init(SFXFolderPickerMode, std::string const&, std::set<int> const&, SFXFolderPickerDelegate*, int) = win 0xc3eb0;
-    void onClose(cocos2d::CCObject* sender);
-    void onConfirm(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0xc6860;
+    void onConfirm(cocos2d::CCObject* sender) = win 0xc6330;
     void onNewFolder(cocos2d::CCObject* sender) = win 0xc6400;
-    void onPickFolder(cocos2d::CCObject* sender);
-    void onSave(cocos2d::CCObject* sender);
-    void onSelectAll(cocos2d::CCObject* sender);
+    void onPickFolder(cocos2d::CCObject* sender) = win 0xc6270;
+    void onSave(cocos2d::CCObject* sender) = win 0xc6560;
+    void onSelectAll(cocos2d::CCObject* sender) = win 0xc65d0;
     TodoReturn pickFolder(int);
     TodoReturn rebuildList() = win 0xc4e00;
     TodoReturn refreshList() = win 0xc5da0;
@@ -23370,9 +23370,9 @@ class SoundPackDescPopup : SetupTriggerPopup, EmotePickerDelegate {
     virtual void emotePicked(EmotePickerPopup*, EmoteDef const*) = win 0x19a240, ios 0x4d54c0, m1 0x7e2b60, imac 0x8faf60;
     virtual void emotePickerClosed(EmotePickerPopup*) = win 0x19a290, ios 0x4d5500, m1 0x7e2bd0, imac 0x8fafe0;
 
-    bool init(std::string const&, std::string const&, SoundPackDescDelegate*);
-    void onEmotes(cocos2d::CCObject* sender);
-    void onPickIcon(cocos2d::CCObject* sender);
+    bool init(std::string const&, std::string const&, SoundPackDescDelegate*) = win 0x199220;
+    void onEmotes(cocos2d::CCObject* sender) = win 0x19a110;
+    void onPickIcon(cocos2d::CCObject* sender) = win 0x19a010;
     void onSave(cocos2d::CCObject* sender) = win 0x19a2a0;
     TodoReturn refreshIconSlot();
 }
