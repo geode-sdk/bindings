@@ -4516,12 +4516,12 @@ class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
     virtual void sfxBrowserClosed(SFXBrowser*) = win 0x184990, ios 0x4c6fd0;
 
     bool init(int, EditorSoundsLayer*) = win 0x183510;
-    void onAddSound(cocos2d::CCObject* sender);
-    void onDeleteSound(cocos2d::CCObject* sender);
-    void onEditSound(cocos2d::CCObject* sender);
-    void onOpenSettings(cocos2d::CCObject* sender);
-    void onPreviewSound(cocos2d::CCObject* sender);
-    void onToggleMode(cocos2d::CCObject* sender);
+    void onAddSound(cocos2d::CCObject* sender) = win 0x184950;
+    void onDeleteSound(cocos2d::CCObject* sender) = win 0x184bd0;
+    void onEditSound(cocos2d::CCObject* sender) = win 0x184b30;
+    void onOpenSettings(cocos2d::CCObject* sender) = win 0x184ca0;
+    void onPreviewSound(cocos2d::CCObject* sender) = win 0x184a70;
+    void onToggleMode(cocos2d::CCObject* sender) = win 0x1848c0;
     TodoReturn refreshModeButtons() = win 0x184830;
     TodoReturn refreshRows();
     TodoReturn refreshRowsAddedDeferred(float);
@@ -4605,7 +4605,7 @@ class EditorSFXSettingsPopup : SetupTriggerPopup {
 class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, EditorSoundConfigCellDelegate, TableViewCellDelegate, SetTextPopupDelegate {
     virtual ~EditorSoundBrowserLayer() = win 0x18d880, ios 0x4ccf8c;
 
-    static EditorSoundBrowserLayer* create(std::string, EditorSoundsLayer*);
+    static EditorSoundBrowserLayer* create(std::string, EditorSoundsLayer*) = win 0x18da30;
 
     virtual void registerWithTouchDispatcher() = win 0x46290, ios 0x4cd4f4;
     virtual void rebuildContent() = win 0x1903f0, ios 0x4ce11c;
@@ -4623,12 +4623,12 @@ class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, Edit
     TodoReturn loadCurrentPage(bool, bool) = win 0x18f2b0;
     TodoReturn onConfigCopiedToMyLists(GJEditorSoundConfig*);
     TodoReturn onConfigListChanged();
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onRefresh(cocos2d::CCObject* sender);
+    void onNextPage(cocos2d::CCObject* sender) = win 0x18fe70;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x18fe50;
+    void onRefresh(cocos2d::CCObject* sender) = win 0x1903e0;
     void onSaveActive(cocos2d::CCObject* sender) = win 0x18fee0;
     void onSelectMode(cocos2d::CCObject* sender) = win 0x18f070;
-    void setMode(EditorSoundBrowseMode);
+    void setMode(EditorSoundBrowseMode) = win 0x18ef50;
     TodoReturn showLoading(bool);
     TodoReturn updateFooterButtonVisibility();
     TodoReturn updatePageLabel() = win 0x18fbe0;
@@ -4636,7 +4636,7 @@ class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, Edit
 
 [[link(android)]]
 class EditorSoundConfigCell : TableViewCell {
-    EditorSoundConfigCell(char const*, float, float);
+    EditorSoundConfigCell(char const*, float, float) = win 0x190600;
     virtual ~EditorSoundConfigCell() = win 0x190690, ios 0x4ce520;
 
     static EditorSoundConfigCell* create(float, float);
@@ -4644,9 +4644,9 @@ class EditorSoundConfigCell : TableViewCell {
     virtual bool init() = win 0x3ff70, ios 0x4ce558;
 
     TodoReturn loadFromConfig(GJEditorSoundConfig*) = win 0x190730;
-    void onInfoPopup(cocos2d::CCObject* sender);
-    void onView(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onInfoPopup(cocos2d::CCObject* sender) = win 0x1919e0;
+    void onView(cocos2d::CCObject* sender) = win 0x191970;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x1919a0;
     TodoReturn updateBGColor(int);
 }
 
@@ -4659,7 +4659,7 @@ class EditorSoundConfigCellDelegate {
 class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegate, EditorSoundDeleteDelegate, FLAlertLayerProtocol, AdminActionConfirmDelegate, LikeItemDelegate, SoundPackDescDelegate, UploadActionDelegate, UploadPopupDelegate, MusicDownloadDelegate {
     virtual ~EditorSoundConfigInfoLayer() = win 0x191db0, ios 0x4d1700;
 
-    static EditorSoundConfigInfoLayer* create(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*);
+    static EditorSoundConfigInfoLayer* create(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*) = win 0x191b80;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x194ea0, ios 0x4d2d2c;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x194f70, ios 0x4d2ddc;
@@ -4686,7 +4686,7 @@ class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegat
     TodoReturn downloadMissingSFX() = win 0x196a30;
     TodoReturn editsServerDescription();
     bool init(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*) = win 0x1920b0;
-    bool isOwner();
+    bool isOwner() = win 0x196160;
     TodoReturn missingSFXIDs();
     void onDeleteServer(cocos2d::CCObject* sender) = win 0x197ac0;
     void onDescription(cocos2d::CCObject* sender) = win 0x195c20;
@@ -4755,7 +4755,7 @@ class EditorSoundListDelegate {
 class EditorSoundsLayer : TabbedPopupLayer {
     virtual ~EditorSoundsLayer() = win 0x19c7b0, ios 0x4d7004;
 
-    static EditorSoundsLayer* create(EditorUI*);
+    static EditorSoundsLayer* create(EditorUI*) = win 0x19ca70;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e790, ios 0x4d86d0;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e8c0, ios 0x4d87b8;
@@ -4767,11 +4767,11 @@ class EditorSoundsLayer : TabbedPopupLayer {
     virtual void showTab(int tab) = win 0x19e100, imac 0x8fe8d0, m1 0x7e5f6c, ios 0x4d81d0;
 
     TodoReturn buildContentForTab(int);
-    bool init(EditorUI*);
-    void onActionRow(cocos2d::CCObject* sender);
-    void onBrowse(cocos2d::CCObject* sender);
-    void onClearSearch(cocos2d::CCObject* sender);
-    void onSettings(cocos2d::CCObject* sender);
+    bool init(EditorUI*) = win 0x19cd50;
+    void onActionRow(cocos2d::CCObject* sender) = win 0x19eae0;
+    void onBrowse(cocos2d::CCObject* sender) = win 0x19ec80;
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x19eec0;
+    void onSettings(cocos2d::CCObject* sender) = win 0x19ed80;
     TodoReturn setupTabs();
 }
 
@@ -4786,7 +4786,7 @@ class EditorSoundsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
 
     bool init(EditorSoundsLayer*) = win 0x3d4970;
     void onClearAll(cocos2d::CCObject* sender) = win 0x3d4ff0;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void onDownloadAll(cocos2d::CCObject* sender) = win 0x3d4dc0;
 }
 
@@ -20465,7 +20465,7 @@ class SetupAreaTriggerPopup : SetupAreaMoveTriggerPopup {
 class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
     virtual ~SetupArtSwitchPopup() = win 0x60ac50;
 
-    static SetupArtSwitchPopup* create(ArtTriggerGameObject* object, cocos2d::CCArray* objects, int id) = win 0x5dc5a0;
+    static SetupArtSwitchPopup* create(ArtTriggerGameObject* object, cocos2d::CCArray* objects, int id) = win 0x608160;
 
     virtual void selectArtClosed(SelectArtLayer* layer) = win 0x608ec0, imac 0x5b2020, m1 0x4ffa7c, ios 0x491d24;
 
@@ -21605,7 +21605,7 @@ class SetupSFXEditPopup : SetupAudioTriggerPopup {
 class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDelegate {
     virtual ~SetupSFXPopup() = win 0x5da2b0, ios 0x21279c;
 
-    static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, int);
+    static SetupSFXPopup* create(SFXTriggerGameObject*, cocos2d::CCArray*, int) = win 0x5dc5a0;
 
     virtual void pageChanged() = win 0x5dd970, imac 0x4b32f0, m1 0x417fa0, ios 0x213aec;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5dd9e0, imac 0x4b3350, m1 0x417ff8, ios 0x213b44;
@@ -23371,9 +23371,9 @@ class SoundPackDescPopup : SetupTriggerPopup, EmotePickerDelegate {
     virtual void emotePicked(EmotePickerPopup*, EmoteDef const*) = win 0x19a240, ios 0x4d54c0;
     virtual void emotePickerClosed(EmotePickerPopup*) = win 0x19a290, ios 0x4d5500;
 
-    bool init(std::string const&, std::string const&, SoundPackDescDelegate*);
-    void onEmotes(cocos2d::CCObject* sender);
-    void onPickIcon(cocos2d::CCObject* sender);
+    bool init(std::string const&, std::string const&, SoundPackDescDelegate*) = win 0x199220;
+    void onEmotes(cocos2d::CCObject* sender) = win 0x19a110;
+    void onPickIcon(cocos2d::CCObject* sender) = win 0x19a010;
     void onSave(cocos2d::CCObject* sender) = win 0x19a2a0;
     TodoReturn refreshIconSlot();
 }
