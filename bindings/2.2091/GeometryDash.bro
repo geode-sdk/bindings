@@ -16379,22 +16379,22 @@ class MusicBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate,
 
     bool init(int songID, GJSongType songType) = win 0x47a340, imac 0x42bfb0;
     void onArtistFilters(cocos2d::CCObject* sender) = win 0x47db80;
-    void onChangelog(cocos2d::CCObject* sender);
-    void onClearSearchText(cocos2d::CCObject* sender);
+    void onChangelog(cocos2d::CCObject* sender) = win 0x47dc60;
+    void onClearSearchText(cocos2d::CCObject* sender) = win 0x47d740;
     void onClose(cocos2d::CCObject* sender) = win 0x47dff0;
     void onPage(cocos2d::CCObject* sender) = win 0x47d480, imac 0x6e8930, m1 0x5fc518;
     void onPlaybackControl(cocos2d::CCObject* sender) = win 0x47c100, imac 0x6e9330, m1 0x5fcf14;
-    void onSorting(cocos2d::CCObject* sender);
-    void onTagFilters(cocos2d::CCObject* sender) = imac 0x23e220;
+    void onSorting(cocos2d::CCObject* sender) = win 0x47dee0;
+    void onTagFilters(cocos2d::CCObject* sender) = win 0x47d940, imac 0x23e220;
     void onToggleSearch(cocos2d::CCObject* sender) = win 0x47d530;
-    void onToggleView(cocos2d::CCObject* sender);
+    void onToggleView(cocos2d::CCObject* sender) = win 0x47d190;
     void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x47c280;
     TodoReturn refreshLevelIDList();
     void setupList(MusicSearchResult* result) = win 0x47ca30, imac 0x6e9bc0, m1 0x5fd720;
     void setupMusicBrowser() = win inline, m1 0x504ba0;
     void setupSongControls() = win 0x47be00;
     void sliderChanged(cocos2d::CCObject* sender) = imac 0x6e9320, m1 0x5fcf0c;
-    void trySetupMusicBrowser() = imac 0x42fc50, m1 0x3a6b60;
+    void trySetupMusicBrowser() = win 0x47c300, imac 0x42fc50, m1 0x3a6b60;
     void updatePageLabel() = win inline, imac 0x6ea580, m1 0x5fdfbc;
     TodoReturn updateSongControlLayout();
     TodoReturn updateViewItems();
@@ -22161,26 +22161,26 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     TodoReturn currentListScrollY();
     TodoReturn executeBatchDelete();
     TodoReturn fitFolderPath();
-    bool init(int, int) = win 0x9999999;
+    bool init(int, int) = win 0x616760;
     void onBatchDelete(cocos2d::CCObject* sender) = win 0x61c940;
-    void onChangelog(cocos2d::CCObject* sender);
-    void onClearSearchText(cocos2d::CCObject* sender);
+    void onChangelog(cocos2d::CCObject* sender) = win 0x61eeb0;
+    void onClearSearchText(cocos2d::CCObject* sender) = win 0x61f760;
     void onClose(cocos2d::CCObject* sender) = win 0x620830;
     void onExitFolder(cocos2d::CCObject* sender) = win 0x620590;
     void onExportFile(cocos2d::CCObject* sender) = win 0x61df90;
     void onImportFile(cocos2d::CCObject* sender) = win 0x61e1a0, m1 0x3a64cc;
     void onImportSetup(cocos2d::CCObject* sender) = win 0x61cf40;
-    void onMoveToFolder(cocos2d::CCObject* sender);
+    void onMoveToFolder(cocos2d::CCObject* sender) = win 0x61c120;
     void onNewFolder(cocos2d::CCObject* sender) = win 0x61bd50;
     void onPage(cocos2d::CCObject* sender) = win 0x6202e0, imac 0x42e1f0, m1 0x3a5174;
     void onReplaceSetup(cocos2d::CCObject* sender) = win 0x61d400;
-    void onSelectAll(cocos2d::CCObject* sender);
-    void onSettings(cocos2d::CCObject* sender);
-    void onShareSetup(cocos2d::CCObject* sender);
-    void onSorting(cocos2d::CCObject* sender) = imac 0x42e300, m1 0x3a5298;
+    void onSelectAll(cocos2d::CCObject* sender) = win 0x61bee0;
+    void onSettings(cocos2d::CCObject* sender) = win 0x61f560;
+    void onShareSetup(cocos2d::CCObject* sender) = win 0x61d5c0;
+    void onSorting(cocos2d::CCObject* sender) = win 0x61f210, imac 0x42e300, m1 0x3a5298;
     void onToggleCompactMode(cocos2d::CCObject* sender) = win 0x61f2a0, imac 0x42e350, m1 0x3a52dc;
     void onToggleSearch(cocos2d::CCObject* sender) = win 0x61f340;
-    void onToggleView(cocos2d::CCObject* sender);
+    void onToggleView(cocos2d::CCObject* sender) = win 0x61b360;
     void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x618920, imac 0x42e290, m1 0x3a5238;
     TodoReturn refreshCustomList();
     TodoReturn refreshLevelIDList(SFXSearchResult*);
@@ -22189,7 +22189,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void setupList(SFXSearchResult* result) = win 0x619900;
     void setupSFXBrowser() = win 0x618a20;
     TodoReturn switchToView(AudioViewType);
-    void trySetupSFXBrowser();
+    void trySetupSFXBrowser() = win 0x6189a0;
     void updatePageLabel() = win 0x6203b0, imac 0x432480, m1 0x3a8e98;
     TodoReturn updateSelectionUI();
     TodoReturn updateShareItem();
@@ -22239,7 +22239,7 @@ class SFXChangelogEntry : cocos2d::CCObject {
 class SFXChangelogPopup : ScrollViewPopup {
     virtual ~SFXChangelogPopup() = win 0x6218d0, ios 0x5178b8;
 
-    static SFXChangelogPopup* create(cocos2d::CCArray*) = win 0x61eeb0;
+    static SFXChangelogPopup* create(cocos2d::CCArray*);
 
     virtual float buildContent(cocos2d::CCNode*, float, float) = win 0x621370, ios 0x5279ac;
 
@@ -22269,7 +22269,7 @@ class SFXFolderPickerDelegate {
 class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     virtual ~SFXFolderPickerPopup() = win 0xc3c00, ios 0x527e3c;
 
-    static SFXFolderPickerPopup* create(SFXFolderPickerMode, std::string const&, std::set<int> const&, SFXFolderPickerDelegate*, int);
+    static SFXFolderPickerPopup* create(SFXFolderPickerMode, std::string const&, std::set<int> const&, SFXFolderPickerDelegate*, int) = win 0xc3ce0;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xc6920, ios 0x529d30;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xc6990, ios 0x529d9c;
@@ -22279,12 +22279,12 @@ class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     virtual void setTextPopupClosed(SetTextPopup*, std::string) = win 0xc6780, ios 0x529c44;
 
     bool init(SFXFolderPickerMode, std::string const&, std::set<int> const&, SFXFolderPickerDelegate*, int) = win 0xc3eb0;
-    void onClose(cocos2d::CCObject* sender);
-    void onConfirm(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0xc6860;
+    void onConfirm(cocos2d::CCObject* sender) = win 0xc6330;
     void onNewFolder(cocos2d::CCObject* sender) = win 0xc6400;
-    void onPickFolder(cocos2d::CCObject* sender);
-    void onSave(cocos2d::CCObject* sender);
-    void onSelectAll(cocos2d::CCObject* sender);
+    void onPickFolder(cocos2d::CCObject* sender) = win 0xc6270;
+    void onSave(cocos2d::CCObject* sender) = win 0xc6560;
+    void onSelectAll(cocos2d::CCObject* sender) = win 0xc65d0;
     TodoReturn pickFolder(int);
     TodoReturn rebuildList() = win 0xc4e00;
     TodoReturn refreshList() = win 0xc5da0;
