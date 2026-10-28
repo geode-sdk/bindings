@@ -4689,21 +4689,21 @@ class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegat
     bool isOwner();
     TodoReturn missingSFXIDs();
     void onDeleteServer(cocos2d::CCObject* sender) = win 0x197ac0;
-    void onDescription(cocos2d::CCObject* sender);
+    void onDescription(cocos2d::CCObject* sender) = win 0x195c20;
     void onDownloadSFX(cocos2d::CCObject* sender) = win 0x1967a0;
     void onDuplicate(cocos2d::CCObject* sender) = win 0x1955e0;
     void onFavorite(cocos2d::CCObject* sender) = win 0x1950c0;
     void onFeatureAdmin(cocos2d::CCObject* sender);
-    void onInfo(cocos2d::CCObject* sender);
-    void onLike(cocos2d::CCObject* sender);
+    void onInfo(cocos2d::CCObject* sender) = win 0x195b80;
+    void onLike(cocos2d::CCObject* sender) = win 0x1959d0;
     void onLoad(cocos2d::CCObject* sender) = win 0x196ec0;
     void onLocalDelete(cocos2d::CCObject* sender) = win 0x195420;
     void onMerge(cocos2d::CCObject* sender) = win 0x197000;
     void onOverwrite(cocos2d::CCObject* sender) = win 0x1976d0;
-    void onShowDescription(cocos2d::CCObject* sender);
-    void onUpdate(cocos2d::CCObject* sender);
-    void onUpload(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onShowDescription(cocos2d::CCObject* sender) = win 0x195c00;
+    void onUpdate(cocos2d::CCObject* sender) = win 0x1950b0;
+    void onUpload(cocos2d::CCObject* sender) = win 0x197800;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x1964f0;
     TodoReturn refreshActionButtons() = win 0x195710;
     TodoReturn refreshLikeState() = win 0x194690;
     TodoReturn reloadWindow();
@@ -4724,11 +4724,11 @@ class EditorSoundConfigUploadPopup : SetupTriggerPopup, EditorSoundUploadDelegat
     virtual void uploadEditorSoundFailed(int) = win 0x19c620, ios 0x4d6c94;
 
     bool init(GJEditorSoundConfig*, EditorSoundConfigInfoLayer*) = win 0x19a7d0;
-    void onCancel(cocos2d::CCObject* sender);
-    void onToggleFriendsOnly(cocos2d::CCObject* sender);
+    void onCancel(cocos2d::CCObject* sender) = win 0x46360;
+    void onToggleFriendsOnly(cocos2d::CCObject* sender) = win 0x19bc80;
     void onToggleUnlisted(cocos2d::CCObject* sender) = win 0x19ba70;
-    void onUpload(cocos2d::CCObject* sender);
-    void onUploadAsUpdate(cocos2d::CCObject* sender);
+    void onUpload(cocos2d::CCObject* sender) = win 0x19b860;
+    void onUploadAsUpdate(cocos2d::CCObject* sender) = win 0x19b880;
     TodoReturn performUpload(int) = win 0x19bca0;
     TodoReturn updateVisibilityState();
 }
@@ -6789,7 +6789,7 @@ class FriendPickerDelegate {
 class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     virtual ~FriendPickerPopup() = win 0xd3780, ios 0x502f50;
 
-    static FriendPickerPopup* create(FriendPickerDelegate*, bool, bool, bool, bool);
+    static FriendPickerPopup* create(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6ab0;
 
     virtual int requestPage(int) = win 0x5a3a0, ios 0x5039d8;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xe8b20, ios 0x504740;
@@ -6803,12 +6803,12 @@ class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     TodoReturn buildRows() = win 0xe8120;
     TodoReturn delayedRebuild(float);
     bool init(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6c60;
-    void onClearAll(cocos2d::CCObject* sender);
-    void onDone(cocos2d::CCObject* sender);
-    void onGlobalSearch(cocos2d::CCObject* sender);
-    void onPickFriend(cocos2d::CCObject* sender);
-    void onShowProfile(cocos2d::CCObject* sender);
-    void onToggleSelectedView(cocos2d::CCObject* sender);
+    void onClearAll(cocos2d::CCObject* sender) = win 0xe8ae0;
+    void onDone(cocos2d::CCObject* sender) = win 0xe8a40;
+    void onGlobalSearch(cocos2d::CCObject* sender) = win 0xe79e0;
+    void onPickFriend(cocos2d::CCObject* sender) = win 0xe8850;
+    void onShowProfile(cocos2d::CCObject* sender) = win 0xe8810;
+    void onToggleSelectedView(cocos2d::CCObject* sender) = win 0xe7980;
     TodoReturn updateCountLabel();
 }
 
@@ -6837,10 +6837,10 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     void loadFromGJFriendRequest(GJFriendRequest* request) = win 0x3a1ed0;
     void onAccept(cocos2d::CCObject* sender) = win 0x3a2a30, imac 0x2923f0, m1 0x2363a4;
     void onBlock(cocos2d::CCObject* sender) = win 0x3a2c60, imac 0x2925c0, m1 0x236554;
-    void onClose(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x3a28a0;
     void onIgnore(cocos2d::CCObject* sender) = win 0x3a2720;
     void onRemove(cocos2d::CCObject* sender) = win 0x3a2b30, imac 0x2923f0;
-    void onReport(cocos2d::CCObject* sender);
+    void onReport(cocos2d::CCObject* sender) = win 0x3a2ed0;
 
     void* m_unk;
     GJFriendRequest* m_request;
@@ -6860,7 +6860,7 @@ class FriendRowEdges : cocos2d::CCNode {
 class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
     virtual ~FriendsProfilePage() = win 0x213240, ios 0x271548;
 
-    static FriendsProfilePage* create(UserListType type);
+    static FriendsProfilePage* create(UserListType type) = win 0x213430;
 
     virtual void getUserListFinished(cocos2d::CCArray* scores, UserListType type) = win 0x214d40, imac 0x98c140, ios 0x273484;
     virtual void getUserListFailed(UserListType type, GJErrorCode errorType) = win 0x215600, ios 0x273704;
@@ -6879,18 +6879,18 @@ class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtoco
     TodoReturn filterUsersWithQuery(std::string const&);
     TodoReturn getActiveUserList();
     bool init(UserListType type) = win 0x213620, imac 0x734bd0, m1 0x642b54;
-    void onClearSearch(cocos2d::CCObject* sender);
+    void onClearSearch(cocos2d::CCObject* sender) = win 0x216b80;
     void onClose(cocos2d::CCObject* sender) = win 0x217060, ios 0x273cd8;
-    void onGlobalSearch(cocos2d::CCObject* sender);
-    void onSendMessage(cocos2d::CCObject* sender);
-    void onSwitchList(cocos2d::CCObject* sender);
-    void onToggleSort(cocos2d::CCObject* sender);
+    void onGlobalSearch(cocos2d::CCObject* sender) = win 0x216440;
+    void onSendMessage(cocos2d::CCObject* sender) = win 0x2157c0;
+    void onSwitchList(cocos2d::CCObject* sender) = win 0x216fa0;
+    void onToggleSort(cocos2d::CCObject* sender) = win 0x214ba0;
     void onToggleSortDir(cocos2d::CCObject* sender) = win 0x214c40;
     void onUnblock(cocos2d::CCObject* sender) = win 0x215cc0;
     void onUnfollow(cocos2d::CCObject* sender) = win 0x215840;
     void onUnmute(cocos2d::CCObject* sender) = win 0x215a80;
     void onUpdate(cocos2d::CCObject* sender) = win 0x216e80, imac 0x735fb0, m1 0x643ea8;
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onViewProfile(cocos2d::CCObject* sender) = win 0xe8810;
     TodoReturn rebuildList();
     TodoReturn sortUsers();
     TodoReturn updateCountLabel() = win 0x2145a0;
