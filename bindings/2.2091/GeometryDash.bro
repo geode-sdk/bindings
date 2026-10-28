@@ -8969,7 +8969,7 @@ class GameToolbox {
     static cocos2d::CCSequence* getDropActionWDelay(float delay, float duration, float scale, cocos2d::CCNode* target, cocos2d::SEL_CallFunc selector) = win inline, imac 0x4e8d00, m1 0x4471fc, ios inline;
     static cocos2d::CCSequence* getDropActionWEnd(float delay, float duration, float scale, cocos2d::CCAction* action, float actionDelay) = win inline, imac 0x4e8dc0, m1 0x4472b8, ios inline;
     static cocos2d::CCActionInterval* getEasedAction(cocos2d::CCActionInterval* action, int easingType, float easingRate) = win inline, imac 0x4eeec0, m1 0x44cfd4, ios inline;
-    static float getEasedValue(float value, int easingType, float easingRate) = win 0x73230, imac 0x4f4160, m1 0x45155c;
+    static float getEasedValue(float value, int easingType, float easingRate) = win 0x73230, imac 0x4f4160, m1 0x45155c, ios 0x4e048;
     static uint64_t getfast_srand() = win inline, imac 0x4ef200, m1 0x44d2ac, ios inline;
     static int getInvertedEasing(int easingType) = win inline, imac 0x4eefc0, m1 0x44d054, ios inline;
     static cocos2d::CCDictionary* getLargestMergedIntDicts(cocos2d::CCDictionary* dict1, cocos2d::CCDictionary* dict2) = win inline, imac 0x4eba30, m1 0x449c8c, ios inline;
