@@ -6304,7 +6304,7 @@ class FindObjectPopup : EditorWindowPopup {
 
 [[link(android)]]
 class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
-    FLAlertLayer() = win 0x5a280, inline, ios 0xa908;
+    FLAlertLayer() = win 0x5a280, mac inline, ios 0xa908;
     ~FLAlertLayer() = win 0x5a3f0, imac 0x4937b0, m1 0x3fbed0, ios 0x34a8c0;
 
     static FLAlertLayer* create(char const* title, const std::string& desc, char const* btn) = inline;

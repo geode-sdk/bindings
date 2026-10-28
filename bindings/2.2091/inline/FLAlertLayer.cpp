@@ -13,7 +13,7 @@ void FLAlertLayer::rebuildContent() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
-#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
+#if defined(GEODE_IS_MACOS)
 FLAlertLayer::FLAlertLayer() {
     m_buttonMenu = nullptr;
     m_controlConnected = -1;
