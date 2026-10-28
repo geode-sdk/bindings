@@ -13,7 +13,7 @@ void FLAlertLayer::rebuildContent() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
-#if defined(GEODE_IS_MACOS)
+#if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 FLAlertLayer::FLAlertLayer() {
     m_buttonMenu = nullptr;
     m_controlConnected = -1;
@@ -29,6 +29,11 @@ FLAlertLayer::FLAlertLayer() {
     m_joystickConnected = -1;
     m_containsBorder = 0;
     m_forcePrioRegistered = false;
+    m_color2 = {0, 0, 0};
+    m_noAction = false;
+    m_width = 0.f;
+    m_height = 0.f;
+    m_unk290 = false;
 }
 #endif
 
