@@ -700,19 +700,23 @@ void GameObject::updateBlendMode() {
 }
 
 void GameObject::updateCustomScaleX(float scaleX) {
-    m_customScaleX = std::round(m_customScaleX * 1000.f) / 1000.f;
-    m_scaleX = m_customScaleX;
-    this->setScaleX(scaleX);
+    scaleX = std::round(scaleX * 1000.f) / 1000.f;
+    m_fScaleX = 0.f;
+    m_scaleX = scaleX;
+    m_customScaleX = scaleX;
+    this->setRScaleX(1.f);
+    m_isDirty = true;
     m_isObjectRectDirty = true;
-    m_isOrientedBoxDirty = true;
 }
 
 void GameObject::updateCustomScaleY(float scaleY) {
-    m_customScaleY = std::round(m_customScaleY * 1000.f) / 1000.f;
-    m_scaleY = m_customScaleY;
-    this->setScaleY(scaleY);
+    scaleY = std::round(scaleY * 1000.f) / 1000.f;
+    m_fScaleY = 0.f;
+    m_scaleY = scaleY;
+    m_customScaleY = scaleY;
+    this->setRScaleY(1.f);
+    m_isDirty = true;
     m_isObjectRectDirty = true;
-    m_isOrientedBoxDirty = true;
 }
 
 void GameObject::updateHSVState() {
