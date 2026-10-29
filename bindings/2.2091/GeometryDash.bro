@@ -3244,7 +3244,7 @@ class CurrencyRewardDelegate {
 
 [[link(android)]]
 class CurrencyRewardLayer : cocos2d::CCLayer {
-    virtual ~CurrencyRewardLayer() = win 0x1399d0, ios 0x3bc3ac;
+    virtual ~CurrencyRewardLayer() = win 0x1399d0, imac 0x888bd0, m1 0x77d56c, ios 0x3bc3ac;
 
     // CurrencyRewardLayer();
     static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float yOffset, float time) = win 0x139bb0, imac 0x888de0, m1 0x77d6e4;
@@ -19215,7 +19215,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
     virtual ~RewardUnlockLayer() = win 0x561b40, ios 0x25ab2c;
 
-    static RewardUnlockLayer* create(int type, RewardsPage* page) = win 0x563580;
+    static RewardUnlockLayer* create(int type, RewardsPage* page) = win 0x563580, imac 0x1fe9e0, m1 0x1afddc;
 
     virtual void keyBackClicked() = win inline, imac 0x202f00, m1 0x1b3e7c, ios 0x25dcac;
     virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x566ef0, imac 0x202ec0, m1 0x1b3e54, ios 0x25dc84;
