@@ -16,6 +16,7 @@
 #include <Geode/binding/ObjectToolbox.hpp>
 #include <Geode/binding/ColorSelectLiveOverlay.hpp>
 #include <Geode/binding/HSVLiveOverlay.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();

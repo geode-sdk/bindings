@@ -1,5 +1,6 @@
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;
