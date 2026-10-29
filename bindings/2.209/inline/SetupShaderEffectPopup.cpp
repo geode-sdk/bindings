@@ -5,7 +5,7 @@ SetupShaderEffectPopup::SetupShaderEffectPopup() {
     m_zLayerMin = 0;
     m_zLayerMax = 0;
     m_changeMin = false;
-    m_objectID = ObjectID{};
+    m_objectID = 0;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
