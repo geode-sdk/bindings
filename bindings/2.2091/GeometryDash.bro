@@ -223,6 +223,7 @@ class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLay
     CCTextInputNode* m_verifyEmailField;
     cocos2d::CCLabelBMFont* m_usernameLabel;
     cocos2d::CCLabelBMFont* m_passwordLabel;
+    cocos2d::CCLabelBMFont* m_passwordInfoLabel;
     cocos2d::CCLabelBMFont* m_confirmPasswordLabel;
     cocos2d::CCLabelBMFont* m_emailLabel;
     cocos2d::CCLabelBMFont* m_verifyEmailLabel;
