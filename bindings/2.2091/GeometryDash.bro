@@ -15819,6 +15819,18 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     cocos2d::CCArray* m_localLevels;
     cocos2d::CCArray* m_localLists;
     std::unordered_map<int, std::string> m_mainLevels;
+    std::vector<std::string> m_importedLevelPaths;
+    std::vector<std::pair<std::string, int>> m_platformerJournalKeys;
+    std::mutex m_fileMutex;
+    std::string m_saveFileName;
+    std::string m_savePath;
+    std::string m_importPath;
+    bool m_unkFileBool1;
+    bool m_unkFileBool2;
+    int m_unkFileInt1;
+    int m_unkFileInt2;
+    int m_unkFileInt3;
+    int m_unkFileInt4;
 }
 
 [[link(android)]]
