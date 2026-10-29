@@ -2,7 +2,7 @@
 #include <Geode/binding/ColorActionSprite.hpp>
 #include <Geode/binding/GJEffectManager.hpp>
 #include <Geode/binding/OBB2D.hpp>
-#include <Geode/binding/GJSpriteColor.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 void GameObject::firstSetup() {}
 

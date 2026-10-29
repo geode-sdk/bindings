@@ -27,6 +27,7 @@
 #include <Geode/binding/EnhancedTriggerObject.hpp>
 #include <Geode/binding/FMODAudioEngine.hpp>
 #include <Geode/binding/LevelSettingsObject.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;

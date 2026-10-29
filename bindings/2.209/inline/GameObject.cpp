@@ -1,4 +1,5 @@
 #include <Geode/Bindings.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 void GameObject::firstSetup() {}
 

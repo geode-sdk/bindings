@@ -1,5 +1,6 @@
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 LevelEditorLayer* LevelEditorLayer::get() {
     return GameManager::sharedState()->m_levelEditorLayer;
