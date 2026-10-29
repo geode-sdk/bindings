@@ -6296,7 +6296,7 @@ class FindObjectPopup : EditorWindowPopup {
     void onSelect(cocos2d::CCObject* sender);
     TodoReturn runFind(int);
 
-    bool m_unknownBool;
+    int m_groupID;
 }
 
 [[link(android)]]
@@ -22358,6 +22358,7 @@ class SFXInfoObject : cocos2d::CCObject {
     int m_duration;
     bool m_folder;
     bool m_unk049;
+    int m_unk048;
     std::string m_name;
     std::string m_lowerCaseName;
     std::string m_unk090;
@@ -24855,6 +24856,8 @@ class UndoObject : cocos2d::CCObject {
     bool m_redo;
     bool m_undoTransform;
     GJTransformState m_transformState;
+    bool m_unk8c;
+    int m_unk90;
 }
 
 [[link(android)]]
