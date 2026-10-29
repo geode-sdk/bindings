@@ -1,5 +1,6 @@
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 PlayLayer* PlayLayer::get() {
     return GameManager::get()->m_playLayer;

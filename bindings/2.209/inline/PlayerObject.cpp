@@ -1,4 +1,5 @@
 #include <Geode/Bindings.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 #if defined(GEODE_IS_ANDROID)
 PlayerObject::PlayerObject() {

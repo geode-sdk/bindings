@@ -26,6 +26,7 @@
 #include <Geode/binding/EnterEffectObject.hpp>
 #include <Geode/binding/EnhancedTriggerObject.hpp>
 #include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;

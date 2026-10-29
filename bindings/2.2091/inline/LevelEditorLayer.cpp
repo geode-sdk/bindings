@@ -20,6 +20,7 @@
 #include <Geode/binding/UILayer.hpp>
 #include <Geode/binding/UndoObject.hpp>
 #include <Geode/binding/SFXTriggerGameObject.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 LevelEditorLayer* LevelEditorLayer::get() {
     return GameManager::sharedState()->m_levelEditorLayer;
