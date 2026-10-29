@@ -5090,7 +5090,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn toggleWindow(int);
     void transformObject(GameObject* object, EditCommand command, bool noOffset) = imac 0x60f850, m1 0x54e978;
     void transformObjectCall(EditCommand command) = win 0x1ff300;
-    void transformObjectCall(cocos2d::CCObject* sender);
+    void transformObjectCall(cocos2d::CCObject* sender) = win 0x1ff2d0;
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x200d60, imac 0x6107f0, m1 0x54f87c;
     void transformObjectsActive() = win 0x200c20, imac 0x610740;
     void transformObjectsReset() = win inline, imac 0x610c20, m1 0x54fc44;
