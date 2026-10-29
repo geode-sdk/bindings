@@ -7656,7 +7656,7 @@ class GameManager : GManager {
     int getIconRequestID() = win inline, imac 0x36c2f0, m1 0x2f95b8;
     int getIntGameVariable(char const* key) = win inline;
     int getIntGameVariableDefault(const char* key, int defaultValue) = inline;
-    std::string getMenuMusicFile() = win 0x54d20, imac 0x360100, m1 0x2eee08;
+    std::string getMenuMusicFile() = win 0x276540, imac 0x360100, m1 0x2eee08;
     const char* getMGTexture(int index) = win inline, imac 0x36cf50, m1 0x2fa270;
     int getNextUniqueObjectKey() = win inline, imac 0x36da90, m1 0x2faf00;
     int getNextUsedKey(int index, bool up) = win inline, imac 0x36db80, m1 0x2faff8;
@@ -12159,7 +12159,7 @@ class GJRequestCell : TableViewCell {
     virtual void draw() = win 0x1487a0, ios 0x13a0f8, m1 0x1eb8a4, imac 0x2408c0;
 
     void loadFromScore(GJUserScore* score) = win 0x158d40, imac 0x231d80, m1 0x1de434;
-    void markAsRead() = win 0x504490, imac 0x240820, m1 0x1eb810;
+    void markAsRead() = win 0x158c00, imac 0x240820, m1 0x1eb810;
     void onToggle(cocos2d::CCObject* sender) = win 0x1592a0;
     void onViewFriendRequest(cocos2d::CCObject* sender) = win 0x159100;
     void onViewProfile(cocos2d::CCObject* sender) = imac 0x23efd0;
