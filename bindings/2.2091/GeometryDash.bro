@@ -23893,10 +23893,8 @@ class TableViewCellDelegate {
 
 [[link(android)]]
 class TableViewDataSource {
-    virtual int numberOfRowsInSection(unsigned int section, TableView* tableView) = inline;
     virtual unsigned int numberOfSectionsInTableView(TableView* tableView) = inline;
     virtual void TableViewCommitCellEditingStyleForRowAtIndexPath(TableView* tableView, TableViewCellEditingStyle style, CCIndexPath& indexPath) = inline;
-    virtual TableViewCell* cellForRowAtIndexPath(CCIndexPath& indexPath, TableView* tableView) = inline;
 }
 
 [[link(android)]]
