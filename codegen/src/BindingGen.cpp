@@ -231,6 +231,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
             {"std::set", "set"},
             {"std::array", "array"},
             {"std::atomic", "atomic"},
+            {"std::mutex", "mutex"},
             {"cocos2d::cc", "ccTypes"},
             {"cocos2d::CCPoint", "CCPoint"},
             {"cocos2d::CCSize", "CCPoint"},
