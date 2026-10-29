@@ -7870,7 +7870,8 @@ class GameManager : GManager {
     bool m_unkBool2;
     bool m_vsyncEnabled;
     cocos2d::CCDictionary* m_valueKeeper;
-    cocos2d::CCDictionary* m_unkDict;
+    [[renamed_from(m_unkDict)]]
+    cocos2d::CCDictionary* m_localKeeper;
     [[renamed_from(m_unkBool2point5)]]
     bool m_isBackingUp; // set while GJAccountManager::backupAccount encodes the save
     cocos2d::CCDictionary* m_unlockValueKeeper;
@@ -7996,12 +7997,15 @@ class GameManager : GManager {
     int m_unkSize4_14;
     bool m_disableThumbstick;
     float m_customFPSTarget;
+    float m_scrollSensitivity;
     std::map<int, void*> m_unkMap;
     bool m_loadingLevel;
     int m_customMenuSongID;
     int m_customPracticeSongID;
-    int m_unkInt3;
-    int m_newsItemCount;
+    [[renamed_from(m_unkInt3)]]
+    int m_idNameSortMode;
+    [[renamed_from(m_newsItemCount)]]
+    int m_newsLastReadID;
     int m_unkInt5;
     std::map<int, int> m_iconLoadCounts;
     std::map<int, std::map<int, int>> m_iconRequests;
