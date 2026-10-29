@@ -5087,7 +5087,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn toggleTraceSelected(bool);
     TodoReturn toggleViewOption(int) = win 0x1f8440;
     TodoReturn toggleWindow(int);
-    void transformObject(GameObject* object, EditCommand command, bool noOffset) = win 0x664b10, imac 0x60f850, m1 0x54e978;
+    void transformObject(GameObject* object, EditCommand command, bool noOffset) = imac 0x60f850, m1 0x54e978;
     void transformObjectCall(EditCommand command) = win 0x1ff300;
     void transformObjectCall(cocos2d::CCObject* sender);
     void transformObjects(cocos2d::CCArray* objs, cocos2d::CCPoint anchor, float scaleX, float scaleY, float rotateX, float rotateY, float warpX, float warpY) = win 0x200d60, imac 0x6107f0, m1 0x54f87c;
@@ -18601,8 +18601,10 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     std::vector<int> m_unkDtDeath;
     std::vector<int> m_unkDtBump;
     bool m_unkDtBumpBool;
-    double m_unkAttemptTime;
+    float m_unkAttemptTime;
     double m_unk3890;
+    int m_lastDeathCellX;
+    int m_lastDeathCellY;
     int m_deathMarkerAmount;
     float m_unkDeathPercent;
     std::vector<int> m_unkDeathMarkers4;
