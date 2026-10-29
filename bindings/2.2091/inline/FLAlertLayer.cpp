@@ -29,6 +29,11 @@ FLAlertLayer::FLAlertLayer() {
     m_joystickConnected = -1;
     m_containsBorder = 0;
     m_forcePrioRegistered = false;
+    m_color2 = {0, 0, 0};
+    m_noAction = false;
+    m_width = 0.f;
+    m_height = 0.f;
+    m_unk290 = false;
 }
 #endif
 

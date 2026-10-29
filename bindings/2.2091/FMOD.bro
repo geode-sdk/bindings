@@ -35,7 +35,7 @@ class FMOD::ChannelControl {
     FMOD_RESULT get3DSpread(float*) = ios 0x62cba4;
     FMOD_RESULT getAudibility(float*) = ios 0x6297d0;
     FMOD_RESULT getDelay(unsigned long long*, unsigned long long*, bool*) = ios 0x62aef8;
-    FMOD_RESULT getDSP(int, FMOD::DSP**) = ios 0x62b61c;
+    FMOD_RESULT getDSP(int, FMOD::DSP**) = ios 0x62ac28;
     FMOD_RESULT getDSPClock(unsigned long long*, unsigned long long*) = ios 0x62ac28;
     FMOD_RESULT getDSPIndex(FMOD::DSP*, int*) = ios 0x62bb6c;
     FMOD_RESULT getFadePoints(unsigned int*, unsigned long long*, float*) = ios 0x62b438;
@@ -265,7 +265,7 @@ class FMOD::System {
     FMOD_RESULT attachFileSystem(FMOD_FILE_OPEN_CALLBACK, FMOD_FILE_CLOSE_CALLBACK, FMOD_FILE_READ_CALLBACK, FMOD_FILE_SEEK_CALLBACK) = ios 0x5eec48;
     FMOD_RESULT close() = ios 0x5f03c0;
     FMOD_RESULT createChannelGroup(char const*, FMOD::ChannelGroup**) = ios 0x5f214c;
-    FMOD_RESULT createDSP(FMOD_DSP_DESCRIPTION const*, FMOD::DSP**) = ios 0x5f1efc;
+    FMOD_RESULT createDSP(FMOD_DSP_DESCRIPTION const*, FMOD::DSP**) = ios 0x5f2024;
     FMOD_RESULT createDSPByPlugin(unsigned int, FMOD::DSP**) = ios 0x5efc68;
     FMOD_RESULT createDSPByType(FMOD_DSP_TYPE, FMOD::DSP**) = ios 0x5f2024;
     FMOD_RESULT createGeometry(int, int, FMOD::Geometry**) = ios 0x5f3a10;
@@ -278,11 +278,11 @@ class FMOD::System {
     FMOD_RESULT get3DNumListeners(int*) = ios 0x5f0e7c;
     FMOD_RESULT get3DSettings(float*, float*, float*) = ios 0x5f0c40;
     FMOD_RESULT getAdvancedSettings(FMOD_ADVANCEDSETTINGS*) = ios 0x5eeec4;
-    FMOD_RESULT getChannel(int, FMOD::Channel**) = ios 0x5f279c;
+    FMOD_RESULT getChannel(int, FMOD::Channel**) = ios 0x5f18c0;
     FMOD_RESULT getChannelsPlaying(int*, int*) = ios 0x5f18c0;
     FMOD_RESULT getCPUUsage(FMOD_CPU_USAGE*) = ios 0x5f19d8;
     FMOD_RESULT getDefaultMixMatrix(FMOD_SPEAKERMODE, FMOD_SPEAKERMODE, float*, int) = ios 0x5f161c;
-    FMOD_RESULT getDriver(int*) = ios 0x5ee1e0;
+    FMOD_RESULT getDriver(int*) = ios 0x5ede74;
     FMOD_RESULT getDriverInfo(int, char*, int, FMOD_GUID*, int*, FMOD_SPEAKERMODE*, int*) = ios 0x5ede74;
     FMOD_RESULT getDSPBufferSize(unsigned int*, int*) = ios 0x5ee870;
     FMOD_RESULT getDSPInfoByPlugin(unsigned int, FMOD_DSP_DESCRIPTION const**) = ios 0x5efd90;

@@ -415,7 +415,6 @@ class RecordCheckpoint {
 	uint64_t m_time;
 	int m_clicks;
 	int m_points;
-	[[renamed_from(m_inputs)]]
 	std::string m_persistentState; // persistent item / timer state string
 }
 

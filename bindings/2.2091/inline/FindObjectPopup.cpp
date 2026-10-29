@@ -2,7 +2,7 @@
 
 #if !defined(GEODE_IS_IOS)
 FindObjectPopup::FindObjectPopup() {
-    m_unknownBool = false;
+    m_groupID = 0;
 }
 #endif
 

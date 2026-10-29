@@ -307,28 +307,28 @@ GameObject* GJBaseGameLayer::tryGetGroupParent(int groupID) {
 }
 
 void GJBaseGameLayer::unlinkAllEvents() {
-    m_gameState.m_unkMapPairGJGameEventIntVectorEventTriggerInstance.clear();
+    m_gameState.m_gameEventTriggers.clear();
 }
 
 void GJBaseGameLayer::updateInternalCamOffsetX(float offsetX, float duration, float easingRate) {
-    m_gameState.m_unkPoint27.x = offsetX;
+    m_gameState.m_internalCameraOffsetTarget.x = offsetX;
     if (duration > 0.f) {
-        m_gameState.tweenValue(m_gameState.m_unkPoint26.x, offsetX, 18, duration, 1, easingRate, -1, -1);
+        m_gameState.tweenValue(m_gameState.m_internalCameraOffset.x, offsetX, 18, duration, 1, easingRate, -1, -1);
     }
     else {
         m_gameState.stopTweenAction(18);
-        m_gameState.m_unkPoint26.x = m_gameState.m_unkPoint27.x;
+        m_gameState.m_internalCameraOffset.x = m_gameState.m_internalCameraOffsetTarget.x;
     }
 }
 
 void GJBaseGameLayer::updateInternalCamOffsetY(float offsetY, float duration, float easingRate) {
-    m_gameState.m_unkPoint27.y = offsetY;
+    m_gameState.m_internalCameraOffsetTarget.y = offsetY;
     if (duration > 0.f) {
-        m_gameState.tweenValue(m_gameState.m_unkPoint26.y, offsetY, 19, duration, 1, easingRate, -1, -1);
+        m_gameState.tweenValue(m_gameState.m_internalCameraOffset.y, offsetY, 19, duration, 1, easingRate, -1, -1);
     }
     else {
         m_gameState.stopTweenAction(10);
-        m_gameState.m_unkPoint26.y = m_gameState.m_unkPoint27.y;
+        m_gameState.m_internalCameraOffset.y = m_gameState.m_internalCameraOffsetTarget.y;
     }
 }
 
@@ -441,12 +441,12 @@ void GJBaseGameLayer::applyShake(cocos2d::CCPoint& point) {
             xFactor = ((float)rand() / (float)RAND_MAX) * 2.f - 1.f;
             yFactor = ((float)rand() / (float)RAND_MAX) * 2.f - 1.f;
         }
-        m_gameState.m_unkPoint34.x = xFactor * m_gameState.m_unkUint15;
-        m_gameState.m_unkPoint34.y = yFactor * m_gameState.m_unkUint15;
+        m_gameState.m_cameraShakeOffset.x = xFactor * m_gameState.m_unkUint15;
+        m_gameState.m_cameraShakeOffset.y = yFactor * m_gameState.m_unkUint15;
     }
 
-    point.x += m_gameState.m_unkPoint34.x;
-    point.y += m_gameState.m_unkPoint34.y;
+    point.x += m_gameState.m_cameraShakeOffset.x;
+    point.y += m_gameState.m_cameraShakeOffset.y;
 }
 
 void GJBaseGameLayer::asyncBGLoaded(int background) {
@@ -1269,11 +1269,11 @@ void GJBaseGameLayer::stopCustomEnterEffect(EnterEffectObject* object) {
 void GJBaseGameLayer::stopSFXTrigger(SFXTriggerGameObject* object) {
     if (object->m_objectID != 3602) return;
     auto engine = FMODAudioEngine::sharedEngine();
-    for (auto& channel : m_gameState.m_unkUMap8[object->m_uniqueID]) {
+    for (auto& channel : m_gameState.m_sfxTriggerChannels[object->m_uniqueID]) {
         engine->stopChannel(channel);
         m_gameState.m_proximityVolumeRelated.erase({ channel, 0 });
     }
-    m_gameState.m_unkUMap8[object->m_uniqueID].clear();
+    m_gameState.m_sfxTriggerChannels[object->m_uniqueID].clear();
 }
 
 void GJBaseGameLayer::swapBackground(int background) {
@@ -1696,8 +1696,8 @@ void GJBaseGameLayer::updateSavePositionObjects() {
             position = object->m_lastPosition;
         }
         auto index = (m_gameState.m_unkUint11 % value + offset) * 2;
-        m_gameState.m_unkVecFloat1[index] = position.x;
-        m_gameState.m_unkVecFloat1[index + 1] = position.y;
+        m_gameState.m_positionHistory[index] = position.x;
+        m_gameState.m_positionHistory[index + 1] = position.y;
     }
 }
 
