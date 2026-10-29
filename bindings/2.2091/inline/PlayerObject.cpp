@@ -7,6 +7,7 @@
 #include <Geode/binding/PlayerObject.hpp>
 #include <Geode/binding/GJActionManager.hpp>
 #include <Geode/cocos/misc_nodes/CCMotionStreak.h>
+#include <Geode/ObjectIDs.hpp>
 
 #if defined(GEODE_IS_ANDROID)
 PlayerObject::PlayerObject() {

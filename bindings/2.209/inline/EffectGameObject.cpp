@@ -1,5 +1,5 @@
 #include <Geode/Bindings.hpp>
-
+#include <Geode/ObjectIDs.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

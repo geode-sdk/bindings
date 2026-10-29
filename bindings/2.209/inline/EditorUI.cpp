@@ -1,5 +1,6 @@
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/cocos.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
