@@ -2372,12 +2372,6 @@ class CollisionBlockPopup : SetupTriggerPopup {
 
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0xa4cf0;
 
-    EffectGameObject* m_gameObject;
-    cocos2d::CCArray* m_gameObjects;
-    CCTextInputNode* m_blockIDInput;
-    int m_blockID;
-    bool m_dynamicBlock;
-    bool m_disableDelegate;
 }
 
 [[link(android)]]
@@ -21248,8 +21242,8 @@ class SetupObjectOptionsPopup : FLAlertLayer {
     bool m_reverse;
     bool m_extendedCollision;
     bool m_unk2a6;
-    SetGroupIDLayer* m_groupIDLayer;
     bool m_effectObject;
+    bool m_unk2a7;
     bool m_singlePlayerTouch;
     bool m_centerEffect;
 }

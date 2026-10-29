@@ -277,7 +277,7 @@ GEODE_SIZE_CHECK(CCWaves3D, 0x64);
 GEODE_SIZE_CHECK(CCWavesTiles3D, 0x64);
 GEODE_SIZE_CHECK(ChallengeNode, 0x120);
 GEODE_SIZE_CHECK(ChallengesPage, 0x22c);
-GEODE_SIZE_CHECK(ChanceTriggerGameObject, 0x678);
+GEODE_SIZE_CHECK(ChanceTriggerGameObject, 0x67c);
 GEODE_SIZE_CHECK(CharacterColorDelegate, 0x4);
 GEODE_SIZE_CHECK(CharacterColorPage, 0x230);
 GEODE_SIZE_CHECK(CheckpointGameObject, 0x680);
