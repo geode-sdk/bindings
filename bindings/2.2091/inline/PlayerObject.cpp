@@ -70,7 +70,7 @@ void PlayerObject::addToYVelocity(double yVelocity, int type) {
 }
 
 bool PlayerObject::buttonDown(PlayerButton button) {
-    return button == PlayerButton::Jump || m_jumpBuffered;
+    return button == PlayerButton::Jump ? m_jumpBuffered : false;
 }
 
 void PlayerObject::disableCustomGlowColor() {
@@ -98,12 +98,13 @@ void PlayerObject::gameEventTriggered(int gameEvent, int material) {
 }
 
 float PlayerObject::getModifiedSlopeYVel() {
-    auto diff = m_totalTime - m_slopeStartTime;
-    if (diff > 0.1) {
-        if (diff * 10.0 > 0.4) return m_slopeVelocity * diff;
-        else return m_slopeVelocity * .4f;
+    double diff = m_totalTime - m_slopeStartTime;
+    double factor = 1.0;
+    if (diff < 0.1f) {
+        factor = diff * 10.0;
+        if (factor <= 0.4f) factor = 0.4f;
     }
-    else return m_slopeVelocity * 1.f;
+    return m_slopeVelocity * factor;
 }
 
 void PlayerObject::gravityDown() {
@@ -251,6 +252,7 @@ void PlayerObject::updateLastGroundObject(GameObject* object) {
 }
 
 void PlayerObject::updatePlayerForce(cocos2d::CCPoint velocity, bool additive) {
+    m_isAccelerating = true;
     if (additive) {
         m_yVelocity += velocity.y;
         if (m_isPlatformer) {
@@ -400,45 +402,42 @@ bool PlayerObject::isSafeHeadTest() {
     return this->isSafeFlip(0.2f) || this->isSafeMode(0.2f) || m_stateHitHead > 0;
 }
 
+static void snapRotation360(float& rotation) {
+    if (rotation > 180.f) rotation -= 360.f;
+    else if (rotation < -180.f) rotation += 360.f;
+}
+
 void PlayerObject::limitDashRotation(float& rotation) {
-    float offset;
-    if (m_isSideways) {
-        if (m_isGoingLeft) offset = 90.f;
-        else offset = -90.f;
+    float offset = 0.f;
+    if (m_isSideways) offset = -90.f;
+    if (m_isGoingLeft) offset += 180.f;
+
+    if (offset != 0.f) {
         rotation += offset;
-        if (rotation > 180.f) rotation -= 360.f;
-        else if (rotation < -180.f) rotation += 360.f;
+        snapRotation360(rotation);
     }
-    else {
-        if (m_isGoingLeft) {
-            offset = 180.f;
-            rotation += offset;
-            if (rotation > 180.f) rotation -= 360.f;
-            else if (rotation < -180.f) rotation += 360.f;
-        }
-        else offset = 0.f;
-    }
+
     if (std::abs(rotation) > 90.f) {
-        if (rotation > 0.f) rotation += 180.f;
-        else rotation -= 180.f;
-        if (rotation > 180.f) rotation -= 360.f;
-        else if (rotation < -180.f) rotation += 360.f;
+        rotation = (rotation > 0.f ? 180.f : -180.f) - rotation;
+        snapRotation360(rotation);
     }
+
     if (rotation > 70.f || rotation < -70.f) {
         if (rotation > 0.f) {
-            if (rotation <= 70.f || rotation >= 180.f) rotation = -70.f;
+            if (rotation > 70.f && rotation < 180.f) rotation = 70.f;
+            else rotation = -70.f;
         }
-        else if (rotation < 70.f || rotation > -180.f) {
-            rotation = -70.f;
-        }
-        else {
+        else if (rotation >= 70.f || rotation <= -180.f) {
             rotation = 70.f;
         }
+        else {
+            rotation = -70.f;
+        }
     }
+
     if (offset != 0.f) {
         rotation -= offset;
-        if (rotation > 180.f) rotation -= 360.f;
-        else if (rotation < -180.f) rotation += 360.f;
+        snapRotation360(rotation);
     }
 }
 
@@ -536,7 +535,7 @@ void PlayerObject::redirectDash(float rotation) {
         dashPos.x = dashPos.x * cosDir - dashPos.y * sinDir;
         dashPos.y = dashPos.x * sinDir + dashPos.y * cosDir;
     }
-    auto angle = ((int)-(atan2f(dashPos.y, dashPos.x) * (180.f / M_PI)) + (m_isSideways ? 90 : 0)) % 360;
+    auto angle = ((int)-(atan2f(dashPos.y, dashPos.x) * (180.f / M_PI)) + (m_isSideways ? -90 : 0)) % 360;
     m_dashAngle = -(angle + (angle < 0 ? 360 : 0));
     m_dashX = m_isSideways ? dashPos.y : dashPos.x;
     m_dashY = m_isSideways ? dashPos.x : dashPos.y;
@@ -682,6 +681,7 @@ void PlayerObject::touchedObject(GameObject* object) {
                 this->stopDashing();
                 m_jumpBuffered = false;
             }
+            break;
         }
         case 1859: {
             m_stateHitHead = 2;
@@ -804,6 +804,7 @@ void PlayerObject::updateStaticForce(float rotation, float staticForce, bool add
         }
     }
     else {
+        m_isAccelerating = false;
         m_yVelocity = 0.0;
         if (m_isPlatformer) {
             m_platformerXVelocity = 0.0;
