@@ -10,10 +10,10 @@ class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDele
 
 	static AccountBanPopup* create(int, std::string const&, int, int, int, int, int, int);
 
-	virtual void keyBackClicked() = m1 0x86e7a0, imac 0x993590, ios 0x53ff78;
-	virtual void pageChanged() = m1 0x86acc4, imac 0x990770, ios 0x53ea98;
-	virtual void onClose(cocos2d::CCObject*) = m1 0x86e74c, imac 0x993540, ios 0x53ff24;
-	virtual void adminActionConfirmed(int, std::vector<int> const&, std::string const&);
+	virtual void keyBackClicked() = win 0xa6580, m1 0x86e7a0, imac 0x993590, ios 0x53ff78;
+	virtual void pageChanged() = win 0xa7990, m1 0x86acc4, imac 0x990770, ios 0x53ea98;
+	virtual void onClose(cocos2d::CCObject*) = win 0xabc00, m1 0x86e74c, imac 0x993540, ios 0x53ff24;
+	virtual void adminActionConfirmed(int, std::vector<int> const&, std::string const&) = win 0xa95e0;
 	virtual void adminCommentBanFinished() = m1 0x86c118, imac 0x991d40, ios 0x53f74c;
 	virtual void adminCommentBanFailed() = m1 0x86c28c, imac 0x991dd0, ios 0x53f7c8;
 	virtual void adminCommentUnbanFinished() = m1 0x86c3d4, imac 0x991ef0, ios 0x53f7d4;
@@ -42,7 +42,7 @@ class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDele
 	virtual void adminQueueMuteFailed() = m1 0x86e308, imac 0x993200, ios 0x53fe24;
 	virtual void adminQueueUnmuteFinished() = m1 0x86e450, imac 0x993320, ios 0x53fe30;
 	virtual void adminQueueUnmuteFailed() = m1 0x86e57c, imac 0x9933a0, ios 0x53fea8;
-	virtual void onClosePopup(UploadActionPopup*) = m1 0x86e6c4, imac 0x9934c0, ios 0x53feb4;
+	virtual void onClosePopup(UploadActionPopup*) = win 0xabbb0, m1 0x86e6c4, imac 0x9934c0, ios 0x53feb4;
 	virtual void dropdownSelectionChanged(Dropdown*, int) = m1 0x28f0, imac 0x2bb0, ios 0x9750;
 
 	TodoReturn actionFailed();
@@ -50,21 +50,21 @@ class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDele
 	TodoReturn banStateShort(int);
 	TodoReturn banStateText(int);
 	TodoReturn executeAction(int, std::vector<int> const&, std::string const&);
-	bool init(int, std::string const&, int, int, int, int, int, int);
-	void onCommentBan(cocos2d::CCObject* sender);
-	void onCommentUnban(cocos2d::CCObject* sender);
-	void onFreeze(cocos2d::CCObject* sender);
-	void onLevelUploadBan(cocos2d::CCObject* sender);
-	void onLevelUploadUnban(cocos2d::CCObject* sender);
-	void onMessageBan(cocos2d::CCObject* sender);
-	void onMessageUnban(cocos2d::CCObject* sender);
+	bool init(int, std::string const&, int, int, int, int, int, int) = win 0xa6c70;
+	void onCommentBan(cocos2d::CCObject* sender) = win 0xa7cb0;
+	void onCommentUnban(cocos2d::CCObject* sender) = win 0xa7f90;
+	void onFreeze(cocos2d::CCObject* sender) = win 0xa8760;
+	void onLevelUploadBan(cocos2d::CCObject* sender) = win 0xa7e20;
+	void onLevelUploadUnban(cocos2d::CCObject* sender) = win 0xa81b0;
+	void onMessageBan(cocos2d::CCObject* sender) = win 0xa83d0;
+	void onMessageUnban(cocos2d::CCObject* sender) = win 0xa8540;
 	void onNameLock(cocos2d::CCObject* sender);
 	void onNameUnlock(cocos2d::CCObject* sender);
-	void onQueueMute(cocos2d::CCObject* sender);
-	void onQueueUnmute(cocos2d::CCObject* sender);
-	void onTrendingBan(cocos2d::CCObject* sender);
-	void onTrendingUnban(cocos2d::CCObject* sender);
-	void onUnfreeze(cocos2d::CCObject* sender);
+	void onQueueMute(cocos2d::CCObject* sender) = win 0xa9080;
+	void onQueueUnmute(cocos2d::CCObject* sender) = win 0xa93c0;
+	void onTrendingBan(cocos2d::CCObject* sender) = win 0xa8b10;
+	void onTrendingUnban(cocos2d::CCObject* sender) = win 0xa8e30;
+	void onUnfreeze(cocos2d::CCObject* sender) = win 0xa88f0;
 	TodoReturn refreshBanRows();
 }
 
