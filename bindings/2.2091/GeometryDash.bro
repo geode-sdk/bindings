@@ -239,7 +239,7 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
 
     virtual void rebuildContent() = win 0xb33c0, ios 0x545120, m1 0x876280, imac 0x99bc10;
     virtual int requestPage(int) = win 0xb3200, ios 0x545038, m1 0x876198, imac 0x99bb00;
-    virtual TodoReturn clearPageContent() = win 0xb32d0, ios 0x5450c0, m1 0x876220, imac 0x99bb90;
+    virtual void clearPageContent() = win 0xb32d0, ios 0x5450c0, m1 0x876220, imac 0x99bb90;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xaf060, ios 0x540bf0, m1 0x86f530, imac 0x994570;
     virtual void dropdownSelectionChanged(Dropdown*, int) = win 0xb34a0, ios 0x545148, m1 0x8762bc, imac 0x99bc60;
     virtual void reviewChoicePicked(int, int, std::string const&) = win 0xba500, ios 0x54a3d8;
@@ -921,7 +921,7 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
     static AutoBackupPopup* create(int) = win 0xc9650;
 
     virtual int requestPage(int) = win 0x5a3a0, ios 0x530fa0, m1 0x8593ec, imac 0x97f2a0;
-    virtual TodoReturn clearPageContent() = win 0xcabc0, ios 0x531e24, m1 0x85ae7c, imac 0x981030;
+    virtual void clearPageContent() = win 0xcabc0, ios 0x531e24, m1 0x85ae7c, imac 0x981030;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xcca80, ios 0x532540, m1 0x85b948, imac 0x981ce0;
     virtual void backupsChanged() = win 0xca850, ios 0x531b8c, m1 0x85abd0, imac 0x980db0;
     virtual void textChanged(CCTextInputNode*) = win 0xca880, ios 0x531bd8, m1 0x85ac1c, imac 0x980e00;
@@ -6773,12 +6773,12 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 class FriendPickerDelegate {
     virtual void friendPicked(GJUserScore*) = inline;
     virtual bool isRecipientSelected(int) = inline;
-    virtual TodoReturn selectedRecipientCount() = win 0x9999999;
-    virtual TodoReturn selectedRecipients() = win 0x9999999;
+    virtual int selectedRecipientCount() = win 0x9999999;
+    virtual cocos2d::CCArray* selectedRecipients() = win 0x9999999;
     virtual void clearRecipients() = inline;
     virtual void friendPickerClosed() = inline;
-    virtual TodoReturn pickerRowState(int) = win 0x98e00;
-    virtual TodoReturn pickerCountBase() = win 0x98e00;
+    virtual int pickerRowState(int) = win 0x98e00;
+    virtual int pickerCountBase() = win 0x98e00;
     virtual void friendPickerAdd() = inline;
 }
 
@@ -9375,7 +9375,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     virtual bool shouldDrawDebugHitboxes() = win 0x317660, m1 0xddbe0, imac 0xff110, ios 0x27fed0;
     virtual bool shouldDrawHitboxTrail() = win 0x5a3a0, m1 0xddc0c, imac 0xff130, ios 0x27fef8;
     virtual bool shouldRecordHitboxTrail() = win 0x5a3a0, m1 0xddc14, imac 0xff140, ios 0x27ff00;
-    virtual TodoReturn getHitboxTrailMax() = win 0x317680, m1 0xddc1c, imac 0xff150, ios 0x27ff08;
+    virtual int getHitboxTrailMax() = win 0x317680, m1 0xddc1c, imac 0xff150, ios 0x27ff08;
     virtual void addToSection(GameObject* object) = win 0x32f280, imac 0x11d090, m1 0xf7654, ios 0x28f79c;
     virtual void addToGroup(GameObject* object, int groupID, bool triggerGroup) = win 0x32bc50, imac 0x11a450, m1 0xf500c, ios 0x28df44;
     virtual void removeFromGroup(GameObject* object, int groupID) = win 0x32bdd0, imac 0x11a6a0, ios 0x28e0e8, m1 0xf5268;
@@ -14586,7 +14586,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     virtual bool shouldDrawDebugHitboxes() = win 0x406b80, ios 0x409cb0, m1 0xba62c, imac 0xd2cd0;
     virtual bool shouldDrawHitboxTrail() = win 0x406b90, ios 0x409cbc, m1 0xba638, imac 0xd2ce0;
     virtual bool shouldRecordHitboxTrail() = win 0x406ba0, ios 0x409cc8, m1 0xba644, imac 0xd2cf0;
-    virtual TodoReturn getHitboxTrailMax() = win 0x406bc0, ios 0x409cf0, m1 0xba66c, imac 0xd2d10;
+    virtual int getHitboxTrailMax() = win 0x406bc0, ios 0x409cf0, m1 0xba66c, imac 0xd2d10;
     virtual void addToGroup(GameObject* object, int groupID, bool triggerGroup) = win 0x3fd340, imac 0xc43d0, m1 0xaf628, ios 0x40367c;
     virtual void removeFromGroup(GameObject* object, int groupID) = win 0x3fd4a0, imac 0xc4480, m1 0xaf6e0, ios 0x403704;
     virtual void updateObjectSection(GameObject* object) = win 0x3fe460, imac 0xc56a0, m1 0xb0794, ios 0x404414;
@@ -15902,10 +15902,10 @@ class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDeleg
     virtual int requestPage(int) = win 0x5a3a0, ios 0x507cdc, m1 0x823338, imac 0x942850;
     virtual void friendPicked(GJUserScore*) = win 0xed9c0, ios 0x5083e4, m1 0x823d98, imac 0x9432f0;
     virtual bool isRecipientSelected(int) = win 0xedb70, ios 0x508570, m1 0x823f54, imac 0x943490;
-    virtual TodoReturn selectedRecipientCount() = win 0xedbf0, ios 0x5085f4, m1 0x824064, imac 0x943570;
-    virtual TodoReturn selectedRecipients() = win 0xedc10, ios 0x508614, m1 0x824084, imac 0x9435b0;
-    virtual TodoReturn pickerRowState(int) = win 0xedc20, ios 0x508624, m1 0x824094, imac 0x9435d0;
-    virtual TodoReturn pickerCountBase() = win 0xedd60, ios 0x508708, m1 0x824180, imac 0x9436c0;
+    virtual int selectedRecipientCount() = win 0xedbf0, ios 0x5085f4, m1 0x824064, imac 0x943570;
+    virtual cocos2d::CCArray* selectedRecipients() = win 0xedc10, ios 0x508614, m1 0x824084, imac 0x9435b0;
+    virtual int pickerRowState(int) = win 0xedc20, ios 0x508624, m1 0x824094, imac 0x9435d0;
+    virtual int pickerCountBase() = win 0xedd60, ios 0x508708, m1 0x824180, imac 0x9436c0;
     virtual void friendPickerAdd() = win 0xedd90, ios 0x508758, m1 0x8241d0, imac 0x943740;
     virtual void friendPickerClosed() = win 0xedd70, ios 0x508720, m1 0x824198, imac 0x9436f0;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xed4b0, ios 0x5081c8, m1 0x823a1c, imac 0x942f10;
@@ -16112,8 +16112,8 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     virtual void textInputClosed(CCTextInputNode*) = win 0x3f5c0, ios 0x4f666c, m1 0x80db68, imac 0x92b640;
     virtual void friendPicked(GJUserScore*) = win 0xd7890, ios 0x4f6888, m1 0x80dda4, imac 0x92b8c0;
     virtual bool isRecipientSelected(int) = win 0xd7a40, ios 0x4f6a10, m1 0x80dfb0, imac 0x92bad0;
-    virtual TodoReturn selectedRecipientCount() = win 0xd7ac0, ios 0x4f6a94, m1 0x80e0c0, imac 0x92bbb0;
-    virtual TodoReturn selectedRecipients() = win 0xd7ae0, ios 0x4f6ab4, m1 0x80e0e0, imac 0x92bbf0;
+    virtual int selectedRecipientCount() = win 0xd7ac0, ios 0x4f6a94, m1 0x80e0c0, imac 0x92bbb0;
+    virtual cocos2d::CCArray* selectedRecipients() = win 0xd7ae0, ios 0x4f6ab4, m1 0x80e0e0, imac 0x92bbf0;
     virtual void clearRecipients() = win 0xd7af0, ios 0x4f6ac4, m1 0x80e0f0, imac 0x92bc10;
     virtual void friendPickerClosed() = win 0xd7b20, ios 0x4f6af8, m1 0x80e258, imac 0x92bd30;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xd6c90, ios 0x4f6128, m1 0x80d224, imac 0x92ae90;
@@ -16550,8 +16550,8 @@ class MusicDownloadDelegate {
     virtual void downloadSFXFailed(int id, GJSongError errorType) = inline;
     virtual void musicActionFinished(GJMusicAction action) = inline;
     virtual void musicActionFailed(GJMusicAction action) = inline;
-    virtual TodoReturn newsImageDownloaded(std::string) = win 0x98e10;
-    virtual TodoReturn newsImageFailed(std::string) = win 0x98e10;
+    virtual void newsImageDownloaded(std::string) = win 0x98e10;
+    virtual void newsImageFailed(std::string) = win 0x98e10;
 }
 
 [[link(android), depends(cocos2d::extension::CCHttpRequest)]]
@@ -16875,8 +16875,8 @@ class NewsPopup : FLAlertLayer, FLAlertLayerProtocol, MusicDownloadDelegate {
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x4a03d0, ios 0x5199f0, m1 0x8394c8, imac 0x95afa0;
     virtual void musicActionFinished(GJMusicAction) = win 0x4a0410, ios 0x519a58, m1 0x8395a8, imac 0x95b070;
     virtual void musicActionFailed(GJMusicAction) = win 0x4a0430, ios 0x519a7c, m1 0x8395cc, imac 0x95b0b0;
-    virtual TodoReturn newsImageDownloaded(std::string) = win 0x4a0480, ios 0x519b20;
-    virtual TodoReturn newsImageFailed(std::string) = win 0x4a0510, ios 0x519bc8;
+    virtual void newsImageDownloaded(std::string) = win 0x4a0480, ios 0x519b20;
+    virtual void newsImageFailed(std::string) = win 0x4a0510, ios 0x519bc8;
 
     void onBlockClicked(cocos2d::CCObject* sender) = win 0x49fca0;
     void onClose(cocos2d::CCObject* sender);
@@ -16905,8 +16905,8 @@ class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate
     virtual void shareIDPicked(int, bool) = win 0xf1520, ios 0x50bd84, m1 0x8283bc, imac 0x947e10;
     virtual void friendPicked(GJUserScore*) = win 0xf1db0, ios 0x50bed4, m1 0x828624, imac 0x948070;
     virtual bool isRecipientSelected(int) = win 0xf1a20, ios 0x50be50, m1 0x828514, imac 0x947f90;
-    virtual TodoReturn selectedRecipientCount() = win 0xf19f0, ios 0x50be20, m1 0x8284e4, imac 0x947f30;
-    virtual TodoReturn selectedRecipients() = win 0xf1a10, ios 0x50be40, m1 0x828504, imac 0x947f70;
+    virtual int selectedRecipientCount() = win 0xf19f0, ios 0x50be20, m1 0x8284e4, imac 0x947f30;
+    virtual cocos2d::CCArray* selectedRecipients() = win 0xf1a10, ios 0x50be40, m1 0x828504, imac 0x947f70;
     virtual void textChanged(CCTextInputNode*) = win 0xf10d0, ios 0x50b880, m1 0x827bd4, imac 0x947630;
     virtual void threadSendFinished(int, long long) = win 0xf33e0, m1 0x82884c, ios 0x50c0cc;
     virtual void threadSendFailed() = win 0xf3c10, m1 0x82908c, ios 0x50c580, imac 0x948c10;
@@ -17246,7 +17246,7 @@ class PagedListPopup : FLAlertLayer {
     virtual void keyBackClicked() = win 0xc3a50, ios 0x51b44c, m1 0x83b570, imac 0x95d310;
     virtual void show() = win 0xc39c0, ios 0x51b394, m1 0x83b4b0, imac 0x95d260;
     // virtual int requestPage(int) = win 0x9999999;
-    virtual TodoReturn clearPageContent() = win 0xc36c0, ios 0x51b19c, m1 0x83b2b4, imac 0x95d040;
+    virtual void clearPageContent() = win 0xc36c0, ios 0x51b19c, m1 0x83b2b4, imac 0x95d040;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x99f60, ios 0x51b410, m1 0x83b534, imac 0x95d2e0;
 
     TodoReturn clearStatus();
@@ -18416,7 +18416,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual bool shouldDrawDebugHitboxes() = win 0x505bc0, ios 0x142534, m1 0x772f8, imac 0x80830;
     virtual bool shouldDrawHitboxTrail() = win 0x505bf0, ios 0x142574, m1 0x7733c, imac 0x80860;
     virtual bool shouldRecordHitboxTrail() = win 0x505c20, ios 0x1425b4, m1 0x77380, imac 0x80890;
-    virtual TodoReturn getHitboxTrailMax() = win 0x317680, ios 0x1425d4, m1 0x773a4, imac 0x808b0;
+    virtual int getHitboxTrailMax() = win 0x317680, ios 0x1425d4, m1 0x773a4, imac 0x808b0;
     virtual void toggleGroundVisibility(bool visible) = win 0x5120a0, imac 0x87620, m1 0x7d758, ios 0x1478dc;
     virtual void toggleMGVisibility(bool visible) = win 0x512120, imac 0x87650, m1 0x7d788, ios 0x14790c;
     virtual void toggleHideAttempts(bool hide) = win 0x512160, imac 0x87670, m1 0x7d798, ios 0x14791c;
@@ -22219,11 +22219,11 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     virtual void sfxFoldersPicked(SFXFolderPickerPopup*, std::set<int> const&) = win 0x61d820, ios 0x1f6f78;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x61eb30, ios 0x1f77c0, m1 0x3aa73c, imac 0x433fd0;
     virtual void textChanged(CCTextInputNode*) = win 0x61f7a0, ios 0x1f7c88, m1 0x3aae48, imac 0x434860;
-    virtual TodoReturn getSelectedCellCustomIdx() = win 0x620270, ios 0x1f8398, m1 0x3ab65c, imac 0x4351c0;
-    virtual TodoReturn allowsCustomSFXActions() = win 0x3ff70, ios 0x1f83a8, m1 0x3ab66c, imac 0x4351e0;
+    virtual int getSelectedCellCustomIdx() = win 0x620270, ios 0x1f8398, m1 0x3ab65c, imac 0x4351c0;
+    virtual bool allowsCustomSFXActions() = win 0x3ff70, ios 0x1f83a8, m1 0x3ab66c, imac 0x4351e0;
     virtual bool isCustomIDSelected(int) = win 0x61cf00, ios 0x1f6f10, m1 0x3a9cd0, imac 0x4333e0;
-    virtual TodoReturn inCustomSFXTree() = win 0x620280, ios 0x1f83b8, m1 0x3ab67c, imac 0x435200;
-    virtual TodoReturn showsSFXInfoButton() = win 0x6202a0, ios 0x1f83f8, m1 0x3ab6bc, imac 0x435240;
+    virtual bool inCustomSFXTree() = win 0x620280, ios 0x1f83b8, m1 0x3ab67c, imac 0x435200;
+    virtual bool showsSFXInfoButton() = win 0x6202a0, ios 0x1f83f8, m1 0x3ab6bc, imac 0x435240;
 
     TodoReturn currentListScrollY();
     TodoReturn executeBatchDelete();
@@ -23880,11 +23880,11 @@ class TableViewCell : cocos2d::CCLayer {
 class TableViewCellDelegate {
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = inline;
     virtual int getSelectedCellIdx() = inline;
-    virtual TodoReturn getSelectedCellCustomIdx() = win 0x98e00;
-    virtual TodoReturn allowsCustomSFXActions() = win 0x5a3a0;
+    virtual int getSelectedCellCustomIdx() = win 0x98e00;
+    virtual bool allowsCustomSFXActions() = win 0x5a3a0;
     virtual bool isCustomIDSelected(int) = win 0x5a3a0;
-    virtual TodoReturn inCustomSFXTree() = win 0x5a3a0;
-    virtual TodoReturn showsSFXInfoButton() = win 0x5a3a0;
+    virtual bool inCustomSFXTree() = win 0x5a3a0;
+    virtual bool showsSFXInfoButton() = win 0x5a3a0;
     virtual bool shouldSnapToSelected() = inline;
     virtual int getCellDelegateType() = inline;
 }
