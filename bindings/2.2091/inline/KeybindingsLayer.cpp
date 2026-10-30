@@ -1,6 +1,8 @@
 #include <Geode/binding/KeybindingsLayer.hpp>
 #include <Geode/utils/cocos.hpp>
 
+bool KeybindingsLayer::crossCheckGlobalConflicts() { return false; }
+
 #if defined(GEODE_IS_WINDOWS)
 int const* KeybindingsLayer::getActionTable(int& count) {
     count = 214;

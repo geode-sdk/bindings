@@ -1,5 +1,6 @@
 #include <Geode/binding/MessagesProfilePage.hpp>
 
+bool MessagesProfilePage::ownsTouchPrio() { return true; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void MessagesProfilePage::updateLevelsLabel() {

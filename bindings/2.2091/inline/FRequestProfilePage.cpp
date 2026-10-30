@@ -1,6 +1,7 @@
 #include <Geode/binding/FRequestProfilePage.hpp>
 #include <Geode/mapping/CCString.hpp>
 
+bool FRequestProfilePage::ownsTouchPrio() { return true; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void FRequestProfilePage::updateLevelsLabel() {

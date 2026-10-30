@@ -2,6 +2,8 @@
 #include <Geode/binding/TopArtistsLayer.hpp>
 #include <Geode/binding/GameLevelManager.hpp>
 
+bool TopArtistsLayer::ownsTouchPrio() { return true; }
+
 TopArtistsLayer::TopArtistsLayer() {
     m_topArtists = nullptr;
     m_listLayer = nullptr;

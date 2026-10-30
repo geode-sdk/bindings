@@ -5310,7 +5310,7 @@ class EditorWindowPopup : SetupTriggerPopup {
     virtual void textInputClosed(CCTextInputNode*) = win 0x17fc80, imac 0x902110, m1 0x7e9254, ios 0x4dab60;
     virtual bool handleAction(int action, bool down, double timestamp) = win 0x17fba0, imac 0x901f10, m1 0x7e901c, ios 0x4daa94;
     virtual void onBuildWindowContent() = win 0x9999999;
-    virtual void onWindowResized() = win 0x3f5c0, inline;
+    virtual void onWindowResized() = inline;
     virtual void onFieldEnter() = win 0x17fc70, imac 0x9020d0, m1 0x7e9204, ios 0x4dab5c;
     bool initWindow(EditorUI* editorUI, float width, float height, int windowID, int unused) = win 0x17dde0, imac 0x8ffeb0, m1 0x7e73f4;
     bool beginTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17edd0, imac 0x901160, m1 0x7e83dc;
@@ -6321,7 +6321,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x5b4c0, imac 0x494be0, m1 0x3fd278, ios 0x34b7ec;
     virtual void rebuildContent() = inline;
     virtual void show() = win 0x5b8a0, imac 0x4950e0, m1 0x3fd7d4, ios 0x34bbac;
-    virtual bool ownsTouchPrio() = win 0x5a3a0, imac 0x2bc0, m1 0x28f4, ios 0xa8f8;
+    virtual bool ownsTouchPrio() = inline;
     virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x5bb10, imac 0x495380, m1 0x3fda50, ios 0x34be68;
     virtual void textInputReturn(CCTextInputNode*) = win 0x5bc70, imac 0x495510, m1 0x3fdba8, ios 0x34bfe0;
 
@@ -6710,7 +6710,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual void loadFRequestsFailed(char const* key, GJErrorCode errorType) = win 0x212c60, ios 0x24d20c, m1 0x768798, imac 0x872200;
     virtual void setupPageInfo(std::string info, char const* key) = win 0x212d40, ios 0x24d304, m1 0x768958, imac 0x8723c0;
     virtual void forceReloadRequests(bool sent) = win 0x212d20, ios 0x24d2d0, m1 0x768924, imac 0x872380;
-    virtual bool ownsTouchPrio() = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool ownsTouchPrio() = inline;
     virtual void getUserListFinished(cocos2d::CCArray*, UserListType) = win 0x210c80, ios 0x24c684, m1 0x7676f8, imac 0x871170;
     virtual void getUserListFailed(UserListType, GJErrorCode) = win 0x210d90, ios 0x24c8fc, m1 0x767970, imac 0x871410;
     virtual void textChanged(CCTextInputNode*) = win 0x212780, ios 0x24d028, m1 0x7683b0, imac 0x871e40;
@@ -13578,7 +13578,7 @@ class HSVWidgetPopup : FLAlertLayer {
 
 [[link(android)]]
 class IDNameBrowserDelegate {
-    virtual void idNameBrowserClosed(IDNameBrowserPopup*, int) = win 0x9999999, imac 0x914d90, m1 0x7fa310;
+    virtual void idNameBrowserClosed(IDNameBrowserPopup*, int) = inline;
 }
 
 [[link(android)]]
@@ -13687,7 +13687,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     virtual void updateUserScoreFinished() = win 0x3d2200, imac 0x896850, m1 0x78a304, ios 0x3f1b70;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x3d0620, imac 0x895b60, ios 0x3f14d4, m1 0x7895b0;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x3d4430, imac 0x8983f0, m1 0x78bc3c, ios 0x3f2ac4;
-    virtual bool ownsTouchPrio() = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool ownsTouchPrio() = inline;
     virtual void adminActionConfirmed(int, std::vector<int> const&, std::string const&) = win 0x3d3e40, ios 0x3f25f4, m1 0x78b604, imac 0x897d60;
     virtual void bulkCommentDeleteFinished(int) = win 0x3d4120, imac 0x898080, m1 0x78b8a4, ios 0x3f28d4;
     virtual void bulkCommentDeleteFailed() = win 0x3d4330, imac 0x898290, m1 0x78baac, ios 0x3f2a30;
@@ -13951,7 +13951,7 @@ class KeybindingsLayer : TabbedPopupLayer {
     virtual void openBindingEditor(int action, int chord) = win 0x3d80f0, imac 0x6e4710, m1 0x5f8af4, ios 0x258e4;
     virtual bool showControllerChords() = win 0x3d8120, imac 0x6e4740, m1 0x5f8b1c, ios 0x2590c;
     virtual std::vector<KeybindSettingsEntry> settingsEntries() = win 0x3d8140, imac 0x6e4750, m1 0x5f8b20, ios 0x25910;
-    virtual bool crossCheckGlobalConflicts() = win 0x5a3a0, imac 0x2bc0, m1 0x28f4, ios 0xa8f8;
+    virtual bool crossCheckGlobalConflicts() = inline;
 
     void buildContentForTab(int tab) = win 0x3d6750, imac 0x6e2550, m1 0x5f6ea0;
     // returns `count` {actionId, tabIndex} pairs
@@ -14012,7 +14012,7 @@ class KeybindSet : KeybindSource {
     virtual std::vector<int> actionsForChord(int chord) = win 0x4494d0, m1 0x807f88, imac 0x925190, ios 0x4f1d3c;
     virtual void bindChord(int chord, int action) = win 0x4495e0, m1 0x80805c, imac 0x9253a0, ios 0x4f1e04;
     virtual void unbindChord(int chord, int action) = win 0x449620, m1 0x8081b0, imac 0x9254e0, ios 0x4f1e68;
-    virtual bool isLevelSet() const = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool isLevelSet() const = inline;
     void clear();
 
     std::map<int, std::set<int>> m_actionToChords;
@@ -14332,9 +14332,9 @@ class LevelBindingsLayer : KeybindingsLayer {
     // always the 6 movement actions 10001-10006, whatever the tab or m_controller
     virtual std::vector<int> actionsToShow(int tab) = win 0x44c8b0, imac 0x91feb0, m1 0x80413c, ios 0x4efb98;
     virtual void openBindingEditor(int action, int chord) = win 0x44c920, imac 0x91ff10, m1 0x804190, ios 0x4efbb8;
-    virtual bool showControllerChords() = win 0x3ff70, imac 0x2bf0, m1 0x290c, ios 0xa900;
+    virtual bool showControllerChords() = inline;
     virtual std::vector<KeybindSettingsEntry> settingsEntries() = win 0x44c440, imac 0x91ee60, m1 0x8030c0, ios 0x4ef024;
-    virtual bool crossCheckGlobalConflicts() = win 0x3ff70, imac 0x2bf0, m1 0x290c, ios 0xa900;
+    virtual bool crossCheckGlobalConflicts() = inline;
 
     bool init(KeybindSet* keybindSet, bool controller) = win inline;
     void onApplyGlobal(cocos2d::CCObject* sender) = win 0x44cf50;
@@ -15034,7 +15034,7 @@ class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerP
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x4299b0, imac 0x3c8a50, m1 0x34cce8, ios 0x2edbd0;
     virtual void updateUserScoreFinished() = win 0x429ff0, imac 0x3c8c50, m1 0x34cee0, ios 0x2eddb4;
     virtual void updateUserScoreFailed() = win 0x42a000, imac 0x3c8c80, m1 0x34ceec, ios 0x2eddc0;
-    virtual bool ownsTouchPrio() = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool ownsTouchPrio() = inline;
 
     void deleteLocalScores() = win inline, imac 0x3c8900, m1 0x34cb58;
     cocos2d::CCArray* getLocalScores() = win 0x429b30, imac 0x3c8ad0, m1 0x34cd80;
@@ -16059,7 +16059,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual void loadMessagesFailed(char const* key, GJErrorCode errorType) = win 0x477900, ios 0x2654d0, m1 0x1c3000, imac 0x213d00;
     virtual void forceReloadMessages(bool sent) = win 0x4779a0, ios 0x265574, m1 0x1c314c, imac 0x213e30;
     virtual void setupPageInfo(std::string info, char const* key) = win 0x4779c0, ios 0x2655a8, m1 0x1c3180, imac 0x213e70;
-    virtual bool ownsTouchPrio() = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool ownsTouchPrio() = inline;
 
     void deleteSelected() = win 0x476a10, imac 0x2132a0, m1 0x1c25d4;
     bool init(bool sent) = win 0x475940, imac 0x211d20, m1 0x1c11fc;
@@ -16108,7 +16108,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     virtual bool init() = win 0xd4500, imac 0x9281c0, m1 0x80a6ec, ios 0x4f3d8c;
     virtual void keyBackClicked() = win 0xd92a0, ios 0x4f7d28, m1 0x80f7f0, imac 0x92d3b0;
     virtual void show() = win 0xd9130, ios 0x4f7bf0, m1 0x80f680, imac 0x92d250;
-    virtual bool ownsTouchPrio() = win 0x3ff70, ios 0xa900, m1 0x290c, imac 0x2bf0;
+    virtual bool ownsTouchPrio() = inline;
     virtual void textInputClosed(CCTextInputNode*) = win 0x3f5c0, ios 0x4f666c, m1 0x80db68, imac 0x92b640;
     virtual void friendPicked(GJUserScore*) = win 0xd7890, ios 0x4f6888, m1 0x80dda4, imac 0x92b8c0;
     virtual bool isRecipientSelected(int) = win 0xd7a40, ios 0x4f6a10, m1 0x80dfb0, imac 0x92bad0;
@@ -16981,7 +16981,7 @@ class NotificationsPage : FLAlertLayer, NotificationListDelegate {
     virtual bool init() = win 0x477cf0, ios 0x53ae4c, m1 0x865778, imac 0x98b210;
     virtual void registerWithTouchDispatcher() = win 0x46290, ios 0x53b820, m1 0x8663d0, imac 0x98bf90;
     virtual void keyBackClicked() = win 0x4787b0, ios 0x53b814, m1 0x8663c4, imac 0x98bf60;
-    virtual bool ownsTouchPrio() = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool ownsTouchPrio() = inline;
     virtual void loadNotificationsFinished(cocos2d::CCArray*, int, int, int) = win 0x478a40, ios 0x53b9bc, m1 0x86656c, imac 0x98c140;
     virtual void loadNotificationsFailed(int, GJErrorCode) = win 0x478bd0, ios 0x53bba8, m1 0x8667cc, imac 0x98c3c0;
     virtual void notificationRewardFinished(int) = win 0x478c30, ios 0x53bc2c, m1 0x8668cc, imac 0x98c4b0;
@@ -18727,7 +18727,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     virtual void onClosePopup(UploadActionPopup* popup) = win 0x558c40, imac 0x8a5990, m1 0x798364, ios 0x230080;
     virtual void uploadActionFinished(int id, int response) = win 0x558c90, imac 0x8a5a10, m1 0x7983ec, ios 0x2300f0;
     virtual void uploadActionFailed(int id, int response) = win 0x558e90, imac 0x8a5c00, m1 0x7985d0, ios 0x230208;
-    virtual bool ownsTouchPrio() = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool ownsTouchPrio() = inline;
     virtual void followUserFinished(int, bool) = win 0x557cd0, imac 0x8a53e0, m1 0x797e18, ios 0x22fc24;
     virtual void followUserFailed(int, bool) = win 0x558510, imac 0x8a5600, m1 0x798030, ios 0x22fe00;
 
@@ -24463,7 +24463,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
     virtual void loadListFinished(cocos2d::CCArray* objects, char const* key) = win 0x66e790, imac 0x2fbcc0, m1 0x290308, ios 0x239f30;
     virtual void loadListFailed(char const* key) = win 0x66e810, imac 0x2fbd80, m1 0x2903cc, ios 0x239f94;
     virtual void setupPageInfo(std::string info, char const* key) = win 0x66e970, imac 0x2fbdc0, m1 0x2903f4, ios 0x239fbc;
-    virtual bool ownsTouchPrio() = win 0x3ff70, m1 0x290c, imac 0x2bf0, ios 0xa900;
+    virtual bool ownsTouchPrio() = inline;
 
     bool isCorrect(char const* key) = win inline, imac 0x2fbcb0, m1 0x290300, ios inline;
     void loadPage(int page) = win 0x66eb70, imac 0x2fc3c0, m1 0x290a68;

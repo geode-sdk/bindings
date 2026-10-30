@@ -8,6 +8,8 @@ FLAlertLayer* FLAlertLayer::create(FLAlertLayerProtocol* delegate, char const* t
     return FLAlertLayer::create(delegate, title, desc, btn1, btn2, 300.0);
 }
 
+bool FLAlertLayer::ownsTouchPrio() { return false; }
+
 void FLAlertLayer::rebuildContent() {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

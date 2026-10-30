@@ -4,6 +4,8 @@
 #include <Geode/binding/LevelBrowserLayer.hpp>
 #include <Geode/mapping/CCTransitionFade.hpp>
 
+bool InfoLayer::ownsTouchPrio() { return true; }
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 int InfoLayer::getAccountID() {
     if (m_levelList) return m_levelList->m_accountID;
