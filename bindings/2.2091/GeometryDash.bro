@@ -3919,8 +3919,8 @@ class DeathStatsPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x11fb20, ios 0x4b9128, m1 0x7b8668, imac 0x8c9f40;
 
     bool init(LevelEditorLayer*) = win 0x11e430;
-    void onClearFetched(cocos2d::CCObject* sender);
-    void onClearLocal(cocos2d::CCObject* sender);
+    void onClearFetched(cocos2d::CCObject* sender) = win 0x11faa0;
+    void onClearLocal(cocos2d::CCObject* sender) = win 0x11fa10;
     void onFetch(cocos2d::CCObject* sender) = win 0x11ef00;
     TodoReturn pollFetch(float) = win 0x11f210;
     void setStatus(char const*);
@@ -3939,7 +3939,7 @@ class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
 
     bool init(GJGameLevel*, DeathTrackerPopup*) = win 0x11fbc0;
     void onClearData(cocos2d::CCObject* sender) = win 0x1200c0;
-    void onToggleAutoScroll(cocos2d::CCObject* sender);
+    void onToggleAutoScroll(cocos2d::CCObject* sender) = win 0x120070;
 }
 
 [[link(android)]]
@@ -3968,15 +3968,15 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     TodoReturn countsForScope(std::vector<int>&);
     TodoReturn dtScrollKey();
     bool init(GJGameLevel*) = win 0x1045d0;
-    void onClose(cocos2d::CCObject* sender);
-    void onJumpCurrent(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x10e660;
+    void onJumpCurrent(cocos2d::CCObject* sender) = win 0x10d890;
     void onJumpSession(cocos2d::CCObject* sender) = win 0x10e4c0;
-    void onJumpSummary(cocos2d::CCObject* sender);
-    void onNextSession(cocos2d::CCObject* sender);
-    void onOptions(cocos2d::CCObject* sender);
-    void onPanelButton(cocos2d::CCObject* sender);
-    void onPrevSession(cocos2d::CCObject* sender);
-    void onToggleGlobal(cocos2d::CCObject* sender);
+    void onJumpSummary(cocos2d::CCObject* sender) = win 0x10e4a0;
+    void onNextSession(cocos2d::CCObject* sender) = win 0x10d810;
+    void onOptions(cocos2d::CCObject* sender) = win 0x10da80;
+    void onPanelButton(cocos2d::CCObject* sender) = win 0x10de50;
+    void onPrevSession(cocos2d::CCObject* sender) = win 0x10d780;
+    void onToggleGlobal(cocos2d::CCObject* sender) = win 0x10d8c0;
     TodoReturn parseGlobal();
     TodoReturn parseSessions();
     TodoReturn refreshGlobal() = win 0x108b00;
@@ -10429,8 +10429,8 @@ class GJCompactUserCell : TableViewCell {
     TodoReturn buildUserRow(GJUserScore*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, float, bool, bool) = win 0x157e90;
     TodoReturn createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool);
     void loadFromScore(GJUserScore*) = win 0x157c60;
-    void onSendMessage(cocos2d::CCObject* sender);
-    void onViewProfile(cocos2d::CCObject* sender);
+    void onSendMessage(cocos2d::CCObject* sender) = win 0x158c00;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x157b80;
     void updateBGColor(int);
 
     GJUserScore* m_userScore;
@@ -11708,7 +11708,7 @@ class GJMessagePopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, 
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void onNewThread(cocos2d::CCObject* sender) = win 0x3a48d0, m1 0x2382b0;
     void onRemove(cocos2d::CCObject* sender) = win 0x3a44d0, imac 0x2945c0, m1 0x238488;
-    void onReport(cocos2d::CCObject* sender);
+    void onReport(cocos2d::CCObject* sender) = win 0x3a48a0;
 
     bool m_actionSuccess;
     cocos2d::CCLabelBMFont* m_errorLabel;
@@ -12891,10 +12891,10 @@ class GJThreadCell : TableViewCell {
     void loadFromThread(GJMessageThread*) = win 0x1597d0, imac 0x232ab0, m1 0x1df140;
     void onShowMembers(cocos2d::CCObject* sender) = win 0x15ab80;
 
-    void onThreadOptions(cocos2d::CCObject* sender);
-    void onToggleSelect(cocos2d::CCObject* sender);
+    void onThreadOptions(cocos2d::CCObject* sender) = win 0x15ac30;
+    void onToggleSelect(cocos2d::CCObject* sender) = win 0x15abc0;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x15ab40;
-    void onViewThread(cocos2d::CCObject* sender);
+    void onViewThread(cocos2d::CCObject* sender) = win 0x15ab10;
     void updateBGColor(int);
 
     GJMessageThread* m_thread;
