@@ -14622,7 +14622,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void applyAttributeState(GameObject* dest, GameObject* src) = win inline, imac 0xc7cb0, m1 0xb2a60, ios inline;
     void applyGroupState(GameObject* dest, GameObject* src) = win 0x400db0, imac 0xc7ab0, m1 0xb2838;
     void breakApartTextObject(TextGameObject* object) = win 0x3fdf10, m1 0x460310;
-    TodoReturn canAutoSave();
+    TodoReturn canAutoSave() = win 0x4089f0;
     bool canPasteState() = win inline, imac 0xc7890, m1 0xb2624;
     TodoReturn checkAutoSave(float) = win 0x408b10;
     void clearPlayerPoints() = win inline, imac 0xc61c0, m1 0xb1174, ios inline;
@@ -14633,8 +14633,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void createObjectsFromSetup(std::string& setup) = win 0x3ef940, imac 0xabbb0, m1 0x9a7e8;
     cocos2d::CCArray* createObjectsFromString(std::string const& str, bool noUndo, bool noLimit) = win 0x3f0150, imac 0xaeb00, m1 0x9cf6c;
     void dirtifyTriggers() = win inline, m1 0xb06f0;
-    TodoReturn doAutoBackup();
-    TodoReturn doAutoSave();
+    TodoReturn doAutoBackup() = win 0x409620;
+    TodoReturn doAutoSave() = win 0x4091d0;
     cocos2d::CCArray* duplicateKeyframeAnimation(int keyframeGroup) = imac 0xc8430, m1 0xb3178;
     void fastUpdateDisabledGroups() = win inline, imac 0xc3e20, m1 0xaf10c, ios inline;
     GameObject* findGameObject(int uniqueID) = win inline, imac 0xb1930, m1 0x9fa54;
