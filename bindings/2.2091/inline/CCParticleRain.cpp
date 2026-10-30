@@ -44,7 +44,7 @@ bool cocos2d::CCParticleRain::initWithTotalParticles(unsigned int p0) {
     m_fAngle = -90.f;
     m_fAngleVar = 5.f;
     auto winSize = CCDirector::sharedDirector()->getWinSize();
-    this->setPosition(winSize / 2.f);
+    this->setPosition({ winSize.width / 2.f, winSize.height });
     this->setPosVar({ winSize.width / 2.f, 0.f });
     m_fLife = 4.5f;
     m_fLifeVar = 0.f;

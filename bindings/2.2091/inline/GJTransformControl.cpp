@@ -116,7 +116,7 @@ void GJTransformControl::saveToState(GJTransformState& state) {
 }
 
 void GJTransformControl::updateAnchorSprite(cocos2d::CCPoint position) {
-    this->spriteByTag(0)->setPosition(position);
+    this->spriteByTag(1)->setPosition(position);
     if (m_delegate) m_delegate->updateTransformControl();
 }
 #endif

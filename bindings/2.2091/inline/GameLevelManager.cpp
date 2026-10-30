@@ -154,7 +154,7 @@ int GameLevelManager::specialFromLikeKey(char const* key) {
     std::string keyStr = key;
     auto parts = cocos2d::CCArray::create();
     auto start = 0;
-    auto index = keyStr.find_first_of(",");
+    auto index = keyStr.find_first_of("_");
     auto size = keyStr.size();
     while (index != std::string::npos) {
         auto str = keyStr.substr(start, index - start);
@@ -162,7 +162,7 @@ int GameLevelManager::specialFromLikeKey(char const* key) {
             parts->addObject(cocos2d::CCString::create(str));
         }
         start = index + 1;
-        index = keyStr.find_first_of(",", start);
+        index = keyStr.find_first_of("_", start);
     }
     return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(4))->getCString()) : 0;
 }
@@ -242,7 +242,7 @@ GJFriendRequest* GameLevelManager::friendRequestFromAccountID(int id) {
 }
 
 const char* GameLevelManager::getAccountCommentKey(int accountID, int page) {
-    return cocos2d::CCString::createWithFormat("%i_%i", accountID, page)->getCString();
+    return cocos2d::CCString::createWithFormat("a_%i_%i", accountID, page)->getCString();
 }
 
 int GameLevelManager::getActiveDailyID(GJTimedLevelType type) {
@@ -405,7 +405,7 @@ int GameLevelManager::getNextFreeTemplateID() {
 }
 
 const char* GameLevelManager::getPostCommentKey(int parentID) {
-    return cocos2d::CCString::createWithFormat("c%i", parentID)->getCString();
+    return cocos2d::CCString::createWithFormat("c_%i", parentID)->getCString();
 }
 
 GJGameLevel* GameLevelManager::getSavedDailyLevelFromLevelID(int id) {
@@ -478,7 +478,7 @@ int GameLevelManager::itemIDFromLikeKey(char const* key) {
     std::string keyStr = key;
     auto parts = cocos2d::CCArray::create();
     auto start = 0;
-    auto index = keyStr.find_first_of(",");
+    auto index = keyStr.find_first_of("_");
     auto size = keyStr.size();
     while (index != std::string::npos) {
         auto str = keyStr.substr(start, index - start);
@@ -486,7 +486,7 @@ int GameLevelManager::itemIDFromLikeKey(char const* key) {
             parts->addObject(cocos2d::CCString::create(str));
         }
         start = index + 1;
-        index = keyStr.find_first_of(",", start);
+        index = keyStr.find_first_of("_", start);
     }
     return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(2))->getCString()) : 0;
 }
@@ -495,7 +495,7 @@ int GameLevelManager::levelIDFromPostCommentKey(char const* key) {
     std::string keyStr = key;
     auto parts = cocos2d::CCArray::create();
     auto start = 0;
-    auto index = keyStr.find_first_of(",");
+    auto index = keyStr.find_first_of("_");
     auto size = keyStr.size();
     while (index != std::string::npos) {
         auto str = keyStr.substr(start, index - start);
@@ -503,7 +503,7 @@ int GameLevelManager::levelIDFromPostCommentKey(char const* key) {
             parts->addObject(cocos2d::CCString::create(str));
         }
         start = index + 1;
-        index = keyStr.find_first_of(",", start);
+        index = keyStr.find_first_of("_", start);
     }
     return parts->count() > 1 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(1))->getCString()) : 0;
 }
@@ -512,7 +512,7 @@ int GameLevelManager::likeFromLikeKey(char const* key) {
     std::string keyStr = key;
     auto parts = cocos2d::CCArray::create();
     auto start = 0;
-    auto index = keyStr.find_first_of(",");
+    auto index = keyStr.find_first_of("_");
     auto size = keyStr.size();
     while (index != std::string::npos) {
         auto str = keyStr.substr(start, index - start);
@@ -520,7 +520,7 @@ int GameLevelManager::likeFromLikeKey(char const* key) {
             parts->addObject(cocos2d::CCString::create(str));
         }
         start = index + 1;
-        index = keyStr.find_first_of(",", start);
+        index = keyStr.find_first_of("_", start);
     }
     return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(3))->getCString()) : 0;
 }
@@ -592,7 +592,7 @@ int GameLevelManager::pageFromCommentKey(char const* key) {
     std::string keyStr = key;
     auto parts = cocos2d::CCArray::create();
     auto start = 0;
-    auto index = keyStr.find_first_of(",");
+    auto index = keyStr.find_first_of("_");
     auto size = keyStr.size();
     while (index != std::string::npos) {
         auto str = keyStr.substr(start, index - start);
@@ -600,7 +600,7 @@ int GameLevelManager::pageFromCommentKey(char const* key) {
             parts->addObject(cocos2d::CCString::create(str));
         }
         start = index + 1;
-        index = keyStr.find_first_of(",", start);
+        index = keyStr.find_first_of("_", start);
     }
     return parts->count() > 2 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(2))->getCString()) : 0;
 }
@@ -706,7 +706,7 @@ CommentType GameLevelManager::typeFromCommentKey(char const* key) {
     std::string keyStr = key;
     auto parts = cocos2d::CCArray::create();
     auto start = 0;
-    auto index = keyStr.find_first_of(",");
+    auto index = keyStr.find_first_of("_");
     auto size = keyStr.size();
     while (index != std::string::npos) {
         auto str = keyStr.substr(start, index - start);
@@ -714,7 +714,7 @@ CommentType GameLevelManager::typeFromCommentKey(char const* key) {
             parts->addObject(cocos2d::CCString::create(str));
         }
         start = index + 1;
-        index = keyStr.find_first_of(",", start);
+        index = keyStr.find_first_of("_", start);
     }
     return parts->count() > 3 ? (CommentType)atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(3))->getCString()) : CommentType::Level;
 }
@@ -723,7 +723,7 @@ LikeItemType GameLevelManager::typeFromLikeKey(char const* key) {
     std::string keyStr = key;
     auto parts = cocos2d::CCArray::create();
     auto start = 0;
-    auto index = keyStr.find_first_of(",");
+    auto index = keyStr.find_first_of("_");
     auto size = keyStr.size();
     while (index != std::string::npos) {
         auto str = keyStr.substr(start, index - start);
@@ -731,7 +731,7 @@ LikeItemType GameLevelManager::typeFromLikeKey(char const* key) {
             parts->addObject(cocos2d::CCString::create(str));
         }
         start = index + 1;
-        index = keyStr.find_first_of(",", start);
+        index = keyStr.find_first_of("_", start);
     }
     return parts->count() > 4 ? (LikeItemType)atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(1))->getCString()) : LikeItemType::Unknown;
 }

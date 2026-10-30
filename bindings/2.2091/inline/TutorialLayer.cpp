@@ -8,7 +8,7 @@
 #if defined(GEODE_IS_WINDOWS)
 void TutorialLayer::removeTutorialTexture() {
     if (m_page == 0) return;
-    cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(cocos2d::CCString::createWithFormat("tutorial_%02d", m_page)->getCString());
+    cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(cocos2d::CCString::createWithFormat("tutorial_%02d.png", m_page)->getCString());
 }
 #endif
 

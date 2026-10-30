@@ -121,7 +121,7 @@ void FMODAudioEngine::enableMetering() {
 }
 
 void FMODAudioEngine::fadeInBackgroundMusic(float value) {
-    m_backgroundMusicChannel->setVolume(value);
+    m_backgroundMusicChannel->setVolume(0.f);
     m_backgroundMusicFade = value;
     m_musicFadeStart = -1.f;
 }

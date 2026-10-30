@@ -184,7 +184,7 @@ float GJBaseGameLayer::getScaledGroundHeight(float height) {
 }
 
 int GJBaseGameLayer::getSpecialKey(int groupID, bool ignoreGroupParent, bool ignoreLinkedObjects) {
-    return groupID + (int)ignoreGroupParent * 1000000 + (int)ignoreLinkedObjects * 10000000 + 10000000;
+    return groupID + (int)ignoreGroupParent * 10000000 + (int)ignoreLinkedObjects * 1000000 + 100000000;
 }
 
 cocos2d::CCArray* GJBaseGameLayer::getTargetGroup(int index, int uniqueID) {
@@ -327,7 +327,7 @@ void GJBaseGameLayer::updateInternalCamOffsetY(float offsetY, float duration, fl
         m_gameState.tweenValue(m_gameState.m_internalCameraOffset.y, offsetY, 19, duration, 1, easingRate, -1, -1);
     }
     else {
-        m_gameState.stopTweenAction(10);
+        m_gameState.stopTweenAction(19);
         m_gameState.m_internalCameraOffset.y = m_gameState.m_internalCameraOffsetTarget.y;
     }
 }

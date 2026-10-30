@@ -16,7 +16,7 @@ bool ListButtonPage::init(cocos2d::CCArray* items, cocos2d::CCPoint position, in
     for (int i = 0; i < items->count(); i++) {
         auto row = index / columns;
         auto item = static_cast<cocos2d::CCNode*>(items->objectAtIndex(i));
-        if (item->getTag() == 2) {
+        if (item->getTag() == -2) {
             index += columns - (index % columns);
         }
         else {

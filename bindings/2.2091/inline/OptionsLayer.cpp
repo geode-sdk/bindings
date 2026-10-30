@@ -24,7 +24,7 @@ CCMenuItemToggler* OptionsLayer::createToggleButton(std::string text, cocos2d::S
     auto label = cocos2d::CCLabelBMFont::create(text.c_str(), "bigFont.fnt");
     m_mainLayer->addChild(label);
     label->setAnchorPoint({ .0f, .5f });
-    label->setPosition(position + cocos2d::CCPoint { onSprite->getContentSize().width * .5f + 6.4f, 0.f });
+    label->setPosition(position + cocos2d::CCPoint { (onSprite->getContentSize().width * .5f) * .8f + 8.f, 0.f });
     auto width = label->getContentSize().width;
     if (width > 120.f) label->setScale(120.f / width);
     label->setScale(std::min(label->getScale(), .35f));

@@ -139,7 +139,7 @@ void ShaderLayer::preRadialBlurShader() {
         m_state.m_usesShaders = true;
     }
     auto shaderProgram = m_sprite->getShaderProgram();
-    shaderProgram->setUniformLocationWith1f(m_radialBlurValueUniform, m_state.m_radialBlurSize / 45.f);
+    shaderProgram->setUniformLocationWith1f(m_radialBlurValueUniform, m_state.m_radialBlurSize / 45.f * .2f);
     if (m_state.m_radialBlurSize != 0.f) {
         shaderProgram->setUniformLocationWith1f(m_blurFadeUniform, std::clamp(m_state.m_radialBlurFade * .2f, .0f, .2f));
     }

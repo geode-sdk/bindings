@@ -29,7 +29,7 @@ bool LevelTools::getLastGameplayReversed() {
 }
 
 float LevelTools::offsetBPMForTrack(int id) {
-    return id == 11 ? .1f : id == 13 ? .07f : .0f;
+    return id == 10 ? .1f : id == 12 ? .07f : .0f;
 }
 
 void LevelTools::toggleDebugLogging(bool enabled) {}

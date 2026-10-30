@@ -273,7 +273,7 @@ std::string GameStatsManager::getListRewardKey(GJLevelList* list) {
 }
 
 int GameStatsManager::getNextGoldChestID() {
-    for (int i = 6001; i < 6021; i++) {
+    for (int i = 6001; i < 6031; i++) {
         if (!this->isSecretChestUnlocked(i)) return i;
     }
     return 0;
