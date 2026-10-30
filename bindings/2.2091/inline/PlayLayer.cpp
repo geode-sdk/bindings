@@ -163,6 +163,25 @@ double PlayLayer::getTempMilliTime() {
 }
 #endif
 
+#if defined(GEODE_IS_MACOS)
+float PlayLayer::getCurrentPercent()
+{
+    if (m_isPlatformer)
+        return m_effectManager->m_platformerProgress;
+
+    float x = m_player1->getPosition().x;
+    float len = m_levelLength;
+
+    if (m_timestamp > 0) {
+        x = m_gameState.m_currentProgress;
+        m_levelLength = 2 * m_timestamp;
+    }
+
+    const float progress = x / m_levelLength * 100.f;
+    return std::clamp(progress, 0.f, 100.f);
+}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void PlayLayer::incrementJumps() {
     m_uncommittedJumps++;
