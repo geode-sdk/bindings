@@ -11882,10 +11882,10 @@ class GJNotificationCell : TableViewCell, FLAlertLayerProtocol {
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x15c4c0, ios 0x13acdc, m1 0x1eca14, imac 0x241c50;
 
     void loadFromNotification(GJNotification*) = win 0x15b0d0;
-    void onClaimReward(cocos2d::CCObject* sender);
-    void onMute(cocos2d::CCObject* sender);
-    void onShowBody(cocos2d::CCObject* sender);
-    void onViewTarget(cocos2d::CCObject* sender);
+    void onClaimReward(cocos2d::CCObject* sender) = win 0x15c810;
+    void onMute(cocos2d::CCObject* sender) = win 0x15c1a0;
+    void onShowBody(cocos2d::CCObject* sender) = win 0x15c890;
+    void onViewTarget(cocos2d::CCObject* sender) = win 0x15c6e0;
     TodoReturn refreshChest();
     void updateBGColor(int);
 
@@ -11911,7 +11911,7 @@ class GJOnlineRewardDelegate {
 
 [[link(android)]]
 class GJOptionsLayer : SetupTriggerPopup {
-    GJOptionsLayer() = win 0x9999999, inline;
+    GJOptionsLayer() = win 0x1800b0, inline;
     ~GJOptionsLayer() = win 0x39ab40, ios 0x371788;
 
     static GJOptionsLayer* create(int background) = win inline, ios inline;
@@ -11922,7 +11922,7 @@ class GJOptionsLayer : SetupTriggerPopup {
 
     void addGVToggle(char const* title, char const* variable, char const* description) = win 0x39b040, imac 0x243a20, m1 0x331580;
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, imac 0x287820, m1 0x22c4f8;
-    void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x4d2330;
+    void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x39b1a0;
     int countForPage(int page) = win 0x39b760;
     CCMenuItemToggler* getToggleButton(int id) = ios inline;
     void goToPage(int page) = win 0x39bd20;
@@ -11935,9 +11935,9 @@ class GJOptionsLayer : SetupTriggerPopup {
     const char* objectKey(int page) = win inline, m1 0x77b374, ios inline;
     cocos2d::CCArray* objectsForPage(int page) = win 0x39b970;
     void offsetToNextPage() = win inline, imac 0x287020, m1 0x22be00, ios inline;
-    void onInfo(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
+    void onInfo(cocos2d::CCObject* sender) = win 0x39c280;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x39bd00;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x39bd10;
     void onToggle(cocos2d::CCObject* sender) = win 0x39c170, imac 0x287b30, m1 0x22c7d4;
     const char* pageKey(int page) = win inline, m1 0x77b34c, ios inline;
 
@@ -16951,12 +16951,12 @@ class NotificationFilterPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x479e30, ios 0x53c70c, m1 0x867904, imac 0x98d540;
 
     bool init(NotificationsPage*) = win 0x4790f0;
-    void onDownloadMilestones(cocos2d::CCObject* sender);
-    void onFollowerMilestones(cocos2d::CCObject* sender);
-    void onFollowUploads(cocos2d::CCObject* sender);
-    void onFriendAccepts(cocos2d::CCObject* sender);
-    void onFriendRated(cocos2d::CCObject* sender);
-    void onFriendUploads(cocos2d::CCObject* sender);
+    void onDownloadMilestones(cocos2d::CCObject* sender) = win 0x479d40;
+    void onFollowerMilestones(cocos2d::CCObject* sender) = win 0x479d50;
+    void onFollowUploads(cocos2d::CCObject* sender) = win 0x479d30;
+    void onFriendAccepts(cocos2d::CCObject* sender) = win 0x479d60;
+    void onFriendRated(cocos2d::CCObject* sender) = win 0x479d70;
+    void onFriendUploads(cocos2d::CCObject* sender) = win 0x479d20;
     void onSocialAlerts(cocos2d::CCObject* sender) = win 0x479d80;
     TodoReturn savedMask();
     TodoReturn toggleSource(int);
@@ -16990,10 +16990,10 @@ class NotificationsPage : FLAlertLayer, NotificationListDelegate {
     virtual void notificationMuteFailed(int) = win 0x478fe0, ios 0x53becc, m1 0x866d34, imac 0x98c920;
 
     TodoReturn loadPage(int);
-    void onClose(cocos2d::CCObject* sender);
-    void onFilter(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x4786f0;
+    void onFilter(cocos2d::CCObject* sender) = win 0x4784e0;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x4790d0;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x4790e0;
     void onUpdate(cocos2d::CCObject* sender) = win 0x478620;
     TodoReturn reloadCells();
     TodoReturn setupBrowser(cocos2d::CCArray*);
@@ -17292,12 +17292,12 @@ class ParentalOptionsLayer : FLAlertLayer {
     virtual bool init() = win 0x4d1530, ios 0x1167e4, m1 0x779210, imac 0x884450;
     virtual void keyBackClicked() = win 0x4d3b90, m1 0x77b824, ios 0x118308, imac 0x886c10;
 
-    TodoReturn addMasterToggle(char const*, char const*, char const*, char const*);
-    TodoReturn addToggle(char const*, char const*, int, char const*) = win 0x4d1b60;
+    TodoReturn addMasterToggle(char const*, char const*, char const*, char const*) = win 0x4d1b60;
+    TodoReturn addToggle(char const*, char const*, int, char const*) = win 0x4d2330;
     TodoReturn applyPrivacyPushEdge(bool);
     TodoReturn applyToggleLock(cocos2d::CCArray*, bool);
     int countForPage(int page) = win 0x4cfb00;
-    void goToPage(int page);
+    void goToPage(int page) = win 0x4d2a50;
     void incrementCountForPage(int page) = win inline;
     const char* infoKey(int index) = win inline, ios inline;
     cocos2d::CCLayer* layerForPage(int page);
@@ -17305,13 +17305,13 @@ class ParentalOptionsLayer : FLAlertLayer {
     cocos2d::CCPoint nextPosition(int page) = win inline;
     const char* objectKey(int page) = win inline, m1 0x77b374, ios inline;
     cocos2d::CCArray* objectsForPage(int page);
-    void onClose(cocos2d::CCObject* sender) = win 0x99f60;
+    void onClose(cocos2d::CCObject* sender) = win 0x4d3b00;
     void onInfo(cocos2d::CCObject* sender) = win inline;
-    void onLockToggle(cocos2d::CCObject* sender);
-    void onMasterToggle(cocos2d::CCObject* sender);
-    void onNextPage(cocos2d::CCObject* sender);
-    void onPrevPage(cocos2d::CCObject* sender);
-    void onToggle(cocos2d::CCObject* sender);
+    void onLockToggle(cocos2d::CCObject* sender) = win 0x4d2fb0;
+    void onMasterToggle(cocos2d::CCObject* sender) = win 0x4d3000;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x4d2a30;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x4d2a40;
+    void onToggle(cocos2d::CCObject* sender) = win 0x4d2ea0;
     const char* pageKey(int page) = win inline, m1 0x77b34c, ios inline;
     TodoReturn updateToggleStates();
 
