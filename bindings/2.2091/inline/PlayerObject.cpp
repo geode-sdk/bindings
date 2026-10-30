@@ -836,3 +836,18 @@ void PlayerObject::updatePlayerScale() {
 }
 #endif
 
+#if defined(GEODE_IS_ARM_MAC)
+void PlayerObject::deactivateParticle() {
+    if (m_hasGroundParticles)
+        m_playerGroundParticles->stopSystem();
+    m_hasGroundParticles = false;
+}
+
+void PlayerObject::stopParticles() {
+    this->deactivateParticle();
+    m_trailingParticles->stopSystem();
+    m_shipClickParticles->stopSystem();
+    m_vehicleGroundParticles->stopSystem();
+    m_robotBurstParticles->stopSystem();
+}
+#endif
