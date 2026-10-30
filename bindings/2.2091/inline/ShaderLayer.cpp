@@ -1,6 +1,7 @@
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/binding/ShaderLayer.hpp>
 #include <Geode/cocos/misc_nodes/CCRenderTexture.h>
+#include <Geode/mapping/CCNotificationCenter.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_ANDROID)
 ShaderLayer::ShaderLayer() {
@@ -29,6 +30,7 @@ void ShaderLayer::setupSepiaShader() {
 
 #if defined(GEODE_IS_WINDOWS)
 ShaderLayer::~ShaderLayer() {
+    cocos2d::CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "event_come_to_foreground");
     CC_SAFE_RELEASE(m_renderTexture);
 }
 
@@ -43,10 +45,10 @@ ShaderLayer* ShaderLayer::create() {
 }
 
 void ShaderLayer::preBulgeShader() {
+    if (m_state.m_bulgeValue > 0.f || this->getActionByTag(21)) {
+        m_state.m_usesShaders = true;
+    }
     if (m_state.m_bulgeValue <= 0.f) {
-        if (this->getActionByTag(21)) {
-            m_state.m_usesShaders = true;
-        }
         m_sprite->getShaderProgram()->setUniformLocationWith1f(m_bulgeValueUniform, 0.f);
     }
 }
@@ -57,8 +59,8 @@ void ShaderLayer::preChromaticShader() {
     }
     auto scale = m_state.m_chromaticRelative && m_gameLayer ? abs(m_gameLayer->m_objectLayer->getScale()) : 1.f;
     auto shaderProgram = m_sprite->getShaderProgram();
-    shaderProgram->setUniformLocationWith1f(m_chromaticXOffUniform, (m_scaleFactor / 1.2018504f) * m_state.m_chromaticTargetX * m_state.m_textureScaleX * scale);
-    shaderProgram->setUniformLocationWith1f(m_chromaticYOffUniform, (m_scaleFactor / 1.2018504f) * m_state.m_chromaticTargetY * m_state.m_textureScaleY * scale);
+    shaderProgram->setUniformLocationWith1f(m_chromaticXOffUniform, (m_scaleFactor / 1.2018504f / m_targetTextureSize.width) * m_state.m_chromaticTargetX * m_state.m_textureScaleX * scale);
+    shaderProgram->setUniformLocationWith1f(m_chromaticYOffUniform, (m_scaleFactor / 1.2018504f / m_targetTextureSize.height) * m_state.m_chromaticTargetY * m_state.m_textureScaleY * scale);
 }
 
 void ShaderLayer::preColorChangeShader() {
@@ -258,7 +260,7 @@ void ShaderLayer::triggerChromaticY(float fadeTime, float targetY, int easingTyp
 
 void ShaderLayer::triggerGlitch(float fadeTime, float strength, float speed, float sliceHeight, float maxSliceXOff, float maxColXOff, float maxColYOff, bool relative) {
     this->tweenValueAuto(strength, 49, fadeTime, 0, 0.f);
-    m_state.m_glitchSpeed = speed;
+    m_state.m_glitchSpeed = std::max(speed, .001f);
     m_state.m_glitchSliceHeight = sliceHeight;
     m_state.m_glitchMaxSliceXOff = maxSliceXOff;
     m_state.m_glitchMaxColXOff = maxColXOff;
