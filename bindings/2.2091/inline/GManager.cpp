@@ -1,4 +1,5 @@
 #include <Geode/binding/GManager.hpp>
+#include <Geode/mapping/DS_Dictionary.hpp>
 #include <thread>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

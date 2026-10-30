@@ -1,4 +1,10 @@
 #include <Geode/binding/ColorSelectLiveOverlay.hpp>
+#include <Geode/binding/CCMenuItemToggler.hpp>
+#include <Geode/binding/EffectGameObject.hpp>
+#include <Geode/binding/ColorAction.hpp>
+#include <Geode/mapping/CCSprite.hpp>
+#include <Geode/mapping/CCMenu.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

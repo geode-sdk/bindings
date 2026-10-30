@@ -1,4 +1,5 @@
 #include <Geode/binding/GJGameLevel.hpp>
+#include <Geode/binding/LevelTools.hpp>
 
 void GJGameLevel::setAccountID(int id) {
     m_accountID = id;

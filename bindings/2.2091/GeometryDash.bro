@@ -914,7 +914,7 @@ class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     TodoReturn refreshStats();
 }
 
-[[link(android)]]
+[[link(android), depends(CCIndexPath)]]
 class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsDelegate {
     virtual ~AutoBackupPopup() = win 0xc9870, ios 0x5338a0;
 

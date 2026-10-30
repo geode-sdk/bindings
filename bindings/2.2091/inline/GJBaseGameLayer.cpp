@@ -23,6 +23,9 @@
 #include <Geode/binding/StartPosObject.hpp>
 #include <Geode/binding/TeleportPortalObject.hpp>
 #include <Geode/binding/GJGradientLayer.hpp>
+#include <Geode/binding/EnterEffectObject.hpp>
+#include <Geode/binding/EnhancedTriggerObject.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;

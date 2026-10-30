@@ -3,6 +3,10 @@
 #include <Geode/binding/GJMultiplayerManager.hpp>
 #include <Geode/binding/GameManager.hpp>
 #include <Geode/binding/LocalLevelManager.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+#include <Geode/mapping/CCCallFuncND.hpp>
+#include <Geode/mapping/CCDelayTime.hpp>
+#include <Geode/mapping/DS_Dictionary.hpp>
 #include <Geode/cocos/actions/CCActionManager.h>
 
 GJAccountManager* GJAccountManager::get() {

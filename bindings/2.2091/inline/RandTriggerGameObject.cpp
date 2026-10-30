@@ -1,4 +1,5 @@
 #include <Geode/binding/RandTriggerGameObject.hpp>
+#include <Geode/binding/GameToolbox.hpp>
 #include <cmath>
 
 RandTriggerGameObject::RandTriggerGameObject() {}

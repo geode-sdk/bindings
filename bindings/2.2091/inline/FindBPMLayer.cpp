@@ -1,6 +1,8 @@
 #include <Geode/binding/FindBPMLayer.hpp>
 #include <Geode/binding/MusicDownloadManager.hpp>
-
+#include <Geode/binding/SongInfoObject.hpp>
+#include <Geode/mapping/CCDirector.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void FindBPMLayer::calculateBPM() {

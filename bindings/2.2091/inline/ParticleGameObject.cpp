@@ -1,4 +1,6 @@
 #include <Geode/binding/ParticleGameObject.hpp>
+#include <Geode/binding/GameToolbox.hpp>
+#include <Geode/mapping/CCApplication.hpp>
 
 ParticleGameObject::ParticleGameObject() {
     m_updatedParticleData = false;

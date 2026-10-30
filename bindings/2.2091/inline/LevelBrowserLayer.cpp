@@ -7,6 +7,7 @@
 #include <Geode/binding/LevelListLayer.hpp>
 #include <Geode/binding/SetupSmartTemplateLayer.hpp>
 #include <Geode/binding/ShareCommentLayer.hpp>
+#include <Geode/binding/GJListLayer.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

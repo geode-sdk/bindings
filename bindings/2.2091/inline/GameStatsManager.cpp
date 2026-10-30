@@ -4,6 +4,9 @@
 #include <Geode/binding/GJLevelList.hpp>
 #include <Geode/binding/GameToolbox.hpp>
 #include <Geode/binding/LevelTools.hpp>
+#include <Geode/binding/GJRewardObject.hpp>
+#include <Geode/binding/GJRewardItem.hpp>
+#include <Geode/binding/GJStoreItem.hpp>
 #include <cmath>
 
 GameStatsManager* GameStatsManager::get() {
