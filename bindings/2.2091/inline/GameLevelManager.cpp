@@ -339,8 +339,11 @@ bool GameLevelManager::getDiffVal(int diff) {
 }
 
 const char* GameLevelManager::getFriendRequestKey(bool sent, int page, std::string const& p0, bool p1) {
-    return "TODO 2.209";
-    // return cocos2d::CCString::createWithFormat("fReq_%i_%i", (int)sent, page)->getCString();
+    auto prefix = p1 ? "fReqI" : "fReq";
+    if (p0.empty()) {
+        return cocos2d::CCString::createWithFormat("%s_%i_%i", prefix, (int)sent, page)->getCString();
+    }
+    return cocos2d::CCString::createWithFormat("%sS_%i_%i_%s", prefix, (int)sent, page, p0.c_str())->getCString();
 }
 
 std::string GameLevelManager::getGauntletSearchKey(int id) {
@@ -469,9 +472,9 @@ void GameLevelManager::invalidateUserList(UserListType type, bool reload) {
 }
 
 bool GameLevelManager::isUpdateValid(int id) {
-    const char* str = cocos2d::CCString::createWithFormat("%i", id)->getCString();
+    const char* str = this->getLevelKey(id);
 
-    return this->isTimeValid(str, 3600.f);
+    return this->isTimeValid(str, 600.f);
 }
 
 int GameLevelManager::itemIDFromLikeKey(char const* key) {

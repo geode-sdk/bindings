@@ -227,6 +227,7 @@ void FMODAudioEngine::setBackgroundMusicVolume(float volume) {
 void FMODAudioEngine::setEffectsVolume(float volume) {
     m_sfxVolume = volume;
     if (m_globalChannel) m_globalChannel->setVolume(volume);
+    if (m_unkChannel) m_unkChannel->setVolume(volume);
 }
 
 void FMODAudioEngine::stop() {
@@ -251,7 +252,7 @@ void FMODAudioEngine::stopMusicNotInSet(std::unordered_set<int>& musicIDs) {
         totalIDs.insert(id);
     }
     for (auto& id : totalIDs) {
-        if (musicIDs.count(id) == 0) {
+        if (id >= 0 && musicIDs.count(id) == 0) {
             this->stopMusic(id);
         }
     }

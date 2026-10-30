@@ -52,6 +52,7 @@ bool cocos2d::CCTextureAtlas::initWithFile(const char* file, unsigned int capaci
 
 void cocos2d::CCTextureAtlas::insertQuads(cocos2d::ccV3F_C4B_T2F_Quad* quads, unsigned int index, unsigned int amount) {
     m_uTotalQuads += amount;
+    if (m_uMaxQuads < m_uTotalQuads) m_uMaxQuads = m_uTotalQuads;
 
     int remaining = m_uTotalQuads - 1 - index - amount;
     if (remaining > 0) {

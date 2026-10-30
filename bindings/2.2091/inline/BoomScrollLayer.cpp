@@ -17,16 +17,17 @@ void BoomScrollLayer::addPage(cocos2d::CCLayer* page, int index) {
 }
 
 cocos2d::CCPoint BoomScrollLayer::getRelativePosForPage(int page) {
-    return { this->getContentSize().width - m_pageOffset * page, 0.f };
+    return { (this->getContentSize().width - m_pageOffset) * page, 0.f };
 }
 
 cocos2d::CCPoint BoomScrollLayer::positionForPageWithNumber(int page) {
-    return { this->getContentSize().width + m_pageOffset * page, 0.f };
+    return { -(this->getContentSize().width - m_pageOffset) * page, 0.f };
 }
 
 void BoomScrollLayer::removePage(cocos2d::CCLayer* page) {
     m_pages->removeObject(page);
     this->removeChild(page, true);
+    this->updatePages();
     m_slowPage = m_page;
     m_page = std::min<int>(m_page, m_pages->count() - 1);
     this->moveToPage(m_page);

@@ -942,7 +942,7 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
     void onToggleRow(cocos2d::CCObject* sender) = win 0xcc500;
     TodoReturn pruneBackups(std::string const&, int, std::string const&, bool);
     TodoReturn reloadFiles();
-    TodoReturn selectedCount();
+    int selectedCount();
     // TodoReturn statsText(std::vector<AutoBackupPopup::BackupFile> const&);
     TodoReturn updateSelectUI();
     TodoReturn updateSummary();
@@ -6733,13 +6733,13 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void onToggleAllObjects(cocos2d::CCObject* sender);
     void onUpdate(cocos2d::CCObject* sender);
     TodoReturn removeFromNewCount(int);
-    TodoReturn selectedCount();
+    int selectedCount() = win 0x2102f0;
     void setupCommentsBrowser(cocos2d::CCArray* scores) = win 0x212a40, m1 0x767808;
     void untoggleAll() = win 0x211e70, imac 0x213840;
     void updateLevelsLabel() = win inline, ios inline;
     TodoReturn updateModeButtons() = win 0x211b40;
     void updatePageArrows() = win inline, m1 0x768fa4, ios inline;
-    TodoReturn updateSelectUI();
+    void updateSelectUI() = win 0x2103a0;
 
     bool m_sent;
     bool m_ignored;
@@ -14419,7 +14419,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void reloadAllObjects() = win inline, ios inline;
     TodoReturn reloadPageRows();
     TodoReturn safeSearchObject(GJTimedLevelType);
-    TodoReturn selectedCount();
+    int selectedCount();
     void setSearchObject(GJSearchObject* object) = win inline, m1 0xa0e9c;
     void setupLevelBrowser(cocos2d::CCArray* items) = win 0x3e5440, imac 0x485cc0, m1 0x3ef800;
     void show() = win 0x3eb640, imac 0x488c10, m1 0x3f24d8;
@@ -16073,7 +16073,7 @@ class MessagesProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void onSentMessages(cocos2d::CCObject* sender) = win 0x476680, m1 0x80bc5c;
     void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x476300;
     void onUpdate(cocos2d::CCObject* sender);
-    TodoReturn selectedCount();
+    int selectedCount();
     void setupCommentsBrowser(cocos2d::CCArray* messages) = win 0x477610, imac 0x213a40, m1 0x1c2d74;
     void untoggleAll() = win 0x477140, imac 0x213840;
     void updateLevelsLabel() = win inline, imac 0x8967d0, m1 0x78a294, ios inline;
@@ -16146,7 +16146,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     void onUserFilter(cocos2d::CCObject* sender) = win 0xd7850, m1 0x80be94;
     TodoReturn refetchIfQueued();
     TodoReturn refreshUserFilterBtn();
-    TodoReturn selectedCount();
+    int selectedCount();
     void setActivityAbove(bool) = win 0xd8fd0, m1 0x80f410;
     void setInboxPoll(float);
     TodoReturn setupThreadBrowser(cocos2d::CCArray*, float);
@@ -24015,7 +24015,7 @@ class TextArea : cocos2d::CCSprite {
 
     bool m_disableColor;
     bool m_unk259;
-    int m_unk25c;
+    int m_maxEmoji;
     float m_unk260;
     MultilineBitmapFont* m_label;
     float m_width;

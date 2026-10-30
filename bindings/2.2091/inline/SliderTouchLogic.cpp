@@ -6,7 +6,7 @@ SliderTouchLogic::SliderTouchLogic() {}
 void SliderTouchLogic::setMaxOffset(float offset) {
     float newOffset = m_thumb->getScale() * offset;
     m_length = newOffset;
-    m_thumb->setMaxOffset(newOffset);
+    m_thumb->setMaxOffset(offset);
 }
 
 void SliderTouchLogic::setRotated(bool rotated) {

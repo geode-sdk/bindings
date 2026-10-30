@@ -173,7 +173,7 @@ void GameObject::updateCustomColorType(short type) {
 }
 
 void GameObject::updateMainColorOnly() {
-    if (m_activeMainColorID != 0 && m_colorGroupCount != 0 && m_opacityGroupCount != 0) {
+    if (m_activeMainColorID != 0 || m_colorGroupCount != 0 || m_opacityGroupCount != 0) {
         this->updateMainColor(this->colorForMode(m_activeMainColorID, true));
     }
 }
@@ -203,7 +203,7 @@ void GameObject::updateUnmodifiedPositions() {
 
 #if defined(GEODE_IS_WINDOWS)
 bool GameObject::isBasicEnterEffect(int id) {
-    return (id > 21 && id < 29) || (id > 54 || id < 60) || id == 1915;
+    return (id >= 55 && id <= 59) || (id >= 22 && id <= 28) || id == 1915;
 }
 
 void GameObject::resetMID() {

@@ -27,6 +27,7 @@ SecretRewardsLayer::SecretRewardsLayer() {
 cocos2d::ccColor3B SecretRewardsLayer::getPageColor(int page) {
     if (page == 1) return cocos2d::ccc3(50, 50, 50);
     else if (page == 2) return cocos2d::ccc3(70, 0, 120);
+    else if (page == 3) return cocos2d::ccc3(36, 27, 40);
     else return cocos2d::ccc3(70, 0, 75);
 }
 #endif
@@ -64,6 +65,7 @@ void SecretRewardsLayer::moveToMainLayer(cocos2d::CCObject* sender) {
     if (m_inMainLayer) return;
     m_inMainLayer = true;
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+    m_mainScrollLayer->setTouchEnabled(true);
     m_mainLayer->runAction(cocos2d::CCEaseInOut::create(cocos2d::CCMoveTo::create(.4f, { 0.f, 0.f }), 2.f));
     if (m_secondaryLayer) {
         m_secondaryScrollLayer->setTouchEnabled(false);

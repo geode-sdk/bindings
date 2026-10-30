@@ -117,6 +117,7 @@ int GJBaseGameLayer::atlasValue(int atlas) {
 }
 
 int GJBaseGameLayer::buttonIDToButton(int id) {
+    if (id == 98 || id == 99) return id;
     switch (id) {
         case 2: case 7: return 2;
         case 3: case 8: return 3;
@@ -206,13 +207,13 @@ void GJBaseGameLayer::moveCameraToPos(cocos2d::CCPoint pos) {
 
 double GJBaseGameLayer::performMathOperation(double operand1, double operand2, int operation) {
     switch (operation) {
-        case 0:
-            return operand1 + operand2;
         case 1:
-            return operand1 - operand2;
+            return operand1 + operand2;
         case 2:
-            return operand1 * operand2;
+            return operand1 - operand2;
         case 3:
+            return operand1 * operand2;
+        case 4:
             return operand2 != 0.0 ? operand1 / operand2 : 0.0;
         default:
             return 0.0;
@@ -711,6 +712,7 @@ PlayerObject* GJBaseGameLayer::getOtherPlayer(PlayerObject* player) {
 }
 
 int GJBaseGameLayer::getPlayerButtonID(int button, bool player2) {
+    if (button == 98 || button == 99) return button;
     if (button < 2 || button > 5) return player2 ? 6 : 1;
     return player2 ? button + 5 : button;
 }

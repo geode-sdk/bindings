@@ -20,6 +20,7 @@ void cocos2d::CCDrawNode::drawCubicBezier(cocos2d::CCPoint const& p0, cocos2d::C
             auto num3 = factor * factor * factor;
             vertex.x = p0.x * powf(result, 3.f) + p1.x * num1 + p2.x * num2 + p3.x * num3;
             vertex.y = p0.y * powf(result, 3.f) + p1.y * num1 + p2.y * num2 + p3.y * num3;
+            factor += 1.f / p4;
         }
     }
     vertices[p4] = p3;
@@ -32,7 +33,7 @@ void cocos2d::CCDrawNode::drawCubicBezier(cocos2d::CCPoint const& p0, cocos2d::C
 }
 
 bool cocos2d::CCDrawNode::drawDot(cocos2d::CCPoint const& pos, float radius, cocos2d::ccColor4F const& color) {
-    if (m_bUseArea && is_circle_on_screen(m_rDrawArea, pos, radius)) return false;
+    if (m_bUseArea && !is_circle_on_screen(m_rDrawArea, pos, radius)) return false;
 
     unsigned int vertex_count = 2*3;
     cocos2d::CCDrawNode::ensureCapacity(vertex_count);
