@@ -23864,12 +23864,10 @@ class TableViewCell : cocos2d::CCLayer {
 
     void updateVisibility() = win inline, imac 0x703d30, m1 0x614fa4;
 
-    // potential candidate: cocos2d::CCNode* m_deleteMenu; - needs verification
-    void* m_unknown;
+    cocos2d::CCNode* m_deleteMenu;
     TableView* m_tableView;
     CCIndexPath m_indexPath;
-    // potential candidates: bool m_editable; cocos2d::ccColor3B m_delBtnColor; cocos2d::CCMenuItem* m_deleteButton;
-    void* m_unknown2;
+    bool m_editable;
     std::string m_cellIdentifier;
     float m_width;
     float m_height;
