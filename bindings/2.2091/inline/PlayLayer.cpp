@@ -84,6 +84,7 @@ void PlayLayer::startRecording() {
 }
 
 void PlayLayer::startRecordingDelayed() {
+    this->stopActionByTag(31);
     auto action = cocos2d::CCSequence::create(
         cocos2d::CCDelayTime::create(2.f),
         cocos2d::CCCallFunc::create(this, callfunc_selector(PlayLayer::startRecording)),
@@ -283,9 +284,9 @@ void PlayLayer::toggleIgnoreDamage(bool value) {
 void PlayLayer::updateEffectPositions() {
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     m_glitterParticles->setPosition(winSize * .5f / m_gameState.m_cameraZoom + m_gameState.m_cameraPosition);
-    for (int i = 0; i < m_circleWaveArray->count(); i++) {
+    for (unsigned int i = 0; i < m_circleWaveArray->count(); i++) {
         auto wave = static_cast<CCCircleWave*>(m_circleWaveArray->objectAtIndex(i));
-        if (wave->m_target) wave->setPosition(wave->m_target->getPosition());
+        wave->updatePosition(0.f);
     }
 }
 #endif
@@ -347,7 +348,7 @@ void PlayLayer::updateInvisibleBlock(GameObject* object, float rightFadeBound, f
         factor = realPosition.x - cameraX - rightFadeBound;
     }
     else {
-        factor = factor + leftFadeBound - realPosition.x;
+        factor = cameraX + leftFadeBound - realPosition.x;
         rightFadeWidth = leftFadeWidth;
     }
     rightFadeWidth = std::max(rightFadeWidth, 1.f);

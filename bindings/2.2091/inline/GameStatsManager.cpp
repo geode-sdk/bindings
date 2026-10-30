@@ -4,6 +4,7 @@
 #include <Geode/binding/GJLevelList.hpp>
 #include <Geode/binding/GameToolbox.hpp>
 #include <Geode/binding/LevelTools.hpp>
+#include <cmath>
 
 GameStatsManager* GameStatsManager::get() {
     return GameStatsManager::sharedState();
@@ -80,7 +81,7 @@ ShopType GameStatsManager::shopTypeForItemID(int index) {
 }
 
 bool GameStatsManager::shouldAwardSecretKey() {
-    return m_bonusKey.value() < this->getStat("22") / 500.f;
+    return m_bonusKey.value() < floorf(this->getStat("22") / 500.f);
 }
 
 void GameStatsManager::tempClear() {}
@@ -124,6 +125,8 @@ void GameStatsManager::checkCoinsForLevel(GJGameLevel* level) {
 bool GameStatsManager::claimListReward(GJLevelList* list) {
     if (list->m_diamonds > 0 && list->m_levelsToClaim > 0 && list->completedLevels() >= list->m_levelsToClaim && !this->hasClaimedListReward(list)) {
         m_completedLists->setObject(cocos2d::CCString::createWithFormat("%i", list->m_diamonds), this->getListRewardKey(list));
+        this->incrementStat("13", list->m_diamonds);
+        this->incrementStat("41");
         return true;
     }
     return false;
@@ -265,7 +268,7 @@ const char* GameStatsManager::getDemonLevelKey(GJGameLevel* level) {
 }
 
 std::string GameStatsManager::getLevelKey(GJGameLevel* level) {
-    return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Main, level->m_dailyID > 0, level->m_gauntletLevel, level->m_dailyID > 200000);
+    return getLevelKey(level->m_levelID, level->m_levelType != GJLevelType::Main && level->m_dailyID <= 0, level->m_dailyID > 0, level->m_gauntletLevel, level->m_dailyID > 200000);
 }
 
 std::string GameStatsManager::getListRewardKey(GJLevelList* list) {
@@ -387,6 +390,7 @@ int GameStatsManager::starsForMapPack(int id) {
 }
 
 void GameStatsManager::storeChallenge(int position, GJChallengeItem* challenge) {
+    challenge->m_position = position;
     m_activeChallenges->setObject(challenge, cocos2d::CCString::createWithFormat("%i", position)->getCString());
 }
 
@@ -409,6 +413,7 @@ void GameStatsManager::storePendingUserCoin(char const* key) {
 }
 
 void GameStatsManager::storeSecondaryQueuedChallenge(int position, GJChallengeItem* challenge) {
+    challenge->m_position = position;
     m_upcomingChallenges->setObject(challenge, cocos2d::CCString::createWithFormat("%i", position + 100)->getCString());
 }
 

@@ -1,4 +1,5 @@
 #include <Geode/binding/RandTriggerGameObject.hpp>
+#include <cmath>
 
 RandTriggerGameObject::RandTriggerGameObject() {}
 
@@ -17,7 +18,7 @@ RandTriggerGameObject* RandTriggerGameObject::create() {
 }
 
 int RandTriggerGameObject::getRandomGroupID() {
-    int num = this->getTotalChance() * GameToolbox::fast_rand_0_1();
+    int num = lroundf(this->getTotalChance() * GameToolbox::fast_rand_0_1());
     auto chance = 0;
     for (auto& obj : m_chanceObjects) {
         chance += obj.m_chance;

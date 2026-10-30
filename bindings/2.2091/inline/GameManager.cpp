@@ -477,12 +477,12 @@ const char* GameManager::getMGTexture(int index) {
 
 int GameManager::getNextUniqueObjectKey() {
     auto customKeys = this->getOrderedCustomObjectKeys();
-    auto result = -1;
+    auto result = 0;
     for (auto str : geode::cocos::CCArrayExt<cocos2d::CCString, false>(customKeys)) {
         auto key = str->intValue();
         if (key < result) result = key;
     }
-    return result;
+    return result - 1;
 }
 
 int GameManager::getNextUsedKey(int index, bool up) {

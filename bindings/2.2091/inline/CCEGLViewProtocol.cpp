@@ -1,4 +1,5 @@
 #include <Geode/mapping/CCEGLViewProtocol.hpp>
+#include <cmath>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -35,12 +36,12 @@ void cocos2d::CCEGLViewProtocol::updateDesignResolutionSize() {
         }
         case kResolutionFixedHeight: {
             m_fScaleX = m_fScaleY;
-            m_obDesignResolutionSize.width = m_obScreenSize.width / m_fScaleX;
+            m_obDesignResolutionSize.width = ceilf(m_obScreenSize.width / m_fScaleX);
             break;
         }
         case kResolutionFixedWidth: {
             m_fScaleY = m_fScaleX;
-            m_obDesignResolutionSize.height = m_obScreenSize.height / m_fScaleY;
+            m_obDesignResolutionSize.height = ceilf(m_obScreenSize.height / m_fScaleY);
             break;
         }
         default:

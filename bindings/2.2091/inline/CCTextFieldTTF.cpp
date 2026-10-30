@@ -13,6 +13,7 @@ cocos2d::CCTextFieldTTF* cocos2d::CCTextFieldTTF::textFieldWithPlaceHolder(const
     if (ret->initWithPlaceHolder("", dimensions, alignment, fontName, fontSize)) {
         ret->autorelease();
         if (placeholder) ret->setPlaceHolder(placeholder);
+        return ret;
     }
     delete ret;
     return nullptr;
