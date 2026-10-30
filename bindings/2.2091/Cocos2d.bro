@@ -1460,7 +1460,7 @@ class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     virtual std::string getFullPathForDirectoryAndFilename(std::string const& strDirectory, std::string const& strFilename) = imac 0x42b540, m1 0x3a2818, ios 0x1d0fc4;
     virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename) = imac 0x428530, m1 0x39f88c, ios 0x1cf5cc;
     virtual bool writeToFile(cocos2d::CCDictionary* dict, std::string const& fullPath) = imac 0x428540, m1 0x39f894, ios 0x1cf5d4;
-    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const& filename) = imac 0x428550, ios 0x1cf5dc;
+    virtual cocos2d::CCArray* createCCArrayWithContentsOfFile(std::string const& filename) = imac 0x428550, ios 0x1cf5dc, m1 0x39f89c;
 
     void removeAllPaths() = imac 0x42b310, m1 0x3a2580, ios inline;
 
