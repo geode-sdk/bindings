@@ -2000,9 +2000,9 @@ class CCTextInputMenu : cocos2d::CCLayer {
     TodoReturn closeDeferred(float);
     TodoReturn closeNextFrame();
     bool init(CCTextInputNode*, cocos2d::CCPoint) = win 0x4d290;
-    void onClear(cocos2d::CCObject* sender);
-    void onCopy(cocos2d::CCObject* sender);
-    void onPaste(cocos2d::CCObject* sender);
+    void onClear(cocos2d::CCObject* sender) = win 0x4dd50;
+    void onCopy(cocos2d::CCObject* sender) = win 0x4dc40;
+    void onPaste(cocos2d::CCObject* sender) = win 0x4dcf0;
 }
 
 [[link(android), depends(EmoteToken)]]
@@ -3892,19 +3892,19 @@ class DeathMarkerSettingsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x99f60, ios 0x4b7f58, m1 0x7b6f78, imac 0x8c8510;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x11d600, ios 0x4b7de4, m1 0x7b6dd4, imac 0x8c8360;
 
-    bool init(GJGameLevel*);
+    bool init(GJGameLevel*) = win 0x11bea0;
     void onClearMarkers(cocos2d::CCObject* sender) = win 0x11d490;
-    void onFrequencySlider(cocos2d::CCObject* sender);
-    void onTimescaleSlider(cocos2d::CCObject* sender);
-    void onToggleAnimation(cocos2d::CCObject* sender);
+    void onFrequencySlider(cocos2d::CCObject* sender) = win 0x11d840;
+    void onTimescaleSlider(cocos2d::CCObject* sender) = win 0x11daa0;
+    void onToggleAnimation(cocos2d::CCObject* sender) = win 0x11dd70;
     void onToggleColor(cocos2d::CCObject* sender) = win 0x11dd20;
-    void onToggleDisabled(cocos2d::CCObject* sender);
-    void onToggleGlobal(cocos2d::CCObject* sender);
-    void onToggleLabels(cocos2d::CCObject* sender);
-    void onToggleLimited(cocos2d::CCObject* sender);
-    void onToggleLive(cocos2d::CCObject* sender);
-    void onToggleLocal(cocos2d::CCObject* sender);
-    void onToggleSound(cocos2d::CCObject* sender);
+    void onToggleDisabled(cocos2d::CCObject* sender) = win 0x11dfa0;
+    void onToggleGlobal(cocos2d::CCObject* sender) = win 0x11df00;
+    void onToggleLabels(cocos2d::CCObject* sender) = win 0x11e130;
+    void onToggleLimited(cocos2d::CCObject* sender) = win 0x11de10;
+    void onToggleLive(cocos2d::CCObject* sender) = win 0x11e270;
+    void onToggleLocal(cocos2d::CCObject* sender) = win 0x11de60;
+    void onToggleSound(cocos2d::CCObject* sender) = win 0x11ddc0;
     TodoReturn updateFrequencyLabel(int);
     TodoReturn updateTimescaleLabel(int);
 }
@@ -6292,9 +6292,9 @@ class FindObjectPopup : EditorWindowPopup {
     virtual void onFieldEnter() = win 0x180a90, ios 0x4ddc78, m1 0x7ed5e0, imac 0x906850;
 
     bool init(EditorUI*) = win 0x9999999;
-    void onFindStep(cocos2d::CCObject* sender);
-    void onOptions(cocos2d::CCObject* sender);
-    void onSelect(cocos2d::CCObject* sender);
+    void onFindStep(cocos2d::CCObject* sender) = win 0x180aa0;
+    void onOptions(cocos2d::CCObject* sender) = win 0x180ad0;
+    void onSelect(cocos2d::CCObject* sender) = win 0x180a90;
     TodoReturn runFind(int);
 
     int m_groupID;
@@ -13386,9 +13386,9 @@ class GridSettingsLayer : EditorWindowPopup {
     virtual void onBuildWindowContent() = win 0x2c8d40, ios 0x4def20, m1 0x7eef4c, imac 0x9083a0;
 
     bool init(EditorUI*);
-    void onCycleDown(cocos2d::CCObject* sender);
-    void onCycleUp(cocos2d::CCObject* sender);
-    void onReset(cocos2d::CCObject* sender);
+    void onCycleDown(cocos2d::CCObject* sender) = win 0x2c9600;
+    void onCycleUp(cocos2d::CCObject* sender) = win 0x2c9590;
+    void onReset(cocos2d::CCObject* sender) = win 0x2c9540;
     TodoReturn refreshValues();
 }
 
@@ -13601,17 +13601,17 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
 
     TodoReturn getFormID();
     bool init(int, int, IDNameBrowserDelegate*) = win 0x3c1650;
-    void onClose(cocos2d::CCObject* sender);
-    void onDeleteRow(cocos2d::CCObject* sender);
-    void onEditRow(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0x3c4ce0;
+    void onDeleteRow(cocos2d::CCObject* sender) = win 0x3c3870;
+    void onEditRow(cocos2d::CCObject* sender) = win 0x3c3650;
     void onFormAdd(cocos2d::CCObject* sender) = win 0x3c4880;
-    void onFormArrowLeft(cocos2d::CCObject* sender);
-    void onFormArrowRight(cocos2d::CCObject* sender);
+    void onFormArrowLeft(cocos2d::CCObject* sender) = win 0x3c3f20;
+    void onFormArrowRight(cocos2d::CCObject* sender) = win 0x3c3f50;
     void onFormNextFree(cocos2d::CCObject* sender) = win 0x3c3f90;
-    void onSelectRow(cocos2d::CCObject* sender);
-    void onToggleSort(cocos2d::CCObject* sender);
+    void onSelectRow(cocos2d::CCObject* sender) = win 0x3c37a0;
+    void onToggleSort(cocos2d::CCObject* sender) = win 0x3c4810;
     TodoReturn rebuildList() = win 0x3c2af0;
-    void setFormID(int);
+    void setFormID(int) = win 0x3c3b40;
     TodoReturn updateConflictLabel() = win 0x3c3bf0;
     TodoReturn updateSortButtonLabel() = win 0x3c4790;
 }
@@ -13639,11 +13639,11 @@ class IDNameInput : cocos2d::CCNode, TextInputDelegate, IDNameBrowserDelegate, D
     TodoReturn idNameTypeForItemValueType(int);
     TodoReturn initCore(FLAlertLayer*, TextInputDelegate*, int, int, std::string const&, cocos2d::CCPoint, float, int, int, int, bool);
     TodoReturn nameLess(std::string const&, int, std::string const&, int);
-    void onArrowLeft(cocos2d::CCObject* sender);
-    void onArrowRight(cocos2d::CCObject* sender);
-    void onAutocompleteRow(cocos2d::CCObject* sender);
-    void onBrowser(cocos2d::CCObject* sender);
-    void onNextFree(cocos2d::CCObject* sender);
+    void onArrowLeft(cocos2d::CCObject* sender) = win 0x3c8ad0;
+    void onArrowRight(cocos2d::CCObject* sender) = win 0x3c8ae0;
+    void onAutocompleteRow(cocos2d::CCObject* sender) = win 0x3cb060;
+    void onBrowser(cocos2d::CCObject* sender) = win 0x3c8af0;
+    void onNextFree(cocos2d::CCObject* sender) = win 0x3c8dd0;
     TodoReturn refreshLabel();
     TodoReturn revertToLastID();
     void setType(int);
