@@ -16,6 +16,7 @@
 #include <Geode/binding/ObjectToolbox.hpp>
 #include <Geode/binding/ColorSelectLiveOverlay.hpp>
 #include <Geode/binding/HSVLiveOverlay.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
@@ -94,7 +95,7 @@ GJTransformState& EditorUI::getTransformState() {
 }
 
 bool EditorUI::isLiveColorSelectTrigger(GameObject* object) {
-    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == 1006);
+    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == ObjectID::PulseTrigger);
 }
 
 bool EditorUI::liveEditColorUsable() {
@@ -297,7 +298,7 @@ std::string EditorUI::copyObjectsDetailed(cocos2d::CCArray* objects) {
     auto groupCenter = this->getGroupCenter(objects, false);
     std::string result = "";
     for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
-        if (object->m_objectID == 749) continue;
+        if (object->m_objectID == ObjectID::LinkedOrangeTeleportPortal) continue;
         auto position = object->getPosition();
         object->setPosition(position - groupCenter);
         result += object->getSaveString(m_editorLayer) + ";";
@@ -311,7 +312,7 @@ cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
     auto extras = cocos2d::CCArray::create();
     for (int i = 0; i < objects->count(); i++) {
         auto object = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (object->m_objectID > 2807 && object->m_objectID < 2838) {
+        if (ObjectID::BubblyLiquidBlockLeftEdgeTop4Light < object->m_objectID && object->m_objectID < ObjectID::BrickPieceLeftCorner) {
             this->createExtrasForObject(object->m_objectID, object, extras);
         }
     }
