@@ -15255,7 +15255,7 @@ class LevelPickerDelegate {
 class LevelPickerPopup : PagedListPopup, LevelManagerDelegate, TableViewCellDelegate {
     virtual ~LevelPickerPopup() = win 0xd35d0, ios 0x5048a0;
 
-    static LevelPickerPopup* create(LevelPickerDelegate*);
+    static LevelPickerPopup* create(LevelPickerDelegate*) = win 0xe8b60;
 
     virtual int requestPage(int) = win 0xe9f80, ios 0x505b90, m1 0x82080c, imac 0x93f930;
     virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0xeb8f0, ios 0x506c30, m1 0x821f78, imac 0x9413e0;
@@ -15269,10 +15269,10 @@ class LevelPickerPopup : PagedListPopup, LevelManagerDelegate, TableViewCellDele
     TodoReturn doPageRequest(float) = win 0xe9fb0;
     bool init(LevelPickerDelegate*) = win 0xe8d90;
     void onOnlineMode(cocos2d::CCObject* sender) = win 0xea370;
-    void onRefreshOnline(cocos2d::CCObject* sender);
+    void onRefreshOnline(cocos2d::CCObject* sender) = win 0xea5a0;
     void onToggleFavorites(cocos2d::CCObject* sender) = win 0xe9ed0;
     void onToggleKind(cocos2d::CCObject* sender) = win 0xe97f0;
-    void onUseID(cocos2d::CCObject* sender);
+    void onUseID(cocos2d::CCObject* sender) = win 0xe9d30;
     TodoReturn refreshUseID() = win 0xe9ab0;
     TodoReturn savedIndex();
     TodoReturn setupList(cocos2d::CCArray*);
@@ -16916,15 +16916,15 @@ class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate
     TodoReturn bodyEmoteCap();
     bool init(int, std::string const&, std::string const&) = win 0xeefd0, m1 0x824b40;
     TodoReturn insertShareToken(std::string const&) = win 0xf1610;
-    void onClose(cocos2d::CCObject* sender);
-    void onEmotes(cocos2d::CCObject* sender);
-    void onOpenPicker(cocos2d::CCObject* sender);
-    void onPickIcon(cocos2d::CCObject* sender);
+    void onClose(cocos2d::CCObject* sender) = win 0xf3d90;
+    void onEmotes(cocos2d::CCObject* sender) = win 0xf05a0;
+    void onOpenPicker(cocos2d::CCObject* sender) = win 0xf1d50;
+    void onPickIcon(cocos2d::CCObject* sender) = win 0xf0780;
     void onSend(cocos2d::CCObject* sender) = win 0xf2020, m1 0x826410;
-    void onShareLevel(cocos2d::CCObject* sender);
-    void onToggleMode(cocos2d::CCObject* sender);
+    void onShareLevel(cocos2d::CCObject* sender) = win 0xf12f0;
+    void onToggleMode(cocos2d::CCObject* sender) = win 0xf0700;
     TodoReturn refreshIconSlot();
-    void setSendPending(bool);
+    void setSendPending(bool) = win 0xf1f40;
     TodoReturn updateCharCount(cocos2d::CCLabelBMFont*, int, int);
     TodoReturn updateRecipientLabel() = win 0xf1aa0;
 }
@@ -24289,7 +24289,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn measureBody(GJThreadMessage*) = win 0xe08d0;
     TodoReturn messageWithID(long long);
     TodoReturn onAutoRefresh(float);
-    void onClearSearch(cocos2d::CCObject* sender);
+    void onClearSearch(cocos2d::CCObject* sender) = win 0xdbaa0;
     void onClose(cocos2d::CCObject* sender) = win 0xe2da0;
     void onEmotes(cocos2d::CCObject* sender) = win 0xde2e0;
     void onHideKeyboard(cocos2d::CCObject* sender);
@@ -24319,9 +24319,9 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn scrollToUnreadLine();
     TodoReturn senderNameFor(int);
     TodoReturn senderScoreFor(int);
-    void setPollInterval(float);
+    void setPollInterval(float) = win 0xdb480;
     void setSendPending(bool);
-    void setUnseenBelow(bool);
+    void setUnseenBelow(bool) = win 0xdff30;
     TodoReturn showLoading();
     TodoReturn sortMessagesByID();
     TodoReturn startSearch(std::string const&);
