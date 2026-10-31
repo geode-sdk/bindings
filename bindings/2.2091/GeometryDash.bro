@@ -24873,8 +24873,10 @@ class UndoObject : cocos2d::CCObject {
     bool m_redo;
     bool m_undoTransform;
     GJTransformState m_transformState;
-    bool m_unk8c;
-    int m_unk90;
+    android, ios {
+        bool m_unk8c;
+        int m_unk90;
+    }
 }
 
 [[link(android)]]
