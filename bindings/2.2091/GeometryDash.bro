@@ -367,7 +367,7 @@ class AchievementManager : cocos2d::CCNode {
     bool isAchievementEarned(char const* ach) = win 0x3c230, imac 0x8641e0, m1 0x758ec8;
     int limitForAchievement(std::string id) = win inline, imac 0x864490, m1 0x7591c8;
     void notifyAchievement(char const* title, char const* description, char const* icon) = win inline, imac 0x864cb0, m1 0x7598d8;
-    void notifyAchievementWithID(char const* id) = win 0x3ccb0, imac 0x1298a0, m1 0x7596dc;
+    void notifyAchievementWithID(char const* id) = win 0x3ccb0, imac 0x864af0, m1 0x7596dc;
     int percentageForCount(int count, int total) = win inline, imac 0x8642f0, m1 0x758fec, ios inline;
     int percentForAchievement(char const* id) = win 0x3c250, imac 0x864200;
     void reportAchievementWithID(char const* id, int percent, bool dontNotify) = win 0x3cff0, imac 0x864de0, m1 0x759a1c;
@@ -1384,7 +1384,7 @@ class CCBlockLayer : cocos2d::CCLayerColor {
     virtual void disableUI() = win inline, imac 0x519000, m1 0x473dd0, ios 0x8f7b0;
     virtual void enableUI() = win inline, imac 0x519010, m1 0x473dd4, ios 0x8f7b4;
 
-    void decrementForcePrio() = win inline, imac 0x519240, m1 0x34f070;
+    void decrementForcePrio() = win inline, imac 0x519240, m1 0x473f94;
     void incrementForcePrio() = win inline, m1 0x34f028;
 
     bool m_closeOnHide;
@@ -3193,8 +3193,8 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50;
     void onLeaderboards(cocos2d::CCObject* sender) = win 0x137550, imac 0x2830f0, m1 0x228388;
     void onMapPacks(cocos2d::CCObject* sender) = win 0x137980, imac 0x2837b0, m1 0x228a88;
-    void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x192554;
-    void onMyLevels(cocos2d::CCObject* sender) = win 0x136aa0;
+    void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x2283d0;
+    void onMyLevels(cocos2d::CCObject* sender) = win 0x136aa0, imac 0x283850, m1 0x228b10;
     void onOnlineLevels(cocos2d::CCObject* sender) = win 0x137900, imac 0x283810, m1 0x228ad4;
     void onOnlyFullVersion(cocos2d::CCObject* sender) = imac 0x283940, m1 0x228bec;
     void onPaths(cocos2d::CCObject* sender) = win 0x137810, imac 0x283730, m1 0x228a0c;
@@ -4312,8 +4312,8 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     EditLevelLayer() = inline;
     ~EditLevelLayer() = win inline, m1 0x3d9e34, ios 0x10eb70;
 
-    static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x25c430;
-    static cocos2d::CCScene* scene(GJGameLevel* level) = win 0x1782c0;
+    static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x1dcb70, m1 0x190a00;
+    static cocos2d::CCScene* scene(GJGameLevel* level) = win 0x1782c0, imac 0x1dcb30, m1 0x1909b4;
 
     virtual void keyBackClicked() = win 0x17d280, imac 0x1e1200, m1 0x194e58, ios 0x1125f4;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x17d290, imac 0x1e1230, m1 0x194e64, ios 0x112600;
@@ -4333,7 +4333,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void confirmDelete(cocos2d::CCObject* sender) = win 0x17c070, imac 0x1df410, m1 0x1930f4;
     TodoReturn confirmMoveToBottom(cocos2d::CCObject*) = win 0x17c9d0;
     void confirmMoveToTop(cocos2d::CCObject* sender) = win 0x17c8a0, imac 0x1df500, m1 0x1931dc;
-    bool init(GJGameLevel* level) = win 0x1784A0, imac 0x25c540, m1 0x190af8;
+    bool init(GJGameLevel* level) = win 0x1784A0, imac 0x1dccd0, m1 0x190af8;
     void onBack(cocos2d::CCObject* sender) = win 0x17cdf0, imac 0x1dfaa0, m1 0x1937b8;
     void onClone() = win inline, imac 0x4006e0;
     void onCreatorSettings(cocos2d::CCObject* sender) = win 0x17b600;
@@ -4349,7 +4349,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onMoveToTop() = win inline, imac 0x1e1080, m1 0x194d2c, ios inline;
     void onPlay(cocos2d::CCObject* sender) = win 0x17b0f0, imac 0x1de600, m1 0x1922e0;
     void onSetFolder(cocos2d::CCObject* sender) = win 0x17cb00, imac 0x1df6c0, m1 0x19339c;
-    void onShare(cocos2d::CCObject* sender) = win 0x17b9b0, imac 0x37c790, m1 0x794f60;
+    void onShare(cocos2d::CCObject* sender) = win 0x17b9b0, imac 0x1de8b0, m1 0x192554;
     void onTest(cocos2d::CCObject* sender) = win inline, ios inline;
     void onUpdateDescription(cocos2d::CCObject* sender) = imac 0x1df5e0, m1 0x19447c;
     void playStep2() = win 0x17b440, m1 0x194330;
@@ -4948,7 +4948,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0x7ca0, m1 0x6e34, ios inline;
     CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float) = win 0x1add30;
     CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float) = win 0x1addc0, imac 0xda50, m1 0xc184;
-    cocos2d::CCPoint getTouchPoint(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x213bb0, m1 0x549aa8;
+    cocos2d::CCPoint getTouchPoint(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x609810, m1 0x549aa8;
     GJTransformState& getTransformState() = win inline, ios inline;
     TodoReturn getViewButtonState(int);
     float getXMin(int offset) = win 0x1bf270, imac 0xdbe0, m1 0xc30c;
@@ -5111,7 +5111,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateGroupIDBtn2() = win inline, imac 0xff3a0, ios inline;
     void updateGroupIDLabel() = win 0x1beaf0, imac 0xac40, m1 0x95c4;
     void updateObjectInfoLabel() = win 0x1aea40, imac 0xe8b0, m1 0xcee8;
-    void updatePanDecay(float) = imac 0x60e270;
+    void updatePanDecay(float dt) = win 0x1c5260, imac 0x60e270, m1 0x54d4fc, ios 0x164110;
     void updatePlaybackBtn() = win 0x1b4630, imac 0xbd70, m1 0xa578;
     TodoReturn updateSelectionUI();
     void updateSlider() = win 0x1ae100, imac 0x9200, m1 0x81e0;
@@ -6427,7 +6427,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void pauseEffect(unsigned int effect) = win inline, ios inline;
     void pauseMusic(int musicChannel) = win inline, imac 0x3d7430, m1 0x358b50, ios inline;
     int playEffect(std::string path) = win 0x5f980, imac 0x3d1590, m1 0x353cd0, ios 0x1b85cc;
-    int playEffect(std::string path, float speed, float unknown, float volume) = win 0x5fa00, imac 0x3d14a0, m1 0x353bc0, ios 0x1b8668;
+    int playEffect(std::string path, float speed, float unknown, float volume) = win 0x5fa00, imac 0x3d1620, m1 0x353d80, ios 0x1b8668;
     int playEffectAdvanced(std::string path, float speed, float unknown, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int effectID, bool override, bool noPreload, int channelID, int uniqueID, float minInterval, int sfxGroup) = win 0x5faf0, imac 0x3ceea0, m1 0x351e14, ios 0x1b7374;
     int playEffectAsync(std::string path) = win inline, imac 0x3d1710, m1 0x353e88;
     void playMusic(std::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x62d50, imac 0x3d4460, m1 0x3564fc;
@@ -6454,7 +6454,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void setChannelVolumeMod(int id, AudioTargetType type, float volumeMod) = win 0x61ba0;
     void setEffectsVolume(float volume) = win inline, imac 0x3d3f20, m1 0x356030;
     void setMusicTimeMS(unsigned int time, bool dontWait, int musicID) = win 0x64fa0, imac 0x3cfbf0, m1 0x3527f0;
-    void setup() = win 0x5c8c0, imac 0x3c9e30, m1 0x230ca0, ios 0x1b4c48;
+    void setup() = win 0x5c8c0, imac 0x3c9e30, m1 0x34dd28, ios 0x1b4c48;
     void setupAudioEngine() = win 0x5cdc0, imac 0x3ca280, m1 0x34e118, ios 0x1b4ed4;
     void start() = win 0x5dfc0;
     void startMusic(int start, int end, int fadeIn, int fadeOut, bool loop, int musicID, bool noResume, bool dontReset) = win 0x63270, imac 0x3d4c00, m1 0x356c14;
@@ -7782,7 +7782,7 @@ class GameManager : GManager {
     void removeCustomObject(int key) = win inline, imac 0x36e380, m1 0x2fb7a0;
     void removeIconDelegate(int requestID) = win inline, imac 0x36bf70;
     int reorderKey(int index, bool up) = win 0x27f1f0, imac 0x36dfe0, m1 0x2fb444;
-    void reportAchievementWithID(char const* key, int percent, bool dontNotify) = win 0x2790e0, imac 0x3631d0, m1 0x22bf08;
+    void reportAchievementWithID(char const* key, int percent, bool dontNotify) = win 0x2790e0, imac 0x3631d0, m1 0x2f1c34;
     void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = win 0x278580, imac 0x362770, m1 0x2f12ac;
     void resetAchievement(std::string key) = win 0x278300, imac 0x362600, m1 0x2f110c;
     void resetAdTimer() = win inline, imac 0x3693f0, m1 0x2f6a18, ios inline;
@@ -9802,7 +9802,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateShaderLayer(float dt) = win 0x32a030, imac 0x118950, m1 0xf3448;
     void updateSpecialGroupData() = win 0x313fb0, imac 0xf36a0, m1 0xd3f40;
     void updateSpecialLabels() = win 0x341fe0, imac 0x133d40, m1 0x109fac;
-    void updateStaticCameraPos(cocos2d::CCPoint pos, bool staticX, bool staticY, bool followOrSmoothEase, float time, int easingType, float easingRate) = win 0x3490a0, imac 0x7ed0, m1 0xe13d0;
+    void updateStaticCameraPos(cocos2d::CCPoint pos, bool staticX, bool staticY, bool followOrSmoothEase, float time, int easingType, float easingRate) = win 0x3490a0, imac 0x102c20, m1 0xe13d0;
     void updateStaticCameraPosToGroup(int centerID, bool updateX, bool updateY, bool followObject, float followEase, float duration, int easingType, float easingRate, bool smoothVelocity, float velocityMod) = win 0x348d60, imac 0x13b630;
     void updateTimeMod(float speed, bool players, bool noEffects) = win inline, imac 0x102290, m1 0xe0b08;
     void updateTimerLabels() = win 0x33df60, imac 0x12b690, m1 0x103688;
@@ -12402,7 +12402,7 @@ class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
 class GJSearchObject : cocos2d::CCNode {
     virtual ~GJSearchObject() = win 0x218e00, ios 0xd5310;
 
-    static GJSearchObject* create(SearchType searchType) = win 0x26fc30, imac 0x58d7a0, m1 0x4dde64, ios 0xd5684;
+    static GJSearchObject* create(SearchType searchType) = win 0x26fc30, imac 0x58d7a0, m1 0x4dde64, ios 0xd5574;
     static GJSearchObject* create(SearchType searchType, std::string searchQuery) = win 0x26fd10, imac 0x58d810, m1 0x4dded0, ios 0xd5db8;
     static GJSearchObject* create(SearchType searchType, std::string searchQuery, std::string difficulty, std::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x26fe40, imac 0x58d470, m1 0x4ddbbc, ios 0xd5328;
     static GJSearchObject* createFromKey(char const* key) = win 0x26f4f0, imac 0x54ad30, m1 0x4a0c94;
@@ -13276,7 +13276,7 @@ class GManager : cocos2d::CCNode {
     std::string getSaveString() = win inline, imac 0x4a4ee0, m1 0x40c058;
     void load() = win inline, imac 0x4a4ec0, m1 0x40c050, ios inline;
     void loadDataFromFile(std::string const& filename) = win 0x77850, imac 0x4a5570, m1 0x40c6dc;
-    void loadFromCompressedString(std::string& str) = win 0x77450, imac 0x6c080, m1 0x40c208;
+    void loadFromCompressedString(std::string& str) = win 0x77450, imac 0x4a5090, m1 0x40c208;
     void loadFromString(std::string& str) = win inline, imac 0x4a4fe0, m1 0x40c15c;
     void save(bool) = win 0x77530, imac 0x4a5110, m1 0x40c2ac;
     void saveGMTo(std::string filename, bool async) = win inline;
@@ -15308,7 +15308,7 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     char const* getDiffKey(int diff) = win inline, imac 0x708430, m1 0x61959c, ios inline;
     std::string getLevelLenKey() = win inline, imac 0x709380, m1 0x61a3ec;
     std::string getSearchDiffKey() = win inline, imac 0x709290, m1 0x61a2f4;
-    GJSearchObject* getSearchObject(SearchType type, std::string query) = win 0x438540, m1 0x515be0;
+    GJSearchObject* getSearchObject(SearchType type, std::string query) = win 0x438540, m1 0x619fa0;
     char const* getTimeKey(int time) = win inline, imac 0x7096b0, m1 0x61a744, ios inline;
     bool init(int type) = win 0x434450, imac 0x704400, m1 0x6154b8;
     void onBack(cocos2d::CCObject* sender) = win 0x43a300, imac 0x7080d0, m1 0x619230;
@@ -15781,7 +15781,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     virtual ~LocalLevelManager() = win 0x46ab30, ios 0x25e2f0;
 
     static LocalLevelManager* get() = inline;
-    static LocalLevelManager* sharedState() = win 0x46ac00, ios 0x25e134, m1 0x5e1588;
+    static LocalLevelManager* sharedState() = win 0x46ac00, ios 0x25e134, m1 0x5e1588, imac 0x6c9560;
 
     virtual bool init() = win 0x46ad90, imac 0x6c98a0, m1 0x5e1874, ios 0x25e308;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x46b790, m1 0x5e2af4, ios 0x25f00c, imac 0x6cadb0;
@@ -15984,7 +15984,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
 
     TodoReturn checkParentalPending() = win 0x474180;
     void endGame() = win 0x4755c0, imac 0x37d280, m1 0x308b38;
-    void firstNetworkTest() = win 0x473FA0, m1 0x4d46cc;
+    void firstNetworkTest() = win 0x473FA0, m1 0x308314, imac 0x37c970;
     void onAchievements(cocos2d::CCObject* sender) = win 0x4749d0, imac 0x37c3a0, m1 0x307d1c;
     void onCreator(cocos2d::CCObject* sender) = win 0x474F00, imac 0x37c320, m1 0x307ca8, ios 0x304d64;
     void onDaily(cocos2d::CCObject* sender) = win 0x473B70, imac 0x37c910;
@@ -16017,8 +16017,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void showTOS() = win 0x474190, imac 0x37c930;
     void syncPlatformAchievements(float dt) = win inline, imac 0x37ce20, m1 0x308748, ios 0x3b42c0;
     void tryShowAd(float dt) = win inline, imac 0x37caa0, m1 0x72a8, ios inline;
-    void updateNewsBadge() = win 0x474840;
-    void updateUserProfileButton() = win 0x473e20, m1 0x791f94;
+    void updateNewsBadge() = win 0x474840, imac 0x37c990, m1 0x308328;
+    void updateUserProfileButton() = win 0x473e20, m1 0x30814c, imac 0x37c790;
     void videoOptionsClosed() = win inline, imac 0x37cf10, m1 0x308810;
     void videoOptionsOpened() = win inline, imac 0x37cef0, m1 0x308800;
     void willClose() = win 0x475280, imac 0x37aa70, m1 0x306498;
@@ -17751,7 +17751,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     float m_unkUnused3; // unused as of 2.2091
     bool m_touchingGround; // set on any landing, cleared by jumps / boosts
     double m_lastLandTime;
-    float m_decelerationRamp; // platformer: builds up while no direction is held, friction = min(1, value + 0.2)
+    float m_decelerationRamp; // horizontal friction after letting go of input in platformer, friction = min(1, value + 0.2)
     bool m_isRising; // set by a jump, pad, ring, boost or gravity flip
     double m_lastGroundXDeltaTime; // m_totalTime of the last non-zero m_groundXDelta
     bool m_isLocked;
@@ -18114,8 +18114,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int m_lastCollisionTop;
     int m_lastCollisionLeft;
     int m_lastCollisionRight;
-    int m_unk50C;
-    int m_unk510;
+    [[renamed_from(m_unk50C)]]
+    int m_prevCollisionBottom; // m_lastCollisionBottom of the previous step
+    [[renamed_from(m_unk510)]]
+    int m_prevCollisionTop; // m_lastCollisionTop of the previous step
     GameObject* m_currentSlope2;
     GameObject* m_preLastGroundObject;
     float m_slopeAngle;
@@ -18136,12 +18138,15 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isCollidingWithSlope;
     cocos2d::CCSprite* m_dashFireSprite;
     bool m_isBallRotating;
-    bool m_unk669;
+    [[renamed_from(m_unk669)]]
+    bool m_noPotentialSlope; // set every step, cleared when a slope is found below
     GameObject* m_currentPotentialSlope;
     GameObject* m_currentSlope;
-    double unk_584;
+    [[renamed_from(unk_584)]]
+    double m_slopeCenterOffset; // how much higher the player's center sits on the current slope
     int m_collidingWithSlopeId;
-    bool m_slopeFlipGravityRelated;
+    [[renamed_from(m_slopeFlipGravityRelated)]]
+    bool m_slopeIsDownhill; // the current slope goes down in the player's direction
     cocos2d::CCArray* m_particleSystems;
     float m_slopeAngleRadians;
     std::unordered_map<int, GJPointDouble> m_rotateObjectsRelated;
@@ -18149,7 +18154,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_rotationSpeed;
     float m_rotateSpeed;
     bool m_isRotating;
-    bool m_isBallRotating2;
+    [[renamed_from(m_isBallRotating2)]]
+    bool m_ballSpinning; // ball spins at m_rotationSpeed
     bool m_hasGlow;
     bool m_isHidden;
     GhostType m_ghostType;
@@ -18176,15 +18182,18 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_trailingParticleLife;
     float m_unk648;
     double m_gameModeChangedTime;
-    bool m_padRingRelated;
+    [[renamed_from(m_padRingRelated)]]
+    bool m_ringJumpedSincePress; // a normal ring was used since the last button press
     bool m_maybeReducedEffects;
-    bool m_maybeIsFalling;
+    [[renamed_from(m_maybeIsFalling)]]
+    bool m_hasStartedFalling; // set the first time a jump / boost ends and the player starts falling
     bool m_shouldTryPlacingCheckpoint;
     bool m_playEffects;
     bool m_maybeCanRunIntoBlocks;
     bool m_hasGroundParticles;
     bool m_hasShipParticles;
-    bool m_isOnGround3;
+    [[renamed_from(m_isOnGround3)]]
+    bool m_landedSinceFlip; // set on landing, cleared by a spider / gravity jump flip
     bool m_checkpointTimeout;
     double m_lastCheckpointTime;
     double m_lastJumpTime;
@@ -18201,14 +18210,16 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_practiceDeathEffect;
     double m_accelerationOrSpeed;
     double m_snapDistance;
-    bool m_ringJumpRelated;
-    std::unordered_set<int> m_ringRelatedSet;
+    [[renamed_from(m_ringJumpRelated)]]
+    bool m_usedRingThisStep; // a ring was activated this step
+    std::unordered_set<int> m_usedRings; // unique IDs of rings used during the current button press
     GameObject* m_objectSnappedTo;
     CheckpointObject* m_pendingCheckpoint;
     int m_onFlyCheckpointTries;
     GJRobotSprite* m_robotSprite;
     GJSpiderSprite* m_spiderSprite;
-    bool m_maybeSpriteRelated;
+    [[renamed_from(m_maybeSpriteRelated)]]
+    bool m_specialGroundHit; // landed on special ground this step
     cocos2d::CCParticleSystemQuad* m_playerGroundParticles;
     cocos2d::CCParticleSystemQuad* m_trailingParticles;
     cocos2d::CCParticleSystemQuad* m_shipClickParticles;
@@ -18222,7 +18233,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCParticleSystemQuad* m_landParticles0;
     cocos2d::CCParticleSystemQuad* m_landParticles1;
     float m_landParticlesAngle;
-    float m_landParticleRelatedY;
+    [[renamed_from(m_landParticleRelatedY)]]
+    float m_landParticlesGravityY; // landing particle gravity Y
     int m_playerStreak;
     float m_streakStrokeWidth;
     bool m_disableStreakTint;
@@ -18230,10 +18242,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     ShipStreak m_shipStreakType;
     double m_slopeRotation;
     double m_currentSlopeYVelocity;
-    double m_unk3d0;
-    double m_blackOrbRelated;
-    bool m_unk3e0;
-    bool m_unk3e1;
+    [[renamed_from(m_unk3d0)]]
+    double m_lastSlopeSnapY; // player center Y the last slope collision snapped to
+    [[renamed_from(m_blackOrbRelated)]]
+    double m_lastSlopeSnapOffset; // m_lastSlopeSnapY relative to the slope's stored position
+    [[renamed_from(m_unk3e0)]]
+    bool m_lastSlopeSnapAtFarEdge; // last slope snap was clamped to the slope's far edge
+    [[renamed_from(m_unk3e1)]]
+    bool m_lastSlopeSnapAtNearEdge; // last slope snap was clamped to the slope's near edge
     bool m_isAccelerating;
     bool m_isCurrentSlopeTop;
     double m_collidedTopMinY;
@@ -18252,11 +18268,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_wasJumpBuffered;
     bool m_wasRobotJump;
     unsigned char m_stateJumpBuffered;
-    bool m_stateRingJump2;
+    [[renamed_from(m_stateRingJump2)]]
+    bool m_statePreJump; // input buffered but no jump triggered yet
     bool m_touchedRing;
     bool m_touchedCustomRing;
     bool m_touchedGravityPortal;
-    bool m_maybeTouchedBreakableBlock;
+    [[renamed_from(m_maybeTouchedBreakableBlock)]]
+    bool m_brokeBlockSincePress; // broke a breakable block with the head since the last button press
     geode::SeedValueRSV m_jumpRelatedAC2;
     bool m_touchedPad;
     double m_yVelocity;
@@ -18264,7 +18282,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isOnSlope;
     bool m_wasOnSlope;
     float m_slopeVelocity;
-    bool m_maybeUpsideDownSlope;
+    [[renamed_from(m_maybeUpsideDownSlope)]]
+    bool m_slopeResnapped; // player re-snapped to moving slope collision
     bool m_isShip;
     bool m_isBird;
     bool m_isBall;
@@ -18277,10 +18296,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isGoingLeft;
     bool m_isSideways;
     bool m_isSwing;
-    int m_reverseRelated;
+    [[renamed_from(m_reverseRelated)]]
+    int m_reverseCooldown; // set to 2 when the direction flips, decremented every step
     double m_maybeReverseSpeed;
-    double m_maybeReverseAcceleration;
-    float m_xVelocityRelated2;
+    [[renamed_from(m_maybeReverseAcceleration)]]
+    double m_reverseSyncStep; // part of m_reverseSyncRemaining added to the next step's X move
+    [[renamed_from(m_xVelocityRelated2)]]
+    float m_ballRollSpeed; // ball sprite roll speed: equals m_platformerXVelocity, lags behind it on ice
     bool m_isDashing;
     int m_dashFireFrame;
     int m_groundObjectMaterial;
@@ -18289,11 +18311,15 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCPoint m_shipRotation;
     cocos2d::CCPoint m_lastPortalPos;
     float m_unkUnused3;
-    bool m_isOnGround2;
+    [[renamed_from(m_isOnGround2)]]
+    bool m_touchingGround; // set on any landing, cleared by jumps / boosts
     double m_lastLandTime;
-    float m_platformerVelocityRelated;
-    bool m_maybeIsBoosted;
-    double m_scaleXRelatedTime;
+    [[renamed_from(m_platformerVelocityRelated)]]
+    float m_decelerationRamp; // horizontal friction after letting go of input in platformer, friction = min(1, value + 0.2)
+    [[renamed_from(m_maybeIsBoosted)]]
+    bool m_isRising; // set by a jump, pad, ring, boost or gravity flip
+    [[renamed_from(m_scaleXRelatedTime)]]
+    double m_lastGroundXDeltaTime; // m_totalTime of the last non-zero m_groundXDelta
     bool m_decreaseBoostSlide;
     bool m_unkA29;
     bool m_isLocked;
@@ -18313,44 +18339,61 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isBeingSpawnedByDualPortal;
     float m_audioScale;
     float m_unkAngle1;
-    float m_yVelocityRelated3;
+    [[renamed_from(m_yVelocityRelated3)]]
+    float m_diagonalYStep; // Y distance moved this step by the wave / dash direction, 0 otherwise
     bool m_defaultMiniIcon;
     bool m_swapColors;
     bool m_switchDashFireColor;
     int m_followRelated;
     std::vector<float> m_playerFollowFloats;
-    float m_unk838;
+    [[renamed_from(m_unk838)]]
+    float m_followSampleTimer; // time since the player's last position was fetched
     int m_stateOnGround;
-    unsigned char m_stateUnk;
+    [[renamed_from(m_stateUnk)]]
+    float m_unusedFloatA80; // unused as of 2.2091
     unsigned char m_stateNoStickX;
     unsigned char m_stateNoStickY;
     unsigned char m_stateUnk2;
     int m_stateBoostX;
     int m_stateBoostY;
-    int m_maybeStateForce2;
+    [[renamed_from(m_maybeStateForce2)]]
+    int m_stateNoWallPush; // state counter
     int m_stateScale;
     double m_platformerXVelocity;
     bool m_holdingRight;
     bool m_holdingLeft;
     bool m_leftPressedFirst;
-    double m_scaleXRelated;
-    bool m_maybeHasStopped;
-    float m_xVelocityRelated;
-    bool m_maybeGoingCorrectSlopeDirection;
+    [[renamed_from(m_scaleXRelated)]]
+    double m_platformXMove; // the x movement on this step of the platform that holds a player
+    [[renamed_from(m_maybeHasStopped)]]
+    bool m_hasPlatformMomentum; // whether player left a moving platform with >= 2 X speed
+    [[renamed_from(m_xVelocityRelated)]]
+    float m_platformMomentum; // X speed inherited from that platform, decays with friction
+    [[renamed_from(m_maybeGoingCorrectSlopeDirection)]]
+    bool m_forcedSlopeSlide; // movement is forced down steep slopes in platformer mode
     bool m_isSliding;
-    double m_maybeSlopeForce;
+    [[renamed_from(m_maybeSlopeForce)]]
+    double m_slopeSpeedBonus; // extra speed built up running down a slope at full speed
     bool m_isOnIce;
-    double m_physDeltaRelated;
-    bool m_isOnGround4;
-    int m_maybeSlidingTime;
-    double m_maybeSlidingStartTime;
+    [[renamed_from(m_physDeltaRelated)]]
+    double m_platformRideTime; // time spent on a moving platform
+    [[renamed_from(m_isOnGround4)]]
+    bool m_wasTouchingGround; // m_touchingGround of the previous step
+    [[renamed_from(m_maybeSlidingTime)]]
+    int m_slopeJumpCount; // jumps made while a steep slope forces a slide in platformer mode
+    [[renamed_from(m_maybeSlidingStartTime)]]
+    double m_slopeJumpResetTime; // m_totalTime when m_slopeJumpCount was reset
     double m_changedDirectionsTime;
     double m_slopeEndTime;
     bool m_isMoving;
-    bool m_platformerMovingLeft;
-    bool m_platformerMovingRight;
-    bool m_isSlidingRight;
-    double m_maybeChangedDirectionAngle;
+    [[renamed_from(m_platformerMovingLeft)]]
+    bool m_forcedSlideLeft; // a slope steeper than 40 degrees is pushing the player left in platformer mode
+    [[renamed_from(m_platformerMovingRight)]]
+    bool m_forcedSlideRight; // right counterpart of m_forcedSlideLeft
+    [[renamed_from(m_isSlidingRight)]]
+    bool m_lastSlideLeft; // direction of the last forced slide: 1 = left, 0 = right
+    [[renamed_from(m_maybeChangedDirectionAngle)]]
+    double m_slideSlopeAngle; // angle of the forced slide slope in degrees
     double m_unkUnused2;
     bool m_isPlatformer;
     int m_stateNoAutoJump;
@@ -18361,7 +18404,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int m_stateForce;
     cocos2d::CCPoint m_stateForceVector;
     bool m_affectedByForces;
-    std::map<int, bool> m_jumpPadRelated;
+    std::map<int, bool> m_touchedForceIds; // force IDs of force blocks applied this step
     [[renamed_from(m_somethingPlayerSpeedTime)]]
     float m_lastMovedTime;
     float m_playerSpeedAC;
@@ -18389,6 +18432,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_enable22Changes;
     bool m_enableImpulseFix;
 }
+
 
 [[link(android), depends(DynamicBitset, SavedActiveObjectState, SavedObjectStateRef, SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
@@ -19825,7 +19869,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void moveToSecondaryLayer(int page) = win inline, imac 0x70fc80, m1 0x620668;
     void onBack(cocos2d::CCObject* sender) = win 0x56d700, imac 0x70ed20, m1 0x61f6a4;
     void onChestType(cocos2d::CCObject* sender) = win 0x56aa80, imac 0x70ed80, m1 0x61f704;
-    void onGoldChest(cocos2d::CCObject* sender) = win 0x56ce20, imac 0x707f20, m1 0x5f5e48;
+    void onGoldChest(cocos2d::CCObject* sender) = win 0x56ce20, imac 0x707f20, m1 0x61fa64;
     void onSelectItem(cocos2d::CCObject* sender) = win 0x56bb80, imac 0x711450, m1 0x621bb0;
     void onShop(cocos2d::CCObject* sender) = win 0x56c130, imac 0x70f460, m1 0x4fd128;
     void onSpecialItem(cocos2d::CCObject* sender) = win 0x56c540, imac 0x70f880, m1 0x620278;
