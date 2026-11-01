@@ -1,17 +1,27 @@
 #include <Geode/mapping/CCHttpClient.hpp>
 #include <Geode/mapping/CCHttpRequest.hpp>
 #include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/mapping/CCActionManager.hpp>
+#include <Geode/mapping/CCCallFuncND.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+#include <Geode/mapping/CCDelayTime.hpp>
+#include <Geode/mapping/CCDictionary.hpp>
 #include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/GJFriendRequest.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
 #include <Geode/binding/GJHttpResult.hpp>
 #include <Geode/binding/GJLevelList.hpp>
+#include <Geode/binding/GJMultiplayerManager.hpp>
 #include <Geode/binding/GameStatsManager.hpp>
 #include <Geode/binding/LevelBrowserLayer.hpp>
 #include <Geode/binding/LevelListDeleteDelegate.hpp>
 #include <Geode/binding/ListUploadDelegate.hpp>
 #include <Geode/binding/LocalLevelManager.hpp>
 #include <Geode/binding/UserListDelegate.hpp>
+#include <Geode/binding/GJSmartTemplate.hpp>
+#include <Geode/binding/GJMapPack.hpp>
+#include <Geode/binding/GJSearchObject.hpp>
 
 GameLevelManager* GameLevelManager::get() {
     return GameLevelManager::sharedState();

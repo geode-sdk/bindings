@@ -1,5 +1,9 @@
 #include <Geode/binding/CCScrollLayerExt.hpp>
 #include <Geode/mapping/CCNode.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+#include <Geode/mapping/CCEaseOut.hpp>
+#include <Geode/mapping/CCMoveTo.hpp>
+#include <Geode/mapping/CCCallFunc.hpp>
 #include <Geode/binding/GameManager.hpp>
 
 

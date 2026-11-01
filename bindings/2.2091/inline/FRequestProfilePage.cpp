@@ -1,6 +1,9 @@
 #include <Geode/binding/FRequestProfilePage.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/mapping/CCString.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 
+bool FRequestProfilePage::ownsTouchPrio() { return true; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void FRequestProfilePage::updateLevelsLabel() {

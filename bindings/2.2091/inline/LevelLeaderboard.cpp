@@ -2,6 +2,7 @@
 #include <Geode/binding/GJGameLevel.hpp>
 #include <Geode/binding/TextAlertPopup.hpp>
 
+bool LevelLeaderboard::ownsTouchPrio() { return true; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

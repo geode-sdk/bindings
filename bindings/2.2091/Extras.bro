@@ -435,7 +435,11 @@ class EditorSFXImportOptions {}
 class EditorSFXBinding {}
 class EmoteDef {}
 class EmoteToken {}
-class BulkCommentKey {}
+class BulkCommentKey {
+	CommentType m_type;
+	int m_commentID;
+	int m_parentID;
+}
 class PlayerTrailState {}
 class KeybindSettingsEntry {
 	char const* m_label;

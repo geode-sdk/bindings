@@ -668,7 +668,10 @@ enum class CommentType {
     FriendRequest = 2,
     Multiplayer = 3,
     ListDescription = 4,
-    ListName = 5
+    ListName = 5,
+    EditorSound = 6,
+    ModComment = 7,
+    Note = 8
 };
 
 enum class BoomListType {

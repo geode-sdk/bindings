@@ -5,6 +5,7 @@
 #include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/UploadActionPopup.hpp>
 
+bool ProfilePage::ownsTouchPrio() { return true; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool ProfilePage::isOnWatchlist(int id) { return false; }

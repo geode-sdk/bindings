@@ -1,6 +1,6 @@
 #include <Geode/binding/ConfigureValuePopup.hpp>
 #include <Geode/binding/InfoAlertButton.hpp>
-
+#include <Geode/mapping/CCDirector.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
