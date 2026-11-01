@@ -3198,8 +3198,8 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50;
     void onLeaderboards(cocos2d::CCObject* sender) = win 0x137550, imac 0x2830f0, m1 0x228388;
     void onMapPacks(cocos2d::CCObject* sender) = win 0x137980, imac 0x2837b0, m1 0x228a88;
-    void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x192554;
-    void onMyLevels(cocos2d::CCObject* sender) = win 0x136aa0;
+    void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x2283d0;
+    void onMyLevels(cocos2d::CCObject* sender) = win 0x136aa0, imac 0x283850, m1 0x228b10;
     void onOnlineLevels(cocos2d::CCObject* sender) = win 0x137900, imac 0x283810, m1 0x228ad4;
     void onOnlyFullVersion(cocos2d::CCObject* sender) = imac 0x283940, m1 0x228bec;
     void onPaths(cocos2d::CCObject* sender) = win 0x137810, imac 0x283730, m1 0x228a0c;
@@ -4317,8 +4317,8 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     EditLevelLayer() = inline;
     ~EditLevelLayer() = win inline, m1 0x3d9e34, ios 0x10eb70;
 
-    static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x25c430;
-    static cocos2d::CCScene* scene(GJGameLevel* level) = win 0x1782c0;
+    static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x1dcb70, m1 0x190a00;
+    static cocos2d::CCScene* scene(GJGameLevel* level) = win 0x1782c0, imac 0x1dcb30, m1 0x1909b4;
 
     virtual void keyBackClicked() = win 0x17d280, imac 0x1e1200, m1 0x194e58, ios 0x1125f4;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x17d290, imac 0x1e1230, m1 0x194e64, ios 0x112600;
@@ -4338,7 +4338,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void confirmDelete(cocos2d::CCObject* sender) = win 0x17c070, imac 0x1df410, m1 0x1930f4;
     TodoReturn confirmMoveToBottom(cocos2d::CCObject*) = win 0x17c9d0;
     void confirmMoveToTop(cocos2d::CCObject* sender) = win 0x17c8a0, imac 0x1df500, m1 0x1931dc;
-    bool init(GJGameLevel* level) = win 0x1784A0, imac 0x25c540, m1 0x190af8;
+    bool init(GJGameLevel* level) = win 0x1784A0, imac 0x1dccd0, m1 0x190af8;
     void onBack(cocos2d::CCObject* sender) = win 0x17cdf0, imac 0x1dfaa0, m1 0x1937b8;
     void onClone() = win inline, imac 0x4006e0;
     void onCreatorSettings(cocos2d::CCObject* sender) = win 0x17b600;
@@ -4352,9 +4352,9 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x179ca0, imac 0x1dfc20, m1 0x193924;
     TodoReturn onMoveToBottom();
     void onMoveToTop() = win inline, imac 0x1e1080, m1 0x194d2c, ios inline;
-    void onPlay(cocos2d::CCObject* sender) = win 0x17b0f0, imac 0x1de600;
+    void onPlay(cocos2d::CCObject* sender) = win 0x17b0f0, imac 0x1de600, m1 0x1922e0;
     void onSetFolder(cocos2d::CCObject* sender) = win 0x17cb00, imac 0x1df6c0, m1 0x19339c;
-    void onShare(cocos2d::CCObject* sender) = win 0x17b9b0, imac 0x37c790, m1 0x794f60;
+    void onShare(cocos2d::CCObject* sender) = win 0x17b9b0, imac 0x1de8b0, m1 0x192554;
     void onTest(cocos2d::CCObject* sender) = win inline, ios inline;
     void onUpdateDescription(cocos2d::CCObject* sender) = imac 0x1df5e0, m1 0x19447c;
     void playStep2() = win 0x17b440, m1 0x194330;
@@ -15730,7 +15730,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     virtual ~LocalLevelManager() = win 0x46ab30, ios 0x25e2f0;
 
     static LocalLevelManager* get() = inline;
-    static LocalLevelManager* sharedState() = win 0x46ac00, ios 0x25e134, m1 0x5e1588;
+    static LocalLevelManager* sharedState() = win 0x46ac00, ios 0x25e134, m1 0x5e1588, imac 0x6c9560;
 
     virtual bool init() = win 0x46ad90, imac 0x6c98a0, m1 0x5e1874, ios 0x25e308;
     virtual void encodeDataTo(DS_Dictionary* dict) = win 0x46b790, m1 0x5e2af4, ios 0x25f00c, imac 0x6cadb0;
@@ -15921,7 +15921,7 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
 
     TodoReturn checkParentalPending() = win 0x474180;
     void endGame() = win 0x4755c0, imac 0x37d280, m1 0x308b38;
-    void firstNetworkTest() = win 0x473FA0, m1 0x4d46cc;
+    void firstNetworkTest() = win 0x473FA0, m1 0x308314, imac 0x37c970;
     void onAchievements(cocos2d::CCObject* sender) = win 0x4749d0, imac 0x37c3a0, m1 0x307d1c;
     void onCreator(cocos2d::CCObject* sender) = win 0x474F00, imac 0x37c320, m1 0x307ca8, ios 0x304d64;
     void onDaily(cocos2d::CCObject* sender) = win 0x473B70, imac 0x37c910;
@@ -15954,8 +15954,8 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void showTOS() = win 0x474190, imac 0x37c930;
     void syncPlatformAchievements(float dt) = win inline, imac 0x37ce20, m1 0x308748, ios 0x3b42c0;
     void tryShowAd(float dt) = win inline, imac 0x37caa0, m1 0x72a8, ios inline;
-    void updateNewsBadge() = win 0x474840;
-    void updateUserProfileButton() = win 0x473e20, m1 0x791f94;
+    void updateNewsBadge() = win 0x474840, imac 0x37c990, m1 0x308328;
+    void updateUserProfileButton() = win 0x473e20, m1 0x30814c, imac 0x37c790;
     void videoOptionsClosed() = win inline, imac 0x37cf10, m1 0x308810;
     void videoOptionsOpened() = win inline, imac 0x37cef0, m1 0x308800;
     void willClose() = win 0x475280, imac 0x37aa70, m1 0x306498;
