@@ -17751,7 +17751,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     float m_unkUnused3; // unused as of 2.2091
     bool m_touchingGround; // set on any landing, cleared by jumps / boosts
     double m_lastLandTime;
-    float m_decelerationRamp; // platformer: builds up while no direction is held, friction = min(1, value + 0.2)
+    float m_decelerationRamp; // horizontal friction after letting go of input in platformer, friction = min(1, value + 0.2)
     bool m_isRising; // set by a jump, pad, ring, boost or gravity flip
     double m_lastGroundXDeltaTime; // m_totalTime of the last non-zero m_groundXDelta
     bool m_isLocked;
@@ -18114,8 +18114,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int m_lastCollisionTop;
     int m_lastCollisionLeft;
     int m_lastCollisionRight;
-    int m_unk50C;
-    int m_unk510;
+    [[renamed_from(m_unk50C)]]
+    int m_prevCollisionBottom; // m_lastCollisionBottom of the previous step
+    [[renamed_from(m_unk510)]]
+    int m_prevCollisionTop; // m_lastCollisionTop of the previous step
     GameObject* m_currentSlope2;
     GameObject* m_preLastGroundObject;
     float m_slopeAngle;
@@ -18136,12 +18138,15 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isCollidingWithSlope;
     cocos2d::CCSprite* m_dashFireSprite;
     bool m_isBallRotating;
-    bool m_unk669;
+    [[renamed_from(m_unk669)]]
+    bool m_noPotentialSlope; // set every step, cleared when a slope is found below
     GameObject* m_currentPotentialSlope;
     GameObject* m_currentSlope;
-    double unk_584;
+    [[renamed_from(unk_584)]]
+    double m_slopeCenterOffset; // how much higher the player's center sits on the current slope
     int m_collidingWithSlopeId;
-    bool m_slopeFlipGravityRelated;
+    [[renamed_from(m_slopeFlipGravityRelated)]]
+    bool m_slopeIsDownhill; // the current slope goes down in the player's direction
     cocos2d::CCArray* m_particleSystems;
     float m_slopeAngleRadians;
     std::unordered_map<int, GJPointDouble> m_rotateObjectsRelated;
@@ -18149,7 +18154,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_rotationSpeed;
     float m_rotateSpeed;
     bool m_isRotating;
-    bool m_isBallRotating2;
+    [[renamed_from(m_isBallRotating2)]]
+    bool m_ballSpinning; // ball spins at m_rotationSpeed
     bool m_hasGlow;
     bool m_isHidden;
     GhostType m_ghostType;
@@ -18176,15 +18182,18 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float m_trailingParticleLife;
     float m_unk648;
     double m_gameModeChangedTime;
-    bool m_padRingRelated;
+    [[renamed_from(m_padRingRelated)]]
+    bool m_ringJumpedSincePress; // a normal ring was used since the last button press
     bool m_maybeReducedEffects;
-    bool m_maybeIsFalling;
+    [[renamed_from(m_maybeIsFalling)]]
+    bool m_hasStartedFalling; // set the first time a jump / boost ends and the player starts falling
     bool m_shouldTryPlacingCheckpoint;
     bool m_playEffects;
     bool m_maybeCanRunIntoBlocks;
     bool m_hasGroundParticles;
     bool m_hasShipParticles;
-    bool m_isOnGround3;
+    [[renamed_from(m_isOnGround3)]]
+    bool m_landedSinceFlip; // set on landing, cleared by a spider / gravity jump flip
     bool m_checkpointTimeout;
     double m_lastCheckpointTime;
     double m_lastJumpTime;
@@ -18201,14 +18210,16 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_practiceDeathEffect;
     double m_accelerationOrSpeed;
     double m_snapDistance;
-    bool m_ringJumpRelated;
-    std::unordered_set<int> m_ringRelatedSet;
+    [[renamed_from(m_ringJumpRelated)]]
+    bool m_usedRingThisStep; // a ring was activated this step
+    std::unordered_set<int> m_usedRings; // unique IDs of rings used during the current button press
     GameObject* m_objectSnappedTo;
     CheckpointObject* m_pendingCheckpoint;
     int m_onFlyCheckpointTries;
     GJRobotSprite* m_robotSprite;
     GJSpiderSprite* m_spiderSprite;
-    bool m_maybeSpriteRelated;
+    [[renamed_from(m_maybeSpriteRelated)]]
+    bool m_specialGroundHit; // landed on special ground this step
     cocos2d::CCParticleSystemQuad* m_playerGroundParticles;
     cocos2d::CCParticleSystemQuad* m_trailingParticles;
     cocos2d::CCParticleSystemQuad* m_shipClickParticles;
@@ -18222,7 +18233,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCParticleSystemQuad* m_landParticles0;
     cocos2d::CCParticleSystemQuad* m_landParticles1;
     float m_landParticlesAngle;
-    float m_landParticleRelatedY;
+    [[renamed_from(m_landParticleRelatedY)]]
+    float m_landParticlesGravityY; // landing particle gravity Y
     int m_playerStreak;
     float m_streakStrokeWidth;
     bool m_disableStreakTint;
@@ -18230,10 +18242,14 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     ShipStreak m_shipStreakType;
     double m_slopeRotation;
     double m_currentSlopeYVelocity;
-    double m_unk3d0;
-    double m_blackOrbRelated;
-    bool m_unk3e0;
-    bool m_unk3e1;
+    [[renamed_from(m_unk3d0)]]
+    double m_lastSlopeSnapY; // player center Y the last slope collision snapped to
+    [[renamed_from(m_blackOrbRelated)]]
+    double m_lastSlopeSnapOffset; // m_lastSlopeSnapY relative to the slope's stored position
+    [[renamed_from(m_unk3e0)]]
+    bool m_lastSlopeSnapAtFarEdge; // last slope snap was clamped to the slope's far edge
+    [[renamed_from(m_unk3e1)]]
+    bool m_lastSlopeSnapAtNearEdge; // last slope snap was clamped to the slope's near edge
     bool m_isAccelerating;
     bool m_isCurrentSlopeTop;
     double m_collidedTopMinY;
@@ -18252,11 +18268,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_wasJumpBuffered;
     bool m_wasRobotJump;
     unsigned char m_stateJumpBuffered;
-    bool m_stateRingJump2;
+    [[renamed_from(m_stateRingJump2)]]
+    bool m_statePreJump; // input buffered but no jump triggered yet
     bool m_touchedRing;
     bool m_touchedCustomRing;
     bool m_touchedGravityPortal;
-    bool m_maybeTouchedBreakableBlock;
+    [[renamed_from(m_maybeTouchedBreakableBlock)]]
+    bool m_brokeBlockSincePress; // broke a breakable block with the head since the last button press
     geode::SeedValueRSV m_jumpRelatedAC2;
     bool m_touchedPad;
     double m_yVelocity;
@@ -18264,7 +18282,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isOnSlope;
     bool m_wasOnSlope;
     float m_slopeVelocity;
-    bool m_maybeUpsideDownSlope;
+    [[renamed_from(m_maybeUpsideDownSlope)]]
+    bool m_slopeResnapped; // player re-snapped to moving slope collision
     bool m_isShip;
     bool m_isBird;
     bool m_isBall;
@@ -18277,10 +18296,13 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isGoingLeft;
     bool m_isSideways;
     bool m_isSwing;
-    int m_reverseRelated;
+    [[renamed_from(m_reverseRelated)]]
+    int m_reverseCooldown; // set to 2 when the direction flips, decremented every step
     double m_maybeReverseSpeed;
-    double m_maybeReverseAcceleration;
-    float m_xVelocityRelated2;
+    [[renamed_from(m_maybeReverseAcceleration)]]
+    double m_reverseSyncStep; // part of m_reverseSyncRemaining added to the next step's X move
+    [[renamed_from(m_xVelocityRelated2)]]
+    float m_ballRollSpeed; // ball sprite roll speed: equals m_platformerXVelocity, lags behind it on ice
     bool m_isDashing;
     int m_dashFireFrame;
     int m_groundObjectMaterial;
@@ -18289,11 +18311,15 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     cocos2d::CCPoint m_shipRotation;
     cocos2d::CCPoint m_lastPortalPos;
     float m_unkUnused3;
-    bool m_isOnGround2;
+    [[renamed_from(m_isOnGround2)]]
+    bool m_touchingGround; // set on any landing, cleared by jumps / boosts
     double m_lastLandTime;
-    float m_platformerVelocityRelated;
-    bool m_maybeIsBoosted;
-    double m_scaleXRelatedTime;
+    [[renamed_from(m_platformerVelocityRelated)]]
+    float m_decelerationRamp; // horizontal friction after letting go of input in platformer, friction = min(1, value + 0.2)
+    [[renamed_from(m_maybeIsBoosted)]]
+    bool m_isRising; // set by a jump, pad, ring, boost or gravity flip
+    [[renamed_from(m_scaleXRelatedTime)]]
+    double m_lastGroundXDeltaTime; // m_totalTime of the last non-zero m_groundXDelta
     bool m_decreaseBoostSlide;
     bool m_unkA29;
     bool m_isLocked;
@@ -18313,44 +18339,61 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_isBeingSpawnedByDualPortal;
     float m_audioScale;
     float m_unkAngle1;
-    float m_yVelocityRelated3;
+    [[renamed_from(m_yVelocityRelated3)]]
+    float m_diagonalYStep; // Y distance moved this step by the wave / dash direction, 0 otherwise
     bool m_defaultMiniIcon;
     bool m_swapColors;
     bool m_switchDashFireColor;
     int m_followRelated;
     std::vector<float> m_playerFollowFloats;
-    float m_unk838;
+    [[renamed_from(m_unk838)]]
+    float m_followSampleTimer; // time since the player's last position was fetched
     int m_stateOnGround;
-    unsigned char m_stateUnk;
+    [[renamed_from(m_stateUnk)]]
+    float m_unusedFloatA80; // unused as of 2.2091
     unsigned char m_stateNoStickX;
     unsigned char m_stateNoStickY;
     unsigned char m_stateUnk2;
     int m_stateBoostX;
     int m_stateBoostY;
-    int m_maybeStateForce2;
+    [[renamed_from(m_maybeStateForce2)]]
+    int m_stateNoWallPush; // state counter
     int m_stateScale;
     double m_platformerXVelocity;
     bool m_holdingRight;
     bool m_holdingLeft;
     bool m_leftPressedFirst;
-    double m_scaleXRelated;
-    bool m_maybeHasStopped;
-    float m_xVelocityRelated;
-    bool m_maybeGoingCorrectSlopeDirection;
+    [[renamed_from(m_scaleXRelated)]]
+    double m_platformXMove; // the x movement on this step of the platform that holds a player
+    [[renamed_from(m_maybeHasStopped)]]
+    bool m_hasPlatformMomentum; // whether player left a moving platform with >= 2 X speed
+    [[renamed_from(m_xVelocityRelated)]]
+    float m_platformMomentum; // X speed inherited from that platform, decays with friction
+    [[renamed_from(m_maybeGoingCorrectSlopeDirection)]]
+    bool m_forcedSlopeSlide; // movement is forced down steep slopes in platformer mode
     bool m_isSliding;
-    double m_maybeSlopeForce;
+    [[renamed_from(m_maybeSlopeForce)]]
+    double m_slopeSpeedBonus; // extra speed built up running down a slope at full speed
     bool m_isOnIce;
-    double m_physDeltaRelated;
-    bool m_isOnGround4;
-    int m_maybeSlidingTime;
-    double m_maybeSlidingStartTime;
+    [[renamed_from(m_physDeltaRelated)]]
+    double m_platformRideTime; // time spent on a moving platform
+    [[renamed_from(m_isOnGround4)]]
+    bool m_wasTouchingGround; // m_touchingGround of the previous step
+    [[renamed_from(m_maybeSlidingTime)]]
+    int m_slopeJumpCount; // jumps made while a steep slope forces a slide in platformer mode
+    [[renamed_from(m_maybeSlidingStartTime)]]
+    double m_slopeJumpResetTime; // m_totalTime when m_slopeJumpCount was reset
     double m_changedDirectionsTime;
     double m_slopeEndTime;
     bool m_isMoving;
-    bool m_platformerMovingLeft;
-    bool m_platformerMovingRight;
-    bool m_isSlidingRight;
-    double m_maybeChangedDirectionAngle;
+    [[renamed_from(m_platformerMovingLeft)]]
+    bool m_forcedSlideLeft; // a slope steeper than 40 degrees is pushing the player left in platformer mode
+    [[renamed_from(m_platformerMovingRight)]]
+    bool m_forcedSlideRight; // right counterpart of m_forcedSlideLeft
+    [[renamed_from(m_isSlidingRight)]]
+    bool m_lastSlideLeft; // direction of the last forced slide: 1 = left, 0 = right
+    [[renamed_from(m_maybeChangedDirectionAngle)]]
+    double m_slideSlopeAngle; // angle of the forced slide slope in degrees
     double m_unkUnused2;
     bool m_isPlatformer;
     int m_stateNoAutoJump;
@@ -18361,7 +18404,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int m_stateForce;
     cocos2d::CCPoint m_stateForceVector;
     bool m_affectedByForces;
-    std::map<int, bool> m_jumpPadRelated;
+    std::map<int, bool> m_touchedForceIds; // force IDs of force blocks applied this step
     [[renamed_from(m_somethingPlayerSpeedTime)]]
     float m_lastMovedTime;
     float m_playerSpeedAC;
@@ -18389,6 +18432,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool m_enable22Changes;
     bool m_enableImpulseFix;
 }
+
 
 [[link(android), depends(DynamicBitset, SavedActiveObjectState, SavedObjectStateRef, SavedSpecialObjectState)]]
 class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate, DialogDelegate {
