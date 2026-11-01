@@ -949,7 +949,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void toggleShowFPS(bool, std::string, cocos2d::CCPoint) = imac 0x4780e0, m1 0x3e2aa4, ios 0x206fe8;
     void updateContentScale(cocos2d::TextureQuality) = imac 0x478500, m1 0x3e2e50, ios 0x207204;
     void updateScreenScale(cocos2d::CCSize) = imac 0x478430, m1 0x3e2da0, ios 0x207154;
-    void willSwitchToScene(cocos2d::CCScene*) = imac 0x478a40, m1 0x2368e4, ios 0x207424;
+    void willSwitchToScene(cocos2d::CCScene*) = imac 0x478a40, m1 0x3e3250, ios 0x207424;
 }
 
 [[link(android)]]
@@ -1355,7 +1355,7 @@ class cocos2d::CCEGLViewProtocol {
 
 [[link(win, android)]]
 class cocos2d::CCFadeIn : cocos2d::CCActionInterval {
-    static cocos2d::CCFadeIn* create(float) = imac 0x3a4060, ios 0x21fb14;
+    static cocos2d::CCFadeIn* create(float) = imac 0x3a4060, m1 0x32be90, ios 0x21fb14;
 
     // CCFadeIn(cocos2d::CCFadeIn const&);
     // CCFadeIn();
