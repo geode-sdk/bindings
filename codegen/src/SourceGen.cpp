@@ -144,13 +144,14 @@ auto {class_name}::{function_name}({parameters}){const} -> decltype({function_na
 }}
 
 bool areSuperclassesEmpty(Class const& c) {
-	return c.superclasses.empty() || (c.superclasses.size() == 1 && c.superclasses[0].find("CCCopying") != std::string::npos);
+    auto superclasses = codegen::getSuperclasses(c);
+	return superclasses.empty() || (superclasses.size() == 1 && superclasses[0].find("CCCopying") != std::string::npos);
 }
 
 std::string generateBindingSource(Root const& root, std::filesystem::path const& singleFolder, bool skipPugixml, bool skipInlines, std::unordered_set<std::string>* generatedFiles) {
 	std::string output = fmt::format(format_strings::source_start,
 		fmt::arg("includes", codegen::getIncludes(root)),
-		fmt::arg("class_include", "")
+		fmt::arg("class_include", "#include <Geode/binding/Standalones.hpp>\n")
 	);
 
 	for (auto& f : root.functions) {

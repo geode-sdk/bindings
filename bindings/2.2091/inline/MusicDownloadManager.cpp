@@ -6,11 +6,17 @@
 #include <Geode/binding/SFXFolderObject.hpp>
 #include <Geode/binding/SFXInfoObject.hpp>
 #include <Geode/binding/SongInfoObject.hpp>
+#include <Geode/binding/MusicArtistObject.hpp>
 #include <Geode/cocos/actions/CCActionManager.h>
 #include <Geode/cocos/robtop/xml/DS_Dictionary.h>
 #include <Geode/mapping/CCHttpRequest.hpp>
 #include <Geode/mapping/CCHttpResponse.hpp>
 #include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+#include <Geode/mapping/CCDelayTime.hpp>
+#include <Geode/mapping/CCCallFuncND.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void MusicDownloadManager::addDLToActive(char const* tag) {

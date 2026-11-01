@@ -13,6 +13,7 @@ LevelInfoLayer::LevelInfoLayer() {
     m_starRateBtn = nullptr;
     m_demonRateBtn = nullptr;
     m_unk2 = nullptr;
+    m_editBtn = nullptr;
     m_lengthLabel = nullptr;
     m_exactLengthLabel = nullptr;
     m_downloadsLabel = nullptr;

@@ -1,8 +1,18 @@
 #include <Geode/binding/FRequestProfilePage.hpp>
+#include <Geode/binding/CCMenuItemSpriteExtra.hpp>
+#include <Geode/mapping/CCString.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 
+bool FRequestProfilePage::ownsTouchPrio() { return true; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-void FRequestProfilePage::updateLevelsLabel() {}
+void FRequestProfilePage::updateLevelsLabel() {
+    auto end = m_pageStartIdx + m_pageEndIdx;
+    auto count = m_itemCount;
+    if (end >= count) end = count;
+    m_pageLabel->setString(cocos2d::CCString::createWithFormat("%i to %i of %i", m_pageStartIdx + 1, end, count)->getCString());
+    this->updateSelectUI();
+}
 
 void FRequestProfilePage::updatePageArrows() {
     m_prevButton->setVisible(m_pageStartIdx != 0);

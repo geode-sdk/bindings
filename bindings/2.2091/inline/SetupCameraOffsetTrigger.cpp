@@ -4,14 +4,15 @@
 #include <Geode/binding/CCTextInputNode.hpp>
 #include <Geode/binding/EffectGameObject.hpp>
 #include <algorithm>
+#include <cmath>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 int SetupCameraOffsetTrigger::posFromSliderValue(float value) {
-    return (int)((value - .5f) * 200.f) * 3.f;
+    return (int)(floorf((value - .5f) * 200.f) * 3.f);
 }
 
 float SetupCameraOffsetTrigger::sliderValueFromPos(int pos) {
-    return std::clamp((int)((float)pos / 3.f) / 200.f + .5f, 0.f, 1.f);
+    return std::clamp(floorf((float)pos / 3.f) / 200.f + .5f, 0.f, 1.f);
 }
 #endif
 

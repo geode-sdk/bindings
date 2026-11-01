@@ -43,7 +43,7 @@ void SupportLayer::sendSupportMail() {
         GJAccountManager::sharedState()->m_username.c_str(),
         (int)AppDelegate::get()->m_ios,
         22,
-        47
+        51
     )->getCString(), "support@robtopgames.com");
 }
 #endif

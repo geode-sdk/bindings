@@ -13,6 +13,7 @@ float TextArea::fadeIn(float duration, bool unused) {
     this->stopAllActions();
     this->stopAllCharacterActions();
     this->setOpacity(0);
+    m_allShown = false;
     this->runAction(cocos2d::CCSequence::create(
         cocos2d::CCFadeIn::create(duration),
         cocos2d::CCDelayTime::create(duration),
@@ -58,13 +59,13 @@ void TextArea::colorAllLabels(cocos2d::ccColor3B color) {
     }
 }
 
-// TODO: 2.209
-bool TextArea::init(std::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor, int p0) {
+bool TextArea::init(std::string str, char const* font, float scale, float width, cocos2d::CCPoint anchor, float lineHeight, bool disableColor, int maxEmoji) {
     if (!cocos2d::CCSprite::init()) return false;
     m_width = width;
     m_anchorPoint = anchor;
     m_fontFile = font;
     m_scale = scale;
+    m_maxEmoji = maxEmoji;
     m_height = lineHeight;
     m_disableColor = disableColor;
     this->setString(str);

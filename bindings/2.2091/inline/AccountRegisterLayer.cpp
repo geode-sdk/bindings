@@ -23,10 +23,6 @@ void AccountRegisterLayer::hideLoadingUI() {
     m_loadingCircle->setVisible(false);
 }
 
-bool AccountRegisterLayer::validPassword(std::string password) {
-    return password.size() > 5;
-}
-
 bool AccountRegisterLayer::validUser(std::string username) {
     return username.size() > 2;
 }

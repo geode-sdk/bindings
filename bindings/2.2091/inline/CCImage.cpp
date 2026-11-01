@@ -14,6 +14,7 @@ bool cocos2d::CCImage::_initWithRawData(void* data, int dataLen, int width, int 
     m_nWidth = width;
     m_nHeight = height;
     m_bHasAlpha = true;
+    m_bPreMulti = preMulti;
     auto size = width * height * 4;
     m_pData = new unsigned char[size];
     memcpy(m_pData, data, size);

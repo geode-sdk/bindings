@@ -1,5 +1,4 @@
-#include <Geode/binding/GJRotateCommandLayer.hpp>
-
+#include <Geode/binding/TraceGroupOutline.hpp>
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
@@ -9,4 +8,3 @@
 
 #if defined(GEODE_IS_IOS)
 #endif
-

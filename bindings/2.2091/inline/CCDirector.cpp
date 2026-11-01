@@ -385,7 +385,7 @@ cocos2d::CCSize cocos2d::CCDirector::getVisibleSize() {
 }
 
 float cocos2d::CCDirector::getZEye() {
-    return m_obWinSizeInPoints.height / 1.1566f;
+    return m_obWinSizeInPoints.height / 1.1547f;
 }
 
 int cocos2d::CCDirector::levelForSceneInStack(cocos2d::CCScene* scene) {

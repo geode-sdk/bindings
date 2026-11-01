@@ -25,7 +25,6 @@ SetupObjectOptionsPopup::SetupObjectOptionsPopup() {
     m_reverse = false;
     m_extendedCollision = false;
     m_unk2a6 = false;
-    m_groupIDLayer = nullptr;
     m_effectObject = false;
     m_singlePlayerTouch = false;
 }
@@ -37,16 +36,6 @@ SetupObjectOptionsPopup::SetupObjectOptionsPopup() {
 SetupObjectOptionsPopup::~SetupObjectOptionsPopup() {
     CC_SAFE_RELEASE(m_gameObject);
     CC_SAFE_RELEASE(m_gameObjects);
-}
-
-SetupObjectOptionsPopup* SetupObjectOptionsPopup::create(GameObject* object, cocos2d::CCArray* objects, SetGroupIDLayer* layer) {
-    auto ret = new SetupObjectOptionsPopup();
-    if (ret->init(object, objects, layer)) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
 }
 #endif
 

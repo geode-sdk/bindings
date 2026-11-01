@@ -5,6 +5,7 @@
 #include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/UploadActionPopup.hpp>
 
+bool ProfilePage::ownsTouchPrio() { return true; }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool ProfilePage::isOnWatchlist(int id) { return false; }
@@ -18,8 +19,10 @@ void ProfilePage::toggleMainPageVisibility(bool visible) {
     }
     if (m_list) m_list->setVisible(visible);
     if (visible) this->updatePageArrows();
-    m_rightArrow->setVisible(false);
-    m_leftArrow->setVisible(false);
+    else {
+        m_rightArrow->setVisible(false);
+        m_leftArrow->setVisible(false);
+    }
 }
 
 void ProfilePage::updateLevelsLabel() {}

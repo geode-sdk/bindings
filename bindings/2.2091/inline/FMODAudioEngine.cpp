@@ -121,7 +121,7 @@ void FMODAudioEngine::enableMetering() {
 }
 
 void FMODAudioEngine::fadeInBackgroundMusic(float value) {
-    m_backgroundMusicChannel->setVolume(value);
+    m_backgroundMusicChannel->setVolume(0.f);
     m_backgroundMusicFade = value;
     m_musicFadeStart = -1.f;
 }
@@ -175,10 +175,6 @@ void FMODAudioEngine::pauseAllAudio() {
     m_globalChannel->setPaused(true);
 }
 
-void FMODAudioEngine::pauseAllEffects() {
-    m_globalChannel->setPaused(true);
-}
-
 void FMODAudioEngine::pauseAllMusic(bool force) {
     for (auto& [id, music] : m_fmodMusic) {
         if (force || !music.m_dontReset) {
@@ -212,10 +208,6 @@ void FMODAudioEngine::resumeAllAudio() {
     m_globalChannel->setPaused(false);
 }
 
-void FMODAudioEngine::resumeAllEffects() {
-    m_globalChannel->setPaused(false);
-}
-
 void FMODAudioEngine::resumeAudio() {
     this->start();
 }
@@ -235,6 +227,7 @@ void FMODAudioEngine::setBackgroundMusicVolume(float volume) {
 void FMODAudioEngine::setEffectsVolume(float volume) {
     m_sfxVolume = volume;
     if (m_globalChannel) m_globalChannel->setVolume(volume);
+    if (m_unkChannel) m_unkChannel->setVolume(volume);
 }
 
 void FMODAudioEngine::stop() {
@@ -259,7 +252,7 @@ void FMODAudioEngine::stopMusicNotInSet(std::unordered_set<int>& musicIDs) {
         totalIDs.insert(id);
     }
     for (auto& id : totalIDs) {
-        if (musicIDs.count(id) == 0) {
+        if (id >= 0 && musicIDs.count(id) == 0) {
             this->stopMusic(id);
         }
     }

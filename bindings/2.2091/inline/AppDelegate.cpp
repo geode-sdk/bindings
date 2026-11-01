@@ -1,4 +1,5 @@
 #include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/FMODAudioEngine.hpp>
 #include <Geode/binding/PlatformToolbox.hpp>
 #include <Geode/mapping/CCDirector.hpp>
@@ -18,13 +19,14 @@ float AppDelegate::bgScale() {
 }
 
 void AppDelegate::checkSound() {
-    if (this->musicTest()) FMODAudioEngine::sharedEngine()->pauseAllMusic(true);
+    FMODAudioEngine::sharedEngine()->resumeAudio();
 }
 
 void AppDelegate::hideLoadingCircle() {}
 
 void AppDelegate::loadingIsFinished() {
     m_loadingFinished = true;
+    GameLevelManager::sharedState()->replayPlatformerSaveJournal();
     PlatformToolbox::reportLoadingFinished();
 }
 

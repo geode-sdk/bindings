@@ -1,4 +1,5 @@
 #include <Geode/binding/ConfigureHSVWidget.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

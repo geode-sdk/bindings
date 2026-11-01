@@ -2,6 +2,9 @@
 #include <Geode/binding/KeybindSet.hpp>
 #include <Geode/binding/LevelControlConfig.hpp>
 
+bool LevelBindingsLayer::crossCheckGlobalConflicts() { return true; }
+bool LevelBindingsLayer::showControllerChords() { return true; }
+
 #if defined(GEODE_IS_WINDOWS)
 bool LevelBindingsLayer::init(KeybindSet* keybindSet, bool controller) {
     m_keybindSet = keybindSet;

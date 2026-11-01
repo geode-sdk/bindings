@@ -168,8 +168,8 @@ void LevelEditorLayer::triggerRotateCommand(EffectGameObject* object) {
 }
 
 void LevelEditorLayer::updateArt(float dt) {
-    if (m_playbackMode != PlaybackMode::Not) return;
     this->updateGridLayerParent();
+    if (m_playbackMode != PlaybackMode::Not) return;
     m_inShaderParent->setVisible(m_inShaderParent->getChildrenCount() > 1 || m_inShaderObjectLayer->getChildrenCount() != 0);
     m_aboveShaderParent->setVisible(m_aboveShaderParent->getChildrenCount() > 1 || m_aboveShaderObjectLayer->getChildrenCount() != 0);
     this->updateGradientLayers();
@@ -539,6 +539,7 @@ void LevelEditorLayer::removeAllObjects() {
     m_redoObjects->removeAllObjects();
     m_undoObjects->removeAllObjects();
     m_objectCount = 0;
+    m_groupsChanged = true;
     m_removingAll = false;
 }
 
@@ -619,8 +620,9 @@ void LevelEditorLayer::toggleGround(bool enable) {
 }
 
 void LevelEditorLayer::toggleLockActiveLayer() {
-    if (m_currentLayer < 0 || m_currentLayer > 9999 || !m_layerLockingEnabled) return;
+    if (m_currentLayer < 1 || m_currentLayer > 9999 || !m_layerLockingEnabled) return;
     m_lockedLayers[m_currentLayer] = !m_lockedLayers[m_currentLayer];
+    m_lockedLayerCount += m_lockedLayers[m_currentLayer] ? 1 : -1;
 }
 
 void LevelEditorLayer::undoLastAction() {
@@ -631,6 +633,7 @@ void LevelEditorLayer::unlockAllLayers() {
     for (int i = 0; i < 10000; i++) {
         m_lockedLayers[i] = false;
     }
+    m_lockedLayerCount = 0;
 }
 
 void LevelEditorLayer::updateGridLayer() {

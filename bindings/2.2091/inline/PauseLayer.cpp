@@ -19,7 +19,7 @@ void PauseLayer::createToggleButton(std::string label, cocos2d::SEL_MenuHandler 
     auto labelNode = cocos2d::CCLabelBMFont::create(label.c_str(), "bigFont.fnt");
     this->addChild(labelNode);
     labelNode->setAnchorPoint({ .0f, .5f });
-    labelNode->setPosition(position + cocos2d::CCPoint { onSprite->getContentSize().width * .5f + 3.6f, 0.f });
+    labelNode->setPosition(position + cocos2d::CCPoint { (onSprite->getContentSize().width * .5f) * .6f + 6.f, 0.f });
     labelNode->limitLabelWidth(80.f, .4f, .0f);
 }
 

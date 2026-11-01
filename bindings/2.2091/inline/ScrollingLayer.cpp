@@ -23,6 +23,7 @@ ScrollingLayer* ScrollingLayer::create(cocos2d::CCSize size, cocos2d::CCPoint po
 bool ScrollingLayer::init(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) {
     if (!cocos2d::CCLayerColor::initWithColor({ 0, 0, 0, 0 })) return false;
     m_scrollFactor = factor;
+    m_position = position;
     this->addChild(cocos2d::CCLayerColor::create({ 0, 0, 0, 50 }), -2);
     m_contentLayer = cocos2d::CCLayer::create();
     this->addChild(m_contentLayer, -1);

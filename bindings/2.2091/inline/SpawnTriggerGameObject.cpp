@@ -40,6 +40,7 @@ SpawnTriggerGameObject* SpawnTriggerGameObject::create() {
 }
 
 void SpawnTriggerGameObject::addRemap(int oldID, int newID) {
+    if (oldID == newID) return;
     for (auto& obj : m_remapObjects) {
         if (obj.m_groupID == oldID && obj.m_chance == newID) return;
     }

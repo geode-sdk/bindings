@@ -40,7 +40,7 @@ void AudioEffectsLayer::triggerEffect(float pulse) {
     float scale;
     if (pulse == 1.f) scale = .8f;
     else if (pulse == .9f) scale = .6f;
-    else if (pulse == .8f) scale = .4f;
+    else if (pulse == .8f) scale = .5f;
     else scale = pulse * .2f;
     auto pulseMod = std::min(scale + m_audioScale, 1.1f);
     if (!m_goingDown && m_audioPulseMod > pulseMod) return;

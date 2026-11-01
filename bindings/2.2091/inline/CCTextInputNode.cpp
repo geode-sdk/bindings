@@ -90,7 +90,7 @@ void CCTextInputNode::ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* ev
 
 void CCTextInputNode::ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) {}
 
-void CCTextInputNode::forceOffset() {}
+void CCTextInputNode::forceOffset() { m_forceOffset = true; }
 
 std::string CCTextInputNode::getString() {
     return m_textField->getString();

@@ -1,6 +1,6 @@
 #include <Geode/mapping/CCLabelBMFont.hpp>
 #include <Geode/mapping/CCSprite.hpp>
-#include <Geode/mapping/CCString.hpp>
+#include <fmt/format.h>
 #include <Geode/binding/CurrencyRewardLayer.hpp>
 #include <Geode/binding/CurrencySprite.hpp>
 
@@ -21,42 +21,42 @@ void CurrencyRewardLayer::incrementCount(int count) {
     if (m_orbsLabel == nullptr) return;
     m_orbs += count;
     this->pulseSprite(m_orbsSprite);
-    m_orbsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+    m_orbsLabel->setString(fmt::format("{}", m_orbs).c_str());
 }
 
 void CurrencyRewardLayer::incrementDiamondsCount(int count) {
     if (m_diamondsLabel == nullptr) return;
     m_diamonds += count;
     this->pulseSprite(m_diamondsSprite);
-    m_diamondsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+    m_diamondsLabel->setString(fmt::format("{}", m_diamonds).c_str());
 }
 
 void CurrencyRewardLayer::incrementMoonsCount(int count) {
     if (m_moonsLabel == nullptr) return;
     m_moons += count;
     this->pulseSprite(m_moonsSprite);
-    m_moonsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+    m_moonsLabel->setString(fmt::format("{}", m_moons).c_str());
 }
 
 void CurrencyRewardLayer::incrementSpecialCount1(int count) {
     if (m_keysLabel == nullptr) return;
     m_keys += count;
     this->pulseSprite(m_keysSprite);
-    m_keysLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+    m_keysLabel->setString(fmt::format("{}", m_keys).c_str());
 }
 
 void CurrencyRewardLayer::incrementSpecialCount2(int count) {
     if (m_shardsLabel == nullptr) return;
     m_shards += count;
     this->pulseSprite(m_shardsSprite);
-    m_shardsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+    m_shardsLabel->setString(fmt::format("{}", m_shards).c_str());
 }
 
 void CurrencyRewardLayer::incrementStarsCount(int count) {
     if (m_starsLabel == nullptr) return;
     m_stars += count;
     this->pulseSprite(m_starsSprite);
-    m_starsLabel->setString(cocos2d::CCString::createWithFormat("%i", count)->getCString());
+    m_starsLabel->setString(fmt::format("{}", m_stars).c_str());
 }
 #endif
 

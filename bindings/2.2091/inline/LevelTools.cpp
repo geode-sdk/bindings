@@ -29,7 +29,7 @@ bool LevelTools::getLastGameplayReversed() {
 }
 
 float LevelTools::offsetBPMForTrack(int id) {
-    return id == 11 ? .1f : id == 13 ? .07f : .0f;
+    return id == 10 ? .1f : id == 12 ? .07f : .0f;
 }
 
 void LevelTools::toggleDebugLogging(bool enabled) {}
@@ -46,10 +46,6 @@ float LevelTools::valueForSpeedMod(int speed) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-std::string LevelTools::base64DecodeString(std::string str) {
-    return str.empty() ? str : cocos2d::ZipUtils::base64URLDecode(str);
-}
-
 std::string LevelTools::base64EncodeString(std::string str) {
     return str.empty() ? str : cocos2d::ZipUtils::base64URLEncode(str);
 }

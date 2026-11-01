@@ -31,7 +31,7 @@ std::string SelectSettingLayer::frameForValue(SelectSettingType type, int value)
 }
 
 std::string SelectSettingLayer::getSelectedFrame() {
-    return frameForValue(m_type, m_settingID);
+    return frameForItem(m_type, m_settingID);
 }
 
 int SelectSettingLayer::getSelectedValue() {

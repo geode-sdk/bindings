@@ -2,6 +2,7 @@
 #include <Geode/binding/ColorActionSprite.hpp>
 #include <Geode/binding/GJEffectManager.hpp>
 #include <Geode/binding/OBB2D.hpp>
+#include <Geode/binding/GJSpriteColor.hpp>
 
 void GameObject::firstSetup() {}
 
@@ -173,7 +174,7 @@ void GameObject::updateCustomColorType(short type) {
 }
 
 void GameObject::updateMainColorOnly() {
-    if (m_activeMainColorID != 0 && m_colorGroupCount != 0 && m_opacityGroupCount != 0) {
+    if (m_activeMainColorID != 0 || m_colorGroupCount != 0 || m_opacityGroupCount != 0) {
         this->updateMainColor(this->colorForMode(m_activeMainColorID, true));
     }
 }
@@ -203,7 +204,7 @@ void GameObject::updateUnmodifiedPositions() {
 
 #if defined(GEODE_IS_WINDOWS)
 bool GameObject::isBasicEnterEffect(int id) {
-    return (id > 21 && id < 29) || (id > 54 || id < 60) || id == 1915;
+    return (id >= 55 && id <= 59) || (id >= 22 && id <= 28) || id == 1915;
 }
 
 void GameObject::resetMID() {
@@ -700,19 +701,23 @@ void GameObject::updateBlendMode() {
 }
 
 void GameObject::updateCustomScaleX(float scaleX) {
-    m_customScaleX = std::round(m_customScaleX * 1000.f) / 1000.f;
-    m_scaleX = m_customScaleX;
-    this->setScaleX(scaleX);
+    scaleX = std::round(scaleX * 1000.f) / 1000.f;
+    m_fScaleX = 0.f;
+    m_scaleX = scaleX;
+    m_customScaleX = scaleX;
+    this->setRScaleX(1.f);
+    m_isDirty = true;
     m_isObjectRectDirty = true;
-    m_isOrientedBoxDirty = true;
 }
 
 void GameObject::updateCustomScaleY(float scaleY) {
-    m_customScaleY = std::round(m_customScaleY * 1000.f) / 1000.f;
-    m_scaleY = m_customScaleY;
-    this->setScaleY(scaleY);
+    scaleY = std::round(scaleY * 1000.f) / 1000.f;
+    m_fScaleY = 0.f;
+    m_scaleY = scaleY;
+    m_customScaleY = scaleY;
+    this->setRScaleY(1.f);
+    m_isDirty = true;
     m_isObjectRectDirty = true;
-    m_isOrientedBoxDirty = true;
 }
 
 void GameObject::updateHSVState() {

@@ -2,7 +2,7 @@
 
 int TableViewDataSource::numberOfRowsInSection(unsigned int section, TableView* tableView) { return 0; }
 
-unsigned int TableViewDataSource::numberOfSectionsInTableView(TableView* tableView) { return 0; }
+unsigned int TableViewDataSource::numberOfSectionsInTableView(TableView* tableView) { return 1; }
 
 void TableViewDataSource::TableViewCommitCellEditingStyleForRowAtIndexPath(TableView* tableView, TableViewCellEditingStyle style, CCIndexPath& indexPath) {}
 

@@ -12,6 +12,7 @@ LeaderboardsLayer::LeaderboardsLayer() {
     m_friendsBtn = nullptr;
     m_circle = nullptr;
     m_noInternet = nullptr;
+    m_tabs = nullptr;
     m_modeButtons = nullptr;
 }
 
@@ -22,6 +23,8 @@ LeaderboardsLayer::LeaderboardsLayer() {
 LeaderboardsLayer::~LeaderboardsLayer() {
     auto glm = GameLevelManager::sharedState();
     if (glm->m_leaderboardManagerDelegate == this) glm->m_leaderboardManagerDelegate = nullptr;
+    CC_SAFE_RELEASE(m_tabs);
+    CC_SAFE_RELEASE(m_modeButtons);
 }
 
 LeaderboardsLayer* LeaderboardsLayer::create(LeaderboardType type, LeaderboardStat stat) {

@@ -23,6 +23,9 @@
 #include <Geode/binding/StartPosObject.hpp>
 #include <Geode/binding/TeleportPortalObject.hpp>
 #include <Geode/binding/GJGradientLayer.hpp>
+#include <Geode/binding/EnterEffectObject.hpp>
+#include <Geode/binding/EnhancedTriggerObject.hpp>
+#include <Geode/binding/FMODAudioEngine.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;
@@ -117,6 +120,7 @@ int GJBaseGameLayer::atlasValue(int atlas) {
 }
 
 int GJBaseGameLayer::buttonIDToButton(int id) {
+    if (id == 98 || id == 99) return id;
     switch (id) {
         case 2: case 7: return 2;
         case 3: case 8: return 3;
@@ -184,7 +188,7 @@ float GJBaseGameLayer::getScaledGroundHeight(float height) {
 }
 
 int GJBaseGameLayer::getSpecialKey(int groupID, bool ignoreGroupParent, bool ignoreLinkedObjects) {
-    return groupID + (int)ignoreGroupParent * 1000000 + (int)ignoreLinkedObjects * 10000000 + 10000000;
+    return groupID + (int)ignoreGroupParent * 10000000 + (int)ignoreLinkedObjects * 1000000 + 100000000;
 }
 
 cocos2d::CCArray* GJBaseGameLayer::getTargetGroup(int index, int uniqueID) {
@@ -206,13 +210,13 @@ void GJBaseGameLayer::moveCameraToPos(cocos2d::CCPoint pos) {
 
 double GJBaseGameLayer::performMathOperation(double operand1, double operand2, int operation) {
     switch (operation) {
-        case 0:
-            return operand1 + operand2;
         case 1:
-            return operand1 - operand2;
+            return operand1 + operand2;
         case 2:
-            return operand1 * operand2;
+            return operand1 - operand2;
         case 3:
+            return operand1 * operand2;
+        case 4:
             return operand2 != 0.0 ? operand1 / operand2 : 0.0;
         default:
             return 0.0;
@@ -226,10 +230,6 @@ double GJBaseGameLayer::performMathRounding(double value, int type) {
         case 3: return ceil(value);
         default: return value;
     }
-}
-
-void GJBaseGameLayer::pickupItem(EffectGameObject* object) {
-    m_collectedItems->setObject(object, fmt::format("{}", object->m_uniqueID));
 }
 
 void GJBaseGameLayer::playerTouchedObject(PlayerObject* player, GameObject* object) {
@@ -311,28 +311,28 @@ GameObject* GJBaseGameLayer::tryGetGroupParent(int groupID) {
 }
 
 void GJBaseGameLayer::unlinkAllEvents() {
-    m_gameState.m_unkMapPairGJGameEventIntVectorEventTriggerInstance.clear();
+    m_gameState.m_gameEventTriggers.clear();
 }
 
 void GJBaseGameLayer::updateInternalCamOffsetX(float offsetX, float duration, float easingRate) {
-    m_gameState.m_unkPoint27.x = offsetX;
+    m_gameState.m_internalCameraOffsetTarget.x = offsetX;
     if (duration > 0.f) {
-        m_gameState.tweenValue(m_gameState.m_unkPoint26.x, offsetX, 18, duration, 1, easingRate, -1, -1);
+        m_gameState.tweenValue(m_gameState.m_internalCameraOffset.x, offsetX, 18, duration, 1, easingRate, -1, -1);
     }
     else {
         m_gameState.stopTweenAction(18);
-        m_gameState.m_unkPoint26.x = m_gameState.m_unkPoint27.x;
+        m_gameState.m_internalCameraOffset.x = m_gameState.m_internalCameraOffsetTarget.x;
     }
 }
 
 void GJBaseGameLayer::updateInternalCamOffsetY(float offsetY, float duration, float easingRate) {
-    m_gameState.m_unkPoint27.y = offsetY;
+    m_gameState.m_internalCameraOffsetTarget.y = offsetY;
     if (duration > 0.f) {
-        m_gameState.tweenValue(m_gameState.m_unkPoint26.y, offsetY, 19, duration, 1, easingRate, -1, -1);
+        m_gameState.tweenValue(m_gameState.m_internalCameraOffset.y, offsetY, 19, duration, 1, easingRate, -1, -1);
     }
     else {
-        m_gameState.stopTweenAction(10);
-        m_gameState.m_unkPoint26.y = m_gameState.m_unkPoint27.y;
+        m_gameState.stopTweenAction(19);
+        m_gameState.m_internalCameraOffset.y = m_gameState.m_internalCameraOffsetTarget.y;
     }
 }
 
@@ -445,12 +445,12 @@ void GJBaseGameLayer::applyShake(cocos2d::CCPoint& point) {
             xFactor = ((float)rand() / (float)RAND_MAX) * 2.f - 1.f;
             yFactor = ((float)rand() / (float)RAND_MAX) * 2.f - 1.f;
         }
-        m_gameState.m_unkPoint34.x = xFactor * m_gameState.m_unkUint15;
-        m_gameState.m_unkPoint34.y = yFactor * m_gameState.m_unkUint15;
+        m_gameState.m_cameraShakeOffset.x = xFactor * m_gameState.m_unkUint15;
+        m_gameState.m_cameraShakeOffset.y = yFactor * m_gameState.m_unkUint15;
     }
 
-    point.x += m_gameState.m_unkPoint34.x;
-    point.y += m_gameState.m_unkPoint34.y;
+    point.x += m_gameState.m_cameraShakeOffset.x;
+    point.y += m_gameState.m_cameraShakeOffset.y;
 }
 
 void GJBaseGameLayer::asyncBGLoaded(int background) {
@@ -715,6 +715,7 @@ PlayerObject* GJBaseGameLayer::getOtherPlayer(PlayerObject* player) {
 }
 
 int GJBaseGameLayer::getPlayerButtonID(int button, bool player2) {
+    if (button == 98 || button == 99) return button;
     if (button < 2 || button > 5) return player2 ? 6 : 1;
     return player2 ? button + 5 : button;
 }
@@ -1273,11 +1274,11 @@ void GJBaseGameLayer::stopCustomEnterEffect(EnterEffectObject* object) {
 void GJBaseGameLayer::stopSFXTrigger(SFXTriggerGameObject* object) {
     if (object->m_objectID != 3602) return;
     auto engine = FMODAudioEngine::sharedEngine();
-    for (auto& channel : m_gameState.m_unkUMap8[object->m_uniqueID]) {
+    for (auto& channel : m_gameState.m_sfxTriggerChannels[object->m_uniqueID]) {
         engine->stopChannel(channel);
         m_gameState.m_proximityVolumeRelated.erase({ channel, 0 });
     }
-    m_gameState.m_unkUMap8[object->m_uniqueID].clear();
+    m_gameState.m_sfxTriggerChannels[object->m_uniqueID].clear();
 }
 
 void GJBaseGameLayer::swapBackground(int background) {
@@ -1326,24 +1327,6 @@ void GJBaseGameLayer::switchToFlyMode(PlayerObject* player, GameObject* object, 
             break;
     }
     this->toggleGlitter(true);
-}
-
-void GJBaseGameLayer::switchToRobotMode(PlayerObject* player, GameObject* portal, bool noPortal) {
-    player->switchedToMode(GameObjectType::RobotPortal);
-    auto lastPortal = this->processCameraObject(portal, player);
-    player->toggleRobotMode(true, lastPortal && lastPortal->m_hasNoEffects);
-}
-
-void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal, bool noPortal) {
-    player->switchedToMode(GameObjectType::BallPortal);
-    auto lastPortal = this->processCameraObject(portal, player);
-    player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
-}
-
-void GJBaseGameLayer::switchToSpiderMode(PlayerObject* player, GameObject* portal, bool noPortal) {
-    player->switchedToMode(GameObjectType::SpiderPortal);
-    auto lastPortal = this->processCameraObject(portal, player);
-    player->toggleSpiderMode(true, lastPortal && lastPortal->m_hasNoEffects);
 }
 
 void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
@@ -1700,8 +1683,8 @@ void GJBaseGameLayer::updateSavePositionObjects() {
             position = object->m_lastPosition;
         }
         auto index = (m_gameState.m_unkUint11 % value + offset) * 2;
-        m_gameState.m_unkVecFloat1[index] = position.x;
-        m_gameState.m_unkVecFloat1[index + 1] = position.y;
+        m_gameState.m_positionHistory[index] = position.x;
+        m_gameState.m_positionHistory[index + 1] = position.y;
     }
 }
 
@@ -1720,6 +1703,26 @@ void GJBaseGameLayer::updateTimeMod(float speed, bool players, bool noEffects) {
 
 void GJBaseGameLayer::queueTimeWarp(float timeWarp) {
     m_gameState.m_queuedTimeWarp = timeWarp;
+}
+#endif
+
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_INTEL_MAC)
+void GJBaseGameLayer::switchToRobotMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::RobotPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRobotMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
+void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::BallPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
+void GJBaseGameLayer::switchToSpiderMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::SpiderPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleSpiderMode(true, lastPortal && lastPortal->m_hasNoEffects);
 }
 #endif
 

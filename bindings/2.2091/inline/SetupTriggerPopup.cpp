@@ -214,6 +214,7 @@ void SetupTriggerPopup::setMaxSliderValue(float value, int property) {
 
 void SetupTriggerPopup::toggleBG(bool visible) {
     if (auto background = m_mainLayer->getChildByTag(1)) background->setVisible(visible);
+    if (auto background = m_mainLayer->getChildByTag(3)) background->setVisible(visible);
 }
 
 void SetupTriggerPopup::toggleLimitValue(int property, bool limit) {
@@ -242,7 +243,7 @@ void SetupTriggerPopup::updateSlider(int property, float value) {
 
 #if defined(GEODE_IS_IOS)
 float SetupTriggerPopup::getTruncatedValue(float value, int decimals) {
-    if (decimals < 1) return value;
+    if (decimals < 1) return (float)(int)value;
     auto exponent = decimals > 1 ? powf(10.f, decimals) : 10.f;
     return roundf(value * exponent) / exponent;
 }

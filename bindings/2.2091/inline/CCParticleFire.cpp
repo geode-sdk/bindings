@@ -43,7 +43,7 @@ bool cocos2d::CCParticleFire::initWithTotalParticles(unsigned int p0) {
     m_fAngle = 90.f;
     m_fAngleVar = 10.f;
     auto winSize = CCDirector::sharedDirector()->getWinSize();
-    this->setPosition(winSize / 2.f);
+    this->setPosition({ winSize.width / 2.f, 60.f });
     m_tPosVar.x = 40.f;
     m_tPosVar.y = 20.f;
     m_fLife = 3.f;
@@ -77,7 +77,7 @@ bool cocos2d::CCParticleFire::initWithTotalParticles(unsigned int p0) {
         }
     }
     if (texture) this->setTexture(texture);
-    this->setBlendAdditive(false);
+    this->setBlendAdditive(true);
     return true;
 }
 #endif

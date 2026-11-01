@@ -30,7 +30,7 @@ void CreateGuidelinesLayer::ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEve
 void CreateGuidelinesLayer::keyUp(cocos2d::enumKeyCodes key, double timestamp) {}
 
 void CreateGuidelinesLayer::doClearGuidelines() {
-    m_infoLabel->setString("Guidelines cleared.");
+    m_infoLabel->setString("Guidelines cleared");
     if (m_delegate) {
         auto settings = m_delegate->getLevelSettings();
         settings->m_guidelineString = "";
