@@ -8702,6 +8702,8 @@ class GameStatsManager : cocos2d::CCNode {
     // GameStatsManager() = win 0x1d0ae0;
     static GameStatsManager* sharedState() = win 0x2d6890, imac 0x1f250, m1 0x1aebc, ios 0x3c3198;
 
+    static int dailyRecallPrice(int) = win inline;
+
     virtual bool init() = win 0x2d6ae0, imac 0x1f730, m1 0x1b200, ios 0x3c3334;
 
     int accountIDForIcon(int id, UnlockType type) = win inline, imac 0x316d40, m1 0x2a8d08;
@@ -8734,7 +8736,6 @@ class GameStatsManager : cocos2d::CCNode {
     void createSecretChestRewards() = win 0x2eef10;
     void createSpecialChestItems() = win 0x2e98b0, imac 0x21fc0, m1 0x1d328;
     void createStoreItems() = win 0x2d7220, imac 0x1f7e0, m1 0x1b2a8;
-    TodoReturn dailyRecallPrice(int);
     void dataLoaded(DS_Dictionary* dict) = win 0x2f70d0, imac 0x53f30, m1 0x4dd88;
     void encodeDataTo(DS_Dictionary* dict) = win 0x2f6dc0, imac 0x53a00, m1 0x4d8b0;
     void firstSetup() = win 0x2f66a0, imac 0x53230, m1 0x4d250;
