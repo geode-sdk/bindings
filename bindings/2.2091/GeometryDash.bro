@@ -6799,7 +6799,7 @@ class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
 
     TodoReturn buildRows() = win 0xe8120;
     TodoReturn delayedRebuild(float);
-    bool init(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6c60;
+    bool init(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6c60, imac 0x93c5b0, m1 0x81d5ac;
     void onClearAll(cocos2d::CCObject* sender) = win 0xe8ae0;
     void onDone(cocos2d::CCObject* sender) = win 0xe8a40;
     void onGlobalSearch(cocos2d::CCObject* sender) = win 0xe79e0;
@@ -8865,7 +8865,7 @@ class GameStatsManager : cocos2d::CCNode {
     void toggleEnableItem(UnlockType type, int id, bool enabled) = win 0x2e9810, imac 0x3d970, m1 0x3753c;
     void tryFixPathBug() = win 0x2da780, imac 0x316b0, m1 0x2b2d4;
     void trySelectActivePath() = win 0x2da5f0, imac 0x31220, m1 0x2ad24;
-    void uncompleteLevel(GJGameLevel* level) = win 0x2e2450, m1 0x2d8b0;
+    void uncompleteLevel(GJGameLevel* level) = win 0x2e2450, imac 0x33b70, m1 0x2d8b0;
     TodoReturn unlockDailyRecall(int);
     void unlockGauntlet(int id) = win inline, imac 0x3e630, m1 0x3823c, ios inline;
     GJRewardItem* unlockGauntletChest(int id) = win inline, imac 0x3e790, m1 0x383c4;
@@ -9725,9 +9725,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void swapGround(int ground) = win inline, imac 0xf0b50, m1 0xd1820;
     void swapMiddleground(int middleground) = win inline, imac 0xf0ca0;
     void switchToFlyMode(PlayerObject* player, GameObject* object, bool noPortal, int type) = win inline, imac 0x101bb0, m1 0xe0474;
-    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe066c;
-    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe05c0;
-    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, m1 0xe0718;
+    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac inline, m1 0xe066c;
+    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac inline, m1 0xe05c0;
+    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac inline, m1 0xe0718;
     void syncBGTextures() = win 0x344f00, imac 0x1383e0, m1 0x10dbfc;
     void teleportPlayer(TeleportPortalObject* object, PlayerObject* player) = win 0x315f20, imac 0xfcdd0, m1 0xdbcc0;
     void testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x129d90, m1 0x102288;
@@ -19342,7 +19342,7 @@ class RowPressItem : CCMenuItemSpriteExtra {
 class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual ~ScrollableContentLayer() = win 0x80bf0, imac 0x96dd60, m1 0x84a7ac, ios 0x5267c8;
 
-    static ScrollableContentLayer* create(cocos2d::CCSize size) = win 0x80ef0;
+    static ScrollableContentLayer* create(cocos2d::CCSize size) = win 0x80ef0, imac 0x96afb0, m1 0x847c4c;
 
     virtual void update(float dt) = win 0x82040, imac 0x96cc90, m1 0x84978c, ios 0x525c74;
     virtual void visit() = win 0x81e30, imac 0x96c8a0, m1 0x8493f4, ios 0x525a64;
@@ -19577,7 +19577,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     ~SecretLayer2() = win inline, ios 0x3a638c;
 
     static SecretLayer2* create() = win inline, imac 0x496040;
-    static cocos2d::CCScene* scene() = win 0x577ca0, m1 0x3fe584;
+    static cocos2d::CCScene* scene() = win 0x577ca0, imac 0x496000, m1 0x3fe584;
 
     virtual bool init() = win 0x577e20, imac 0x496170, m1 0x3fe6b0, ios 0x3a647c;
     virtual void onExit() = win 0x57f4f0, imac 0x49c130, m1 0x404228, ios 0x3aa8ac;
@@ -23675,7 +23675,7 @@ class StartPosLayer : SetupTriggerPopup {
 [[link(android)]]
 class StartPosObject : EffectGameObject {
     StartPosObject() = inline;
-    ~StartPosObject() = win inline, m1 0x15cf10, ios 0x42da3c;
+    ~StartPosObject() = win inline, imac 0x19Dea0, m1 0x15cf10, ios 0x42da3c;
 
     static StartPosObject* create() = win inline, imac 0x19df60, m1 0x15cff8;
 
