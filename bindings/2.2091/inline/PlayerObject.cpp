@@ -37,7 +37,7 @@ PlayerObject::PlayerObject() {
     m_platformerVelocityRelated = 1.0f;
     new (&m_touchedRings) decltype(m_touchedRings)();
     m_gravityMod = 1.0f;
-    new (&m_jumpPadRelated) decltype(m_jumpPadRelated)();
+    new (&m_touchedForceIds) decltype(m_touchedForceIds)();
     new (&m_holdingButtons) decltype(m_holdingButtons)();
     new (&m_currentRobotAnimation) std::string("run");
 }
@@ -591,7 +591,7 @@ void PlayerObject::resetStateVariables() {
     m_stateScale = 0;
     m_stateForce = 0;
     m_stateForceVector = cocos2d::CCPoint { 0.f, 0.f };
-    m_jumpPadRelated.clear();
+    m_touchedForceIds.clear();
 }
 
 void PlayerObject::rotateGameplayOnly(bool sideways) {
@@ -692,8 +692,8 @@ void PlayerObject::touchedObject(GameObject* object) {
             auto forceObject = static_cast<ForceBlockGameObject*>(object);
             auto forceID = forceObject->m_forceID;
             if (forceID > 0) {
-                if (m_jumpPadRelated[forceID]) break;
-                m_jumpPadRelated[forceID] = true;
+                if (m_touchedForceIds[forceID]) break;
+                m_touchedForceIds[forceID] = true;
             }
             m_stateForceVector = m_stateForceVector + forceObject->calculateForceToTarget(this);
             auto magnitude = sqrtf(m_stateForceVector.x * m_stateForceVector.x + m_stateForceVector.y * m_stateForceVector.y);
@@ -790,7 +790,7 @@ void PlayerObject::updateStateVariables() {
     m_stateScale--;
     m_stateForce--;
     m_stateForceVector = cocos2d::CCPoint { 0.f, 0.f };
-    m_jumpPadRelated.clear();
+    m_touchedForceIds.clear();
 }
 
 void PlayerObject::updateStaticForce(float rotation, float staticForce, bool additive) {
