@@ -466,3 +466,13 @@ void GameStatsManager::addSpecialRewardDescription(std::string key, std::string 
 }
 #endif
 
+#if defined(GEODE_IS_WINDOWS)
+int GameStatsManager::dailyRecallPrice(int dailyID) {
+    if (dailyID <= 100000)
+        return 1;
+    if (dailyID <= 200000)
+        return 3;
+
+    return 5;
+}
+#endif
