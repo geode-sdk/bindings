@@ -35,10 +35,6 @@ bool GameManager::getGameVariableDefault(const char* key, bool defaultValue) {
     return object->boolValue();
 }
 
-int GameManager::getIntGameVariable(const char* key) {
-    return m_valueKeeper->valueForKey(std::string("gv_") + key)->intValue();
-}
-
 int GameManager::getIntGameVariableDefault(const char* key, int defaultValue) {
     //helper function
     auto object = m_valueKeeper->valueForKey(std::string("gv_") + key);
