@@ -1329,24 +1329,6 @@ void GJBaseGameLayer::switchToFlyMode(PlayerObject* player, GameObject* object, 
     this->toggleGlitter(true);
 }
 
-void GJBaseGameLayer::switchToRobotMode(PlayerObject* player, GameObject* portal, bool noPortal) {
-    player->switchedToMode(GameObjectType::RobotPortal);
-    auto lastPortal = this->processCameraObject(portal, player);
-    player->toggleRobotMode(true, lastPortal && lastPortal->m_hasNoEffects);
-}
-
-void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal, bool noPortal) {
-    player->switchedToMode(GameObjectType::BallPortal);
-    auto lastPortal = this->processCameraObject(portal, player);
-    player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
-}
-
-void GJBaseGameLayer::switchToSpiderMode(PlayerObject* player, GameObject* portal, bool noPortal) {
-    player->switchedToMode(GameObjectType::SpiderPortal);
-    auto lastPortal = this->processCameraObject(portal, player);
-    player->toggleSpiderMode(true, lastPortal && lastPortal->m_hasNoEffects);
-}
-
 void GJBaseGameLayer::testInstantCountTrigger(int itemID, int compareCount, int groupID, bool activateGroup, int triggerMode, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
     auto itemCount = m_effectManager->countForItem(itemID);
     switch (triggerMode) {
@@ -1721,6 +1703,26 @@ void GJBaseGameLayer::updateTimeMod(float speed, bool players, bool noEffects) {
 
 void GJBaseGameLayer::queueTimeWarp(float timeWarp) {
     m_gameState.m_queuedTimeWarp = timeWarp;
+}
+#endif
+
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_INTEL_MAC)
+void GJBaseGameLayer::switchToRobotMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::RobotPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRobotMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
+void GJBaseGameLayer::switchToRollMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::BallPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleRollMode(true, lastPortal && lastPortal->m_hasNoEffects);
+}
+
+void GJBaseGameLayer::switchToSpiderMode(PlayerObject* player, GameObject* portal, bool noPortal) {
+    player->switchedToMode(GameObjectType::SpiderPortal);
+    auto lastPortal = this->processCameraObject(portal, player);
+    player->toggleSpiderMode(true, lastPortal && lastPortal->m_hasNoEffects);
 }
 #endif
 

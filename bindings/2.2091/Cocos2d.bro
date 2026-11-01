@@ -1011,7 +1011,7 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackIn : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBackIn* create(cocos2d::CCActionInterval*) = imac 0x518330, ios 0x30af50;
+    static cocos2d::CCEaseBackIn* create(cocos2d::CCActionInterval*) = imac 0x518330, m1 0x47325c, ios 0x30af50;
 
     // CCEaseBackIn(cocos2d::CCEaseBackIn const&);
     // CCEaseBackIn();
@@ -1022,7 +1022,7 @@ class cocos2d::CCEaseBackIn : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackInOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBackInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x518720, ios inline;
+    static cocos2d::CCEaseBackInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x518720, m1 0x473630, ios inline;
 
     // CCEaseBackInOut(cocos2d::CCEaseBackInOut const&);
     // CCEaseBackInOut();
@@ -1033,7 +1033,7 @@ class cocos2d::CCEaseBackInOut : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBackOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = imac 0x518520, ios 0x30b0f4;
+    static cocos2d::CCEaseBackOut* create(cocos2d::CCActionInterval*) = imac 0x518520, m1 0x473440, ios 0x30b0f4;
 
     // CCEaseBackOut(cocos2d::CCEaseBackOut const&);
     // CCEaseBackOut();
@@ -1056,7 +1056,7 @@ class cocos2d::CCEaseBounce : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounceIn : cocos2d::CCEaseBounce {
-    static cocos2d::CCEaseBounceIn* create(cocos2d::CCActionInterval*) = imac 0x517aa0, ios 0x30abf4;
+    static cocos2d::CCEaseBounceIn* create(cocos2d::CCActionInterval*) = imac 0x517aa0, m1 0x47290c, ios 0x30abf4;
 
     // CCEaseBounceIn(cocos2d::CCEaseBounceIn const&);
     // CCEaseBounceIn();
@@ -1067,7 +1067,7 @@ class cocos2d::CCEaseBounceIn : cocos2d::CCEaseBounce {
 
 [[link(win, android)]]
 class cocos2d::CCEaseBounceInOut : cocos2d::CCEaseBounce {
-    static cocos2d::CCEaseBounceInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x517fc0, ios inline;
+    static cocos2d::CCEaseBounceInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x517fc0, m1 0x472e84, ios inline;
 
     // CCEaseBounceInOut(cocos2d::CCEaseBounceInOut const&);
     // CCEaseBounceInOut();
@@ -1103,7 +1103,7 @@ class cocos2d::CCEaseElastic : cocos2d::CCActionEase {
 [[link(win, android)]]
 class cocos2d::CCEaseElasticIn : cocos2d::CCEaseElastic {
     static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval* pAction) = imac 0x516f60, ios inline;
-    static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*, float) = imac 0x516f80, ios 0x30a6c0;
+    static cocos2d::CCEaseElasticIn* create(cocos2d::CCActionInterval*, float) = imac 0x516f80, m1 0x471e6c, ios 0x30a6c0;
 
     // CCEaseElasticIn(cocos2d::CCEaseElasticIn const&);
     // CCEaseElasticIn();
@@ -1149,7 +1149,7 @@ class cocos2d::CCEaseExponentialIn : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseExponentialInOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x5164f0, ios inline;
+    static cocos2d::CCEaseExponentialInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x5164f0, m1 0x471440, ios inline;
 
     // CCEaseExponentialInOut(cocos2d::CCEaseExponentialInOut const&);
     // CCEaseExponentialInOut();
@@ -1193,7 +1193,7 @@ class cocos2d::CCEaseInOut : cocos2d::CCEaseRateAction {
 
 [[link(win, android)]]
 class cocos2d::CCEaseOut : cocos2d::CCEaseRateAction {
-    static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = imac 0x515c30, ios 0x309f28;
+    static cocos2d::CCEaseOut* create(cocos2d::CCActionInterval*, float) = imac 0x515c30, m1 0x470b94, ios 0x309f28;
 
     // CCEaseOut(cocos2d::CCEaseOut const&);
     // CCEaseOut();
@@ -1218,7 +1218,7 @@ class cocos2d::CCEaseRateAction : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineIn : cocos2d::CCActionEase {
-    static cocos2d::CCEaseSineIn* create(cocos2d::CCActionInterval* pAction) = imac 0x516720, ios inline;
+    static cocos2d::CCEaseSineIn* create(cocos2d::CCActionInterval* pAction) = imac 0x516720, m1 0x47165C, ios inline;
 
     // CCEaseSineIn(cocos2d::CCEaseSineIn const&);
     // CCEaseSineIn();
@@ -1229,7 +1229,7 @@ class cocos2d::CCEaseSineIn : cocos2d::CCActionEase {
 
 [[link(win, android)]]
 class cocos2d::CCEaseSineInOut : cocos2d::CCActionEase {
-    static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x516b10, ios inline;
+    static cocos2d::CCEaseSineInOut* create(cocos2d::CCActionInterval* pAction) = imac 0x516b10, m1 0x471a3c, ios inline;
 
     // CCEaseSineInOut(cocos2d::CCEaseSineInOut const&);
     // CCEaseSineInOut();
@@ -1366,7 +1366,7 @@ class cocos2d::CCFadeIn : cocos2d::CCActionInterval {
 
 [[link(win, android)]]
 class cocos2d::CCFadeOut : cocos2d::CCActionInterval {
-    static cocos2d::CCFadeOut* create(float) = imac 0x3a42e0, ios 0x21fcc4;
+    static cocos2d::CCFadeOut* create(float) = imac 0x3a42e0, m1 0x32c0dc, ios 0x21fcc4;
 
     // CCFadeOut(cocos2d::CCFadeOut const&);
     // CCFadeOut();
@@ -1701,7 +1701,7 @@ class cocos2d::CCGridBase : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCHide : cocos2d::CCActionInstant {
-    static cocos2d::CCHide* create() = imac 0x88f870, ios 0x24286c;
+    static cocos2d::CCHide* create() = imac 0x88f870, m1 0x783974, ios 0x24286c;
 
     // CCHide(cocos2d::CCHide const&);
     // CCHide();
@@ -2555,7 +2555,7 @@ class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     bool dispatchScrollMSG(float, float) = imac 0x59e010, m1 0x4ed2dc, ios inline;
     void forceAddDelegate(cocos2d::CCMouseDelegate*) = imac 0x1e5d50, m1 0x4ed2a0, ios inline;
     void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = imac 0x59df00, ios 0x39ab60;
-    void removeDelegate(cocos2d::CCMouseDelegate*) = imac 0x59de50, ios 0x39ab18;
+    void removeDelegate(cocos2d::CCMouseDelegate*) = imac 0x59de50, m1 0x4ed0e8, ios 0x39ab18;
 
     cocos2d::CCArray* m_pMouseHandlers;
     bool m_bLocked;
@@ -3053,7 +3053,7 @@ class cocos2d::CCParticleSmoke : cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSnow : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleSnow* create() = imac 0x47b290, ios inline;
+    static cocos2d::CCParticleSnow* create() = imac 0x47b290, m1 0x3e5aaC, ios inline;
     static cocos2d::CCParticleSnow* createWithTotalParticles(unsigned int numberOfParticles) = imac 0x47b310, ios inline;
 
     // CCParticleSnow(cocos2d::CCParticleSnow const&);
@@ -3248,7 +3248,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     bool initWithFile(char const*, bool) = imac 0x8ae4c0, m1 0x7a06f0, ios 0x226638;
     bool isFull() = imac 0x55de80, m1 0x7a2598, ios inline;
     void loadDefaults() = imac 0x8b2f80, ios inline;
-    void loadScaledDefaults(float) = imac 0x60e270, ios 0x2298b0;
+    void loadScaledDefaults(float) = imac 0x8b3010, m1 0x7a460C, ios 0x2298b0;
     void resetSystem() = imac 0x8b1690, m1 0x7a3308, ios 0x22877c;
     void resumeSystem() = imac 0x8b1680, m1 0x7a32fc, ios 0x228770;
     void saveDefaults() = imac 0x8b0190, m1 0x7a21f8, ios 0x22784c;
@@ -4788,7 +4788,7 @@ class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate 
     virtual void touchesEnded(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4c8790, m1 0x42b604, ios 0x1ce378;
     virtual void touchesCancelled(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4c87d0, m1 0x42b638, ios 0x1ce3ac;
 
-    void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4c76a0, ios 0x1cd878;
+    void addPrioTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4c76a0, m1 0x42a4f0, ios 0x1cd878;
     void addStandardDelegate(cocos2d::CCTouchDelegate*, int) = imac 0x4c79e0, m1 0x42a870, ios 0x1cdb00;
     void addTargetedDelegate(cocos2d::CCTouchDelegate*, int, bool) = imac 0x4c7740, m1 0x42a590, ios 0x1cd8ec;
     void decrementForcePrio(int) = imac 0x4c72e0, m1 0x42a0ec, ios inline;
@@ -4873,7 +4873,7 @@ class cocos2d::CCTransitionCrossFade : cocos2d::CCTransitionScene {
 class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
     CCTransitionFade() = ios inline;
-    virtual ~CCTransitionFade() = imac 0xa74d0, ios inline;
+    virtual ~CCTransitionFade() = imac 0xa74d0, m1 0xa7520, ios inline;
 
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xa7660, m1 0x968d8, ios 0x266048;
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::ccColor3B const&) = imac 0xa75c0, m1 0x9683c, ios 0x265fac;
@@ -4890,7 +4890,7 @@ class cocos2d::CCTransitionFadeBL : cocos2d::CCTransitionFadeTR {
     CCTransitionFadeBL();
     virtual ~CCTransitionFadeBL() = imac 0xa8a80;
 
-    static cocos2d::CCTransitionFadeBL* create(float, cocos2d::CCScene*) = imac 0xa8b20;
+    static cocos2d::CCTransitionFadeBL* create(float, cocos2d::CCScene*) = imac 0xa8b20, m1 0x97c50;
 
     virtual cocos2d::CCActionInterval* actionWithSize(cocos2d::CCSize const&) = imac 0xa8bb0, m1 0x97cf8;
 }
@@ -4926,7 +4926,7 @@ class cocos2d::CCTransitionFadeUp : cocos2d::CCTransitionFadeTR {
     CCTransitionFadeUp();
     virtual ~CCTransitionFadeUp() = imac 0xa8c80;
 
-    static cocos2d::CCTransitionFadeUp* create(float, cocos2d::CCScene*) = imac 0xa8d20;
+    static cocos2d::CCTransitionFadeUp* create(float, cocos2d::CCScene*) = imac 0xa8d20, m1 0x97e18;
 
     virtual cocos2d::CCActionInterval* actionWithSize(cocos2d::CCSize const&) = imac 0xa8db0, m1 0x97ec0;
 }
@@ -4937,8 +4937,8 @@ class cocos2d::CCTransitionFlipAngular : cocos2d::CCTransitionSceneOriented {
     CCTransitionFlipAngular();
     virtual ~CCTransitionFlipAngular() = imac 0xa6450;
 
-    static cocos2d::CCTransitionFlipAngular* create(float, cocos2d::CCScene*) = imac 0xa6720;
-    static cocos2d::CCTransitionFlipAngular* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa66a0;
+    static cocos2d::CCTransitionFlipAngular* create(float, cocos2d::CCScene*) = imac 0xa6720, m1 0x95af4;
+    static cocos2d::CCTransitionFlipAngular* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa66a0, m1 0x95a6c;
 
     virtual void onEnter() = imac 0xa64f0, m1 0x958e0;
 }
@@ -4949,8 +4949,8 @@ class cocos2d::CCTransitionFlipX : cocos2d::CCTransitionSceneOriented {
     CCTransitionFlipX();
     virtual ~CCTransitionFlipX() = imac 0xa67e0;
 
-    static cocos2d::CCTransitionFlipX* create(float, cocos2d::CCScene*) = imac 0xa5f60;
-    static cocos2d::CCTransitionFlipX* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa5ee0;
+    static cocos2d::CCTransitionFlipX* create(float, cocos2d::CCScene*) = imac 0xa5f60, m1 0x953d0;
+    static cocos2d::CCTransitionFlipX* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa5ee0, m1 0x95348;
 
     virtual void onEnter() = imac 0xa5d40, m1 0x951c4;
 }
@@ -4961,8 +4961,8 @@ class cocos2d::CCTransitionFlipY : cocos2d::CCTransitionSceneOriented {
     CCTransitionFlipY();
     virtual ~CCTransitionFlipY() = imac 0xa6070;
 
-    static cocos2d::CCTransitionFlipY* create(float, cocos2d::CCScene*) = imac 0xa6340;
-    static cocos2d::CCTransitionFlipY* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa62c0;
+    static cocos2d::CCTransitionFlipY* create(float, cocos2d::CCScene*) = imac 0xa6340, m1 0x95760;
+    static cocos2d::CCTransitionFlipY* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa62c0, m1 0x956d8;
 
     virtual void onEnter() = imac 0xa6110, m1 0x95554;
 }
@@ -4993,7 +4993,7 @@ class cocos2d::CCTransitionMoveInB : cocos2d::CCTransitionMoveInL {
 class cocos2d::CCTransitionMoveInL : cocos2d::CCTransitionScene, cocos2d::CCTransitionEaseScene {
     // CCTransitionMoveInL(cocos2d::CCTransitionMoveInL const&);
     CCTransitionMoveInL() = ios inline;
-    virtual ~CCTransitionMoveInL() = imac 0xa4a60, ios inline;
+    virtual ~CCTransitionMoveInL() = imac 0xa4a60, m1 0xa42C0, ios inline;
 
     static cocos2d::CCTransitionMoveInL* create(float, cocos2d::CCScene*) = imac 0xa4360, m1 0x939ac, ios inline;
 
@@ -5054,7 +5054,7 @@ class cocos2d::CCTransitionProgress : cocos2d::CCTransitionScene {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionProgressHorizontal : cocos2d::CCTransitionProgress {
-    static cocos2d::CCTransitionProgressHorizontal* create(float, cocos2d::CCScene*) = imac 0x278e80;
+    static cocos2d::CCTransitionProgressHorizontal* create(float, cocos2d::CCScene*) = imac 0x278e80, m1 0x21ee14;
 
     virtual cocos2d::CCProgressTimer* progressTimerNodeWithRenderTexture(cocos2d::CCRenderTexture*) = imac 0x279090, m1 0x21eeec;
 }
@@ -5084,14 +5084,14 @@ class cocos2d::CCTransitionProgressRadialCCW : cocos2d::CCTransitionProgress {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionProgressRadialCW : cocos2d::CCTransitionProgress {
-    static cocos2d::CCTransitionProgressRadialCW* create(float, cocos2d::CCScene*) = imac 0x278e80;
+    static cocos2d::CCTransitionProgressRadialCW* create(float, cocos2d::CCScene*) = imac 0x278e80, m1 0x21ec78;
 
     virtual cocos2d::CCProgressTimer* progressTimerNodeWithRenderTexture(cocos2d::CCRenderTexture*) = imac 0x278f20, m1 0x21ed50;
 }
 
 [[link(win, android)]]
 class cocos2d::CCTransitionProgressVertical : cocos2d::CCTransitionProgress {
-    static cocos2d::CCTransitionProgressVertical* create(float, cocos2d::CCScene*) = imac 0x2791a0;
+    static cocos2d::CCTransitionProgressVertical* create(float, cocos2d::CCScene*) = imac 0x2791a0, m1 0x21efe8;
 
     virtual cocos2d::CCProgressTimer* progressTimerNodeWithRenderTexture(cocos2d::CCRenderTexture*) = imac 0x279240, m1 0x21f0c0;
 }
@@ -5143,7 +5143,7 @@ class cocos2d::CCTransitionShrinkGrow : cocos2d::CCTransitionScene, cocos2d::CCT
     CCTransitionShrinkGrow();
     virtual ~CCTransitionShrinkGrow() = imac 0xa6400;
 
-    static cocos2d::CCTransitionShrinkGrow* create(float, cocos2d::CCScene*) = imac 0xa59c0;
+    static cocos2d::CCTransitionShrinkGrow* create(float, cocos2d::CCScene*) = imac 0xa59c0, m1 0x94e78;
 
     virtual void onEnter() = imac 0xa5a50, m1 0x94f20;
     virtual cocos2d::CCActionInterval* easeActionWithAction(cocos2d::CCActionInterval*) = imac 0xa5bd0, m1 0x950a8;
@@ -5168,7 +5168,7 @@ class cocos2d::CCTransitionSlideInL : cocos2d::CCTransitionScene, cocos2d::CCTra
     CCTransitionSlideInL();
     virtual ~CCTransitionSlideInL() = imac 0xa5610, m1 0x9426c;
 
-    static cocos2d::CCTransitionSlideInL* create(float, cocos2d::CCScene*) = imac 0xa4fa0;
+    static cocos2d::CCTransitionSlideInL* create(float, cocos2d::CCScene*) = imac 0xa4fa0, m1 0x9451c;
 
     virtual void onEnter() = imac 0xa4d90, m1 0x94330;
     virtual void sceneOrder() = imac 0xa4e80, m1 0x94438;
@@ -5209,7 +5209,7 @@ class cocos2d::CCTransitionSplitCols : cocos2d::CCTransitionScene, cocos2d::CCTr
     CCTransitionSplitCols();
     virtual ~CCTransitionSplitCols() = imac 0xa8a30;
 
-    static cocos2d::CCTransitionSplitCols* create(float, cocos2d::CCScene*) = imac 0xa82c0;
+    static cocos2d::CCTransitionSplitCols* create(float, cocos2d::CCScene*) = imac 0xa82c0, m1 0x974a8;
 
     virtual void onEnter() = imac 0xa8350, m1 0x97550;
     virtual cocos2d::CCActionInterval* action() = imac 0xa8440, m1 0x97664;
@@ -5222,7 +5222,7 @@ class cocos2d::CCTransitionSplitRows : cocos2d::CCTransitionSplitCols {
     CCTransitionSplitRows();
     virtual ~CCTransitionSplitRows() = imac 0xa8500, m1 0x976e0;
 
-    static cocos2d::CCTransitionSplitRows* create(float, cocos2d::CCScene*) = imac 0xa8610;
+    static cocos2d::CCTransitionSplitRows* create(float, cocos2d::CCScene*) = imac 0xa8610, m1 0x977b8;
 
     virtual cocos2d::CCActionInterval* action() = imac 0xa85f0, m1 0x977a4;
 }
@@ -5246,8 +5246,8 @@ class cocos2d::CCTransitionZoomFlipAngular : cocos2d::CCTransitionSceneOriented 
     CCTransitionZoomFlipAngular();
     virtual ~CCTransitionZoomFlipAngular() = imac 0xa7ec0;
 
-    static cocos2d::CCTransitionZoomFlipAngular* create(float, cocos2d::CCScene*) = imac 0xa7410;
-    static cocos2d::CCTransitionZoomFlipAngular* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa7390;
+    static cocos2d::CCTransitionZoomFlipAngular* create(float, cocos2d::CCScene*) = imac 0xa7410, m1 0x966b8;
+    static cocos2d::CCTransitionZoomFlipAngular* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa7390, m1 0x96630;
 
     virtual void onEnter() = imac 0xa7160, m1 0x96444;
 }
@@ -5258,8 +5258,8 @@ class cocos2d::CCTransitionZoomFlipX : cocos2d::CCTransitionSceneOriented {
     CCTransitionZoomFlipX();
     virtual ~CCTransitionZoomFlipX() = imac 0xa74d0;
 
-    static cocos2d::CCTransitionZoomFlipX* create(float, cocos2d::CCScene*) = imac 0xa6b60;
-    static cocos2d::CCTransitionZoomFlipX* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa6ae0;
+    static cocos2d::CCTransitionZoomFlipX* create(float, cocos2d::CCScene*) = imac 0xa6b60, m1 0x95edc;
+    static cocos2d::CCTransitionZoomFlipX* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa6ae0, m1 0x95e54;
 
     virtual void onEnter() = imac 0xa68d0, m1 0x95c78;
 }
@@ -5270,8 +5270,8 @@ class cocos2d::CCTransitionZoomFlipY : cocos2d::CCTransitionSceneOriented {
     CCTransitionZoomFlipY();
     virtual ~CCTransitionZoomFlipY() = imac 0xa7930;
 
-    static cocos2d::CCTransitionZoomFlipY* create(float, cocos2d::CCScene*) = imac 0xa6fb0;
-    static cocos2d::CCTransitionZoomFlipY* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa6f30;
+    static cocos2d::CCTransitionZoomFlipY* create(float, cocos2d::CCScene*) = imac 0xa6fb0, m1 0x962c4;
+    static cocos2d::CCTransitionZoomFlipY* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa6f30, m1 0x9ae078;
 
     virtual void onEnter() = imac 0xa6d10, m1 0x96060;
 }
