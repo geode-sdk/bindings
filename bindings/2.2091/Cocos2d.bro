@@ -3245,7 +3245,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     void initParticle(cocos2d::sCCParticle*) = imac 0x8b05f0, m1 0x7a25ac, ios 0x227b30;
     bool initWithDictionary(cocos2d::CCDictionary*, bool) = imac 0x8b0170, m1 0x7a21e8, ios inline;
     bool initWithDictionary(cocos2d::CCDictionary*, char const*, bool) = imac 0x8ae7c0, m1 0x7a09f4, ios 0x2267b8;
-    bool initWithFile(char const*, bool) = imac 0x8ae4c0, m1 0xe6070, ios 0x226638;
+    bool initWithFile(char const*, bool) = imac 0x8ae4c0, m1 0x7a06f0, ios 0x226638;
     bool isFull() = imac 0x55de80, m1 0x7a2598, ios inline;
     void loadDefaults() = imac 0x8b2f80, ios inline;
     void loadScaledDefaults(float) = imac 0x60e270, ios 0x2298b0;
@@ -4475,7 +4475,7 @@ class cocos2d::CCTextureCache : cocos2d::CCObject {
     cocos2d::CCTexture2D* addETCImage(char const*) = imac 0x6c1640, ios 0x13d060;
     cocos2d::CCTexture2D* addImage(char const*, bool) = imac 0x6c0b60, m1 0x5d96bc, ios 0x13c870;
     void addImageAsync(char const*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, int, cocos2d::CCTexture2DPixelFormat) = imac 0x6bfd60, m1 0x5d8990, ios 0x13be18;
-    void addImageAsyncCallBack(float) = imac 0x6c0870, m1 0x5a01fc, ios 0x13c658;
+    void addImageAsyncCallBack(float) = imac 0x6c0870, m1 0x5d93fc, ios 0x13c658;
     cocos2d::CCTexture2D* addPVRImage(char const*) = imac 0x6c1310, ios 0x13ce9c;
     cocos2d::CCTexture2D* addUIImage(cocos2d::CCImage*, char const*) = imac 0x6c1970, m1 0x5da54c, ios 0x13d224;
     char const* description() = imac 0x6bfb80, m1 0x5d87d0, ios inline;
@@ -4484,7 +4484,7 @@ class cocos2d::CCTextureCache : cocos2d::CCObject {
     bool reloadTexture(char const*) = imac 0x6c1c00, m1 0x5da7e0, ios inline;
     void removeAllTextures() = imac 0x6c1d20, ios inline;
     void removeTexture(cocos2d::CCTexture2D*) = imac 0x6c1ec0, m1 0x5daacc, ios inline;
-    void removeTextureForKey(char const*) = imac 0x6190d0, m1 0x5dab04, ios 0x13d3b4;
+    void removeTextureForKey(char const*) = imac 0x6c1ef0, m1 0x5dab04, ios 0x13d3b4;
     void removeUnusedTextures() = imac 0x6c1d30, m1 0x5da93c, ios inline;
     cocos2d::CCDictionary* snapshotTextures() = imac 0x6bfbb0, m1 0x5d8800, ios inline;
     cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x6c1970, m1 0x5dab94, ios 0x13d434;
