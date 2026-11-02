@@ -3812,8 +3812,8 @@ class DailyRecallUnlockPopup : FLAlertLayer {
     virtual ~DailyRecallUnlockPopup() = win 0x5a3f0;
     DailyRecallUnlockPopup() = inline;
 
-    static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*) = win inline, ios 0x53a23c, m1 0x864888;
-    bool init(FLAlertLayerProtocol*, GJGameLevel*) = win 0x173c90, ios 0x53a308, m1 0x864a0c;
+    static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*) = win inline, ios 0x53a23c, m1 0x864888, imac 0x98a160;
+    bool init(FLAlertLayerProtocol*, GJGameLevel*) = win 0x173c90, ios 0x53a308, m1 0x864a0c, imac 0x98a360;
 }
 
 [[link(android)]]
@@ -10780,7 +10780,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn dtExpandOrder(std::string const&, std::vector<int>&);
     TodoReturn dtParseGlobalBlob(std::string const&, std::vector<int>&);
     TodoReturn dtSetCells(std::vector<int> const&);
-    GJGameLevel* duplicate() = win 0x263800, ios 0x0ce280;
+    GJGameLevel* duplicate() = win 0x263800, ios 0x0ce280, m1 0x4d46e4;
     TodoReturn ensureSessionLog();
     std::string generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
@@ -14480,7 +14480,7 @@ class LevelCell : TableViewCell {
     virtual void draw() = win 0x14d560, imac 0x23aee0, m1 0x1e6c4c, ios 0x136974;
 
     TodoReturn inRecallMode();
-    void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4;
+    void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4, ios 0x13362c;
     void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0;
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70;
     void onClick(cocos2d::CCObject* sender) = win 0x14d200;
@@ -14488,7 +14488,7 @@ class LevelCell : TableViewCell {
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10;
     TodoReturn playRecallUnlock() = win 0x148d30;
     TodoReturn recallChestReady();
-    GJGameLevel* recallLevel() = win 0x148cc0, ios 0x1363bc;
+    GJGameLevel* recallLevel() = win 0x148cc0, ios 0x1363bc, m1 0x1e65ac;
     TodoReturn recallSavedLevel();
     void updateBGColor(int index) = win inline, imac 0x22a580, m1 0x1d6ec8;
     void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4;
