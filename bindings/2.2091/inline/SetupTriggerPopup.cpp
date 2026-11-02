@@ -138,6 +138,10 @@ void SetupTriggerPopup::addObjectToGroup(cocos2d::CCObject* object, int group) {
     this->getGroupContainer(group)->addObject(object);
 }
 
+void SetupTriggerPopup::addObjectToPage(cocos2d::CCObject* object, int page) {
+    this->getPageContainer(page)->addObject(object);
+}
+
 cocos2d::CCArray* SetupTriggerPopup::createToggleValueControlAdvanced(int property, std::string label, cocos2d::CCPoint position, bool vertical, int page, int group, float buttonScale, float labelScale, float labelWidth, cocos2d::CCPoint offset) {
     auto pageContainer = this->getPageContainer(page);
     auto groupContainer = this->getGroupContainer(group);
