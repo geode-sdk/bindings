@@ -99,6 +99,8 @@ void PlatformToolbox::resizeWindow(float width, float height) {
 
 void PlatformToolbox::sendMail(char const* title, char const* content, char const* address) {}
 
+void PlatformToolbox::setKeyboardInputFlags(int flags) {}
+
 void PlatformToolbox::setKeyboardState(bool state) {}
 
 bool PlatformToolbox::shouldResumeSound() {
@@ -138,6 +140,9 @@ void PlatformToolbox::toggleVerticalSync(bool enable) {
 void PlatformToolbox::tryShowRateDialog(std::string gameName) {}
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_MACOS)
+void PlatformToolbox::setKeyboardInputFlags(int flags) {}
 #endif
 
+#if defined(GEODE_IS_IOS)
+#endif
