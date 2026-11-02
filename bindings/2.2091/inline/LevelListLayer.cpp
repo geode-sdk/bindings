@@ -55,11 +55,7 @@ void LevelListLayer::onDelete() {
 }
 
 void LevelListLayer::ownerDelete() {
-    auto glm = GameLevelManager::sharedState();
-    glm->m_levelListDeleteDelegate = this;
-    // TODO: 2.209
-    // glm->deleteServerLevelList(m_levelList->m_listID);
-    m_circle->setVisible(true);
+    this->startServerDelete("", {});
 }
 
 void LevelListLayer::verifyListName() {

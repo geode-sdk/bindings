@@ -195,6 +195,9 @@ void SetupTriggerPopup::refreshGroupVisibility() {
         for (int j = 0; j < groupContainer->count(); j++) {
             auto node = static_cast<cocos2d::CCNode*>(groupContainer->objectAtIndex(j));
             if (node->isVisible() && tag == 0) node->setVisible(false);
+            if (auto inputNode = static_cast<CCTextInputNode*>(m_inputNodes->objectForKey(node->getTag()))) {
+                inputNode->setTouchEnabled(inputNode->isVisible());
+            }
         }
     }
 }

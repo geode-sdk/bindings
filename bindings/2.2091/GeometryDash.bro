@@ -2009,7 +2009,7 @@ class CCTextInputMenu : cocos2d::CCLayer {
 [[link(android), depends(EmoteToken)]]
 class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTextFieldDelegate {
     CCTextInputNode() = inline;
-    ~CCTextInputNode() = win inline, imac 0x65690, m1 0x5e3e0, ios 0x1fad40;
+    ~CCTextInputNode() = inline, imac 0x65690, m1 0x5e3e0, ios 0x1fad40;
 
     static CCTextInputNode* create(float width, float height, char const* placeholder, char const* fontPath) = inline;
     static CCTextInputNode* create(float width, float height, char const* placeholder, int fontSize, char const* fontPath) = inline;
@@ -2039,10 +2039,10 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     TodoReturn canCopyText();
     TodoReturn clearText();
     TodoReturn closeActiveInput() = ios 0x1fabc8;
-    TodoReturn closeEditMenu();
+    void closeEditMenu() = win inline;
     bool containsTouchPoint(cocos2d::CCPoint) = ios 0x1fed00;
     TodoReturn copyText();
-    TodoReturn disarmHold();
+    void disarmHold() = win inline;
     TodoReturn displayToRawIndex(int);
     TodoReturn doneFromIME();
     TodoReturn emoteTokenContaining(int);
@@ -2055,14 +2055,14 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     cocos2d::CCLabelBMFont* getTextLabel() = inline;
     TodoReturn getTextRowCount();
     TodoReturn getWorldRect();
-    TodoReturn holdTimerFired(float);
+    void holdTimerFired(float) = win 0x59050;
     bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x54510, imac 0x659e0, m1 0x5e694;
     TodoReturn insertAtCursor(std::string) = win 0x54F50;
     bool isCoveredByPopup();
     bool isVisibleInTree() = ios 0x1feec4;
     TodoReturn moveCursorToEnd();
     TodoReturn moveCursorVertical(int);
-    TodoReturn openEditMenu(cocos2d::CCPoint);
+    TodoReturn openEditMenu(cocos2d::CCPoint) = win 0x59440;
     TodoReturn pasteText();
     TodoReturn rawToDisplayIndex(int) = win 0x55460;
     void refreshLabel() = win 0x565a0, imac 0x68ae0, m1 0x62124, ios 0x1fcaac;
@@ -2082,7 +2082,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setTextScrollViewSize(cocos2d::CCSize);
     void setUnicodeText(bool);
     void setWheelRange(float, float);
-    TodoReturn showHoldMenu(float);
+    void showHoldMenu(float) = win 0x59110;
     void updateBlinkLabel() = win inline, imac 0x67dc0, ios inline;
     void updateBlinkLabelToChar(int index) = win 0x568B0;
     void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x583a0, imac 0x6b5e0, m1 0x64968, ios 0x1fe7b0;
@@ -4703,7 +4703,7 @@ class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegat
     TodoReturn refreshLikeState() = win 0x194690;
     TodoReturn reloadWindow();
     TodoReturn startDownload() = win 0x194840;
-    TodoReturn startServerDelete(std::string const&, std::vector<int> const&);
+    void startServerDelete(std::string const&, std::vector<int> const&);
     TodoReturn startSFXDownload();
 }
 
@@ -14978,7 +14978,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     bool shouldDownloadLevel() = win 0x41ef20, imac 0x2af660, m1 0x250a14;
     void showSongWarning() = win inline, imac 0x2b0c90, m1 0x251f5c;
     void showUpdateAlert(UpdateResponse type) = win 0x420eb0, imac 0x2b07d0, m1 0x251ad0;
-    TodoReturn startServerDelete(std::string const&, std::vector<int> const&);
+    void startServerDelete(std::string const&, std::vector<int> const&) = win 0x423240;
     void tryCloneLevel(cocos2d::CCObject* sender) = win 0x422680, imac 0x2aedc0, m1 0x25011c;
     void tryShowAd() = win inline, imac 0x2af3c0, m1 0x25073c, ios inline;
     void updateLabelValues() = win 0x424940, imac 0x2af830, m1 0x250c20;
@@ -15136,7 +15136,7 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     void onToggleEditMode(cocos2d::CCObject* sender) = win 0x42ff70, imac 0x349580, m1 0x2d9df0;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x42f540, imac 0x348e50, m1 0x2d96b0;
     void ownerDelete() = win inline;
-    TodoReturn startServerDelete(std::string const&, std::vector<int> const&);
+    void startServerDelete(std::string const&, std::vector<int> const&) = win 0x430740;
     void updateEditMode() = win inline, imac 0x34ade0, m1 0x2db5c0, ios inline;
     void updateSideButtons() = win 0x42fa60, imac 0x3496d0, m1 0x2d9f08;
     void updateStatsArt() = win 0x42cf30, imac 0x349760, m1 0x2d9f9c;

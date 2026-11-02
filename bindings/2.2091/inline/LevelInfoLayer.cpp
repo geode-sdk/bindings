@@ -110,12 +110,7 @@ void LevelInfoLayer::onDelete(cocos2d::CCObject* sender) {
 }
 
 void LevelInfoLayer::onOwnerDelete(cocos2d::CCObject* sender) {
-    if (m_isBusy) return;
-    auto glm = GameLevelManager::sharedState();
-    glm->m_levelDeleteDelegate = this;
-    // TODO: 2.209
-    // glm->deleteServerLevel(m_level->m_levelID.value());
-    m_circle->setVisible(true);
+    this->startServerDelete("", {});
 }
 
 void LevelInfoLayer::showSongWarning() {
