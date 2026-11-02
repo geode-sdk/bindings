@@ -5271,7 +5271,7 @@ class cocos2d::CCTransitionZoomFlipY : cocos2d::CCTransitionSceneOriented {
     virtual ~CCTransitionZoomFlipY() = imac 0xa7930;
 
     static cocos2d::CCTransitionZoomFlipY* create(float, cocos2d::CCScene*) = imac 0xa6fb0, m1 0x962c4;
-    static cocos2d::CCTransitionZoomFlipY* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa6f30, m1 0x9ae078;
+    static cocos2d::CCTransitionZoomFlipY* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa6f30, m1 0x9623c;
 
     virtual void onEnter() = imac 0xa6d10, m1 0x96060;
 }

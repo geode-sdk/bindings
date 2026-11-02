@@ -7145,7 +7145,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool hasDownloadedList(int id) = win inline, imac 0x559460, m1 0x4ad9dc, ios inline;
     bool hasLikedAccountItem(LikeItemType type, int id, bool liked, int parentID) = win 0x25bd70;
     bool hasLikedItem(LikeItemType type, int id, bool liked, int parentID) = win 0x25bd70;
-    TodoReturn hasLikedItemFullCheck(LikeItemType, int, int) = win 0x25bce0, imac 0x57f080, m1 0x4d0d7c;
+    bool hasLikedItemFullCheck(LikeItemType, int, int) = win 0x25bce0, imac 0x57f080, m1 0x4d0d7c;
     TodoReturn hasNewDaily(GJTimedLevelType);
     TodoReturn hasNewGauntlets();
     bool hasRatedDemon(int id) = win 0x2348a0;
@@ -14960,7 +14960,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x424530, imac 0x2af220, m1 0x250590;
     void onLike(cocos2d::CCObject* sender) = win 0x423f90, imac 0x2ae5e0, m1 0x24f93c;
     void onOwnerDelete(cocos2d::CCObject* sender) = win inline;
-    void onPlay(cocos2d::CCObject* sender) = win 0x421450, imac 0x24d880, m1 0x2ac4a0;
+    void onPlay(cocos2d::CCObject* sender) = win 0x421450, imac 0x2ac4a0, m1 0x24d880
     void onPlayReplay(cocos2d::CCObject* sender) = win inline, ios inline;
     void onRate(cocos2d::CCObject* sender) = win 0x423360, imac 0x2b17f0, m1 0x252ab8;
     void onRateDemon(cocos2d::CCObject* sender) = win 0x423e00, imac 0x2ae7c0, m1 0x24fafc;
@@ -15647,7 +15647,7 @@ class LikeItemLayer : FLAlertLayer {
     LikeItemLayer() = inline;
     virtual ~LikeItemLayer() = win 0x468830, ios 0x2e9cc8;
 
-    static LikeItemLayer* create(LikeItemType type, int id, int parentID) = win 0x4688e0;
+    static LikeItemLayer* create(LikeItemType type, int id, int parentID) = win 0x4688e0, imac 0x6cf940, m1 0x5e6d14;
 
     virtual void keyBackClicked() = win 0x99f90, imac 0x6d00d0, m1 0x5e7404, ios 0x2ea254;
 
