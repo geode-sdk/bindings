@@ -8846,7 +8846,7 @@ class GameStatsManager : cocos2d::CCNode {
     void restorePostSync() = win inline, imac 0x55760, m1 0x4f354, ios inline;
     void setAwardedBonusKeys(int keys) = inline;
     void setStarsForMapPack(int id, int stars) = win 0x2e2970;
-    void setStat(char const* key, int value) = win 0x2db290, imac 0x2c470, m1 0x267ac;
+    void setStat(char const* key, int value) = win 0x2db290, imac 0x2c470, m1 0x267ac, ios 0x3ca060;
     void setStatIfHigher(char const* key, int value) = win inline, imac 0x32400, m1 0x2c00c, ios inline;
     void setupIconCredits() = win 0x2c9b90, imac 0x316e40, m1 0x2a8dfc;
     ShopType shopTypeForItemID(int index) = win inline, imac 0x2c620, m1 0x26948, ios inline;
