@@ -5683,9 +5683,14 @@ class EmotePickerDelegate {
 [[link(android)]]
 class EmotePickerPopup : EditorWindowPopup {
     virtual ~EmotePickerPopup() = win 0x1236e0, m1 0x7ead00, imac 0x903d40, ios 0x4dbe6c;
+    EmotePickerPopup() = win 0x123430;
 
-    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e9568;
-    static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = m1 0x7e9a38;
+    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = win inline, m1 0x7e9568;
+    static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = win inline, m1 0x7e9a38;
+
+    static cocos2d::CCPoint buttonAnchor(cocos2d::CCNode*) = win 0x1237e0;
+    static EmotePickerPopup* openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = win 0x123840, imac 0x902b60, m1 0x7e9b08;
+    static EmotePickerPopup* togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = win inline;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x124390, imac 0x903940, m1 0x7ea928, ios 0x4dbbb8;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x124a30, imac 0x903b10, m1 0x7eab24, ios 0x4dbcf8;
@@ -5694,17 +5699,14 @@ class EmotePickerPopup : EditorWindowPopup {
     virtual void textChanged(CCTextInputNode*) = win 0x123c60, imac 0x902e60, m1 0x7e9e30, ios 0x4db458;
     virtual void onBuildWindowContent() = win 0x123c70, imac 0x902e90, m1 0x7e9e3c, ios 0x4db464;
     virtual void onWindowResized() = win 0x124380, imac 0x903930, m1 0x7ea924, ios 0x4dbbb4;
-
-    TodoReturn addCell(EmoteDef const*, int) = win 0x123F70, imac 0x9033f0, m1 0x7ea44c;
-    TodoReturn buttonAnchor(cocos2d::CCNode*);
-    TodoReturn canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
-    TodoReturn createPicker(cocos2d::CCPoint);
+    
+    CCMenuItemSpriteExtra* addCell(EmoteDef const*, int) = win 0x123F70, imac 0x9033f0, m1 0x7ea44c;
+    bool canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
+    EmotePickerPopup* createPicker(cocos2d::CCPoint) = win inline;
     bool init(CCTextInputNode*, cocos2d::CCPoint, int, int) = win 0x123970, imac 0x902680, m1 0x7e96b8;
     void layoutEmoteGrid() = win 0x124050, imac 0x9034d0, m1 0x7ea548;
     void onPickEmote(cocos2d::CCObject* sender) = win 0x124780;
-    TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = imac 0x902b60, m1 0x7e9b08;
-    TodoReturn refreshEnabled();
-    TodoReturn togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
+    void refreshEnabled() = win 0x124640;
 
     CCTextInputNode* m_input;
     int m_maxEmotes;
