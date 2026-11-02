@@ -10748,7 +10748,7 @@ class GJFriendRequest : cocos2d::CCNode {
 
 [[link(android), depends(EditorBuildStats)]]
 class GJGameLevel : cocos2d::CCNode {
-    GJGameLevel() = win 0x217820, imac 0x53e5d0, m1 0x4e12a4, ios inline;
+    GJGameLevel() = win 0x217820, imac 0x53e5d0, m1 0x4e12a4, ios inline, android inline;
     ~GJGameLevel() = win inline, imac 0x5826d0, m1 0x4d4384, ios 0xce268;
 
     static GJGameLevel* create() = win inline, imac 0x643d70, m1 0x4955ec;
