@@ -527,6 +527,7 @@ enum class TextStyleType {
     Delayed = 4
 };
 enum class InputValueType {
+    Default = 0,
     Float = 1,
     Int = 2,
     Uint = 3,

@@ -34,15 +34,24 @@ bool CCLightFlash::init() {
 }
 
 void CCLightFlash::fadeAndRemove() {
+    float maxTime = 0.f;
     for (int i = 0; i < m_lightStripArray->count(); i++) {
         auto strip = static_cast<CCLightStrip*>(m_lightStripArray->objectAtIndex(i));
+        auto delay = ((float)rand() / RAND_MAX) * .2f;
+        auto tween = (((float)rand() / RAND_MAX) * 2.f - 1.f) * .1f + .5f;
         strip->runAction(cocos2d::CCSequence::create(
-            cocos2d::CCDelayTime::create(((float)rand() / RAND_MAX) * .2f),
-            cocos2d::CCActionTween::create((((float)rand() / RAND_MAX) * .2f - .1f) * .1f + .5f, "opacity", strip->m_opacity, 0.f),
-            cocos2d::CCCallFunc::create(this, callfunc_selector(CCNode::removeMeAndCleanup)),
+            cocos2d::CCDelayTime::create(delay),
+            cocos2d::CCActionTween::create(tween, "opacity", strip->m_opacity, 0.f),
+            cocos2d::CCCallFunc::create(strip, callfunc_selector(CCNode::removeMeAndCleanup)),
             nullptr
         ));
+        if (delay + tween > maxTime) maxTime = delay + tween;
     }
+    this->runAction(cocos2d::CCSequence::create(
+        cocos2d::CCDelayTime::create(maxTime),
+        cocos2d::CCCallFunc::create(this, callfunc_selector(CCNode::removeMeAndCleanup)),
+        nullptr
+    ));
 }
 #endif
 

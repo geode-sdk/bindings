@@ -2017,9 +2017,9 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
 
     virtual void visit() = win 0x54e30, imac 0x66fe0, m1 0x5fce8, ios 0x1fbc24;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x58bd0, imac 0x6c240, m1 0x65460, ios 0x1fefa8;
-    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x6c670, m1 0x65838, ios 0x1ff2fc;
-    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x6c4c0, m1 0x65698, ios 0x1ff1bc;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x6c5b0, m1 0x65770, ios 0x1ff294;
+    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x58eb0, imac 0x6c670, m1 0x65838, ios 0x1ff2fc;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x58d40, imac 0x6c4c0, m1 0x65698, ios 0x1ff1bc;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x58e20, imac 0x6c5b0, m1 0x65770, ios 0x1ff294;
     virtual void registerWithTouchDispatcher() = win 0x59a40, imac 0x6d660, m1 0x66740, ios 0x1ffc68;
     virtual void textChanged() = win 0x57110, ios 0x1fd51c, m1 0x62ebc, imac 0x69a10;
     virtual void onClickTrackNode(bool selected) = win 0x570f0, imac 0x699f0, m1 0x62e9c, ios 0x1fd4b8;
@@ -6421,7 +6421,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void loadAudioState(FMODAudioState& state) = win 0x5eaf0, imac 0x3cd4f0, m1 0x350b0c;
     void loadMusic(std::string path) = win inline, imac 0x3d4700, m1 0x356718;
     void loadMusic(std::string path, float speed, float unknown, float volume, bool shouldLoop, int musicID, int channelID, bool dontReset) = win 0x62ec0, imac 0x3ce510, m1 0x35161c;
-    TodoReturn logLifecycleState(char const*);
+    void logLifecycleState(char const*) = inline;
     TodoReturn logMixerProbe();
     void pauseAllAudio() = win inline, imac 0x3cb390;
     void pauseAllMusic(bool force) = win inline, imac 0x3d3fb0, m1 0x3560d8;
@@ -9008,7 +9008,7 @@ class GameToolbox {
     static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = win 0x6db10, imac 0x4eabf0, m1 0x448edc;
     static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, imac 0x4eacd0, m1 0x448fb0;
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x70ad0, imac 0x4ef2c0, m1 0x44d364;
-    static bool saveStringToFile(std::string const&, std::string const&, bool, bool) = win inline, ios inline;
+    static bool saveStringToFile(std::string const& path, std::string const& content, bool absolute, bool atomic) = win inline, ios inline;
     static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = win inline, ios 0x4827c;
     static void setOnOffSprite(cocos2d::CCNode*, bool);
     static bool showFolderDialog(char const*, std::string&) = m1 0x453654, imac 0x4f6390;

@@ -100,7 +100,7 @@ bool UILayer::isJumpButtonPressed() {
 }
 
 void UILayer::reapplyLevelControls() {
-    if (m_inPlatformer) this->resolveLevelControls();
+    this->refreshDpad();
     this->applyLevelBindings();
     this->resetAllButtons();
 }

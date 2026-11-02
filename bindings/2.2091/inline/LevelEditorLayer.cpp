@@ -661,10 +661,12 @@ bool LevelEditorLayer::validGroup(GameObject* object, bool checkLockedLayers) {
 
 #if defined(GEODE_IS_IOS)
 void LevelEditorLayer::addDelayedSpawn(EffectGameObject* object, float delay) {
-    auto node = this->getDelayedSpawnNode();
-    node->m_gameObject = object;
-    node->m_spawnDelay = delay;
-    if (m_delayedSpawnNodes.size() > 1) m_sortSpawnNodes = true;
+    if (!m_hasHighDetail || !object->m_isHighDetail) {
+        auto node = this->getDelayedSpawnNode();
+        node->m_gameObject = object;
+        node->m_spawnDelay = delay;
+        if (m_delayedSpawnNodes.size() > 1) m_sortSpawnNodes = true;
+    }
 }
 #endif
 
