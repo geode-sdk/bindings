@@ -50,6 +50,7 @@ void EditorUI::doPasteInPlace(bool withColor) {
     auto& clipboard = GameManager::sharedState()->m_editorClipboard;
     if (clipboard.empty()) return;
     this->pasteObjects(clipboard, withColor, false);
+    m_editorLayer->m_buildStats.noteAction();
     this->updateButtons();
     this->updateObjectInfoLabel();
 }
@@ -101,10 +102,14 @@ bool EditorUI::liveEditColorUsable() {
     return m_selectedObject || m_selectedObjects->count() != 0;
 }
 
+#if defined(GEODE_IS_IOS)
 void EditorUI::onDeleteAll(cocos2d::CCObject* sender) {
     this->deselectAll();
+    m_editorLayer->m_buildStats.m_objectsDeleted += m_editorLayer->m_objectCount.value();
+    m_editorLayer->m_buildStats.noteAction();
     m_editorLayer->removeAllObjects();
 }
+#endif
 
 void EditorUI::onPasteInPlace(cocos2d::CCObject* sender) {
     EditorSFXManager::sharedState()->playAction(111);
@@ -499,7 +504,7 @@ GameObject* EditorUI::getCycledObject(cocos2d::CCArray* objects, bool dontSkipSe
     GameObject* cycledObject = nullptr;
     for (int i = 0; i < objects->count(); i++) {
         auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if ((!dontSkipSelected && obj->m_isSelected) || (cycledObject && cycledObject->m_unk460 <= obj->m_unk460 )) break;
+        if ((!dontSkipSelected && obj->m_isSelected) || (cycledObject && cycledObject->m_unk460 >= obj->m_unk460)) continue;
         if (this->canSelectObject(obj)) cycledObject = obj;
     }
     if (cycledObject) cycledObject->m_unk460 = m_cycledObjectIndex;

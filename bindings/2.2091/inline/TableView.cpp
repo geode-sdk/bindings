@@ -84,8 +84,10 @@ void TableView::cancelAndStoleTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* e
 TableViewCell* TableView::cellForTouch(cocos2d::CCTouch* touch) {
     auto location = cocos2d::CCDirector::sharedDirector()->convertToGL(touch->getLocationInView());
     if (!m_cellArray || m_cellArray->count() == 0) return nullptr;
-    for (int i = 0; i < m_cellArray->count(); i++) {
+    for (unsigned int i = 0; i < m_cellArray->count(); i++) {
         auto cell = static_cast<TableViewCell*>(m_cellArray->objectAtIndex(i));
+        if (!cell) continue;
+        auto cellPoint = cell->convertToNodeSpace(location);
         auto cellBox = cocos2d::CCRect {
             cell->getPosition().x - cell->getAnchorPoint().x * cell->getContentSize().width,
             cell->getPosition().y - cell->getAnchorPoint().y * cell->getContentSize().height,
@@ -94,7 +96,7 @@ TableViewCell* TableView::cellForTouch(cocos2d::CCTouch* touch) {
         };
         cellBox.origin.x = 0.f;
         cellBox.origin.y = 0.f;
-        if (cellBox.containsPoint(location)) return cell;
+        if (cellBox.containsPoint(cellPoint)) return cell;
     }
     return nullptr;
 }

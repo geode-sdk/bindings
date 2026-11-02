@@ -23,7 +23,7 @@ float CCScrollLayerExt::getMaxY() {
 }
 
 void CCScrollLayerExt::scrollLayer(float offset) {
-    m_scrollDecay += offset;// * GameManager::get()->m_; // this member isnt in the bindings yet
+    m_scrollDecay += offset * GameManager::sharedState()->m_scrollSensitivity;
 
     if (!m_scrolling) {
         schedule(schedule_selector(CCScrollLayerExt::updateScrollDecay));

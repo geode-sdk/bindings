@@ -110,12 +110,6 @@ void MusicDownloadManager::downloadSongFinished(int id) {
     }
 }
 
-void MusicDownloadManager::encodeDataTo(DS_Dictionary* dict) {
-    dict->setDictForKey("MDLM_001", m_songObjects);
-    dict->setDictForKey("MDLM_003", m_MDLM003);
-    dict->setIntegerForKey("MDLM_002", m_songPriority);
-}
-
 void MusicDownloadManager::firstSetup() {
     if (!m_songObjects) {
         auto songObjects = cocos2d::CCDictionary::create();

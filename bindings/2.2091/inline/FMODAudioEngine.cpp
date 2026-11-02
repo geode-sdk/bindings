@@ -1,7 +1,12 @@
 #include <Geode/binding/FMODAudioEngine.hpp>
+#include <algorithm>
 
 FMODAudioEngine* FMODAudioEngine::get() {
     return FMODAudioEngine::sharedEngine();
+}
+
+void FMODAudioEngine::logLifecycleState(char const* state) {
+    // empty no-op in 2.2092 android at least
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -232,9 +237,34 @@ void FMODAudioEngine::setEffectsVolume(float volume) {
 
 void FMODAudioEngine::stop() {
     if (m_stopped) return;
-    m_stopped = true;
-    m_system->mixerSuspend();
+
+    this->logLifecycleState("stop in");
+
+    bool paused = false;
+    m_backgroundMusicChannel->getPaused(&paused);
+    if (!paused) {
+        m_globalChannelPaused = true;
+        m_backgroundMusicChannel->setPaused(true);
+    }
+
+    for (auto& [id, music] : m_fmodMusic) {
+        auto channel = this->channelForChannelID(music.m_channelID);
+        bool channelPaused = true;
+
+        if (channel) {
+            channel->getPaused(&channelPaused);
+        }
+
+        if (!channelPaused) {
+            channel->setPaused(true);
+            if (std::find(m_stoppedChannelIDs.begin(), m_stoppedChannelIDs.end(), music.m_channelID) == m_stoppedChannelIDs.end())
+                m_stoppedChannelIDs.push_back(music.m_channelID);
+        }
+    }
+
     m_system->update();
+    m_stopped = true;
+    m_lastResult = m_system->mixerSuspend();
     this->pauseSchedulerAndActions();
 }
 
@@ -272,6 +302,7 @@ void FMODAudioEngine::updateBackgroundFade() {
 }
 
 void FMODAudioEngine::updateMetering() {
+    if (!m_metering) return;
     FMOD_DSP_METERING_INFO info{};
     m_mainDSP->getMeteringInfo(nullptr, &info);
     auto peak = info.numchannels == 2 ? (info.peaklevel[0] + info.peaklevel[1]) / 2.f : info.peaklevel[0];
@@ -280,7 +311,7 @@ void FMODAudioEngine::updateMetering() {
     peak += .1f;
     m_pulse1 = peak;
     auto counter = m_pulseCounter;
-    if (counter < 3 || peak < m_pulse2 * 1.1f || (peak < m_pulse3 * .95f && peak > m_pulse3 * .2f)) {
+    if (counter < 3 || peak < m_pulse2 * 1.1f || (peak < m_pulse3 * .95f && m_pulse2 > m_pulse3 * .2f)) {
         peak = m_pulse2 * .93f;
     }
     else {

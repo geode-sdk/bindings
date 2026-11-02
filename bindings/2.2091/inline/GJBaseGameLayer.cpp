@@ -639,9 +639,10 @@ std::string GJBaseGameLayer::getCapacityString() {
         auto capacity = node->getUsedAtlasCapacity();
         if (capacity > 200) {
             if (!first) fmt::format_to(std::back_inserter(buffer), ",");
-            fmt::format_to(std::back_inserter(buffer), "{},{}", capacity, index++);
+            fmt::format_to(std::back_inserter(buffer), "{},{}", index, capacity);
             first = false;
         }
+        ++index;
     }
     return fmt::to_string(buffer);
 }

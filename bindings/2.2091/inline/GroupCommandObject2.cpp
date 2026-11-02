@@ -124,16 +124,18 @@ void GroupCommandObject2::updateEffectAction(float value, int type) {
     switch (type) {
         case 1:
             if (!m_lockedInX) {
+                auto delta = value - m_currentXOffset;
                 m_currentXOffset = value;
-                m_deltaX += value;
-                m_deltaX_3 += value;
+                m_deltaX += delta;
+                m_deltaX_3 += delta;
             }
             break;
         case 2:
             if (!m_lockedInY) {
+                auto delta = value - m_currentYOffset;
                 m_currentYOffset = value;
-                m_deltaY += value;
-                m_deltaY_3 += value;
+                m_deltaY += delta;
+                m_deltaY_3 += delta;
             }
             break;
         case 3:

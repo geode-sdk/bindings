@@ -62,21 +62,6 @@ void LevelBrowserLayer::createNewSmartTemplate(cocos2d::CCObject* sender) {
     this->onBack(nullptr);
 }
 
-void LevelBrowserLayer::deleteSelected() {
-    auto selected = cocos2d::CCArray::create();
-    for (auto level : geode::cocos::CCArrayExt<GJGameLevel, false>(m_levels)) {
-        if (level->m_selected) selected->addObject(level);
-    }
-    if (selected->count() == 0) return;
-    auto glm = GameLevelManager::sharedState();
-    for (auto level : geode::cocos::CCArrayExt<GJGameLevel, false>(selected)) {
-        glm->deleteLevel(level);
-    }
-    m_allSelected = false;
-    m_allObjectsToggler->toggle(false);
-    this->loadPage(m_searchObject);
-}
-
 void LevelBrowserLayer::exitLayer(cocos2d::CCObject* sender) {
     cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->unregisterForcePrio(this);
     this->removeFromParentAndCleanup(true);

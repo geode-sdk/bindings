@@ -700,14 +700,20 @@ void GameLevelManager::storeDailyLevelState(int id, int remaining, GJTimedLevelT
     if (type == GJTimedLevelType::Daily) {
         m_dailyID = id;
         m_dailyTimeLeft = currentTime + remaining;
+        if (id > m_currentDailyID) m_currentDailyID = id;
+        if (id > m_lastSeenDailyID) m_lastSeenDailyID = id;
     }
     else if (type == GJTimedLevelType::Weekly) {
         m_weeklyID = id;
         m_weeklyTimeLeft = currentTime + remaining;
+        if (id > m_currentWeeklyID) m_currentWeeklyID = id;
+        if (id > m_lastSeenWeeklyID) m_lastSeenWeeklyID = id;
     }
     else if (type == GJTimedLevelType::Event) {
         m_eventID = id;
         m_eventTimeLeft = currentTime + remaining;
+        if (id > m_currentEventID) m_currentEventID = id;
+        if (id > m_lastSeenEventID) m_lastSeenEventID = id;
     }
 }
 

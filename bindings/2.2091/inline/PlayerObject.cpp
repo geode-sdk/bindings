@@ -377,13 +377,12 @@ void PlayerObject::hardFlipGravity() {
 
 bool PlayerObject::isBoostValid(float yVelocity) {
     if (m_isUpsideDown) {
-        if (!m_isCurrentSlopeTop && m_slopeFlipGravityRelated) return yVelocity > m_yVelocity;
-        else return yVelocity < m_yVelocity;
+        if (m_isCurrentSlopeTop || !m_slopeFlipGravityRelated) return m_yVelocity > yVelocity;
     }
-    else {
-        if (!m_isCurrentSlopeTop || !m_slopeFlipGravityRelated) return yVelocity > m_yVelocity;
-        else return yVelocity < m_yVelocity;
+    else if (m_isCurrentSlopeTop && m_slopeFlipGravityRelated) {
+        return m_yVelocity > yVelocity;
     }
+    return m_yVelocity < yVelocity;
 }
 
 bool PlayerObject::isFlying() {
