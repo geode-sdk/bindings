@@ -8702,7 +8702,7 @@ class GameStatsManager : cocos2d::CCNode {
     // GameStatsManager() = win 0x1d0ae0;
     static GameStatsManager* sharedState() = win 0x2d6890, imac 0x1f250, m1 0x1aebc, ios 0x3c3198;
 
-    static int dailyRecallPrice(int) = win inline;
+    static int dailyRecallPrice(int) = win inline, ios 0x3d2b20;
 
     virtual bool init() = win 0x2d6ae0, imac 0x1f730, m1 0x1b200, ios 0x3c3334;
 
@@ -10780,7 +10780,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn dtExpandOrder(std::string const&, std::vector<int>&);
     TodoReturn dtParseGlobalBlob(std::string const&, std::vector<int>&);
     TodoReturn dtSetCells(std::vector<int> const&);
-    GJGameLevel* duplicate() = win 0x263800;
+    GJGameLevel* duplicate() = win 0x263800, ios 0x0ce280;
     TodoReturn ensureSessionLog();
     std::string generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
@@ -14488,7 +14488,7 @@ class LevelCell : TableViewCell {
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10;
     TodoReturn playRecallUnlock() = win 0x148d30;
     TodoReturn recallChestReady();
-    TodoReturn recallLevel();
+    GJGameLevel* recallLevel() = win 0x148cc0, ios 0x1363bc;
     TodoReturn recallSavedLevel();
     void updateBGColor(int index) = win inline, imac 0x22a580, m1 0x1d6ec8;
     void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4;
