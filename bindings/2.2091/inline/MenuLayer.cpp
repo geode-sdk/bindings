@@ -39,11 +39,12 @@ void MenuLayer::tryShowAd(float dt) {
 #if defined(GEODE_IS_WINDOWS)
 void MenuLayer::onGameCenter(cocos2d::CCObject* sender) {
     auto gameManager = GameManager::sharedState();
-    if (gameManager->getGameVariable(GameVar::EnableGameCenter)) {
-        gameManager->syncPlatformAchievements();
-        PlatformToolbox::showAchievements();
+    if (!gameManager->getGameVariable(GameVar::EnableGameCenter)) {
+        this->showGCQuestion();
+        return;
     }
-    this->showGCQuestion();
+    gameManager->syncPlatformAchievements();
+    PlatformToolbox::showAchievements();
 }
 
 void MenuLayer::showGCQuestion() {

@@ -1,6 +1,9 @@
 #include <Geode/binding/OptionsLayer.hpp>
 #include <Geode/binding/VideoOptionsLayer.hpp>
 #include <Geode/binding/GameManager.hpp>
+#include <Geode/mapping/CCDelayTime.hpp>
+#include <Geode/mapping/CCSequence.hpp>
+#include <Geode/mapping/CCCallFunc.hpp>
 
 OptionsLayer::OptionsLayer() {
     m_optionsMenu = nullptr;
@@ -41,8 +44,19 @@ void OptionsLayer::onProgressBar(cocos2d::CCObject* sender) {
 }
 
 void OptionsLayer::onRecordReplays(cocos2d::CCObject* sender) {
+    if (m_recordReplays) return;
     auto gameManager = GameManager::sharedState();
-    gameManager->m_recordGameplay = !gameManager->m_recordGameplay;
+    if (gameManager->m_recordGameplay) {
+        this->tryEnableRecord();
+        return;
+    }
+    gameManager->m_recordGameplay = true;
+    m_recordReplays = true;
+    this->runAction(cocos2d::CCSequence::create(
+        cocos2d::CCDelayTime::create(1.f),
+        cocos2d::CCCallFunc::create(this, callfunc_selector(OptionsLayer::tryEnableRecord)),
+        nullptr
+    ));
 }
 
 void OptionsLayer::tryEnableRecord() {

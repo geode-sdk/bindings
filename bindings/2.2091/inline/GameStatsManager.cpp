@@ -228,19 +228,6 @@ int GameStatsManager::getBaseCurrency(int stars, bool mainLevel, int levelID) {
     }
 }
 
-int GameStatsManager::getBaseCurrencyForLevel(GJGameLevel* level) {
-    auto stars = level->m_stars.value();
-    auto attempts = level->m_attempts.value() - level->m_jumps.value();
-    auto mainlevel = level->m_levelType == GJLevelType::Main;
-    if (!mainlevel) {
-        auto key = this->getCurrencyKey(level);
-        auto dict = stars - level->m_stars.value() > 0 ? m_onlineCurrencyScores : m_mainCurrencyScores;
-        auto cur = dict->valueForKey(key.c_str())->intValue();
-        if (attempts < cur) attempts = cur;
-    }
-    return this->getBaseCurrency(attempts, mainlevel, level->m_levelID.value() - level->m_levelID.value() - static_cast<int>(level->m_levelType));
-}
-
 int GameStatsManager::getBaseDiamonds(int stars) {
     return stars > 2 && stars < 11 ? stars + 2 : 0;
 }

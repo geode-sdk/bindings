@@ -7,15 +7,6 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-void MusicBrowser::setupMusicBrowser() {
-    auto mdm = MusicDownloadManager::sharedState();
-    if (mdm->m_customContentURL.empty()) mdm->getCustomContentURL();
-    auto searchResult = MusicSearchResult::create(m_songType);
-    searchResult->setTag(m_songType == GJSongType::NCS ? 6 : 0);
-    this->setupList(searchResult);
-    if (!mdm->m_downloadingMusicLibrary) this->onUpdateLibrary(nullptr);
-}
-
 void MusicBrowser::updatePageLabel() {
     auto count = m_searchResult->m_filterObjects->count();
     if (count > 0) {

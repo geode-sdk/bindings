@@ -334,8 +334,11 @@ std::string LevelEditorLayer::getLockedLayers() {
 int LevelEditorLayer::getNextFreeBlockID(const std::unordered_set<int>& exclude) {
     std::unordered_set<int> ids;
     this->addExclusionList(exclude, ids);
+    if (m_levelSettings) {
+        for (auto const& [id, name] : m_levelSettings->getIDNames(3)) ids.insert(id);
+    }
     for (auto object : geode::cocos::CCArrayExt<EffectGameObject, false>(this->getAllObjects())) {
-        if (object->m_classType == GameObjectClassType::Effect || object->m_objectID == 1816) {
+        if (object->m_classType == GameObjectClassType::Effect && object->m_objectID == 1816) {
             ids.insert(object->m_itemID);
         }
     }
@@ -409,9 +412,9 @@ int LevelEditorLayer::getSelectedOrderChannel() {
     return static_cast<StartPosObject*>(m_playbackObject)->m_startSettings->m_targetChannel;
 }
 
-bool LevelEditorLayer::hasAction(bool redo) {
-    if (redo) return m_redoObjects->count() != 0;
-    else return m_undoObjects->count() != 0;
+bool LevelEditorLayer::hasAction(bool undo) {
+    if (undo) return m_undoObjects->count() != 0;
+    else return m_redoObjects->count() != 0;
 }
 
 bool LevelEditorLayer::isLayerLocked(int layer) {
@@ -519,10 +522,6 @@ void LevelEditorLayer::pasteParticleState(ParticleGameObject* object, cocos2d::C
     }
 }
 
-void LevelEditorLayer::redoLastAction() {
-    return this->handleAction(false, m_redoObjects);
-}
-
 void LevelEditorLayer::refreshSpecial(GameObject* object) {
     this->removeSpecial(object);
     this->addSpecial(object);
@@ -623,10 +622,6 @@ void LevelEditorLayer::toggleLockActiveLayer() {
     if (m_currentLayer < 1 || m_currentLayer > 9999 || !m_layerLockingEnabled) return;
     m_lockedLayers[m_currentLayer] = !m_lockedLayers[m_currentLayer];
     m_lockedLayerCount += m_lockedLayers[m_currentLayer] ? 1 : -1;
-}
-
-void LevelEditorLayer::undoLastAction() {
-    return this->handleAction(true, m_undoObjects);
 }
 
 void LevelEditorLayer::unlockAllLayers() {

@@ -23,6 +23,7 @@ MultilineBitmapFont::~MultilineBitmapFont() {
     CC_SAFE_RELEASE(m_characters);
     CC_SAFE_RELEASE(m_lines);
     CC_SAFE_RELEASE(m_specialDescriptors);
+    CC_SAFE_RELEASE(m_emoteNode);
 }
 
 // TODO: 2.209

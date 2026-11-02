@@ -48,12 +48,7 @@ SecretRewardsLayer* SecretRewardsLayer::create(bool fromShop) {
 }
 
 void SecretRewardsLayer::fadeInMusic() {
-    FMODAudioEngine::sharedEngine()->fadeMusic(1.f, 0, 1.f, .2f);
-    this->runAction(cocos2d::CCSequence::create(
-        cocos2d::CCDelayTime::create(3.2f),
-        cocos2d::CCCallFunc::create(this, callfunc_selector(SecretRewardsLayer::fadeInOutMusic)),
-        nullptr
-    ));
+    FMODAudioEngine::sharedEngine()->fadeMusic(2.f, 0, .2f, 1.f);
 }
 
 void SecretRewardsLayer::goToPage(int page) {

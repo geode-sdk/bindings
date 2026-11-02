@@ -97,6 +97,8 @@ void SpriteAnimationManager::storeSoundForAnimation(cocos2d::CCString* sound, st
 }
 
 void SpriteAnimationManager::updateAnimationSpeed(float speed) {
+    if (m_speed == speed) return;
+    m_speed = speed;
     cocos2d::CCDictElement* element;
     cocos2d::CCDictElement* temp;
     if (m_animateDict) HASH_ITER(hh, m_animateDict->m_pElements, element, temp) {

@@ -28,6 +28,8 @@ const char* ParentalOptionsLayer::pageKey(int page) {
 ParentalOptionsLayer::~ParentalOptionsLayer() {
     CC_SAFE_RELEASE(m_variables);
     CC_SAFE_RELEASE(m_values);
+    CC_SAFE_RELEASE(m_safeModeNodes);
+    CC_SAFE_RELEASE(m_toggleNodes);
 }
 
 void ParentalOptionsLayer::incrementCountForPage(int page) {
