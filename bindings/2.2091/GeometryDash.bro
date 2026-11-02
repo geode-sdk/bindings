@@ -17563,6 +17563,7 @@ class PlatformToolbox {
     static void onNativeResume() = win inline, imac 0x4bcd90, m1 0x420ed4;
     static void onToggleKeyboard() = win inline, imac 0x4bcda0, m1 0x420ed8;
     static void openAppPage() = win inline, m1 0x40c6d8;
+    static void pickImportFiles(PlatformFileDelegate*);
     static void platformShutdown();
     static void refreshWindow();
     static void reportAchievementWithID(char const* key, int percent) = imac 0x4bce50, m1 0x420f10;
@@ -17571,7 +17572,9 @@ class PlatformToolbox {
     static void saveAndEncryptStringToFile(std::string& str, char const* fileName, char const* dirPath) = m1 0x4210f4;
     static void sendMail(char const* title, char const* content, char const* address) = win inline, imac 0x4bce90, m1 0x420f44;
     static void setBlockBackButton(bool block) = win inline, imac 0x4bcdd0, m1 0x420ee4, ios inline;
+    static void setKeyboardInputFlags(int flags) = win inline, imac inline, m1 inline, ios 0x1f9228;
     static void setKeyboardState(bool state) = win inline, imac 0x4bcdb0, m1 0x420edc;
+    static void shareFiles(std::vector<std::string> const&, PlatformFileDelegate*);
     static bool shouldResumeSound() = win inline, imac 0x4bcde0, m1 0x420ee8;
     static void showAchievements() = win inline, imac 0x4bce80, m1 0x420f40;
     static void showCursor() = win inline, imac 0x4bcec0, m1 0x420f60;
@@ -17589,10 +17592,6 @@ class PlatformToolbox {
     static void tryShowRateDialog(std::string gameName) = win inline, m1 0x40c6d4;
     static void updateMouseControl() = win inline, imac 0x4bdfe0, m1 0x421d94, ios inline;
     static void updateWindowedSize(float width, float height) = win inline, imac 0x4bdf10, m1 0x421d14, ios inline;
-
-    TodoReturn pickImportFiles(PlatformFileDelegate*);
-    void setKeyboardInputFlags(int);
-    TodoReturn shareFiles(std::vector<std::string> const&, PlatformFileDelegate*);
 }
 
 class PlayerButtonCommand {
