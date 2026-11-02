@@ -5118,7 +5118,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateSpecialUIElements() = win inline, ios inline;
     void updateStickyControls() = win inline, imac 0xb6b0, m1 0x9f68;
     void updateViewButtons() = win 0x1f80f0;
-    void updateViewMenu();
+    void updateViewMenu() = win 0x1ba2a0;
     void updateZoom(float zoom) = win 0x1b4c00, m1 0x10334, imac 0x11f90;
     void updateZoom(float, cocos2d::CCPoint) = win 0x1b4c70, m1 0x10464, imac 0x120c0;
     float valueFromXPos(float xPos) = win inline, imac 0xdd00, m1 0xc404;
