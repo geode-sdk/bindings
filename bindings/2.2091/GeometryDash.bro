@@ -8806,8 +8806,8 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasUserCoin(char const* key) = win 0x2e3630, imac 0x35a40, m1 0x2f600;
     void incrementActivePath(int amount) = win inline, imac 0x30f50, m1 0x2a9d4;
     void incrementChallenge(GJChallengeType type, int amount) = win 0x2e5ae0, imac 0x30d00, m1 0x2a3e4;
-    void incrementStat(char const* key) = win inline, imac 0x2c650, m1 0x2696c;
-    void incrementStat(char const* key, int amount) = win 0x2da460, imac 0x2c660, m1 0x26974;
+    void incrementStat(char const* key) = win inline, imac 0x2c650, m1 0x2696c, ios 0x3ca18c;
+    void incrementStat(char const* key, int amount) = win 0x2da460, imac 0x2c660, m1 0x26974, ios 0x3ca194;
     bool isDailyRecall(int) = win 0x2e7080;
     bool isGauntletChestUnlocked(int id) = win inline, imac 0x3d280;
     bool isGauntletUnlocked(int id) = win inline, imac 0x3e780, m1 0x383bc;
@@ -13674,7 +13674,7 @@ class InfoAlertButton : CCMenuItemSpriteExtra {
 
 [[link(android), depends(BulkCommentKey)]]
 class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLAlertLayerProtocol, AdminActionConfirmDelegate {
-    virtual ~InfoLayer() = win 0x3cd910, ios 0x3eddc4;
+    virtual ~InfoLayer() = win 0x3cd910, imac 0x891280, m1 0x7852e8, ios 0x3eddc4;
 
     static InfoLayer* create(GJGameLevel*, GJUserScore*, GJLevelList*, GJEditorSoundConfig*) = win 0x3cdb00, imac 0x8914c0, m1 0x785468;
 
@@ -15095,8 +15095,8 @@ class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDeleg
     LevelListLayer() = inline;
     ~LevelListLayer() = win inline, ios 0x2e0144;
 
-    static LevelListLayer* create(GJLevelList* list) = win inline, imac 0x347210;
-    static cocos2d::CCScene* scene(GJLevelList* list) = win 0x42b070, imac 0x347180;
+    static LevelListLayer* create(GJLevelList* list) = win inline, imac 0x347210, m1 0x2d7c00;
+    static cocos2d::CCScene* scene(GJLevelList* list) = win 0x42b070, imac 0x347180, m1 0x2d7b60;
 
     virtual void onEnter() = win 0x42cee0, imac 0x34a5d0, m1 0x2dae00, ios 0x2e3184;
     virtual void onExit() = win 0x42cf10, imac 0x34a600, m1 0x2dae3c, ios 0x2e31c0;
