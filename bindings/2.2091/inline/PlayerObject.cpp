@@ -32,7 +32,7 @@ PlayerObject::PlayerObject() {
     new (&m_rotateObjectsRelated) decltype(m_rotateObjectsRelated)();
     new (&m_potentialSlopeMap) decltype(m_potentialSlopeMap)();
     m_rotateSpeed = 1.0f;
-    new (&m_ringRelatedSet) decltype(m_ringRelatedSet)();
+    new (&m_usedRings) decltype(m_usedRings)();
     m_playerSpeed = 0.9f;
     m_platformerVelocityRelated = 1.0f;
     new (&m_touchedRings) decltype(m_touchedRings)();
@@ -496,7 +496,7 @@ void PlayerObject::playingEndEffect() {
 
 void PlayerObject::preCollision() {
     m_wasTeleported = false;
-    m_ringJumpRelated = false;
+    m_usedRingThisStep = false;
     m_collidedTopMinY = 0.0;
     m_collidedBottomMaxY = 0.0;
     m_collidedLeftMaxX = 0.0;
