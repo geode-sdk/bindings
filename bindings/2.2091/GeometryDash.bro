@@ -15488,7 +15488,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     bool m_startMini;
     // property kA8
     bool m_startDual;
-    // property kA28
+    // property kA63
     bool m_mirrorMode;
     // property kA29
     bool m_rotateGameplay;
@@ -15518,8 +15518,6 @@ class LevelSettingsObject : cocos2d::CCNode {
     bool m_isFlipped;
     // property kA20
     bool m_reverseGameplay;
-    // property kA21
-    bool m_disableStartPos;
     // property kA19
     int m_targetOrder;
     // property kA26
@@ -15564,6 +15562,10 @@ class LevelSettingsObject : cocos2d::CCNode {
     bool m_fixRadiusCollision;
     // property kA40
     bool m_enable22Changes;
+    // property kA57
+    bool m_showEditorTime;
+    // property kA58
+    bool m_showEditorTimeCopies;
     // property kA41
     bool m_allowStaticRotate;
     // property kA42
@@ -15572,6 +15574,32 @@ class LevelSettingsObject : cocos2d::CCNode {
     bool m_decreaseBoostSlide;
     // property kA48
     bool m_enableImpulseFix;
+    // property kA49
+    bool m_freeMode;
+    // property kA21
+    bool m_disableStartPos;
+    // property kA50
+    bool m_online;
+    // property kA51
+    int m_player2SpawnGroup;
+    // property kA54
+    int m_spawnGroupID;
+    // property kA52
+    float m_yVelocity;
+    // property kA53
+    std::string m_startPosName;
+    // property kA55
+    std::unordered_map<int, std::unordered_map<int, std::string>> m_namedGroups;
+    // property kA56
+    std::unordered_map<int, std::vector<int>> m_namedGroupsOrder;
+    // property kA59
+    std::map<std::pair<int, int>, std::string> m_customSFXNames;
+    // property kA60
+    std::string m_sharedSFXData;
+    // property kA61
+    int m_sharedSFXPlayerID;
+    // property kA62
+    std::set<int> m_sharedSFXFolderIDs;
 }
 
 [[link(android)]]
