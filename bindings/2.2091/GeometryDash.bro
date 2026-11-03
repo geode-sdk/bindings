@@ -3947,7 +3947,7 @@ class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
 class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     virtual ~DeathTrackerPopup() = win 0x103af0, ios 0x4c0fb0;
 
-    static DeathTrackerPopup* create(GJGameLevel*) = imac 0x8ca8f0, m1 0x7b8f84;
+    static DeathTrackerPopup* create(GJGameLevel*) = win 0x104370, imac 0x8ca8f0, m1 0x7b8f84;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x10e900, ios 0x4c0ca8, m1 0x7c541c, imac 0x8d8230;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x10eac0, ios 0x4c0de8, m1 0x7c5564, imac 0x8d83a0;
@@ -7098,7 +7098,7 @@ class GameLevelManager : cocos2d::CCNode {
     int getNextFreeTemplateID() = win inline, imac 0x54ef60, m1 0x4a4b08;
     std::string getNextLevelName(std::string name) = win 0x21c300, imac 0x53e6f0, m1 0x495724;
     TodoReturn getNotifications(int, int) = win 0x24f310;
-    void getOnlineLevels(GJSearchObject* object) = win 0x22ab80;
+    void getOnlineLevels(GJSearchObject* object) = win 0x22ab80, imac 0x558520, m1 0x4acc8c;
     const char* getPageInfo(char const* key) = win 0x2218d0, imac 0x54a4f0, m1 0x4a03e8;
     void getPlatformerSaveStats(int mode, int& count, unsigned long& size);
     const char* getPostCommentKey(int parentID) = win inline, imac 0x56bdf0, m1 0x4bec68;
@@ -7332,7 +7332,7 @@ class GameLevelManager : cocos2d::CCNode {
     void saveFetchedMapPacks(cocos2d::CCArray* packs) = win inline;
     void saveGauntlet(GJMapPack* gauntlet) = win inline;
     void saveLevel(GJGameLevel* level) = win 0x2209a0, imac 0x549300, m1 0x49f418;
-    void saveLevelList(GJLevelList* list) = win 0x22e290;
+    void saveLevelList(GJLevelList* list) = win 0x22e290, imac 0x543840, m1 0x49a180;
     void saveLocalScore(int id, int value, int type) = win inline, imac 0x54ef30, m1 0x4a4af4, ios inline;
     void saveMapPack(GJMapPack* pack) = win inline;
     TodoReturn searchThreadMessages(int, std::string const&, long long) = win 0x24bc80;
@@ -7764,7 +7764,7 @@ class GameManager : GManager {
     bool messagesRestricted();
     int modUIRank();
     bool offlineModeEnabled() = ios 0x3b5ff8;
-    bool onlyCuratedLevels();
+    bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
     void playMenuMusic() = win 0x2766c0, imac 0x360390, m1 0xc9b4;
@@ -7799,7 +7799,7 @@ class GameManager : GManager {
     void rewardedVideoAdFinished(int unused) = imac 0x97e210, m1 0x2f6ce8;
     void rewardedVideoHidden() = imac 0x3697e0, m1 0x2f6e28;
     void rewardedVideoHiddenDelayed() = imac 0x369770, m1 0x2f6da4;
-    bool safeModeEnabled();
+    bool safeModeEnabled() = win inline, imac 0x36d700, m1 0x2fab28, ios 0x3b5fb0;
     // partially inlined on windows
     bool safePopScene() = win 0x287680, imac 0x376cd0, m1 0x303004;
     void saveAdTimer();
@@ -7832,7 +7832,7 @@ class GameManager : GManager {
     bool showInterstitial() = win inline, imac 0x369490, m1 0x2f6a94, ios inline;
     bool showInterstitialForced() = win inline, imac 0x369520, m1 0x2f6b38, ios inline;
     bool showMainMenuAd() = win inline, imac 0x3693e0, m1 0x2f6a10, ios inline;
-    void showParentalRestrictedAlert() = win 0x27edf0;
+    void showParentalRestrictedAlert() = win 0x27edf0, imac 0x36d9d0, m1 0x2fae3c;
     void startUpdate() = win inline, imac 0x3600b0, m1 0x2eedc0, ios 0x3aebd0;
     std::string stringForCustomObject(int customObjectID) = win 0x27f090, imac 0x36de50, m1 0x2fb2bc;
     void subSpotlight() = win inline;
@@ -10788,7 +10788,7 @@ class GJGameLevel : cocos2d::CCNode {
     std::string generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
     std::string getAudioFileName() = win 0x264790, imac 0x5842c0, m1 0x4d5978;
-    int getAverageDifficulty() = imac 0x583fe0, m1 0x4d5680;
+    int getAverageDifficulty() = win inline, imac 0x583fe0, m1 0x4d5680;
     char const* getCoinKey(int coinNumber) = win 0x264610, imac 0x566b60, m1 0x4b9d18;
     TodoReturn getCoinKey(int, int) = win 0x264630;
     TodoReturn getExportSaveString();

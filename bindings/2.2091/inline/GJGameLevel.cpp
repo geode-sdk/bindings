@@ -62,6 +62,12 @@ void GJGameLevel::setStars(int stars) {
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+
+int GJGameLevel::getAverageDifficulty() {
+    if (m_ratings <= 4) return 0;
+    return round(m_ratingsSum / m_ratings);
+}
+
 std::string GJGameLevel::getUnpackedLevelDescription() {
     if (m_levelDesc.empty()) {
         return "";

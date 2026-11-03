@@ -661,6 +661,10 @@ void GameManager::openEditorGuide() {
     cocos2d::CCApplication::sharedApplication()->openURL("https://www.boomlings.com/GDEditor");
 }
 
+bool GameManager::onlyCuratedLevels() {
+    return safeModeEnabled() || getGameVariable(GameVar::OnlyAllowFeatured);
+}
+
 void GameManager::printGJLog() {}
 
 void GameManager::rateGame() {
@@ -695,6 +699,10 @@ void GameManager::resetDPadSettings(bool dual) {
         m_dpad5.resetOneBtn();
     }
     else m_dpad1.reset();
+}
+
+bool GameManager::safeModeEnabled() {
+    return getGameVariable(GameVar::SafeMode) || getGameVariable(GameVar::OfflineMode);
 }
 
 void GameManager::startUpdate() {
