@@ -1204,7 +1204,7 @@ class ButtonPage : cocos2d::CCLayer {
 [[link(android)]]
 class ButtonSprite : cocos2d::CCSprite {
     ButtonSprite() = win 0x42780, ios 0x68884, inline;
-    virtual ~ButtonSprite() = win 0x42850, imac 0x5a850, m1 0x53d18;
+    virtual ~ButtonSprite() = win 0x42850, imac 0x5a850, m1 0x53d18, ios 0x68914;
 
     static ButtonSprite* create(char const* caption) = inline;
     static ButtonSprite* create(cocos2d::CCSprite* topSprite) = inline;
@@ -12185,25 +12185,25 @@ class GJRewardDelegate {
 class GJRewardItem : cocos2d::CCObject {
     virtual ~GJRewardItem() = win 0x2d67a0, imac 0x55a50, m1 0x4f618, ios 0x3de7f0;
 
-    static GJRewardItem* create() = win 0x2f8b20, imac 0x55ad0, m1 0x4f694;
+    static GJRewardItem* create() = win 0x2f8b20, imac 0x55ad0, m1 0x4f694, ios 0x3de808;
     static GJRewardItem* create(int chestID, int timeRemaining, std::string rewardStr) = win 0x2f8e60, imac 0x37cd0, m1 0x31a1c;
-    static GJRewardItem* createSpecial(GJRewardType rewardType, int orbs, int diamonds, SpecialRewardItem specialType1, int specialCount1, SpecialRewardItem specialType2, int specialCount2, int unlockType, int itemID) = win 0x2f8c70, imac 0x3da00, m1 0x375f0;
-    static GJRewardItem* createWithCoder(DS_Dictionary* dict) = win inline, imac 0x55df0, m1 0x4f994;
+    static GJRewardItem* createSpecial(GJRewardType rewardType, int orbs, int diamonds, SpecialRewardItem specialType1, int specialCount1, SpecialRewardItem specialType2, int specialCount2, int unlockType, int itemID) = win 0x2f8c70, imac 0x3da00, m1 0x375f0, ios 0x3d4874;
+    static GJRewardItem* createWithCoder(DS_Dictionary* dict) = win inline, imac 0x55df0, m1 0x4f994, ios 0x3dea64;
     static GJRewardItem* createWithObject(GJRewardType type, GJRewardObject* object) = win 0x2f8b60, imac 0x52f50, m1 0x4cf64, ios inline;
     static GJRewardItem* createWithObjects(GJRewardType type, cocos2d::CCArray* objects) = win 0x2f8bf0, imac 0x37b60, m1 0x31890, ios inline;
-    static SpecialRewardItem getNextShardType(SpecialRewardItem type) = win inline, imac 0x55d80, m1 0x4f918;
-    static SpecialRewardItem getRandomNonMaxShardType() = win inline, imac 0x3a1a0, m1 0x33fd8;
-    static SpecialRewardItem getRandomShardType() = win inline, imac 0x55da0, m1 0x4f93c;
+    static SpecialRewardItem getNextShardType(SpecialRewardItem type) = win inline, imac 0x55d80, m1 0x4f918, ios 0x3de9ec;
+    static SpecialRewardItem getRandomNonMaxShardType() = win inline, imac 0x3a1a0, m1 0x33fd8, ios 0x3d2920;
+    static SpecialRewardItem getRandomShardType() = win inline, imac 0x55da0, m1 0x4f93c, ios 0x3dea10;
     static bool isShardType(SpecialRewardItem type) = win inline, imac 0x38600, m1 0x32330, ios inline;
-    static std::string rewardItemToStat(SpecialRewardItem rewardItem) = win 0x2f9190, imac 0x38620;
+    static std::string rewardItemToStat(SpecialRewardItem rewardItem) = win 0x2f9190, imac 0x38620, ios 0x3d1934;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x2f9620, imac 0x55f00, m1 0x4fac8, ios 0x3deaf8;
     virtual bool canEncode() = win inline, imac 0x55f60, m1 0x4fb34, ios 0x3deb64;
 
-    void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x55e80, m1 0x4fa40;
-    int getRewardCount(SpecialRewardItem type) = win inline, imac 0x3cf10, m1 0x36a10;
-    GJRewardObject* getRewardObjectForType(SpecialRewardItem type) = win inline, imac 0x38720, m1 0x324ec;
-    bool init(int chestID, int timeRemaining, std::string rewardStr) = win 0x2f8f30, imac 0x55b00, m1 0x4f6c4;
+    void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x55e80, m1 0x4fa40, ios 0x3dea94;
+    int getRewardCount(SpecialRewardItem type) = win inline, imac 0x3cf10, m1 0x36a10, ios 0x3d41e4;
+    GJRewardObject* getRewardObjectForType(SpecialRewardItem type) = win inline, imac 0x38720, m1 0x324ec, iox 0x3d1964;
+    bool init(int chestID, int timeRemaining, std::string rewardStr) = win 0x2f8f30, imac 0x55b00, m1 0x4f6c4, ios 0x3de87c;
 
     int m_chestID;
     int m_timeRemaining;
@@ -12217,16 +12217,16 @@ class GJRewardObject : cocos2d::CCObject {
     virtual ~GJRewardObject() = win 0x14e8e0, ios 0xc4b8;
 
     static GJRewardObject* create() = win inline, imac 0x557d0, m1 0x4f3ac, ios inline;
-    static GJRewardObject* create(SpecialRewardItem type, int total, int itemID) = win 0x2f8a20, imac 0x37af0, m1 0x31820;
+    static GJRewardObject* create(SpecialRewardItem type, int total, int itemID) = win 0x2f8a20, imac 0x37af0, m1 0x31820, ios 0x3d1204;
     static GJRewardObject* createItemUnlock(UnlockType type, int id) = win 0x2f89b0, imac 0x37a80, m1 0x317a8, ios inline;
-    static GJRewardObject* createWithCoder(DS_Dictionary* dict) = win inline, imac 0x55870, m1 0x4f434;
+    static GJRewardObject* createWithCoder(DS_Dictionary* dict) = win inline, imac 0x55870, m1 0x4f434, ios 0x3de680;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x2f8a90, imac 0x55980, m1 0x4f554, ios 0x3de72c;
     virtual bool canEncode() = win inline, imac 0x55a00, m1 0x4f5d4, ios 0x3de7ac;
 
-    void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x55920, m1 0x4f4e4;
+    void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x55920, m1 0x4f4e4, ios 0x3de6bc;
     bool init(SpecialRewardItem specialRewardItem, int total, int itemID) = win inline, imac 0x55830, m1 0x4f408, ios inline;
-    bool isSpecialType() = win inline, imac 0x55850, m1 0x4f418;
+    bool isSpecialType() = win inline, imac 0x55850, m1 0x4f418, ios 0x3de664;
 
     SpecialRewardItem m_specialRewardItem;
     UnlockType m_unlockType;
