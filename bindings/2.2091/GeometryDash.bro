@@ -9011,7 +9011,7 @@ class GameToolbox {
     static bool saveStringToFile(std::string const& path, std::string const& content, bool absolute, bool atomic) = win inline, ios inline;
     static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = win inline, ios 0x4827c;
     static void setOnOffSprite(cocos2d::CCNode*, bool);
-    static bool showFolderDialog(char const*, std::string&) = m1 0x453654, imac 0x4f6390;
+    static bool showFolderDialog(char const*, std::string&) = win 0x75450, m1 0x453654, imac 0x4f6390;
     static bool showOpenFileDialog(char const*, char const*, std::string const&, std::string&) = m1 0x4535c4, imac 0x4f6300;
     static bool showOpenFileDialogMulti(char const*, char const*, std::vector<std::string>&) = m1 0x4535ec, imac 0x4f6330;
     static bool showSaveFileDialog(char const*, char const*, char const*, std::string const&, std::string&) = m1 0x4535a0, imac 0x4f62d0;
