@@ -441,7 +441,7 @@ class EmoteDef {
     float m_x;
 	float m_y;
 	cocos2d::ccColor3B m_color;
-    PAD = win 0xf, android 0xf;
+    PAD = win 0xd, android 0xd;
 	bool m_flipX;
 }
 
