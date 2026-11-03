@@ -5721,17 +5721,17 @@ class EmotePickerPopup : EditorWindowPopup {
 class EmoteSprite : cocos2d::CCSprite {
     virtual ~EmoteSprite() = win 0x7e780, imac 0x8e100, m1 0x8357c, ios 0x17c08;
 
-    static EmoteSprite* createWithDef(EmoteDef const*) = win 0x7F0E0;
-    static EmoteSprite* createWithName(std::string const&) = win inline;
+    static EmoteSprite* createWithDef(EmoteDef const* def) = win 0x7F0E0;
+    static EmoteSprite* createWithName(std::string const& name) = win inline;
 
     static void attachToLabel(cocos2d::CCLabelBMFont*, cocos2d::CCNode*, std::vector<EmoteToken> const&, float) = win 0x80140;
-    static EmoteDef* defForName(std::string const&) = win 0x7EFA0;
+    static EmoteDef* defForName(std::string const& name) = win 0x7EFA0;
 
-    virtual void setColor(cocos2d::ccColor3B const&) = win 0x3f5c0, ios 0x4dc780, m1 0x7eb6fc, imac 0x904710;
+    virtual void setColor(cocos2d::ccColor3B const& color) = win 0x3f5c0, ios 0x4dc780, m1 0x7eb6fc, imac 0x904710;
 
-    TodoReturn characterCount(std::string const&);
+    TodoReturn characterCount(std::string const& text);
     TodoReturn charIndexForByte(std::string const&, int);
-    TodoReturn defAtIndex(int);
+    TodoReturn defAtIndex(int index);
     TodoReturn defCount();
     TodoReturn effectiveLength(std::string const&, int) = win 0x7FC10;
     TodoReturn fitToHeight(float, float) = win 0x7F200;
