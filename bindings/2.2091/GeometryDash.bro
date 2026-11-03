@@ -12202,7 +12202,7 @@ class GJRewardItem : cocos2d::CCObject {
 
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x55e80, m1 0x4fa40, ios 0x3dea94;
     int getRewardCount(SpecialRewardItem type) = win inline, imac 0x3cf10, m1 0x36a10, ios 0x3d41e4;
-    GJRewardObject* getRewardObjectForType(SpecialRewardItem type) = win inline, imac 0x38720, m1 0x324ec, iox 0x3d1964;
+    GJRewardObject* getRewardObjectForType(SpecialRewardItem type) = win inline, imac 0x38720, m1 0x324ec, ios 0x3d1964;
     bool init(int chestID, int timeRemaining, std::string rewardStr) = win 0x2f8f30, imac 0x55b00, m1 0x4f6c4, ios 0x3de87c;
 
     int m_chestID;
