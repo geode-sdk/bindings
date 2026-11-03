@@ -4,7 +4,14 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool CustomSFXCell::shouldReload() {
-    return (m_sfxObject->m_sfxID == this->getActiveSFXID()) != m_selected;
+    bool match = m_sfxObject->m_sfxID == this->getActiveSFXID()
+              && m_sfxObject->m_customSfxID == this->getActiveCustomSFXID();
+
+    bool customSelected = m_sfxObject->m_customSfxID > 0
+                       && this->isCustomEntrySelected(m_sfxObject->m_customSfxID);
+
+    if (m_selected != match) return true;
+    return customSelected != m_compactMode;
 }
 #endif
 

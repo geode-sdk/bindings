@@ -192,7 +192,7 @@ class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLay
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x8e3e0, imac 0x48eb30, m1 0x3f7838, ios 0x8aff4;
     virtual void textInputOpened(CCTextInputNode* node) = win inline, imac 0x490860, m1 0x3f9390, ios 0x8c1ec;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x8f0c0, imac 0x4900f0, m1 0x3f8d34, ios 0x8bcb0;
-    virtual void textChanged(CCTextInputNode* node) = win inline, ios 0x8c1f4, m1 0x3f9398, imac 0x490880;
+    virtual void textChanged(CCTextInputNode* node) = win 0x90140, ios 0x8c1f4, m1 0x3f9398, imac 0x490880;
     // TODO: removed on android, verify other platforms
     // virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x5bb10;
     // virtual void textInputReturn(CCTextInputNode* node) = win 0x5bc70;
@@ -212,7 +212,7 @@ class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLay
     void showLoadingUI() = win inline, imac 0x48fdd0, m1 0x3f89c8;
     void toggleUI(bool enable) = win 0x8f010, imac 0x490010, m1 0x3f8c44;
     void updateLabel(AccountError type) = win 0x8e020;
-    TodoReturn updatePasswordInfo(std::string) = win 0x90140;
+    void updatePasswordInfo(std::string) = win 0x8f9e0;
     bool validEmail(std::string email) = win 0x908b0, imac 0x48fc40, m1 0x3f8908, ios inline;
     bool validUser(std::string username) = win inline, imac 0x48fa20, m1 0x3f8714, ios inline;
 
@@ -16812,7 +16812,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     void createTagFilterObjects() = win inline;
     cocos2d::CCArray* getFilesMatchingSearch(cocos2d::CCArray* objects, std::string query) = imac 0x668680;
     bool init(GJSongType songType) = win inline, imac 0x667030, m1 0x1a05cc, ios inline;
-    void updateFutureCount(cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*) = win inline, m1 0x863168;
+    void updateFutureCount(cocos2d::CCArray*, cocos2d::CCArray*, cocos2d::CCArray*) = win 0x498460, m1 0x863168;
     void updateObjects() = win inline, m1 0x5a0af8;
 
     cocos2d::CCArray* m_filterObjects;
@@ -22450,7 +22450,7 @@ class SFXInfoObject : cocos2d::CCObject {
     int m_duration;
     bool m_folder;
     bool m_unk049;
-    int m_unk048;
+    int m_customSfxID;
     std::string m_name;
     std::string m_lowerCaseName;
     std::string m_unk090;
