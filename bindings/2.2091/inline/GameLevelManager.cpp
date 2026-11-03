@@ -174,6 +174,9 @@ int GameLevelManager::specialFromLikeKey(char const* key) {
         start = index + 1;
         index = keyStr.find_first_of("_", start);
     }
+    if (start < size) {
+        parts->addObject(cocos2d::CCString::create(keyStr.substr(start)));
+    }
     return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(4))->getCString()) : 0;
 }
 
@@ -501,6 +504,9 @@ int GameLevelManager::itemIDFromLikeKey(char const* key) {
         start = index + 1;
         index = keyStr.find_first_of("_", start);
     }
+    if (start < size) {
+        parts->addObject(cocos2d::CCString::create(keyStr.substr(start)));
+    }
     return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(2))->getCString()) : 0;
 }
 
@@ -518,6 +524,9 @@ int GameLevelManager::levelIDFromPostCommentKey(char const* key) {
         start = index + 1;
         index = keyStr.find_first_of("_", start);
     }
+    if (start < size) {
+        parts->addObject(cocos2d::CCString::create(keyStr.substr(start)));
+    }
     return parts->count() > 1 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(1))->getCString()) : 0;
 }
 
@@ -534,6 +543,9 @@ int GameLevelManager::likeFromLikeKey(char const* key) {
         }
         start = index + 1;
         index = keyStr.find_first_of("_", start);
+    }
+    if (start < size) {
+        parts->addObject(cocos2d::CCString::create(keyStr.substr(start)));
     }
     return parts->count() > 4 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(3))->getCString()) : 0;
 }
@@ -614,6 +626,9 @@ int GameLevelManager::pageFromCommentKey(char const* key) {
         }
         start = index + 1;
         index = keyStr.find_first_of("_", start);
+    }
+    if (start < size) {
+        parts->addObject(cocos2d::CCString::create(keyStr.substr(start)));
     }
     return parts->count() > 2 ? atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(2))->getCString()) : 0;
 }
@@ -735,6 +750,9 @@ CommentType GameLevelManager::typeFromCommentKey(char const* key) {
         start = index + 1;
         index = keyStr.find_first_of("_", start);
     }
+    if (start < size) {
+        parts->addObject(cocos2d::CCString::create(keyStr.substr(start)));
+    }
     return parts->count() > 3 ? (CommentType)atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(3))->getCString()) : CommentType::Level;
 }
 
@@ -751,6 +769,9 @@ LikeItemType GameLevelManager::typeFromLikeKey(char const* key) {
         }
         start = index + 1;
         index = keyStr.find_first_of("_", start);
+    }
+    if (start < size) {
+        parts->addObject(cocos2d::CCString::create(keyStr.substr(start)));
     }
     return parts->count() > 4 ? (LikeItemType)atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(1))->getCString()) : LikeItemType::Unknown;
 }
