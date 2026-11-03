@@ -444,7 +444,7 @@ class EmoteDef {
 	bool m_isAlias;
 	PAD = win 0xc, android 0xc;
 	bool m_flipX;
-	PAD = win 0x7, android 0x7
+	PAD = win 0x7, android 0x7;
 }
 
 class EmoteToken {
