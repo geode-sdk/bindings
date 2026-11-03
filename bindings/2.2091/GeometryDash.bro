@@ -1,3 +1,5 @@
+void ensureEmotesAreLoaded() = win 0x7ebc0, android64 0x6e08e4;
+
 [[link(android)]]
 bool isSpecialSnapObject(int id) = win 0x1a1a50;
 
@@ -5720,33 +5722,33 @@ class EmotePickerPopup : EditorWindowPopup {
 [[link(android)]]
 class EmoteSprite : cocos2d::CCSprite {
     virtual ~EmoteSprite() = win 0x7e780, imac 0x8e100, m1 0x8357c, ios 0x17c08;
+    EmoteSprite() = win inline;
 
     static EmoteSprite* createWithDef(EmoteDef const*) = win 0x7F0E0;
     static EmoteSprite* createWithName(std::string const&) = win inline;
 
     static void attachToLabel(cocos2d::CCLabelBMFont*, cocos2d::CCNode*, std::vector<EmoteToken> const&, float) = win 0x80140;
     static EmoteDef* defForName(std::string const&) = win 0x7EFA0;
+    static std::string translateUnicodeEmoji(std::string const&) = win 0x7F330;
+    static float heightFactor() = win inline;
+    static float jumboMaxAspect() = win inline;
+    static float jumboMultiScale() = win inline;
+    static float jumboScale() = win inline;
+    static int maxEmotesComment() = win inline;
+    static int maxEmotesMessage() = win inline;
+    static int defCount() = win inline;
+    static EmoteDef* defAtIndex(int index) = win inline;
+    static int characterCount(std::string const& str) = win inline;
+    static int charIndexForByte(std::string const& str, int byteIndex) = win inline;
 
     virtual void setColor(cocos2d::ccColor3B const&) = win 0x3f5c0, ios 0x4dc780, m1 0x7eb6fc, imac 0x904710;
 
-    TodoReturn characterCount(std::string const&);
-    TodoReturn charIndexForByte(std::string const&, int);
-    TodoReturn defAtIndex(int);
-    TodoReturn defCount();
-    TodoReturn effectiveLength(std::string const&, int) = win 0x7FC10;
-    TodoReturn fitToHeight(float, float) = win 0x7F200;
-    TodoReturn heightFactor();
-    bool initWithDef(EmoteDef const*);
-    TodoReturn parseTokens(std::string const&, std::vector<EmoteToken>*, int) = win 0x7F9B0;
-    TodoReturn replaceTokens(std::string const&, std::vector<EmoteToken>&, float) = win 0x7FD40;
-    TodoReturn translateUnicodeEmoji(std::string const&) = win 0x7F330;
-
-    float jumboMaxAspect();
-    float jumboMultiScale();
-    float jumboScale();
-
-    int maxEmotesComment();
-    int maxEmotesMessage();
+    int effectiveLength(std::string const&, int) = win 0x7FC10;
+    void fitToHeight(float, float) = win 0x7F200;
+    float heightFactor() = win inline;
+    bool initWithDef(EmoteDef const*) = win inline;
+    int parseTokens(std::string const&, std::vector<EmoteToken>*, int) = win 0x7F9B0;
+    bool replaceTokens(std::string const&, std::vector<EmoteToken>&, float) = win 0x7FD40;
 
     EmoteDef* m_emoteDef;
 }
