@@ -3811,10 +3811,10 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 [[link(android)]]
 class DailyRecallUnlockPopup : FLAlertLayer {
     virtual ~DailyRecallUnlockPopup() = win 0x5a3f0;
-    DailyRecallUnlockPopup() = win inline;
+    DailyRecallUnlockPopup() = inline;
 
-    static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*) = win inline;
-    bool init(FLAlertLayerProtocol*, GJGameLevel*) = win 0x173c90;
+    static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*) = win inline, ios 0x53a23c, m1 0x864888, imac 0x98a160;
+    bool init(FLAlertLayerProtocol*, GJGameLevel*) = win 0x173c90, ios 0x53a308, m1 0x864a0c, imac 0x98a360;
 }
 
 [[link(android)]]
@@ -5683,9 +5683,14 @@ class EmotePickerDelegate {
 [[link(android)]]
 class EmotePickerPopup : EditorWindowPopup {
     virtual ~EmotePickerPopup() = win 0x1236e0, m1 0x7ead00, imac 0x903d40, ios 0x4dbe6c;
+    EmotePickerPopup() = win 0x123430;
 
-    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = m1 0x7e9568;
-    static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = m1 0x7e9a38;
+    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = win inline, m1 0x7e9568;
+    static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = win inline, m1 0x7e9a38;
+
+    static cocos2d::CCPoint buttonAnchor(cocos2d::CCNode*) = win 0x1237e0;
+    static EmotePickerPopup* openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = win 0x123840, imac 0x902b60, m1 0x7e9b08;
+    static EmotePickerPopup* togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = win inline;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x124390, imac 0x903940, m1 0x7ea928, ios 0x4dbbb8;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x124a30, imac 0x903b10, m1 0x7eab24, ios 0x4dbcf8;
@@ -5694,17 +5699,14 @@ class EmotePickerPopup : EditorWindowPopup {
     virtual void textChanged(CCTextInputNode*) = win 0x123c60, imac 0x902e60, m1 0x7e9e30, ios 0x4db458;
     virtual void onBuildWindowContent() = win 0x123c70, imac 0x902e90, m1 0x7e9e3c, ios 0x4db464;
     virtual void onWindowResized() = win 0x124380, imac 0x903930, m1 0x7ea924, ios 0x4dbbb4;
-
-    TodoReturn addCell(EmoteDef const*, int) = win 0x123F70, imac 0x9033f0, m1 0x7ea44c;
-    TodoReturn buttonAnchor(cocos2d::CCNode*);
-    TodoReturn canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
-    TodoReturn createPicker(cocos2d::CCPoint);
+    
+    CCMenuItemSpriteExtra* addCell(EmoteDef const*, int) = win 0x123F70, imac 0x9033f0, m1 0x7ea44c;
+    bool canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
+    EmotePickerPopup* createPicker(cocos2d::CCPoint) = win inline;
     bool init(CCTextInputNode*, cocos2d::CCPoint, int, int) = win 0x123970, imac 0x902680, m1 0x7e96b8;
     void layoutEmoteGrid() = win 0x124050, imac 0x9034d0, m1 0x7ea548;
     void onPickEmote(cocos2d::CCObject* sender) = win 0x124780;
-    TodoReturn openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = imac 0x902b60, m1 0x7e9b08;
-    TodoReturn refreshEnabled();
-    TodoReturn togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*);
+    void refreshEnabled() = win 0x124640;
 
     CCTextInputNode* m_input;
     int m_maxEmotes;
@@ -8703,7 +8705,7 @@ class GameStatsManager : cocos2d::CCNode {
     // GameStatsManager() = win 0x1d0ae0;
     static GameStatsManager* sharedState() = win 0x2d6890, imac 0x1f250, m1 0x1aebc, ios 0x3c3198;
 
-    static int dailyRecallPrice(int) = win inline;
+    static int dailyRecallPrice(int) = win inline, ios 0x3d2b20, imac 0x03a4d0, m1 0x034344;
 
     virtual bool init() = win 0x2d6ae0, imac 0x1f730, m1 0x1b200, ios 0x3c3334;
 
@@ -8847,7 +8849,7 @@ class GameStatsManager : cocos2d::CCNode {
     void restorePostSync() = win inline, imac 0x55760, m1 0x4f354, ios inline;
     void setAwardedBonusKeys(int keys) = inline;
     void setStarsForMapPack(int id, int stars) = win 0x2e2970;
-    void setStat(char const* key, int value) = win 0x2db290, imac 0x2c470, m1 0x267ac;
+    void setStat(char const* key, int value) = win 0x2db290, imac 0x2c470, m1 0x267ac, ios 0x3ca060;
     void setStatIfHigher(char const* key, int value) = win inline, imac 0x32400, m1 0x2c00c, ios inline;
     void setupIconCredits() = win 0x2c9b90, imac 0x316e40, m1 0x2a8dfc;
     ShopType shopTypeForItemID(int index) = win inline, imac 0x2c620, m1 0x26948, ios inline;
@@ -10781,7 +10783,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn dtExpandOrder(std::string const&, std::vector<int>&);
     TodoReturn dtParseGlobalBlob(std::string const&, std::vector<int>&);
     TodoReturn dtSetCells(std::vector<int> const&);
-    GJGameLevel* duplicate() = win 0x263800;
+    GJGameLevel* duplicate() = win 0x263800, ios 0x0ce280, m1 0x4d46e4, imac 0x582c00;
     TodoReturn ensureSessionLog();
     std::string generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
@@ -14481,7 +14483,7 @@ class LevelCell : TableViewCell {
     virtual void draw() = win 0x14d560, imac 0x23aee0, m1 0x1e6c4c, ios 0x136974;
 
     TodoReturn inRecallMode();
-    void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4;
+    void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4, ios 0x13362c;
     void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0;
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70;
     void onClick(cocos2d::CCObject* sender) = win 0x14d200;
@@ -14489,7 +14491,7 @@ class LevelCell : TableViewCell {
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10;
     TodoReturn playRecallUnlock() = win 0x148d30;
     TodoReturn recallChestReady();
-    TodoReturn recallLevel();
+    GJGameLevel* recallLevel() = win 0x148cc0, ios 0x1363bc, m1 0x1e65ac, imac 0x23a8b0;
     TodoReturn recallSavedLevel();
     void updateBGColor(int index) = win inline, imac 0x22a580, m1 0x1d6ec8;
     void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4;

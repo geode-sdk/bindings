@@ -1,8 +1,9 @@
 #include <Geode/binding/DailyRecallUnlockPopup.hpp>
 
-#if defined(GEODE_IS_WINDOWS)
+
 DailyRecallUnlockPopup::DailyRecallUnlockPopup() {}
 
+#if defined(GEODE_IS_WINDOWS)
 DailyRecallUnlockPopup* DailyRecallUnlockPopup::create(FLAlertLayerProtocol* protocol, GJGameLevel* level) {
     auto ret = new DailyRecallUnlockPopup();
     if (ret->init(protocol, level)) {
