@@ -2,7 +2,10 @@
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/GJUINode.hpp>
+#include <Geode/binding/LevelControlConfig.hpp>
 #include <Geode/binding/PlayLayer.hpp>
+#include <Geode/binding/UIButtonConfig.hpp>
 
 #if !defined(GEODE_IS_IOS)
 UILayer::UILayer() {
@@ -105,7 +108,45 @@ void UILayer::reapplyLevelControls() {
     this->resetAllButtons();
 }
 
-void UILayer::refreshDpad() {}
+static UIButtonConfig& getDpadConfig(int index, bool dualMode) {
+    if (dualMode) index++;
+    auto gameManager = GameManager::sharedState();
+    switch (index) {
+        case 1: return gameManager->m_dpad2;
+        case 2: return gameManager->m_dpad3;
+        case 3: return gameManager->m_dpad4;
+        case 4: return gameManager->m_dpad5;
+        default: return gameManager->m_dpad1;
+    }
+}
+
+void UILayer::refreshDpad() {
+    if (!m_inPlatformer) return;
+    this->resolveLevelControls();
+
+    bool useSlots = false;
+    if (m_levelControls && !m_levelControls->m_touchSlots.empty()) {
+        m_dpadType = m_levelControls->m_jumpL != 0;
+        useSlots = true;
+    }
+    else {
+        m_dpadType = GameManager::sharedState()->getGameVariable("0113");
+    }
+
+    GameManager::sharedState()->prepareDPadSettings();
+    auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+    int count = m_dualMode ? 4 : 1;
+    for (int i = 0; i < count; i++) {
+        auto node = static_cast<GJUINode*>(m_uiNodes->objectAtIndex(i));
+        if (useSlots && i < static_cast<int>(m_levelControls->m_touchSlots.size())) {
+            auto config = m_levelControls->resolveSlot(m_levelControls->m_touchSlots[i], winSize);
+            node->loadFromConfig(config);
+        }
+        else {
+            node->loadFromConfig(getDpadConfig(i, m_dualMode));
+        }
+    }
+}
 
 void UILayer::resetAllButtons() {
     m_p1Jumping = false;

@@ -1,4 +1,5 @@
 #include <Geode/binding/EditLevelLayer.hpp>
+#include <Geode/binding/FLAlertLayer.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
 #include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/GameManager.hpp>
@@ -23,9 +24,40 @@ void EditLevelLayer::onMoveToTop() {
 }
 
 void EditLevelLayer::onTest(cocos2d::CCObject* sender) {
+    auto director = cocos2d::CCDirector::sharedDirector();
+    if (director->getIsTransitioning()) return;
+
+    if (!m_level->m_platformerSave.empty() &&
+        (m_level->m_platformerSaveLevelVersion != m_level->m_levelVersion ||
+         m_level->m_platformerSaveFormatVersion != 4)) {
+        m_level->clearPlatformerSave();
+    }
+
+    if (!m_loadPlatformerSave && !m_level->m_platformerSave.empty()) {
+        auto alert = FLAlertLayer::create(
+            this,
+            "Load Save",
+            "There is a <cg>saved</c> <cy>checkpoint</c> for this level.\nDo you want to <cl>load</c> it?",
+            "New Game",
+            "Load Save",
+            380.f
+        );
+        alert->addCloseButton();
+        alert->m_unk290 = true;
+        alert->setTag(11);
+        alert->show();
+        return;
+    }
+
     this->closeTextInputs();
     GameManager::sharedState()->m_sceneEnum = 3;
-    cocos2d::CCDirector::sharedDirector()->replaceScene(cocos2d::CCTransitionFade::create(.5f, PlayLayer::scene(m_level, false)));
+    auto scene = PlayLayer::scene(m_level, false);
+    if (m_loadPlatformerSave) {
+        auto playLayer = static_cast<PlayLayer*>(scene->getChildren()->objectAtIndex(0));
+        playLayer->loadPersistentCheckpoint(m_level->m_platformerSave);
+        m_loadPlatformerSave = false;
+    }
+    director->replaceScene(cocos2d::CCTransitionFade::create(.5f, scene));
 }
 
 void EditLevelLayer::updateDescText(char const* text) {}

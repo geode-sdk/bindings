@@ -137,11 +137,26 @@ bool GJGameLevel::isPlatformer() {
 }
 
 void GJGameLevel::levelWasAltered() {
-    m_hasBeenModified = true;
     m_isVerifiedRaw = false;
+    m_hasBeenModified = true;
     m_isVerified = false;
     this->unverifyCoins();
     m_capacityString = "";
+    m_bestTime = 0;
+    m_bestPoints = 0;
+    m_savedTime = false;
+    m_savedPoints = false;
+    this->clearPlatformerSave();
+    if (m_levelType == GJLevelType::Editor) {
+        this->setNormalPercent(0);
+        m_practicePercent = 0;
+        this->setNewNormalPercent(0);
+        this->setNewNormalPercent2(0);
+        this->setClicks(0);
+        this->setAttemptTime(0);
+        m_personalBests = "";
+        m_chk = 0;
+    }
     if (m_isUploaded) {
         m_isUploaded = false;
         m_levelVersion++;

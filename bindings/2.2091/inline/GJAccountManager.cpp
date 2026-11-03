@@ -72,19 +72,6 @@ void GJAccountManager::removeDLFromActive(char const* tag) {
     m_activeDownloads->removeObjectForKey(tag);
 }
 
-void GJAccountManager::unlinkFromAccount() {
-    m_GJP2 = "";
-    m_password = "";
-    m_username = "";
-    m_accountID = 0;
-    auto gameManager = GameManager::sharedState();
-    gameManager->m_shouldLoadUnlockValueKeeper = true;
-    gameManager->firstLoad();
-    gameManager->m_shouldLoadUnlockValueKeeper = false;
-    LocalLevelManager::sharedState()->firstLoad();
-    if (m_accountDelegate) m_accountDelegate->accountStatusChanged();
-    gameManager->accountStatusChanged();
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

@@ -6326,7 +6326,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     virtual void textInputShouldOffset(CCTextInputNode*, float) = win 0x5bb10, imac 0x495380, m1 0x3fda50, ios 0x34be68;
     virtual void textInputReturn(CCTextInputNode*) = win 0x5bc70, imac 0x495510, m1 0x3fdba8, ios 0x34bfe0;
 
-    TodoReturn addCloseButton();
+    void addCloseButton() = win 0x5b3a0;
     TodoReturn cancelKeyboardSlide();
     TodoReturn containsNode(cocos2d::CCNode*);
     void incrementForcePrio() = win 0x5bd10;
@@ -7312,7 +7312,7 @@ class GameLevelManager : cocos2d::CCNode {
     void reportLevel(int id) = imac 0x581320, m1 0x4d2fc8;
     TodoReturn requestThreadMembers(int) = win 0x252270;
     bool requestUserAccess() = win 0x25b6a0, imac 0x575610, m1 0x4d12cc;
-    TodoReturn resetAccountCaches();
+    void resetAccountCaches() = win 0x222180;
     void resetAccountComments(int accountID) = win inline, imac 0x56ba50, m1 0x4be920;
     void resetAllTimers() = win inline, m1 0x5fcf0c, ios inline;
     void resetCommentTimersForAccountID(int id) = win 0x2400e0, imac 0x56da50;
@@ -9241,7 +9241,7 @@ class GJAccountManager : cocos2d::CCNode {
     void removeDLFromActive(char const* tag) = win inline;
     TodoReturn showAccountNeededAlert(char const*) = win 0x309820;
     bool syncAccount(std::string url) = win 0x308550, imac 0xa20a0, m1 0x91948;
-    void unlinkFromAccount() = win inline, imac 0xa25b0, m1 0x91e3c;
+    void unlinkFromAccount() = win 0x309900, imac 0xa25b0, m1 0x91e3c;
     TodoReturn updateAccountSettings(int, int, int, int, int, std::string, std::string, std::string, std::string, std::string, std::string, std::string) = win 0x309ab0;
 
     cocos2d::CCDictionary* m_activeDownloads;
@@ -10770,7 +10770,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn clearDeathMarkerData();
     TodoReturn clearDeathsNear(std::vector<int>&, int, int, int);
     TodoReturn clearDeathTrackerData();
-    void clearPlatformerSave();
+    void clearPlatformerSave() = win 0x2640e0;
     void copyLevelInfo(GJGameLevel* level) = win 0x267010;
     TodoReturn countDeathsNear(std::vector<int> const&, int, int, int);
     TodoReturn createFromFullSaveString(std::string const&) = win 0x26a560;
