@@ -67,30 +67,30 @@ ColorSelectPopup* ColorSelectPopup::create(EffectGameObject* effect, cocos2d::CC
 
 void ColorSelectPopup::updateColorValue() {
     if (m_initializing) return;
-    if (m_colorAction) {
-        m_colorAction->m_fromColor = m_currentColor;
+    if (m_gameObject) {
+        m_gameObject->m_triggerTargetColor = m_currentColor;
     }
     else if (m_gameObjects) {
         for (int i = 0; i < m_gameObjects->count(); i++) {
             static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_triggerTargetColor = m_currentColor;
         }
     }
-    else if (m_gameObject) {
-        m_gameObject->m_triggerTargetColor = m_currentColor;
+    else if (m_colorAction) {
+        m_colorAction->m_fromColor = m_currentColor;
     }
 }
 
 void ColorSelectPopup::updateHSVValue() {
-    if (m_colorAction) {
-        m_colorAction->m_copyHSV = m_hsv;
+    if (m_gameObject) {
+        m_gameObject->m_hsvValue = m_hsv;
     }
     else if (m_gameObjects) {
         for (int i = 0; i < m_gameObjects->count(); i++) {
             static_cast<EffectGameObject*>(m_gameObjects->objectAtIndex(i))->m_hsvValue = m_hsv;
         }
     }
-    else if (m_gameObject) {
-        m_gameObject->m_hsvValue = m_hsv;
+    else if (m_colorAction) {
+        m_colorAction->m_copyHSV = m_hsv;
     }
 }
 #endif

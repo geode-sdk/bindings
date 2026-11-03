@@ -211,7 +211,7 @@ void EditorUI::updateGroupIDBtn2() {
 }
 
 void EditorUI::updateSpecialUIElements() {
-    if (!m_canActivateControls && m_selectedObjects->count() == 0) {
+    if (!m_selectedObject && m_selectedObjects->count() == 0) {
         this->deactivateRotationControl();
         this->deactivateScaleControl();
         this->deactivateTransformControl();
@@ -237,6 +237,8 @@ EditorUI::~EditorUI() {
     CC_SAFE_RELEASE(m_snapPositions);
     CC_SAFE_RELEASE(m_uiItems);
     CC_SAFE_RELEASE(m_customTabControls);
+    CC_SAFE_RELEASE(m_dpadArrowButtons);
+    CC_SAFE_RELEASE(m_dpadStepButtons);
 }
 
 EditorUI* EditorUI::create(LevelEditorLayer* editorLayer) {
@@ -368,12 +370,12 @@ void EditorUI::disableButton(CreateMenuItem* button) {
     if (button->m_objectID < 0) return;
     auto object = static_cast<EffectGameObject*>(sprite->m_subSprite);
     if (object->m_classType == GameObjectClassType::Effect && object->isColorObject() && object->m_shouldPreview) {
-        object->setObjectColor({ 127, 100, 100 });
+        object->setObjectColor({ 100, 100, 127 });
     }
     else {
         object->setObjectColor({ 127, 127, 127 });
     }
-    object->setChildColor({ 127, 100, 100 });
+    object->setChildColor({ 100, 100, 127 });
 }
 
 int EditorUI::edgeForObject(int id, int type) {

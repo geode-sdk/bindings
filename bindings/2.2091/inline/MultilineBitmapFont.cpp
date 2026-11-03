@@ -1,4 +1,5 @@
 #include <Geode/binding/MultilineBitmapFont.hpp>
+#include <Geode/binding/FontObject.hpp>
 
 #if !defined(GEODE_IS_IOS)
 MultilineBitmapFont::MultilineBitmapFont() {
@@ -23,7 +24,7 @@ MultilineBitmapFont::~MultilineBitmapFont() {
     CC_SAFE_RELEASE(m_characters);
     CC_SAFE_RELEASE(m_lines);
     CC_SAFE_RELEASE(m_specialDescriptors);
-    CC_SAFE_RELEASE(m_emoteNode);
+    CC_SAFE_RELEASE(m_fontObject);
 }
 
 // TODO: 2.209

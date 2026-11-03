@@ -36,8 +36,8 @@ bool AnimatedShopKeeper::init(ShopType type) {
         default: shopkeeper = "GJShopKeeper"; break;
     }
     if (!CCAnimatedSprite::initWithType(shopkeeper, nullptr, false)) return false;
-    m_idleInt2 = (rand() / 32767.f) * 5.f + 10.f;
-    m_idleInt1 = (rand() / 32767.f) * 2.f + 1.f;
+    m_idleInt2 = ((float)rand() / (float)RAND_MAX) * 5.f + 10.f;
+    m_idleInt1 = ((float)rand() / (float)RAND_MAX) * 2.f + 1.f;
     m_animationManager->stopAnimations();
     return true;
 }

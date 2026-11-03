@@ -1,5 +1,6 @@
 #include <Geode/binding/GraphicsReloadLayer.hpp>
 #include <Geode/binding/AppDelegate.hpp>
+#include <Geode/binding/PlatformToolbox.hpp>
 
 GraphicsReloadLayer::GraphicsReloadLayer() {}
 
@@ -46,21 +47,23 @@ bool GraphicsReloadLayer::init(cocos2d::TextureQuality quality, cocos2d::CCSize 
 void GraphicsReloadLayer::performReload() {
     auto director = cocos2d::CCDirector::sharedDirector();
     director->replaceScene(cocos2d::CCScene::create());
+    PlatformToolbox::updateWindowedSize(m_resolution.width, m_resolution.height);
     auto oldQuality = director->getLoadedTextureQuality();
     director->updateContentScale(m_quality);
     auto newQuality = director->getLoadedTextureQuality();
     auto gameManager = GameManager::sharedState();
-    if (gameManager->getGameVariable(GameVar::WindowedMode) == m_fullscreen) {
+    if (gameManager->getGameVariable(GameVar::WindowedMode) != m_fullscreen && (!m_fullscreen || (m_borderless == gameManager->getGameVariable(GameVar::BorderlessFullscreen) && m_fix == gameManager->getGameVariable(GameVar::BorderlessFix)))) {
+        gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
+        gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
+        if (m_changedResolution && !m_fullscreen) PlatformToolbox::resizeWindow(m_resolution.width, m_resolution.height);
+        if (oldQuality == newQuality) gameManager->queueReloadMenu(true);
+        else gameManager->reloadAll(false, false, false, false, true);
+    }
+    else {
         gameManager->setGameVariable(GameVar::WindowedMode, !m_fullscreen);
         gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
         gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
         gameManager->switchScreenMode(m_fullscreen, m_borderless, m_fix, true);
-    }
-    else if (!m_fullscreen || m_borderless == gameManager->getGameVariable(GameVar::BorderlessFullscreen) || m_fix == gameManager->getGameVariable(GameVar::BorderlessFix)) {
-        gameManager->setGameVariable(GameVar::BorderlessFullscreen, m_borderless);
-        gameManager->setGameVariable(GameVar::BorderlessFix, m_fix);
-        if (oldQuality == newQuality) gameManager->queueReloadMenu(true);
-        else gameManager->reloadAll(false, false, false, false, true);
     }
     if (gameManager->getGameVariable(GameVar::ShowFPS)) director->toggleShowFPS(1, "chatFont.fnt", { 0.f, 0.f });
 }

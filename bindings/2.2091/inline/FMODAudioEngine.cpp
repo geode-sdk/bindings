@@ -241,10 +241,10 @@ void FMODAudioEngine::stop() {
     this->logLifecycleState("stop in");
 
     bool paused = false;
-    m_backgroundMusicChannel->getPaused(&paused);
+    m_globalChannel->getPaused(&paused);
     if (!paused) {
         m_globalChannelPaused = true;
-        m_backgroundMusicChannel->setPaused(true);
+        m_globalChannel->setPaused(true);
     }
 
     for (auto& [id, music] : m_fmodMusic) {
