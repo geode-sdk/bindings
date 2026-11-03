@@ -5745,7 +5745,6 @@ class EmoteSprite : cocos2d::CCSprite {
 
     int effectiveLength(std::string const&, int) = win 0x7FC10;
     void fitToHeight(float, float) = win 0x7F200;
-    float heightFactor() = win inline;
     bool initWithDef(EmoteDef const*) = win inline;
     int parseTokens(std::string const&, std::vector<EmoteToken>*, int) = win 0x7F9B0;
     bool replaceTokens(std::string const&, std::vector<EmoteToken>&, float) = win 0x7FD40;
