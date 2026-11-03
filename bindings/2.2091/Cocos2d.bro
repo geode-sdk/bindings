@@ -1988,7 +1988,7 @@ class cocos2d::CCLabelTTF : cocos2d::CCSprite, cocos2d::CCLabelProtocol {
     CCLabelTTF() = imac 0x3a6480, m1 0x32dee4, ios 0x76e88;
     virtual ~CCLabelTTF() = imac 0x3a66d0, m1 0x32e064, ios 0x76f50;
 
-    static cocos2d::CCLabelTTF* create() = imac 0x3a6800, m1 0x9ae6c, ios inline;
+    static cocos2d::CCLabelTTF* create() = imac 0x3a6800, ios inline;
     static cocos2d::CCLabelTTF* create(char const* string, char const* fontName, float fontSize) = imac 0x3a6920, m1 0x32e318, ios inline;
     static cocos2d::CCLabelTTF* create(char const* string, char const* fontName, float fontSize, cocos2d::CCSize const& dimensions, cocos2d::CCTextAlignment hAlignment) = imac 0x3a6aa0, m1 0x32e474, ios inline;
     static cocos2d::CCLabelTTF* create(char const* string, char const* fontName, float fontSize, cocos2d::CCSize const& dimensions, cocos2d::CCTextAlignment hAlignment, cocos2d::CCVerticalTextAlignment vAlignment) = imac 0x3a6940, m1 0x32e32c, ios inline;
