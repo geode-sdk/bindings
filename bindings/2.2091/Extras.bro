@@ -435,11 +435,13 @@ class EditorSFXImportOptions {}
 class EditorSFXBinding {}
 
 class EmoteDef {
-    PAD = win 0x8;
-    unsigned int m_particleIndex; 
-    PAD = win 0xc;
+	char const* m_name;
+    unsigned int m_particleIndex;
+	float m_scale;
+    float m_x;
+	float m_y;
 	cocos2d::ccColor3B m_color;
-    PAD = win 0xf;
+    PAD = win 0xf, android 0xf;
 	bool m_flipX;
 }
 
