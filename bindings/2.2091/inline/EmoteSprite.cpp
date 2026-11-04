@@ -6,7 +6,9 @@ EmoteSprite* EmoteSprite::createWithName(std::string const& name) {
 }
 
 #if defined(GEODE_IS_WINDOWS)
-EmoteSprite::EmoteSprite() {}
+EmoteSprite::EmoteSprite() {
+    m_emoteDef = nullptr;
+}
 
 bool EmoteSprite::initWithDef(EmoteDef const* def) {
     if (!def)
