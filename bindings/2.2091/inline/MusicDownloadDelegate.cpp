@@ -20,6 +20,14 @@ void MusicDownloadDelegate::musicActionFinished(GJMusicAction action) {}
 
 void MusicDownloadDelegate::musicActionFailed(GJMusicAction action) {}
 
+#if defined(GEODE_IS_MACOS)
+
+void MusicDownloadDelegate::newsImageDownloaded(std::string) {}
+
+void MusicDownloadDelegate::newsImageFailed(std::string) {}
+
+#endif
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
