@@ -5779,7 +5779,7 @@ class EndLevelLayer : GJDropDownLayer {
     void onHideLayer(cocos2d::CCObject* sender) = win 0x206710, imac 0x4bb2d0, m1 0x41f5ac;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = imac 0x4bb220, m1 0x41f50c;
     void onMenu(cocos2d::CCObject* sender) = win 0x2063c0, imac 0x4baf40, m1 0x41f200;
-    void onReplay(cocos2d::CCObject* sender) = win 0x2061b0, imac 0x4bae40, m1 0x41f0ec;
+    void onReplay(cocos2d::CCObject* sender) = win 0x2061b0, imac 0x4bae40, m1 0x41f0ec, ios 0x393ae8;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x206800, imac 0x4bb0c0, m1 0x41f398;
     void playCoinEffect(float duration) = win 0x206f30, imac 0x4bb8b0, m1 0x41fb80;
     void playCurrencyEffect(float duration) = win 0x2074a0, m1 0x41fd10;
@@ -6388,7 +6388,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void channelLinkSound(int id, FMODSound* sound) = win inline, imac 0x3d2130, m1 0x35474c;
     void channelStopped(FMOD::Channel* channel, bool remove) = win 0x60b80, imac 0x3d28d0, m1 0x354d68;
     void channelUnlinkSound(int id) = win 0x609f0, imac 0x3d2670, m1 0x354b94;
-    void clearAllAudio() = win 0x5e0d0, imac 0x3cb420, m1 0x34f0b8;
+    void clearAllAudio() = win 0x5e0d0, imac 0x3cb420, m1 0x34f0b8, ios 0x1b58b4;
     int countActiveEffects() = win inline, imac 0x3d03b0, m1 0x352dbc;
     int countActiveMusic() = win inline, imac 0x3d0490, m1 0x352e6c;
     FMOD::Sound* createStream(std::string path) = win 0x25fa30, imac 0x3d7610, m1 0x358cb8;
@@ -18779,7 +18779,7 @@ class PriceLabel : cocos2d::CCNode {
 
 [[link(android)]]
 class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, CommentUploadDelegate, UserInfoDelegate, UploadActionDelegate, UploadPopupDelegate, LeaderboardManagerDelegate, FollowUserDelegate {
-    virtual ~ProfilePage() = win 0x550490, ios 0x229c0c;
+    virtual ~ProfilePage() = win 0x550490, ios 0x229c0c, m1 0x790cb0, imac 0x89d7e0;
     // ProfilePage() = ios 0x2330c0;
 
     static ProfilePage* create(int accountID, bool ownProfile) = win 0x5506e0, imac 0x89dad0, m1 0x790e9c, ios 0x229c44;
@@ -22943,12 +22943,12 @@ class ShareLevelLayer : FLAlertLayer {
     ShareLevelLayer() = inline;
     ~ShareLevelLayer() = win inline, ios 0x312cb8;
 
-    static ShareLevelLayer* create(GJGameLevel* level) = win inline;
+    static ShareLevelLayer* create(GJGameLevel* level) = win inline, m1 0x213698;
 
     virtual void keyBackClicked() = win 0x99f90, m1 0x215528, ios 0x314370, imac 0x26e470;
 
     CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0x26dc30, m1 0x214e4c;
-    bool init(GJGameLevel* level) = win 0x630540, imac 0x26c960;
+    bool init(GJGameLevel* level) = win 0x630540, imac 0x26c960, ios 0x21381c;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x26d950, m1 0x214b18;
     void onGuidelines(cocos2d::CCObject* sender) = win 0x631230;
     void onNotifyFollowers(cocos2d::CCObject* sender) = win 0x631990;
