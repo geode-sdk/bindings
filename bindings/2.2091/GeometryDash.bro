@@ -2085,8 +2085,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setUnicodeText(bool);
     void setWheelRange(float, float);
     void showHoldMenu(float) = win 0x59110;
-    void updateBlinkLabel() = win inline, imac 0x67dc0, ios inline;
-    void updateBlinkLabelToChar(int index) = win 0x568B0;
+    void updateBlinkLabel() = win inline, imac 0x67dc0, m1 0x60eac, ios inline;
+    void updateBlinkLabelToChar(int index) = win 0x568B0, imac 0x68eb0, m1 0x62488;
     void updateCursorPosition(cocos2d::CCPoint position, cocos2d::CCRect rect) = win 0x583a0, imac 0x6b5e0, m1 0x64968, ios 0x1fe7b0;
     void updateDefaultFontValues(std::string font) = win 0x54c30, imac 0x65cb0, m1 0x5e944;
     void updateLabel(std::string text) = win 0x55d20, imac 0x65f90, m1 0x5ec2c, ios 0x1fb214;
@@ -7627,7 +7627,7 @@ class GameManager : GManager {
     void completedAchievement(std::string key) = win 0x278140, imac 0x362470, m1 0x2f0f5c;
     int countForType(IconType type) = win 0x27d010, imac 0x36a1d0, m1 0x2f770c;
     int defaultFrameForAnimation(int objectID) = win inline, imac 0x247950, m1 0x1f12f4, ios inline;
-    void didExitPlayscene() = win inline, imac 0x376490;
+    void didExitPlayscene() = win inline, imac 0x376490, m1 0x3026f8;
 
     /// Performs a "Quick Save" and saves the progress of the client.
     void doQuickSave() = win inline, imac 0x376460, m1 0x3026c8;
@@ -16583,8 +16583,8 @@ class MusicDownloadDelegate {
     virtual void downloadSFXFailed(int id, GJSongError errorType) = inline;
     virtual void musicActionFinished(GJMusicAction action) = inline;
     virtual void musicActionFailed(GJMusicAction action) = inline;
-    virtual void newsImageDownloaded(std::string) = win 0x98e10;
-    virtual void newsImageFailed(std::string) = win 0x98e10;
+    virtual void newsImageDownloaded(std::string) = win 0x98e10, imac inline, m1 inline;
+    virtual void newsImageFailed(std::string) = win 0x98e10, imac inline, m1 inline;
 }
 
 [[link(android), depends(cocos2d::extension::CCHttpRequest)]]
@@ -18544,7 +18544,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn dtUpdateLiveMarkers();
     void fullReset() = win 0x518920, imac 0x8c460, m1 0x81a80;
     float getCurrentPercent() = win 0x512300, imac inline, m1 inline, ios 0x147390;
-    int getCurrentPercentInt() = win inline, ios inline;
+    int getCurrentPercentInt() = inline;
     cocos2d::CCPoint getEndPosition() = win inline, imac 0x80ac0, m1 0x775c0;
     CheckpointObject* getLastCheckpoint() = win inline, imac 0x8a4c0, m1 0x7fd9c;
     float getRelativeMod(cocos2d::CCPoint position, float right, float left, float offset) = win inline, imac 0x86b90, m1 0x7cd7c, ios inline;
