@@ -1405,7 +1405,7 @@ class CCCircleAlert : CCCircleWave {
 class CCCircleWave : cocos2d::CCNode {
     virtual ~CCCircleWave() = win 0x46470, ios 0x1fa4d0;
 
-    // CCCircleWave() = win 0x418b0;
+    // CCCircleWave() = win 0x418b0, ios 0x1fab00;
     static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline, imac 0x157810, m1 0x123860, ios 0x1fa4e8;
     static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x464d0, imac 0x157820, m1 0x123868, ios 0x1fa4f0;
 
@@ -1416,7 +1416,7 @@ class CCCircleWave : cocos2d::CCNode {
 
     void baseSetup(float radius) = win inline, imac 0x157b10, m1 0x123b00, ios inline;
     void followObject(cocos2d::CCNode* newTarget, bool staticPosition) = win inline, imac 0x157be0, m1 0x123bbc;
-    bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x46580, imac 0x157910, m1 0x12393c;
+    bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x46580, imac 0x157910, m1 0x12393c, ios 0x1fa580;
     void updatePosition(float dt) = win 0x46800, imac 0x157ba0, m1 0x123b70;
 
     cocos2d::CCNode* m_target;
@@ -6425,7 +6425,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void loadMusic(std::string path, float speed, float unknown, float volume, bool shouldLoop, int musicID, int channelID, bool dontReset) = win 0x62ec0, imac 0x3ce510, m1 0x35161c;
     void logLifecycleState(char const*) = win inline, ios 0x1b56ac;
     TodoReturn logMixerProbe();
-    void pauseAllAudio() = win inline, imac 0x3cb390;
+    void pauseAllAudio() = win inline, imac 0x3cb390, ios 0x1b582c;
     void pauseAllMusic(bool force) = win inline, imac 0x3d3fb0, m1 0x3560d8;
     void pauseEffect(unsigned int effect) = win inline, ios inline;
     void pauseMusic(int musicChannel) = win inline, imac 0x3d7430, m1 0x358b50, ios inline;
@@ -9425,10 +9425,10 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void activatePlayerControlTrigger(PlayerControlGameObject* object) = win 0x31eac0, imac 0x1077d0, m1 0xe5748;
     TodoReturn activateProgressTrigger(ProgressGameObject*);
     void activateResetTrigger(EffectGameObject* object) = win inline, imac 0x129c30, m1 0x102164;
-    void activateSFXEditTrigger(SFXTriggerGameObject* object) = win 0x34bf90, imac 0x139fb0, m1 0x10f2a0;
-    void activateSFXTrigger(SFXTriggerGameObject* object) = win 0x34bd80, m1 0x10ef60;
-    void activateSongEditTrigger(SongTriggerGameObject* object) = win 0x34ba10, imac 0x139a60, m1 0x10eddc;
-    void activateSongTrigger(SongTriggerGameObject* object) = win 0x34b7c0, imac 0x1397f0, m1 0x10ebd8;
+    void activateSFXEditTrigger(SFXTriggerGameObject* object) = win 0x34bf90, imac 0x139fb0, m1 0x10f2a0, ios 0x29fec0;
+    void activateSFXTrigger(SFXTriggerGameObject* object) = win 0x34bd80, m1 0x10ef60, imac 0x139c10, ios 0x29fd14;
+    void activateSongEditTrigger(SongTriggerGameObject* object) = win 0x34ba10, imac 0x139a60, m1 0x10eddc, ios 0x29fc50;
+    void activateSongTrigger(SongTriggerGameObject* object) = win 0x34b7c0, imac 0x1397f0, m1 0x10ebd8, ios 0x29fb08;
     void activateTimerTrigger(TimerTriggerGameObject* object, std::vector<int> const& remapKeys) = win 0x33db80, imac 0x12b560, m1 0x1035b8;
     void addAreaEffect(EnterEffectObject* object, std::vector<EnterEffectInstance>* instances, GJAreaActionType type) = win 0x330110, imac 0x11e2c0, m1 0xf84a0;
     void addCustomEnterEffect(EnterEffectObject* object, bool enter) = win 0x314490, imac 0xfa8d0, m1 0xd9544;
@@ -9594,7 +9594,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void orderSpawnObjects() = win 0x350080, imac 0x141b90, m1 0x115530;
     cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode, int uiObject) = win 0x3152d0, imac 0xfc0f0, m1 0xda980;
     void parseRecording(std::string record, bool restore);
-    void pauseAudio() = win 0x340330, imac 0x12f080, m1 0x1064dc;
+    void pauseAudio() = win 0x340330, imac 0x12f080, m1 0x1064dc, ios 0x29a5b8;
     double performMathOperation(double operand1, double operand2, int operation) = win inline, imac 0x12a160, m1 0x102634, ios inline;
     double performMathRounding(double value, int type) = win inline, imac 0x12a1c0, m1 0x102684, ios inline;
     void pickupItem(EffectGameObject* object) = win 0x31d580, m1 0xe4534, imac 0x1064b0, ios 0x284f3c;
@@ -9636,7 +9636,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processMoveActionsStep(float dt, bool visibleFrame) = win 0x334220, imac 0x122b70;
     void processOptionsTrigger(GameOptionsTrigger* object) = win 0x32b9d0, imac 0x11a0f0, m1 0xf4d10;
     void processPlayerFollowActions(float dt) = win 0x336a50, imac 0x124af0, m1 0xfddac;
-    void processQueuedAudioTriggers() = win 0x345a70, imac 0x139730;
+    void processQueuedAudioTriggers() = win 0x345a70, imac 0x139730, ios 0x29fa60;
     void processQueuedButtons(float dt, bool clearInputQueue) = win 0x33a9a0, imac 0x128da0, m1 0x101390, ios 0x296d40;
     void processReplayCheckpoint(int id) = win inline, ios inline;
     void processRotationActions() = win 0x334450, imac 0x1240c0, m1 0xfd4f8;
@@ -18602,7 +18602,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void spawnFirework() = win 0x50a8a0, imac 0x828b0, m1 0x79084, ios 0x143bd0;
     void startGame() = win 0x506140, imac 0x803d0, m1 0x76ec0, ios 0x14214c;
     void startGameDelayed() = win 0x5061a0, imac 0x80aa0, m1 0x775b0;
-    void startMusic() = win 0x51aed0, imac 0x80940, m1 0x7745c;
+    void startMusic() = win 0x51aed0, imac 0x80940, m1 0x7745c, ios 0x142674;
     void startRecording() = win inline, imac 0x8d7d0, ios inline;
     void startRecordingDelayed() = win inline, imac 0x8d7e0, m1 0x82ce4, ios inline;
     void stopRecording() = win inline, imac 0x7a180, m1 0x719a4;
