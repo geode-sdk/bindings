@@ -10,11 +10,11 @@ EmoteSprite::EmoteSprite() {
     m_emoteDef = nullptr;
 }
 
-bool EmoteSprite::initWithDef(EmoteDef const* def) {
+bool EmoteSprite::initWithDef(EmoteDef* def) {
     if (!def)
         return false;
 
-    auto frame = CCString::createWithFormat(
+    auto frame = cocos2d::CCString::createWithFormat(
         "particle_%02d_001.png",
         def->m_particleIndex
     );
@@ -114,7 +114,7 @@ int EmoteSprite::charIndexForByte(std::string const& str, int byteIndex) {
             ++count;
     }
 
-    if (byteIndex < size)
+    if (byteIndex < str.size())
         --count;
     
     return count;
