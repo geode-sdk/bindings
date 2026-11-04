@@ -47,7 +47,6 @@ AccountRegisterLayer* AccountRegisterLayer::create() {
 
 void AccountRegisterLayer::textInputOpened(CCTextInputNode* node) {}
 
-void AccountRegisterLayer::textChanged(CCTextInputNode* node) {}
 
 void AccountRegisterLayer::resetLabels() {
     this->resetLabel(1);

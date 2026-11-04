@@ -196,7 +196,9 @@ void EditorUI::updateDeleteMenu() {
 }
 
 void EditorUI::updateEditMenu() {
-    m_editButtonBar->setVisible(m_selectedMode == 3);
+    bool visible = !m_uiHidden && m_selectedMode == 3;
+    if (m_dpadMoveNode) m_dpadMoveNode->setVisible(visible);
+    if (m_editButtonBar) m_editButtonBar->setVisible(false);
 }
 
 /*void EditorUI::updateGridNodeSize(int objectID) {

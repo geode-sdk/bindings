@@ -57,18 +57,6 @@ void MusicSearchResult::createTagFilterObjects() {
     }
 }
 
-// TODO: 2.209
-void MusicSearchResult::updateFutureCount(cocos2d::CCArray* objects, cocos2d::CCArray* allObjects, cocos2d::CCArray* p0) {
-    auto count = objects->count();
-    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_tagFilterObjects)) {
-        object->m_count = object->m_enabled ? MusicDownloadManager::sharedState()->filterMusicByTag(object->m_optionID, objects)->count() : count;
-    }
-    auto filtered = this->applyTagFilters(allObjects);
-    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_artistFilterObjects)) {
-        object->m_count = MusicDownloadManager::sharedState()->filterMusicByArtistID(object->m_optionID, filtered)->count();
-    }
-}
-
 void MusicSearchResult::updateObjects() {
     this->updateObjects(m_sortType);
 }
