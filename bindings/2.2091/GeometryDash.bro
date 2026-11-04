@@ -5120,12 +5120,12 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateStickyControls() = win inline, imac 0xb6b0, m1 0x9f68;
     void updateViewButtons() = win 0x1f80f0;
     void updateViewMenu() = win 0x1ba2a0;
-    void updateZoom(float zoom) = win 0x1b4c00, m1 0x10334, imac 0x11f90;
-    void updateZoom(float, cocos2d::CCPoint) = win 0x1b4c70, m1 0x10464, imac 0x120c0;
+    void updateZoom(float zoom) = win 0x1b4c00, m1 0x10334, imac 0x11f90, ios 0x477d9c;
+    void updateZoom(float, cocos2d::CCPoint) = win 0x1b4c70, m1 0x10464, imac 0x120c0, ios 0x477e80;
     float valueFromXPos(float xPos) = win inline, imac 0xdd00, m1 0xc404;
     TodoReturn windowClosed(EditorWindowPopup*);
     float xPosFromValue(float value) = win inline, imac 0xdb40, m1 0xc280;
-    void zoomGameLayer(bool zoomingIn) = win inline, m1 inline, imac inline, ios inline;
+    void zoomGameLayer(bool zoomingIn) = win inline, m1 inline, imac inline, ios 0x477e00;
     void zoomIn(cocos2d::CCObject* sender) = win 0x1b4b00, m1 0x7a7c, imac 0x89b0;
     void zoomOut(cocos2d::CCObject* sender) = win 0x1b4b80, m1 0x7b3c, imac 0x8a90;
     void editObjectOptions(cocos2d::CCObject*);
@@ -5780,7 +5780,7 @@ class EndLevelLayer : GJDropDownLayer {
     void onLevelLeaderboard(cocos2d::CCObject* sender) = imac 0x4bb220, m1 0x41f50c;
     void onMenu(cocos2d::CCObject* sender) = win 0x2063c0, imac 0x4baf40, m1 0x41f200;
     void onReplay(cocos2d::CCObject* sender) = win 0x2061b0, imac 0x4bae40, m1 0x41f0ec, ios 0x393ae8;
-    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x206800, imac 0x4bb0c0, m1 0x41f398;
+    void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x206800, imac 0x4bb0c0, m1 0x41f398, ios 0x393d70;
     void playCoinEffect(float duration) = win 0x206f30, imac 0x4bb8b0, m1 0x41fb80;
     void playCurrencyEffect(float duration) = win 0x2074a0, m1 0x41fd10;
     void playDiamondEffect(float duration) = win 0x207950, m1 0x420048;
@@ -6423,7 +6423,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void loadAudioState(FMODAudioState& state) = win 0x5eaf0, imac 0x3cd4f0, m1 0x350b0c;
     void loadMusic(std::string path) = win inline, imac 0x3d4700, m1 0x356718;
     void loadMusic(std::string path, float speed, float unknown, float volume, bool shouldLoop, int musicID, int channelID, bool dontReset) = win 0x62ec0, imac 0x3ce510, m1 0x35161c;
-    void logLifecycleState(char const*) = inline;
+    void logLifecycleState(char const*) = win inline, ios 0x1b56ac;
     TodoReturn logMixerProbe();
     void pauseAllAudio() = win inline, imac 0x3cb390;
     void pauseAllMusic(bool force) = win inline, imac 0x3d3fb0, m1 0x3560d8;
@@ -6433,7 +6433,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     int playEffect(std::string path, float speed, float unknown, float volume) = win 0x5fa00, imac 0x3d1620, m1 0x353d80, ios 0x1b8668;
     int playEffectAdvanced(std::string path, float speed, float unknown, float volume, float pitch, bool fastFourierTransform, bool reverb, int startMillis, int endMillis, int fadeIn, int fadeOut, bool loopEnabled, int effectID, bool override, bool noPreload, int channelID, int uniqueID, float minInterval, int sfxGroup) = win 0x5faf0, imac 0x3ceea0, m1 0x351e14, ios 0x1b7374;
     int playEffectAsync(std::string path) = win inline, imac 0x3d1710, m1 0x353e88;
-    void playMusic(std::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x62d50, imac 0x3d4460, m1 0x3564fc;
+    void playMusic(std::string path, bool shouldLoop, float fadeInTime, int channel) = win 0x62d50, imac 0x3d4460, m1 0x3564fc, ios 0x1b9f88;
     TodoReturn playUIEffect(std::string, float, float, float);
     FMODSound* preloadEffect(std::string path) = win 0x61e80, imac 0x3ca5a0, m1 0x34e3a8, ios 0x1b5170;
     FMOD::Sound* preloadEffectAsync(std::string path) = win 0x622b0, imac 0x3d21b0, m1 0x3547d4;
@@ -7729,7 +7729,7 @@ class GameManager : GManager {
     /// Gets the active PlayLayer. Returns nullptr if none.
     /// @returns PlayLayer pointer
     PlayLayer* getPlayLayer() = inline;
-    std::string getPracticeMusicFile() = win inline, imac 0x360250, m1 0x2eef7c;
+    std::string getPracticeMusicFile() = win inline, imac 0x360250, m1 0x2eef7c, ios 0x3aece0;
     bool getUGV(char const* key) = win 0x27e9c0, imac 0x36d4c0, m1 0x2fa848, ios 0x3b5dac;
     void getUnlockForAchievement(std::string key, int& id, UnlockType& type) = win 0x277870, imac 0x361ae0, m1 0x2f04c4;
     bool groundHasSecondaryColor(int index) = win inline, imac 0x36cbb0, m1 0x2f9ec4, ios inline;
@@ -9506,7 +9506,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void enterDualMode(GameObject* object, bool unused) = win inline, imac 0x107760, m1 0xe56dc;
     void exitStaticCamera(bool exitX, bool exitY, float time, int easingType, float easingRate, bool smoothVelocity, float smoothVelocityMod, bool exitInstant) = win 0x349410, imac 0x13bae0, m1 0x110884;
     StartPosObject* findStartPosWinnerInArray(cocos2d::CCArray*) = win 0x3191c0, imac 0x1009f0, m1 0xdf460;
-    void flipFinished() = win inline, imac 0x134380, m1 0x10a4b0;
+    void flipFinished() = win inline, imac 0x134380, m1 0x10a4b0, ios 0x29d2b0;
     void flipGravity(PlayerObject* object, bool flip, bool noEffects) = win 0x319e20, imac 0x102310, m1 0xe0b7c, ios 0x2821b0;
     void flipObjects() = win 0x350d30, imac 0x142bd0, m1 0x1163dc;
     void gameEventTriggered(GJGameEvent event, int material, int playerID) = win 0x33ac80, imac 0xfd8a0, m1 0xdc778, ios 0x27eca8;
@@ -9695,7 +9695,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void restoreDefaultGameplayOffsetY() = win inline, imac 0x12d0c0, m1 0x104bf8, ios inline;
     void restoreRecording(std::string record);
     void restoreRemap(EffectGameObject* object, std::unordered_map<int, int>& remap) = imac 0x1111b0, m1 0xeca30;
-    void resumeAudio() = win 0x340480, imac 0x12f0c0, m1 0x106508;
+    void resumeAudio() = win 0x340480, imac 0x12f0c0, m1 0x106508, ios 0x29a5e4;
     void rotateAreaObjects(GameObject* object, cocos2d::CCArray* objects, float rotation, bool reset) = win 0x332d40, imac 0x122740, m1 0xfc084;
     void rotateObject(GameObject* object, float rotation) = win 0x334d00, imac 0x125760, m1 0xfe7a4;
     void rotateObjects(cocos2d::CCArray* objects, float rotation, cocos2d::CCPoint position, cocos2d::CCPoint offset, bool finished, bool unused) = win 0x334da0, imac 0x1257e0, m1 0xfe820;
@@ -9759,7 +9759,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     GameObject* tryGetGroupParent(int groupID) = win inline, imac 0x11aab0, m1 0xf5690, ios inline;
     GameObject* tryGetMainObject(int groupID) = win 0x481b80, imac 0x1085f0, m1 0xe6328;
     GameObject* tryGetObject(int groupID) = win 0x32c2b0, imac 0x100640, m1 0xdf090;
-    void tryResumeAudio() = win inline, imac 0x12f120, m1 0x106550;
+    void tryResumeAudio() = win inline, imac 0x12f120, m1 0x106550, ios 0x29a62c;
     void unclaimParticle(char const* key, cocos2d::CCParticleSystemQuad* particle) = win 0x34a840, imac 0x13cf80, m1 0x111b04;
     void ungroupStickyObjects(cocos2d::CCArray* objects) = win 0x32d430, imac 0x11c330, m1 0xf6a90;
     void unlinkAllEvents() = win inline, imac 0x129820, m1 0x101dc8, ios inline;
@@ -9769,7 +9769,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateAreaObjectLastValues(GameObject* object) = win 0x330b00, inline;
     void updateAudioVisualizer() = win 0x352b60, imac 0x131160, m1 0x107e30, ios 0x29b530;
     void updateBGArtSpeed(float modX, float modY) = win inline, imac 0x139060, m1 0x10e5c8;
-    void updateCamera(float dt) = win 0x345c60, imac 0x131810, m1 0x1083f8;
+    void updateCamera(float dt) = win 0x345c60, imac 0x131810, m1 0x1083f8, ios 0x29b994;
     void updateCameraBGArt(cocos2d::CCPoint position, float zoom) = win 0x348360, imac 0x13a760, m1 0x10f978;
     void updateCameraEdge(int direction, int value) = win inline, imac 0x12cf60, m1 0x104a94;
     void updateCameraMode(EffectGameObject* obj, bool updateDual) = win inline, imac 0x102410, m1 0xe0c78;
@@ -11363,7 +11363,7 @@ class GJGroundLayer : cocos2d::CCLayer {
     void toggleVisible02(bool visible) = win inline, imac 0x6be4e0, m1 0x5d7200;
     void updateGround01Color(cocos2d::ccColor3B color) = win inline, imac 0x6be420, m1 0x5d7140;
     void updateGround02Color(cocos2d::ccColor3B color) = win inline, imac 0x6be560, m1 0x5d7278;
-    void updateGroundPos(cocos2d::CCPoint pos) = win inline, imac 0x6be510, m1 0x5d7228;
+    void updateGroundPos(cocos2d::CCPoint pos) = win inline, imac 0x6be510, m1 0x5d7228, ios 0x2fb9c;
     void updateGroundWidth(bool useThis) = win inline, imac 0x6be700, m1 0x5d73f0;
     void updateLineBlend(bool blend) = win inline, imac 0x6be910, m1 0x5d75ec;
     void updateShadows() = win 0x387a00, imac 0x6be880, m1 0x5d7558;
@@ -13515,8 +13515,8 @@ class HardStreak : cocos2d::CCDrawNode {
     void reset() = win inline, imac 0x64db0, m1 0x5db98;
     void resumeStroke() = win inline, imac 0x64d50, m1 0x5db50;
     void scheduleAutoUpdate() = win inline, imac 0x641b0, m1 0x5d1cc;
-    void stopStroke() = win 0x3bfb20, imac 0x64d70, m1 0x5db5c;
-    callback void updateStroke(float dt) = win 0x3bfb60, imac 0x641d0, m1 0x5d1dc;
+    void stopStroke() = win 0x3bfb20, imac 0x64d70, m1 0x5db5c, ios 0x667b0;
+    callback void updateStroke(float dt) = win 0x3bfb60, imac 0x641d0, m1 0x5d1dc, ios 0x66074;
 
     cocos2d::CCArray* m_pointArray;
     cocos2d::CCPoint m_currentPoint;
@@ -15983,7 +15983,7 @@ class MenuGameLayer : cocos2d::CCLayer {
 
     void destroyPlayer() = win 0x471660, imac 0x4f9dd0, m1 0x456a8c;
     cocos2d::ccColor3B getBGColor(int index) = win 0x470290, imac 0x4f8cf0, m1 0x455bc0;
-    void resetPlayer() = win 0x470d30, imac 0x4f9210, m1 0x456158;
+    void resetPlayer() = win 0x470d30, imac 0x4f9210, m1 0x456158, ios 0x44239c;
     void tryJump(float dt) = win 0x470570, imac 0x4f8d90, m1 0x455cfc;
     void updateColor(float dt) = win 0x470140, imac 0x4f9010, m1 0x455f74;
     void updateColors() = win inline, imac 0x4f99f0, m1 0x456720;
@@ -17876,10 +17876,10 @@ class PlayerFireBoostSprite : cocos2d::CCSprite {
 [[link(android), depends(GJPointDouble)]]
 class PlayerObject : GameObject, AnimatedSpriteDelegate {
     // virtual ~PlayerObject();
-    PlayerObject() = win 0x4e36c0, imac 0x40aa00, m1 0x384504, inline;
+    PlayerObject() = win 0x4e36c0, imac 0x40aa00, m1 0x384504, ios 0x2cb8b0, inline;
     ~PlayerObject() = win 0x4e4710, imac 0x3e7540, m1 0x3656e8, ios 0x2b4214;
 
-    static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x4e4940, imac 0x3e7820, m1 0x3658dc;
+    static PlayerObject* create(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x4e4940, imac 0x3e7820, m1 0x3658dc, ios 0x2b422c;
 
     virtual void update(float dt) = win 0x4e6fc0, imac 0x3ea130, m1 0x367eb4, ios 0x2b6188;
     virtual void setScaleX(float scale) = win 0x501f40, imac 0x40a390, m1 0x383f38, ios 0x2cb504;
@@ -17898,7 +17898,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     virtual float getObjectRotation() = win 0x4fec00, imac 0x408720, m1 0x382a70, ios 0x2ca2a4;
     virtual void animationFinished(char const* key) = win 0x501f90, imac 0x40a4b0, m1 0x384014, ios 0x2cb51c;
 
-    void activateStreak() = win 0x4fe4a0, imac 0x3f04c0, m1 0x36d614;
+    void activateStreak() = win 0x4fe4a0, imac 0x3f04c0, m1 0x36d614, ios 0x2ba890;
     void addAllParticles() = win 0x4e68b0, imac 0x3e9da0, m1 0x367b5c;
     void addToTouchedRings(RingObject* object) = win inline, imac 0x402730, m1 0x37cfd8;
     void addToYVelocity(double yVelocity, int type) = win inline, imac 0x3ea0c0, m1 0x367e6c, ios inline;
@@ -17919,7 +17919,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void createRobot(int frame) = win 0x4e60d0, imac 0x3e9190, m1 0x367010;
     void createSpider(int frame) = win 0x4e64c0, imac 0x3e9540, m1 0x367354;
     void deactivateParticle() = win inline, imac 0x3ee9a0, m1 inline;
-    void deactivateStreak(bool stop) = win inline, imac 0x3e9f60, m1 0x367cf4;
+    void deactivateStreak(bool stop) = win inline, imac 0x3e9f60, m1 0x367cf4, ios 0x2b608c;
     bool destroyFromHitHead() = win inline, imac 0x405ff0, m1 0x38059c;
     void didHitHead() = win 0x4f1e30, imac 0x3fa4b0, m1 0x375b64;
     void disableCustomGlowColor() = win inline, imac 0x406d80, m1 0x3811f4, ios inline;
@@ -17929,7 +17929,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, imac 0x406d50, m1 0x3811d4;
     void enablePlayerControls() = win 0x4fd940, imac 0x407620, m1 0x381a8c;
     void exitPlatformerAnimateJump() = win 0x4eb1f0, imac 0x3ef780, m1 0x36c9b4;
-    void fadeOutStreak2(float duration) = win 0x4fe600, imac 0x400d40, m1 0x37b8bc;
+    void fadeOutStreak2(float duration) = win 0x4fe600, imac 0x400d40, m1 0x37b8bc, ios 0x2c48c0;
     void flashPlayer(float flashDuration, float flashDelay, cocos2d::ccColor3B mainColor, cocos2d::ccColor3B secondColor) = win inline, imac 0x3fbd90, m1 0x377150, ios inline;
     void flipGravity(bool flip, bool noEffects) = win 0x4f8440, imac 0x403110, m1 0x36da4c;
     int flipMod() = win inline, imac 0x3ee920, m1 0x36bb3c, ios inline;
@@ -17947,10 +17947,10 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool handleRotatedObjectCollision(float dt, GameObject* object, cocos2d::CCRect rect, bool skipCheck) = win inline, imac 0x3f3b80, m1 0x37062c, ios inline;
     void handleRotatedSlopeCollision(float dt, GameObject* object, bool skipPre) = win inline, imac 0x3f3d40, m1 0x3707f8, ios inline;
     void hardFlipGravity() = win inline, imac 0x3fa700, m1 0x375d4c;
-    void hitGround(GameObject* object, bool notFlipped) = win 0x4fa250, imac 0x3f8d40, m1 0x3745b0;
+    void hitGround(GameObject* object, bool notFlipped) = win 0x4fa250, imac 0x3f8d40, m1 0x3745b0, ios 0x2c0334;
     void hitGroundNoJump(GameObject* object, bool notFlipped) = win 0x4fa1f0, imac 0x3fa2f0, m1 0x3759cc, ios inline;
     void incrementJumps() = win 0x4eae50, imac 0x3f08e0, m1 0x36da10, ios 0x2babf0;
-    bool init(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x4e49e0, imac 0x3e78b0, m1 0x365994;
+    bool init(int player, int ship, GJBaseGameLayer* gameLayer, cocos2d::CCLayer* layer, bool playLayer) = win 0x4e49e0, imac 0x3e78b0, m1 0x365994, ios 0x2b42d0;
     bool isBoostValid(float yVelocity) = win inline, imac 0x3f3650, m1 0x3700e4;
     bool isFlying() = win inline, imac 0x3ee940, m1 0x36bb50;
     bool isInBasicMode() = win inline, imac 0x3fb560, m1 0x3769c0;
@@ -17974,7 +17974,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     /// @note this will return false for PlayerObjects in MenuGameLayer
     /// @note this might break if you call from PlayerObject::init
     bool isVanillaPlayer() = inline;
-    void levelFlipFinished() = win 0x4e99b0;
+    void levelFlipFinished() = win 0x4e99b0, ios 0x2baa20;
     bool levelFlipping() = win 0x4f97c0, imac 0x3ee970, m1 0x36bb98, ios inline;
     void levelWillFlip() = win 0x4e9930, imac 0x3f0680, m1 0x36d7c4;
     void limitDashRotation(float& rotation) = win inline, imac 0x3fe2f0, m1 0x3792f4;
@@ -17983,8 +17983,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void logValues() = win inline, imac 0x40a400, m1 0x383f70, ios inline;
     void modeDidChange() = win inline, imac 0x403bf0, m1 0x37e3a0;
     void performSlideCheck() = win inline, imac 0x3f3880, m1 0x3702e8;
-    void placeStreakPoint() = win 0x4fec10, m1 0x370048;
-    void placeStreakPoint(cocos2d::CCPoint);
+    void placeStreakPoint() = win 0x4fec10, m1 0x370048, ios inline;
+    void placeStreakPoint(cocos2d::CCPoint) = ios 0x2bca7c;
     void playBumpEffect(int objectType, GameObject* player) = win 0x4fde90, imac 0x407a90, m1 0x381f30, ios 0x2c9904;
     void playBurstEffect() = win inline, imac 0x3f1090, m1 0x36e13c;
     void playCompleteEffect(bool noEffects, bool instant) = win 0x4e2420, imac 0x1f7550, m1 0x1a90c8;
@@ -18018,7 +18018,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void resetCollisionValues() = win inline, imac 0x3fa790, ios inline;
     void resetPlayerIcon() = win 0x4f95b0, imac 0x4039f0, m1 0x37e1b8;
     void resetStateVariables() = win inline, imac 0x3ffa00, m1 0x37a7b8;
-    void resetStreak() = win 0x4e9840, imac 0x3f03d0, m1 0x36d52c;
+    void resetStreak() = win 0x4e9840, imac 0x3f03d0, m1 0x36d52c, ios 0x2ba7a8;
     void resetTouchedRings(bool removeAll) = win 0x4f6600, imac 0x3ffa80, m1 0x37a81c;
     int reverseMod() = win inline, imac 0x3f1410, m1 0x36e484, ios inline;
     void reversePlayer(EffectGameObject* object) = win 0x4f6740, imac 0x402790, m1 0x37d030;
@@ -18085,9 +18085,9 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updateCollideTop(float y, GameObject* object) = win inline, imac 0x3fa350, m1 0x375a18;
     void updateDashAnimation() = win 0x4f4f40, imac 0x3ee9d0, m1 0x36bbf8;
     void updateDashArt() = win 0x4f43c0, imac 0x3fdda0, m1 0x378dcc;
-    void updateEffects(float param) = win inline, imac 0x3efd90, m1 0x36cf70;
+    void updateEffects(float param) = win inline, imac 0x3efd90, m1 0x36cf70, ios 0x2ba228;
     void updateGlowColor() = win 0x4fb750, imac 0x406d90, m1 0x3811fc;
-    void updateInternalActions(float dt) = win 0x502570, imac 0x40a9e0, m1 0x3844f8;
+    void updateInternalActions(float dt) = win 0x502570, imac 0x40a9e0, m1 0x3844f8, ios 0x2cb848;
     void updateJump(float dt) = win 0x4e9b80, imac 0x3eb2b0, m1 0x1b28e4;
     void updateJumpVariables() = win inline, imac 0x3eeb90, m1 0x36bda4, ios inline;
     void updateLastGroundObject(GameObject* object) = win inline, imac 0x3fa470, m1 0x375b30, ios inline;
@@ -18107,8 +18107,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerSpriteExtra(std::string frameName) = win 0x4fcf80, imac 0x3e8ff0, m1 0x366e48;
     void updatePlayerSwingFrame(int frame) = win 0x4fcb20, imac 0x404750, m1 0x37ee30;
     void updateRobotAnimationSpeed() = win 0x4ff700, imac 0x408770, m1 0x382aec;
-    void updateRotation(float dt) = win 0x4ef390, imac 0x3f9cd0, m1 0x3753e8;
-    void updateRotation(float dt, float rotation) = win 0x4ef5b0, imac 0x3efac0, m1 0x36ccac;
+    void updateRotation(float dt) = win 0x4ef390, imac 0x3f9cd0, m1 0x3753e8, ios 0x2c0ed4;
+    void updateRotation(float dt, float rotation) = win 0x4ef5b0, imac 0x3efac0, m1 0x36ccac, ios 0x2b9f7c;
     void updateShipRotation(float dt) = win 0x4eefa0, imac 0x8d960, m1 0x375018;
     void updateShipSpriteExtra(std::string frameName) = win 0x4fd080, imac 0x3e90c0, m1 0x366f2c;
     void updateSlopeRotation(float dt) = win 0x4eef20, imac 0x3f9780, m1 0x374e9c;
@@ -18568,7 +18568,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void pauseGame(bool unfocused) = win 0x51a370, imac 0x8d960, m1 0x82e88, ios 0x14c3d0;
     void playEndAnimationToPos(cocos2d::CCPoint position) = win 0x50a2a0, imac 0x83810, m1 0x79eb8;
     void playPlatformerEndAnimationToPos(cocos2d::CCPoint position, bool instant) = win 0x50ace0, imac 0x83de0, m1 0x7a3dc;
-    TodoReturn playPracticeMusic();
+    void playPracticeMusic() = ios 0x14c328;
     void prepareCreateObjectsFromSetup(std::string& levelString) = win 0x50b770, imac 0x7a380, m1 0x71ba0, ios 0x13ed00;
     void prepareMusic(bool dontWait) = win 0x51ad50, imac 0x802b0;
     void processCreateObjectsFromSetup() = win 0x50ba30, imac 0x7a7b0, m1 0x72024, ios 0x13ef98;
