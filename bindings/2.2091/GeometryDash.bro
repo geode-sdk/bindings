@@ -16159,7 +16159,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     bool isCovered();
     void loadPage(int, bool) = win 0xd5d30, m1 0x80ccb8;
     void onClearSearch(cocos2d::CCObject* sender) = win 0xd7f40, m1 0x80bdf0, imac 0x9299a0;
-    void onClose(cocos2d::CCObject* sender) = win 0xd91c0, m1 0x80bb9c, ios 0x929760;
+    void onClose(cocos2d::CCObject* sender) = win 0xd91c0, m1 0x80bb9c, imac 0x929760;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0xd6740, m1 0x80c4f8, imac 0x92a0c0;
     TodoReturn onInboxPoll(float);
     void onLegacyMessages(cocos2d::CCObject* sender) = win 0xd8330, m1 0x80bc5c, imac 0x929830;
