@@ -5329,7 +5329,7 @@ class EditorWindowPopup : SetupTriggerPopup {
     TodoReturn fieldHoldsKeys();
     TodoReturn getResizeCorner(cocos2d::CCPoint) = imac 0x900a00, m1 0x7e7d60;
     bool isInDragHandle(cocos2d::CCPoint);
-    TodoReturn layoutWindow() = win 0x17e520;
+    void layoutWindow() = win 0x17e520;
     TodoReturn moveWindowTo(cocos2d::CCPoint);
     void setLockAspectRatio(bool);
     void setWindowScaleBounds(float, float);
