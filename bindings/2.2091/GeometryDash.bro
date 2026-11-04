@@ -5677,9 +5677,9 @@ class EffectManagerState {
 
 [[link(android)]]
 class EmotePickerDelegate {
-    virtual void emotePickerClosed(EmotePickerPopup*) = inline;
-    virtual void emotePicked(EmotePickerPopup*, EmoteDef const*) = inline;
-    virtual void emotePickerKeyDown(EmotePickerPopup*, cocos2d::enumKeyCodes, double) = inline;
+    virtual void emotePickerClosed(EmotePickerPopup* picker) = inline;
+    virtual void emotePicked(EmotePickerPopup* picker, EmoteDef const* def) = inline;
+    virtual void emotePickerKeyDown(EmotePickerPopup* picker, cocos2d::enumKeyCodes key, double timestamp) = inline;
 }
 
 [[link(android)]]
@@ -5687,13 +5687,13 @@ class EmotePickerPopup : EditorWindowPopup {
     virtual ~EmotePickerPopup() = win 0x1236e0, m1 0x7ead00, imac 0x903d40, ios 0x4dbe6c;
     EmotePickerPopup() = win 0x123430;
 
-    static EmotePickerPopup* create(CCTextInputNode*, cocos2d::CCPoint, int, int) = win inline, m1 0x7e9568;
-    static EmotePickerPopup* toggle(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*, CCTextInputNode*, int, int) = win inline, m1 0x7e9a38;
+    static EmotePickerPopup* create(CCTextInputNode* input, cocos2d::CCPoint position, int maxEmotes, int mode) = win inline, m1 0x7e9568;
+    static EmotePickerPopup* toggle(EmotePickerPopup* popup, EmotePickerDelegate* delegate, cocos2d::CCNode* node, CCTextInputNode* input, int maxEmotes, int mode) = win inline, m1 0x7e9a38;
 
-    static cocos2d::CCPoint buttonAnchor(cocos2d::CCNode*) = win 0x1237e0;
-    static EmotePickerPopup* openAt(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = win 0x123840, imac 0x902b60, m1 0x7e9b08;
-    static EmotePickerPopup* createPicker(cocos2d::CCPoint) = win inline;
-    static EmotePickerPopup* togglePicker(EmotePickerPopup*, EmotePickerDelegate*, cocos2d::CCNode*) = win inline;
+    static cocos2d::CCPoint buttonAnchor(cocos2d::CCNode* node) = win 0x1237e0;
+    static EmotePickerPopup* openAt(EmotePickerPopup* popup, EmotePickerDelegate* delegate, cocos2d::CCNode* node) = win 0x123840, imac 0x902b60, m1 0x7e9b08;
+    static EmotePickerPopup* createPicker(cocos2d::CCPoint position) = win inline;
+    static EmotePickerPopup* togglePicker(EmotePickerPopup* popup, EmotePickerDelegate* delegate, cocos2d::CCNode* node) = win inline;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x124390, imac 0x903940, m1 0x7ea928, ios 0x4dbbb8;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x124a30, imac 0x903b10, m1 0x7eab24, ios 0x4dbcf8;
@@ -5724,12 +5724,12 @@ class EmoteSprite : cocos2d::CCSprite {
     virtual ~EmoteSprite() = win 0x7e780, imac 0x8e100, m1 0x8357c, ios 0x17c08;
     EmoteSprite() = win inline;
 
-    static EmoteSprite* createWithDef(EmoteDef const*) = win 0x7F0E0;
-    static EmoteSprite* createWithName(std::string const&) = win inline;
+    static EmoteSprite* createWithDef(EmoteDef const* def) = win 0x7F0E0;
+    static EmoteSprite* createWithName(std::string const& name) = win inline;
 
-    static void attachToLabel(cocos2d::CCLabelBMFont*, cocos2d::CCNode*, std::vector<EmoteToken> const&, float) = win 0x80140;
-    static EmoteDef* defForName(std::string const&) = win 0x7EFA0;
-    static std::string translateUnicodeEmoji(std::string const&) = win 0x7F330;
+    static void attachToLabel(cocos2d::CCLabelBMFont* label, cocos2d::CCNode* parent, std::vector<EmoteToken> const& tokens, float heightFactor) = win 0x80140;
+    static EmoteDef* defForName(std::string const& name) = win 0x7EFA0;
+    static std::string translateUnicodeEmoji(std::string const& text) = win 0x7F330;
     static float heightFactor() = win inline;
     static float jumboMaxAspect() = win inline;
     static float jumboMultiScale() = win inline;
@@ -5741,13 +5741,13 @@ class EmoteSprite : cocos2d::CCSprite {
     static int characterCount(std::string const& str) = win inline;
     static int charIndexForByte(std::string const& str, int byteIndex) = win inline;
 
-    virtual void setColor(cocos2d::ccColor3B const&) = win 0x3f5c0, ios 0x4dc780, m1 0x7eb6fc, imac 0x904710;
+    virtual void setColor(cocos2d::ccColor3B const& color) = win 0x3f5c0, ios 0x4dc780, m1 0x7eb6fc, imac 0x904710;
 
-    int effectiveLength(std::string const&, int) = win 0x7FC10;
-    void fitToHeight(float, float) = win 0x7F200;
-    bool initWithDef(EmoteDef*) = win inline;
-    int parseTokens(std::string const&, std::vector<EmoteToken>*, int) = win 0x7F9B0;
-    bool replaceTokens(std::string const&, std::vector<EmoteToken>&, float) = win 0x7FD40;
+    int effectiveLength(std::string const& text, int maxEmotes) = win 0x7FC10;
+    void fitToHeight(float height, float maxAspect) = win 0x7F200;
+    bool initWithDef(EmoteDef* def) = win inline;
+    int parseTokens(std::string const& text, std::vector<EmoteToken>* tokens, int maxEmotes) = win 0x7F9B0;
+    bool replaceTokens(std::string const& text, std::vector<EmoteToken>& tokens, float scale) = win 0x7FD40;
 
     EmoteDef* m_emoteDef;
 }
