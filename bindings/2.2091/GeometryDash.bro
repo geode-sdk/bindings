@@ -24355,7 +24355,6 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn buildRows(bool) = win 0xe2c60;
     TodoReturn checkMessageTap(cocos2d::CCTouch*);
     TodoReturn checkUnseenBelow(float);
-    TodoReturn createModView(GJMessageThread*, long long);
     TodoReturn dmSendBlocked();
     TodoReturn exitSearch(bool);
     // TodoReturn expandShareTokens(std::string const&, std::vector<ThreadViewPopup::ShareToken>&);
