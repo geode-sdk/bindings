@@ -9159,15 +9159,15 @@ class GhostTrailEffect : cocos2d::CCNode {
     virtual ~GhostTrailEffect() = win 0x76a40, ios 0x391824;
 
     // GhostTrailEffect() = ios 0x305d20;
-    static GhostTrailEffect* create() = win 0x76a80, imac 0x6d0890, m1 0x5e7b88;
+    static GhostTrailEffect* create() = win 0x76a80, imac 0x6d0890, m1 0x5e7b88, ios 0x39183c;
 
     virtual bool init() = win 0x76b70, imac 0x6d0970, m1 0x5e7c90, ios 0x391930;
     virtual void draw() = win inline, imac 0x6d0f20, m1 0x5e81f8, ios 0x391e94;
 
-    void doBlendAdditive() = win inline, imac 0x6d0f00, m1 0x5e81e8;
-    void runWithTarget(cocos2d::CCSprite* sprite, float snapshotInterval, float fadeInterval, float duration, float ghostScale, bool scaleTwice) = win inline, imac 0x6d09d0, m1 0x5e7cec;
-    void stopTrail() = win inline, imac 0x6d0ec0, m1 0x5e8198;
-    void trailSnapshot(float dt) = win 0x76bd0, imac 0x6d0a70, m1 0x5e7da0;
+    void doBlendAdditive() = win inline, imac 0x6d0f00, m1 0x5e81e8, ios 0x391e84;
+    void runWithTarget(cocos2d::CCSprite* sprite, float snapshotInterval, float fadeInterval, float duration, float ghostScale, bool scaleTwice) = win inline, imac 0x6d09d0, m1 0x5e7cec, ios 0x39198c;
+    void stopTrail() = win inline, imac 0x6d0ec0, m1 0x5e8198, ios 0x391e34;
+    void trailSnapshot(float dt) = win 0x76bd0, imac 0x6d0a70, m1 0x5e7da0, ios 0x391a3c;
 
     float m_snapshotInterval;
     float m_fadeInterval;
@@ -9497,7 +9497,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     cocos2d::CCArray* createNewKeyframeAnim() = win inline, imac 0x1299f0, m1 0x101f50;
     cocos2d::CCParticleSystemQuad* createParticle(int objectType, char const* plistName, int tag, cocos2d::tCCPositionType positionType) = win 0x34a200, imac 0x13c790, m1 0x111314;
     void createPlayer() = win 0x311420, imac 0x305780, m1 0xd0fb8, ios 0x277d64;
-    void createPlayerCollisionBlock() = win 0x31fb30, imac 0x1089e0, m1 0xe66bc;
+    void createPlayerCollisionBlock() = win 0x31fb30, imac 0x1089e0, m1 0xe66bc, ios 0x286630;
     void createTextLayers() = win 0x314df0, imac 0xfbcb0, m1 0xda598;
     cocos2d::CCArray* damagingObjectsInRect(cocos2d::CCRect rect, bool enabledGroups) = win 0x318510, imac 0xff8d0, m1 0xde3dc;
     void destroyObject(GameObject* object) = win 0x31d460, imac 0x1061d0, m1 0xe4208, ios 0x284cd4;
@@ -18064,7 +18064,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleBirdMode(bool enable, bool noEffects) = win 0x4f8ad0, imac 0x403c10, m1 0x37e3c4;
     void toggleDartMode(bool enable, bool noEffects) = win 0x4f9230, imac 0x404d20, m1 0x37f3f8;
     void toggleFlyMode(bool enable, bool noEffects) = win 0x4f8790, imac 0x403110, m1 0x37d94c;
-    void toggleGhostEffect(GhostType type) = win 0x4fd180, imac 0x400300, m1 0x37aef4;
+    void toggleGhostEffect(GhostType type) = win 0x4fd180, imac 0x400300, m1 0x37aef4, ios 0x2c4158;
     void togglePlatformerMode(bool val) = win inline, imac 0x3e9d90, m1 0x367b54;
     void togglePlayerScale(bool enable, bool noEffects) = win 0x4fecb0, imac 0x3ffec0, m1 0x37ab68;
     void toggleRobotMode(bool enable, bool noEffects) = win 0x4f99d0, imac 0x405730, m1 0x37fd68;
@@ -18517,7 +18517,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 
     void addCircle(CCCircleWave* cw) = win inline, imac 0x88610, m1 0x7e688;
     void addLiveStartPosObject(StartPosObject*) = win 0x518730, imac 0x8c1a0, m1 0x81794;
-    void addObject(GameObject* object) = win 0x50c690, imac 0x7f4f0, m1 0x76298;
+    void addObject(GameObject* object) = win 0x50c690, imac 0x7f4f0, m1 0x76298, ios 0x141560;
     void addToGroupOld(GameObject* object) = win inline, imac 0x84620, m1 0x7ab6c, ios inline;
     void applyCustomEnterEffect(GameObject* object, bool isRight) = win 0x50f410, imac 0x859e0, m1 0x7bdd0;
     void applyEnterEffect(GameObject* object, int enterType, bool isRight) = win 0x5100f0, imac 0x86390, m1 0x7c570;
@@ -18600,7 +18600,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void showTwoPlayerGuide() = win 0x50b3c0, imac 0x7ec00, m1 0x759c4;
     void spawnCircle() = win 0x50a7b0, imac 0x819e0, m1 0x78300, ios 0x1432b4;
     void spawnFirework() = win 0x50a8a0, imac 0x828b0, m1 0x79084, ios 0x143bd0;
-    void startGame() = win 0x506140, imac 0x803d0, m1 0x76ec0;
+    void startGame() = win 0x506140, imac 0x803d0, m1 0x76ec0, ios 0x14214c;
     void startGameDelayed() = win 0x5061a0, imac 0x80aa0, m1 0x775b0;
     void startMusic() = win 0x51aed0, imac 0x80940, m1 0x7745c;
     void startRecording() = win inline, imac 0x8d7d0, ios inline;
