@@ -5320,7 +5320,7 @@ class EditorWindowPopup : SetupTriggerPopup {
     bool isInCloseButton(cocos2d::CCPoint point) = win 0x17e7f0, m1 0x7e7e60, imac 0x900b10;
 
     TodoReturn activeField();
-    TodoReturn applyWindowSize() = win 0x17e6d0, imac 0x9005e0, m1 0x7e7a20;
+    void applyWindowSize() = win 0x17e6d0, imac 0x9005e0, m1 0x7e7a20;
     TodoReturn blurField();
     TodoReturn clampWindowCenter(cocos2d::CCPoint) = win 0x17e930;
     TodoReturn clampWindowOnScreen(cocos2d::CCPoint) = win 0x17eaa0, m1 0x7e7fdc;
