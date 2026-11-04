@@ -18527,7 +18527,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void commitJumps() = win 0x519f80, imac 0x819a0, m1 0x782cc, ios inline;
     void compareStateSnapshot() = win inline, ios inline;
     CheckpointObject* createCheckpoint() = win 0x5141a0, imac 0x88e50, m1 0x7ee38, ios 0x148cb8;
-    void createObjectsFromSetupFinished() = win 0x50c1f0, imac 0x842f0, m1 0x7a860;
+    void createObjectsFromSetupFinished() = win 0x50c1f0, imac 0x842f0, m1 0x7a860, ios 0x1450c8;
     void delayedFullReset() = win inline, imac 0x8c400;
     void delayedResetLevel() = win 0x518a30, imac 0x88550, m1 0x7e5e0;
     TodoReturn dtBumpCell(int, int, int);
@@ -22943,12 +22943,12 @@ class ShareLevelLayer : FLAlertLayer {
     ShareLevelLayer() = inline;
     ~ShareLevelLayer() = win inline, ios 0x312cb8;
 
-    static ShareLevelLayer* create(GJGameLevel* level) = win inline, m1 0x213698;
+    static ShareLevelLayer* create(GJGameLevel* level) = win inline, m1 0x213698, ios 0x312cf0;
 
     virtual void keyBackClicked() = win 0x99f90, m1 0x215528, ios 0x314370, imac 0x26e470;
 
     CCMenuItemSpriteExtra* getStarsButton(int btnID, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0x26dc30, m1 0x214e4c;
-    bool init(GJGameLevel* level) = win 0x630540, imac 0x26c960, ios 0x21381c;
+    bool init(GJGameLevel* level) = win 0x630540, imac 0x26c960, m1 0x21381c, ios 0x312dc4;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x26d950, m1 0x214b18;
     void onGuidelines(cocos2d::CCObject* sender) = win 0x631230;
     void onNotifyFollowers(cocos2d::CCObject* sender) = win 0x631990;
