@@ -1352,10 +1352,8 @@ class CCMoveCNode : cocos2d::CCObject {
     bool init() = win inline, imac 0x2efa80, m1 0x285fc4, ios inline;
     void reset() = win inline, imac 0x2efa90, m1 0x285fcc, ios inline;
 
-    [[renamed_from(m_unk038)]]
-    double m_moveX;
-    [[renamed_from(m_unk040)]]
-    double m_moveY;
+    double m_unk038;
+    double m_unk040;
     double m_unk048;
     void* m_unk050;
     double m_unk058;
@@ -1366,14 +1364,10 @@ class CCMoveCNode : cocos2d::CCObject {
     int m_unk074;
     bool m_unk078;
     int m_unk07c;
-    [[renamed_from(m_unk080)]]
-    double m_followModX;
-    [[renamed_from(m_unk088)]]
-    double m_followModY;
-    [[renamed_from(m_unk090)]]
-    double m_optimizedMoveX;
-    [[renamed_from(m_unk098)]]
-    double m_optimizedMoveY;
+    double m_unk080;
+    double m_unk088;
+    double m_unk090;
+    double m_unk098;
     double m_unk0a0;
     double m_unk0a8;
     double m_unk0b0;
