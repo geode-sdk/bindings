@@ -16586,7 +16586,7 @@ class MusicDownloadDelegate {
     virtual void newsImageFailed(std::string) = win 0x98e10, imac inline, m1 inline;
 }
 
-[[link(android), depends(cocos2d::extension::CCHttpRequest)]]
+[[link(android), depends(cocos2d::extension::CCHttpRequest, GJLinkObject)]]
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     virtual ~MusicDownloadManager() = win 0x482350, ios 0x1d2b8c;
 
@@ -16605,11 +16605,11 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     SFXFolderObject* createCustomSFXFolder(std::string, int, int) = win 0x486290;
     SFXInfoObject* createCustomSFXPlacement(int, int, std::string, int) = win 0x486430;
     void createSongsInfo(std::string songsStr, std::string artistsStr) = win 0x483140, imac 0x64d520, m1 0x588154;
-    TodoReturn customSFXPathDisplay(std::string const&);
-    TodoReturn customSFXPathLeaf(std::string const&);
+    static std::string customSFXPathDisplay(std::string const&) = win 0x486b20;
+    static std::string customSFXPathLeaf(std::string const&) = win 0x4868c0;
     void dataLoaded(DS_Dictionary* dict) = win 0x48af10;
     void decodeCustomSFX(std::string const&) = win 0x48a760;
-    TodoReturn decodeCustomSFXMappingEntries(std::string const&, std::map<std::pair<int, int>, std::string>&, bool);
+    static void decodeCustomSFXMappingEntries(std::string const&, std::map<std::pair<int, int>, std::string>&, bool) = win 0x487a60;
     void deleteCustomSFXObject(int) = win 0x48a030;
     void deleteSFX(int id) = win inline, imac 0x660fc0, m1 0x59a3fc;
     void deleteSong(int id) = win inline, imac 0x64e9c0, m1 0x5894b4;
@@ -16626,7 +16626,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void downloadSongFinished(int id) = win inline, imac 0x64f870, m1 0x58a30c;
     void downloadSongStarted(int id) = win 0x483c60, imac 0x64eca0, m1 0x5897d8;
     TodoReturn encodeCustomSFX(std::set<int> const&) = win 0x48a310;
-    TodoReturn encodeCustomSFXMappingEntries(std::map<std::pair<int, int>, std::string> const&);
+    static std::string encodeCustomSFXMappingEntries(std::map<std::pair<int, int>, std::string> const&) = win 0x4877f0;
     void encodeDataTo(DS_Dictionary* dict) = win 0x48a970, imac 0xa2bb0, m1 0x7ee990;
     TodoReturn exportCustomSFXToFile() = win 0x489310;
     cocos2d::CCArray* filterMusicByArtistID(int id, cocos2d::CCArray* songs) = win 0x9999999, imac 0x65e800, m1 0x598098;
@@ -16687,11 +16687,11 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     bool isSFXFavorite(int);
     bool isSFXLibraryLoaded() = win inline, imac 0x660b80, m1 0x599fdc, ios inline;
     bool isSongDownloaded(int id) = win 0x4845a0, imac 0x64e570, m1 0x5890c4;
-    TodoReturn joinIDString(std::vector<int> const&);
+    static std::string joinIDString(std::vector<int> const&) = win 0x4851c0;
     void limitDownloadedSongs() = win inline, imac 0x64e880, m1 0x589380;
-    TodoReturn linkRowString(GJLinkObject const&);
-    TodoReturn linkTitleForType(int);
-    TodoReturn linkTypeForURL(std::string const&);
+    static std::string linkRowString(GJLinkObject const&) = win 0x499360;
+    static std::string linkTitleForType(int) = win 0x49a9a0;
+    static int linkTypeForURL(std::string const&) = win 0x499b80;
     void loadSongInfoFailed(int id, GJSongError errorCode) = win 0x493eb0, imac 0x64c010, m1 0x586eb8;
     void loadSongInfoFinished(SongInfoObject* object) = win 0x493e30, imac 0x64bf70, m1 0x586e1c;
     TodoReturn mintCustomSFXID();
@@ -16716,7 +16716,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48c950;
     TodoReturn onTryUpdateNewsFeedCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x491a00;
     void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f6d0;
-    TodoReturn parseLinkRows(std::string const&, std::vector<GJLinkObject>&);
+    static void parseLinkRows(std::string const&, std::vector<GJLinkObject>&) = win 0x498f50;
     void parseMusicLibrary() = win 0x48cf00, m1 0x5990fc;
     TodoReturn parseNewsFeed() = win 0x492170;
     void parseSFXLibrary() = win 0x48fc30;
@@ -16736,7 +16736,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::CCDictionary* responseToDict(std::string response, char const* delimiter) = win 0x4835e0, imac 0x64c320, m1 0x5871cc;
     void showTOS(FLAlertLayerProtocol* delegate) = win 0x484c30, imac 0x650470, m1 0x58ad54;
     void songStateChanged() = win 0x4828f0, imac 0x64b930, m1 0x586840;
-    TodoReturn splitIDString(std::string const&, std::vector<int>&);
+    static void splitIDString(std::string const&, std::vector<int>&) = win 0x485020;
     void stopDownload(int id) = win inline, imac 0x64b720, m1 0x5865e8;
     void storeMusicObject(SongInfoObject* object) = win inline, imac 0x65ddb0, ios inline;
     void storeSFXInfoObject(SFXInfoObject* object) = win inline, imac 0x660ba0, m1 0x59a000;
@@ -16750,7 +16750,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void tryUpdateMusicLibrary() = win 0x48c6b0, imac 0x659e90, m1 0x593ed8;
     void tryUpdateNewsFeed() = win 0x491720;
     void tryUpdateSFXLibrary() = win 0x48f410;
-    std::string urlEncode(std::string const&);
+    static std::string urlEncode(std::string const&) = win 0x499460;
 
     cocos2d::CCDictionary* m_activeDownloads;
     cocos2d::CCArray* m_musicDownloadDelegates;
@@ -22324,7 +22324,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void onToggleSearch(cocos2d::CCObject* sender) = win 0x61f340;
     void onToggleView(cocos2d::CCObject* sender) = win 0x61b360;
     void onUpdateLibrary(cocos2d::CCObject* sender) = win 0x618920, imac 0x42e290, m1 0x3a5238;
-    TodoReturn refreshCustomList();
+    void refreshCustomList() = win 0x61bcc0;
     void refreshLevelIDList(SFXSearchResult*) = win 0x61b8a0;
     void restoreListScroll(float) = win 0x61b7d0;
     TodoReturn searchSettingsChanged();
@@ -22427,7 +22427,7 @@ class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     void onPickFolder(cocos2d::CCObject* sender) = win 0xc6270;
     void onSave(cocos2d::CCObject* sender) = win 0xc6560;
     void onSelectAll(cocos2d::CCObject* sender) = win 0xc65d0;
-    TodoReturn pickFolder(int);
+    void pickFolder(int) = win 0xc6010;
     TodoReturn rebuildList() = win 0xc4e00;
     TodoReturn refreshList() = win 0xc5da0;
     TodoReturn updateActionBtn() = win 0xc5fa0;
