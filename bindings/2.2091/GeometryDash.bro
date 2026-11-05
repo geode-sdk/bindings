@@ -10795,7 +10795,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn getFullSaveString();
     int getLastBuildPageForTab(int tab) = win 0x2646a0;
     GJGameLevel* getListSnapshot() = win 0x267680, imac 0x588b90;
-    int getNormalPercent() = win inline, imac 0x53f070;
+    int getNormalPercent() = win inline, imac 0x53f070, m1 0x495ff8, ios 0xa6c20;
     TodoReturn getSessionBest();
     std::string getSongName() = win 0x264890, imac 0x5843e0, m1 0x4d5aa8;
     std::string getUnpackedLevelDescription() = win inline, m1 0x4dca80;
