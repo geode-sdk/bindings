@@ -57,17 +57,15 @@ cocos2d::CCDictionary* LevelTools::createStarPackDict() {
                         "6,40,7,41,8,42,8,43,8,44,9,45,6,46,10,47,10,48,10,49,10,50,10,52,4,53,3,"
                         "54,4,55,4,56,5,57,6,58,7,59,8,60,8,61,8,62,9,63,9,64,10,65,10,66,10";
     auto parts = cocos2d::CCArray::create();
-    auto start = 0;
-    auto index = packs.find_first_of(",");
-    auto size = packs.size();
-    while (index != std::string::npos) {
+    size_t start = 0;
+    size_t index;
+    do {
+        index = packs.find(',', start);
         auto str = packs.substr(start, index - start);
-        if (!str.empty() || start != size) {
+        if (!str.empty() || start != packs.size())
             parts->addObject(cocos2d::CCString::create(str));
-        }
         start = index + 1;
-        index = packs.find_first_of(",", start);
-    }
+    } while (index != std::string::npos);
     for (int i = 1; i < parts->count(); i += 2) {
         dict->setObject(parts->stringAtIndex(i), parts->stringAtIndex(i - 1)->intValue());
     }

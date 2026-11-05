@@ -90,6 +90,8 @@ void GJShaderState::stopTweenAction(int action) {
 
 #if defined(GEODE_IS_WINDOWS)
 void GJShaderState::reset() {
+    m_tweenActions.clear();
+    m_tweenTimes.clear();
     m_cGSegmentHeight = 1.f;
     m_shockWaveStartTime = 0.f;
     m_shockLineStartTime = 0.0;

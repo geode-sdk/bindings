@@ -36,15 +36,6 @@ SpecialRewardItem GJRewardItem::getNextShardType(SpecialRewardItem type) {
     }
 }
 
-SpecialRewardItem GJRewardItem::getRandomNonMaxShardType() {
-    auto type = getRandomShardType();
-    for (int i = 10; i > 0; i--) {
-        if (GameStatsManager::sharedState()->getStat(rewardItemToStat(type).c_str()) < 100) return type;
-        type = getNextShardType(type);
-    }
-    return (SpecialRewardItem)0;
-}
-
 SpecialRewardItem GJRewardItem::getRandomShardType() {
     int randomValue = floorf((rand() / (float)RAND_MAX) * 10.f) + 1.f;
     switch (randomValue) {

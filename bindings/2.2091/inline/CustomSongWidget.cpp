@@ -53,11 +53,6 @@ bool CustomSongWidget::verifySongID(int id) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-CustomSongWidget::~CustomSongWidget() {
-    MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
-    CC_SAFE_RELEASE(m_songInfoObject);
-}
-
 void CustomSongWidget::addExtraVisuals(bool newMusic, bool newLibraryMusic) {
     if (newMusic && !newLibraryMusic) {
         auto newMusicIcon = cocos2d::CCSprite::createWithSpriteFrameName("newMusicIcon_001.png");

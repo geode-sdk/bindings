@@ -25,17 +25,6 @@ BrowseSmartKeyLayer* BrowseSmartKeyLayer::create(GJSmartTemplate* smartTemplate,
     return nullptr;
 }
 
-void BrowseSmartKeyLayer::addChanceToSelected(int chance, bool zero) {
-    auto blocks = this->getAllSelectedBlocks();
-    for (int i = 0; i < blocks->count(); i++) {
-        if (auto prefab = m_template->getPrefabWithID(m_prefabKey, blocks->objectAtIndex(i)->getTag())) {
-            if (zero) prefab->m_prefabChance = 0;
-            else prefab->m_prefabChance += chance;
-        }
-    }
-    this->updateChanceValues();
-}
-
 void BrowseSmartKeyLayer::createTemplateObjects() {
     auto blocks = this->getAllSelectedBlocks();
     if (blocks->count() == 0) return;

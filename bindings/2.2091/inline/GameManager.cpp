@@ -730,8 +730,6 @@ void GameManager::subSpotlight() {
     }
 }
 
-void GameManager::syncPlatformAchievements() {}
-
 void GameManager::unloadBackground() {
     if (m_loadedBgID == 0) return;
     cocos2d::CCTextureCache::sharedTextureCache()->removeTextureForKey(

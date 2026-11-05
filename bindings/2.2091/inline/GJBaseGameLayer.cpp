@@ -403,21 +403,6 @@ void GJBaseGameLayer::addPoints(int points) {
     m_gameState.m_points += points;
 }
 
-void GJBaseGameLayer::addToGroupParents(GameObject* object) {
-    if (object->m_hasGroupParentsString) {
-        if (auto groupIDs = static_cast<cocos2d::CCArray*>(m_removedParentGroupIDs->objectForKey(object->m_uniqueID))) {
-            object->m_hasGroupParentsString = false;
-            for (int i = 0; i < groupIDs->count(); i++) {
-                auto groupID = static_cast<cocos2d::CCInteger*>(groupIDs->objectAtIndex(i))->getValue();
-                if (m_parentGroupsDict->objectForKey(groupID)) {
-                    this->setGroupParent(object, groupID);
-                }
-            }
-            m_removedParentGroupIDs->removeObjectForKey(object->m_uniqueID);
-        }
-    }
-}
-
 void GJBaseGameLayer::animateOutGroundNew(bool instant) {
     m_gameState.m_unkBool7 = false;
     if (m_gameState.m_unkBool1) {
@@ -1370,12 +1355,13 @@ void GJBaseGameLayer::triggerAdvancedFollowCommand(AdvancedFollowTriggerObject* 
         if (inst.m_gameObject != object || inst.m_group != object->m_targetGroupID || inst.m_objectKey != targetID || inst.m_controlId != object->m_controlID) continue;
         inst.m_finished = false;
         inst.m_doStart = false;
-        inst.m_relatedToGJGameStateUnkUint7 = ++m_gameState.m_unkUint7;
+        inst.m_relatedToGJGameStateUnkUint7 = ++m_gameState.m_advancedFollowCounter;
         exists = true;
     }
     if (!exists) {
-        m_gameState.m_advanceFollowInstances.emplace_back(object, object->m_targetGroupID, targetID, 0, ++m_gameState.m_unkUint7, object->m_controlID);
+        m_gameState.m_advanceFollowInstances.emplace_back(object, object->m_targetGroupID, targetID, 0, ++m_gameState.m_advancedFollowCounter, object->m_controlID);
     }
+    m_gameState.m_advancedFollowNeedsSort = true;
 }
 
 void GJBaseGameLayer::triggerAreaEffectAnimation(EnterEffectObject* object) {
@@ -1396,7 +1382,6 @@ void GJBaseGameLayer::triggerAreaEffectAnimation(EnterEffectObject* object) {
                     inst.loadTransitions(object, m_gameState.m_totalTime);
                     if (targetID > 0) break;
                 }
-                else break;
             }
         }
     }
@@ -1449,75 +1434,6 @@ void GJBaseGameLayer::triggerGravityChange(EffectGameObject* object, int playerI
     }
 }
 
-void GJBaseGameLayer::triggerRotateCommand(EnhancedTriggerObject* object) {
-    if (object->m_isDynamicMode && object->m_duration != 0.f) {
-        if (object->m_useMoveTarget || object->m_isDirectionFollowSnap360) {
-            this->triggerDynamicRotateCommand(object);
-        }
-    }
-    else {
-        auto rotation = object->m_times360 * 360.f + object->m_rotationDegrees;
-        if (object->m_useMoveTarget || object->m_isDirectionFollowSnap360) {
-            GameObject* centerObject;
-            GameObject* targetObject;
-            GameObject* rotateObject;
-            this->getRotateCommandTargets(object, centerObject, targetObject, rotateObject);
-            if (centerObject && targetObject && rotateObject) {
-                auto minXObject = this->tryGetObject(object->m_minXID);
-                auto minYObject = this->tryGetObject(object->m_minYID);
-                auto maxXObject = this->tryGetObject(object->m_maxXID);
-                auto maxYObject = this->tryGetObject(object->m_maxYID);
-                auto centerPosition = centerObject->getRealPosition();
-                auto targetPosition = targetObject->getRealPosition();
-                auto rotatePosition = rotateObject->getRealPosition();
-                if (centerObject == targetObject) {
-                    rotation = centerObject->getRotation();
-                }
-                else {
-                    auto difference = targetPosition - centerPosition;
-                    if (sqrtf(difference.x * difference.x + difference.y * difference.y) < .01f) {
-                        rotation = centerObject->getRotation();
-                    }
-                    else {
-                        rotation = 90.f - atan2f(difference.y, difference.x) * (180.f / M_PI);
-                    }
-                }
-                auto distance = 0.f;
-                if (centerObject != targetObject) {
-                    if (object->m_useMoveTarget) {
-                        if (minXObject) {
-                            auto minX = minXObject->getRealPosition().x;
-                            if (rotatePosition.x < minX) rotatePosition.x = minX;
-                        }
-                        if (maxXObject) {
-                            auto maxX = maxXObject->getRealPosition().x;
-                            if (rotatePosition.x > maxX) rotatePosition.x = maxX;
-                        }
-                        if (minYObject) {
-                            auto minY = minYObject->getRealPosition().y;
-                            if (rotatePosition.y < minY) rotatePosition.y = minY;
-                        }
-                        if (maxYObject) {
-                            auto maxY = maxYObject->getRealPosition().y;
-                            if (rotatePosition.y > maxY) rotatePosition.y = maxY;
-                        }
-                        auto difference = rotatePosition - centerPosition;
-                        if (sqrtf(difference.x * difference.x + difference.y * difference.y) >= .01f) {
-                            distance = 90.f - atan2f(difference.y, difference.x) * (180.f / M_PI);
-                        }
-                    }
-                    else {
-                        distance = rotateObject->getRotation();
-                    }
-                }
-                rotation = convertToClosestDirection(distance - rotation + object->m_rotationOffset, 180.f);
-            }
-            m_effectManager->createRotateCommand(rotation, object->m_duration, object->m_targetGroupID, object->m_centerGroupID,
-                (int)object->m_easingType, object->m_easingRate, object->m_lockObjectRotation, false, false, object->m_uniqueID, object->m_controlID);
-        }
-    }
-}
-
 void GJBaseGameLayer::tryResumeAudio() {
     if (m_resumeTimer < 1 && m_audioPaused) {
         this->resumeAudio();
@@ -1546,12 +1462,12 @@ void GJBaseGameLayer::updateActiveEnterEffect(EnterEffectObject* object) {
     if (enterType == 0 || enterType == 1) {
         m_gameState.m_enterChannelMap[object->m_enterChannel] = id;
         if (id == -15) this->addCustomEnterEffect(object, true);
-        else this->removeCustomEnterEffects(id, true);
+        else this->removeCustomEnterEffects(object->m_enterChannel, true);
     }
     if (enterType == 0 || enterType == 2) {
         m_gameState.m_exitChannelMap[object->m_enterChannel] = id;
         if (id == -15) this->addCustomEnterEffect(object, false);
-        else this->removeCustomEnterEffects(id, false);
+        else this->removeCustomEnterEffects(object->m_enterChannel, false);
     }
 }
 
@@ -1735,13 +1651,13 @@ float GJBaseGameLayer::getAreaObjectValue(EnterEffectInstance* instance, GameObj
     switch (instance->m_gameObject->m_directionType) {
         case 1: {
             value = realPosition.x - position.x + (instance->m_offsetVariance != 0.f ? instance->m_offsetVariance * m_varianceValues[object->m_varianceIndex + 1] : 0.f);
-            value *= value > 0.f ? instance->m_modFront : instance->m_modBack;
+            value *= value >= 0.f ? instance->m_modBack : instance->m_modFront;
             show = instance->m_reversed ? position.x >= realPosition.x : position.x <= realPosition.x;
             break;
         }
         case 2: {
             value = realPosition.y - position.y + (instance->m_offsetVariance != 0.f ? instance->m_offsetVariance * m_varianceValues[object->m_varianceIndex + 1] : 0.f);
-            value *= value > 0.f ? instance->m_modFront : instance->m_modBack;
+            value *= value >= 0.f ? instance->m_modBack : instance->m_modFront;
             show = instance->m_reversed ? position.y >= realPosition.y : position.y <= realPosition.y;
             break;
         }

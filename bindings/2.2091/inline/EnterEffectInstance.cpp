@@ -4,6 +4,7 @@ EnterEffectInstance::EnterEffectInstance() {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 float EnterEffectInstance::getValue(int key) {
+    // cases 28-30 are unused in getValue even though the setter uses them
     switch (key) {
         case 0: return m_length;
         case 1: return m_lengthVariance;
@@ -27,15 +28,12 @@ float EnterEffectInstance::getValue(int key) {
         case 19: return m_rotation;
         case 20: return m_rotationVariance;
         case 21: return m_tint;
-        case 22: return m_unk074;
+        case 22: return m_unusedKey285;
         case 23: return m_toOpacity;
         case 24: return m_fromOpacity;
         case 25: return m_offsetY;
         case 26: return m_offsetYVariance;
         case 27: return m_relativeFade;
-        case 28: return m_hue;
-        case 29: return m_saturation;
-        case 30: return m_value;
         default: return 0;
     }
 }

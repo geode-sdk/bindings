@@ -50,6 +50,7 @@ void CCMoveCNode::reset() {
     m_unk0b0 = 0.0;
     m_unk0b8 = 0;
     m_unk0c0 = 0.0;
+    m_groupObject = nullptr;
     m_unk0d0 = false;
     m_groupObjects.clear();
     this->setTag(0);

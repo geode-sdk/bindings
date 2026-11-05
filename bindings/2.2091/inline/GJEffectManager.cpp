@@ -1,5 +1,6 @@
 #include <Geode/mapping/CCObject.hpp>
 #include <Geode/binding/GJEffectManager.hpp>
+#include <algorithm>
 #include <Geode/utils/cocos.hpp>
 #include <Geode/binding/CCMoveCNode.hpp>
 #include <Geode/binding/ColorAction.hpp>
@@ -74,7 +75,10 @@ cocos2d::ccColor3B GJEffectManager::getMixedColor(cocos2d::ccColor3B color1, coc
     auto r = color1.r * ratio + color2.r * (1.f - ratio);
     auto g = color1.g * ratio + color2.g * (1.f - ratio);
     auto b = color1.b * ratio + color2.b * (1.f - ratio);
-    return { std::clamp<uint8_t>(r, 0, 255), std::clamp<uint8_t>(g, 0, 255), std::clamp<uint8_t>(b, 0, 255) };
+    r = std::clamp(r, 0.f, 255.f);
+    g = std::clamp(g, 0.f, 255.f);
+    b = std::clamp(b, 0.f, 255.f);
+    return { static_cast<uint8_t>(r), static_cast<uint8_t>(g), static_cast<uint8_t>(b) };
 }
 
 cocos2d::ccColor3B GJEffectManager::activeColorForIndex(int index) {
@@ -106,7 +110,8 @@ void GJEffectManager::addMoveCalculation(CCMoveCNode* node, cocos2d::CCPoint off
 }
 
 bool GJEffectManager::checkCollision(int const& blockAID, int const& blockBID) {
-    auto key = std::min(blockAID, blockBID) * 10000 + std::max(blockAID, blockBID) + 10000000;
+    if (blockAID > 10001) return false;
+    auto key = std::max(blockAID, blockBID) * 10000 + std::min(blockAID, blockBID) + 10000000;
     return m_unkMap288.count(key) != 0;
 }
 
@@ -214,13 +219,15 @@ bool GJEffectManager::isGroupEnabled(int id) {
 }
 
 void GJEffectManager::objectsCollided(int blockAID, int blockBID) {
-    auto key = std::min(blockAID, blockBID) * 10000 + std::max(blockAID, blockBID) + 10000000;
-    if (auto it = m_unkMap288.find(key); it != m_unkMap288.end()) {
-        it->second = true;
-    }
-    else {
-        this->handleObjectCollision(true, blockAID, blockBID);
-        m_unkMap288[key] = true;
+    if (blockAID <= 10001 && blockBID <= 10001) {
+        auto key = std::max(blockAID, blockBID) * 10000 + std::min(blockAID, blockBID) + 10000000;
+        if (auto it = m_unkMap288.find(key); it != m_unkMap288.end()) {
+            it->second = true;
+        }
+        else {
+            this->handleObjectCollision(true, std::max(blockAID, blockBID), std::min(blockAID, blockBID));
+            m_unkMap288[key] = true;
+        }
     }
 }
 
@@ -272,7 +279,8 @@ void GJEffectManager::processPulseActions() {
 
 void GJEffectManager::removeAllPulseActions() {
     m_pulseEffectVector.clear();
-    m_unkVector2f0.clear();
+    m_pulseEffectMap.clear();
+    for (int i = 0; i < 10000; i++) m_unkVector2f0[i] = false;
 }
 
 void GJEffectManager::removeColorAction(int id) {
@@ -345,7 +353,7 @@ bool GJEffectManager::shouldBlend(int id) {
 }
 
 void GJEffectManager::spawnObject(GameObject* object, float delay, std::vector<int> const& remapKeys, int uniqueID, int controlID) {
-    m_spawnTriggerActions.emplace_back(object, delay, remapKeys, uniqueID, controlID);
+    if (object) m_spawnTriggerActions.emplace_back(object, delay, remapKeys, uniqueID, controlID);
 }
 
 void GJEffectManager::toggleGroup(int id, bool activate) {
