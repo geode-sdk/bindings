@@ -18007,7 +18007,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void pushPlayer(float yVelocity) = win inline, imac 0x407dd0, m1 0x38227c, ios inline;
     void redirectDash(float rotation) = win inline, imac 0x3fdbe0, m1 0x378c40;
     void redirectPlayerForce(float rotation, float modifier, float minimum, float maximum) = win 0x4fe0a0, imac 0x407fa0, m1 0x382404;
-    TodoReturn refreshStreakState();
+    void refreshStreakState();
     void releaseAllButtons() = win 0x4fd450, imac 0x407490, m1 0x3818fc, ios 0x2c951c;
     bool releaseButton(PlayerButton button) = win 0x4f64c0, imac 0x4023b0, m1 0x37cc88;
     void removeAllParticles() = win inline, imac 0x3e9ef0, m1 0x367c7c;
@@ -18057,7 +18057,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void stopRotation(bool ground, int type) = win inline, imac 0x3f11c0, m1 0x36e280;
     void stopStreak2() = win inline, imac 0x4081e0, m1 0x3825e4;
     void storeCollision(PlayerCollisionDirection direction, int id) = win inline, imac 0x3f15c0, m1 0x36e628, ios inline;
-    TodoReturn streakDisabledForCurrentMode() = win 0x4fe6a0;
+    bool streakDisabledForCurrentMode() = win 0x4fe6a0;
     bool switchedDirTo(PlayerButton button) = win 0x4f60e0, imac 0x400e60, m1 0x37b9d4;
     void switchedToMode(GameObjectType type) = win 0x4fa150, imac 0x3ffd70, m1 0x37a9f0;
     bool testForMoving(float dt, GameObject* object) = win inline, imac 0x3f3a70, m1 0x3704f4;
