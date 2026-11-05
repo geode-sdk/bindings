@@ -3847,13 +3847,13 @@ class DeathHistogram : cocos2d::CCNode {
 
     static DeathHistogram* create(cocos2d::CCSize) = win 0x111400;
 
-    TodoReturn handleTouchBegan(cocos2d::CCTouch*);
+    bool handleTouchBegan(cocos2d::CCTouch*) = win 0x114970;
     TodoReturn handleTouchEnded(cocos2d::CCTouch*);
     TodoReturn handleTouchMoved(cocos2d::CCTouch*);
     bool init(cocos2d::CCSize);
     TodoReturn persistScroll(std::string const&);
     TodoReturn rebuildAxis(char const*, int, float, float, char const*) = win 0x111610;
-    TodoReturn restoreScroll(std::string const&);
+    bool restoreScroll(std::string const&) = win 0x114950;
     void setAttemptLine(std::vector<int> const&, std::vector<int> const&, cocos2d::ccColor3B, int, cocos2d::ccColor3B, bool) = win 0x112eb0;
     void setData(std::vector<int> const&, int, bool, bool, bool) = win 0x111dd0;
     void setProgression(std::vector<int> const&, std::vector<int> const&, std::vector<int> const&) = win 0x114220;
@@ -3870,17 +3870,17 @@ class DeathMarkerLayer : cocos2d::CCNode {
     // TodoReturn buildCell(DeathMarkerLayer::DMCell&);
     bool init(std::vector<int> const&, cocos2d::ccColor3B, bool, bool, cocos2d::CCRect const&, int, int, float, float, float, int, int, cocos2d::CCNode*, bool, bool) = win 0x114ee0;
     // TodoReturn labeled(DeathMarkerLayer::DMCell const&);
-    TodoReturn mountSection(unsigned int);
-    TodoReturn playMarkerSound();
-    TodoReturn playPendingLabelSound();
-    TodoReturn queueDeathLabelSound(int);
-    TodoReturn resolveBadgeCollisions();
+    void mountSection(unsigned int) = win 0x1180b0;
+    void playMarkerSound() = win 0x118fb0;
+    void playPendingLabelSound() = win 0x119050;
+    void queueDeathLabelSound(int) = win 0x118fe0;
+    void resolveBadgeCollisions() = win 0x118570;
     void setLabelsVisible(bool);
-    TodoReturn tickDeathCountLabel();
+    void tickDeathCountLabel() = win 0x119080;
     TodoReturn timescale();
-    TodoReturn unmountSection(unsigned int);
-    TodoReturn updateVisibility(cocos2d::CCRect const&);
-    void setFlipped(bool);
+    void unmountSection(unsigned int) = win 0x118b90;
+    void updateVisibility(cocos2d::CCRect const&) = win 0x118ce0;
+    void setFlipped(bool) = win 0x119180;
 }
 
 [[link(android)]]
@@ -3958,16 +3958,16 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     virtual void show() = win 0xc39c0, ios 0x4c0bfc, m1 0x7c52bc, imac 0x8d8080;
     virtual void setIDPopupClosed(SetIDPopup*, int) = win 0x10e600, ios 0x4c0b80, m1 0x7c5240, imac 0x8d7ff0;
     virtual int virtualRowCount() = win 0x10ccc0, ios 0x4c052c, m1 0x7c46a0, imac 0x8d73d0;
-    virtual int virtualRowHeight(int) = win 0x10ccf0, ios 0x4c0568, m1 0x7c46dc, imac 0x8d7410;
+    virtual float virtualRowHeight(int) = win 0x10ccf0, ios 0x4c0568, m1 0x7c46dc, imac 0x8d7410;
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x10cd10, ios 0x4c0590, m1 0x7c4704, imac 0x8d7450;
 
-    TodoReturn addRow(cocos2d::CCNode*, std::string const&, float, cocos2d::ccColor3B, float);
-    TodoReturn buildAttemptLine();
+    void addRow(cocos2d::CCNode*, std::string const&, float, cocos2d::ccColor3B, float) = win 0x10d6b0;
+    void buildAttemptLine() = win 0x109620;
     TodoReturn buildHistory() = win 0x10c270;
-    TodoReturn buildList();
+    void buildList() = win 0x109950;
     TodoReturn buildStatRow(std::vector<DTStatSeg> const&, cocos2d::CCNode*) = win 0x107e10;
-    TodoReturn countsForScope(std::vector<int>&);
-    TodoReturn dtScrollKey();
+    void countsForScope(std::vector<int>&) = win 0x106720;
+    std::string dtScrollKey() = win 0x106660;
     bool init(GJGameLevel*) = win 0x1045d0;
     void onClose(cocos2d::CCObject* sender) = win 0x10e660;
     void onJumpCurrent(cocos2d::CCObject* sender) = win 0x10d890;
@@ -3978,8 +3978,8 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     void onPanelButton(cocos2d::CCObject* sender) = win 0x10de50;
     void onPrevSession(cocos2d::CCObject* sender) = win 0x10d780;
     void onToggleGlobal(cocos2d::CCObject* sender) = win 0x10d8c0;
-    TodoReturn parseGlobal();
-    TodoReturn parseSessions();
+    void parseGlobal() = win 0x106400;
+    void parseSessions() = win 0x105e60;
     TodoReturn refreshGlobal() = win 0x108b00;
     TodoReturn refreshView() = win 0x106a10;
     void setView(int) = win 0x10dbe0;
@@ -6794,7 +6794,7 @@ class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     virtual int requestPage(int) = win 0x5a3a0, ios 0x5039d8, m1 0x81e1a8, imac 0x93d140;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xe8b20, ios 0x504740, m1 0x81f0d8, imac 0x93e180;
     virtual int virtualRowCount() = win 0xe8440, ios 0x5041f8, m1 0x81eb64, imac 0x93dbf0;
-    virtual int virtualRowHeight(int) = win 0xe8460, ios 0x504218, m1 0x81eb84, imac 0x93dc30;
+    virtual float virtualRowHeight(int) = win 0xe8460, ios 0x504218, m1 0x81eb84, imac 0x93dc30;
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0xe8470, ios 0x504230, m1 0x81eb9c, imac 0x93dc50;
     virtual void getUserListFinished(cocos2d::CCArray*, UserListType) = win 0xe75e0, ios 0x5039e0, m1 0x81e1b0, imac 0x93d150;
     virtual void getUserListFailed(UserListType, GJErrorCode) = win 0xe76b0, ios 0x503f40, m1 0x81e888, imac 0x93d920;
@@ -6868,7 +6868,7 @@ class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtoco
     virtual void forceReloadList(UserListType type) = win 0x2156d0, ios 0x273810, m1 0x6455d8, imac 0x7377c0;
     virtual int requestPage(int) = win 0x5a3a0, ios 0x2726b8, m1 0x643f0c, imac 0x736020;
     virtual int virtualRowCount() = win 0x214740, ios 0x2727fc, m1 0x6440b0, imac 0x7361e0;
-    virtual int virtualRowHeight(int) = win 0xe8460, ios 0x272868, m1 0x644168, imac 0x736290;
+    virtual float virtualRowHeight(int) = win 0xe8460, ios 0x272868, m1 0x644168, imac 0x736290;
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x214770, ios 0x272880, m1 0x644180, imac 0x7362b0;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x215f00, ios 0x2738b8, m1 0x645680, imac 0x7378b0;
     virtual void uploadActionFinished(int, int) = win 0x216150, ios 0x273a08, m1 0x6457e4, imac 0x737a30;
@@ -9813,7 +9813,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void updateZoom(float zoom, float duration, int easing, float rate, int uniqueID, int controlID) = win 0x33eac0, imac 0x12c9a0, m1 0x1045f0;
     void visitWithColorFlash() = win 0x352590, imac 0x1444d0, m1 0x117978;
     float volumeForProximityEffect(SFXTriggerInstance& instance) = win 0x34c740, imac 0x13e170, m1 0x112c60;
-    void syncDeathMarkerFlip();
+    void syncDeathMarkerFlip() = win 0x32ec30;
 
     PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
     GJGameState m_gameState;
@@ -10771,17 +10771,17 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn cellForPosition(cocos2d::CCPoint const&, int&, int&);
     TodoReturn clearDeathMarkerData();
     TodoReturn clearDeathsNear(std::vector<int>&, int, int, int);
-    TodoReturn clearDeathTrackerData();
+    void clearDeathTrackerData() = win 0x266480;
     void clearPlatformerSave() = win 0x2640e0;
     void copyLevelInfo(GJGameLevel* level) = win 0x267010;
     TodoReturn countDeathsNear(std::vector<int> const&, int, int, int);
     TodoReturn createFromFullSaveString(std::string const&) = win 0x26a560;
     void dataLoaded(DS_Dictionary* dict) = win 0x267a10;
-    TodoReturn dtAppendOrder(std::string&, int, bool);
-    TodoReturn dtBumpBucket(std::string&, int);
-    TodoReturn dtBumpRun(std::string&, int, int);
+    void dtAppendOrder(std::string&, int, bool) = win 0x265680;
+    void dtBumpBucket(std::string&, int) = win 0x265150;
+    void dtBumpRun(std::string&, int, int) = win 0x2653f0;
     TodoReturn dtExpandOrder(std::string const&, std::vector<int>&);
-    TodoReturn dtParseGlobalBlob(std::string const&, std::vector<int>&);
+    bool dtParseGlobalBlob(std::string const&, std::vector<int>&) = win 0x265950;
     void dtSetCells(std::vector<int> const&) = imac 0x585fb0, m1 0x4d7350;
     GJGameLevel* duplicate() = win 0x263800, ios 0x0ce280, m1 0x4d46e4, imac 0x582c00;
     TodoReturn ensureSessionLog();
@@ -10832,7 +10832,7 @@ class GJGameLevel : cocos2d::CCNode {
     std::string shippedControls() const = win 0x266530;
     bool shouldCheatReset() = win inline, imac 0x5408a0, m1 0x4976dc, ios inline;
     void storeNewLocalScore(int value, int type) = win 0x264ce0, imac 0x584a20, m1 0x4d60ec;
-    TodoReturn syncUneditedControls();
+    void syncUneditedControls() = win 0x266820;
     void unverifyCoins() = win 0x26ae30, imac 0x5838f0, m1 0x4d5050;
     void setUserID(int);
 
@@ -13600,7 +13600,7 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     virtual void textChanged(CCTextInputNode*) = win 0x3c35e0, ios 0x4e1fb4, m1 0x7f2c94, imac 0x90c460;
     virtual void textInputClosed(CCTextInputNode*) = win 0x3f5c0, ios 0x4e22c4, m1 0x7f308c, imac 0x90c880;
     virtual int virtualRowCount() = win 0x3c3090, ios 0x4e17c0, m1 0x7f23e4, imac 0x90bb70;
-    virtual int virtualRowHeight(int) = win 0x3c30c0, ios 0x4e17e4, m1 0x7f2408, imac 0x90bbb0;
+    virtual float virtualRowHeight(int) = win 0x3c30c0, ios 0x4e17e4, m1 0x7f2408, imac 0x90bbb0;
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x3c30d0, ios 0x4e17f4, m1 0x7f2418, imac 0x90bbd0;
 
     TodoReturn getFormID();
@@ -13698,10 +13698,10 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 
     TodoReturn activeCommentID();
     TodoReturn activeCommentKeyType();
-    TodoReturn canBulkDelete();
-    TodoReturn canToggleModRoom();
-    TodoReturn clearBulkSelection();
-    TodoReturn confirmBulkDelete(std::string const&, std::vector<int> const&);
+    bool canBulkDelete() = win 0x3d2f00;
+    bool canToggleModRoom() = win 0x3d2b70;
+    void clearBulkSelection() = win 0x3d3870;
+    void confirmBulkDelete(std::string const&, std::vector<int> const&) = win 0x3d3e60;
     void confirmReport(cocos2d::CCObject* sender) = win 0x3d04a0, imac 0x5bd6e0;
     int getAccountID() = win inline, imac 0x8945e0, ios inline;
     int getID() = win inline, imac 0x8945e0, m1 0x7881d4, ios inline;
@@ -13724,8 +13724,8 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void onPrevPage(cocos2d::CCObject* sender) = win 0x3d2330, imac 0x894060, m1 0x787cac;
     void onRefreshComments(cocos2d::CCObject* sender) = win 0x3d0330, imac 0x895480, m1 0x788f08;
     void onSimilar(cocos2d::CCObject* sender) = win inline, imac 0x895bd0, ios inline;
-    TodoReturn parentalCommentsDisabled();
-    TodoReturn refreshBulkUI();
+    bool parentalCommentsDisabled() = win 0x3cfe30;
+    void refreshBulkUI() = win 0x3d36e0;
     TodoReturn refreshUserTitle() = win 0x3d2c40;
     void reloadWindow() = win 0x3d2740;
     TodoReturn setupBulkUI() = win 0x3d33b0;
@@ -14699,7 +14699,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     TodoReturn prepareSaveData(std::string&);
     void processLoadedMoveActions() = imac 0xc4070, m1 0xaf2cc;
     void quickUpdateAllPositions() = win 0x3fe590, imac 0xc56d0, m1 0xb07b8;
-    TodoReturn rebuildDeathOverlay();
+    void rebuildDeathOverlay() = win 0x3f5a70;
     void recreateGroups() = win 0x3fd660, imac 0xc4500, m1 0xaf768;
     void redoLastAction() = win 0x3f2fa0, imac 0x40a9e0, m1 0x7e690;
     void refreshSpecial(GameObject* object) = win inline, imac 0xbd3d0, m1 0xa9390;
@@ -18530,16 +18530,16 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void createObjectsFromSetupFinished() = win 0x50c1f0, imac 0x842f0, m1 0x7a860;
     void delayedFullReset() = win inline, imac 0x8c400;
     void delayedResetLevel() = win 0x518a30, imac 0x88550, m1 0x7e5e0;
-    TodoReturn dtBumpCell(int, int, int);
+    int dtBumpCell(int, int, int) = win 0x51eb80;
     TodoReturn dtCellKnown(int, int);
     void dtCommitPlaytime() = win 0x51e8e0, imac 0x9603b0, m1 0x83e0c0;
-    TodoReturn dtDeathIsBarren(int, int, bool, bool);
-    void dtFlushCells() = win 0x517f10, imac 0x960490, m1 0x83e178;
+    bool dtDeathIsBarren(int, int, bool, bool) = win 0x51ee20;
+    void dtFlushCells() = win 0x51e9b0, imac 0x960490, m1 0x83e178;
     TodoReturn dtLiveMarkersChanged();
     TodoReturn dtLoadCells();
-    TodoReturn dtLocalCellTriples(std::vector<int>&);
+    void dtLocalCellTriples(std::vector<int>&) = win 0x51ed00;
     TodoReturn dtMarkerVisibleRect();
-    TodoReturn dtRebuildLiveMarkers();
+    void dtRebuildLiveMarkers() = win 0x51f150;
     TodoReturn dtUpdateLiveMarkers();
     void fullReset() = win 0x518920, imac 0x8c460, m1 0x81a80;
     float getCurrentPercent() = win 0x512300, imac inline, m1 inline, ios 0x147390;
@@ -19428,51 +19428,51 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void clampOffset() = win 0x810D0;
     bool consumePendingCancel() = win inline;
     void contentWiped();
-    cocos2d::CCMenu* createOwnedMenu();
-    void ensureOwnedContentNode();
+    cocos2d::CCMenu* createOwnedMenu() = win 0x825c0;
+    void ensureOwnedContentNode() = win 0x82300;
     void ensureScrollThumb() = win 0x81310;
-    TodoReturn feedTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    TodoReturn feedTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    TodoReturn feedTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    TodoReturn feedTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
-    cocos2d::CCNode* getOrCreateSection(int section);
+    bool feedTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x815a0;
+    void feedTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x81720;
+    void feedTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x816a0;
+    void feedTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x81610;
+    cocos2d::CCNode* getOrCreateSection(int section) = win 0x823c0;
     cocos2d::CCMenu* getOrCreateSectionMenu(int section);
     bool handleTouchBegan(cocos2d::CCTouch* touch) = win 0x817b0, m1 0x8489fc, imac 0x96bdb0;
     void handleTouchCancelled(cocos2d::CCTouch* touch) = win inline;
     void handleTouchEnded(cocos2d::CCTouch* touch) = win 0x81c60;
     void handleTouchMoved(cocos2d::CCTouch* touch) = win 0x819a0;
     bool init(cocos2d::CCSize);
-    TodoReturn itemTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
+    bool itemTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x82890;
     TodoReturn itemTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     TodoReturn itemTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event);
     // the row's node, or null if it isn't mounted
     cocos2d::CCNode* mountedVirtualRow(int row);
-    void mountRowSlot(int row);
+    void mountRowSlot(int row) = win 0x82f20;
     void persistScrollOffset(std::string const& key);
     // offset < 0 keeps the current offset
-    void reloadVirtualRows(float offset);
+    void reloadVirtualRows(float offset) = win 0x82a60;
     void remountVirtualRow(int row);
     bool restoreScrollOffset(std::string const& key) = win 0x81000;
     void scrollTo(float offset) = win inline;
-    void sectionAddChild(cocos2d::CCNode* child, int zOrder, int tag);
+    void sectionAddChild(cocos2d::CCNode* child, int zOrder, int tag) = win 0x82650;
     void sectionClear();
     int sectionIndexForY(float y);
     void setContentHeight(float height) = win inline, imac 0x96b270, m1 0x847efc;
     void setForwardedTouchesOnly(bool);
     void setHorizontal(bool);
-    void setSectionHeight(float);
+    void setSectionHeight(float) = win 0x82290;
     void setThumbColor(cocos2d::ccColor3B);
     void setThumbOffset(cocos2d::CCPoint);
     void setThumbOpacity(unsigned char);
     void setViewSize(cocos2d::CCSize size) = win inline;
     void setVirtualRows(VirtualRowSource* source, float buffer, float topPadding, float bottomPadding);
-    void unmountAllRows();
-    void unmountRowSlot(int row);
+    void unmountAllRows() = win 0x831b0;
+    void unmountRowSlot(int row) = win 0x83100;
     void updateScrollThumb() = win 0x81420;
     void updateSectionVisibility();
-    void updateVirtualRows();
-    TodoReturn worldClipRect();
+    void updateVirtualRows() = win 0x82bf0;
+    cocos2d::CCRect worldClipRect() = win 0x81d60;
 
     // origin is the top of the view; children use negative y going down
     cocos2d::CCNode* m_content;
@@ -24341,7 +24341,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     virtual void threadUpdateFinished(int, int) = win 0xdd240, ios 0x4fc898, m1 0x8151d4, imac 0x9334f0;
     virtual void threadUpdateFailed(int, int) = win 0xdd5f0, ios 0x4fd0e4, m1 0x815c40, imac 0x933fd0;
     virtual int virtualRowCount() = win 0xe1640, ios 0x4ffb30, m1 0x8194e0, imac 0x937e40;
-    virtual int virtualRowHeight(int) = win 0xe1650, ios 0x4ffb6c, m1 0x81951c, imac 0x937e80;
+    virtual float virtualRowHeight(int) = win 0xe1650, ios 0x4ffb6c, m1 0x81951c, imac 0x937e80;
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0xe1750, ios 0x4ffc80, m1 0x819718, imac 0x938120;
     virtual void unmountVirtualRow(int, cocos2d::CCNode*) = win 0xe1670, ios 0x4ffb94, m1 0x819544, imac 0x937ec0;
 
@@ -25166,7 +25166,7 @@ class VirtualKeyboardNode : cocos2d::CCNode {
 [[link(android)]]
 class VirtualRowSource {
     virtual int virtualRowCount() = win 0x9999999;
-    virtual int virtualRowHeight(int) = win 0x9999999;
+    virtual float virtualRowHeight(int) = win 0x9999999;
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x9999999;
     virtual void unmountVirtualRow(int, cocos2d::CCNode*) = win 0x3f5c0;
 }
