@@ -7126,7 +7126,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJUserMessage* getStoredUserMessage(int id) = win inline, imac 0x567da0, m1 0x4baeb4;
     GJUserMessage* getStoredUserMessageReply(int id) = win inline, imac 0x567df0, m1 0x4baedc;
     TodoReturn getThreadInvites() = win 0x24e560;
-    CCArray* getThreadMembers(int id) = win 0x24d340, m1 0x4c77f0, imac 0x575170;
+    cocos2d::CCArray* getThreadMembers(int id) = win 0x24d340, m1 0x4c77f0, imac 0x575170;
     TodoReturn getThreadMessages(int, long long, long long, int, long long, std::string const&) = win 0x24b350;
     TodoReturn getThreadPastMembers(int);
     TodoReturn getThreadPendingInvites(int);
@@ -17500,10 +17500,10 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     void onTime(cocos2d::CCObject* sender) = imac 0x3c2330, m1 0x346f84;
     void onToggleUI(cocos2d::CCObject* sender);
     void onTryEdit(cocos2d::CCObject* sender) = win 0x4db090, imac 0x3c1020, m1 0x345dec;
-    void setupLegacyProgressBars() = win 0x4da1e0, m1 0x347184;
-    void setupPlatformerLabels(bool) = win 0x4da5d0, m1 0x347814;
-    void setupProgressBars() = win inline, m1 0x345d48;
-    void setupSessionProgressBar() = win 0x4d9d60, m1 0x3474bc;
+    void setupLegacyProgressBars() = win 0x4da1e0, imac 0x3c2510, m1 0x347184;
+    void setupPlatformerLabels(bool) = win 0x4da5d0, imac 0x3c2bf0, m1 0x347814;
+    void setupProgressBars() = win inline, imac 0x3c0f70, m1 0x345d48;
+    void setupSessionProgressBar() = win 0x4d9d60, imac 0x3c2870, m1 0x3474bc;
     void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x3c1b30, m1 0x3468d8;
     void tryQuit(cocos2d::CCObject* sender) = win 0x4db520, imac 0x3c1390, m1 0x346140;
     void tryShowBanner(float dt) = imac 0x3c2300, m1 0x346f54;
@@ -18547,8 +18547,8 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     TodoReturn dtRebuildLiveMarkers();
     TodoReturn dtUpdateLiveMarkers();
     void fullReset() = win 0x518920, imac 0x8c460, m1 0x81a80;
-    float getCurrentPercent() = win 0x512300, imac inline, m1 inline, ios 0x147390;
-    int getCurrentPercentInt() = win inline, m1 0x7d8bc, ios inline;
+    float getCurrentPercent() = win 0x512300, imac 0x87040, m1 0x7d1b4, ios 0x147390;
+    int getCurrentPercentInt() = win inline, imac 0x87760, m1 0x7d8bc, ios inline;
     cocos2d::CCPoint getEndPosition() = win inline, imac 0x80ac0, m1 0x775c0;
     CheckpointObject* getLastCheckpoint() = win inline, imac 0x8a4c0, m1 0x7fd9c;
     float getRelativeMod(cocos2d::CCPoint position, float right, float left, float offset) = win inline, imac 0x86b90, m1 0x7cd7c, ios inline;
