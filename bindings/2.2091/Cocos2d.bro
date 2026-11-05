@@ -2243,26 +2243,26 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint) = win inline, imac 0x6af2f0, m1 0x5c9394, ios inline;
     static cocos2d::CCLightning* lightningWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x48270, imac 0x6af4b0, m1 0x5c9500, ios 0x3e5c68;
 
-    virtual void draw() = win 0x9999999, imac 0x6af7a0, m1 0x5c97b0, ios 0x3e5e4c;
-    virtual bool isOpacityModifyRGB() = win 0x9999999, imac 0x6afac0, m1 0x5c9a28, ios 0x3e5fdc;
-    virtual void setOpacityModifyRGB(bool) = win 0x9999999, imac 0x6afae0, m1 0x5c9a38, ios 0x3e5fec;
-    virtual unsigned char getOpacity() = win 0x9999999, imac 0x6af9f0, m1 0x5c99b0, ios 0x3e5f64;
-    virtual unsigned char getDisplayedOpacity() = win 0x9999999, imac 0x6afa10, m1 0x5c99c0, ios 0x3e5f74;
-    virtual void setOpacity(unsigned char) = win 0x9999999, imac 0x6afa40, m1 0x5c99dc, ios 0x3e5f90;
-    virtual void updateDisplayedOpacity(unsigned char) = win 0x9999999, imac 0x6afb00, m1 0x5c9a48, ios 0x3e5ffc;
-    virtual bool isCascadeOpacityEnabled() = win 0x9999999, imac 0x6afb20, m1 0x5c9a58, ios 0x3e600c;
-    virtual void setCascadeOpacityEnabled(bool) = win 0x9999999, imac 0x6afb40, m1 0x5c9a68, ios 0x3e601c;
-    virtual cocos2d::ccColor3B const& getColor() = win 0x9999999, imac 0x6afa60, m1 0x5c99ec, ios 0x3e5fa0;
-    virtual cocos2d::ccColor3B const& getDisplayedColor() = win 0x9999999, imac 0x6afb60, m1 0x5c9a78, ios 0x3e602c;
-    virtual void setColor(cocos2d::ccColor3B const&) = win 0x9999999, imac 0x6afa80, m1 0x5c99fc, ios 0x3e5fb0;
-    virtual void updateDisplayedColor(cocos2d::ccColor3B const&) = win 0x9999999, imac 0x6afb80, m1 0x5c9a88, ios 0x3e603c;
-    virtual bool isCascadeColorEnabled() = win 0x9999999, imac 0x6afbc0, m1 0x5c9ab0, ios 0x3e6064;
-    virtual void setCascadeColorEnabled(bool) = win 0x9999999, imac 0x6afbe0, m1 0x5c9ac0, ios 0x3e6074;
+    virtual void draw() = win 0x48430, imac 0x6af7a0, m1 0x5c97b0, ios 0x3e5e4c;
+    virtual bool isOpacityModifyRGB() = win 0x486b0, imac 0x6afac0, m1 0x5c9a28, ios 0x3e5fdc;
+    virtual void setOpacityModifyRGB(bool) = win 0x486c0, imac 0x6afae0, m1 0x5c9a38, ios 0x3e5fec;
+    virtual unsigned char getOpacity() = win 0x48660, imac 0x6af9f0, m1 0x5c99b0, ios 0x3e5f64;
+    virtual unsigned char getDisplayedOpacity() = win 0x48670, imac 0x6afa10, m1 0x5c99c0, ios 0x3e5f74;
+    virtual void setOpacity(unsigned char) = win 0x48680, imac 0x6afa40, m1 0x5c99dc, ios 0x3e5f90;
+    virtual void updateDisplayedOpacity(unsigned char) = win 0x486d0, imac 0x6afb00, m1 0x5c9a48, ios 0x3e5ffc;
+    virtual bool isCascadeOpacityEnabled() = win 0x486e0, imac 0x6afb20, m1 0x5c9a58, ios 0x3e600c;
+    virtual void setCascadeOpacityEnabled(bool) = win 0x486f0, imac 0x6afb40, m1 0x5c9a68, ios 0x3e601c;
+    virtual cocos2d::ccColor3B const& getColor() = win 0x48690, imac 0x6afa60, m1 0x5c99ec, ios 0x3e5fa0;
+    virtual cocos2d::ccColor3B const& getDisplayedColor() = win 0x48700, imac 0x6afb60, m1 0x5c9a78, ios 0x3e602c;
+    virtual void setColor(cocos2d::ccColor3B const&) = win 0x486a0, imac 0x6afa80, m1 0x5c99fc, ios 0x3e5fb0;
+    virtual void updateDisplayedColor(cocos2d::ccColor3B const&) = win 0x48710, imac 0x6afb80, m1 0x5c9a88, ios 0x3e603c;
+    virtual bool isCascadeColorEnabled() = win 0x48720, imac 0x6afbc0, m1 0x5c9ab0, ios 0x3e6064;
+    virtual void setCascadeColorEnabled(bool) = win 0x48730, imac 0x6afbe0, m1 0x5c9ac0, ios 0x3e6074;
 
     bool initWithStrikePoint(cocos2d::CCPoint) = win inline, imac 0x6af450, m1 0x5c94ac, ios inline;
     bool initWithStrikePoint(cocos2d::CCPoint, cocos2d::CCPoint, float) = win 0x48310, imac 0x6af600, m1 0x5c9620, ios 0x3e5d00;
-    void strike() = win 0x9999999, imac 0x6af740, m1 0x5c9744, ios 0x3e5de0;
-    void strikeFinished() = imac 0x6af9d0, m1 0x5c9994, ios 0x3e5f48;
+    void strike() = win 0x485c0, imac 0x6af740, m1 0x5c9744, ios 0x3e5de0;
+    void strikeFinished() = win 0x48640, imac 0x6af9d0, m1 0x5c9994, ios 0x3e5f48;
     void strikeRandom() = win inline, imac 0x6af8f0, m1 0x5c98ac, ios inline;
     void strikeWithSeed(uint64_t seed) = win inline, imac 0x6af960, m1 0x5c9924, ios inline;
 
