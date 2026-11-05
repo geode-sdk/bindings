@@ -831,16 +831,17 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 
 [[link(android)]]
 class AudioAssetsPopup : SetupTriggerPopup, MusicDownloadDelegate {
+    AudioAssetsPopup() = m1 inline;
     virtual ~AudioAssetsPopup() = win 0xbdd10, ios 0x4a9378;
 
-    static AudioAssetsPopup* create(int, int, std::string const&, std::string const&);
+    static AudioAssetsPopup* create(int, int, std::string const&, std::string const&) = m1 0x7a49dc;
 
     virtual void keyBackClicked() = win 0xa6580, ios 0x4a9ae8, m1 0x7a5234, imac 0x8b3e80;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xbe4f0, ios 0x4a9a9c, m1 0x7a51e8, imac 0x8b3e30;
     virtual void musicActionFinished(GJMusicAction) = win 0xbe420, ios 0x4a9a48, m1 0x7a5150, imac 0x8b3da0;
 
     // one of the song IDs must be 0, depends if you want a robtop song id, or a custom song id. song / sfx list is delimited by ','
-    bool init(int songID, int officialSongID, std::string const& songList, std::string const& sfxList) = win 0xbde40;
+    bool init(int songID, int officialSongID, std::string const& songList, std::string const& sfxList) = win 0xbde40, m1 0x7a4aec;
 
     CustomSongWidget* m_customSongWidget;
 }
@@ -7054,7 +7055,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool getDiffVal(int diff) = win inline;
     TodoReturn getEditorSoundConfigs(GJSearchObject*) = win 0x22e9d0;
     std::string getFolderName(int id, bool local) = win 0x224660, imac 0x54ec70, m1 0x4a483c;
-    TodoReturn getFollowing() = win 0x251210;
+    void getFollowing() = win 0x251210, m1 0x4c8c0c;
     const char* getFriendRequestKey(bool, int, std::string const&, bool) = win inline;
     TodoReturn getFriendRequests(bool, int, int, std::string const&, bool) = win 0x254070, m1 0x4baee8;
     const char* getGauntletKey(int id) = win inline, ios inline;
@@ -7224,7 +7225,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn onGetContentStatusCompleted(std::string, std::string);
     TodoReturn onGetDeathDataCompleted(std::string, std::string);
     TodoReturn onGetEditorSoundsCompleted(std::string, std::string);
-    TodoReturn onGetFollowingCompleted(std::string, std::string) = win 0x2518e0;
+    void onGetFollowingCompleted(std::string response, std::string tag) = win 0x2518e0;
     void onGetFriendRequestsCompleted(std::string response, std::string tag) = win 0x254400, imac 0x529cc0, m1 0x482ea0;
     void onGetGauntletsCompleted(std::string response, std::string tag) = win 0x230ff0, imac 0x52e6a0, m1 0x487298, ios 0x9d9e4;
     void onGetGJChallengesCompleted(std::string response, std::string tag) = win 0x25e700;
@@ -7364,8 +7365,8 @@ class GameLevelManager : cocos2d::CCNode {
     void storeUserNames(std::string usernameString) = win 0x21d240, imac 0x53f7e0, m1 0x4966c4;
     void submitUserInfo() = win 0x260b20, imac 0x564c20, m1 0x4b8294;
     TodoReturn suggestLevelStars(int, int, int, bool, int) = win 0x2352d0;
-    TodoReturn syncFollowing() = win 0x251520;
-    TodoReturn syncFollowListIfNeeded() = win 0x2519c0;
+    void syncFollowing() = win 0x251520, m1 0x4c8eb8;
+    void syncFollowListIfNeeded() = win 0x2519c0, m1 0x4c9534;
     std::string tryGetUsername(int accountID) = win 0x21d970, imac 0x540400, m1 0x497344;
     CommentType typeFromCommentKey(char const* key) = win inline;
     LikeItemType typeFromLikeKey(char const* key) = win inline;
@@ -7763,8 +7764,8 @@ class GameManager : GManager {
     void lockIcon(int id, IconType type) = win inline, imac 0x361650, m1 0x2f002c;
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
     bool messagesRestricted();
-    int modUIRank();
-    bool offlineModeEnabled() = ios 0x3b5ff8;
+    int modUIRank() = m1 0x2fa578;
+    bool offlineModeEnabled() = m1 0x2fab70, ios 0x3b5ff8;
     bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
@@ -7826,7 +7827,7 @@ class GameManager : GManager {
     void setPlayerSwing(int id) = inline;
     void setPlayerUserID(int id) = inline;
     void setUGV(char const* key, bool value) = win 0x27e830, imac 0x36d350, m1 0x2fa6a4, ios 0x3b5cc0;
-    void setupGameAnimations() = win 0x2a8a50, imac 0x249540;
+    void setupGameAnimations() = win 0x2a8a50, imac 0x249540, m1 0x1f2b60;
     std::string sheetNameForIcon(int id, int type) = win 0x27d910, imac 0x36a7b0, m1 0x2f7b98;
     void shortenAdTimer(float time) = win inline, imac 0x369410, m1 0x2f6a20, ios inline;
     bool shouldShowInterstitial(int unk1, int unk2, int unk3) = win inline, imac 0x369480, m1 0x2f6a8c, ios inline;
@@ -8966,7 +8967,8 @@ class GameToolbox {
     static TodoReturn directoryExists(std::string const&);
     static bool doWeHaveInternet() = win inline, imac 0x4e9640, m1 0x447ad0;
     static std::string easeToText(int easingType) = win 0x72c70, imac 0x4f3e00, m1 0x451160;
-    static TodoReturn extractServerPopup(std::string&) = ios 0x483b0;
+    // the result is written back into response itself
+    static bool extractServerPopup(std::string& response) = m1 0x448048, ios 0x483b0;
     static uint64_t fast_rand() = win inline, imac 0x4ef210, m1 0x44d2b8, ios inline;
     static float fast_rand_0_1() = win inline, imac 0x4ef240, m1 0x44d2e0;
     static float fast_rand_minus1_1() = win inline, imac 0x4ef280, m1 0x44d31c;
@@ -13093,7 +13095,7 @@ class GJUserScore : cocos2d::CCNode {
     GJUserScore() = win 0x218550, inline;
     virtual ~GJUserScore() = win 0x218bc0, ios 0xd4fa4;
 
-    static GJUserScore* create() = win inline, imac 0x575270, m1 0x845940;
+    static GJUserScore* create() = win inline, imac 0x575270, m1 0x4c7904;
     static GJUserScore* create(cocos2d::CCDictionary* dict) = win 0x26c000, imac 0x5448c0, m1 0x49b0a0;
 
     virtual bool init() = win 0x26df60, imac 0x58cd30, m1 0x4dd4a0, ios 0xd4fbc;
@@ -16018,17 +16020,17 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
 
     TodoReturn checkParentalPending() = win 0x474180;
     void endGame() = win 0x4755c0, imac 0x37d280, m1 0x308b38;
-    void firstNetworkTest() = win 0x473FA0, m1 0x308314, imac 0x37c970;
+    void firstNetworkTest() = win 0x473fa0, imac 0x37c970, m1 0x308314;
     void onAchievements(cocos2d::CCObject* sender) = win 0x4749d0, imac 0x37c3a0, m1 0x307d1c;
-    void onCreator(cocos2d::CCObject* sender) = win 0x474F00, imac 0x37c320, m1 0x307ca8, ios 0x304d64;
-    void onDaily(cocos2d::CCObject* sender) = win 0x473B70, imac 0x37c910;
+    void onCreator(cocos2d::CCObject* sender) = win 0x474f00, imac 0x37c320, m1 0x307ca8, ios 0x304d64;
+    void onDaily(cocos2d::CCObject* sender) = win 0x473b70, imac 0x37c910, m1 0x3082b0;
     void onDiscord(cocos2d::CCObject* sender) = win 0x474450, imac 0x3837d0, m1 0x307f8c;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x37ce60, m1 0x308774, ios inline;
     void onFacebook(cocos2d::CCObject* sender) = win 0x474390, m1 0x307efc;
     void onFreeLevels(cocos2d::CCObject* sender) = imac 0x37cf30, m1 0x30881c;
     void onFullVersion(cocos2d::CCObject* sender) = imac 0x37cf50, m1 0x30883c;
     void onGameCenter(cocos2d::CCObject* sender) = win inline, imac 0x37cbc0, m1 0x308514;
-    void onGarage(cocos2d::CCObject* sender) = win 0x474F90, imac 0x37c2a0;
+    void onGarage(cocos2d::CCObject* sender) = win 0x474f90, imac 0x37c2a0, m1 0x307c34;
     void onGooglePlayGames(cocos2d::CCObject* sender) = win inline, imac 0x37cd20, m1 0x308654, ios inline;
     void onMoreGames(cocos2d::CCObject* sender) = imac 0x37cb00, m1 0x30846c;
     void onMyProfile(cocos2d::CCObject* sender) = win 0x4742c0, imac 0x37c710, m1 0x3080d0;
@@ -16036,19 +16038,19 @@ class MenuLayer : cocos2d::CCLayer, FLAlertLayerProtocol, GooglePlayDelegate, Mu
     void onNews(cocos2d::CCObject* sender) = win 0x474480, m1 0x307fb0;
     void onOptions(cocos2d::CCObject* sender) = win 0x474c20, imac 0x37c3e0, m1 0x307d68;
     void onOptionsInstant() = win 0x474c30, imac 0x37acb0, m1 0x306678, ios 0x3038a4;
-    void onPlay(cocos2d::CCObject* sender) = win 0x474b80, imac 0x37c210;
+    void onPlay(cocos2d::CCObject* sender) = win 0x474b80, imac 0x37c210, m1 0x307bbc;
     void onQuit(cocos2d::CCObject* sender) = win 0x475160, imac 0x37c640, m1 0x307ff8;
-    void onReportQueue(cocos2d::CCObject* sender) = win 0x473cd0;
+    void onReportQueue(cocos2d::CCObject* sender) = win 0x473cd0, m1 0x308130;
     void onRobTop(cocos2d::CCObject* sender) = win 0x474360, imac 0x37c530, m1 0x307ed8;
     void onStats(cocos2d::CCObject* sender) = win 0x474de0, imac 0x37c420, m1 0x307db4;
     void onTrailer(cocos2d::CCObject* sender) = win inline, imac 0x37cfa0, m1 0x308888, ios inline;
     void onTwitch(cocos2d::CCObject* sender) = win 0x474420, imac 0x3837b0, m1 0x307f68;
-    void onTwitter(cocos2d::CCObject* sender) = win 0x4743C0, m1 0x307f20;
-    void onYouTube(cocos2d::CCObject* sender) = win 0x4743F0, m1 0x307f44;
+    void onTwitter(cocos2d::CCObject* sender) = win 0x4743c0, m1 0x307f20;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x4743f0, m1 0x307f44;
     void openOptions(bool videoOptions) = win 0x474C40, imac 0x37ce70, m1 0x308778, ios 0x3055c8;
     void showGCQuestion() = win inline, imac 0x37cc10, m1 0x30855c;
     void showMeltdownPromo() = win inline, imac 0x37ca90, m1 0x308410, ios inline;
-    void showTOS() = win 0x474190, imac 0x37c930;
+    void showTOS() = win 0x474190, imac 0x37c930, m1 0x3082cc;
     void syncPlatformAchievements(float dt) = win inline, imac 0x37ce20, m1 0x308748, ios 0x3b42c0;
     void tryShowAd(float dt) = win inline, imac 0x37caa0, m1 0x72a8, ios inline;
     void updateNewsBadge() = win 0x474840, imac 0x37c990, m1 0x308328;
@@ -16593,14 +16595,15 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     virtual ~MusicDownloadManager() = win 0x482350, ios 0x1d2b8c;
 
     static MusicDownloadManager* sharedState() = win 0x481e60, imac 0x649cd0, m1 0x584e0c;
+    static std::string urlEncode(std::string const&) = m1 0x5a17c4;
 
     virtual bool init() = win 0x482560, imac 0x64b320, m1 0x586200, ios 0x1d2ba4;
 
     void addDLToActive(char const* tag) = win inline, imac 0x64bfe0, m1 0x586e88, ios inline;
-    void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x4842e0, imac 0x64f710;
+    void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x4842e0, imac 0x64f710, m1 0x58a198;
     void addMusicDownloadDelegate(MusicDownloadDelegate* delegate) = win 0x482700, imac 0x64b4d0, m1 0x586380;
     SongInfoObject* addSongObjectFromString(std::string str) = win 0x482dc0, imac 0x64c080, m1 0x4c6374;
-    void clearSong(int songID) = win inline, imac 0x64ea10;
+    void clearSong(int songID) = win inline, imac 0x64ea10, m1 0x589514;
     void clearSortedMusicCache();
     void clearUnusedSongs() = win 0x483950, imac 0x64ebc0, m1 0x589708;
     cocos2d::CCDictionary* createArtistsInfo(std::string str);
@@ -16616,9 +16619,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void deleteSFX(int id) = win inline, imac 0x660fc0, m1 0x59a3fc;
     void deleteSong(int id) = win inline, imac 0x64e9c0, m1 0x5894b4;
     void downloadCustomSong(int id) = win 0x48c430, imac 0x64f120, m1 0x589bf4;
-    void downloadMusicLibrary() = win 0x48ca90;
-    TodoReturn downloadNewsFeed() = win 0x491b40;
-    TodoReturn downloadNewsImage(std::string) = win 0x493650;
+    void downloadMusicLibrary() = win 0x48ca90, m1 0x594228;
+    void downloadNewsFeed() = win 0x491b40, m1 0x59a748;
+    void downloadNewsImage(std::string imageKey) = win 0x493650, m1 0x59c6a0;
     void downloadSFX(int id) = win 0x48f030, imac 0x65ec30, m1 0x598410;
     void downloadSFXFailed(int id, GJSongError errorCode) = win 0x493fb0, imac 0x65f170, m1 0x598920;
     void downloadSFXFinished(int id) = win inline, imac 0x65f1e0, m1 0x593064;
@@ -16642,7 +16645,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::CCArray* getAllMusicTags(OptionsObjectDelegate* delegate) = win inline, imac 0x65e580, m1 0x597e38;
     cocos2d::CCArray* getAllSFXObjects(bool onlySFX) = win inline, imac 0x660f00, m1 0x59a354;
     cocos2d::CCArray* getAllSongs() = win inline, imac 0x64e820, m1 0x589330;
-    TodoReturn getAudioFilesize(std::string, std::string) = win 0x48be10;
+    void getAudioFilesize(std::string songIDs, std::string sfxIDs) = win 0x48be10, m1 0x5935cc;
     void getCustomContentURL() = win 0x48b630, imac 0x658c50, m1 0x592e78;
     TodoReturn getCustomSFXCount(std::set<int> const&);
     TodoReturn getCustomSFXFolderForID(int);
@@ -16651,12 +16654,12 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     TodoReturn getCustomSFXObject(int);
     TodoReturn getCustomSFXRawPath(SFXInfoObject*);
     TodoReturn getCustomSFXRoot();
-    cocos2d::CCObject* getDLObject(char const* id) = win 0x3c560, imac 0x64b770;
+    cocos2d::CCObject* getDLObject(char const* id) = win 0x3c560, imac 0x64b770, m1 0x586644;
     cocos2d::CCArray* getDownloadedSongs() = win 0x483890, imac 0x64e4d0, m1 0x58902c;
     int getDownloadProgress(int id) = win inline, imac 0x64f8e0, m1 0x58a378;
     MusicArtistObject* getMusicArtistForID(int id) = win inline, imac 0x652640, m1 0x597b68;
     SongInfoObject* getMusicObject(int id) = win inline, imac 0x64f9a0, m1 0x58a460, ios inline;
-    TodoReturn getNewsImageDownloadKey(std::string);
+    char const* getNewsImageDownloadKey(std::string imageKey) = m1 0x59c66c;
     char const* getSFXDownloadKey(int id) = win inline, imac 0x64f980, m1 0x58a438, ios inline;
     int getSFXDownloadProgress(int id) = win inline, imac 0x64f930, m1 0x58a3d8;
     SFXFolderObject* getSFXFolderObjectForID(int id) = win inline;
@@ -16667,10 +16670,10 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     char const* getSongInfoKey(int id) = win inline, imac 0x64b6e0, m1 0x586598, ios inline;
     SongInfoObject* getSongInfoObject(int id) = win 0x484480, imac 0x64b9c0, m1 0x5868d0;
     int getSongPriority() = win inline, imac 0x64bb00, m1 0x586a00, ios inline;
-    void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x482210;
-    void handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) = win inline, ios inline;
-    void handleItND(cocos2d::CCNode* node, void* data) = win inline, ios inline;
-    bool hasUnreadNews() = win inline;
+    void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x482210, m1 0x58538c;
+    void handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) = win inline, m1 0x58564c, ios inline;
+    void handleItND(cocos2d::CCNode* node, void* data) = win inline, m1 0x5857b8, ios inline;
+    bool hasUnreadNews() = win inline, m1 0x59cf00;
     TodoReturn importCustomSFXFromFile(std::string&, int&, int&) = win 0x489620;
     TodoReturn importCustomSFXMappings(std::map<std::pair<int, int>, std::string> const&, std::string const&, int&, int&);
     TodoReturn importCustomSFXSetup(std::string const&, std::string const&, bool, int&, int&);
@@ -16680,7 +16683,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     bool isDLActive(char const* tag) = win inline, imac 0x64b6c0, m1 0x58657c, ios inline;
     bool isMusicFavorite(int);
     bool isMusicLibraryLoaded() = win inline, imac 0x65cb50, m1 0x596454, ios inline;
-    bool isNewsFeedLoaded();
+    bool isNewsFeedLoaded(); // = m1 inline;
     bool isNewsImageDownloaded(std::string imageKey);
     bool isResourceSFX(int id) = win inline, m1 0x58a9a8, ios inline;
     bool isResourceSong(int id) = win inline, m1 0x58a474, ios inline;
@@ -16691,7 +16694,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     bool isSongDownloaded(int id) = win 0x4845a0, imac 0x64e570, m1 0x5890c4;
     TodoReturn joinIDString(std::vector<int> const&);
     void limitDownloadedSongs() = win inline, imac 0x64e880, m1 0x589380;
-    TodoReturn linkRowString(GJLinkObject const&);
+    TodoReturn linkRowString(GJLinkObject const&) = m1 0x59e918;
     TodoReturn linkTitleForType(int);
     TodoReturn linkTypeForURL(std::string const&);
     void loadSongInfoFailed(int id, GJSongError errorCode) = win 0x493eb0, imac 0x64c010, m1 0x586eb8;
@@ -16701,33 +16704,33 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void musicActionFailed(GJMusicAction action) = win 0x4940b0, imac 0x658dc0, m1 0x592ff8;
     void musicActionFinished(GJMusicAction action) = win 0x494030;
     std::string nameForTagID(int id) = win inline, imac 0x65eb00, m1 0x5982c4;
-    void newsImageDownloaded(std::string imageKey);
-    void newsImageFailed(std::string imageKey);
+    void newsImageDownloaded(std::string imageKey) = m1 0x59ce2c;
+    void newsImageFailed(std::string imageKey) = m1 0x59cd58;
     TodoReturn noteSFXUsed(int, int);
     TodoReturn noteSongUsed(int);
     void onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48cd40, imac 0x65a3c0, m1 0x594428;
-    TodoReturn onDownloadNewsFeedCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
-    TodoReturn onDownloadNewsImageCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*);
+    void onDownloadNewsFeedCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = m1 0x59a90c;
+    void onDownloadNewsImageCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = m1 0x59c98c;
     void onDownloadSFXCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f2b0, m1 0x5986e8;
     void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48fa90, imac 0x65f740, m1 0x598f2c;
     void onDownloadSongCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x484030, m1 0x589f20;
-    TodoReturn onGetAudioFilesizeCompleted(std::string, std::string) = win 0x48c1c0;
+    void onGetAudioFilesizeCompleted(std::string response, std::string tag) = win 0x48c1c0, m1 0x585cb0;
     void onGetCustomContentURLCompleted(std::string response, std::string tag) = win 0x48b8c0, imac 0x64ab50, m1 0x585b6c;
     void onGetSongInfoCompleted(std::string response, std::string tag) = win 0x482c30, imac 0x64a8b0, m1 0x5858dc;
-    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x482110;
-    void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48c950;
-    TodoReturn onTryUpdateNewsFeedCompleted(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*) = win 0x491a00;
-    void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f6d0;
+    void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x482110, m1 0x58507c;
+    void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48c950, m1 0x5940d8;
+    void onTryUpdateNewsFeedCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x491a00, m1 0x59a5f8;
+    void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f6d0, m1 0x598c00;
     TodoReturn parseLinkRows(std::string const&, std::vector<GJLinkObject>&);
-    void parseMusicLibrary() = win 0x48cf00, m1 0x5990fc;
-    TodoReturn parseNewsFeed() = win 0x492170;
-    void parseSFXLibrary() = win 0x48fc30;
-    TodoReturn pathForNewsFolder();
-    TodoReturn pathForNewsImage(std::string);
+    void parseMusicLibrary() = win 0x48cf00, m1 0x594654;
+    void parseNewsFeed() = win 0x492170, m1 0x59b008;
+    void parseSFXLibrary() = win 0x48fc30, m1 0x5990fc;
+    std::string pathForNewsFolder() = m1 0x59c370;
+    std::string pathForNewsImage(std::string imageKey) = m1 inline;
     std::string pathForSFX(int id) = win 0x484b70, imac 0x650150, m1 0x58aa8c;
-    std::string pathForSFXFolder(int id) = win 0x484a20;
+    std::string pathForSFXFolder(int id) = win 0x484a20, m1 0x58ab70;
     std::string pathForSong(int id) = win 0x484830, imac 0x64eb00, m1 0x58961c;
-    std::string pathForSongFolder(int id) = win 0x4846e0;
+    std::string pathForSongFolder(int id) = win 0x4846e0, m1 0x58a558;
     cocos2d::extension::CCHttpRequest* ProcessHttpGetRequest(std::string url, std::string tag, cocos2d::extension::SEL_HttpResponse selector, int connectTimeout, int readTimeout) = win 0x481ff0, imac 0x5b3c50, m1 0x58526c;
     callback void ProcessHttpRequest(std::string url, std::string params, std::string tag, GJHttpType type) = win 0x481eb0, imac 0x649ec0, m1 0x584f3c;
     TodoReturn rebuildCustomSFXMappings(std::vector<std::pair<int, int>> const&, std::map<std::pair<int, int>, std::string>&, std::set<int> const*);
@@ -16750,9 +16753,8 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void tryLoadLibraries() = win inline, imac 0x660c80, m1 0x59a0e4;
     void tryLoadNewsFeed() = m1 0x59a5d0;
     void tryUpdateMusicLibrary() = win 0x48c6b0, imac 0x659e90, m1 0x593ed8;
-    void tryUpdateNewsFeed() = win 0x491720;
-    void tryUpdateSFXLibrary() = win 0x48f410;
-    std::string urlEncode(std::string const&);
+    void tryUpdateNewsFeed() = win 0x491720, m1 0x5930d0;
+    void tryUpdateSFXLibrary() = win 0x48f410, m1 0x598a00;
 
     cocos2d::CCDictionary* m_activeDownloads;
     cocos2d::CCArray* m_musicDownloadDelegates;
@@ -16919,8 +16921,8 @@ class NewsPopup : FLAlertLayer, FLAlertLayerProtocol, MusicDownloadDelegate {
     void onPrevPage(cocos2d::CCObject* sender) = m1 0x837748;
     TodoReturn pageReferencesImage(int, std::string);
     TodoReturn prefetchPageImages(int);
-    TodoReturn rebuildPage(int) = win 0x49e6c0, m1 0x837844;
-    TodoReturn refreshFromManager() = m1 0x837794;
+    void rebuildPage(int) = win 0x49e6c0, m1 0x837844;
+    void refreshFromManager() = m1 0x837794;
 }
 
 [[link(android)]]
@@ -17484,7 +17486,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     void onChangeStartpos(cocos2d::CCObject* sender) = win 0x4d93c0, imac 0x3c1b70, m1 0x346918;
     void onCreateStartpos(cocos2d::CCObject* sender) = win 0x4d8ff0, imac 0x3c1ea0, m1 0x346ad8;
     void onEdit(cocos2d::CCObject* sender) = win 0x4db250, imac 0x3c2fe0, m1 0x347c08;
-    void onHelp(cocos2d::CCObject* sender) = imac 0x3c3140, m1 0x308130;
+    void onHelp(cocos2d::CCObject* sender) = imac 0x3c3140, m1 0x347d4c;
     void onNormalMode(cocos2d::CCObject* sender) = win 0x4dab90, imac 0x3c1230, m1 0x345ff0;
     void onPracticeMode(cocos2d::CCObject* sender) = win 0x4daac0, m1 0x345fb4, imac 0x3c11f0;
     void onQuit(cocos2d::CCObject* sender) = win 0x4db760, imac 0x3c3160, m1 0x347d68;
@@ -19206,7 +19208,7 @@ class ReportPopupConfig {
 class ReportQueuePopup : PagedListPopup, CommentAdminDelegate, DropdownDelegate {
     virtual ~ReportQueuePopup() = win 0xc74e0, ios 0x522fc4;
 
-    static ReportQueuePopup* create() = win inline;
+    static ReportQueuePopup* create() = win inline, m1 0x845940;
 
     virtual bool init() = win 0xc7640, ios 0x5230c8, m1 0x845a18, imac 0x968ca0;
     virtual void rebuildContent() = win 0xc95b0, ios 0x524660, m1 0x847a88, imac 0x96adf0;
@@ -24572,7 +24574,7 @@ class TOSPopup : FLAlertLayer {
     TOSPopup() = inline;
     virtual ~TOSPopup() = win 0x399bc0, ios 0x37e72c;
 
-    static TOSPopup* create() = win inline;
+    static TOSPopup* create() = win inline, m1 0x240568;
 
     virtual bool init() = win 0x3a9290, imac 0x29d200, m1 0x2406cc, ios 0x37e814;
     virtual void keyBackClicked() = win inline, imac 0x29d880, m1 0x240d1c, ios 0x37ee28;
@@ -24704,7 +24706,7 @@ class TriggerEffectDelegate {
 class TutorialLayer : FLAlertLayer {
     virtual ~TutorialLayer() = win 0x66f030, ios 0x252c90;
 
-    static TutorialLayer* create() = win 0x66f0e0;
+    static TutorialLayer* create() = win 0x66f0e0, m1 0x4383d4;
 
     virtual bool init() = win 0x66f200, imac 0x4d7830, m1 0x438548, ios 0x252d8c;
     virtual void keyBackClicked() = win 0x66fe50, imac 0x4d8260, m1 0x438fe0, ios 0x253688;
