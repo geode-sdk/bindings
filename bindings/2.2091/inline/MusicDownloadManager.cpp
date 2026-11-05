@@ -18,6 +18,10 @@
 #include <Geode/mapping/CCDelayTime.hpp>
 #include <Geode/mapping/CCCallFuncND.hpp>
 
+std::string MusicDownloadManager::pathForNewsImage(std::string imageKey) {
+    return pathForNewsFolder().append(imageKey);
+}
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void MusicDownloadManager::addDLToActive(char const* tag) {
     addDLToActive(tag, cocos2d::CCNode::create());
