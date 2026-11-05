@@ -7,6 +7,7 @@
 #include <Geode/mapping/CCSequence.hpp>
 #include <Geode/mapping/CCDelayTime.hpp>
 #include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCArray.hpp>
 #include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/GJFriendRequest.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
