@@ -142,22 +142,6 @@ void SetupTriggerPopup::addObjectToPage(cocos2d::CCObject* object, int page) {
     this->getPageContainer(page)->addObject(object);
 }
 
-cocos2d::CCArray* SetupTriggerPopup::createToggleValueControlAdvanced(int property, std::string label, cocos2d::CCPoint position, bool vertical, int page, int group, float buttonScale, float labelScale, float labelWidth, cocos2d::CCPoint offset) {
-    auto pageContainer = this->getPageContainer(page);
-    auto groupContainer = this->getGroupContainer(group);
-    auto nodes = cocos2d::CCArray::create();
-    auto toggle = GameToolbox::createToggleButton(
-        label, menu_selector(SetupTriggerPopup::onToggleTriggerValue), false, m_buttonMenu, position,
-        this, m_mainLayer, buttonScale, labelScale, labelWidth, offset, "bigFont.fnt", vertical, 0, nodes
-    );
-    toggle->setTag(property);
-    toggle->m_notClickable = true;
-    m_valueToggles->setObject(toggle, property);
-    pageContainer->addObjectsFromArray(nodes);
-    if (group > 0) groupContainer->addObjectsFromArray(nodes);
-    return nodes;
-}
-
 cocos2d::CCArray* SetupTriggerPopup::getObjects() {
     if (m_gameObject) {
         auto arr = cocos2d::CCArray::create();

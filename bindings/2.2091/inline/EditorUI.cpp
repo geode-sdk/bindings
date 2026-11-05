@@ -195,8 +195,8 @@ void EditorUI::updateDeleteMenu() {
     this->updateDeleteButtons();
 }
 
-void EditorUI::updateEditMenu() {
-    m_editButtonBar->setVisible(m_selectedMode == 3);
+void EditorUI::updateViewMenu() {
+    m_viewMenu->setVisible(!m_uiHidden && m_selectedMode == 4);
 }
 
 /*void EditorUI::updateGridNodeSize(int objectID) {
@@ -208,16 +208,6 @@ void EditorUI::updateEditMenu() {
 void EditorUI::updateGroupIDBtn2() {
     m_goToBaseBtn->setVisible(m_editorLayer->m_currentLayer >= 0);
     m_layerPlusBtn->setVisible(!(m_editorLayer->m_currentLayer >= 0));
-}
-
-void EditorUI::updateSpecialUIElements() {
-    if (!m_selectedObject && m_selectedObjects->count() == 0) {
-        this->deactivateRotationControl();
-        this->deactivateScaleControl();
-        this->deactivateTransformControl();
-    }
-    this->updateObjectInfoLabel();
-    this->updateScaleControl();
 }
 #endif
 
@@ -293,24 +283,6 @@ void EditorUI::changeSelectedObjects(cocos2d::CCArray* objects, bool ignoreFilte
     m_canActivateControls = true;
     this->updateObjectInfoLabel();
     this->updateScaleControl();
-}
-
-std::string EditorUI::copyObjectsDetailed(cocos2d::CCArray* objects) {
-    qsort(objects->data->arr, objects->data->num, sizeof(GameObject*), [](void const* a, void const* b) {
-        auto objA = *static_cast<GameObject* const*>(a);
-        auto objB = *static_cast<GameObject* const*>(b);
-        return objA->m_uniqueID - objB->m_uniqueID;
-    });
-    auto groupCenter = this->getGroupCenter(objects, false);
-    std::string result = "";
-    for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
-        if (object->m_objectID == 749) continue;
-        auto position = object->getPosition();
-        object->setPosition(position - groupCenter);
-        result += object->getSaveString(m_editorLayer) + ";";
-        object->setPosition(position);
-    }
-    return result;
 }
 
 cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
@@ -513,14 +485,6 @@ GameObject* EditorUI::getCycledObject(cocos2d::CCArray* objects, bool dontSkipSe
     return cycledObject;
 }
 
-cocos2d::CCPoint EditorUI::getGridSnappedPos(cocos2d::CCPoint pos) {
-    auto size = m_editorLayer->m_drawGridLayer->m_gridSize;
-    auto offset = fmodf(90.f, size);
-    auto xVal = std::floorf(pos.x / size);
-    auto yVal = std::floorf((pos.y - offset) / size);
-    return this->getLimitedPosition(ccp((xVal + 0.5) * size, offset + (yVal + 0.5) * size));
-}
-
 void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) {
     objectID = classType = objectType = -1;
     if (selectedObject) {
@@ -590,30 +554,6 @@ bool EditorUI::positionIsInSnapped(cocos2d::CCPoint position) {
         if (snapPos.x == position.x && snapPos.y == position.y) return true;
     }
     return false;
-}
-
-void EditorUI::resetObjectEditorValues(cocos2d::CCArray* objects) {
-    if (!objects) return;
-    for (int i = 0; i < objects->count(); i++) {
-        auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-        obj->updateStartPos();
-        m_objectEditorStates[obj->m_uniqueID].loadValues(obj);
-    }
-}
-
-void EditorUI::selectAll() {
-    auto objects = m_editorLayer->m_objects;
-    auto selected = cocos2d::CCArray::create();
-    for (int i = 0; i < objects->count(); i++) {
-        auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (m_editorLayer->validGroup(obj, false)) {
-            selected->addObject(obj);
-        }
-    }
-    this->processSelectObjects(selected);
-    this->deactivateRotationControl();
-    this->deactivateScaleControl();
-    this->deactivateTransformControl();
 }
 
 void EditorUI::selectObjectsInRect(cocos2d::CCRect rect) {
@@ -728,6 +668,21 @@ EditorUI* EditorUI::getUI() { return this; }
 #endif
 
 #if defined(GEODE_IS_IOS)
+void EditorUI::updateSpecialUIElements() {
+    if (!m_selectedObject && m_selectedObjects->count() == 0) {
+        this->deactivateRotationControl();
+        this->deactivateScaleControl();
+        this->deactivateTransformControl();
+    }
+    this->updateObjectInfoLabel();
+    this->updateScaleControl();
+}
+
+void EditorUI::updateEditMenu() {
+    bool visible = !m_uiHidden && m_selectedMode == 3;
+    if (m_dpadMoveNode) m_dpadMoveNode->setVisible(visible);
+    if (m_editButtonBar) m_editButtonBar->setVisible(false);
+}
 
 void EditorUI::closeLiveColorSelect() {
     if (m_colorOverlay) {

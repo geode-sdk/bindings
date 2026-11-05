@@ -22,19 +22,23 @@ MusicSearchResult* MusicSearchResult::create(GJSongType songType) {
 }
 
 cocos2d::CCArray* MusicSearchResult::applyArtistFilters(cocos2d::CCArray* objects) {
-    if (objects->count() == 0) return objects;
-    auto filterObjects = cocos2d::CCArray::create();
     m_artistFilter = false;
+    std::vector<int> artistIDs;
     for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_artistFilterObjects)) {
-        if (object->m_enabled) {
-            m_artistFilter = true;
-            auto filtered = MusicDownloadManager::sharedState()->filterMusicByArtistID(object->m_optionID, objects);
-            for (auto fobj : geode::cocos::CCArrayExt<OptionsObject, false>(filtered)) {
-                filterObjects->addObject(fobj);
+        if (object->m_enabled) artistIDs.push_back(object->m_optionID);
+    }
+    if (artistIDs.empty() || objects->count() == 0) return objects;
+    m_artistFilter = true;
+    auto filterObjects = cocos2d::CCArray::create();
+    for (auto song : geode::cocos::CCArrayExt<SongInfoObject, false>(objects)) {
+        for (auto artistID : artistIDs) {
+            if (song->m_artistID == artistID || song->m_artistIDs.contains(artistID)) {
+                filterObjects->addObject(song);
+                break;
             }
         }
     }
-    return m_artistFilter ? filterObjects : objects;
+    return filterObjects;
 }
 
 void MusicSearchResult::createArtistFilterObjects() {
@@ -54,18 +58,6 @@ void MusicSearchResult::createTagFilterObjects() {
         CC_SAFE_RETAIN(objects);
         CC_SAFE_RELEASE(m_tagFilterObjects);
         m_tagFilterObjects = objects;
-    }
-}
-
-// TODO: 2.209
-void MusicSearchResult::updateFutureCount(cocos2d::CCArray* objects, cocos2d::CCArray* allObjects, cocos2d::CCArray* p0) {
-    auto count = objects->count();
-    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_tagFilterObjects)) {
-        object->m_count = object->m_enabled ? MusicDownloadManager::sharedState()->filterMusicByTag(object->m_optionID, objects)->count() : count;
-    }
-    auto filtered = this->applyTagFilters(allObjects);
-    for (auto object : geode::cocos::CCArrayExt<OptionsObject, false>(m_artistFilterObjects)) {
-        object->m_count = MusicDownloadManager::sharedState()->filterMusicByArtistID(object->m_optionID, filtered)->count();
     }
 }
 

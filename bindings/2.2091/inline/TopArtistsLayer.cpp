@@ -18,10 +18,6 @@ bool TopArtistsLayer::isCorrect(char const* key) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-TopArtistsLayer::~TopArtistsLayer() {
-    auto glm = GameLevelManager::sharedState();
-    if (glm->m_onlineListDelegate == this) glm->m_onlineListDelegate = nullptr;
-}
 
 TopArtistsLayer* TopArtistsLayer::create() {
     auto ret = new TopArtistsLayer();

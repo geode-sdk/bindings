@@ -7,6 +7,7 @@
 #include <Geode/mapping/CCSequence.hpp>
 #include <Geode/mapping/CCDelayTime.hpp>
 #include <Geode/mapping/CCDictionary.hpp>
+#include <Geode/mapping/CCArray.hpp>
 #include <Geode/binding/GameLevelManager.hpp>
 #include <Geode/binding/GJFriendRequest.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
@@ -120,11 +121,13 @@ void GameLevelManager::handleItDelayed(bool success, std::string response, std::
     ), this, false);
 }
 
+#if defined(GEODE_IS_IOS)
 void GameLevelManager::handleItND(cocos2d::CCNode* node, void* data) {
     auto result = static_cast<GJHttpResult*>(data);
     this->handleIt(result->m_success, result->m_response, result->m_requestTag, result->m_httpType);
     result->release();
 }
+#endif
 
 bool GameLevelManager::hasDownloadedList(int id) {
     return this->hasDownloadedLevel(-id);

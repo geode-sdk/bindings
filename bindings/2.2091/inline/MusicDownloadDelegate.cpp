@@ -20,6 +20,10 @@ void MusicDownloadDelegate::musicActionFinished(GJMusicAction action) {}
 
 void MusicDownloadDelegate::musicActionFailed(GJMusicAction action) {}
 
+void MusicDownloadDelegate::newsImageDownloaded(std::string imageKey) {}
+
+void MusicDownloadDelegate::newsImageFailed(std::string imageKey) {}
+
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 

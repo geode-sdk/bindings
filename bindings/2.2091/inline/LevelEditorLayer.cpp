@@ -424,47 +424,6 @@ bool LevelEditorLayer::isLayerLocked(int layer) {
     return false;
 }
 
-void LevelEditorLayer::onPausePlaytest() {
-    auto director = cocos2d::CCDirector::sharedDirector();
-    director->getKeyboardDispatcher()->setBlockRepeat(false);
-    m_uiLayer->editorPlaytest(false);
-    this->quickUpdateAllPositions();
-    this->removePlayerCollisionBlock();
-    if (m_playTestSmoothFix) {
-        director->resetSmoothFixCounter();
-        director->setSmoothFixCheck(false);
-    }
-    m_playbackMode = PlaybackMode::Paused;
-    m_player1->pauseSchedulerAndActions();
-    m_player2->pauseSchedulerAndActions();
-    m_playtestTimeWarp = m_gameState.m_timeWarp;
-    this->updateTimeWarp(1.f);
-    m_playtestCameraZoom = m_gameState.m_cameraZoom;
-    this->pauseAudio();
-    if (m_playtestOrderChanged) this->timeObjectChanged();
-}
-
-void LevelEditorLayer::onResumePlaytest() {
-    auto director = cocos2d::CCDirector::sharedDirector();
-    director->getKeyboardDispatcher()->setBlockRepeat(true);
-    m_uiLayer->editorPlaytest(true);
-    this->addPlayerCollisionBlock();
-    if (m_playTestSmoothFix) {
-        director->resetSmoothFixCounter();
-        director->setSmoothFixCheck(false);
-    }
-    m_playtestZoom = m_objectLayer->getScale();
-    m_objectLayer->setScale(std::max(m_playtestZoom, 0.7f));
-    m_playbackMode = PlaybackMode::Playing;
-    m_player1->resumeSchedulerAndActions();
-    m_player2->pauseSchedulerAndActions();
-    m_gameState.m_cameraZoom = m_playtestCameraZoom;
-    this->recreateGroups();
-    this->optimizeMoveGroups();
-    this->dirtifyTriggers();
-    this->resumeAudio();
-}
-
 void LevelEditorLayer::pasteAttributeState(GameObject* object, cocos2d::CCArray* objects) {
     if (!m_copyStateObject) return;
 

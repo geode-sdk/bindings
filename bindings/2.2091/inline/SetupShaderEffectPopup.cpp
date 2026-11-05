@@ -12,9 +12,6 @@ SetupShaderEffectPopup::SetupShaderEffectPopup() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SetupShaderEffectPopup::~SetupShaderEffectPopup() {
-    CC_SAFE_RELEASE(m_zLayerSprites);
-}
 
 SetupShaderEffectPopup* SetupShaderEffectPopup::create(EffectGameObject* object, cocos2d::CCArray* objects, int id) {
     auto ret = new SetupShaderEffectPopup();
