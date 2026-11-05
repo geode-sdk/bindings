@@ -16586,8 +16586,8 @@ class MusicDownloadDelegate {
     virtual void downloadSFXFailed(int id, GJSongError errorType) = inline;
     virtual void musicActionFinished(GJMusicAction action) = inline;
     virtual void musicActionFailed(GJMusicAction action) = inline;
-    virtual void newsImageDownloaded(std::string imageKey) = win 0x98e10, inline;
-    virtual void newsImageFailed(std::string imageKey) = win 0x98e10, inline;
+    virtual void newsImageDownloaded(std::string imageKey) = inline;
+    virtual void newsImageFailed(std::string imageKey) = inline;
 }
 
 [[link(android), depends(cocos2d::extension::CCHttpRequest)]]
