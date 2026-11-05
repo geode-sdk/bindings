@@ -831,14 +831,14 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
 
 [[link(android)]]
 class AudioAssetsPopup : SetupTriggerPopup, MusicDownloadDelegate {
-    AudioAssetsPopup() = m1 inline;
+    AudioAssetsPopup() = inline;
     virtual ~AudioAssetsPopup() = win 0xbdd10, ios 0x4a9378;
 
     static AudioAssetsPopup* create(int, int, std::string const&, std::string const&) = m1 0x7a49dc;
 
     virtual void keyBackClicked() = win 0xa6580, ios 0x4a9ae8, m1 0x7a5234, imac 0x8b3e80;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xbe4f0, ios 0x4a9a9c, m1 0x7a51e8, imac 0x8b3e30;
-    virtual void musicActionFinished(GJMusicAction) = win 0xbe420, ios 0x4a9a48, m1 0x7a5150, imac 0x8b3da0;
+    virtual void musicActionFinished(GJMusicAction action) = win 0xbe420, ios 0x4a9a48, m1 0x7a5150, imac 0x8b3da0;
 
     // one of the song IDs must be 0, depends if you want a robtop song id, or a custom song id. song / sfx list is delimited by ','
     bool init(int songID, int officialSongID, std::string const& songList, std::string const& sfxList) = win 0xbde40, m1 0x7a4aec;
