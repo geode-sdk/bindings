@@ -2035,14 +2035,14 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool rightClick(float, float) = win 0x59150, imac 0x6c9b0, m1 0x65b60, ios 0x1ff590;
 
     void addTextArea(TextArea* textArea) = win 0x54770, imac 0x65d50, m1 0x5e9e8;
-    TodoReturn armHold(cocos2d::CCPoint) = ios 0x1ff160;
-    TodoReturn canClearText();
-    TodoReturn canCopyText();
-    TodoReturn clearText();
-    TodoReturn closeActiveInput() = ios 0x1fabc8;
+    void armHold(cocos2d::CCPoint) = ios 0x1ff160;
+    bool canClearText();
+    bool canCopyText() = win 0x59350;
+    void clearText();
+    void closeActiveInput() = ios 0x1fabc8;
     void closeEditMenu() = win inline;
     bool containsTouchPoint(cocos2d::CCPoint) = ios 0x1fed00;
-    TodoReturn copyText();
+    void copyText() = win inline;
     void disarmHold() = win inline;
     TodoReturn displayToRawIndex(int);
     TodoReturn doneFromIME();
@@ -2058,7 +2058,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     TodoReturn getWorldRect();
     void holdTimerFired(float) = win 0x59050;
     bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x54510, imac 0x659e0, m1 0x5e694;
-    TodoReturn insertAtCursor(std::string) = win 0x54f50;
+    void insertAtCursor(std::string text) = win 0x54f50;
     bool isCoveredByPopup();
     bool isVisibleInTree() = ios 0x1feec4;
     TodoReturn moveCursorToEnd();
