@@ -11,24 +11,31 @@ void GJUINode::updateDeadzone(int deadzone) {
 #if defined(GEODE_IS_WINDOWS)
 int GJUINode::activeRangeTouchTest(cocos2d::CCPoint position) {
     cocos2d::CCPoint rangePos = { m_firstSprite->getPosition().x, position.y + 40.f };
-    auto xDiff = position.x - rangePos.x;
+    auto xDiff = position.x - m_firstSprite->getPosition().x;
     int touchResult;
     if (m_deadzone <= std::abs(xDiff)) {
         auto radius = m_radius;
-        rangePos.x = std::abs(xDiff) > radius ? position.x + radius : position.x - radius;
-        touchResult = xDiff > 0.f ? 3 : 2;
+        if (std::abs(xDiff) > radius) {
+            rangePos.x = xDiff > 0.f ? position.x - radius : position.x + radius;
+        }
+        touchResult = xDiff <= 0.f ? 2 : 3;
     }
     else {
         touchResult = 0;
     }
+
     auto centerX = m_rect.size.width * .5f;
     auto reverseCenterX = -m_rect.size.width * .5f;
-    if (std::min(rangePos.x, centerX) > reverseCenterX) rangePos.x = reverseCenterX;
-    else rangePos.x = std::min(rangePos.x, centerX);
-    auto centerY = 40.f + m_rect.size.height * .5f;
-    auto reverseCenterY = 40.f - m_rect.size.height * .5f;
-    if (std::min(rangePos.y, centerY) > reverseCenterY) rangePos.y = reverseCenterY;
-    else rangePos.y = std::min(rangePos.y, centerY);
+    auto clampedX = std::min(rangePos.x, centerX);
+    if (reverseCenterX > clampedX) clampedX = reverseCenterX;
+    rangePos.x = clampedX;
+
+    auto upperY = 40.f + m_rect.size.height * .5f;
+    auto lowerY = 40.f - m_rect.size.height * .5f;
+    auto clampedY = std::min(rangePos.y, upperY);
+    if (lowerY > clampedY) clampedY = lowerY;
+    rangePos.y = clampedY;
+
     m_firstSprite->setVisible(true);
     m_firstSprite->setPosition(rangePos);
     return touchResult;

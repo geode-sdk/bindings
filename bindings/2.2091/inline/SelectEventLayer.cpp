@@ -14,9 +14,6 @@ SelectEventLayer::SelectEventLayer() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SelectEventLayer::~SelectEventLayer() {
-    CCNode::removeAllChildrenWithCleanup(true);
-}
 
 SelectEventLayer* SelectEventLayer::create(SetupEventLinkPopup* popup, std::set<int>& eventIDs) {
     auto ret = new SelectEventLayer();

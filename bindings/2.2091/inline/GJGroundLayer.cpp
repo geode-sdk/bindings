@@ -68,7 +68,7 @@ void GJGroundLayer::updateGroundWidth(bool useThis) {
     if (m_cameraRotated) count++;
     this->loadGroundSprites(count, true);
     this->loadGroundSprites(count, false);
-    m_lineSprite->setScaleX(m_lineType > 1 ? (((winSize.width + 10.f) / scale) / m_lineSprite->getTextureRect().size.width) : (1.f / scale));
+    if (m_lineType > 1 || useThis) m_lineSprite->setScaleX(m_lineType > 1 ? (((winSize.width + 10.f) / scale) / m_lineSprite->getTextureRect().size.width) : (1.f / scale));
     m_lineSprite->setPosition({ m_groundWidth * .5f - 5.f, m_lineSprite->getPosition().y } );
 }
 

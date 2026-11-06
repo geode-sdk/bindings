@@ -14,16 +14,6 @@ bool CustomSFXWidget::verifySFXID(int id) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-void CustomSFXWidget::deleteSFX() {
-    FMODAudioEngine::sharedEngine()->stopAllEffects();
-    MusicDownloadManager::sharedState()->deleteSFX(m_sfxObject->m_sfxID);
-    this->updateSFXInfo();
-    m_errorLabel->setVisible(true);
-    m_errorLabel->setColor({ 255, 100, 0 });
-    m_errorLabel->setString("SFX Deleted");
-    m_errorLabel->limitLabelWidth(230.f, .4f, .0f);
-}
-
 void CustomSFXWidget::downloadFailed() {
     this->hideLoadingArt();
     this->unschedule(schedule_selector(CustomSFXWidget::updateDownloadProgress));

@@ -6413,7 +6413,8 @@ class GameObject : CCSpritePlus {
     // property 511
     bool m_hasExtendedCollision;
     cocos2d::ccColor3B m_groupColor;
-    bool m_isColorSpriteBlack;
+    [[renamed_from(m_isColorSpriteBlack)]]
+    bool m_isObjectChildrenBlack;
     bool m_isObjectBlack;
     float m_blackChildOpacity;
     bool m_blackChildOpacityLocked;

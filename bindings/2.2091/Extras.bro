@@ -433,7 +433,18 @@ class AdminAbuseMeta {}
 class DropdownListStyle {}
 class EditorSFXImportOptions {}
 class EditorSFXBinding {}
-class EmoteDef {}
+
+class EmoteDef {
+	char const* m_name;
+    unsigned int m_particleIndex;
+	float m_scale;
+    float m_x;
+	float m_y;
+	cocos2d::ccColor3B m_color;
+    PAD = win 0xd, android32 0xd, android64 0xd;
+	bool m_flipX;
+}
+
 class EmoteToken {}
 class BulkCommentKey {
 	CommentType m_type;
