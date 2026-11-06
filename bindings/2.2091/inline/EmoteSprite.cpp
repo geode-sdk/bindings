@@ -5,7 +5,7 @@ EmoteSprite::EmoteSprite() {
     m_emoteDef = nullptr;
 }
 
-bool EmoteSprite::initWithDef(EmoteDef* def) {
+bool EmoteSprite::initWithDef(EmoteDef const* def) {
     if (!def)
         return false;
 

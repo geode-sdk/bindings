@@ -5758,7 +5758,7 @@ class EmoteSprite : cocos2d::CCSprite {
 
 
 
-    EmoteDef* m_emoteDef;
+    EmoteDef const* m_emoteDef;
 }
 
 [[link(android)]]
