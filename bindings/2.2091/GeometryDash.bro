@@ -5123,7 +5123,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateObjectInfoLabel() = win 0x1aea40, imac 0xe8b0, m1 0xcee8, ios 0x475614;
     void updatePanDecay(float dt) = win 0x1c5260, imac 0x60e270, m1 0x54d4fc, ios 0x164110;
     void updatePlaybackBtn() = win 0x1b4630, imac 0xbd70, m1 0xa578;
-    void updateSelectionUI() = win 0x1b3b60;
+    void updateSelectionUI() = win inline;
     void updateSlider() = win 0x1ae100, imac 0x9200, m1 0x81e0;
     void updateSpecialUIElements() = win 0x1b3b60, ios 0x474830;
     void updateStickyControls() = win inline, imac 0xb6b0, m1 0x9f68;
@@ -8754,7 +8754,7 @@ class GameStatsManager : cocos2d::CCNode {
     void encodeDataTo(DS_Dictionary* dict) = win 0x2f6dc0, imac 0x53a00, m1 0x4d8b0, ios 0x3dd568;
     void firstSetup() = win 0x2f66a0, imac 0x53230, m1 0x4d250;
     void generateItemUnlockableData() = win 0x2d6d00, imac 0x2aed0, m1 0x254cc;
-    int getAwardedCurrencyForLevel(GJGameLevel* level) = imac 0x36710, m1 0x30434;
+    int getAwardedCurrencyForLevel(GJGameLevel* level) = win inline, imac 0x36710, m1 0x30434;
     int getAwardedCurrencyForLevel(GJGameLevel* level, int dailyID) = win 0x2e4160;
     int getAwardedDiamondsForLevel(GJGameLevel* level) = win 0x2e48f0, imac 0x37130, m1 0x30e1c;
     int getBaseCurrency(int stars, bool mainLevel, int levelID) = win inline, imac 0x364e0, m1 0x30190;
@@ -9157,7 +9157,7 @@ class GauntletSprite : cocos2d::CCNode {
     static GauntletSprite* create(GauntletType type, bool locked) = win inline, imac 0x37f480, m1 0x30a9f0;
 
     void addLockedSprite() = win 0x2fd2d0, imac 0x37fd90, m1 0x30b400;
-    void addNormalSprite() = win 0x2fd620, imac 0x37fcc0, m1 0x30b304;
+    void addNormalSprite() = win inline, imac 0x37fcc0, m1 0x30b304;
     cocos2d::ccColor3B colorForType(GauntletType type) = win inline, imac 0xff150, m1 0x30b804, ios inline;
     bool init(GauntletType type, bool locked) = win inline, imac 0x37fc30, m1 0x30b270;
     float luminanceForType(GauntletType type) = win inline, imac 0x46b670;

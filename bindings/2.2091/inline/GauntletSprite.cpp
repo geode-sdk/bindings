@@ -1,4 +1,5 @@
 #include <Geode/binding/GauntletSprite.hpp>
+#include <Geode/binding/GauntletNode.hpp>
 
 GauntletSprite::GauntletSprite() {}
 
@@ -16,6 +17,14 @@ cocos2d::ccColor3B GauntletSprite::colorForType(GauntletType type) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+void GauntletSprite::addNormalSprite() {
+    auto frame = GauntletNode::frameForType(m_gauntletType);
+    auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(frame.c_str());
+    this->addChild(sprite);
+    auto size = this->getContentSize();
+    sprite->setPosition({ size.width * 0.5f, size.height * 0.5f });
+}
+
 GauntletSprite* GauntletSprite::create(GauntletType type, bool locked) {
     auto ret = new GauntletSprite();
     if (ret->init(type, locked)) {

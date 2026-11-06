@@ -636,6 +636,11 @@ void EditorUI::transformObjectsReset() {
     if (selectedObjects) this->transformObjects(selectedObjects, m_pivotPoint, 1.f, 1.f, 0.f, 0.f, m_transformState.m_skewX, m_transformState.m_skewY);
 }
 
+void EditorUI::updateSelectionUI() {
+    this->updateButtons();
+    this->updateSpecialUIElements();
+}
+
 void EditorUI::updateStickyControls() {
     auto gameManager = GameManager::sharedState();
     m_stickyControlsEnabled = gameManager->getGameVariable(GameVar::LinkControls);
