@@ -2044,7 +2044,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool containsTouchPoint(cocos2d::CCPoint) = ios 0x1fed00;
     void copyText() = win inline;
     void disarmHold() = win inline;
-    TodoReturn displayToRawIndex(int);
+    int displayToRawIndex(int) = win 0x55630;
     TodoReturn doneFromIME();
     TodoReturn emoteTokenContaining(int);
     TodoReturn emoteTokenEndingAt(int);
