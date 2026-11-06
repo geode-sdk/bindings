@@ -6675,9 +6675,12 @@ class FontPreviewCell : TableViewCell {
     virtual bool init() = win 0x3ff70, ios 0x315a0c, m1 0x84ba00, imac 0x96f8a0;
     virtual void draw() = win 0x58dd60, ios 0x315d98, m1 0x84bd94, imac 0x96fc60;
 
-    TodoReturn loadFromIndex(int, int) = win 0x58d9c0;
+    void loadFromIndex(int, int) = win 0x58d9c0;
     void onSelectFont(cocos2d::CCObject* sender) = win 0x58dd20;
-    TodoReturn updateBGColor(int);
+    void updateBGColor(int);
+
+    int m_unk1a4;
+    int m_index;
 }
 
 [[link(android)]]
