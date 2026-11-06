@@ -1266,6 +1266,8 @@ class cocos2d::CCEGLView {
     virtual void swapBuffers() = imac 0x502330, m1 0x45e230, ios 0x1541d0;
     virtual bool isOpenGLReady() = imac 0x502290, m1 0x45e1ac, ios 0x15414c;
     virtual void setIMEKeyboardState(bool) = imac 0x502460, m1 0x45e2e0, ios 0x1541ec;
+    [[missing(ios), since("6.0.0-alpha.2")]]
+    virtual cocos2d::CCPoint getMousePosition() const = m1 0x45e268, imac 0x5023b0;
     [[missing(android, mac, ios)]]
     virtual void setFrameSize(float, float);
     [[missing(win, android)]]
@@ -1338,11 +1340,12 @@ class cocos2d::CCEGLViewProtocol {
     virtual bool isScissorEnabled() = imac 0x510fc0, m1 0x46c308, ios 0x381d38;
     virtual cocos2d::CCRect getScissorRect() = imac 0x510fe0, m1 0x46c328, ios 0x381d58;
     virtual void setViewName(char const*) = imac 0x511080, m1 0x46c3b8, ios 0x381de8;
-    virtual void pollInputEvents() = imac 0x511880, m1 0x46cbbc, ios 0x382450;
     virtual void handleTouchesBegin(int, int*, float*, float*, double) = imac 0x5110b0, m1 0x46c3dc, ios 0x381e04;
     virtual void handleTouchesMove(int, int*, float*, float*, double) = imac 0x511390, m1 0x46c6ac, ios 0x382048;
     virtual void handleTouchesEnd(int, int*, float*, float*, double) = imac 0x5116c0, m1 0x46c9ec, ios 0x3822e0;
     virtual void handleTouchesCancel(int, int*, float*, float*, double) = ios 0x38238c, m1 0x46ca98, imac 0x511750;
+    virtual void pollInputEvents() = imac 0x511880, m1 0x46cbbc, ios 0x382450;
+    virtual cocos2d::CCPoint getMousePosition() const = m1 0x46cce4, imac 0x5119c0, ios 0x1542d0;
 
     float getScaleX() const = imac 0x511860, m1 0x46cbac, ios 0x382440;
     float getScaleY() const = imac 0x511870, m1 0x46cbb4, ios 0x382448;

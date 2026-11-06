@@ -35,10 +35,6 @@ bool GameManager::getGameVariableDefault(const char* key, bool defaultValue) {
     return object->boolValue();
 }
 
-int GameManager::getIntGameVariable(const char* key) {
-    return m_valueKeeper->valueForKey(std::string("gv_") + key)->intValue();
-}
-
 int GameManager::getIntGameVariableDefault(const char* key, int defaultValue) {
     //helper function
     auto object = m_valueKeeper->valueForKey(std::string("gv_") + key);
@@ -729,8 +725,6 @@ void GameManager::subSpotlight() {
         m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
     }
 }
-
-void GameManager::syncPlatformAchievements() {}
 
 void GameManager::unloadBackground() {
     if (m_loadedBgID == 0) return;

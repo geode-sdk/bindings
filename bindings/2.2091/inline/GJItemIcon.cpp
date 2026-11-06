@@ -15,10 +15,6 @@ GJItemIcon::GJItemIcon() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-GJItemIcon::~GJItemIcon() {
-    GameManager::sharedState()->unloadIcons(m_iconRequestID);
-}
-
 GJItemIcon* GJItemIcon::create(UnlockType type, int id, cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, bool dark, bool unused, bool noLabel, cocos2d::ccColor3B unlockColor) {
     auto ret = new GJItemIcon();
     if (ret->init(type, id, color1, color2, dark, unused, noLabel, unlockColor)) {

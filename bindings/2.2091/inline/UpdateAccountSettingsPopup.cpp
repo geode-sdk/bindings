@@ -12,9 +12,6 @@ UpdateAccountSettingsPopup::UpdateAccountSettingsPopup() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-UpdateAccountSettingsPopup::~UpdateAccountSettingsPopup() {
-    auto gjam = GJAccountManager::sharedState();
-    if (gjam->m_accountSettingsDelegate == this) gjam->m_accountSettingsDelegate = nullptr;
-}
+
 #endif
 

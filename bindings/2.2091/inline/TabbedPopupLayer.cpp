@@ -39,14 +39,5 @@ int TabbedPopupLayer::pageForButtonCount(int count, int perPage) const {
     return std::max(count / perPage, 0);
 }
 
-void TabbedPopupLayer::refreshTabButtons(char const* selectedBG, char const* normalBG) {
-    for (size_t i = 0; i < m_tabs.size(); i++) {
-        auto button = m_tabs[i].m_button;
-        if (!button) continue;
-        if (auto sprite = static_cast<ButtonSprite*>(button->getNormalImage())) {
-            sprite->updateBGImage(static_cast<int>(i) == m_currentTab ? selectedBG : normalBG);
-        }
-    }
-}
 #endif
 

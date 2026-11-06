@@ -31,11 +31,6 @@ SFXBrowser::SFXBrowser() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SFXBrowser::~SFXBrowser() {
-    MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
-    CC_SAFE_RELEASE(m_sfxObjects);
-    CC_SAFE_RELEASE(m_searchResult);
-}
 
 // TODO: 2.209
 SFXBrowser* SFXBrowser::create(int id, int p0) {

@@ -44,16 +44,6 @@ cocos2d::CCPoint ParentalOptionsLayer::nextPosition(int page) {
     return pos;
 }
 
-void ParentalOptionsLayer::onInfo(cocos2d::CCObject* sender) {
-    FLAlertLayer::create(
-        nullptr,
-        "Info",
-        m_values->valueForKey(this->infoKey(sender->getTag()))->getCString(),
-        "OK",
-        nullptr,
-        380.f
-    )->show();
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

@@ -26,12 +26,6 @@ GauntletSprite* GauntletSprite::create(GauntletType type, bool locked) {
     return nullptr;
 }
 
-void GauntletSprite::addNormalSprite() {
-    auto normalSprite = cocos2d::CCSprite::createWithSpriteFrameName(GauntletNode::frameForType(m_gauntletType).c_str());
-    this->addChild(normalSprite);
-    normalSprite->setPosition(this->getContentSize() / 2);
-}
-
 bool GauntletSprite::init(GauntletType type, bool locked) {
     if (!CCNode::init()) return false;
 

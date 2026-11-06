@@ -90,21 +90,6 @@ void GJTransformControl::loadFromState(GJTransformState& state) {
     this->spriteByTag(11)->setPosition(state.m_transformSkewY);
 }
 
-void GJTransformControl::loadValues(GameObject* object, cocos2d::CCArray* objects, std::unordered_map<int, GameObjectEditorState>& states) {
-    if (object && !objects || objects->count() == 0) objects = cocos2d::CCArray::createWithObject(object);
-    CC_SAFE_RELEASE(m_objects);
-    m_objects = objects;
-    objects->retain();
-    if (objects->count() != 0) {
-        for (int i = 0; i < objects->count(); i++) {
-            auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-            obj->updateStartPos();
-            states[obj->m_uniqueID].loadValues(obj);
-        }
-    }
-    this->updateButtons(true, false);
-}
-
 void GJTransformControl::saveToState(GJTransformState& state) {
     state.m_transformScaleX = m_scaleX;
     state.m_transformScaleY = m_scaleY;
