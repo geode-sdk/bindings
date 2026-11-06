@@ -6679,6 +6679,7 @@ class FontPreviewCell : TableViewCell {
     void onSelectFont(cocos2d::CCObject* sender) = win 0x58dd20;
     void updateBGColor(int);
 
+    int m_unk1a4;
     int m_index;
 }
 
