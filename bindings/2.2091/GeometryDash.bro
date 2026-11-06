@@ -264,20 +264,20 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     virtual void adminCloseCaseFinished(int, int, bool) = win 0xbcb90, ios 0x54b6a4, m1 0x87e898, imac 0x9a46c0;
     virtual void adminCloseCaseFailed(int) = win 0xbcf70, ios 0x54b898, m1 0x87eb74, imac 0x9a49a0;
 
-    TodoReturn applySelected(int, bool);
+    void applySelected(int, bool) = win 0xb8320;
     TodoReturn buildDirectReportRow(cocos2d::CCNode*, float) = win 0xb3bb0;
     TodoReturn buildFilterRows(cocos2d::CCArray*) = win 0xb5920;
-    TodoReturn buildHistoryRows(cocos2d::CCArray*);
+    void buildHistoryRows(cocos2d::CCArray*) = win 0xb7250;
     TodoReturn buildReportedRows(cocos2d::CCArray*) = win 0xb4100;
     TodoReturn clearCard() = win 0xb0e50;
     TodoReturn clearSelectedReports();
     TodoReturn closeAfterDone();
     TodoReturn confirmDeleteSelected() = win 0xb9440;
     TodoReturn deleteEntry(int) = win 0xbb850;
-    TodoReturn deleteFailedTick(float);
-    TodoReturn deleteFilterEntry(int);
+    void deleteFailedTick(float) = win 0xbbbe0;
+    bool deleteFilterEntry(int) = win 0xbc520;
     bool init(int, std::string const&, GJUserScore*) = win 0xaf480;
-    TodoReturn jumpTo(int, int);
+    void jumpTo(int, int) = win 0xbc0a0;
     void onBans(cocos2d::CCObject* sender) = win 0xb96d0;
     void onCommentHistory(cocos2d::CCObject* sender) = win 0xb9af0;
     void onCopyAccountID(cocos2d::CCObject* sender) = win 0xb34f0;
@@ -297,14 +297,14 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     void onToggleHistory(cocos2d::CCObject* sender) = win 0xb3450;
     void onToggleRow(cocos2d::CCObject* sender) = win 0xb87c0;
     TodoReturn openUserComments(bool);
-    TodoReturn rebuildRows();
+    void rebuildRows() = win 0xb8280;
     TodoReturn refreshCard();
-    TodoReturn selectedDeletable();
+    int selectedDeletable() = win 0xb8540;
     TodoReturn selectTab(int) = win 0xb3030;
-    TodoReturn threadDeleteAnswered();
+    void threadDeleteAnswered() = win 0xbbae0;
     TodoReturn updateCard(AccountReviewCard const&) = win 0xb0f30;
-    TodoReturn updateSelectedLabel();
-    TodoReturn updateTabControls();
+    void updateSelectedLabel() = win 0xb83c0;
+    void updateTabControls() = win 0xb3140;
     TodoReturn viewedByLabel(std::string const&, std::string const&, float) = win 0xaf3a0;
 }
 
@@ -911,7 +911,7 @@ class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     bool init(AutoBackupOptionsDelegate*) = win 0xcda10;
     void onDeleteAll(cocos2d::CCObject* sender) = win 0xcea60;
     void onPrune(cocos2d::CCObject* sender) = win 0xce640;
-    TodoReturn refreshStats();
+    void refreshStats() = win 0xce400;
 }
 
 [[link(android), depends(CCIndexPath)]]
@@ -927,8 +927,8 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
     virtual void textChanged(CCTextInputNode*) = win 0xca880, ios 0x531bd8, m1 0x85ac1c, imac 0x980e00;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xcc350, ios 0x5323dc, m1 0x85b600, imac 0x9818d0;
 
-    TodoReturn assignRevs();
-    TodoReturn backupDirectory();
+    void assignRevs() = win 0xca220;
+    static std::string backupDirectory() = win 0xccb10;
     TodoReturn buildRows() = win 0xcabe0;
     bool init(int) = win 0xc9910;
     // TodoReturn listBackups(std::string const&, std::vector<AutoBackupPopup::BackupFile>&, std::string const&);
@@ -940,8 +940,8 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
     void onSettings(cocos2d::CCObject* sender) = win 0xccad0;
     void onShare(cocos2d::CCObject* sender);
     void onToggleRow(cocos2d::CCObject* sender) = win 0xcc500;
-    TodoReturn pruneBackups(std::string const&, int, std::string const&, bool);
-    TodoReturn reloadFiles();
+    static int pruneBackups(std::string const&, int, std::string const&, bool) = win 0xcd7d0;
+    void reloadFiles() = win 0xca0c0;
     int selectedCount();
     // TodoReturn statsText(std::vector<AutoBackupPopup::BackupFile> const&);
     TodoReturn updateSelectUI();
@@ -6972,18 +6972,18 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn adminUploadBan(int, bool, int, std::string const&, std::vector<int> const&);
     TodoReturn adminUploadUnban(int, std::string const&);
     TodoReturn appendModReason(std::string&, std::string const&, std::vector<int> const&) = win 0x2417b0;
-    TodoReturn applyDeathBlob(int, std::string const&);
-    TodoReturn applyLevelControlsSection(GJGameLevel*, std::string const&);
+    int applyDeathBlob(int, std::string const&) = win 0x227980;
+    void applyLevelControlsSection(GJGameLevel*, std::string const&) = win 0x2280c0;
     TodoReturn applyThreadAddReply(int, std::string const&);
     bool areGauntletsLoaded() = win inline, imac 0x55e520, m1 0x4b2778;
     void banUser(int accountID) = win inline, imac 0x562890, m1 0x4b62a0;
     bool blockUser(int accountID) = win 0x256620;
     TodoReturn claimNotificationReward(int) = win 0x251df0;
     void cleanupDailyLevels() = win 0x224050, imac 0x54e1e0, m1 0x4a3df4;
-    TodoReturn clearDeathDataInstances(GJGameLevel*, bool);
+    void clearDeathDataInstances(GJGameLevel*, bool) = win 0x228c60;
     void clearPlatformerSaveJournal();
     int clearPlatformerSaves(int mode);
-    std::vector<std::pair<std::string, int>> collectPlatformerJournalKeys(bool local);
+    std::vector<std::pair<std::string, int>> collectPlatformerJournalKeys(bool local) = win 0x223c50;
     cocos2d::CCArray* createAndGetAccountComments(std::string str, int accountID) = win inline, imac 0x56aa60;
     cocos2d::CCArray* createAndGetCommentsFull(std::string, int, bool, CommentKeyType) = win 0x23d680;
     cocos2d::CCArray* createAndGetEditorSoundConfigs(std::string);
@@ -7023,7 +7023,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn followUserOnline(int, bool) = win 0x250db0;
     TodoReturn forceDeathDataRefetch(int, int);
     GJFriendRequest* friendRequestFromAccountID(int id) = win inline, imac 0x567d60, m1 0x4bae94;
-    void friendRequestWasRemoved(int accountID, bool sent);
+    void friendRequestWasRemoved(int accountID, bool sent) = win 0x258140;
     const char* getAccountCommentKey(int accountID, int page) = win inline, imac 0x56aa40, m1 0x4bd970;
     void getAccountComments(int accountID, int page, int total) = win 0x23cee0, imac 0x56a6f0, m1 0x4bd640;
     int getActiveDailyID(GJTimedLevelType type) = win inline, imac 0x580fd0, m1 0x4d2c74;
@@ -7043,7 +7043,7 @@ class GameLevelManager : cocos2d::CCNode {
     int getDailyTimer(GJTimedLevelType type) = win inline, imac 0x581000, m1 0x4d2ca8;
     TodoReturn getDeathData(int, int, bool) = win 0x2283a0;
     TodoReturn getDeathDataVersion(int);
-    TodoReturn getDeathDisplayData(int);
+    std::string getDeathDisplayData(int) = win 0x2277b0;
     const char* getDeleteCommentKey(int parentID, int id, int type) = win inline, m1 0x4bec90, ios inline;
     const char* getDeleteMessageKey(int id, bool sent) = win inline, imac 0x569bd0, m1 0x4bcb58, ios inline;
     std::string getDemonLevelsString() = win 0x21f560, imac 0x546e10, m1 0x49d3b8, ios 0xabc34;
@@ -7154,7 +7154,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool hasRatedLevelStars(int id) = win 0x2347c0;
     bool hasReportedLevel(int id);
     void invalidateMessages(bool sent, bool reload) = win 0x23c1a0;
-    void invalidateRequests(bool sent, bool reload);
+    void invalidateRequests(bool sent, bool reload) = win 0x2586c0;
     void invalidateUserList(UserListType type, bool reload) = win inline, imac 0x576120, m1 0x4c870c;
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
@@ -7292,7 +7292,7 @@ class GameLevelManager : cocos2d::CCNode {
     void performNetworkTest() = win inline, imac 0x3491d0, m1 0x4769a0;
     void ProcessHttpRequest(std::string endpoint, std::string params, std::string tag, GJHttpType httpType) = win 0x2192d0, m1 0x476d14, ios 0x912e0;
     void processOnDownloadLevelCompleted(std::string response, std::string tag, bool update) = win 0x232220;
-    void prunePlatformerJournalKeys(std::vector<std::pair<std::string, int>> const& keys);
+    void prunePlatformerJournalKeys(std::vector<std::pair<std::string, int>> const& keys) = win 0x223eb0;
     TodoReturn purgeFriendRequestSearchCache(bool, int) = win 0x2583d0;
     void purgeUnusedLevels() = win 0x222670, imac 0x54b9e0, m1 0x4a1800;
     bool rateDemon(int id, int diff, bool moderator) = win 0x2358f0, imac 0x562f70, m1 0x4b6984;
@@ -7403,7 +7403,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn vaultTimedType(SearchType, GJTimedLevelType&);
     bool verifyContainerOnlyHasLevels(cocos2d::CCDictionary* dict) = win 0x224e80, imac 0x54f750, m1 0x4a5210;
     void verifyLevelState(GJGameLevel* level) = win inline, imac 0x540760, m1 0x4975f4;
-    void writePlatformerSaveJournal(GJGameLevel* level);
+    void writePlatformerSaveJournal(GJGameLevel* level) = win 0x223320;
     std::string writeSpecialFilters(GJSearchObject* object) = win 0x22a8b0, imac 0x558000, m1 0x4ac8a0;
     void adminQueueMute(int, std::string const&);
     void adminQueueUnmute(int, std::string const&);
@@ -9571,7 +9571,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool isPlayer2Button(int button) = win inline, imac 0x1347d0, m1 0x10a878, ios inline;
     void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color) = win inline, imac 0x142dd0, m1 0x1165b0, ios 0x2a5098;
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = win 0x351030, imac 0xfd640, m1 0xdc52c, ios 0x27ea80;
-    void loadGroupParentsFromString(GameObject* object, std::string groupList) = m1 0xf6578;
+    void loadGroupParentsFromString(GameObject* object, std::string groupList) = win 0x32ceb0, m1 0xf6578;
     void loadLevelSettings() = win 0x344c60, imac 0x1380a0, m1 0x10D8d8;
     void loadStartPosObject(StartPosObject*) = win 0x33e460, imac 0x12c2f0, m1 0x104054;
     void loadUpToPosition(float position, int order, int channel) = win 0x33e670, imac 0x12c540;
@@ -9646,7 +9646,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void processStartPosObjects() = win inline, imac 0x100c10, m1 0xdf654;
     void processStateObjects() = win inline, imac 0x108710, m1 0xe6450;
     void processTransformActions(bool visibleFrame) = win 0x335280, imac 0x123290, m1 0xfca58;
-    TodoReturn promoteGroupParent(GameObject*, int);
+    void promoteGroupParent(GameObject*, int) = win 0x32c4d0;
     void queueButton(int button, bool push, bool isPlayer2, double timestamp) = win inline, imac 0x128c20, m1 0x10121c;
     void queueTimeWarp(float timeWarp) = win inline, imac 0x12d200, m1 0x104ce4;
     void reAddToStickyGroup(GameObject* object) = win inline, imac 0x11c590, m1 0xf6ccc;
@@ -9666,7 +9666,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void removeFromGroups(GameObject* object) = win 0x32bd40, imac 0x11a640, m1 0xf51fc;
     void removeFromStickyGroup(GameObject* object) = win inline, imac 0x11c500, m1 0xf6c40;
     void removeGroundLayer() = win inline, imac 0xf0f20, m1 0xd1bbc;
-    TodoReturn removeGroupParent(GameObject*, int);
+    void removeGroupParent(GameObject*, int) = win 0x32c5a0;
     void removeKeyframe(KeyframeGameObject* object) = win inline, imac 0x129be0, m1 0x102114;
     void removeMiddleground() = win inline, imac 0xf0ef0, m1 0xd1b88;
     void removeObjectFromSection(GameObject* object) = win 0x32f9f0, imac 0x11cd20, m1 0xf7378;
@@ -14626,7 +14626,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void applyAttributeState(GameObject* dest, GameObject* src) = win inline, imac 0xc7cb0, m1 0xb2a60, ios inline;
     void applyGroupState(GameObject* dest, GameObject* src) = win 0x400db0, imac 0xc7ab0, m1 0xb2838;
     void breakApartTextObject(TextGameObject* object) = win 0x3fdf10, m1 0x460310;
-    TodoReturn canAutoSave();
+    bool canAutoSave() = win 0x4089f0;
     bool canPasteState() = win inline, imac 0xc7890, m1 0xb2624;
     TodoReturn checkAutoSave(float) = win 0x408b10;
     void clearPlayerPoints() = win inline, imac 0xc61c0, m1 0xb1174, ios inline;
@@ -14637,8 +14637,8 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void createObjectsFromSetup(std::string& setup) = win 0x3ef940, imac 0xabbb0, m1 0x9a7e8;
     cocos2d::CCArray* createObjectsFromString(std::string const& str, bool noUndo, bool noLimit) = win 0x3f0150, imac 0xaeb00, m1 0x9cf6c;
     void dirtifyTriggers() = win inline, m1 0xb06f0;
-    TodoReturn doAutoBackup();
-    TodoReturn doAutoSave();
+    void doAutoBackup() = win 0x409620;
+    void doAutoSave() = win 0x4091d0;
     cocos2d::CCArray* duplicateKeyframeAnimation(int keyframeGroup) = imac 0xc8430, m1 0xb3178;
     void fastUpdateDisabledGroups() = win inline, imac 0xc3e20, m1 0xaf10c, ios inline;
     GameObject* findGameObject(int uniqueID) = win inline, imac 0xb1930, m1 0x9fa54;
@@ -14696,7 +14696,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void pasteColorState(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc7b50, m1 0xb28f0;
     void pasteGroupState(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc7ce0, m1 0xb2a90;
     void pasteParticleState(ParticleGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc8060, m1 0xb2df4;
-    TodoReturn prepareSaveData(std::string&);
+    std::string prepareSaveData(std::string&) = win 0x408ee0;
     void processLoadedMoveActions() = imac 0xc4070, m1 0xaf2cc;
     void quickUpdateAllPositions() = win 0x3fe590, imac 0xc56d0, m1 0xb07b8;
     void rebuildDeathOverlay() = win 0x3f5a70;
@@ -24348,27 +24348,27 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     void buildMemberButton() = win 0xe34b0, imac 0x92f370, m1 0x81151c;
     TodoReturn buildRows(bool) = win 0xe2c60;
     TodoReturn checkMessageTap(cocos2d::CCTouch*);
-    TodoReturn checkUnseenBelow(float);
+    void checkUnseenBelow(float) = win 0xdff90;
     TodoReturn createModView(GJMessageThread*, long long);
     TodoReturn dmSendBlocked();
-    TodoReturn exitSearch(bool);
+    void exitSearch(bool) = win 0xdbd60;
     // TodoReturn expandShareTokens(std::string const&, std::vector<ThreadViewPopup::ShareToken>&);
     TodoReturn goToDate(std::string const&);
     bool init(GJMessageThread*) = win 0xd93b0, imac 0x92d740, m1 0x80fa9c;
     TodoReturn insertShareToken(std::string const&) = win 0xdcc30;
-    TodoReturn jumpToLatest();
+    void jumpToLatest() = win 0xdbcb0;
     void layoutComposeBar() = win 0xe3960;
-    TodoReturn layoutRows() = win 0xe0190;
+    void layoutRows() = win 0xe0c50;
     void layoutTitleRow() = win 0xe2fb0;
     // TodoReturn markShareLinks(TextArea*, std::string const&, std::vector<ThreadViewPopup::ShareToken> const&, cocos2d::CCNode*, std::vector<ThreadViewPopup::LevelSpan>&, int);
     TodoReturn measureBody(GJThreadMessage*) = win 0xe08d0;
     TodoReturn messageWithID(long long);
-    TodoReturn onAutoRefresh(float);
+    void onAutoRefresh(float) = win 0xdd7c0;
     void onClearSearch(cocos2d::CCObject* sender) = win 0xdbaa0;
     void onClose(cocos2d::CCObject* sender) = win 0xe2da0;
     void onEmotes(cocos2d::CCObject* sender) = win 0xde2e0;
     void onHideKeyboard(cocos2d::CCObject* sender);
-    TodoReturn onHighlightFaded();
+    void onHighlightFaded() = win 0xdb8f0;
     void onJumpToLatest(cocos2d::CCObject* sender) = win 0xdb8e0;
     void onJumpToMessage(cocos2d::CCObject* sender) = win 0xdbab0;
     void onLoadEarlier(cocos2d::CCObject* sender) = win 0xdb760;
@@ -24383,24 +24383,24 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     void onShowDescription(cocos2d::CCObject* sender) = win 0xdcfe0;
     void onShowMembers(cocos2d::CCObject* sender) = win 0xdd200;
     void onThreadOptions(cocos2d::CCObject* sender) = win 0xdc6b0;
-    TodoReturn openAt(long long);
+    bool openAt(long long) = win 0xdbaf0;
     TodoReturn pastScoreFor(int);
-    TodoReturn refetchLatest();
+    void refetchLatest() = win 0xde690;
     TodoReturn refreshDMSubLabel() = win 0xdaca0;
     TodoReturn refreshLockNotice() = win 0xdad40;
     TodoReturn removedView();
     TodoReturn requestDeleteMessage(long long) = win 0xe50e0;
-    TodoReturn requestMessages(long long, long long);
+    bool requestMessages(long long, long long) = win 0xda6d0;
     TodoReturn scrollToUnreadLine();
-    TodoReturn senderNameFor(int);
-    TodoReturn senderScoreFor(int);
+    std::string senderNameFor(int) = win 0xe4bc0;
+    GJUserScore* senderScoreFor(int) = win 0xe5030;
     void setPollInterval(float) = win 0xdb480;
-    void setSendPending(bool);
+    void setSendPending(bool) = win 0xdd9e0;
     void setUnseenBelow(bool) = win 0xdff30;
-    TodoReturn showLoading();
-    TodoReturn sortMessagesByID();
+    void showLoading() = win 0xdb500;
+    void sortMessagesByID() = win 0xda890;
     TodoReturn startSearch(std::string const&);
-    TodoReturn updateComposeCount();
+    void updateComposeCount() = win 0xe37c0;
 
     std::vector<void*> m_rows;
     std::map<long long, void*> m_bodyMeasures;
