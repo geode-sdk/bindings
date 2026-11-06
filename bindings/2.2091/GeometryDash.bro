@@ -2044,7 +2044,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool containsTouchPoint(cocos2d::CCPoint) = ios 0x1fed00;
     void copyText() = win inline;
     void disarmHold() = win inline;
-    TodoReturn displayToRawIndex(int);
+    int displayToRawIndex(int) = win 0x55630;
     TodoReturn doneFromIME();
     TodoReturn emoteTokenContaining(int);
     TodoReturn emoteTokenEndingAt(int);
@@ -2055,7 +2055,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     std::string getString() = win inline, imac 0x68a30, m1 0x62074, ios 0x1fca78;
     cocos2d::CCLabelBMFont* getTextLabel() = inline;
     TodoReturn getTextRowCount();
-    TodoReturn getWorldRect();
+    cocos2d::CCRect getWorldRect(cocos2d::CCNode*, float) = win 0x54180;
     void holdTimerFired(float) = win 0x59050;
     bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x54510, imac 0x659e0, m1 0x5e694;
     void insertAtCursor(std::string text) = win 0x54f50;
