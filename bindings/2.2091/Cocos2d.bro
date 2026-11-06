@@ -434,7 +434,7 @@ class cocos2d::CCArray : cocos2d::CCObject {
     // cocos2d::CCObject* randomObject();
     void recreateNewIndexes() = imac 0x7ff0f0, m1 0x6ffdbc, ios inline;
     // void reduceMemoryFootprint();
-    // void removeAllObjects() = ios 0x249528;
+    // void removeAllObjects() = ios 0x2e7674;
     // void removeLastObject(bool);
     // void removeObject(cocos2d::CCObject*, bool);
     // void removeObjectAtIndex(unsigned int, bool);
@@ -922,7 +922,7 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
     void runWithScene(cocos2d::CCScene*) = imac 0x478a90, m1 0x3e32a8, ios 0x20747c;
     int sceneCount() = imac 0x478fc0, m1 0x3e37d0, ios 0x2078ac;
     // getScreenTop = ios 0x18260c, idk if i should add the function
-    // getScreenBottom() = ios 0x182614
+    // getScreenBottom() = ios 0x207ea0
     // getScreenLeft() = ios 0x18261C
     // void setActualDeltaTime(float);
     void setAlphaBlending(bool) = imac 0x4774f0, m1 0x3e1ff4, ios inline;
@@ -971,7 +971,7 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     virtual bool init() = imac 0x6ed970, m1 0x600efc, ios 0x45c9c;
     virtual void draw() = imac 0x6edb60, m1 0x6010c0, ios 0x45e30;
 
-    void clear() = imac 0x6efae0, m1 0x602ac4, ios 0x470f0;
+    void clear() = imac 0x6efae0, m1 0x602ac4, ios inline;
     void disableDrawArea() = imac 0x6edcb0, m1 0x6011f8;
     void drawArchLikeHalfCircle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, unsigned int, cocos2d::_ccColor4F const&, float) = imac 0x6edf20, m1 0x60144c, ios 0x46074;
     bool drawCircle(cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, unsigned int) = imac 0x6ef930, m1 0x602924, ios 0x46f5c;
