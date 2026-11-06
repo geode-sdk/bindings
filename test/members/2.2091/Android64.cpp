@@ -619,7 +619,10 @@ GEODE_SIZE_CHECK(MusicDelegateHandler, 0x148);
 GEODE_SIZE_CHECK(MusicDownloadDelegate, 0x8);
 GEODE_SIZE_CHECK(MusicDownloadManager, 0x370);
 GEODE_SIZE_CHECK(MusicSearchResult, 0xa8);
+
 GEODE_SIZE_CHECK(MyStuffPopup, 0x2a0);
+GEODE_MEMBER_CHECK(MyStuffPopup, m_score, 0x298);
+
 GEODE_SIZE_CHECK(NCSInfoLayer, 0x2a8);
 GEODE_SIZE_CHECK(NewgroundsInfoLayer, 0x298);
 GEODE_SIZE_CHECK(NewsPopup, 0x348);

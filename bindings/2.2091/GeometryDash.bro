@@ -8949,7 +8949,7 @@ class GameToolbox {
     static void addBackButton(cocos2d::CCLayer* parent, cocos2d::CCMenuItem* menuItem) = win 0x6f020, imac 0x4ebf90, m1 0x44a1a0, ios 0x49d40;
     static TodoReturn addProgressBarFill(cocos2d::CCSprite*, int, cocos2d::ccColor3B, int);
     static void addRThumbScrollButton(cocos2d::CCLayer* parent) = win 0x6f100, imac 0x4ec060, m1 0x44a288;
-    static void alignItemsHorisontally(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position, bool skipSize) = win 0x6c740, imac 0x4e9150, m1 0x447688;
+    static void alignItemsHorisontally(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position, bool skipSize) = win 0x6c740, imac 0x4e9150, m1 0x447688, ios 0x47c8c;
     static void alignItemsVertically(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position) = win inline, imac 0x4e9480, m1 0x447940;
     static float bounceTime(float time) = win 0x73180, imac 0x4f40a0, m1 0x451474;
     static cocos2d::ccColor3B colorToSepia(cocos2d::ccColor3B color, float factor) = win inline, imac 0x4ec6e0, m1 0x44a8f8, ios inline;
@@ -16835,13 +16835,15 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
 class MyStuffPopup : FLAlertLayer {
     virtual ~MyStuffPopup() = win 0x550070, ios 0x2329b8;
 
-    static MyStuffPopup* create(GJUserScore*);
+    static MyStuffPopup* create(GJUserScore* score) = imac 0x8a6660, m1 0x7990c0, ios 0x23088c;
 
     virtual void keyBackClicked() = win 0x99f90, ios 0x233044, m1 0x79c7b4, imac 0x8a9ef0;
 
-    bool init(GJUserScore*) = win 0x55c8f0;
-    void onClose(cocos2d::CCObject* sender);
-    void onSocialPage(cocos2d::CCObject* sender);
+    bool init(GJUserScore* score) = win 0x55c8f0, imac 0x8a9790, m1 0x79c11c, ios 0x2329f0;
+    void onClose(cocos2d::CCObject* sender) = m1 0x79c6bc, imac 0x8a9e20, ios 0x232f5c;
+    void onSocialPage(cocos2d::CCObject* sender) = imac 0x8a9e50, m1 0x79c6f8, ios 0x232f98;
+
+    GJUserScore* m_score;
 }
 
 [[link(android)]]
