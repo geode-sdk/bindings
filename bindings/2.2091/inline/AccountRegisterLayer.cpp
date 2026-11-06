@@ -29,11 +29,6 @@ bool AccountRegisterLayer::validUser(std::string username) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-AccountRegisterLayer::~AccountRegisterLayer() {
-    auto gjam = GJAccountManager::sharedState();
-    if (gjam->m_accountRegisterDelegate == this) gjam->m_accountRegisterDelegate = nullptr;
-    CC_SAFE_RELEASE(m_loadingCircle);
-}
 
 AccountRegisterLayer* AccountRegisterLayer::create() {
     auto ret = new AccountRegisterLayer();

@@ -13,11 +13,6 @@ UploadPopup::UploadPopup() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-UploadPopup::~UploadPopup() {
-    CC_SAFE_RELEASE(m_level);
-    auto glm = GameLevelManager::sharedState();
-    if (glm->m_levelUploadDelegate == this) glm->m_levelUploadDelegate = nullptr;
-}
 
 UploadPopup* UploadPopup::create(GJGameLevel* level) {
     auto ret = new UploadPopup();

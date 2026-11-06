@@ -9,15 +9,7 @@ SelectSFXSortLayer::SelectSFXSortLayer() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SelectSFXSortLayer* SelectSFXSortLayer::create(AudioSortType sortType) {
-    auto ret = new SelectSFXSortLayer();
-    if (ret->init(sortType)) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
+
 #endif
 
 #if defined(GEODE_IS_IOS)

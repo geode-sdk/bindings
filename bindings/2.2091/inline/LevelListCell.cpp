@@ -15,9 +15,6 @@ LevelListCell* LevelListCell::create(float width, float height) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-LevelListCell::~LevelListCell() {
-    CC_SAFE_RELEASE(m_levelList);
-}
 
 bool LevelListCell::init() { return true; }
 

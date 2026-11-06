@@ -201,6 +201,7 @@ void GameStatsManager::createSecretChestItems() {
             auto rewardObjects = rewardItem->m_rewardObjects;
             for (int i = 0; i < rewardObjects->count(); i++) {
                 auto rewardObject = static_cast<GJRewardObject*>(rewardObjects->objectAtIndex(i));
+                if (rewardObject->m_specialRewardItem != SpecialRewardItem::CustomItem) continue;
                 auto rewardKey = this->getItemKey(rewardObject->m_itemID, (int)rewardObject->m_unlockType);
                 m_allTreasureRoomChestItems->setObject(cocos2d::CCString::createWithFormat("%i", rewardItem->m_chestID), rewardKey);
             }
@@ -278,10 +279,6 @@ GJRewardItem* GameStatsManager::getRewardForSpecialChest(std::string key) {
 
 GJRewardItem* GameStatsManager::getRewardItem(GJRewardType type) {
     return static_cast<GJRewardItem*>(m_rewardItems->objectForKey((int)type));
-}
-
-int GameStatsManager::getSecretChestForItem(int id, UnlockType type) {
-    return m_allTreasureRoomChestItems->valueForKey(this->getItemKey(id, (int)type))->intValue();
 }
 
 std::string GameStatsManager::getSecretOnlineRewardKey(int id) {

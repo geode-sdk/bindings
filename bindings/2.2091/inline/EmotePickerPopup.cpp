@@ -4,9 +4,9 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-EmotePickerPopup* EmotePickerPopup::create(CCTextInputNode* input, cocos2d::CCPoint position, int maxEmotes, int mode) {
+EmotePickerPopup* EmotePickerPopup::create(CCTextInputNode* input, cocos2d::CCPoint position, int maxEmotes, int maxLength) {
     auto ret = new EmotePickerPopup();
-    if (ret->init(input, position, maxEmotes, mode)) {
+    if (ret->init(input, position, maxEmotes, maxLength)) {
         ret->autorelease();
         return ret;
     }
@@ -14,14 +14,14 @@ EmotePickerPopup* EmotePickerPopup::create(CCTextInputNode* input, cocos2d::CCPo
     return nullptr;
 }
 
-EmotePickerPopup* EmotePickerPopup::toggle(EmotePickerPopup* popup, EmotePickerDelegate* delegate, cocos2d::CCNode* node, CCTextInputNode* input, int maxEmotes, int mode) {
-    if (popup) {
-        popup->onClose(nullptr);
+EmotePickerPopup* EmotePickerPopup::toggle(EmotePickerPopup* existingPopup, EmotePickerDelegate* delegate, cocos2d::CCNode* node, CCTextInputNode* input, int maxEmotes, int maxLength) {
+    if (existingPopup) {
+        existingPopup->onClose(nullptr);
         return nullptr;
     }
     if (!node || !input) return nullptr;
     auto position = EmotePickerPopup::buttonAnchor(node);
-    auto picker = EmotePickerPopup::create(input, position, maxEmotes, mode);
+    auto picker = EmotePickerPopup::create(input, position, maxEmotes, maxLength);
     return EmotePickerPopup::openAt(picker, delegate, node);
 }
 
@@ -35,9 +35,9 @@ EmotePickerPopup* EmotePickerPopup::createPicker(cocos2d::CCPoint position) {
     return nullptr;
 }
 
-EmotePickerPopup* EmotePickerPopup::togglePicker(EmotePickerPopup* popup, EmotePickerDelegate* delegate, cocos2d::CCNode* node) {
-    if (popup) {
-        popup->onClose(nullptr);
+EmotePickerPopup* EmotePickerPopup::togglePicker(EmotePickerPopup* existingPopup, EmotePickerDelegate* delegate, cocos2d::CCNode* node) {
+    if (existingPopup) {
+        existingPopup->onClose(nullptr);
         return nullptr;
     }
     if (!node) return nullptr;

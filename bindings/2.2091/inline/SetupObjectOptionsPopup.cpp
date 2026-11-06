@@ -33,10 +33,7 @@ SetupObjectOptionsPopup::SetupObjectOptionsPopup() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SetupObjectOptionsPopup::~SetupObjectOptionsPopup() {
-    CC_SAFE_RELEASE(m_gameObject);
-    CC_SAFE_RELEASE(m_gameObjects);
-}
+
 #endif
 
 #if defined(GEODE_IS_IOS)

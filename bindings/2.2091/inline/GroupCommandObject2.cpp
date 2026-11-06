@@ -67,14 +67,14 @@ void GroupCommandObject2::runMoveCommand(cocos2d::CCPoint offset, double duratio
     }
 }
 
-void GroupCommandObject2::runPlayerFollowCommand(double delay, double speed, int offset, double maxSpeed, double duration) {
+void GroupCommandObject2::runPlayerFollowCommand(double speed, double delay, int offset, double maxSpeed, double duration) {
     m_commandType = 3;
-    m_followYDelay = delay;
     m_followYSpeed = std::clamp(speed, 0.0, 500.0);
+    m_followYDelay = delay;
     m_followYOffset = offset;
     m_followYMaxSpeed = maxSpeed;
     m_duration = duration;
-    if (delay <= 0.0) {
+    if (m_followYSpeed <= 0.0) {
         m_finished = true;
         m_finishRelated = true;
     }
@@ -82,19 +82,19 @@ void GroupCommandObject2::runPlayerFollowCommand(double delay, double speed, int
 
 void GroupCommandObject2::runRotateCommand(double offset, double duration, int easingType, double easingRate, bool lockRotation, int targetType) {
     m_commandType = 1;
-    m_rotationOffset = offset;
+    m_rotationOffset = targetType == 0 ? offset : 0.0;
     m_duration = duration;
     m_easingType = (EasingType)easingType;
     m_easingRate = easingRate;
     m_lockObjectRotation = lockRotation;
     m_targetPlayer = targetType;
-    if (offset == 0.0) {
-        m_finished = true;
-        m_finishRelated = true;
+    if (m_rotationOffset != 0.0 || targetType != 0) {
+        m_actionType1 = 3;
+        m_actionValue1 = m_rotationOffset;
     }
     else {
-        m_actionType1 = 3;
-        m_actionValue1 = offset;
+        m_finished = true;
+        m_finishRelated = true;
     }
 }
 
