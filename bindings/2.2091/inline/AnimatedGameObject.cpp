@@ -34,7 +34,7 @@ void AnimatedGameObject::setupAnimatedSize(int id) {
     auto width = 10.f;
     auto height = 10.f;
     switch (id) {
-        case 918:
+        case ObjectID::LargeBeastHazard:
             m_hasContentSize = true;
             m_objectRadius = 24.f;
             m_contentSize.width = 80.f;
@@ -42,32 +42,32 @@ void AnimatedGameObject::setupAnimatedSize(int id) {
             width = 48.f;
             height = 48.f;
             break;
-        case 919:
+        case ObjectID::AnimatedBlackPitHazard:
             width = 25.f;
             height = 6.f;
             break;
-        case 1327:
+        case ObjectID::SmallMonsterHazard:
             m_hasContentSize = true;
             m_contentSize.width = 35.f;
             m_contentSize.height = 30.f;
             width = 8.f;
             height = 8.f;
             break;
-        case 1328:
+        case ObjectID::LargeMonsterHazard:
             m_hasContentSize = true;
             m_contentSize.width = 35.f;
             m_contentSize.height = 40.f;
             width = 8.f;
             height = 15.f;
             break;
-        case 1584:
+        case ObjectID::BatHazard:
             m_hasContentSize = true;
             m_contentSize.width = 60.f;
             m_contentSize.height = 80.f;
             width = 8.f;
             height = 8.f;
             break;
-        case 2012:
+        case ObjectID::SpikedRoundMonsterHazard:
             m_hasContentSize = true;
             m_objectRadius = 15.f;
             m_contentSize.width = 45.f;
