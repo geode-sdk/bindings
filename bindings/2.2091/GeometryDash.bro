@@ -6838,7 +6838,7 @@ class FriendRequestDelegate {
 class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
     virtual ~FriendRequestPopup() = win 0x399480, ios 0x3779dc;
 
-    static FriendRequestPopup* create(GJFriendRequest*, bool) = win 0x3a1590;
+    static FriendRequestPopup* create(GJFriendRequest* request, bool sent) = win 0x3a1590;
 
     virtual void keyBackClicked() = win 0x3a2f00, ios 0x378db8, m1 0x236870, imac 0x2928b0;
     virtual void uploadActionFinished(int id, int response) = win 0x3a2f10, imac 0x2929c0, m1 0x236960, ios 0x378dc4;
@@ -6847,7 +6847,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x3a3210, ios 0x379020, m1 0x236e68, imac 0x292e70;
 
     void blockUser() = win inline, imac 0x294960;
-    bool init(GJFriendRequest*, bool) = win 0x3A16E0, imac 0x291260, m1 0x235270;
+    bool init(GJFriendRequest* request, bool sent) = win 0x3A16E0, imac 0x291260, m1 0x235270;
     void loadFromGJFriendRequest(GJFriendRequest* request) = win 0x3a1ed0;
     void onAccept(cocos2d::CCObject* sender) = win 0x3a2a30, imac 0x2923f0, m1 0x2363a4;
     void onBlock(cocos2d::CCObject* sender) = win 0x3a2c60, imac 0x2925c0, m1 0x236554;
@@ -6856,7 +6856,8 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     void onRemove(cocos2d::CCObject* sender) = win 0x3a2b30, imac 0x2923f0;
     void onReport(cocos2d::CCObject* sender) = win 0x3a2ed0;
 
-    void* m_unk;
+    bool m_actionFinished;
+    bool m_sent;
     GJFriendRequest* m_request;
     LoadingCircle* m_circle;
     CCMenuItemSpriteExtra* m_closeBtn;
