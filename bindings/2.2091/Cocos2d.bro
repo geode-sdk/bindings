@@ -2878,12 +2878,12 @@ class cocos2d::CCObject : cocos2d::CCCopying {
     CCObject() = imac 0x47fec0, m1 0x3e9ee0, ios 0x8e930;
     virtual ~CCObject() = imac 0x47ffd0, m1 0x3e9f70, ios 0x8e978;
 
-    static cocos2d::CCObject* createWithCoder(DS_Dictionary*) = imac 0x4801b0, m1 0x3ea1ec;
+    static cocos2d::CCObject* createWithCoder(DS_Dictionary* dict) = imac 0x4801b0, m1 0x3ea1ec, ios 0x8eac8;
 
     virtual int getTag() const = imac 0x480180, m1 0x3ea1d8, ios 0x8eab4;
     virtual bool isEqual(cocos2d::CCObject const*) = imac 0x480150, m1 0x3ea1b4, ios 0x8ea90;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = imac 0x480160, m1 0x3ea1c0, ios 0x8ea9c;
-    virtual void encodeWithCoder(DS_Dictionary*) = imac 0x4801a0, m1 0x3ea1e8, ios 0x8eac4;
+    virtual void encodeWithCoder(DS_Dictionary* dict) = imac 0x4801a0, m1 0x3ea1e8, ios 0x8eac4;
     virtual bool canEncode() = imac 0x4801c0, m1 0x3ea1f4, ios 0x8ead0;
     virtual void setTag(int) = imac 0x480190, m1 0x3ea1e0, ios 0x8eabc;
 

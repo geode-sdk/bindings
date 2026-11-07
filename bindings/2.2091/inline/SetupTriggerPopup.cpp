@@ -5,7 +5,7 @@
 #include <Geode/binding/GameToolbox.hpp>
 #include <Geode/binding/Slider.hpp>
 
-#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_MACOS)
+#if defined(GEODE_IS_ANDROID)
 SetupTriggerPopup::SetupTriggerPopup() {
     m_gameObject = nullptr;
     m_gameObjects = nullptr;
