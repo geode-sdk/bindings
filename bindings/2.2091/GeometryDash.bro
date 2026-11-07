@@ -2050,7 +2050,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void closeActiveInput() = ios 0x1fabc8;
     void closeEditMenu() = win inline;
     bool containsTouchPoint(cocos2d::CCPoint) = win 0x58a80, ios 0x1fed00;
-    TodoReturn copyText();
+    void copyText() = win inline;
     void disarmHold() = win inline;
     int displayToRawIndex(int) = win 0x55630;
     TodoReturn doneFromIME();
