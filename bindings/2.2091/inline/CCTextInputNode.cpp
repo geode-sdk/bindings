@@ -1,4 +1,4 @@
-#include <Geode/Geode.hpp>
+#include <Geode/binding/CCTextInputNode.hpp>
 
 CCTextInputNode::CCTextInputNode() {
     m_numberInput = false;
