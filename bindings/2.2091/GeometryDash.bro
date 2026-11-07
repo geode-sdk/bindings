@@ -7174,7 +7174,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
     bool isFollowingUser(int id) = win 0x224320, imac 0x54e5f0, m1 0x4a41a4;
-    bool isPastDailyCopy(GJGameLevel*);
+    bool isPastDailyCopy(GJGameLevel*) = win inline;
     bool isTimeValid(char const* key, float length) = win 0x221d40;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
     int itemIDFromLikeKey(char const* key) = win inline;
@@ -7778,7 +7778,7 @@ class GameManager : GManager {
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
     bool messagesRestricted();
     int modUIRank() = m1 0x2fa578;
-    bool offlineModeEnabled() = m1 0x2fab70, ios 0x3b5ff8;
+    bool offlineModeEnabled() = win inline, m1 0x2fab70, ios 0x3b5ff8;
     bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
