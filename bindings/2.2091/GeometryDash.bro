@@ -17529,7 +17529,8 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     cocos2d::CCArray* m_startPositions;
     bool m_isEditorLevel;
     TimeSpeedControl* m_timeSpeedControls;
-    cocos2d::CCLayer* m_layer;
+    [[renamed_from(m_layer)]]
+    cocos2d::CCLayer* m_mainLayer;
     Slider* m_musicSlider;
     Slider* m_sfxSlider;
     cocos2d::CCMenu* m_showUIMenu;
