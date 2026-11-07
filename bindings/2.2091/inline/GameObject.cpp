@@ -205,7 +205,7 @@ void GameObject::updateUnmodifiedPositions() {
 
 #if defined(GEODE_IS_WINDOWS)
 bool GameObject::isBasicEnterEffect(int id) {
-    return (id >= 55 && id <= 59) || (id >= 22 && id <= 28) || id == 1915;
+    return (id >= ObjectID::ChaoticEnterEffect && id <= ObjectID::InverseHalveEnterEffect) || (id >= ObjectID::NoEnterEffect && id <= ObjectID::BigToSmallEnterEffect) || id == ObjectID::NoEnterEffectTrigger;
 }
 
 void GameObject::resetMID() {
