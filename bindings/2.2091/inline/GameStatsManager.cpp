@@ -459,4 +459,8 @@ int GameStatsManager::dailyRecallPrice(int dailyID) {
 
     return 5;
 }
+
+int GameStatsManager::getAwardedCurrencyForLevel(GJGameLevel* level) {
+    return this->getAwardedCurrencyForLevel(level, level->m_dailyID);
+}
 #endif
