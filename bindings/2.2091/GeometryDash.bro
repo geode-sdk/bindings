@@ -5003,7 +5003,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onCopyState(cocos2d::CCObject* sender) = win 0x1c7030;
     bool onCreate() = win 0x1b2460, imac 0xce30, m1 0xb4d8;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x1b20f0, imac 0x10880, m1 0xee38;
-    void onCreateObject(int id) = win 0x1b2930, imac 0x10e30, m1 0xf3b0;
+    GameObject* onCreateObject(int id) = win 0x1b2930, imac 0x10e30, m1 0xf3b0;
     void onDelete(cocos2d::CCObject* sender) = win 0x1aff90;
     void onDeleteAll(cocos2d::CCObject* sender) = win 0x1b07f0, imac 0x64db0, ios inline;
     void onDeleteCustomItem(cocos2d::CCObject* sender) = win 0x1f5fa0, imac 0x63c970, m1 0x578ef0;
@@ -8728,8 +8728,8 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     TodoReturn didChangeGV(char const*, bool) = win 0x2c74a0;
     bool init(GJBaseGameLayer*, int) = win inline, imac 0x5fe4c0, m1 0x543c5c;
     TodoReturn nextPosition(int);
-    void onButtonRows(cocos2d::CCObject* sender);
-    void onButtonsPerRow(cocos2d::CCObject* sender);
+    void onButtonRows(cocos2d::CCObject* sender) = win 0x2c6690;
+    void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x2c6600;
     void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74;
     TodoReturn showPracticeMusicSyncUnlockInfo();
     TodoReturn toggleVisibility(bool);
@@ -24558,6 +24558,11 @@ class TimeSpeedControl : cocos2d::CCNode {
     bool init(GJBaseGameLayer*) = win 0x66d790;
     void onAudioTimeSpeedToggle(cocos2d::CCObject* sender) = win 0x66ddd0;
     TodoReturn timeSliderChanged(cocos2d::CCObject*) = win 0x66dc50;
+
+    GJBaseGameLayer* m_gameLayer;
+    Slider* m_slider;
+    cocos2d::CCLabelBMFont* m_speedLabel;
+    CCMenuItemToggler* m_musicToggle;
 }
 
 [[link(android)]]
