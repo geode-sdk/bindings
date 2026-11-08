@@ -22109,7 +22109,7 @@ class SetupTransformPopup : SetupTriggerPopup {
     bool init(TransformTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5fb030, m1 0x30fe94;
 }
 
-[[link(android)]]
+[[link(android), depends(ValueControlSettings)]]
 class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDelegate {
     SetupTriggerPopup() = win 0x9aaf0, m1 0x2914, inline;
     ~SetupTriggerPopup() = win 0x60ac50, imac 0x2191e0, m1 0x1c8a08, ios 0x1abcd0;
