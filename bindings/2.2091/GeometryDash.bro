@@ -451,7 +451,7 @@ class AdminActionConfirmPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0xa6530, ios 0x54c9f0, m1 0x87fe6c, imac 0x9a5e00;
 
     void addHelp(char const*, std::string const&) = win 0xa60e0;
-    TodoReturn createContentDelete(AdminActionConfirmDelegate*, int, char const*, std::string const&, int) = win 0xa53b0;
+    static AdminActionConfirmPopup* createContentDelete(AdminActionConfirmDelegate*, int, char const*, std::string const&, int) = win 0xa53b0;
     bool init(AdminActionConfirmDelegate*, int, char const*, std::string const&, char const*, std::vector<int> const&, std::string const&, bool);
     void onCategoryToggle(cocos2d::CCObject* sender);
     void onConfirm(cocos2d::CCObject* sender) = win 0xa6240;
@@ -5748,13 +5748,13 @@ class EmoteSprite : cocos2d::CCSprite {
     static int characterCount(std::string const& text) = win inline;
     static int charIndexForByte(std::string const& str, int byteIndex) = win inline;
     static int effectiveLength(std::string const& text, int maxEmotes) = win 0x7FC10;
-    static void fitToHeight(float height, float maxAspect) = win 0x7F200;
+    void fitToHeight(float height, float maxAspect) = win 0x7F200;
 
     virtual void setColor(cocos2d::ccColor3B const& color) = win 0x3f5c0, ios 0x4dc780, m1 0x7eb6fc, imac 0x904710;
 
     bool initWithDef(EmoteDef const*) = win inline;
-    int parseTokens(std::string const&, std::vector<EmoteToken>*, int) = win 0x7F9B0;
-    bool replaceTokens(std::string const&, std::vector<EmoteToken>&, float) = win 0x7FFA0;
+    static int parseTokens(std::string const&, std::vector<EmoteToken>*, int) = win 0x7F9B0;
+    static std::string replaceTokens(std::string const&, std::vector<EmoteToken>&, float) = win 0x7FFA0;
 
 
 
