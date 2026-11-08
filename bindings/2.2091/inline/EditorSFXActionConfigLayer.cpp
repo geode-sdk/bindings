@@ -5,10 +5,19 @@
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+EditorSFXActionConfigLayer::EditorSFXActionConfigLayer() {
+    m_actionID = 0;
+    m_modeButton = nullptr;
+    m_soundsLayer = nullptr;
+    m_scrollLayer = nullptr;
+    m_contentMenu = nullptr;
+    m_contentMenuTouched = false;
+    m_savedScrollY = 0.f;
+}
+
 EditorSFXActionConfigLayer* EditorSFXActionConfigLayer::create(int action, EditorSoundsLayer* layer) {
     auto ret = new EditorSFXActionConfigLayer();
-    if (ret->init(action, layer))
-    {
+    if (ret->init(action, layer)) {
         ret->autorelease();
         return ret;
     }

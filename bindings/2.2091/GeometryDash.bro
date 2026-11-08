@@ -4284,18 +4284,19 @@ class EasingSelectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditButtonBar : cocos2d::CCNode {
+    EditButtonbar() = ios 0x4a3b88;
     virtual ~EditButtonBar() = win 0x176e90, ios 0x4a2df4;
 
-    static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows) = win 0x176f00, imac 0x6b3f50, m1 0x5cd808;
+    static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows) = win 0x176f00, imac 0x6b3f50, m1 0x5cd808, ios 0x4a2e0c;
 
     int getPage() = win inline, imac 0x6b4cb0, m1 0x5ce494;
     void goToPage(int page) = win 0x177aa0, imac 0x6b4cd0, m1 0x5ce4a0;
-    bool init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows) = win inline, imac 0x6b4040, m1 0x5cd904;
-    void loadFromItems(cocos2d::CCArray* objects, int rows, int columns, bool keepPage) = win 0x177060, imac 0x6b40f0, m1 0x5cd9b0;
+    bool init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows) = win inline, imac 0x6b4040, m1 0x5cd904, ios 0x4a2ed4;
+    void loadFromItems(cocos2d::CCArray* objects, int rows, int columns, bool keepPage) = win 0x177060, imac 0x6b40f0, m1 0x5cd9b0, ios 0x4a2f80;
     void onDotClicked(cocos2d::CCObject* sender) = win 0x177b90;
     void onLeft(cocos2d::CCObject* sender) = win 0x177b50, m1 0x35c5f0;
     void onRight(cocos2d::CCObject* sender) = win 0x177b10;
-    void reloadItems(int rowCount, int columnCount) = win inline, imac 0x584030, m1 0x5ce0a0;
+    void reloadItems(int rowCount, int columnCount) = win inline, imac 0x6b48c0, m1 0x5ce0a0, ios 0x4a3650;
     TodoReturn updateDotState() = win 0x177c40;
 
     cocos2d::CCPoint m_position;
@@ -4505,10 +4506,10 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
 
 [[link(android)]]
 class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
-    EditorSFXActionConfigLayer() = ios 0x4c7364;
+    EditorSFXActionConfigLayer() = win inline, ios 0x4c7364;
     virtual ~EditorSFXActionConfigLayer() = win 0x183430, ios 0x4c5d84;
 
-    static EditorSFXActionConfigLayer* create(int action, EditorSoundsLayer* layer) = win inline, ios 0x4c5dbc;
+    static EditorSFXActionConfigLayer* create(int actionId, EditorSoundsLayer* layer) = win inline, ios 0x4c5dbc;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184de0, imac 0x8e0930, m1 0x7ccdec, ios 0x4c70cc;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184f10, imac 0x8e0a50, m1 0x7cced4, ios 0x4c71b4;
@@ -4520,16 +4521,26 @@ class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
     virtual float getValue(int) = win 0x184820, imac 0x8e0790, m1 0x7ccc70, ios 0x4c6fc8;
     virtual void sfxBrowserClosed(SFXBrowser*) = win 0x184990, imac 0x8e07b0, m1 0x7ccc78, ios 0x4c6fd0;
 
-    bool init(int action, EditorSoundsLayer* layer) = win 0x183510;
+    bool init(int actionId, EditorSoundsLayer* layer) = win 0x183510, ios 0x4c5e40;
     void onAddSound(cocos2d::CCObject* sender) = win 0x184950;
-    void onDeleteSound(cocos2d::CCObject* sender) = win 0x184bd0, m1 0x7ccad0, ios 0x4c6e28;
+    void onDeleteSound(cocos2d::CCObject* sender) = win 0x184bd0, imac 0x8e05e0, m1 0x7ccad0, ios 0x4c6e28;
     void onEditSound(cocos2d::CCObject* sender) = win 0x184b30;
     void onOpenSettings(cocos2d::CCObject* sender) = win 0x184ca0;
     void onPreviewSound(cocos2d::CCObject* sender) = win 0x184a70;
     void onToggleMode(cocos2d::CCObject* sender) = win 0x1848c0;
     TodoReturn refreshModeButtons() = win 0x184830;
-    void refreshRows() = win 0x183c80, m1 0x7cc158, ios 0x4c64d4;
-    void refreshRowsAddedDeferred(float) = win 0x184a20, m1 0x7cccec;
+    void refreshRows() = win 0x183c80, imac 0x8dfb50, m1 0x7cc158, ios 0x4c64d4;
+    void refreshRowsAddedDeferred(float) = win 0x184a20, imac 0x8e0820, m1 0x7cccec, ios 0x4c7050;
+
+    int m_actionID;
+    // for setting the play mode of the editor sfx binding, sequential or shuffle
+    ButtonSprite* m_modeButton;
+    EditorSoundsLayer* m_soundsLayer;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCMenu* m_contentMenu;
+    // set when m_contentMenu claimed the current touch
+    bool m_contentMenuTouched;
+    float m_savedScrollY;
 }
 
 [[link(android)]]
@@ -4539,7 +4550,7 @@ class EditorSFXManager {
 
     static const char* actionToString(int action) = win 0x185f20;
     static std::vector<int> allActions() = win 0x186460;
-    static SFXTriggerGameObject* createNewSound(int soundId) = win 0x185e70, m1 0x7cf5c4;
+    static SFXTriggerGameObject* createNewSound(int soundId) = win 0x185e70, imac 0x8e3c70, m1 0x7cf5c4, ios 0x4c8594;
     static EditorSFXManager* sharedState() = win 0x185140, imac 0x8e0df0, m1 0x7cd268, ios 0x4c7450;
     static std::vector<std::pair<int, std::vector<int>>> summarizeBlob(std::string const& blob);
 
@@ -4556,7 +4567,7 @@ class EditorSFXManager {
     GJEditorSoundConfig* copyFavoriteToMyConfig(GJEditorSoundConfig* config) = win 0x18bb70, imac 0x8ed940;
     GJEditorSoundConfig* createMyConfigFromLive(std::string const& name) = win 0x18b8f0, imac 0x8ed640;
     void dataLoaded(DS_Dictionary* dict) = win 0x18af20, imac 0x8ec7b0, m1 0x7d5c50, ios 0x4ca6ac;
-    SFXTriggerGameObject* decodeSound(std::string const& str) = win 0x1882a0, ios 0x7d3fb4;
+    SFXTriggerGameObject* decodeSound(std::string const& str) = win 0x1882a0, imac 0x8ea380, m1 0x7d3fb4, ios 0x4c92e4;
     bool deserializeAll(std::string const& str, bool destructive) = win 0x188d90, imac 0x8e14b0, m1 0x7cd7bc, ios 0x4c7680;
     void downloadAllMissing() = win 0x18c130;
     void encodeDataTo(DS_Dictionary* dict) = win 0x18ab70, imac 0x8ec380, m1 0x7d5888, ios 0x4ca428;
@@ -4574,12 +4585,12 @@ class EditorSFXManager {
     cocos2d::CCArray* getMyConfigs();
     EditorSFXBinding* getOrCreateBinding(int bindingId) = win 0x185470;
     int getPlayMode(int actionId);
-    bool hasSoundsForAction(int actionId) const = win 0x185a50;
+    bool hasSoundsForAction(int actionId) const = win 0x185a50, ios 0x4c7fc8;
     bool importFromString(std::string const& str, EditorSFXImportOptions const& options, std::string* errMsg) = win 0x18b3d0, imac 0x8ecdd0, m1 0x7d6210, ios 0x4caae8;
     bool init() = imac 0x8e0f60, m1 0x7cd37c, ios 0x4c74d8; // win inline
     bool overwriteMyConfigFromLive(int localId, std::string* errMsg) = win 0x18bd70;
-    void playAction(int actionId) = win 0x1855c0, imac 0x8e27a0, m1 0x7ce64c;
-    void playAction(int primaryId, int fallbackId);
+    void playAction(int actionId) = win 0x1855c0, imac 0x8e27a0, m1 0x7ce64c, ios 0x4c8014;
+    void playAction(int primaryId, int fallbackId) = ios 0x4c7f8c;
     void releaseBinding(EditorSFXBinding* binding) = win inline, imac 0x8e25a0, m1 0x7ce494, ios 0x4c7f34;
     void removeFavoriteConfig(int favoriteId) = win 0x18b750;
     void removeMyConfig(int localId);
@@ -5051,7 +5062,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     TodoReturn processSelectObject(GameObject*);
     void processSelectObjects(cocos2d::CCArray* objects) = win 0x1c9570, imac 0x5b90a0, m1 0x505dac;
     void processSmartObjectsFromType(int type, cocos2d::CCArray* objects, cocos2d::CCArray* objects2, cocos2d::CCArray* objects3, cocos2d::CCArray* objects4) = win 0x1b7d50, imac 0x152d0, m1 0x13014;
-    void recreateButtonTabs() = win 0x1f69e0, m1 0x5790f8;
+    void recreateButtonTabs() = win 0x1f69e0, imac 0x63cb90, m1 0x5790f8;
     void redoLastAction(cocos2d::CCObject* sender) = win 0x1b3c30, ios 0x470fb4;
     TodoReturn refreshGridWindow();
     void reloadCustomItems() = win 0x1f6770, imac 0x63c900, m1 0x578e84;
@@ -10542,16 +10553,16 @@ class GJDropDownLayerDelegate {
 class GJEditorSoundConfig : cocos2d::CCNode {
     virtual ~GJEditorSoundConfig() = win 0x360130, ios 0x4decb8;
 
-    static GJEditorSoundConfig* create() = win 0x3601b0, imac 0x906950, ios 0x4ddd24;
-    static GJEditorSoundConfig* create(cocos2d::CCDictionary* dict) = win 0x360310, imac 0x906a30, ios 0x4dddd4;
-    static GJEditorSoundConfig* createWithCoder(DS_Dictionary* dict) = imac 0x907300, ios 0x4de328;
+    static GJEditorSoundConfig* create() = win 0x3601b0, imac 0x906950, m1 0x7ed6d4, ios 0x4ddd24;
+    static GJEditorSoundConfig* create(cocos2d::CCDictionary* dict) = win 0x360310, imac 0x906a30, m1 0x7ed790, ios 0x4dddd4;
+    static GJEditorSoundConfig* createWithCoder(DS_Dictionary* dict) = win inline, imac 0x907300, m1 0x7edff8, ios 0x4de328;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x3618e0, imac 0x907d10, m1 0x7ee990, ios 0x4deae4;
     virtual bool init() = win 0x8b060, imac 0x906a20, m1 0x7ed78c, ios 0x4dddd0;
 
     TodoReturn clearServerState();
     void copyServerFields(GJEditorSoundConfig*) = win 0x361750;
-    void dataLoaded(DS_Dictionary* dict) = win 0x360ee0, imac 0x9073e0, ios 0x4de360;
+    void dataLoaded(DS_Dictionary* dict) = win 0x360ee0, imac 0x9073e0, m1 0x7ee0c0, ios 0x4de360;
     TodoReturn getUnpackedSoundDesc();
     TodoReturn showSoundInfo() = win 0x361180;
 }
@@ -10811,14 +10822,14 @@ class GJGameLevel : cocos2d::CCNode {
     static void dtExpandOrder(std::string const&, std::vector<int>&) = win 0x265830;
     bool dtParseGlobalBlob(std::string const&, std::vector<int>&) = win 0x265950;
     void dtSetCells(std::vector<int> const&) = imac 0x585fb0, m1 0x4d7350;
-    GJGameLevel* duplicate() = win 0x263800, imac 0x582c00, m1 0x4d46e4, ios 0x0ce280;
+    GJGameLevel* duplicate() = win 0x263800, imac 0x582c00, m1 0x4d46e4, ios 0xce280;
     TodoReturn ensureSessionLog();
     std::string generateAutoSaveUID();
     std::string generateSettingsString() = win inline, imac 0x5844b0, m1 0x4d5b90, ios inline;
     std::string getAudioFileName() = win 0x264790, imac 0x5842c0, m1 0x4d5978, ios 0xcf1d4;
     int getAverageDifficulty() = win inline, imac 0x583fe0, m1 0x4d5680, ios 0xcf008;
     char const* getCoinKey(int coinNumber) = win 0x264610, imac 0x566b60, m1 0x4b9d18, ios 0xbe2f4;
-    char const* getCoinKey(int, int) = win 0x264630, ios 0xcf034;
+    char const* getCoinKey(int coinNumber, int dailyID) = win 0x264630, imac 0x584030, m1 0x4d56ac, ios 0xcf034;
     TodoReturn getExportSaveString();
     TodoReturn getFullSaveString();
     int getLastBuildPageForTab(int tab) = win 0x2646a0;
@@ -19487,7 +19498,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void reloadVirtualRows(float offset) = win 0x82a60;
     void remountVirtualRow(int row);
     bool restoreScrollOffset(std::string const& key) = win 0x81000;
-    void scrollTo(float offset) = win inline, m1 0x8482e8;
+    void scrollTo(float offset) = win inline, imac 0x96b620, m1 0x8482e8, ios 0x524bc8;
     void sectionAddChild(cocos2d::CCNode* child, int zOrder, int tag) = win 0x82650;
     void sectionClear();
     int sectionIndexForY(float y);
@@ -22194,7 +22205,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     float getTruncatedValueByTag(int tag, float value) = win inline, imac 0x21e1d0, m1 0x1cc338;
     void goToPage(int page, bool hideAll) = win 0x60b770, imac 0x219e40, m1 0x1c9524;
     void hideAll() = win inline, imac 0x21a0b0, m1 0x1c9788;
-    bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int, float) = win 0x60ae90, imac 0x219540, m1 0x1c8c84;
+    bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int, float) = win 0x60ae90, imac 0x219540, m1 0x1c8c84, ios 0x1abd08;
     void onCustomEaseArrow(int property, bool up) = win 0x6156e0, imac 0x2254e0, m1 0x1d2b9c;
     void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x6156b0, imac 0x225220, m1 0x1d286c;
     void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x615680, imac 0x225180, m1 0x1d27b8;

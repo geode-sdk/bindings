@@ -12,23 +12,23 @@ GJChallengeItem* GJChallengeItem::create() {
     return create(GJChallengeType::Unknown, 0, 0, 0, "");
 }
 
-GJChallengeItem* GJChallengeItem::createWithCoder(DS_Dictionary* dsdict) {
+GJChallengeItem* GJChallengeItem::createWithCoder(DS_Dictionary* dict) {
     auto ret = GJChallengeItem::create();
-    ret->dataLoaded(dsdict);
+    ret->dataLoaded(dict);
     return ret;
 }
 
 bool GJChallengeItem::canEncode() { return true; }
 
-void GJChallengeItem::dataLoaded(DS_Dictionary* dsdict) {
-    m_challengeType = (GJChallengeType)dsdict->getIntegerForKey("1");
-    m_timeLeft = dsdict->getIntegerForKey("5");
-    m_canClaim = dsdict->getBoolForKey("6");
-    m_name = dsdict->getStringForKey("7");
-    m_count = dsdict->getIntegerForKey("2");
-    m_goal = dsdict->getIntegerForKey("3");
-    m_reward = dsdict->getIntegerForKey("4");
-    m_position = dsdict->getIntegerForKey("8");
+void GJChallengeItem::dataLoaded(DS_Dictionary* dict) {
+    m_challengeType = (GJChallengeType)dict->getIntegerForKey("1");
+    m_timeLeft = dict->getIntegerForKey("5");
+    m_canClaim = dict->getBoolForKey("6");
+    m_name = dict->getStringForKey("7");
+    m_count = dict->getIntegerForKey("2");
+    m_goal = dict->getIntegerForKey("3");
+    m_reward = dict->getIntegerForKey("4");
+    m_position = dict->getIntegerForKey("8");
 }
 
 void GJChallengeItem::incrementCount(int add) {
