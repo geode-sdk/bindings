@@ -1345,6 +1345,7 @@ class cocos2d::CCEGLViewProtocol {
     virtual void handleTouchesEnd(int, int*, float*, float*, double) = imac 0x5116c0, m1 0x46c9ec, ios 0x3822e0;
     virtual void handleTouchesCancel(int, int*, float*, float*, double) = ios 0x38238c, m1 0x46ca98, imac 0x511750;
     virtual void pollInputEvents() = imac 0x511880, m1 0x46cbbc, ios 0x382450;
+    [[since("6.0.0-alpha.2")]]
     virtual cocos2d::CCPoint getMousePosition() const = m1 0x46cce4, imac 0x5119c0, ios 0x1542d0;
 
     float getScaleX() const = imac 0x511860, m1 0x46cbac, ios 0x382440;
