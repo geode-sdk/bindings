@@ -3697,7 +3697,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updateDownloadProgress(float dt) = win 0x16c280, imac 0x6fb7a0, m1 0x60d3d0;
     void updateError(GJSongError errorType) = win 0x16ea00, imac 0x6fce80, m1 0x60e9a8;
     void updateLengthMod(float lengthMod) = win inline, imac 0x6fb910, m1 0x60d52c;
-    void updateMultiAssetInfo(bool update) = win 0x16d690, imac 0x6fc100, ios 0x12225c, m1 0x60dd44;
+    void updateMultiAssetInfo(bool update) = win 0x16d690, imac 0x6fc100, m1 0x60dd44, ios 0x12225c;
     void updatePlaybackBtn() = win 0x16c160, imac 0x6faba0, m1 0x60c8a8;
     void updateProgressBar(int progress) = win 0x162550, imac 0x6f99b0, m1 0x60b7a0;
     void updateSongInfo() = win 0x16c380, imac 0x6f9ad0, m1 0x60b8bc;
