@@ -4980,7 +4980,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onCopyState(cocos2d::CCObject* sender) = win 0x1c7030;
     bool onCreate() = win 0x1b2460, imac 0xce30, m1 0xb4d8;
     void onCreateButton(cocos2d::CCObject* sender) = win 0x1b20f0, imac 0x10880, m1 0xee38;
-    void onCreateObject(int id) = win 0x1b2930, imac 0x10e30, m1 0xf3b0;
+    GameObject* onCreateObject(int id) = win 0x1b2930, imac 0x10e30, m1 0xf3b0;
     void onDelete(cocos2d::CCObject* sender) = win 0x1aff90;
     void onDeleteAll(cocos2d::CCObject* sender) = win 0x1b07f0, imac 0x64db0, ios inline;
     void onDeleteCustomItem(cocos2d::CCObject* sender) = win 0x1f5fa0, imac 0x63c970, m1 0x578ef0;
