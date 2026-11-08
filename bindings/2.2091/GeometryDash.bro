@@ -24534,6 +24534,11 @@ class TimeSpeedControl : cocos2d::CCNode {
     bool init(GJBaseGameLayer*) = win 0x66d790;
     void onAudioTimeSpeedToggle(cocos2d::CCObject* sender) = win 0x66ddd0;
     TodoReturn timeSliderChanged(cocos2d::CCObject*) = win 0x66dc50;
+
+    GJBaseGameLayer* m_gameLayer;
+    Slider* m_slider;
+    cocos2d::CCLabelBMFont* m_speedLabel;
+    CCMenuItemToggler* m_musicToggle;
 }
 
 [[link(android)]]
