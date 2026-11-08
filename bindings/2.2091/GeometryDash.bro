@@ -8705,8 +8705,8 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     TodoReturn didChangeGV(char const*, bool) = win 0x2c74a0;
     bool init(GJBaseGameLayer*, int) = win inline, imac 0x5fe4c0, m1 0x543c5c;
     TodoReturn nextPosition(int);
-    void onButtonRows(cocos2d::CCObject* sender);
-    void onButtonsPerRow(cocos2d::CCObject* sender);
+    void onButtonRows(cocos2d::CCObject* sender) = win 0x2c6690;
+    void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x2c6600;
     void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74;
     TodoReturn showPracticeMusicSyncUnlockInfo();
     TodoReturn toggleVisibility(bool);
