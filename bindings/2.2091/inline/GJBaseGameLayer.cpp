@@ -656,20 +656,6 @@ float GJBaseGameLayer::getGroundHeight(PlayerObject* player, int type) {
     return this->getGroundHeightForMode(type);
 }
 
-std::string GJBaseGameLayer::getGroupParentsString(GameObject* object) {
-    auto groupParents = static_cast<cocos2d::CCArray*>(m_parentGroupIDs->objectForKey(object->m_uniqueID));
-    if (!groupParents || groupParents->count() == 0) return "";
-    fmt::memory_buffer buffer;
-    auto first = true;
-    for (auto i = 0; i < groupParents->count(); i++) {
-        auto groupID = static_cast<cocos2d::CCInteger*>(groupParents->objectAtIndex(i))->getValue();
-        if (!first) fmt::format_to(std::back_inserter(buffer), ".");
-        fmt::format_to(std::back_inserter(buffer), "{}", groupID);
-        first = false;
-    }
-    return fmt::to_string(buffer);
-}
-
 cocos2d::CCPoint GJBaseGameLayer::getMoveTargetDelta(EffectGameObject* object, bool mainObject) {
     auto targetID = object->m_targetModCenterID;
     if (targetID < 1) targetID = object->m_targetGroupID;
@@ -1047,18 +1033,6 @@ void GJBaseGameLayer::removeBackground() {
     if (m_background) {
         m_background->removeFromParent();
         m_background = nullptr;
-    }
-}
-
-void GJBaseGameLayer::removeFromGroupParents(GameObject* object) {
-    if (object->m_hasGroupParentsString) {
-        if (auto groupIDs = static_cast<cocos2d::CCArray*>(m_removedParentGroupIDs->objectForKey(object->m_uniqueID))) {
-            for (int i = 0; i < groupIDs->count(); i++) {
-                m_parentGroupsDict->removeObjectForKey(static_cast<cocos2d::CCInteger*>(groupIDs->objectAtIndex(i))->getValue());
-            }
-            m_removedParentGroupIDs->removeObjectForKey(object->m_uniqueID);
-            m_parentGroupIDs->removeObjectForKey(object->m_uniqueID);
-        }
     }
 }
 
