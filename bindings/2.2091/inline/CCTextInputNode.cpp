@@ -1,4 +1,5 @@
 #include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/utils/general.hpp>
 
 CCTextInputNode::CCTextInputNode() {
     m_numberInput = false;
@@ -93,6 +94,13 @@ void CCTextInputNode::closeEditMenu() {
         m_editMenu = nullptr;
         editMenu->removeFromParentAndCleanup(true);
         editMenu->release();
+    }
+}
+
+void CCTextInputNode::copyText() {
+    if (this->canCopyText()) {
+        std::string str = this->getString();
+        geode::utils::clipboard::write(str);
     }
 }
 #endif

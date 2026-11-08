@@ -829,6 +829,17 @@ void GameLevelManager::verifyLevelState(GJGameLevel* level) {
     }
 }
 
+bool GameLevelManager::isPastDailyCopy(GJGameLevel* level) {
+    auto dailyID = level->m_dailyID.value();
+    if(dailyID <= 0) return false;
+
+    return dailyID != this->getActiveDailyID( 
+        dailyID > 200000 ? GJTimedLevelType::Event :
+        dailyID > 100000 ? GJTimedLevelType::Weekly :
+        GJTimedLevelType::Daily
+    );
+}
+
 GameLevelManager* GameLevelManager::sharedState() {
     auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x90bfb0);
     if(!ref) {

@@ -2043,14 +2043,14 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool rightClick(float, float) = win 0x59150, imac 0x6c9b0, m1 0x65b60, ios 0x1ff590;
 
     void addTextArea(TextArea* textArea) = win 0x54770, imac 0x65d50, m1 0x5e9e8;
-    TodoReturn armHold(cocos2d::CCPoint) = ios 0x1ff160;
-    TodoReturn canClearText();
+    void armHold(cocos2d::CCPoint) = ios 0x1ff160;
+    bool canClearText();
     bool canCopyText() = win 0x59350;
-    TodoReturn clearText();
-    TodoReturn closeActiveInput() = ios 0x1fabc8;
+    void clearText();
+    void closeActiveInput() = ios 0x1fabc8;
     void closeEditMenu() = win inline;
     bool containsTouchPoint(cocos2d::CCPoint) = win 0x58a80, ios 0x1fed00;
-    TodoReturn copyText();
+    void copyText() = win inline;
     void disarmHold() = win inline;
     int displayToRawIndex(int) = win 0x55630;
     TodoReturn doneFromIME();
@@ -2066,18 +2066,18 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     TodoReturn getWorldRect();
     void holdTimerFired(float) = win 0x59050;
     bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x54510, imac 0x659e0, m1 0x5e694;
-    TodoReturn insertAtCursor(std::string) = win 0x54f50;
+    void insertAtCursor(std::string text) = win 0x54f50;
     bool isCoveredByPopup();
     bool isVisibleInTree() = win 0x58b60, ios 0x1feec4;
-    TodoReturn moveCursorToEnd();
-    void moveCursorVertical(int) = win 0x58130;
+    void moveCursorToEnd();
+    void moveCursorVertical(int delta) = win 0x58130;
     TodoReturn openEditMenu(cocos2d::CCPoint) = win 0x59440;
     TodoReturn pasteText();
-    TodoReturn rawToDisplayIndex(int) = win 0x55460;
+    int rawToDisplayIndex(int) = win 0x55460;
     void refreshLabel() = win 0x565a0, imac 0x68ae0, m1 0x62124, ios 0x1fcaac;
-    TodoReturn scrollToCursor() = win 0x54aa0; // m1 inline;
+    void scrollToCursor() = win 0x54aa0; // m1 inline;
     void setAllowedChars(std::string filter) = win inline;
-    void setAllowNewlines(bool);
+    void setAllowNewlines(bool allow);
     void setDelegate(TextInputDelegate* delegate) = inline;
     void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, imac 0x68e90, ios inline;
     void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x68e70, m1 0x62464, ios 0x1fccec;
@@ -6850,7 +6850,7 @@ class FriendRequestDelegate {
 class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
     virtual ~FriendRequestPopup() = win 0x399480, ios 0x3779dc;
 
-    static FriendRequestPopup* create(GJFriendRequest*, bool) = win 0x3a1590;
+    static FriendRequestPopup* create(GJFriendRequest* request, bool sent) = win 0x3a1590;
 
     virtual void keyBackClicked() = win 0x3a2f00, ios 0x378db8, m1 0x236870, imac 0x2928b0;
     virtual void uploadActionFinished(int id, int response) = win 0x3a2f10, imac 0x2929c0, m1 0x236960, ios 0x378dc4;
@@ -6859,7 +6859,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x3a3210, ios 0x379020, m1 0x236e68, imac 0x292e70;
 
     void blockUser() = win inline, imac 0x294960;
-    bool init(GJFriendRequest*, bool) = win 0x3A16E0, imac 0x291260, m1 0x235270;
+    bool init(GJFriendRequest* request, bool sent) = win 0x3A16E0, imac 0x291260, m1 0x235270;
     void loadFromGJFriendRequest(GJFriendRequest* request) = win 0x3a1ed0;
     void onAccept(cocos2d::CCObject* sender) = win 0x3a2a30, imac 0x2923f0, m1 0x2363a4;
     void onBlock(cocos2d::CCObject* sender) = win 0x3a2c60, imac 0x2925c0, m1 0x236554;
@@ -6868,7 +6868,8 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     void onRemove(cocos2d::CCObject* sender) = win 0x3a2b30, imac 0x2923f0;
     void onReport(cocos2d::CCObject* sender) = win 0x3a2ed0;
 
-    void* m_unk;
+    bool m_actionFinished;
+    bool m_sent;
     GJFriendRequest* m_request;
     LoadingCircle* m_circle;
     CCMenuItemSpriteExtra* m_closeBtn;
@@ -7185,7 +7186,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
     bool isFollowingUser(int id) = win 0x224320, imac 0x54e5f0, m1 0x4a41a4;
-    bool isPastDailyCopy(GJGameLevel*);
+    bool isPastDailyCopy(GJGameLevel*) = win inline;
     bool isTimeValid(char const* key, float length) = win 0x221d40;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
     int itemIDFromLikeKey(char const* key) = win inline;
@@ -7789,7 +7790,7 @@ class GameManager : GManager {
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
     bool messagesRestricted();
     int modUIRank() = m1 0x2fa578;
-    bool offlineModeEnabled() = m1 0x2fab70, ios 0x3b5ff8;
+    bool offlineModeEnabled() = win inline, m1 0x2fab70, ios 0x3b5ff8;
     bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
@@ -17542,7 +17543,8 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     cocos2d::CCArray* m_startPositions;
     bool m_isEditorLevel;
     TimeSpeedControl* m_timeSpeedControls;
-    cocos2d::CCLayer* m_layer;
+    [[renamed_from(m_layer)]]
+    cocos2d::CCLayer* m_mainLayer;
     Slider* m_musicSlider;
     Slider* m_sfxSlider;
     cocos2d::CCMenu* m_showUIMenu;

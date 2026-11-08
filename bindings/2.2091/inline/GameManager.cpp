@@ -770,6 +770,10 @@ void GameManager::verifyStarUnlocks() {
         if (gsm->hasCompletedLevel(level)) gsm->completedStarLevel(level);
     }
 }
+
+bool GameManager::offlineModeEnabled() {
+    return this->getGameVariable("0219");
+}
 #endif
 
 #if defined(GEODE_IS_IOS)
