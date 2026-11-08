@@ -4343,7 +4343,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void confirmDelete(cocos2d::CCObject* sender) = win 0x17c070, imac 0x1df410, m1 0x1930f4;
     TodoReturn confirmMoveToBottom(cocos2d::CCObject*) = win 0x17c9d0;
     void confirmMoveToTop(cocos2d::CCObject* sender) = win 0x17c8a0, imac 0x1df500, m1 0x1931dc;
-    bool init(GJGameLevel* level) = win 0x1784A0, imac 0x1dccd0, m1 0x190af8;
+    bool init(GJGameLevel* level) = win 0x1784a0, imac 0x1dccd0, m1 0x190af8, ios 0x10ec88;
     void onBack(cocos2d::CCObject* sender) = win 0x17cdf0, imac 0x1dfaa0, m1 0x1937b8;
     void onClone() = win inline, imac 0x4006e0;
     void onCreatorSettings(cocos2d::CCObject* sender) = win 0x17b600;
@@ -4505,30 +4505,31 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
 
 [[link(android)]]
 class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
+    EditorSFXActionConfigLayer() = ios 0x4c7364;
     virtual ~EditorSFXActionConfigLayer() = win 0x183430, ios 0x4c5d84;
 
-    static EditorSFXActionConfigLayer* create(int, EditorSoundsLayer*);
+    static EditorSFXActionConfigLayer* create(int action, EditorSoundsLayer* layer) = win inline, ios 0x4c5dbc;
 
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184de0, ios 0x4c70cc, m1 0x7ccdec, imac 0x8e0930;
-    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184f10, ios 0x4c71b4, m1 0x7cced4, imac 0x8e0a50;
-    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184ff0, ios 0x4c725c, m1 0x7cd014, imac 0x8e0b90;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x185090, ios 0x4c72ec, m1 0x7cd124, imac 0x8e0cb0;
-    virtual void rebuildContent() = win 0x184c40, ios 0x4c7094, m1 0x7ccdb0, imac 0x8e08e0;
-    virtual void onClose(cocos2d::CCObject* sender) = win 0x184c50, ios 0x4c7098, m1 0x7ccdb4, imac 0x8e08f0;
-    virtual void valueDidChange(int, float) = win 0x3f5c0, ios 0x4c6fcc, m1 0x7ccc74, imac 0x8e07a0;
-    virtual float getValue(int) = win 0x184820, m1 0x7ccc70, imac 0x8e0790, ios 0x4c6fc8;
-    virtual void sfxBrowserClosed(SFXBrowser*) = win 0x184990, ios 0x4c6fd0, m1 0x7ccc78, imac 0x8e07b0;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184de0, imac 0x8e0930, m1 0x7ccdec, ios 0x4c70cc;
+    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184f10, imac 0x8e0a50, m1 0x7cced4, ios 0x4c71b4;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x184ff0, imac 0x8e0b90, m1 0x7cd014, ios 0x4c725c;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x185090, imac 0x8e0cb0, m1 0x7cd124, ios 0x4c72ec;
+    virtual void rebuildContent() = win 0x184c40, imac 0x8e08e0, m1 0x7ccdb0, ios 0x4c7094;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x184c50, imac 0x8e08f0, m1 0x7ccdb4, ios 0x4c7098;
+    virtual void valueDidChange(int, float) = win 0x3f5c0, imac 0x8e07a0, m1 0x7ccc74, ios 0x4c6fcc;
+    virtual float getValue(int) = win 0x184820, imac 0x8e0790, m1 0x7ccc70, ios 0x4c6fc8;
+    virtual void sfxBrowserClosed(SFXBrowser*) = win 0x184990, imac 0x8e07b0, m1 0x7ccc78, ios 0x4c6fd0;
 
-    bool init(int, EditorSoundsLayer*) = win 0x183510;
+    bool init(int action, EditorSoundsLayer* layer) = win 0x183510;
     void onAddSound(cocos2d::CCObject* sender) = win 0x184950;
-    void onDeleteSound(cocos2d::CCObject* sender) = win 0x184bd0;
+    void onDeleteSound(cocos2d::CCObject* sender) = win 0x184bd0, m1 0x7ccad0, ios 0x4c6e28;
     void onEditSound(cocos2d::CCObject* sender) = win 0x184b30;
     void onOpenSettings(cocos2d::CCObject* sender) = win 0x184ca0;
     void onPreviewSound(cocos2d::CCObject* sender) = win 0x184a70;
     void onToggleMode(cocos2d::CCObject* sender) = win 0x1848c0;
     TodoReturn refreshModeButtons() = win 0x184830;
-    void refreshRows() = win 0x183c80;
-    void refreshRowsAddedDeferred(float) = win 0x184a20;
+    void refreshRows() = win 0x183c80, m1 0x7cc158, ios 0x4c64d4;
+    void refreshRowsAddedDeferred(float) = win 0x184a20, m1 0x7cccec;
 }
 
 [[link(android)]]
@@ -4536,61 +4537,72 @@ class EditorSFXManager {
     // ~EditorSFXManager();
     // EditorSFXManager();
 
-    static EditorSFXManager* sharedState() = win 0x185140, m1 0x7cd268, imac 0x8e0df0, ios 0x4c7450;
-
-    TodoReturn actionToString(int) = win 0x185f20;
-    TodoReturn addFavoriteConfig(GJEditorSoundConfig*);
-    TodoReturn addSound(int, SFXTriggerGameObject*);
+    static const char* actionToString(int action) = win 0x185f20;
     static std::vector<int> allActions() = win 0x186460;
-    TodoReturn applyConfigDirect(GJEditorSoundConfig*, bool, std::string*);
-    TodoReturn applyFavoriteConfig(int, bool, std::string*);
-    TodoReturn applyMyConfig(int, bool, std::string*) = win 0x18bf10;
-    TodoReturn attachUploadedSoundID(int, int);
-    TodoReturn clearAction(int);
-    TodoReturn clearActionMinInterval(int);
-    void clearAll() = win 0x185d90;
+    static SFXTriggerGameObject* createNewSound(int soundId) = win 0x185e70, m1 0x7cf5c4;
+    static EditorSFXManager* sharedState() = win 0x185140, imac 0x8e0df0, m1 0x7cd268, ios 0x4c7450;
+    static std::vector<std::pair<int, std::vector<int>>> summarizeBlob(std::string const& blob);
+
+    void addFavoriteConfig(GJEditorSoundConfig* config);
+    void addSound(int bindingId, SFXTriggerGameObject* sound) = m1 0x7cf0b8;
+    bool applyConfigDirect(GJEditorSoundConfig* config, bool merge, std::string* errMsg);
+    bool applyFavoriteConfig(int favoriteId, bool merge, std::string* errMsg);
+    bool applyMyConfig(int localId, bool merge, std::string* errMsg) = win 0x18bf10;
+    void attachUploadedSoundID(int localId, int uploadedServerId);
+    void clearAction(int actionId);
+    void clearActionMinInterval(int actionId);
+    void clearAll() = win 0x185d90, imac 0x8e1150, m1 0x7cd4fc, ios 0x4c7520;
     std::vector<int> collectAllSFXIDs() = win 0x18c030;
-    GJEditorSoundConfig* copyFavoriteToMyConfig(GJEditorSoundConfig*) = win 0x18bb70;
-    GJEditorSoundConfig* createMyConfigFromLive(std::string const&) = win 0x18b8f0;
-    static SFXTriggerGameObject* createNewSound(int) = win 0x185e70;
-    void dataLoaded(DS_Dictionary* dict) = win 0x18af20, ios 0x4ca6ac;
-    SFXTriggerGameObject* decodeSound(std::string const&) = win 0x1882a0;
-    bool deserializeAll(std::string const&, bool) = win 0x188d90;
+    GJEditorSoundConfig* copyFavoriteToMyConfig(GJEditorSoundConfig* config) = win 0x18bb70, imac 0x8ed940;
+    GJEditorSoundConfig* createMyConfigFromLive(std::string const& name) = win 0x18b8f0, imac 0x8ed640;
+    void dataLoaded(DS_Dictionary* dict) = win 0x18af20, imac 0x8ec7b0, m1 0x7d5c50, ios 0x4ca6ac;
+    SFXTriggerGameObject* decodeSound(std::string const& str) = win 0x1882a0, ios 0x7d3fb4;
+    bool deserializeAll(std::string const& str, bool destructive) = win 0x188d90, imac 0x8e14b0, m1 0x7cd7bc, ios 0x4c7680;
     void downloadAllMissing() = win 0x18c130;
-    void encodeDataTo(DS_Dictionary* dict) = win 0x18ab70;
-    std::string encodeSound(SFXTriggerGameObject*) = win 0x1873b0;
-    void ensureLoaded() = win 0x1852f0, ios 0x4c75f8;
-    EditorSFXBinding* findBinding(int) = win 0x1853d0;
-    void firstSetup() = ios 0x4c7580;
-    TodoReturn getActionMinInterval(int);
-    TodoReturn getActionMinIntervalOverride(int);
-    std::string getCustomSFXRawPath(int, int) = win 0x189b70;
-    TodoReturn getFavoriteConfig(int);
-    TodoReturn getFavoriteConfigs();
-    GJEditorSoundConfig* getMyConfig(int) = win 0x18b7f0;
-    GJEditorSoundConfig* getMyConfigForSoundID(int) = win 0x18b870;
-    TodoReturn getMyConfigs();
-    EditorSFXBinding* getOrCreateBinding(int) = win 0x185470;
-    TodoReturn getPlayMode(int);
-    bool hasSoundsForAction(int) const = win 0x185a50;
-    TodoReturn importFromString(std::string const&, EditorSFXImportOptions const&, std::string*) = win 0x18b3d0;
-    bool init();
-    TodoReturn overwriteMyConfigFromLive(int, std::string*) = win 0x18bd70;
-    void playAction(int) = win 0x1855c0, m1 0x7ce64c, imac 0x8e27a0;
-    TodoReturn playAction(int, int);
-    TodoReturn releaseBinding(EditorSFXBinding*);
-    void removeFavoriteConfig(int) = win 0x18b750;
-    TodoReturn removeMyConfig(int);
-    void removeSoundAt(int, int) = win 0x185b10;
-    TodoReturn serializeAll() = win 0x188850;
-    TodoReturn serializeCompressed();
-    void setActionMinInterval(int, float);
-    void setEditorLoading(bool);
-    void setGlobalVolume(float);
-    void setPlayMode(int, int);
-    TodoReturn soundCountForAction(int);
-    TodoReturn soundsForAction(int);
-    TodoReturn summarizeBlob(std::string const&);
+    void encodeDataTo(DS_Dictionary* dict) = win 0x18ab70, imac 0x8ec380, m1 0x7d5888, ios 0x4ca428;
+    std::string encodeSound(SFXTriggerGameObject* sound) = win 0x1873b0;
+    void ensureLoaded() = win 0x1852f0, imac 0x8e1420, m1 0x7cd728, ios 0x4c75f8;
+    EditorSFXBinding* findBinding(int bindingId) = win 0x1853d0;
+    void firstSetup() = imac 0x8e1300, m1 0x7cd640, ios 0x4c7580; // win inline
+    float getActionMinInterval(int actionId);
+    float getActionMinIntervalOverride(int actionId);
+    std::string getCustomSFXRawPath(int sfxId, int customSfxId) = win 0x189b70;
+    GJEditorSoundConfig* getFavoriteConfig(int favoriteId);
+    cocos2d::CCArray* getFavoriteConfigs();
+    GJEditorSoundConfig* getMyConfig(int localId) = win 0x18b7f0;
+    GJEditorSoundConfig* getMyConfigForSoundID(int favoriteId) = win 0x18b870;
+    cocos2d::CCArray* getMyConfigs();
+    EditorSFXBinding* getOrCreateBinding(int bindingId) = win 0x185470;
+    int getPlayMode(int actionId);
+    bool hasSoundsForAction(int actionId) const = win 0x185a50;
+    bool importFromString(std::string const& str, EditorSFXImportOptions const& options, std::string* errMsg) = win 0x18b3d0, imac 0x8ecdd0, m1 0x7d6210, ios 0x4caae8;
+    bool init() = imac 0x8e0f60, m1 0x7cd37c, ios 0x4c74d8; // win inline
+    bool overwriteMyConfigFromLive(int localId, std::string* errMsg) = win 0x18bd70;
+    void playAction(int actionId) = win 0x1855c0, imac 0x8e27a0, m1 0x7ce64c;
+    void playAction(int primaryId, int fallbackId);
+    void releaseBinding(EditorSFXBinding* binding) = win inline, imac 0x8e25a0, m1 0x7ce494, ios 0x4c7f34;
+    void removeFavoriteConfig(int favoriteId) = win 0x18b750;
+    void removeMyConfig(int localId);
+    void removeSoundAt(int bindingId, int index) = win 0x185b10, m1 0x7cf0e8;
+    std::string serializeAll() = win 0x188850, imac 0x8ea940;
+    std::string serializeCompressed() = imac 0x8ecd60;
+    void setActionMinInterval(int actionId, float interval);
+    void setEditorLoading(bool isLoading) = ios 0x4c8564;
+    void setGlobalVolume(float volume);
+    void setPlayMode(int actionId, int playMode);
+    int soundCountForAction(int actionId);
+    cocos2d::CCArray* soundsForAction(int actionId);
+
+    std::unordered_map<int, EditorSFXBinding*> m_editorSFXBindings;
+    std::unordered_map<int, double> m_playTimestamps;
+    std::unordered_map<int, float> m_intervals;
+    std::map<std::pair<int, int>, std::string> m_customSFXMappings;
+    cocos2d::CCArray* m_favoriteConfigs;
+    cocos2d::CCArray* m_myConfigs;
+    int m_nextLocalID;
+    std::string m_pendingDeserializeState;
+    float m_globalVolume;
+    bool m_editorLoading;
 }
 
 [[link(android)]]
@@ -4761,18 +4773,18 @@ class EditorSoundsLayer : TabbedPopupLayer {
 
     static EditorSoundsLayer* create(EditorUI*) = win 0x19ca70;
 
-    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e790, ios 0x4d86d0, m1 0x7e6510, imac 0x8feeb0;
-    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e8c0, ios 0x4d87b8, m1 0x7e65f8, imac 0x8fefd0;
-    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e9a0, ios 0x4d8860, m1 0x7e6738, imac 0x8ff110;
-    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19ea40, ios 0x4d88f0, m1 0x7e6848, imac 0x8ff230;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e790, imac 0x8feeb0, m1 0x7e6510, ios 0x4d86d0;
+    virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e8c0, imac 0x8fefd0, m1 0x7e65f8, ios 0x4d87b8;
+    virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19e9a0, imac 0x8ff110, m1 0x7e6738, ios 0x4d8860;
+    virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x19ea40, imac 0x8ff230, m1 0x7e6848, ios 0x4d88f0;
     virtual void rebuildContent() = win 0x19e0f0, imac 0x8fe8b0, m1 0x7e5f5c, ios 0x4d81c0;
-    virtual void onClose(cocos2d::CCObject* sender) = win 0x19ef00, ios 0x4d8968, m1 0x7e6928, imac 0x8ff310;
-    virtual void textChanged(CCTextInputNode* node) = win 0x19e5e0, ios 0x4d85d4, m1 0x7e6400, imac 0x8fed70;
+    virtual void onClose(cocos2d::CCObject* sender) = win 0x19ef00, imac 0x8ff310, m1 0x7e6928, ios 0x4d8968;
+    virtual void textChanged(CCTextInputNode* node) = win 0x19e5e0, imac 0x8fed70, m1 0x7e6400, ios 0x4d85d4;
     virtual void showTab(int tab) = win 0x19e100, imac 0x8fe8d0, m1 0x7e5f6c, ios 0x4d81d0;
 
-    TodoReturn buildContentForTab(int);
+    void buildContentForTab(int tab) = ios 0x4d7ac4;
     bool init(EditorUI*) = win 0x19cd50;
-    void onActionRow(cocos2d::CCObject* sender) = win 0x19eae0;
+    void onActionRow(cocos2d::CCObject* sender) = win 0x19eae0, ios 0x4d8144;
     void onBrowse(cocos2d::CCObject* sender) = win 0x19ec80;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x19eec0;
     void onSettings(cocos2d::CCObject* sender) = win 0x19ed80;
@@ -7030,7 +7042,7 @@ class GameLevelManager : cocos2d::CCNode {
     void downloadUserMessage(int id, bool sent) = win 0x23b3a0, imac 0x568d20, m1 0x4bbd1c;
     TodoReturn dropIgnoredRequestLists() = win 0x23dc80;
     TodoReturn dtShouldUploadLevel(GJGameLevel*);
-    void encodeDataTo(DS_Dictionary* dict) = win 0x224b60, imac 0x54f4b0, m1 0x4a4fa8;
+    void encodeDataTo(DS_Dictionary* dict) = win 0x224b60, imac 0x54f4b0, m1 0x4a4fa8, ios 0xb10fc;
     TodoReturn evictDeathDataCache(int);
     void firstSetup() = win 0x2247a0, imac 0x54f0f0, m1 0x4a4c7c, ios 0xb0b7c;
     void followUser(int id) = win inline, imac 0x54e6f0, m1 0x4a42a8;
@@ -9085,7 +9097,7 @@ class GauntletNode : cocos2d::CCNode {
     GauntletNode() = inline;
     virtual ~GauntletNode() = win 0x301220, imac 0x5a13b0, m1 0x4f04e0, ios 0x256850;
 
-    static GauntletNode* create(GJMapPack* gauntlet) = win inline, imac 0x907300;
+    static GauntletNode* create(GJMapPack* gauntlet) = win inline, imac 0x59fc30, m1 0x4eec64;
     static std::string frameForType(GauntletType type) = win 0x302f30, imac 0x5a2e80, m1 0x4f1f38;
     static std::string nameForType(GauntletType type) = win 0x3042b0, imac 0x5a2e40, m1 0x4f1f08;
 
@@ -9231,7 +9243,7 @@ class GJAccountManager : cocos2d::CCNode {
     void addDLToActive(char const* tag, cocos2d::CCObject* object) = win inline;
     bool backupAccount(std::string url) = win 0x3074d0, imac 0xa1800, m1 0x9116c;
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0xa2c10, m1 0x923a4, ios 0x448208;
-    void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0xa2bb0, m1 0x9234c;
+    void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0xa2bb0, m1 0x9234c, ios 0x4481b0;
     void firstSetup() = win inline, imac 0xa2ba0, m1 0x92348, ios 0x4481ac;
     bool getAccountBackupURL() = win 0x306e70;
     bool getAccountSyncURL() = win 0x307ef0;
@@ -9360,7 +9372,7 @@ class GJAssetDownloadAction {
 
 [[link(android), depends(GJGameState, PlayerButtonCommand, RecordButtonCommand, RecordCheckpoint, PlayerTrailState, cocos2d::CCParticleSystem, cocos2d::ParticleStruct)]]
 class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
-    GJBaseGameLayer() = win 0x3eb6f0, m1 0x839b8, imac 0x8e720;
+    GJBaseGameLayer() = win 0x3eb6f0, imac 0x8e720, m1 0x839b8, ios 0x14ce24;
     ~GJBaseGameLayer() = win 0x30b850, imac 0xebd40, m1 0xcc67c;
 
     static float convertToClosestDirection(float angle, float bound) = win 0x3373e0, imac 0x115da0, m1 0xf0e94;
@@ -10529,16 +10541,16 @@ class GJDropDownLayerDelegate {
 class GJEditorSoundConfig : cocos2d::CCNode {
     virtual ~GJEditorSoundConfig() = win 0x360130, ios 0x4decb8;
 
-    static GJEditorSoundConfig* create() = win 0x3601b0, ios 0x4ddd24;
-    static GJEditorSoundConfig* create(cocos2d::CCDictionary* dict) = win 0x360310, ios 0x4dddd4;
-    static GJEditorSoundConfig* createWithCoder(DS_Dictionary* dict) = ios 0x4de328;
+    static GJEditorSoundConfig* create() = win 0x3601b0, imac 0x906950, ios 0x4ddd24;
+    static GJEditorSoundConfig* create(cocos2d::CCDictionary* dict) = win 0x360310, imac 0x906a30, ios 0x4dddd4;
+    static GJEditorSoundConfig* createWithCoder(DS_Dictionary* dict) = imac 0x907300, ios 0x4de328;
 
     virtual void encodeWithCoder(DS_Dictionary* dict) = win 0x3618e0, imac 0x907d10, m1 0x7ee990, ios 0x4deae4;
     virtual bool init() = win 0x8b060, imac 0x906a20, m1 0x7ed78c, ios 0x4dddd0;
 
     TodoReturn clearServerState();
     void copyServerFields(GJEditorSoundConfig*) = win 0x361750;
-    void dataLoaded(DS_Dictionary* dict) = win 0x360ee0, ios 0x4de360;
+    void dataLoaded(DS_Dictionary* dict) = win 0x360ee0, imac 0x9073e0, ios 0x4de360;
     TodoReturn getUnpackedSoundDesc();
     TodoReturn showSoundInfo() = win 0x361180;
 }
@@ -10821,7 +10833,7 @@ class GJGameLevel : cocos2d::CCNode {
     void levelWasSubmitted() = win inline, ios inline;
     void parseSettingsString(std::string str) = win inline, ios inline;
     TodoReturn recordCompletion();
-    TodoReturn recordDeath(int, int, bool);
+    TodoReturn recordDeath(int, int, bool); // m1 0x4d79a8
     void rollSession(int now, int gapSeconds) = win 0x265e30;
     void saveNewScore(int value, int type, int ticks, int clicks, int coins, std::string inputs, bool save) = win 0x264b10, imac 0x584610, m1 0x4d5d00;
     void savePercentage(int percent, bool isPracticeMode, int clicks, int attempts, bool isChkValid) = win 0x2641b0, imac 0x583a40, m1 0x4d5184, ios 0xcec38;
@@ -11445,7 +11457,6 @@ class GJItemIcon : cocos2d::CCSprite {
 class GJKeybindManager : cocos2d::CCKeyboardActionManager {
     virtual ~GJKeybindManager() = win inline, ios 0x18b1d0;
 
-    static GJKeybindManager* sharedState() = win 0x388320, imac 0x613e60, m1 0x552854, ios 0x18b0b8;
     static char const* actionToString(int action) = win 0x38a0e0, imac 0x617450, m1 0x5556b4, ios 0x18c7d0;
     static std::string chordToString(int chord) = win 0x389bc0, imac 0x617360, m1 0x5555cc, ios 0x18c6e8;
     static int encodeChord(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win inline, imac 0x614e20, m1 0x553534, ios 0x18ba34;
@@ -11455,6 +11466,7 @@ class GJKeybindManager : cocos2d::CCKeyboardActionManager {
     static bool isExclusive(int action) = win inline, imac 0x614e60, m1 0x55356c, ios inline;
     static bool isKnownAction(int action) = win inline, imac 0x618d10, m1 0x556d2c, ios inline;
     static bool isMovementAction(int action) = win inline, imac 0x615b50, m1 0x553fd4, ios 0x18bef0;
+    static GJKeybindManager* sharedState() = win 0x388320, imac 0x613e60, m1 0x552854, ios 0x18b0b8;
 
     virtual std::vector<int> actionsForKey(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift) = win 0x388550, imac 0x614890, m1 0x553178, ios 0x18b900;
     virtual bool handleGlobalAction(int action, bool down) = win 0x388310, imac 0x619cc0, m1 0x557b88, ios 0x18e250;
@@ -11465,13 +11477,13 @@ class GJKeybindManager : cocos2d::CCKeyboardActionManager {
     void applyNewDefaults(int version) = win 0x38bc80, imac 0x618d30, m1 0x556d54, ios 0x18d82c;
     void bindChord(int chord, int action) = win 0x388ed0, imac 0x6159e0, m1 0x553e40, ios 0x18be58;
     void bindKey(cocos2d::enumKeyCodes key, bool ctrl, bool alt, bool shift, int action) = win inline, imac 0x6180c0, m1 0x556214, ios inline;
-    std::string buildBindsBlob() = win 0x38b380;
+    std::string buildBindsBlob() = win 0x38b380, imac 0x618100, m1 0x556250, ios 0x18d240;
     std::vector<int> chordsForAction(int action) = win 0x388790, imac 0x614fb0, m1 0x553658, ios 0x18ba6c;
     void clearMovementOverride() = win 0x3896b0, imac 0x6169e0, m1 0x554ddc, ios 0x18c328;
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x619160, m1 0x5570bc, ios 0x18da48;
-    void encodeDataTo(DS_Dictionary* dict) = win inline;
+    void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0x6190d0, m1 0x557020, ios 0x18d9bc;
     // 1 = written, 0 = dialog cancelled, -1 i/o error
-    int exportBindingsToFile() = win 0x38bfb0;
+    int exportBindingsToFile() = win 0x38bfb0, imac 0x619240, m1 0x5571c4, ios 0x18db3c;
     void firstSetup() = win inline, imac 0x617fd0, m1 0x556154, ios inline;
     std::vector<int> globalChordsForAction(int action) = win inline;
     int groupForAction(int action) = win inline, imac 0x615670, m1 0x553b28, ios 0x18bbec;
@@ -11856,7 +11868,7 @@ class GJMultiplayerManager : cocos2d::CCNode {
     void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win inline, ios inline;
     void createAndAddComment(std::string text, int lobbyID) = win 0x3917d0, imac 0x73b3d0, m1 0x648eb4;
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0x73b5a0, m1 0x64906c, ios 0x267c3c;
-    void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0x73b590, m1 0x649068;
+    void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0x73b590, m1 0x649068, ios 0x267c38;
     bool exitLobby(int id) = imac 0x73a760, m1 0x648428;
     void firstSetup() = win inline, imac 0x73b580, m1 0x649064, ios 0x267c34;
     std::string getBasePostString() = win 0x391b90, imac 0x73a010, m1 0x647c48;
@@ -13912,21 +13924,21 @@ class ItemTriggerGameObject : EffectGameObject {
 class KeybindCapturePopup : SetupTriggerPopup, InputCaptureDelegate {
     virtual ~KeybindCapturePopup() = win 0x44e250, ios 0x1a5174;
 
-    static KeybindCapturePopup* create(KeybindSource* source, int action, int chord, KeybindingsLayer* layer, KeybindCaptureMode mode) = win 0x44e090, imac 0x5b49b0;
+    static KeybindCapturePopup* create(KeybindSource* source, int action, int chord, KeybindingsLayer* layer, KeybindCaptureMode mode) = win 0x44e090, imac 0x5b49b0, ios 0x1a4f98;
 
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x44ee50, imac 0x5b5ab0, m1 0x502f3c, ios 0x1a58a4;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x44ee00, imac 0x5b5a60, m1 0x502eec, ios 0x1a5854;
     virtual void inputKeySelected(int chord) = win 0x44e380, imac 0x5b5060, m1 0x50259c, ios 0x1a51cc;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win 0x44f0c0, imac 0x5b5cd0, m1 0x503130, ios 0x1a5a04;
 
-    void fadeButtonSprite(ButtonSprite* sprite, bool enabled) = win 0x44eb30;
-    bool init(KeybindSource* source, int action, int chord, KeybindingsLayer* layer, KeybindCaptureMode mode) = win 0x44d2c0, imac 0x5b3c50;
+    void fadeButtonSprite(ButtonSprite* sprite, bool enabled) = win 0x44eb30, ios 0x1a5778;
+    bool init(KeybindSource* source, int action, int chord, KeybindingsLayer* layer, KeybindCaptureMode mode) = win 0x44d2c0, imac 0x5b3c50, ios 0x1a44c0;
     void onRemove(cocos2d::CCObject* sender) = win 0x44ecf0;
     void onSet(cocos2d::CCObject* sender) = win 0x44ec20;
     void onToggleController(cocos2d::CCObject* sender) = win 0x44ed50;
-    void updateButtonStates() = win inline;
-    void updateChordDisplay() = win 0x44e3b0;
-    void updateConflictLabel() = win 0x44e510;
+    void updateButtonStates() = win inline, imac 0x5b5750, ios 0x1a56f0;
+    void updateChordDisplay() = win 0x44e3b0, imac 0x5b48c0, ios 0x1a4e88;
+    void updateConflictLabel() = win 0x44e510, imac 0x5b5160, ios 0x1a5200;
 
     KeybindSource* m_keybindSource;
     KeybindingsLayer* m_keybindingsLayer;
@@ -14012,7 +14024,7 @@ class KeybindingsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void onEntry(cocos2d::CCObject* sender) = win 0x3d93c0;
     void onExport(cocos2d::CCObject* sender) = win 0x3d9480;
-    void onImport(cocos2d::CCObject* sender) = win 0x3d9640;
+    void onImport(cocos2d::CCObject* sender) = win 0x3d9640, ios 0x4ee868;
     void onReset(cocos2d::CCObject* sender) = win 0x3d9c60;
 
     KeybindingsLayer* m_layer;
@@ -14536,8 +14548,8 @@ class LevelControlConfig : cocos2d::CCObject {
 
     static LevelControlConfig* create() = win 0x44a1d0;
     static void bindGlobalBinds(KeybindSource* target, bool controller) = win 0x44b3e0;
-    static void bindDefaultController(KeybindSource* target) = win 0x44b2b0;
-    static void bindDefaultKeyboard(KeybindSource* target) = win 0x44b210;
+    static void bindDefaultController(KeybindSource* target) = win 0x44b2b0, imac 0x923fe0, ios 0x4f1374;
+    static void bindDefaultKeyboard(KeybindSource* target) = win 0x44b210, imac 0x923ee0, ios 0x4f1228;
     static LevelControlConfig* createFromB64(std::string const& data) = win 0x44b0f0;
     static LevelControlConfig* createFromGlobal(bool dualMode) = win 0x44b6d0;
 
@@ -15478,8 +15490,9 @@ class LevelSettingsObject : cocos2d::CCNode {
     virtual ~LevelSettingsObject() = win 0x3ecd40, ios 0x40e2f8;
 
     static LevelSettingsObject* create() = win inline, imac 0xac3c0, m1 0x9ae6c;
-    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = win 0x410b20, imac 0x906a30;
+    static LevelSettingsObject* objectFromDict(cocos2d::CCDictionary* dict) = win 0x410b20, imac 0xda220, m1 0xc02ac;
     static LevelSettingsObject* objectFromString(std::string const& str) = win inline, imac 0xaea60, m1 0x9ce9c;
+    static std::string sanitizeIDName(std::string const& name) = win 0x40c300;
 
     virtual bool init() = win 0x40ea10, imac 0xda070, m1 0xc0134, ios 0x40e310;
 
@@ -15490,7 +15503,6 @@ class LevelSettingsObject : cocos2d::CCNode {
     std::vector<int> const& getIDUseOrder(int type) const;
     std::string getSaveString() = win 0x40ed20, imac 0xb3430;
     void removeFromIDUseOrder(int id, int type) = win 0x40e910;
-    static std::string sanitizeIDName(std::string const& name) = win 0x40c300;
     void setIDName(int id, std::string const& name, int type) = win 0x40da20;
     void setupColorsFromLegacyMode(cocos2d::CCDictionary* dict) = win 0x412c60, imac 0xddeb0, m1 0xc387c;
     bool shouldUseYSection() = win inline, imac 0xda200;
@@ -16606,7 +16618,17 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     // MusicDownloadManager() = ios 0x1da1a0;
     virtual ~MusicDownloadManager() = win 0x482350, ios 0x1d2b8c;
 
+    static std::string customSFXPathDisplay(std::string const&) = win 0x486b20;
+    static std::string customSFXPathLeaf(std::string const&) = win 0x4868c0;
+    static void decodeCustomSFXMappingEntries(std::string const&, std::map<std::pair<int, int>, std::string>& mapping, bool) = win 0x487a60;
+    static std::string encodeCustomSFXMappingEntries(std::map<std::pair<int, int>, std::string> const& mapping) = win 0x4877f0;
+    static std::string joinIDString(std::vector<int> const&) = win 0x4851c0;
+    static std::string linkRowString(GJLinkObject const& object) = win 0x499360, m1 0x59e918;
+    static std::string linkTitleForType(int type) = win 0x49a9a0;
+    static int linkTypeForURL(std::string const&) = win 0x499b80;
+    static void parseLinkRows(std::string const& str, std::vector<GJLinkObject>& rows) = win 0x498f50;
     static MusicDownloadManager* sharedState() = win 0x481e60, imac 0x649cd0, m1 0x584e0c, ios 0x1d1fdc;
+    static void splitIDString(std::string const& str, std::vector<int>& ids) = win 0x485020;
     static std::string urlEncode(std::string const&) = win 0x499460, m1 0x5a17c4;
 
     virtual bool init() = win 0x482560, imac 0x64b320, m1 0x586200, ios 0x1d2ba4;
@@ -16622,11 +16644,8 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     SFXFolderObject* createCustomSFXFolder(std::string, int, int) = win 0x486290;
     SFXInfoObject* createCustomSFXPlacement(int, int, std::string, int) = win 0x486430;
     void createSongsInfo(std::string songsStr, std::string artistsStr) = win 0x483140, imac 0x64d520, m1 0x588154;
-    static std::string customSFXPathDisplay(std::string const&) = win 0x486b20;
-    static std::string customSFXPathLeaf(std::string const&) = win 0x4868c0;
     void dataLoaded(DS_Dictionary* dict) = win 0x48af10, imac 0x657940, m1 0x591d84, ios 0x1da1a0;
     void decodeCustomSFX(std::string const&) = win 0x48a760;
-    static void decodeCustomSFXMappingEntries(std::string const&, std::map<std::pair<int, int>, std::string>&, bool) = win 0x487a60;
     void deleteCustomSFXObject(int) = win 0x48a030;
     void deleteSFX(int id) = win inline, imac 0x660fc0, m1 0x59a3fc;
     void deleteSong(int id) = win inline, imac 0x64e9c0, m1 0x5894b4;
@@ -16643,8 +16662,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void downloadSongFinished(int id) = win inline, imac 0x64f870, m1 0x58a30c;
     void downloadSongStarted(int id) = win 0x483c60, imac 0x64eca0, m1 0x5897d8;
     TodoReturn encodeCustomSFX(std::set<int> const&) = win 0x48a310;
-    static std::string encodeCustomSFXMappingEntries(std::map<std::pair<int, int>, std::string> const& mapping) = win 0x4877f0;
-    void encodeDataTo(DS_Dictionary* dict) = win 0x48a970, imac 0xa2bb0, m1 0x7ee990;
+    void encodeDataTo(DS_Dictionary* dict) = win 0x48a970, imac 0x6572b0, m1 0x5915e4, ios 0x1d9c28;
     TodoReturn exportCustomSFXToFile() = win 0x489310;
     cocos2d::CCArray* filterMusicByArtistID(int id, cocos2d::CCArray* songs) = win 0x9999999, imac 0x65e800, m1 0x598098;
     cocos2d::CCArray* filterMusicByTag(int id, cocos2d::CCArray* songs) = win 0x9999999, imac 0x65ea20, m1 0x5981f0;
@@ -16704,11 +16722,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     bool isSFXFavorite(int);
     bool isSFXLibraryLoaded() = win inline, imac 0x660b80, m1 0x599fdc, ios inline;
     bool isSongDownloaded(int id) = win 0x4845a0, imac 0x64e570, m1 0x5890c4;
-    static std::string joinIDString(std::vector<int> const&) = win 0x4851c0;
     void limitDownloadedSongs() = win inline, imac 0x64e880, m1 0x589380;
-    static std::string linkRowString(GJLinkObject const& object) = win 0x499360, m1 0x59e918;
-    static std::string linkTitleForType(int type) = win 0x49a9a0;
-    static int linkTypeForURL(std::string const&) = win 0x499b80;
     void loadSongInfoFailed(int id, GJSongError errorCode) = win 0x493eb0, imac 0x64c010, m1 0x586eb8;
     void loadSongInfoFinished(SongInfoObject* object) = win 0x493e30, imac 0x64bf70, m1 0x586e1c;
     TodoReturn mintCustomSFXID();
@@ -16733,7 +16747,6 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48c950, m1 0x5940d8;
     void onTryUpdateNewsFeedCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x491a00, m1 0x59a5f8;
     void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f6d0, m1 0x598c00;
-    static void parseLinkRows(std::string const& str, std::vector<GJLinkObject>& rows) = win 0x498f50;
     void parseMusicLibrary() = win 0x48cf00, m1 0x594654;
     void parseNewsFeed() = win 0x492170, m1 0x59b008;
     void parseSFXLibrary() = win 0x48fc30, m1 0x5990fc;
@@ -16753,7 +16766,6 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::CCDictionary* responseToDict(std::string response, char const* delimiter) = win 0x4835e0, imac 0x64c320, m1 0x5871cc;
     void showTOS(FLAlertLayerProtocol* delegate) = win 0x484c30, imac 0x650470, m1 0x58ad54;
     void songStateChanged() = win 0x4828f0, imac 0x64b930, m1 0x586840;
-    static void splitIDString(std::string const& str, std::vector<int>& ids) = win 0x485020;
     void stopDownload(int id) = win inline, imac 0x64b720, m1 0x5865e8;
     void storeMusicObject(SongInfoObject* object) = win inline, imac 0x65ddb0, ios inline;
     void storeSFXInfoObject(SFXInfoObject* object) = win inline, imac 0x660ba0, m1 0x59a000;
@@ -18993,14 +19005,14 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     RateDemonLayer() = inline;
     ~RateDemonLayer() = win inline, ios 0x4a88ec;
 
-    static RateDemonLayer* create(int levelID) = win inline;
+    static RateDemonLayer* create(int levelID) = win inline, ios 0x4a8924;
 
-    virtual void keyBackClicked() = win 0x55db10, ios 0x4a9224, m1 0x217f64, imac 0x2712f0;
+    virtual void keyBackClicked() = win 0x55db10, imac 0x2712f0, m1 0x217f64, ios 0x4a9224;
     virtual void uploadActionFinished(int id, int response) = win 0x55d900, imac 0x270fb0, m1 0x217ba0, ios 0x4a9074;
     virtual void uploadActionFailed(int id, int response) = win 0x55d980, imac 0x2710a0, m1 0x217cf0, ios 0x4a9108;
-    virtual void onClosePopup(UploadActionPopup* popup) = win 0x55da50, ios 0x4a91a4, m1 0x217e70, imac 0x271210;
+    virtual void onClosePopup(UploadActionPopup* popup) = win 0x55da50, imac 0x271210, m1 0x217e70, ios 0x4a91a4;
 
-    bool init(int levelID) = win 0x55cfe0, imac 0x270730, m1 0x217304;
+    bool init(int levelID) = win 0x55cfe0, imac 0x270730, m1 0x217304, ios 0x4a8a04;
     void onClose(cocos2d::CCObject* sender) = win 0x55dad0, imac 0x270e30, m1 0x217a18;
     void onRate(cocos2d::CCObject* sender) = win 0x55d760, imac 0x270e80, m1 0x217a74;
     void selectRating(cocos2d::CCObject* sender) = win 0x55d5e0, imac 0x270d40, m1 0x21790c;
@@ -22510,10 +22522,10 @@ class SFXTriggerGameObject : EffectGameObject {
     SFXTriggerGameObject() = win 0x638340, inline;
     virtual ~SFXTriggerGameObject() = win 0x657870, ios 0x4326b4;
 
-    static SFXTriggerGameObject* create(char const* frame) = win inline;
+    static SFXTriggerGameObject* create(char const* frame) = win inline, m1 0x16780c;
 
     virtual void customObjectSetup(std::vector<std::string>& values, std::vector<void*>& exists) = win 0x658af0, imac 0x1b0610, m1 0x16c0f0, ios 0x433a20;
-    virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x6578f0, ios 0x4327b8, m1 0x1679e8, imac 0x1aa760;
+    virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x6578f0, imac 0x1aa760, m1 0x1679e8, ios 0x4327b8;
 
     int getSFXRefID() = win inline, imac 0x1aa740, m1 0x1679c8;
     int getUniqueSFXID() = win inline, imac 0x1aa710, m1 0x167994;
@@ -22523,7 +22535,7 @@ class SFXTriggerGameObject : EffectGameObject {
     // property 392
     int m_soundID;
     // property 601
-    int m_property601;
+    int m_customSFXID;
     float m_pitch;
     // property 404
     int m_speed;
