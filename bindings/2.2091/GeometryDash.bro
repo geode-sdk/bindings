@@ -8737,13 +8737,13 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
 
 [[link(android)]]
 class GameStatsManager : cocos2d::CCNode {
+    // GameStatsManager() = win 0x1d0ae0;
     virtual ~GameStatsManager() = win 0x2d68e0, ios 0x3c331c;
 
     static GameStatsManager* get() = inline;
-    // GameStatsManager() = win 0x1d0ae0;
     static GameStatsManager* sharedState() = win 0x2d6890, imac 0x1f250, m1 0x1aebc, ios 0x3c3198;
 
-    static int dailyRecallPrice(int) = win inline, ios 0x3d2b20, imac 0x03a4d0, m1 0x034344;
+    static int dailyRecallPrice(int) = win inline, imac 0x3a4d0, m1 0x34344, ios 0x3d2b20;
 
     virtual bool init() = win 0x2d6ae0, imac 0x1f730, m1 0x1b200, ios 0x3c3334;
 
