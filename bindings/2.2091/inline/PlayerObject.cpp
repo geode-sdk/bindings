@@ -469,6 +469,10 @@ void PlayerObject::performSlideCheck() {
     }
 }
 
+void PlayerObject::placeStreakPoint() {
+    this->placeStreakPoint(this->getPosition());
+}
+
 void PlayerObject::playBurstEffect() {
     if (!this->levelFlipping() && !m_isHidden) {
         m_ufoClickParticles->resumeSystem();

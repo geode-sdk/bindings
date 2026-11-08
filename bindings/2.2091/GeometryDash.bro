@@ -9547,7 +9547,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     float getGroundHeightForMode(int type) = win 0x318c30, imac 0x100000, m1 0xdea80, ios inline;
     cocos2d::CCArray* getGroup(int id) = win 0x32bf10, imac 0xfa290, m1 0xd9074;
     GameObject* getGroupParent(int groupId) = win inline, m1 inline, imac inline, ios inline;
-    std::string getGroupParentsString(GameObject* object) = win inline;
+    std::string getGroupParentsString(GameObject* object) = win 0x32ccd0;
     double getItemValue(int type, int id) = win 0x33ceb0, imac 0x12a0f0, m1 0x1025ac;
     float getMaxPortalY() = win 0x31aa60, imac 0x1031c0, m1 0xe1844;
     float getMinDistance(cocos2d::CCPoint position, cocos2d::CCArray* objects, float minNear, int mode) = win 0x34cb10, imac 0x13e550, m1 0x112f88;
@@ -9679,7 +9679,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     TodoReturn remapGroupParent(GameObject*, int, int);
     void removeBackground() = win inline, imac 0xf07f0, m1 0xd150c;
     void removeCustomEnterEffects(int id, bool enter) = win inline, imac 0xfad00, m1 0xd988c, ios inline;
-    void removeFromGroupParents(GameObject* object) = win inline;
+    void removeFromGroupParents(GameObject* object) = win 0x32c6a0;
     void removeFromGroups(GameObject* object) = win 0x32bd40, imac 0x11a640, m1 0xf51fc;
     void removeFromStickyGroup(GameObject* object) = win inline, imac 0x11c500, m1 0xf6c40;
     void removeGroundLayer() = win inline, imac 0xf0f20, m1 0xd1bbc;
@@ -10646,7 +10646,7 @@ class GJEffectManager : cocos2d::CCNode {
     void spawnGroup(int targetID, float delay, bool spawnOrdered, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win 0x36c4f0, imac 0x29ccc0, m1 0x26f64c;
     void spawnObject(GameObject* object, float delay, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win inline, imac 0x2d3bb0, m1 0x270c54;
     void startTimer(int id, double startTime, double targetTime, bool stopTime, bool active, bool dontOverride, float timeMod, bool ignoreTimewarp, int targetID, std::vector<int> const& remapKeys, int uniqueID, int controlID) = win 0x36d730, imac 0x2d72b0, m1 0x273728;
-    void storeTriggeredID(int objectUniqueID, int playerUniqueID) = win 0x36c850, imac 0x2d4060, m1 0x271048;
+    void storeTriggeredID(int objectUniqueID, int playerUniqueID) = win inline, imac 0x2d4060, m1 0x271048;
     double timeForItem(int id) = win 0x36e1b0, imac 0x2d86d0, m1 0x2745bc;
     bool timerExists(int id) = win 0x36d900, m1 0x273968;
     void timerWasUsed(int id) = win inline, imac 0x2d6f80, m1 0x2734b8, ios inline;
@@ -11509,11 +11509,11 @@ class GJLevelList : cocos2d::CCNode {
     void dataLoaded(DS_Dictionary* dict) = win 0x273a50, imac 0x58fd90, m1 0x4e0228;
     void duplicateListLevels(GJLevelList* list) = win inline, imac 0x58ec30, m1 0x4df030;
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray* levels) = win 0x272e00, imac 0x58eca0, m1 0x4df09c;
-    std::string getUnpackedDescription() = win 0x2728a0, imac 0x58eb90, m1 0x4def74;
+    std::string getUnpackedDescription() = win inline, imac 0x58eb90, m1 0x4def74;
     void handleStatsConflict(GJLevelList* list) = win inline, imac 0x58e9c0, m1 0x4dedb0;
     bool hasMatchingLevels(GJLevelList* list) = win 0x272690, imac 0x58e9e0, m1 0x4dedc8;
     int orderForLevel(int id) = win inline, imac 0x58f690, m1 0x4df9b0;
-    void parseListLevels(std::string str) = imac 0x55d230, m1 0x4b1598;
+    void parseListLevels(std::string str) = win 0x2728a0, imac 0x55d230, m1 0x4b1598;
     void removeLevelFromList(int id) = win inline, imac 0x58f5c0, m1 0x4df868;
     void reorderLevel(int levelID, int newPosition) = win 0x272d00, imac 0x58f6d0, m1 0x4df9e8;
     void reorderLevelStep(int id, bool up) = win inline, imac 0x58f790, m1 0x4dfb38;
@@ -13721,7 +13721,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void confirmBulkDelete(std::string const&, std::vector<int> const&) = win 0x3d3e60;
     void confirmReport(cocos2d::CCObject* sender) = win 0x3d04a0, imac 0x5bd6e0;
     int getAccountID() = win inline, imac 0x8945e0, ios inline;
-    int getID() = win inline, imac 0x8945e0, m1 0x7881d4, ios inline;
+    int getID() = win 0x3cff60, imac 0x8945e0, m1 0x7881d4, ios inline;
     int getRealID() = win inline, imac 0x8958a0, m1 0x789314, ios inline;
     CCMenuItemSpriteExtra* getSpriteButton(char const* frame, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, cocos2d::CCPoint position) = win 0x3cffc0, imac 0x894100, m1 0x787d30;
     bool init(GJGameLevel*, GJUserScore*, GJLevelList*, GJEditorSoundConfig*) = win 0x3cdd50, imac 0x891550, m1 0x785518;
@@ -18004,7 +18004,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void logValues() = win inline, imac 0x40a400, m1 0x383f70, ios inline;
     void modeDidChange() = win inline, imac 0x403bf0, m1 0x37e3a0;
     void performSlideCheck() = win inline, imac 0x3f3880, m1 0x3702e8;
-    void placeStreakPoint() = win 0x4fec10, m1 0x370048, ios inline;
+    void placeStreakPoint() = win inline, m1 0x370048, ios inline;
     void placeStreakPoint(cocos2d::CCPoint) = win 0x4fec10, ios 0x2bca7c;
     void playBumpEffect(int objectType, GameObject* player) = win 0x4fde90, imac 0x407a90, m1 0x381f30, ios 0x2c9904;
     void playBurstEffect() = win inline, imac 0x3f1090, m1 0x36e13c;
