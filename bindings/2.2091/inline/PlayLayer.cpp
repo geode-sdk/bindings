@@ -152,6 +152,10 @@ double PlayLayer::getTempMilliTime() {
     _ftime64_s(&current);
     return ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
 }
+
+bool PlayLayer::tracksPercent() {
+    return m_isPlatformer ? m_tracksPresent : true;
+}
 #endif
 
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_IOS)
