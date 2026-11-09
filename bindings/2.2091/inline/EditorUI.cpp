@@ -5,7 +5,6 @@
 #include <Geode/binding/CCCircleWave.hpp>
 #include <Geode/binding/CreateMenuItem.hpp>
 #include <Geode/binding/EditorSFXManager.hpp>
-#include <Geode/binding/MusicDownloadManager.hpp>
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/binding/GJRotationControl.hpp>
 #include <Geode/binding/GJScaleControl.hpp>
@@ -214,25 +213,6 @@ void EditorUI::updateGroupIDBtn2() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-EditorUI::~EditorUI() {
-    MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
-    CC_SAFE_RELEASE(m_selectedObjects);
-    CC_SAFE_RELEASE(m_deleteObjects);
-    CC_SAFE_RELEASE(m_createButtonArray);
-    CC_SAFE_RELEASE(m_customObjectButtonArray);
-    CC_SAFE_RELEASE(m_createButtonBars);
-    CC_SAFE_RELEASE(m_tabsArray);
-    CC_SAFE_RELEASE(m_editButtonDict);
-    CC_SAFE_RELEASE(m_rotationControl);
-    CC_SAFE_RELEASE(m_scaleControl);
-    CC_SAFE_RELEASE(m_transformControl);
-    CC_SAFE_RELEASE(m_snapPositions);
-    CC_SAFE_RELEASE(m_uiItems);
-    CC_SAFE_RELEASE(m_customTabControls);
-    CC_SAFE_RELEASE(m_dpadArrowButtons);
-    CC_SAFE_RELEASE(m_dpadStepButtons);
-}
-
 EditorUI* EditorUI::create(LevelEditorLayer* editorLayer) {
     auto ret = new EditorUI();
     if (ret->init(editorLayer)) {

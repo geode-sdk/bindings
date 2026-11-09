@@ -4803,7 +4803,7 @@ class EditorSoundUploadDelegate {
 [[link(android), depends(GameObjectEditorState, GJTransformState)]]
 class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJRotationControlDelegate, GJScaleControlDelegate, GJTransformControlDelegate, MusicDownloadDelegate, SetIDPopupDelegate {
     EditorUI() = win 0x1a8dd0, imac 0x1a900, m1 0x2d353c;
-    ~EditorUI() = win inline, imac 0x4e00, m1 0x42e0, ios 0x46e3d0;
+    ~EditorUI() = win 0x1a93c0, imac 0x4e00, m1 0x42e0, ios 0x46e3d0;
 
     static EditorUI* create(LevelEditorLayer* editorLayer) = win inline, imac 0x5210, m1 0x459c;
     static EditorUI* get() = inline;
@@ -8872,7 +8872,7 @@ class GameStatsManager : cocos2d::CCNode {
     int starsForMapPack(int id) = win inline;
     void storeChallenge(int position, GJChallengeItem* challenge) = win inline;
     void storeChallengeTime(int remaining) = win inline, imac 0x38830, m1 0x325f0;
-    void storeEventChest(int eventID, GJRewardItem* item) = win inline, imac 0x39900, m1 0x3377c;
+    void storeEventChest(int eventID, GJRewardItem* item) = win 0x2e67b0, imac 0x39900, m1 0x3377c;
     void storeOnlineChest(std::string key, GJRewardItem* item) = win inline, imac 0x3a390, m1 0x341e8;
     void storePendingUserCoin(char const* key) = win inline, imac 0x35c10;
     void storeQueuedChallenge(int position, GJChallengeItem* challenge) = win 0x2e5740;
@@ -20770,7 +20770,7 @@ class SetupCameraOffsetTrigger : SetupTriggerPopup {
     void sliderYChanged(cocos2d::CCObject* sender) = win 0x5ae790, imac 0x742310, m1 0x64f86c;
     void toggleEasingRateVisibility() = win 0x5ae210;
     void updateDuration() = win 0x5aefe0, imac 0x742e20, m1 0x6502f0;
-    void updateDurLabel(bool decimals) = win inline;
+    void updateDurLabel(bool decimals) = win 0x5ae670;
     void updateEasingLabel() = win 0x5ae3e0, imac 0x742730, m1 0x64fc50;
     void updateEasingRateLabel() = win 0x5ae010;
     void updateMoveCommandEasing() = win inline;
