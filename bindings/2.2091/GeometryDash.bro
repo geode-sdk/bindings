@@ -18903,7 +18903,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
 [[link(android)]]
 class ProgressGameObject : EffectGameObject {
-    virtual ~ProgressGameObject() = win 0x637e10;
+    virtual ~ProgressGameObject() = win 0x637e70;
 
     static ProgressGameObject* create();
 
