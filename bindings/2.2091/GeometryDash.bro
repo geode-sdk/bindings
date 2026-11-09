@@ -16715,9 +16715,9 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void downloadSongFailed(int id, GJSongError errorCode) = win 0x493f30, imac 0x64f800, m1 0x58a298;
     void downloadSongFinished(int id) = win inline, imac 0x64f870, m1 0x58a30c;
     void downloadSongStarted(int id) = win 0x483c60, imac 0x64eca0, m1 0x5897d8;
-    TodoReturn encodeCustomSFX(std::set<int> const&) = win 0x48a310;
+    std::string encodeCustomSFX(std::set<int> const&) = win 0x48a310;
     void encodeDataTo(DS_Dictionary* dict) = win 0x48a970, imac 0x6572b0, m1 0x5915e4, ios 0x1d9c28;
-    TodoReturn exportCustomSFXToFile() = win 0x489310;
+    bool exportCustomSFXToFile() = win 0x489310;
     cocos2d::CCArray* filterMusicByArtistID(int id, cocos2d::CCArray* songs) = win 0x9999999, imac 0x65e800, m1 0x598098;
     cocos2d::CCArray* filterMusicByTag(int id, cocos2d::CCArray* songs) = win 0x9999999, imac 0x65ea20, m1 0x5981f0;
     void firstSetup() = win inline, imac 0x657250, m1 0x59157c, ios 0x1d9ba8;
