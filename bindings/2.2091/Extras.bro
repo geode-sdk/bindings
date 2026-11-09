@@ -210,20 +210,7 @@ class DynamicObjectAction {
 }
 
 class GJTransformState {
-	GJTransformState() {
-		m_scaleX = 1.f;
-		m_scaleY = 1.f;
-		m_angleX = 0.f;
-		m_angleY = 0.f;
-		m_skewX = 0.f;
-		m_skewY = 0.f;
-		m_transformRotation = 0.f;
-		m_transformReset = false;
-		m_transformRotationX = 0.f;
-		m_transformRotationY = 0.f;
-		m_transformScaleX = 1.f;
-		m_transformScaleY = 1.f;
-	}
+	GJTransformState() = win 0x1a8d40, inline;
 
 	float m_scaleX;
 	float m_scaleY;

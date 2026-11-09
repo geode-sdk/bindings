@@ -1,5 +1,6 @@
 #include <Geode/binding/GJTransformState.hpp>
 
+#ifndef GEODE_IS_WINDOWS
 GJTransformState::GJTransformState() {
 		m_scaleX = 1.f;
 		m_scaleY = 1.f;
@@ -14,6 +15,7 @@ GJTransformState::GJTransformState() {
 		m_transformScaleX = 1.f;
 		m_transformScaleY = 1.f;
 	}
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

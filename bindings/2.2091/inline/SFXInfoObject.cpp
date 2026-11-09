@@ -1,5 +1,6 @@
 #include <Geode/binding/SFXInfoObject.hpp>
 
+#ifndef GEODE_IS_WINDOWS
 SFXInfoObject::SFXInfoObject() {
     m_sfxID = 0;
     m_folderID = 0;
@@ -8,6 +9,7 @@ SFXInfoObject::SFXInfoObject() {
     m_folder = false;
     m_unk049 = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #if defined(GEODE_IS_IOS)

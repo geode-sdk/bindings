@@ -16827,7 +16827,7 @@ class MusicSearchResult : cocos2d::CCObject, OptionsObjectDelegate {
     virtual void updateObjects(AudioSortType type) = win 0x498950, m1 0x5a0b08, ios 0x1e4604, imac 0x668480;
     virtual void stateChanged(OptionsObject* object) = win 0x498930, m1 0x5a0ad8, ios 0x1e45d4, imac 0x668420;
 
-    cocos2d::CCArray* applyArtistFilters(cocos2d::CCArray* objects) = win inline;
+    cocos2d::CCArray* applyArtistFilters(cocos2d::CCArray* objects) = win 0x4981c0;
     cocos2d::CCArray* applyTagFilters(cocos2d::CCArray* objects) = win 0x497d00;
     cocos2d::CCArray* applyViewFilter(cocos2d::CCArray*) = win 0x497fc0;
     void createArtistFilterObjects() = win 0x497bb0;
@@ -19595,7 +19595,7 @@ class SearchButton : cocos2d::CCSprite {
 
     static SearchButton* create(char const*, char const*, float, char const*, float) = win 0x43b5e0, m1 0x263cc0;
 
-    bool init(char const*, char const*, float, char const*, float);
+    bool init(char const*, char const*, float, char const*, float) = win 0x43b710;
 
     cocos2d::CCLabelBMFont* m_label;
     cocos2d::CCSprite* m_icon;
@@ -22464,7 +22464,7 @@ class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
 
 [[link(android)]]
 class SFXInfoObject : cocos2d::CCObject {
-    SFXInfoObject() = inline;
+    SFXInfoObject() = win 0x480b30, inline;
     virtual ~SFXInfoObject() = win 0x480bc0, ios 0x1e395c;
 
     static SFXInfoObject* create(int id, std::string name, int folderID, int size, int duration) = win 0x4976d0;
