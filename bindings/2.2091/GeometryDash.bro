@@ -2305,10 +2305,10 @@ class CheckpointGameObject : EffectGameObject {
 
 [[link(android), depends(GJGameState, GJShaderState, FMODAudioState, EffectManagerState, SavedObjectStateRef, SavedActiveObjectState, SavedSpecialObjectState, SequenceTriggerState, TimerItem)]]
 class CheckpointObject : cocos2d::CCNode {
-    CheckpointObject() = win 0x520f70, imac 0x90010, m1 0x540d6c;
-    ~CheckpointObject() = win inline, imac 0x5d7100, ios 0x19c954;
+    CheckpointObject() = win 0x520f70, imac 0x5f9f70, m1 0x540d6c;
+    ~CheckpointObject() = win inline, imac 0x5ddb20, m1 0x529440, ios 0x19c954;
 
-    static CheckpointObject* create() = win inline;
+    static CheckpointObject* create() = win inline, imac 0x5dddd0, m1 0x529604;
 
     virtual bool init() = win 0x8b060, imac 0x5dde30, m1 0x529684, ios 0x19c9e0;
 
@@ -17708,10 +17708,10 @@ class PlayerButtonCommand {
 
 [[link(android), depends(DashRingObject)]]
 class PlayerCheckpoint : cocos2d::CCNode {
-    PlayerCheckpoint() = win 0x520a60, android inline;
-    virtual ~PlayerCheckpoint() = win 0x520ed0, ios 0x19b43c;
+    PlayerCheckpoint() = win 0x520a60, android inline, imac 0x5f9b70, m1 0x540ad8;
+    virtual ~PlayerCheckpoint() = win 0x520ed0, imac 0x5d7100, m1 0x522de8, ios 0x19b43c;
 
-    static PlayerCheckpoint* create() = win inline;
+    static PlayerCheckpoint* create() = win inline, imac 0x5d7220, m1 0x522ea8;
 
     virtual bool init() = win 0x52ed00, imac 0x5d7280, m1 0x522f28, ios 0x19b4c8;
 
@@ -18051,7 +18051,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool levelFlipping() = win 0x4f97c0, imac 0x3ee970, m1 0x36bb98, ios inline;
     void levelWillFlip() = win 0x4e9930, imac 0x3f0680, m1 0x36d7c4;
     void limitDashRotation(float& rotation) = win inline, imac 0x3fe2f0, m1 0x3792f4;
-    void loadFromCheckpoint(PlayerCheckpoint* object) = win 0x5007b0;
+    void loadFromCheckpoint(PlayerCheckpoint* object) = win 0x5007b0, imac 0x409480, m1 0x383434;
     void lockPlayer() = win 0x4fd670;
     void logValues() = win inline, imac 0x40a400, m1 0x383f70, ios inline;
     void modeDidChange() = win inline, imac 0x403bf0, m1 0x37e3a0;
@@ -18105,7 +18105,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runNormalRotation() = win inline, imac 0x3f11e0, m1 0x36e290, ios inline;
     void runNormalRotation(bool notNormalMode, float speed) = win 0x4eb4d0, imac 0x3ed0a0, m1 0x36a6d8;
     void runRotateAction(bool ground, int type) = win inline, imac 0x3ef890, m1 0x36cab4;
-    void saveToCheckpoint(PlayerCheckpoint* checkpoint) = win 0x4ffd80;
+    void saveToCheckpoint(PlayerCheckpoint* checkpoint) = win 0x4ffd80, imac 0x408b40, m1 0x382eac;
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x4fb6c0, imac 0x3eb240, m1 0x368dc8;
     void setupStreak() = win 0x4e6a00, imac 0x3e99f0, m1 0x3677b8;
     void setYVelocity(double velocity, int type) = win 0x4e6f50, imac 0x3e9810, m1 0x3675b8;
@@ -18633,7 +18633,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void loadDynamicSaveObjects(std::vector<SavedObjectStateRef>& dynamicObjects) = win inline, imac 0x8b610, m1 0x80cc0;
     void loadFromCheckpoint(CheckpointObject* object) = win 0x516820, imac 0x8ae80, m1 0x80570;
     CheckpointObject* loadLastCheckpoint() = win inline, imac 0x8ae30, m1 0x80518;
-    void loadPersistentCheckpoint(std::string& save) = win 0x5182b0;
+    void loadPersistentCheckpoint(std::string& save) = win 0x5182b0, imac 0x8be10, m1 0x81400;
     CheckpointObject* markCheckpoint() = win 0x516630, imac 0x88a00, m1 0x7e9e0;
     void onQuit() = win 0x51b0b0, imac 0x80440, m1 0x76f2c, ios 0x1421b8;
     void optimizeColorGroups() = win 0x50d5b0;
