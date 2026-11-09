@@ -5322,10 +5322,14 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCArray* m_dpadArrowButtons;
     cocos2d::CCArray* m_dpadStepButtons;
     cocos2d::CCLabelBMFont* m_dpadLabel;
-    float m_unk6a8;
-    int m_unk6ac;
-    int m_unk6b0;
-    bool m_unk6b4;
+    [[renamed_from(m_unk6a8)]]
+    float m_customMoveStep;
+    [[renamed_from(m_unk6ac)]]
+    int m_panVelocityX;
+    [[renamed_from(m_unk6b0)]]
+    int m_panVelocityY;
+    [[renamed_from(m_unk6b4)]]
+    bool m_panDecayActive;
 }
 
 [[link(android)]]
