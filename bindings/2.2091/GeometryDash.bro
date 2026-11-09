@@ -2835,15 +2835,15 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     virtual void textInputReturn(CCTextInputNode*) = win 0x130730, ios 0x124f64, m1 0x3967c0, imac 0x41e900;
 
     void createTextInputNode(cocos2d::CCPoint position, int tag) = win 0x1304a0, imac 0x41dae0, m1 0x395a5c;
-    TodoReturn hostPopup();
+    FLAlertLayer* hostPopup() = win 0x130770;
     bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12FBB0, imac 0x41d1c0, m1 0x395198;
     void onClose() = win inline, imac 0x41cee0, m1 0x394f1c, ios inline;
     void onResetHSV(cocos2d::CCObject* sender) = win 0x130de0, imac 0x41df70;
     void onToggleSConst(cocos2d::CCObject* sender) = win 0x130ce0, imac 0x41de90, m1 0x395e3c;
     void onToggleVConst(cocos2d::CCObject* sender) = win 0x130d60, imac 0x41df00, m1 0x395eb0;
-    void setBaseColor(cocos2d::ccColor3B);
+    void setBaseColor(cocos2d::ccColor3B) = win 0x131600;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x130bc0, imac 0x41dd10, m1 0x395cb8;
-    TodoReturn updateColorPreview();
+    void updateColorPreview() = win 0x131830;
     void updateLabels() = win 0x130e70, imac 0x41e040, m1 0x395fdc;
     void updateSliders() = win 0x130ae0, imac 0x41e600, m1 0x396518;
 
@@ -3530,7 +3530,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
     void deleteSFX() = win 0x161950, imac 0x6b8130, m1 0x5d16f8;
     void downloadFailed() = win inline, imac 0x6b8620, m1 0x5d1bac;
     void hideLoadingArt() = win 0x161cf0, imac 0x6b7480, m1 0x5d0acc;
-    TodoReturn infoBtnWidth();
+    float infoBtnWidth() = win 0x1630c0;
     bool init(SFXInfoObject*, CustomSFXDelegate*, bool, bool, bool, bool, bool, bool, bool) = win 0x1601f0, imac 0x6b53c0;
     void onAddToFolder(cocos2d::CCObject* sender) = win 0x1621a0;
     void onCancelDownload(cocos2d::CCObject* sender) = win 0x161d90, m1 0x5d0128;
@@ -6749,7 +6749,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void onSelectMode(cocos2d::CCObject* sender) = win 0x211a20;
     void onToggleAllObjects(cocos2d::CCObject* sender) = win 0x2101e0;
     void onUpdate(cocos2d::CCObject* sender) = win 0x210e90;
-    TodoReturn removeFromNewCount(int);
+    void removeFromNewCount(int) = win 0x211610;
     int selectedCount() = win 0x2102f0;
     void setupCommentsBrowser(cocos2d::CCArray* scores) = win 0x212a40, m1 0x767808, m1 0x871280;
     void untoggleAll() = win 0x211e70, imac 0x213840;
@@ -16977,7 +16977,7 @@ class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate
     void onToggleMode(cocos2d::CCObject* sender) = win 0xf0700;
     void refreshIconSlot() = win 0xf08d0;
     void setSendPending(bool) = win 0xf1f40;
-    TodoReturn updateCharCount(cocos2d::CCLabelBMFont*, int, int);
+    void updateCharCount(cocos2d::CCLabelBMFont*, int, int) = win 0xf1000;
     TodoReturn updateRecipientLabel() = win 0xf1aa0;
 }
 
@@ -17305,7 +17305,7 @@ class PagedListPopup : FLAlertLayer {
     void createScrollArea(float, float) = win 0xc3280;
     void createScrollView(float, float, cocos2d::CCPoint) = win 0xc3500;
     TodoReturn fadeLoading();
-    TodoReturn initFrame(float, float);
+    bool initFrame(float, float) = win 0xc2ba0;
     TodoReturn initPaged(char const*, std::string const&, float, float) = win 0xc2dd0;
     void loadPage(int) = win 0xc3610;
     void onNextPage(cocos2d::CCObject* sender) = win 0xc3760;
@@ -17352,11 +17352,11 @@ class ParentalOptionsLayer : FLAlertLayer {
     void goToPage(int page) = win 0x4d2a50;
     void incrementCountForPage(int page) = win inline;
     const char* infoKey(int index) = win inline, ios inline;
-    cocos2d::CCLayer* layerForPage(int page);
+    cocos2d::CCLayer* layerForPage(int page) = win 0x4cfdb0;
     const char* layerKey(int page) = win inline, imac 0x7096b0, m1 0x61a744, ios inline;
     cocos2d::CCPoint nextPosition(int page) = win inline;
     const char* objectKey(int page) = win inline, m1 0x77b374, ios inline;
-    cocos2d::CCArray* objectsForPage(int page);
+    cocos2d::CCArray* objectsForPage(int page) = win 0x4cfbf0;
     void onClose(cocos2d::CCObject* sender) = win 0x4d3b00;
     void onInfo(cocos2d::CCObject* sender) = win 0x4d3910;
     void onLockToggle(cocos2d::CCObject* sender) = win 0x4d2fb0;
@@ -19096,7 +19096,7 @@ class RateStarsModLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegat
     void onToggleCoins(cocos2d::CCObject* sender) = win 0x55ffa0;
     void selectDemon(cocos2d::CCObject*) = win 0x560340;
     TodoReturn selectRating(cocos2d::CCObject*) = win 0x560040;
-    TodoReturn updateDemonRow();
+    void updateDemonRow() = win 0x560390;
     void updateDSprite() = win 0x560280;
 }
 
@@ -19177,7 +19177,7 @@ class RenameThreadPopup : SetupTriggerPopup, ThreadMessageDelegate {
     virtual void threadSendFinished(int, long long) = win 0xfad00, ios 0x5117bc;
     virtual void threadSendFailed() = win 0xfadb0, ios 0x51181c, m1 0x82f9ec, imac 0x950280;
 
-    TodoReturn handBackSlot();
+    void handBackSlot() = win 0xfae60;
     bool init(GJMessageThread*, ThreadViewPopup*) = win 0xf9db0;
     void onSave(cocos2d::CCObject* sender) = win 0xfa370;
 }
@@ -19687,7 +19687,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
 
     std::string getBasicMessage() = win 0x57d8b0, imac 0x49b420, m1 0x403490;
     std::string getErrorMessage() = win 0x57e3b0;
-    std::string getMessage();
+    std::string getMessage() = win 0x57d040;
     std::string getThreadMessage() = win 0x57d1b0, imac 0x49bb00, m1 0x403b90;
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, imac 0x496ff0, m1 0x3ff4f0, ios inline;
     void onBack(cocos2d::CCObject* sender) = win 0x57f430, imac 0x497390, m1 0x3ff84c;
