@@ -13668,7 +13668,7 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
 class IDNameInput : cocos2d::CCNode, TextInputDelegate, IDNameBrowserDelegate, DropdownListPopupOwner {
     virtual ~IDNameInput() = win 0x3c72b0, imac 0x9132b0, m1 0x7f8a44, ios 0x4e6c60;
 
-    static IDNameInput* create(FLAlertLayer*, TextInputDelegate*, int, int, std::string const&, cocos2d::CCPoint, float, int, int, int, bool) = win 0x3c78c0;
+    static IDNameInput* create(FLAlertLayer* parent, TextInputDelegate* delegate, int idType, int property, std::string const& label, cocos2d::CCPoint position, float scale, int maxDigits, int group, int page, bool horizontal) = win 0x3c78c0;
 
     virtual void idNameBrowserClosed(IDNameBrowserPopup*, int) = win 0x3c9640, ios 0x4e7f44, m1 0x7fa310, imac 0x914d90;
     virtual void textChanged(CCTextInputNode*) = win 0x3cabe0, ios 0x4e89d0, m1 0x7fb3e8, imac 0x916040;
@@ -13700,6 +13700,30 @@ class IDNameInput : cocos2d::CCNode, TextInputDelegate, IDNameBrowserDelegate, D
     void updateAutocomplete() = win 0x3c9b50;
     static std::unordered_map<int, int> useRank(int) = win 0x3c7590;
     static bool useRankLess(std::unordered_map<int, int> const&, int, int) = win 0x3c7770;
+
+    SetupTriggerPopup* m_triggerPopup;
+    cocos2d::CCMenu* m_buttonMenu;
+    cocos2d::CCLayer* m_mainLayer;
+    TextInputDelegate* m_delegate;
+    int m_idType;
+    int m_property;
+    CCTextInputNode* m_textInput;
+    cocos2d::CCLabelBMFont* m_groupName;
+    cocos2d::CCLabelBMFont* m_groupNameShadow;
+    CCMenuItemSpriteExtra* m_searchButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_leftButton;
+    CCMenuItemSpriteExtra* m_rightButton;
+    DropdownListPopup* m_autocompletePopup;
+    cocos2d::CCPoint m_position;
+    float m_width;
+    float m_scale;
+    std::string m_latestInput;
+    cocos2d::CCLabelBMFont* m_label;
+    cocos2d::extension::CCScale9Sprite* m_background;
+    int m_group;
+    int m_page;
+    bool m_horizontal;
 }
 
 [[link(android)]]
@@ -25166,6 +25190,27 @@ class UserListDelegate {
 [[link(android)]]
 class ValueControlSettings {
     // ~ValueControlSettings();
+
+    int m_property;
+    std::string m_label;
+    cocos2d::CCPoint m_position;
+    float m_scale;
+    bool m_noSlider;
+    InputValueType m_valueType;
+    int m_maxDigits;
+    bool m_arrows;
+    float m_sliderMin;
+    float m_sliderMax;
+    int m_page;
+    int m_group;
+    GJInputStyle m_inputStyle;
+    int m_decimalPlaces;
+    bool m_allowDisable;
+    bool m_vertical;
+    float m_width;
+    std::string m_font;
+    float m_labelScale;
+    std::string m_placeholderText;
 }
 
 [[link(android)]]
