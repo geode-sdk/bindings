@@ -39,6 +39,7 @@ enum class SearchType {
     FeaturedLite = 28,
     Bonus = 29,
     StarAward = 30,
+    Hyped = 31,
     DailyVault = 32,
     WeeklyVault = 33,
     EventVault = 34,
