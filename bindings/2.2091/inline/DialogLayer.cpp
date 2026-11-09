@@ -1,6 +1,5 @@
 #include <Geode/binding/DialogLayer.hpp>
 #include <Geode/binding/TextArea.hpp>
-#include <Geode/mapping/CCEaseElasticOut.hpp>
 
 #if !defined(GEODE_IS_IOS)
 DialogLayer::DialogLayer() {
@@ -42,51 +41,6 @@ DialogLayer* DialogLayer::createWithObjects(cocos2d::CCArray* objects, int backg
 }
 
 void DialogLayer::ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) {}
-
-void DialogLayer::animateIn(DialogAnimationType type) {
-    __timeb64 current;
-    _ftime64_s(&current);
-    m_animateTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
-    auto director = cocos2d::CCDirector::sharedDirector();
-    switch (type) {
-        case DialogAnimationType::FromCenter: {
-            m_mainLayer->setScale(.1f);
-            m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCScaleTo::create(.5f, 1.f), .6f));
-            break;
-        }
-        case DialogAnimationType::FromLeft: {
-            auto position = m_mainLayer->getPosition();
-            m_mainLayer->setPosition({ -191.f, position.y });
-            m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
-            break;
-        }
-        case DialogAnimationType::FromRight: {
-            auto position = m_mainLayer->getPosition();
-            m_mainLayer->setPosition({ director->getScreenRight() + 191.f, position.y });
-            m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
-            break;
-        }
-        case DialogAnimationType::FromTop: {
-            auto position = m_mainLayer->getPosition();
-            m_mainLayer->setPosition({ position.x, director->getScreenTop() + 51.f });
-            m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
-            break;
-        }
-        case DialogAnimationType::FromTop2: {
-            auto position = m_mainLayer->getPosition();
-            m_mainLayer->setPosition({ position.x, director->getScreenTop() - 51.f });
-            m_mainLayer->runAction(cocos2d::CCEaseElasticOut::create(cocos2d::CCMoveTo::create(.5f, position), .6f));
-            break;
-        }
-        default: break;
-    }
-
-    auto opacity = this->getOpacity();
-    if (opacity > 0) {
-        this->setOpacity(0);
-        this->runAction(cocos2d::CCFadeTo::create(.14f, opacity));
-    }
-}
 
 void DialogLayer::finishCurrentAnimation() {
     m_animating = false;

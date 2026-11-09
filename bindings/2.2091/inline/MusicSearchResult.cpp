@@ -41,26 +41,6 @@ cocos2d::CCArray* MusicSearchResult::applyArtistFilters(cocos2d::CCArray* object
     return filterObjects;
 }
 
-void MusicSearchResult::createArtistFilterObjects() {
-    if (m_artistFilterObjects) return;
-    auto objects = MusicDownloadManager::sharedState()->getAllMusicArtists(this);
-    if (m_artistFilterObjects != objects) {
-        CC_SAFE_RETAIN(objects);
-        CC_SAFE_RELEASE(m_artistFilterObjects);
-        m_artistFilterObjects = objects;
-    }
-}
-
-void MusicSearchResult::createTagFilterObjects() {
-    if (m_tagFilterObjects) return;
-    auto objects = MusicDownloadManager::sharedState()->getAllMusicTags(this);
-    if (m_tagFilterObjects != objects) {
-        CC_SAFE_RETAIN(objects);
-        CC_SAFE_RELEASE(m_tagFilterObjects);
-        m_tagFilterObjects = objects;
-    }
-}
-
 void MusicSearchResult::updateObjects() {
     this->updateObjects(m_sortType);
 }

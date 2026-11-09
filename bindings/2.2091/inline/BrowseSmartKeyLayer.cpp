@@ -4,7 +4,6 @@
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/GJSmartTemplate.hpp>
 #include <Geode/binding/TextAlertPopup.hpp>
-#include <Geode/binding/GJSmartBlockPreview.hpp>
 #include <Geode/binding/GJSmartPrefab.hpp>
 
 BrowseSmartKeyLayer::BrowseSmartKeyLayer() {
@@ -34,21 +33,6 @@ void BrowseSmartKeyLayer::createTemplateObjects() {
     this->addChild(TextAlertPopup::create("Added to editor", .5f, .6f, 150, ""), 100);
 }
 
-void BrowseSmartKeyLayer::deletedSelectedItems() {
-    for (int i = 0; i < m_pages->count(); i++) {
-        auto page = static_cast<cocos2d::CCArray*>(m_pages->objectAtIndex(i));
-        for (int j = 0; j < page->count();) {
-            auto button = static_cast<CCMenuItemSpriteExtra*>(page->objectAtIndex(j));
-            auto block = static_cast<GJSmartBlockPreview*>(button->getNormalImage());
-            if (block->m_selected) {
-                m_template->removePrefab(m_prefabKey, block->getTag());
-                page->removeObjectAtIndex(j);
-            }
-            else j++;
-        }
-    }
-    this->updateChanceValues();
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

@@ -78,6 +78,7 @@ SetupTriggerPopup* SetupTriggerPopup::create(EffectGameObject* trigger, cocos2d:
     return nullptr;
 }
 
+#if defined(GEODE_IS_IOS)
 void SetupTriggerPopup::closeInputNodes() {
     cocos2d::CCDictElement* element;
     cocos2d::CCDictElement* temp;
@@ -87,6 +88,7 @@ void SetupTriggerPopup::closeInputNodes() {
         inputNode->onClickTrackNode(false);
     }
 }
+#endif
 
 void SetupTriggerPopup::createValueControlWArrows(int property, std::string label, cocos2d::CCPoint position, float scale) {
     this->createValueControlAdvanced(property, label, position, scale, true, InputValueType::Int, 6, true, 0.f, 0.f, 0, 0, GJInputStyle::GoldLabel, 2, false);
@@ -165,25 +167,6 @@ void SetupTriggerPopup::hideAll() {
 void SetupTriggerPopup::postSetup() {
     this->updateDefaultTriggerValues();
     m_disableTextDelegate = false;
-}
-
-void SetupTriggerPopup::preSetup() {
-    m_disableTextDelegate = true;
-    this->determineStartValues();
-}
-
-void SetupTriggerPopup::refreshGroupVisibility() {
-    for (int i = 0; i < m_groupContainers->count(); i++) {
-        auto groupContainer = static_cast<cocos2d::CCArray*>(m_groupContainers->objectAtIndex(i));
-        auto tag = groupContainer->getTag();
-        for (int j = 0; j < groupContainer->count(); j++) {
-            auto node = static_cast<cocos2d::CCNode*>(groupContainer->objectAtIndex(j));
-            if (node->isVisible() && tag == 0) node->setVisible(false);
-            if (auto inputNode = static_cast<CCTextInputNode*>(m_inputNodes->objectForKey(node->getTag()))) {
-                inputNode->setTouchEnabled(inputNode->isVisible());
-            }
-        }
-    }
 }
 
 void SetupTriggerPopup::removeObjectFromPage(cocos2d::CCObject* object, int page) {

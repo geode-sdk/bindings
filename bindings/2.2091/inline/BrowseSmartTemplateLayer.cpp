@@ -44,18 +44,6 @@ void BrowseSmartTemplateLayer::onClose(cocos2d::CCObject* sender) {
     this->removeFromParentAndCleanup(true);
 }
 
-void BrowseSmartTemplateLayer::updateDots() {
-    if (!m_dotsArray) this->createDots();
-    auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
-    auto count = m_pages->count();
-    for (int i = 0; i < count; i++) {
-        if (i < m_dotsArray->count()) {
-            auto dot = static_cast<cocos2d::CCSprite*>(m_dotsArray->objectAtIndex(i));
-            dot->setPosition(winSize * .5f + cocos2d::CCPoint { (i - (count - 1) * .5f) * 16.f, -125.f });
-            dot->setColor(i == m_page ? cocos2d::ccColor3B { 255, 255, 255 } : cocos2d::ccColor3B { 125, 125, 125 });
-        }
-    }
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

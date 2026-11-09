@@ -32,10 +32,6 @@ ParentalOptionsLayer::~ParentalOptionsLayer() {
     CC_SAFE_RELEASE(m_toggleNodes);
 }
 
-void ParentalOptionsLayer::incrementCountForPage(int page) {
-    m_values->setObject(cocos2d::CCString::createWithFormat("%i", this->countForPage(page) + 1), this->pageKey(page));
-}
-
 cocos2d::CCPoint ParentalOptionsLayer::nextPosition(int page) {
     auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     auto count = this->countForPage(page);
