@@ -7415,7 +7415,7 @@ class GameLevelManager : cocos2d::CCNode {
     int userIDForAccountID(int id) = win inline, imac 0x540700, m1 0x4975b0;
     GJUserScore* userInfoForAccountID(int id) = win inline, imac 0x540720, m1 0x4975cc;
     std::string userNameForUserID(int id) = win 0x21d7e0, imac 0x540260, m1 0x4971a4;
-    TodoReturn vaultTimedType(SearchType, GJTimedLevelType&);
+    static bool vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) = win inline;
     bool verifyContainerOnlyHasLevels(cocos2d::CCDictionary* dict) = win 0x224e80, imac 0x54f750, m1 0x4a5210;
     void verifyLevelState(GJGameLevel* level) = win inline, imac 0x540760, m1 0x4975f4;
     void writePlatformerSaveJournal(GJGameLevel* level) = win 0x223320, m1 0x4a2294;
@@ -14407,8 +14407,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     std::string getSearchTitle() = win 0x3e5750, imac 0x485fb0, m1 0x3efaa0;
     bool init(GJSearchObject* object) = win 0x3e2000, imac 0x480690, m1 0x3ea564, ios 0x494fe4;
     bool isCorrect(char const* key) = win 0x3e4090, imac 0x485730, m1 0x3ef28c;
-    bool isSafeType();
-    bool isVaultType();
+    bool isSafeType() = win inline;
+    bool isVaultType() = win inline;
     void loadPage(GJSearchObject* object) = win 0x3e4290, m1 0x3ee2a8;
     void onBackups(cocos2d::CCObject* sender) = win 0x3e9ab0;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x3e8db0, imac 0x484430, m1 0x3ee22c;
