@@ -1773,7 +1773,7 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     float getMinY() = win inline, imac 0x41b120, m1 0x393444, ios inline;
     void moveToTop() = win 0x4ae30, imac 0x41b210, m1 0x393540, ios 0x39d898;
     void moveToTopWithOffset(float offset) = win 0x4ad80, imac 0x41b170, m1 0x393498, ios 0x39d7f0;
-    cocos2d::CCRect scissorRect();
+    cocos2d::CCRect scissorRect() = win 0x4bb40;
     void scrollingEnd() = win 0x4b140, imac 0x41b820;
     void scrollLayer(float offset) = win inline, imac 0x41bf90, m1 0x394110, ios 0x39e21c;
     void setContentLayerSize(cocos2d::CCSize size) = win inline, imac 0x41b870, m1 0x393a74, ios inline;
@@ -3192,7 +3192,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
     bool canPlayOnlineLevels() = win inline, imac 0x284720, m1 0x2299d4, ios inline;
     void checkQuestsStatus() = imac 0x3c18d0;
-    TodoReturn checkTimedStatus();
+    void checkTimedStatus() = win 0x139530;
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x138140, imac 0x2834b0, m1 0x228790;
     void onBack(cocos2d::CCObject* sender) = win 0x139780, imac 0x2846c0, m1 0x229974;
     void onChallenge(cocos2d::CCObject* sender) = win 0x138460, imac 0x283520, m1 0x228824;
@@ -4384,9 +4384,9 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
 
 [[link(android)]]
 class EditorBuildStats {
-    void fromString(std::string const&);
+    void fromString(std::string const&) = win 0x266bc0;
     void noteAction() = win inline;
-    std::string toString() const;
+    std::string toString() const = win 0x266920;
 
     int m_objectsCreated;
     int m_objectsPasted;
@@ -10851,7 +10851,7 @@ class GJGameLevel : cocos2d::CCNode {
     void storeNewLocalScore(int value, int type) = win 0x264ce0, imac 0x584a20, m1 0x4d60ec;
     void syncUneditedControls() = win 0x266820;
     void unverifyCoins() = win 0x26ae30, imac 0x5838f0, m1 0x4d5050;
-    void setUserID(int);
+    void setUserID(int) = win 0x218180;
 
     cocos2d::CCDictionary* m_lastBuildSave;
     geode::SeedValueRSV m_levelID;
@@ -14952,7 +14952,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     virtual void onEnterTransitionDidFinish() = win 0x421350, imac 0x2b0d60, m1 0x252054, ios 0x2dd1c;
     virtual void adminActionConfirmed(int, std::vector<int> const&, std::string const&) = win 0x423300, ios 0x2e3ec, m1 0x2529c0, imac 0x2b16f0;
 
-    TodoReturn addProgressBar(cocos2d::CCPoint, int, cocos2d::ccColor3B, char const*, char const*);
+    cocos2d::CCSprite* addProgressBar(cocos2d::CCPoint, int, cocos2d::ccColor3B, char const*, char const*) = win 0x41fc00;
     void confirmClone(cocos2d::CCObject* sender) = win 0x422bd0, imac 0x2aec90, m1 0x24ffec;
     void confirmDelete(cocos2d::CCObject* sender) = win 0x422d50, imac 0x2ae340, m1 0x24f690;
     void confirmMoveToBottom(cocos2d::CCObject* sender) = win 0x424810, imac 0x2af140, m1 0x2504ac;
@@ -18574,7 +18574,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void incrementJumps() = win inline, imac 0x8d850, m1 0x82d58;
     bool init(GJGameLevel* level, bool dontCreateObjects) = win 0x5039e0, imac 0x79640, m1 0x70fd8, ios 0x13e31c;
     bool isGameplayActive() = win inline, imac 0x8ddd0, m1 0x832b4;
-    bool isJumpHeldForPlayer(bool);
+    bool isJumpHeldForPlayer(bool) = win 0x516700;
     void levelComplete() = win 0x5061b0, imac 0x80b10, m1 0x77624, ios 0x142810;
     void loadActiveSaveObjects(std::vector<SavedActiveObjectState>& activeObjects, std::vector<SavedSpecialObjectState>& specialObjects) = win inline, imac 0x8b760, m1 0x80e00;
     void loadDefaultColors() = win 0x5106a0, imac 0x7f140, m1 0x75f30;
@@ -24266,7 +24266,7 @@ class ThreadMessageOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
 
 [[link(android)]]
 class ThreadOpenHelper {
-    TodoReturn check(int, std::string const&);
+    static void check(int, std::string const&) = win 0xf3e40;
     TodoReturn showRulesOnce() = win 0xf3fd0;
 }
 
@@ -25026,7 +25026,7 @@ class UploadActionPopup : FLAlertLayer {
     bool init(UploadPopupDelegate* delegate, std::string str) = win 0x3a0e10, imac 0x2902e0, m1 0x2344fc;
     void onClose(cocos2d::CCObject* sender) = win 0x3a1460, imac 0x290730, m1 0x234910;
     void showFailMessage(std::string message) = win 0x3a1360, imac 0x2908f0, m1 0x234acc;
-    TodoReturn showFailMessageOrDismiss(std::string);
+    bool showFailMessageOrDismiss(std::string) = win 0x3a14b0;
     void showSuccessMessage(std::string message) = win 0x3a1250, imac 0x290780, m1 0x234970;
 
     UploadPopupDelegate* m_delegate;
