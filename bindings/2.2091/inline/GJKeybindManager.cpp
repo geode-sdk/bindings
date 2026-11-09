@@ -19,7 +19,7 @@ bool GJKeybindManager::init() {
 }
 
 bool GJKeybindManager::isExclusive(int action) {
-    auto exclusiveActions = reinterpret_cast<std::unordered_set<int>*>(geode::base::get() + 0x90c010);
+    auto exclusiveActions = reinterpret_cast<std::unordered_set<int>*>(geode::base::get() + GEODE_WINDOWS(0x90c010) GEODE_IOS(0x9f4130));
     return exclusiveActions->count(action) != 0;
 }
 
