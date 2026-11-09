@@ -1909,7 +1909,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     CCLabelBMFont() = imac 0x6aa3f0, m1 0x5c4f14, ios 0x397e14;
     virtual ~CCLabelBMFont() = imac 0x6aa520, m1 0x5c4ff0, ios 0x397ed8;
 
-    static cocos2d::CCLabelBMFont* create() = imac 0x5dddd0, m1 0x5c47c0, ios inline;
+    static cocos2d::CCLabelBMFont* create() = m1 0x5c47c0, ios inline;
     static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x6a9f80, m1 0x5c4a88, ios 0x397a08;
     static cocos2d::CCLabelBMFont* create(char const* str, char const* fntFile, float width) = imac 0x6a9ed0, m1 0x5c49c8, ios inline;
     static cocos2d::CCLabelBMFont* create(char const* str, char const* fntFile, float width, cocos2d::CCTextAlignment alignment) = imac 0x6a9d80, m1 0x5c4844, ios inline;
