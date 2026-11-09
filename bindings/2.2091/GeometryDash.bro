@@ -14518,7 +14518,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     CCMenuItemSpriteExtra* m_pageBtn;
     cocos2d::CCLabelBMFont* m_folderText;
     CCMenuItemSpriteExtra* m_folderBtn;
-    CCMenuItemToggler* m_allObjectsToggler;
+    GJSelectionStrip* m_selectionStrip;
     int m_itemCount;
     int m_pageStartIdx;
     int m_pageEndIdx;
