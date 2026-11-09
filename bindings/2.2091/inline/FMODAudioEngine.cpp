@@ -84,16 +84,6 @@ FMODAudioEngine* FMODAudioEngine::sharedEngine() {
     return *instancePtr;
 }
 
-void FMODAudioEngine::activateQueuedMusic(int channel) {
-    if (m_audioState.m_queuedMusicForChannels2.count(channel) != 0) {
-        this->triggerQueuedMusic(m_audioState.m_queuedMusicForChannels2[channel]);
-        m_audioState.m_queuedMusicForChannels2.erase(channel);
-    }
-    else if (m_audioState.m_queuedMusicForChannels1.count(channel) != 0) {
-        m_audioState.m_queuedMusicForChannels1[channel].m_noPrepare = true;
-    }
-}
-
 void FMODAudioEngine::channelLinkSound(int id, FMODSound* sound) {
     sound->m_playCount++;
     sound->m_playIndex = (*reinterpret_cast<int*>(geode::base::get() + 0x90bf4c))++;
@@ -274,18 +264,6 @@ void FMODAudioEngine::stopChannel(int id) {
 
 void FMODAudioEngine::stopMusic(int id) {
     this->stopAndRemoveMusic(id);
-}
-
-void FMODAudioEngine::stopMusicNotInSet(std::unordered_set<int>& musicIDs) {
-    std::unordered_set<int> totalIDs;
-    for (auto& [id, _] : m_fmodMusic) {
-        totalIDs.insert(id);
-    }
-    for (auto& id : totalIDs) {
-        if (id >= 0 && musicIDs.count(id) == 0) {
-            this->stopMusic(id);
-        }
-    }
 }
 
 void FMODAudioEngine::updateBackgroundFade() {

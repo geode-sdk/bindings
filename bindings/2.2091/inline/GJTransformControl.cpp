@@ -69,15 +69,6 @@ GJTransformControl* GJTransformControl::create() {
     return nullptr;
 }
 
-void GJTransformControl::applyRotation(float rotation) {
-    if (m_rotationY != rotation) {
-        m_rotationY = rotation;
-        m_mainNode->setRotation(rotation);
-        if (m_delegate) m_delegate->transformRotationChanged(rotation);
-    }
-    this->updateButtons(false, false);
-}
-
 void GJTransformControl::loadFromState(GJTransformState& state) {
     m_rotationX = state.m_transformRotationX;
     m_rotationY = state.m_transformRotationY;

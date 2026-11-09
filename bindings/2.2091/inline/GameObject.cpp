@@ -441,11 +441,6 @@ GJSpriteColor* GameObject::getMainColor() {
     return m_baseColor;
 }
 
-int GameObject::getMainColorMode() {
-    if (auto color = this->getMainColor()) return color->getColorMode();
-    return 0;
-}
-
 float GameObject::getObjectRadius() {
     return m_scaleX == 1.f && m_scaleY == 1.f ? m_objectRadius : m_objectRadius * std::max(m_scaleX, m_scaleY);
 }
@@ -632,20 +627,6 @@ void GameObject::setCustomZLayer(int zLayer) {
     m_zLayer = static_cast<ZLayer>(zLayer);
 }
 
-void GameObject::setDefaultMainColorMode(int id) {
-    if (auto color = this->getMainColor()) {
-        color->m_defaultColorID = std::clamp(id, 0, 1101);
-        color->m_colorID = 0;
-    }
-}
-
-void GameObject::setDefaultSecondaryColorMode(int id) {
-    if (auto color = this->getSecondaryColor()) {
-        color->m_defaultColorID = std::clamp(id, 0, 1101);
-        color->m_colorID = 0;
-    }
-}
-
 void GameObject::setGlowOpacity(unsigned char opacity) {
     if (m_glowSprite) {
         auto glowOpacity = opacity * m_opacityMod;
@@ -688,16 +669,6 @@ double GameObject::slopeYPos(cocos2d::CCRect rect) {
     else {
         return this->slopeYPos(floorTop ? rect.getMinX() : rect.getMaxX());
     }
-}
-
-void GameObject::updateBlendMode() {
-    auto shouldBlend = this->shouldBlendColor(m_baseColor, true);
-    m_shouldBlendBase = shouldBlend;
-    if (!m_colorSprite) {
-        m_shouldBlendDetail = false;
-        return;
-    }
-    m_shouldBlendDetail = m_detailColor->getColorMode() != 1012 ? this->shouldBlendColor(m_detailColor, false) : shouldBlend;
 }
 
 void GameObject::updateCustomScaleX(float scaleX) {

@@ -168,22 +168,6 @@ bool GameToolbox::saveStringToFile(std::string const& path, std::string const& c
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-void GameToolbox::alignItemsVertically(cocos2d::CCArray* items, float gap, cocos2d::CCPoint position) {
-    auto y = -gap;
-    for (auto node : geode::cocos::CCArrayExt<cocos2d::CCNode, false>(items)) {
-        y += node->getScaleY() * node->getContentSize().height + gap;
-    }
-
-    y = -y / 2.f;
-    for (auto node : geode::cocos::CCArrayExt<cocos2d::CCNode, false>(items)) {
-        auto size = node->getContentSize();
-        auto scale = node->getScaleY();
-        node->setPosition({ 0.f, scale * size.height / 2.f + y });
-        node->setPosition(node->getPosition() + position);
-        y += scale * size.height + gap;
-    }
-}
-
 CCMenuItemToggler* GameToolbox::createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) {
     return GameToolbox::createToggleButton(label, selector, state, menu, position, parent, labelParent, .7f, .5f, 80.f, { 8.f, 0.f }, "bigFont.fnt", false, 0, container);
 }

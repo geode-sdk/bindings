@@ -24,14 +24,16 @@ GJScaleControl::GJScaleControl() {
 }
 #endif
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS)
 void GJScaleControl::finishTouch() {
     if (m_touchID != -1) {
         m_touchID = -1;
         if (m_delegate) m_delegate->scaleChangeEnded();
     }
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 float GJScaleControl::scaleFromValue(float value) {
     return cocos2d::CCString::createWithFormat("%.02f", (m_upperBound - m_lowerBound) * value + m_lowerBound)->floatValue();
 }

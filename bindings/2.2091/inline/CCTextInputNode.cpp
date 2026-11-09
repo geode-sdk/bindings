@@ -130,31 +130,6 @@ std::string CCTextInputNode::getString() {
     return m_textField->getString();
 }
 
-void CCTextInputNode::setAllowedChars(std::string filter) {
-    m_allowedChars = filter;
-    if (m_valueType != InputValueType::Default) return;
-    bool hasDigit = false;
-    bool hasMinus = false;
-    bool hasDot = false;
-    for (char c : filter) {
-        if (c >= '0' && c <= '9') hasDigit = true;
-        else if (c == '-') hasMinus = true;
-        else if (c == '.') hasDot = true;
-        else return;
-    }
-    if (!hasDigit) return;
-    if (hasDot) {
-        m_valueType = InputValueType::Float;
-        if (m_decimalPlaces <= 0) m_decimalPlaces = 2;
-    }
-    else if (hasMinus) {
-        m_valueType = InputValueType::Int;
-    }
-    else {
-        m_valueType = InputValueType::Uint;
-    }
-}
-
 void CCTextInputNode::setLabelPlaceholderColor(cocos2d::ccColor3B color) {
     m_placeholderColor = color;
     this->refreshLabel();

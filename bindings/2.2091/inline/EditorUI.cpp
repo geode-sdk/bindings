@@ -89,10 +89,12 @@ CCMenuItemSpriteExtra* EditorUI::getSpriteButton(char const* spriteFrameName, co
     return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0}, 0.0f);
 }
 
+#if defined(GEODE_IS_IOS)
 GJTransformState& EditorUI::getTransformState() {
     m_transformControl->saveToState(m_transformState);
     return m_transformState;
 }
+#endif
 
 bool EditorUI::isLiveColorSelectTrigger(GameObject* object) {
     return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == 1006);
@@ -440,19 +442,6 @@ int EditorUI::edgeForObject(int id, int type) {
         }
     }
     return 0;
-}
-
-int EditorUI::editorLayerForArray(cocos2d::CCArray* objects, bool layer2) {
-    if (!objects) return 0;
-    auto previousLayer = -1;
-    auto currentLayer = -1;
-    for (int i = 0; i < objects->count(); i++) {
-        auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-        currentLayer = layer2 ? obj->m_editorLayer2 : obj->m_editorLayer;
-        if (previousLayer != -1 && previousLayer != currentLayer) return 0;
-        previousLayer = currentLayer;
-    }
-    return currentLayer != -1 ? currentLayer : 0;
 }
 
 CreateMenuItem* EditorUI::getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) {

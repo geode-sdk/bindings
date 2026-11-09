@@ -83,10 +83,6 @@ CCSpriteWithHue* CCSpriteWithHue::createWithSpriteFrame(cocos2d::CCSpriteFrame* 
     return nullptr;
 }
 
-CCSpriteWithHue* CCSpriteWithHue::createWithSpriteFrameName(std::string const& frameName) {
-    return CCSpriteWithHue::createWithSpriteFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frameName.c_str()));
-}
-
 void CCSpriteWithHue::getUniformLocations() {
     m_uHueLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_hue");
     m_uAlphaLoc = glGetUniformLocation(m_pShaderProgram->getProgram(), "u_alpha");

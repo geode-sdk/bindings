@@ -79,18 +79,6 @@ void ShaderLayer::preColorChangeShader() {
     }
 }
 
-void ShaderLayer::preCommonShader() {
-    auto shaderProgram = m_sprite->getShaderProgram();
-    shaderProgram->setUniformLocationWith3f(m_blurRefColorUniform, m_state.m_blurRefColor.r / 255.f, m_state.m_blurRefColor.g / 255.f, m_state.m_blurRefColor.b / 255.f);
-    shaderProgram->setUniformLocationWith1f(m_blurUseRefUniform, m_state.m_minBlendingLayer > 1);
-    shaderProgram->setUniformLocationWith1f(m_blurIntensityUniform, m_state.m_blurIntensity + 1.f);
-    shaderProgram->setUniformLocationWith2f(m_textureScaleUniform, m_state.m_textureScaleX, m_state.m_textureScaleY);
-    shaderProgram->setUniformLocationWith2f(m_textureScaleInvUniform, 1.f / m_state.m_textureScaleX, 1.f / m_state.m_textureScaleY);
-    shaderProgram->setUniformLocationWith1f(m_blurOnlyEmptyUniform, m_state.m_minBlendingLayer > 1 && m_state.m_blurOnlyEmpty);
-    shaderProgram->setUniformLocationWith1f(m_screenAspectINVUniform, m_screenSize.height / m_screenSize.width);
-    shaderProgram->setUniformLocationWith1f(m_shaderPositionUniform, m_screenSize.width / m_screenSize.height);
-}
-
 void ShaderLayer::preGrayscaleShader() {
     if (m_state.m_grayscaleValue > 0.f || this->getActionByTag(32)) {
         m_state.m_usesShaders = true;
