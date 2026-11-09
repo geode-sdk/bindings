@@ -10839,19 +10839,24 @@ class GJGameLevel : cocos2d::CCNode {
     void setJumps(int jumps) = inline;
     void setLastBuildPageForTab(int tab, int page) = win inline, imac 0x5841a0, m1 0x4d5854;
     void setLevelID(int levelID) = win 0x217f50, inline;
+    void setLevelString(std::string levelString) = win 0x217fa0;
     void setNewNormalPercent(int percent) = inline;
     void setNewNormalPercent2(int percent) = inline;
     void setNormalPercent(int percent) = win inline, imac 0x5408e0, m1 0x497724, ios inline;
     void setObjectCount(int count) = win 0x218220, inline;
     void setOriginalLevel(int id) = win 0x178080, inline;
     void setPassword(int password) = win 0x218360, inline;
+    void setRecordString(std::string recordString) = win 0x218060;
     void setStars(int stars) = win 0x2182c0, inline;
+    void setUpdateDate(std::string updateDate) = win 0x218120;
+    void setUploadDate(std::string uploadDate) = win 0x2180c0;
     std::string shippedControls() const = win 0x266530;
     bool shouldCheatReset() = win inline, imac 0x5408a0, m1 0x4976dc, ios inline;
     void storeNewLocalScore(int value, int type) = win 0x264ce0, imac 0x584a20, m1 0x4d60ec;
     void syncUneditedControls() = win 0x266820;
     void unverifyCoins() = win 0x26ae30, imac 0x5838f0, m1 0x4d5050;
     void setUserID(int) = win 0x218180;
+    void setUserName(std::string userName) = win 0x218000;
 
     cocos2d::CCDictionary* m_lastBuildSave;
     geode::SeedValueRSV m_levelID;
