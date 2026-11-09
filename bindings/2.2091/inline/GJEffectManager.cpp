@@ -214,6 +214,10 @@ bool GJEffectManager::hasBeenTriggered(int objectUniqueID, int playerUniqueID) {
     return bound != m_unkMap498.end() && *bound <= std::make_pair(objectUniqueID, playerUniqueID);
 }
 
+void GJEffectManager::storeTriggeredID(int objectUniqueID, int playerUniqueID) {
+    m_unkMap498.emplace(objectUniqueID, playerUniqueID);
+}
+
 bool GJEffectManager::isGroupEnabled(int id) {
     return m_unkVector438[std::clamp(id, 0, 9999)];
 }

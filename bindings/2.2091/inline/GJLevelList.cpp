@@ -1,6 +1,7 @@
 #include <Geode/binding/GJLevelList.hpp>
 #include <Geode/binding/GJGameLevel.hpp>
 #include <Geode/binding/GameToolbox.hpp>
+#include <Geode/binding/LevelTools.hpp>
 
 GJLevelList::GJLevelList() {
     m_listID = 0;
@@ -70,6 +71,11 @@ void GJLevelList::duplicateListLevels(GJLevelList* list) {
 
 void GJLevelList::handleStatsConflict(GJLevelList* list) {
     m_listOrder = std::max(m_listOrder, list->m_listOrder);
+}
+
+std::string GJLevelList::getUnpackedDescription() {
+    if (m_listDesc.empty()) return "";
+    return LevelTools::base64DecodeString(m_listDesc);
 }
 
 int GJLevelList::orderForLevel(int id) {
