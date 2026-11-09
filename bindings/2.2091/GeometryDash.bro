@@ -985,7 +985,7 @@ class BitmapFontCache : cocos2d::CCObject {
     ~BitmapFontCache() = win inline, imac 0x203650, m1 0x1b4524, ios 0x38fcdc;
 
     static void purgeSharedFontCache() = win inline, imac 0x203620, m1 0x1b44f8, ios 0x38fc74;
-    static BitmapFontCache* sharedFontCache() = win inline, imac 0x203570, m1 0x1b4454;
+    static BitmapFontCache* sharedFontCache() = win 0x3de20, imac 0x203570, m1 0x1b4454;
 
     FontObject* fontWithConfigFile(char const* font, float scale) = win 0x3de90, imac 0x203710, m1 0x1b45dc;
     bool init() = win inline, imac 0x2035f0, m1 0x1b44cc, ios inline;
@@ -1199,7 +1199,7 @@ class ButtonPage : cocos2d::CCLayer {
     ButtonPage() = inline;
     virtual ~ButtonPage() = win 0x77c70;
 
-    static ButtonPage* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) = win inline, imac 0x6b48e0, m1 0x5ce0bc;
+    static ButtonPage* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) = win 0x177dc0, imac 0x6b48e0, m1 0x5ce0bc;
 
     bool init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) = win inline, imac 0x6b4d20, m1 0x5ce4e4;
 }
@@ -2186,7 +2186,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     ChallengesPage() = inline;
     ~ChallengesPage() = win inline, ios 0x35544;
 
-    static ChallengesPage* create() = win inline, imac 0x3868e0, m1 0x311658;
+    static ChallengesPage* create() = win 0x9d810, imac 0x3868e0, m1 0x311658;
 
     virtual bool init() = win 0x9d960, imac 0x386b00, m1 0x3117e4, ios 0x3565c;
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x388200, m1 0x312eb8, ios 0x36750;
@@ -6957,7 +6957,7 @@ class GameLevelManager : cocos2d::CCNode {
 
     static GameLevelManager* get() = inline;
     static cocos2d::CCDictionary* responseToDict(std::string response, bool colon) = win 0x261840, imac 0x542920, m1 0x499334;
-    static GameLevelManager* sharedState() = win inline, imac 0x51bae0, m1 0x4767c4, ios 0x90fec;
+    static GameLevelManager* sharedState() = win 0x219280, imac 0x51bae0, m1 0x4767c4, ios 0x90fec;
 
     virtual bool init() = win 0x21b9a0, imac 0x53d9b0, m1 0x494bc0, ios 0xa5ef8;
 
@@ -8165,10 +8165,10 @@ class GameObject : CCSpritePlus {
     cocos2d::CCSprite* addInternalChild(cocos2d::CCSprite* parent, std::string frame, cocos2d::CCPoint offset, int zOrder) = win inline, imac 0x68cb60, m1 0x5accd8, ios inline;
     cocos2d::CCSprite* addInternalCustomColorChild(std::string frame, cocos2d::CCPoint offset, int zOrder) = win 0x294610, imac 0x68cab0, m1 0x5acc14;
     cocos2d::CCSprite* addInternalGlowChild(std::string frame, cocos2d::CCPoint offset) = win 0x2946f0, imac 0x68cbf0, m1 0x5acd7c;
-    void addNewSlope01(bool dontDraw) = win inline, m1 0x5baa80;
-    void addNewSlope01Glow(bool dontDraw) = win inline, m1 0x5bab88;
-    void addNewSlope02(bool dontDraw) = win inline, m1 0x5baccc;
-    void addNewSlope02Glow(bool dontDraw) = win inline, m1 0x5badd4;
+    void addNewSlope01(bool dontDraw) = win 0x29fb00, m1 0x5baa80;
+    void addNewSlope01Glow(bool dontDraw) = win 0x29fbc0, m1 0x5bab88;
+    void addNewSlope02(bool dontDraw) = win 0x29fdd0, m1 0x5baccc;
+    void addNewSlope02Glow(bool dontDraw) = win 0x29fe90, m1 0x5badd4;
     void addRotation(float rotation) = win 0x294e90;
     void addRotation(float rotationX, float rotationY) = win inline, imac 0x68d5b0, m1 0x5ad684, ios inline;
     void addToColorGroup(int group) = win 0x299a20, imac 0x68fe10, m1 0x5b0030;
@@ -8975,7 +8975,7 @@ class GameToolbox {
     static TodoReturn createOnOffSprite(char const*, bool);
     static TodoReturn createOnOffSprite(char const*, bool, cocos2d::ccColor3B, unsigned char);
     static cocos2d::CCSprite* createProgressBar(float, int, cocos2d::ccColor3B) = win 0x6f2b0, m1 0x44a43c;
-    static CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) = win inline, imac 0x4eb470, m1 0x4496b4;
+    static CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) = win 0x6e430, imac 0x4eb470, m1 0x4496b4;
     static CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, float buttonScale, float maxLabelScale, float maxLabelWidth, cocos2d::CCPoint labelOffset, char const* font, bool labelTop, int labelTag, cocos2d::CCArray* container) = win 0x6e5b0, imac 0x4eb5a0, m1 0x4497f0;
     static TodoReturn directoryExists(std::string const&);
     static bool doWeHaveInternet() = win inline, imac 0x4e9640, m1 0x447ad0;
@@ -9059,7 +9059,7 @@ class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     ~GauntletLayer() = win inline, imac 0x37d400, ios 0x2ce1f4;
 
     static GauntletLayer* create(GauntletType type) = win inline;
-    static cocos2d::CCScene* scene(GauntletType type);
+    static cocos2d::CCScene* scene(GauntletType type) = win 0x2fab50;
 
     virtual void keyBackClicked() = win 0x2fd280, imac 0x37fb90, m1 0x30b1dc, ios 0x2cff1c;
     virtual void loadLevelsFinished(cocos2d::CCArray* levels, char const* key, int type) = win 0x2fb6a0, imac 0x37f140, m1 0x30a6c4, ios 0x2cf87c;
@@ -10769,7 +10769,7 @@ class GJFriendRequest : cocos2d::CCNode {
 [[link(android), depends(EditorBuildStats)]]
 class GJGameLevel : cocos2d::CCNode {
     GJGameLevel() = win 0x217820, imac 0x590e80, m1 0x4e12a4, ios inline, android inline;
-    ~GJGameLevel() = win inline, imac 0x5826d0, m1 0x4d4384, ios 0xce268;
+    ~GJGameLevel() = win 0x261b40, imac 0x5826d0, m1 0x4d4384, ios 0xce268;
 
     static GJGameLevel* create() = win inline, imac 0x53e5d0, m1 0x4955ec;
     static GJGameLevel* create(cocos2d::CCDictionary* dict, bool download) = win 0x261d00, imac 0x540c90, m1 0x4d6db0;
@@ -11950,14 +11950,14 @@ class GJOptionsLayer : SetupTriggerPopup {
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, imac 0x287820, m1 0x22c4f8;
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x39b1a0;
     int countForPage(int page) = win 0x39b760;
-    CCMenuItemToggler* getToggleButton(int id) = ios inline;
+    CCMenuItemToggler* getToggleButton(int id) = win 0x39af90, ios inline;
     void goToPage(int page) = win 0x39bd20;
     void incrementCountForPage(int page) = win 0x39b850;
     const char* infoKey(int index) = win inline, ios inline;
     bool init(int, float) = win 0x39ac30;
     cocos2d::CCLayer* layerForPage(int page) = win 0x39bb30;
     const char* layerKey(int page) = win inline, imac 0x7096b0, ios inline;
-    cocos2d::CCPoint nextPosition(int page) = win inline, imac 0x287830, m1 0x22c4fc;
+    cocos2d::CCPoint nextPosition(int page) = win 0x39b640, imac 0x287830, m1 0x22c4fc;
     const char* objectKey(int page) = win inline, m1 0x77b374, ios inline;
     cocos2d::CCArray* objectsForPage(int page) = win 0x39b970;
     void offsetToNextPage() = win inline, imac 0x287020, m1 0x22be00, ios inline;
@@ -12937,7 +12937,7 @@ class GJTransformControl : cocos2d::CCLayer {
     GJTransformControl() = win inline, imac 0x647df0, m1 0x5833b4;
     ~GJTransformControl() = win inline, ios 0x1597ec;
 
-    static GJTransformControl* create() = win inline, imac 0x6d5740;
+    static GJTransformControl* create() = win 0x1a4db0, imac 0x6d5740;
 
     virtual bool init() = win 0x1a4fb0, imac 0x643dd0, m1 0x57fb54, ios 0x159898;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1a6f20, imac 0x645780, m1 0x581274, ios 0x15adf4;
@@ -19549,7 +19549,7 @@ class ScrollingLayer : cocos2d::CCLayerColor {
     ScrollingLayer() = imac 0x7ffd70, m1 0x700854, inline;
     virtual ~ScrollingLayer() = win 0x83870, imac 0x144eb0, m1 0x1181f0;
 
-    static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win inline, imac 0x7ff550, m1 0x700174;
+    static ScrollingLayer* create(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) = win 0x838b0, imac 0x7ff550, m1 0x700174;
 
     virtual void draw() = win 0x83bc0, imac 0x7ff810, m1 0x700400, ios 0x24e64c;
     virtual void visit() = win 0x83c80, imac 0x7ff8e0, m1 0x7004a4, ios 0x24e6f0;
@@ -23175,7 +23175,7 @@ class Slider : cocos2d::CCLayer {
     void setSnap(float, float);
     void setSnapStep(float);
     void setSnapStepCalc(float, float, float);
-    void setValue(float val) = win inline, imac 0x2efa70, m1 0x285770, ios 0x38aa84;
+    void setValue(float val) = win 0x849b0, imac 0x2efa70, m1 0x285770, ios 0x38aa84;
     void sliderBegan() = win inline, imac 0x2eedf0, m1 0x284c4c, ios inline;
     void sliderEnded() = win inline, imac 0x2eef10, m1 0x284d58, ios inline;
     void updateBar() = win 0x84a50, imac 0x2ef230, m1 0x285008, ios 0x38a5b8;
@@ -23203,7 +23203,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
     static SliderThumb* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0x2ee300, m1 0x284268, ios 0x389d98;
 
     float getRawValue() = win 0x83f90, imac 0x2ee5a0, m1 0x2844c4, ios 0x38a0ec;
-    float getValue() = win 0x83f90, imac 0x2ee5a0, m1 0x2844c4, ios 0x389ef8;
+    float getValue() = win 0x84020, imac 0x2ee5a0, m1 0x2844c4, ios 0x389ef8;
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0xb9c0, m1 0x284370, ios inline;
     void setMaxOffset(float offset) = win inline, imac 0x2ee7e0, m1 0x2846c0;
     void setRotated(bool rotated) = win inline, imac 0x2ee450, m1 0xfed8;
@@ -23966,7 +23966,7 @@ class TableView : CCScrollLayerExt, CCScrollLayerExtDelegate {
 
 [[link(android), depends(CCIndexPath)]]
 class TableViewCell : cocos2d::CCLayer {
-    TableViewCell(char const* identifier, float width, float height) = win inline, imac 0x7037a0, m1 0x614b24, ios 0x377a8;
+    TableViewCell(char const* identifier, float width, float height) = win 0x89ab0, imac 0x7037a0, m1 0x614b24, ios 0x377a8;
     ~TableViewCell() = win 0x89d10, imac 0x703aa0, m1 0x614d14, ios 0x37980;
 
     void updateVisibility() = win inline, imac 0x703d30, m1 0x614fa4;

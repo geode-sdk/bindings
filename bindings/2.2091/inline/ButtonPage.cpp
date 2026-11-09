@@ -6,16 +6,6 @@ ButtonPage::ButtonPage() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-ButtonPage* ButtonPage::create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) {
-    auto ret = new ButtonPage();
-    if (ret->init(objects, position, rows, spacing)) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
-
 bool ButtonPage::init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) {
     if (!cocos2d::CCLayer::init()) return false;
 

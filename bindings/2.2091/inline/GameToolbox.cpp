@@ -168,10 +168,6 @@ bool GameToolbox::saveStringToFile(std::string const& path, std::string const& c
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-CCMenuItemToggler* GameToolbox::createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) {
-    return GameToolbox::createToggleButton(label, selector, state, menu, position, parent, labelParent, .7f, .5f, 80.f, { 8.f, 0.f }, "bigFont.fnt", false, 0, container);
-}
-
 bool GameToolbox::doWeHaveInternet() {
     if (PlatformToolbox::isNetworkAvailable()) return true;
     FLAlertLayer::create(nullptr, "Error", "No Internet Connection.", "OK", nullptr)->show();

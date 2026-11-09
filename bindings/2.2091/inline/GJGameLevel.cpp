@@ -96,10 +96,6 @@ bool GJGameLevel::shouldCheatReset() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-GJGameLevel::~GJGameLevel() {
-    CC_SAFE_RELEASE(m_lastBuildSave);
-}
-
 GJGameLevel* GJGameLevel::create() {
 	auto ret = new GJGameLevel();
     if (ret->init()) {

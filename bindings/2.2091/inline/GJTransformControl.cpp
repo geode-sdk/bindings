@@ -59,16 +59,6 @@ GJTransformControl::~GJTransformControl() {
     CC_SAFE_RELEASE(m_objects);
 }
 
-GJTransformControl* GJTransformControl::create() {
-    auto ret = new GJTransformControl();
-    if (ret->init()) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
-
 void GJTransformControl::loadFromState(GJTransformState& state) {
     m_rotationX = state.m_transformRotationX;
     m_rotationY = state.m_transformRotationY;

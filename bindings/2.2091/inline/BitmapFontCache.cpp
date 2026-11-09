@@ -25,14 +25,6 @@ void BitmapFontCache::purgeSharedFontCache() {
     }
 }
 
-BitmapFontCache* BitmapFontCache::sharedFontCache() {
-    auto** instancePtr = reinterpret_cast<BitmapFontCache**>(geode::base::get() + 0x90bf50);
-    if (!*instancePtr) {
-        *instancePtr = new BitmapFontCache();
-        (*instancePtr)->init();
-    }
-    return *instancePtr;
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

@@ -24,16 +24,6 @@ ChallengesPage::~ChallengesPage() {
     CC_SAFE_RELEASE(m_dots);
 }
 
-ChallengesPage* ChallengesPage::create() {
-    auto ret = new ChallengesPage();
-    if (ret->init()) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
-
 void ChallengesPage::FLAlert_Clicked(FLAlertLayer* layer, bool btn2) {}
 #endif
 

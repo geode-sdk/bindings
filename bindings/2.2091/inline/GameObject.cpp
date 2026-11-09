@@ -217,36 +217,6 @@ void GameObject::particleWasActivated() {}
 
 bool GameObject::shouldDrawEditorHitbox() { return true; }
 
-void GameObject::addNewSlope01(bool dontDraw) {
-    if (dontDraw) this->setDontDraw(true);
-    auto sprite = this->addCustomChild("blockOutline_14new_001.png", { 0.f, 0.f }, 2);
-    sprite->setRotation(-45.f);
-}
-
-void GameObject::addNewSlope01Glow(bool dontDraw) {
-    if (!m_glowSprite) return;
-    if (dontDraw) m_glowSprite->setDontDraw(true);
-    auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(this->getGlowFrame("blockOutline_14new_001.png").c_str());
-    sprite->setRotation(-45.f);
-    m_glowSprite->addChild(sprite);
-    sprite->setPosition(m_glowSprite->convertToNodeSpace({ 0.f, 0.f }));
-}
-
-void GameObject::addNewSlope02(bool dontDraw) {
-    if (dontDraw) this->setDontDraw(true);
-    auto sprite = this->addCustomChild("blockOutline_15new_001.png", { 0.f, 0.f }, 2);
-    sprite->setRotation(-26.5f);
-}
-
-void GameObject::addNewSlope02Glow(bool dontDraw) {
-    if (!m_glowSprite) return;
-    if (dontDraw) m_glowSprite->setDontDraw(true);
-    auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(this->getGlowFrame("blockOutline_15new_001.png").c_str());
-    sprite->setRotation(-26.5f);
-    m_glowSprite->addChild(sprite);
-    sprite->setPosition(m_glowSprite->convertToNodeSpace({ 0.f, 0.f }));
-}
-
 void GameObject::addToCustomScaleX(float scale) {
     m_isDirty = true;
     m_isObjectRectDirty = true;

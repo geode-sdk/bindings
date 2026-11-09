@@ -831,15 +831,6 @@ bool GameLevelManager::isPastDailyCopy(GJGameLevel* level) {
         GJTimedLevelType::Daily
     );
 }
-
-GameLevelManager* GameLevelManager::sharedState() {
-    auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x90bfb0);
-    if(!ref) {
-        ref = new GameLevelManager();
-        ref->init();
-    }
-    return ref;
-}
 #endif
 
 #if defined(GEODE_IS_IOS)
