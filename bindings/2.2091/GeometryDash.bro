@@ -749,7 +749,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     void loadingIsFinished() = win inline, ios 0x3070bc;
     void pauseGame() = win 0x989f0;
     void pauseSound() = win inline;
-    void platformShutdown() = imac 0x73b650, m1 0x6490f0, ios inline;
+    void platformShutdown() = win 0x97c90, imac 0x73b650, m1 0x6490f0, ios inline;
     void resumeSound() = win 0x9999999;
     void setIdleTimerDisabled(bool disabled) = win inline, m1 0x421e10, ios inline;
     void setupGLView() = win 0x97cc0, imac 0x26aa10, m1 0x6490f4, ios 0x306e04;
@@ -11363,6 +11363,7 @@ class GJGradientLayer : cocos2d::CCLayerGradient {
 
 [[link(android)]]
 class GJGroundLayer : cocos2d::CCLayer {
+    GJGroundLayer() = win 0x386b70;
     virtual ~GJGroundLayer() = win 0x386ca0, imac 0x6bd990, m1 0x5d6708, ios 0x2f230;
 
     static GJGroundLayer* create(int groundID, int lineType) = win 0x386d00, imac 0x6bda10, m1 0x5d6734;
@@ -12258,9 +12259,9 @@ class GJRewardObject : cocos2d::CCObject {
 
 [[link(android)]]
 class GJRobotSprite : CCAnimatedSprite {
+    GJRobotSprite() = win 0x3ac550;
     virtual ~GJRobotSprite() = win 0x3ac690, imac 0x6ad450, m1 0x5c7924, ios 0x2dc2e0;
 
-    // GJRobotSprite();
     static GJRobotSprite* create(int frame) = win 0x3ac740, imac 0x6ad560, m1 0x5c798c;
 
     virtual void setOpacity(unsigned char opacity) = win 0x3ad4c0, imac 0x6ae920, m1 0x5c8ae0, ios 0x2dd0fc;
@@ -17397,9 +17398,9 @@ class ParentalPrivacyPopup : UploadActionPopup, GJAccountSettingsDelegate, UserI
     virtual void updateSettingsFinished() = win 0x4d5720, ios 0x118e84, m1 0x77c7a0, imac 0x887c90;
     virtual void updateSettingsFailed() = win 0x4d5eb0, ios 0x119010, m1 0x77c974, imac 0x887ec0;
 
-    TodoReturn checkPending();
+    static void checkPending() = win 0x4d42b0;
     bool init(bool);
-    TodoReturn snapshotIsForOtherAccount();
+    static bool snapshotIsForOtherAccount() = win 0x4d4570;
     void startWithScore(GJUserScore*) = win 0x4d46e0;
 }
 
@@ -22986,7 +22987,7 @@ class ShareLevelLayer : FLAlertLayer {
     void selectRating(cocos2d::CCObject* sender) = win 0x6319b0, imac 0x26dd00, m1 0x214f14;
     TodoReturn setupNotifyToggles(cocos2d::CCPoint, float, float);
     void setupStars() = win 0x631390, imac 0x26d580, m1 0x2143cc;
-    TodoReturn updateNotifyToggles();
+    void updateNotifyToggles() = win 0x631890;
 
     GJGameLevel* m_level;
     int m_starsRequested;
@@ -25021,6 +25022,7 @@ class UploadActionDelegate {
 
 [[link(android)]]
 class UploadActionPopup : FLAlertLayer {
+    UploadActionPopup() = win 0x399380;
     virtual ~UploadActionPopup() = win 0x3a0ce0, ios 0x3770ec;
 
     static UploadActionPopup* create(UploadPopupDelegate* delegate, std::string str) = win 0x3a0d60;
