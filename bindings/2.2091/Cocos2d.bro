@@ -4508,15 +4508,16 @@ class cocos2d::CCTextureETC : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCTexturePVR : cocos2d::CCObject {
-    CCTexturePVR() = win 0x143f80, imac 0x2716a0, m1 0x21830c, ios 0x4150f0;
+    CCTexturePVR() = win 0xad670, imac 0x2716a0, m1 0x21830c, ios 0x4150f0;
     virtual ~CCTexturePVR() = win inline, imac 0x2716d0, m1 0x218338, ios 0x41511c;
 
     static cocos2d::CCTexturePVR* create(char const*) = win inline, imac 0x272380, m1 0x218e54, ios inline;
 
-    bool createGLTexture() = win 0x144020, imac 0x271d10, m1 0x218880, ios 0x415558;
-    bool initWithContentsOfFile(char const*) = win 0x9999999, imac 0x272050, m1 0x218b40, ios 0x415728;
-    bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0x9999999, imac 0x2717c0, m1 0x218408, ios 0x415178;
-    bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0x144880, imac 0x271a30, m1 0x218628, ios 0x415388;
+    bool createGLTexture() = win 0xad710, imac 0x271d10, m1 0x218880, ios 0x415558;
+    // On Windows, this releases the object on failure.
+    bool initWithContentsOfFile(char const*) = win 0xad910, imac 0x272050, m1 0x218b40, ios 0x415728;
+    bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0xadc60, imac 0x2717c0, m1 0x218408, ios 0x415178;
+    bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0xadea0, imac 0x271a30, m1 0x218628, ios 0x415388;
 }
 
 [[link(win, android)]]
