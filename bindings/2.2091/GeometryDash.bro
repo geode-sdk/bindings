@@ -4284,7 +4284,7 @@ class EasingSelectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditButtonBar : cocos2d::CCNode {
-    EditButtonbar() = ios 0x4a3b88;
+    EditButtonBar() = ios 0x4a3b88;
     virtual ~EditButtonBar() = win 0x176e90, ios 0x4a2df4;
 
     static EditButtonBar* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int tab, bool hasCreateItems, int columns, int rows) = win 0x176f00, imac 0x6b3f50, m1 0x5cd808, ios 0x4a2e0c;
