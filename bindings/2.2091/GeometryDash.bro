@@ -5755,7 +5755,7 @@ class EmoteSprite : cocos2d::CCSprite {
     EmoteSprite() = win inline;
 
     static EmoteSprite* createWithDef(EmoteDef const*) = win 0x7F0E0;
-    static EmoteSprite* createWithName(std::string const&) = win 0x7f1e0;
+    static EmoteSprite* createWithName(std::string const&) = win 0x7f1e0, m1 0x7eb598, imac 0x904590;
 
     static void attachToLabel(cocos2d::CCLabelBMFont* label, cocos2d::CCNode* parent, std::vector<EmoteToken> const& tokens, float heightFactor) = win 0x80140;
     static EmoteDef* defForName(std::string const& name) = win 0x7EFA0;
