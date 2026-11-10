@@ -1,10 +1,12 @@
 #include <Geode/binding/OptionsLayer.hpp>
 #include <Geode/binding/VideoOptionsLayer.hpp>
 #include <Geode/binding/GameManager.hpp>
+#include <Geode/binding/CCMenuItemToggler.hpp>
 #include <Geode/mapping/CCDelayTime.hpp>
 #include <Geode/mapping/CCSequence.hpp>
 #include <Geode/mapping/CCCallFunc.hpp>
 #include <Geode/mapping/CCLabelBMFont.hpp>
+#include <Geode/mapping/CCMenu.hpp>
 
 OptionsLayer::OptionsLayer() {
     m_optionsMenu = nullptr;
