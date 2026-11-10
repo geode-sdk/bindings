@@ -316,11 +316,6 @@ void PlayerObject::collidedWithSlope(float dt, GameObject* object, bool skipPre)
     }
 }
 
-void PlayerObject::deactivateParticle() {
-    if (m_hasGroundParticles) m_playerGroundParticles->stopSystem();
-    m_hasGroundParticles = false;
-}
-
 void PlayerObject::deactivateStreak(bool stop) {
     if (!m_alwaysShowStreak || stop) m_regularTrail->stopStroke();
     if (m_fadeOutStreak) {

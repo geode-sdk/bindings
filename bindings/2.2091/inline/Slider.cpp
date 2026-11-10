@@ -70,11 +70,6 @@ void Slider::hideGroove(bool visibility) {
 void Slider::setBarVisibility(bool visibility) {
     m_sliderBar->setVisible(visibility);
 }
-
-void Slider::setValue(float val) {
-    this->getThumb()->setValue(val);
-    this->updateBar();
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

@@ -12,16 +12,6 @@ SFXFolderObject::~SFXFolderObject() {
     CC_SAFE_RELEASE(m_sfxObjects);
 }
 
-SFXFolderObject* SFXFolderObject::create(int id, std::string name, int folderID) {
-    auto ret = new SFXFolderObject();
-    if (ret->init(id, name, folderID)) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
-
 bool SFXFolderObject::init(int id, std::string name, int folderID) {
     if (!SFXInfoObject::init(id, name, folderID, 0, 0)) return false;
     m_sfxObjects = cocos2d::CCArray::create();

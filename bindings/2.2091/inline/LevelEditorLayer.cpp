@@ -19,7 +19,6 @@
 #include <Geode/binding/StartPosObject.hpp>
 #include <Geode/binding/UILayer.hpp>
 #include <Geode/binding/UndoObject.hpp>
-#include <Geode/binding/SFXTriggerGameObject.hpp>
 
 LevelEditorLayer* LevelEditorLayer::get() {
     return GameManager::sharedState()->m_levelEditorLayer;
@@ -331,52 +330,6 @@ std::string LevelEditorLayer::getLockedLayers() {
     return fmt::to_string(buffer);
 }
 
-int LevelEditorLayer::getNextFreeBlockID(const std::unordered_set<int>& exclude) {
-    std::unordered_set<int> ids;
-    this->addExclusionList(exclude, ids);
-    if (m_levelSettings) {
-        for (auto const& [id, name] : m_levelSettings->getIDNames(3)) ids.insert(id);
-    }
-    for (auto object : geode::cocos::CCArrayExt<EffectGameObject, false>(this->getAllObjects())) {
-        if (object->m_classType == GameObjectClassType::Effect && object->m_objectID == 1816) {
-            ids.insert(object->m_itemID);
-        }
-    }
-    for (int i = 1; i < 1001; i++) {
-        if (ids.find(i) == ids.end()) return i;
-    }
-    return 1000;
-}
-
-int LevelEditorLayer::getNextFreeSFXGroupID(const std::unordered_set<int>& exclude) {
-    std::unordered_set<int> ids;
-    this->addExclusionList(exclude, ids);
-    for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
-        if ((object->m_objectID == 3602 || object->m_objectID == 3603) && object->m_sfxGroup > 0) {
-            ids.insert(object->m_sfxGroup);
-        }
-    }
-    for (int i = 1; i < 1001; i++) {
-        if (ids.find(i) == ids.end()) return i;
-    }
-    return 1000;
-}
-
-int LevelEditorLayer::getNextFreeSFXID(const std::unordered_set<int>& exclude) {
-    std::unordered_set<int> ids;
-    this->addExclusionList(exclude, ids);
-    for (auto object : geode::cocos::CCArrayExt<SFXTriggerGameObject, false>(this->getAllObjects())) {
-        if (object->m_objectID == 3602) {
-            auto id = object->getUniqueSFXID();
-            if (id > 0) ids.insert(id);
-        }
-    }
-    for (int i = 1; i < 1001; i++) {
-        if (ids.find(i) == ids.end()) return i;
-    }
-    return 1000;
-}
-
 cocos2d::CCPoint LevelEditorLayer::getSavedEditorPosition(int index) {
     return index < 10 ? m_savedPositions[index] : cocos2d::CCPoint { 0.f, 0.f };
 }
@@ -600,22 +553,6 @@ void LevelEditorLayer::updateGridLayer() {
     }
 }
 
-bool LevelEditorLayer::validGroup(GameObject* object, bool checkLockedLayers) {
-    int currentLayer = m_currentLayer;
-    int editorLayer = object->m_editorLayer;
-    int editorLayer2 = object->m_editorLayer2;
-    if (editorLayer2 == 0) editorLayer2 = -1;
-    auto result = currentLayer == -1 || editorLayer2 == currentLayer || editorLayer == currentLayer;
-    if (checkLockedLayers) {
-        editorLayer2 = std::clamp(editorLayer2, -1, 9999);
-        result = false;
-        if (currentLayer == -1 || editorLayer2 == currentLayer || editorLayer == currentLayer) {
-            editorLayer = std::clamp(editorLayer, 0, 9999);
-            result = !m_lockedLayers[editorLayer] && (editorLayer2 == -1 || !m_lockedLayers[editorLayer2]);
-        }
-    }
-    return result;
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

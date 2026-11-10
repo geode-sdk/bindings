@@ -1,7 +1,5 @@
 #include <Geode/mapping/CCObject.hpp>
-#include <Geode/mapping/CCString.hpp>
 #include <Geode/binding/SetupCameraOffsetTrigger.hpp>
-#include <Geode/binding/CCTextInputNode.hpp>
 #include <Geode/binding/EffectGameObject.hpp>
 #include <algorithm>
 #include <cmath>
@@ -17,21 +15,6 @@ float SetupCameraOffsetTrigger::sliderValueFromPos(int pos) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-void SetupCameraOffsetTrigger::updateDurLabel(bool decimals) {
-    m_disableTextDelegate = true;
-    auto moveTime = m_moveTime;
-    if (moveTime == -99999.f) {
-        m_moveTimeInput->setString("Mixed");
-    }
-    else if (decimals || moveTime - (int)moveTime != 0.f) {
-        m_moveTimeInput->setString(cocos2d::CCString::createWithFormat("%.02f", moveTime)->getCString());
-    }
-    else {
-        m_moveTimeInput->setString(cocos2d::CCString::createWithFormat("%i", (int)moveTime)->getCString());
-    }
-    m_disableTextDelegate = false;
-}
-
 void SetupCameraOffsetTrigger::updateMoveCommandEasing() {
     if (m_gameObject) m_gameObject->m_easingType = m_cameraEasingType;
     else {

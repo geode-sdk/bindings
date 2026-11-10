@@ -1,5 +1,6 @@
 #include <Geode/binding/SFXInfoObject.hpp>
 
+#ifndef GEODE_IS_WINDOWS
 SFXInfoObject::SFXInfoObject() {
     m_sfxID = 0;
     m_folderID = 0;
@@ -8,8 +9,10 @@ SFXInfoObject::SFXInfoObject() {
     m_folder = false;
     m_unk049 = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS)
 bool SFXInfoObject::init(int id, std::string name, int folderID, int size, int duration) {
     m_sfxID = id;
     m_name = name;
@@ -21,17 +24,9 @@ bool SFXInfoObject::init(int id, std::string name, int folderID, int size, int d
 }
 #endif
 
-#if defined(GEODE_IS_WINDOWS)
-SFXInfoObject* SFXInfoObject::create(int id, std::string name, int folderID, int size, int duration) {
-    auto ret = new SFXInfoObject();
-    if (ret->init(id, name, folderID, size, duration)) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
+#endif
 
+#if defined(GEODE_IS_WINDOWS)
 std::string SFXInfoObject::getLowerCaseName() {
     std::string name = m_name;
     for (int i = 0; i < name.size(); i++) {

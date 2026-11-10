@@ -387,10 +387,6 @@ void GameStatsManager::storeChallengeTime(int remaining) {
     m_challengeTime = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
 }
 
-void GameStatsManager::storeEventChest(int eventID, GJRewardItem* item) {
-    if (item) m_eventChest->setObject(item, this->getDailyLevelKey(eventID));
-}
-
 void GameStatsManager::storeOnlineChest(std::string key, GJRewardItem* item) {
     if (item) m_allSpecialChests->setObject(item, key);
 }

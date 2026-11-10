@@ -421,16 +421,6 @@ void GameManager::followTwitch() {
     }
 }
 
-void GameManager::followTwitter() {
-    if (GameToolbox::doWeHaveInternet()) {
-        cocos2d::CCApplication::sharedApplication()->openURL("https://twitter.com/robtopgames");
-        m_clickedTwitter = true;
-        __timeb64 current;
-        _ftime64_s(&current);
-        m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
-    }
-}
-
 const char* GameManager::getBGTexture(int index) {
     index = std::clamp(index, 0, 59);
     this->loadBackground(index);
@@ -540,16 +530,6 @@ void GameManager::joinReddit() {
     if (GameToolbox::doWeHaveInternet()) {
         cocos2d::CCApplication::sharedApplication()->openURL("https://www.reddit.com/r/geometrydash/");
         m_clickedReddit = true;
-        __timeb64 current;
-        _ftime64_s(&current);
-        m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
-    }
-}
-
-void GameManager::likeFacebook() {
-    if (GameToolbox::doWeHaveInternet()) {
-        cocos2d::CCApplication::sharedApplication()->openURL("https://www.facebook.com/geometrydash");
-        m_clickedFacebook = true;
         __timeb64 current;
         _ftime64_s(&current);
         m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
@@ -704,16 +684,6 @@ bool GameManager::safeModeEnabled() {
 void GameManager::startUpdate() {
     cocos2d::CCDirector::sharedDirector()->getScheduler()->scheduleSelector(
         schedule_selector(GameManager::update), this, 0.f, kCCRepeatForever, 0.f, false);
-}
-
-void GameManager::subYouTube() {
-    if (GameToolbox::doWeHaveInternet()) {
-        cocos2d::CCApplication::sharedApplication()->openURL("https://www.youtube.com/user/RobTopGames");
-        m_clickedYouTube = true;
-        __timeb64 current;
-        _ftime64_s(&current);
-        m_socialsDuration = ((current.time & 0xfffff) * 1000 + current.millitm) / 1000.0;
-    }
 }
 
 void GameManager::subSpotlight() {

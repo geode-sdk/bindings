@@ -53,14 +53,6 @@ void GJOptionsLayer::setupOptions() {}
 void GJOptionsLayer::addToggle(char const* title, int id, bool initial, char const* description) {
     addToggleInternal(title, id, initial, description);
 }
-
-cocos2d::CCPoint GJOptionsLayer::nextPosition(int page) {
-    auto winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
-    auto count = this->countForPage(page);
-    cocos2d::CCPoint pos = winSize * .5f + cocos2d::CCPoint { count % 2 == 0 ? -160.f : 80.f, m_offset + 80.f };
-    if (count > 1) pos.y -= floorf(count / 2.f) * m_gap;
-    return pos;
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

@@ -954,10 +954,10 @@ class cocos2d::CCDirector : cocos2d::CCObject, cocos2d::TypeInfo {
 
 [[link(android)]]
 class cocos2d::CCDisplayLinkDirector : cocos2d::CCDirector {
-    virtual void setAnimationInterval(double) = imac 0x4796c0, m1 0x3e3dfc, ios 0x207e3c;
-    virtual void stopAnimation() = imac 0x4796b0, m1 0x3e3df0, ios 0x207e30;
-    virtual void startAnimation() = imac 0x479630, m1 0x3e3d7c, ios 0x207dbc;
-    virtual void mainLoop() = imac 0x479670, m1 0x3e3db8, ios 0x207df8;
+    virtual void setAnimationInterval(double) = win 0xc2c40, imac 0x4796c0, m1 0x3e3dfc, ios 0x207e3c;
+    virtual void stopAnimation() = win 0xc3780, imac 0x4796b0, m1 0x3e3df0, ios 0x207e30;
+    virtual void startAnimation() = win 0xc3740, imac 0x479630, m1 0x3e3d7c, ios 0x207dbc;
+    virtual void mainLoop() = win 0xc22c0, imac 0x479670, m1 0x3e3db8, ios 0x207df8;
 }
 
 [[link(win, android)]]
@@ -1638,12 +1638,12 @@ class cocos2d::CCGLProgram : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCGrabber : cocos2d::CCObject {
-    CCGrabber() = imac 0x6d0fe0, m1 0x5e82b8, ios inline;
+    CCGrabber() = win 0x22460, imac 0x6d0fe0, m1 0x5e82b8, ios inline;
     virtual ~CCGrabber() = win inline, imac 0x6d1140, m1 0x5e8408, ios inline;
 
-    void afterRender(cocos2d::CCTexture2D*) = imac 0x6d1100, m1 0x5e83d8, ios inline;
-    void beforeRender(cocos2d::CCTexture2D*) = imac 0x6d10a0, m1 0x5e8380, ios inline;
-    void grab(cocos2d::CCTexture2D*) = imac 0x6d1030, m1 0x5e8310, ios inline;
+    void afterRender(cocos2d::CCTexture2D*) = win 0x22510, imac 0x6d1100, m1 0x5e83d8, ios inline;
+    void beforeRender(cocos2d::CCTexture2D*) = win 0x22550, imac 0x6d10a0, m1 0x5e8380, ios inline;
+    void grab(cocos2d::CCTexture2D*) = win 0x225b0, imac 0x6d1030, m1 0x5e8310, ios inline;
 }
 
 [[link(win, android)]]
@@ -3592,8 +3592,8 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     void listenToBackground(cocos2d::CCObject*) = imac 0x6c7e90, m1 0x5e0138, ios inline;
     void listenToForeground(cocos2d::CCObject*) = imac 0x6c7ea0, m1 0x5e013c, ios inline;
     cocos2d::CCImage* newCCImage(bool flipImage) = imac 0x6c9080, m1 0x5e116c, ios inline;
-    bool saveToFile(char const*) = inline;
-    bool saveToFile(char const*, cocos2d::eImageFormat) = inline;
+    bool saveToFile(char const*) = mac inline, ios inline;
+    bool saveToFile(char const*, cocos2d::eImageFormat) = mac inline, ios inline;
     void setAutoDraw(bool) = imac 0x6c7f90, ios inline;
     void setClearColor(cocos2d::ccColor4F const&) = imac 0x6c7f30, m1 0x5e01a4, ios inline;
     void setClearDepth(float) = imac 0x6c7f50, m1 0x5e01bc, ios inline;
@@ -3799,7 +3799,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
 class cocos2d::CCSchedulerScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
     virtual ~CCSchedulerScriptHandlerEntry() = win inline, imac 0x306e60, m1 0x29a3f0;
 
-    static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool) = imac 0x306d00, m1 0x29a28c;
+    static cocos2d::CCSchedulerScriptHandlerEntry* create(int, float, bool) = win 0xba2f0, imac 0x306d00, m1 0x29a28c;
 
     bool init(float, bool) = win inline, imac 0x306de0, m1 0x29a36c;
 }
@@ -3816,11 +3816,11 @@ class cocos2d::CCScriptEngineManager {
     void setScriptEngine(cocos2d::CCScriptEngineProtocol* engine) = imac 0x307210, m1 0x29a7b4, ios inline;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class cocos2d::CCScriptHandlerEntry : cocos2d::CCObject {
-    virtual ~CCScriptHandlerEntry() = imac 0x306c10, m1 0x29a18c, ios 0x311408;
+    virtual ~CCScriptHandlerEntry() = win 0xba070, imac 0x306c10, m1 0x29a18c, ios 0x311408;
 
-    static cocos2d::CCScriptHandlerEntry* create(int) = imac 0x306bb0, m1 0x29a11c, ios inline;
+    static cocos2d::CCScriptHandlerEntry* create(int) = win 0xba3d0, imac 0x306bb0, m1 0x29a11c, ios inline;
 }
 
 [[link(win, android)]]
@@ -4508,15 +4508,15 @@ class cocos2d::CCTextureETC : cocos2d::CCObject {
 
 [[link(android)]]
 class cocos2d::CCTexturePVR : cocos2d::CCObject {
-    CCTexturePVR() = win 0x143f80, imac 0x2716a0, m1 0x21830c, ios 0x4150f0;
+    CCTexturePVR() = win 0xad670, imac 0x2716a0, m1 0x21830c, ios 0x4150f0;
     virtual ~CCTexturePVR() = win inline, imac 0x2716d0, m1 0x218338, ios 0x41511c;
 
     static cocos2d::CCTexturePVR* create(char const*) = win inline, imac 0x272380, m1 0x218e54, ios inline;
 
-    bool createGLTexture() = win 0x144020, imac 0x271d10, m1 0x218880, ios 0x415558;
-    bool initWithContentsOfFile(char const*) = win 0x9999999, imac 0x272050, m1 0x218b40, ios 0x415728;
-    bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0x9999999, imac 0x2717c0, m1 0x218408, ios 0x415178;
-    bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0x144880, imac 0x271a30, m1 0x218628, ios 0x415388;
+    bool createGLTexture() = win 0xad710, imac 0x271d10, m1 0x218880, ios 0x415558;
+    bool initWithContentsOfFile(char const*) = win 0xad910, imac 0x272050, m1 0x218b40, ios 0x415728;
+    bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0xadc60, imac 0x2717c0, m1 0x218408, ios 0x415178;
+    bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0xadea0, imac 0x271a30, m1 0x218628, ios 0x415388;
 }
 
 [[link(win, android)]]
@@ -4851,11 +4851,11 @@ class cocos2d::CCTouchHandler : cocos2d::CCObject {
     int m_nEnabledSelectors;
 }
 
-[[link(win, android)]]
+[[link(android)]]
 class cocos2d::CCTouchScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
     virtual ~CCTouchScriptHandlerEntry() = imac 0x307060, m1 0x29a5e4, ios 0x31150c;
 
-    static cocos2d::CCTouchScriptHandlerEntry* create(int, bool, int, bool) = imac 0x306fb0, m1 0x29a538, ios 0x311474;
+    static cocos2d::CCTouchScriptHandlerEntry* create(int, bool, int, bool) = win 0xba440, imac 0x306fb0, m1 0x29a538, ios 0x311474;
 
     bool init(bool, int, bool) = imac 0x307040, m1 0x29a5d0, ios inline;
 }
@@ -5473,8 +5473,8 @@ class cocos2d::extension::CCControlButton : cocos2d::extension::CCControl {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl {
-    CCControlColourPicker() = inline;
-    virtual ~CCControlColourPicker() = inline;
+    CCControlColourPicker() = android inline, mac inline, ios inline;
+    virtual ~CCControlColourPicker() = mac inline, ios inline;
 
     static cocos2d::extension::CCControlColourPicker* colourPicker() = imac 0x341470, m1 0x2d2ce4, ios 0x2437ec;
 
@@ -5483,7 +5483,7 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
     virtual void setColorValue(cocos2d::ccColor3B const&) = imac 0x341540, m1 0x2d2d78, ios 0x243880;
 
     void colourSliderValueChanged(cocos2d::CCObject*, unsigned int) = imac 0x341240, m1 0x2d2b34, ios 0x2436d4;
-    cocos2d::ccColor3B const& getColorValue() const = inline;
+    cocos2d::ccColor3B const& getColorValue() const = android inline, mac inline, ios inline;
     void hueSliderValueChanged(cocos2d::CCObject*, unsigned int) = imac 0x341110, m1 0x2d2a50, ios 0x2435f4;
     void updateControlPicker() = imac 0x341690, m1 0x2d2e70, ios inline;
     void updateHueAndControlPicker() = imac 0x341320, m1 0x2d2bf0, ios 0x24378c;
@@ -5681,8 +5681,8 @@ class cocos2d::extension::CCEditBox : cocos2d::extension::CCControlButton, cocos
 
 [[link(win, android)]]
 class cocos2d::extension::CCHttpClient : cocos2d::CCObject {
-    CCHttpClient() = imac 0x426020, m1 0x39d5ec, ios 0x2ddd30;
-    virtual ~CCHttpClient() = imac 0x426200, m1 0x39d7c8, ios 0x2ddee4;
+    private CCHttpClient() = imac 0x426020, m1 0x39d5ec, ios 0x2ddd30;
+    private virtual ~CCHttpClient() = imac 0x426200, m1 0x39d7c8, ios 0x2ddee4;
 
     static void destroyInstance() = imac 0x426380, m1 0x39d93c, ios inline;
     static cocos2d::extension::CCHttpClient* getInstance() = imac 0x426330, m1 0x39d8e0, ios 0x2ddf80;

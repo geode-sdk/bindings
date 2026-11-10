@@ -246,16 +246,6 @@ int MusicDownloadManager::getSFXDownloadProgress(int id) {
     return -1;
 }
 
-SFXFolderObject* MusicDownloadManager::getSFXFolderObjectForID(int id) {
-    if (auto sfxObject = sharedState()->getSFXObject(id)) {
-        if (sfxObject->m_folder) return static_cast<SFXFolderObject*>(sfxObject);
-        if (auto folderObject = static_cast<SFXFolderObject*>(sharedState()->getSFXObject(sfxObject->m_folderID))) {
-            if (folderObject->m_folder) return folderObject;
-        }
-    }
-    return nullptr;
-}
-
 SFXInfoObject* MusicDownloadManager::getSFXObject(int id) {
     return m_sfxObjects ? static_cast<SFXInfoObject*>(m_sfxObjects->objectForKey(id)) : nullptr;
 }

@@ -31,14 +31,6 @@ void GJGameState::updateTweenAction(float value, int action) {
     }
 }
 
-void GJGameState::updateTweenActions(float tweenValue) {
-    for (auto it = m_tweenActions.begin(); it != m_tweenActions.end();) {
-        it->second.step(tweenValue);
-        this->updateTweenAction(it->second.m_currentValue, it->first);
-        if (it->second.m_finished) it = m_tweenActions.erase(it);
-        else ++it;
-    }
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

@@ -29,18 +29,3 @@ SFXBrowser::SFXBrowser() {
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
-
-#if defined(GEODE_IS_WINDOWS)
-
-// TODO: 2.209
-SFXBrowser* SFXBrowser::create(int id, int p0) {
-    auto ret = new SFXBrowser();
-    if (ret->init(id, p0)) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
-#endif
-

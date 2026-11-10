@@ -24,14 +24,6 @@ GJRotationControl* GJRotationControl::create() {
     return nullptr;
 }
 
-void GJRotationControl::setAngle(float angle) {
-    m_startingRotation = angle;
-    m_currentRotation = angle;
-    m_controlPosition.x = cosf(-angle * (M_PI / 180.f)) * 60.f;
-    m_controlPosition.y = sinf(-angle * (M_PI / 180.f)) * 60.f;
-    m_controlSprite->setPosition(m_controlPosition);
-}
-
 void GJRotationControl::updateSliderPosition(cocos2d::CCPoint position) {
     auto angle = atan2f(position.y - m_cursorDifference.y, position.x - m_cursorDifference.x);
     m_controlPosition.x = cosf(angle) * 60.f;

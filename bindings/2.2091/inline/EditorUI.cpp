@@ -5,7 +5,6 @@
 #include <Geode/binding/CCCircleWave.hpp>
 #include <Geode/binding/CreateMenuItem.hpp>
 #include <Geode/binding/EditorSFXManager.hpp>
-#include <Geode/binding/MusicDownloadManager.hpp>
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/binding/GJRotationControl.hpp>
 #include <Geode/binding/GJScaleControl.hpp>
@@ -89,10 +88,12 @@ CCMenuItemSpriteExtra* EditorUI::getSpriteButton(char const* spriteFrameName, co
     return this->getSpriteButton(spriteFrameName, selector, menu, scale, 1, {0, 0}, 0.0f);
 }
 
+#if defined(GEODE_IS_IOS)
 GJTransformState& EditorUI::getTransformState() {
     m_transformControl->saveToState(m_transformState);
     return m_transformState;
 }
+#endif
 
 bool EditorUI::isLiveColorSelectTrigger(GameObject* object) {
     return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == 1006);
@@ -212,25 +213,6 @@ void EditorUI::updateGroupIDBtn2() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-EditorUI::~EditorUI() {
-    MusicDownloadManager::sharedState()->removeMusicDownloadDelegate(this);
-    CC_SAFE_RELEASE(m_selectedObjects);
-    CC_SAFE_RELEASE(m_deleteObjects);
-    CC_SAFE_RELEASE(m_createButtonArray);
-    CC_SAFE_RELEASE(m_customObjectButtonArray);
-    CC_SAFE_RELEASE(m_createButtonBars);
-    CC_SAFE_RELEASE(m_tabsArray);
-    CC_SAFE_RELEASE(m_editButtonDict);
-    CC_SAFE_RELEASE(m_rotationControl);
-    CC_SAFE_RELEASE(m_scaleControl);
-    CC_SAFE_RELEASE(m_transformControl);
-    CC_SAFE_RELEASE(m_snapPositions);
-    CC_SAFE_RELEASE(m_uiItems);
-    CC_SAFE_RELEASE(m_customTabControls);
-    CC_SAFE_RELEASE(m_dpadArrowButtons);
-    CC_SAFE_RELEASE(m_dpadStepButtons);
-}
-
 EditorUI* EditorUI::create(LevelEditorLayer* editorLayer) {
     auto ret = new EditorUI();
     if (ret->init(editorLayer)) {
@@ -440,19 +422,6 @@ int EditorUI::edgeForObject(int id, int type) {
         }
     }
     return 0;
-}
-
-int EditorUI::editorLayerForArray(cocos2d::CCArray* objects, bool layer2) {
-    if (!objects) return 0;
-    auto previousLayer = -1;
-    auto currentLayer = -1;
-    for (int i = 0; i < objects->count(); i++) {
-        auto obj = static_cast<GameObject*>(objects->objectAtIndex(i));
-        currentLayer = layer2 ? obj->m_editorLayer2 : obj->m_editorLayer;
-        if (previousLayer != -1 && previousLayer != currentLayer) return 0;
-        previousLayer = currentLayer;
-    }
-    return currentLayer != -1 ? currentLayer : 0;
 }
 
 CreateMenuItem* EditorUI::getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) {

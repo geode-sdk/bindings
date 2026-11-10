@@ -217,36 +217,6 @@ void GameObject::particleWasActivated() {}
 
 bool GameObject::shouldDrawEditorHitbox() { return true; }
 
-void GameObject::addNewSlope01(bool dontDraw) {
-    if (dontDraw) this->setDontDraw(true);
-    auto sprite = this->addCustomChild("blockOutline_14new_001.png", { 0.f, 0.f }, 2);
-    sprite->setRotation(-45.f);
-}
-
-void GameObject::addNewSlope01Glow(bool dontDraw) {
-    if (!m_glowSprite) return;
-    if (dontDraw) m_glowSprite->setDontDraw(true);
-    auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(this->getGlowFrame("blockOutline_14new_001.png").c_str());
-    sprite->setRotation(-45.f);
-    m_glowSprite->addChild(sprite);
-    sprite->setPosition(m_glowSprite->convertToNodeSpace({ 0.f, 0.f }));
-}
-
-void GameObject::addNewSlope02(bool dontDraw) {
-    if (dontDraw) this->setDontDraw(true);
-    auto sprite = this->addCustomChild("blockOutline_15new_001.png", { 0.f, 0.f }, 2);
-    sprite->setRotation(-26.5f);
-}
-
-void GameObject::addNewSlope02Glow(bool dontDraw) {
-    if (!m_glowSprite) return;
-    if (dontDraw) m_glowSprite->setDontDraw(true);
-    auto sprite = cocos2d::CCSprite::createWithSpriteFrameName(this->getGlowFrame("blockOutline_15new_001.png").c_str());
-    sprite->setRotation(-26.5f);
-    m_glowSprite->addChild(sprite);
-    sprite->setPosition(m_glowSprite->convertToNodeSpace({ 0.f, 0.f }));
-}
-
 void GameObject::addToCustomScaleX(float scale) {
     m_isDirty = true;
     m_isObjectRectDirty = true;
@@ -441,11 +411,6 @@ GJSpriteColor* GameObject::getMainColor() {
     return m_baseColor;
 }
 
-int GameObject::getMainColorMode() {
-    if (auto color = this->getMainColor()) return color->getColorMode();
-    return 0;
-}
-
 float GameObject::getObjectRadius() {
     return m_scaleX == 1.f && m_scaleY == 1.f ? m_objectRadius : m_objectRadius * std::max(m_scaleX, m_scaleY);
 }
@@ -632,20 +597,6 @@ void GameObject::setCustomZLayer(int zLayer) {
     m_zLayer = static_cast<ZLayer>(zLayer);
 }
 
-void GameObject::setDefaultMainColorMode(int id) {
-    if (auto color = this->getMainColor()) {
-        color->m_defaultColorID = std::clamp(id, 0, 1101);
-        color->m_colorID = 0;
-    }
-}
-
-void GameObject::setDefaultSecondaryColorMode(int id) {
-    if (auto color = this->getSecondaryColor()) {
-        color->m_defaultColorID = std::clamp(id, 0, 1101);
-        color->m_colorID = 0;
-    }
-}
-
 void GameObject::setGlowOpacity(unsigned char opacity) {
     if (m_glowSprite) {
         auto glowOpacity = opacity * m_opacityMod;
@@ -688,16 +639,6 @@ double GameObject::slopeYPos(cocos2d::CCRect rect) {
     else {
         return this->slopeYPos(floorTop ? rect.getMinX() : rect.getMaxX());
     }
-}
-
-void GameObject::updateBlendMode() {
-    auto shouldBlend = this->shouldBlendColor(m_baseColor, true);
-    m_shouldBlendBase = shouldBlend;
-    if (!m_colorSprite) {
-        m_shouldBlendDetail = false;
-        return;
-    }
-    m_shouldBlendDetail = m_detailColor->getColorMode() != 1012 ? this->shouldBlendColor(m_detailColor, false) : shouldBlend;
 }
 
 void GameObject::updateCustomScaleX(float scaleX) {

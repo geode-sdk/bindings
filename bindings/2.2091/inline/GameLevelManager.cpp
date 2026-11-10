@@ -249,10 +249,6 @@ void GameLevelManager::deleteSmartTemplate(GJSmartTemplate* smartTemplate) {
     m_smartTemplates->removeObject(smartTemplate);
 }
 
-void GameLevelManager::followUser(int id) {
-    m_followedCreators->setObject(cocos2d::CCString::create("1"), cocos2d::CCString::createWithFormat("%i", id)->getCString());
-}
-
 GJFriendRequest* GameLevelManager::friendRequestFromAccountID(int id) {
     return static_cast<GJFriendRequest*>(m_friendRequests->objectForKey(id));
 }
@@ -779,10 +775,6 @@ LikeItemType GameLevelManager::typeFromLikeKey(char const* key) {
     return parts->count() > 4 ? (LikeItemType)atoi(static_cast<cocos2d::CCString*>(parts->objectAtIndex(1))->getCString()) : LikeItemType::Unknown;
 }
 
-void GameLevelManager::unfollowUser(int id) {
-    m_followedCreators->removeObjectForKey(cocos2d::CCString::createWithFormat("%i", id)->getCString());
-}
-
 bool GameLevelManager::unrateLevelAdmin(int id) {
     return this->rateLevelAdmin(id, 0, 0, 0, false, false);
 }
@@ -838,15 +830,6 @@ bool GameLevelManager::isPastDailyCopy(GJGameLevel* level) {
         dailyID > 100000 ? GJTimedLevelType::Weekly :
         GJTimedLevelType::Daily
     );
-}
-
-GameLevelManager* GameLevelManager::sharedState() {
-    auto& ref = *reinterpret_cast<GameLevelManager**>(geode::base::get() + 0x90bfb0);
-    if(!ref) {
-        ref = new GameLevelManager();
-        ref->init();
-    }
-    return ref;
 }
 
 bool GameLevelManager::vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) {
