@@ -112,7 +112,7 @@ LevelBrowserLayer::LevelBrowserLayer() {
     m_pageBtn = nullptr;
     m_folderText = nullptr;
     m_folderBtn = nullptr;
-    m_allObjectsToggler = nullptr;
+    m_selectionStrip = nullptr;
     m_itemCount = 0;
     m_pageStartIdx = 0;
     m_pageEndIdx = 0;
