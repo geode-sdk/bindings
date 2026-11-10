@@ -831,6 +831,22 @@ bool GameLevelManager::isPastDailyCopy(GJGameLevel* level) {
         GJTimedLevelType::Daily
     );
 }
+
+bool GameLevelManager::vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) {
+    switch (searchType) {
+        case SearchType::DailyVault:
+            timedType = GJTimedLevelType::Daily;
+            return true;
+        case SearchType::WeeklyVault:
+            timedType = GJTimedLevelType::Weekly;
+            return true;
+        case SearchType::EventVault:
+            timedType = GJTimedLevelType::Event;
+            return true;
+        default:
+            return false;
+    }
+}
 #endif
 
 #if defined(GEODE_IS_IOS)

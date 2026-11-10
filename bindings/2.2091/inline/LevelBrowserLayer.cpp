@@ -83,6 +83,15 @@ void LevelBrowserLayer::updateLevelsLabel() {
     m_countText->limitLabelWidth(100.f, .6f, .0f);
     this->updatePageLabel();
 }
+
+bool LevelBrowserLayer::isSafeType() {
+    return m_searchObject && (this->isVaultType() || m_searchObject->m_searchType == SearchType::DailySafe || m_searchObject->m_searchType == SearchType::WeeklySafe || m_searchObject->m_searchType == SearchType::EventSafe);
+}
+
+bool LevelBrowserLayer::isVaultType() {
+    GJTimedLevelType unused;
+    return m_searchObject && GameLevelManager::vaultTimedType(m_searchObject->m_searchType, unused);
+}
 #endif
 
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
@@ -103,7 +112,7 @@ LevelBrowserLayer::LevelBrowserLayer() {
     m_pageBtn = nullptr;
     m_folderText = nullptr;
     m_folderBtn = nullptr;
-    m_allObjectsToggler = nullptr;
+    m_selectionStrip = nullptr;
     m_itemCount = 0;
     m_pageStartIdx = 0;
     m_pageEndIdx = 0;

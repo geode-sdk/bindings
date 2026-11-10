@@ -418,8 +418,22 @@ class AccountReviewCard {}
 class AdminReportedMeta {}
 class AdminAbuseMeta {}
 class DropdownListStyle {}
-class EditorSFXImportOptions {}
-class EditorSFXBinding {}
+
+class EditorSFXBinding {
+	cocos2d::CCArray* m_sounds;
+    int m_playMode; // 1 = sequential, 0 = shuffle
+    int m_nextIndex; // sequential mode only
+    std::string m_extras;
+	// shuffle system using std::shuffle + rand()
+    std::vector<int> m_shuffleOrder;
+    int m_shuffleCursor;
+    int m_lastPlayedIndex; // -1 = none
+    int m_shuffleOrderSize; // checked against m_sounds->count() to detect staleness
+}
+
+class EditorSFXImportOptions {
+	bool m_shouldMerge;
+}
 
 class EmoteDef {
 	char const* m_name;

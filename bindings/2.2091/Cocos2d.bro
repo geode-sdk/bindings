@@ -1909,7 +1909,7 @@ class cocos2d::CCLabelBMFont : cocos2d::CCSpriteBatchNode, cocos2d::CCLabelProto
     CCLabelBMFont() = imac 0x6aa3f0, m1 0x5c4f14, ios 0x397e14;
     virtual ~CCLabelBMFont() = imac 0x6aa520, m1 0x5c4ff0, ios 0x397ed8;
 
-    static cocos2d::CCLabelBMFont* create() = imac 0x5dddd0, m1 0x5c47c0, ios inline;
+    static cocos2d::CCLabelBMFont* create() = m1 0x5c47c0, ios inline;
     static cocos2d::CCLabelBMFont* create(char const*, char const*) = imac 0x6a9f80, m1 0x5c4a88, ios 0x397a08;
     static cocos2d::CCLabelBMFont* create(char const* str, char const* fntFile, float width) = imac 0x6a9ed0, m1 0x5c49c8, ios inline;
     static cocos2d::CCLabelBMFont* create(char const* str, char const* fntFile, float width, cocos2d::CCTextAlignment alignment) = imac 0x6a9d80, m1 0x5c4844, ios inline;
@@ -2879,12 +2879,12 @@ class cocos2d::CCObject : cocos2d::CCCopying {
     CCObject() = imac 0x47fec0, m1 0x3e9ee0, ios 0x8e930;
     virtual ~CCObject() = imac 0x47ffd0, m1 0x3e9f70, ios 0x8e978;
 
-    static cocos2d::CCObject* createWithCoder(DS_Dictionary*) = imac 0x4801b0, m1 0x3ea1ec;
+    static cocos2d::CCObject* createWithCoder(DS_Dictionary* dict) = imac 0x4801b0, m1 0x3ea1ec, ios 0x8eac8;
 
     virtual int getTag() const = imac 0x480180, m1 0x3ea1d8, ios 0x8eab4;
     virtual bool isEqual(cocos2d::CCObject const*) = imac 0x480150, m1 0x3ea1b4, ios 0x8ea90;
     virtual void acceptVisitor(cocos2d::CCDataVisitor&) = imac 0x480160, m1 0x3ea1c0, ios 0x8ea9c;
-    virtual void encodeWithCoder(DS_Dictionary*) = imac 0x4801a0, m1 0x3ea1e8, ios 0x8eac4;
+    virtual void encodeWithCoder(DS_Dictionary* dict) = imac 0x4801a0, m1 0x3ea1e8, ios 0x8eac4;
     virtual bool canEncode() = imac 0x4801c0, m1 0x3ea1f4, ios 0x8ead0;
     virtual void setTag(int) = imac 0x480190, m1 0x3ea1e0, ios 0x8eabc;
 
