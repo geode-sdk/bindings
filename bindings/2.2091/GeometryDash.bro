@@ -10791,6 +10791,7 @@ class GJFriendRequest : cocos2d::CCNode {
     std::string m_message;
     std::string m_uploadDate;
     bool m_isRead;
+    bool m_canIgnore;
 }
 
 [[link(android), depends(EditorBuildStats)]]
