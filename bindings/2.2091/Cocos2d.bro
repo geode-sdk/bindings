@@ -4514,7 +4514,6 @@ class cocos2d::CCTexturePVR : cocos2d::CCObject {
     static cocos2d::CCTexturePVR* create(char const*) = win inline, imac 0x272380, m1 0x218e54, ios inline;
 
     bool createGLTexture() = win 0xad710, imac 0x271d10, m1 0x218880, ios 0x415558;
-    // On Windows, this releases the object on failure.
     bool initWithContentsOfFile(char const*) = win 0xad910, imac 0x272050, m1 0x218b40, ios 0x415728;
     bool unpackPVRv2Data(unsigned char*, unsigned int) = win 0xadc60, imac 0x2717c0, m1 0x218408, ios 0x415178;
     bool unpackPVRv3Data(unsigned char*, unsigned int) = win 0xadea0, imac 0x271a30, m1 0x218628, ios 0x415388;

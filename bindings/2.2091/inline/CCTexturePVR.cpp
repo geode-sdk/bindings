@@ -9,7 +9,6 @@ cocos2d::CCTexturePVR* cocos2d::CCTexturePVR::create(char const* path) {
         return ret;
     }
 #ifndef GEODE_IS_WINDOWS
-    // The Windows initializer releases the object on failure.
     delete ret;
 #endif
     return nullptr;
