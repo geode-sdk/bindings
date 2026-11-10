@@ -4,6 +4,7 @@
 #include <Geode/mapping/CCDelayTime.hpp>
 #include <Geode/mapping/CCSequence.hpp>
 #include <Geode/mapping/CCCallFunc.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 
 OptionsLayer::OptionsLayer() {
     m_optionsMenu = nullptr;

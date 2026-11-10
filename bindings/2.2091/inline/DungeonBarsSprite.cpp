@@ -1,4 +1,5 @@
 #include <Geode/binding/DungeonBarsSprite.hpp>
+#include <Geode/mapping/CCEaseElasticIn.hpp>
 
 DungeonBarsSprite::DungeonBarsSprite() {
     m_barsSprite = nullptr;
