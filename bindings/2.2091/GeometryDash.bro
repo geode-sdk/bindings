@@ -15690,7 +15690,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     int m_sharedSFXPlayerID;
     // property kA62
     std::set<int> m_sharedSFXFolderIDs;
-    win int m_sharedSFXError;
+    int m_sharedSFXError;
 }
 
 [[link(android)]]
