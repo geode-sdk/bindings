@@ -1,6 +1,5 @@
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/cocos.hpp>
-#include <Geode/ObjectIDs.hpp>
 
 PlayLayer* PlayLayer::get() {
     return GameManager::get()->m_playLayer;
@@ -175,7 +174,7 @@ void PlayLayer::loadActiveSaveObjects(std::vector<SavedActiveObjectState>& activ
         if (object->m_classType == GameObjectClassType::Animated) {
             static_cast<AnimatedGameObject*>(object)->playAnimation(state.m_animationID);
         }
-        else if (object->m_objectID == ObjectID::CounterLabel) {
+        else if (object->m_objectID == 1615) {
             static_cast<LabelGameObject*>(object)->m_updateLabel = true;
         }
     }
