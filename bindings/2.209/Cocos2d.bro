@@ -2279,7 +2279,7 @@ class cocos2d::CCLightning : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
     bool m_removeAfterFinished;
     float m_duration;
     float m_opacityModify;
-    std::array<cocos2d::CCPoint, 200>* m_lightningPoints;
+    cocos2d::CCPoint* m_lightningPoints;
     uint32_t m_numPoints;
     uint8_t m_displayedOpacity;
     uint8_t m_opacity;
