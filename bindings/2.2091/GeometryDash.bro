@@ -8743,6 +8743,16 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74;
     void showPracticeMusicSyncUnlockInfo() = win 0x2c8460;
     TodoReturn toggleVisibility(bool);
+
+    GJBaseGameLayer* m_gameLayer;
+    std::unordered_map<int, char const*> m_variables;
+    int m_unlockDialogIndex;
+    int m_buttonsPerRow;
+    int m_buttonRows;
+    cocos2d::CCLabelBMFont* m_buttonsPerRowLabel;
+    cocos2d::CCLabelBMFont* m_buttonRowsLabel;
+    bool m_legacyMoveMenu;
+    bool m_swapMoveMenu;
 }
 
 [[link(android)]]
@@ -20126,6 +20136,11 @@ class SelectFontLayer2 : FLAlertLayer, TableViewCellDelegate {
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     TodoReturn onSelectFont(int);
     TodoReturn unloadPreviewSheet();
+
+    LevelEditorLayer* m_editorLayer;
+    CustomListView* m_listView;
+    bool m_fontSheetLoaded;
+    int m_selectedFont;
 }
 
 [[link(android)]]
