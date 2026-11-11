@@ -4356,7 +4356,7 @@ class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol
     void onCreatorSettings(cocos2d::CCObject* sender) = win 0x17b600;
     void onDeathTracker(cocos2d::CCObject* sender) = win 0x179d00;
     void onDelete() = win inline, imac 0x1e0c20, m1 0x194894;
-    void onEdit(cocos2d::CCObject* sender) = win 0x17b800, imac 0x1de4a0, m1 0x1921a8;
+    void onEdit(cocos2d::CCObject* sender) = win 0x17b800, imac 0x1de4a0, m1 0x1921a8, ios 0x110224;
     void onEmotes(cocos2d::CCObject* sender) = win 0x17b6c0;
     void onExportLevel(cocos2d::CCObject* sender) = win 0x17cc10;
     void onLevelInfo(cocos2d::CCObject* sender) = win 0x179cd0;
@@ -16644,7 +16644,7 @@ class MusicDelegateHandler : cocos2d::CCNode {
     MusicDelegateHandler() = inline;
     virtual ~MusicDelegateHandler() = win 0x480500, ios 0x1d1fac;
 
-    static MusicDelegateHandler* create(MusicDownloadDelegate* delegate) = win inline, imac 0x649bb0, m1 0x584d10;
+    static MusicDelegateHandler* create(MusicDownloadDelegate* delegate) = win inline, imac 0x649bb0, m1 0x584d10, ios 0x1d1f28;
 
     bool init(MusicDownloadDelegate* delegate) = win inline, imac 0x649c30, m1 0x584da0, ios inline;
 
@@ -16689,7 +16689,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
 
     void addDLToActive(char const* tag) = win inline, imac 0x64bfe0, m1 0x586e88, ios inline;
     void addDLToActive(char const* tag, cocos2d::CCObject* obj) = win 0x4842e0, imac 0x64f710, m1 0x58a198;
-    void addMusicDownloadDelegate(MusicDownloadDelegate* delegate) = win 0x482700, imac 0x64b4d0, m1 0x586380;
+    void addMusicDownloadDelegate(MusicDownloadDelegate* delegate) = win 0x482700, imac 0x64b4d0, m1 0x586380, ios 0x1d2c9c;
     SongInfoObject* addSongObjectFromString(std::string str) = win 0x482dc0, imac 0x64c080, m1 0x4c6374;
     void clearSong(int songID) = win inline, imac 0x64ea10, m1 0x589514;
     void clearSortedMusicCache() = win 0x48ef50;
