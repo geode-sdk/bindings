@@ -1,6 +1,5 @@
 #include <Geode/Bindings.hpp>
 #include <Geode/utils/cocos.hpp>
-#include <Geode/ObjectIDs.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
@@ -77,7 +76,7 @@ GJTransformState& EditorUI::getTransformState() {
 }
 
 bool EditorUI::isLiveColorSelectTrigger(GameObject* object) {
-    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == ObjectID::PulseTrigger);
+    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == 1006);
 }
 
 bool EditorUI::liveEditColorUsable() {
@@ -281,7 +280,7 @@ std::string EditorUI::copyObjectsDetailed(cocos2d::CCArray* objects) {
     auto groupCenter = this->getGroupCenter(objects, false);
     std::string result = "";
     for (auto object : geode::cocos::CCArrayExt<GameObject, false>(objects)) {
-        if (object->m_objectID == ObjectID::LinkedOrangeTeleportPortal) continue;
+        if (object->m_objectID == 749) continue;
         auto position = object->getPosition();
         object->setPosition(position - groupCenter);
         result += object->getSaveString(m_editorLayer) + ";";
@@ -295,7 +294,7 @@ cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
     auto extras = cocos2d::CCArray::create();
     for (int i = 0; i < objects->count(); i++) {
         auto object = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (ObjectID::BubblyLiquidBlockLeftEdgeTop4Light < object->m_objectID && object->m_objectID < ObjectID::BrickPieceLeftCorner) {
+        if (object->m_objectID > 2807 && object->m_objectID < 2838) {
             this->createExtrasForObject(object->m_objectID, object, extras);
         }
     }
@@ -471,7 +470,7 @@ void EditorUI::enableButton(CreateMenuItem* button) {
     }
     else {
         auto objectID = object->m_objectID;
-        if (objectID == ObjectID::LargeBeastHazard || objectID == ObjectID::AnimatedBlackPitHazard || (objectID != ObjectID::BatHazard && objectID != ObjectID::SpikedRoundMonsterHazard) && object->getMainColorMode() != std::to_underlying(GJColorIndex::Black)) {
+        if (objectID == 918 || objectID == 919 || (objectID != 1584 && objectID != 2012) && object->getMainColorMode() != 1010) {
             object->setObjectColor({ 255, 255, 255 });
         }
         else {
