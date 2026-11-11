@@ -23176,6 +23176,12 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
+class SFXBrowserFolderPosition {
+    int m_page;
+    float m_scrollY;
+}
+
+[[link(android), depends(SFXBrowserFolderPosition)]]
 class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SelectSFXSortDelegate, SetTextPopupDelegate, FLAlertLayerProtocol, SFXFolderPickerDelegate {
     SFXBrowser() = inline;
     ~SFXBrowser() = win 0x6164e0, imac 0x8b3120, ios 0x1f15c0;
@@ -23244,14 +23250,47 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     GJCommentListLayer* m_listLayer;
     cocos2d::CCLabelBMFont* m_nameLabel;
     cocos2d::CCLabelBMFont* m_pathLabel;
+    CCMenuItemSpriteExtra* m_settingsButton;
+    std::string m_folderPath;
     cocos2d::CCLabelBMFont* m_infoLabel;
     cocos2d::CCLabelBMFont* m_pageLabel;
-    cocos2d::CCLabelBMFont* m_searchLabel;
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
     CCMenuItemSpriteExtra* m_backButton;
     CCMenuItemSpriteExtra* m_refreshButton;
+    CCMenuItemSpriteExtra* m_toggleSearchButton;
+    CCTextInputNode* m_searchInput;
+    cocos2d::extension::CCScale9Sprite* m_searchBackground;
     CCMenuItemSpriteExtra* m_clearSearchButton;
+    cocos2d::CCArray* m_searchControls;
+    bool m_searchActive;
+    CCMenuItemSpriteExtra* m_favoritesButton;
+    CCMenuItemSpriteExtra* m_recentButton;
+    CCMenuItemSpriteExtra* m_levelSFXButton;
+    CCMenuItemSpriteExtra* m_customSFXButton;
+    CCMenuItemSpriteExtra* m_newFolderButton;
+    CCMenuItemSpriteExtra* m_importFolderButton;
+    CCMenuItemSpriteExtra* m_replaceButton;
+    CCMenuItemSpriteExtra* m_shareButton;
+    bool m_importingFolder;
+    CCMenuItemSpriteExtra* m_exportFileButton;
+    CCMenuItemSpriteExtra* m_importFileButton;
+    CCMenuItemSpriteExtra* m_selectAllButton;
+    CCMenuItemSpriteExtra* m_moveToFolderButton;
+    CCMenuItemSpriteExtra* m_deleteSelectedButton;
+    cocos2d::CCLabelBMFont* m_selectedCountLabel;
+    std::set<int> m_selectedCustomIDs;
+    int m_selectedCustomID;
+    int m_pendingMoveSFXID;
+    int m_pendingMoveCustomID;
+    int m_pendingRenameCustomID;
+    int m_libraryFolderID;
+    int m_customFolderID;
+    int m_libraryPage;
+    float m_libraryScrollY;
+    std::map<std::pair<AudioViewType, int>, SFXBrowserFolderPosition> m_folderPositions;
+    int m_customPage;
+    float m_customScrollY;
     LoadingCircleSprite* m_circleSprite;
     int m_sfxID;
     int m_libraryVersion;
@@ -23261,6 +23300,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     bool m_snapToSelected;
     bool m_compactMode;
     AudioSortType m_sortType;
+    AudioViewType m_lastFolderView;
     SFXBrowserDelegate* m_delegate;
     bool m_autoUpdating;
 }
