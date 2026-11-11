@@ -94,16 +94,6 @@ int FMODAudioEngine::countActiveEffects() {
     return m_channelIDToChannel.size() - countActiveMusic();
 }
 
-int FMODAudioEngine::countActiveMusic() {
-    int count = 0;
-    for (auto& music : m_fmodMusic) {
-        if (music.second.m_channelID > 0) {
-            ++count;
-        }
-    }
-    return count;
-}
-
 void FMODAudioEngine::disableMetering() {
     this->m_metering = false;
 }

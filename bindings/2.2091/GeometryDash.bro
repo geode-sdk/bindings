@@ -3938,9 +3938,9 @@ class DeathStatsPopup : SetupTriggerPopup {
     void onClearFetched(cocos2d::CCObject* sender) = win 0x11faa0;
     void onClearLocal(cocos2d::CCObject* sender) = win 0x11fa10;
     void onFetch(cocos2d::CCObject* sender) = win 0x11ef00;
-    TodoReturn pollFetch(float) = win 0x11f210;
+    void pollFetch(float) = win 0x11f210;
     void setStatus(char const*);
-    TodoReturn showResult() = win 0x11f2f0;
+    void showResult() = win 0x11f2f0;
 }
 
 [[link(android)]]
@@ -3978,9 +3978,9 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
 
     void addRow(cocos2d::CCNode*, std::string const&, float, cocos2d::ccColor3B, float) = win 0x10d6b0;
     void buildAttemptLine() = win 0x109620;
-    TodoReturn buildHistory() = win 0x10c270;
+    void buildHistory() = win 0x10c270;
     void buildList() = win 0x109950;
-    TodoReturn buildStatRow(std::vector<DTStatSeg> const&, cocos2d::CCNode*) = win 0x107e10;
+    void buildStatRow(std::vector<DTStatSeg> const&, cocos2d::CCNode*) = win 0x107e10;
     void countsForScope(std::vector<int>&) = win 0x106720;
     std::string dtScrollKey() = win 0x106660;
     bool init(GJGameLevel*) = win 0x1045d0;
@@ -3995,10 +3995,10 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     void onToggleGlobal(cocos2d::CCObject* sender) = win 0x10d8c0;
     void parseGlobal() = win 0x106400;
     void parseSessions() = win 0x105e60;
-    TodoReturn refreshGlobal() = win 0x108b00;
-    TodoReturn refreshView() = win 0x106a10;
+    void refreshGlobal() = win 0x108b00;
+    void refreshView() = win 0x106a10;
     void setView(int) = win 0x10dbe0;
-    TodoReturn updatePanel() = win 0x10dfb0;
+    void updatePanel() = win 0x10dfb0;
 }
 
 [[link(android)]]
@@ -4558,7 +4558,7 @@ class EditorSFXManager {
     static std::vector<int> allActions() = win 0x186460;
     static SFXTriggerGameObject* createNewSound(int soundId) = win 0x185e70, imac 0x8e3c70, m1 0x7cf5c4, ios 0x4c8594;
     static EditorSFXManager* sharedState() = win 0x185140, imac 0x8e0df0, m1 0x7cd268, ios 0x4c7450;
-    static std::vector<std::pair<int, std::vector<int>>> summarizeBlob(std::string const& blob);
+    static std::vector<std::pair<int, std::vector<int>>> summarizeBlob(std::string const& blob) = win 0x189d00;
 
     void addFavoriteConfig(GJEditorSoundConfig* config);
     void addSound(int bindingId, SFXTriggerGameObject* sound) = m1 0x7cf0b8;
@@ -6433,7 +6433,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void channelUnlinkSound(int id) = win 0x609f0, imac 0x3d2670, m1 0x354b94;
     void clearAllAudio() = win 0x5e0d0, imac 0x3cb420, m1 0x34f0b8, ios 0x1b58b4;
     int countActiveEffects() = win inline, imac 0x3d03b0, m1 0x352dbc;
-    int countActiveMusic() = win inline, imac 0x3d0490, m1 0x352e6c;
+    int countActiveMusic() = win 0x5f2a0, imac 0x3d0490, m1 0x352e6c;
     FMOD::Sound* createStream(std::string path) = win 0x65b20, imac 0x3d7610, m1 0x358cb8;
     void disableMetering() = win inline, imac 0x3d0a00, m1 0x3533b0;
     void enableMetering() = win inline, imac 0x3d09d0, m1 0x353390;
@@ -7051,7 +7051,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool deleteFriendRequests(int accountID, cocos2d::CCArray* accounts, bool sent) = win 0x2550e0, imac 0x57a610, m1 0x4cc79c;
     void deleteLevel(GJGameLevel* level) = win 0x21c870, imac 0x53ed90;
     void deleteLevelComment(int id, int levelID) = win inline, imac 0x56dbb0, m1 0x4c08c8;
-    TodoReturn deleteLevelControls(int) = win 0x259650;
+    bool deleteLevelControls(int) = win 0x259650;
     void deleteLevelList(GJLevelList* list) = win 0x21d120, imac 0x53f690, m1 0x496558;
     bool deleteSentFriendRequest(int accountID) = win inline, imac 0x57a5f0, m1 0x4cc790;
     TodoReturn deleteServerEditorSound(int, std::string const&, std::vector<int> const&) = win 0x22fb80;
@@ -7089,7 +7089,7 @@ class GameLevelManager : cocos2d::CCNode {
     int getCompletedWeeklyLevels() = win 0x2200b0, imac 0x548820, m1 0x49e974, ios 0xac860;
     int getDailyID(GJTimedLevelType type) = win inline, imac 0x580fd0, m1 0x4d2c74;
     int getDailyTimer(GJTimedLevelType type) = win inline, imac 0x581000, m1 0x4d2ca8;
-    TodoReturn getDeathData(int, int, bool) = win 0x2283a0;
+    void getDeathData(int, int, bool) = win 0x2283a0;
     TodoReturn getDeathDataVersion(int);
     std::string getDeathDisplayData(int) = win 0x2277b0;
     const char* getDeleteCommentKey(int parentID, int id, int type) = win inline, m1 0x4bec90, ios inline;
@@ -7122,7 +7122,7 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getLenKey(int len) = win inline, ios inline;
     bool getLenVal(int len) = win inline;
     void getLevelComments(int ID, int page, int total, int mode, CommentKeyType keytype) = win 0x23c2f0, imac 0x569f80, m1 0x4bcec8;
-    TodoReturn getLevelControls(int) = win 0x259cb0;
+    void getLevelControls(int) = win 0x259cb0;
     const char* getLevelDownloadKey(int levelID, bool isGauntlet, int dailyID) = win inline, m1 0x4b27a0, ios inline;
     const char* getLevelKey(int levelID) = win inline, imac 0x53e030, m1 0x4950d4, ios inline;
     void getLevelLeaderboard(GJGameLevel* level, LevelLeaderboardType type, LevelLeaderboardMode mode) = win 0x238790, imac 0x5659e0, m1 0x4b8ee4;
@@ -7327,7 +7327,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUpdateThreadCompleted(std::string, std::string) = win 0x252fe0, m1 0x491ed8;
     void onUpdateUserScoreCompleted(std::string response, std::string tag) = win 0x237d70, imac 0x5250a0, m1 0x47e4cc;
     void onUploadCommentCompleted(std::string response, std::string tag) = win 0x23ed90, imac 0x526030, m1 0x47f3c8;
-    TodoReturn onUploadDeathDataCompleted(std::string, std::string) = win 0x227360;
+    void onUploadDeathDataCompleted(std::string, std::string) = win 0x227360;
     TodoReturn onUploadEditorSoundCompleted(std::string, std::string);
     void onUploadFriendRequestCompleted(std::string response, std::string tag) = win 0x254f00, m1 0x481724;
     void onUploadLevelCompleted(std::string response, std::string tag) = win 0x22a0b0;
@@ -7349,7 +7349,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn rateLevelListAdmin(int, int, int, int, int, bool);
     void rateStars(int id, int diff) = win 0x233da0, imac 0x5614a0, m1 0x4b50ec;
     void readFriendRequest(int id);
-    TodoReturn readFriendRequests(std::string const&) = win 0x255c70;
+    void readFriendRequests(std::string const&) = win 0x255c70;
     void removeDelimiterChars(std::string str, bool colon) = win 0x261620, imac 0x556560, m1 0x4aaffc, ios 0xb4e2c;
     void removeDLFromActive(char const* key) = win 0x221b70, imac 0x54a870, m1 0x4a07c8;
     bool removeFriend(int accountID) = win 0x255fd0;
@@ -7358,7 +7358,7 @@ class GameLevelManager : cocos2d::CCNode {
     void removeUserFromList(int id, UserListType type) = win 0x2571a0, imac 0x57c590, m1 0x4ce578;
     void replaceFollowedUsers(std::string const&) = win 0x251b10;
     void replayPlatformerSaveJournal() = win 0x223740;
-    TodoReturn reportContent(int, int, int, std::vector<int> const&, long long) = win 0x261100;
+    void reportContent(int, int, int, std::vector<int> const&, long long) = win 0x261100;
     void reportLevel(int id) = imac 0x581320, m1 0x4d2fc8;
     bool requestThreadMembers(int) = win 0x252270;
     bool requestUserAccess() = win 0x25b6a0, imac 0x575610, m1 0x4d12cc;
@@ -7435,13 +7435,13 @@ class GameLevelManager : cocos2d::CCNode {
     void updateUserScore() = win 0x236270, imac 0x5634a0, ios 0xbbf84;
     void uploadAccountComment(std::string content) = win inline, imac 0x56d290, m1 0x4c00b4;
     void uploadComment(std::string content, CommentType type, int levelID, int percent) = win 0x23e350, imac 0x56c2c0;
-    TodoReturn uploadDeathData() = win 0x2266f0;
+    void uploadDeathData() = win 0x2266f0;
     TodoReturn uploadEditorSoundComment(int, std::string);
     void uploadEditorSoundConfig(std::string const&, std::string const&, std::string const&, int, int, int, int, std::string const&) = win 0x22e380;
     bool uploadFriendRequest(int accountID, std::string content) = win 0x254ad0, imac 0x57a060, m1 0x4cc288;
     void uploadLevel(GJGameLevel* level) = win 0x229310, imac 0x5551c0, m1 0x4a9e8c;
     void uploadLevelComment(int levelID, std::string content, int percent) = win inline, imac 0x56c230, m1 0x4bf150;
-    TodoReturn uploadLevelControls(int, std::string) = win 0x258ed0;
+    bool uploadLevelControls(int, std::string) = win 0x258ed0;
     void uploadLevelList(GJLevelList* list) = win 0x22d010, imac 0x11b880, m1 0x4ae0ec;
     TodoReturn uploadModRoomComment(int, std::string, int);
     void uploadUserMessage(int accountID, std::string subject, std::string content) = imac 0x562240, m1 0x4bc0a8;
@@ -15917,7 +15917,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     void markLevelsAsUnmodified() = win inline, imac 0x6caa90;
     TodoReturn moveLevelToBottom(GJGameLevel*);
     void moveLevelToTop(GJGameLevel* level) = win inline, imac 0x6ca870, m1 0x5e25ec;
-    TodoReturn postFileResults(float) = win 0x46f700;
+    void postFileResults(float) = win 0x46f700;
     TodoReturn queueFileResults();
     void reorderLevels() = win inline, imac 0x6caae0, m1 0x5e282c;
     void reorderLists() = win inline, imac 0x6cac40, m1 0x5e2998;
@@ -23921,7 +23921,7 @@ class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate
 
 [[link(android), depends(TabbedPopupTab)]]
 class TabbedPopupLayer : SetupTriggerPopup {
-    virtual ~TabbedPopupLayer() = win inline, imac 0x5fdda0, m1 0x543738, ios 0x1aa8e0;
+    virtual ~TabbedPopupLayer() = win 0x19ca40, imac 0x5fdda0, m1 0x543738, ios 0x1aa8e0;
 
     virtual void pageChanged() = win 0x66d090, ios 0x1aa8ac, m1 0x57c2b0, imac 0x640010;
     virtual void showTab(int tab) = win 0x66cc10, imac 0x63fc00, m1 0x57be84, ios 0x1aa59c;
