@@ -2013,6 +2013,9 @@ class CCTextInputMenu : cocos2d::CCLayer {
     void onClear(cocos2d::CCObject* sender) = win 0x4dd50;
     void onCopy(cocos2d::CCObject* sender) = win 0x4dc40;
     void onPaste(cocos2d::CCObject* sender) = win 0x4dcf0;
+
+    CCTextInputNode* m_inputNode;
+    cocos2d::CCRect m_menuRect;
 }
 
 [[link(android), depends(EmoteToken)]]
@@ -12509,6 +12512,16 @@ class GJSelectionStrip : cocos2d::CCNode {
     bool init(cocos2d::CCMenu*, cocos2d::CCNode*, cocos2d::CCPoint, float, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
     void setCount(int) = win 0x3a91a0;
     void setStripVisible(bool);
+
+    cocos2d::CCMenu* m_menu;
+    cocos2d::CCNode* m_parentNode;
+    cocos2d::CCObject* m_target;
+    cocos2d::CCPoint m_buttonPosition;
+    float m_scale;
+    cocos2d::CCLabelBMFont* m_countLabel;
+    CCMenuItemSpriteExtra* m_selectAllButton;
+    bool m_stripVisible;
+    std::vector<CCMenuItemSpriteExtra*> m_actionButtons;
 }
 
 [[link(android), depends(GJValueTween)]]
@@ -15677,6 +15690,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     int m_sharedSFXPlayerID;
     // property kA62
     std::set<int> m_sharedSFXFolderIDs;
+    win int m_sharedSFXError;
 }
 
 [[link(android)]]
@@ -18964,6 +18978,10 @@ class ProgressGameObject : EffectGameObject {
     virtual bool init() = win 0x663b70, ios 0x43ebb0, m1 0x185d80, imac 0x1d0360;
     virtual void customObjectSetup(std::vector<std::string>&, std::vector<void*>&) = win 0x663eb0, ios 0x43ef08, m1 0x186878, imac 0x1d1120;
     virtual std::string getSaveString(GJBaseGameLayer*) = win 0x663be0, ios 0x43ec00, m1 0x185dd0, imac 0x1d03b0;
+
+    int m_progressPercent;
+    bool m_addProgress;
+    bool m_useItemID;
 }
 
 [[link(android), missing(win)]]
@@ -19641,6 +19659,9 @@ class ScrollViewPopup : FLAlertLayer {
     float addVersionHeader(cocos2d::CCNode*, int, int, float, float) = win 0x621f10;
     bool initPopup(cocos2d::CCArray*, char const*, char const*, float, float) = win 0x621980;
     void onClose(cocos2d::CCObject* sender) = win 0x49fc20;
+
+    cocos2d::CCArray* m_entries;
+    ScrollableContentLayer* m_scrollLayer;
 }
 
 [[link(android)]]
@@ -20031,6 +20052,8 @@ class SectionedContentNode : cocos2d::CCNode {
 
     virtual void addChild(cocos2d::CCNode*, int, int) = win 0x80c80, m1 0x84ac70, imac 0x96e440, ios 0x526ba0;
     virtual void removeAllChildrenWithCleanup(bool) = win 0x80ca0, m1 0x84ac88, imac 0x96e460, ios 0x526bb8;
+
+    ScrollableContentLayer* m_scrollLayer;
 }
 
 [[link(android)]]
