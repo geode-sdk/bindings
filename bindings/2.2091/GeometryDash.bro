@@ -4742,6 +4742,25 @@ class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, Edit
     TodoReturn showLoading(bool);
     TodoReturn updateFooterButtonVisibility();
     TodoReturn updatePageLabel() = win 0x18fbe0;
+
+    EditorSoundBrowseMode m_mode;
+    int m_page;
+    GJCommentListLayer* m_listLayer;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_saveActiveButton;
+    LoadingCircle* m_loadingCircle;
+    cocos2d::CCArray* m_configs;
+    int m_totalCount;
+    std::string m_searchQuery;
+    std::string m_requestKey;
+    cocos2d::CCArray* m_modeButtons;
+    cocos2d::CCArray* m_modeHighlights;
+    int m_inputAction;
+    bool m_hasInitialSearch;
+    EditorSoundsLayer* m_editorSoundsLayer;
+    float m_scrollOffsetY;
 }
 
 [[link(android)]]
@@ -7074,13 +7093,23 @@ class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtoco
     TodoReturn updateSortLabel();
 
     UserListType m_type;
-    cocos2d::CCLabelBMFont* m_noInternet;
     cocos2d::CCLabelBMFont* m_totalFriends;
     GJCommentListLayer* m_listLayer;
-    LoadingCircle* m_circle;
-    void* m_unk532;
+    GJUserScore* m_selectedUser;
+    UploadActionPopup* m_uploadPopup;
     cocos2d::CCArray* m_users;
+    cocos2d::CCArray* m_filteredUsers;
+    cocos2d::CCArray* m_globalSearchResults;
+    std::string m_searchQuery;
     CCMenuItemSpriteExtra* m_refreshBtn;
+    CCTextInputNode* m_searchInput;
+    bool m_showGlobalSearchResults;
+    CCMenuItemSpriteExtra* m_sortButton;
+    ButtonSprite* m_sortButtonSprite;
+    bool m_sortByTime;
+    CCMenuItemSpriteExtra* m_sortDirectionButton;
+    cocos2d::CCSprite* m_sortDirectionSprite;
+    bool m_reverseSort;
 }
 
 [[link(android)]]
@@ -16270,6 +16299,20 @@ class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDeleg
     TodoReturn opPending();
     TodoReturn refreshHost();
     void refreshPolicyBtn() = win 0xec260, imac 0x941a80, m1 0x82253c;
+
+    GJMessageThread* m_thread;
+    ThreadViewPopup* m_threadView;
+    bool m_readOnly;
+    CCMenuItemSpriteExtra* m_addButton;
+    CCMenuItemSpriteExtra* m_addPolicyButton;
+    cocos2d::CCLabelBMFont* m_memberCountLabel;
+    bool m_addPolicyPending;
+    cocos2d::CCArray* m_selectedRecipients;
+    bool m_addMembersPending;
+    int m_pendingKickAccountID;
+    int m_pendingTransferAccountID;
+    int m_pendingRevokeInviteAccountID;
+    bool m_loadingMembers;
 }
 
 [[link(android), depends(GJGroundLayer, GameToolbox)]]
@@ -17277,6 +17320,33 @@ class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate
     void setSendPending(bool) = win 0xf1f40;
     void updateCharCount(cocos2d::CCLabelBMFont*, int, int) = win 0xf1000;
     TodoReturn updateRecipientLabel() = win 0xf1aa0;
+
+    int m_recipientAccountID;
+    std::string m_recipientName;
+    cocos2d::CCArray* m_selectedRecipients;
+    bool m_sendPending;
+    bool m_directMessageMode;
+    CCMenuItemSpriteExtra* m_sendButton;
+    EmotePickerPopup* m_emotePicker;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    cocos2d::CCNode* m_directModeIcon;
+    cocos2d::CCNode* m_groupModeIcon;
+    std::string m_groupIconKey;
+    cocos2d::extension::CCScale9Sprite* m_iconBackground;
+    CCMenuItemSpriteExtra* m_iconButton;
+    CCMenuItemSpriteExtra* m_shareLevelButton;
+    cocos2d::extension::CCScale9Sprite* m_groupNameBackground;
+    cocos2d::extension::CCScale9Sprite* m_messageBackground;
+    float m_groupNameInputY;
+    float m_messageInputY;
+    cocos2d::CCLabelBMFont* m_recipientLabel;
+    cocos2d::CCLabelBMFont* m_groupNameCountLabel;
+    cocos2d::CCLabelBMFont* m_messageCountLabel;
+    CCTextInputNode* m_groupNameInput;
+    CCTextInputNode* m_messageInput;
+    float m_messageWidth;
+    uint64_t m_sendNonce;
+    std::string m_sendNonceKey;
 }
 
 [[link(android)]]
