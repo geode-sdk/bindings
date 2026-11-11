@@ -468,6 +468,16 @@ class AdminActionConfirmPopup : SetupTriggerPopup {
 [[link(android)]]
 class AdminLogEntry : cocos2d::CCObject {
     virtual ~AdminLogEntry() = win 0x217160;
+
+    std::string m_action;
+    std::string m_actionArgument;
+    int m_durationMinutes;
+    int m_actionValue;
+    int m_reasonMask;
+    std::string m_note;
+    std::string m_actionDetails;
+    std::string m_actorName;
+    long long m_timestamp;
 }
 
 [[link(android)]]
@@ -25153,7 +25163,7 @@ class TOSPopup : FLAlertLayer {
     void onTOS(cocos2d::CCObject* sender) = win 0x3a9930, imac 0x29d840, m1 0x240cd4;
 }
 
-[[link(android)]]
+[[link(android), depends(UIButtonConfig)]]
 class TouchControlEditLayer : SetupTriggerPopup {
     virtual ~TouchControlEditLayer() = win 0x452460, ios 0x52cd1c;
 
@@ -25193,6 +25203,23 @@ class TouchControlEditLayer : SetupTriggerPopup {
     void updateHandles() = win 0x4538b0;
     void updateHudVisibility() = win 0x453830;
     void updateJumpGuide() = win 0x453a30;
+
+    bool m_platformerMode;
+    LevelControlConfig* m_targetConfig;
+    std::array<UIButtonConfig, 5> m_buttonConfigs;
+    std::vector<GJUINode*> m_controlNodes;
+    GJUINode* m_selectedNode;
+    std::vector<cocos2d::CCSprite*> m_resizeHandles;
+    cocos2d::CCArray* m_hiddenSiblings;
+    int m_dragMode;
+    GJUINode* m_dragNode;
+    cocos2d::CCPoint m_dragOffset;
+    float m_radiusDragOffset;
+    cocos2d::CCPoint m_deadzoneDragStart;
+    cocos2d::CCPoint m_deadzoneDragAxis;
+    float m_initialDeadzone;
+    bool m_modified;
+    cocos2d::CCLabelBMFont* m_jumpGuideLabel;
 }
 
 [[link(android)]]
