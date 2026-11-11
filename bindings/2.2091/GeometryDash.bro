@@ -248,7 +248,7 @@ class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLay
     bool m_lockInput;
 }
 
-[[link(android)]]
+[[link(android), depends(AccountReviewCard)]]
 class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDelegate, UploadPopupDelegate, FLAlertLayerProtocol, DropdownDelegate, AdminActionConfirmDelegate, ReviewChoiceDelegate, ThreadMessageDelegate {
     virtual ~AccountReviewPopup() = win 0xaedc0, ios 0x540bb8;
 
@@ -323,6 +323,41 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     void updateSelectedLabel() = win 0xb83c0;
     void updateTabControls() = win 0xb3140;
     static cocos2d::CCLabelBMFont* viewedByLabel(std::string const&, std::string const&, float) = win 0xaf3a0;
+
+    int m_accountID;
+    std::string m_userName;
+    GJUserScore* m_userScore;
+    bool m_hasProvidedScore;
+    AccountReviewCard m_card;
+    bool m_cardLoaded;
+    bool m_refreshAfterActionPopup;
+    int m_selectedTab;
+    int m_reportedContentFilter;
+    int m_abuseReviewFilter;
+    bool m_reportsChanged;
+    int m_pendingDeleteRow;
+    bool m_deleteFailureScheduled;
+    int m_pendingThreadDeletes;
+    int m_lastSelectedRow;
+    std::vector<int> m_pendingDeleteRows;
+    UploadActionPopup* m_actionPopup;
+    bool m_unk570;
+    cocos2d::CCArray* m_pageRows;
+    std::vector<CCMenuItemToggler*> m_rowToggles;
+    std::set<int> m_selectedRows;
+    int m_directReportCount;
+    int m_anonymousDirectReportCount;
+    int m_topDirectReportReason;
+    std::array<ButtonSprite*, 3> m_tabSprites;
+    ButtonSprite* m_notesButtonSprite;
+    ButtonSprite* m_abuseFilterButtonSprite;
+    CCMenuItemSpriteExtra* m_abuseFilterButton;
+    CCMenuItemSpriteExtra* m_selectAllButton;
+    CCMenuItemSpriteExtra* m_deleteSelectedButton;
+    Dropdown* m_reportedContentDropdown;
+    cocos2d::CCLabelBMFont* m_selectedCountLabel;
+    cocos2d::CCLabelBMFont* m_notReviewedLabel;
+    std::vector<cocos2d::CCNode*> m_cardNodes;
 }
 
 [[link(android)]]
@@ -25274,6 +25309,34 @@ class ThreadSearchPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
+class ThreadViewBodyMeasure {
+    std::string m_body;
+    float m_scale;
+    float m_height;
+    bool m_emoteOnly;
+}
+
+[[link(android)]]
+class ThreadViewLevelSpan {
+    int m_shareID;
+    bool m_isList;
+    cocos2d::CCRect m_bounds;
+    int m_rowIndex;
+}
+
+[[link(android)]]
+class ThreadViewRow {
+    int m_kind;
+    int m_messageIndex;
+    float m_y;
+    float m_height;
+    bool m_showSender;
+    bool m_addTopSpacing;
+    std::string m_text;
+    cocos2d::ccColor3B m_textColor;
+}
+
+[[link(android), depends(ThreadViewBodyMeasure, ThreadViewLevelSpan, ThreadViewRow)]]
 class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, LevelPickerDelegate, EmotePickerDelegate {
     ThreadViewPopup() = win 0xd2d00, m1 0x834680;
     virtual ~ThreadViewPopup() = win 0xd3020, ios 0x4f7e6c;
@@ -25365,8 +25428,8 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn startSearch(std::string const&);
     void updateComposeCount() = win 0xe37c0;
 
-    std::vector<void*> m_rows;
-    std::map<long long, void*> m_bodyMeasures;
+    std::vector<ThreadViewRow> m_rows;
+    std::map<long long, ThreadViewBodyMeasure> m_bodyMeasures;
     float m_unk2e0;
     GJMessageThread* m_thread;
     cocos2d::CCArray* m_messages;
@@ -25412,6 +25475,27 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     CCMenuItemSpriteExtra* m_hideKeyboardButton;
     GJThreadMessage* m_unk410;
     cocos2d::extension::CCScale9Sprite* m_messagesBg;
+    int m_composeLineCount;
+    float m_composeBottomY;
+    float m_composeWidth;
+    float m_messagesTopY;
+    std::vector<ThreadViewLevelSpan> m_levelSpans;
+    long long m_pendingDeleteMessageID;
+    bool m_searchActive;
+    std::string m_searchQuery;
+    cocos2d::CCArray* m_savedMessages;
+    long long m_savedOldestMessageID;
+    long long m_savedNewestMessageID;
+    bool m_savedHasEarlier;
+    float m_savedScrollY;
+    bool m_viewingPastMessages;
+    long long m_jumpTargetMessageID;
+    long long m_highlightMessageID;
+    bool m_highlightShown;
+    cocos2d::CCLabelBMFont* m_searchResultsLabel;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    CCMenuItemSpriteExtra* m_shareLevelButton;
+    CCMenuItemSpriteExtra* m_emoteButton;
 }
 
 [[link(android)]]
