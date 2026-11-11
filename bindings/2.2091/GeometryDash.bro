@@ -68,6 +68,21 @@ class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDele
 	void onTrendingUnban(cocos2d::CCObject* sender) = win 0xa8e30;
 	void onUnfreeze(cocos2d::CCObject* sender) = win 0xa88f0;
 	void refreshBanRows() = win 0xa79e0;
+
+	int m_accountID;
+	std::string m_userName;
+	int m_commentBanTime;
+	int m_uploadBanTime;
+	int m_messageBanTime;
+	int m_trendingBanState;
+	int m_nameLockState;
+	int m_queueMuteTime;
+	int m_pendingBanDuration;
+	std::array<Dropdown*, 4> m_durationDropdowns;
+	std::array<cocos2d::CCLabelBMFont*, 7> m_banStatusLabels;
+	std::array<CCMenuItemSpriteExtra*, 7> m_banButtons;
+	std::array<CCMenuItemSpriteExtra*, 7> m_unbanButtons;
+	UploadActionPopup* m_actionPopup;
 }
 
 [[link(android)]]
@@ -434,6 +449,20 @@ class AchievementsLayer : GJDropDownLayer {
 [[link(android)]]
 class AdminAbuseEntry : cocos2d::CCObject {
     virtual ~AdminAbuseEntry() = win 0x2172b0;
+
+    int m_surface;
+    int m_filterResult;
+    int m_unk40;
+    int m_action;
+    int m_category;
+    std::string m_label;
+    std::string m_text;
+    long long m_unk90;
+    std::string m_age;
+    bool m_highlighted;
+    int m_contentID;
+    int m_parentID;
+    bool m_contentExists;
 }
 
 [[link(android)]]
@@ -509,6 +538,27 @@ class AdminReportedEntry : cocos2d::CCObject {
 [[link(android)]]
 class AdminReportQueueEntry : cocos2d::CCObject {
     virtual ~AdminReportQueueEntry() = win 0x217240;
+
+    int m_accountID;
+    std::string m_userName;
+    int m_itemCount;
+    int m_unk64;
+    int m_anonymousReporterCount;
+    int m_topReason;
+    long long m_unk70;
+    std::string m_lastReportAge;
+    int m_directReportCount;
+    int m_lastViewedByAccountID;
+    std::string m_lastViewedByName;
+    std::string m_lastViewedAge;
+    int m_flagScore;
+    int m_flagType;
+    int m_unke8;
+    int m_unkec;
+    int m_flagCount;
+    long long m_unkf8;
+    int m_points;
+    int m_reporterCount;
 }
 
 [[link(android)]]
@@ -958,7 +1008,17 @@ class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     cocos2d::CCLabelBMFont* m_statsLabel;
 }
 
-[[link(android), depends(CCIndexPath)]]
+[[link(android)]]
+class AutoBackupFile {
+    std::string m_filename;
+    std::string m_backupID;
+    std::string m_levelName;
+    std::string m_displayTimestamp;
+    std::string m_timestamp;
+    int m_fileSize;
+}
+
+[[link(android), depends(CCIndexPath, AutoBackupFile)]]
 class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsDelegate {
     virtual ~AutoBackupPopup() = win 0xc9870, ios 0x5338a0;
 
@@ -990,6 +1050,19 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
     // TodoReturn statsText(std::vector<AutoBackupPopup::BackupFile> const&);
     TodoReturn updateSelectUI();
     TodoReturn updateSummary();
+
+    int m_levelFolder;
+    std::string m_backupDirectory;
+    std::vector<AutoBackupFile> m_files;
+    std::vector<AutoBackupFile> m_filteredFiles;
+    std::string m_searchQuery;
+    std::map<std::string, int> m_revisions;
+    CCTextInputNode* m_searchInput;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    int m_pendingDeleteIndex;
+    std::set<std::string> m_selectedFiles;
+    std::vector<CCMenuItemToggler*> m_rowToggles;
+    GJSelectionStrip* m_selectionStrip;
 }
 
 // [[link(android)]]
@@ -4094,6 +4167,26 @@ class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
 }
 
 [[link(android)]]
+class DeathTrackerHistoryRow {
+    int m_kind;
+    float m_height;
+    int m_attemptNumberOrIndent;
+    int m_firstPercent;
+    int m_lastPercentOrBestState;
+    int m_stripeIndex;
+    std::string m_text;
+}
+
+[[link(android)]]
+class DeathTrackerSession {
+    int m_firstPlayedUnix;
+    std::string m_fullRunHistory;
+    std::string m_startPosRunHistory;
+    int m_playTime;
+    int m_bestPercent;
+}
+
+[[link(android), depends(DeathTrackerHistoryRow, DeathTrackerSession)]]
 class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     virtual ~DeathTrackerPopup() = win 0x103af0, ios 0x4c0fb0;
 
@@ -4134,6 +4227,43 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     void refreshView() = win 0x106a10;
     void setView(int) = win 0x10dbe0;
     void updatePanel() = win 0x10dfb0;
+
+    GJGameLevel* m_level;
+    ScrollableContentLayer* m_scrollLayer;
+    float m_contentWidth;
+    float m_contentHeight;
+    cocos2d::CCPoint m_contentCenter;
+    DeathHistogram* m_distributionHistogram;
+    DeathHistogram* m_progressionHistogram;
+    int m_view;
+    bool m_showSummary;
+    int m_sessionIndex;
+    int m_scope;
+    bool m_showDeathRate;
+    bool m_keepScrollPosition;
+    std::vector<DeathTrackerSession> m_sessions;
+    cocos2d::CCLabelBMFont* m_sessionLabel;
+    cocos2d::CCNode* m_statsNode;
+    cocos2d::CCNode* m_secondaryStatsNode;
+    cocos2d::CCNode* m_deathListHeader;
+    cocos2d::CCLabelBMFont* m_viewTitle;
+    cocos2d::extension::CCScale9Sprite* m_viewTitleBackground;
+    std::array<std::vector<cocos2d::CCSprite*>, 3> m_panelSprites;
+    std::array<cocos2d::extension::CCScale9Sprite*, 3> m_panelBackgrounds;
+    bool m_showGlobal;
+    cocos2d::CCSprite* m_globalToggleSprite;
+    CCMenuItemSpriteExtra* m_jumpSessionButton;
+    std::vector<int> m_globalCounts;
+    int m_globalPlayerCount;
+    int m_globalCompletionCount;
+    bool m_hasGlobalData;
+    bool m_detailedGlobalGraph;
+    int m_previousView;
+    bool m_scrollToProgress;
+    bool m_restoreSavedScroll;
+    bool m_showAttemptProgress;
+    std::vector<DeathTrackerHistoryRow> m_historyRows;
+    std::vector<CCMenuItemSpriteExtra*> m_sessionButtons;
 }
 
 [[link(android)]]
@@ -4407,6 +4537,12 @@ class DropdownListRow {
 [[link(android)]]
 class DTStatSeg {
     // ~DTStatSeg();
+
+    char const* m_iconSpriteFrame;
+    std::string m_prefix;
+    std::string m_value;
+    std::string m_suffix;
+    cocos2d::ccColor3B m_valueColor;
 }
 
 [[link(android)]]
@@ -4945,6 +5081,29 @@ class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegat
     TodoReturn startDownload() = win 0x194840;
     void startServerDelete(std::string const&, std::vector<int> const&) = win 0x197cc0;
     TodoReturn startSFXDownload();
+
+    GJEditorSoundConfig* m_config;
+    EditorSoundInfoKind m_kind;
+    EditorSoundBrowserLayer* m_browserLayer;
+    LoadingCircle* m_loadingCircle;
+    bool m_downloadingConfig;
+    bool m_favoriteAfterDownload;
+    bool m_pendingSFXDownload;
+    CCMenuItemSpriteExtra* m_likeButton;
+    cocos2d::CCLabelBMFont* m_likeCountLabel;
+    CCMenuItemSpriteExtra* m_loadButton;
+    CCMenuItemSpriteExtra* m_mergeButton;
+    CCMenuItemSpriteExtra* m_favoriteButton;
+    CCMenuItemSpriteExtra* m_overwriteButton;
+    CCMenuItemSpriteExtra* m_uploadButton;
+    CCMenuItemSpriteExtra* m_downloadSFXButton;
+    CCMenuItemSpriteExtra* m_updateButton;
+    UploadActionPopup* m_descriptionUpdatePopup;
+    CCMenuItemSpriteExtra* m_localDeleteButton;
+    CCMenuItemSpriteExtra* m_duplicateButton;
+    CCMenuItemSpriteExtra* m_deleteServerButton;
+    CCTextInputNode* m_packNameInput;
+    ScrollableContentLayer* m_summaryLayer;
 }
 
 [[link(android)]]
@@ -12223,6 +12382,23 @@ class GJNotification : cocos2d::CCObject {
     static GJNotification* create();
 
     TodoReturn rewardKey();
+
+    int m_notificationID;
+    int m_type;
+    std::string m_iconKey;
+    std::string m_title;
+    std::string m_body;
+    std::string m_age;
+    bool m_showBadge;
+    int m_targetType;
+    int m_targetID;
+    std::string m_achievementID;
+    int m_statID;
+    int m_statValue;
+    int m_rewardFlag;
+    int m_rewardChestType;
+    int m_senderAccountID;
+    std::string m_senderName;
 }
 
 [[link(android)]]
@@ -16671,6 +16847,37 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     TodoReturn updatePageArrows(int, int, int);
     TodoReturn updateSelectUI();
     std::string userFilterCSV() = win 0xd7c70;
+
+    GJCommentListLayer* m_threadBrowser;
+    LoadingCircle* m_loadingCircle;
+    TextArea* m_statusText;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_refreshButton;
+    CCMenuItemSpriteExtra* m_scrollToTopButton;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    GJSelectionStrip* m_selectionStrip;
+    CCMenuItemSpriteExtra* m_invitesButton;
+    cocos2d::CCSprite* m_inviteBadge;
+    cocos2d::CCLabelBMFont* m_inviteCountLabel;
+    CCTextInputNode* m_searchInput;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    cocos2d::CCArray* m_threads;
+    std::string m_searchQuery;
+    int m_page;
+    int m_pendingDeleteCount;
+    int m_queuedPage;
+    int m_totalThreads;
+    int m_threadFilter;
+    std::array<cocos2d::CCNode*, 3> m_filterNodes;
+    cocos2d::CCArray* m_userFilter;
+    std::string m_lastUserFilterCSV;
+    cocos2d::CCSprite* m_userFilterButtonSprite;
+    cocos2d::CCLabelBMFont* m_userFilterCountLabel;
+    bool m_pageLoadQueued;
+    bool m_backgroundLoading;
+    bool m_refetchQueued;
+    CustomListView* m_threadListView;
 }
 
 [[link(android), missing(win, ios)]]
@@ -17378,14 +17585,27 @@ class NewgroundsInfoLayer : FLAlertLayer {
 [[link(android)]]
 class NewsBlock {
     // ~NewsBlock();
+
+    int m_type;
+    std::string m_text;
+    std::string m_imageKey;
+    int m_imageWidth;
+    int m_imageHeight;
+    bool m_isVideo;
+    std::string m_url;
 }
 
-[[link(android)]]
+[[link(android), depends(NewsBlock)]]
 class NewsItem {
     // ~NewsItem();
+
+    int m_id;
+    std::string m_title;
+    std::string m_subtitle;
+    std::vector<NewsBlock> m_blocks;
 }
 
-[[link(android)]]
+[[link(android), depends(NewsItem)]]
 class NewsPopup : FLAlertLayer, FLAlertLayerProtocol, MusicDownloadDelegate {
     NewsPopup() = m1 0x839e48;
     virtual ~NewsPopup() = win 0x49d9f0, ios 0x517a88;
@@ -17413,6 +17633,20 @@ class NewsPopup : FLAlertLayer, FLAlertLayerProtocol, MusicDownloadDelegate {
     void prefetchPageImages(int) = win 0x49f920;
     void rebuildPage(int) = win 0x49e6c0, m1 0x837844;
     void refreshFromManager() = win 0x49e4c0, m1 0x837794;
+
+    std::vector<NewsItem> m_items;
+    int m_currentPage;
+    int m_lastReadNewsID;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCMenu* m_contentMenu;
+    bool m_menuTouchActive;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    cocos2d::CCLabelBMFont* m_statusLabel;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    std::string m_pendingURL;
+    std::set<std::string> m_failedImages;
+    std::set<std::string> m_loadedImagePaths;
 }
 
 [[link(android)]]
@@ -24889,6 +25123,18 @@ class ThreadDescPopup : SetupTriggerPopup, ThreadMessageDelegate, EmotePickerDel
     void onSave(cocos2d::CCObject* sender) = win 0xfdbd0;
     void refreshIconSlot() = win 0xfd750;
     void sendDescription() = win 0xfe080;
+
+    GJMessageThread* m_thread;
+    ThreadViewPopup* m_threadView;
+    CCTextInputNode* m_descriptionInput;
+    float m_inputWidth;
+    std::string m_pendingDescription;
+    std::string m_emote;
+    bool m_descriptionChanged;
+    bool m_savePending;
+    cocos2d::extension::CCScale9Sprite* m_iconBackground;
+    CCMenuItemSpriteExtra* m_iconButton;
+    EmotePickerPopup* m_emotePicker;
 }
 
 [[link(android)]]
