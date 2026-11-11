@@ -14796,7 +14796,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     float rotationForSlopeNearObject(GameObject* object) = win 0x3f1050, imac 0xb02f0, m1 0x9e594;
     ColorAction* runColorEffect(EffectGameObject* object, int colorID, float delay, float interval, bool instant) = win 0x3fc300, imac 0xc3440, m1 0xae894;
     void saveEditorPosition(cocos2d::CCPoint& position, int index) = win inline, imac 0xbbec0, m1 0xa830c;
-    bool saveLevel() = win 0x3ff1f0, imac 0xc6250, m1 0xb11f0;
+    void saveLevel() = win 0x3ff1f0, imac 0xc6250, m1 0xb11f0;
     void setObjectCount(int count) = inline;
     bool shouldBlend(int colorID) = win inline, imac 0xae620, m1 0x9caa8;
     void sortBatchnodeChildren(float unused) = win inline, imac 0xbd550, m1 0xa9500;
