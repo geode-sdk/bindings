@@ -480,9 +480,30 @@ class AdminLogEntry : cocos2d::CCObject {
     long long m_timestamp;
 }
 
-[[link(android)]]
+class AdminReportReasonCount {
+    int m_reasonIndex;
+    int m_count;
+}
+
+[[link(android), depends(AdminReportReasonCount)]]
 class AdminReportedEntry : cocos2d::CCObject {
     virtual ~AdminReportedEntry() = win 0x2171d0;
+
+    int m_contentType;
+    int m_targetID;
+    int m_parentID;
+    int m_unk44;
+    int m_anonymousReporterCount;
+    std::vector<AdminReportReasonCount> m_reasons;
+    bool m_contentExists;
+    std::string m_title;
+    std::string m_body;
+    long long m_contentTimestamp;
+    long long m_messageID;
+    bool m_canOpenThread;
+    long long m_reportTimestamp;
+    int m_reporterCount;
+    std::string m_reportAge;
 }
 
 [[link(android)]]
@@ -19768,11 +19789,23 @@ class ReportPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     static char const* reasonShortLabel(int) = win 0xbe7a0;
     std::vector<int> selectedReasons() = win 0xc13a0;
     static char const* surfaceName(int) = win 0xbeb80;
+
+    ReportPopupConfig m_config;
+    std::vector<CCMenuItemToggler*> m_reasonToggles;
 }
 
 [[link(android)]]
 class ReportPopupConfig {
     // ~ReportPopupConfig();
+
+    int m_contentType;
+    int m_targetID;
+    int m_special;
+    std::string m_targetName;
+    std::string m_preview;
+    long long m_messageID;
+    std::string m_previewTitle;
+    std::vector<int> m_reasonIndices;
 }
 
 [[link(android)]]
