@@ -1,5 +1,4 @@
 #include <Geode/Bindings.hpp>
-#include <Geode/ObjectIDs.hpp>
 
 #if defined(GEODE_IS_ANDROID)
 PlayerObject::PlayerObject() {
@@ -662,26 +661,25 @@ void PlayerObject::togglePlatformerMode(bool val) {
 
 void PlayerObject::touchedObject(GameObject* object) {
     switch (object->m_objectID) {
-        case ObjectID::AllowWaveDragModifier: {
+        case 1755: {
             m_stateDartSlide = 2;
             break;
         }
-        case ObjectID::StopJumpBufferModifier: {
+        case 1813: {
             m_stateNoAutoJump = 2;
             break;
         }
-        case ObjectID::StopDashModifier: {
+        case 1829: {
             if (m_isDashing) {
                 this->stopDashing();
                 m_jumpBuffered = false;
             }
         }
-        case ObjectID::AllowHeadCollisionModifier: {
+        case 1859: {
             m_stateHitHead = 2;
             break;
         }
-        case ObjectID::ForceBlock:
-        case ObjectID::ForceCircle: {
+        case 2069: case 3645: {
             m_stateForce = 2;
             auto forceObject = static_cast<ForceBlockGameObject*>(object);
             auto forceID = forceObject->m_forceID;
@@ -696,12 +694,10 @@ void PlayerObject::touchedObject(GameObject* object) {
             }
             break;
         }
-        case ObjectID::GravityFlipModifier: {
+        case 2866: {
             m_stateFlipGravity = 2;
             break;
         }
-        default:
-            break;
     }
 }
 
