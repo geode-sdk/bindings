@@ -4448,7 +4448,7 @@ class cocos2d::CCTextureAtlas : cocos2d::CCObject {
     bool initWithTexture(cocos2d::CCTexture2D*, unsigned int) = imac 0x4a61c0, m1 0x40d2fc, ios 0x307cb0;
     void insertQuad(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int) = imac 0x4a6b50, m1 0x40d724, ios 0x307ffc;
     void insertQuadFromIndex(unsigned int, unsigned int) = imac 0x4a6de0, m1 0x40d88c, ios inline;
-    void insertQuads(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int, unsigned int) = imac 0x4a6c00, m1 0x2a7038, ios inline;
+    void insertQuads(cocos2d::ccV3F_C4B_T2F_Quad*, unsigned int, unsigned int) = imac 0x4a6c00, m1 0x40d7c4, ios inline;
     // bool isDirty();
     void listenBackToForeground(cocos2d::CCObject*) = imac 0x4a6a20, m1 0x40d604, ios inline;
     void mapBuffers() = imac 0x4a6a60, m1 0x40d658, ios 0x307f30;
@@ -5891,7 +5891,7 @@ class cocos2d::ZipUtils {
     static std::string base64URLDecode(std::string const&) = imac 0x1e9100, ios 0x2db24c;
     static std::string base64URLEncode(std::string const&) = imac 0x1e91e0, ios 0x2db33c;
     // static void ccDecodeEncodedPvr(unsigned int*, int);
-    static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out, int level) = imac 0x1e85c0, ios 0x2da7e8;
+    static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out, int level) = imac 0x1e85c0, m1 0x19ab48, ios 0x2da7e8;
     // static int ccInflateCCZFile(char const*, unsigned char**);
     // static int ccInflateGZipFile(char const*, unsigned char**);
     // static int ccInflateMemory(unsigned char* data, unsigned int size, unsigned char** out) = imac 0x1f3660, m1 0x1a91b0;
@@ -5899,7 +5899,7 @@ class cocos2d::ZipUtils {
     // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     // static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     // static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey, int level) = imac 0x1e8350, ios 0x2da590;
+    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey, int level) = imac 0x1e8350, m1 0x19a884, ios 0x2da590;
     static std::string decompressString(std::string const& data, bool encrypt, int encryptionKey) = imac 0x1e8a00, m1 0x19afac, ios 0x2dab88;
     static std::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1e86e0, m1 0x19ac8c, ios 0x2da900;
     static std::string encryptDecrypt(std::string const& data, int encryptionKey) = inline;
