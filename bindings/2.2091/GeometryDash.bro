@@ -7804,7 +7804,7 @@ class GameManager : GManager {
     void lockIcon(int id, IconType type) = win inline, imac 0x361650, m1 0x2f002c;
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
     bool messagesRestricted();
-    int modUIRank() = win inline, m1 0x2fa578, imac 0x36d260;
+    int modUIRank() = win inline, m1 0x2fa578, imac 0x36d260, ios inline;
     bool offlineModeEnabled() = win inline, m1 0x2fab70, ios 0x3b5ff8;
     bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;

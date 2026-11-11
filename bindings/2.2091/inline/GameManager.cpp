@@ -365,6 +365,12 @@ void GameManager::videoAdShowed() {
     }
     else m_musicPaused = false;
 }
+
+int GameManager::modUIRank() {
+    if(this->getGameVariable("0235")) return 0;
+
+    return m_hasRP;
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -743,12 +749,6 @@ void GameManager::verifyStarUnlocks() {
 
 bool GameManager::offlineModeEnabled() {
     return this->getGameVariable("0219");
-}
-
-int GameManager::modUIRank() {
-    if(this->getGameVariable("0235")) return 0;
-
-    return m_hasRP;
 }
 #endif
 
