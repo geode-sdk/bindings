@@ -456,6 +456,13 @@ class AdminActionConfirmPopup : SetupTriggerPopup {
     void onCategoryToggle(cocos2d::CCObject* sender);
     void onConfirm(cocos2d::CCObject* sender) = win 0xa6240;
     TodoReturn selectedCategories();
+
+    AdminActionConfirmDelegate* m_delegate;
+    int m_actionID;
+    std::string m_defaultReason;
+    CCTextInputNode* m_reasonInput;
+    std::vector<int> m_categoryIDs;
+    std::vector<CCMenuItemToggler*> m_categoryToggles;
 }
 
 [[link(android)]]
@@ -915,6 +922,9 @@ class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     void onDeleteAll(cocos2d::CCObject* sender) = win 0xcea60;
     void onPrune(cocos2d::CCObject* sender) = win 0xce640;
     void refreshStats() = win 0xce400;
+
+    AutoBackupOptionsDelegate* m_delegate;
+    cocos2d::CCLabelBMFont* m_statsLabel;
 }
 
 [[link(android), depends(CCIndexPath)]]
@@ -977,6 +987,11 @@ class AutoSaveSettingsLayer : SetupTriggerPopup {
     void setBackupCap(int);
     void setBackupDirectory(std::string);
     void updateBackupDirLabel() = win 0x9c9d0;
+
+    cocos2d::CCLabelBMFont* m_backupDirTitle;
+    cocos2d::CCLabelBMFont* m_backupDirLabel;
+    std::string m_customBackupDirectory;
+    AutoBackupOptionsDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -3272,6 +3287,10 @@ class CreatorSettingsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopu
     bool init(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448490;
     void onControls(cocos2d::CCObject* sender) = win 0x448f20;
     void onDescription(cocos2d::CCObject* sender) = win 0x448c00;
+
+    GJGameLevel* m_level;
+    CreatorSettingsDelegate* m_delegate;
+    UploadActionPopup* m_uploadPopup;
 }
 
 [[link(android)]]
@@ -3893,6 +3912,14 @@ class DeathHistogram : cocos2d::CCNode {
     void setData(std::vector<int> const&, int, bool, bool, bool) = win 0x111dd0;
     void setProgression(std::vector<int> const&, std::vector<int> const&, std::vector<int> const&) = win 0x114220;
     void setSurvival(std::vector<int> const&, bool, bool, int) = win 0x1126a0;
+
+    cocos2d::CCSize m_size;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCDrawNode* m_axisDrawNode;
+    cocos2d::CCNode* m_axisLabels;
+    int m_focusProgress;
+    cocos2d::CCRect m_leftArrowRect;
+    cocos2d::CCRect m_rightArrowRect;
 }
 
 [[link(android)]]
@@ -3943,6 +3970,12 @@ class DeathMarkerSettingsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     void onToggleSound(cocos2d::CCObject* sender) = win 0x11ddc0;
     TodoReturn updateFrequencyLabel(int);
     TodoReturn updateTimescaleLabel(int);
+
+    Slider* m_frequencySlider;
+    cocos2d::CCLabelBMFont* m_frequencyLabel;
+    Slider* m_timescaleSlider;
+    cocos2d::CCLabelBMFont* m_timescaleLabel;
+    GJGameLevel* m_level;
 }
 
 [[link(android)]]
@@ -3961,6 +3994,14 @@ class DeathStatsPopup : SetupTriggerPopup {
     void pollFetch(float) = win 0x11f210;
     void setStatus(char const*);
     void showResult() = win 0x11f2f0;
+
+    LevelEditorLayer* m_editorLayer;
+    CCTextInputNode* m_levelIDInput;
+    CCTextInputNode* m_versionInput;
+    cocos2d::CCLabelBMFont* m_statusLabel;
+    int m_fetchLevelID;
+    int m_fetchVersion;
+    float m_fetchElapsed;
 }
 
 [[link(android)]]
@@ -3976,6 +4017,9 @@ class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     bool init(GJGameLevel*, DeathTrackerPopup*) = win 0x11fbc0;
     void onClearData(cocos2d::CCObject* sender) = win 0x1200c0;
     void onToggleAutoScroll(cocos2d::CCObject* sender) = win 0x120070;
+
+    GJGameLevel* m_level;
+    DeathTrackerPopup* m_trackerPopup;
 }
 
 [[link(android)]]
@@ -4714,6 +4758,11 @@ class EditorSoundConfigCell : TableViewCell {
     void onView(cocos2d::CCObject* sender) = win 0x191970;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x1919a0;
     TodoReturn updateBGColor(int);
+
+    GJEditorSoundConfig* m_config;
+    EditorSoundConfigCellDelegate* m_delegate;
+    cocos2d::CCMenu* m_menu;
+    bool m_showLocalStatus;
 }
 
 [[link(android)]]
@@ -4797,6 +4846,23 @@ class EditorSoundConfigUploadPopup : SetupTriggerPopup, EditorSoundUploadDelegat
     void onUploadAsUpdate(cocos2d::CCObject* sender) = win 0x19b880;
     TodoReturn performUpload(int) = win 0x19bca0;
     void updateVisibilityState() = win 0x19b8a0;
+
+    LoadingCircle* m_loadingCircle;
+    CCMenuItemSpriteExtra* m_uploadButton;
+    CCMenuItemSpriteExtra* m_updateButton;
+    CCMenuItemSpriteExtra* m_cancelButton;
+    bool m_uploading;
+    GJEditorSoundConfig* m_config;
+    CCMenuItemToggler* m_unlistedToggle;
+    CCMenuItemToggler* m_friendsOnlyToggle;
+    cocos2d::CCLabelBMFont* m_unlistedLabel;
+    cocos2d::CCLabelBMFont* m_friendsOnlyLabel;
+    bool m_unlisted;
+    bool m_friendsOnly;
+    int m_uploadVisibility;
+    CCMenuItemSpriteExtra* m_closeButton;
+    int m_uploadTargetID;
+    EditorSoundConfigInfoLayer* m_infoLayer;
 }
 
 [[link(android)]]
@@ -4839,6 +4905,16 @@ class EditorSoundsLayer : TabbedPopupLayer {
     void onClearSearch(cocos2d::CCObject* sender) = win 0x19eec0;
     void onSettings(cocos2d::CCObject* sender) = win 0x19ed80;
     void setupTabs() = win 0x19d680;
+
+    EditorUI* m_editorUI;
+    CCTextInputNode* m_searchInput;
+    cocos2d::extension::CCScale9Sprite* m_searchBackground;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    std::string m_searchQuery;
+    int m_searchTab;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCMenu* m_contentMenu;
+    bool m_contentMenuTouched;
 }
 
 [[link(android)]]
@@ -4854,6 +4930,9 @@ class EditorSoundsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
     void onClearAll(cocos2d::CCObject* sender) = win 0x3d4ff0;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void onDownloadAll(cocos2d::CCObject* sender) = win 0x3d4dc0;
+
+    EditorSoundsLayer* m_soundsLayer;
+    bool m_confirmingClearAll;
 }
 
 [[link(android)]]
@@ -6890,6 +6969,21 @@ class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     void onShowProfile(cocos2d::CCObject* sender) = win 0xe8810;
     void onToggleSelectedView(cocos2d::CCObject* sender) = win 0xe7980;
     void updateCountLabel() = win 0xe8990;
+
+    FriendPickerDelegate* m_delegate;
+    cocos2d::CCArray* m_friends;
+    cocos2d::CCArray* m_searchResults;
+    cocos2d::CCArray* m_visibleUsers;
+    bool m_showSearchResults;
+    bool m_keepOpenAfterPick;
+    bool m_multiSelect;
+    bool m_showClearButton;
+    bool m_useAddButton;
+    std::string m_searchQuery;
+    bool m_showSelectedOnly;
+    CCTextInputNode* m_searchInput;
+    cocos2d::CCLabelBMFont* m_countLabel;
+    cocos2d::CCSprite* m_selectedViewSprite;
 }
 
 [[link(android)]]
@@ -8778,6 +8872,16 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74;
     void showPracticeMusicSyncUnlockInfo() = win 0x2c8460;
     TodoReturn toggleVisibility(bool);
+
+    GJBaseGameLayer* m_gameLayer;
+    std::unordered_map<int, char const*> m_gameVariableKeys;
+    int m_practiceMusicUnlockDialogIndex;
+    int m_buttonsPerRow;
+    int m_buttonRows;
+    cocos2d::CCLabelBMFont* m_buttonsPerRowLabel;
+    cocos2d::CCLabelBMFont* m_buttonRowsLabel;
+    bool m_initialLegacyMoveMenu;
+    bool m_initialSwapMoveMenu;
 }
 
 [[link(android)]]
@@ -13716,7 +13820,12 @@ class IDNameBrowserDelegate {
     virtual void idNameBrowserClosed(IDNameBrowserPopup*, int) = inline;
 }
 
-[[link(android)]]
+class IDNameBrowserEntry {
+    int m_id;
+    std::string m_name;
+}
+
+[[link(android), depends(IDNameBrowserEntry)]]
 class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     virtual ~IDNameBrowserPopup() = win 0x3c1580, ios 0x4df7cc;
 
@@ -13749,6 +13858,20 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     void setFormID(int) = win 0x3c3b40;
     TodoReturn updateConflictLabel() = win 0x3c3bf0;
     TodoReturn updateSortButtonLabel() = win 0x3c4790;
+
+    int m_initialID;
+    int m_idType;
+    IDNameBrowserDelegate* m_delegate;
+    CCTextInputNode* m_filterInput;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCLabelBMFont* m_statusLabel;
+    CCTextInputNode* m_idInput;
+    CCTextInputNode* m_nameInput;
+    cocos2d::CCLabelBMFont* m_conflictLabel;
+    int m_sortMode;
+    ButtonSprite* m_sortButtonSprite;
+    int m_selectedID;
+    std::vector<IDNameBrowserEntry> m_entries;
 }
 
 [[link(android)]]
@@ -13977,6 +14100,16 @@ class InvitesPopup : PagedListPopup, ThreadMessageDelegate, FLAlertLayerProtocol
     void onViewMembers(cocos2d::CCObject* sender) = win 0xf91d0;
     void onViewRequest(cocos2d::CCObject* sender) = win 0xf9220;
     TodoReturn removeInviteRow(int);
+
+    cocos2d::CCArray* m_invites;
+    GJMessageThread* m_pendingInvite;
+    int m_pendingThreadID;
+    bool m_acceptingInvite;
+    bool m_showIgnored;
+    ButtonSprite* m_toggleIgnoredSprite;
+    InfoAlertButton* m_infoButton;
+    CCTextInputNode* m_searchInput;
+    std::string m_searchQuery;
 }
 
 [[link(android)]]
@@ -14478,6 +14611,12 @@ class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
     TodoReturn buildCell(cocos2d::CCObject*) = win 0xe6510;
     bool init(int, bool) = win 0xe5ed0;
     void onClose(cocos2d::CCObject* sender);
+
+    int m_id;
+    bool m_isList;
+    cocos2d::CCRect m_badgeRect;
+    std::string m_searchKey;
+    LoadingCircle* m_loadingCircle;
 }
 
 [[link(android), depends(KeybindSettingsEntry)]]
@@ -17213,6 +17352,18 @@ class NotificationsPage : FLAlertLayer, NotificationListDelegate {
     void setupBrowser(cocos2d::CCArray*) = win 0x4788b0;
     TodoReturn updateCountLabel();
     TodoReturn updatePageArrows();
+
+    cocos2d::CCLabelBMFont* m_countLabel;
+    cocos2d::CCLabelBMFont* m_statusLabel;
+    GJCommentListLayer* m_listLayer;
+    LoadingCircle* m_loadingCircle;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_updateButton;
+    cocos2d::CCArray* m_notifications;
+    int m_page;
+    int m_totalNotifications;
+    int m_pageSize;
 }
 
 [[link(android)]]
@@ -17744,6 +17895,39 @@ class PlatformerControlsPopup : SetupTriggerPopup, UploadActionDelegate, UploadP
     TodoReturn sourceIsCustom();
     void syncSourceUI() = win 0x450a00;
     TodoReturn updateEditLabel();
+
+    GJGameLevel* m_level;
+    bool m_fromEditor;
+    bool m_dual;
+    LevelControlConfig* m_customDraft;
+    std::string m_customDraftBaseline;
+    bool m_recheckCustomDraft;
+    CCMenuItemToggler* m_sourceToggle;
+    cocos2d::CCLabelBMFont* m_editControlsLabel;
+    CCMenuItemSpriteExtra* m_keyboardButton;
+    CCMenuItemSpriteExtra* m_touchButton;
+    CCMenuItemSpriteExtra* m_controllerButton;
+    ButtonSprite* m_keyboardButtonSprite;
+    ButtonSprite* m_touchButtonSprite;
+    ButtonSprite* m_controllerButtonSprite;
+    CCMenuItemSpriteExtra* m_applyCreatorButton;
+    CCMenuItemSpriteExtra* m_updateButton;
+    LoadingCircleSprite* m_updateSpinner;
+    UploadActionPopup* m_uploadPopup;
+    bool m_showUploadColumn;
+    CCMenuItemSpriteExtra* m_uploadButton;
+    ButtonSprite* m_uploadButtonSprite;
+    CCMenuItemToggler* m_uploadKeyboardToggle;
+    CCMenuItemToggler* m_uploadTouchToggle;
+    CCMenuItemToggler* m_uploadControllerToggle;
+    cocos2d::CCSprite* m_uploadKeyboardOff;
+    cocos2d::CCSprite* m_uploadKeyboardOn;
+    cocos2d::CCSprite* m_uploadTouchOff;
+    cocos2d::CCSprite* m_uploadTouchOn;
+    cocos2d::CCSprite* m_uploadControllerOff;
+    cocos2d::CCSprite* m_uploadControllerOn;
+    int m_initialClassMask;
+    int m_displayedClassMask;
 }
 
 [[link(android)]]
@@ -19266,6 +19450,20 @@ class RateStarsModLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegat
     TodoReturn selectRating(cocos2d::CCObject*) = win 0x560040;
     void updateDemonRow() = win 0x560390;
     void updateDSprite() = win 0x560280;
+
+    bool m_uploadFinished;
+    CCMenuItemSpriteExtra* m_submitButton;
+    cocos2d::CCArray* m_buttons;
+    cocos2d::CCArray* m_demonButtons;
+    int m_levelID;
+    int m_starsRate;
+    bool m_coinsToggled;
+    cocos2d::CCSprite* m_coinSprite;
+    UploadActionPopup* m_popup;
+    GJDifficultySprite* m_difficultySprite;
+    int m_featureState;
+    int m_demonDifficulty;
+    RateLevelDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -19348,6 +19546,12 @@ class RenameThreadPopup : SetupTriggerPopup, ThreadMessageDelegate {
     void handBackSlot() = win 0xfae60;
     bool init(GJMessageThread*, ThreadViewPopup*) = win 0xf9db0;
     void onSave(cocos2d::CCObject* sender) = win 0xfa370;
+
+    GJMessageThread* m_thread;
+    ThreadViewPopup* m_threadView;
+    CCTextInputNode* m_nameInput;
+    std::string m_pendingName;
+    bool m_renamePending;
 }
 
 [[link(android), depends(ReportPopupConfig)]]
@@ -19407,6 +19611,12 @@ class ReportQueuePopup : PagedListPopup, CommentAdminDelegate, DropdownDelegate 
     void onRefresh(cocos2d::CCObject* sender) = win 0xc95b0;
     void onReportedContentChanged(cocos2d::CCObject* sender) = win 0xb33a0;
     void onToggleSort(cocos2d::CCObject* sender) = win 0xc95c0;
+
+    int m_sortMode;
+    int m_filterIndex;
+    cocos2d::CCArray* m_entries;
+    ButtonSprite* m_sortButtonSprite;
+    Dropdown* m_filterDropdown;
 }
 
 [[link(android)]]
@@ -19454,6 +19664,10 @@ class ReviewChoiceSheet : SetupTriggerPopup {
 
     bool init(ReviewChoiceDelegate*, int, char const*, std::string const&, std::vector<std::string> const&, std::vector<char const*> const&, bool, char const*) = win 0xae380;
     void onChoice(cocos2d::CCObject* sender) = win 0xaeb30;
+
+    ReviewChoiceDelegate* m_delegate;
+    int m_actionID;
+    CCTextInputNode* m_noteInput;
 }
 
 [[link(android)]]
@@ -22640,6 +22854,17 @@ class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     TodoReturn refreshList() = win 0xc5da0;
     TodoReturn updateActionBtn() = win 0xc5fa0;
     TodoReturn updateShareHint() = win 0xc5e00;
+
+    SFXFolderPickerMode m_mode;
+    std::set<int> m_disabledFolderIDs;
+    std::set<int> m_selectedFolderIDs;
+    int m_selectedFolderID;
+    SFXFolderPickerDelegate* m_delegate;
+    CCTextInputNode* m_nameInput;
+    ScrollableContentLayer* m_scrollLayer;
+    CCMenuItemSpriteExtra* m_confirmButton;
+    CCMenuItemSpriteExtra* m_saveButton;
+    cocos2d::CCLabelBMFont* m_savedEntriesLabel;
 }
 
 [[link(android)]]
@@ -22692,6 +22917,9 @@ class SFXSettingsPopup : GJOptionsLayer {
     virtual void didToggleGV(std::string) = win 0x61f6e0, ios 0x1f7c3c, m1 0x3aaddc, imac 0x4347d0;
 
     bool init(SFXBrowser*);
+
+    SFXBrowser* m_browser;
+    bool m_settingsChanged;
 }
 
 [[link(android)]]
@@ -23706,6 +23934,16 @@ class SongUsagePopup : FLAlertLayer, SongUsageDelegate {
     void layoutPopup(float) = win 0x102320;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void showStatus(char const*) = win 0x103740;
+
+    int m_songID;
+    LoadingCircle* m_loadingCircle;
+    cocos2d::extension::CCScale9Sprite* m_background;
+    cocos2d::CCLabelBMFont* m_songNameLabel;
+    cocos2d::CCLabelBMFont* m_artistNameLabel;
+    CCMenuItemSpriteExtra* m_closeButton;
+    InfoAlertButton* m_infoButton;
+    float m_popupHeight;
+    cocos2d::CCPoint m_contentCenter;
 }
 
 [[link(android)]]
@@ -23731,6 +23969,14 @@ class SoundPackDescPopup : SetupTriggerPopup, EmotePickerDelegate {
     void onPickIcon(cocos2d::CCObject* sender) = win 0x19a010;
     void onSave(cocos2d::CCObject* sender) = win 0x19a2a0;
     void refreshIconSlot() = win 0x199e20;
+
+    SoundPackDescDelegate* m_delegate;
+    CCTextInputNode* m_descriptionInput;
+    float m_inputWidth;
+    std::string m_emote;
+    cocos2d::extension::CCScale9Sprite* m_iconBackground;
+    CCMenuItemSpriteExtra* m_iconButton;
+    EmotePickerPopup* m_emotePicker;
 }
 
 [[link(android)]]
@@ -24460,6 +24706,11 @@ class ThreadMessageOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     bool init(GJThreadMessage*, std::string const&, ThreadViewPopup*) = win 0xe53e0;
     void onAction(cocos2d::CCObject* sender) = win 0xe5a50;
     void onCopy(cocos2d::CCObject* sender) = win 0xe5c70;
+
+    GJThreadMessage* m_message;
+    ThreadViewPopup* m_threadView;
+    std::string m_authorName;
+    bool m_isOwnMessage;
 }
 
 [[link(android)]]
@@ -24499,9 +24750,22 @@ class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLaye
     void onRename(cocos2d::CCObject* sender) = win 0xf5380;
     void onReport(cocos2d::CCObject* sender) = win 0xf5950;
     void onViewProfile(cocos2d::CCObject* sender) = win 0xf5a30;
+
+    GJMessageThread* m_thread;
+    ThreadViewPopup* m_threadView;
+    int m_pendingAction;
+    int m_clearMode;
+    bool m_modMode;
 }
 
-[[link(android)]]
+class ThreadLevelLinkHit {
+    int m_levelID;
+    bool m_isList;
+    cocos2d::CCRect m_rect;
+    int m_row;
+}
+
+[[link(android), depends(ThreadLevelLinkHit)]]
 class ThreadRequestPopup : FLAlertLayer {
     virtual ~ThreadRequestPopup() = win 0xd3ef0, ios 0x514310;
 
@@ -24517,6 +24781,10 @@ class ThreadRequestPopup : FLAlertLayer {
     void onReport(cocos2d::CCObject* sender) = win 0xffda0;
     void onViewMembers(cocos2d::CCObject* sender) = win 0xffea0;
     void onViewProfile(cocos2d::CCObject* sender) = win 0xffe60;
+
+    GJMessageThread* m_thread;
+    InvitesPopup* m_invitesPopup;
+    std::vector<ThreadLevelLinkHit> m_levelLinkHits;
 }
 
 [[link(android)]]
@@ -24534,6 +24802,13 @@ class ThreadSearchPopup : SetupTriggerPopup {
     bool init(ThreadViewPopup*) = win 0xfaff0, imac 0x9508e0, m1 0x82fdf0;
     void onGoToDate(cocos2d::CCObject* sender) = win 0xfc5e0;
     void onSearch(cocos2d::CCObject* sender) = win 0xfbf90;
+
+    ThreadViewPopup* m_threadView;
+    CCTextInputNode* m_searchInput;
+    CCTextInputNode* m_yearInput;
+    CCTextInputNode* m_monthInput;
+    CCTextInputNode* m_dayInput;
+    int m_currentYear;
 }
 
 [[link(android)]]
