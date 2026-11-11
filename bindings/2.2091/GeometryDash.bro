@@ -13333,7 +13333,7 @@ class GManager : cocos2d::CCNode {
     void loadDataFromFile(std::string const& filename) = win 0x77850, imac 0x4a5570, m1 0x40c6dc;
     void loadFromCompressedString(std::string& str) = win 0x77450, imac 0x4a5090, m1 0x40c208, ios 0x2e7a74;
     void loadFromString(std::string& str) = win inline, imac 0x4a4fe0, m1 0x40c15c, ios 0x2e79c8;
-    void save(bool) = win 0x77530, imac 0x4a5110, m1 0x40c2ac;
+    bool save(bool async) = win 0x77530, imac 0x4a5110, m1 0x40c2ac;
     void saveGMTo(std::string filename, bool async) = win inline;
     bool tryLoadData(DS_Dictionary* dict, std::string const& filename) = win inline, imac 0x4a57e0, m1 0x40c998;
     void waitForSave(double seconds) = win 0x777c0, ios 0x2e7bcc;
