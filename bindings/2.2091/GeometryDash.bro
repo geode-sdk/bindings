@@ -4632,6 +4632,8 @@ class EditorSFXSettingsPopup : SetupTriggerPopup {
     virtual float getValue(int) = win 0x18d730, ios 0x4cbfa8, m1 0x7d7c1c, imac 0x8eed90;
 
     bool init(int) = win 0x18d380;
+
+    int m_sfxID;
 }
 
 [[link(android)]]
@@ -4665,6 +4667,25 @@ class EditorSoundBrowserLayer : SetupTriggerPopup, EditorSoundListDelegate, Edit
     TodoReturn showLoading(bool);
     TodoReturn updateFooterButtonVisibility();
     TodoReturn updatePageLabel() = win 0x18fbe0;
+
+    EditorSoundBrowseMode m_mode;
+    int m_page;
+    GJCommentListLayer* m_listLayer;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_saveActiveButton;
+    LoadingCircle* m_loadingCircle;
+    cocos2d::CCArray* m_configs;
+    int m_totalCount;
+    std::string m_searchQuery;
+    std::string m_requestKey;
+    cocos2d::CCArray* m_modeButtons;
+    cocos2d::CCArray* m_modeHighlights;
+    int m_inputAction;
+    bool m_hasInitialSearch;
+    EditorSoundsLayer* m_editorSoundsLayer;
+    float m_scrollOffsetY;
 }
 
 [[link(android)]]
@@ -4681,6 +4702,11 @@ class EditorSoundConfigCell : TableViewCell {
     void onView(cocos2d::CCObject* sender) = win 0x191970;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x1919a0;
     TodoReturn updateBGColor(int);
+
+    GJEditorSoundConfig* m_config;
+    EditorSoundConfigCellDelegate* m_delegate;
+    cocos2d::CCMenu* m_menu;
+    bool m_showLocalStatus;
 }
 
 [[link(android)]]
@@ -4743,6 +4769,29 @@ class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegat
     TodoReturn startDownload() = win 0x194840;
     void startServerDelete(std::string const&, std::vector<int> const&) = win 0x197cc0;
     TodoReturn startSFXDownload();
+
+    GJEditorSoundConfig* m_config;
+    EditorSoundInfoKind m_kind;
+    EditorSoundBrowserLayer* m_browserLayer;
+    LoadingCircle* m_loadingCircle;
+    bool m_downloadingConfig;
+    bool m_favoriteAfterDownload;
+    bool m_pendingSFXDownload;
+    CCMenuItemSpriteExtra* m_likeButton;
+    cocos2d::CCLabelBMFont* m_likeCountLabel;
+    CCMenuItemSpriteExtra* m_loadButton;
+    CCMenuItemSpriteExtra* m_mergeButton;
+    CCMenuItemSpriteExtra* m_favoriteButton;
+    CCMenuItemSpriteExtra* m_overwriteButton;
+    CCMenuItemSpriteExtra* m_uploadButton;
+    CCMenuItemSpriteExtra* m_downloadSFXButton;
+    CCMenuItemSpriteExtra* m_updateButton;
+    UploadActionPopup* m_descriptionUpdatePopup;
+    CCMenuItemSpriteExtra* m_localDeleteButton;
+    CCMenuItemSpriteExtra* m_duplicateButton;
+    CCMenuItemSpriteExtra* m_deleteServerButton;
+    CCTextInputNode* m_packNameInput;
+    ScrollableContentLayer* m_summaryLayer;
 }
 
 [[link(android)]]
@@ -4764,6 +4813,23 @@ class EditorSoundConfigUploadPopup : SetupTriggerPopup, EditorSoundUploadDelegat
     void onUploadAsUpdate(cocos2d::CCObject* sender) = win 0x19b880;
     TodoReturn performUpload(int) = win 0x19bca0;
     void updateVisibilityState() = win 0x19b8a0;
+
+    LoadingCircle* m_loadingCircle;
+    CCMenuItemSpriteExtra* m_uploadButton;
+    CCMenuItemSpriteExtra* m_updateButton;
+    CCMenuItemSpriteExtra* m_cancelButton;
+    bool m_uploading;
+    GJEditorSoundConfig* m_config;
+    CCMenuItemToggler* m_unlistedToggle;
+    CCMenuItemToggler* m_friendsOnlyToggle;
+    cocos2d::CCLabelBMFont* m_unlistedLabel;
+    cocos2d::CCLabelBMFont* m_friendsOnlyLabel;
+    bool m_unlisted;
+    bool m_friendsOnly;
+    int m_uploadVisibility;
+    CCMenuItemSpriteExtra* m_closeButton;
+    int m_uploadTargetID;
+    EditorSoundConfigInfoLayer* m_infoLayer;
 }
 
 [[link(android)]]
@@ -4806,6 +4872,16 @@ class EditorSoundsLayer : TabbedPopupLayer {
     void onClearSearch(cocos2d::CCObject* sender) = win 0x19eec0;
     void onSettings(cocos2d::CCObject* sender) = win 0x19ed80;
     void setupTabs() = win 0x19d680;
+
+    EditorUI* m_editorUI;
+    CCTextInputNode* m_searchInput;
+    cocos2d::extension::CCScale9Sprite* m_searchBackground;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    std::string m_searchQuery;
+    int m_searchTab;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCMenu* m_contentMenu;
+    bool m_contentMenuTouched;
 }
 
 [[link(android)]]
@@ -4821,6 +4897,9 @@ class EditorSoundsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
     void onClearAll(cocos2d::CCObject* sender) = win 0x3d4ff0;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void onDownloadAll(cocos2d::CCObject* sender) = win 0x3d4dc0;
+
+    EditorSoundsLayer* m_soundsLayer;
+    bool m_confirmingClearAll;
 }
 
 [[link(android)]]
@@ -10576,6 +10655,29 @@ class GJEditorSoundConfig : cocos2d::CCNode {
     void dataLoaded(DS_Dictionary* dict) = win 0x360ee0, imac 0x9073e0, m1 0x7ee0c0, ios 0x4de360;
     TodoReturn getUnpackedSoundDesc();
     TodoReturn showSoundInfo() = win 0x361180;
+
+    int m_soundID;
+    int m_localID;
+    bool m_autoUpdate;
+    int m_version;
+    int m_localVersion;
+    int m_originalID;
+    int m_accountID;
+    int m_downloads;
+    int m_likes;
+    int m_actionCount;
+    int m_soundCount;
+    int m_visibility;
+    int m_uploadDate;
+    int m_updateDate;
+    bool m_featured;
+    std::string m_name;
+    std::string m_description;
+    std::string m_emote;
+    std::string m_userName;
+    std::string m_data;
+    bool m_hasData;
+    bool m_liked;
 }
 
 [[link(android), depends(DynamicMoveCalculation, PulseEffectAction, TouchToggleAction, CollisionTriggerAction, ToggleTriggerAction, SpawnTriggerAction, GroupCommandObject2, OpacityEffectAction, CountTriggerAction, TimerItem, TimerTriggerAction, EffectManagerState)]]
@@ -15683,6 +15785,7 @@ class LevelSettingsObject : cocos2d::CCNode {
     int m_sharedSFXPlayerID;
     // property kA62
     std::set<int> m_sharedSFXFolderIDs;
+    int m_sharedSFXError;
 }
 
 [[link(android)]]
@@ -16617,6 +16720,11 @@ class MusicChangelogEntry : cocos2d::CCObject {
     static MusicChangelogEntry* create(int, int, int);
 
     bool init(int, int, int);
+
+    int m_version;
+    int m_timestamp;
+    int m_unk040;
+    cocos2d::CCArray* m_lines;
 }
 
 [[link(android)]]
@@ -16626,6 +16734,10 @@ class MusicChangelogLine : cocos2d::CCObject {
     static MusicChangelogLine* create(int, std::string, int);
 
     bool init(int, std::string, int);
+
+    int m_artistID;
+    int m_songCount;
+    std::string m_tagIDs;
 }
 
 [[link(android)]]
@@ -16870,7 +16982,6 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::CCObject* m_unk398;
     PAD = win 0x24;
     int m_newsPages;
-    PAD = win 0x8;
     bool m_updatingNewsFeed;
     bool m_unkBool2;
     bool m_requestedNewsFeedUpdate;
@@ -22362,6 +22473,12 @@ class SetupZoomTriggerPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
+class SFXBrowserFolderPosition {
+    int m_page;
+    float m_scrollY;
+}
+
+[[link(android), depends(SFXBrowserFolderPosition)]]
 class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, SelectSFXSortDelegate, SetTextPopupDelegate, FLAlertLayerProtocol, SFXFolderPickerDelegate {
     SFXBrowser() = inline;
     ~SFXBrowser() = win 0x6164e0, imac 0x8b3120, ios 0x1f15c0;
@@ -22430,14 +22547,47 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     GJCommentListLayer* m_listLayer;
     cocos2d::CCLabelBMFont* m_nameLabel;
     cocos2d::CCLabelBMFont* m_pathLabel;
+    CCMenuItemSpriteExtra* m_settingsButton;
+    std::string m_folderPath;
     cocos2d::CCLabelBMFont* m_infoLabel;
     cocos2d::CCLabelBMFont* m_pageLabel;
-    cocos2d::CCLabelBMFont* m_searchLabel;
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
     CCMenuItemSpriteExtra* m_backButton;
     CCMenuItemSpriteExtra* m_refreshButton;
+    CCMenuItemSpriteExtra* m_toggleSearchButton;
+    CCTextInputNode* m_searchInput;
+    cocos2d::extension::CCScale9Sprite* m_searchBackground;
     CCMenuItemSpriteExtra* m_clearSearchButton;
+    cocos2d::CCArray* m_searchControls;
+    bool m_searchActive;
+    CCMenuItemSpriteExtra* m_favoritesButton;
+    CCMenuItemSpriteExtra* m_recentButton;
+    CCMenuItemSpriteExtra* m_levelSFXButton;
+    CCMenuItemSpriteExtra* m_customSFXButton;
+    CCMenuItemSpriteExtra* m_newFolderButton;
+    CCMenuItemSpriteExtra* m_importFolderButton;
+    CCMenuItemSpriteExtra* m_replaceButton;
+    CCMenuItemSpriteExtra* m_shareButton;
+    bool m_pendingLevelSFXImport;
+    CCMenuItemSpriteExtra* m_exportFileButton;
+    CCMenuItemSpriteExtra* m_importFileButton;
+    CCMenuItemSpriteExtra* m_selectAllButton;
+    CCMenuItemSpriteExtra* m_moveToFolderButton;
+    CCMenuItemSpriteExtra* m_deleteSelectedButton;
+    cocos2d::CCLabelBMFont* m_selectedCountLabel;
+    std::set<int> m_selectedCustomIDs;
+    int m_selectedCustomID;
+    int m_pendingPlacementSFXID;
+    int m_pendingPlacementCustomID;
+    int m_pendingRenameCustomID;
+    int m_savedLibraryFolderID;
+    int m_savedCustomFolderID;
+    int m_savedLibraryPage;
+    float m_savedLibraryScrollY;
+    std::map<std::pair<AudioViewType, int>, SFXBrowserFolderPosition> m_folderPositions;
+    int m_savedCustomPage;
+    float m_savedCustomScrollY;
     LoadingCircleSprite* m_circleSprite;
     int m_sfxID;
     int m_libraryVersion;
@@ -22447,6 +22597,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     bool m_snapToSelected;
     bool m_compactMode;
     AudioSortType m_sortType;
+    AudioViewType m_lastFolderView;
     SFXBrowserDelegate* m_delegate;
     bool m_autoUpdating;
 }
@@ -22463,6 +22614,11 @@ class SFXChangelogEntry : cocos2d::CCObject {
     static SFXChangelogEntry* create(int, int, int);
 
     bool init(int, int, int);
+
+    int m_version;
+    int m_timestamp;
+    int m_unk040;
+    cocos2d::CCArray* m_lines;
 }
 
 [[link(android)]]
@@ -22520,6 +22676,17 @@ class SFXFolderPickerPopup : FLAlertLayer, SetTextPopupDelegate {
     TodoReturn refreshList() = win 0xc5da0;
     TodoReturn updateActionBtn() = win 0xc5fa0;
     TodoReturn updateShareHint() = win 0xc5e00;
+
+    SFXFolderPickerMode m_mode;
+    std::set<int> m_disabledFolderIDs;
+    std::set<int> m_selectedFolderIDs;
+    int m_selectedFolderID;
+    SFXFolderPickerDelegate* m_delegate;
+    CCTextInputNode* m_nameInput;
+    ScrollableContentLayer* m_scrollLayer;
+    CCMenuItemSpriteExtra* m_confirmButton;
+    CCMenuItemSpriteExtra* m_saveButton;
+    cocos2d::CCLabelBMFont* m_savedEntriesLabel;
 }
 
 [[link(android)]]
@@ -22572,6 +22739,9 @@ class SFXSettingsPopup : GJOptionsLayer {
     virtual void didToggleGV(std::string) = win 0x61f6e0, ios 0x1f7c3c, m1 0x3aaddc, imac 0x4347d0;
 
     bool init(SFXBrowser*);
+
+    SFXBrowser* m_browser;
+    bool m_settingsChanged;
 }
 
 [[link(android)]]
@@ -23583,6 +23753,16 @@ class SongUsagePopup : FLAlertLayer, SongUsageDelegate {
     void layoutPopup(float) = win 0x102320;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     void showStatus(char const*) = win 0x103740;
+
+    int m_songID;
+    LoadingCircle* m_loadingCircle;
+    cocos2d::extension::CCScale9Sprite* m_background;
+    cocos2d::CCLabelBMFont* m_songNameLabel;
+    cocos2d::CCLabelBMFont* m_artistNameLabel;
+    CCMenuItemSpriteExtra* m_closeButton;
+    InfoAlertButton* m_infoButton;
+    float m_popupHeight;
+    cocos2d::CCPoint m_contentCenter;
 }
 
 [[link(android)]]
@@ -23608,6 +23788,14 @@ class SoundPackDescPopup : SetupTriggerPopup, EmotePickerDelegate {
     void onPickIcon(cocos2d::CCObject* sender) = win 0x19a010;
     void onSave(cocos2d::CCObject* sender) = win 0x19a2a0;
     void refreshIconSlot() = win 0x199e20;
+
+    SoundPackDescDelegate* m_delegate;
+    CCTextInputNode* m_descriptionInput;
+    float m_inputWidth;
+    std::string m_emote;
+    cocos2d::extension::CCScale9Sprite* m_iconBackground;
+    CCMenuItemSpriteExtra* m_iconButton;
+    EmotePickerPopup* m_emotePicker;
 }
 
 [[link(android)]]
