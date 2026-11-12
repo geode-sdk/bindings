@@ -7174,7 +7174,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool getThreadInvites() = win 0x24e560;
     cocos2d::CCArray* getThreadMembers(int id) = win 0x24d340, m1 0x4c77f0, imac 0x575170;
     bool getThreadMessages(int, long long, long long, int, long long, std::string const&) = win 0x24b350;
-    TodoReturn getThreadPastMembers(int);
+    cocos2d::CCArray* getThreadPastMembers(int);
     cocos2d::CCArray* getThreadPendingInvites(int) = win 0x24e480;
     bool getThreads(int, std::string const&, int, std::string const&) = win 0x24a250, m1 0x4c53d0;
     int getTimeLeft(char const* key, float length) = win 0x221e90;
@@ -7290,7 +7290,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetNewsCompleted(std::string response, std::string tag) = win inline, imac 0x490870, ios inline;
     void onGetNotificationsCompleted(std::string, std::string) = win 0x24fb10;
     void onGetOnlineLevelsCompleted(std::string response, std::string tag) = win 0x22b650, imac 0x523250, m1 0x47c9c4;
-    TodoReturn onGetSongUsageCompleted(std::string, std::string);
+    void onGetSongUsageCompleted(std::string, std::string);
     void onGetThreadInvitesCompleted(std::string, std::string) = win 0x24e870;
     void onGetThreadMessagesCompleted(std::string, std::string) = win 0x24c420;
     void onGetThreadsCompleted(std::string, std::string) = win 0x24a780, m1 0x4900a8;
@@ -9281,7 +9281,7 @@ class GJAccountManager : cocos2d::CCNode {
     void onGetAccountBackupURLCompleted(std::string response, std::string tag) = win 0x3071e0, imac 0x9fca0, m1 0x8f60c;
     void onGetAccountSyncURLCompleted(std::string response, std::string tag) = win 0x308260, imac 0x9feb0, m1 0x8f834;
     void onLoginAccountCompleted(std::string response, std::string tag) = win 0x306a60, imac 0x9e670, m1 0x8e2f8;
-    TodoReturn onOpenRegisterCompleted(std::string, std::string);
+    void onOpenRegisterCompleted(std::string, std::string);
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x305400;
     void onRegisterAccountCompleted(std::string response, std::string tag) = win 0x306190, imac 0x9e580, m1 0x8e1f4;
     void onSyncAccountCompleted(std::string response, std::string tag) = win 0x3087e0, imac 0x9ece0, m1 0x8e900, ios 0x445c8c;
@@ -12984,7 +12984,7 @@ class GJTransformControl : cocos2d::CCLayer {
     void applyRotation(float rotation) = win 0x1a8020;
     void calculateRotationOffset() = win inline, imac 0x645730, m1 0x581228, ios inline;
     void finishTouch() = win inline, ios inline;
-    TodoReturn getOppositeHandleTag(int);
+    int getOppositeHandleTag(int);
     void loadFromState(GJTransformState& state) = win inline, imac 0x6453d0, m1 0x580f04;
     void loadValues(GameObject* object, cocos2d::CCArray* objects, std::unordered_map<int, GameObjectEditorState>& states) = win 0x1a5ef0, imac 0x6455a0, m1 0x5810b0;
     void moveAnchorTo(cocos2d::CCPoint) = win 0x1a82b0;
@@ -12995,7 +12995,7 @@ class GJTransformControl : cocos2d::CCLayer {
     void refreshControl() = win 0x1a5880, imac 0x644660, m1 0x5803bc;
     void saveToState(GJTransformState& state) = win inline, imac 0x645490, m1 0x580fb0;
     void scaleButtons(float scale) = win 0x1a5df0, m1 0x5802ec;
-    TodoReturn snapAngleTo45(float);
+    float snapAngleTo45(float);
     cocos2d::CCPoint snapToGrid(cocos2d::CCPoint, bool) = win 0x1a8780;
     cocos2d::CCPoint snapToNearestVertex(cocos2d::CCPoint) = win 0x1a8440;
     cocos2d::CCSprite* spriteByTag(int tag) = win inline, imac 0x467e70, m1 0x3d3fec, ios inline;
@@ -13777,8 +13777,8 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     virtual void bulkCommentDeleteFinished(int) = win 0x3d4120, imac 0x898080, m1 0x78b8a4, ios 0x3f28d4;
     virtual void bulkCommentDeleteFailed() = win 0x3d4330, imac 0x898290, m1 0x78baac, ios 0x3f2a30;
 
-    TodoReturn activeCommentID();
-    TodoReturn activeCommentKeyType();
+    int activeCommentID();
+    CommentKeyType activeCommentKeyType();
     bool canBulkDelete() = win 0x3d2f00;
     bool canToggleModRoom() = win 0x3d2b70;
     void clearBulkSelection() = win 0x3d3870;
@@ -22388,7 +22388,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     virtual bool inCustomSFXTree() = win 0x620280, ios 0x1f83b8, m1 0x3ab67c, imac 0x435200;
     virtual bool showsSFXInfoButton() = win 0x6202a0, ios 0x1f83f8, m1 0x3ab6bc, imac 0x435240;
 
-    TodoReturn currentListScrollY();
+    float currentListScrollY();
     void executeBatchDelete() = win 0x61cbc0;
     void fitFolderPath() = win 0x61a9f0;
     bool init(int, int) = win 0x616760;
@@ -24477,7 +24477,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     void onShowMembers(cocos2d::CCObject* sender) = win 0xdd200;
     void onThreadOptions(cocos2d::CCObject* sender) = win 0xdc6b0;
     bool openAt(long long) = win 0xdbaf0;
-    TodoReturn pastScoreFor(int);
+    GJUserScore* pastScoreFor(int);
     void refetchLatest() = win 0xde690;
     void refreshDMSubLabel() = win 0xdaca0;
     void refreshLockNotice() = win 0xdad40;
