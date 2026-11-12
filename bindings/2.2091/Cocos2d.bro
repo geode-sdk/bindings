@@ -971,7 +971,7 @@ class cocos2d::CCDrawNode : cocos2d::CCNodeRGBA {
     virtual bool init() = imac 0x6ed970, m1 0x600efc, ios 0x45c9c;
     virtual void draw() = imac 0x6edb60, m1 0x6010c0, ios 0x45e30;
 
-    void clear() = imac 0x6efae0, m1 0x602ac4, ios inline;
+    void clear() = imac 0x6efae0, m1 0x602ac4, ios 0x470f0;
     void disableDrawArea() = imac 0x6edcb0, m1 0x6011f8;
     void drawArchLikeHalfCircle(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float, unsigned int, cocos2d::_ccColor4F const&, float) = imac 0x6edf20, m1 0x60144c, ios 0x46074;
     bool drawCircle(cocos2d::CCPoint const&, float, cocos2d::ccColor4F const&, float, cocos2d::ccColor4F const&, unsigned int) = imac 0x6ef930, m1 0x602924, ios 0x46f5c;
