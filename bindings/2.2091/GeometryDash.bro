@@ -4972,7 +4972,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void flipObjectsY(cocos2d::CCArray* objects) = win 0x2000f0;
     CCMenuItemSpriteExtra* getButton(char const* text, int width, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) = win inline, imac 0xd790, m1 0xbe94, ios inline;
     CreateMenuItem* getCreateBtn(int id, int bg) = win 0x1f1390, imac 0x637ee0, m1 0x574884, ios 0x1843dc;
-    CreateMenuItem* getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) = win inline, m1 0xc184;
+    CreateMenuItem* getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) = win inline, imac 0xda50, m1 0xc184;
     GameObject* getCycledObject(cocos2d::CCArray* objects, bool dontSkipSelected) = win inline, imac 0xfd20, m1 0xe260;
     void getEditColorTargets(ColorAction*& mainColor, ColorAction*& detailColor, EffectGameObject*& object) = win 0x1bdef0, imac 0x195f0, m1 0x16474;
     cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint pos) = win 0x1bf900, m1 0x33c378;
@@ -4986,8 +4986,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     SmartGameObject* getSmartNeighbor(SmartGameObject* object, cocos2d::CCPoint position, GJSmartDirection direction, cocos2d::CCArray* objects) = win 0x1b7ff0, imac 0x13b20, m1 0x11a6c;
     float getSnapAngle(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x60f080, m1 0x54e1f0;
     CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0x7ca0, m1 0x6e34, ios inline;
-    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float) = win 0x1add30, ios 0x470d10;
-    CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float) = win 0x1addc0, imac 0xda50, m1 0x, ios 0x474acc;
+    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float) = win 0x1add30, imac 0x7ed0, m1 0x7068, ios 0x470d10;
+    CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float) = win 0x1addc0, imac 0xd800, m1 0xbf10, ios 0x474acc;
     cocos2d::CCPoint getTouchPoint(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x609810, m1 0x549aa8;
     GJTransformState& getTransformState() = win 0x2038d0, ios inline;
     bool getViewButtonState(int) = win 0x1f81b0;
