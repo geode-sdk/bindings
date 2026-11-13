@@ -2148,7 +2148,7 @@ class cocos2d::CCRGBAProtocol {
 
 [[link(win, android)]]
 class cocos2d::CCApplicationProtocol {
-    virtual ~CCApplicationProtocol();
+    virtual ~CCApplicationProtocol() = inline;
     virtual bool applicationDidFinishLaunching();
     virtual void applicationDidEnterBackground();
     virtual void applicationWillEnterForeground();
@@ -4850,7 +4850,7 @@ class cocos2d::CCTouchDelegate {
     // CCTouchDelegate(cocos2d::CCTouchDelegate const&);
     // CCTouchDelegate();
 
-    virtual ~CCTouchDelegate();
+    virtual ~CCTouchDelegate() = inline;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent);
     virtual void ccTouchMoved(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent);
