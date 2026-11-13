@@ -13217,7 +13217,7 @@ class GJUserScore : cocos2d::CCNode {
     bool m_unk31b;
     bool m_newFriendRequest;
     bool m_toggled;
-    std::string m_unkString;
+    std::string m_uploadDate;
     double m_lobbyJoinTime;
     std::string m_demonInfo;
     std::string m_starsInfo;
