@@ -11000,7 +11000,8 @@ class GJGameLevel : cocos2d::CCNode {
     std::string m_songIDs;
     std::string m_sfxIDs;
     int m_songSize;
-    int m_replayDailyID; // server key 65
+    [[renamed_from(m_replayDailyID)]]
+    int m_recallDailyID; // server key 65
     int m_bestTime;
     int m_ticksTime;
     int m_clicksTime;
@@ -14563,23 +14564,25 @@ class LevelCell : TableViewCell {
     virtual bool init() = win 0x148a50, ios 0x132cec, m1 0x1e2b50, imac 0x236ad0;
     virtual void draw() = win 0x14d560, imac 0x23aee0, m1 0x1e6c4c, ios 0x136974;
 
-    TodoReturn inRecallMode();
+    bool inRecallMode() = win inline;
     void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4, ios 0x13362c;
     void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0;
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70;
     void onClick(cocos2d::CCObject* sender) = win 0x14d200;
     void onToggle(cocos2d::CCObject* sender) = win 0x148c70, imac 0x302d20;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10;
-    TodoReturn playRecallUnlock() = win 0x148d30;
-    TodoReturn recallChestReady();
+    void playRecallUnlock() = win 0x148d30;
+    bool recallChestReady() = win inline;
     GJGameLevel* recallLevel() = win 0x148cc0, ios 0x1363bc, m1 0x1e65ac, imac 0x23a8b0;
-    TodoReturn recallSavedLevel();
+    GJGameLevel* recallSavedLevel() = win inline;
     void updateBGColor(int index) = win inline, imac 0x22a580, m1 0x1d6ec8;
     void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4;
     void updateToggle() = win inline, imac 0x236280, m1 0x1e25b8, ios inline;
 
     CCMenuItemSpriteExtra* m_button;
     GJGameLevel* m_level;
+    bool m_isShareLevel;
+    bool m_compactNoIndex;
     bool m_cellDrawn;
     CCMenuItemToggler* m_toggler;
     cocos2d::CCPoint m_point;
