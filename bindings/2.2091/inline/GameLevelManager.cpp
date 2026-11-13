@@ -111,23 +111,13 @@ const char* GameLevelManager::getUserInfoKey(int id) {
     return cocos2d::CCString::createWithFormat("account_%i", id)->getCString();
 }
 
-void GameLevelManager::handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) {
-    auto result = GJHttpResult::create(true, response, tag, type);
-    result->retain();
-    m_pActionManager->addAction(cocos2d::CCSequence::create(
-        cocos2d::CCDelayTime::create(.1f),
-        cocos2d::CCCallFuncND::create(this, callfuncND_selector(GJMultiplayerManager::handleItND), result),
-        nullptr
-    ), this, false);
-}
-
-#if defined(GEODE_IS_IOS)
+/*#if defined(GEODE_IS_IOS)
 void GameLevelManager::handleItND(cocos2d::CCNode* node, void* data) {
     auto result = static_cast<GJHttpResult*>(data);
     this->handleIt(result->m_success, result->m_response, result->m_requestTag, result->m_httpType);
     result->release();
 }
-#endif
+#endif*/
 
 bool GameLevelManager::hasDownloadedList(int id) {
     return this->hasDownloadedLevel(-id);
@@ -469,6 +459,16 @@ GJUserMessage* GameLevelManager::getStoredUserMessageReply(int id) {
 
 const char* GameLevelManager::getTopArtistsKey(int page) {
     return cocos2d::CCString::createWithFormat("topArtists_%i", page)->getCString();
+}
+
+void GameLevelManager::handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) {
+    auto result = GJHttpResult::create(true, response, tag, type);
+    result->retain();
+    m_pActionManager->addAction(cocos2d::CCSequence::create(
+        cocos2d::CCDelayTime::create(.1f),
+        cocos2d::CCCallFuncND::create(this, callfuncND_selector(GameLevelManager::handleItND), result),
+        nullptr
+    ), this, false);
 }
 
 bool GameLevelManager::hasDailyStateBeenLoaded(GJTimedLevelType type) {

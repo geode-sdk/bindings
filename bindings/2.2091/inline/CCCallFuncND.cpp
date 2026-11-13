@@ -8,7 +8,7 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
-cocos2d::CCCallFuncND* cocos2d::CCCallFuncND::create(cocos2d::CCObject* p0, cocos2d::SEL_CallFuncND p1, void* p2) {
+/*cocos2d::CCCallFuncND* cocos2d::CCCallFuncND::create(cocos2d::CCObject* p0, cocos2d::SEL_CallFuncND p1, void* p2) {
     auto ret = new CCCallFuncND();
     if (ret->initWithTarget(p0, p1, p2)) {
         ret->autorelease();
@@ -16,7 +16,7 @@ cocos2d::CCCallFuncND* cocos2d::CCCallFuncND::create(cocos2d::CCObject* p0, coco
     }
     delete ret;
     return nullptr;
-}
+}*/
 
 bool cocos2d::CCCallFuncND::initWithTarget(cocos2d::CCObject* p0, cocos2d::SEL_CallFuncND p1, void* p2) {
     if (!CCCallFunc::initWithTarget(p0)) return false;

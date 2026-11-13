@@ -576,7 +576,7 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo {
 
 [[link(win, android)]]
 class cocos2d::CCCallFuncND : cocos2d::CCCallFuncN {
-    static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*) = imac 0x890930, m1 0x784a6c, ios inline;
+    static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*) = imac 0x890930, m1 0x784a6c, ios 0x242d38;
 
     // CCCallFuncND(cocos2d::CCCallFuncND const&);
     // CCCallFuncND();
@@ -1506,7 +1506,7 @@ class cocos2d::CCFileUtilsIOS : cocos2d::CCFileUtils {
 [[missing(win, android, ios)]]
 class cocos2d::CCFileUtilsMac : cocos2d::CCFileUtils {
     virtual std::string getWritablePath() = imac 0x6e5140, m1 0x5f949c;
-    virtual bool isFileExist(std::string const& strFilePath) = imac 0x64d970, m1 0x5f9580;
+    virtual bool isFileExist(std::string const& strFilePath) = imac 0x6e5240, m1 0x5f9580;
     virtual bool isAbsolutePath(std::string const& strPath) = imac 0x6e5890, m1 0x5f9b58;
     virtual std::string getFullPathForDirectoryAndFilename(std::string const& strDirectory, std::string const& strFilename) = imac 0x6e55b0, m1 0x5f98fc;
     virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename) = imac 0x6e58e0, m1 0x5f9b84;
@@ -2329,9 +2329,9 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInColumns(unsigned int, ...) = inline;
     void alignItemsInColumns(unsigned int, va_list) = imac 0x874610, m1 0x76aad8, ios inline;
     void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x8746e0, m1 0x76ab8c, ios inline;
-    void alignItemsInRows(unsigned int, ...) = inline;
+    void alignItemsInRows(unsigned int, ...) = imac 0x874c40, inline;
     void alignItemsInRows(unsigned int, va_list) = imac 0x874cf0, m1 0x76afe8, ios inline;
-    void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x6d77b0, ios inline;
+    void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x874dc0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8740b0, ios 0x270be0;
     void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0;
@@ -3830,7 +3830,7 @@ class cocos2d::CCSequence : cocos2d::CCActionInterval {
     virtual ~CCSequence() = imac 0x39f280, m1 0x3279d4, ios 0x242b10;
 
     static cocos2d::CCSequence* create(cocos2d::CCArray*) = imac 0x39eee0, m1 0x32769c, ios 0x21d420;
-    // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3a2600, m1 0x33d1fc, ios 0x18da90;
+    // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3a2600, m1 0x327474, ios 0x18da90;
     static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x39ea30, m1 0x327354, ios 0x21d32c;
     static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x39ec10, m1 0x32749c, ios 0x21d448;
 
@@ -3935,7 +3935,7 @@ class cocos2d::CCShuffleTiles : cocos2d::CCTiledGrid3DAction {
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x89aff0, m1 0x78e5f0;
 
     cocos2d::CCSize getDelta(cocos2d::CCSize const&) = imac 0x89b260, m1 0x78e84c;
-    void placeTile(cocos2d::CCPoint const&, cocos2d::Tile*) = imac 0x89b300, m1 0x4c1e10;
+    void placeTile(cocos2d::CCPoint const&, cocos2d::Tile*) = imac 0x89b300, m1 0x78e8d8;
     void shuffle(unsigned int*, unsigned int) = imac 0x89b210, m1 0x78e7ec;
 }
 
