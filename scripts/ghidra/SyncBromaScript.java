@@ -30,6 +30,9 @@ import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.FunctionDefinition;
+import ghidra.program.model.data.FunctionDefinitionDataType;
+import ghidra.program.model.data.ParameterDefinition;
+import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
@@ -56,6 +59,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean exportToBroma;
         boolean setOptcall;
         boolean syncMembers;
+        boolean syncVirtuals;
         boolean syncEnums;
         boolean fillStandardTypes;
 
@@ -110,6 +114,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Export to Broma", false, b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
+            this.bool("Sync virtuals", b -> this.syncVirtuals = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
             this.bool("Fill standard types", b -> this.fillStandardTypes = b);
 
@@ -130,8 +135,8 @@ public class SyncBromaScript extends GhidraScript {
                 .filter(Files::exists)
                 .toList();
 
-            if (!this.importFromBroma && !this.exportToBroma && !this.syncMembers && !this.syncEnums) {
-                throw new Error("Either importing from Broma, exporting to Broma, syncing members, or syncing enums has to be checked!");
+            if (!this.importFromBroma && !this.exportToBroma && !this.syncMembers && !this.syncEnums && !this.syncVirtuals) {
+                throw new Error("Either importing from Broma, exporting to Broma, syncing members, syncing enums or syncing virtuals has to be checked!");
             }
         }
     }
@@ -191,6 +196,9 @@ public class SyncBromaScript extends GhidraScript {
         }
         if (this.args.syncMembers) {
             this.handleImportMembers();
+        }
+        if (this.args.syncVirtuals) {
+            this.handleImportVirtuals();
         }
         if (this.args.syncEnums) {
             this.handleImportEnums();
@@ -310,6 +318,9 @@ public class SyncBromaScript extends GhidraScript {
         for (var i = 0; i < data.getParameterCount(); i += 1) {
             var param = data.getParameter(i);
             // We only care about mismatches against user-defined params
+            if (param == null) {
+                continue;
+            }
             if (param.getSource() != SourceType.USER_DEFINED) {
                 continue;
             }
@@ -1237,6 +1248,331 @@ public class SyncBromaScript extends GhidraScript {
             }
         }
     }
+
+    private final HashSet<String> virtualClassesInProgress = new HashSet<>();
+    private final HashSet<String> virtualClassesProcessed = new HashSet<>();
+    private final HashMap<String, Structure> virtualTableCache = new HashMap<>();
+
+    private String shortClassName(String fullName) {
+        var parts = fullName.split("::");
+        return parts[parts.length - 1];
+    }
+
+    private CategoryPath classCategory(String fullName) {
+        var category = new CategoryPath("/ClassDataTypes");
+        for (var part : fullName.split("::")) {
+            category = category.extend(part);
+        }
+        return category;
+    }
+
+    private List<String> getBromaBases(Broma.Class cls) {
+        var basesString = cls.bases.isPresent() ? cls.bases.get().value.substring(1) : "";
+        // UILayer has an implicit second base that is not written in Broma.
+        if (cls.name.value.equals("UILayer")) {
+            basesString += ", cocos2d::CCKeyboardDelegate";
+        }
+        return Arrays.stream(basesString.split(","))
+            .map(String::trim)
+            .filter(base -> !base.isEmpty())
+            .toList();
+    }
+
+    private Structure getVirtualTable(Broma.Class cls, String tableName) {
+        if (cls == null) return null;
+        var category = classCategory(cls.name.value);
+        var dataType = currentProgram.getDataTypeManager().getDataType(new DataTypePath(category, tableName));
+        return dataType instanceof Structure ? (Structure)dataType : null;
+    }
+
+    private boolean hasVirtualSignatureInBase(
+        Broma.Function function,
+        Broma.Class baseClass,
+        HashSet<String> visited
+    ) {
+        if (baseClass == null || !visited.add(baseClass.name.value)) {
+            return false;
+        }
+
+        for (var baseFunction : baseClass.functions) {
+            if (baseFunction.virtual && function.isSignatureSame(baseFunction)) {
+                return true;
+            }
+        }
+
+        var baseNames = getBromaBases(baseClass);
+        if (!baseNames.isEmpty()) {
+            return hasVirtualSignatureInBase(function, classCache.get(baseNames.get(0)), visited);
+        }
+        return false;
+    }
+
+    private boolean hasVirtualSignatureInBase(Broma.Function function, Broma.Class baseClass) {
+        return hasVirtualSignatureInBase(function, baseClass, new HashSet<String>());
+    }
+
+    private void appendInheritedVTableEntries(Structure target, Structure source) throws Exception {
+        if (source == null) return;
+        for (var component : source.getComponents()) {
+            target.add(
+                component.getDataType(),
+                component.getLength(),
+                component.getFieldName(),
+                component.getComment()
+            );
+        }
+    }
+
+    private FunctionDefinitionDataType makeVirtualFunctionType(
+        Broma.Function function,
+        String tableName,
+        int ordinal
+    ) throws Exception {
+        var signature = wrapper.getBromaSignature(function, args.platform, false);
+        var type = new FunctionDefinitionDataType(tableName + "_vslot_" + ordinal);
+
+        type.setReturnType(
+            signature.returnType.isPresent()
+                ? signature.returnType.get().getDataType()
+                : new VoidDataType()
+        );
+
+        var parameters = new ParameterDefinition[signature.parameters.size()];
+        for (var i = 0; i < signature.parameters.size(); i += 1) {
+            var parameter = signature.parameters.get(i);
+            var parameterName = parameter.getName() != null
+                ? parameter.getName()
+                : "param_" + i;
+            parameters[i] = new ParameterDefinitionImpl(parameterName, parameter.getDataType(), null);
+        }
+        type.setArguments(parameters);
+        return type;
+    }
+
+    private Structure createVirtualTable(
+        Broma.Class cls,
+        String tableName,
+        Broma.Class baseClass,
+        List<Broma.Class> baseClasses
+    ) throws Exception {
+        final var manager = currentProgram.getDataTypeManager();
+        final var pointerSize = manager.getDataOrganization().getPointerSize();
+        final var category = classCategory(cls.name.value);
+        wrapper.createCategoryAll(category);
+
+        var vtable = new StructureDataType(tableName, 0);
+        vtable.setPackingEnabled(false);
+
+        if (baseClass != null) {
+            var baseTable = virtualTableCache.containsKey(baseClass.name.value)
+                ? virtualTableCache.get(baseClass.name.value)
+                : getVirtualTable(baseClass, shortClassName(baseClass.name.value) + "_vtable");
+            appendInheritedVTableEntries(vtable, baseTable);
+        }
+
+        var addedFunctions = 0;
+        function_iterate: for (var function : cls.functions) {
+            if (!function.virtual) continue;
+            if ((args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64)) {
+                for (Broma.Class base : baseClasses) {
+                    if (hasVirtualSignatureInBase(function, base)) {
+                        continue function_iterate;
+                    }
+                }
+            }
+            else {
+                if (baseClass != null && hasVirtualSignatureInBase(function, baseClass)) {
+                    continue function_iterate;
+                }
+            }
+
+
+            var functionType = makeVirtualFunctionType(function, tableName, addedFunctions);
+            var pointerType = new PointerDataType(functionType);
+
+            // use suffixes for overloads
+            var fieldName = function.getName();
+            var suffix = 2;
+            var fieldNameExists = true;
+            while (fieldNameExists) {
+                fieldNameExists = false;
+                for (var component : vtable.getComponents()) {
+                    if (fieldName.equals(component.getFieldName())) {
+                        fieldNameExists = true;
+                        fieldName = function.getName() + "_" + suffix++;
+                        break;
+                    }
+                }
+            }
+
+            vtable.add(pointerType, pointerSize, fieldName, null);
+            addedFunctions += 1;
+            if (function.destructor.isPresent() && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
+                vtable.add(pointerType, pointerSize, fieldName, null);
+                addedFunctions += 1;
+            }
+        }
+
+        if (vtable.isZeroLength()) {
+            return null;
+        }
+
+        var added = manager.getCategory(category).addDataType(
+            vtable,
+            DataTypeConflictHandler.REPLACE_HANDLER
+        );
+        return (Structure)added;
+    }
+
+    private void setPrimaryVTablePointer(Structure classStruct, Structure vtable, int pointerSize) {
+        var pointerType = new PointerDataType(vtable);
+        var existing = classStruct.getComponentAt(0);
+        var alreadyVTablePointer = false;
+
+        if (existing != null && existing.getOffset() == 0 && existing.getLength() == pointerSize) {
+            if (existing.getDataType() instanceof Pointer existingPointer) {
+                var pointedType = existingPointer.getDataType();
+                alreadyVTablePointer = pointedType != null &&
+                    (pointedType.isEquivalent(vtable) ||
+                     (existing.getFieldName() != null && existing.getFieldName().contains("vtable")));
+            }
+            else if (existing.getDataType() instanceof DefaultDataType) {
+                alreadyVTablePointer = true;
+            }
+        }
+
+        if (alreadyVTablePointer) {
+            for (var i = pointerSize - 1; i >= 0; i -= 1) {
+                classStruct.clearAtOffset(i);
+            }
+            classStruct.replaceAtOffset(0, pointerType, pointerSize, "vtable", null);
+        }
+        else {
+            classStruct.insertAtOffset(0, pointerType, pointerSize, "vtable", null);
+        }
+    }
+
+    private boolean setDelegateVTablePointer(
+        Structure classStruct,
+        String delegateName,
+        Structure vtable,
+        int pointerSize
+    ) {
+        var pointerType = new PointerDataType(vtable);
+        for (var component : classStruct.getComponents()) {
+            var fieldName = component.getFieldName();
+            var matchesName = fieldName != null && fieldName.equals(delegateName);
+            var matchesType = component.getDataType() instanceof Pointer pointer &&
+                pointer.getDataType() != null && pointer.getDataType().getName().equals(delegateName);
+
+            if (!matchesName && !matchesType) continue;
+
+            var offset = component.getOffset();
+            for (var i = pointerSize - 1; i >= 0; i -= 1) {
+                classStruct.clearAtOffset(offset + i);
+            }
+            classStruct.replaceAtOffset(offset, pointerType, pointerSize, delegateName, null);
+            return true;
+        }
+        return false;
+    }
+
+    private void importVirtualsForClass(Broma.Class cls) throws Exception {
+        if (cls == null) return;
+        var fullName = cls.name.value;
+        if (virtualClassesProcessed.contains(fullName) || !virtualClassesInProgress.add(fullName)) {
+            return;
+        }
+
+        var bases = getBromaBases(cls);
+        var baseClasses = new ArrayList<Broma.Class>();
+        for (var baseName : bases) {
+            var baseClass = classCache.get(baseName);
+            baseClasses.add(baseClass);
+            if (baseClass != null) {
+                importVirtualsForClass(baseClass);
+            }
+        }
+
+        var primaryBase = baseClasses.isEmpty() ? null : baseClasses.get(0);
+        var primaryVTable = createVirtualTable(
+            cls,
+            shortClassName(fullName) + "_vtable",
+            primaryBase,
+            baseClasses
+        );
+        virtualTableCache.put(fullName, primaryVTable);
+
+        var delegateTables = new ArrayList<Structure>();
+        var delegateNames = new ArrayList<String>();
+        for (var i = 1; i < baseClasses.size(); i += 1) {
+            var delegateBase = baseClasses.get(i);
+            if (delegateBase == null) continue;
+
+            var delegateShortName = shortClassName(delegateBase.name.value);
+            var delegateVTableName = shortClassName(fullName) + "_" + delegateShortName + "_vtable";
+            var delegateVTable = createVirtualTable(cls, delegateVTableName, delegateBase, baseClasses);
+            if (delegateVTable != null) {
+                delegateTables.add(delegateVTable);
+                delegateNames.add(delegateShortName);
+            }
+        }
+
+        if (primaryVTable != null || !delegateTables.isEmpty()) {
+            final var manager = currentProgram.getDataTypeManager();
+            final var pointerSize = manager.getDataOrganization().getPointerSize();
+            final var category = classCategory(fullName);
+            var classType = manager.getDataType(new DataTypePath(category, shortClassName(fullName)));
+            if (!(classType instanceof Structure)) {
+                wrapper.createCategoryAll(category);
+                classType = manager.getCategory(category).addDataType(
+                    new StructureDataType(shortClassName(fullName), 0),
+                    DataTypeConflictHandler.DEFAULT_HANDLER
+                );
+            }
+
+            var classStruct = (Structure)classType;
+            classStruct.setPackingEnabled(false);
+            if (primaryVTable != null) {
+                setPrimaryVTablePointer(classStruct, primaryVTable, pointerSize);
+            }
+
+            for (var i = 0; i < delegateTables.size(); i += 1) {
+                if (!setDelegateVTablePointer(
+                    classStruct,
+                    delegateNames.get(i),
+                    delegateTables.get(i),
+                    pointerSize
+                )) {
+                    wrapper.printfmt(
+                        "Warning: Could not find the {0} base pointer in {1} to replace with its vtable pointer",
+                        delegateNames.get(i), fullName
+                    );
+                }
+            }
+        }
+
+        virtualClassesInProgress.remove(fullName);
+        virtualClassesProcessed.add(fullName);
+        if (primaryVTable != null || !delegateTables.isEmpty()) {
+            wrapper.printfmt("Imported virtual tables for {0}", fullName);
+        }
+    }
+
+    private void handleImportVirtuals() throws Exception {
+        wrapper.printfmt("Importing virtual tables...");
+
+        classCache.putAll(bromas.stream()
+            .flatMap(bro -> bro.classes.stream())
+            .collect(Collectors.toMap(cls -> cls.name.value, cls -> cls, (first, ignored) -> first)));
+
+        for (var bro : bromas) {
+            for (var cls : bro.classes) {
+                importVirtualsForClass(cls);
+            }
+        }
+    }
+
 
     private void handleImportEnums() throws Exception {
         final var manager = currentProgram.getDataTypeManager();
