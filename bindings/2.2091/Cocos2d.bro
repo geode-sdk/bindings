@@ -2326,12 +2326,12 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     // CCMenu();
     void alignItemsHorizontally() = imac 0x874300, ios 0x270dc0;
     void alignItemsHorizontallyWithPadding(float) = imac 0x874320, ios 0x270dc8;
-    void alignItemsInColumns(unsigned int, ...) = imac 0x874c40, inline;
+    void alignItemsInColumns(unsigned int, ...) = inline;
     void alignItemsInColumns(unsigned int, va_list) = imac 0x874610, m1 0x76aad8, ios inline;
-    void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x874dc0, m1 0x76ab8c, ios inline;
-    void alignItemsInRows(unsigned int, ...) = inline;
+    void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x8746e0, m1 0x76ab8c, ios inline;
+    void alignItemsInRows(unsigned int, ...) = imac 0x874c40, inline;
     void alignItemsInRows(unsigned int, va_list) = imac 0x874cf0, m1 0x76afe8, ios inline;
-    void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x6d77b0, ios inline;
+    void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x874dc0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8740b0, ios 0x270be0;
     void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0;
@@ -3830,7 +3830,7 @@ class cocos2d::CCSequence : cocos2d::CCActionInterval {
     virtual ~CCSequence() = imac 0x39f280, m1 0x3279d4, ios 0x242b10;
 
     static cocos2d::CCSequence* create(cocos2d::CCArray*) = imac 0x39eee0, m1 0x32769c, ios 0x21d420;
-    // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3a2600, m1 0x33d1fc, ios 0x18da90;
+    // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3a2600, m1 0x327474, ios 0x18da90;
     static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x39ea30, m1 0x327354, ios 0x21d32c;
     static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x39ec10, m1 0x32749c, ios 0x21d448;
 
@@ -3935,7 +3935,7 @@ class cocos2d::CCShuffleTiles : cocos2d::CCTiledGrid3DAction {
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x89aff0, m1 0x78e5f0;
 
     cocos2d::CCSize getDelta(cocos2d::CCSize const&) = imac 0x89b260, m1 0x78e84c;
-    void placeTile(cocos2d::CCPoint const&, cocos2d::Tile*) = imac 0x89b300, m1 0x4c1e10;
+    void placeTile(cocos2d::CCPoint const&, cocos2d::Tile*) = imac 0x89b300, m1 0x78e8d8;
     void shuffle(unsigned int*, unsigned int) = imac 0x89b210, m1 0x78e7ec;
 }
 
