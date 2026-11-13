@@ -3233,7 +3233,7 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
 
 [[link(android)]]
 class CreatorSettingsDelegate {
-    virtual ~CreatorSettingsDelegate() = win 0x1780d0;
+    virtual ~CreatorSettingsDelegate() = win 0x1780d0, inline;
 
     virtual void creatorDescriptionChanged(std::string const&) = inline;
 }
@@ -5743,7 +5743,7 @@ class EmotePickerPopup : EditorWindowPopup {
     virtual void textChanged(CCTextInputNode* input) = win 0x123c60, imac 0x902e60, m1 0x7e9e30, ios 0x4db458;
     virtual void onBuildWindowContent() = win 0x123c70, imac 0x902e90, m1 0x7e9e3c, ios 0x4db464;
     virtual void onWindowResized() = win 0x124380, imac 0x903930, m1 0x7ea924, ios 0x4dbbb4;
-    
+
     CCMenuItemSpriteExtra* addCell(EmoteDef const*, int) = win 0x123F70, imac 0x9033f0, m1 0x7ea44c;
     bool canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
     bool init(CCTextInputNode* input, cocos2d::CCPoint position, int maxEmotes, int maxLength) = win 0x123970, imac 0x902680, m1 0x7e96b8;
