@@ -7469,7 +7469,8 @@ class GameLevelManager : cocos2d::CCNode {
     void* m_notificationDelegate;
     void* m_userListDelegate2;
     bool m_followListLoaded;
-    int m_getThreadsCounterIdx3;
+    [[renamed_from(m_getThreadsCounterIdx3)]]
+    int m_threadsInviteCount;
     int m_getThreadsCounterIdx4;
     int m_threadMessagesIntIdx0;
     int m_threadMessagesIntIdx1;
@@ -19592,8 +19593,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     bool m_forwardedTouchesOnly;
     std::map<int, cocos2d::CCNode*> m_sections;
     std::map<int, cocos2d::CCMenu*> m_sectionMenus;
-    int m_sectionUnk1;
-    int m_sectionUnk2;
+    cocos2d::CCMenu* m_touchedVirtualRow;
     bool m_horizontal;
     VirtualRowSource* m_rowSource;
     // extra distance mounted beyond each edge of the view
