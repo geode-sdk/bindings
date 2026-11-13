@@ -6354,7 +6354,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     static FLAlertLayer* create(char const* title, const std::string& desc, char const* btn) = inline;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2) = win 0x5a4b0, inline;
     static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width) = win 0x5a560, imac 0x493d70, m1 0x3fc44c, ios 0x34aaf0;
-    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a610, ios 0x34a9b8;
+    static FLAlertLayer* create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a610, imac 0x493b70, m1 0x3fc270, ios 0x34a9b8;
 
     [[missing(win)]]
     virtual void onEnter() = win 0x5bcf0, imac 0x495640, m1 0x3fdce8, ios 0x34c06c;
