@@ -1506,7 +1506,7 @@ class cocos2d::CCFileUtilsIOS : cocos2d::CCFileUtils {
 [[missing(win, android, ios)]]
 class cocos2d::CCFileUtilsMac : cocos2d::CCFileUtils {
     virtual std::string getWritablePath() = imac 0x6e5140, m1 0x5f949c;
-    virtual bool isFileExist(std::string const& strFilePath) = imac 0x64d970, m1 0x5f9580;
+    virtual bool isFileExist(std::string const& strFilePath) = imac 0x6e5240, m1 0x5f9580;
     virtual bool isAbsolutePath(std::string const& strPath) = imac 0x6e5890, m1 0x5f9b58;
     virtual std::string getFullPathForDirectoryAndFilename(std::string const& strDirectory, std::string const& strFilename) = imac 0x6e55b0, m1 0x5f98fc;
     virtual cocos2d::CCDictionary* createCCDictionaryWithContentsOfFile(std::string const& filename) = imac 0x6e58e0, m1 0x5f9b84;
@@ -2326,9 +2326,9 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     // CCMenu();
     void alignItemsHorizontally() = imac 0x874300, ios 0x270dc0;
     void alignItemsHorizontallyWithPadding(float) = imac 0x874320, ios 0x270dc8;
-    void alignItemsInColumns(unsigned int, ...) = inline;
+    void alignItemsInColumns(unsigned int, ...) = imac 0x874c40, inline;
     void alignItemsInColumns(unsigned int, va_list) = imac 0x874610, m1 0x76aad8, ios inline;
-    void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x8746e0, m1 0x76ab8c, ios inline;
+    void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x874dc0, m1 0x76ab8c, ios inline;
     void alignItemsInRows(unsigned int, ...) = inline;
     void alignItemsInRows(unsigned int, va_list) = imac 0x874cf0, m1 0x76afe8, ios inline;
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x6d77b0, ios inline;
