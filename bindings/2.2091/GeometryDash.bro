@@ -5742,7 +5742,7 @@ class EmotePickerPopup : EditorWindowPopup {
     virtual void textChanged(CCTextInputNode* input) = win 0x123c60, imac 0x902e60, m1 0x7e9e30, ios 0x4db458;
     virtual void onBuildWindowContent() = win 0x123c70, imac 0x902e90, m1 0x7e9e3c, ios 0x4db464;
     virtual void onWindowResized() = win 0x124380, imac 0x903930, m1 0x7ea924, ios 0x4dbbb4;
-    
+
     CCMenuItemSpriteExtra* addCell(EmoteDef const*, int) = win 0x123F70, imac 0x9033f0, m1 0x7ea44c;
     bool canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58;
     bool init(CCTextInputNode* input, cocos2d::CCPoint position, int maxEmotes, int maxLength) = win 0x123970, imac 0x902680, m1 0x7e96b8;
@@ -22252,7 +22252,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     float getTruncatedValueByTag(int tag, float value) = win inline, imac 0x21e1d0, m1 0x1cc338;
     void goToPage(int page, bool hideAll) = win 0x60b770, imac 0x219e40, m1 0x1c9524;
     void hideAll() = win inline, imac 0x21a0b0, m1 0x1c9788;
-    bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int, float) = win 0x60ae90, imac 0x219540, m1 0x1c8c84, ios 0x1abd08;
+    bool init(EffectGameObject*, cocos2d::CCArray*, float, float, int, float verticalOffset) = win 0x60ae90, imac 0x219540, m1 0x1c8c84, ios 0x1abd08;
     void onCustomEaseArrow(int property, bool up) = win 0x6156e0, imac 0x2254e0, m1 0x1d2b9c;
     void onCustomEaseArrowDown(cocos2d::CCObject* sender) = win 0x6156b0, imac 0x225220, m1 0x1d286c;
     void onCustomEaseArrowUp(cocos2d::CCObject* sender) = win 0x615680, imac 0x225180, m1 0x1d27b8;

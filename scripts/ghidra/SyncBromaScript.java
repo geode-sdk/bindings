@@ -1,4 +1,4 @@
-// Sync your RE'd addresses to & from GeometryDash.bro 
+// Sync your RE'd addresses to & from GeometryDash.bro
 // @author HJfod
 // @category GeodeSDK
 
@@ -70,14 +70,14 @@ public class SyncBromaScript extends GhidraScript {
 
         @Override
         protected String description() {
-            return 
-                "Import addresses & signatures from Broma, and add new ones " + 
-                "from the current project to it.\n\n" + 
-                "Note that it is recommended to save your Ghidra project before " + 
-                "running the script, so if it messes something up you can safely " + 
-                "undo the mistake.\n\n" + 
-                "You will need to manually git pull / push your local copy of the " + 
-                "bindings repository!\n\n" + 
+            return
+                "Import addresses & signatures from Broma, and add new ones " +
+                "from the current project to it.\n\n" +
+                "Note that it is recommended to save your Ghidra project before " +
+                "running the script, so if it messes something up you can safely " +
+                "undo the mistake.\n\n" +
+                "You will need to manually git pull / push your local copy of the " +
+                "bindings repository!\n\n" +
                 "See the README for detailed explanations of all the options.";
         }
 
@@ -129,7 +129,7 @@ public class SyncBromaScript extends GhidraScript {
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
                 .filter(Files::exists)
                 .toList();
-            
+
             if (!this.importFromBroma && !this.exportToBroma && !this.syncMembers && !this.syncEnums) {
                 throw new Error("Either importing from Broma, exporting to Broma, syncing members, or syncing enums has to be checked!");
             }
@@ -139,7 +139,7 @@ public class SyncBromaScript extends GhidraScript {
     ScriptWrapper wrapper;
     Args args;
     List<Broma> bromas = new ArrayList<Broma>();
-    
+
     public void run() throws Exception {
         this.wrapper = new ScriptWrapper(this);
 
@@ -257,7 +257,7 @@ public class SyncBromaScript extends GhidraScript {
         // Check if function already has an user-provided name - in this case, it might be merged
         if (
             data.getSymbol().getSource() == SourceType.USER_DEFINED &&
-            !data.getName(true).equals(fullName) && 
+            !data.getName(true).equals(fullName) &&
             !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
         ) {
             if (overwriteAll) {
@@ -267,7 +267,7 @@ public class SyncBromaScript extends GhidraScript {
                 int choice = mergeAll ? 0 : askContinueConflict(
                     "Function has a different name",
                     List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all", "Merge all"),
-                    "The function {0} at {1} from Broma already has the name " + 
+                    "The function {0} at {1} from Broma already has the name " +
                     "{2} in Ghidra - is this function merged with that?",
                     fullName, Long.toHexString(addr.getOffset()), data.getName(true)
                 );
@@ -277,7 +277,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 if (choice == 0) {
                     data.setComment(
-                        (data.getComment() != null ? (data.getComment() + "\n") : "") + 
+                        (data.getComment() != null ? (data.getComment() + "\n") : "") +
                         "NOTE: Merged with " + fullName
                     );
                     wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
@@ -359,8 +359,8 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.UPDATED);
         }
 
-        var shouldReorderParams = 
-            (conv == CConv.MEMBERCALL || conv == CConv.OPTCALL) && 
+        var shouldReorderParams =
+            (conv == CConv.MEMBERCALL || conv == CConv.OPTCALL) &&
             // Only do manual storage if there's actually a need for it
             bromaSig.parameters.stream().anyMatch(p ->
                 p.getDataType() instanceof Composite ||
@@ -373,7 +373,7 @@ public class SyncBromaScript extends GhidraScript {
             if (!this.args.setOptcall) {
                 updateType = FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS;
                 wrapper.printfmt(
-                    "Warning: not handling optcall/membercall for {0} - " + 
+                    "Warning: not handling optcall/membercall for {0} - " +
                     "parameter order / registers will be wrong!",
                     fullName
                 );
@@ -423,7 +423,7 @@ public class SyncBromaScript extends GhidraScript {
                         else {
                             if (type.isNotYetDefined()) {
                                 wrapper.printfmt(
-                                    "Warning: function {0} has parameter {1} of an undefined " + 
+                                    "Warning: function {0} has parameter {1} of an undefined " +
                                     "struct type - you will need to manually fix this later!",
                                     fullName, param.getName()
                                 );
@@ -641,7 +641,7 @@ public class SyncBromaScript extends GhidraScript {
                     continue;
                 }
                 var addr = currentProgram.getImageBase().add(offset);
-                
+
                 switch (importSignatureFromBroma(addr, fun, false)) {
                     case ADDED: {
                         importedAddCount += 1;
@@ -715,7 +715,7 @@ public class SyncBromaScript extends GhidraScript {
                 /*if(fullName.contains("~")) {
                     continue;
                 }*/
-                
+
                 var bromaFuns = bromaClass.getFunctions(name);
                 if (bromaFuns.isEmpty()) {
                     wrapper.printfmt("Warning: function {0} not found", fullName);
@@ -767,20 +767,20 @@ public class SyncBromaScript extends GhidraScript {
                         bromaFun = bromaFuns.get(askChoiceBetter(
                             "Select overload",
                             bromaFuns.stream()
-                                .map(f -> f.getName() + "(" + 
+                                .map(f -> f.getName() + "(" +
                                     String.join(
                                         ", ", f.params.stream()
                                             .map(p -> p.toString())
                                             .toArray(String[]::new)
-                                    ) + 
+                                    ) +
                                     ")"
                                 )
                                 .toList(),
-                            "Function <code>{0}</code> has multiple overloads, and the correct one couldn''t be " + 
-                            "inferred from the Ghidra arguments. Please select the correct one for " + 
-                            "address {1}." + 
-                            "<br><b>Signature at address</b>: {2}" + 
-                            "<br><em>If you need to cancel the script to check, make sure to manually set the " + 
+                            "Function <code>{0}</code> has multiple overloads, and the correct one couldn''t be " +
+                            "inferred from the Ghidra arguments. Please select the correct one for " +
+                            "address {1}." +
+                            "<br><b>Signature at address</b>: {2}" +
+                            "<br><em>If you need to cancel the script to check, make sure to manually set the " +
                             "parameter types so next time the overload is automatically detected!</em>",
                             fullName, fun.getEntryPoint(),
                             new Signature(fun.getReturn(), List.of(fun.getParameters()))
@@ -791,7 +791,7 @@ public class SyncBromaScript extends GhidraScript {
                     bromaFun = bromaFuns.get(0);
                 }
 
-                // Update return type if Ghidra has an user-defined type and 
+                // Update return type if Ghidra has an user-defined type and
                 // Broma has TodoReturn
                 if (
                     bromaFun.returnType.isPresent() && bromaFun.returnType.get().name.value.contains("TodoReturn") &&
@@ -821,7 +821,7 @@ public class SyncBromaScript extends GhidraScript {
                         broma.addPatch(bromaParam.nameInsertionPoint.get().range, " " + param.getName());
                     }
                 }
-                
+
                 // Add address
                 if (bromaFun.platformOffset.isPresent()) {
                     var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
@@ -856,7 +856,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
             }
         }
-        
+
         wrapper.printfmt("Exported {0} addresses & {1} return types to Broma", exportedAddrCount, exportedTypeCount);
     }
 
@@ -925,7 +925,7 @@ public class SyncBromaScript extends GhidraScript {
                 classDataMembers.setLength(0);
             }
 
-            // Delete any padding at the end of the struct 
+            // Delete any padding at the end of the struct
             // (so if the struct has shrunk in broma, we refit it properly)
             while (!classDataMembers.isZeroLength()) {
                 var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
@@ -938,7 +938,9 @@ public class SyncBromaScript extends GhidraScript {
             }
 
             var initialOffset = 0;
-            if (args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64 && !firstBase.isEmpty() && classCache.containsKey(firstBase)) {
+            if (args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64 && !firstBase.isEmpty() && classCache.containsKey(firstBase)
+                /* okay so bugfix time! if there are delegates inside this class we don't need to do these offset calculations at all! */ && basesList.size() == 1
+            ) {
                 var firstBaseCategory = new CategoryPath("/ClassDataTypes");
                 String firstBaseData = null;
                 for (var part : firstBase.split("::")) {
@@ -1014,9 +1016,9 @@ public class SyncBromaScript extends GhidraScript {
                             var result = askContinueConflict(
                                 "Override member",
                                 List.of("Yes", "Yes to Class", "Yes to All", "No", "No to Class", "No to All"),
-                                "Member #{0} in {1} does not match between Broma and Ghidra:<br><br>" + 
-                                "Broma: {2} {3}<br>" + 
-                                "Ghidra: {4} {5}<br><br>" + 
+                                "Member #{0} in {1} does not match between Broma and Ghidra:<br><br>" +
+                                "Broma: {2} {3}<br>" +
+                                "Ghidra: {4} {5}<br><br>" +
                                 "Should the existing member in Ghidra be overwritten with Broma's?",
                                 existing.getOrdinal(), fullName,
                                 ScriptWrapper.formatType(memType), memName,
@@ -1061,7 +1063,7 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     else {
                         wrapper.printfmt(
-                            "Warning: Reached undefined padding at offset {0} " + 
+                            "Warning: Reached undefined padding at offset {0} " +
                             "on class {1} - stopping importing members",
                             offset, fullName
                         );
@@ -1358,9 +1360,9 @@ public class SyncBromaScript extends GhidraScript {
             if (mem.getDataType() instanceof Undefined) {
                 var pad = new PaddingInfo(mem.getComment(), args.platform);
 
-                // If this padding is different between different platforms, 
-                // skip any members inside that padding region 
-                // (since we can't know how inserting those members would 
+                // If this padding is different between different platforms,
+                // skip any members inside that padding region
+                // (since we can't know how inserting those members would
                 // split the padding on other platforms)
                 if (pad.unequal()) {
                     if (pad.platforms.containsKey(args.platform)) {
@@ -1388,15 +1390,15 @@ public class SyncBromaScript extends GhidraScript {
                         for (var j = i; j < lastPaddingIndex; j += 1) {
                             if (type.getComponent(j).getFieldName() != null) {
                                 wrapper.printfmt(
-                                    "Warning: field {0} in {1} is within a region of " + 
-                                    "unequal paddings between platforms - you will need " + 
-                                    "to manually export it to the Broma file and fix the " + 
+                                    "Warning: field {0} in {1} is within a region of " +
+                                    "unequal paddings between platforms - you will need " +
+                                    "to manually export it to the Broma file and fix the " +
                                     "paddings!",
                                     type.getComponent(j).getFieldName(), fullName
                                 );
                             }
                         }
-                        // Figure out how much the paddings should be shrunk down for each platform 
+                        // Figure out how much the paddings should be shrunk down for each platform
                         // based on the size of the members added to the ends
                         var shrunk = new HashMap<Platform, Integer>(pad.platforms);
                         for (var j = originalPadRegionStartIndex; j < i; j += 1) {
@@ -1418,7 +1420,7 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     else {
                         wrapper.printfmt(
-                            "Warning: padding at offset {0} in {1} is not defined on this platform " + 
+                            "Warning: padding at offset {0} in {1} is not defined on this platform " +
                             " - exported members may be wrong!",
                             mem.getOffset(), fullName
                         );
@@ -1462,8 +1464,8 @@ public class SyncBromaScript extends GhidraScript {
         else {
             replaceRange = bromaClass.members.get(0).range;
             for (var mem : bromaClass.members) {
-                // If the padding is not defined on this platform, 
-                // the padding and the rest of the members weren't imported 
+                // If the padding is not defined on this platform,
+                // the padding and the rest of the members weren't imported
                 // and shouldn't be overridden
                 if (mem.name.isEmpty() && !mem.paddings.containsKey(args.platform)) {
                     break;
@@ -1500,7 +1502,7 @@ public class SyncBromaScript extends GhidraScript {
             wrapper,
             title,
             MessageFormat.format(
-                "<html>" + fmt + "<br>If this is not the case, please fix " + 
+                "<html>" + fmt + "<br>If this is not the case, please fix " +
                 "the conflict manually in the Broma file!" + "</html>",
                 args
             ),
