@@ -4850,9 +4850,6 @@ class cocos2d::CCTouchDelegate {
     // CCTouchDelegate(cocos2d::CCTouchDelegate const&);
     // CCTouchDelegate();
 
-    virtual void setPreviousPriority(int) = inline;
-    virtual int getPreviousPriority() = inline;
-
     virtual ~CCTouchDelegate();
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* pTouch, cocos2d::CCEvent* pEvent);
@@ -4865,8 +4862,8 @@ class cocos2d::CCTouchDelegate {
     virtual void ccTouchesEnded(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
     virtual void ccTouchesCancelled(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
 
-	virtual void setPreviousPriority(int);
-	virtual int getPreviousPriority();
+	virtual void setPreviousPriority(int) = inline;
+	virtual int getPreviousPriority() = inline;
 }
 
 [[link(win, android)]]
