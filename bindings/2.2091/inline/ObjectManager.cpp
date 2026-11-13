@@ -9,10 +9,6 @@ bool ObjectManager::animLoaded(char const* anim) {
     return m_loadedAnimations->objectForKey(anim) != nullptr;
 }
 
-cocos2d::CCDictionary* ObjectManager::getGlobalAnimCopy(char const* anim) {
-    return static_cast<cocos2d::CCDictionary*>(static_cast<cocos2d::CCDictionary*>(m_objectDefinitions->objectForKey("GlobalAnimations"))->objectForKey(anim));
-}
-
 void ObjectManager::purgeObjectManager() {
     auto objectManager = reinterpret_cast<ObjectManager**>(geode::base::get() + 0x90bf78);
     if (*objectManager) {
