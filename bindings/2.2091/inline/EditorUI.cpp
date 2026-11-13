@@ -15,6 +15,7 @@
 #include <Geode/binding/ObjectToolbox.hpp>
 #include <Geode/binding/ColorSelectLiveOverlay.hpp>
 #include <Geode/binding/HSVLiveOverlay.hpp>
+#include <Geode/ObjectIDs.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
@@ -96,7 +97,7 @@ GJTransformState& EditorUI::getTransformState() {
 #endif
 
 bool EditorUI::isLiveColorSelectTrigger(GameObject* object) {
-    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == 1006);
+    return object && object->m_classType == GameObjectClassType::Effect && (object->m_isColorTrigger || object->m_objectID == ObjectID::PulseTrigger);
 }
 
 bool EditorUI::liveEditColorUsable() {
@@ -272,7 +273,7 @@ cocos2d::CCArray* EditorUI::createExtras(cocos2d::CCArray* objects) {
     auto extras = cocos2d::CCArray::create();
     for (int i = 0; i < objects->count(); i++) {
         auto object = static_cast<GameObject*>(objects->objectAtIndex(i));
-        if (object->m_objectID > 2807 && object->m_objectID < 2838) {
+        if (ObjectID::BubblyLiquidBlockLeftEdgeTop4Light < object->m_objectID && object->m_objectID < ObjectID::BrickPieceLeftCorner) {
             this->createExtrasForObject(object->m_objectID, object, extras);
         }
     }
@@ -333,92 +334,92 @@ void EditorUI::disableButton(CreateMenuItem* button) {
 }
 
 int EditorUI::edgeForObject(int id, int type) {
-    if (id == 1348) {
+    if (id == ObjectID::BottomRightFloatingRocks) {
         switch (type) {
-            case 0: return 1359;
-            case 3: return 1395;
-            case 7: return 1363;
+            case 0: return ObjectID::TopRightSmallFloatingRocks;
+            case 3: return ObjectID::LeftBottomSmallFloatingRocks;
+            case 7: return ObjectID::TopLeftSingleFloatingRock1;
         }
     }
-    else if (id == 1349) {
+    else if (id == ObjectID::BottomLeftFloatingRocks) {
         switch (type) {
-            case 0: return 1360;
-            case 1: return 1357;
-            case 4: return 1364;
+            case 0: return ObjectID::TopLeftSmallFloatingRocks;
+            case 1: return ObjectID::RightBottomSmallFloatingRocks;
+            case 4: return ObjectID::TopRightSingleFloatingRock1;
         }
     }
-    else if (id == 1350) {
+    else if (id == ObjectID::TopRightFloatingRocks) {
         switch (type) {
-            case 2: return 1361;
-            case 3: return 1356;
-            case 6: return 1365;
+            case 2: return ObjectID::BottomRightSmallFloatingRocks;
+            case 3: return ObjectID::LeftTopSmallFloatingRocks;
+            case 6: return ObjectID::BottomLeftSingleFloatingRock1;
         }
     }
-    else if (id == 1351) {
+    else if (id == ObjectID::TopLeftFloatingRocks) {
         switch (type) {
-            case 1: return 1358;
-            case 2: return 1362;
-            case 5: return 1366;
+            case 1: return ObjectID::RightTopSmallFloatingRocks;
+            case 2: return ObjectID::BottomLeftSmallFloatingRocks;
+            case 5: return ObjectID::BottomRightSingleFloatingRock1;
         }
     }
-    else if (id == 1431 || id == 1432 || id == 1433) {
+    else if (id == ObjectID::TiledFloatingRocks1 || id == ObjectID::TiledFloatingRocks2 || id == ObjectID::TiledFloatingRocks3) {
         switch (type) {
-            case 0: return 1435;
-            case 1: return 1436;
-            case 2: return 1437;
-            case 3: return 1434;
-            case 4: return 1439;
-            case 5: return 1441;
-            case 6: return 1440;
-            case 7: return 1438;
+            case 0: return ObjectID::FloatingRocksTop;
+            case 1: return ObjectID::FloatingRocksRight;
+            case 2: return ObjectID::FloatingRocksBottom;
+            case 3: return ObjectID::FloatingRocksLeft;
+            case 4: return ObjectID::TopRightSingleFloatingRock2;
+            case 5: return ObjectID::BottomRightSingleFloatingRock2;
+            case 6: return ObjectID::BottomLeftSingleFloatingRock2;
+            case 7: return ObjectID::TopLeftSingleFloatingRock2;
         }
     }
-    else if (id == 1461) {
+    else if (id == ObjectID::TiledJaggedRocks1) {
         switch (type) {
-            case 0: return 1629;
-            case 1: return 1625;
-            case 2: return 1633;
-            case 3: return 1621;
-            case 4: return 1638;
-            case 5: return 1640;
-            case 6: return 1639;
-            case 7: return 1637;
+            case 0: return ObjectID::JaggedRocks1Top;
+            case 1: return ObjectID::JaggedRocks1Right;
+            case 2: return ObjectID::JaggedRocks1Bottom;
+            case 3: return ObjectID::JaggedRocks1Left;
+            case 4: return ObjectID::JaggedRocks1TopRight;
+            case 5: return ObjectID::JaggedRocks1BottomRight;
+            case 6: return ObjectID::JaggedRocks1BottomLeft;
+            case 7: return ObjectID::JaggedRocks1TopLeft;
         }
     }
-    else if (id == 1462) {
+    else if (id == ObjectID::TiledJaggedRocks2) {
         switch (type) {
-            case 0: return 1630;
-            case 1: return 1627;
-            case 2: return 1634;
-            case 3: return 1623;
-            case 4: return 1642;
-            case 5: return 1644;
-            case 6: return 1643;
-            case 7: return 1641;
+            case 0: return ObjectID::JaggedRocks2Top;
+            case 1: return ObjectID::JaggedRocks2Right;
+            case 2: return ObjectID::JaggedRocks2Bottom;
+            case 3: return ObjectID::JaggedRocks2Left;
+            case 4: return ObjectID::JaggedRocks2TopRight;
+            case 5: return ObjectID::JaggedRocks2BottomRight;
+            case 6: return ObjectID::JaggedRocks2BottomLeft;
+            case 7: return ObjectID::JaggedRocks2TopLeft;
         }
     }
-    else if (id == 1463) {
+    else if (id == ObjectID::TiledJaggedRocks3) {
         switch (type) {
-            case 0: return 1631;
-            case 1: return 1626;
-            case 2: return 1635;
-            case 3: return 1622;
-            case 4: return 1646;
-            case 5: return 1648;
-            case 6: return 1647;
-            case 7: return 1645;
+            case 0: return ObjectID::JaggedRocks3Top;
+            case 1: return ObjectID::JaggedRocks3Right;
+            case 2: return ObjectID::JaggedRocks3Bottom;
+            case 3: return ObjectID::JaggedRocks3Left;
+            case 4: return ObjectID::JaggedRocks3TopRight;
+            case 5: return ObjectID::JaggedRocks3BottomRight;
+            case 6: return ObjectID::JaggedRocks3BottomLeft;
+            case 7: return ObjectID::JaggedRocks3TopLeft;
         }
     }
-    else if (id == 1464) {
+    else if (id == ObjectID::TiledJaggedRocks4) {
         switch (type) {
-            case 0: return 1632;
-            case 1: return 1628;
-            case 2: return 1636;
-            case 3: return 1624;
-            case 4: return 1650;
-            case 5: return 1652;
-            case 6: return 1651;
-            case 7: return 1649;
+            case 0: return ObjectID::JaggedRocks4Top;
+            case 1: return ObjectID::JaggedRocks4Right;
+            case 2: return ObjectID::JaggedRocks4Bottom;
+            case 3: return ObjectID::JaggedRocks4Left;
+            case 4: return ObjectID::JaggedRocks4TopRight;
+            case 5: return ObjectID::JaggedRocks4BottomRight;
+            case 6: return ObjectID::JaggedRocks4BottomLeft;
+            case 7: return ObjectID::JaggedRocks4TopLeft;
         }
     }
     return 0;
