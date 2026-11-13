@@ -576,7 +576,7 @@ class cocos2d::CCCallFuncN : cocos2d::CCCallFunc, cocos2d::TypeInfo {
 
 [[link(win, android)]]
 class cocos2d::CCCallFuncND : cocos2d::CCCallFuncN {
-    static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*) = imac 0x890930, m1 0x784a6c, ios inline;
+    static cocos2d::CCCallFuncND* create(cocos2d::CCObject*, cocos2d::SEL_CallFuncND, void*) = imac 0x890930, m1 0x784a6c, ios 0x242d38;
 
     // CCCallFuncND(cocos2d::CCCallFuncND const&);
     // CCCallFuncND();

@@ -7189,8 +7189,8 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn getUserSearch(std::string const&);
     void gotoLevelPage(GJGameLevel* level) = win 0x221390, imac 0x549d70, m1 0x49fbf4, ios 0xad64c;
     void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x219750, imac 0x51c4e0, ios 0x9166c;
-    void handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) = win inline, imac 0x51c3a0, ios inline;
-    void handleItND(cocos2d::CCNode* node, void* data) = win 0x2196d0, imac 0x5225f0, ios inline;
+    void handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) = win inline, imac 0x51c3a0, ios 0x9152c;
+    void handleItND(cocos2d::CCNode* node, void* data) = win 0x2196d0, imac 0x5225f0, ios 0x963e8;
     bool hasDailyStateBeenLoaded(GJTimedLevelType type) = win inline, imac 0x580f90, m1 0x4d2c28;
     bool hasDownloadedLevel(int id) = win 0x233a80, imac 0x55eea0, m1 0x4b2fc0;
     bool hasDownloadedList(int id) = win inline, imac 0x559460, m1 0x4ad9dc, ios inline;
