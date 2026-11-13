@@ -4597,7 +4597,7 @@ class EditorSFXManager {
     bool init() = imac 0x8e0f60, m1 0x7cd37c, ios 0x4c74d8; // win inline
     bool overwriteMyConfigFromLive(int localId, std::string* errMsg) = win 0x18bd70;
     void playAction(int actionId) = win 0x1855c0, imac 0x8e27a0, m1 0x7ce64c, ios 0x4c8014;
-    void playAction(int primaryId, int fallbackId) = imac 0x8e2600, m1 0x7ce64c, ios 0x4c7f8c;
+    void playAction(int primaryId, int fallbackId) = imac 0x8e2600, m1 0x7ce4fc, ios 0x4c7f8c;
     void releaseBinding(EditorSFXBinding* binding) = win inline, imac 0x8e25a0, m1 0x7ce494, ios 0x4c7f34;
     void removeFavoriteConfig(int favoriteId) = win 0x18b750;
     void removeMyConfig(int localId);
