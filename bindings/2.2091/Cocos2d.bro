@@ -2390,7 +2390,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInColumns(unsigned int, ...) = inline;
     void alignItemsInColumns(unsigned int, va_list) = imac 0x874610, m1 0x76aad8, ios inline;
     void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x8746e0, m1 0x76ab8c, ios inline;
-    void alignItemsInRows(unsigned int, ...) = imac 0x874c40, inline;
+    void alignItemsInRows(unsigned int, ...) = inline; // imac 0x874c40
     void alignItemsInRows(unsigned int, va_list) = imac 0x874cf0, m1 0x76afe8, ios inline;
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x874dc0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
