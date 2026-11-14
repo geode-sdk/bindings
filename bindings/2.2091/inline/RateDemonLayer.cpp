@@ -3,7 +3,6 @@
 
 RateDemonLayer::RateDemonLayer() {
     m_uploadFinished = false;
-    m_submitButton = nullptr;
     m_demons = nullptr;
     m_unkPtr = nullptr;
     m_levelID = 0;
