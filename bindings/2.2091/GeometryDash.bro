@@ -19077,7 +19077,6 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     void selectRating(cocos2d::CCObject* sender) = win 0x55d5e0, imac 0x270d40, m1 0x21790c;
 
     bool m_uploadFinished;
-    CCMenuItemSpriteExtra* m_submitButton;
     cocos2d::CCArray* m_demons;
     void* m_unkPtr;
     int m_levelID;
