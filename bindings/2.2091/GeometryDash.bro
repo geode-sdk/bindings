@@ -921,9 +921,22 @@ class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     void onDeleteAll(cocos2d::CCObject* sender) = win 0xcea60;
     void onPrune(cocos2d::CCObject* sender) = win 0xce640;
     void refreshStats() = win 0xce400;
+
+    AutoBackupOptionsDelegate* m_delegate;
+    cocos2d::CCLabelBMFont* m_statsLabel;
 }
 
-[[link(android), depends(CCIndexPath)]]
+[[link(android)]]
+class AutoBackupFile {
+    std::string m_filename;
+    std::string m_backupID;
+    std::string m_levelName;
+    std::string m_displayTimestamp;
+    std::string m_timestamp;
+    int m_fileSize;
+}
+
+[[link(android), depends(CCIndexPath, AutoBackupFile)]]
 class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsDelegate {
     virtual ~AutoBackupPopup() = win 0xc9870, ios 0x5338a0;
 
@@ -955,6 +968,19 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
     // TodoReturn statsText(std::vector<AutoBackupPopup::BackupFile> const&);
     TodoReturn updateSelectUI();
     TodoReturn updateSummary();
+
+    int m_levelFolder;
+    std::string m_backupDirectory;
+    std::vector<AutoBackupFile> m_files;
+    std::vector<AutoBackupFile> m_filteredFiles;
+    std::string m_searchQuery;
+    std::map<std::string, int> m_revisions;
+    CCTextInputNode* m_searchInput;
+    CCMenuItemSpriteExtra* m_clearSearchButton;
+    int m_pendingDeleteIndex;
+    std::set<std::string> m_selectedFiles;
+    std::vector<CCMenuItemToggler*> m_rowToggles;
+    GJSelectionStrip* m_selectionStrip;
 }
 
 // [[link(android)]]
@@ -983,6 +1009,11 @@ class AutoSaveSettingsLayer : SetupTriggerPopup {
     void setBackupCap(int);
     void setBackupDirectory(std::string);
     void updateBackupDirLabel() = win 0x9c9d0;
+
+    cocos2d::CCLabelBMFont* m_backupDirTitle;
+    cocos2d::CCLabelBMFont* m_backupDirLabel;
+    std::string m_customBackupDirectory;
+    AutoBackupOptionsDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -2019,6 +2050,9 @@ class CCTextInputMenu : cocos2d::CCLayer {
     void onClear(cocos2d::CCObject* sender) = win 0x4dd50;
     void onCopy(cocos2d::CCObject* sender) = win 0x4dc40;
     void onPaste(cocos2d::CCObject* sender) = win 0x4dcf0;
+
+    CCTextInputNode* m_inputNode;
+    cocos2d::CCRect m_menuRect;
 }
 
 [[link(android), depends(EmoteToken)]]
@@ -2360,6 +2394,8 @@ class ClearPlatformerSavesOptionsPopup : SetupTriggerPopup {
     virtual bool init() = win 0xa4510, ios 0x4aa978, m1 0x7a6384, imac 0x8b51c0;
 
     void onBackupToggle(cocos2d::CCObject* sender) = win 0xa4aa0;
+
+    CCMenuItemToggler* m_backupToggle;
 }
 
 [[link(android)]]
@@ -2377,6 +2413,11 @@ class ClearPlatformerSavesPopup : FLAlertLayer, FLAlertLayerProtocol {
     void onIncludeFavoritesToggle(cocos2d::CCObject* sender) = win 0xa3ea0;
     void onOptions(cocos2d::CCObject* sender) = win 0xa3ec0;
     void updateStats() = win 0xa3970;
+
+    bool m_includeFavorites;
+    CCMenuItemToggler* m_includeFavoritesToggle;
+    cocos2d::CCLabelBMFont* m_statsLabel;
+    cocos2d::CCLabelBMFont* m_favoritesLabel;
 }
 
 [[link(android)]]
@@ -2915,6 +2956,15 @@ class ControllerInputNode : cocos2d::CCNode {
     void refreshVisuals() = win 0x4480d0;
     void setActiveKey(int);
     void setController2(bool);
+
+    InputCaptureDelegate* m_delegate;
+    bool m_controller2;
+    int m_activeKey;
+    float m_outlineScale;
+    cocos2d::CCSprite* m_controllerOutline;
+    std::vector<cocos2d::CCSprite*> m_buttonSprites;
+    std::array<cocos2d::CCSprite*, 4> m_overlaySprites;
+    std::array<cocos2d::CCPoint, 4> m_overlayPositions;
 }
 
 [[link(android), depends(cocos2d::CCTouch)]]
@@ -2941,6 +2991,9 @@ class ControlSlotsPopup : SetupTriggerPopup {
     bool init(TouchControlEditLayer*, bool) = win 0x456860;
     void onLoad(cocos2d::CCObject* sender) = win 0x456fb0;
     void onSave(cocos2d::CCObject* sender) = win 0x456e60;
+
+    TouchControlEditLayer* m_editLayer;
+    bool m_dual;
 }
 
 [[link(android)]]
@@ -3175,6 +3228,8 @@ class CreateStartPosPopup : SetupTriggerPopup {
     virtual void updateInputNode(int, float) = win 0x4dc940, imac 0x3c4e60, m1 0x349770, ios 0x1c2364;
 
     void onCreate(cocos2d::CCObject* sender) = win 0x4dc950, imac 0x3c4c00, m1 0x349568;
+
+    CreateStartPosPopupDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -3252,6 +3307,10 @@ class CreatorSettingsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopu
     bool init(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448490;
     void onControls(cocos2d::CCObject* sender) = win 0x448f20;
     void onDescription(cocos2d::CCObject* sender) = win 0x448c00;
+
+    GJGameLevel* m_level;
+    CreatorSettingsDelegate* m_delegate;
+    UploadActionPopup* m_uploadPopup;
 }
 
 [[link(android)]]
@@ -3873,9 +3932,37 @@ class DeathHistogram : cocos2d::CCNode {
     void setData(std::vector<int> const&, int, bool, bool, bool) = win 0x111dd0;
     void setProgression(std::vector<int> const&, std::vector<int> const&, std::vector<int> const&) = win 0x114220;
     void setSurvival(std::vector<int> const&, bool, bool, int) = win 0x1126a0;
+
+    cocos2d::CCSize m_size;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCDrawNode* m_axisDrawNode;
+    cocos2d::CCNode* m_axisLabels;
+    int m_focusProgress;
+    cocos2d::CCRect m_leftArrowRect;
+    cocos2d::CCRect m_rightArrowRect;
 }
 
-[[link(android)]]
+class DeathMarkerCell {
+    cocos2d::CCPoint m_position;
+    int m_gridX;
+    int m_gridY;
+    int m_rawCount;
+    int m_skullPermille;
+    int m_wallPermille;
+    int m_unk1c;
+    int m_groupedCount;
+    float m_badgeY;
+    float m_badgeX;
+    float m_scale;
+    int m_priority;
+    int m_starCount;
+    int m_skullGlowLevel;
+    int m_wallGlowLevel;
+    cocos2d::CCSprite* m_markerSprite;
+    cocos2d::CCNode* m_badgeNode;
+}
+
+[[link(android), depends(DeathMarkerCell)]]
 class DeathMarkerLayer : cocos2d::CCNode {
     virtual ~DeathMarkerLayer() = win 0x114d80, ios 0x4b1004;
 
@@ -3896,6 +3983,26 @@ class DeathMarkerLayer : cocos2d::CCNode {
     void unmountSection(unsigned int) = win 0x118b90;
     void updateVisibility(cocos2d::CCRect const&) = win 0x118ce0;
     void setFlipped(bool) = win 0x119180;
+
+    std::vector<DeathMarkerCell> m_cells;
+    std::unordered_map<unsigned int, std::vector<int>> m_sectionCells;
+    int m_minSectionX;
+    int m_maxSectionX;
+    int m_minSectionY;
+    int m_maxSectionY;
+    bool m_allSectionsMounted;
+    cocos2d::CCSpriteBatchNode* m_batchNode;
+    cocos2d::CCNode* m_badgeLayer;
+    bool m_isGlobal;
+    bool m_coloredGlobalBadges;
+    cocos2d::ccColor3B m_color;
+    float m_revealDuration;
+    float m_timescale;
+    int m_activeCellIndex;
+    int m_pendingLabelSoundID;
+    bool m_animate;
+    bool m_flipped;
+    int m_markerSoundID;
 }
 
 [[link(android)]]
@@ -3923,6 +4030,12 @@ class DeathMarkerSettingsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     void onToggleSound(cocos2d::CCObject* sender) = win 0x11ddc0;
     TodoReturn updateFrequencyLabel(int);
     TodoReturn updateTimescaleLabel(int);
+
+    Slider* m_frequencySlider;
+    cocos2d::CCLabelBMFont* m_frequencyLabel;
+    Slider* m_timescaleSlider;
+    cocos2d::CCLabelBMFont* m_timescaleLabel;
+    GJGameLevel* m_level;
 }
 
 [[link(android)]]
@@ -3941,6 +4054,14 @@ class DeathStatsPopup : SetupTriggerPopup {
     TodoReturn pollFetch(float) = win 0x11f210;
     void setStatus(char const*);
     TodoReturn showResult() = win 0x11f2f0;
+
+    LevelEditorLayer* m_editorLayer;
+    CCTextInputNode* m_levelIDInput;
+    CCTextInputNode* m_versionInput;
+    cocos2d::CCLabelBMFont* m_statusLabel;
+    int m_fetchLevelID;
+    int m_fetchVersion;
+    float m_fetchElapsed;
 }
 
 [[link(android)]]
@@ -3956,9 +4077,32 @@ class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     bool init(GJGameLevel*, DeathTrackerPopup*) = win 0x11fbc0;
     void onClearData(cocos2d::CCObject* sender) = win 0x1200c0;
     void onToggleAutoScroll(cocos2d::CCObject* sender) = win 0x120070;
+
+    GJGameLevel* m_level;
+    DeathTrackerPopup* m_trackerPopup;
 }
 
 [[link(android)]]
+class DeathTrackerHistoryRow {
+    int m_kind;
+    float m_height;
+    int m_attemptNumberOrIndent;
+    int m_firstPercent;
+    int m_lastPercentOrBestState;
+    int m_stripeIndex;
+    std::string m_text;
+}
+
+[[link(android)]]
+class DeathTrackerSession {
+    int m_firstPlayedUnix;
+    std::string m_fullRunHistory;
+    std::string m_startPosRunHistory;
+    int m_playTime;
+    int m_bestPercent;
+}
+
+[[link(android), depends(DeathTrackerHistoryRow, DeathTrackerSession)]]
 class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     virtual ~DeathTrackerPopup() = win 0x103af0, ios 0x4c0fb0;
 
@@ -3999,6 +4143,43 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     TodoReturn refreshView() = win 0x106a10;
     void setView(int) = win 0x10dbe0;
     TodoReturn updatePanel() = win 0x10dfb0;
+
+    GJGameLevel* m_level;
+    ScrollableContentLayer* m_scrollLayer;
+    float m_contentWidth;
+    float m_contentHeight;
+    cocos2d::CCPoint m_contentCenter;
+    DeathHistogram* m_distributionHistogram;
+    DeathHistogram* m_progressionHistogram;
+    int m_view;
+    bool m_showSummary;
+    int m_sessionIndex;
+    int m_scope;
+    bool m_showDeathRate;
+    bool m_keepScrollPosition;
+    std::vector<DeathTrackerSession> m_sessions;
+    cocos2d::CCLabelBMFont* m_sessionLabel;
+    cocos2d::CCNode* m_statsNode;
+    cocos2d::CCNode* m_secondaryStatsNode;
+    cocos2d::CCNode* m_deathListHeader;
+    cocos2d::CCLabelBMFont* m_viewTitle;
+    cocos2d::extension::CCScale9Sprite* m_viewTitleBackground;
+    std::array<std::vector<cocos2d::CCSprite*>, 3> m_panelSprites;
+    std::array<cocos2d::extension::CCScale9Sprite*, 3> m_panelBackgrounds;
+    bool m_showGlobal;
+    cocos2d::CCSprite* m_globalToggleSprite;
+    CCMenuItemSpriteExtra* m_jumpSessionButton;
+    std::vector<int> m_globalCounts;
+    int m_globalPlayerCount;
+    int m_globalCompletionCount;
+    bool m_hasGlobalData;
+    bool m_detailedGlobalGraph;
+    int m_previousView;
+    bool m_scrollToProgress;
+    bool m_restoreSavedScroll;
+    bool m_showAttemptProgress;
+    std::vector<DeathTrackerHistoryRow> m_historyRows;
+    std::vector<CCMenuItemSpriteExtra*> m_sessionButtons;
 }
 
 [[link(android)]]
@@ -4187,7 +4368,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     float m_gridSize;
 }
 
-[[link(android)]]
+[[link(android), depends(DropdownListStyle)]]
 class Dropdown : cocos2d::CCNode, DropdownListPopupOwner {
     virtual ~Dropdown() = win 0x120620, ios 0x4c2268;
 
@@ -4204,6 +4385,18 @@ class Dropdown : cocos2d::CCNode, DropdownListPopupOwner {
     TodoReturn openList() = win 0x120dc0;
     TodoReturn refreshValueLabel() = win 0x120d10;
     void setSelectedIndex(int);
+
+    FLAlertLayer* m_parent;
+    cocos2d::CCMenu* m_menu;
+    cocos2d::CCLayer* m_mainLayer;
+    DropdownDelegate* m_delegate;
+    std::vector<std::string> m_items;
+    int m_selectedIndex;
+    int m_unk184;
+    CCMenuItemSpriteExtra* m_toggleButton;
+    cocos2d::CCLabelBMFont* m_valueLabel;
+    DropdownListStyle m_style;
+    DropdownListPopup* m_listPopup;
 }
 
 [[link(android)]]
@@ -4211,7 +4404,7 @@ class DropdownDelegate {
     virtual void dropdownSelectionChanged(Dropdown*, int) = inline;
 }
 
-[[link(android)]]
+[[link(android), depends(DropdownListStyle, DropdownListRow)]]
 class DropdownListPopup : FLAlertLayer {
     virtual ~DropdownListPopup() = win 0x1204f0, ios 0x4c2df8;
 
@@ -4227,6 +4420,20 @@ class DropdownListPopup : FLAlertLayer {
     TodoReturn closeSelf();
     bool init(std::vector<DropdownListRow> const&, cocos2d::CCPoint, DropdownListStyle const&, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x1215b0;
     void onRowSelected(cocos2d::CCObject* sender) = win 0x122610;
+
+    std::vector<DropdownListRow> m_rows;
+    std::vector<CCMenuItemSpriteExtra*> m_rowButtons;
+    cocos2d::CCMenu* m_scrollMenu;
+    ScrollableContentLayer* m_scrollLayer;
+    bool m_menuTouchActive;
+    DropdownListStyle m_style;
+    cocos2d::CCPoint m_center;
+    cocos2d::CCRect m_popupBounds;
+    cocos2d::CCRect m_toggleBounds;
+    bool m_opensUp;
+    DropdownListPopupOwner* m_owner;
+    cocos2d::CCObject* m_target;
+    cocos2d::SEL_MenuHandler m_selector;
 }
 
 [[link(android)]]
@@ -4237,11 +4444,21 @@ class DropdownListPopupOwner {
 [[link(android)]]
 class DropdownListRow {
     // ~DropdownListRow();
+
+    int m_tag;
+    std::string m_text;
+    std::string m_prefix;
 }
 
 [[link(android)]]
 class DTStatSeg {
     // ~DTStatSeg();
+
+    char const* m_iconSpriteFrame;
+    std::string m_prefix;
+    std::string m_value;
+    std::string m_suffix;
+    cocos2d::ccColor3B m_valueColor;
 }
 
 [[link(android)]]
@@ -4286,6 +4503,17 @@ class EasingSelectPopup : SetupTriggerPopup {
     void onRestart(cocos2d::CCObject* sender) = win 0x176e40;
     void refreshCellHighlight() = win 0x176650;
     void refreshRateVisual() = win 0x176840;
+
+    SetupTriggerPopup* m_parentPopup;
+    int m_durationProperty;
+    int m_easingProperty;
+    int m_easingRateProperty;
+    bool m_previewOnly;
+    float m_previewTime;
+    cocos2d::CCArray* m_cellButtons;
+    cocos2d::CCArray* m_cellBackgrounds;
+    cocos2d::CCArray* m_cellLabels;
+    cocos2d::CCArray* m_previewSprites;
 }
 
 [[link(android)]]
@@ -8744,6 +8972,16 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74;
     void showPracticeMusicSyncUnlockInfo() = win 0x2c8460;
     TodoReturn toggleVisibility(bool);
+
+    GJBaseGameLayer* m_gameLayer;
+    std::unordered_map<int, char const*> m_gameVariableKeys;
+    int m_practiceMusicUnlockDialogIndex;
+    int m_buttonsPerRow;
+    int m_buttonRows;
+    cocos2d::CCLabelBMFont* m_buttonsPerRowLabel;
+    cocos2d::CCLabelBMFont* m_buttonRowsLabel;
+    bool m_initialLegacyMoveMenu;
+    bool m_initialSwapMoveMenu;
 }
 
 [[link(android)]]
@@ -12517,6 +12755,16 @@ class GJSelectionStrip : cocos2d::CCNode {
     bool init(cocos2d::CCMenu*, cocos2d::CCNode*, cocos2d::CCPoint, float, cocos2d::CCObject*, cocos2d::SEL_MenuHandler);
     void setCount(int) = win 0x3a91a0;
     void setStripVisible(bool);
+
+    cocos2d::CCMenu* m_menu;
+    cocos2d::CCNode* m_parentNode;
+    cocos2d::CCObject* m_target;
+    cocos2d::CCPoint m_buttonPosition;
+    float m_scale;
+    cocos2d::CCLabelBMFont* m_countLabel;
+    CCMenuItemSpriteExtra* m_selectAllButton;
+    bool m_stripVisible;
+    std::vector<CCMenuItemSpriteExtra*> m_actionButtons;
 }
 
 [[link(android), depends(GJValueTween)]]
@@ -13644,7 +13892,12 @@ class IDNameBrowserDelegate {
     virtual void idNameBrowserClosed(IDNameBrowserPopup*, int) = inline;
 }
 
-[[link(android)]]
+class IDNameBrowserEntry {
+    int m_id;
+    std::string m_name;
+}
+
+[[link(android), depends(IDNameBrowserEntry)]]
 class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     virtual ~IDNameBrowserPopup() = win 0x3c1580, ios 0x4df7cc;
 
@@ -13677,6 +13930,20 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     void setFormID(int) = win 0x3c3b40;
     TodoReturn updateConflictLabel() = win 0x3c3bf0;
     TodoReturn updateSortButtonLabel() = win 0x3c4790;
+
+    int m_initialID;
+    int m_idType;
+    IDNameBrowserDelegate* m_delegate;
+    CCTextInputNode* m_filterInput;
+    ScrollableContentLayer* m_scrollLayer;
+    cocos2d::CCLabelBMFont* m_statusLabel;
+    CCTextInputNode* m_idInput;
+    CCTextInputNode* m_nameInput;
+    cocos2d::CCLabelBMFont* m_conflictLabel;
+    int m_sortMode;
+    ButtonSprite* m_sortButtonSprite;
+    int m_selectedID;
+    std::vector<IDNameBrowserEntry> m_entries;
 }
 
 [[link(android)]]
@@ -15340,7 +15607,14 @@ class LevelPickerDelegate {
     virtual void shareIDPicked(int, bool) = inline;
 }
 
-[[link(android)]]
+class LevelPickerSavedEntry {
+    cocos2d::CCObject* m_object;
+    std::string m_lowercaseName;
+    std::string m_idString;
+    bool m_favorite;
+}
+
+[[link(android), depends(LevelPickerSavedEntry)]]
 class LevelPickerPopup : PagedListPopup, LevelManagerDelegate, TableViewCellDelegate {
     virtual ~LevelPickerPopup() = win 0xd35d0, ios 0x5048a0;
 
@@ -15366,6 +15640,32 @@ class LevelPickerPopup : PagedListPopup, LevelManagerDelegate, TableViewCellDele
     TodoReturn savedIndex();
     void setupList(cocos2d::CCArray*) = win 0xeab50;
     // TodoReturn updateMatches(std::vector<LevelPickerPopup::SavedEntry> const&);
+
+    LevelPickerDelegate* m_delegate;
+    GJCommentListLayer* m_listLayer;
+    bool m_onlineMode;
+    bool m_listMode;
+    bool m_favoritesOnly;
+    CCMenuItemToggler* m_favoritesToggle;
+    cocos2d::CCSprite* m_kindSprite;
+    int m_requestedPage;
+    std::string m_onlineSearchKey;
+    int m_onlineTotal;
+    int m_onlineOffset;
+    std::string m_searchQuery;
+    CCTextInputNode* m_searchInput;
+    cocos2d::CCLabelBMFont* m_onlineLabel;
+    CCMenuItemSpriteExtra* m_refreshOnlineButton;
+    ButtonSprite* m_onlineModeSprite;
+    CCMenuItemSpriteExtra* m_useIDButton;
+    ButtonSprite* m_useIDSprite;
+    std::vector<LevelPickerSavedEntry> m_savedLevelIndex;
+    std::vector<LevelPickerSavedEntry> m_savedListIndex;
+    cocos2d::CCArray* m_savedLevels;
+    cocos2d::CCArray* m_savedLists;
+    std::vector<int> m_matches;
+    std::string m_lastMatchQuery;
+    bool m_matchesValid;
 }
 
 [[link(android)]]
@@ -15705,6 +16005,17 @@ class LevelStatsInfoPopup : FLAlertLayer {
     void onNextPage(cocos2d::CCObject* sender) = win 0x428170;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x428180;
     TodoReturn updatePage() = win 0x427e30;
+
+    GJGameLevel* m_level;
+    TextArea* m_statsText;
+    TextArea* m_infoText;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    CCMenuItemSpriteExtra* m_closeButton;
+    cocos2d::extension::CCScale9Sprite* m_background;
+    float m_panelWidth;
+    int m_page;
 }
 
 [[link(android)]]
@@ -17649,6 +17960,39 @@ class PlatformerControlsPopup : SetupTriggerPopup, UploadActionDelegate, UploadP
     TodoReturn sourceIsCustom();
     void syncSourceUI() = win 0x450a00;
     TodoReturn updateEditLabel();
+
+    GJGameLevel* m_level;
+    bool m_fromEditor;
+    bool m_dual;
+    LevelControlConfig* m_customDraft;
+    std::string m_customDraftBaseline;
+    bool m_recheckCustomDraft;
+    CCMenuItemToggler* m_sourceToggle;
+    cocos2d::CCLabelBMFont* m_editControlsLabel;
+    CCMenuItemSpriteExtra* m_keyboardButton;
+    CCMenuItemSpriteExtra* m_touchButton;
+    CCMenuItemSpriteExtra* m_controllerButton;
+    ButtonSprite* m_keyboardButtonSprite;
+    ButtonSprite* m_touchButtonSprite;
+    ButtonSprite* m_controllerButtonSprite;
+    CCMenuItemSpriteExtra* m_applyCreatorButton;
+    CCMenuItemSpriteExtra* m_updateButton;
+    LoadingCircleSprite* m_updateSpinner;
+    UploadActionPopup* m_uploadPopup;
+    bool m_showUploadColumn;
+    CCMenuItemSpriteExtra* m_uploadButton;
+    ButtonSprite* m_uploadButtonSprite;
+    CCMenuItemToggler* m_uploadKeyboardToggle;
+    CCMenuItemToggler* m_uploadTouchToggle;
+    CCMenuItemToggler* m_uploadControllerToggle;
+    cocos2d::CCSprite* m_uploadKeyboardOff;
+    cocos2d::CCSprite* m_uploadKeyboardOn;
+    cocos2d::CCSprite* m_uploadTouchOff;
+    cocos2d::CCSprite* m_uploadTouchOn;
+    cocos2d::CCSprite* m_uploadControllerOff;
+    cocos2d::CCSprite* m_uploadControllerOn;
+    int m_initialClassMask;
+    int m_displayedClassMask;
 }
 
 [[link(android)]]
@@ -18974,6 +19318,10 @@ class ProgressGameObject : EffectGameObject {
     virtual bool init() = win 0x663b70, ios 0x43ebb0, m1 0x185d80, imac 0x1d0360;
     virtual void customObjectSetup(std::vector<std::string>&, std::vector<void*>&) = win 0x663eb0, ios 0x43ef08, m1 0x186878, imac 0x1d1120;
     virtual std::string getSaveString(GJBaseGameLayer*) = win 0x663be0, ios 0x43ec00, m1 0x185dd0, imac 0x1d03b0;
+
+    int m_progressPercent;
+    bool m_addProgress;
+    bool m_useItemID;
 }
 
 [[link(android), missing(win)]]
@@ -19501,6 +19849,8 @@ class RowPressItem : CCMenuItemSpriteExtra {
 
     virtual void selected() = win 0x1594b0, ios 0x13a33c, m1 0x1ebc88, imac 0x240d70;
     virtual void unselected() = win 0x1594f0, ios 0x13a37c, m1 0x1ebcc8, imac 0x240db0;
+
+    cocos2d::CCLayerColor* m_highlightLayer;
 }
 
 [[link(android)]]
@@ -19650,6 +20000,9 @@ class ScrollViewPopup : FLAlertLayer {
     float addVersionHeader(cocos2d::CCNode*, int, int, float, float) = win 0x621f10;
     bool initPopup(cocos2d::CCArray*, char const*, char const*, float, float) = win 0x621980;
     void onClose(cocos2d::CCObject* sender) = win 0x49fc20;
+
+    cocos2d::CCArray* m_entries;
+    ScrollableContentLayer* m_scrollLayer;
 }
 
 [[link(android)]]
@@ -20040,6 +20393,8 @@ class SectionedContentNode : cocos2d::CCNode {
 
     virtual void addChild(cocos2d::CCNode*, int, int) = win 0x80c80, m1 0x84ac70, imac 0x96e440, ios 0x526ba0;
     virtual void removeAllChildrenWithCleanup(bool) = win 0x80ca0, m1 0x84ac88, imac 0x96e460, ios 0x526bb8;
+
+    ScrollableContentLayer* m_scrollLayer;
 }
 
 [[link(android)]]
@@ -20129,6 +20484,11 @@ class SelectFontLayer2 : FLAlertLayer, TableViewCellDelegate {
     void onClose(cocos2d::CCObject* sender) = win 0x99f60;
     TodoReturn onSelectFont(int);
     TodoReturn unloadPreviewSheet();
+
+    LevelEditorLayer* m_editorLayer;
+    CustomListView* m_listView;
+    bool m_previewSheetLoaded;
+    int m_selectedFont;
 }
 
 [[link(android)]]
@@ -23812,6 +24172,12 @@ class StartPosBrowser : FLAlertLayer, TableViewCellDelegate, OptionsObjectDelega
     void onClose(cocos2d::CCObject* sender) = win 0x4dc330, imac 0x3c3c50, m1 0x34870c;
     void setupList() = win 0x4dbdd0, imac 0x3c3cd0, m1 0x348780;
     void updatePageLabel() = win inline, imac 0x3c41d0, m1 0x348bb8;
+
+    cocos2d::CCArray* m_startPosObjects;
+    GJCommentListLayer* m_listLayer;
+    int m_selectedCellIdx;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    StartPosBrowserDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -23837,6 +24203,10 @@ class StartPosLayer : SetupTriggerPopup {
     void onSelectSpeed(cocos2d::CCObject* sender) = win 0x45fc90, m1 0x206074;
 
     StartPosObject* m_startPosObject;
+    int m_startMode;
+    Speed m_startSpeed;
+    cocos2d::CCArray* m_modeButtons;
+    cocos2d::CCArray* m_speedButtons;
 }
 
 [[link(android)]]
@@ -24678,7 +25048,7 @@ class TOSPopup : FLAlertLayer {
     void onTOS(cocos2d::CCObject* sender) = win 0x3a9930, imac 0x29d840, m1 0x240cd4;
 }
 
-[[link(android)]]
+[[link(android), depends(UIButtonConfig)]]
 class TouchControlEditLayer : SetupTriggerPopup {
     virtual ~TouchControlEditLayer() = win 0x452460, ios 0x52cd1c;
 
@@ -24718,6 +25088,23 @@ class TouchControlEditLayer : SetupTriggerPopup {
     void updateHandles() = win 0x4538b0;
     void updateHudVisibility() = win 0x453830;
     void updateJumpGuide() = win 0x453a30;
+
+    bool m_platformerMode;
+    LevelControlConfig* m_targetConfig;
+    std::array<UIButtonConfig, 5> m_buttonConfigs;
+    std::vector<GJUINode*> m_controlNodes;
+    GJUINode* m_selectedNode;
+    std::vector<cocos2d::CCSprite*> m_resizeHandles;
+    cocos2d::CCArray* m_hiddenSiblings;
+    int m_dragMode;
+    GJUINode* m_dragNode;
+    cocos2d::CCPoint m_dragOffset;
+    float m_radiusDragOffset;
+    cocos2d::CCPoint m_deadzoneDragStart;
+    cocos2d::CCPoint m_deadzoneDragAxis;
+    float m_initialDeadzone;
+    bool m_modified;
+    cocos2d::CCLabelBMFont* m_jumpGuideLabel;
 }
 
 [[link(android)]]
