@@ -18,7 +18,7 @@ void FLAlertLayer::rebuildContent() {}
 #endif
 
 #ifdef GEODE_IS_WINDOWS
-static float FLAlertLayer::keyboardRaise(float popupHeight, float maxRaise) {
+float FLAlertLayer::keyboardRaise(float popupHeight, float maxRaise) {
     // this has an actual impl on android, but on windows it just seems to be
     // a stub that got inlined everywhere where it's used that always returns 0
     return 0;
