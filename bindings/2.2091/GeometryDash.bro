@@ -2735,7 +2735,7 @@ class CommentAdminDelegate {
 [[link(android)]]
 class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     CommentCell(char const* identifier, float width, float height) = win 0x151dc0, ios inline;
-    ~CommentCell() = win inline, m1 0x1e9124, ios 0x1384ec;
+    ~CommentCell() = win inline, m1 0x1e9124, imac 0x23d9c0, ios 0x1384ec;
 
     virtual bool init() = win 0x151e70, ios 0x138524, m1 0x1e93a4, imac 0x23dda0;
     virtual void draw() = win 0x1487a0, imac 0x23e2e0, m1 0x1e989c, ios 0x1389d4;
@@ -3239,9 +3239,9 @@ class CreatorSettingsDelegate {
 
 [[link(android)]]
 class CreatorSettingsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopupDelegate, SetTextPopupDelegate {
-    virtual ~CreatorSettingsPopup() = win 0x448a90, ios 0x4abe40;
+    virtual ~CreatorSettingsPopup() = win 0x448a90, m1 0x7a7e48, ios 0x4abe40;
 
-    static CreatorSettingsPopup* create(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448910;
+    static CreatorSettingsPopup* create(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448910, m1 0x7a7b08;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x39a390, m1 0x7a7fc0, imac 0x8b7060, ios 0x4abe78;
     virtual void setTextPopupClosed(SetTextPopup*, std::string) = win 0x448f50, ios 0x4abe7c, m1 0x7a7fc4, imac 0x8b7070;
@@ -3249,7 +3249,7 @@ class CreatorSettingsPopup : SetupTriggerPopup, UploadActionDelegate, UploadPopu
     virtual void uploadActionFailed(int, int) = win 0x4492b0, ios 0x4ac128, m1 0x7a839c, imac 0x8b7450;
     virtual void onClosePopup(UploadActionPopup*) = win 0x449390, ios 0x4ac1d4, m1 0x7a8474, imac 0x8b7550;
 
-    bool init(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448490;
+    bool init(GJGameLevel*, CreatorSettingsDelegate*) = win 0x448490, m1 0x7a74e0;
     void onControls(cocos2d::CCObject* sender) = win 0x448f20;
     void onDescription(cocos2d::CCObject* sender) = win 0x448c00;
 }
@@ -4970,7 +4970,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void flipObjectsX(cocos2d::CCArray* objects) = win 0x1fff00;
     void flipObjectsY(cocos2d::CCArray* objects) = win 0x2000f0;
     CCMenuItemSpriteExtra* getButton(char const* text, int width, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu) = win inline, imac 0xd790, m1 0xbe94, ios inline;
-    CreateMenuItem* getCreateBtn(int id, int bg) = win 0x1f1390, imac 0x637ee0, m1 0x1ccd5c;
+    CreateMenuItem* getCreateBtn(int id, int bg) = win 0x1f1390, imac 0x637ee0, m1 0x574884;
     CreateMenuItem* getCreateMenuItemButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int background, cocos2d::CCPoint offset) = win inline, m1 0x35c004;
     GameObject* getCycledObject(cocos2d::CCArray* objects, bool dontSkipSelected) = win inline, imac 0xfd20, m1 0xe260;
     void getEditColorTargets(ColorAction*& mainColor, ColorAction*& detailColor, EffectGameObject*& object) = win 0x1bdef0, imac 0x195f0, m1 0x16474;
@@ -7207,7 +7207,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
     bool isFollowingUser(int id) = win 0x224320, imac 0x54e5f0, m1 0x4a41a4;
-    bool isPastDailyCopy(GJGameLevel*) = win inline;
+    bool isPastDailyCopy(GJGameLevel*) = win inline, imac 0x54b9a0, m1 0x4a17a8;
     bool isTimeValid(char const* key, float length) = win 0x221d40;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
     int itemIDFromLikeKey(char const* key) = win inline;
@@ -7448,7 +7448,7 @@ class GameLevelManager : cocos2d::CCNode {
     int userIDForAccountID(int id) = win inline, imac 0x540700, m1 0x4975b0;
     GJUserScore* userInfoForAccountID(int id) = win inline, imac 0x540720, m1 0x4975cc;
     std::string userNameForUserID(int id) = win 0x21d7e0, imac 0x540260, m1 0x4971a4;
-    static bool vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) = win inline;
+    static bool vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) = win inline, m1 0x4acc70, imac 0x558500;
     bool verifyContainerOnlyHasLevels(cocos2d::CCDictionary* dict) = win 0x224e80, imac 0x54f750, m1 0x4a5210;
     void verifyLevelState(GJGameLevel* level) = win inline, imac 0x540760, m1 0x4975f4;
     void writePlatformerSaveJournal(GJGameLevel* level) = win 0x223320, m1 0x4a2294;
@@ -7811,7 +7811,7 @@ class GameManager : GManager {
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
     bool messagesRestricted();
     int modUIRank() = win inline, m1 0x2fa578, imac 0x36d260, ios 0x3b5c40;
-    bool offlineModeEnabled() = win inline, m1 0x2fab70, ios 0x3b5ff8;
+    bool offlineModeEnabled() = win inline, m1 0x2fab70, imac 0x36d740, ios 0x3b5ff8;
     bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
@@ -10852,7 +10852,7 @@ class GJGameLevel : cocos2d::CCNode {
     std::string getUnpackedLevelDescription() = win inline, imac 0x58c210, m1 0x4dca80, ios 0xd48d0;
     void handleStatsConflict(GJGameLevel* level) = win 0x26a650, imac 0x551010, m1 0x4a6700;
     bool isPlatformer() = win inline, imac 0x548810, m1 0x49e964, ios 0xac850;
-    bool levelHasDiamonds() = win 0x26aef0;
+    bool levelHasDiamonds() = win 0x26aef0, imac 0x58c2b0, m1 0x4dcb38;
     void levelWasAltered() = win inline;
     void levelWasSubmitted() = win inline, ios inline;
     void parseSettingsString(std::string str) = win inline, ios inline;
@@ -13779,8 +13779,8 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 
     TodoReturn activeCommentID();
     TodoReturn activeCommentKeyType();
-    bool canBulkDelete() = win 0x3d2f00;
-    bool canToggleModRoom() = win 0x3d2b70;
+    bool canBulkDelete() = win 0x3d2f00, m1 0x78aa38, imac 0x897080;
+    bool canToggleModRoom() = win 0x3d2b70, m1 0x787ccc, imac 0x8940a0;
     void clearBulkSelection() = win 0x3d3870;
     void confirmBulkDelete(std::string const&, std::vector<int> const&) = win 0x3d3e60;
     void confirmReport(cocos2d::CCObject* sender) = win 0x3d04a0, imac 0x5bd6e0;
@@ -13805,11 +13805,11 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void onPrevPage(cocos2d::CCObject* sender) = win 0x3d2330, imac 0x894060, m1 0x787cac;
     void onRefreshComments(cocos2d::CCObject* sender) = win 0x3d0330, imac 0x895480, m1 0x788f08;
     void onSimilar(cocos2d::CCObject* sender) = win inline, imac 0x895bd0, ios inline;
-    bool parentalCommentsDisabled() = win 0x3cfe30;
-    void refreshBulkUI() = win 0x3d36e0;
+    bool parentalCommentsDisabled() = win 0x3cfe30, m1 0x7871c0, imac 0x893520;
+    void refreshBulkUI() = win 0x3d36e0, m1 0x7899a0, imac 0x895fa0;
     TodoReturn refreshUserTitle() = win 0x3d2c40;
     void reloadWindow() = win 0x3d2740;
-    TodoReturn setupBulkUI() = win 0x3d33b0;
+    void setupBulkUI() = win 0x3d33b0, m1 0x788ff4, imac 0x895580;
     void setupCommentsBrowser(cocos2d::CCArray* comments) = win 0x3d1af0, imac 0x894ad0, m1 0x788630;
     void setupLevelInfo() = win 0x3d0110, imac 0x8936f0, m1 0x787388;
     void toggleCommentMode(cocos2d::CCObject* sender) = win 0x3d29b0, imac 0x8941e0, m1 0x4fb014;
@@ -14471,8 +14471,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     std::string getSearchTitle() = win 0x3e5750, imac 0x485fb0, m1 0x3efaa0;
     bool init(GJSearchObject* object) = win 0x3e2000, imac 0x480690, m1 0x3ea564, ios 0x494fe4;
     bool isCorrect(char const* key) = win 0x3e4090, imac 0x485730, m1 0x3ef28c;
-    bool isSafeType() = win inline;
-    bool isVaultType() = win inline;
+    bool isSafeType() = win inline, m1 0x3ec51c, imac 0x482770;
+    bool isVaultType() = win inline, imac 0x483ec0, m1 0x3edca0;
     void loadPage(GJSearchObject* object) = win 0x3e4290, m1 0x3ee2a8;
     void onBackups(cocos2d::CCObject* sender) = win 0x3e9ab0;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x3e8db0, imac 0x484430, m1 0x3ee22c;
