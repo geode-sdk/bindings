@@ -6379,7 +6379,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     void incrementForcePrio() = win 0x5bd10;
     bool init(int opacity) = win 0x5a720, imac 0x494910, m1 0x3fcf78, ios 0x34b588;
     bool init(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a810, imac 0x493e30, m1 0x3fc534, ios 0x34abb8;
-    TodoReturn keyboardRaise(float, float);
+    static float keyboardRaise(float popupHeight, float maxRaise) = win inline;
     void onButton(cocos2d::CCObject* sender) = win 0x5b640;
     void onButtonTag(int tag) = win 0x5b670;
     TodoReturn ownedTouchPrio(int);
