@@ -1,10 +1,12 @@
 #include <Geode/Bindings.hpp>
 
-#if defined(GEODE_IS_WINDOWS)
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 EmoteSprite::EmoteSprite() {
     m_emoteDef = nullptr;
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS)
 bool EmoteSprite::initWithDef(EmoteDef const* def) {
     if (!def)
         return false;

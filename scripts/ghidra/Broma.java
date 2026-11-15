@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,8 +38,8 @@ public class Broma {
     }
 
     /**
-     * A match in the source Broma string, parsed from Regex. The start and end of 
-     * the match are in relation to the full original Broma file, not whatever Regex 
+     * A match in the source Broma string, parsed from Regex. The start and end of
+     * the match are in relation to the full original Broma file, not whatever Regex
      * matched them
      */
     public class Match {
@@ -138,6 +139,14 @@ public class Broma {
             ptr = Match.maybe(broma, matcher, "ptr");
             ref = Match.maybe(broma, matcher, "ref");
         }
+
+        public boolean isSignatureSame(Type other) {
+            return Objects.equals(this.name.value, other.name.value) &&
+                this.template.map(match -> match.value).equals(other.template.map(match -> match.value)) &&
+                this.unsigned == other.unsigned &&
+                this.ptr.map(match -> match.value).equals(other.ptr.map(match -> match.value)) &&
+                this.ref.map(match -> match.value).equals(other.ref.map(match -> match.value));
+        }
     }
 
     public class Param extends Parseable {
@@ -159,11 +168,17 @@ public class Broma {
             this.name = name;
             nameInsertionPoint = Match.maybe(broma, matcher, "insertnamehere");
         }
+
+        public boolean isSignatureSame(Param other) {
+            if (!this.type.isSignatureSame(other.type)) return false;
+            return true;
+        }
     }
 
     public class Function extends Parseable {
         public final Class parent;
         public final Optional<Match> dispatch;
+        public final boolean virtual;
         public final Optional<Type> returnType;
         public final Optional<Match> name;
         public final Optional<Match> destructor;
@@ -178,6 +193,7 @@ public class Broma {
             this.parent = parent;
 
             dispatch = Match.maybe(broma, matcher, "dispatch");
+            virtual = dispatch.isPresent() && dispatch.get().value.contains("virtual");
             if (matcher.group("return") != null) {
                 returnType = Optional.of(
                     new Type(broma, platform, broma.forkMatcher(Regexes.GRAB_TYPE, matcher, "return", true))
@@ -217,10 +233,23 @@ public class Broma {
             }
         }
 
+        public boolean isSignatureSame(Function other) {
+            var bothDestructors = this.destructor.isPresent() && other.destructor.isPresent();
+            var neitherDestructor = this.destructor.isEmpty() && other.destructor.isEmpty();
+            var sameName = bothDestructors ||
+                (neitherDestructor && Objects.equals(this.getName(), other.getName()));
+            if (!sameName || this.params.size() != other.params.size()) return false;
+
+            for (int i = 0; i < this.params.size(); ++i) {
+                if (!this.params.get(i).isSignatureSame(other.params.get(i))) return false;
+            }
+            return true;
+        }
+
         public String getName() {
             return this.name.orElseGet(() -> this.destructor.orElseGet(() -> this.constructor.get())).value;
         }
-        
+
         public CConv getCallingConvention(Platform platform) {
             if (platform != Platform.WINDOWS32) {
                 if (parent != null && (dispatch.isEmpty() || !dispatch.get().value.contains("static"))) return CConv.THISCALL;
@@ -256,7 +285,7 @@ public class Broma {
             return CConv.MEMBERCALL;
         }
     }
-    
+
     public class Member extends Parseable {
         public final Class parent;
         public final Optional<Match> comments;
@@ -276,7 +305,7 @@ public class Broma {
             else {
                 name = Optional.empty();
                 type = Optional.empty();
-                
+
                 var mutPaddings = new HashMap<Platform, Integer>();
                 var addrMatcher = broma.forkMatcher(Regexes.GRAB_PLATFORM_ADDRESS, matcher, "platforms", false);
                 while (addrMatcher.find()) {
@@ -465,7 +494,7 @@ public class Broma {
     }
 
     /**
-     * Add a new patch to this Broma file. The patch will be applied when 
+     * Add a new patch to this Broma file. The patch will be applied when
      * <code>save</code> is called. <b>It is assumed that no patches overlap!</b>
      * @param range The range of the patch in the Broma file
      * @param patch The string contents of the patch
@@ -490,7 +519,7 @@ public class Broma {
                 ScriptWrapper.rtassert(
                     !patch.range.overlaps(prev),
                     "There are overlapping patches: {0}..{1} and {2}..{3}  - {4}",
-                    patch.range.start, patch.range.end, 
+                    patch.range.start, patch.range.end,
                     prev.start, prev.end,
                     patch.patch
                 );

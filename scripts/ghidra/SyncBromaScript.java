@@ -1,4 +1,4 @@
-// Sync your RE'd addresses to & from GeometryDash.bro 
+// Sync your RE'd addresses to & from GeometryDash.bro
 // @author HJfod
 // @category GeodeSDK
 
@@ -30,6 +30,9 @@ import ghidra.program.model.data.DoubleDataType;
 import ghidra.program.model.data.EnumDataType;
 import ghidra.program.model.data.FloatDataType;
 import ghidra.program.model.data.FunctionDefinition;
+import ghidra.program.model.data.FunctionDefinitionDataType;
+import ghidra.program.model.data.ParameterDefinition;
+import ghidra.program.model.data.ParameterDefinitionImpl;
 import ghidra.program.model.data.Pointer;
 import ghidra.program.model.data.PointerDataType;
 import ghidra.program.model.data.Structure;
@@ -56,6 +59,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean exportToBroma;
         boolean setOptcall;
         boolean syncMembers;
+        boolean syncVirtuals;
         boolean syncEnums;
         boolean fillStandardTypes;
 
@@ -70,14 +74,14 @@ public class SyncBromaScript extends GhidraScript {
 
         @Override
         protected String description() {
-            return 
-                "Import addresses & signatures from Broma, and add new ones " + 
-                "from the current project to it.\n\n" + 
-                "Note that it is recommended to save your Ghidra project before " + 
-                "running the script, so if it messes something up you can safely " + 
-                "undo the mistake.\n\n" + 
-                "You will need to manually git pull / push your local copy of the " + 
-                "bindings repository!\n\n" + 
+            return
+                "Import addresses & signatures from Broma, and add new ones " +
+                "from the current project to it.\n\n" +
+                "Note that it is recommended to save your Ghidra project before " +
+                "running the script, so if it messes something up you can safely " +
+                "undo the mistake.\n\n" +
+                "You will need to manually git pull / push your local copy of the " +
+                "bindings repository!\n\n" +
                 "See the README for detailed explanations of all the options.";
         }
 
@@ -110,6 +114,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Export to Broma", false, b -> this.exportToBroma = b);
             this.bool("Set optcall & membercall", isWindows, b -> this.setOptcall = b);
             this.bool("Sync members", b -> this.syncMembers = b);
+            this.bool("Sync virtuals", b -> this.syncVirtuals = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
             this.bool("Fill standard types", b -> this.fillStandardTypes = b);
 
@@ -129,9 +134,9 @@ public class SyncBromaScript extends GhidraScript {
                 .map(f -> Paths.get(bindingsDir.toString(), this.gameVersion, f))
                 .filter(Files::exists)
                 .toList();
-            
-            if (!this.importFromBroma && !this.exportToBroma && !this.syncMembers && !this.syncEnums) {
-                throw new Error("Either importing from Broma, exporting to Broma, syncing members, or syncing enums has to be checked!");
+
+            if (!this.importFromBroma && !this.exportToBroma && !this.syncMembers && !this.syncEnums && !this.syncVirtuals) {
+                throw new Error("Either importing from Broma, exporting to Broma, syncing members, syncing enums or syncing virtuals has to be checked!");
             }
         }
     }
@@ -139,7 +144,7 @@ public class SyncBromaScript extends GhidraScript {
     ScriptWrapper wrapper;
     Args args;
     List<Broma> bromas = new ArrayList<Broma>();
-    
+
     public void run() throws Exception {
         this.wrapper = new ScriptWrapper(this);
 
@@ -191,6 +196,9 @@ public class SyncBromaScript extends GhidraScript {
         }
         if (this.args.syncMembers) {
             this.handleImportMembers();
+        }
+        if (this.args.syncVirtuals) {
+            this.handleImportVirtuals();
         }
         if (this.args.syncEnums) {
             this.handleImportEnums();
@@ -257,7 +265,7 @@ public class SyncBromaScript extends GhidraScript {
         // Check if function already has an user-provided name - in this case, it might be merged
         if (
             data.getSymbol().getSource() == SourceType.USER_DEFINED &&
-            !data.getName(true).equals(fullName) && 
+            !data.getName(true).equals(fullName) &&
             !(data.getComment() != null && data.getComment().contains("NOTE: Merged with " + fullName))
         ) {
             if (overwriteAll) {
@@ -267,7 +275,7 @@ public class SyncBromaScript extends GhidraScript {
                 int choice = mergeAll ? 0 : askContinueConflict(
                     "Function has a different name",
                     List.of("Add to merged functions list", "Overwrite Ghidra name", "Overwrite all", "Merge all"),
-                    "The function {0} at {1} from Broma already has the name " + 
+                    "The function {0} at {1} from Broma already has the name " +
                     "{2} in Ghidra - is this function merged with that?",
                     fullName, Long.toHexString(addr.getOffset()), data.getName(true)
                 );
@@ -277,7 +285,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
                 if (choice == 0) {
                     data.setComment(
-                        (data.getComment() != null ? (data.getComment() + "\n") : "") + 
+                        (data.getComment() != null ? (data.getComment() + "\n") : "") +
                         "NOTE: Merged with " + fullName
                     );
                     wrapper.printfmt("Added {0} to merged function list for {1}", fullName, data.getName(true));
@@ -310,6 +318,9 @@ public class SyncBromaScript extends GhidraScript {
         for (var i = 0; i < data.getParameterCount(); i += 1) {
             var param = data.getParameter(i);
             // We only care about mismatches against user-defined params
+            if (param == null) {
+                continue;
+            }
             if (param.getSource() != SourceType.USER_DEFINED) {
                 continue;
             }
@@ -359,8 +370,8 @@ public class SyncBromaScript extends GhidraScript {
             status = status.promoted(SignatureImport.UPDATED);
         }
 
-        var shouldReorderParams = 
-            (conv == CConv.MEMBERCALL || conv == CConv.OPTCALL) && 
+        var shouldReorderParams =
+            (conv == CConv.MEMBERCALL || conv == CConv.OPTCALL) &&
             // Only do manual storage if there's actually a need for it
             bromaSig.parameters.stream().anyMatch(p ->
                 p.getDataType() instanceof Composite ||
@@ -373,7 +384,7 @@ public class SyncBromaScript extends GhidraScript {
             if (!this.args.setOptcall) {
                 updateType = FunctionUpdateType.DYNAMIC_STORAGE_ALL_PARAMS;
                 wrapper.printfmt(
-                    "Warning: not handling optcall/membercall for {0} - " + 
+                    "Warning: not handling optcall/membercall for {0} - " +
                     "parameter order / registers will be wrong!",
                     fullName
                 );
@@ -423,7 +434,7 @@ public class SyncBromaScript extends GhidraScript {
                         else {
                             if (type.isNotYetDefined()) {
                                 wrapper.printfmt(
-                                    "Warning: function {0} has parameter {1} of an undefined " + 
+                                    "Warning: function {0} has parameter {1} of an undefined " +
                                     "struct type - you will need to manually fix this later!",
                                     fullName, param.getName()
                                 );
@@ -641,7 +652,7 @@ public class SyncBromaScript extends GhidraScript {
                     continue;
                 }
                 var addr = currentProgram.getImageBase().add(offset);
-                
+
                 switch (importSignatureFromBroma(addr, fun, false)) {
                     case ADDED: {
                         importedAddCount += 1;
@@ -715,7 +726,7 @@ public class SyncBromaScript extends GhidraScript {
                 /*if(fullName.contains("~")) {
                     continue;
                 }*/
-                
+
                 var bromaFuns = bromaClass.getFunctions(name);
                 if (bromaFuns.isEmpty()) {
                     wrapper.printfmt("Warning: function {0} not found", fullName);
@@ -767,20 +778,20 @@ public class SyncBromaScript extends GhidraScript {
                         bromaFun = bromaFuns.get(askChoiceBetter(
                             "Select overload",
                             bromaFuns.stream()
-                                .map(f -> f.getName() + "(" + 
+                                .map(f -> f.getName() + "(" +
                                     String.join(
                                         ", ", f.params.stream()
                                             .map(p -> p.toString())
                                             .toArray(String[]::new)
-                                    ) + 
+                                    ) +
                                     ")"
                                 )
                                 .toList(),
-                            "Function <code>{0}</code> has multiple overloads, and the correct one couldn''t be " + 
-                            "inferred from the Ghidra arguments. Please select the correct one for " + 
-                            "address {1}." + 
-                            "<br><b>Signature at address</b>: {2}" + 
-                            "<br><em>If you need to cancel the script to check, make sure to manually set the " + 
+                            "Function <code>{0}</code> has multiple overloads, and the correct one couldn''t be " +
+                            "inferred from the Ghidra arguments. Please select the correct one for " +
+                            "address {1}." +
+                            "<br><b>Signature at address</b>: {2}" +
+                            "<br><em>If you need to cancel the script to check, make sure to manually set the " +
                             "parameter types so next time the overload is automatically detected!</em>",
                             fullName, fun.getEntryPoint(),
                             new Signature(fun.getReturn(), List.of(fun.getParameters()))
@@ -791,7 +802,7 @@ public class SyncBromaScript extends GhidraScript {
                     bromaFun = bromaFuns.get(0);
                 }
 
-                // Update return type if Ghidra has an user-defined type and 
+                // Update return type if Ghidra has an user-defined type and
                 // Broma has TodoReturn
                 if (
                     bromaFun.returnType.isPresent() && bromaFun.returnType.get().name.value.contains("TodoReturn") &&
@@ -821,7 +832,7 @@ public class SyncBromaScript extends GhidraScript {
                         broma.addPatch(bromaParam.nameInsertionPoint.get().range, " " + param.getName());
                     }
                 }
-                
+
                 // Add address
                 if (bromaFun.platformOffset.isPresent()) {
                     var bromaOffset = Long.parseLong(bromaFun.platformOffset.get().value, 16);
@@ -856,7 +867,7 @@ public class SyncBromaScript extends GhidraScript {
                 }
             }
         }
-        
+
         wrapper.printfmt("Exported {0} addresses & {1} return types to Broma", exportedAddrCount, exportedTypeCount);
     }
 
@@ -925,7 +936,7 @@ public class SyncBromaScript extends GhidraScript {
                 classDataMembers.setLength(0);
             }
 
-            // Delete any padding at the end of the struct 
+            // Delete any padding at the end of the struct
             // (so if the struct has shrunk in broma, we refit it properly)
             while (!classDataMembers.isZeroLength()) {
                 var comp = classDataMembers.getComponent(classDataMembers.getNumComponents() - 1);
@@ -938,7 +949,9 @@ public class SyncBromaScript extends GhidraScript {
             }
 
             var initialOffset = 0;
-            if (args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64 && !firstBase.isEmpty() && classCache.containsKey(firstBase)) {
+            if (args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64 && !firstBase.isEmpty() && classCache.containsKey(firstBase)
+                /* okay so bugfix time! if there are delegates inside this class we don't need to do these offset calculations at all! */ && basesList.size() == 1
+            ) {
                 var firstBaseCategory = new CategoryPath("/ClassDataTypes");
                 String firstBaseData = null;
                 for (var part : firstBase.split("::")) {
@@ -1014,9 +1027,9 @@ public class SyncBromaScript extends GhidraScript {
                             var result = askContinueConflict(
                                 "Override member",
                                 List.of("Yes", "Yes to Class", "Yes to All", "No", "No to Class", "No to All"),
-                                "Member #{0} in {1} does not match between Broma and Ghidra:<br><br>" + 
-                                "Broma: {2} {3}<br>" + 
-                                "Ghidra: {4} {5}<br><br>" + 
+                                "Member #{0} in {1} does not match between Broma and Ghidra:<br><br>" +
+                                "Broma: {2} {3}<br>" +
+                                "Ghidra: {4} {5}<br><br>" +
                                 "Should the existing member in Ghidra be overwritten with Broma's?",
                                 existing.getOrdinal(), fullName,
                                 ScriptWrapper.formatType(memType), memName,
@@ -1061,7 +1074,7 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     else {
                         wrapper.printfmt(
-                            "Warning: Reached undefined padding at offset {0} " + 
+                            "Warning: Reached undefined padding at offset {0} " +
                             "on class {1} - stopping importing members",
                             offset, fullName
                         );
@@ -1236,6 +1249,331 @@ public class SyncBromaScript extends GhidraScript {
         }
     }
 
+    private final HashSet<String> virtualClassesInProgress = new HashSet<>();
+    private final HashSet<String> virtualClassesProcessed = new HashSet<>();
+    private final HashMap<String, Structure> virtualTableCache = new HashMap<>();
+
+    private String shortClassName(String fullName) {
+        var parts = fullName.split("::");
+        return parts[parts.length - 1];
+    }
+
+    private CategoryPath classCategory(String fullName) {
+        var category = new CategoryPath("/ClassDataTypes");
+        for (var part : fullName.split("::")) {
+            category = category.extend(part);
+        }
+        return category;
+    }
+
+    private List<String> getBromaBases(Broma.Class cls) {
+        var basesString = cls.bases.isPresent() ? cls.bases.get().value.substring(1) : "";
+        // UILayer has an implicit second base that is not written in Broma.
+        if (cls.name.value.equals("UILayer")) {
+            basesString += ", cocos2d::CCKeyboardDelegate";
+        }
+        return Arrays.stream(basesString.split(","))
+            .map(String::trim)
+            .filter(base -> !base.isEmpty())
+            .toList();
+    }
+
+    private Structure getVirtualTable(Broma.Class cls, String tableName) {
+        if (cls == null) return null;
+        var category = classCategory(cls.name.value);
+        var dataType = currentProgram.getDataTypeManager().getDataType(new DataTypePath(category, tableName));
+        return dataType instanceof Structure ? (Structure)dataType : null;
+    }
+
+    private boolean hasVirtualSignatureInBase(
+        Broma.Function function,
+        Broma.Class baseClass,
+        HashSet<String> visited
+    ) {
+        if (baseClass == null || !visited.add(baseClass.name.value)) {
+            return false;
+        }
+
+        for (var baseFunction : baseClass.functions) {
+            if (baseFunction.virtual && function.isSignatureSame(baseFunction)) {
+                return true;
+            }
+        }
+
+        var baseNames = getBromaBases(baseClass);
+        if (!baseNames.isEmpty()) {
+            return hasVirtualSignatureInBase(function, classCache.get(baseNames.get(0)), visited);
+        }
+        return false;
+    }
+
+    private boolean hasVirtualSignatureInBase(Broma.Function function, Broma.Class baseClass) {
+        return hasVirtualSignatureInBase(function, baseClass, new HashSet<String>());
+    }
+
+    private void appendInheritedVTableEntries(Structure target, Structure source) throws Exception {
+        if (source == null) return;
+        for (var component : source.getComponents()) {
+            target.add(
+                component.getDataType(),
+                component.getLength(),
+                component.getFieldName(),
+                component.getComment()
+            );
+        }
+    }
+
+    private FunctionDefinitionDataType makeVirtualFunctionType(
+        Broma.Function function,
+        String tableName,
+        int ordinal
+    ) throws Exception {
+        var signature = wrapper.getBromaSignature(function, args.platform, false);
+        var type = new FunctionDefinitionDataType(tableName + "_vslot_" + ordinal);
+
+        type.setReturnType(
+            signature.returnType.isPresent()
+                ? signature.returnType.get().getDataType()
+                : new VoidDataType()
+        );
+
+        var parameters = new ParameterDefinition[signature.parameters.size()];
+        for (var i = 0; i < signature.parameters.size(); i += 1) {
+            var parameter = signature.parameters.get(i);
+            var parameterName = parameter.getName() != null
+                ? parameter.getName()
+                : "param_" + i;
+            parameters[i] = new ParameterDefinitionImpl(parameterName, parameter.getDataType(), null);
+        }
+        type.setArguments(parameters);
+        return type;
+    }
+
+    private Structure createVirtualTable(
+        Broma.Class cls,
+        String tableName,
+        Broma.Class baseClass,
+        List<Broma.Class> baseClasses
+    ) throws Exception {
+        final var manager = currentProgram.getDataTypeManager();
+        final var pointerSize = manager.getDataOrganization().getPointerSize();
+        final var category = classCategory(cls.name.value);
+        wrapper.createCategoryAll(category);
+
+        var vtable = new StructureDataType(tableName, 0);
+        vtable.setPackingEnabled(false);
+
+        if (baseClass != null) {
+            var baseTable = virtualTableCache.containsKey(baseClass.name.value)
+                ? virtualTableCache.get(baseClass.name.value)
+                : getVirtualTable(baseClass, shortClassName(baseClass.name.value) + "_vtable");
+            appendInheritedVTableEntries(vtable, baseTable);
+        }
+
+        var addedFunctions = 0;
+        function_iterate: for (var function : cls.functions) {
+            if (!function.virtual) continue;
+            if ((args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64)) {
+                for (Broma.Class base : baseClasses) {
+                    if (hasVirtualSignatureInBase(function, base)) {
+                        continue function_iterate;
+                    }
+                }
+            }
+            else {
+                if (baseClass != null && hasVirtualSignatureInBase(function, baseClass)) {
+                    continue function_iterate;
+                }
+            }
+
+
+            var functionType = makeVirtualFunctionType(function, tableName, addedFunctions);
+            var pointerType = new PointerDataType(functionType);
+
+            // use suffixes for overloads
+            var fieldName = function.getName();
+            var suffix = 2;
+            var fieldNameExists = true;
+            while (fieldNameExists) {
+                fieldNameExists = false;
+                for (var component : vtable.getComponents()) {
+                    if (fieldName.equals(component.getFieldName())) {
+                        fieldNameExists = true;
+                        fieldName = function.getName() + "_" + suffix++;
+                        break;
+                    }
+                }
+            }
+
+            vtable.add(pointerType, pointerSize, fieldName, null);
+            addedFunctions += 1;
+            if (function.destructor.isPresent() && args.platform != Platform.WINDOWS32 && args.platform != Platform.WINDOWS64) {
+                vtable.add(pointerType, pointerSize, fieldName, null);
+                addedFunctions += 1;
+            }
+        }
+
+        if (vtable.isZeroLength()) {
+            return null;
+        }
+
+        var added = manager.getCategory(category).addDataType(
+            vtable,
+            DataTypeConflictHandler.REPLACE_HANDLER
+        );
+        return (Structure)added;
+    }
+
+    private void setPrimaryVTablePointer(Structure classStruct, Structure vtable, int pointerSize) {
+        var pointerType = new PointerDataType(vtable);
+        var existing = classStruct.getComponentAt(0);
+        var alreadyVTablePointer = false;
+
+        if (existing != null && existing.getOffset() == 0 && existing.getLength() == pointerSize) {
+            if (existing.getDataType() instanceof Pointer existingPointer) {
+                var pointedType = existingPointer.getDataType();
+                alreadyVTablePointer = pointedType != null &&
+                    (pointedType.isEquivalent(vtable) ||
+                     (existing.getFieldName() != null && existing.getFieldName().contains("vtable")));
+            }
+            else if (existing.getDataType() instanceof DefaultDataType) {
+                alreadyVTablePointer = true;
+            }
+        }
+
+        if (alreadyVTablePointer) {
+            for (var i = pointerSize - 1; i >= 0; i -= 1) {
+                classStruct.clearAtOffset(i);
+            }
+            classStruct.replaceAtOffset(0, pointerType, pointerSize, "vtable", null);
+        }
+        else {
+            classStruct.insertAtOffset(0, pointerType, pointerSize, "vtable", null);
+        }
+    }
+
+    private boolean setDelegateVTablePointer(
+        Structure classStruct,
+        String delegateName,
+        Structure vtable,
+        int pointerSize
+    ) {
+        var pointerType = new PointerDataType(vtable);
+        for (var component : classStruct.getComponents()) {
+            var fieldName = component.getFieldName();
+            var matchesName = fieldName != null && fieldName.equals(delegateName);
+            var matchesType = component.getDataType() instanceof Pointer pointer &&
+                pointer.getDataType() != null && pointer.getDataType().getName().equals(delegateName);
+
+            if (!matchesName && !matchesType) continue;
+
+            var offset = component.getOffset();
+            for (var i = pointerSize - 1; i >= 0; i -= 1) {
+                classStruct.clearAtOffset(offset + i);
+            }
+            classStruct.replaceAtOffset(offset, pointerType, pointerSize, delegateName, null);
+            return true;
+        }
+        return false;
+    }
+
+    private void importVirtualsForClass(Broma.Class cls) throws Exception {
+        if (cls == null) return;
+        var fullName = cls.name.value;
+        if (virtualClassesProcessed.contains(fullName) || !virtualClassesInProgress.add(fullName)) {
+            return;
+        }
+
+        var bases = getBromaBases(cls);
+        var baseClasses = new ArrayList<Broma.Class>();
+        for (var baseName : bases) {
+            var baseClass = classCache.get(baseName);
+            baseClasses.add(baseClass);
+            if (baseClass != null) {
+                importVirtualsForClass(baseClass);
+            }
+        }
+
+        var primaryBase = baseClasses.isEmpty() ? null : baseClasses.get(0);
+        var primaryVTable = createVirtualTable(
+            cls,
+            shortClassName(fullName) + "_vtable",
+            primaryBase,
+            baseClasses
+        );
+        virtualTableCache.put(fullName, primaryVTable);
+
+        var delegateTables = new ArrayList<Structure>();
+        var delegateNames = new ArrayList<String>();
+        for (var i = 1; i < baseClasses.size(); i += 1) {
+            var delegateBase = baseClasses.get(i);
+            if (delegateBase == null) continue;
+
+            var delegateShortName = shortClassName(delegateBase.name.value);
+            var delegateVTableName = shortClassName(fullName) + "_" + delegateShortName + "_vtable";
+            var delegateVTable = createVirtualTable(cls, delegateVTableName, delegateBase, baseClasses);
+            if (delegateVTable != null) {
+                delegateTables.add(delegateVTable);
+                delegateNames.add(delegateShortName);
+            }
+        }
+
+        if (primaryVTable != null || !delegateTables.isEmpty()) {
+            final var manager = currentProgram.getDataTypeManager();
+            final var pointerSize = manager.getDataOrganization().getPointerSize();
+            final var category = classCategory(fullName);
+            var classType = manager.getDataType(new DataTypePath(category, shortClassName(fullName)));
+            if (!(classType instanceof Structure)) {
+                wrapper.createCategoryAll(category);
+                classType = manager.getCategory(category).addDataType(
+                    new StructureDataType(shortClassName(fullName), 0),
+                    DataTypeConflictHandler.DEFAULT_HANDLER
+                );
+            }
+
+            var classStruct = (Structure)classType;
+            classStruct.setPackingEnabled(false);
+            if (primaryVTable != null) {
+                setPrimaryVTablePointer(classStruct, primaryVTable, pointerSize);
+            }
+
+            for (var i = 0; i < delegateTables.size(); i += 1) {
+                if (!setDelegateVTablePointer(
+                    classStruct,
+                    delegateNames.get(i),
+                    delegateTables.get(i),
+                    pointerSize
+                )) {
+                    wrapper.printfmt(
+                        "Warning: Could not find the {0} base pointer in {1} to replace with its vtable pointer",
+                        delegateNames.get(i), fullName
+                    );
+                }
+            }
+        }
+
+        virtualClassesInProgress.remove(fullName);
+        virtualClassesProcessed.add(fullName);
+        if (primaryVTable != null || !delegateTables.isEmpty()) {
+            wrapper.printfmt("Imported virtual tables for {0}", fullName);
+        }
+    }
+
+    private void handleImportVirtuals() throws Exception {
+        wrapper.printfmt("Importing virtual tables...");
+
+        classCache.putAll(bromas.stream()
+            .flatMap(bro -> bro.classes.stream())
+            .collect(Collectors.toMap(cls -> cls.name.value, cls -> cls, (first, ignored) -> first)));
+
+        for (var bro : bromas) {
+            for (var cls : bro.classes) {
+                importVirtualsForClass(cls);
+            }
+        }
+    }
+
+
     private void handleImportEnums() throws Exception {
         final var manager = currentProgram.getDataTypeManager();
         final var enumPath = Paths.get(wrapper.bindingsDir.toString(), "include", "Geode", "Enums.hpp");
@@ -1358,9 +1696,9 @@ public class SyncBromaScript extends GhidraScript {
             if (mem.getDataType() instanceof Undefined) {
                 var pad = new PaddingInfo(mem.getComment(), args.platform);
 
-                // If this padding is different between different platforms, 
-                // skip any members inside that padding region 
-                // (since we can't know how inserting those members would 
+                // If this padding is different between different platforms,
+                // skip any members inside that padding region
+                // (since we can't know how inserting those members would
                 // split the padding on other platforms)
                 if (pad.unequal()) {
                     if (pad.platforms.containsKey(args.platform)) {
@@ -1388,15 +1726,15 @@ public class SyncBromaScript extends GhidraScript {
                         for (var j = i; j < lastPaddingIndex; j += 1) {
                             if (type.getComponent(j).getFieldName() != null) {
                                 wrapper.printfmt(
-                                    "Warning: field {0} in {1} is within a region of " + 
-                                    "unequal paddings between platforms - you will need " + 
-                                    "to manually export it to the Broma file and fix the " + 
+                                    "Warning: field {0} in {1} is within a region of " +
+                                    "unequal paddings between platforms - you will need " +
+                                    "to manually export it to the Broma file and fix the " +
                                     "paddings!",
                                     type.getComponent(j).getFieldName(), fullName
                                 );
                             }
                         }
-                        // Figure out how much the paddings should be shrunk down for each platform 
+                        // Figure out how much the paddings should be shrunk down for each platform
                         // based on the size of the members added to the ends
                         var shrunk = new HashMap<Platform, Integer>(pad.platforms);
                         for (var j = originalPadRegionStartIndex; j < i; j += 1) {
@@ -1418,7 +1756,7 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     else {
                         wrapper.printfmt(
-                            "Warning: padding at offset {0} in {1} is not defined on this platform " + 
+                            "Warning: padding at offset {0} in {1} is not defined on this platform " +
                             " - exported members may be wrong!",
                             mem.getOffset(), fullName
                         );
@@ -1462,8 +1800,8 @@ public class SyncBromaScript extends GhidraScript {
         else {
             replaceRange = bromaClass.members.get(0).range;
             for (var mem : bromaClass.members) {
-                // If the padding is not defined on this platform, 
-                // the padding and the rest of the members weren't imported 
+                // If the padding is not defined on this platform,
+                // the padding and the rest of the members weren't imported
                 // and shouldn't be overridden
                 if (mem.name.isEmpty() && !mem.paddings.containsKey(args.platform)) {
                     break;
@@ -1500,7 +1838,7 @@ public class SyncBromaScript extends GhidraScript {
             wrapper,
             title,
             MessageFormat.format(
-                "<html>" + fmt + "<br>If this is not the case, please fix " + 
+                "<html>" + fmt + "<br>If this is not the case, please fix " +
                 "the conflict manually in the Broma file!" + "</html>",
                 args
             ),

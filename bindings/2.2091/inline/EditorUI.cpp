@@ -171,11 +171,6 @@ float EditorUI::rotationforCommand(EditCommand command) {
     }
 }
 
-void EditorUI::setupEditMenu() {
-    this->createMoveMenu();
-    this->updateEditMenu();
-}
-
 bool EditorUI::shouldSnap(GameObject* object) {
     return (int)object->getRotation() % 90 == 0;
 }
@@ -482,7 +477,7 @@ void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* select
 // TODO: uncomment once free-standing offsetForKey is fixed in broma
 /* cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
     return GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
-} 
+}
 
 cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
     return object->getPosition() - this->getRelativeOffset(object);
@@ -635,6 +630,11 @@ float EditorUI::xPosFromValue(float value) {
     auto scale = m_editorLayer->m_objectLayer->getScale();
     return sectionCount * 100.f * scale * value - xMin;
 }
+
+void EditorUI::setupEditMenu() {
+    this->createMoveMenu();
+    this->updateEditMenu();
+}
 #endif
 
 #if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
@@ -652,11 +652,11 @@ void EditorUI::updateSpecialUIElements() {
     this->updateScaleControl();
 }
 
-void EditorUI::updateEditMenu() {
+/*void EditorUI::updateEditMenu() {
     bool visible = !m_uiHidden && m_selectedMode == 3;
     if (m_dpadMoveNode) m_dpadMoveNode->setVisible(visible);
     if (m_editButtonBar) m_editButtonBar->setVisible(false);
-}
+}*/
 
 void EditorUI::closeLiveColorSelect() {
     if (m_colorOverlay) {
