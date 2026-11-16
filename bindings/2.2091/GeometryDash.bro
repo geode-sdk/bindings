@@ -7051,7 +7051,7 @@ class GameLevelManager : cocos2d::CCNode {
     void deleteComment(int id, CommentType type, int parentID) = win 0x240290;
     TodoReturn deleteComments(CommentType, std::vector<BulkCommentKey> const&, std::string const&, std::vector<int> const&) = win 0x240b30;
     bool deleteFriendRequests(int accountID, cocos2d::CCArray* accounts, bool sent) = win 0x2550e0, imac 0x57a610, m1 0x4cc79c;
-    void deleteLevel(GJGameLevel* level) = win 0x21c870, imac 0x53ed90;
+    void deleteLevel(GJGameLevel* level) = win 0x21c870, imac 0x53ed90, m1 0x495d18;
     void deleteLevelComment(int id, int levelID) = win inline, imac 0x56dbb0, m1 0x4c08c8;
     TodoReturn deleteLevelControls(int) = win 0x259650;
     void deleteLevelList(GJLevelList* list) = win 0x21d120, imac 0x53f690, m1 0x496558;
