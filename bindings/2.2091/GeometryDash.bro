@@ -24005,6 +24005,7 @@ class StarInfoPopup : FLAlertLayer {
 
 [[link(android)]]
 class StartPosBrowser : FLAlertLayer, TableViewCellDelegate, OptionsObjectDelegate {
+    StartPosBrowser() = inline;
     virtual ~StartPosBrowser() = win 0x4d6510, imac 0x3c35c0, m1 0x34834c, ios 0x1c1438;
 
     static StartPosBrowser* create(cocos2d::CCArray*, int) = win inline, imac 0x3c1fa0, m1 0x346cd8;
@@ -24019,6 +24020,12 @@ class StartPosBrowser : FLAlertLayer, TableViewCellDelegate, OptionsObjectDelega
     void onClose(cocos2d::CCObject* sender) = win 0x4dc330, imac 0x3c3c50, m1 0x34870c;
     void setupList() = win 0x4dbdd0, imac 0x3c3cd0, m1 0x348780;
     void updatePageLabel() = win inline, imac 0x3c41d0, m1 0x348bb8;
+
+    cocos2d::CCArray* m_startPosObjects;
+    GJCommentListLayer* m_listLayer;
+    int m_selectedCellIdx;
+    cocos2d::CCLabelBMFont* m_pageLabel;
+    StartPosBrowserDelegate* m_delegate;
 }
 
 [[link(android)]]
@@ -24028,6 +24035,7 @@ class StartPosBrowserDelegate {
 
 [[link(android)]]
 class StartPosLayer : SetupTriggerPopup {
+    StartPosLayer() = inline;
     virtual ~StartPosLayer() = win 0x457a00, imac 0x25c150, m1 0x20445c, ios 0x20f7b8;
 
     static StartPosLayer* create(StartPosObject*) = win inline, imac 0x25c430, m1 0x204464;
@@ -24039,11 +24047,15 @@ class StartPosLayer : SetupTriggerPopup {
 
     void addModeButtons() = win 0x45f710, imac 0x25d3f0, m1 0x2051d8;
     void addSpeedButtons() = win 0x45f9f0, imac 0x25d660, m1 0x205544;
-    bool init(StartPosObject*) = win 0x45de00, imac 0x25c540, m1 0x204544, m1 0x204544;
+    bool init(StartPosObject*) = win 0x45de00, imac 0x25c540, m1 0x204544;
     void onSelectMode(cocos2d::CCObject* sender) = win 0x45f990, m1 0x205f74;
     void onSelectSpeed(cocos2d::CCObject* sender) = win 0x45fc90, m1 0x206074;
 
     StartPosObject* m_startPosObject;
+    int m_startMode;
+    Speed m_startSpeed;
+    cocos2d::CCArray* m_modeButtons;
+    cocos2d::CCArray* m_speedButtons;
 }
 
 [[link(android)]]
