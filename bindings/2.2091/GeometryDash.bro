@@ -9069,7 +9069,7 @@ class GameToolbox {
     static TodoReturn pathSegmentCount(std::string const&, char const*);
     static std::string pointsToString(int points) = win 0x748e0, imac 0x4f5fb0, m1 0x4532ec;
     static void postClipVisit() = win inline, imac 0x4ead10, m1 0x448fe8;
-    static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = win 0x6db10, imac 0x4eabf0, m1 0x448edc;
+    static void preVisitWithClippingRect(cocos2d::CCNode* node, cocos2d::CCRect rect) = win 0x6db10, imac 0x4eabf0, m1 0x448edc, ios 0x48dc0;
     static void preVisitWithClipRect(cocos2d::CCRect rect) = win inline, imac 0x4eacd0, m1 0x448fb0;
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x70ad0, imac 0x4ef2c0, m1 0x44d364;
     static bool saveStringToFile(std::string const& path, std::string const& content, bool absolute, bool atomic) = win inline, ios inline;
