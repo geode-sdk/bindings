@@ -4583,8 +4583,8 @@ class EditorSFXManager {
     void ensureLoaded() = win 0x1852f0, imac 0x8e1420, m1 0x7cd728, ios 0x4c75f8;
     EditorSFXBinding* findBinding(int bindingId) = win 0x1853d0;
     void firstSetup() = imac 0x8e1300, m1 0x7cd640, ios 0x4c7580; // win inline
-    float getActionMinInterval(int actionId);
-    float getActionMinIntervalOverride(int actionId);
+    float getActionMinInterval(int actionId) const;
+    float getActionMinIntervalOverride(int actionId) const;
     std::string getCustomSFXRawPath(int sfxId, int customSfxId) = win 0x189b70, imac 0x8eb2e0;
     GJEditorSoundConfig* getFavoriteConfig(int favoriteId);
     cocos2d::CCArray* getFavoriteConfigs();
@@ -4745,9 +4745,9 @@ class EditorSoundConfigInfoLayer : SetupTriggerPopup, EditorSoundDownloadDelegat
     TodoReturn applyConfig(bool, bool) = win 0x197140;
     TodoReturn buildSummary() = win 0x194920;
     TodoReturn downloadMissingSFX() = win 0x196a30;
-    TodoReturn editsServerDescription();
+    TodoReturn editsServerDescription() const;
     bool init(GJEditorSoundConfig*, EditorSoundInfoKind, EditorSoundBrowserLayer*) = win 0x1920b0;
-    bool isOwner() = win 0x196160;
+    bool isOwner() const = win 0x196160;
     std::vector<int> missingSFXIDs() = win 0x196590;
     void onDeleteServer(cocos2d::CCObject* sender) = win 0x197ac0;
     void onDescription(cocos2d::CCObject* sender) = win 0x195c20;
@@ -5438,18 +5438,18 @@ class EditorWindowPopup : SetupTriggerPopup {
     virtual void onFieldEnter() = win 0x17fc70, imac 0x9020d0, m1 0x7e9204, ios 0x4dab5c;
     bool initWindow(EditorUI* editorUI, float width, float height, int windowID, int unused) = win 0x17dde0, imac 0x8ffeb0, m1 0x7e73f4, ios 0x4d92e8;
     bool beginTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17edd0, imac 0x901160, m1 0x7e83dc;
-    bool isInCloseButton(cocos2d::CCPoint point) = win 0x17e7f0, m1 0x7e7e60, imac 0x900b10, ios 0x4d9cb0;
+    bool isInCloseButton(cocos2d::CCPoint point) const = win 0x17e7f0, m1 0x7e7e60, imac 0x900b10, ios 0x4d9cb0;
 
     TodoReturn activeField();
     void applyWindowSize() = win 0x17e6d0, imac 0x9005e0, m1 0x7e7a20, ios 0x4d98f8;
     void blurField() = win 0x17ec40, ios 0x4d9fe8;
-    cocos2d::CCPoint clampWindowCenter(cocos2d::CCPoint) = win 0x17e930, ios 0x4d97f8;
-    cocos2d::CCPoint clampWindowOnScreen(cocos2d::CCPoint) = win 0x17eaa0, m1 0x7e7fdc, ios 0x4d9e2c;
-    cocos2d::CCPoint contentCenter() = ios 0x4d97b0;
+    cocos2d::CCPoint clampWindowCenter(cocos2d::CCPoint) const = win 0x17e930, ios 0x4d97f8;
+    cocos2d::CCPoint clampWindowOnScreen(cocos2d::CCPoint) const = win 0x17eaa0, m1 0x7e7fdc, ios 0x4d9e2c;
+    cocos2d::CCPoint contentCenter() const = ios 0x4d97b0;
     void dismissDropdowns() = win 0x17e420, ios 0x4d9b00;
     TodoReturn fieldHoldsKeys();
-    int getResizeCorner(cocos2d::CCPoint) = imac 0x900a00, m1 0x7e7d60, ios 0x4d9bc0;
-    bool isInDragHandle(cocos2d::CCPoint) = ios 0x4d9db0;
+    int getResizeCorner(cocos2d::CCPoint) const = imac 0x900a00, m1 0x7e7d60, ios 0x4d9bc0;
+    bool isInDragHandle(cocos2d::CCPoint) const = ios 0x4d9db0;
     void layoutWindow() = win 0x17e520, imac 0x9006b0, m1 0x7e7ad8, ios 0x4d99b0;
     void moveWindowTo(cocos2d::CCPoint) = ios 0x4d9b98;
     void setLockAspectRatio(bool);
@@ -5457,7 +5457,7 @@ class EditorWindowPopup : SetupTriggerPopup {
     void setWindowSizeBounds(float, float, float, float) = ios 0x4d9ae0;
     void syncWindowCenter() = win 0x17e4a0, ios 0x4d9b3c;
     bool touchIsOnField(cocos2d::CCPoint) = ios 0x4d9f5c;
-    cocos2d::CCRect touchRect() = ios 0x4da038;
+    cocos2d::CCRect touchRect() const = ios 0x4da038;
 
     EditorUI* m_editorUI;
     cocos2d::extension::CCScale9Sprite* m_background;
@@ -10666,7 +10666,7 @@ class GJEditorSoundConfig : cocos2d::CCNode {
     TodoReturn clearServerState();
     void copyServerFields(GJEditorSoundConfig*) = win 0x361750;
     void dataLoaded(DS_Dictionary* dict) = win 0x360ee0, imac 0x9073e0, m1 0x7ee0c0, ios 0x4de360;
-    TodoReturn getUnpackedSoundDesc();
+    TodoReturn getUnpackedSoundDesc() const;
     TodoReturn showSoundInfo() = win 0x361180;
 
     int m_soundID;
@@ -11730,7 +11730,7 @@ class GJLevelScoreCell : TableViewCell {
 class GJLinkObject {
     // ~GJLinkObject();
 
-    std::string getTitle();
+    std::string getTitle() const;
 
     // Sometimes falls back to SongInfoObject::m_songID / SongInfoObject::m_artistID
     int m_unk000;
@@ -13776,7 +13776,7 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     virtual float virtualRowHeight(int) = win 0x3c30c0, ios 0x4e17e4, m1 0x7f2408, imac 0x90bbb0;
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x3c30d0, ios 0x4e17f4, m1 0x7f2418, imac 0x90bbd0;
 
-    int getFormID() = win 0x3c3a20;
+    int getFormID() const = win 0x3c3a20;
     bool init(int, int, IDNameBrowserDelegate*) = win 0x3c1650;
     void onClose(cocos2d::CCObject* sender) = win 0x3c4ce0;
     void onDeleteRow(cocos2d::CCObject* sender) = win 0x3c3870;
@@ -17771,7 +17771,7 @@ class PlatformerControlsPopup : SetupTriggerPopup, UploadActionDelegate, UploadP
     TodoReturn refreshClassUI() = win 0x450e60;
     void refreshModeUI() = win 0x450aa0;
     void refreshUploadColumn(int) = win 0x450f90;
-    TodoReturn sourceIsCustom();
+    TodoReturn sourceIsCustom() const;
     void syncSourceUI() = win 0x450a00;
     TodoReturn updateEditLabel();
 }
@@ -19672,7 +19672,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void scrollTo(float offset) = win inline, imac 0x96b620, m1 0x8482e8, ios 0x524bc8;
     void sectionAddChild(cocos2d::CCNode* child, int zOrder, int tag) = win 0x82650;
     void sectionClear();
-    int sectionIndexForY(float y);
+    int sectionIndexForY(float y) const;
     void setContentHeight(float height) = win inline, imac 0x96b270, m1 0x847efc;
     void setForwardedTouchesOnly(bool);
     void setHorizontal(bool);
