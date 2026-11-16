@@ -19523,7 +19523,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void contentWiped();
     cocos2d::CCMenu* createOwnedMenu() = win 0x825c0;
     void ensureOwnedContentNode() = win 0x82300, imac 0x96cf10, m1 0x8499b4;
-    void ensureScrollThumb() = win 0x81310, imac 0x96b3f0, m1 0x848098; //mac inlined :(
+    void ensureScrollThumb() = win 0x81310, imac 0x96b3f0, m1 0x848098;
     bool feedTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x815a0;
     void feedTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x81720;
     void feedTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x816a0;
