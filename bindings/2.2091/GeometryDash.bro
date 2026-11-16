@@ -7209,7 +7209,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
     bool isFollowingUser(int id) = win 0x224320, imac 0x54e5f0, m1 0x4a41a4;
-    bool isPastDailyCopy(GJGameLevel*) = win inline;
+    bool isPastDailyCopy(GJGameLevel*) = win inline, imac 0x54b9a0, m1 0x4a17a8;
     bool isTimeValid(char const* key, float length) = win 0x221d40;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
     int itemIDFromLikeKey(char const* key) = win inline;
@@ -8766,7 +8766,7 @@ class GameStatsManager : cocos2d::CCNode {
     void addStoreItem(int index, int id, int unlockType, int price, ShopType shopType) = win 0x2d9f30, imac 0x2bde0, m1 0x260f0;
     bool areChallengesLoaded() = win inline, imac 0x388a0, m1 0x32658;
     bool areRewardsLoaded() = win inline, imac 0x37dd0, m1 0x31b08;
-    int awardCurrencyForLevel(GJGameLevel* level) = win 0x2e4380;
+    int awardCurrencyForLevel(GJGameLevel* level) = win 0x2e4380, imac 0x36a10, m1 0x30738;
     int awardDiamondsForLevel(GJGameLevel* level) = win 0x2e4b40, imac 0x372f0, m1 0x31020;
     void awardOldSpecialStats() = win inline, imac 0x3bae0, m1 0x35774, ios inline;
     bool awardSecretKey() = win 0x2f65e0, imac 0x53010, m1 0x4d03c;
@@ -8808,7 +8808,7 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCArray* getCompletedMapPacks() = win 0x2e2a70, imac 0x34360, m1 0x2e0e4;
     std::string getCurrencyKey(GJGameLevel* level) = win inline, imac 0x36410, m1 0x300bc;
     std::string getDailyLevelKey(int dailyID) = win inline, imac 0x39a10, m1 0x33890;
-    TodoReturn getDailyStarKey(int);
+    const char* getDailyStarKey(int) = imac 0x32e90, m1 0x2cb18;
     const char* getDemonLevelKey(GJGameLevel* level) = win inline, imac 0x32dc0, m1 0x2c9f8;
     std::string getEventRewardKey(int id) = win inline, imac 0x3ea30, m1 0x386c4, ios inline;
     std::string getGauntletRewardKey(int id) = win 0x2ee460, imac 0x3dc30, m1 0x37844;
@@ -8845,7 +8845,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasClaimedListReward(GJLevelList* list) = win 0x2e66c0, imac 0x39660, m1 0x334f4;
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x2e62a0, imac 0x392c0, m1 0x2cf38;
     bool hasCompletedDailyLevel(int dailyID) = win 0x2e68b0, imac 0x39ad0, m1 0x33950;
-    bool hasCompletedDailyStars(int) = win 0x2e7190;
+    bool hasCompletedDailyStars(int) = win 0x2e7190, imac 0x3a0a0, m1 0x33ecc;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
     bool hasCompletedGauntletLevel(int id) = win 0x2e1990, imac 0x33070, m1 0x2cd4c;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x2e17a0, imac 0x32f40, m1 0x2cbe4;
@@ -8861,7 +8861,7 @@ class GameStatsManager : cocos2d::CCNode {
     void incrementChallenge(GJChallengeType type, int amount) = win 0x2e5ae0, imac 0x30d00, m1 0x2a3e4;
     void incrementStat(char const* key) = win inline, imac 0x2c650, m1 0x2696c, ios 0x3ca18c;
     void incrementStat(char const* key, int amount) = win 0x2da460, imac 0x2c660, m1 0x26974, ios 0x3ca194;
-    bool isDailyRecall(int) = win 0x2e7080;
+    bool isDailyRecall(int) = win 0x2e7080, imac 0x36fd0, m1 0x30cac;
     bool isGauntletChestUnlocked(int id) = win inline, imac 0x3d280;
     bool isGauntletUnlocked(int id) = win inline, imac 0x3e780, m1 0x383bc;
     bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x3d8e0, m1 0x37494;
@@ -10855,7 +10855,7 @@ class GJGameLevel : cocos2d::CCNode {
     std::string getUnpackedLevelDescription() = win inline, imac 0x58c210, m1 0x4dca80, ios 0xd48d0;
     void handleStatsConflict(GJGameLevel* level) = win 0x26a650, imac 0x551010, m1 0x4a6700;
     bool isPlatformer() = win inline, imac 0x548810, m1 0x49e964, ios 0xac850;
-    bool levelHasDiamonds() = win 0x26aef0;
+    bool levelHasDiamonds() = win 0x26aef0, imac 0x58c2b0, m1 0x4dcb38;
     void levelWasAltered() = win inline;
     void levelWasSubmitted() = win inline, ios inline;
     void parseSettingsString(std::string str) = win inline, ios inline;
@@ -19517,13 +19517,13 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual bool touchInsideClip(cocos2d::CCPoint const& point) = win 0x81ea0, imac 0x96c970, m1 0x8494ac, ios 0x525aa4;
     virtual bool scrollWheel(float y, float x) = win 0x81ed0, imac 0x96cb10, m1 0x84961c, ios 0x525b18;
 
-    void applyContentPosition() = win 0x81140;
+    void applyContentPosition() = win 0x81140, imac 0x96b0e0, m1 0x847da0;
     void clampOffset() = win 0x810D0;
     bool consumePendingCancel() = win inline;
     void contentWiped();
     cocos2d::CCMenu* createOwnedMenu() = win 0x825c0;
-    void ensureOwnedContentNode() = win 0x82300;
-    void ensureScrollThumb() = win 0x81310;
+    void ensureOwnedContentNode() = win 0x82300, imac 0x96cf10, m1 0x8499b4;
+    void ensureScrollThumb() = win 0x81310, imac 0x96b3f0, m1 0x848098; //mac inlined :(
     bool feedTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x815a0;
     void feedTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x81720;
     void feedTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x816a0;
@@ -19544,7 +19544,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void mountRowSlot(int row) = win 0x82f20;
     void persistScrollOffset(std::string const& key);
     // offset < 0 keeps the current offset
-    void reloadVirtualRows(float offset) = win 0x82a60;
+    void reloadVirtualRows(float offset) = win 0x82a60, imac 0x96d760, m1 0x84a1b8;
     void remountVirtualRow(int row);
     bool restoreScrollOffset(std::string const& key) = win 0x81000;
     void scrollTo(float offset) = win inline, imac 0x96b620, m1 0x8482e8, ios 0x524bc8;
@@ -19564,7 +19564,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void unmountRowSlot(int row) = win 0x83100;
     void updateScrollThumb() = win 0x81420;
     void updateSectionVisibility();
-    void updateVirtualRows() = win 0x82bf0;
+    void updateVirtualRows() = win 0x82bf0, imac 0x96bad0, m1 0x84873c;
     cocos2d::CCRect worldClipRect() = win 0x81d60;
 
     // origin is the top of the view; children use negative y going down
