@@ -1,6 +1,6 @@
 #include <Geode/binding/CreatorSettingsDelegate.hpp>
 
-#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS)
+#ifndef GEODE_IS_WINDOWS
 CreatorSettingsDelegate::~CreatorSettingsDelegate() {}
 #endif
 
