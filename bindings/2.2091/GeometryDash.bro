@@ -4329,7 +4329,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate, CreatorSettingsDelegate, EmotePickerDelegate {
     EditLevelLayer() = ios 0x112808, inline;
-    ~EditLevelLayer() = win inline, m1 0x3d9e34, ios 0x10eb70;
+    ~EditLevelLayer() = win inline, m1 0x3d9e34, imac 0x1dc8e0, ios 0x10eb70;
 
     static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x1dcb70, m1 0x190a00, ios 0x10ec14;
     static cocos2d::CCScene* scene(GJGameLevel* level) = win 0x1782c0, imac 0x1dcb30, m1 0x1909b4, ios 0x10ebc8;
@@ -11990,10 +11990,10 @@ class GJOptionsLayer : SetupTriggerPopup {
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x39b1a0;
     int countForPage(int page) = win 0x39b760;
     CCMenuItemToggler* getToggleButton(int id) = win 0x39af90, ios inline;
-    void goToPage(int page) = win 0x39bd20;
+    void goToPage(int page) = win 0x39bd20, m1 0x22b9f0, imac 0x286bb0, ios 0x371ab8;
     void incrementCountForPage(int page) = win 0x39b850;
     const char* infoKey(int index) = win inline, ios inline;
-    bool init(int, float) = win 0x39ac30;
+    bool init(int, float) = win 0x39ac30, m1 0x22b708, imac 0x286850, ios 0x3717c0;
     cocos2d::CCLayer* layerForPage(int page) = win 0x39bb30;
     const char* layerKey(int page) = win inline, imac 0x7096b0, ios inline;
     cocos2d::CCPoint nextPosition(int page) = win 0x39b640, imac 0x287830, m1 0x22c4fc;
@@ -12001,8 +12001,8 @@ class GJOptionsLayer : SetupTriggerPopup {
     cocos2d::CCArray* objectsForPage(int page) = win 0x39b970;
     void offsetToNextPage() = win inline, imac 0x287020, m1 0x22be00, ios inline;
     void onInfo(cocos2d::CCObject* sender) = win 0x39c280;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x39bd00;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x39bd10;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x39bd00, m1 0x22b9e4, imac 0x286b90, ios 0x371aac;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x39bd10, m1 0x22b9d8, imac 0x286b70, ios 0x371aa0;
     void onToggle(cocos2d::CCObject* sender) = win 0x39c170, imac 0x287b30, m1 0x22c7d4;
     const char* pageKey(int page) = win inline, m1 0x77b34c, ios inline;
 
@@ -14569,7 +14569,7 @@ class LevelCell : TableViewCell {
 
     bool inRecallMode() = win inline;
     void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4, ios 0x13362c;
-    void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0;
+    void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0, ios 0x127dd0;
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70;
     void onClick(cocos2d::CCObject* sender) = win 0x14d200, imac 0x23ac60;
     void onToggle(cocos2d::CCObject* sender) = win 0x148c70, imac 0x302d20;
