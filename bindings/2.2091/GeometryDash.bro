@@ -7154,12 +7154,12 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getPostCommentKey(int parentID) = win inline, imac 0x56bdf0, m1 0x4bec68;
     const char* getRateStarsKey(int levelID) = win inline, imac 0x561fc0, m1 0x4b5a84, ios inline;
     const char* getReportKey(int levelID) = win inline, imac 0x569070, ios inline;
-    GJGameLevel* getSavedDailyLevel(int dailyID) = win 0x2207e0, imac 0x5491b0, m1 0x49f2cc;
+    GJGameLevel* getSavedDailyLevel(int dailyID) = win 0x2207e0, imac 0x548fb0, m1 0x49f0a4;
     GJGameLevel* getSavedDailyLevelFromLevelID(int id) = win inline, imac 0x5492b0, m1 0x49f3e0;
     GJMapPack* getSavedGauntlet(int id) = win inline;
     GJGameLevel* getSavedGauntletLevel(int id) = win 0x2208c0;
     GJGameLevel* getSavedLevel(GJGameLevel* level) = win inline, imac 0x542e90, m1 0x4997ec;
-    GJGameLevel* getSavedLevel(int id) = win 0x220700, imac 0x548fb0, m1 0x49f0a4;
+    GJGameLevel* getSavedLevel(int id) = win 0x220700, imac 0x5491b0, m1 0x49f2cc;
     GJLevelList* getSavedLevelList(int listID) = win inline;
     cocos2d::CCArray* getSavedLevelLists(int folder) = win 0x21f120, imac 0x5468e0, m1 0x49cdec;
     cocos2d::CCArray* getSavedLevels(bool favorite, int folder) = win 0x21ef40, imac 0x5466f0, m1 0x49cc18;
@@ -7209,7 +7209,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool isDeathDataFetched(int);
     bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
     bool isFollowingUser(int id) = win 0x224320, imac 0x54e5f0, m1 0x4a41a4;
-    bool isPastDailyCopy(GJGameLevel*) = win inline;
+    bool isPastDailyCopy(GJGameLevel*) = win inline, imac 0x54b9a0, m1 0x4a17a8;
     bool isTimeValid(char const* key, float length) = win 0x221d40;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c;
     int itemIDFromLikeKey(char const* key) = win inline;
@@ -7450,7 +7450,7 @@ class GameLevelManager : cocos2d::CCNode {
     int userIDForAccountID(int id) = win inline, imac 0x540700, m1 0x4975b0;
     GJUserScore* userInfoForAccountID(int id) = win inline, imac 0x540720, m1 0x4975cc;
     std::string userNameForUserID(int id) = win 0x21d7e0, imac 0x540260, m1 0x4971a4;
-    static bool vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) = win inline;
+    static bool vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) = win inline, imac 0x558500, m1 0x4acc70;
     bool verifyContainerOnlyHasLevels(cocos2d::CCDictionary* dict) = win 0x224e80, imac 0x54f750, m1 0x4a5210;
     void verifyLevelState(GJGameLevel* level) = win inline, imac 0x540760, m1 0x4975f4;
     void writePlatformerSaveJournal(GJGameLevel* level) = win 0x223320, m1 0x4a2294;
@@ -7646,7 +7646,7 @@ class GameManager : GManager {
     virtual void dataLoaded(DS_Dictionary* dict) = win 0x2826b0, ios 0x3b869c, m1 0x2ff2e4, imac 0x372a60;
     virtual void firstLoad() = win 0x284d80, imac 0x374800, m1 0x300c5c, ios 0x3b9e88;
 
-    TodoReturn accountPostsRestricted();
+    bool accountPostsRestricted() = imac 0x36d7b0, m1 0x2fabd8;
 
     /// When the client's account status is changed (e.g. logged in or logged out), this will be called.
     void accountStatusChanged() = win inline, imac 0x36e470, m1 0x2fb8ac;
@@ -7673,7 +7673,7 @@ class GameManager : GManager {
     cocos2d::ccColor3B colorForIdx(int index) = win 0x27c5b0, imac 0x368f00, m1 0x2f6528;
     int colorForPos(int pos) = win inline, imac 0x3693c0, m1 0x2f69f4, ios inline;
     std::string colorKey(int id, UnlockType type) = win 0x277680, imac 0x3616b0, m1 0x2f00a0;
-    bool commentsRestricted();
+    bool commentsRestricted() = imac 0x36d760, m1 0x2fab7c;
     void completedAchievement(std::string key) = win 0x278140, imac 0x362470, m1 0x2f0f5c;
     int countForType(IconType type) = win 0x27d010, imac 0x36a1d0, m1 0x2f770c;
     int defaultFrameForAnimation(int objectID) = win inline, imac 0x247950, m1 0x1f12f4, ios inline;
@@ -7814,7 +7814,7 @@ class GameManager : GManager {
     void logLoadedIconInfo() = imac 0x36c310, m1 0x2f95cc;
     bool messagesRestricted();
     int modUIRank() = win inline, m1 0x2fa578, imac 0x36d260, ios 0x3b5c40;
-    bool offlineModeEnabled() = win inline, m1 0x2fab70, ios 0x3b5ff8;
+    bool offlineModeEnabled() = win inline, imac 0x36d740, m1 0x2fab70, ios 0x3b5ff8;
     bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60;
@@ -8766,7 +8766,7 @@ class GameStatsManager : cocos2d::CCNode {
     void addStoreItem(int index, int id, int unlockType, int price, ShopType shopType) = win 0x2d9f30, imac 0x2bde0, m1 0x260f0;
     bool areChallengesLoaded() = win inline, imac 0x388a0, m1 0x32658;
     bool areRewardsLoaded() = win inline, imac 0x37dd0, m1 0x31b08;
-    int awardCurrencyForLevel(GJGameLevel* level) = win 0x2e4380;
+    int awardCurrencyForLevel(GJGameLevel* level) = win 0x2e4380, imac 0x36a10, m1 0x30738;
     int awardDiamondsForLevel(GJGameLevel* level) = win 0x2e4b40, imac 0x372f0, m1 0x31020;
     void awardOldSpecialStats() = win inline, imac 0x3bae0, m1 0x35774, ios inline;
     bool awardSecretKey() = win 0x2f65e0, imac 0x53010, m1 0x4d03c;
@@ -8808,7 +8808,7 @@ class GameStatsManager : cocos2d::CCNode {
     cocos2d::CCArray* getCompletedMapPacks() = win 0x2e2a70, imac 0x34360, m1 0x2e0e4;
     std::string getCurrencyKey(GJGameLevel* level) = win inline, imac 0x36410, m1 0x300bc;
     std::string getDailyLevelKey(int dailyID) = win inline, imac 0x39a10, m1 0x33890;
-    TodoReturn getDailyStarKey(int);
+    const char* getDailyStarKey(int) = imac 0x32e90, m1 0x2cb18;
     const char* getDemonLevelKey(GJGameLevel* level) = win inline, imac 0x32dc0, m1 0x2c9f8;
     std::string getEventRewardKey(int id) = win inline, imac 0x3ea30, m1 0x386c4, ios inline;
     std::string getGauntletRewardKey(int id) = win 0x2ee460, imac 0x3dc30, m1 0x37844;
@@ -8845,7 +8845,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasClaimedListReward(GJLevelList* list) = win 0x2e66c0, imac 0x39660, m1 0x334f4;
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x2e62a0, imac 0x392c0, m1 0x2cf38;
     bool hasCompletedDailyLevel(int dailyID) = win 0x2e68b0, imac 0x39ad0, m1 0x33950;
-    bool hasCompletedDailyStars(int) = win 0x2e7190;
+    bool hasCompletedDailyStars(int) = win 0x2e7190, imac 0x3a0a0, m1 0x33ecc;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
     bool hasCompletedGauntletLevel(int id) = win 0x2e1990, imac 0x33070, m1 0x2cd4c;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x2e17a0, imac 0x32f40, m1 0x2cbe4;
@@ -8861,7 +8861,7 @@ class GameStatsManager : cocos2d::CCNode {
     void incrementChallenge(GJChallengeType type, int amount) = win 0x2e5ae0, imac 0x30d00, m1 0x2a3e4;
     void incrementStat(char const* key) = win inline, imac 0x2c650, m1 0x2696c, ios 0x3ca18c;
     void incrementStat(char const* key, int amount) = win 0x2da460, imac 0x2c660, m1 0x26974, ios 0x3ca194;
-    bool isDailyRecall(int) = win 0x2e7080;
+    bool isDailyRecall(int) = win 0x2e7080, imac 0x36fd0, m1 0x30cac;
     bool isGauntletChestUnlocked(int id) = win inline, imac 0x3d280;
     bool isGauntletUnlocked(int id) = win inline, imac 0x3e780, m1 0x383bc;
     bool isItemEnabled(UnlockType type, int id) = win inline, imac 0x3d8e0, m1 0x37494;
@@ -10855,7 +10855,7 @@ class GJGameLevel : cocos2d::CCNode {
     std::string getUnpackedLevelDescription() = win inline, imac 0x58c210, m1 0x4dca80, ios 0xd48d0;
     void handleStatsConflict(GJGameLevel* level) = win 0x26a650, imac 0x551010, m1 0x4a6700;
     bool isPlatformer() = win inline, imac 0x548810, m1 0x49e964, ios 0xac850;
-    bool levelHasDiamonds() = win 0x26aef0;
+    bool levelHasDiamonds() = win 0x26aef0, imac 0x58c2b0, m1 0x4dcb38;
     void levelWasAltered() = win inline;
     void levelWasSubmitted() = win inline, ios inline;
     void parseSettingsString(std::string str) = win inline, ios inline;
@@ -13783,8 +13783,8 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 
     TodoReturn activeCommentID();
     TodoReturn activeCommentKeyType();
-    bool canBulkDelete() = win 0x3d2f00;
-    bool canToggleModRoom() = win 0x3d2b70;
+    bool canBulkDelete() = win 0x3d2f00, imac 0x897080, m1 0x78aa38;
+    bool canToggleModRoom() = win 0x3d2b70, imac 0x8940a0, m1 0x787ccc;
     void clearBulkSelection() = win 0x3d3870;
     void confirmBulkDelete(std::string const&, std::vector<int> const&) = win 0x3d3e60;
     void confirmReport(cocos2d::CCObject* sender) = win 0x3d04a0, imac 0x5bd6e0;
@@ -13809,7 +13809,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
     void onPrevPage(cocos2d::CCObject* sender) = win 0x3d2330, imac 0x894060, m1 0x787cac;
     void onRefreshComments(cocos2d::CCObject* sender) = win 0x3d0330, imac 0x895480, m1 0x788f08;
     void onSimilar(cocos2d::CCObject* sender) = win inline, imac 0x895bd0, ios inline;
-    bool parentalCommentsDisabled() = win 0x3cfe30;
+    bool parentalCommentsDisabled() = win 0x3cfe30, imac 0x893520, m1 0x7871c0;
     void refreshBulkUI() = win 0x3d36e0;
     TodoReturn refreshUserTitle() = win 0x3d2c40;
     void reloadWindow() = win 0x3d2740;
@@ -14475,8 +14475,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     std::string getSearchTitle() = win 0x3e5750, imac 0x485fb0, m1 0x3efaa0;
     bool init(GJSearchObject* object) = win 0x3e2000, imac 0x480690, m1 0x3ea564, ios 0x494fe4;
     bool isCorrect(char const* key) = win 0x3e4090, imac 0x485730, m1 0x3ef28c;
-    bool isSafeType() = win inline;
-    bool isVaultType() = win inline;
+    bool isSafeType() = win inline, imac 0x482770, m1 0x3ec51c;
+    bool isVaultType() = win inline, imac 0x483ec0, m1 0x3edca0;
     void loadPage(GJSearchObject* object) = win 0x3e4290, m1 0x3ee2a8;
     void onBackups(cocos2d::CCObject* sender) = win 0x3e9ab0;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x3e8db0, imac 0x484430, m1 0x3ee22c;
@@ -14567,7 +14567,7 @@ class LevelCell : TableViewCell {
     virtual bool init() = win 0x148a50, ios 0x132cec, m1 0x1e2b50, imac 0x236ad0;
     virtual void draw() = win 0x14d560, imac 0x23aee0, m1 0x1e6c4c, ios 0x136974;
 
-    bool inRecallMode() = win inline;
+    bool inRecallMode() = win inline, imac 0x23a830, m1 0x1e6540;
     void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4, ios 0x13362c;
     void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0;
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70;
@@ -14575,9 +14575,9 @@ class LevelCell : TableViewCell {
     void onToggle(cocos2d::CCObject* sender) = win 0x148c70, imac 0x302d20;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10;
     void playRecallUnlock() = win 0x148d30;
-    bool recallChestReady() = win inline;
+    bool recallChestReady() = win inline, imac 0x23a920, m1 0x1e6608;
     GJGameLevel* recallLevel() = win 0x148cc0, ios 0x1363bc, m1 0x1e65ac, imac 0x23a8b0;
-    GJGameLevel* recallSavedLevel() = win inline;
+    GJGameLevel* recallSavedLevel() = win inline, imac 0x23a850, m1 0x1e6554;
     void updateBGColor(int index) = win inline, imac 0x22a580, m1 0x1d6ec8;
     void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4;
     void updateToggle() = win inline, imac 0x236280, m1 0x1e25b8, ios inline;
@@ -19040,7 +19040,7 @@ class PurchaseItemPopup : FLAlertLayer {
 
     bool init(GJStoreItem* item) = win 0x3b5040, imac 0x313140, m1 0x2a5834;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x313cd0, m1 0x2a6294;
-    void onPurchase(cocos2d::CCObject* sender) = win 0x3b5ef0, imac 0x23a850, m1 0x2a62d0;
+    void onPurchase(cocos2d::CCObject* sender) = win 0x3b5ef0, m1 0x2a62d0;
 
     GJStoreItem* m_storeItem;
     GJPurchaseDelegate* m_delegate;
@@ -19517,13 +19517,13 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual bool touchInsideClip(cocos2d::CCPoint const& point) = win 0x81ea0, imac 0x96c970, m1 0x8494ac, ios 0x525aa4;
     virtual bool scrollWheel(float y, float x) = win 0x81ed0, imac 0x96cb10, m1 0x84961c, ios 0x525b18;
 
-    void applyContentPosition() = win 0x81140;
+    void applyContentPosition() = win 0x81140, imac 0x96b0e0, m1 0x847da0;
     void clampOffset() = win 0x810D0;
     bool consumePendingCancel() = win inline;
     void contentWiped();
     cocos2d::CCMenu* createOwnedMenu() = win 0x825c0;
-    void ensureOwnedContentNode() = win 0x82300;
-    void ensureScrollThumb() = win 0x81310;
+    void ensureOwnedContentNode() = win 0x82300, imac 0x96cf10, m1 0x8499b4;
+    void ensureScrollThumb() = win 0x81310, imac 0x96b3f0, m1 0x848098;
     bool feedTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x815a0;
     void feedTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x81720;
     void feedTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x816a0;
@@ -19544,7 +19544,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void mountRowSlot(int row) = win 0x82f20;
     void persistScrollOffset(std::string const& key);
     // offset < 0 keeps the current offset
-    void reloadVirtualRows(float offset) = win 0x82a60;
+    void reloadVirtualRows(float offset) = win 0x82a60, imac 0x96d760, m1 0x84a1b8;
     void remountVirtualRow(int row);
     bool restoreScrollOffset(std::string const& key) = win 0x81000;
     void scrollTo(float offset) = win inline, imac 0x96b620, m1 0x8482e8, ios 0x524bc8;
@@ -19564,7 +19564,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void unmountRowSlot(int row) = win 0x83100;
     void updateScrollThumb() = win 0x81420;
     void updateSectionVisibility();
-    void updateVirtualRows() = win 0x82bf0;
+    void updateVirtualRows() = win 0x82bf0, imac 0x96bad0, m1 0x84873c;
     cocos2d::CCRect worldClipRect() = win 0x81d60;
 
     // origin is the top of the view; children use negative y going down
