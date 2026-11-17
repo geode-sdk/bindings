@@ -46,6 +46,15 @@ PlayerCheckpoint::PlayerCheckpoint() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+PlayerCheckpoint* PlayerCheckpoint::create() {
+    auto inst = new PlayerCheckpoint();
+    if (inst->init()) {
+        inst->autorelease();
+        return inst;
+    }
+    delete inst;
+    return nullptr;
+}
 #endif
 
 #if defined(GEODE_IS_IOS)
