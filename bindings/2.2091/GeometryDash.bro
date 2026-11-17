@@ -1,7 +1,7 @@
 [[link(android)]]
 void deserializeCheckpoint(CheckpointObject* checkpoint, std::string const& str, GJBaseGameLayer* layer) = win 0x530fb0, imac 0x5f8940, m1 0x53fa94, ios 0x1a0458;
 
-void ensureEmotesAreLoaded() = win 0x7ebc0, android64 0x6e08e4, ios 0x4dc188;
+void ensureEmotesAreLoaded() = win 0x7ebc0, imac 0x904050, m1 0x7eaf6c, android64 0x6e08e4, ios 0x4dc188;
 
 [[link(android)]]
 bool isSpecialSnapObject(int id) = win 0x1a1a50, imac 0x608a00, m1 0x5498b8, ios 0x1a9800;
@@ -6038,8 +6038,8 @@ class EmoteSprite : cocos2d::CCSprite {
     static float jumboScale() = win inline;
     static int maxEmotesComment() = win inline;
     static int maxEmotesMessage() = win inline;
-    static int defCount() = win inline, ios 0x4dc4f4;
-    static EmoteDef* defAtIndex(int index) = win inline;
+    static int defCount() = win inline, imac 0x904420, m1 0x7eb418, ios 0x4dc4f4;
+    static EmoteDef* defAtIndex(int index) = win inline, imac 0x9043d0, m1 0x7eb3b4, ios 0x4dc498;
     static int characterCount(std::string const& text) = win inline, ios 0x4dcbdc;
     static int charIndexForByte(std::string const& str, int byteIndex) = win inline, ios 0x4dcc2c;
     static int effectiveLength(std::string const& text, int maxEmotes) = win 0x7FC10, ios 0x4dccac;
@@ -19922,7 +19922,7 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual bool scrollWheel(float y, float x) = win 0x81ed0, imac 0x96cb10, m1 0x84961c, ios 0x525b18;
 
     void applyContentPosition() = win 0x81140, imac 0x96b0e0, m1 0x847da0;
-    void clampOffset() = win 0x810D0;
+    void clampOffset() = win 0x810D0, ios inline;
     bool consumePendingCancel() = win inline;
     void contentWiped();
     cocos2d::CCMenu* createOwnedMenu() = win 0x825c0;
@@ -19955,14 +19955,14 @@ class ScrollableContentLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void sectionAddChild(cocos2d::CCNode* child, int zOrder, int tag) = win 0x82650;
     void sectionClear();
     int sectionIndexForY(float y) const;
-    void setContentHeight(float height) = win inline, imac 0x96b270, m1 0x847efc;
+    void setContentHeight(float height) = win inline, imac 0x96b270, m1 0x847efc, ios 0x5249fc;
     void setForwardedTouchesOnly(bool);
     void setHorizontal(bool);
     void setSectionHeight(float) = win 0x82290;
     void setThumbColor(cocos2d::ccColor3B);
     void setThumbOffset(cocos2d::CCPoint);
     void setThumbOpacity(unsigned char);
-    void setViewSize(cocos2d::CCSize size) = win inline, m1 0x848180;
+    void setViewSize(cocos2d::CCSize size) = win inline, imac 0x96b4d0, m1 0x848180, ios 0x524b34;
     void setVirtualRows(VirtualRowSource* source, float buffer, float topPadding, float bottomPadding);
     void unmountAllRows() = win 0x831b0;
     void unmountRowSlot(int row) = win 0x83100;
