@@ -17,6 +17,14 @@ void FLAlertLayer::rebuildContent() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_WINDOWS
+float FLAlertLayer::keyboardRaise(float popupHeight, float maxRaise) {
+    // this has an actual impl on android, but on windows it just seems to be
+    // a stub that got inlined everywhere where it's used that always returns 0
+    return 0;
+}
+#endif
+
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 FLAlertLayer::FLAlertLayer() {
     m_buttonMenu = nullptr;
