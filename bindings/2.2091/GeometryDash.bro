@@ -14681,7 +14681,7 @@ class LevelCell : TableViewCell {
 
     static LevelCell* create(float width, float height) = win inline, imac 0x236900, m1 0x1e29bc;
 
-    virtual bool init() = win 0x148a50, ios 0x132cec, m1 0x1e2b50, imac 0x236ad0;
+    virtual bool init() = win 0x148a50, imac 0x236ad0, m1 0x1e2b50, ios 0x132cec;
     virtual void draw() = win 0x14d560, imac 0x23aee0, m1 0x1e6c4c, ios 0x136974;
 
     bool inRecallMode() = win inline, imac 0x23a830, m1 0x1e6540;
@@ -14693,7 +14693,7 @@ class LevelCell : TableViewCell {
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10;
     void playRecallUnlock() = win 0x148d30;
     bool recallChestReady() = win inline, imac 0x23a920, m1 0x1e6608;
-    GJGameLevel* recallLevel() = win 0x148cc0, ios 0x1363bc, m1 0x1e65ac, imac 0x23a8b0;
+    GJGameLevel* recallLevel() = win 0x148cc0, imac 0x23a8b0, m1 0x1e65ac, ios 0x1363bc;
     GJGameLevel* recallSavedLevel() = win inline, imac 0x23a850, m1 0x1e6554;
     void updateBGColor(int index) = win inline, imac 0x22a580, m1 0x1d6ec8;
     void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4;
@@ -25198,7 +25198,7 @@ class UIOptionsLayer : SetupTriggerPopup {
 [[link(android)]]
 class UIPOptionsLayer : SetupTriggerPopup {
     UIPOptionsLayer() = inline;
-    virtual ~UIPOptionsLayer() = win 0x60ac50;
+    virtual ~UIPOptionsLayer() = win 0x60ac50, imac 0x1e730, m1 0x1a3f4, ios 0x31c40;
 
     static UIPOptionsLayer* create() = win 0x3ab7c0, imac 0x29f040;
 
