@@ -926,17 +926,7 @@ class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
     cocos2d::CCLabelBMFont* m_statsLabel;
 }
 
-[[link(android)]]
-class AutoBackupFile {
-    std::string m_filename;
-    std::string m_backupID;
-    std::string m_levelName;
-    std::string m_displayTimestamp;
-    std::string m_timestamp;
-    int m_fileSize;
-}
-
-[[link(android), depends(CCIndexPath, AutoBackupFile)]]
+[[link(android), depends(CCIndexPath)]]
 class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsDelegate {
     virtual ~AutoBackupPopup() = win 0xc9870, ios 0x5338a0;
 
@@ -971,8 +961,7 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
 
     int m_levelFolder;
     std::string m_backupDirectory;
-    std::vector<AutoBackupFile> m_files;
-    std::vector<AutoBackupFile> m_filteredFiles;
+    PAD = win 0x30, android32 0x18, android64 0x30, mac 0x30, ios 0x30;
     std::string m_searchQuery;
     std::map<std::string, int> m_revisions;
     CCTextInputNode* m_searchInput;
@@ -3942,27 +3931,7 @@ class DeathHistogram : cocos2d::CCNode {
     cocos2d::CCRect m_rightArrowRect;
 }
 
-class DeathMarkerCell {
-    cocos2d::CCPoint m_position;
-    int m_gridX;
-    int m_gridY;
-    int m_rawCount;
-    int m_skullPermille;
-    int m_wallPermille;
-    int m_unk1c;
-    int m_groupedCount;
-    float m_badgeY;
-    float m_badgeX;
-    float m_scale;
-    int m_priority;
-    int m_starCount;
-    int m_skullGlowLevel;
-    int m_wallGlowLevel;
-    cocos2d::CCSprite* m_markerSprite;
-    cocos2d::CCNode* m_badgeNode;
-}
-
-[[link(android), depends(DeathMarkerCell)]]
+[[link(android)]]
 class DeathMarkerLayer : cocos2d::CCNode {
     virtual ~DeathMarkerLayer() = win 0x114d80, ios 0x4b1004;
 
@@ -3984,7 +3953,7 @@ class DeathMarkerLayer : cocos2d::CCNode {
     void updateVisibility(cocos2d::CCRect const&) = win 0x118ce0;
     void setFlipped(bool) = win 0x119180;
 
-    std::vector<DeathMarkerCell> m_cells;
+    PAD = win 0x18, android32 0xc, android64 0x18, mac 0x18, ios 0x18;
     std::unordered_map<unsigned int, std::vector<int>> m_sectionCells;
     int m_minSectionX;
     int m_maxSectionX;
@@ -4083,26 +4052,6 @@ class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
 }
 
 [[link(android)]]
-class DeathTrackerHistoryRow {
-    int m_kind;
-    float m_height;
-    int m_attemptNumberOrIndent;
-    int m_firstPercent;
-    int m_lastPercentOrBestState;
-    int m_stripeIndex;
-    std::string m_text;
-}
-
-[[link(android)]]
-class DeathTrackerSession {
-    int m_firstPlayedUnix;
-    std::string m_fullRunHistory;
-    std::string m_startPosRunHistory;
-    int m_playTime;
-    int m_bestPercent;
-}
-
-[[link(android), depends(DeathTrackerHistoryRow, DeathTrackerSession)]]
 class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     virtual ~DeathTrackerPopup() = win 0x103af0, ios 0x4c0fb0;
 
@@ -4157,7 +4106,7 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     int m_scope;
     bool m_showDeathRate;
     bool m_keepScrollPosition;
-    std::vector<DeathTrackerSession> m_sessions;
+    PAD = win 0x18, android32 0xc, android64 0x18, mac 0x18, ios 0x18;
     cocos2d::CCLabelBMFont* m_sessionLabel;
     cocos2d::CCNode* m_statsNode;
     cocos2d::CCNode* m_secondaryStatsNode;
@@ -4178,7 +4127,7 @@ class DeathTrackerPopup : FLAlertLayer, VirtualRowSource, SetIDPopupDelegate {
     bool m_scrollToProgress;
     bool m_restoreSavedScroll;
     bool m_showAttemptProgress;
-    std::vector<DeathTrackerHistoryRow> m_historyRows;
+    PAD = win 0x18, android32 0xc, android64 0x18, mac 0x18, ios 0x18;
     std::vector<CCMenuItemSpriteExtra*> m_sessionButtons;
 }
 
@@ -13890,12 +13839,7 @@ class IDNameBrowserDelegate {
     virtual void idNameBrowserClosed(IDNameBrowserPopup*, int) = inline;
 }
 
-class IDNameBrowserEntry {
-    int m_id;
-    std::string m_name;
-}
-
-[[link(android), depends(IDNameBrowserEntry)]]
+[[link(android)]]
 class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     virtual ~IDNameBrowserPopup() = win 0x3c1580, ios 0x4df7cc;
 
@@ -13941,7 +13885,7 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     int m_sortMode;
     ButtonSprite* m_sortButtonSprite;
     int m_selectedID;
-    std::vector<IDNameBrowserEntry> m_entries;
+    std::vector<std::pair<int, std::string>> m_entries;
 }
 
 [[link(android)]]
@@ -15603,14 +15547,7 @@ class LevelPickerDelegate {
     virtual void shareIDPicked(int, bool) = inline;
 }
 
-class LevelPickerSavedEntry {
-    cocos2d::CCObject* m_object;
-    std::string m_lowercaseName;
-    std::string m_idString;
-    bool m_favorite;
-}
-
-[[link(android), depends(LevelPickerSavedEntry)]]
+[[link(android)]]
 class LevelPickerPopup : PagedListPopup, LevelManagerDelegate, TableViewCellDelegate {
     virtual ~LevelPickerPopup() = win 0xd35d0, ios 0x5048a0;
 
@@ -15655,8 +15592,7 @@ class LevelPickerPopup : PagedListPopup, LevelManagerDelegate, TableViewCellDele
     ButtonSprite* m_onlineModeSprite;
     CCMenuItemSpriteExtra* m_useIDButton;
     ButtonSprite* m_useIDSprite;
-    std::vector<LevelPickerSavedEntry> m_savedLevelIndex;
-    std::vector<LevelPickerSavedEntry> m_savedListIndex;
+    PAD = win 0x30, android32 0x18, android64 0x30, mac 0x30, ios 0x30;
     cocos2d::CCArray* m_savedLevels;
     cocos2d::CCArray* m_savedLists;
     std::vector<int> m_matches;
