@@ -8167,7 +8167,7 @@ class GameManager : GManager {
     void verifyCoinUnlocks() = win 0x2797f0, imac 0x363630, m1 0x2f2084;
     void verifyStarUnlocks() = win inline, imac 0x3635d0, m1 0x2f2024;
     void verifySyncedCoins() = win inline, imac 0x368af0, m1 0x2f619c, ios inline;
-    void videoAdHidden() = win inline, imac 0x8de00, m1 0x2f6b84, ios inline;
+    void videoAdHidden() = win inline, imac 0x369580, m1 0x2f6b84, ios inline;
     void videoAdShowed() = win inline, imac 0x369530, m1 0x2f6b40, ios inline;
 
     std::vector<std::string> m_unkStringVector;
@@ -19043,7 +19043,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void gravityEffectFinished() = win 0x510e30, imac 0x87020, m1 0x7d19c;
     void incrementJumps() = win inline, imac 0x8d850, m1 0x82d58;
     bool init(GJGameLevel* level, bool dontCreateObjects) = win 0x5039e0, imac 0x79640, m1 0x70fd8, ios 0x13e31c;
-    bool isGameplayActive() = win inline, imac 0x8ddd0, m1 0x832b4;
+    bool isGameplayActive() = win inline, imac 0x8ddd0, m1 0x832b4, ios 0x14c7d4;
     bool isJumpHeldForPlayer(bool) = win 0x516700;
     void levelComplete() = win 0x5061b0, imac 0x80b10, m1 0x77624, ios 0x142810;
     void loadActiveSaveObjects(std::vector<SavedActiveObjectState>& activeObjects, std::vector<SavedSpecialObjectState>& specialObjects) = win inline, imac 0x8b760, m1 0x80e00;
