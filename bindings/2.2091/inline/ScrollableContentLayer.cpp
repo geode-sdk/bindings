@@ -40,3 +40,15 @@ void ScrollableContentLayer::setViewSize(cocos2d::CCSize size) {
     this->applyContentPosition();
 }
 #endif
+
+#if defined(GEODE_IS_IOS)
+void ScrollableContentLayer::clampOffset() {
+    float viewExtent = m_horizontal? m_viewSize.width: m_viewSize.height;
+    float maxOffset = std::max(0.0f, m_contentHeight - viewExtent);
+
+    if (m_offset < 0.0f || m_offset > maxOffset) {
+        m_offset = std::clamp(m_offset, 0.0f, maxOffset);
+        m_velocity = 0.0f;
+    }
+}
+#endif
