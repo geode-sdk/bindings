@@ -258,7 +258,7 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     virtual void commentDeleteFailed(int, int) = win 0xbbbb0, imac 0x9a3eb0, m1 0x87e0bc, ios 0x54b1f0;
     virtual void threadUpdateFinished(int, int) = win 0xbbb60, imac 0x9a3d10, m1 0x87df04, ios 0x54b148;
     virtual void threadUpdateFailed(int, int) = win 0xbbb80, imac 0x9a3dd0, m1 0x87dfd0, ios 0x54b16c;
-    virtual void adminAccountReviewFinished(int, AccountReviewCard const&) = win 0xb0a30, ios 0x542974, m1 0x872a68, imac 0x9980e0;
+    virtual void adminAccountReviewFinished(int, AccountReviewCard const&) = win 0xb0a30, imac 0x9980e0, m1 0x872a68, ios 0x542974;
     virtual void adminAccountReviewFailed(int) = win 0xb0d40, imac 0x99ab30, m1 0x875060, ios 0x544148;
     virtual void adminReportedContentFinished(int, cocos2d::CCArray*, AdminReportedMeta const&) = win 0xb3620, imac 0x99bca0, m1 0x8762f4, ios 0x545180;
     virtual void adminReportedContentFailed(int) = win 0xb37d0, imac 0x99d810, m1 0x877bbc, ios 0x546600;
