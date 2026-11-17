@@ -2195,13 +2195,13 @@ class ChainNode {
 
 [[link(android), depends(ChallengesPage, GJChallengeItem)]]
 class ChallengeNode : cocos2d::CCNode {
-    ChallengeNode() = inline;
+    ChallengeNode() = ios 0x37680, inline;
     ~ChallengeNode() = win inline, imac 0x3883c0, m1 0x313050, ios 0x36924;
 
-    static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win inline, imac 0x387ec0, m1 0x312b88;
+    static ChallengeNode* create(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win inline, imac 0x387ec0, m1 0x312b88, ios 0x36538;
 
-    bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win 0x9F430, imac 0x388490, m1 0x313108;
-    void onClaimReward(cocos2d::CCObject* sender) = win 0xa0540, imac 0x389090, m1 0x313dcc;
+    bool init(GJChallengeItem* challengeItem, ChallengesPage* challengesPage, bool isNew) = win 0x9F430, imac 0x388490, m1 0x313108, ios 0x3693c;
+    void onClaimReward(cocos2d::CCObject* sender) = win 0xa0540, imac 0x389090, m1 0x313dcc, ios 0x375a0;
     void updateTimeLabel(std::string text) = win inline, imac 0x387f90, m1 0x312c5c, ios inline;
 
     ChallengesPage* m_challengesPage;
@@ -2228,8 +2228,8 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x9f410, imac 0x388360, m1 0x313020, ios 0x368b8;
 
     TodoReturn canCollectQuests() = win 0x9e380;
-    void claimItem(ChallengeNode* node, GJChallengeItem* item, cocos2d::CCPoint position) = win 0x9f0f0, imac 0x388240, m1 0x312ef0;
-    ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x9e790, imac 0x3877a0, m1 0x31243c;
+    void claimItem(ChallengeNode* node, GJChallengeItem* item, cocos2d::CCPoint position) = win 0x9f0f0, imac 0x388240, m1 0x312ef0, ios 0x36788;
+    ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x9e790, imac 0x3877a0, m1 0x31243c, ios 0x35fbc;
     void exitNodeAtSlot(int position, float delay) = win 0x9eac0, imac 0x387cd0, m1 0x31291c;
     void onClose(cocos2d::CCObject* sender) = win 0x9f060, imac 0x387510, m1 0x3121b4;
     void tryGetChallenges() = win 0x9e710, imac 0x387e60, m1 0x312a9c;
@@ -2860,7 +2860,7 @@ class CommunityCreditsPage : FLAlertLayer {
 
 [[link(android)]]
 class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
-    virtual ~ConfigureHSVWidget() = win 0x12f4a0, ios 0x123ccc;
+    virtual ~ConfigureHSVWidget() = win 0x12f4a0, imac 0x41d120, m1 0x39510c, ios 0x123ccc;
 
     static ConfigureHSVWidget* create(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12fad0, imac 0x41cc10;
     static cocos2d::ccHSVValue getHSV(GameObject* object, cocos2d::CCArray* objects, int mode) = win 0x1313d0, imac 0x41ece0, m1 0x396b88;
@@ -9072,7 +9072,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getBaseCurrencyForLevel(GJGameLevel* level) = win 0x2e3e90, imac 0x36530, m1 0x301f0;
     int getBaseDiamonds(int stars) = win inline, imac 0x370d0, m1 0x30dd4;
     int getBonusDiamonds(int stars) = win inline, imac 0x370f0, m1 0x30de8;
-    GJChallengeItem* getChallenge(int id) = win 0x2e5830, imac 0x38ea0, m1 0x32cc4;
+    GJChallengeItem* getChallenge(int id) = win 0x2e5830, imac 0x38ea0, m1 0x32cc4, ios 0x3d1d94;
     std::string getChallengeKey(GJChallengeItem* chal) = win inline, imac 0x39200, m1 0x33074;
     int getCollectedCoinsForLevel(GJGameLevel* level) = win 0x2e1470, imac 0x328b0, m1 0x2c524;
     TodoReturn getCompletedDailyIDs(int, int);
@@ -9129,7 +9129,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasSecretCoin(char const* key) = win 0x2e38a0;
     bool hasUserCoin(char const* key) = win 0x2e3630, imac 0x35a40, m1 0x2f600;
     void incrementActivePath(int amount) = win inline, imac 0x30f50, m1 0x2a9d4;
-    void incrementChallenge(GJChallengeType type, int amount) = win 0x2e5ae0, imac 0x30d00, m1 0x2a3e4;
+    void incrementChallenge(GJChallengeType type, int amount) = win 0x2e5ae0, imac 0x30d00, m1 0x2a3e4, ios 0x3cd890;
     void incrementStat(char const* key) = win inline, imac 0x2c650, m1 0x2696c, ios 0x3ca18c;
     void incrementStat(char const* key, int amount) = win 0x2da460, imac 0x2c660, m1 0x26974, ios 0x3ca194;
     bool isDailyRecall(int) = win 0x2e7080, imac 0x36fd0, m1 0x30cac;
