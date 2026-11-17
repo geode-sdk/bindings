@@ -2078,8 +2078,8 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     bool isVisibleInTree() = win 0x58b60, ios 0x1feec4;
     void moveCursorToEnd();
     void moveCursorVertical(int delta) = win 0x58130;
-    TodoReturn openEditMenu(cocos2d::CCPoint) = win 0x59440, m1 0x65ab4;
-    TodoReturn pasteText();
+    void openEditMenu(cocos2d::CCPoint) = win 0x59440, m1 0x65ab4;
+    void pasteText();
     int rawToDisplayIndex(int) = win 0x55460;
     void refreshLabel() = win 0x565a0, imac 0x68ae0, m1 0x62124, ios 0x1fcaac;
     void scrollToCursor() = win 0x54aa0; // m1 inline;
