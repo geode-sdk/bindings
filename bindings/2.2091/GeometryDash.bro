@@ -550,12 +550,7 @@ class AdminLogEntry : cocos2d::CCObject {
     long long m_timestamp;
 }
 
-class AdminReportReasonCount {
-    int m_reasonIndex;
-    int m_count;
-}
-
-[[link(android), depends(AdminReportReasonCount)]]
+[[link(android)]]
 class AdminReportedEntry : cocos2d::CCObject {
     virtual ~AdminReportedEntry() = win 0x2171d0;
 
@@ -564,7 +559,7 @@ class AdminReportedEntry : cocos2d::CCObject {
     int m_parentID;
     int m_unk44;
     int m_anonymousReporterCount;
-    std::vector<AdminReportReasonCount> m_reasons;
+    PAD = win 0x1c, android32 0xc, android64 0x1c, mac 0x1c, ios 0x1c;
     bool m_contentExists;
     std::string m_title;
     std::string m_body;
@@ -24743,14 +24738,7 @@ class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLaye
     bool m_modMode;
 }
 
-class ThreadLevelLinkHit {
-    int m_levelID;
-    bool m_isList;
-    cocos2d::CCRect m_rect;
-    int m_row;
-}
-
-[[link(android), depends(ThreadLevelLinkHit)]]
+[[link(android)]]
 class ThreadRequestPopup : FLAlertLayer {
     virtual ~ThreadRequestPopup() = win 0xd3ef0, ios 0x514310;
 
@@ -24769,7 +24757,7 @@ class ThreadRequestPopup : FLAlertLayer {
 
     GJMessageThread* m_thread;
     InvitesPopup* m_invitesPopup;
-    std::vector<ThreadLevelLinkHit> m_levelLinkHits;
+    PAD = win 0x18, android32 0xc, android64 0x18, mac 0x18, ios 0x18;
 }
 
 [[link(android)]]
@@ -24797,34 +24785,6 @@ class ThreadSearchPopup : SetupTriggerPopup {
 }
 
 [[link(android)]]
-class ThreadViewBodyMeasure {
-    std::string m_body;
-    float m_scale;
-    float m_height;
-    bool m_emoteOnly;
-}
-
-[[link(android)]]
-class ThreadViewLevelSpan {
-    int m_shareID;
-    bool m_isList;
-    cocos2d::CCRect m_bounds;
-    int m_rowIndex;
-}
-
-[[link(android)]]
-class ThreadViewRow {
-    int m_kind;
-    int m_messageIndex;
-    float m_y;
-    float m_height;
-    bool m_showSender;
-    bool m_addTopSpacing;
-    std::string m_text;
-    cocos2d::ccColor3B m_textColor;
-}
-
-[[link(android), depends(ThreadViewBodyMeasure, ThreadViewLevelSpan, ThreadViewRow)]]
 class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, LevelPickerDelegate, EmotePickerDelegate {
     ThreadViewPopup() = win 0xd2d00, m1 0x834680;
     virtual ~ThreadViewPopup() = win 0xd3020, ios 0x4f7e6c;
@@ -24916,8 +24876,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     TodoReturn startSearch(std::string const&);
     void updateComposeCount() = win 0xe37c0;
 
-    std::vector<ThreadViewRow> m_rows;
-    std::map<long long, ThreadViewBodyMeasure> m_bodyMeasures;
+    PAD = win 0x28, android32 0x18, android64 0x30, mac 0x30, ios 0x30;
     float m_unk2e0;
     GJMessageThread* m_thread;
     cocos2d::CCArray* m_messages;
@@ -24967,7 +24926,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     float m_composeBottomY;
     float m_composeWidth;
     float m_messagesTopY;
-    std::vector<ThreadViewLevelSpan> m_levelSpans;
+    PAD = win 0x18, android32 0xc, android64 0x18, mac 0x18, ios 0x18;
     long long m_pendingDeleteMessageID;
     bool m_searchActive;
     std::string m_searchQuery;
