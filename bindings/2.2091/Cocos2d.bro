@@ -94,7 +94,7 @@ class cocos2d {
     static char const* cocos2dVersion() = imac 0x340d80, m1 0x2d270c, ios 0x84910;
     static cocos2d::CCBMFontConfiguration* FNTConfigLoadFile(char const*) = imac 0x6a6590, m1 0x5c126c, ios 0x395678;
     static void FNTConfigRemoveCache() = imac 0x6a6850, m1 0x5c1538, ios 0x395808;
-    static bool isspace_unicode(unsigned short) = imac 0x608a00, m1 0x64d09c, ios 0x241e68;
+    static bool isspace_unicode(unsigned short) = imac 0x73f640, m1 0x64d09c, ios 0x241e68;
 }
 
 [[link(win, android)]]
@@ -3633,7 +3633,7 @@ class cocos2d::CCRenderTexture : cocos2d::CCNode {
     virtual ~CCRenderTexture() = imac 0x6c7dc0, m1 0x5e00a0, ios 0x466ec8;
 
     static cocos2d::CCRenderTexture* create(int, int) = imac 0x6c84e0, m1 0x5e0704, ios 0x4673b4;
-    static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat) = imac 0x65ddd0, m1 0x5e01e8, ios 0x466fac;
+    static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat) = imac 0x6c7fa0, m1 0x5e01e8, ios 0x466fac;
     static cocos2d::CCRenderTexture* create(int, int, cocos2d::CCTexture2DPixelFormat, unsigned int) = imac 0x6c8070, m1 0x5e02c8, ios inline;
 
     virtual void draw() = imac 0x6c8dd0, m1 0x5e0f4c, ios 0x467888;
@@ -3856,7 +3856,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
     void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, bool) = imac 0x436570, m1 0x3ac8a4, ios 0x23f160;
     void scheduleSelector(cocos2d::SEL_SCHEDULE, cocos2d::CCObject*, float, unsigned int, float, bool) = imac 0x436590, m1 0x3ac8b4, ios 0x23f170;
     void scheduleUpdateForTarget(cocos2d::CCObject*, int, bool) = imac 0x437170, m1 0x3ad508, ios 0x23fd74;
-    void unscheduleAll() = imac 0x9370, m1 0x3ac6e8, ios 0x23f018;
+    void unscheduleAll() = imac 0x4363b0, m1 0x3ac6e8, ios 0x23f018;
     void unscheduleAllForTarget(cocos2d::CCObject*) = imac 0x437710, m1 0x3adb14, ios 0x240324;
     void unscheduleAllWithMinPriority(int) = imac 0x437620, m1 0x3ada28, ios 0x240244;
     void unscheduleScriptEntry(unsigned int) = imac 0x4378f0, m1 0x3add24, ios inline;
