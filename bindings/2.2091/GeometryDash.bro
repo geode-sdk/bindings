@@ -17159,7 +17159,7 @@ class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate
     virtual bool isRecipientSelected(int) = win 0xf1a20, imac 0x947f90, m1 0x828514, ios 0x50be50;
     virtual int selectedRecipientCount() = win 0xf19f0, imac 0x947f30, m1 0x8284e4, ios 0x50be20;
     virtual cocos2d::CCArray* selectedRecipients() = win 0xf1a10, imac 0x947f70, m1 0x828504, ios 0x50be40;
-    virtual void textChanged(CCTextInputNode*) = win 0xf10d0, imac 0x947630, m1 0x827bd4, ios 0x50b880;
+    virtual void textChanged(CCTextInputNode* node) = win 0xf10d0, imac 0x947630, m1 0x827bd4, ios 0x50b880;
     virtual void threadSendFinished(int, long long) = win 0xf33e0, imac 0x948270, m1 0x82884c, ios 0x50c0cc;
     virtual void threadSendFailed() = win 0xf3c10, imac 0x948c10, m1 0x82908c, ios 0x50c580;
 
@@ -17230,16 +17230,16 @@ class NotificationsPage : FLAlertLayer, NotificationListDelegate {
 
     static NotificationsPage* create();
 
-    virtual bool init() = win 0x477cf0, ios 0x53ae4c, m1 0x865778, imac 0x98b210;
-    virtual void registerWithTouchDispatcher() = win 0x46290, ios 0x53b820, m1 0x8663d0, imac 0x98bf90;
-    virtual void keyBackClicked() = win 0x4787b0, ios 0x53b814, m1 0x8663c4, imac 0x98bf60;
+    virtual bool init() = win 0x477cf0, imac 0x98b210, m1 0x865778, ios 0x53ae4c;
+    virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x98bf90, m1 0x8663d0, ios 0x53b820;
+    virtual void keyBackClicked() = win 0x4787b0, imac 0x98bf60, m1 0x8663c4, ios 0x53b814;
     virtual bool ownsTouchPrio() = inline;
-    virtual void loadNotificationsFinished(cocos2d::CCArray*, int, int, int) = win 0x478a40, ios 0x53b9bc, m1 0x86656c, imac 0x98c140;
-    virtual void loadNotificationsFailed(int, GJErrorCode) = win 0x478bd0, ios 0x53bba8, m1 0x8667cc, imac 0x98c3c0;
-    virtual void notificationRewardFinished(int) = win 0x478c30, ios 0x53bc2c, m1 0x8668cc, imac 0x98c4b0;
-    virtual void notificationRewardFailed(int) = win 0x478e90, ios 0x53bde8, m1 0x866ac0, imac 0x98c6b0;
-    virtual void notificationMuteFinished(int) = win 0x478f90, ios 0x53be74, m1 0x866c50, imac 0x98c810;
-    virtual void notificationMuteFailed(int) = win 0x478fe0, ios 0x53becc, m1 0x866d34, imac 0x98c920;
+    virtual void loadNotificationsFinished(cocos2d::CCArray*, int, int, int) = win 0x478a40, imac 0x98c140, m1 0x86656c, ios 0x53b9bc;
+    virtual void loadNotificationsFailed(int, GJErrorCode) = win 0x478bd0, imac 0x98c3c0, m1 0x8667cc, ios 0x53bba8;
+    virtual void notificationRewardFinished(int) = win 0x478c30, imac 0x98c4b0, m1 0x8668cc, ios 0x53bc2c;
+    virtual void notificationRewardFailed(int) = win 0x478e90, imac 0x98c6b0, m1 0x866ac0, ios 0x53bde8;
+    virtual void notificationMuteFinished(int) = win 0x478f90, imac 0x98c810, m1 0x866c50, ios 0x53be74;
+    virtual void notificationMuteFailed(int) = win 0x478fe0, imac 0x98c920, m1 0x866d34, ios 0x53becc;
 
     void loadPage(int) = win 0x4787c0;
     void onClose(cocos2d::CCObject* sender) = win 0x4786f0;
@@ -17314,9 +17314,9 @@ class ObjectControlGameObject : EffectGameObject {
 
     static ObjectControlGameObject* create() = win inline, imac 0x1cfbe0, m1 0x1856d4;
 
-    virtual bool init() = win 0x663920, ios 0x43e8a4, m1 0x185794, imac 0x1cfc90;
+    virtual bool init() = win 0x663920, imac 0x1cfc90, m1 0x185794, ios 0x43e8a4;
     virtual void customObjectSetup(std::vector<std::string>& values, std::vector<void*>& exists) = win 0x663ae0, imac 0x1d0210, m1 0x185c48, ios 0x43ea84;
-    virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x663990, ios 0x43e8f4, m1 0x1857e4, imac 0x1cfce0;
+    virtual std::string getSaveString(GJBaseGameLayer* layer) = win 0x663990, imac 0x1cfce0, m1 0x1857e4, ios 0x43e8f4;
 }
 
 [[link(android)]]
