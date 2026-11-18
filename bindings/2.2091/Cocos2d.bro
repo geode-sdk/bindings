@@ -3846,7 +3846,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
     bool isTargetPaused(cocos2d::CCObject*) = imac 0x437da0, ios inline;
     cocos2d::CCSet* pauseAllTargets() = imac 0x437fd0, m1 0x3ae36c, ios inline;
     cocos2d::CCSet* pauseAllTargetsWithMinPriority(int) = imac 0x437fe0, m1 0x3ae374, ios inline;
-    void pauseTarget(cocos2d::CCObject*) = imac 0x437b70, ios 0x2406b4;
+    void pauseTarget(cocos2d::CCObject*) = imac 0x437b70, ios 0x2406b4, m1 0x3adf6c;
     void priorityIn(cocos2d::_listEntry**, cocos2d::CCObject*, int, bool) = imac 0x436ac0, m1 0x3ace1c, ios 0x23f6c0;
     void removeHashElement(cocos2d::_hashSelectorEntry*) = imac 0x436460, m1 0x3ac77c, ios 0x23f038;
     void removeUpdateFromHash(cocos2d::_listEntry*) = imac 0x4372c0, m1 0x3ad644, ios 0x23fea8;
