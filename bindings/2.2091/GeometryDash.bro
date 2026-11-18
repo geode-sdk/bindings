@@ -9815,7 +9815,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int countCollectedUserCoins() = win inline, imac 0x106f30, m1 0xe4edc, ios 0x285578;
     void createBackground(int background) = win 0x3119b0, imac 0xf0630, m1 0xd1364, ios 0x278110;
     void createGroundLayer(int ground, int line) = win 0x311df0, imac 0xf0bb0, m1 0xd1898, ios 0x278644;
-    StartPosObject* createLiveStartPosObject() = win inline, imac 0x100770, m1 0xdf1d0;
+    StartPosObject* createLiveStartPosObject() = win inline, imac 0x100770, m1 0xdf1d0, ios 0x2810fc;
     void createMiddleground(int middleground) = win 0x311c70, imac 0xf0dc0, m1 0xd1a7c, ios 0x2787cc;
     cocos2d::CCArray* createNewKeyframeAnim() = win inline, imac 0x1299f0, m1 0x101f50, ios 0x297504;
     cocos2d::CCParticleSystemQuad* createParticle(int objectType, char const* plistName, int tag, cocos2d::tCCPositionType positionType) = win 0x34a200, imac 0x13c790, m1 0x111314, ios 0x2a13a0;
