@@ -1433,7 +1433,7 @@ class CCCircleAlert : CCCircleWave {
 
 [[link(android)]]
 class CCCircleWave : cocos2d::CCNode {
-    virtual ~CCCircleWave() = win 0x46470, ios 0x1fa4d0, m1 0x1237e4;
+    virtual ~CCCircleWave() = win 0x46470, ios 0x1fa4d0, m1 0x1237e4, imac 0x157780;
 
     // CCCircleWave() = win 0x418b0, ios 0x1fab00;
     static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline, imac 0x157810, m1 0x123860, ios 0x1fa4e8;
@@ -4510,7 +4510,7 @@ class EditGameObjectPopup : SetupTriggerPopup {
 [[link(android)]]
 class EditLevelLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, SetIDPopupDelegate, CreatorSettingsDelegate, EmotePickerDelegate {
     EditLevelLayer() = ios 0x112808, inline;
-    ~EditLevelLayer() = win inline, m1 0x3d9e34, ios 0x10eb70;
+    ~EditLevelLayer() = win inline, m1 0x3d9e34, ios 0x10eb70, imac 0x1dc8e0;
 
     static EditLevelLayer* create(GJGameLevel* level) = win inline, imac 0x1dcb70, m1 0x190a00, ios 0x10ec14;
     static cocos2d::CCScene* scene(GJGameLevel* level) = win 0x1782c0, imac 0x1dcb30, m1 0x1909b4, ios 0x10ebc8;
@@ -6117,7 +6117,7 @@ class EndLevelLayer : GJDropDownLayer {
 [[link(android)]]
 class EndPortalObject : GameObject {
     EndPortalObject() = inline;
-    virtual ~EndPortalObject() = win 0x288810, ios 0x3028ec, m1 0x18ab30;
+    virtual ~EndPortalObject() = win 0x288810, ios 0x3028ec, m1 0x18ab30, imac 0x1d6190;
 
     static EndPortalObject* create() = win inline, imac 0x385cf0, m1 0x310c18;
 
@@ -17636,7 +17636,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     OptionsLayer() = inline;
     virtual ~OptionsLayer() = win 0x4ca7f0, imac 0x87A9f0, m1 0x770288, ios 0x112a64;
 
-    static OptionsLayer* create() = win inline, m1 0x770080, ios 0x1128f8;
+    static OptionsLayer* create() = win inline, m1 0x770080, ios 0x1128f8, imac 0x87a740;
 
     virtual void customSetup() = win 0x4cae60, imac 0x87adf0, m1 0x7705b0, ios 0x112af8;
     virtual void layerHidden() = win 0x4cc590, imac 0x87c610, m1 0x771bec, ios 0x113a80;
@@ -19837,7 +19837,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 [[link(android)]]
 class RingObject : EffectGameObject {
     RingObject() = inline;
-    virtual ~RingObject() = win 0x637e10, m1 0x18ab30;
+    virtual ~RingObject() = win 0x637e10, m1 0x18ab30, imac 0x1d6190;
 
     static RingObject* create(char const* frame) = win 0x643920, imac 0x1946c0, m1 0x154e54;
 
@@ -24588,7 +24588,7 @@ class TableViewDelegate {
 [[link(android)]]
 class TeleportPortalObject : RingObject {
     TeleportPortalObject() = inline;
-    virtual ~TeleportPortalObject() = win 0x637f40, m1 0x18ab30;
+    virtual ~TeleportPortalObject() = win 0x637f40, m1 0x18ab30, imac 0x1d6190;
 
     static TeleportPortalObject* create(char const* frame, bool trigger) = win 0x6536b0, imac 0x19e3b0, m1 0x15d460;
 
