@@ -15,6 +15,7 @@
 #include <Geode/binding/ObjectToolbox.hpp>
 #include <Geode/binding/ColorSelectLiveOverlay.hpp>
 #include <Geode/binding/HSVLiveOverlay.hpp>
+#include <Geode/binding/Standalones.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
@@ -474,14 +475,13 @@ void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* select
     }
 }
 
-// TODO: uncomment once free-standing offsetForKey is fixed in broma
-/* cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
-    return GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
+cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
+    return GameToolbox::getRelativeOffset(object, offsetForKey(object->m_objectID));
 }
 
 cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
     return object->getPosition() - this->getRelativeOffset(object);
-} */
+}
 
 float EditorUI::getSnapAngle(GameObject* object, cocos2d::CCArray* objects) {
     if (objects && objects->count() > 0) {
