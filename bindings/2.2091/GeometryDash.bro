@@ -1433,7 +1433,7 @@ class CCCircleAlert : CCCircleWave {
 
 [[link(android)]]
 class CCCircleWave : cocos2d::CCNode {
-    virtual ~CCCircleWave() = win 0x46470, ios 0x1fa4d0;
+    virtual ~CCCircleWave() = win 0x46470, ios 0x1fa4d0, m1 0x1237e4;
 
     // CCCircleWave() = win 0x418b0, ios 0x1fab00;
     static CCCircleWave* create(float startRadius, float endRadius, float duration, bool fadeIn) = win inline, imac 0x157810, m1 0x123860, ios 0x1fa4e8;
@@ -6117,7 +6117,7 @@ class EndLevelLayer : GJDropDownLayer {
 [[link(android)]]
 class EndPortalObject : GameObject {
     EndPortalObject() = inline;
-    virtual ~EndPortalObject() = win 0x288810, ios 0x3028ec;
+    virtual ~EndPortalObject() = win 0x288810, ios 0x3028ec, m1 0x18ab30;
 
     static EndPortalObject* create() = win inline, imac 0x385cf0, m1 0x310c18;
 
@@ -19837,7 +19837,7 @@ class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
 [[link(android)]]
 class RingObject : EffectGameObject {
     RingObject() = inline;
-    virtual ~RingObject() = win 0x637e10;
+    virtual ~RingObject() = win 0x637e10, m1 0x18ab30;
 
     static RingObject* create(char const* frame) = win 0x643920, imac 0x1946c0, m1 0x154e54;
 
@@ -23509,7 +23509,7 @@ class ShareCommentLayer : FLAlertLayer, UploadActionDelegate, UploadPopupDelegat
 [[link(android)]]
 class ShareLevelLayer : FLAlertLayer {
     ShareLevelLayer() = inline;
-    ~ShareLevelLayer() = win inline, ios 0x312cb8;
+    ~ShareLevelLayer() = win inline, ios 0x312cb8, m1 0x213488, imac 0x26c440;
 
     static ShareLevelLayer* create(GJGameLevel* level) = win inline, m1 0x213698, ios 0x312cf0;
 
@@ -24588,7 +24588,7 @@ class TableViewDelegate {
 [[link(android)]]
 class TeleportPortalObject : RingObject {
     TeleportPortalObject() = inline;
-    virtual ~TeleportPortalObject() = win 0x637f40;
+    virtual ~TeleportPortalObject() = win 0x637f40, m1 0x18ab30;
 
     static TeleportPortalObject* create(char const* frame, bool trigger) = win 0x6536b0, imac 0x19e3b0, m1 0x15d460;
 
@@ -25759,7 +25759,7 @@ class ValueControlSettings {
 class VideoOptionsLayer : FLAlertLayer {
     virtual ~VideoOptionsLayer() = win 0x4ca910, ios 0x113b88;
 
-    static VideoOptionsLayer* create() = win 0x4cc770, imac 0x87c320, ios 0x1139bc;
+    static VideoOptionsLayer* create() = win 0x4cc770, imac 0x87c320, ios 0x1139bc, m1 0x771978;
 
     virtual bool init() = win 0x4cc8b0, imac 0x880110, m1 0x77539c, ios 0x113bc0;
     virtual void keyBackClicked() = win 0x4ce740, imac 0x881c80, m1 0x776d1c, ios 0x1151f4;
