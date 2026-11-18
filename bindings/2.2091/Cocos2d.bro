@@ -4159,7 +4159,7 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     virtual cocos2d::CCSpriteFrame* displayFrame() = imac 0x2764a0, m1 0x21c740, ios 0x2d609c;
     virtual void setDisplayFrameWithAnimationName(char const*, int) = imac 0x2763c0, m1 0x21c648, ios 0x2d5fb4;
     virtual bool isDirty();
-    virtual boid setDirty(bool);
+    virtual void setDirty(bool);
     virtual void setTextureCoords(cocos2d::CCRect const&) = imac 0x274650, m1 0x21af54, ios 0x2d49bc;
     virtual void updateBlendFunc() = imac 0x2766d0, m1 0x21c89c, ios 0x2d61f8;
     virtual void setReorderChildDirtyRecursively() = imac 0x275290, m1 0x21ba0c, ios 0x2d5448;

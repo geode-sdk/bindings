@@ -711,6 +711,14 @@ enum class BoomListType {
     Level4 = 0x1d,
     LocalLevelScore = 0x1f,
     URL = 0x20,
+    FontPreview = 0x21,
+    EditorSound = 0x22,
+    EditorSound2 = 0x23,
+    Thread = 0x24,
+    Level5 = 0x25,
+    CompactUser = 0x26,
+    LevelList4 = 0x27,
+    Notification = 0x28,
 };
 
 enum class CurrencySpriteType {
