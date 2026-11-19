@@ -2862,10 +2862,10 @@ class CommunityCreditsPage : FLAlertLayer {
 class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     virtual ~ConfigureHSVWidget() = win 0x12f4a0, imac 0x41d120, m1 0x39510c, ios 0x123ccc;
 
-    static ConfigureHSVWidget* create(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12fad0, imac 0x41cc10;
-    static cocos2d::ccHSVValue getHSV(GameObject* object, cocos2d::CCArray* objects, int mode) = win 0x1313d0, imac 0x41ece0, m1 0x396b88;
+    static ConfigureHSVWidget* create(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12fad0, imac 0x41cc10, m1 0x394c80, ios 0x1239f8;
+    static cocos2d::ccHSVValue getHSV(GameObject* object, cocos2d::CCArray* objects, int mode) = win 0x1313d0, imac 0x41ece0, m1 0x396b88, ios 0x1251e0;
 
-    virtual void textInputOpened(CCTextInputNode* node) = win inline, imac 0x41e6e0, ios 0x124e28, m1 0x3965d4;
+    virtual void textInputOpened(CCTextInputNode* node) = win inline, imac 0x41e6e0, m1 0x3965d4, ios 0x124e28;
     virtual void textInputClosed(CCTextInputNode* node) = win 0x1265d0, imac 0x41e700, m1 0x3965dc, ios 0x124e30;
     virtual void textChanged(CCTextInputNode* node) = win 0x1307e0, imac 0x41ea10, m1 0x3968ec, ios 0x124fe0;
     virtual void textInputShouldOffset(CCTextInputNode* node, float yOffset) = win 0x1306f0, imac 0x41e740, m1 0x3965f8, ios 0x124e4c;
@@ -2873,12 +2873,12 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 
     void createTextInputNode(cocos2d::CCPoint position, int tag) = win 0x1304a0, imac 0x41dae0, m1 0x395a5c;
     FLAlertLayer* hostPopup() = win 0x130770;
-    bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12FBB0, imac 0x41d1c0, m1 0x395198;
+    bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12fbb0, imac 0x41d1c0, m1 0x395198, ios 0x123ce4;
     void onClose() = win inline, imac 0x41cee0, m1 0x394f1c, ios inline;
     void onResetHSV(cocos2d::CCObject* sender) = win 0x130de0, imac 0x41df70;
     void onToggleSConst(cocos2d::CCObject* sender) = win 0x130ce0, imac 0x41de90, m1 0x395e3c;
     void onToggleVConst(cocos2d::CCObject* sender) = win 0x130d60, imac 0x41df00, m1 0x395eb0;
-    void setBaseColor(cocos2d::ccColor3B) = win 0x131600;
+    void setBaseColor(cocos2d::ccColor3B) = win 0x131600, ios 0x123ac0;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x130bc0, imac 0x41dd10, m1 0x395cb8;
     void updateColorPreview() = win 0x131830;
     void updateLabels() = win 0x130e70, imac 0x41e040, m1 0x395fdc;
@@ -8524,7 +8524,7 @@ class GameObject : CCSpritePlus {
     int getObjectZOrder() = win inline, imac 0x68f610, m1 0x5af82c;
     cocos2d::CCRect getOuterObjectRect() = win inline, imac 0x68d0a0, m1 0x5ad1d8, ios inline;
     int getParentMode() = win 0x297b80, imac 0x68e870, m1 0x5ae8a4;
-    GJSpriteColor* getRelativeSpriteColor(int type) = win 0x29e9c0, imac 0x69b7c0, m1 0x5b9864;
+    GJSpriteColor* getRelativeSpriteColor(int type) = win 0x29e9c0, imac 0x69b7c0, m1 0x5b9864, ios 0x2ff050;
     cocos2d::CCPoint getScalePosDelta() = win 0x2995e0, imac 0x68f9d0, m1 0x5afbd8;
     GJSpriteColor* getSecondaryColor() = win inline, imac 0x69b740, m1 0x5b97f4;
     int getSecondaryColorMode() = win inline, imac 0x691370, m1 0x5b1404;
@@ -13894,17 +13894,17 @@ class HSVLiveOverlay : FLAlertLayer, HSVWidgetDelegate {
     HSVLiveOverlay() = inline;
     ~HSVLiveOverlay() = win inline, imac 0x5954f0, m1 0x428db0, ios 0x234644;
 
-    static HSVLiveOverlay* create(GameObject*, cocos2d::CCArray*, cocos2d::ccColor3B, cocos2d::ccColor3B) = win inline;
+    static HSVLiveOverlay* create(GameObject*, cocos2d::CCArray*, cocos2d::ccColor3B, cocos2d::ccColor3B) = win inline, ios 0x23467c;
 
     virtual void keyBackClicked() = win 0x3c1430, ios 0x234ea4, m1 0x1fdc84, imac 0x255140;
     virtual void show() = win 0x1262f0, imac 0x2551f0, m1 0x1fdd3c, ios 0x234eb8;
     virtual void hsvChanged(ConfigureHSVWidget* widget) = win 0x3c1480, imac 0x2552c0, m1 0x1fddf0, ios 0x234f04;
 
-    void closeColorSelect(cocos2d::CCObject* sender) = win 0x3c11f0, imac 0x254e20;
-    void createHSVWidget(int tab) = win 0x3c1270, imac 0x254fa0, m1 0x1fdb00;
+    void closeColorSelect(cocos2d::CCObject* sender) = win 0x3c11f0, imac 0x254e20, ios 0x234ba4;
+    void createHSVWidget(int tab) = win 0x3c1270, imac 0x254fa0, m1 0x1fdb00, ios 0x234d24;
     void determineStartValues() = win 0x3c0ff0, imac 0x254e70;
-    bool init(GameObject*, cocos2d::CCArray*, cocos2d::ccColor3B, cocos2d::ccColor3B) = win 0x3c0b10;
-    void onSelectTab(cocos2d::CCObject* sender) = win 0x3c1240, imac 0x254f60, m1 0x1fdab4;
+    bool init(GameObject*, cocos2d::CCArray*, cocos2d::ccColor3B, cocos2d::ccColor3B) = win 0x3c0b10, ios 0x234788;
+    void onSelectTab(cocos2d::CCObject* sender) = win 0x3c1240, imac 0x254f60, m1 0x1fdab4, ios 0x234cd8;
     void toggleControls(bool visible) = win inline, imac 0x255250, m1 0x1fdd88, ios inline;
 
     GameObject* m_object;
@@ -13931,11 +13931,11 @@ class HSVWidgetDelegate {
 class HSVWidgetPopup : FLAlertLayer {
     virtual ~HSVWidgetPopup() = win 0x12f3f0, ios 0x123500;
 
-    static HSVWidgetPopup* create(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f510, m1 0x29ccc0;
+    static HSVWidgetPopup* create(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f510, m1 0x3946a0, ios 0x123538;
 
     virtual void keyBackClicked() = win 0x12fac0, imac 0x41cf40, m1 0x394f6c, ios 0x123c7c;
 
-    bool init(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f670;
+    bool init(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f670, m1 0x39488c, ios 0x12367c;
     void onClose(cocos2d::CCObject* sender) = win 0x12f9e0, imac 0x41cb50, m1 0x394bd4;
 
     ConfigureHSVWidget* m_widget;
