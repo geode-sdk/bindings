@@ -15432,7 +15432,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
 class LevelLeaderboard : FLAlertLayer, LeaderboardManagerDelegate, FLAlertLayerProtocol {
     virtual ~LevelLeaderboard() = win 0x4281c0, ios 0x2ec4c4;
 
-    static LevelLeaderboard* create(GJGameLevel* level, LevelLeaderboardType type, LevelLeaderboardMode mode) = win 0x428300, imac 0x3c6e30;
+    static LevelLeaderboard* create(GJGameLevel* level, LevelLeaderboardType type, LevelLeaderboardMode mode) = win 0x428300, imac 0x3c6e30, m1 0x34b278, ios 0x2ec4fc;
 
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x3c8e70, m1 0x34d0ec, ios 0x2edf74;
     virtual void keyBackClicked() = win 0x99f90, imac 0x3c8e00, m1 0x34d070, ios 0x2edef8;
