@@ -1066,15 +1066,6 @@ void GJBaseGameLayer::regenerateEnterEasingBuffers() {
     }
 }
 
-int GJBaseGameLayer::registerSpawnRemap(std::vector<ChanceObject>& spawnRemap) {
-    std::unordered_map<int, int> remap;
-    m_spawnRemapTriggers.push_back(remap);
-    for (auto& obj : spawnRemap) {
-        m_spawnRemapTriggers.back()[obj.m_groupID] = obj.m_chance;
-    }
-    return m_spawnRemapTriggers.size() - 1;
-}
-
 void GJBaseGameLayer::registerStateObject(EffectGameObject* object) {
     m_gameState.m_stateObjects[object->m_uniqueID] = object;
 }
