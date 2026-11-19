@@ -10751,9 +10751,9 @@ class GJCompactUserCell : TableViewCell {
     virtual bool init() = win 0x400c0, imac 0x23f3e0, m1 0x1ea620, ios 0x1391e8;
     virtual void draw() = win 0x1487a0, imac 0x240290, m1 0x1eb3c4, ios 0x139e1c;
 
-    TodoReturn addStat(int, char const*, cocos2d::CCNode*, float&, float, bool) = win 0x158990;
-    void buildUserRow(GJUserScore*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, float, bool, bool) = win 0x157e90, ios 0x1391f4;
-    TodoReturn createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool);
+    static void addStat(int, char const*, cocos2d::CCNode*, float&, float, bool) = win 0x158990;
+    static cocos2d::CCLabelBMFont* buildUserRow(GJUserScore*, cocos2d::CCNode*, cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler, float, bool, bool) = win 0x157e90, ios 0x1391f4;
+    static void createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool);
     void loadFromScore(GJUserScore* score) = win 0x157c60, ios 0x12edf4;
     void onSendMessage(cocos2d::CCObject* sender) = win 0x158c00;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x157b80;
