@@ -10569,7 +10569,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     int m_player1HitboxTrailLimit;
     int m_player2HitboxTrailLimit;
     bool m_hitboxTrailDirty;
-    bool m_unk3651;
+    bool m_hitboxTrailDrawn;
     cocos2d::CCRect m_hitboxTrailDrawArea;
     bool m_lastHitboxTrailHighlight;
     bool m_lastHitboxTrailDied;
