@@ -9889,7 +9889,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool hasUniqueCoin(EffectGameObject* object) = win 0x31dc20, imac 0x1063b0, m1 0xe4400, ios 0x284e40;
     void increaseBatchNodeCapacity() = win 0x312d10, imac 0xf16b0, m1 0xd22b8, ios 0x278f34;
     bool isFlipping() = win inline, imac 0x134350, m1 0x10a494, ios 0x29d294;
-    bool isGroupParentOf(GameObject* object, int groupID) = win 0x275a10;
+    bool isGroupParentOf(GameObject* object, int groupID) = win inline;
     bool isPlayer2Button(int button) = win inline, imac 0x1347d0, m1 0x10a878, ios inline;
     void lightningFlash(cocos2d::CCPoint to, cocos2d::ccColor3B color) = win inline, imac 0x142dd0, m1 0x1165b0, ios 0x2a5098;
     void lightningFlash(cocos2d::CCPoint from, cocos2d::CCPoint to, cocos2d::ccColor3B color, float lineWidth, float duration, int displacement, bool flash, float opacity) = win 0x351030, imac 0xfd640, m1 0xdc52c, ios 0x27ea80;
@@ -9981,7 +9981,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void regenerateEnterEasingBuffers() = win inline, imac 0xf38a0, m1 0xd410c, ios 0x27a350;
     int registerSpawnRemap(std::vector<ChanceObject>& spawnRemap) = win inline, imac 0x1135f0, m1 0xee5fc, ios 0x2896bc;
     void registerStateObject(EffectGameObject* object) = win inline, imac 0x1086c0, m1 0xe63fc, ios 0x2863e0;
-    void remapGroupParent(GameObject* object, int oldGroupID, int newGroupID) = win 0x65a390;
+    void remapGroupParent(GameObject* object, int oldGroupID, int newGroupID) = win inline;
     void removeBackground() = win inline, imac 0xf07f0, m1 0xd150c, ios 0x2782b8;
     void removeCustomEnterEffects(int id, bool enter) = win inline, imac 0xfad00, m1 0xd988c, ios inline;
     void removeFromGroupParents(GameObject* object) = win 0x32c6a0;

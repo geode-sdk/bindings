@@ -1,4 +1,6 @@
 #include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/mapping/CCInteger.hpp>
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <Geode/binding/AdvancedFollowEditObject.hpp>
@@ -1645,6 +1647,52 @@ void GJBaseGameLayer::updateTimeMod(float speed, bool players, bool noEffects) {
 
 void GJBaseGameLayer::queueTimeWarp(float timeWarp) {
     m_gameState.m_queuedTimeWarp = timeWarp;
+}
+
+bool GJBaseGameLayer::isGroupParentOf(GameObject* object, int groupID) {
+    if (!object) return false;
+    auto groups = static_cast<cocos2d::CCArray*>(m_parentGroupsDict->objectForKey(groupID));
+    return groups && groups->containsObject(object);
+}
+
+void GJBaseGameLayer::remapGroupParent(GameObject* object, int oldGroupID, int newGroupID)
+{
+    if(!object) return;
+    if(oldGroupID <= 0 || newGroupID <= 0 || oldGroupID == newGroupID) return;
+
+    auto oldGroup = static_cast<cocos2d::CCArray*>(m_parentGroupsDict->objectForKey(oldGroupID));
+    if(!oldGroup || !oldGroup->containsObject(object)) return;
+    
+    oldGroup->removeObject(object);
+
+    if(oldGroup->count() == 0) m_parentGroupsDict->removeObjectForKey(oldGroupID);
+
+    if(auto ids = static_cast<cocos2d::CCArray*>(m_parentGroupIDs->objectForKey(object->m_uniqueID))) {
+        bool foundNew = false;
+
+        for(auto i = static_cast<int>(ids->count()) - 1; i >= 0; i--) {
+            auto val = static_cast<cocos2d::CCInteger*>(ids->objectAtIndex(i))->getValue();
+            if(val == oldGroupID) {
+                ids->removeObjectAtIndex(i, true);
+            } else if(val == newGroupID) {
+                foundNew = true;
+            }
+        }
+
+        if(!foundNew) {
+            ids->addObject(cocos2d::CCInteger::create(newGroupID));
+        }
+    }
+
+    auto newGroup = static_cast<cocos2d::CCArray*>(m_parentGroupsDict->objectForKey(newGroupID));
+    if(!newGroup) {
+        newGroup = cocos2d::CCArray::create();
+        m_parentGroupsDict->setObject(newGroup, newGroupID);
+    }
+    
+    if(!newGroup->containsObject(object)) {
+        newGroup->addObject(object);
+    }
 }
 #endif
 
