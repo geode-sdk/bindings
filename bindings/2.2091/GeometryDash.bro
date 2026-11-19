@@ -17536,10 +17536,10 @@ class OBB2D : cocos2d::CCNode {
     bool overlaps(OBB2D* other) = win inline, imac 0x6c6a00, m1 0x5def2c;
     bool overlaps1Way(OBB2D* other) = win 0x7bb70, imac 0x6c6a30, m1 0x5def68;
 
-    std::array<cocos2d::CCPoint, 4> m_corners;
-    std::array<cocos2d::CCPoint, 4> m_positions;
-    std::array<cocos2d::CCPoint, 4> m_edges;
-    std::array<double, 2> m_projections;
+    cocos2d::CCPoint* m_corners;
+    cocos2d::CCPoint* m_positions;
+    cocos2d::CCPoint* m_edges;
+    double* m_projections;
     cocos2d::CCPoint m_center;
 }
 
