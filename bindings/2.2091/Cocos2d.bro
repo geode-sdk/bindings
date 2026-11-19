@@ -4564,7 +4564,7 @@ class cocos2d::CCTextureCache : cocos2d::CCObject {
     void removeTextureForKey(char const*) = imac 0x6c1ef0, m1 0x5dab04, ios 0x13d3b4;
     void removeUnusedTextures() = imac 0x6c1d30, m1 0x5da93c, ios inline;
     cocos2d::CCDictionary* snapshotTextures() = imac 0x6bfbb0, m1 0x5d8800, ios inline;
-    cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x6c1970, m1 0x5dab94, ios 0x13d434;
+    cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x6c1f70, m1 0x5dab94, ios 0x13d434;
 }
 
 [[link(win, android)]]
