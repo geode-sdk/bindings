@@ -7007,10 +7007,10 @@ class ForceBlockGameObject : EffectGameObject {
 
 [[link(android)]]
 class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, FriendRequestDelegate, UserListDelegate {
-    FRequestProfilePage() = m1 0x769008;
+    FRequestProfilePage() = m1 0x769008, ios 0x24d64c;
     virtual ~FRequestProfilePage() = win 0x20f240, imac 0x86ece0, m1 0x7654a8, ios 0x24ac90;
 
-    static FRequestProfilePage* create(bool sent) = win inline, imac 0x86ef10, m1 0x765618;
+    static FRequestProfilePage* create(bool sent) = win inline, imac 0x86ef10, m1 0x765618, ios 0x24acc8;
 
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x871990, m1 0x767ecc, ios 0x24cdbc;
     virtual void keyBackClicked() = win 0x211f10, imac 0x871960, m1 0x767ec0, ios 0x24cdb0;
@@ -7025,12 +7025,12 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     virtual bool ownsTouchPrio() = inline;
     virtual void getUserListFinished(cocos2d::CCArray*, UserListType) = win 0x210c80, imac 0x871170, m1 0x7676f8, ios 0x24c684;
     virtual void getUserListFailed(UserListType, GJErrorCode) = win 0x210d90, imac 0x871410, m1 0x767970, ios 0x24c8fc;
-    virtual void textChanged(CCTextInputNode*) = win 0x212780, imac 0x871e40, m1 0x7683b0, ios 0x24d028;
+    virtual void textChanged(CCTextInputNode* node) = win 0x212780, imac 0x871e40, m1 0x7683b0, ios 0x24d028;
 
     void deleteSelected() = win 0x211400, imac 0x2132a0, m1 0x767a74;
     void doSearch(float) = win 0x212a30;
     TodoReturn exitGlobalMode();
-    bool init(bool sent) = win 0x20f420, imac 0x86ef70, m1 0x765698;
+    bool init(bool sent) = win 0x20f420, imac 0x86ef70, m1 0x765698, ios 0x24ad3c;
     bool isCorrect(char const* key) = win 0x2121b0;
     void loadPage(int page) = win 0x2122f0;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x210ba0;
@@ -7098,7 +7098,7 @@ class FriendPickerDelegate {
 class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
     virtual ~FriendPickerPopup() = win 0xd3780, ios 0x502f50;
 
-    static FriendPickerPopup* create(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6ab0;
+    static FriendPickerPopup* create(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6ab0, ios 0x4f6768;
 
     virtual bool requestPage(int page) = win 0x5a3a0, imac 0x93d140, m1 0x81e1a8, ios 0x5039d8;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xe8b20, imac 0x93e180, m1 0x81f0d8, ios 0x504740;
@@ -7111,7 +7111,7 @@ class FriendPickerPopup : PagedListPopup, VirtualRowSource, UserListDelegate {
 
     TodoReturn buildRows() = win 0xe8120;
     void delayedRebuild(float) = win 0xe8980;
-    bool init(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6c60, imac 0x93c5b0, m1 0x81d5ac;
+    bool init(FriendPickerDelegate*, bool, bool, bool, bool) = win 0xe6c60, imac 0x93c5b0, m1 0x81d5ac, ios 0x502f88;
     void onClearAll(cocos2d::CCObject* sender) = win 0xe8ae0;
     void onDone(cocos2d::CCObject* sender) = win 0xe8a40;
     void onGlobalSearch(cocos2d::CCObject* sender) = win 0xe79e0;
@@ -7131,9 +7131,10 @@ class FriendRequestDelegate {
 
 [[link(android)]]
 class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelegate, FLAlertLayerProtocol {
+    FriendRequestPopup() = ios 0x38166c;
     virtual ~FriendRequestPopup() = win 0x399480, ios 0x3779dc;
 
-    static FriendRequestPopup* create(GJFriendRequest* request, bool sent) = win 0x3a1590;
+    static FriendRequestPopup* create(GJFriendRequest* request, bool sent) = win 0x3a1590, ios 0x377a14;
 
     virtual void keyBackClicked() = win 0x3a2f00, imac 0x2928b0, m1 0x236870, ios 0x378db8;
     virtual void uploadActionFinished(int id, int response) = win 0x3a2f10, imac 0x2929c0, m1 0x236960, ios 0x378dc4;
@@ -7142,7 +7143,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x3a3210, imac 0x292e70, m1 0x236e68, ios 0x379020;
 
     void blockUser() = win inline, imac 0x294960;
-    bool init(GJFriendRequest* request, bool sent) = win 0x3a16e0, imac 0x291260, m1 0x235270;
+    bool init(GJFriendRequest* request, bool sent) = win 0x3a16e0, imac 0x291260, m1 0x235270, ios 0x377a98;
     void loadFromGJFriendRequest(GJFriendRequest* request) = win 0x3a1ed0, imac 0x291a80;
     void onAccept(cocos2d::CCObject* sender) = win 0x3a2a30, imac 0x2923f0, m1 0x2363a4;
     void onBlock(cocos2d::CCObject* sender) = win 0x3a2c60, imac 0x2925c0, m1 0x236554;
@@ -7170,7 +7171,7 @@ class FriendRowEdges : cocos2d::CCNode {
 class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate, UserListDelegate {
     virtual ~FriendsProfilePage() = win 0x213240, ios 0x271548;
 
-    static FriendsProfilePage* create(UserListType type) = win 0x213430;
+    static FriendsProfilePage* create(UserListType type) = win 0x213430, ios 0x271580;
 
     virtual void getUserListFinished(cocos2d::CCArray* scores, UserListType type) = win 0x214d40, imac 0x737340, m1 0x6451b0, ios 0x273484;
     virtual void getUserListFailed(UserListType type, GJErrorCode errorType) = win 0x215600, imac 0x737680, m1 0x6454b4, ios 0x273704;
@@ -7188,12 +7189,12 @@ class FriendsProfilePage : PagedListPopup, VirtualRowSource, FLAlertLayerProtoco
 
     void filterUsersWithQuery(std::string const&) = win 0x216c60;
     TodoReturn getActiveUserList();
-    bool init(UserListType type) = win 0x213620, imac 0x734bd0, m1 0x642b54;
+    bool init(UserListType type) = win 0x213620, imac 0x734bd0, m1 0x642b54, ios 0x27169c;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x216b80;
     void onClose(cocos2d::CCObject* sender) = win 0x217060, ios 0x273cd8;
     void onGlobalSearch(cocos2d::CCObject* sender) = win 0x216440;
     void onSendMessage(cocos2d::CCObject* sender) = win 0x2157c0;
-    void onSwitchList(cocos2d::CCObject* sender) = win 0x216fa0;
+    void onSwitchList(cocos2d::CCObject* sender) = win 0x216fa0, ios 0x272264;
     void onToggleSort(cocos2d::CCObject* sender) = win 0x214ba0;
     void onToggleSortDir(cocos2d::CCObject* sender) = win 0x214c40;
     void onUnblock(cocos2d::CCObject* sender) = win 0x215cc0;
@@ -7708,7 +7709,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn uploadModRoomComment(int, std::string, int);
     void uploadUserMessage(int accountID, std::string subject, std::string content) = imac 0x562240, m1 0x4bc0a8;
     int userIDForAccountID(int id) = win inline, imac 0x540700, m1 0x4975b0;
-    GJUserScore* userInfoForAccountID(int id) = win inline, imac 0x540720, m1 0x4975cc;
+    GJUserScore* userInfoForAccountID(int id) = win inline, imac 0x540720, m1 0x4975cc, ios 0xa78e0;
     std::string userNameForUserID(int id) = win 0x21d7e0, imac 0x540260, m1 0x4971a4;
     static bool vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) = win inline, imac 0x558500, m1 0x4acc70;
     bool verifyContainerOnlyHasLevels(cocos2d::CCDictionary* dict) = win 0x224e80, imac 0x54f750, m1 0x4a5210;
@@ -12516,9 +12517,9 @@ class GJRequestCell : TableViewCell {
     virtual void draw() = win 0x1487a0, imac 0x2408c0, m1 0x1eb8a4, ios 0x13a0f8;
 
     void loadFromScore(GJUserScore* score) = win 0x158d40, imac 0x231d80, m1 0x1de434, ios 0x12f000;
-    void markAsRead() = imac 0x240820, m1 0x1eb810;
+    void markAsRead() = imac 0x240820, m1 0x1eb810, ios 0x13a064;
     void onToggle(cocos2d::CCObject* sender) = win 0x1592a0;
-    void onViewFriendRequest(cocos2d::CCObject* sender) = win 0x159100;
+    void onViewFriendRequest(cocos2d::CCObject* sender) = win 0x159100, ios 0x139fac;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x157b80, imac 0x23efd0, ios 0x139f74;
     void updateBGColor(int index) = win inline, ios 0x12ef80;
     void updateToggle() = win inline, imac 0x236440, m1 0x1e259c, ios inline;
@@ -19307,13 +19308,13 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void loadPageFromUserInfo(GJUserScore* score) = win 0x552b60, imac 0x89f240, m1 0x79252c, ios 0x22b210;
     void onAdminPanel(cocos2d::CCObject* sender) = win 0x557880, m1 0x79585c;
     void onBlockUser(cocos2d::CCObject* sender) = win 0x5573e0, imac 0x893a60, m1 0x795538;
-    void onClose(cocos2d::CCObject* sender) = win 0x558f40, imac 0x89e9d0, m1 0x791d24;
+    void onClose(cocos2d::CCObject* sender) = win 0x558f40, imac 0x89e9d0, m1 0x791d24, ios 0x22aa94;
     void onComment(cocos2d::CCObject* sender) = win 0x556c60, imac 0x8a4650, m1 0x797110;
     void onCommentHistory(cocos2d::CCObject* sender) = win 0x556ad0, imac 0x8a3420, m1 0x796078;
     void onCopyName(cocos2d::CCObject* sender) = win 0x556070, imac 0x8a3df0, m1 0x7968fc;
     void onFollow(cocos2d::CCObject* sender) = win 0x557a60, imac 0x9a920, m1 0x791f94;
-    void onFriend(cocos2d::CCObject* sender) = win 0x556e40, imac 0x8a2290, m1 0x794f60;
-    void onFriends(cocos2d::CCObject* sender) = win 0x559840, m1 0x796f50;
+    void onFriend(cocos2d::CCObject* sender) = win 0x556e40, imac 0x8a2290, m1 0x794f60, ios 0x22da38;
+    void onFriends(cocos2d::CCObject* sender) = win 0x559840, m1 0x796f50, ios 0x22f2a8;
     void onIconInfo(cocos2d::CCObject* sender) = win 0x555ce0, m1 0x795f38;
     void onInfo(cocos2d::CCObject* sender) = win 0x5562a0, imac 0x8a35b0, m1 0x796210;
     void onMessages(cocos2d::CCObject* sender) = win 0x559810, m1 0x796ec8;
@@ -19326,14 +19327,14 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
     void onNotifications(cocos2d::CCObject* sender) = win 0x559a90, m1 0x797068;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x55a6e0, imac 0x8a5730, m1 0x798158;
     void onReportUser(cocos2d::CCObject* sender) = win 0x557840, m1 0x795828;
-    void onRequests(cocos2d::CCObject* sender) = win 0x559870, imac 0x8a4510, m1 0x796fdc;
+    void onRequests(cocos2d::CCObject* sender) = win 0x559870, imac 0x8a4510, m1 0x796fdc, ios 0x22f2cc;
     void onSendMessage(cocos2d::CCObject* sender) = win 0x556b10, imac 0x8a21c0, m1 0x794e80;
     void onSettings(cocos2d::CCObject* sender) = win 0x559690, imac 0x8a4630, m1 0x7970f0;
     void onSocialPage(cocos2d::CCObject* sender) = win 0x5594e0, m1 0x796048;
     void onStatInfo(cocos2d::CCObject* sender) = win 0x555d50, m1 0x795a4c, ios 0x22e260;
     void onUnblockUser(cocos2d::CCObject* sender) = win 0x557650, m1 0x7952c4;
     void onUpdate(cocos2d::CCObject* sender) = win 0x551c60, imac 0x89edc0, m1 0x792100;
-    void setupAccountButtons() = win 0x5523c0, m1 0x794914;
+    void setupAccountButtons() = win 0x5523c0, m1 0x794914, ios 0x22d424;
     void setupComments() = win 0x558640, imac 0x89ea50, m1 0x791d9c;
     void setupCommentsBrowser(cocos2d::CCArray* comments) = win 0x55a240, imac 0x89f0c0, m1 0x7923b0;
     void toggleMainPageVisibility(bool visible) = win inline, imac 0x8a60f0, m1 0x798ac0, ios inline;
