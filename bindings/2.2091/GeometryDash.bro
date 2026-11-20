@@ -18060,7 +18060,7 @@ class PagedListPopup : FLAlertLayer {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xc3ba0, ios 0x51b584, m1 0x83b768, imac 0x95d540;
     virtual void keyBackClicked() = win 0xc3a50, ios 0x51b44c, m1 0x83b570, imac 0x95d310;
     virtual void show() = win 0xc39c0, ios 0x51b394, m1 0x83b4b0, imac 0x95d260;
-    // virtual bool requestPage(int page) = win 0x9999999;
+    virtual bool requestPage(int page) = win 0x9999999, inline;
     virtual void clearPageContent() = win 0xc36c0, ios 0x51b19c, m1 0x83b2b4, imac 0x95d040;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x99f60, ios 0x51b410, m1 0x83b534, imac 0x95d2e0;
 
@@ -20438,7 +20438,7 @@ class ScrollViewPopup : FLAlertLayer {
     virtual void ccTouchEnded(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x6222d0, imac 0x96f620, m1 0x84b7fc, ios 0x527608;
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x622320, imac 0x96f6c0, m1 0x84b888, ios 0x527658;
     virtual void keyBackClicked() = win 0x99f90, imac 0x96f440, m1 0x84b628, ios 0x5274c4;
-    // virtual float buildContent(cocos2d::CCNode*, float, float) = win 0x9999999;
+    virtual float buildContent(cocos2d::CCNode*, float, float) = win 0x9999999, inline;
 
     float addVersionHeader(cocos2d::CCNode*, int, int, float, float) = win 0x621f10, imac 0x96f160, m1 0x84b310;
     bool initPopup(cocos2d::CCArray*, char const*, char const*, float, float) = win 0x621980, imac 0x96ec40, m1 0x84ae38;
