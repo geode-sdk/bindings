@@ -18,7 +18,7 @@
 #include <Geode/mapping/CCDelayTime.hpp>
 #include <Geode/mapping/CCCallFuncND.hpp>
 
-#ifndef GEODE_IS_WINDOWS
+#if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_MACOS)
 std::string MusicDownloadManager::pathForNewsImage(std::string imageKey) {
     return pathForNewsFolder().append(imageKey);
 }
