@@ -16831,11 +16831,11 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     void setInboxPoll(float);
     void setupThreadBrowser(cocos2d::CCArray* threads, float height) = win 0xd8dd0;
     bool syncSearchFromBox() = win 0xd7580;
-    TodoReturn updateFilterButtons() = win 0xd7d60, m1 0x80db70;
     void updateInviteButton() = win 0xd6430;
     TodoReturn updatePageArrows(int, int, int);
     TodoReturn updateSelectUI();
     std::string userFilterCSV() = win 0xd7c70;
+    TodoReturn updateFilterButtons() = win 0xd7d60, imac 0x929b80, m1 0x80bfe4;
 
     GJCommentListLayer* m_threadBrowser;
     LoadingCircle* m_loadingCircle;
