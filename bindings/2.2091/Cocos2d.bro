@@ -4280,7 +4280,7 @@ class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-    virtual ~CCSpriteFrame() = imac 0x343790, ios 0x2eb590;
+    virtual ~CCSpriteFrame() = imac 0x343790, m1 0x2d48f4, ios 0x2eb590;
 
     static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect) = imac 0x342c90, ios inline;
     static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect, bool rotated, cocos2d::CCPoint const& offset, cocos2d::CCSize const& size) = imac 0x3433e0, ios inline;

@@ -7,4 +7,11 @@
 #endif
 
 #if defined(GEODE_IS_IOS)
+bool SFXSettingsPopup::init(SFXBrowser* browser) {
+    m_browser = browser;
+    m_gap = 36.0f;
+    m_maxLabelScale = 0.4f;
+
+    return GJOptionsLayer::init(1, 110.0f);
+}
 #endif
