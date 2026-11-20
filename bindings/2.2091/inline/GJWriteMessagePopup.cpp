@@ -1,7 +1,6 @@
-#ifndef GEODE_IS_WINDOWS // not used in 2.209
+#if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_IOS) // not used in 2.209
 
 #include <Geode/binding/GJWriteMessagePopup.hpp>
-
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
@@ -41,6 +40,5 @@ void GJWriteMessagePopup::updateCharCountLabel(int type) {
 
 #if defined(GEODE_IS_IOS)
 #endif
-
 
 #endif
