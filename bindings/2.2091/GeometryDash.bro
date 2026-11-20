@@ -7375,7 +7375,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool getGJDailyLevelState(GJTimedLevelType type) = win 0x25f690, imac 0x580a20;
     bool getGJRewards(int type) = win 0x25ce00, imac 0x57fe80, m1 0x4d1c68;
     bool getGJSecretReward(std::string key) = win 0x25be60, imac 0x57fb70;
-    void getGJUserInfo(int id) = win 0x23a610, imac 0x5673a0, m1 0x4ba528;
+    void getGJUserInfo(int id) = win 0x23a610, imac 0x5673a0, m1 0x4ba528, ios 0xbe794;
     int getHighestLevelOrder() = win inline, imac 0x5469b0, m1 0x49ceb4;
     int getIntForKey(char const* key) = win inline, imac 0x5822e0;
     std::string getLeaderboardKey(LeaderboardType type, LeaderboardStat stat) = win inline, imac 0x5628a0, m1 0x4b62a4;
@@ -7408,7 +7408,7 @@ class GameLevelManager : cocos2d::CCNode {
     int getNextFreeTemplateID() = win inline, imac 0x54ef60, m1 0x4a4b08;
     std::string getNextLevelName(std::string name) = win 0x21c300, imac 0x53e6f0, m1 0x495724;
     bool getNotifications(int, int) = win 0x24f310;
-    void getOnlineLevels(GJSearchObject* object) = win 0x22ab80, imac 0x558520, m1 0x4acc8c;
+    void getOnlineLevels(GJSearchObject* object) = win 0x22ab80, imac 0x558520, m1 0x4acc8c, ios 0xb5c20;
     const char* getPageInfo(char const* key) = win 0x2218d0, imac 0x54a4f0, m1 0x4a03e8;
     void getPlatformerSaveStats(int mode, int& count, unsigned long& size);
     const char* getPostCommentKey(int parentID) = win inline, imac 0x56bdf0, m1 0x4bec68;
@@ -10777,13 +10777,13 @@ class GJDailyLevelDelegate {
 class GJDifficultySprite : cocos2d::CCSprite {
     virtual ~GJDifficultySprite() = win 0x7e780;
 
-    static GJDifficultySprite* create(int difficulty, GJDifficultyName name) = win 0x3aaf10, imac 0x2a4ab0, m1 0x247594;
+    static GJDifficultySprite* create(int difficulty, GJDifficultyName name) = win 0x3aaf10, imac 0x2a4ab0, m1 0x247594, ios 0x380570;
     static std::string getDifficultyFrame(int difficulty, GJDifficultyName name) = win 0x3ab000, imac 0x2a4c00, m1 0x247740;
 
     bool init(int difficulty, GJDifficultyName name) = win inline, imac 0x2a4b90, m1 0x2476a8;
     void updateDifficultyFrame(int difficulty, GJDifficultyName name) = win 0x3ab0e0, imac 0x2a4d30, m1 0x247880;
     void updateFeatureState(GJFeatureState state) = win 0x3ab1f0, imac 0x2a4eb0, m1 0x2479fc;
-    void updateFeatureStateFromLevel(GJGameLevel* level) = win inline, imac 0x2a4e60, m1 0x2479c0;
+    void updateFeatureStateFromLevel(GJGameLevel* level) = win inline, imac 0x2a4e60, m1 0x2479c0, ios 0x38089c;
 
     GJFeatureState m_featureState;
 }
@@ -12765,7 +12765,7 @@ class GJSearchObject : cocos2d::CCNode {
     static GJSearchObject* createFromKey(char const* key) = win 0x26f4f0, imac 0x54ad30, m1 0x4a0c94;
     static char const* getSearchKey(SearchType searchType, std::string searchQuery, std::string difficulty, std::string length, int page, bool star, bool uncompleted, bool featured, int songID, bool original, bool twoPlayer, bool customSong, bool songFilter, bool noStar, bool coins, bool epic, bool legendary, bool mythic, bool onlyCompleted, int demonFilter, int folder, int searchMode) = win 0x270440;
 
-    char const* getKey() = win 0x270180;
+    char const* getKey() = win 0x270180, imac 0x5591a0, m1 0x4ad7ec, ios 0xb64f0;
     char const* getNextPageKey() = win inline;
     GJSearchObject* getNextPageObject() = win inline, imac 0x58e180, m1 0x4de6c0;
     GJSearchObject* getPageObject(int page) = win 0x2702d0, imac 0x58e1a0, m1 0x4de6cc;
@@ -14890,7 +14890,7 @@ class LevelCell : TableViewCell {
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70, ios 0x132d0c;
     void onClick(cocos2d::CCObject* sender) = win 0x14d200, imac 0x23ac60;
     void onToggle(cocos2d::CCObject* sender) = win 0x148c70, imac 0x302d20;
-    void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10, ios 0x136938;
     void playRecallUnlock() = win 0x148d30;
     bool recallChestReady() = win inline, imac 0x23a920, m1 0x1e6608;
     GJGameLevel* recallLevel() = win 0x148cc0, imac 0x23a8b0, m1 0x1e65ac, ios 0x1363bc;
@@ -23624,9 +23624,9 @@ class SimplePlayer : cocos2d::CCSprite {
     void asyncLoadIcon(int id, IconType type) = imac 0x359be0, m1 0x2e8e40;
     void createRobotSprite(int frame) = win inline, imac 0x354160, m1 0x2e3864;
     void createSpiderSprite(int frame) = win 0x382570, imac 0x3541b0, m1 0x2e38bc;
-    void disableCustomGlowColor() = win inline, imac 0x358240, m1 0x2e76ec;
+    void disableCustomGlowColor() = win inline, imac 0x358240, m1 0x2e76ec, ios 0x3a31bc;
     void disableGlowOutline() = inline;
-    void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, imac 0x358210, m1 0x2e76cc;
+    void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, imac 0x358210, m1 0x2e76cc, ios 0x3a319c;
     void hideAll() = win inline, imac 0x359cf0, m1 0x2e8f58, ios inline;
     void hideSecondary() = win inline, imac 0x359ed0, m1 0x2e9158;
     void iconFinishedLoading(int id, IconType type) = imac 0x359da0, m1 0x2e901c;
@@ -23634,9 +23634,9 @@ class SimplePlayer : cocos2d::CCSprite {
     void setColors(cocos2d::ccColor3B const& color1, cocos2d::ccColor3B const& color2) = win inline, imac 0x3581d0, m1 0x2e7684, ios inline;
     void setFrames(char const* firstFrame, char const* secondFrame, char const* ufoFrame, char const* glowFrame, char const* extraFrame) = win 0x382fd0, imac 0x359f80, m1 0x2e920c;
     void setGlowOutline(cocos2d::ccColor3B color) = inline;
-    void setSecondColor(cocos2d::ccColor3B const& color) = win inline, imac 0x359e50, m1 0x2e90cc;
+    void setSecondColor(cocos2d::ccColor3B const& color) = win inline, imac 0x359e50, m1 0x2e90cc, ios 0x3a423c;
     void tryEnableCustomGlowColor(int id) = win 0x382630, imac 0x359e80, m1 0x2e90fc;
-    void updateColors() = win 0x3826d0, imac 0x357c90, m1 0x2e71b0;
+    void updateColors() = win 0x3826d0, imac 0x357c90, m1 0x2e71b0, ios 0x3a2d64;
     void updatePlayerFrame(int id, IconType type) = win 0x382a80, imac 0x354360, m1 0x2e3a74;
 
     cocos2d::CCSprite* m_firstLayer;
