@@ -4385,6 +4385,11 @@ class DpadMenu : cocos2d::CCMenu {
 
     CCMenuItemSpriteExtra* arrowForTouch(cocos2d::CCTouch* touch) = win 0x1f3250;
 
+    std::array<CCMenuItemSpriteExtra*, 4> m_arrows;
+    cocos2d::CCPoint m_center;
+    cocos2d::CCSize m_extent;
+    cocos2d::CCSize m_deadZone;
+    PAD = android32 0xc, android64 0x10, ios 0x10;
 }
 
 [[link(android)]]
@@ -12612,6 +12617,9 @@ class GJRateEditorSoundLayer : SetupTriggerPopup, UploadPopupDelegate, UploadAct
     bool init(GJEditorSoundConfig*) = imac 0x508f20;
     void onSubmit(cocos2d::CCObject* sender);
 
+    GJEditorSoundConfig* m_soundConfig;
+    UploadActionPopup* m_uploadPopup;
+    bool m_uploadFinished;
 }
 
 [[link(android)]]
@@ -12675,6 +12683,14 @@ class GJRateLevelListLayer : SetupTriggerPopup, UploadPopupDelegate, UploadActio
     void onSubmit(cocos2d::CCObject* sender);
     TodoReturn starSumForBottom(int);
     TodoReturn updateStarSumLabel(int);
+
+    GJLevelList* m_levelList;
+    cocos2d::CCArray* m_levels;
+    UploadActionPopup* m_uploadPopup;
+    bool m_uploadFinished;
+    cocos2d::CCPoint m_chartPosition;
+    std::array<int, 10> m_starCounts;
+    cocos2d::CCLabelBMFont* m_starSumLabel;
 }
 
 [[link(android)]]
@@ -17479,7 +17495,6 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     std::map<int, int> m_songUseCounts;
     cocos2d::CCDictionary* m_customSFXObjects;
     int m_nextCustomSFXID;
-    PAD = win 0x20;
     std::vector<NewsItem> m_newsItems;
     int m_newsVersion;
     [[renamed_from(m_newsPages)]]
@@ -18064,7 +18079,6 @@ class PagedListPopup : FLAlertLayer {
     TodoReturn updatePageArrows(bool, bool);
     void updatePageUI(int, int, int) = win 0xc38e0;
 
-    PAD = win 0x70, android64 0x70, android32 0x4c;
     cocos2d::CCPoint m_center;
     cocos2d::CCSize m_size;
     int m_page;
@@ -26237,10 +26251,16 @@ class VirtualKeyboardNode : cocos2d::CCNode {
     static VirtualKeyboardNode* create(InputCaptureDelegate*) = ios 0x52f640;
 
     void buildKeys() = ios 0x52f3c0;
-    bool init(InputCaptureDelegate*); // ios inline
     void onKey(cocos2d::CCObject* sender) = ios 0x52f718;
     void refreshModifierVisuals() = ios 0x52f7f0;
     void resetModifiers() = ios 0x52f8dc;
+
+    InputCaptureDelegate* m_delegate;
+    cocos2d::CCMenu* m_keysMenu;
+    bool m_ctrlActive;
+    bool m_altActive;
+    bool m_shiftActive;
+    std::map<int, ButtonSprite*> m_modifierSprites;
 }
 
 [[link(android)]]
