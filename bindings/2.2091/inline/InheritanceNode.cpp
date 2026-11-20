@@ -4,7 +4,7 @@ InheritanceNode::InheritanceNode() {
     m_colorID = 0;
     m_inheritanceNode = nullptr;
     m_colorAction = nullptr;
-    m_unk050 = false;
+    m_unk050 = true;
     m_unk051 = false;
 }
 

@@ -7,6 +7,9 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJMessageCell::GJMessageCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_message = nullptr;
+    m_popup = nullptr;
+    m_toggler = nullptr;
     this->init();
 }
 

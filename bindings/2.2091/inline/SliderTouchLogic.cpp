@@ -1,6 +1,13 @@
 #include <Geode/binding/SliderTouchLogic.hpp>
 
-SliderTouchLogic::SliderTouchLogic() {}
+SliderTouchLogic::SliderTouchLogic() {
+    m_unknownUnused = 0.f;
+    m_length = 0.f;
+    m_thumb = nullptr;
+    m_slider = nullptr;
+    m_activateThumb = false;
+    m_rotated = false;
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void SliderTouchLogic::setMaxOffset(float offset) {

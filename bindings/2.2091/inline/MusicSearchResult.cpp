@@ -29,12 +29,15 @@ MusicSearchResult::MusicSearchResult() {
     m_filterObjects = nullptr;
     m_tagFilterObjects = nullptr;
     m_artistFilterObjects = nullptr;
+    m_viewFilterObjects = nullptr;
     m_startIndex = 0;
     m_audioType = 0;
     m_sortType = AudioSortType::NameAscending;
     m_tagFilter = false;
     m_artistFilter = false;
-    m_songType = GJSongType::Music;
+    m_matchAny = false;
+    m_songType = static_cast<GJSongType>(-1);
+    m_viewFilter = 0;
 }
 #endif
 

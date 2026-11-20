@@ -19,6 +19,7 @@ void CustomSongCell::updateBGColor(int index) {
 
 #if defined(GEODE_IS_IOS)
 CustomSongCell::CustomSongCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_songInfoObject = nullptr;
     this->init();
 }
 #endif

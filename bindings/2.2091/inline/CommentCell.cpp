@@ -47,6 +47,11 @@ void CommentCell::updateBGColor(int index) {
 
 #if defined(GEODE_IS_IOS)
 CommentCell::CommentCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_iconSprite = nullptr;
+    m_likeLabel = nullptr;
+    m_comment = nullptr;
+    m_compactMode = false;
+    m_bulkSelectToggler = nullptr;
     this->init();
 }
 #endif

@@ -3,6 +3,9 @@
 SliderThumb::SliderThumb() {
     m_length = 0.f;
     m_vertical = false;
+    m_snapValue = -1.f;
+    m_snapThreshold = 0.f;
+    m_snapStep = 0.f;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

@@ -1,7 +1,17 @@
 #include <Geode/binding/MoreSearchLayer.hpp>
 #include <Geode/binding/GameLevelManager.hpp>
 
-MoreSearchLayer::MoreSearchLayer() {}
+MoreSearchLayer::MoreSearchLayer() {
+    m_audioTrackName = nullptr;
+    m_songLeftBtn = nullptr;
+    m_songRightBtn = nullptr;
+    m_normalBtn = nullptr;
+    m_customBtn = nullptr;
+    m_enterSongID = nullptr;
+    m_commonSongNodes = nullptr;
+    m_normalSongNodes = nullptr;
+    m_customSongNodes = nullptr;
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void MoreSearchLayer::onFollowed(cocos2d::CCObject* sender) {

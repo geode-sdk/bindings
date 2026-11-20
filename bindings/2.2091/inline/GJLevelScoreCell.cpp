@@ -3,6 +3,7 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJLevelScoreCell::GJLevelScoreCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_userScore = nullptr;
     this->init();
 }
 #endif

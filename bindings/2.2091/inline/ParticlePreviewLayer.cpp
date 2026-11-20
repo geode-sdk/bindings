@@ -11,7 +11,7 @@
 ParticlePreviewLayer::ParticlePreviewLayer() {
     m_particleMode = 0;
     m_particleSystem = nullptr;
-    m_gravityMode = false;
+    m_gravityMode = true;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

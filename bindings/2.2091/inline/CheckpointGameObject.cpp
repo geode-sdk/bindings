@@ -3,6 +3,7 @@
 CheckpointGameObject::CheckpointGameObject() {
     m_checkpointActivated = false;
     m_respawnID = 0;
+    m_preSpawnID = 0;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

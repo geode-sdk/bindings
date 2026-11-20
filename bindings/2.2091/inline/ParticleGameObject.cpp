@@ -3,7 +3,7 @@
 #include <Geode/mapping/CCApplication.hpp>
 
 ParticleGameObject::ParticleGameObject() {
-    m_updatedParticleData = false;
+    m_updatedParticleData = true;
     m_hasUniformObjectColor = false;
     m_popupPage = 0;
     m_shouldQuickStart = false;

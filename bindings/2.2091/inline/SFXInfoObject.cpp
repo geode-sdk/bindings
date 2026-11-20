@@ -8,6 +8,7 @@ SFXInfoObject::SFXInfoObject() {
     m_duration = 0;
     m_folder = false;
     m_unk049 = false;
+    m_customSfxID = 0;
 }
 #endif
 

@@ -333,12 +333,14 @@ FMODAudioEngine::FMODAudioEngine() {
     m_globalChannelDSP = nullptr;
     m_globalChannel = nullptr;
     m_reverbChannel = nullptr;
+    m_unkChannel = nullptr;
     m_lastResult = FMOD_RESULT::FMOD_OK;
     m_sampleRate = 0;
     m_reducedQuality = false;
     m_allAudioPaused = false;
     m_musicOffset = 0;
     m_stopped = false;
+    m_globalChannelPaused = false;
     m_reverbPreset = FMODReverbPreset::Generic;
     m_showAudioVisualizer = false;
     m_musicVisualizerTime = .0f;

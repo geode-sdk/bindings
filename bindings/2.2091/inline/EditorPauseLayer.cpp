@@ -8,6 +8,9 @@
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;
     m_editorLayer = nullptr;
+    m_musicSlider = nullptr;
+    m_sfxSlider = nullptr;
+    m_editorSFXSlider = nullptr;
 }
 #endif
 

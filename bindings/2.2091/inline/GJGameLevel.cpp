@@ -187,6 +187,8 @@ std::string GJGameLevel::getUnpackedLevelDescription() {
 GJGameLevel::GJGameLevel() {
     m_lastBuildSave = nullptr;
     m_levelID = { 0, 0 };
+    m_uploadDateUnix = 0;
+    m_updateDateUnix = 0;
     m_userID = { 0, 0 };
     m_accountID = { 0, 0 };
     m_difficulty = GJDifficulty::Auto;
@@ -205,6 +207,8 @@ GJGameLevel::GJGameLevel() {
     m_gauntletLevel2 = false;
     m_workingTime = 0;
     m_workingTime2 = 0;
+    m_buildStats = {};
+    m_buildStats.m_lastActionTime = -1;
     m_lowDetailMode = false;
     m_lowDetailModeToggled = false;
     m_disableShakeToggled = false;
@@ -281,6 +285,27 @@ GJGameLevel::GJGameLevel() {
     m_coinsPoints = 0;
     m_savedTime = false;
     m_savedPoints = false;
+    m_cbsOverride = 0;
+    m_lastAutoBackupUnix = 0;
+    m_platformerSaveLevelVersion = 0;
+    m_platformerSaveFormatVersion = 0;
+    m_enablePlatformerSave = false;
+    m_practiceAttempts = 0;
+    m_deathTrackerFormatVersion = 0;
+    m_firstPlayedUnix = 0;
+    m_lastExitedUnix = 0;
+    m_sessionPlayTime = 0;
+    m_totalPlayTime = 0;
+    m_completions = 0;
+    m_sessionLogDirty = false;
+    m_deathDataPendingUpload = false;
+    m_deathUploadRate = 1000;
+    m_unkK152a = 0;
+    m_unkK152b = 0;
+    m_levelControlsVersion = 0;
+    m_customLevelControlsVersion = 0;
+    m_editedCustomControls = false;
+    m_customControlsType = 0;
 }
 #endif
 

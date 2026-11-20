@@ -26,6 +26,7 @@ SetupObjectOptionsPopup::SetupObjectOptionsPopup() {
     m_extendedCollision = false;
     m_unk2a6 = false;
     m_effectObject = false;
+    m_unk2a7 = false;
     m_singlePlayerTouch = false;
 }
 

@@ -10,6 +10,7 @@ AccountRegisterLayer::AccountRegisterLayer() {
     m_emailField = nullptr;
     m_usernameLabel = nullptr;
     m_passwordLabel = nullptr;
+    m_passwordInfoLabel = nullptr;
     m_confirmPasswordLabel = nullptr;
     m_emailLabel = nullptr;
     m_loadingCircle = nullptr;

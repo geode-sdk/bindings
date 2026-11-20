@@ -13,13 +13,22 @@ GJTransformControl::GJTransformControl() {
     m_delegate = nullptr;
     m_warpSprites = nullptr;
     m_warpLockButton = nullptr;
+    m_oppositeAnchorButton = nullptr;
+    m_gridSnapButton = nullptr;
+    m_freeRotationButton = nullptr;
+    m_controlMenuTouch.m_activeMenu = nullptr;
     m_scaleX = 1.0f;
     m_scaleY = 1.0f;
     m_warpLocked = false;
+    m_oppositeAnchor = false;
+    m_gridSnap = false;
+    m_freeRotation = false;
     m_rotationX = 0.0f;
     m_rotationY = 0.0f;
     m_rotation = 0.0f;
     m_buttonScale = 1.0f;
+    m_anchoring = false;
+    m_nearestVertex = 0;
 }
 
 void GJTransformControl::calculateRotationOffset() {

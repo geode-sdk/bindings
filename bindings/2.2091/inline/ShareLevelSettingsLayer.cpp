@@ -1,6 +1,8 @@
 #include <Geode/binding/ShareLevelSettingsLayer.hpp>
 
-ShareLevelSettingsLayer::ShareLevelSettingsLayer() {}
+ShareLevelSettingsLayer::ShareLevelSettingsLayer() {
+    m_shareLevelLayer = nullptr;
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif

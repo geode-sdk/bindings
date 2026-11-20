@@ -5,6 +5,7 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJScoreCell::GJScoreCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_score = nullptr;
     this->init();
 }
 

@@ -6,10 +6,13 @@ GJAccountSettingsLayer::GJAccountSettingsLayer() {
     m_messageStatus = 0;
     m_friendStatus = 0;
     m_commentHistoryStatus = 0;
+    m_groupStatus = 1;
+    m_unk2ac = 2;
     m_inputs = nullptr;
     m_messageSettings = nullptr;
     m_friendRequestSettings = nullptr;
     m_commentSettings = nullptr;
+    m_groupInviteSettings = nullptr;
 }
 #endif
 

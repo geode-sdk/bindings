@@ -6,9 +6,11 @@ ColorAction::ColorAction() {
     m_paused = false;
     m_currentOpacity = 1.f;
     m_deltaTime = 0.f;
+    m_fromColor = { 255, 255, 255 };
+    m_toColor = { 255, 255, 255 };
     m_duration = 0.f;
     m_blending = false;
-    m_playerColor = 0;
+    m_playerColor = -1;
     m_colorID = 0;
     m_fromOpacity = 1.f;
     m_toOpacity = 1.f;

@@ -3,6 +3,8 @@
 GauntletSelectLayer::GauntletSelectLayer() {
     m_backgroundSprite = nullptr;
     m_scrollLayer = nullptr;
+    m_leftButton = nullptr;
+    m_rightButton = nullptr;
     m_refreshButton = nullptr;
     m_exiting = false;
     m_playing = false;

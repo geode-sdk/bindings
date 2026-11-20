@@ -17,6 +17,9 @@ EditLevelLayer::EditLevelLayer() {
     m_exiting = false;
     m_levelType = GJLevelType::Default;
     m_descriptionPopup = nullptr;
+    m_loadPlatformerSave = false;
+    m_emoteButton = nullptr;
+    m_emotePicker = nullptr;
 }
 #endif
 

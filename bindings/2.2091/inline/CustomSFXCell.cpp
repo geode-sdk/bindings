@@ -20,6 +20,9 @@ bool CustomSFXCell::shouldReload() {
 
 #if defined(GEODE_IS_IOS)
 CustomSFXCell::CustomSFXCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_sfxObject = nullptr;
+    m_selected = false;
+    m_compactMode = false;
     this->init();
 }
 #endif

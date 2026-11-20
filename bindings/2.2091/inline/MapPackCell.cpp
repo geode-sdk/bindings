@@ -9,6 +9,13 @@ void MapPackCell::reloadCell() {
 
 #if defined(GEODE_IS_WINDOWS)
 MapPackCell::MapPackCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_mapPack = nullptr;
+    m_viewButton = nullptr;
+    m_rewardButton = nullptr;
+    m_rewardLabels = cocos2d::CCArray::create();
+    m_rewardLabels->retain();
+    m_rewardSprites = cocos2d::CCArray::create();
+    m_rewardSprites->retain();
     this->init();
 }
 

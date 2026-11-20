@@ -3,6 +3,16 @@
 PauseLayer::PauseLayer() {
     m_unfocused = false;
     m_tryingQuit = false;
+    m_uiHidden = false;
+    m_startposLabel = nullptr;
+    m_startPosIndex = 0;
+    m_startPositions = nullptr;
+    m_isEditorLevel = false;
+    m_timeSpeedControls = nullptr;
+    m_musicSlider = nullptr;
+    m_sfxSlider = nullptr;
+    m_showUIMenu = nullptr;
+    m_platformSettingsButton = nullptr;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
