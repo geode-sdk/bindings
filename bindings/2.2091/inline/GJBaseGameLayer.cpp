@@ -1,4 +1,6 @@
 #include <Geode/mapping/CCObject.hpp>
+#include <Geode/mapping/CCArray.hpp>
+#include <Geode/mapping/CCInteger.hpp>
 #include <Geode/binding/GJBaseGameLayer.hpp>
 #include <Geode/utils/cocos.hpp>
 #include <Geode/binding/AdvancedFollowEditObject.hpp>
@@ -26,6 +28,7 @@
 #include <Geode/binding/EnterEffectObject.hpp>
 #include <Geode/binding/EnhancedTriggerObject.hpp>
 #include <Geode/binding/FMODAudioEngine.hpp>
+#include <Geode/binding/LevelSettingsObject.hpp>
 
 GJBaseGameLayer* GJBaseGameLayer::get() {
     return GameManager::get()->m_gameLayer;
@@ -528,6 +531,55 @@ int GJBaseGameLayer::countCollectedUserCoins() {
         }
     }
     return count;
+}
+
+StartPosObject* GJBaseGameLayer::createLiveStartPosObject() {
+    StartPosObject* object = static_cast<StartPosObject*>(GameObject::createWithKey(31));
+
+    object->setStartPos(m_player1->getPosition());
+
+    if(m_player1->m_isShip) {
+        object->m_startSettings->m_startMode = 1;
+    } else if(m_player1->m_isBall) {
+        object->m_startSettings->m_startMode = 2;
+    } else if(m_player1->m_isBird) {
+        object->m_startSettings->m_startMode = 3;
+    } else if(m_player1->m_isDart) {
+        object->m_startSettings->m_startMode = 4;
+    } else if(m_player1->m_isRobot) {
+        object->m_startSettings->m_startMode = 5;
+    } else if(m_player1->m_isSpider) {
+        object->m_startSettings->m_startMode = 6;
+    } else if(m_player1->m_isSwing) {
+        object->m_startSettings->m_startMode = 7;
+    } else {
+        object->m_startSettings->m_startMode = 0;
+    }
+
+    if(m_player1->m_playerSpeed == 0.7f) {
+        object->m_startSettings->m_startSpeed = Speed::Slow;
+    } else if(m_player1->m_playerSpeed == 1.1f) {
+        object->m_startSettings->m_startSpeed = Speed::Fast;
+    } else if(m_player1->m_playerSpeed == 1.3f) {
+        object->m_startSettings->m_startSpeed = Speed::Faster;
+    } else if(m_player1->m_playerSpeed == 1.6f) {
+        object->m_startSettings->m_startSpeed = Speed::Fastest;
+    } else {
+        object->m_startSettings->m_startSpeed = Speed::Normal;
+    }
+
+    object->m_startSettings->m_isFlipped = m_player1->m_isUpsideDown;
+    object->m_startSettings->m_startMini = m_player1->m_vehicleSize < 1.0f;
+    object->m_startSettings->m_startDual = m_gameState.m_isDualMode;
+    object->m_startSettings->m_mirrorMode = m_gameState.m_isFlipped;
+    object->m_startSettings->m_reverseGameplay = m_player1->m_isGoingLeft;
+    object->m_startSettings->m_rotateGameplay = m_player1->m_isSideways;
+    object->m_startSettings->m_targetChannel = m_gameState.m_currentChannel;
+    object->m_startSettings->m_yVelocity = m_player1->getYVelocity();
+    object->m_startSettings->m_freeMode = m_gameState.m_isFreeMode;
+    object->m_startSettings->m_disableStartPos = true;
+
+    return object;
 }
 
 cocos2d::CCArray* GJBaseGameLayer::createNewKeyframeAnim() {
@@ -1146,7 +1198,7 @@ void GJBaseGameLayer::restoreAllUIObjects() {
         object->m_isUIObject = false;
         this->addToSection(object);
         m_objectsToDeactivate->setObject(object, object->m_uniqueID);
-        object->m_unk3ee = true;
+        object->m_isDeactivated = true;
     }
     m_uiObjects->removeAllObjects();
     m_uiObjectPositions.clear();
@@ -1595,6 +1647,52 @@ void GJBaseGameLayer::updateTimeMod(float speed, bool players, bool noEffects) {
 
 void GJBaseGameLayer::queueTimeWarp(float timeWarp) {
     m_gameState.m_queuedTimeWarp = timeWarp;
+}
+
+bool GJBaseGameLayer::isGroupParentOf(GameObject* object, int groupID) {
+    if (!object) return false;
+    auto groups = static_cast<cocos2d::CCArray*>(m_parentGroupsDict->objectForKey(groupID));
+    return groups && groups->containsObject(object);
+}
+
+void GJBaseGameLayer::remapGroupParent(GameObject* object, int oldGroupID, int newGroupID)
+{
+    if(!object) return;
+    if(oldGroupID <= 0 || newGroupID <= 0 || oldGroupID == newGroupID) return;
+
+    auto oldGroup = static_cast<cocos2d::CCArray*>(m_parentGroupsDict->objectForKey(oldGroupID));
+    if(!oldGroup || !oldGroup->containsObject(object)) return;
+    
+    oldGroup->removeObject(object);
+
+    if(oldGroup->count() == 0) m_parentGroupsDict->removeObjectForKey(oldGroupID);
+
+    if(auto ids = static_cast<cocos2d::CCArray*>(m_parentGroupIDs->objectForKey(object->m_uniqueID))) {
+        bool foundNew = false;
+
+        for(auto i = static_cast<int>(ids->count()) - 1; i >= 0; i--) {
+            auto val = static_cast<cocos2d::CCInteger*>(ids->objectAtIndex(i))->getValue();
+            if(val == oldGroupID) {
+                ids->removeObjectAtIndex(i, true);
+            } else if(val == newGroupID) {
+                foundNew = true;
+            }
+        }
+
+        if(!foundNew) {
+            ids->addObject(cocos2d::CCInteger::create(newGroupID));
+        }
+    }
+
+    auto newGroup = static_cast<cocos2d::CCArray*>(m_parentGroupsDict->objectForKey(newGroupID));
+    if(!newGroup) {
+        newGroup = cocos2d::CCArray::create();
+        m_parentGroupsDict->setObject(newGroup, newGroupID);
+    }
+    
+    if(!newGroup->containsObject(object)) {
+        newGroup->addObject(object);
+    }
 }
 #endif
 

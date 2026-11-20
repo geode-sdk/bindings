@@ -8,6 +8,7 @@
 #include <Geode/binding/UploadActionPopup.hpp>
 #include <Geode/mapping/CCTransitionFade.hpp>
 
+#if !defined(GEODE_IS_IOS)
 EditLevelLayer::EditLevelLayer() {
     m_buttonMenu = nullptr;
     m_level = nullptr;
@@ -17,6 +18,7 @@ EditLevelLayer::EditLevelLayer() {
     m_levelType = GJLevelType::Default;
     m_descriptionPopup = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditLevelLayer::onMoveToTop() {

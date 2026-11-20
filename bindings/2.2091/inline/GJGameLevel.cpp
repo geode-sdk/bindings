@@ -65,19 +65,6 @@ void GJGameLevel::setStars(int stars) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-
-int GJGameLevel::getAverageDifficulty() {
-    if (m_ratings <= 4) return 0;
-    return round(m_ratingsSum / m_ratings);
-}
-
-std::string GJGameLevel::getUnpackedLevelDescription() {
-    if (m_levelDesc.empty()) {
-        return "";
-    }
-    return LevelTools::base64DecodeString(m_levelDesc);
-}
-
 std::string GJGameLevel::generateSettingsString() { return ""; }
 
 void GJGameLevel::levelWasSubmitted() {
@@ -181,6 +168,18 @@ std::string GJGameLevel::scoreVectorToString(std::vector<int>& vec, int type) {
 
 void GJGameLevel::setLastBuildPageForTab(int tab, int page) {
     m_lastBuildSave->setObject(cocos2d::CCString::createWithFormat("%i", page), cocos2d::CCString::createWithFormat("%i", tab)->getCString());
+}
+
+int GJGameLevel::getAverageDifficulty() {
+    if (m_ratings <= 4) return 0;
+    return round(m_ratingsSum / m_ratings);
+}
+
+std::string GJGameLevel::getUnpackedLevelDescription() {
+    if (m_levelDesc.empty()) {
+        return "";
+    }
+    return LevelTools::base64DecodeString(m_levelDesc);
 }
 #endif
 

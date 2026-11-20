@@ -190,6 +190,13 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 			fmt::arg("includes", codegen::getIncludes(root)),
 			fmt::arg("class_include", codegen::getClassIncludeString(c.name))
 		);
+		auto addDestructorLockInclude = [&, added = false]() mutable {
+			if (!added) {
+				added = true;
+				// destructorlock is declared in ccobject for some reason
+				output = "#include <Geode/cocos/cocoa/CCObject.h>\n" + output;
+			}
+		};
 
 		std::string filename = (codegen::getUnqualifiedClassName(c.name) + ".cpp");
 
@@ -270,9 +277,13 @@ std::string generateBindingSource(Root const& root, std::filesystem::path const&
 								else {
 									used_declare_format = format_strings::declare_constructor;
 								}
+								// declare_constructor uses DestructorLock
+								addDestructorLockInclude();
 								break;
 							case FunctionType::Dtor:
 								used_declare_format = areSuperclassesEmpty(c) ? format_strings::declare_destructor_baseless : format_strings::declare_destructor;
+								// declare_destructor uses DestructorLock
+								addDestructorLockInclude();
 								break;
 						}
 

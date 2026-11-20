@@ -7,12 +7,13 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void AppDelegate::setIdleTimerDisabled(bool disabled) {}
 
-AppDelegate* AppDelegate::get() {
-    return static_cast<AppDelegate*>(cocos2d::CCApplication::sharedApplication());
-}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+
+AppDelegate* AppDelegate::get() {
+    return static_cast<AppDelegate*>(cocos2d::CCApplication::sharedApplication());
+}
 
 float AppDelegate::bgScale() {
     return cocos2d::CCDirector::sharedDirector()->getScreenScaleFactorMax();

@@ -23,6 +23,23 @@ void LevelCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });
     m_backgroundLayer->setOpacity(255);
 }
+
+bool LevelCell::inRecallMode() {
+    return m_level->m_recallDailyID > 0;
+}
+
+GJGameLevel* LevelCell::recallSavedLevel() {
+    auto saved = GameLevelManager::sharedState()->getSavedDailyLevel(m_level->m_recallDailyID);
+    return (saved && saved->m_levelID != m_level->m_levelID) ? nullptr : saved;
+}
+
+bool LevelCell::recallChestReady() {
+    auto id = m_level->m_recallDailyID;
+    if (id <= 100000) return false;
+
+    auto GSM = GameStatsManager::sharedState();
+    return GSM->isDailyRecall(id) && GSM->hasCompletedDailyStars(id) && !GSM->hasCompletedDailyLevel(id);
+}
 #endif
 
 #if defined(GEODE_IS_IOS)

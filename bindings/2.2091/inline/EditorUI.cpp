@@ -15,6 +15,7 @@
 #include <Geode/binding/ObjectToolbox.hpp>
 #include <Geode/binding/ColorSelectLiveOverlay.hpp>
 #include <Geode/binding/HSVLiveOverlay.hpp>
+#include <Geode/binding/Standalones.hpp>
 
 EditorUI* EditorUI::get() {
     auto lel = LevelEditorLayer::get();
@@ -22,6 +23,7 @@ EditorUI* EditorUI::get() {
     return lel->m_editorUI;
 }
 
+#if !defined(GEODE_IS_IOS)
 void EditorUI::zoomGameLayer(bool zoomingIn) {
     auto scale = m_editorLayer->m_objectLayer->getScale();
     auto zoom = roundf((zoomingIn ? scale + .1f : scale - .1f) / .1f + .001f) * .1f;
@@ -29,6 +31,7 @@ void EditorUI::zoomGameLayer(bool zoomingIn) {
     else if (zoom < .1f) zoom = .1f;
     this->updateZoom(zoom);
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorUI::addSnapPosition(cocos2d::CCPoint position) {
@@ -38,10 +41,6 @@ void EditorUI::addSnapPosition(cocos2d::CCPoint position) {
 }
 
 void EditorUI::colorSelectClosed(cocos2d::ccColor3B color) {}
-
-void EditorUI::constrainGameLayerPosition() {
-    this->constrainGameLayerPosition(-100.f, -100.f);
-}
 
 void EditorUI::createGlow() {}
 
@@ -171,11 +170,6 @@ float EditorUI::rotationforCommand(EditCommand command) {
     }
 }
 
-void EditorUI::setupEditMenu() {
-    this->createMoveMenu();
-    this->updateEditMenu();
-}
-
 bool EditorUI::shouldSnap(GameObject* object) {
     return (int)object->getRotation() % 90 == 0;
 }
@@ -191,15 +185,6 @@ void EditorUI::showDeleteConfirmation() {
     )->show();
 }
 
-void EditorUI::updateDeleteMenu() {
-    m_deleteMenu->setVisible(m_selectedMode == 1);
-    this->updateDeleteButtons();
-}
-
-void EditorUI::updateViewMenu() {
-    m_viewMenu->setVisible(!m_uiHidden && m_selectedMode == 4);
-}
-
 /*void EditorUI::updateGridNodeSize(int objectID) {
     auto size = ObjectToolbox::sharedState()->gridNodeSizeForKey(objectID);
     m_gridSize = size;
@@ -213,6 +198,19 @@ void EditorUI::updateGroupIDBtn2() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+void EditorUI::constrainGameLayerPosition() {
+    this->constrainGameLayerPosition(-100.f, -100.f);
+}
+
+void EditorUI::updateDeleteMenu() {
+    m_deleteMenu->setVisible(m_selectedMode == 1);
+    this->updateDeleteButtons();
+}
+
+void EditorUI::updateViewMenu() {
+    m_viewMenu->setVisible(!m_uiHidden && m_selectedMode == 4);
+}
+
 EditorUI* EditorUI::create(LevelEditorLayer* editorLayer) {
     auto ret = new EditorUI();
     if (ret->init(editorLayer)) {
@@ -479,14 +477,13 @@ void EditorUI::getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* select
     }
 }
 
-// TODO: uncomment once free-standing offsetForKey is fixed in broma
-/* cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
-    return GameToolbox::getRelativeOffset(object, this->offsetForKey(object->m_objectID));
-} 
+cocos2d::CCPoint EditorUI::getRelativeOffset(GameObject* object) {
+    return GameToolbox::getRelativeOffset(object, offsetForKey(object->m_objectID));
+}
 
 cocos2d::CCPoint EditorUI::positionWithoutOffset(GameObject* object) {
     return object->getPosition() - this->getRelativeOffset(object);
-} */
+}
 
 float EditorUI::getSnapAngle(GameObject* object, cocos2d::CCArray* objects) {
     if (objects && objects->count() > 0) {
@@ -635,6 +632,11 @@ float EditorUI::xPosFromValue(float value) {
     auto scale = m_editorLayer->m_objectLayer->getScale();
     return sectionCount * 100.f * scale * value - xMin;
 }
+
+void EditorUI::setupEditMenu() {
+    this->createMoveMenu();
+    this->updateEditMenu();
+}
 #endif
 
 #if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
@@ -642,7 +644,7 @@ EditorUI* EditorUI::getUI() { return this; }
 #endif
 
 #if defined(GEODE_IS_IOS)
-void EditorUI::updateSpecialUIElements() {
+/*void EditorUI::updateSpecialUIElements() {
     if (!m_selectedObject && m_selectedObjects->count() == 0) {
         this->deactivateRotationControl();
         this->deactivateScaleControl();
@@ -650,13 +652,13 @@ void EditorUI::updateSpecialUIElements() {
     }
     this->updateObjectInfoLabel();
     this->updateScaleControl();
-}
+}*/
 
-void EditorUI::updateEditMenu() {
+/*void EditorUI::updateEditMenu() {
     bool visible = !m_uiHidden && m_selectedMode == 3;
     if (m_dpadMoveNode) m_dpadMoveNode->setVisible(visible);
     if (m_editButtonBar) m_editButtonBar->setVisible(false);
-}
+}*/
 
 void EditorUI::closeLiveColorSelect() {
     if (m_colorOverlay) {

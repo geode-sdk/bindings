@@ -8,6 +8,10 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+float CCScrollLayerExt::getMaxY() {
+    return m_scrollLimitBottom;
+}
+
 float CCScrollLayerExt::getMinY() {
     return this->getContentSize().height - m_contentLayer->getContentSize().height - m_scrollLimitTop;
 }
@@ -18,9 +22,6 @@ void CCScrollLayerExt::setContentLayerSize(cocos2d::CCSize size) {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-float CCScrollLayerExt::getMaxY() {
-    return m_scrollLimitBottom;
-}
 
 void CCScrollLayerExt::scrollLayer(float offset) {
     m_scrollDecay += offset * GameManager::sharedState()->m_scrollSensitivity;
