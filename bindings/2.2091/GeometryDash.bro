@@ -3494,12 +3494,12 @@ class CurrencySprite : CCSpritePlus {
     ~CurrencySprite() = win inline, m1 0x781478, ios 0x3bf9a8;
 
     static CurrencySprite* create(CurrencySpriteType type, bool burst) = win inline, imac 0x88aee0, m1 0x77f798;
-    static CurrencySprite* createWithSprite(cocos2d::CCSprite* sprite) = win 0x13ec10, imac 0x88bcf0, m1 0x780480;
+    static CurrencySprite* createWithSprite(cocos2d::CCSprite* sprite) = win inline, imac 0x88bcf0, m1 0x780480;
     static CurrencySpriteType rewardToSpriteType(int rewardType) = win 0x13edf0, imac 0x88daf0, m1 0x781fd8;
     static std::string spriteTypeToStat(CurrencySpriteType type) = win 0x13eea0, imac 0x88ade0;
 
     bool init(CurrencySpriteType type, bool burst) = win 0x13d450, imac 0x88d000, m1 0x781560;
-    bool initWithSprite(cocos2d::CCSprite* sprite) = win inline, m1 0x781e28;
+    bool initWithSprite(cocos2d::CCSprite* sprite) = win 0x13ec10, imac 0x88d940, m1 0x781e28;
 
     float m_unkFloat1;
     float m_unkFloat2;
