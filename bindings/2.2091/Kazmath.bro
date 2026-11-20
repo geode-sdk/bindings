@@ -6,7 +6,7 @@ kmAABB* const kmAABBAssign(kmAABB*, kmAABB const*) = imac 0x6c94a0, m1 0x5e14e4;
 [[link(win, android)]]
 int const kmAABBContainsPoint(kmVec3 const*, kmAABB const*) = imac 0x6c9450, m1 0x5e1480;
 [[link(win, android)]]
-kmAABB* const kmAABBScale(kmAABB*, kmAABB const*, float);
+kmAABB* const kmAABBScale(kmAABB*, kmAABB const*, float) = imac 0x6c94d0, m1 0x5e1518;
 [[link(win, android)]]
 unsigned char kmAlmostEqual(float, float) = imac 0x87a700, m1 0x77004c;
 [[link(win, android)]]
