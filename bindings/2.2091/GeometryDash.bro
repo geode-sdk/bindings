@@ -5295,7 +5295,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onGroupUp(cocos2d::CCObject* sender) = win 0x1beaa0, imac 0xaae0, m1 0x9498, ios 0x472c68;
     void onHideUIBtn(cocos2d::CCObject* sender) = win 0x1b3ca0, imac 0x8500, m1 0x7644, ios 0x4711c4;
     void onLockLayer(cocos2d::CCObject* sender) = win 0x1bec50, imac 0xabf0, m1 0x957c, ios 0x472d24;
-    void onNewCustomItem(cocos2d::CCObject* sender) = win 0x1f5a90, imac 0x198a0, m1 0x5789a4;
+    void onNewCustomItem(cocos2d::CCObject* sender) = win 0x1f5a90, imac 0x198a0, m1 0x5789a4, ios 0x187c6c;
     void onPaste(cocos2d::CCObject* sender) = win 0x1c5e20, imac 0x5b7e60, m1 0x504ba0, ios 0x18aa70;
     void onPasteColor(cocos2d::CCObject* sender) = win 0x1c72a0, imac 0x5b8690, m1 0x505414, ios 0x18afec;
     void onPasteInPlace(cocos2d::CCObject* sender) = win inline, imac 0x41b670, ios inline;
@@ -17950,10 +17950,10 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     void onRestartFull(cocos2d::CCObject* sender) = win 0x4daf60, imac 0x3c1130, m1 0x345ef8;
     void onResume(cocos2d::CCObject* sender) = win 0x4dac50, imac 0x3c1280, m1 0x34603c;
     void onShowStartposBrowser(cocos2d::CCObject* sender) = win 0x4d9150, imac 0x3c1cf0, m1 0x346aa0;
-    void onSideButtonPressed(cocos2d::CCObject* sender) = win 0x4d9520, imac 0x3c1590, m1 0x346354;
+    void onSideButtonPressed(cocos2d::CCObject* sender) = win 0x4d9520, imac 0x3c1590, m1 0x346354, ios 0x1bfb00;
     void onTime(cocos2d::CCObject* sender) = imac 0x3c2330, m1 0x346f84;
     void onToggleUI(cocos2d::CCObject* sender) = win 0x4d9bc0;
-    void onTryEdit(cocos2d::CCObject* sender) = win 0x4db090, imac 0x3c1020, m1 0x345dec;
+    void onTryEdit(cocos2d::CCObject* sender) = win 0x4db090, imac 0x3c1020, m1 0x345dec, ios 0x1bf6ac;
     void setupLegacyProgressBars() = win 0x4da1e0, imac 0x3c2510, m1 0x347184, ios 0x1c0580;
     void setupPlatformerLabels(bool) = win 0x4da5d0, imac 0x3c2bf0, m1 0x347814, ios 0x1c0c0c;
     void setupProgressBars() = win inline, imac 0x3c0f70, m1 0x345d48, ios 0x1bf610;
