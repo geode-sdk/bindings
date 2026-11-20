@@ -451,8 +451,8 @@ class cocos2d::CCArray : cocos2d::CCObject {
 
 [[link(win, android)]]
 class cocos2d::CCAtlasNode : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
-    virtual ~CCAtlasNode() = imac 0x316000;
     CCAtlasNode() = imac 0x315f20, m1 0x2a800c;
+    virtual ~CCAtlasNode() = imac 0x316000, m1 0x2a809c;
 
     static cocos2d::CCAtlasNode* create(char const*, unsigned int, unsigned int, unsigned int) = imac 0x316120, m1 0x2a8184;
 
@@ -1431,7 +1431,7 @@ class cocos2d::CCFadeTo : cocos2d::CCActionInterval {
 [[link(win, android)]]
 class cocos2d::CCFileUtils : cocos2d::TypeInfo {
     protected CCFileUtils() = imac 0x428590, m1 0x39f8d8, ios 0x1cf618;
-    virtual ~CCFileUtils() = imac 0x1e5ad0, m1 0x39f914, ios 0x1cf654;
+    virtual ~CCFileUtils() = imac 0x4285e0, m1 0x39f914, ios 0x1cf654;
 
     static void purgeFileUtils() = imac 0x428560, m1 0x39f8a4, ios 0x1cf5e4;
     // CCFileUtils(cocos2d::CCFileUtils const&);
@@ -2245,8 +2245,8 @@ class cocos2d::CCLayerGradient : cocos2d::CCLayerColor {
 
 [[link(win, android)]]
 class cocos2d::CCLayerMultiplex : cocos2d::CCLayer {
-    virtual ~CCLayerMultiplex() = imac 0x4ad4d0;
     CCLayerMultiplex() = imac 0x4ad390, m1 0x412e88;
+    virtual ~CCLayerMultiplex() = imac 0x4ad4d0, m1 0x412f68;
 
     static cocos2d::CCLayerMultiplex* create() = imac 0x4ad9f0, m1 0x4132a8;
     static cocos2d::CCLayerMultiplex* create(cocos2d::CCLayer*, ...) = mac inline;
@@ -4793,7 +4793,7 @@ class cocos2d::CCTMXObjectGroup : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCTMXTiledMap : cocos2d::CCNode {
     CCTMXTiledMap() = imac 0x5197d0, m1 0x47451c;
-    virtual ~CCTMXTiledMap() = imac 0x519840;
+    virtual ~CCTMXTiledMap() = imac 0x519840, m1 0x474588;
 
     static cocos2d::CCTMXTiledMap* create(char const*) = imac 0x5192e0, m1 0x47403c;
     static cocos2d::CCTMXTiledMap* createWithXML(char const*, char const*) = imac 0x5194b0, m1 0x474214;
@@ -4817,7 +4817,7 @@ class cocos2d::CCTMXTiledMap : cocos2d::CCNode {
 [[link(win, android)]]
 class cocos2d::CCTMXTilesetInfo : cocos2d::CCObject {
     CCTMXTilesetInfo() = imac 0x4c8ad0, m1 0x42b93c;
-    virtual ~CCTMXTilesetInfo() = imac 0x4c8bb0;
+    virtual ~CCTMXTilesetInfo() = imac 0x4c8bb0, m1 0x42ba14;
 
     cocos2d::CCRect rectForGID(unsigned int) = imac 0x4c8c80, m1 0x42bb48;
 }
@@ -4872,7 +4872,7 @@ class cocos2d::CCTouchDelegate {
 class cocos2d::CCTouchDispatcher : cocos2d::CCObject, cocos2d::EGLTouchDelegate {
     // CCTouchDispatcher(cocos2d::CCTouchDispatcher const&);
     // CCTouchDispatcher();
-    virtual ~CCTouchDispatcher() = imac 0x4c71a0, ios 0x1cd56c;
+    virtual ~CCTouchDispatcher() = imac 0x4c71a0, m1 0x42a00c, ios 0x1cd56c;
 
     virtual void touchesBegan(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4c8670, m1 0x42b4e0, ios 0x1ce250;
     virtual void touchesMoved(cocos2d::CCSet*, cocos2d::CCEvent*) = imac 0x4c8750, m1 0x42b5d0, ios 0x1ce344;
@@ -5220,8 +5220,8 @@ class cocos2d::CCTransitionScene : cocos2d::CCScene {
 
 [[link(win, android)]]
 class cocos2d::CCTransitionSceneOriented : cocos2d::CCTransitionScene {
-    virtual ~CCTransitionSceneOriented() = imac 0xa3940;
     CCTransitionSceneOriented() = imac 0xa3900, m1 0x93018;
+    virtual ~CCTransitionSceneOriented() = imac 0xa3940, m1 0x93058;
 
     static cocos2d::CCTransitionSceneOriented* create(float, cocos2d::CCScene*, cocos2d::tOrientation) = imac 0xa3a30, m1 0x9311c;
 
@@ -5472,8 +5472,8 @@ class cocos2d::extension::CCArrayForObjectSorting : cocos2d::CCArray {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
-    virtual ~CCControl() = imac 0x33ccd0, ios 0x23a8ac;
     CCControl() = imac 0x33c9b0, m1 0x2cea0c, ios 0x23a77c;
+    virtual ~CCControl() = imac 0x33ccd0, m1 0x2cec68, ios 0x23a8ac;
 
     static cocos2d::extension::CCControl* create() = imac 0x33cb10, m1 0x2cead4, ios inline;
 
@@ -5508,7 +5508,7 @@ class cocos2d::extension::CCControl : cocos2d::CCLayerRGBA {
 [[link(win, android)]]
 class cocos2d::extension::CCControlButton : cocos2d::extension::CCControl {
     CCControlButton() = imac 0x33e970, m1 0x2d0588;
-    virtual ~CCControlButton() = imac 0x33eb50, m1 0x2428a0;
+    virtual ~CCControlButton() = imac 0x33eb50, m1 0x2d06d8;
 
     static cocos2d::extension::CCControlButton* create() = imac 0x340be0, m1 0x2d25a0;
     static cocos2d::extension::CCControlButton* create(cocos2d::extension::CCScale9Sprite*) = imac 0x33f4e0, m1 0x2d0f10;
@@ -5578,8 +5578,8 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlHuePicker : cocos2d::extension::CCControl {
-    virtual ~CCControlHuePicker() = imac 0x342080, ios 0x244850;
     CCControlHuePicker() = imac 0x341f20, m1 0x2d353c, ios 0x2447d4;
+    virtual ~CCControlHuePicker() = imac 0x342080, m1 0x2d3634, ios 0x244850;
 
     static cocos2d::extension::CCControlHuePicker* create(cocos2d::CCNode*, cocos2d::CCPoint) = imac 0x342370, m1 0x2d3828, ios 0x244900;
 
@@ -5597,8 +5597,8 @@ class cocos2d::extension::CCControlHuePicker : cocos2d::extension::CCControl {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlPotentiometer : cocos2d::extension::CCControl {
-    virtual ~CCControlPotentiometer() = imac 0x345c30;
     CCControlPotentiometer() = imac 0x345b80, m1 0x2d6770;
+    virtual ~CCControlPotentiometer() = imac 0x345c30, m1 0x2d67f0;
 
     static cocos2d::extension::CCControlPotentiometer* create(char const*, char const*, char const*) = imac 0x345f60, m1 0x2d6a30;
 
@@ -5624,8 +5624,8 @@ class cocos2d::extension::CCControlPotentiometer : cocos2d::extension::CCControl
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlSaturationBrightnessPicker : cocos2d::extension::CCControl {
-    virtual ~CCControlSaturationBrightnessPicker() = imac 0x3515c0, ios 0x253784;
     CCControlSaturationBrightnessPicker() = imac 0x351440, m1 0x2e108c, ios 0x2536f8;
+    virtual ~CCControlSaturationBrightnessPicker() = imac 0x3515c0, m1 0x2e11a4, ios 0x253784;
 
     static cocos2d::extension::CCControlSaturationBrightnessPicker* create(cocos2d::CCNode*, cocos2d::CCPoint) = imac 0x351a60, m1 0x2e1540, ios 0x25399c;
 
@@ -5643,8 +5643,8 @@ class cocos2d::extension::CCControlSaturationBrightnessPicker : cocos2d::extensi
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlSlider : cocos2d::extension::CCControl {
-    virtual ~CCControlSlider() = imac 0x389320;
     CCControlSlider() = imac 0x389280, m1 0x313f74;
+    virtual ~CCControlSlider() = imac 0x389320, m1 0x313fcc;
 
     static cocos2d::extension::CCControlSlider* create(char const*, char const*, char const*) = imac 0x389610, m1 0x3141cc;
     static cocos2d::extension::CCControlSlider* create(cocos2d::CCSprite*, cocos2d::CCSprite*, cocos2d::CCSprite*) = imac 0x389720, m1 0x31429c;
@@ -5669,8 +5669,8 @@ class cocos2d::extension::CCControlSlider : cocos2d::extension::CCControl {
 
 [[link(win, android)]]
 class cocos2d::extension::CCControlStepper : cocos2d::extension::CCControl {
-    virtual ~CCControlStepper() = imac 0x38d100, m1 0x1c1044;
     CCControlStepper() = imac 0x38d050, m1 0x3176ec;
+    virtual ~CCControlStepper() = imac 0x38d100, m1 0x317760;
 
     static cocos2d::extension::CCControlStepper* create(cocos2d::CCSprite*, cocos2d::CCSprite*) = imac 0x38d6b0, m1 0x317c34;
 
@@ -5724,8 +5724,8 @@ class cocos2d::extension::CCControlUtils {
 
 [[link(win, android)]]
 class cocos2d::extension::CCEditBox : cocos2d::extension::CCControlButton, cocos2d::CCIMEDelegate {
-    virtual ~CCEditBox() = imac 0x4a30b0, m1 0x829438;
     CCEditBox() = imac 0x4a2f80, m1 0x40a684;
+    virtual ~CCEditBox() = imac 0x4a30b0, m1 0x40a74c;
 
     static cocos2d::extension::CCEditBox* create(cocos2d::CCSize const&, cocos2d::extension::CCScale9Sprite*, cocos2d::extension::CCScale9Sprite*, cocos2d::extension::CCScale9Sprite*) = imac 0x4a3340, m1 0x40a908;
 
@@ -5929,7 +5929,7 @@ class cocos2d::extension::CCScrollView : cocos2d::CCLayer {
 [[link(win, android)]]
 class cocos2d::extension::CCTableView : cocos2d::extension::CCScrollView, cocos2d::extension::CCScrollViewDelegate {
     CCTableView() = imac 0x419310, m1 0x3917a4;
-    virtual ~CCTableView() = imac 0x4193c0;
+    virtual ~CCTableView() = imac 0x4193c0, m1 0x391804;
 
     static cocos2d::extension::CCTableView* create(cocos2d::extension::CCTableViewDataSource*, cocos2d::CCSize) = imac 0x418e20, m1 0x391328;
     static cocos2d::extension::CCTableView* create(cocos2d::extension::CCTableViewDataSource*, cocos2d::CCSize, cocos2d::CCNode*) = imac 0x418e50, m1 0x391364;
