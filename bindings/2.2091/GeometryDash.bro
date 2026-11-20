@@ -1349,12 +1349,12 @@ class CCAnimatedSprite : cocos2d::CCSprite {
     void cleanupSprite() = win inline, imac 0x33bf40, m1 0x2ce018;
     bool initWithType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win 0x43a60, imac 0x33b600, m1 0x2cd730;
     void loadType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win 0x43cd0, imac 0x33b7f0, m1 0x2cd920;
-    void runAnimation(std::string animation) = win 0x447e0, imac 0x33c100, m1 0x2ce1b4;
+    void runAnimation(std::string animation) = win 0x447e0, imac 0x33c100, m1 0x2ce1b4, ios 0x39a408;
     void runAnimationForced(std::string animation) = win inline, imac 0x33c180, m1 0x2ce24c;
     void stopTween() = win inline, imac 0x33c640, m1 0x2ce6f4;
     void switchToMode(spriteMode mode) = win 0x44670, imac 0x33bfe0, m1 0x2ce0a8;
-    void tweenToAnimation(std::string animation, float duration) = win 0x44850, imac 0x33c240, m1 0x2ce320;
-    void tweenToAnimationFinished() = win 0x44b40, imac 0x33c530, m1 0x2ce5d8;
+    void tweenToAnimation(std::string animation, float duration) = win 0x44850, imac 0x33c240, m1 0x2ce320, ios 0x39a554;
+    void tweenToAnimationFinished() = win 0x44b40, imac 0x33c530, m1 0x2ce5d8, ios 0x39a744;
     void willPlayAnimation() = win inline, imac 0x33c210, m1 0x2ce2f0;
 
     std::string m_unkString1;
@@ -1445,7 +1445,7 @@ class CCCircleWave : cocos2d::CCNode {
     virtual void updateTweenAction(float value, char const* key) = win 0x46840, imac 0x157c70, m1 0x123c4c, ios 0x1fa858;
 
     void baseSetup(float radius) = win inline, imac 0x157b10, m1 0x123b00, ios inline;
-    void followObject(cocos2d::CCNode* newTarget, bool staticPosition) = win inline, imac 0x157be0, m1 0x123bbc;
+    void followObject(cocos2d::CCNode* newTarget, bool staticPosition) = win inline, imac 0x157be0, m1 0x123bbc, ios 0x1fa7c8;
     bool init(float startRadius, float endRadius, float duration, bool fadeIn, bool easeOut) = win 0x46580, imac 0x157910, m1 0x12393c, ios 0x1fa580;
     void updatePosition(float dt) = win 0x46800, imac 0x157ba0, m1 0x123b70;
 
@@ -7046,7 +7046,7 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
     void onUpdate(cocos2d::CCObject* sender) = win 0x210e90;
     void removeFromNewCount(int) = win 0x211610;
     int selectedCount() = win 0x2102f0;
-    void setupCommentsBrowser(cocos2d::CCArray* scores) = win 0x212a40, m1 0x767808, ios 0x871280;
+    void setupCommentsBrowser(cocos2d::CCArray* scores) = win 0x212a40, m1 0x767808;
     void untoggleAll() = win 0x211e70, imac 0x213840;
     void updateLevelsLabel() = win inline, ios inline;
     TodoReturn updateModeButtons() = win 0x211b40;
@@ -18395,7 +18395,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void addAllParticles() = win 0x4e68b0, imac 0x3e9da0, m1 0x367b5c;
     void addToTouchedRings(RingObject* object) = win inline, imac 0x402730, m1 0x37cfd8;
     void addToYVelocity(double yVelocity, int type) = win inline, imac 0x3ea0c0, m1 0x367e6c, ios inline;
-    void animatePlatformerJump(float scale) = win 0x4eaf30, imac 0x3f0c50, m1 0x36dd5c;
+    void animatePlatformerJump(float scale) = win 0x4eaf30, imac 0x3f0c50, m1 0x36dd5c, ios 0x2bae00;
     void boostPlayer(float yVelocity) = win 0x4fe2f0, imac 0x3f36b0;
     void bumpPlayer(float bumpMod, int objectType, bool noEffects, GameObject* object) = win 0x4fdae0, imac 0x8dae0, m1 0x381d78;
     bool buttonDown(PlayerButton button) = win inline, imac 0x402710, m1 0x37cfbc, ios inline;
@@ -18489,7 +18489,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     bool playerIsMovingUp() = win inline, imac 0x3f1020, m1 0x36e0ec, ios inline;
     void playerTeleported() = win inline;
     void playingEndEffect() = win inline, imac 0x407840, m1 0x381cd8;
-    void playSpawnEffect() = win 0x4f5710, imac 0x400480, m1 0x37b034;
+    void playSpawnEffect() = win 0x4f5710, imac 0x400480, m1 0x37b034, ios 0x2c428c;
     void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x4f3370, imac 0x3fb5b0, m1 0x376a20, ios 0x2c2200;
     void postCollision(float dt, bool betweenSteps) = win 0x4eb830;
     void preCollision() = win inline, imac 0x3f1680;
@@ -18529,7 +18529,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x4fb6c0, imac 0x3eb240, m1 0x368dc8, ios 0x2b6eb4;
     void setupStreak() = win 0x4e6a00, imac 0x3e99f0, m1 0x3677b8;
     void setYVelocity(double velocity, int type) = win 0x4e6f50, imac 0x3e9810, m1 0x3675b8, ios 0x2b59f0;
-    void spawnCircle() = win 0x4f5840, imac 0x4005f0, m1 0x37b1c4;
+    void spawnCircle() = win 0x4f5840, imac 0x4005f0, m1 0x37b1c4, ios 0x2c4378;
     void spawnCircle2() = win inline, imac 0x4006e0, m1 0x37b2a8, ios inline;
     void spawnDualCircle() = win 0x4f5e20, imac 0x400a00, m1 0x37b5ac;
     void spawnFromPlayer(PlayerObject* player, bool flip) = win inline, imac 0x4085d0, m1 0x1607f8;
@@ -19008,7 +19008,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     virtual void circleWaveWillBeRemoved(CCCircleWave* circleWave) = win 0x513870, imac 0x88630, m1 0x7e690, ios 0x1485a8;
     virtual void dialogClosed(DialogLayer* layer) = win 0x5136c0, imac 0x885c0, ios 0x14855c, m1 0x7e644;
 
-    void addCircle(CCCircleWave* cw) = win inline, imac 0x88610, m1 0x7e688;
+    void addCircle(CCCircleWave* cw) = win inline, imac 0x88610, m1 0x7e688, ios 0x1485a0;
     void addLiveStartPosObject(StartPosObject*) = win 0x518730, imac 0x8c1a0, m1 0x81794;
     void addObject(GameObject* object) = win 0x50c690, imac 0x7f4f0, m1 0x76298, ios 0x141560;
     void addToGroupOld(GameObject* object) = win inline, imac 0x84620, m1 0x7ab6c, ios inline;
@@ -24234,9 +24234,9 @@ class SpriteAnimationManager : cocos2d::CCNode {
     void playSoundForAnimation(std::string animation) = win inline, imac 0x8021f0, m1 0x702958;
     void queueAnimation(std::string animation) = win 0x874d0, m1 0x702ecc;
     void resetAnimState() = win inline, imac 0x803390, m1 0x7039ac, ios inline;
-    void runAnimation(std::string animation) = win 0x86d80, imac 0x8023f0, m1 0x702b38;
+    void runAnimation(std::string animation) = win 0x86d80, imac 0x8023f0, m1 0x702b38, ios 0x3c1ad8;
     void runQueuedAnimation() = win inline, imac 0x802eb0, m1 0x7034fc, ios inline;
-    void stopAnimations() = win inline, imac 0x803000, m1 0x703644;
+    void stopAnimations() = win inline, imac 0x803000, m1 0x703644, ios 0x3c216c;
     void storeAnimation(cocos2d::CCAnimate* action, cocos2d::CCAnimate* frames, std::string name, int priority, spriteMode type, cocos2d::CCSpriteFrame* first) = win 0x86ac0, imac 0x801ea0, m1 0x70265c;
     void storeSoundForAnimation(cocos2d::CCString* sound, std::string animation, float delay) = win inline, imac 0x801de0, m1 0x702598;
     void switchToFirstFrameOfAnimation(std::string animation) = win inline, imac 0x8033d0, ios inline;
