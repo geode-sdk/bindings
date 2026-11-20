@@ -17277,7 +17277,7 @@ class MusicDownloadDelegate {
     virtual void newsImageFailed(std::string imageKey) = inline;
 }
 
-[[link(android), depends(cocos2d::extension::CCHttpRequest, GJLinkObject)]]
+[[link(android), depends(cocos2d::extension::CCHttpRequest, GJLinkObject, NewsItem)]]
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     MusicDownloadManager() = win 0x480540, ios 0x1da1a0;
     virtual ~MusicDownloadManager() = win 0x482350, ios 0x1d2b8c;
@@ -17480,9 +17480,13 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::CCDictionary* m_customSFXObjects;
     int m_nextCustomSFXID;
     PAD = win 0x20;
-    int m_newsPages;
+    std::vector<NewsItem> m_newsItems;
+    int m_newsVersion;
+    [[renamed_from(m_newsPages)]]
+    int m_latestNewsID;
     bool m_updatingNewsFeed;
-    bool m_unkBool2;
+    [[renamed_from(m_unkBool2)]]
+    bool m_triedToLoadNewsFeed;
     bool m_requestedNewsFeedUpdate;
     int m_unkInt5;
 }
