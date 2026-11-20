@@ -5,9 +5,11 @@ FMODAudioEngine* FMODAudioEngine::get() {
     return FMODAudioEngine::sharedEngine();
 }
 
+#if !defined(GEODE_IS_IOS)
 void FMODAudioEngine::logLifecycleState(char const* state) {
     // empty no-op in 2.2092 android at least
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 FMOD::Channel* FMODAudioEngine::channelForUniqueID(int id) {

@@ -4,10 +4,12 @@
 #include <Geode/binding/LevelEditorLayer.hpp>
 #include <Geode/binding/EditorUI.hpp>
 
+#if !defined(GEODE_IS_IOS)
 EditorPauseLayer::EditorPauseLayer() {
     m_saved = false;
     m_editorLayer = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorPauseLayer::toggleEditorBackground(cocos2d::CCObject* sender) {
@@ -41,13 +43,6 @@ void EditorPauseLayer::togglePlaytestMusic(cocos2d::CCObject* sender) {
 void EditorPauseLayer::toggleRecordOrder(cocos2d::CCObject* sender) {
     GameManager::sharedState()->toggleGameVariable(GameVar::RecordOrder);
 }
-
-void EditorPauseLayer::saveLevel() {
-    LocalLevelManager::sharedState()->waitForSave(30.0);
-    if(auto layer = m_editorLayer) {
-        layer->saveLevel();
-    }
-}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -68,6 +63,13 @@ void EditorPauseLayer::onKeybindings(cocos2d::CCObject* sender) {
 void EditorPauseLayer::togglePreviewAnim(cocos2d::CCObject* sender) {
     GameManager::sharedState()->toggleGameVariable(GameVar::PreviewAnimations);
     m_editorLayer->updatePreviewAnim();
+}
+
+void EditorPauseLayer::saveLevel() {
+    LocalLevelManager::sharedState()->waitForSave(30.0);
+    if(auto layer = m_editorLayer) {
+        layer->saveLevel();
+    }
 }
 #endif
 

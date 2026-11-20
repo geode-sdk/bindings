@@ -4159,7 +4159,7 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     virtual cocos2d::CCSpriteFrame* displayFrame() = imac 0x2764a0, m1 0x21c740, ios 0x2d609c;
     virtual void setDisplayFrameWithAnimationName(char const*, int) = imac 0x2763c0, m1 0x21c648, ios 0x2d5fb4;
     virtual bool isDirty();
-    virtual boid setDirty(bool);
+    virtual void setDirty(bool);
     virtual void setTextureCoords(cocos2d::CCRect const&) = imac 0x274650, m1 0x21af54, ios 0x2d49bc;
     virtual void updateBlendFunc() = imac 0x2766d0, m1 0x21c89c, ios 0x2d61f8;
     virtual void setReorderChildDirtyRecursively() = imac 0x275290, m1 0x21ba0c, ios 0x2d5448;
@@ -4280,7 +4280,7 @@ class cocos2d::CCSpriteBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol {
 [[link(win, android)]]
 class cocos2d::CCSpriteFrame : cocos2d::CCObject {
     // CCSpriteFrame(cocos2d::CCSpriteFrame const&);
-    virtual ~CCSpriteFrame() = imac 0x343790, ios 0x2eb590;
+    virtual ~CCSpriteFrame() = imac 0x343790, m1 0x2d48f4, ios 0x2eb590;
 
     static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect) = imac 0x342c90, ios inline;
     static cocos2d::CCSpriteFrame* create(char const* filename, cocos2d::CCRect const& rect, bool rotated, cocos2d::CCPoint const& offset, cocos2d::CCSize const& size) = imac 0x3433e0, ios inline;

@@ -6778,7 +6778,7 @@ class GameObject : CCSpritePlus {
     // Object is a creature or Monster Object
 	bool m_isAnimated; 
 	cocos2d::CCSprite* m_colorSprite;
-	bool m_unk370;
+	bool m_skipVisibilityCulling;
 	float m_objectRadius;
 	bool m_isRotationAligned;
 	float m_spriteWidthScale;
@@ -6809,8 +6809,8 @@ class GameObject : CCSpritePlus {
 	bool m_startFlipX;
 	bool m_startFlipY;
 
-    	// m_unk3ee Also has Invisable Behaviors 
-    	bool m_unk3ee; 
+    	// m_isDeactivated Also has Invisable Behaviors 
+    	bool m_isDeactivated; 
 	bool m_isInvisible;
     	// NOTE: m_unk3D8 might be unused
 	int m_unk3D8;
