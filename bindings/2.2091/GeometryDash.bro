@@ -4384,6 +4384,7 @@ class DpadMenu : cocos2d::CCMenu {
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1f31f0, imac 0x63ede0, m1 0x57b0c4, ios 0x1898c0;
 
     CCMenuItemSpriteExtra* arrowForTouch(cocos2d::CCTouch* touch) = win 0x1f3250;
+
 }
 
 [[link(android)]]
@@ -12610,6 +12611,7 @@ class GJRateEditorSoundLayer : SetupTriggerPopup, UploadPopupDelegate, UploadAct
 
     bool init(GJEditorSoundConfig*) = imac 0x508f20;
     void onSubmit(cocos2d::CCObject* sender);
+
 }
 
 [[link(android)]]
