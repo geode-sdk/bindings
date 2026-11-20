@@ -12,6 +12,7 @@ LevelSelectLayer::LevelSelectLayer() {
     m_unknown = 0;
     m_scrolls = 0;
     m_masterDetectiveUnlocked = false;
+    m_deathTrackerButton = nullptr;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
