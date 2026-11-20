@@ -12128,14 +12128,14 @@ class GJMapObject : cocos2d::CCNode {
     void touchMonster() = imac 0x251aa0, m1 0x1faafc;
     void updateShadow(float scaleX, float scaleY, cocos2d::CCPoint position) = imac 0x250f00, m1 0x1fa010;
 
-    float m_jumpStopTime;
+    double m_jumpStopTime;
     cocos2d::CCNode* m_mainNode;
     cocos2d::CCSprite* m_shadowSprite;
     cocos2d::CCPoint m_objectOrigin;
     float m_objectOffset;
     bool m_monsterIdle;
     bool m_monsterMoving;
-    float m_moveStopTime;
+    double m_moveStopTime;
     int m_monstersTouched;
 }
 
