@@ -18065,6 +18065,22 @@ class PagedListPopup : FLAlertLayer {
     void updatePageUI(int, int, int) = win 0xc38e0;
 
     PAD = win 0x70, android64 0x70, android32 0x4c;
+    cocos2d::CCPoint m_center;
+    cocos2d::CCSize m_size;
+    int m_page;
+    int m_pendingPage;
+    ScrollableContentLayer* m_scrollLayer;
+    LoadingCircle* m_loadingCircle;
+    cocos2d::CCSize m_scrollSize;
+    cocos2d::CCPoint m_scrollPosition;
+    CCMenuItemSpriteExtra* m_prevButton;
+    CCMenuItemSpriteExtra* m_nextButton;
+    cocos2d::CCLabelBMFont* m_countLabel;
+    cocos2d::CCLabelBMFont* m_titleLabel;
+    cocos2d::CCLabelBMFont* m_subtitleLabel;
+    cocos2d::CCLabelBMFont* m_statusLabel;
+    cocos2d::ccColor3B m_statusColor;
+    GLubyte m_statusOpacity;
 }
 
 [[link(android)]]
