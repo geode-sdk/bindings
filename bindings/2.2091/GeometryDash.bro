@@ -18112,6 +18112,7 @@ class ParentalOptionsLayer : FLAlertLayer {
     int m_page;
     int m_toggleCount;
     int m_maxPage;
+    bool m_masterToggled;
     cocos2d::CCDictionary* m_values;
     cocos2d::CCDictionary* m_variables;
     CCMenuItemToggler* m_safeModeToggler;
@@ -19789,6 +19790,7 @@ class RateDemonLayer : FLAlertLayer, UploadPopupDelegate, UploadActionDelegate {
     void selectRating(cocos2d::CCObject* sender) = win 0x55d5e0, imac 0x270d40, m1 0x21790c;
 
     bool m_uploadFinished;
+    CCMenuItemSpriteExtra* m_submitButton;
     cocos2d::CCArray* m_demons;
     void* m_unkPtr;
     int m_levelID;
@@ -21906,6 +21908,7 @@ class SetupGravityModPopup : FLAlertLayer {
     float m_minValue;
     float m_maxValue;
     CCTextInputNode* m_itemIDInput;
+    IDNameInput* m_idNameInput;
     int m_itemID;
     bool m_disableDelegate;
 }
