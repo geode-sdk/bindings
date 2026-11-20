@@ -9602,16 +9602,16 @@ class GJAccountSettingsDelegate {
 
 [[link(android)]]
 class GJAccountSettingsLayer : FLAlertLayer {
-    GJAccountSettingsLayer() = imac 0x2a5eb0, inline;
+    GJAccountSettingsLayer() = imac 0x2a5eb0, m1 0x248958, inline;
     ~GJAccountSettingsLayer() = win inline, ios 0x372d90;
 
-    static GJAccountSettingsLayer* create(int accountID) = win inline, imac 0x289990;
+    static GJAccountSettingsLayer* create(int accountID) = win inline, imac 0x289990, m1 0x22e4a8;
 
     virtual void keyBackClicked() = win 0x39f2f0, imac 0x28dc90, m1 0x2323d8, ios 0x375b48;
 
     void closeAccInputNodes(cocos2d::CCArray* nodes) = win 0x39ec50, imac 0x28cd10, m1 0x2315fc;
     CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position, float width, float scale) = win 0x39e790, imac 0x28bd80, m1 0x2307cc;
-    bool init(int accountID) = win 0x39c9d0, imac 0x2899f0;
+    bool init(int accountID) = win 0x39c9d0, imac 0x2899f0, m1 0x22e528;
     void onClose(cocos2d::CCObject* sender) = win 0x39edc0, imac 0x28c1e0, m1 0x230c58;
     void onCommentSetting(cocos2d::CCObject* sender) = win 0x39eae0;
     void onFriendRequests(cocos2d::CCObject* sender) = win 0x39ea40;

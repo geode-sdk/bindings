@@ -1,5 +1,6 @@
 #include <Geode/binding/GJAccountSettingsLayer.hpp>
 
+#if !defined(GEODE_IS_MACOS)
 GJAccountSettingsLayer::GJAccountSettingsLayer() {
     m_accountID = 0;
     m_messageStatus = 0;
@@ -10,6 +11,7 @@ GJAccountSettingsLayer::GJAccountSettingsLayer() {
     m_friendRequestSettings = nullptr;
     m_commentSettings = nullptr;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
@@ -35,4 +37,3 @@ GJAccountSettingsLayer* GJAccountSettingsLayer::create(int accountID) {
 
 #if defined(GEODE_IS_IOS)
 #endif
-
