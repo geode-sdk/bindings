@@ -39,9 +39,11 @@ NumberInputLayer::NumberInputLayer() {
     m_delegate = nullptr;
 }
 
+/*
 void NumberInputLayer::onDone(cocos2d::CCObject* sender) {
     if (m_delegate) m_delegate->numberInputClosed(this);
     this->onClose(nullptr);
 }
+*/
 #endif
 
