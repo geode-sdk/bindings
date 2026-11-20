@@ -3307,7 +3307,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     // float getFrictionSize() const;
     // float getFrictionSizeVar() const;
     // bool getOrderSensitive() const;
-    int getParticleDrawCost() = m1 0x1ef13c;
+    float getParticleDrawCost() = imac 0x8b2600, m1 0x7a3f90;
     // float getRespawn() const;
     // float getRespawnVar() const;
     // bool getStartRGBVarSync() const;
