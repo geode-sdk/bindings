@@ -19740,10 +19740,10 @@ class PulseEffectAction {
 
 [[link(android)]]
 class PurchaseItemPopup : FLAlertLayer {
-    virtual ~PurchaseItemPopup() = win 0x3af700, ios 0x1cc44c;
+    virtual ~PurchaseItemPopup() = win 0x3af700, imac 0x312fd0, m1 0x2a5744, ios 0x1cc44c;
 
     // PurchaseItemPopup();
-    static PurchaseItemPopup* create(GJStoreItem* item) = win 0x3b4f40, ios 0x1cac7c;
+    static PurchaseItemPopup* create(GJStoreItem* item) = win 0x3b4f40, imac 0x310ab0, m1 0x2a3748, ios 0x1cac7c;
 
     virtual void keyBackClicked() = win 0x99f90, imac 0x313d70, m1 0x2a6344, ios 0x1cce74;
 
