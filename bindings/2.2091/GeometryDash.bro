@@ -11277,7 +11277,7 @@ class GJGameLevel : cocos2d::CCNode {
     void dtAppendOrder(std::string&, int, bool) = win 0x265680;
     void dtBumpBucket(std::string&, int) = win 0x265150;
     void dtBumpRun(std::string&, int, int) = win 0x2653f0, m1 0x4d6db0;
-    static void dtExpandOrder(std::string const&, std::vector<int>&) = win 0x265830;
+    static void dtExpandOrder(std::string const&, std::vector<int>&) = win 0x265830, imac 0x586540, m1 0x4d77e4, ios 0xd0838;
     bool dtParseGlobalBlob(std::string const&, std::vector<int>&) = win 0x265950;
     void dtSetCells(std::vector<int> const&) = imac 0x585fb0, m1 0x4d7350;
     GJGameLevel* duplicate() = win 0x263800, imac 0x582c00, m1 0x4d46e4, ios 0xce280;
@@ -11293,7 +11293,7 @@ class GJGameLevel : cocos2d::CCNode {
     int getLastBuildPageForTab(int tab) = win 0x2646a0, imac 0x5840a0, m1 0x4d573c, ios 0xcf0ac;
     GJGameLevel* getListSnapshot() = win 0x267680, imac 0x588b90;
     int getNormalPercent() = win inline, imac 0x53f070, m1 0x495ff8, ios 0xa6c20;
-    TodoReturn getSessionBest();
+    int getSessionBest() = win inline, imac 0x586ae0, m1 0x4d7ce4, ios 0xd0b50;
     std::string getSongName() = win 0x264890, imac 0x5843e0, m1 0x4d5aa8;
     std::string getUnpackedLevelDescription() = win inline, imac 0x58c210, m1 0x4dca80, ios 0xd48d0;
     void handleStatsConflict(GJGameLevel* level) = win 0x26a650, imac 0x551010, m1 0x4a6700, ios 0xb20ec;
