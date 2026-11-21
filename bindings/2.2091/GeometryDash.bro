@@ -297,7 +297,7 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     void clearSelectedReports();
     void closeAfterDone() = win 0xbd050;
     void confirmDeleteSelected() = win 0xb9440;
-    void deleteEntry(int index) = win 0xbb850;
+    bool deleteEntry(int index) = win 0xbb850;
     void deleteFailedTick(float) = win 0xbbbe0;
     bool deleteFilterEntry(int) = win 0xbc520;
     bool init(int, std::string const&, GJUserScore*) = win 0xaf480, ios 0x540cc4;
