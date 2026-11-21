@@ -10804,7 +10804,7 @@ class GJChallengeItem : cocos2d::CCObject {
 class GJChestSprite : cocos2d::CCSprite {
     virtual ~GJChestSprite() = win 0x561c30, ios 0x25dcb4;
 
-    static GJChestSprite* create(int chestType) = win 0x566f50, imac 0x200390, m1 0x1b14d8;
+    static GJChestSprite* create(int chestType) = win 0x566f50, imac 0x200390, m1 0x1b14d8, ios 0x25b6d8;
 
     virtual void setOpacity(unsigned char opacity) = win 0x5670e0, imac 0x2030a0, m1 0x1b3fd4, ios 0x25de04;
     virtual void setColor(cocos2d::ccColor3B const& color) = win 0x567020, imac 0x202fb0, m1 0x1b3efc, ios 0x25dd30;
@@ -20748,7 +20748,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void moveToSecondaryLayer(int page) = win inline, imac 0x70fc80, m1 0x620668;
     void onBack(cocos2d::CCObject* sender) = win 0x56d700, imac 0x70ed20, m1 0x61f6a4;
     void onChestType(cocos2d::CCObject* sender) = win 0x56aa80, imac 0x70ed80, m1 0x61f704;
-    void onGoldChest(cocos2d::CCObject* sender) = win 0x56ce20, imac 0x707f20, m1 0x61fa64;
+    void onGoldChest(cocos2d::CCObject* sender) = win 0x56ce20, imac 0x707f20, m1 0x61fa64, ios 0x384e80;
     void onSelectItem(cocos2d::CCObject* sender) = win 0x56bb80, imac 0x711450, m1 0x621bb0;
     void onShop(cocos2d::CCObject* sender) = win 0x56c130, imac 0x70f460, m1 0x4fd128;
     void onSpecialItem(cocos2d::CCObject* sender) = win 0x56c540, imac 0x70f880, m1 0x620278;
