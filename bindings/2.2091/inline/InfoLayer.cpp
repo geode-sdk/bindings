@@ -34,6 +34,11 @@ int InfoLayer::getID() {
     if(m_level) return m_level->m_levelID;
     return 0;
 }
+
+bool InfoLayer::canBulkDelete() {
+    if (m_score && m_modRoomEnabled) return false;
+    return GameManager::sharedState()->m_hasRP == 2;
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
