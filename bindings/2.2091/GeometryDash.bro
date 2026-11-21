@@ -23525,7 +23525,7 @@ class ShareLevelLayer : FLAlertLayer {
     void onNotifyFollowers(cocos2d::CCObject* sender) = win 0x631990;
     void onNotifyFriends(cocos2d::CCObject* sender) = win 0x631970;
     void onSettings(cocos2d::CCObject* sender) = win 0x631b60, imac 0x26db30;
-    void onShare(cocos2d::CCObject* sender) = win 0x631ce0, imac 0x26d980, m1 0x214b54;
+    void onShare(cocos2d::CCObject* sender) = win 0x631ce0, imac 0x26d980, m1 0x214b54, ios 0x313c0c;
     void selectRating(cocos2d::CCObject* sender) = win 0x6319b0, imac 0x26dd00, m1 0x214f14;
     TodoReturn setupNotifyToggles(cocos2d::CCPoint, float, float);
     void setupStars() = win 0x631390, imac 0x26d580, m1 0x2143cc;
@@ -25668,14 +25668,14 @@ class UploadPopup : FLAlertLayer, LevelUploadDelegate {
     UploadPopup() = inline;
     ~UploadPopup() = win 0x630340, ios 0x314490;
 
-    static UploadPopup* create(GJGameLevel* level) = win inline;
+    static UploadPopup* create(GJGameLevel* level) = win inline, ios 0x3142a8;
 
     virtual void keyBackClicked() = win inline, imac 0x26f0b0, m1 0x216048, ios 0x314e1c;
     virtual void show() = win 0x433f60, imac 0x26f040, m1 0x215fe8, ios 0x314dbc;
     virtual void levelUploadFinished(GJGameLevel* level) = win 0x632640, imac 0x26ebe0, m1 0x215bb8, ios 0x3149c0;
     virtual void levelUploadFailed(GJGameLevel* level) = win 0x632810, imac 0x26ee30, m1 0x215df0, ios 0x314be8;
 
-    bool init(GJGameLevel* level) = win 0x632090, m1 0x215690;
+    bool init(GJGameLevel* level) = win 0x632090, m1 0x215690, ios 0x3144c8;
     void onBack(cocos2d::CCObject* sender) = win 0x632ae0;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x26eff0, m1 0x215fa4;
     void onReturnToLevel(cocos2d::CCObject* sender) = win 0x6329f0, imac 0x26ed90, m1 0x215d68;
