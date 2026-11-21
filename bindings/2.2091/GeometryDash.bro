@@ -2225,7 +2225,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void refreshLabel() = win 0x565a0, imac 0x68ae0, m1 0x62124, ios 0x1fcaac;
     void scrollToCursor() = win 0x54aa0; // m1 inline;
     void setAllowedChars(std::string filter) = win 0x54d20, ios 0x1fbb48;
-    void setAllowNewlines(bool allow);
+    void setAllowNewlines(bool allow) = imac 0x66960;
     void setDelegate(TextInputDelegate* delegate) = inline;
     void setLabelNormalColor(cocos2d::ccColor3B color) = win inline, imac 0x68e90, ios inline;
     void setLabelPlaceholderColor(cocos2d::ccColor3B color) = win inline, imac 0x68e70, m1 0x62464, ios 0x1fccec;
@@ -2234,7 +2234,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setMaxLabelScale(float v) = win inline, imac 0x68e10, m1 0x6244c, ios 0x1fccd4;
     void setMaxLabelWidth(float v) = win inline, imac 0x68e30, m1 0x62454, ios 0x1fccdc;
     void setMaxTextAreaHeight(float);
-    void setParseEmotes(int) = win 0x553e0;
+    void setParseEmotes(int) = win 0x553e0, imac 0x67de0;
     void setString(std::string text) = win 0x54ea0, imac 0x67040, m1 0x5fd44, ios 0x1fbc80;
     void setTextScrollViewSize(cocos2d::CCSize) = m1 0x5f948;
     void setUnicodeText(bool);
@@ -5367,8 +5367,8 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     SmartGameObject* getSmartNeighbor(SmartGameObject* object, cocos2d::CCPoint position, GJSmartDirection direction, cocos2d::CCArray* objects) = win 0x1b7ff0, imac 0x13b20, m1 0x11a6c, ios 0x478cc4;
     float getSnapAngle(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x60f080, m1 0x54e1f0;
     CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale) = win inline, imac 0x7ca0, m1 0x6e34, ios inline;
-    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float offset) = win 0x1add30, imac 0x7ed0, m1 0x7068, ios 0x470d10;
-    CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float offset) = win 0x1addc0, imac 0xd800, m1 0xbf10, ios 0x474acc;
+    CCMenuItemSpriteExtra* getSpriteButton(char const* spriteFrameName, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float idk) = win 0x1add30, imac 0x7ed0, m1 0x7068, ios 0x470d10;
+    CCMenuItemSpriteExtra* getSpriteButton(cocos2d::CCSprite* sprite, cocos2d::SEL_MenuHandler selector, cocos2d::CCMenu* menu, float scale, int buttonKind, cocos2d::CCPoint offset, float idk) = win 0x1addc0, imac 0xd800, m1 0xbf10, ios 0x474acc;
     cocos2d::CCPoint getTouchPoint(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win inline, imac 0x609810, m1 0x549aa8, ios 0x160be0;
     GJTransformState& getTransformState() = win 0x2038d0, ios inline;
     bool getViewButtonState(int) = win 0x1f81b0;
@@ -6156,8 +6156,8 @@ class EmoteSprite : cocos2d::CCSprite {
     static float jumboMaxAspect() = win inline;
     static float jumboMultiScale() = win inline;
     static float jumboScale() = win inline;
-    static int maxEmotesComment() = win inline;
-    static int maxEmotesMessage() = win inline;
+    static int maxEmotesComment() = win inline, imac 0x9042a0;
+    static int maxEmotesMessage() = win inline, imac 0x9042b0;
     static int defCount() = win inline, imac 0x904420, m1 0x7eb418, ios 0x4dc4f4;
     static EmoteDef* defAtIndex(int index) = win inline, imac 0x9043d0, m1 0x7eb3b4, ios 0x4dc498;
     static int characterCount(std::string const& text) = win inline, ios 0x4dcbdc;
@@ -9483,7 +9483,7 @@ class GameToolbox {
     static std::string saveParticleToString(cocos2d::CCParticleSystemQuad* system) = win 0x70ad0, imac 0x4ef2c0, m1 0x44d364;
     static bool saveStringToFile(std::string const& path, std::string const& content, bool absolute, bool atomic) = win inline, ios inline;
     static TodoReturn serverPopupWillSwitchToScene(cocos2d::CCScene*) = win inline, ios 0x4827c;
-    static void setOnOffSprite(cocos2d::CCNode*, bool);
+    static void setOnOffSprite(cocos2d::CCNode*, bool) = imac 0x4e90d0;
     static bool showFolderDialog(char const*, std::string&) = win 0x75450, m1 0x453654, imac 0x4f6390;
     static bool showOpenFileDialog(char const*, char const*, std::string const&, std::string&) = m1 0x4535c4, imac 0x4f6300;
     static bool showOpenFileDialogMulti(char const*, char const*, std::vector<std::string>&) = m1 0x4535ec, imac 0x4f6330;
@@ -17664,7 +17664,7 @@ class NewThreadPopup : FLAlertLayer, ThreadMessageDelegate, FriendPickerDelegate
     virtual void threadSendFinished(int, long long) = win 0xf33e0, imac 0x948270, m1 0x82884c, ios 0x50c0cc;
     virtual void threadSendFailed() = win 0xf3c10, imac 0x948c10, m1 0x82908c, ios 0x50c580;
 
-    TodoReturn applyMode() = win 0xf0ac0;
+    TodoReturn applyMode() = win 0xf0ac0, imac 0x946c10;
     TodoReturn bodyCharLimit();
     TodoReturn bodyEmoteCap();
     bool init(int, std::string const&, std::string const&) = win 0xeefd0, imac 0x944240, m1 0x824b40;
@@ -25359,7 +25359,7 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     void onClose(cocos2d::CCObject* sender) = win 0xe2da0;
     void onEmotes(cocos2d::CCObject* sender) = win 0xde2e0;
     void onHideKeyboard(cocos2d::CCObject* sender);
-    void onHighlightFaded() = win 0xdb8f0;
+    void onHighlightFaded() = win 0xdb8f0, imac 0x39eb60;
     void onJumpToLatest(cocos2d::CCObject* sender) = win 0xdb8e0;
     void onJumpToMessage(cocos2d::CCObject* sender) = win 0xdbab0;
     void onLoadEarlier(cocos2d::CCObject* sender) = win 0xdb760;
