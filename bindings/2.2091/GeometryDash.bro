@@ -8224,7 +8224,7 @@ class GameManager : GManager {
     bool onlyCuratedLevels() = win inline, imac 0x36d8f0, m1 0x2fad48, ios 0x3b6144;
     void openEditorGuide() = win inline, imac 0x369e00;
     bool parentalOptionsActive() = win 0x27ed60, imac 0x36d940;
-    void playMenuMusic() = win 0x2766c0, imac 0x360390, m1 0xc9b4;
+    void playMenuMusic() = win 0x2766c0, imac 0x360390, m1 0xc9b4, ios 0x3aeda8;
     int playSFXTrigger(SFXTriggerGameObject* object) = win 0x276b50, imac 0x360880, m1 0x2ef690;
     void prepareDPadSettings() = win 0x282620, imac 0x372200;
     void printGJLog() = win inline, imac 0x370190, m1 0x2fd018;
