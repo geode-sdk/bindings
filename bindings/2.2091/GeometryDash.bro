@@ -19749,7 +19749,7 @@ class PurchaseItemPopup : FLAlertLayer {
 
     bool init(GJStoreItem* item) = win 0x3b5040, imac 0x313140, m1 0x2a5834, ios 0x1cc484;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x313cd0, m1 0x2a6294, ios 0x1ccdc4;
-    void onPurchase(cocos2d::CCObject* sender) = win 0x3b5ef0, m1 0x2a62d0, ios 0x1cce00;
+    void onPurchase(cocos2d::CCObject* sender) = win 0x3b5ef0, imac 0x313d00, m1 0x2a62d0, ios 0x1cce00;
 
     GJStoreItem* m_storeItem;
     GJPurchaseDelegate* m_delegate;
