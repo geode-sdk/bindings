@@ -13,15 +13,6 @@ EditorOptionsLayer::EditorOptionsLayer() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-EditorOptionsLayer* EditorOptionsLayer::create() {
-    auto ret = new EditorOptionsLayer();
-    if (ret->init()) {
-        ret->autorelease();
-        return ret;
-    }
-    delete ret;
-    return nullptr;
-}
 #endif
 
 #if defined(GEODE_IS_IOS)

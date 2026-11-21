@@ -4,7 +4,7 @@
 #include <Geode/binding/TeleportPortalObject.hpp>
 #include <Geode/binding/LevelEditorLayer.hpp>
 
-#if !defined(GEODE_IS_IOS)
+#if !defined(GEODE_IS_ARM_MAC)
 SetGroupIDLayer::SetGroupIDLayer() {
     m_targetObject = nullptr;
     m_targetObjects = nullptr;

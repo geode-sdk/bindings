@@ -535,7 +535,8 @@ int GJBaseGameLayer::countCollectedUserCoins() {
 
 StartPosObject* GJBaseGameLayer::createLiveStartPosObject() {
     StartPosObject* object = static_cast<StartPosObject*>(GameObject::createWithKey(31));
-
+    object->firstSetup();
+    object->customSetup();
     object->setStartPos(m_player1->getPosition());
 
     if(m_player1->m_isShip) {
@@ -1066,15 +1067,6 @@ void GJBaseGameLayer::regenerateEnterEasingBuffers() {
             this->generateEnterEasingBuffers(object);
         }
     }
-}
-
-int GJBaseGameLayer::registerSpawnRemap(std::vector<ChanceObject>& spawnRemap) {
-    std::unordered_map<int, int> remap;
-    m_spawnRemapTriggers.push_back(remap);
-    for (auto& obj : spawnRemap) {
-        m_spawnRemapTriggers.back()[obj.m_groupID] = obj.m_chance;
-    }
-    return m_spawnRemapTriggers.size() - 1;
 }
 
 void GJBaseGameLayer::registerStateObject(EffectGameObject* object) {

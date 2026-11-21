@@ -3,6 +3,10 @@
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+bool LevelCell::inRecallMode() {
+    return m_level->m_recallDailyID > 0;
+}
+
 void LevelCell::updateToggle() {
     if (m_level && m_toggler) m_toggler->toggle(m_level->m_selected);
 }
@@ -22,10 +26,6 @@ LevelCell* LevelCell::create(float width, float height) {
 void LevelCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });
     m_backgroundLayer->setOpacity(255);
-}
-
-bool LevelCell::inRecallMode() {
-    return m_level->m_recallDailyID > 0;
 }
 
 GJGameLevel* LevelCell::recallSavedLevel() {

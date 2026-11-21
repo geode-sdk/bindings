@@ -123,6 +123,17 @@ bool GameLevelManager::hasDownloadedList(int id) {
     return this->hasDownloadedLevel(-id);
 }
 
+bool GameLevelManager::isPastDailyCopy(GJGameLevel* level) {
+    auto dailyID = level->m_dailyID.value();
+    if(dailyID <= 0) return false;
+
+    return dailyID != this->getActiveDailyID( 
+        dailyID > 200000 ? GJTimedLevelType::Event :
+        dailyID > 100000 ? GJTimedLevelType::Weekly :
+        GJTimedLevelType::Daily
+    );
+}
+
 void GameLevelManager::onGetNewsCompleted(std::string response, std::string tag) {}
 
 void GameLevelManager::onRateLevelAdminCompleted(std::string response, std::string tag) {}
@@ -819,17 +830,6 @@ void GameLevelManager::verifyLevelState(GJGameLevel* level) {
         level->m_bestPoints = 0;
         level->m_isCompletionLegitimate = true;
     }
-}
-
-bool GameLevelManager::isPastDailyCopy(GJGameLevel* level) {
-    auto dailyID = level->m_dailyID.value();
-    if(dailyID <= 0) return false;
-
-    return dailyID != this->getActiveDailyID( 
-        dailyID > 200000 ? GJTimedLevelType::Event :
-        dailyID > 100000 ? GJTimedLevelType::Weekly :
-        GJTimedLevelType::Daily
-    );
 }
 
 bool GameLevelManager::vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) {

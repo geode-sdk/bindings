@@ -824,14 +824,14 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
     void removeAllObjects() = imac 0x2f8490, m1 0x28ce08, ios 0x4a4bf0;
     void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x2fa2d0, m1 0x28eaec, ios 0x4a64a4;
     void removeObjectForKey(intptr_t) = imac 0x2fa400, ios 0x4a65c0;
-    void removeObjectForKey(std::string const&) = imac 0x2f9eb0, m1 0x28e788;
+    void removeObjectForKey(std::string const&) = imac 0x2f9eb0, m1 0x28e788, ios 0x4a619c;
     void removeObjectsForKeys(cocos2d::CCArray*) = imac 0x2fa540, m1 0x28ed60, ios 0x4a66f4;
     void setObject(cocos2d::CCObject*, intptr_t) = imac 0x2f9990, m1 0x28e2b8, ios 0x4a5cf4;
     void setObject(cocos2d::CCObject*, std::string const&) = imac 0x2f8f90, m1 0x28d96c, ios 0x4a5450;
     void setObjectUnSafe(cocos2d::CCObject*, intptr_t) = imac 0x2f9b40, m1 0x28e448, ios 0x4a5e78;
     void setObjectUnSafe(cocos2d::CCObject*, std::string const&) = imac 0x2f93c0, m1 0x28ddb8;
     cocos2d::CCString const* valueForKey(intptr_t) = imac 0x2f8f10, m1 0x28d8d0, ios 0x4a53bc;
-    cocos2d::CCString const* valueForKey(std::string const&) = imac 0x2f8990, m1 0x28d37c;
+    cocos2d::CCString const* valueForKey(std::string const&) = imac 0x2f8990, m1 0x28d37c, ios 0x4a4ee8;
     bool writeToFile(char const*) = imac 0x2fab50, m1 0x28f388, ios inline;
 
     cocos2d::CCDictElement* m_pElements;
@@ -1641,8 +1641,8 @@ class cocos2d::CCGrabber : cocos2d::CCObject {
     CCGrabber() = win 0x22460, imac 0x6d0fe0, m1 0x5e82b8, ios inline;
     virtual ~CCGrabber() = win inline, imac 0x6d1140, m1 0x5e8408, ios inline;
 
-    void afterRender(cocos2d::CCTexture2D*) = win 0x22510, imac 0x6d1100, m1 0x5e83d8, ios inline;
-    void beforeRender(cocos2d::CCTexture2D*) = win 0x22550, imac 0x6d10a0, m1 0x5e8380, ios inline;
+    void afterRender(cocos2d::CCTexture2D*) = win 0x22510, imac 0x6d1100, m1 0x5e83d8, ios 0x47994;
+    void beforeRender(cocos2d::CCTexture2D*) = win 0x22550, imac 0x6d10a0, m1 0x5e8380, ios 0x4793c;
     void grab(cocos2d::CCTexture2D*) = win 0x225b0, imac 0x6d1030, m1 0x5e8310, ios inline;
 }
 
@@ -1694,11 +1694,11 @@ class cocos2d::CCGridBase : cocos2d::CCObject {
     virtual void reuse() = imac 0x4deb00, m1 0x43e780;
     virtual void calculateVertexPoints() = imac 0x4deb10, m1 0x43e784;
 
-    void afterDraw(cocos2d::CCNode*) = imac 0x4dea30, m1 0x43e6ac;
-    void beforeDraw() = imac 0x4dea00, m1 0x43e678;
+    void afterDraw(cocos2d::CCNode*) = imac 0x4dea30, m1 0x43e6ac, ios 0x3e0c1c;
+    void beforeDraw() = imac 0x4dea00, m1 0x43e678, ios 0x3e0be8;
     bool initWithSize(cocos2d::CCSize const&) = imac 0x4de5b0, m1 0x43e258;
     bool initWithSize(cocos2d::CCSize const&, cocos2d::CCTexture2D*, bool) = imac 0x4de770, m1 0x43e408;
-    void set2DProjection() = imac 0x4de970, m1 0x43e5fc;
+    void set2DProjection() = imac 0x4de970, m1 0x43e5fc, ios 0x3e0b6c;
     void setActive(bool) = imac 0x4de920, m1 0x43e5b8;
     void setTextureFlipped(bool) = imac 0x4de950, m1 0x43e5dc;
 }
@@ -2395,7 +2395,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x874dc0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8740b0, ios 0x270be0;
-    void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0;
+    void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0, ios 0x270820;
     bool initWithArray(cocos2d::CCArray*) = imac 0x8738a0, m1 0x769e84, ios 0x270568;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x873e40, m1 0x76a440, ios 0x270a3c;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0xd98c0, m1 0x76b5d4, ios 0x270fa8;
@@ -3846,7 +3846,7 @@ class cocos2d::CCScheduler : cocos2d::CCObject {
     bool isTargetPaused(cocos2d::CCObject*) = imac 0x437da0, ios inline;
     cocos2d::CCSet* pauseAllTargets() = imac 0x437fd0, m1 0x3ae36c, ios inline;
     cocos2d::CCSet* pauseAllTargetsWithMinPriority(int) = imac 0x437fe0, m1 0x3ae374, ios inline;
-    void pauseTarget(cocos2d::CCObject*) = imac 0x437b70, ios 0x2406b4;
+    void pauseTarget(cocos2d::CCObject*) = imac 0x437b70, ios 0x2406b4, m1 0x3adf6c;
     void priorityIn(cocos2d::_listEntry**, cocos2d::CCObject*, int, bool) = imac 0x436ac0, m1 0x3ace1c, ios 0x23f6c0;
     void removeHashElement(cocos2d::_hashSelectorEntry*) = imac 0x436460, m1 0x3ac77c, ios 0x23f038;
     void removeUpdateFromHash(cocos2d::_listEntry*) = imac 0x4372c0, m1 0x3ad644, ios 0x23fea8;
