@@ -15343,7 +15343,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateArt(float dt) = win inline, imac 0xae430, ios inline;
     void updateBlendValues() = win 0x3fcff0, imac 0xc3390, m1 0xae78c;
     void updateCustomSFXMappings() = win 0x3f3c30;
-    void updateEditor(float dt) = win 0x3f5f00, imac 0xac550, m1 0x9af90;
+    void updateEditor(float dt) = win 0x3f5f00, imac 0xac550, m1 0x9af90, ios 0x3f7e88;
     void updateEditorMode() = win 0x3fa010, imac 0xad9b0, m1 0x9bfd0;
     void updateGameObjects() = win 0x3fa960, imac 0xacab0, m1 0x9b4c0;
     void updateGridLayer() = win inline;
