@@ -5340,7 +5340,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void editObject(cocos2d::CCObject* sender) = win 0x1bb3e0, imac 0x93f0, m1 0x83a0, ios 0x471ccc;
     void editObject2(cocos2d::CCObject* sender) = win 0x1bd190, imac 0x93e0, m1 0x8398, ios 0x471cc4;
     void editObject3(cocos2d::CCObject* sender) = win inline, ios inline;
-    void editObjectSpecial(int type) = win 0x1bd1a0, ios 0x47c134;
+    void editObjectSpecial(int type) = win 0x1bd1a0, imac 0x18dd0, m1 0x15d34, ios 0x47c134;
     int editorLayerForArray(cocos2d::CCArray* objects, bool layer2) = win 0x1b5350, imac 0xc600, m1 0xad80, ios 0x473f48;
     void enableButton(CreateMenuItem* button) = win 0x1adb90, imac 0xd5a0, m1 0xbc54;
     void findObject(int, bool, int) = win 0x1c8dd0, ios 0x1a680c, m1 0x50639c, imac 0x5b96d0;
@@ -10902,7 +10902,7 @@ class GJCompactUserCell : TableViewCell {
     virtual void draw() = win 0x1487a0, imac 0x240290, m1 0x1eb3c4, ios 0x139e1c;
 
     static void addStat(int, char const*, cocos2d::CCNode*, float&, float, bool) = win 0x158990;
-    static cocos2d::CCLabelBMFont* buildUserRow(GJUserScore* score, cocos2d::CCNode* mainLayer, cocos2d::CCNode* playerNameMenu, cocos2d::CCObject* selectorTarget, cocos2d::SEL_MenuHandler selector, float y, bool dimmed, bool showFriendIcon) = win 0x157e90, ios 0x1391f4;
+    static cocos2d::CCLabelBMFont* buildUserRow(GJUserScore* score, cocos2d::CCNode* mainLayer, cocos2d::CCNode* playerNameMenu, cocos2d::CCObject* selectorTarget, cocos2d::SEL_MenuHandler selector, float y, bool dimmed, bool showFriendIcon) = win 0x157e90, imac 0x23f400, m1 0x1ea62c, ios 0x1391f4;
     static void createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool);
     void loadFromScore(GJUserScore* score) = win 0x157c60, ios 0x12edf4;
     void onSendMessage(cocos2d::CCObject* sender) = win 0x158c00;
@@ -16821,7 +16821,7 @@ class MessageThreadsPage : FLAlertLayer, ThreadMessageDelegate, FLAlertLayerProt
     void onSelectFilter(cocos2d::CCObject* sender) = win 0xd7ef0, imac 0x929af0, m1 0x80bf4c;
     void onSelectionChanged(cocos2d::CCObject* sender) = win 0xd63f0, imac 0x92a800, m1 0x80cbb0;
     void onShowInvites(cocos2d::CCObject* sender) = win 0xd65c0, imac 0x92a6a0, m1 0x80ca94;
-    void onThreadsChanged(cocos2d::CCObject* sender) = win 0xd5f60, imac 0x92a7c, m1 0x80cb64;
+    void onThreadsChanged(cocos2d::CCObject* sender) = win 0xd5f60, imac 0x92a7c0, m1 0x80cb64;
     void onUserFilter(cocos2d::CCObject* sender) = win 0xd7850, imac 0x929a40, m1 0x80be94;
     TodoReturn refetchIfQueued();
     void refreshUserFilterBtn() = win 0xd7c00;
@@ -21002,7 +21002,7 @@ class SelectSmartTemplateLayer : GJDropDownLayer {
 [[link(android), depends(SequenceTriggerState)]]
 class SequenceTriggerGameObject : ChanceTriggerGameObject {
     SequenceTriggerGameObject() = inline;
-    virtual ~SequenceTriggerGameObject() = win 0x6381a0, ios 0x440bf4;
+    virtual ~SequenceTriggerGameObject() = win 0x6381a0, imac 0x1d6c40, m1 0x18b284, ios 0x440bf4;
 
     static SequenceTriggerGameObject* create() = win inline, imac 0x1a4d80, m1 0x16306c;
 
@@ -24110,7 +24110,7 @@ class SliderThumb : cocos2d::CCMenuItemImage {
 [[link(android), depends(SliderThumb)]]
 class SliderTouchLogic : cocos2d::CCMenu {
     SliderTouchLogic() = inline;
-    virtual ~SliderTouchLogic() = win 0x84410;
+    virtual ~SliderTouchLogic() = win 0x84410, imac 0x2efe50, m1 0x285a80;
 
     static SliderTouchLogic* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* thumb, char const* thumbSel, float scale) = win inline, imac 0x2ee9f0, m1 0x284880, ios 0x38a170;
 
@@ -24511,7 +24511,7 @@ class SpawnTriggerAction {
 [[link(android), depends(ChanceObject)]]
 class SpawnTriggerGameObject : EffectGameObject {
     SpawnTriggerGameObject() = inline;
-    virtual ~SpawnTriggerGameObject() = win 0x638240, ios 0x435284;
+    virtual ~SpawnTriggerGameObject() = win 0x638240, imac 0x1b3910, m1 0x16ee1c, ios 0x435284;
 
     static SpawnTriggerGameObject* create() = win inline, imac 0x1b3a00, m1 0x16eed8;
 
