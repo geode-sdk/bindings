@@ -8090,7 +8090,7 @@ class GameManager : GManager {
     std::string dpadConfigToString(UIButtonConfig& config) = win 0x2820b0, imac 0x370f00, m1 0x2fda80;
     void eventUnlockFeature(char const* key) = win inline, imac 0x368eb0, m1 0x2f6510, ios inline;
     void fadeInMenuMusic() = win 0x276940, imac 0x360680, m1 0x2ef460, ios 0x3aeff0;
-    void fadeInMusic(std::string path) = win 0x276a30, imac 0x360760, m1 0x2ef558;
+    void fadeInMusic(std::string path) = win 0x276a30, imac 0x360760, m1 0x2ef558, ios 0x3af080;
     void finishedLoadingBGAsync(cocos2d::CCObject* obj) = win 0x27ddc0, imac 0x36c820, m1 0x2f9b00;
     void finishedLoadingGAsync(int index) = win 0x27e260, imac 0x36ce60;
     void finishedLoadingGAsync1(cocos2d::CCObject* obj) = win 0x27e1e0;
