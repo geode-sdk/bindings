@@ -4305,7 +4305,7 @@ class DialogDelegate {
 [[link(android)]]
 class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     DialogLayer() = inline;
-    ~DialogLayer() = win inline, imac 0x3b0330, ios 0x8fc30;
+    ~DialogLayer() = win inline, imac 0x3b0330, m1 0x337654, ios 0x8fc30;
 
     static DialogLayer* create(DialogObject* object, int background) = win inline, imac 0x3b0680, m1 0x3376ec, ios 0x8fc68;
     static DialogLayer* createDialogLayer(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0x174ae0, imac 0x3b0690, m1 0x3376f8, ios 0x8fc74;
