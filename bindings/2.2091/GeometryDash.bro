@@ -2390,7 +2390,7 @@ class CharacterColorPage : FLAlertLayer {
     CharacterColorPage() = inline;
     ~CharacterColorPage() = win inline, ios 0x15261c;
 
-    static CharacterColorPage* create() = win inline, m1 0x64994c;
+    static CharacterColorPage* create() = win inline, m1 0x64994c, ios 0x152654;
 
     virtual bool init() = win 0xa0800, imac 0x73c1f0, m1 0x649ac0, ios 0x152718;
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x73e0c0, m1 0x64b970, ios 0x153f90;
@@ -2399,18 +2399,18 @@ class CharacterColorPage : FLAlertLayer {
 
     int activeColorForMode(int mode) = win 0xa1d20, imac 0x73dde0, m1 0x64b660;
     bool checkColor(int id, UnlockType type) = win inline, imac 0x73de40, m1 0x64b6d0;
-    int colorForIndex(int index) = win 0xa2990, imac 0x73db00, m1 0x64b3b0;
-    void createColorMenu() = win 0xa1710, imac 0x73d1d0, m1 0x64aac0;
+    int colorForIndex(int index) = win 0xa2990, imac 0x73db00, m1 0x64b3b0, ios 0x153ab8;
+    void createColorMenu() = win 0xa1710, imac 0x73d1d0, m1 0x64aac0, ios 0x153408;
     void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win inline, imac 0x73e010, m1 0x64b8c0, ios inline;
-    cocos2d::CCPoint offsetForIndex(int index) = win inline, imac 0x73dd70, m1 0x64b60c;
-    void onClose(cocos2d::CCObject* sender) = win 0xa30a0, imac 0x73cdb0, m1 0x64a678;
-    void onMode(cocos2d::CCObject* sender) = win 0xa1e30, imac 0x73ceb0, m1 0x64a794;
-    void onPlayerColor(cocos2d::CCObject* sender) = win 0xa2680, imac 0x67110, m1 0x64b3d0;
-    void toggleGlow(cocos2d::CCObject* sender) = win 0xa16a0, imac 0x73d5b0, m1 0x64ae98;
+    cocos2d::CCPoint offsetForIndex(int index) = win inline, imac 0x73dd70, m1 0x64b60c, ios 0x153cb0;
+    void onClose(cocos2d::CCObject* sender) = win 0xa30a0, imac 0x73cdb0, m1 0x64a678, ios 0x153030;
+    void onMode(cocos2d::CCObject* sender) = win 0xa1e30, imac 0x73ceb0, m1 0x64a794, ios 0x153148;
+    void onPlayerColor(cocos2d::CCObject* sender) = win 0xa2680, imac 0x67110, m1 0x64b3d0, ios 0x153ad8;
+    void toggleGlow(cocos2d::CCObject* sender) = win 0xa16a0, imac 0x73d5b0, m1 0x64ae98, ios 0x153760;
     void toggleGlowItems(bool visible) = win inline, imac 0x73dab0, m1 0x64b35c, ios inline;
     void toggleShip(cocos2d::CCObject* sender) = win 0xa1570, imac 0x73ce00, m1 0x64a6cc;
     void updateColorMode(int mode) = win 0xa20e0, imac 0x73d5f0, m1 0x64aed0, ios 0x153798;
-    void updateIconColors() = win 0xa2e80, imac 0x73d070, m1 0x64a980;
+    void updateIconColors() = win 0xa2e80, imac 0x73d070, m1 0x64a980, ios 0x1532cc;
 
     int m_colorMode;
     float m_height;
@@ -4324,14 +4324,14 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void addToMainScene() = win 0x175660, imac 0x3b1530, m1 0x3384fc;
     void animateIn(DialogAnimationType type) = win 0x175a20, imac 0x3b1950, m1 0x3388f0;
     void animateInDialog() = win inline, imac 0x3b1b60, m1 0x338af0, ios inline;
-    void animateInRandomSide() = win 0x175830, imac 0x3b1900, m1 0x338898;
+    void animateInRandomSide() = win 0x175830, imac 0x3b1900, m1 0x338898, ios 0x9098c;
     void displayDialogObject(DialogObject* object) = win 0x175110, imac 0x3b0d80, m1 0x337d90;
     void displayNextObject() = win 0x1750b0, imac 0x3b0cd0, m1 0x337cf0;
     void finishCurrentAnimation() = win inline, imac 0x3b13e0, m1 0x3383d4;
     void handleDialogTap() = win 0x1754e0;
     bool init(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0x174c40, imac 0x3b07f0, m1 0x337818;
     void onClose() = win 0x1756d0, imac 0x3b14a0, m1 0x33846c;
-    void updateChatPlacement(DialogChatPlacement placement) = win inline, imac 0x3b11e0, m1 0x3381c0;
+    void updateChatPlacement(DialogChatPlacement placement) = win inline, imac 0x3b11e0, m1 0x3381c0, ios 0x90524;
     void updateNavButtonFrame() = win 0x175460, imac 0x3b1170, m1 0x338160;
 
     double m_animateTime;
@@ -11776,7 +11776,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     virtual void rewardedVideoFinished() = win 0x37d490, imac 0x355b30, m1 0x2e52a0, ios 0x3a13ec;
 
     cocos2d::CCArray* getItems(IconType type) = win 0x37f090, imac 0x357220, m1 0x2e6940;
-    cocos2d::CCArray* getItems(int count, int page, IconType type, int current) = win 0x37f150, imac 0x356ea0, m1 0x2e65d0;
+    cocos2d::CCArray* getItems(int count, int page, IconType type, int current) = win 0x37f150, imac 0x356ea0, m1 0x2e65d0, ios 0x3a2370;
     std::string getLockFrame(int id, UnlockType type) = win inline, imac 0x3580b0, m1 0x2e7578, ios inline;
     void onArrow(cocos2d::CCObject* sender) = win 0x37e740, imac 0x355ed0, m1 0x2e56a8, ios 0x3a1700;
     void onBack(cocos2d::CCObject* sender) = win 0x3819a0, imac 0x355330, m1 0x2e4ac4, ios 0x3a10a0;
@@ -11784,7 +11784,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onNavigate(cocos2d::CCObject* sender) = win 0x37e850, imac 0x3567b0, m1 0x2e5f30, ios 0x3a1e30;
     void onPaint(cocos2d::CCObject* sender) = win 0x3817c0, imac 0x355530, m1 0x2e4cb0;
     void onRewardedVideo(cocos2d::CCObject* sender) = m1 0x2e4f18;
-    void onSelect(cocos2d::CCObject* sender) = win 0x37fb60, imac 0x3572d0, m1 0x2e69d8;
+    void onSelect(cocos2d::CCObject* sender) = win 0x37fb60, imac 0x3572d0, m1 0x2e69d8, ios 0x3a2630;
     void onSelectTab(cocos2d::CCObject* sender) = win 0x37e880, imac 0x355ea0, m1 0x2e5674, ios 0x3a16cc;
     void onShards(cocos2d::CCObject* sender) = win 0x381670, imac 0x355500, m1 0x2e4c84;
     void onShop(cocos2d::CCObject* sender) = win 0x381940, imac 0x3554a0, m1 0x2e4c24;
@@ -23986,7 +23986,7 @@ class SimplePlayer : cocos2d::CCSprite {
     void setSecondColor(cocos2d::ccColor3B const& color) = win inline, imac 0x359e50, m1 0x2e90cc, ios 0x3a423c;
     void tryEnableCustomGlowColor(int id) = win 0x382630, imac 0x359e80, m1 0x2e90fc;
     void updateColors() = win 0x3826d0, imac 0x357c90, m1 0x2e71b0, ios 0x3a2d64;
-    void updatePlayerFrame(int id, IconType type) = win 0x382a80, imac 0x354360, m1 0x2e3a74;
+    void updatePlayerFrame(int id, IconType type) = win 0x382a80, imac 0x354360, m1 0x2e3a74, ios 0x3a0188;
 
     cocos2d::CCSprite* m_firstLayer;
     cocos2d::CCSprite* m_secondLayer;
