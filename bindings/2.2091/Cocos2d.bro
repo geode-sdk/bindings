@@ -1268,8 +1268,8 @@ class cocos2d::CCEGLView {
     virtual void setIMEKeyboardState(bool) = imac 0x502460, m1 0x45e2e0, ios 0x1541ec;
     [[missing(ios), since("6.0.0-alpha.2")]]
     virtual cocos2d::CCPoint getMousePosition() const = m1 0x45e268, imac 0x5023b0;
-    [[missing(win, android, ios)]]
-    virtual double getPlatformTimestamp() = imac 0x502370, m1 0x45e24c;
+    // [[missing(win, android, ios)]]
+    // virtual double getPlatformTimestamp() = imac 0x502370, m1 0x45e24c;
     [[missing(android, mac, ios)]]
     virtual void setFrameSize(float, float);
     [[missing(win, android)]]
