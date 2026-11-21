@@ -6846,8 +6846,8 @@ class FMODAudioEngine : cocos2d::CCNode {
     int lengthForSound(std::string path) = win 0x626e0, imac 0x3d3be0, m1 0x355d84;
     void loadAndPlayMusic(std::string path, unsigned int time, int musicID) = win 0x62c50, imac 0x3d4390, m1 0x356418;
     void loadAudioState(FMODAudioState& state) = win 0x5eaf0, imac 0x3cd4f0, m1 0x350b0c;
-    void loadMusic(std::string path) = win inline, imac 0x3d4700, m1 0x356718;
-    void loadMusic(std::string path, float speed, float unknown, float volume, bool shouldLoop, int musicID, int channelID, bool dontReset) = win 0x62ec0, imac 0x3ce510, m1 0x35161c;
+    void loadMusic(std::string path) = win inline, imac 0x3d4700, m1 0x356718, ios 0x1ba128;
+    void loadMusic(std::string path, float speed, float unknown, float volume, bool shouldLoop, int musicID, int channelID, bool dontReset) = win 0x62ec0, imac 0x3ce510, m1 0x35161c, ios 0x1b6ea0;
     void logLifecycleState(char const*) = win inline, ios 0x1b56ac;
     TodoReturn logMixerProbe();
     void pauseAllAudio() = win inline, imac 0x3cb390, ios 0x1b582c;
@@ -22762,19 +22762,19 @@ class SetupSmartTemplateLayer : FLAlertLayer, FLAlertLayerProtocol {
 class SetupSongTriggerPopup : SetupAudioTriggerPopup, MusicDownloadDelegate, SongPlaybackDelegate {
     virtual ~SetupSongTriggerPopup() = win 0x5f2340, ios 0x25837c;
 
-    static SetupSongTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5f2480;
+    static SetupSongTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5f2480, ios 0x2583b4;
 
     virtual void pageChanged() = win 0x5f3aa0, imac 0x2c0e10, m1 0x260c6c, ios 0x25924c;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5f3b20, imac 0x2c0ea0, m1 0x260d00, ios 0x2592e0;
     virtual void valueDidChange(int tag, float value) = win 0x5f3950, imac 0x2c0d10, m1 0x260b6c, ios 0x2591b8;
     virtual void onPlayback(SongInfoObject* object) = win 0x5f3390, imac 0x2c0ad0, m1 0x260958, ios 0x258fb0;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5f25c0, m1 0x25fcc0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5f25c0, m1 0x25fcc0, ios 0x258438;
     void onResetSongTime(cocos2d::CCObject* sender) = win inline, imac 0x2c0cf0, m1 0x260b60, ios inline;
     void onSavePlaybackPos(cocos2d::CCObject* sender) = win 0x5f37b0, imac 0x2c08a0, m1 0x260704;
     void updateApplyPrepare(bool hideAll) = win inline, imac 0x2c0a90, m1 0x260914;
     void updateLength() = win 0x5f3120, imac 0x2c0850, m1 0x2606ac;
-    void updateSongTimeSlider() = win 0x5f31b0, imac 0x2c09a0, m1 0x260838;
+    void updateSongTimeSlider() = win 0x5f31b0, imac 0x2c09a0, m1 0x260838, ios 0x258e90;
 
     SongSelectNode* m_selectNode;
 }
