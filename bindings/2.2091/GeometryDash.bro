@@ -4309,7 +4309,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
 
     static DialogLayer* create(DialogObject* object, int background) = win inline, imac 0x3b0680, m1 0x3376ec, ios 0x8fc68;
     static DialogLayer* createDialogLayer(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0x174ae0, imac 0x3b0690, m1 0x3376f8, ios 0x8fc74;
-    static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, imac 0x3b07d0, m1 0x337808;
+    static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, imac 0x3b07d0, m1 0x337808, ios 0x8fd00;
 
     virtual void onEnter() = win 0x5bcf0, imac 0x3b1800, m1 0x3387a4, ios 0x9090c;
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x175750, imac 0x3b16b0, m1 0x338678, ios 0x907f0;
