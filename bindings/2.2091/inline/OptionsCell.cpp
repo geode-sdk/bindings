@@ -4,6 +4,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+OptionsCell::~OptionsCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 OptionsCell::OptionsCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
     m_optionsObject = nullptr;

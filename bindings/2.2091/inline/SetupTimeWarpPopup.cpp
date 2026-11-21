@@ -6,6 +6,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupTimeWarpPopup::~SetupTimeWarpPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void SetupTimeWarpPopup::updateTimeWarp() {
     if (m_gameObject) m_gameObject->m_timeWarpTimeMod = m_timeWarpMod;

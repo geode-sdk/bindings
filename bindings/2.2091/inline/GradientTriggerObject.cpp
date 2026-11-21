@@ -17,6 +17,10 @@ GradientTriggerObject::GradientTriggerObject() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+GradientTriggerObject::~GradientTriggerObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GradientTriggerObject* GradientTriggerObject::create() {
     auto ret = new GradientTriggerObject();

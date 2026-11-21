@@ -5,6 +5,10 @@ SetupRotateGameplayPopup::SetupRotateGameplayPopup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupRotateGameplayPopup::~SetupRotateGameplayPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupRotateGameplayPopup* SetupRotateGameplayPopup::create(RotateGameplayGameObject* object, cocos2d::CCArray* objects) {
     auto ret = new SetupRotateGameplayPopup();

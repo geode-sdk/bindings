@@ -2,7 +2,7 @@
 #include <Geode/binding/CCTextInputNode.hpp>
 
 MoreVideoOptionsLayer::MoreVideoOptionsLayer() {
-    m_page = 0;
+    m_page = -1;
     m_toggleCount = 0;
     m_pageCount = 0;
     m_fpsInput = nullptr;

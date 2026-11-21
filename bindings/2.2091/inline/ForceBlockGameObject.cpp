@@ -15,6 +15,10 @@ bool ForceBlockGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ForceBlockGameObject::~ForceBlockGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ForceBlockGameObject* ForceBlockGameObject::create(char const* frame) {
     auto ret = new ForceBlockGameObject();

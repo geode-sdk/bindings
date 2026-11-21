@@ -5,6 +5,10 @@ SetupGameplayOffsetPopup::SetupGameplayOffsetPopup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupGameplayOffsetPopup::~SetupGameplayOffsetPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupGameplayOffsetPopup* SetupGameplayOffsetPopup::create(EffectGameObject* object, cocos2d::CCArray* objects) {
     auto ret = new SetupGameplayOffsetPopup();

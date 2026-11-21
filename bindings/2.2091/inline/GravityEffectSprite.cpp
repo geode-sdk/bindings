@@ -5,6 +5,10 @@ GravityEffectSprite::GravityEffectSprite() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+GravityEffectSprite::~GravityEffectSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GravityEffectSprite* GravityEffectSprite::create() {
     auto ret = new GravityEffectSprite();

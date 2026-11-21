@@ -9,6 +9,10 @@ EndTriggerGameObject::EndTriggerGameObject() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+EndTriggerGameObject::~EndTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 EndTriggerGameObject* EndTriggerGameObject::create() {
     auto ret = new EndTriggerGameObject();

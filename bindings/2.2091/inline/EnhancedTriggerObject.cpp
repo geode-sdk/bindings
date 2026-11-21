@@ -13,6 +13,10 @@ bool EnhancedTriggerObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+EnhancedTriggerObject::~EnhancedTriggerObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 EnhancedTriggerObject* EnhancedTriggerObject::create(char const* frame) {
     auto ret = new EnhancedTriggerObject();

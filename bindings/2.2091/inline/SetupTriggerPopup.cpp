@@ -47,6 +47,8 @@ SetupTriggerPopup::SetupTriggerPopup() {
     m_prevButton = nullptr;
     m_nextButton = nullptr;
     m_hideAll = false;
+    m_unk3d8 = nullptr;
+    m_unk3e0 = 10;
 }
 #endif
 

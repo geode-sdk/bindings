@@ -9,6 +9,10 @@ ScrollingLayer::ScrollingLayer() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ScrollingLayer::~ScrollingLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool ScrollingLayer::init(cocos2d::CCSize size, cocos2d::CCPoint position, float factor) {
     if (!cocos2d::CCLayerColor::initWithColor({ 0, 0, 0, 0 })) return false;

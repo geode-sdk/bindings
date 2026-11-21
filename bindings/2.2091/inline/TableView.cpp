@@ -23,12 +23,12 @@ TableView::TableView(cocos2d::CCRect rect) : CCScrollLayerExt(rect) {
     m_tableDelegate = nullptr;
     m_dataSource = nullptr;
     m_cellDelegate = nullptr;
-    m_unused2 = false;
+    m_unused2 = true;
     this->setTouchEnabled(true);
     this->setMouseEnabled(true);
     m_vScrollbarVisible = false;
     m_hScrollbarVisible = false;
-    m_disableHorizontal = false;
+    m_disableHorizontal = true;
     m_unused3 = nullptr;
     m_delegate = this;
     m_scheduled = false;

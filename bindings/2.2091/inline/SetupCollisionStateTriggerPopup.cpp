@@ -5,6 +5,10 @@ SetupCollisionStateTriggerPopup::SetupCollisionStateTriggerPopup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupCollisionStateTriggerPopup::~SetupCollisionStateTriggerPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

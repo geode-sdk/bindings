@@ -4,6 +4,8 @@
 GauntletNode::GauntletNode() {
     m_gauntletInfoNode = nullptr;
     m_rewardNode = nullptr;
+    m_labelColor = { 0, 0, 0 };
+    m_backgroundColor = { 0, 0, 0 };
     m_gauntlet = nullptr;
     m_locked = false;
 }

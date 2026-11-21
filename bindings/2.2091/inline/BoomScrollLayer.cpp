@@ -72,6 +72,7 @@ BoomScrollLayer::BoomScrollLayer() {
     m_pageOffset = 0.f;
     m_unkPtr = nullptr;
     m_doVisit = false;
+    m_touchDisabled = false;
 }
 
 BoomScrollLayer::~BoomScrollLayer() {

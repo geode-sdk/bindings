@@ -7,6 +7,10 @@ CustomMusicCell::CustomMusicCell(char const* identifier, float width, float heig
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CustomMusicCell::~CustomMusicCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void CustomMusicCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 50, 50, 50 } : cocos2d::ccColor3B { 75, 75, 75 });

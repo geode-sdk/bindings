@@ -14,6 +14,10 @@ AnimatedShopKeeper::AnimatedShopKeeper() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+AnimatedShopKeeper::~AnimatedShopKeeper() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 AnimatedShopKeeper* AnimatedShopKeeper::create(ShopType type) {
     auto ret = new AnimatedShopKeeper();

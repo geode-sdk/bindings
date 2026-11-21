@@ -7,6 +7,10 @@ bool AdvancedFollowTriggerObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+AdvancedFollowTriggerObject::~AdvancedFollowTriggerObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 AdvancedFollowTriggerObject* AdvancedFollowTriggerObject::create(char const* frame) {
     auto ret = new AdvancedFollowTriggerObject();

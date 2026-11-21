@@ -38,6 +38,7 @@ CustomSongWidget::CustomSongWidget() {
     m_showUsageBtn = false;
     m_unkBool2 = false;
     m_totalBytes = 0;
+    m_uploadLimit = 0;
 }
 #endif
 

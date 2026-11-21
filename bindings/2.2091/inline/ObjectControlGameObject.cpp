@@ -5,6 +5,10 @@ ObjectControlGameObject::ObjectControlGameObject() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+ObjectControlGameObject::~ObjectControlGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ObjectControlGameObject* ObjectControlGameObject::create() {
     auto ret = new ObjectControlGameObject();

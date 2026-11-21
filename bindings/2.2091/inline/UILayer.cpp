@@ -32,6 +32,8 @@ UILayer::UILayer() {
     m_levelControls = nullptr;
     m_didAnnounceLevelControls = false;
 }
+
+void UILayer::keyUp(cocos2d::enumKeyCodes key, double timestamp) {}
 #endif
 
 UILayer* UILayer::get() {
@@ -43,8 +45,6 @@ UILayer* UILayer::get() {
 bool UILayer::isJumpButtonPressed(bool player1) {
     return player1 ? (m_p1TouchId != -1 || m_p1Jumping) : (m_p2TouchId != -1 || m_p2Jumping);
 }
-
-void UILayer::keyUp(cocos2d::enumKeyCodes key, double timestamp) {}
 #endif
 
 void UILayer::handleKeypress(cocos2d::enumKeyCodes key, bool down, double timestamp) {

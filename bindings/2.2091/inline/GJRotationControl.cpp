@@ -6,6 +6,11 @@ GJRotationControl::GJRotationControl() {
     m_startingRotation = 0.0f;
     m_currentRotation = 0.0f;
     m_touchID = -1;
+    m_lockRotationButton = nullptr;
+    m_rotationLocked = false;
+    m_angleInput = nullptr;
+    m_applyAngleButton = nullptr;
+    m_controlMenuTouch.m_activeMenu = nullptr;
     m_delegate = nullptr;
 }
 #endif

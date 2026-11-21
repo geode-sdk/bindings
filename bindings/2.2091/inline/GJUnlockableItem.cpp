@@ -8,6 +8,10 @@ bool GJUnlockableItem::init() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJUnlockableItem::~GJUnlockableItem() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GJUnlockableItem* GJUnlockableItem::create() {
     auto ret = new GJUnlockableItem();

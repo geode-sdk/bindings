@@ -5,6 +5,7 @@ GJFriendRequest::GJFriendRequest() {
     m_accountID = 0;
     m_unusedToAccountID = 0;
     m_isRead = false;
+    m_canIgnore = false;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

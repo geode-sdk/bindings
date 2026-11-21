@@ -11,6 +11,10 @@ void ListCell::loadFromObject(cocos2d::CCObject* object, int id, int page, int i
 void ListCell::updateBGColor(int index) {}
 #endif
 
+#ifdef GEODE_IS_MACOS
+ListCell::~ListCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool ListCell::init() { return true; }
 #endif

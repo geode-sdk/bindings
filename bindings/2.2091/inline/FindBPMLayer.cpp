@@ -12,6 +12,10 @@ void FindBPMLayer::calculateBPM() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+FindBPMLayer::~FindBPMLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void FindBPMLayer::onInfo(cocos2d::CCObject* sender) {}
 

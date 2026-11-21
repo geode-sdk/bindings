@@ -74,6 +74,10 @@ void CCMenuItemToggler::updateSprite() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+CCMenuItemToggler::~CCMenuItemToggler() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CCMenuItemSpriteExtra* CCMenuItemToggler::activeItem() {
     return m_toggled ? m_onButton : m_offButton;

@@ -4,6 +4,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+PlayerFireBoostSprite::~PlayerFireBoostSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void PlayerFireBoostSprite::animateFireIn() {
     this->stopAllActions();

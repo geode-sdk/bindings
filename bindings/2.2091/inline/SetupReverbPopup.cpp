@@ -5,6 +5,10 @@ SetupReverbPopup::SetupReverbPopup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupReverbPopup::~SetupReverbPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupReverbPopup* SetupReverbPopup::create(SFXTriggerGameObject* object, cocos2d::CCArray* objects) {
     auto ret = new SetupReverbPopup();

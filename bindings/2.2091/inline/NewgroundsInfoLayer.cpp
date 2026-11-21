@@ -5,6 +5,10 @@ NewgroundsInfoLayer::NewgroundsInfoLayer() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+NewgroundsInfoLayer::~NewgroundsInfoLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 NewgroundsInfoLayer* NewgroundsInfoLayer::create() {
     auto ret = new NewgroundsInfoLayer();

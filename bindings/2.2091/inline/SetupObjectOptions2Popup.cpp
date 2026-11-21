@@ -5,6 +5,10 @@ SetupObjectOptions2Popup::SetupObjectOptions2Popup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupObjectOptions2Popup::~SetupObjectOptions2Popup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupObjectOptions2Popup* SetupObjectOptions2Popup::create(GameObject* object, cocos2d::CCArray* objects) {
     auto ret = new SetupObjectOptions2Popup();

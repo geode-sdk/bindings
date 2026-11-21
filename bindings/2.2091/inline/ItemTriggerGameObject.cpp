@@ -26,6 +26,10 @@ bool ItemTriggerGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ItemTriggerGameObject::~ItemTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ItemTriggerGameObject* ItemTriggerGameObject::create(char const* frame) {
     auto ret = new ItemTriggerGameObject();

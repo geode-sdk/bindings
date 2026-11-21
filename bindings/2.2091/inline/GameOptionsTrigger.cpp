@@ -23,6 +23,10 @@ bool GameOptionsTrigger::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GameOptionsTrigger::~GameOptionsTrigger() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GameOptionsTrigger* GameOptionsTrigger::create(char const* frame) {
     auto ret = new GameOptionsTrigger();

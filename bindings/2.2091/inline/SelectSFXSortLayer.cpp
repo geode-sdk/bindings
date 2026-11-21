@@ -8,6 +8,10 @@ SelectSFXSortLayer::SelectSFXSortLayer() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SelectSFXSortLayer::~SelectSFXSortLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 
 #endif

@@ -5,6 +5,10 @@ SetupCheckpointPopup::SetupCheckpointPopup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupCheckpointPopup::~SetupCheckpointPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupCheckpointPopup* SetupCheckpointPopup::create(CheckpointGameObject* object, cocos2d::CCArray* objects) {
     auto ret = new SetupCheckpointPopup();

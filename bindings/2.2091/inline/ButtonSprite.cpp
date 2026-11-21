@@ -66,6 +66,7 @@ ButtonSprite::ButtonSprite() {
     m_minWidth = 0.f;
     m_scale = 0.f;
     m_height = 0.f;
+    m_unk26c = 1.f;
     m_absolute = false;
     m_label = nullptr;
     m_subSprite = nullptr;

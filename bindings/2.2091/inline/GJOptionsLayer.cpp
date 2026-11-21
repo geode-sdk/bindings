@@ -3,7 +3,7 @@
 #if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_IOS)
 GJOptionsLayer::GJOptionsLayer() {
     m_gap = 48.f;
-    m_page = 0;
+    m_page = -1;
     m_togglesPerPage = 10;
     m_toggleCount = 0;
     m_maxPage = 0;

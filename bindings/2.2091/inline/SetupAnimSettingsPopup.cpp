@@ -7,6 +7,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupAnimSettingsPopup::~SetupAnimSettingsPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void SetupAnimSettingsPopup::updateAnimSettings() {
     if (m_gameObject) m_gameObject->setupAnimationVariables();

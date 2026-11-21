@@ -21,6 +21,8 @@ SetGroupIDLayer::SetGroupIDLayer() {
     m_editorLayerValue = 0;
     m_editorLayer2Value = 0;
     m_zOrderValue = -1000;
+    m_zOrderRelated = 0;
+    m_useDefaultZLayer = true;
     m_zLayerValue = ZLayer::Default;
     m_orderValue = 0;
     m_channelOrderEdited = false;
@@ -32,6 +34,11 @@ SetGroupIDLayer::SetGroupIDLayer() {
     m_unk300 = false;
     m_nextFreeID = 0;
     m_parentGroups = nullptr;
+    m_childGroups = nullptr;
+    m_scrollableContentLayer = nullptr;
+    m_groupIDMenu = nullptr;
+    m_scrolling = false;
+    m_idNameInput = nullptr;
 }
 #endif
 

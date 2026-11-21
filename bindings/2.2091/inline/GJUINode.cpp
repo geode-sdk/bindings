@@ -8,6 +8,10 @@ void GJUINode::updateDeadzone(int deadzone) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJUINode::~GJUINode() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 int GJUINode::activeRangeTouchTest(cocos2d::CCPoint position) {
     cocos2d::CCPoint rangePos = { m_firstSprite->getPosition().x, position.y + 40.f };

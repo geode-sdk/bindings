@@ -7,6 +7,10 @@ GJPathRewardPopup::GJPathRewardPopup() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJPathRewardPopup::~GJPathRewardPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GJPathRewardPopup* GJPathRewardPopup::create(int path) {
     auto ret = new GJPathRewardPopup();

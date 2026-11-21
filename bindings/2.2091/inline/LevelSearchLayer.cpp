@@ -6,6 +6,7 @@ LevelSearchLayer::LevelSearchLayer() {
     m_type = 0;
     m_searchInput = nullptr;
     m_starsSprite = nullptr;
+    m_noStarSprite = nullptr;
     m_difficultySprites = nullptr;
     m_lengthSprites = nullptr;
     m_difficultyDict = nullptr;

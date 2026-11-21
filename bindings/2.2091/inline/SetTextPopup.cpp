@@ -6,6 +6,12 @@ SetTextPopup::SetTextPopup() {
     m_input = nullptr;
     m_disableDelegate = false;
     m_cancelled = false;
+    m_unk2ac = 0.f;
+    m_unk2b0 = 0.f;
+    m_unk2d8 = 0;
+    m_unk2dc = 0;
+    m_emoteButton = nullptr;
+    m_emotePicker = nullptr;
     m_delegate = nullptr;
 }
 #endif

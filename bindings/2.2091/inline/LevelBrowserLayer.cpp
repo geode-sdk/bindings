@@ -127,6 +127,11 @@ LevelBrowserLayer::LevelBrowserLayer() {
     m_initialListViewY = .0f;
     m_delegate = nullptr;
     m_cached = false;
+    m_background = nullptr;
+    m_safeModeNode = nullptr;
+    m_unk330 = nullptr;
+    m_unk338 = nullptr;
+    m_recalledLevel = nullptr;
 }
 #endif
 

@@ -3,6 +3,7 @@
 GauntletLayer::GauntletLayer() {
     m_levels = nullptr;
     m_loadingCircle = nullptr;
+    m_gauntletType = static_cast<GauntletType>(0);
     m_backgroundSprite = nullptr;
     m_unkPtr = nullptr;
     m_activeItemButton = nullptr;

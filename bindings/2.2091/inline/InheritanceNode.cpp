@@ -4,7 +4,7 @@ InheritanceNode::InheritanceNode() {
     m_colorID = 0;
     m_inheritanceNode = nullptr;
     m_colorAction = nullptr;
-    m_unk050 = false;
+    m_unk050 = true;
     m_unk051 = false;
 }
 
@@ -14,6 +14,10 @@ bool InheritanceNode::init(int colorID, InheritanceNode* node) {
     m_inheritanceNode = node;
     return true;
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+InheritanceNode::~InheritanceNode() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

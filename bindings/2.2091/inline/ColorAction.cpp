@@ -6,9 +6,11 @@ ColorAction::ColorAction() {
     m_paused = false;
     m_currentOpacity = 1.f;
     m_deltaTime = 0.f;
+    m_fromColor = { 255, 255, 255 };
+    m_toColor = { 255, 255, 255 };
     m_duration = 0.f;
     m_blending = false;
-    m_playerColor = 0;
+    m_playerColor = -1;
     m_colorID = 0;
     m_fromOpacity = 1.f;
     m_toOpacity = 1.f;
@@ -56,6 +58,10 @@ void ColorAction::updateCustomColor(cocos2d::ccColor3B color1, cocos2d::ccColor3
     if (m_playerColor == 1) m_fromColor = color1;
     else if (m_playerColor == 2) m_fromColor = color2;
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+ColorAction::~ColorAction() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

@@ -33,6 +33,7 @@ void NumberInputLayer::inputNumber(int num) {
 
 #if defined(GEODE_IS_IOS)
 NumberInputLayer::NumberInputLayer() {
+    m_title = nullptr;
     m_okButton = nullptr;
     m_minimum = 4;
     m_maximum = 4;

@@ -13,6 +13,10 @@ void LevelAreaInnerLayer::tryShowAd() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+LevelAreaInnerLayer::~LevelAreaInnerLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 LevelAreaInnerLayer* LevelAreaInnerLayer::create(bool returning) {
     auto ret = new LevelAreaInnerLayer();

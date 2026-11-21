@@ -10,6 +10,10 @@ bool ArtTriggerGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ArtTriggerGameObject::~ArtTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ArtTriggerGameObject* ArtTriggerGameObject::create(char const* frame) {
     auto ret = new ArtTriggerGameObject();

@@ -3,8 +3,13 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 ArtistCell::ArtistCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_songInfo = nullptr;
     this->init();
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+ArtistCell::~ArtistCell() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

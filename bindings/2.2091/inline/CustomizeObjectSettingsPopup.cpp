@@ -8,6 +8,10 @@ CustomizeObjectSettingsPopup::CustomizeObjectSettingsPopup() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+CustomizeObjectSettingsPopup::~CustomizeObjectSettingsPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CustomizeObjectSettingsPopup* CustomizeObjectSettingsPopup::create(GameObject* object, cocos2d::CCArray* objects, CustomizeObjectLayer* layer) {
     auto ret = new CustomizeObjectSettingsPopup();

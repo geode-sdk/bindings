@@ -40,6 +40,10 @@ bool GraphicsReloadLayer::init(cocos2d::TextureQuality quality, cocos2d::CCSize 
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GraphicsReloadLayer::~GraphicsReloadLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

@@ -13,6 +13,10 @@ SpawnParticleGameObject::SpawnParticleGameObject() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SpawnParticleGameObject::~SpawnParticleGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SpawnParticleGameObject* SpawnParticleGameObject::create() {
     auto ret = new SpawnParticleGameObject();

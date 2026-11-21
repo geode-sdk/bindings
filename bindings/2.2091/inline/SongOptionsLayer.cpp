@@ -8,6 +8,10 @@ SongOptionsLayer::SongOptionsLayer() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SongOptionsLayer::~SongOptionsLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SongOptionsLayer* SongOptionsLayer::create(CustomSongDelegate* delegate) {
     auto ret = new SongOptionsLayer();

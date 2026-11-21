@@ -1,7 +1,12 @@
 #include <Geode/binding/ColorChannelSprite.hpp>
+#include <Geode/binding/ColorAction.hpp>
 
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#endif
+
+#ifdef GEODE_IS_MACOS
+ColorChannelSprite::~ColorChannelSprite() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

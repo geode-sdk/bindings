@@ -3,8 +3,13 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJLocalLevelScoreCell::GJLocalLevelScoreCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_localScore = nullptr;
     this->init();
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+GJLocalLevelScoreCell::~GJLocalLevelScoreCell() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

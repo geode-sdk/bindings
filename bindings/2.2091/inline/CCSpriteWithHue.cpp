@@ -72,6 +72,10 @@ void CCSpriteWithHue::updateHue(float unused) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CCSpriteWithHue::~CCSpriteWithHue() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CCSpriteWithHue* CCSpriteWithHue::createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) {
     auto ret = new CCSpriteWithHue();

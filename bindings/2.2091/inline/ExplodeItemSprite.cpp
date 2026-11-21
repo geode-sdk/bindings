@@ -12,6 +12,10 @@ ExplodeItemSprite::ExplodeItemSprite() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+ExplodeItemSprite::~ExplodeItemSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ExplodeItemSprite* ExplodeItemSprite::create() {
     auto ret = new ExplodeItemSprite();

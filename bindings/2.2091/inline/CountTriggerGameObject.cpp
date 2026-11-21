@@ -14,6 +14,10 @@ bool CountTriggerGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CountTriggerGameObject::~CountTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CountTriggerGameObject* CountTriggerGameObject::create(char const* frame) {
     auto ret = new CountTriggerGameObject();

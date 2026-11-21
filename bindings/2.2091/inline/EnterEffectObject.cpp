@@ -1,6 +1,10 @@
 #include <Geode/binding/EnterEffectObject.hpp>
 
 
+#ifdef GEODE_IS_MACOS
+EnterEffectObject::~EnterEffectObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 EnterEffectObject::EnterEffectObject() {
     m_enterType = 0;

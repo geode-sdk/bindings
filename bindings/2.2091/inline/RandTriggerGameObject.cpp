@@ -7,6 +7,10 @@ RandTriggerGameObject::RandTriggerGameObject() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+RandTriggerGameObject::~RandTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 RandTriggerGameObject* RandTriggerGameObject::create() {
     auto ret = new RandTriggerGameObject();

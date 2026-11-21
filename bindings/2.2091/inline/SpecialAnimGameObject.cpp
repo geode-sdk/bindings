@@ -13,6 +13,10 @@ bool SpecialAnimGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SpecialAnimGameObject::~SpecialAnimGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SpecialAnimGameObject* SpecialAnimGameObject::create(char const* frame) {
     auto ret = new SpecialAnimGameObject();

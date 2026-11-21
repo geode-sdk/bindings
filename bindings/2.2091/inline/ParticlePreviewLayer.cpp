@@ -11,7 +11,7 @@
 ParticlePreviewLayer::ParticlePreviewLayer() {
     m_particleMode = 0;
     m_particleSystem = nullptr;
-    m_gravityMode = false;
+    m_gravityMode = true;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -26,6 +26,10 @@ void ParticlePreviewLayer::preVisitWithClippingRect(cocos2d::CCRect rect) {
         cocos2d::CCEGLView::sharedOpenGLView()->setScissorInPoints(position.x, position.y, rect.size.width, rect.size.height);
     }
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+ParticlePreviewLayer::~ParticlePreviewLayer() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

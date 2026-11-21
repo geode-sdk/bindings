@@ -5,6 +5,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+ListButtonPage::~ListButtonPage() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool ListButtonPage::init(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset) {
     if (!cocos2d::CCLayer::init()) return false;

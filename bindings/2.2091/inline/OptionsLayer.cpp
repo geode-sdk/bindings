@@ -13,6 +13,8 @@ OptionsLayer::OptionsLayer() {
     m_unknown = nullptr;
     m_layerChoice = 0;
     m_recordReplays = false;
+    m_musicSlider = nullptr;
+    m_sfxSlider = nullptr;
     m_lastVaultDialog = -1;
 }
 

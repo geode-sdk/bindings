@@ -7,6 +7,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+AchievementsLayer::~AchievementsLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 AchievementsLayer::AchievementsLayer() {
     m_currentPage = 0;

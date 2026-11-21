@@ -5,6 +5,14 @@ ShareListLayer::ShareListLayer() {
     m_list = nullptr;
     m_friendsOnlyToggler = nullptr;
     m_friendsOnlyLabel = nullptr;
+    m_notifyLabel = nullptr;
+    m_notifySprite = nullptr;
+    m_friendsToggler = nullptr;
+    m_followersToggler = nullptr;
+    m_friendsSprite = nullptr;
+    m_followersSprite = nullptr;
+    m_friendsLabel = nullptr;
+    m_followersLabel = nullptr;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)

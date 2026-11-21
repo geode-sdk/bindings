@@ -5,6 +5,7 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJScoreCell::GJScoreCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_score = nullptr;
     this->init();
 }
 
@@ -15,6 +16,10 @@ void GJScoreCell::onCheck(cocos2d::CCObject* sender) {}
 void GJScoreCell::onMoreLevels(cocos2d::CCObject* sender) {
     ProfilePage::create(m_score->m_accountID, false)->show();
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+GJScoreCell::~GJScoreCell() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

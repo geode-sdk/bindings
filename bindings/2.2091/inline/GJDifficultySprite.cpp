@@ -5,6 +5,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJDifficultySprite::~GJDifficultySprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool GJDifficultySprite::init(int difficulty, GJDifficultyName name) {
     return cocos2d::CCSprite::initWithSpriteFrameName(GJDifficultySprite::getDifficultyFrame(difficulty, name).c_str());

@@ -7,6 +7,10 @@ SetupInstantCollisionTriggerPopup::SetupInstantCollisionTriggerPopup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupInstantCollisionTriggerPopup::~SetupInstantCollisionTriggerPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

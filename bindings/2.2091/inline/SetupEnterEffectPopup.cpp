@@ -14,6 +14,10 @@ SetupEnterEffectPopup::SetupEnterEffectPopup() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupEnterEffectPopup::~SetupEnterEffectPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupEnterEffectPopup* SetupEnterEffectPopup::create(EnterEffectObject* object, cocos2d::CCArray* objects, int id) {
     auto ret = new SetupEnterEffectPopup();

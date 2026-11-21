@@ -3,8 +3,13 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 URLCell::URLCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
+    m_urlObject = nullptr;
     this->init();
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+URLCell::~URLCell() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

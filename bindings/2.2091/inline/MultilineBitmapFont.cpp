@@ -3,6 +3,11 @@
 
 #if !defined(GEODE_IS_IOS)
 MultilineBitmapFont::MultilineBitmapFont() {
+    m_fontObject = nullptr;
+    m_unk260 = false;
+    m_unk264 = 0;
+    m_unk268 = 0.f;
+    m_emoteNode = nullptr;
     m_specialDescriptors = nullptr;
     m_characters = nullptr;
     m_lines = nullptr;

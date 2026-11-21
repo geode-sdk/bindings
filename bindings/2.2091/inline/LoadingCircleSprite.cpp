@@ -6,6 +6,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+LoadingCircleSprite::~LoadingCircleSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void LoadingCircleSprite::hideCircle() {
     this->stopActionByTag(0);

@@ -3,6 +3,9 @@
 SliderThumb::SliderThumb() {
     m_length = 0.f;
     m_vertical = false;
+    m_snapValue = -1.f;
+    m_snapThreshold = 0.f;
+    m_snapStep = 0.f;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
@@ -10,6 +13,10 @@ bool SliderThumb::init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selecto
     m_length = 200.f;
     return cocos2d::CCMenuItemImage::initWithNormalImage(normalFrame, selectedFrame, nullptr, target, selector);
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+SliderThumb::~SliderThumb() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

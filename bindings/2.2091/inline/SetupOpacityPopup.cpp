@@ -6,6 +6,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupOpacityPopup::~SetupOpacityPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void SetupOpacityPopup::updateOpacity() {
     if (m_gameObject) m_gameObject->m_opacity = m_opacity;

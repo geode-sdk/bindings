@@ -5,6 +5,10 @@ SelectPremadeLayer::SelectPremadeLayer() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SelectPremadeLayer::~SelectPremadeLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SelectPremadeLayer* SelectPremadeLayer::create() {
     auto ret = new SelectPremadeLayer();

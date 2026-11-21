@@ -1,7 +1,9 @@
 #include <Geode/binding/GauntletSprite.hpp>
 #include <Geode/binding/GauntletNode.hpp>
 
-GauntletSprite::GauntletSprite() {}
+GauntletSprite::GauntletSprite() {
+    m_gauntletType = static_cast<GauntletType>(0);
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 cocos2d::ccColor3B GauntletSprite::colorForType(GauntletType type) {
@@ -14,6 +16,10 @@ cocos2d::ccColor3B GauntletSprite::colorForType(GauntletType type) {
         default: return { 225, 225, 225 };
     }
 }
+#endif
+
+#ifdef GEODE_IS_MACOS
+GauntletSprite::~GauntletSprite() {}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)

@@ -14,6 +14,10 @@ bool AdvancedFollowEditObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+AdvancedFollowEditObject::~AdvancedFollowEditObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 AdvancedFollowEditObject* AdvancedFollowEditObject::create(char const* frame) {
     auto ret = new AdvancedFollowEditObject();

@@ -15,6 +15,14 @@ GJScaleControl::GJScaleControl() {
     m_changedValueY = 0.0f;
     m_scale1Lock = false;
     m_scaleButtonType = ScaleButtonType::X;
+    m_scaleXInput = nullptr;
+    m_scaleYInput = nullptr;
+    m_scaleInput = nullptr;
+    m_applyScaleXButton = nullptr;
+    m_applyScaleYButton = nullptr;
+    m_applyScaleButton = nullptr;
+    m_controlMenu = nullptr;
+    m_controlMenuTouch.m_activeMenu = nullptr;
     m_delegate = nullptr;
     m_upperBound = 2.0f;
     m_lowerBound = 0.5f;

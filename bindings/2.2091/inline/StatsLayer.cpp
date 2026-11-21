@@ -5,6 +5,10 @@ StatsLayer::StatsLayer() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+StatsLayer::~StatsLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 StatsLayer* StatsLayer::create() {
     auto ret = new StatsLayer();

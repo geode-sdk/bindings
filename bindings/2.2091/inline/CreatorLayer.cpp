@@ -8,6 +8,10 @@
 CreatorLayer::CreatorLayer() {
     m_secretDoorSprite = nullptr;
     m_questsSprite = nullptr;
+    m_dailySprite = nullptr;
+    m_weeklySprite = nullptr;
+    m_eventSprite = nullptr;
+    m_gauntletSprite = nullptr;
     m_vaultDialogIndex = -1;
     m_versusDialogIndex = 0;
 }

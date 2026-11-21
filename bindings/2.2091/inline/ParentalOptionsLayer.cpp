@@ -4,6 +4,14 @@ ParentalOptionsLayer::ParentalOptionsLayer() {
     m_page = -1;
     m_toggleCount = 0;
     m_maxPage = 0;
+    m_masterToggled = false;
+    m_safeModeToggler = nullptr;
+    m_offlineModeToggler = nullptr;
+    m_lockToggler = nullptr;
+    m_safeModeNodes = nullptr;
+    m_toggleNodes = nullptr;
+    m_prevButton = nullptr;
+    m_nextButton = nullptr;
 }
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
