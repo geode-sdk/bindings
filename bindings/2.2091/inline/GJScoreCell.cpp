@@ -18,6 +18,10 @@ void GJScoreCell::onMoreLevels(cocos2d::CCObject* sender) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJScoreCell::~GJScoreCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void GJScoreCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });

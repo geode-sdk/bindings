@@ -14,6 +14,10 @@ bool DashRingObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+DashRingObject::~DashRingObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 DashRingObject* DashRingObject::create(char const* frame) {
     auto ret = new DashRingObject();

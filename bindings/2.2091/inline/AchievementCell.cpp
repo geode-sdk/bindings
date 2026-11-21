@@ -7,6 +7,10 @@ AchievementCell::AchievementCell(char const* identifier, float width, float heig
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+AchievementCell::~AchievementCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool AchievementCell::init() { return true; }
 

@@ -8,6 +8,10 @@ bool CustomSongCell::shouldReload() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CustomSongCell::~CustomSongCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 LevelSettingsObject* CustomSongCell::getLevelSettings() { return nullptr; }
 

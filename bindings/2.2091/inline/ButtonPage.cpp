@@ -5,6 +5,10 @@ ButtonPage::ButtonPage() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+ButtonPage::~ButtonPage() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool ButtonPage::init(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) {
     if (!cocos2d::CCLayer::init()) return false;

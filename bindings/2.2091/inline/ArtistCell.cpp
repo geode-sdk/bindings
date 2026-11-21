@@ -8,6 +8,10 @@ ArtistCell::ArtistCell(char const* identifier, float width, float height) : Tabl
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ArtistCell::~ArtistCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void ArtistCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });

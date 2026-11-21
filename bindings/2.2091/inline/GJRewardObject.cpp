@@ -15,6 +15,10 @@ bool GJRewardObject::init(SpecialRewardItem specialRewardItem, int total, int it
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJRewardObject::~GJRewardObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GJRewardObject* GJRewardObject::createWithCoder(DS_Dictionary* dict) {
     auto ret = create();

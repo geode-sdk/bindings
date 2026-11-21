@@ -8,6 +8,10 @@ GJLocalLevelScoreCell::GJLocalLevelScoreCell(char const* identifier, float width
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJLocalLevelScoreCell::~GJLocalLevelScoreCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void GJLocalLevelScoreCell::updateBGColor(int index) {
     if (m_localScore && m_localScore->m_currentScore) {

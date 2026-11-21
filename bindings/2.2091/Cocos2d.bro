@@ -1812,6 +1812,11 @@ class cocos2d::CCJumpTo : cocos2d::CCActionInterval {
 }
 
 [[link(win, android, ios)]]
+class cocos2d::CCKeyboardActionManager : cocos2d::CCObject {
+    virtual bool handleGlobalAction(int, bool) = imac inline, m1 inline;
+}
+
+[[link(win, android, ios)]]
 class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // bool getAltKeyPressed() const;
     // bool getBlockRepeat() const;

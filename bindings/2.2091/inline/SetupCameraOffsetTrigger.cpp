@@ -14,6 +14,10 @@ float SetupCameraOffsetTrigger::sliderValueFromPos(int pos) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupCameraOffsetTrigger::~SetupCameraOffsetTrigger() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void SetupCameraOffsetTrigger::updateMoveCommandEasing() {
     if (m_gameObject) m_gameObject->m_easingType = m_cameraEasingType;

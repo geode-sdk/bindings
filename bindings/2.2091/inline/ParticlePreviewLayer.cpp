@@ -28,6 +28,10 @@ void ParticlePreviewLayer::preVisitWithClippingRect(cocos2d::CCRect rect) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ParticlePreviewLayer::~ParticlePreviewLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ParticlePreviewLayer* ParticlePreviewLayer::create(cocos2d::CCParticleSystemQuad* particleSystem) {
     auto ret = new ParticlePreviewLayer();

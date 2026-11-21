@@ -19,6 +19,10 @@ SliderThumb* Slider::getThumb() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+Slider::~Slider() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 Slider* Slider::create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) {
     return Slider::create(target, handler, 1.f);

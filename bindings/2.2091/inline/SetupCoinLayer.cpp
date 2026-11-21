@@ -5,6 +5,10 @@ SetupCoinLayer::SetupCoinLayer() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupCoinLayer::~SetupCoinLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupCoinLayer* SetupCoinLayer::create(EffectGameObject* object, cocos2d::CCArray* objects) {
     auto ret = new SetupCoinLayer();

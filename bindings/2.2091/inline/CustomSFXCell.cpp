@@ -15,6 +15,10 @@ bool CustomSFXCell::shouldReload() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CustomSFXCell::~CustomSFXCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

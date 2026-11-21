@@ -18,6 +18,10 @@ bool TransformTriggerGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+TransformTriggerGameObject::~TransformTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 TransformTriggerGameObject* TransformTriggerGameObject::create(char const* frame) {
     auto ret = new TransformTriggerGameObject();

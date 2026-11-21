@@ -7,6 +7,10 @@ StatsCell::StatsCell(char const* identifier, float width, float height) : TableV
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+StatsCell::~StatsCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool StatsCell::init() { return true; }
 

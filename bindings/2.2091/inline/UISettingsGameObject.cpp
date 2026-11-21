@@ -10,6 +10,10 @@ UISettingsGameObject::UISettingsGameObject() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+UISettingsGameObject::~UISettingsGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 UISettingsGameObject* UISettingsGameObject::create() {
     auto ret = new UISettingsGameObject();

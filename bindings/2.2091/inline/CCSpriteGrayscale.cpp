@@ -44,6 +44,10 @@ CCSpriteGrayscale* CCSpriteGrayscale::createWithTexture(cocos2d::CCTexture2D* te
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CCSpriteGrayscale::~CCSpriteGrayscale() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CCSpriteGrayscale* CCSpriteGrayscale::createWithSpriteFrame(cocos2d::CCSpriteFrame* frame) {
     auto ret = new CCSpriteGrayscale();

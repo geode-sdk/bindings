@@ -8,6 +8,10 @@ DungeonBarsSprite::DungeonBarsSprite() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+DungeonBarsSprite::~DungeonBarsSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 DungeonBarsSprite* DungeonBarsSprite::create() {
     auto ret = new DungeonBarsSprite();

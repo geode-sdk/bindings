@@ -5,6 +5,10 @@ LevelOptionsLayer2::LevelOptionsLayer2() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+LevelOptionsLayer2::~LevelOptionsLayer2() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 LevelOptionsLayer2* LevelOptionsLayer2::create(LevelSettingsObject* object) {
     auto ret = new LevelOptionsLayer2();

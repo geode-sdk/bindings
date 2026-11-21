@@ -17,6 +17,10 @@ bool CameraTriggerGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CameraTriggerGameObject::~CameraTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CameraTriggerGameObject* CameraTriggerGameObject::create(char const* frame) {
     auto ret = new CameraTriggerGameObject();

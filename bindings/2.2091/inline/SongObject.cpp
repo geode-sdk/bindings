@@ -11,6 +11,10 @@ bool SongObject::init(int audioID) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SongObject::~SongObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SongObject* SongObject::create(int audioID) {
     auto ret = new SongObject();

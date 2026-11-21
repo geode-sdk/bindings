@@ -11,6 +11,10 @@ GJStoreItem::GJStoreItem() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJStoreItem::~GJStoreItem() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GJStoreItem* GJStoreItem::create(int index, int typeID, int unlockType, int price, ShopType shopType) {
     auto ret = new GJStoreItem();

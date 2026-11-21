@@ -4,6 +4,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+EditorSFXActionConfigLayer::~EditorSFXActionConfigLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 EditorSFXActionConfigLayer::EditorSFXActionConfigLayer() {
     m_actionID = 0;

@@ -38,6 +38,10 @@ bool ShaderGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ShaderGameObject::~ShaderGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ShaderGameObject* ShaderGameObject::create(char const* frame) {
     auto ret = new ShaderGameObject();

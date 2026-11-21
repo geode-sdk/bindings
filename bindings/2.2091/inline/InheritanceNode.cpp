@@ -16,6 +16,10 @@ bool InheritanceNode::init(int colorID, InheritanceNode* node) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+InheritanceNode::~InheritanceNode() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 InheritanceNode* InheritanceNode::create(int colorID, InheritanceNode* node) {
     auto ret = new InheritanceNode();

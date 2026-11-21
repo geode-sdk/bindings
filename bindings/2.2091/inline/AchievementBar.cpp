@@ -9,6 +9,10 @@ AchievementBar::AchievementBar() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+AchievementBar::~AchievementBar() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 AchievementBar* AchievementBar::create(char const* title, char const* desc, char const* icon, bool quest) {
     auto ret = new AchievementBar();

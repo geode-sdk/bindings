@@ -3,6 +3,10 @@
 
 DailyRecallUnlockPopup::DailyRecallUnlockPopup() {}
 
+#ifdef GEODE_IS_MACOS
+DailyRecallUnlockPopup::~DailyRecallUnlockPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 DailyRecallUnlockPopup* DailyRecallUnlockPopup::create(FLAlertLayerProtocol* protocol, GJGameLevel* level) {
     auto ret = new DailyRecallUnlockPopup();

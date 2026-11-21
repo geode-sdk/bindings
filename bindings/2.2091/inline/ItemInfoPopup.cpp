@@ -9,6 +9,10 @@ bool ItemInfoPopup::isUnlockedByDefault(int id, UnlockType type) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ItemInfoPopup::~ItemInfoPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

@@ -43,6 +43,10 @@ void GJMGLayer::toggleVisible01(bool visible) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJMGLayer::~GJMGLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GJMGLayer* GJMGLayer::create(int index) {
     auto ret = new GJMGLayer();

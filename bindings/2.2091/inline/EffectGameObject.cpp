@@ -4,6 +4,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+EffectGameObject::~EffectGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 EffectGameObject* EffectGameObject::create(char const* frame) {
     auto ret = new EffectGameObject();

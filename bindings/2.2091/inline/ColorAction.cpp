@@ -60,6 +60,10 @@ void ColorAction::updateCustomColor(cocos2d::ccColor3B color1, cocos2d::ccColor3
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+ColorAction::~ColorAction() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ColorAction* ColorAction::create(cocos2d::ccColor3B fromColor, cocos2d::ccColor3B toColor, float duration, double unused, bool blending, int playerColor, float fromOpacity, float toOpacity) {
     auto ret = new ColorAction();

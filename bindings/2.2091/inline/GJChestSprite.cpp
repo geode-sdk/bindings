@@ -4,6 +4,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJChestSprite::~GJChestSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 bool GJChestSprite::init(int chestType) {
     if (!cocos2d::CCSprite::init()) return false;

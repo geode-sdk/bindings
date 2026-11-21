@@ -9,6 +9,10 @@ ColorActionSprite::ColorActionSprite() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+ColorActionSprite::~ColorActionSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ColorActionSprite* ColorActionSprite::create() {
     auto ret = new ColorActionSprite();

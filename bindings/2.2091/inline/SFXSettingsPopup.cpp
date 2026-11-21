@@ -3,6 +3,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SFXSettingsPopup::~SFXSettingsPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

@@ -5,6 +5,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+TextAlertPopup::~TextAlertPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void TextAlertPopup::setLabelColor(cocos2d::ccColor3B color) {
     if (m_label) m_label->setColor(color);

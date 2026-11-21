@@ -370,7 +370,7 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
 [[link(android)]]
 class AchievementBar : cocos2d::CCNodeRGBA {
     AchievementBar() = inline;
-    virtual ~AchievementBar() = win 0x95c50, ios 0x3084f8;
+    virtual ~AchievementBar() = win 0x95c50, imac inline, m1 inline, ios 0x3084f8;
 
     static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest) = win inline, imac 0x6f5630, m1 0x607734;
 
@@ -393,7 +393,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 [[link(android)]]
 class AchievementCell : TableViewCell {
     AchievementCell(char const* identifier, float width, float height) = win inline, imac 0x236720, m1 0x1e288c, ios inline;
-    virtual ~AchievementCell() = win 0x89d10;
+    virtual ~AchievementCell() = win 0x89d10, imac inline, m1 inline;
 
     virtual bool init() = win inline, imac 0x236790, m1 0x1e28cc, ios 0x132ae4;
     virtual void draw() = win 0x1487a0, imac 0x2367a0, m1 0x1e28d4, ios 0x132aec;
@@ -467,8 +467,8 @@ class AchievementNotifier : cocos2d::CCNode {
 
 [[link(android)]]
 class AchievementsLayer : GJDropDownLayer {
-    virtual ~AchievementsLayer() = win 0x97620, ios 0x4a4294;
     AchievementsLayer() = win inline, imac 0x35cd70, m1 0x2ebe28;
+    virtual ~AchievementsLayer() = win 0x97620, imac inline, m1 inline, ios 0x4a4294;
 
     static AchievementsLayer* create() = win inline, imac 0x35c580, m1 0x2eb688;
 
@@ -618,7 +618,7 @@ class AdToolbox {
 [[link(android)]]
 class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
     AdvancedFollowEditObject() = inline;
-    virtual ~AdvancedFollowEditObject() = win 0x637db0;
+    virtual ~AdvancedFollowEditObject() = win 0x637db0, imac inline, m1 inline;
 
     static AdvancedFollowEditObject* create(char const* frame) = win inline, imac 0x18da00, m1 0x14f200;
 
@@ -642,7 +642,7 @@ class AdvancedFollowEditObject : AdvancedFollowTriggerObject {
 [[link(android)]]
 class AdvancedFollowTriggerObject : EffectGameObject {
     AdvancedFollowTriggerObject() = win 0x637c20, inline;
-    virtual ~AdvancedFollowTriggerObject() = win 0x637d50;
+    virtual ~AdvancedFollowTriggerObject() = win 0x637d50, imac inline, m1 inline;
 
     static AdvancedFollowTriggerObject* create(char const* frame) = win inline, imac 0x182b60, m1 0x146a3c;
 
@@ -829,7 +829,7 @@ class AnimatedGameObject : EnhancedGameObject, AnimatedSpriteDelegate, SpritePar
 [[link(android)]]
 class AnimatedShopKeeper : CCAnimatedSprite {
     AnimatedShopKeeper() = inline;
-    virtual ~AnimatedShopKeeper() = win 0x3af7d0, ios 0x1ccef0;
+    virtual ~AnimatedShopKeeper() = win 0x3af7d0, imac inline, m1 inline, ios 0x1ccef0;
 
     static AnimatedShopKeeper* create(ShopType type) = win inline, imac 0x30fdd0, m1 0x2a2ad4;
 
@@ -894,8 +894,8 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 
 [[link(android)]]
 class ArtistCell : TableViewCell {
-    virtual ~ArtistCell() = win 0x151590, ios 0x138184;
     ArtistCell(char const* identifier, float width, float height) = win inline, imac 0x23d630, m1 0x1e8d9c, ios inline;
+    virtual ~ArtistCell() = win 0x151590, imac inline, m1 inline, ios 0x138184;
 
     virtual bool init() = win 0x400c0, imac 0x23d6a0, m1 0x1e8de0, ios 0x1381bc;
     virtual void draw() = win 0x1487a0, imac 0x23d8f0, m1 0x1e9078, ios 0x1383d4;
@@ -911,7 +911,7 @@ class ArtistCell : TableViewCell {
 [[link(android)]]
 class ArtTriggerGameObject : EffectGameObject {
     ArtTriggerGameObject() = inline;
-    virtual ~ArtTriggerGameObject() = win 0x637e10;
+    virtual ~ArtTriggerGameObject() = win 0x637e10, imac inline, m1 inline;
 
     static ArtTriggerGameObject* create(char const* frame) = win inline, imac 0x1ce2c0, m1 0x1841a4;
 
@@ -1003,7 +1003,7 @@ class AudioEffectsLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class AudioLineGuideGameObject : EffectGameObject {
     AudioLineGuideGameObject() = inline;
-    virtual ~AudioLineGuideGameObject() = win 0x637aa0;
+    virtual ~AudioLineGuideGameObject() = win 0x637aa0, imac inline, m1 inline;
 
     static AudioLineGuideGameObject* create() = win inline, imac 0x1cbc80, m1 0x18220c;
 
@@ -1028,7 +1028,7 @@ class AutoBackupOptionsDelegate {
 
 [[link(android)]]
 class AutoBackupOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
-    virtual ~AutoBackupOptionsPopup() = win 0x60ac50;
+    virtual ~AutoBackupOptionsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static AutoBackupOptionsPopup* create(AutoBackupOptionsDelegate*) = imac 0x982220, m1 0x85bd90;
 
@@ -1342,7 +1342,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
 [[link(android)]]
 class ButtonPage : cocos2d::CCLayer {
     ButtonPage() = inline;
-    virtual ~ButtonPage() = win 0x77c70;
+    virtual ~ButtonPage() = win 0x77c70, imac inline, m1 inline;
 
     static ButtonPage* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) = win 0x177dc0, imac 0x6b48e0, m1 0x5ce0bc;
 
@@ -1412,7 +1412,7 @@ class ButtonSprite : cocos2d::CCSprite {
 [[link(android)]]
 class CameraTriggerGameObject : EffectGameObject {
     CameraTriggerGameObject() = inline;
-    virtual ~CameraTriggerGameObject() = win 0x6385c0;
+    virtual ~CameraTriggerGameObject() = win 0x6385c0, imac inline, m1 inline;
 
     static CameraTriggerGameObject* create(char const* frame) = win inline, imac 0x1bed90, m1 0x1780e4;
 
@@ -1617,7 +1617,7 @@ class CCCountdown : cocos2d::CCSprite {
 [[link(android)]]
 class CCCounterLabel : cocos2d::CCLabelBMFont {
     CCCounterLabel() = inline;
-    virtual ~CCCounterLabel() = win 0x46de0, ios 0x3e380;
+    virtual ~CCCounterLabel() = win 0x46de0, imac inline, m1 inline, ios 0x3e380;
 
     static CCCounterLabel* create(int count, char const* font, FormatterType type) = win inline, imac 0x512610, m1 0x46d77c;
 
@@ -1682,7 +1682,7 @@ class CCLightFlash : cocos2d::CCNode {
 [[link(android)]]
 class CCLightStrip : cocos2d::CCNode {
     CCLightStrip() = inline;
-    virtual ~CCLightStrip() = win 0x47080;
+    virtual ~CCLightStrip() = win 0x47080, imac inline, m1 inline;
 
     static CCLightStrip* create(float width, float toWidth, float toHeight, float duration, float delay) = win inline, imac 0x502cf0, m1 0x45e9a0;
 
@@ -1733,7 +1733,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     virtual void selected() = win 0x48bb0, imac 0x2634d0, m1 0x20ac34, ios 0x2b043c;
     virtual void unselected() = win 0x48e00, imac 0x2637a0, m1 0x20aec4, ios 0x2b0660;
 
-    void applyLargeMobileTouch() = ios 0x2b0350;
+    void applyLargeMobileTouch() = imac 0x263340, m1 0x20aadc, ios 0x2b0350;
     bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x48940, imac 0x2631c0, m1 0x20a950, ios 0x2b01c4;
     void setClickColor(cocos2d::ccColor3B) = imac 0x263770, m1 0x20aea4;
     void setSizeMult(float mult) = win inline, imac 0x263330, m1 0x20aad4, ios 0x2b0348;
@@ -1854,7 +1854,7 @@ class CCMoveCNode : cocos2d::CCObject {
 
 [[link(android)]]
 class CCNodeContainer : cocos2d::CCNode {
-    virtual ~CCNodeContainer() = win 0x353030;
+    virtual ~CCNodeContainer() = win 0x353030, imac inline, m1 inline;
 
     static CCNodeContainer* create() = win 0x352fa0, imac 0xf0010, m1 0xd0cbc;
 
@@ -2103,7 +2103,7 @@ class CCSpritePlus : cocos2d::CCSprite {
 [[link(android)]]
 class CCSpriteWithHue : cocos2d::CCSprite {
     CCSpriteWithHue() = inline;
-    virtual ~CCSpriteWithHue() = win 0x4c570;
+    virtual ~CCSpriteWithHue() = win 0x4c570, imac inline, m1 inline;
 
     static CCSpriteWithHue* create(std::string const& file) = win inline, imac 0x6c2c20, m1 0x5db564, ios inline;
     static CCSpriteWithHue* create(std::string const& file, cocos2d::CCRect const& rect) = win inline, imac 0x6c2ce0, m1 0x5db630, ios inline;
@@ -2144,7 +2144,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 
 [[link(android)]]
 class CCTextInputMenu : cocos2d::CCLayer {
-    virtual ~CCTextInputMenu() = win 0x4d250;
+    virtual ~CCTextInputMenu() = win 0x4d250, imac inline, m1 inline;
 
     static CCTextInputMenu* create(CCTextInputNode*, cocos2d::CCPoint) = imac 0x784f0, m1 0x70034;
 
@@ -2427,7 +2427,7 @@ class CharacterColorPage : FLAlertLayer {
 [[link(android)]]
 class CheckpointGameObject : EffectGameObject {
     CheckpointGameObject() = inline;
-    virtual ~CheckpointGameObject() = win 0x637aa0, ios 0x436054;
+    virtual ~CheckpointGameObject() = win 0x637aa0, imac inline, m1 inline, ios 0x436054;
 
     static CheckpointGameObject* create() = win inline, imac 0x1b5b90, m1 0x170b00;
 
@@ -2495,7 +2495,7 @@ class CheckpointObject : cocos2d::CCNode {
 
 [[link(android)]]
 class ClearPlatformerSavesOptionsPopup : SetupTriggerPopup {
-    virtual ~ClearPlatformerSavesOptionsPopup() = win 0x60ac50;
+    virtual ~ClearPlatformerSavesOptionsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static ClearPlatformerSavesOptionsPopup* create() = imac 0x8b4e40, m1 0x7a6044;
 
@@ -2508,7 +2508,7 @@ class ClearPlatformerSavesOptionsPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class ClearPlatformerSavesPopup : FLAlertLayer, FLAlertLayerProtocol {
-    virtual ~ClearPlatformerSavesPopup() = win 0xa3130, ios 0x4a9b70;
+    virtual ~ClearPlatformerSavesPopup() = win 0xa3130, imac inline, m1 inline, ios 0x4a9b70;
 
     static ClearPlatformerSavesPopup* create() = imac 0x8b3fb0, m1 0x7a52f8;
 
@@ -2530,7 +2530,7 @@ class ClearPlatformerSavesPopup : FLAlertLayer, FLAlertLayerProtocol {
 
 [[link(android)]]
 class CollisionBlockPopup : SetupTriggerPopup {
-    virtual ~CollisionBlockPopup() = win 0xa4b10, ios 0x8eb2c;
+    virtual ~CollisionBlockPopup() = win 0xa4b10, imac inline, m1 inline, ios 0x8eb2c;
 
     static CollisionBlockPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0xa4be0, imac 0x2724f0, m1 0x218f8c;
 
@@ -2556,7 +2556,7 @@ class CollisionTriggerAction {
 [[link(android)]]
 class ColorAction : cocos2d::CCObject {
     ColorAction() = inline;
-    virtual ~ColorAction() = win 0x3623d0;
+    virtual ~ColorAction() = win 0x3623d0, imac inline, m1 inline;
 
     static ColorAction* create() = win 0x363310, imac 0x2c3f90, m1 0x263a48;
     static ColorAction* create(cocos2d::ccColor3B color, bool blending, int playerColor) = win inline, imac 0x2c4190, m1 0x263bf8, ios inline;
@@ -2638,7 +2638,7 @@ class ColorAction2 {
 [[link(android)]]
 class ColorActionSprite : cocos2d::CCNode {
     ColorActionSprite() = inline;
-    virtual ~ColorActionSprite() = win 0x47080;
+    virtual ~ColorActionSprite() = win 0x47080, imac inline, m1 inline;
 
     static ColorActionSprite* create() = win inline, imac 0x2c3cf0, m1 0x2637e8;
 
@@ -2654,7 +2654,7 @@ class ColorActionSprite : cocos2d::CCNode {
 
 [[link(android)]]
 class ColorChannelSprite : cocos2d::CCSprite {
-    virtual ~ColorChannelSprite() = win 0x3624a0;
+    virtual ~ColorChannelSprite() = win 0x3624a0, imac inline, m1 inline;
 
     static ColorChannelSprite* create() = win 0x362d80, imac 0x2c3630, m1 0x263150, ios 0xd13c;
 
@@ -3024,7 +3024,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
 
 [[link(android)]]
 class ConfigureValuePopup : FLAlertLayer {
-    virtual ~ConfigureValuePopup() = win 0x1318b0, ios 0x1ce4a8;
+    virtual ~ConfigureValuePopup() = win 0x1318b0, imac inline, m1 inline, ios 0x1ce4a8;
 
     static ConfigureValuePopup* create(ConfigureValuePopupDelegate* delegate, float value, float minimum, float maximum, std::string title, std::string description, int type) = win 0x131960, imac 0x700e30, m1 0x612450;
 
@@ -3092,7 +3092,7 @@ class ControlMenuTouch {
 
 [[link(android)]]
 class ControlSlotsPopup : SetupTriggerPopup {
-    virtual ~ControlSlotsPopup() = win 0x60ac50;
+    virtual ~ControlSlotsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static ControlSlotsPopup* create(TouchControlEditLayer*, bool) = imac 0x97b9d0, m1 0x855d3c;
 
@@ -3127,7 +3127,7 @@ class CountTriggerAction {
 [[link(android)]]
 class CountTriggerGameObject : EffectGameObject {
     CountTriggerGameObject() = inline;
-    virtual ~CountTriggerGameObject() = win 0x637aa0;
+    virtual ~CountTriggerGameObject() = win 0x637aa0, imac inline, m1 inline;
 
     static CountTriggerGameObject* create(char const* frame) = win inline, imac 0x1b79c0, m1 0x1725b0;
 
@@ -3599,7 +3599,7 @@ class CustomizeObjectLayer : FLAlertLayer, HSVWidgetDelegate, ColorSelectDelegat
 [[link(android)]]
 class CustomizeObjectSettingsPopup : SetupTriggerPopup {
     CustomizeObjectSettingsPopup() = inline;
-    virtual ~CustomizeObjectSettingsPopup() = win 0x60ac50;
+    virtual ~CustomizeObjectSettingsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static CustomizeObjectSettingsPopup* create(GameObject* object, cocos2d::CCArray* objects, CustomizeObjectLayer* layer) = win inline, imac 0x1dab50, m1 0x18ed9c;
 
@@ -3631,8 +3631,8 @@ class CustomListView : BoomListView {
 
 [[link(android)]]
 class CustomMusicCell : CustomSongCell {
-    virtual ~CustomMusicCell() = win 0x150d50, ios 0x138050;
     CustomMusicCell(char const* identifier, float width, float height) = win inline, imac 0x23d3a0, m1 0x1e8c14, ios inline;
+    virtual ~CustomMusicCell() = win 0x150d50, imac inline, m1 inline, ios 0x138050;
 
     void loadFromObject(SongInfoObject* object) = win 0x150df0, imac 0x229b50, m1 0x1d63ec, ios 0x127500;
     void updateBGColor(int index) = win inline, imac 0x229c90, m1 0x1d6520, ios 0x127634;
@@ -3640,8 +3640,8 @@ class CustomMusicCell : CustomSongCell {
 
 [[link(android)]]
 class CustomSFXCell : TableViewCell, CustomSFXDelegate {
-    virtual ~CustomSFXCell() = win 0x1507d0, ios 0x137cd0;
     CustomSFXCell(char const* identifier, float width, float height) = win 0x150870, imac 0x23cdb0, m1 0x1e883c, ios inline;
+    virtual ~CustomSFXCell() = win 0x1507d0, imac inline, m1 inline, ios 0x137cd0;
 
     virtual bool init() = win 0x150900, imac 0x23ce40, m1 0x1e8890, ios 0x137d08;
     virtual void draw() = win 0x1487a0, imac 0x23d240, m1 0x1e8b2c, ios 0x137fa4;
@@ -3685,7 +3685,7 @@ class CustomSFXImportEntry {
 
 [[link(android)]]
 class CustomSFXRowMenu : cocos2d::CCMenu {
-    virtual ~CustomSFXRowMenu() = win 0x15ff10, ios 0x189760;
+    virtual ~CustomSFXRowMenu() = win 0x15ff10, imac inline, m1 inline, ios 0x189760;
 
     static CustomSFXRowMenu* create() = imac 0x6b5080, m1 0x5ce7b0;
 
@@ -3762,8 +3762,8 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 
 [[link(android)]]
 class CustomSongCell : TableViewCell, CustomSongDelegate {
-    virtual ~CustomSongCell() = win 0x150230, ios 0x137a60;
     CustomSongCell(char const* identifier, float width, float height) = win 0x1502e0, imac 0x23c9c0, m1 0x1e857c, ios inline;
+    virtual ~CustomSongCell() = win 0x150230, imac inline, m1 inline, ios 0x137a60;
 
     virtual bool init() = win 0x150360, imac 0x23ca40, m1 0x1e85c8, ios 0x137a98;
     virtual void draw() = win 0x1487a0, imac 0x23cc50, m1 0x1e8754, ios 0x137c24;
@@ -3996,7 +3996,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
 [[link(android)]]
 class DailyRecallUnlockPopup : FLAlertLayer {
     DailyRecallUnlockPopup() = inline;
-    virtual ~DailyRecallUnlockPopup() = win 0x5a3f0;
+    virtual ~DailyRecallUnlockPopup() = win 0x5a3f0, imac inline, m1 inline;
 
     static DailyRecallUnlockPopup* create(FLAlertLayerProtocol*, GJGameLevel*) = win inline, imac 0x98a160, m1 0x864888, ios 0x53a23c;
 
@@ -4006,7 +4006,7 @@ class DailyRecallUnlockPopup : FLAlertLayer {
 [[link(android)]]
 class DashRingObject : RingObject {
     DashRingObject() = inline;
-    virtual ~DashRingObject() = win 0x637a40;
+    virtual ~DashRingObject() = win 0x637a40, imac inline, m1 inline;
 
     static DashRingObject* create(char const* frame) = win inline, imac 0x195690, m1 0x155b64;
 
@@ -4029,16 +4029,16 @@ class DashRingObject : RingObject {
 
 [[link(android)]]
 class DeathHistogram : cocos2d::CCNode {
-    virtual ~DeathHistogram() = win 0x1107a0;
+    virtual ~DeathHistogram() = win 0x1107a0, imac inline, m1 inline;
 
-
-    void handleTouchEnded(cocos2d::CCTouch*);
-    void handleTouchMoved(cocos2d::CCTouch*);
-    void persistScroll(std::string const&);
-    void rebuildAxis(char const*, int, float, float, char const*) = win 0x111610;
     static DeathHistogram* create(cocos2d::CCSize) = win 0x111400, imac 0x8b7600, m1 0x7a8528;
+
     bool handleTouchBegan(cocos2d::CCTouch*) = win 0x114970, imac 0x8bbe50, m1 0x7ac604;
+    void handleTouchEnded(cocos2d::CCTouch*) = imac 0x8bbf10, m1 0x7ac6b0;
+    void handleTouchMoved(cocos2d::CCTouch*) = imac 0x8bbef0, m1 0x7ac6a0;
     bool init(cocos2d::CCSize) = imac 0x8b76e0, m1 0x7a860c;
+    void persistScroll(std::string const&) = imac 0x8bbe10, m1 0x7ac5e4;
+    void rebuildAxis(char const*, int, float, float, char const*) = win 0x111610, imac 0x8b7840, m1 0x7a8750;
     bool restoreScroll(std::string const&) = win 0x114950, imac 0x8bbe30, m1 0x7ac5f4;
     void setAttemptLine(std::vector<int> const&, std::vector<int> const&, cocos2d::ccColor3B, int, cocos2d::ccColor3B, bool) = win 0x112eb0, imac 0x8b9c20, m1 0x7aa9d4;
     void setData(std::vector<int> const&, int, bool, bool, bool) = win 0x111dd0, imac 0x8b7fe0, m1 0x7a8e74;
@@ -4099,7 +4099,7 @@ class DeathMarkerLayer : cocos2d::CCNode {
 
 [[link(android)]]
 class DeathMarkerSettingsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
-    virtual ~DeathMarkerSettingsPopup() = win 0x60ac50;
+    virtual ~DeathMarkerSettingsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static DeathMarkerSettingsPopup* create(GJGameLevel*) = imac 0x8c6640, m1 0x7b5574;
 
@@ -4158,7 +4158,7 @@ class DeathStatsPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class DeathTrackerOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
-    virtual ~DeathTrackerOptionsPopup() = win 0x60ac50;
+    virtual ~DeathTrackerOptionsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static DeathTrackerOptionsPopup* create(GJGameLevel*, DeathTrackerPopup*) = imac 0x8ca070, m1 0x7b877c;
 
@@ -4376,7 +4376,7 @@ class DownloadMessageDelegate {
 
 [[link(android)]]
 class DpadMenu : cocos2d::CCMenu {
-    virtual ~DpadMenu() = win 0x1f3370;
+    virtual ~DpadMenu() = win 0x1f3370, imac inline, m1 inline;
 
     static DpadMenu* create(cocos2d::CCPoint, cocos2d::CCSize, cocos2d::CCSize) = imac 0x63ade0, m1 0x5774a0;
 
@@ -4545,7 +4545,7 @@ class DTStatSeg {
 [[link(android)]]
 class DungeonBarsSprite : cocos2d::CCNode {
     DungeonBarsSprite() = inline;
-    virtual ~DungeonBarsSprite() = win 0x80dc0, ios 0x17c58;
+    virtual ~DungeonBarsSprite() = win 0x80dc0, imac inline, m1 inline, ios 0x17c58;
 
     static DungeonBarsSprite* create() = win inline, imac 0x49dba0, m1 0x405b10;
 
@@ -4626,7 +4626,7 @@ class EditButtonBar : cocos2d::CCNode {
 [[link(android)]]
 class EditGameObjectPopup : SetupTriggerPopup {
     EditGameObjectPopup() = inline;
-    virtual ~EditGameObjectPopup() = win 0x399750, ios 0x37aa80;
+    virtual ~EditGameObjectPopup() = win 0x399750, imac inline, m1 inline, ios 0x37aa80;
 
     static EditGameObjectPopup* create(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win inline, imac 0x297700, m1 0x23b3a0;
 
@@ -4724,7 +4724,7 @@ class EditorBuildStats {
 
 [[link(android)]]
 class EditorCommandsPopup : EditorWindowPopup {
-    virtual ~EditorCommandsPopup() = win 0x17d520, ios 0x4c54f0;
+    virtual ~EditorCommandsPopup() = win 0x17d520, imac inline, m1 inline, ios 0x4c54f0;
 
     static EditorCommandsPopup* create(EditorUI*) = imac 0x8ddf40, m1 0x7ca784;
 
@@ -4822,7 +4822,7 @@ class EditorPauseLayer : CCBlockLayer, FLAlertLayerProtocol, VolumeChangeDelegat
 [[link(android)]]
 class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
     EditorSFXActionConfigLayer() = win inline, ios 0x4c7364;
-    virtual ~EditorSFXActionConfigLayer() = win 0x183430, ios 0x4c5d84;
+    virtual ~EditorSFXActionConfigLayer() = win 0x183430, imac inline, m1 inline, ios 0x4c5d84;
 
     static EditorSFXActionConfigLayer* create(int actionId, EditorSoundsLayer* layer) = win inline, imac 0x8df1c0, m1 0x7cb8ac, ios 0x4c5dbc;
 
@@ -4933,7 +4933,7 @@ class EditorSFXManager {
 
 [[link(android)]]
 class EditorSFXSettingsPopup : SetupTriggerPopup {
-    virtual ~EditorSFXSettingsPopup() = win 0x60ac50;
+    virtual ~EditorSFXSettingsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static EditorSFXSettingsPopup* create(int) = imac 0x8ee8c0, m1 0x7d77c8;
 
@@ -5195,7 +5195,7 @@ class EditorSoundsLayer : TabbedPopupLayer {
 
 [[link(android)]]
 class EditorSoundsSettingsPopup : FLAlertLayer, FLAlertLayerProtocol {
-    virtual ~EditorSoundsSettingsPopup() = win 0x5a3f0;
+    virtual ~EditorSoundsSettingsPopup() = win 0x5a3f0, imac inline, m1 inline;
 
     static EditorSoundsSettingsPopup* create(EditorSoundsLayer*) = imac 0x8ff3e0, m1 0x7e69f0;
 
@@ -5740,14 +5740,14 @@ class EditorWindowPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x17fd00, imac 0x9021d0, m1 0x7e92d8, ios 0x4dabe4;
     virtual void textInputClosed(CCTextInputNode*) = win 0x17fc80, imac 0x902110, m1 0x7e9254, ios 0x4dab60;
     virtual bool handleAction(int action, bool down, double timestamp) = win 0x17fba0, imac 0x901f10, m1 0x7e901c, ios 0x4daa94;
-    virtual void onBuildWindowContent() = win 0x9999999;
+    virtual void onBuildWindowContent() = win 0x9999999, imac inline, m1 inline;
     virtual void onWindowResized() = inline;
     virtual void onFieldEnter() = win 0x17fc70, imac 0x9020d0, m1 0x7e9204, ios 0x4dab5c;
     bool initWindow(EditorUI* editorUI, float width, float height, int windowID, int unused) = win 0x17dde0, imac 0x8ffeb0, m1 0x7e73f4, ios 0x4d92e8;
     bool beginTouch(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x17edd0, imac 0x901160, m1 0x7e83dc;
     bool isInCloseButton(cocos2d::CCPoint point) const = win 0x17e7f0, m1 0x7e7e60, imac 0x900b10, ios 0x4d9cb0;
 
-    CCTextInputNode* activeField();
+    CCTextInputNode* activeField() = imac 0x900e60, m1 0x7e810c;
     void applyWindowSize() = win 0x17e6d0, imac 0x9005e0, m1 0x7e7a20, ios 0x4d98f8;
     void blurField() = win 0x17ec40, imac 0x900f30, m1 0x7e81f4, ios 0x4d9fe8;
     cocos2d::CCPoint clampWindowCenter(cocos2d::CCPoint) const = win 0x17e930, imac 0x900480, m1 0x7e791c, ios 0x4d97f8;
@@ -5807,7 +5807,7 @@ class EditorWindowPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class EditTriggersPopup : SetupTriggerPopup {
-    virtual ~EditTriggersPopup() = win 0x398df0, ios 0x370ca0;
+    virtual ~EditTriggersPopup() = win 0x398df0, imac inline, m1 inline, ios 0x370ca0;
 
     static EditTriggersPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x399f00, imac 0x285900, m1 0x22a970;
 
@@ -5820,7 +5820,7 @@ class EditTriggersPopup : SetupTriggerPopup {
 [[link(android)]]
 class EffectGameObject : EnhancedGameObject {
     EffectGameObject() = win 0x637740, imac 0x1d64d0, m1 0x18adc0;
-    virtual ~EffectGameObject() = win 0x637e70, imac 0x66ea30, m1 0x5a63ac, ios 0x42b2e8;
+    virtual ~EffectGameObject() = win 0x637e70, imac inline, m1 inline, ios 0x42b2e8;
 
     static EffectGameObject* create(char const* frame) = win inline, imac 0x199690, m1 0x159544;
 
@@ -6079,7 +6079,7 @@ class EffectGameObject : EnhancedGameObject {
 [[link(android), depends(CAState, PulseEffectAction, CountTriggerAction, OpacityEffectAction, TouchToggleAction, CollisionTriggerAction, ToggleTriggerAction, SpawnTriggerAction, GroupCommandObject2, TimerItem, TimerTriggerAction)]]
 class EffectManagerState {
     // ~EffectManagerState();
-    EffectManagerState() = win 0x503390;
+    EffectManagerState() = win 0x503390, imac inline, m1 inline;
 
 
     std::vector<CAState> m_colorActions; // running color triggers
@@ -6264,7 +6264,7 @@ class EndPortalObject : GameObject {
 [[link(android)]]
 class EndTriggerGameObject : EffectGameObject {
     EndTriggerGameObject() = inline;
-    virtual ~EndTriggerGameObject() = win 0x637e10;
+    virtual ~EndTriggerGameObject() = win 0x637e10, imac inline, m1 inline;
 
     static EndTriggerGameObject* create() = win inline, imac 0x1bcaa0, m1 0x176408;
 
@@ -6284,7 +6284,7 @@ class EndTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class EnhancedGameObject : GameObject {
     EnhancedGameObject() = win 0x288660, inline;
-    virtual ~EnhancedGameObject() = win 0x288810, imac 0x66ea30, m1 0x5a63ac;
+    virtual ~EnhancedGameObject() = win 0x288810, imac inline, m1 inline;
 
     static EnhancedGameObject* create(char const* frame) = win inline, imac 0x673590, m1 0x5a6854;
 
@@ -6379,7 +6379,7 @@ class EnhancedGameObject : GameObject {
 [[link(android)]]
 class EnhancedTriggerObject : EffectGameObject {
     EnhancedTriggerObject() = inline;
-    virtual ~EnhancedTriggerObject() = win 0x637aa0;
+    virtual ~EnhancedTriggerObject() = win 0x637aa0, imac inline, m1 inline;
 
     static EnhancedTriggerObject* create(char const* frame) = win inline, imac 0x19d100, m1 0x15c410;
 
@@ -6467,7 +6467,7 @@ class EnterEffectInstance {
 class EnterEffectObject : EffectGameObject {
     // make every member zero
     EnterEffectObject() = win inline, imac 0x1d63a0, m1 0x18acd8;
-    virtual ~EnterEffectObject() = win 0x637b00, ios 0x415abc;
+    virtual ~EnterEffectObject() = win 0x637b00, imac inline, m1 inline, ios 0x415abc;
 
     static EnterEffectObject* create(char const* frame) = win inline, imac 0x163b90, m1 0x12e990;
 
@@ -6627,7 +6627,7 @@ class ExplodeItemNode : cocos2d::CCNode {
 [[link(android)]]
 class ExplodeItemSprite : cocos2d::CCSprite {
     ExplodeItemSprite() = inline;
-    virtual ~ExplodeItemSprite() = win 0x4dd120;
+    virtual ~ExplodeItemSprite() = win 0x4dd120, imac inline, m1 inline;
 
     static ExplodeItemSprite* create() = win inline, imac 0x1f7b20, m1 0x1a96cc;
 
@@ -6683,7 +6683,7 @@ class FileSaveManager : GManager {
 
 [[link(android)]]
 class FindBPMLayer : CreateGuidelinesLayer {
-    virtual ~FindBPMLayer() = win 0x132ce0, ios 0x86c24;
+    virtual ~FindBPMLayer() = win 0x132ce0, imac inline, m1 inline, ios 0x86c24;
 
     static FindBPMLayer* create(int songID) = win 0x134e30, imac 0x50eb50, m1 0x46a278;
 
@@ -6706,7 +6706,7 @@ class FindBPMLayer : CreateGuidelinesLayer {
 
 [[link(android)]]
 class FindObjectOptionsLayer : GJOptionsLayer {
-    virtual ~FindObjectOptionsLayer() = win 0x39ab40, ios 0x1f8a34;
+    virtual ~FindObjectOptionsLayer() = win 0x39ab40, imac inline, m1 inline, ios 0x1f8a34;
 
     static FindObjectOptionsLayer* create() = imac 0x9066f0, m1 0x7ed4c0, ios 0x4ddb8c;
 
@@ -6717,7 +6717,7 @@ class FindObjectOptionsLayer : GJOptionsLayer {
 [[link(android)]]
 class FindObjectPopup : EditorWindowPopup {
     FindObjectPopup() = inline;
-    virtual ~FindObjectPopup() = win 0x180260, ios 0x4dd518;
+    virtual ~FindObjectPopup() = win 0x180260, imac inline, m1 inline, ios 0x4dd518;
 
     static FindObjectPopup* create(EditorUI*) = win inline, imac 0x905eb0, m1 0x7eccdc;
 
@@ -6999,7 +6999,7 @@ class FMODAudioState {
 
 [[link(android)]]
 class FMODLevelVisualizer : cocos2d::CCNode {
-    virtual ~FMODLevelVisualizer() = win 0x80dc0;
+    virtual ~FMODLevelVisualizer() = win 0x80dc0, imac inline, m1 inline;
 
     static FMODLevelVisualizer* create() = win 0x3a9af0, imac 0x29daa0, m1 0x240f5c, ios 0x37efa4;
 
@@ -7090,8 +7090,8 @@ class FontObject : cocos2d::CCObject {
 
 [[link(android)]]
 class FontPreviewCell : TableViewCell {
-    virtual ~FontPreviewCell() = win 0x89d10, ios 0x13ba14;
     FontPreviewCell(char const*, float, float) = imac 0x96f7c0, m1 0x84b978;
+    virtual ~FontPreviewCell() = win 0x89d10, imac inline, m1 inline, ios 0x13ba14;
 
     virtual bool init() = win 0x3ff70, imac 0x96f8a0, m1 0x84ba00, ios 0x315a0c;
     virtual void draw() = win 0x58dd60, imac 0x96fc60, m1 0x84bd94, ios 0x315d98;
@@ -7107,7 +7107,7 @@ class FontPreviewCell : TableViewCell {
 [[link(android)]]
 class ForceBlockGameObject : EffectGameObject {
     ForceBlockGameObject() = inline;
-    virtual ~ForceBlockGameObject() = win 0x637a40;
+    virtual ~ForceBlockGameObject() = win 0x637a40, imac inline, m1 inline;
 
     static ForceBlockGameObject* create(char const* frame) = win inline, imac 0x1ccca0, m1 0x182f18;
 
@@ -7211,12 +7211,12 @@ class FRequestProfilePage : FLAlertLayer, FLAlertLayerProtocol, UploadActionDele
 class FriendPickerDelegate {
     virtual void friendPicked(GJUserScore*) = inline;
     virtual bool isRecipientSelected(int) = inline;
-    virtual int selectedRecipientCount() = win 0x9999999;
-    virtual cocos2d::CCArray* selectedRecipients() = win 0x9999999;
+    virtual int selectedRecipientCount() = win 0x9999999, imac inline, m1 inline;
+    virtual cocos2d::CCArray* selectedRecipients() = win 0x9999999, imac inline, m1 inline;
     virtual void clearRecipients() = inline;
     virtual void friendPickerClosed() = inline;
-    virtual int pickerRowState(int) = win 0x98e00;
-    virtual int pickerCountBase() = win 0x98e00;
+    virtual int pickerRowState(int) = win 0x98e00, imac inline, m1 inline;
+    virtual int pickerCountBase() = win 0x98e00, imac inline, m1 inline;
     virtual void friendPickerAdd() = inline;
 }
 
@@ -7303,7 +7303,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
 
 [[link(android)]]
 class FriendRowEdges : cocos2d::CCNode {
-    virtual ~FriendRowEdges() = win 0x80dc0;
+    virtual ~FriendRowEdges() = win 0x80dc0, imac inline, m1 inline;
 
     virtual void draw() = win 0x213020, imac 0x738090, m1 0x645e44, ios 0x273e20;
 
@@ -9091,7 +9091,7 @@ class GameOptionsLayer : GJOptionsLayer {
 [[link(android)]]
 class GameOptionsTrigger : EffectGameObject {
     GameOptionsTrigger() = inline;
-    virtual ~GameOptionsTrigger() = win 0x6382e0;
+    virtual ~GameOptionsTrigger() = win 0x6382e0, imac inline, m1 inline;
 
     static GameOptionsTrigger* create(char const* frame) = win inline, imac 0x18ede0, m1 0x150228;
 
@@ -9617,7 +9617,7 @@ class GauntletSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, LevelMana
 [[link(android)]]
 class GauntletSprite : cocos2d::CCNode {
     GauntletSprite() = inline;
-    virtual ~GauntletSprite() = win 0x80dc0;
+    virtual ~GauntletSprite() = win 0x80dc0, imac inline, m1 inline;
 
     static GauntletSprite* create(GauntletType type, bool locked) = win inline, imac 0x37f480, m1 0x30a9f0;
 
@@ -9633,7 +9633,7 @@ class GauntletSprite : cocos2d::CCNode {
 
 [[link(android)]]
 class GhostTrailEffect : cocos2d::CCNode {
-    virtual ~GhostTrailEffect() = win 0x76a40, ios 0x391824;
+    virtual ~GhostTrailEffect() = win 0x76a40, imac inline, m1 inline, ios 0x391824;
 
     // GhostTrailEffect() = ios 0x305d20;
     static GhostTrailEffect* create() = win 0x76a80, imac 0x6d0890, m1 0x5e7b88, ios 0x39183c;
@@ -10808,7 +10808,7 @@ class GJChallengeItem : cocos2d::CCObject {
 
 [[link(android)]]
 class GJChestSprite : cocos2d::CCSprite {
-    virtual ~GJChestSprite() = win 0x561c30, ios 0x25dcb4;
+    virtual ~GJChestSprite() = win 0x561c30, imac inline, m1 inline, ios 0x25dcb4;
 
     static GJChestSprite* create(int chestType) = win 0x566f50, imac 0x200390, m1 0x1b14d8, ios 0x25b6d8;
 
@@ -10931,7 +10931,7 @@ class GJDailyLevelDelegate {
 
 [[link(android)]]
 class GJDifficultySprite : cocos2d::CCSprite {
-    virtual ~GJDifficultySprite() = win 0x7e780;
+    virtual ~GJDifficultySprite() = win 0x7e780, imac inline, m1 inline;
 
     static GJDifficultySprite* create(int difficulty, GJDifficultyName name) = win 0x3aaf10, imac 0x2a4ab0, m1 0x247594, ios 0x380570;
     static std::string getDifficultyFrame(int difficulty, GJDifficultyName name) = win 0x3ab000, imac 0x2a4c00, m1 0x247740;
@@ -11223,7 +11223,7 @@ class GJFlyGroundLayer : GJGroundLayer {
 
 [[link(android)]]
 class GJFollowCommandLayer : SetupTriggerPopup {
-    virtual ~GJFollowCommandLayer() = win 0x37a9a0, ios 0x1b44f8;
+    virtual ~GJFollowCommandLayer() = win 0x37a9a0, imac inline, m1 inline, ios 0x1b44f8;
 
     static GJFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x37aa70, imac 0x2c1d20, m1 0x2619d8;
 
@@ -11831,7 +11831,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
 [[link(android)]]
 class GJGradientLayer : cocos2d::CCLayerGradient {
     GJGradientLayer() = inline;
-    virtual ~GJGradientLayer() = win 0x83870;
+    virtual ~GJGradientLayer() = win 0x83870, imac inline, m1 inline;
 
     static GJGradientLayer* create() = win inline, imac 0x116d20, m1 0xf1cc0;
 
@@ -12049,8 +12049,8 @@ class GJLevelList : cocos2d::CCNode {
 
 [[link(android)]]
 class GJLevelScoreCell : TableViewCell {
-    virtual ~GJLevelScoreCell() = win 0x156ff0, ios 0x13902c;
     GJLevelScoreCell(char const* identifier, float width, float height) = win inline, imac 0x23ef40, m1 0x1ea2d4, ios inline;
+    virtual ~GJLevelScoreCell() = win 0x156ff0, imac inline, m1 inline, ios 0x13902c;
 
     virtual bool init() = win 0x400c0, imac 0x23efb0, m1 0x1ea318, ios 0x139064;
     virtual void draw() = win 0x1487a0, imac 0x23f000, m1 0x1ea35c, ios 0x1390a8;
@@ -12088,8 +12088,8 @@ class GJListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class GJLocalLevelScoreCell : TableViewCell {
-    virtual ~GJLocalLevelScoreCell() = win 0x156b90, ios 0x138f3c;
     GJLocalLevelScoreCell(char const* identifier, float width, float height) = win inline, imac 0x23ed50, m1 0x1ea19c, ios inline;
+    virtual ~GJLocalLevelScoreCell() = win 0x156b90, imac inline, m1 inline, ios 0x138f3c;
 
     virtual bool init() = win 0x400c0, imac 0x23edc0, m1 0x1ea1e0, ios 0x138f74;
     virtual void draw() = win 0x1487a0, imac 0x23ede0, m1 0x1ea1ec, ios 0x138f80;
@@ -12103,7 +12103,7 @@ class GJLocalLevelScoreCell : TableViewCell {
 [[link(android)]]
 class GJLocalScore : cocos2d::CCObject {
     GJLocalScore() = inline;
-    virtual ~GJLocalScore() = win 0x14e8e0;
+    virtual ~GJLocalScore() = win 0x14e8e0, imac inline, m1 inline;
 
     static GJLocalScore* create(int points, int type) = win inline, imac 0x58ca70, m1 0x4dd2a0;
 
@@ -12276,7 +12276,7 @@ class GJMessageThread : cocos2d::CCObject {
 [[link(android)]]
 class GJMGLayer : cocos2d::CCLayer {
     GJMGLayer() = inline;
-    virtual ~GJMGLayer() = win 0x386c60;
+    virtual ~GJMGLayer() = win 0x386c60, imac inline, m1 inline;
 
     static GJMGLayer* create(int index) = win inline, imac 0x6bece0, m1 0x5d799c;
     static float defaultYOffsetForBG2(int index) = win inline, imac 0x6becc0, m1 0x5d797c, ios inline;
@@ -12426,7 +12426,7 @@ class GJNotificationCell : TableViewCell, FLAlertLayerProtocol {
 
 [[link(android)]]
 class GJObjectDecoder : cocos2d::CCNode, ObjectDecoderDelegate {
-    virtual ~GJObjectDecoder() = win 0x80dc0;
+    virtual ~GJObjectDecoder() = win 0x80dc0, imac inline, m1 inline;
 
     static GJObjectDecoder* sharedDecoder() = win 0x391c80, imac 0x803730, m1 0x703d34, ios 0x2b3544;
 
@@ -12489,7 +12489,7 @@ class GJOptionsLayer : SetupTriggerPopup {
 
 [[link(android)]]
 class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
-    virtual ~GJPathPage() = win 0x392280, ios 0x45f68c;
+    virtual ~GJPathPage() = win 0x392280, imac inline, m1 inline, ios 0x45f68c;
 
     static GJPathPage* create(int path, GJPathsLayer* layer) = win 0x3931f0, imac 0x2e96b0, m1 0x27fae0;
 
@@ -12518,7 +12518,7 @@ class GJPathPage : FLAlertLayer, FLAlertLayerProtocol, GJPurchaseDelegate {
 [[link(android)]]
 class GJPathRewardPopup : FLAlertLayer {
     GJPathRewardPopup() = inline;
-    virtual ~GJPathRewardPopup() = win 0x5a3f0;
+    virtual ~GJPathRewardPopup() = win 0x5a3f0, imac inline, m1 inline;
 
     static GJPathRewardPopup* create(int path) = win inline, imac 0x2e98f0, m1 0x27fc80;
 
@@ -12533,7 +12533,7 @@ class GJPathRewardPopup : FLAlertLayer {
 
 [[link(android)]]
 class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
-    virtual ~GJPathsLayer() = win 0x3921c0, ios 0x45ebcc;
+    virtual ~GJPathsLayer() = win 0x3921c0, imac inline, m1 inline, ios 0x45ebcc;
 
     static GJPathsLayer* create() = win 0x392820, imac 0x2e8d00, m1 0x27f1ac;
     static std::string nameForPath(int path) = win 0x3925b0, imac 0x2e8b20, m1 0x27ef9c;
@@ -12554,7 +12554,7 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 
 [[link(android)]]
 class GJPathSprite : CCSpriteCOpacity {
-    virtual ~GJPathSprite() = win 0x7e780;
+    virtual ~GJPathSprite() = win 0x7e780, imac inline, m1 inline;
 
     static GJPathSprite* create(int path) = win 0x396e70, imac 0x2e9480, m1 0x27f888;
 
@@ -12569,7 +12569,7 @@ class GJPathSprite : CCSpriteCOpacity {
 
 [[link(android)]]
 class GJPFollowCommandLayer : SetupTriggerPopup {
-    virtual ~GJPFollowCommandLayer() = win 0x398470, ios 0x1e93d8;
+    virtual ~GJPFollowCommandLayer() = win 0x398470, imac inline, m1 inline, ios 0x1e93d8;
 
     static GJPFollowCommandLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x398540, imac 0x350350, m1 0x2e024c;
 
@@ -12753,7 +12753,7 @@ class GJRewardItem : cocos2d::CCObject {
 
 [[link(android)]]
 class GJRewardObject : cocos2d::CCObject {
-    virtual ~GJRewardObject() = win 0x14e8e0, ios 0xc4b8;
+    virtual ~GJRewardObject() = win 0x14e8e0, imac inline, m1 inline, ios 0xc4b8;
 
     static GJRewardObject* create() = win inline, imac 0x557d0, m1 0x4f3ac, ios inline;
     static GJRewardObject* create(SpecialRewardItem type, int total, int itemID) = win 0x2f8a20, imac 0x37af0, m1 0x31820, ios 0x3d1204;
@@ -12924,8 +12924,8 @@ class GJScaleControlDelegate {
 
 [[link(android)]]
 class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
-    virtual ~GJScoreCell() = win 0x155270, ios 0x138cb4;
     GJScoreCell(char const* identifier, float width, float height) = win inline, imac 0x23e8b0, m1 0x1e9dc4, ios inline;
+    virtual ~GJScoreCell() = win 0x155270, imac inline, m1 inline, ios 0x138cb4;
 
     virtual bool init() = win 0x150360, imac 0x23e930, m1 0x1e9e10, ios 0x138cec;
     virtual void draw() = win 0x1487a0, imac 0x23ebf0, m1 0x1ea0b4, ios 0x138e90;
@@ -13240,7 +13240,7 @@ class GJSmartBlockPreview : cocos2d::CCNode {
 [[link(android)]]
 class GJSmartBlockPreviewSprite : cocos2d::CCNode {
     GJSmartBlockPreviewSprite() = inline;
-    virtual ~GJSmartBlockPreviewSprite() = win 0x3b6ba0, ios 0x9614;
+    virtual ~GJSmartBlockPreviewSprite() = win 0x3b6ba0, imac inline, m1 inline, ios 0x9614;
 
     static GJSmartBlockPreviewSprite* create() = win inline, imac 0x415e80, m1 0x38e1a0;
 
@@ -13419,7 +13419,7 @@ class GJSpriteColor {
 [[link(android)]]
 class GJStoreItem : cocos2d::CCNode {
     GJStoreItem() = inline;
-    virtual ~GJStoreItem() = win 0x2d6850;
+    virtual ~GJStoreItem() = win 0x2d6850, imac inline, m1 inline;
 
     static GJStoreItem* create(int index, int typeID, int unlockType, int price, ShopType shopType) = win inline, imac 0x2bf10, m1 0x26228;
 
@@ -13559,7 +13559,7 @@ class GJTransformControlDelegate {
 
 [[link(android)]]
 class GJUINode : cocos2d::CCNode {
-    virtual ~GJUINode() = win 0x1107a0;
+    virtual ~GJUINode() = win 0x1107a0, imac inline, m1 inline;
     GJUINode() = ios 0x53c38;
 
     static GJUINode* create(UIButtonConfig& config) = win 0x673b50, imac 0x4c26d0, m1 0x425c30, ios 0x50ac0;
@@ -13612,7 +13612,7 @@ class GJUINode : cocos2d::CCNode {
 [[link(android)]]
 class GJUnlockableItem : cocos2d::CCObject {
     GJUnlockableItem() = inline;
-    virtual ~GJUnlockableItem() = win 0x2f9b60;
+    virtual ~GJUnlockableItem() = win 0x2f9b60, imac inline, m1 inline;
 
     static GJUnlockableItem* create() = win inline, imac 0x2b990, m1 0x25ce4;
 
@@ -13870,7 +13870,7 @@ class GooglePlayManager : cocos2d::CCNode {
 [[link(android)]]
 class GradientTriggerObject : EffectGameObject {
     GradientTriggerObject() = inline;
-    virtual ~GradientTriggerObject() = win 0x637b60;
+    virtual ~GradientTriggerObject() = win 0x637b60, imac inline, m1 inline;
 
     static GradientTriggerObject* create() = win inline, imac 0x17b060, m1 0x140ab8;
 
@@ -13905,7 +13905,7 @@ class GradientTriggerObject : EffectGameObject {
 [[link(android), depends(cocos2d::CCDirector)]]
 class GraphicsReloadLayer : cocos2d::CCLayer {
     GraphicsReloadLayer() = inline;
-    virtual ~GraphicsReloadLayer() = win 0x4cad60;
+    virtual ~GraphicsReloadLayer() = win 0x4cad60, imac inline, m1 inline;
 
     static GraphicsReloadLayer* create(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool fullscreen, bool borderless, bool fix, bool changedResolution) = win inline, imac 0x888070, m1 0x77cb54, ios inline;
     static cocos2d::CCScene* scene(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool fullscreen, bool borderless, bool fix, bool changedResolution) = win inline, imac 0x887ff0, m1 0x77cab4, ios inline;
@@ -13924,7 +13924,7 @@ class GraphicsReloadLayer : cocos2d::CCLayer {
 [[link(android)]]
 class GravityEffectSprite : cocos2d::CCSprite {
     GravityEffectSprite() = inline;
-    virtual ~GravityEffectSprite() = win 0x51b5a0;
+    virtual ~GravityEffectSprite() = win 0x51b5a0, imac inline, m1 inline;
 
     static GravityEffectSprite* create() = win inline, imac 0x7a190, m1 0x719ac, ios 0x13ebac;
 
@@ -13936,7 +13936,7 @@ class GravityEffectSprite : cocos2d::CCSprite {
 
 [[link(android)]]
 class GridSettingsLayer : EditorWindowPopup {
-    virtual ~GridSettingsLayer() = win 0x2c8c70, ios 0x4dedb0;
+    virtual ~GridSettingsLayer() = win 0x2c8c70, imac inline, m1 inline, ios 0x4dedb0;
 
     static GridSettingsLayer* create(EditorUI*) = imac 0x9081f0, m1 0x7eedc0;
 
@@ -14122,13 +14122,13 @@ class HSVWidgetDelegate {
 
 [[link(android)]]
 class HSVWidgetPopup : FLAlertLayer {
-    virtual ~HSVWidgetPopup() = win 0x12f3f0, ios 0x123500;
+    virtual ~HSVWidgetPopup() = win 0x12f3f0, imac inline, m1 inline, ios 0x123500;
 
-    static HSVWidgetPopup* create(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f510, m1 0x3946a0, ios 0x123538;
+    static HSVWidgetPopup* create(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f510, imac 0x41c570, m1 0x3946a0, ios 0x123538;
 
     virtual void keyBackClicked() = win 0x12fac0, imac 0x41cf40, m1 0x394f6c, ios 0x123c7c;
 
-    bool init(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f670, m1 0x39488c, ios 0x12367c;
+    bool init(cocos2d::ccHSVValue, cocos2d::ccColor3B, HSVWidgetDelegate*, std::string) = win 0x12f670, imac 0x41c7c0, m1 0x39488c, ios 0x12367c;
     void onClose(cocos2d::CCObject* sender) = win 0x12f9e0, imac 0x41cb50, m1 0x394bd4;
 
     ConfigureHSVWidget* m_widget;
@@ -14369,7 +14369,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 [[link(android)]]
 class InheritanceNode : cocos2d::CCObject {
     InheritanceNode() = inline;
-    virtual ~InheritanceNode() = win 0x362410;
+    virtual ~InheritanceNode() = win 0x362410, imac inline, m1 inline;
 
     static InheritanceNode* create(int colorID, InheritanceNode* node) = win inline, imac 0x2c3c00, m1 0x263700;
 
@@ -14384,7 +14384,7 @@ class InheritanceNode : cocos2d::CCObject {
 
 [[link(android)]]
 class InputCaptureDelegate {
-    virtual ~InputCaptureDelegate() = win 0x44d290;
+    virtual ~InputCaptureDelegate() = win 0x44d290, imac inline, m1 inline;
 
     virtual void inputKeySelected(int) = inline;
 }
@@ -14430,7 +14430,7 @@ class InvitesPopup : PagedListPopup, ThreadMessageDelegate, FLAlertLayerProtocol
 
 [[link(android)]]
 class ItemInfoPopup : FLAlertLayer {
-    virtual ~ItemInfoPopup() = win 0x37b550, ios 0x3a4e80;
+    virtual ~ItemInfoPopup() = win 0x37b550, imac inline, m1 inline, ios 0x3a4e80;
 
     static ItemInfoPopup* create(int id, UnlockType type) = win 0x3841e0, imac 0x358290, m1 0x2e7738, ios 0x3a31e4;
     static std::string nameForUnlockType(int id, UnlockType type) = win 0x3863b0, imac 0x35c180, m1 0x2eb1fc;
@@ -14450,7 +14450,7 @@ class ItemInfoPopup : FLAlertLayer {
 [[link(android)]]
 class ItemTriggerGameObject : EffectGameObject {
     ItemTriggerGameObject() = inline;
-    virtual ~ItemTriggerGameObject() = win 0x6382e0;
+    virtual ~ItemTriggerGameObject() = win 0x6382e0, imac inline, m1 inline;
 
     static ItemTriggerGameObject* create(char const* frame) = win inline, imac 0x1c63b0, m1 0x17dcf8;
 
@@ -14642,7 +14642,7 @@ class KeybindSource {
 [[link(android)]]
 class KeyframeAnimTriggerObject : EffectGameObject {
     KeyframeAnimTriggerObject() = inline;
-    virtual ~KeyframeAnimTriggerObject() = win 0x637a40;
+    virtual ~KeyframeAnimTriggerObject() = win 0x637a40, imac inline, m1 inline;
 
     static KeyframeAnimTriggerObject* create() = win inline, imac 0x19bcd0, m1 0x15b3a4;
 
@@ -14859,7 +14859,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 [[link(android)]]
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     LevelAreaInnerLayer() = inline;
-    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, ios 0x3e3da4;
+    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, imac inline, m1 inline, ios 0x3e3da4;
 
     static LevelAreaInnerLayer* create(bool returning) = win inline, imac 0x2661f0, m1 0x20d7fc, ios 0x3e3ddc;
     static cocos2d::CCScene* scene(bool returning) = win 0x3df700, imac 0x265f20, m1 0x20d5b4, ios 0x3e3cf8;
@@ -15785,7 +15785,7 @@ class LevelManagerDelegate {
 [[link(android)]]
 class LevelOptionsLayer : GJOptionsLayer {
     LevelOptionsLayer() = win 0x457900, inline;
-    virtual ~LevelOptionsLayer() = win 0x45d100, ios 0x20ece8;
+    virtual ~LevelOptionsLayer() = win 0x45d100, imac inline, m1 inline, ios 0x20ece8;
 
     static LevelOptionsLayer* create(LevelSettingsObject* object) = win inline, imac 0x2586a0, m1 0x200e44, ios 0x20d184;
 
@@ -15803,7 +15803,7 @@ class LevelOptionsLayer : GJOptionsLayer {
 [[link(android)]]
 class LevelOptionsLayer2 : LevelOptionsLayer {
     LevelOptionsLayer2() = inline;
-    virtual ~LevelOptionsLayer2() = win 0x45d100;
+    virtual ~LevelOptionsLayer2() = win 0x45d100, imac inline, m1 inline;
 
     static LevelOptionsLayer2* create(LevelSettingsObject* object) = win inline, imac 0x25b9c0, m1 0x203bd8, ios 0x20f18c;
 
@@ -16247,7 +16247,7 @@ class LevelSettingsObject : cocos2d::CCNode {
 
 [[link(android)]]
 class LevelStatsInfoPopup : FLAlertLayer {
-    virtual ~LevelStatsInfoPopup() = win 0x5a3f0, ios 0x1c65ac;
+    virtual ~LevelStatsInfoPopup() = win 0x5a3f0, imac inline, m1 inline, ios 0x1c65ac;
 
     static LevelStatsInfoPopup* create(GJGameLevel*) = win 0x4267b0, imac 0x925de0, m1 0x808820;
 
@@ -16327,7 +16327,7 @@ class LikeItemDelegate {
 [[link(android)]]
 class LikeItemLayer : FLAlertLayer {
     LikeItemLayer() = inline;
-    virtual ~LikeItemLayer() = win 0x468830, ios 0x2e9cc8;
+    virtual ~LikeItemLayer() = win 0x468830, imac inline, m1 inline, ios 0x2e9cc8;
 
     static LikeItemLayer* create(LikeItemType type, int id, int parentID) = win 0x4688e0, imac 0x6cf940, m1 0x5e6d14, ios 0x2e9d00;
 
@@ -16370,7 +16370,7 @@ class ListButtonBarDelegate {
 
 [[link(android)]]
 class ListButtonPage : cocos2d::CCLayer {
-    virtual ~ListButtonPage() = win 0x77c70;
+    virtual ~ListButtonPage() = win 0x77c70, imac inline, m1 inline;
 
     static ListButtonPage* create(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset) = win 0x783b0, imac 0x3dd6b0, m1 0x35c4e8, ios 0x1f0eb0;
 
@@ -16380,7 +16380,7 @@ class ListButtonPage : cocos2d::CCLayer {
 [[link(android)]]
 class ListCell : TableViewCell {
     ListCell(char const* identifier, float width, float height) = win inline, imac 0x2f7cf0, m1 0x28c800, ios inline;
-    virtual ~ListCell() = win 0x89d10;
+    virtual ~ListCell() = win 0x89d10, imac inline, m1 inline;
 
     virtual bool init() = win inline, imac 0x2f7ce0, m1 0x28c7f8, ios 0x2685e0;
     virtual void draw() = win 0x3ffc0, imac 0x2f7d70, m1 0x28c844, ios 0x2685e8;
@@ -16400,7 +16400,7 @@ class ListUploadDelegate {
 [[link(android)]]
 class LoadingCircle : cocos2d::CCLayerColor {
     LoadingCircle() = inline;
-    virtual ~LoadingCircle() = win 0x78680, imac 0x4b80f0, m1 0x4116c4, ios 0x441554;
+    virtual ~LoadingCircle() = win 0x78680, imac inline, m1 inline, ios 0x441554;
 
     static LoadingCircle* create() = win 0x78790, imac 0x4b8000, m1 0x41c688;
 
@@ -16424,7 +16424,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class LoadingCircleSprite : cocos2d::CCSprite {
-    virtual ~LoadingCircleSprite() = win 0x78730, ios 0x441958;
+    virtual ~LoadingCircleSprite() = win 0x78730, imac inline, m1 inline, ios 0x441958;
 
     /// Create a Loading Circle Sprite with a spinning action
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
@@ -17023,7 +17023,7 @@ class MoreVideoOptionsLayer : FLAlertLayer {
 
 [[link(android)]]
 class MoveStepPopup : EditorWindowPopup {
-    virtual ~MoveStepPopup() = win 0x60ac50;
+    virtual ~MoveStepPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static MoveStepPopup* create(EditorUI*) = imac 0x98d6d0, m1 0x867a70;
 
@@ -17129,7 +17129,7 @@ class MultiplayerLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class MultiTriggerPopup : SetupTriggerPopup {
-    virtual ~MultiTriggerPopup() = win 0x60ac50;
+    virtual ~MultiTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static MultiTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5ff880, imac 0x5a96a0, m1 0x4f79d4;
 
@@ -17256,7 +17256,7 @@ class MusicChangelogLine : cocos2d::CCObject {
 
 [[link(android)]]
 class MusicChangelogPopup : ScrollViewPopup {
-    virtual ~MusicChangelogPopup() = win 0x6218d0;
+    virtual ~MusicChangelogPopup() = win 0x6218d0, imac inline, m1 inline;
 
     static MusicChangelogPopup* create(cocos2d::CCArray*) = imac 0x957460, m1 0x835ed8;
 
@@ -17560,7 +17560,7 @@ class MyStuffPopup : FLAlertLayer {
 [[link(android)]]
 class NCSInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
     NCSInfoLayer() = inline;
-    virtual ~NCSInfoLayer() = win 0x5a3f0;
+    virtual ~NCSInfoLayer() = win 0x5a3f0, imac inline, m1 inline;
 
     static NCSInfoLayer* create(CustomSongLayer* layer) = win inline, imac 0x1f9540, m1 0x1aae84;
 
@@ -17579,7 +17579,7 @@ class NCSInfoLayer : FLAlertLayer, FLAlertLayerProtocol {
 [[link(android)]]
 class NewgroundsInfoLayer : FLAlertLayer {
     NewgroundsInfoLayer() = inline;
-    virtual ~NewgroundsInfoLayer() = win 0x5a3f0;
+    virtual ~NewgroundsInfoLayer() = win 0x5a3f0, imac inline, m1 inline;
 
     static NewgroundsInfoLayer* create() = win inline, imac 0x1f9730, m1 0x1aaff8;
 
@@ -17743,7 +17743,7 @@ class NodePoint : cocos2d::CCObject {
 
 [[link(android)]]
 class NotificationFilterPopup : SetupTriggerPopup {
-    virtual ~NotificationFilterPopup() = win 0x60ac50;
+    virtual ~NotificationFilterPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static NotificationFilterPopup* create(NotificationsPage*) = imac 0x98be40, m1 0x8662dc;
 
@@ -17851,7 +17851,7 @@ class NumberInputLayer : FLAlertLayer {
 
 [[link(android)]]
 class OBB2D : cocos2d::CCNode {
-    virtual ~OBB2D() = win 0x7b440;
+    virtual ~OBB2D() = win 0x7b440, imac inline, m1 inline;
 
     static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b2b0, imac 0x6c6240, m1 0x5de79c, ios 0x156624;
 
@@ -17873,7 +17873,7 @@ class OBB2D : cocos2d::CCNode {
 [[link(android)]]
 class ObjectControlGameObject : EffectGameObject {
     ObjectControlGameObject() = inline;
-    virtual ~ObjectControlGameObject() = win 0x637e70;
+    virtual ~ObjectControlGameObject() = win 0x637e70, imac inline, m1 inline;
 
     static ObjectControlGameObject* create() = win inline, imac 0x1cfbe0, m1 0x1856d4;
 
@@ -17947,8 +17947,8 @@ class OpacityEffectAction {
 
 [[link(android)]]
 class OptionsCell : TableViewCell {
-    virtual ~OptionsCell() = win 0x151070, ios 0x138088;
     OptionsCell(char const* identifier, float width, float height) = win inline, imac 0x23d4b0, m1 0x1e8c9c;
+    virtual ~OptionsCell() = win 0x151070, imac inline, m1 inline, ios 0x138088;
 
     void loadFromObject(OptionsObject* object) = win 0x151100, imac 0x229cf0, m1 0x1d65a0, ios 0x1276b4;
     void onToggleOption(cocos2d::CCObject* sender) = win 0x151520, imac 0x23d540, m1 0x1e8d08;
@@ -18100,7 +18100,7 @@ class PagedListPopup : FLAlertLayer {
 [[link(android)]]
 class ParentalGateLayer : NumberInputLayer {
     ParentalGateLayer() = win inline;
-    virtual ~ParentalGateLayer() = win 0x4a11a0, ios 0x119084;
+    virtual ~ParentalGateLayer() = win 0x4a11a0, imac inline, m1 inline, ios 0x119084;
 
     static ParentalGateLayer* create() = win 0x4d3ba0, imac 0x87beb0, m1 0x77164c;
 
@@ -18239,7 +18239,7 @@ class ParticleGameObject : EnhancedGameObject {
 [[link(android)]]
 class ParticlePreviewLayer : cocos2d::CCLayerColor {
     ParticlePreviewLayer() = inline;
-    virtual ~ParticlePreviewLayer() = win 0x5c11b0, ios 0x221d60;
+    virtual ~ParticlePreviewLayer() = win 0x5c11b0, imac inline, m1 inline, ios 0x221d60;
 
     static ParticlePreviewLayer* create(cocos2d::CCParticleSystemQuad* particleSystem) = win inline, imac 0x4674d0, m1 0x3d36c0;
 
@@ -18675,7 +18675,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
 [[link(android)]]
 class PlayerControlGameObject : EffectGameObject {
     PlayerControlGameObject() = inline;
-    virtual ~PlayerControlGameObject() = win 0x637e10;
+    virtual ~PlayerControlGameObject() = win 0x637e10, imac inline, m1 inline;
 
     static PlayerControlGameObject* create() = win inline, imac 0x1ce9c0, m1 0x1847e0;
 
@@ -18695,7 +18695,7 @@ class PlayerControlGameObject : EffectGameObject {
 
 [[link(android)]]
 class PlayerFireBoostSprite : cocos2d::CCSprite {
-    virtual ~PlayerFireBoostSprite() = win 0x7e780;
+    virtual ~PlayerFireBoostSprite() = win 0x7e780, imac inline, m1 inline;
 
     static PlayerFireBoostSprite* create() = win 0x5023e0, imac 0x3e9470, m1 0x367280;
 
@@ -19588,7 +19588,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
 [[link(android)]]
 class PointNode : cocos2d::CCObject {
     PointNode() = inline;
-    virtual ~PointNode() = win 0x87770;
+    virtual ~PointNode() = win 0x87770, imac inline, m1 inline;
 
     static PointNode* create(cocos2d::CCPoint point) = win inline, imac 0x65050, m1 0x5dde8;
 
@@ -19712,7 +19712,7 @@ class ProfilePage : FLAlertLayer, FLAlertLayerProtocol, LevelCommentDelegate, Co
 
 [[link(android)]]
 class ProgressGameObject : EffectGameObject {
-    virtual ~ProgressGameObject() = win 0x637e70;
+    virtual ~ProgressGameObject() = win 0x637e70, imac inline, m1 inline;
 
     static ProgressGameObject* create() = imac 0x1d0290, m1 0x185cb8;
 
@@ -19795,7 +19795,7 @@ class PurchaseItemPopup : FLAlertLayer {
 [[link(android)]]
 class RandTriggerGameObject : ChanceTriggerGameObject {
     RandTriggerGameObject() = inline;
-    virtual ~RandTriggerGameObject() = win 0x638130, ios 0x440b50;
+    virtual ~RandTriggerGameObject() = win 0x638130, imac inline, m1 inline, ios 0x440b50;
 
     static RandTriggerGameObject* create() = win inline, imac 0x1a3860, m1 0x161bc4;
 
@@ -20133,7 +20133,7 @@ class ReviewChoiceDelegate {
 
 [[link(android)]]
 class ReviewChoiceSheet : SetupTriggerPopup {
-    virtual ~ReviewChoiceSheet() = win 0x60ac50, ios 0x31c40;
+    virtual ~ReviewChoiceSheet() = win 0x60ac50, imac inline, m1 inline, ios 0x31c40;
 
     static ReviewChoiceSheet* create(ReviewChoiceDelegate*, int, char const*, std::string const&, std::vector<std::string> const&, std::vector<char const*> const&, bool, char const*) = win 0xae200, imac 0x993630, m1 0x86e84c;
 
@@ -20249,7 +20249,7 @@ class RingObject : EffectGameObject {
 [[link(android)]]
 class RotateGameplayGameObject : EffectGameObject {
     RotateGameplayGameObject() = inline;
-    virtual ~RotateGameplayGameObject() = win 0x6385c0;
+    virtual ~RotateGameplayGameObject() = win 0x6385c0, imac inline, m1 inline;
 
     static RotateGameplayGameObject* create() = win inline, imac 0x1d4010, m1 0x188f88;
 
@@ -20286,7 +20286,7 @@ class RotateGameplayGameObject : EffectGameObject {
 
 [[link(android)]]
 class RowPressItem : CCMenuItemSpriteExtra {
-    virtual ~RowPressItem() = win 0x159440, ios 0x13ba4c;
+    virtual ~RowPressItem() = win 0x159440, imac inline, m1 inline, ios 0x13ba4c;
 
     static RowPressItem* create(cocos2d::CCNode*, cocos2d::CCObject*, cocos2d::SEL_MenuHandler) = win 0x159380, imac 0x240cb0, m1 0x1ebb78;
 
@@ -20450,7 +20450,7 @@ class ScrollViewPopup : FLAlertLayer {
 
 [[link(android)]]
 class SearchButton : cocos2d::CCSprite {
-    virtual ~SearchButton() = win 0x43b6d0;
+    virtual ~SearchButton() = win 0x43b6d0, imac inline, m1 inline;
 
     static SearchButton* create(char const*, char const*, float, char const*, float) = win 0x43b5e0, imac 0x7073b0, m1 0x6184d8;
 
@@ -20753,7 +20753,7 @@ class SecretLayer6 : cocos2d::CCLayer {
 
 [[link(android)]]
 class SecretNumberLayer : cocos2d::CCLayer {
-    virtual ~SecretNumberLayer() = win 0x577b60, ios 0x3aa900;
+    virtual ~SecretNumberLayer() = win 0x577b60, imac inline, m1 inline, ios 0x3aa900;
 
     static SecretNumberLayer* create() = win 0x57f540, imac 0x49a200, m1 0x4021dc;
 
@@ -20832,7 +20832,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
 
 [[link(android)]]
 class SectionedContentNode : cocos2d::CCNode {
-    virtual ~SectionedContentNode() = win 0x80dc0;
+    virtual ~SectionedContentNode() = win 0x80dc0, imac inline, m1 inline;
 
     virtual void addChild(cocos2d::CCNode*, int, int) = win 0x80c80, imac 0x96e440, m1 0x84ac70, ios 0x526ba0;
     virtual void removeAllChildrenWithCleanup(bool) = win 0x80ca0, imac 0x96e460, m1 0x84ac88, ios 0x526bb8;
@@ -20965,7 +20965,7 @@ class SelectPremadeDelegate {
 [[link(android)]]
 class SelectPremadeLayer : FLAlertLayer {
     SelectPremadeLayer() = inline;
-    virtual ~SelectPremadeLayer() = win 0x599330, ios 0x6bf74;
+    virtual ~SelectPremadeLayer() = win 0x599330, imac inline, m1 inline, ios 0x6bf74;
 
     static SelectPremadeLayer* create() = win inline, imac 0x2f4590, m1 0x289714;
 
@@ -21015,7 +21015,7 @@ class SelectSFXSortDelegate {
 [[link(android)]]
 class SelectSFXSortLayer : FLAlertLayer {
     SelectSFXSortLayer() = inline;
-    virtual ~SelectSFXSortLayer() = win 0x5a3f0;
+    virtual ~SelectSFXSortLayer() = win 0x5a3f0, imac inline, m1 inline;
 
     static SelectSFXSortLayer* create(AudioSortType sortType) = win 0x620a60, imac 0x4342c0, m1 0x3aa9e0;
 
@@ -21236,7 +21236,7 @@ class SetIDPopupDelegate {
 [[link(android)]]
 class SetItemIDLayer : SetupTriggerPopup {
     SetItemIDLayer() = inline;
-    virtual ~SetItemIDLayer() = win 0x597ee0, ios 0x49ba04;
+    virtual ~SetItemIDLayer() = win 0x597ee0, imac inline, m1 inline, ios 0x49ba04;
 
     static SetItemIDLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x63280, m1 0x5c408;
 
@@ -21263,7 +21263,7 @@ class SetLevelOrderPopup : SetIDPopup {
 
 [[link(android)]]
 class SetTargetIDLayer : SetupTriggerPopup {
-    virtual ~SetTargetIDLayer() = win 0x598b70, ios 0x2af870;
+    virtual ~SetTargetIDLayer() = win 0x598b70, imac inline, m1 inline, ios 0x2af870;
 
     static SetTargetIDLayer* create(EffectGameObject* object, cocos2d::CCArray* objects, std::string title, std::string label, int minimum, int maximum, int objectID) = win 0x598c40, imac 0x2a7c90, m1 0x249e04;
 
@@ -21320,7 +21320,7 @@ class SetTextPopupDelegate {
 
 [[link(android)]]
 class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
-    virtual ~SetupAdvFollowEditPhysicsPopup() = win 0x60ac50;
+    virtual ~SetupAdvFollowEditPhysicsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupAdvFollowEditPhysicsPopup* create(AdvancedFollowEditObject* object, cocos2d::CCArray* objects) = win 0x59e780, imac 0x2f5060, m1 0x28a120;
 
@@ -21331,7 +21331,7 @@ class SetupAdvFollowEditPhysicsPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
-    virtual ~SetupAdvFollowPopup() = win 0x60ac50;
+    virtual ~SetupAdvFollowPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupAdvFollowPopup* create(AdvancedFollowTriggerObject* object, cocos2d::CCArray* objects) = win 0x5993e0, imac 0x2eff50, m1 0x285b2c;
 
@@ -21349,7 +21349,7 @@ class SetupAdvFollowPopup : SetupTriggerPopup, SelectPremadeDelegate {
 
 [[link(android)]]
 class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
-    virtual ~SetupAdvFollowRetargetPopup() = win 0x60ac50;
+    virtual ~SetupAdvFollowRetargetPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupAdvFollowRetargetPopup* create(AdvancedFollowEditObject* object, cocos2d::CCArray* objects) = win 0x59f820, imac 0x2f6020, m1 0x28aea4;
 
@@ -21361,7 +21361,7 @@ class SetupAdvFollowRetargetPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupAnimationPopup : SetupTriggerPopup {
-    virtual ~SetupAnimationPopup() = win 0x5a0310, ios 0x46caa0;
+    virtual ~SetupAnimationPopup() = win 0x5a0310, imac inline, m1 inline, ios 0x46caa0;
 
     static SetupAnimationPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5a03e0, imac 0x3bdda0, m1 0x34305c;
 
@@ -21384,7 +21384,7 @@ class SetupAnimationPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupAnimSettingsPopup : SetupTriggerPopup {
-    virtual ~SetupAnimSettingsPopup() = win 0x60ac50;
+    virtual ~SetupAnimSettingsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupAnimSettingsPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5a17c0, imac 0x61db0, m1 0x5b1b8;
 
@@ -21498,7 +21498,7 @@ class SetupAreaTriggerPopup : SetupAreaMoveTriggerPopup {
 
 [[link(android)]]
 class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
-    virtual ~SetupArtSwitchPopup() = win 0x60ac50;
+    virtual ~SetupArtSwitchPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupArtSwitchPopup* create(ArtTriggerGameObject* object, cocos2d::CCArray* objects, int id) = win 0x608160, imac 0x5b18b0, m1 0x4ff350;
 
@@ -21514,7 +21514,7 @@ class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
 [[link(android)]]
 class SetupAudioLineGuidePopup : SetupTriggerPopup, SelectSettingDelegate {
     SetupAudioLineGuidePopup() = inline;
-    virtual ~SetupAudioLineGuidePopup() = win 0x60ac50;
+    virtual ~SetupAudioLineGuidePopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupAudioLineGuidePopup* create(AudioLineGuideGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x5b0020, m1 0x4fdd94;
 
@@ -21543,7 +21543,7 @@ class SetupAudioTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupBGSpeedTrigger : SetupTriggerPopup {
-    virtual ~SetupBGSpeedTrigger() = win 0x5bc690, ios 0x38f6f4;
+    virtual ~SetupBGSpeedTrigger() = win 0x5bc690, imac inline, m1 inline, ios 0x38f6f4;
 
     static SetupBGSpeedTrigger* create(EffectGameObject* object, cocos2d::CCArray* objects, int id) = win 0x5be000, imac 0x50c020, m1 0x467724;
 
@@ -21574,7 +21574,7 @@ class SetupCameraEdgePopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupCameraGuidePopup : SetupTriggerPopup {
-    virtual ~SetupCameraGuidePopup() = win 0x60ac50;
+    virtual ~SetupCameraGuidePopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupCameraGuidePopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x6071e0, imac 0x5b0990, m1 0x4fe600;
 
@@ -21615,7 +21615,7 @@ class SetupCameraModePopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupCameraOffsetTrigger : SetupTriggerPopup {
-    virtual ~SetupCameraOffsetTrigger() = win 0x5ac690, ios 0x221e60;
+    virtual ~SetupCameraOffsetTrigger() = win 0x5ac690, imac inline, m1 inline, ios 0x221e60;
 
     static SetupCameraOffsetTrigger* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5ac760, imac 0x740990, m1 0x64e064;
 
@@ -21705,7 +21705,7 @@ class SetupCameraRotatePopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupCameraRotatePopup2 : SetupTriggerPopup {
-    virtual ~SetupCameraRotatePopup2() = win 0x60ac50;
+    virtual ~SetupCameraRotatePopup2() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupCameraRotatePopup2* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5af100, imac 0x4b7960, m1 0x41c04c;
 
@@ -21715,7 +21715,7 @@ class SetupCameraRotatePopup2 : SetupTriggerPopup {
 [[link(android)]]
 class SetupCheckpointPopup : SetupTriggerPopup {
     SetupCheckpointPopup() = inline;
-    virtual ~SetupCheckpointPopup() = win 0x5fbda0, ios 0x48ac54;
+    virtual ~SetupCheckpointPopup() = win 0x5fbda0, imac inline, m1 inline, ios 0x48ac54;
 
     static SetupCheckpointPopup* create(CheckpointGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x5a9080, m1 0x4f7414;
 
@@ -21725,7 +21725,7 @@ class SetupCheckpointPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupCoinLayer : SetupTriggerPopup {
     SetupCoinLayer() = inline;
-    virtual ~SetupCoinLayer() = win 0x60ac50;
+    virtual ~SetupCoinLayer() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupCoinLayer* create(EffectGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x5af480, m1 0x4fd2e8;
 
@@ -21735,7 +21735,7 @@ class SetupCoinLayer : SetupTriggerPopup {
 [[link(android)]]
 class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
     SetupCollisionStateTriggerPopup() = inline;
-    virtual ~SetupCollisionStateTriggerPopup() = win 0x60ac50;
+    virtual ~SetupCollisionStateTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupCollisionStateTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b0fb0, imac 0x381830, m1 0x30cd14;
 
@@ -21744,7 +21744,7 @@ class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
 
 [[link(android)]]
 class SetupCollisionTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupCollisionTriggerPopup() = win 0x5af790, ios 0x2cc210;
+    virtual ~SetupCollisionTriggerPopup() = win 0x5af790, imac inline, m1 inline, ios 0x2cc210;
 
     static SetupCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5af910, imac 0x380270, m1 0x30b8b0;
 
@@ -21757,7 +21757,7 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupCountTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupCountTriggerPopup() = win 0x5b1500, ios 0x119120;
+    virtual ~SetupCountTriggerPopup() = win 0x5b1500, imac inline, m1 inline, ios 0x119120;
 
     static SetupCountTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b15d0, imac 0x2a92e0, m1 0x24ab6c;
 
@@ -21769,7 +21769,7 @@ class SetupCountTriggerPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupDashRingPopup : SetupTriggerPopup {
     SetupDashRingPopup() = inline;
-    virtual ~SetupDashRingPopup() = win 0x60ac50;
+    virtual ~SetupDashRingPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupDashRingPopup* create(DashRingObject* object, cocos2d::CCArray* objects) = win inline, imac 0x5b3450, m1 0x500cc8;
 
@@ -21778,7 +21778,7 @@ class SetupDashRingPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupEndPopup : SetupTriggerPopup {
-    virtual ~SetupEndPopup() = win 0x5b1d50, ios 0x34c180;
+    virtual ~SetupEndPopup() = win 0x5b1d50, imac inline, m1 inline, ios 0x34c180;
 
     static SetupEndPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b1ef0, imac 0x747e50, m1 0x654b1c;
 
@@ -21804,7 +21804,7 @@ class SetupEndPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
     SetupEnterEffectPopup() = inline;
-    virtual ~SetupEnterEffectPopup() = win 0x5b3310, ios 0x47fd04;
+    virtual ~SetupEnterEffectPopup() = win 0x5b3310, imac inline, m1 inline, ios 0x47fd04;
 
     static SetupEnterEffectPopup* create(EnterEffectObject* object, cocos2d::CCArray* objects, int id) = win inline, imac 0x3ddc80, m1 0x35c9dc;
 
@@ -21835,7 +21835,7 @@ class SetupEnterEffectPopup : SetupTriggerPopup, HSVWidgetDelegate {
 [[link(android)]]
 class SetupEnterTriggerPopup : SetupTriggerPopup {
     SetupEnterTriggerPopup() = inline;
-    virtual ~SetupEnterTriggerPopup() = win 0x398ec0, ios 0x37101c;
+    virtual ~SetupEnterTriggerPopup() = win 0x398ec0, imac inline, m1 inline, ios 0x37101c;
 
     static SetupEnterTriggerPopup* create(EnterEffectObject* object, cocos2d::CCArray* objects) = win inline, imac 0x285d80, m1 0x22ad80;
 
@@ -21862,7 +21862,7 @@ class SetupEventLinkPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupForceBlockPopup : SetupTriggerPopup {
-    virtual ~SetupForceBlockPopup() = win 0x60ac50;
+    virtual ~SetupForceBlockPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupForceBlockPopup* create(ForceBlockGameObject* object, cocos2d::CCArray* objects) = win 0x6078c0, imac 0x5b1030, m1 0x4febe8;
 
@@ -21874,7 +21874,7 @@ class SetupForceBlockPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupGameplayOffsetPopup : SetupTriggerPopup {
     SetupGameplayOffsetPopup() = inline;
-    virtual ~SetupGameplayOffsetPopup() = win 0x5d64d0, ios 0x233cf0;
+    virtual ~SetupGameplayOffsetPopup() = win 0x5d64d0, imac inline, m1 inline, ios 0x233cf0;
 
     static SetupGameplayOffsetPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x878ed0, m1 0x76ea28;
 
@@ -21951,7 +21951,7 @@ class SetupGravityModPopup : FLAlertLayer {
 
 [[link(android)]]
 class SetupGravityTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupGravityTriggerPopup() = win 0x5be6f0, ios 0x4a3c40;
+    virtual ~SetupGravityTriggerPopup() = win 0x5be6f0, imac inline, m1 inline, ios 0x4a3c40;
 
     static SetupGravityTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5be7c0, imac 0x4bf2f0, m1 0x422cd0;
 
@@ -21963,7 +21963,7 @@ class SetupGravityTriggerPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
     SetupInstantCollisionTriggerPopup() = win 0x5af860, inline;
-    virtual ~SetupInstantCollisionTriggerPopup() = win 0x60ac50;
+    virtual ~SetupInstantCollisionTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupInstantCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b04f0, imac 0x380e00, m1 0x30c370;
 
@@ -21976,7 +21976,7 @@ class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupInstantCountPopup : SetupTriggerPopup {
-    virtual ~SetupInstantCountPopup() = win 0x5b7690, ios 0x251a08;
+    virtual ~SetupInstantCountPopup() = win 0x5b7690, imac inline, m1 inline, ios 0x251a08;
 
     static SetupInstantCountPopup* create(CountTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5b7760, imac 0x6bbf00, m1 0x5d4f0c;
 
@@ -22010,7 +22010,7 @@ class SetupInstantCountPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupInteractObjectPopup : SetupTriggerPopup {
-    virtual ~SetupInteractObjectPopup() = win 0x5b8e10, ios 0x493704;
+    virtual ~SetupInteractObjectPopup() = win 0x5b8e10, imac inline, m1 inline, ios 0x493704;
 
     static SetupInteractObjectPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b8ee0, imac 0x50f320, m1 0x46ab5c;
 
@@ -22023,7 +22023,7 @@ class SetupInteractObjectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupItemCompareTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupItemCompareTriggerPopup() = win 0x60ac50;
+    virtual ~SetupItemCompareTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupItemCompareTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x603870, imac 0x5ad260, m1 0x4fb264;
 
@@ -22040,7 +22040,7 @@ class SetupItemCompareTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupItemEditTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupItemEditTriggerPopup() = win 0x60ac50;
+    virtual ~SetupItemEditTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupItemEditTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x600e90, imac 0x5aab30, m1 0x4f8c6c;
 
@@ -22057,7 +22057,7 @@ class SetupItemEditTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupKeyframeAnimPopup : SetupTriggerPopup {
-    virtual ~SetupKeyframeAnimPopup() = win 0x5b99a0, ios 0x248ac0;
+    virtual ~SetupKeyframeAnimPopup() = win 0x5b99a0, imac inline, m1 inline, ios 0x248ac0;
 
     static SetupKeyframeAnimPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b9b60, imac 0x1e1650, m1 0x195208;
 
@@ -22087,7 +22087,7 @@ class SetupKeyframePopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupMGTrigger : SetupTriggerPopup {
-    virtual ~SetupMGTrigger() = win 0x5bc5c0, ios 0x38db8c;
+    virtual ~SetupMGTrigger() = win 0x5bc5c0, imac inline, m1 inline, ios 0x38db8c;
 
     static SetupMGTrigger* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5bc760, imac 0x509de0, m1 0x465748;
 
@@ -22128,7 +22128,7 @@ class SetupMGTrigger : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupMoveCommandPopup : SetupTriggerPopup {
-    virtual ~SetupMoveCommandPopup() = win 0x38e300, ios 0x311630;
+    virtual ~SetupMoveCommandPopup() = win 0x38e300, imac inline, m1 inline, ios 0x311630;
 
     static SetupMoveCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x38e3d0, imac 0x6ded10, m1 0x5f3d68, ios 0x311668;
 
@@ -22147,7 +22147,7 @@ class SetupMoveCommandPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupObjectControlPopup : SetupTriggerPopup {
-    virtual ~SetupObjectControlPopup() = win 0x60ac50;
+    virtual ~SetupObjectControlPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupObjectControlPopup* create(ObjectControlGameObject* object, cocos2d::CCArray* objects) = win 0x609970, imac 0x5b2980, m1 0x500300;
 
@@ -22157,7 +22157,7 @@ class SetupObjectControlPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupObjectOptions2Popup : SetupTriggerPopup {
     SetupObjectOptions2Popup() = inline;
-    virtual ~SetupObjectOptions2Popup() = win 0x58e540, ios 0x454ac;
+    virtual ~SetupObjectOptions2Popup() = win 0x58e540, imac inline, m1 inline, ios 0x454ac;
 
     static SetupObjectOptions2Popup* create(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x301e40, m1 0x295ef4;
 
@@ -22239,7 +22239,7 @@ class SetupObjectOptionsPopup : FLAlertLayer {
 
 [[link(android)]]
 class SetupObjectTogglePopup : SetupTriggerPopup {
-    virtual ~SetupObjectTogglePopup() = win 0x5beea0, ios 0x2379a8;
+    virtual ~SetupObjectTogglePopup() = win 0x5beea0, imac inline, m1 inline, ios 0x2379a8;
 
     static SetupObjectTogglePopup* create(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x5bef70, imac 0x35efa0, m1 0x2ede28;
 
@@ -22251,9 +22251,9 @@ class SetupObjectTogglePopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupOpacityPopup : SetupTriggerPopup {
-    virtual ~SetupOpacityPopup() = win 0x5bfae0, ios 0x26690;
+    virtual ~SetupOpacityPopup() = win 0x5bfae0, imac inline, m1 inline, ios 0x26690;
 
-    static SetupOpacityPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5bfbb0, imac 0x1c850, ios 0x266c8;
+    static SetupOpacityPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5bfbb0, imac 0x1c850, m1 0x18814, ios 0x266c8;
 
     virtual void determineStartValues() = win 0x5c07b0, imac 0x1d720, m1 0x19600, ios 0x2720c;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5a1740, imac 0x1dd20, m1 0x19ad0, ios 0x27618;
@@ -22282,7 +22282,7 @@ class SetupOpacityPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupOptionsTriggerPopup : SetupTriggerPopup {
     SetupOptionsTriggerPopup() = inline;
-    virtual ~SetupOptionsTriggerPopup() = win 0x60ac50;
+    virtual ~SetupOptionsTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupOptionsTriggerPopup* create(GameOptionsTrigger* object, cocos2d::CCArray* objects) = win inline, imac 0x6ba350, m1 0x5d36c8;
 
@@ -22297,7 +22297,7 @@ class SetupOptionsTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupPersistentItemTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupPersistentItemTriggerPopup() = win 0x60ac50;
+    virtual ~SetupPersistentItemTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupPersistentItemTriggerPopup* create(ItemTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x6061b0, imac 0x5af930, m1 0x4fd724;
 
@@ -22308,7 +22308,7 @@ class SetupPersistentItemTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupPickupTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupPickupTriggerPopup() = win 0x60ac50;
+    virtual ~SetupPickupTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupPickupTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5cc300, imac 0x1ddf0, m1 0x19b90;
 
@@ -22320,7 +22320,7 @@ class SetupPickupTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupPlatformerEndPopup : SetupTriggerPopup {
-    virtual ~SetupPlatformerEndPopup() = win 0x5b1e20, ios 0x34cb38;
+    virtual ~SetupPlatformerEndPopup() = win 0x5b1e20, imac inline, m1 inline, ios 0x34cb38;
 
     static SetupPlatformerEndPopup* create(EndTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5b2bc0, imac 0x748bf0, m1 0x6556c0;
 
@@ -22329,7 +22329,7 @@ class SetupPlatformerEndPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupPlayerControlPopup : SetupTriggerPopup {
-    virtual ~SetupPlayerControlPopup() = win 0x5fbcd0, ios 0x489d78;
+    virtual ~SetupPlayerControlPopup() = win 0x5fbcd0, imac inline, m1 inline, ios 0x489d78;
 
     static SetupPlayerControlPopup* create(PlayerControlGameObject* object, cocos2d::CCArray* objects) = win 0x5fde30, imac 0x5a7ca0, m1 0x4f6334;
 
@@ -22373,7 +22373,7 @@ class SetupPortalPopup : FLAlertLayer {
 
 [[link(android)]]
 class SetupProgressPopup : SetupTriggerPopup {
-    virtual ~SetupProgressPopup() = win 0x60ac50;
+    virtual ~SetupProgressPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupProgressPopup* create(ProgressGameObject*, cocos2d::CCArray*) = win 0x609d70, imac 0x5b2d50, m1 0x50067c;
 
@@ -22512,7 +22512,7 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupRandTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupRandTriggerPopup() = win 0x5d4cc0, ios 0x261cb0;
+    virtual ~SetupRandTriggerPopup() = win 0x5d4cc0, imac inline, m1 inline, ios 0x261cb0;
 
     static SetupRandTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5d4d90, imac 0x6b8ce0, m1 0x5d2234;
 
@@ -22540,7 +22540,7 @@ class SetupRandTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupResetTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupResetTriggerPopup() = win 0x60ac50;
+    virtual ~SetupResetTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupResetTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x600a60, imac 0x5aa7a0, m1 0x4f88f8;
 
@@ -22550,7 +22550,7 @@ class SetupResetTriggerPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupReverbPopup : SetupTriggerPopup {
     SetupReverbPopup() = inline;
-    virtual ~SetupReverbPopup() = win 0x60ac50;
+    virtual ~SetupReverbPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupReverbPopup* create(SFXTriggerGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x4b0cf0, m1 0x415f04;
 
@@ -22566,7 +22566,7 @@ class SetupReverbPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupRotateCommandPopup : SetupTriggerPopup {
-    virtual ~SetupRotateCommandPopup() = win 0x3add00, ios 0x4867e0;
+    virtual ~SetupRotateCommandPopup() = win 0x3add00, imac inline, m1 inline, ios 0x4867e0;
 
     static SetupRotateCommandPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x3addd0, imac 0x14c0, m1 0x1504;
 
@@ -22584,7 +22584,7 @@ class SetupRotateCommandPopup : SetupTriggerPopup {
 [[link(android)]]
 class SetupRotateGameplayPopup : SetupTriggerPopup {
     SetupRotateGameplayPopup() = inline;
-    virtual ~SetupRotateGameplayPopup() = win 0x60ac50;
+    virtual ~SetupRotateGameplayPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupRotateGameplayPopup* create(RotateGameplayGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x878200, m1 0x76df64;
 
@@ -22596,7 +22596,7 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupRotatePopup : SetupTriggerPopup {
-    virtual ~SetupRotatePopup() = win 0x60ac50;
+    virtual ~SetupRotatePopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupRotatePopup* create(EnhancedGameObject* object, cocos2d::CCArray* objects) = win 0x5d7ab0, imac 0x66e1f0, m1 0x5a5c28;
 
@@ -22710,7 +22710,7 @@ class SetupShaderEffectPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupShakePopup : SetupTriggerPopup {
-    virtual ~SetupShakePopup() = win 0x5ea3c0, ios 0x44ffa0;
+    virtual ~SetupShakePopup() = win 0x5ea3c0, imac inline, m1 inline, ios 0x44ffa0;
 
     static SetupShakePopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5ea490, imac 0x743520, m1 0x650888;
 
@@ -22821,7 +22821,7 @@ class SetupSongTriggerPopup : SetupAudioTriggerPopup, MusicDownloadDelegate, Son
 
 [[link(android)]]
 class SetupSpawnParticlePopup : SetupTriggerPopup {
-    virtual ~SetupSpawnParticlePopup() = win 0x60ac50;
+    virtual ~SetupSpawnParticlePopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupSpawnParticlePopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5fe4f0, imac 0x5a83a0, m1 0x4f6984;
 
@@ -22854,7 +22854,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupStaticCameraPopup : SetupTriggerPopup {
-    virtual ~SetupStaticCameraPopup() = win 0x60ac50;
+    virtual ~SetupStaticCameraPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupStaticCameraPopup* create(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5f5a00, imac 0x384c00, m1 0x30fdac;
 
@@ -22867,7 +22867,7 @@ class SetupStaticCameraPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupStopTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupStopTriggerPopup() = win 0x60ac50;
+    virtual ~SetupStopTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupStopTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x608f60, imac 0x5b20f0, m1 0x4ffb4c;
 
@@ -22897,7 +22897,7 @@ class SetupTeleportPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupTimerControlTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupTimerControlTriggerPopup() = win 0x60ac50;
+    virtual ~SetupTimerControlTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupTimerControlTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5f8e00, imac 0x38b4e0, m1 0x315d88;
 
@@ -22908,7 +22908,7 @@ class SetupTimerControlTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupTimerEventTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupTimerEventTriggerPopup() = win 0x60ac50;
+    virtual ~SetupTimerEventTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupTimerEventTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5f8730, imac 0x38aec0, m1 0x315810;
 
@@ -22917,7 +22917,7 @@ class SetupTimerEventTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupTimerTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupTimerTriggerPopup() = win 0x60ac50;
+    virtual ~SetupTimerTriggerPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupTimerTriggerPopup* create(TimerTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5f7d30, imac 0x38a520, m1 0x314fb0;
 
@@ -22926,7 +22926,7 @@ class SetupTimerTriggerPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupTimeWarpPopup : SetupTriggerPopup {
-    virtual ~SetupTimeWarpPopup() = win 0x5f93d0, ios 0x1c6648;
+    virtual ~SetupTimeWarpPopup() = win 0x5f93d0, imac inline, m1 inline, ios 0x1c6648;
 
     static SetupTimeWarpPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5f94a0, imac 0x5018a0, m1 0x45d8a0;
 
@@ -22945,7 +22945,7 @@ class SetupTimeWarpPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupTouchTogglePopup : SetupTriggerPopup {
-    virtual ~SetupTouchTogglePopup() = win 0x5f9cc0, ios 0x2e84e4;
+    virtual ~SetupTouchTogglePopup() = win 0x5f9cc0, imac inline, m1 inline, ios 0x2e84e4;
 
     static SetupTouchTogglePopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5f9d90, imac 0x2a6aa0, m1 0x248e28;
 
@@ -22975,7 +22975,7 @@ class SetupTouchTogglePopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupTransformPopup : SetupTriggerPopup {
-    virtual ~SetupTransformPopup() = win 0x60ac50;
+    virtual ~SetupTransformPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static SetupTransformPopup* create(TransformTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5faf20, imac 0x511a70, m1 0x46cd74;
 
@@ -23159,7 +23159,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
 
 [[link(android)]]
 class SetupZoomTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupZoomTriggerPopup() = win 0x615c40, ios 0x24df8c;
+    virtual ~SetupZoomTriggerPopup() = win 0x615c40, imac inline, m1 inline, ios 0x24df8c;
 
     static SetupZoomTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x615d10, imac 0x30c480, m1 0x29f5e4;
 
@@ -23320,7 +23320,7 @@ class SFXChangelogEntry : cocos2d::CCObject {
 
 [[link(android)]]
 class SFXChangelogPopup : ScrollViewPopup {
-    virtual ~SFXChangelogPopup() = win 0x6218d0, ios 0x5178b8;
+    virtual ~SFXChangelogPopup() = win 0x6218d0, imac inline, m1 inline, ios 0x5178b8;
 
     static SFXChangelogPopup* create(cocos2d::CCArray*) = imac 0x970a40, m1 0x84c9c0;
 
@@ -23428,7 +23428,7 @@ class SFXSearchResult : MusicSearchResult {
 
 [[link(android)]]
 class SFXSettingsPopup : GJOptionsLayer {
-    virtual ~SFXSettingsPopup() = win 0x39ab40;
+    virtual ~SFXSettingsPopup() = win 0x39ab40, imac inline, m1 inline;
 
     static SFXSettingsPopup* create(SFXBrowser* browser) = imac 0x434540, m1 0x3aabac, ios 0x1f7B08;
 
@@ -23546,7 +23546,7 @@ class SFXTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class ShaderGameObject : EffectGameObject {
     ShaderGameObject() = inline;
-    virtual ~ShaderGameObject() = win 0x637bc0;
+    virtual ~ShaderGameObject() = win 0x637bc0, imac inline, m1 inline;
 
     static ShaderGameObject* create(char const* frame) = win inline, imac 0x17ce20, m1 0x1422a8;
 
@@ -23935,7 +23935,7 @@ class ShareLevelLayer : FLAlertLayer {
 [[link(android)]]
 class ShareLevelSettingsLayer : FLAlertLayer, NumberInputDelegate {
     ShareLevelSettingsLayer() = inline;
-    virtual ~ShareLevelSettingsLayer() = win 0x630480, ios 0x314e24;
+    virtual ~ShareLevelSettingsLayer() = win 0x630480, imac inline, m1 inline, ios 0x314e24;
 
     static ShareLevelSettingsLayer* create(GJGameLevel*, ShareLevelLayer*) = win inline, imac 0x26e060, m1 0x215224;
 
@@ -24079,7 +24079,7 @@ class SlideInLayer : cocos2d::CCLayerColor {
 
 [[link(android), depends(SliderTouchLogic)]]
 class Slider : cocos2d::CCLayer {
-    virtual ~Slider() = win 0x83f50, imac 0x78fa0, m1 0x285a84, ios 0x30a50;
+    virtual ~Slider() = win 0x83f50, imac inline, m1 inline, ios 0x30a50;
 
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler) = win inline, imac 0x2ef3f0, m1 0x285180, ios 0x38a664;
     static Slider* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, float scale) = win inline, imac 0x2ef510, m1 0x285284, ios 0x38a68c;
@@ -24127,7 +24127,7 @@ class SliderDelegate {
 [[link(android)]]
 class SliderThumb : cocos2d::CCMenuItemImage {
     SliderThumb() = inline;
-    virtual ~SliderThumb() = win 0x83f10;
+    virtual ~SliderThumb() = win 0x83f10, imac inline, m1 inline;
 
     static SliderThumb* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0x2ee300, m1 0x284268, ios 0x389d98;
 
@@ -24193,8 +24193,8 @@ class SmartGameObject : GameObject {
 
 [[link(android)]]
 class SmartTemplateCell : TableViewCell {
-    virtual ~SmartTemplateCell() = win 0x15dbb0, ios 0x13b460;
     SmartTemplateCell(char const* identifier, float width, float height) = win inline, imac 0x242bd0, m1 0x1ed6f8, ios inline;
+    virtual ~SmartTemplateCell() = win 0x15dbb0, imac inline, m1 inline, ios 0x13b460;
 
     virtual bool init() = win 0x400c0, imac 0x242c40, m1 0x1ed73c, ios 0x13b498;
     virtual void draw() = win 0x1487a0, imac 0x242d10, m1 0x1ed7f8, ios 0x13b548;
@@ -24224,8 +24224,8 @@ class SocialLinksPopup : FLAlertLayer {
 
 [[link(android)]]
 class SongCell : TableViewCell {
-    virtual ~SongCell() = win 0x14fd50, ios 0x13794c;
     SongCell(char const* identifier, float width, float height) = win inline, imac 0x23c7b0, m1 0x1e8420, ios inline;
+    virtual ~SongCell() = win 0x14fd50, imac inline, m1 inline, ios 0x13794c;
 
     virtual bool init() = win 0x400c0, imac 0x23c820, m1 0x1e8464, ios 0x137984;
     virtual void draw() = win 0x1487a0, imac 0x23c860, m1 0x1e8494, ios 0x1379b4;
@@ -24327,7 +24327,7 @@ class SongInfoObject : cocos2d::CCNode {
 [[link(android)]]
 class SongObject : cocos2d::CCObject {
     SongObject() = inline;
-    virtual ~SongObject() = win 0x87770;
+    virtual ~SongObject() = win 0x87770, imac inline, m1 inline;
 
     static SongObject* create(int audioID) = win inline, imac 0x23c6a0, m1 0x1e836c;
 
@@ -24339,7 +24339,7 @@ class SongObject : cocos2d::CCObject {
 [[link(android)]]
 class SongOptionsLayer : FLAlertLayer {
     SongOptionsLayer() = inline;
-    virtual ~SongOptionsLayer() = win 0x163b00, ios 0x1c38b4;
+    virtual ~SongOptionsLayer() = win 0x163b00, imac inline, m1 inline, ios 0x1c38b4;
 
     static SongOptionsLayer* create(CustomSongDelegate* delegate) = win inline, imac 0x1f9270, m1 0x1aabf4;
 
@@ -24405,7 +24405,7 @@ class SongSelectNode : cocos2d::CCNode, FLAlertLayerProtocol, CustomSongLayerDel
 
 [[link(android)]]
 class SongsLayer : GJDropDownLayer {
-    virtual ~SongsLayer() = win 0x636840, ios 0x3e56e4;
+    virtual ~SongsLayer() = win 0x636840, imac inline, m1 inline, ios 0x3e56e4;
 
     static SongsLayer* create() = win 0x6368e0, imac 0x512ac0, m1 0x46dc04;
 
@@ -24503,7 +24503,7 @@ class SoundPackDescPopup : SetupTriggerPopup, EmotePickerDelegate {
 [[link(android)]]
 class SpawnParticleGameObject : EffectGameObject {
     SpawnParticleGameObject() = inline;
-    virtual ~SpawnParticleGameObject() = win 0x637b60;
+    virtual ~SpawnParticleGameObject() = win 0x637b60, imac inline, m1 inline;
 
     static SpawnParticleGameObject* create() = win inline, imac 0x1d1fb0, m1 0x187504;
 
@@ -24583,7 +24583,7 @@ class SpawnTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class SpecialAnimGameObject : EnhancedGameObject {
     SpecialAnimGameObject() = inline;
-    virtual ~SpecialAnimGameObject() = win 0x288810;
+    virtual ~SpecialAnimGameObject() = win 0x288810, imac inline, m1 inline;
 
     static SpecialAnimGameObject* create(char const* frame) = win inline, imac 0x193f90, m1 0x154834;
 
@@ -24759,7 +24759,7 @@ class StartPosObject : EffectGameObject {
 [[link(android)]]
 class StatsCell : TableViewCell {
     StatsCell(char const* identifier, float width, float height) = win inline, imac 0x23ba90, m1 0x1e7684, ios inline;
-    virtual ~StatsCell() = win 0x89d10;
+    virtual ~StatsCell() = win 0x89d10, imac inline, m1 inline;
 
     virtual bool init() = win inline, imac 0x23bb00, m1 0x1e76c4, ios 0x1370c4;
     virtual void draw() = win 0x1487a0, imac 0x23c5d0, m1 0x1e82c0, ios 0x137834;
@@ -24772,7 +24772,7 @@ class StatsCell : TableViewCell {
 [[link(android)]]
 class StatsLayer : GJDropDownLayer {
     StatsLayer() = inline;
-    virtual ~StatsLayer() = win 0x669250, ios 0x2dfb7c;
+    virtual ~StatsLayer() = win 0x669250, imac inline, m1 inline, ios 0x2dfb7c;
 
     static StatsLayer* create() = win inline, imac 0x628c0, m1 0x5bb6c;
 
@@ -24781,7 +24781,7 @@ class StatsLayer : GJDropDownLayer {
 
 [[link(android)]]
 class StatsObject : cocos2d::CCObject {
-    virtual ~StatsObject() = win 0x14e8e0;
+    virtual ~StatsObject() = win 0x14e8e0, imac inline, m1 inline;
 
     static StatsObject* create(char const* key, int value) = win 0x14e7a0, imac 0x23b900, m1 0x1e750c;
 
@@ -24949,11 +24949,11 @@ class TableViewCell : cocos2d::CCLayer {
 class TableViewCellDelegate {
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = inline;
     virtual int getSelectedCellIdx() = inline;
-    virtual int getSelectedCellCustomIdx() = win 0x98e00;
-    virtual bool allowsCustomSFXActions() = win 0x5a3a0;
-    virtual bool isCustomIDSelected(int) = win 0x5a3a0;
-    virtual bool inCustomSFXTree() = win 0x5a3a0;
-    virtual bool showsSFXInfoButton() = win 0x5a3a0;
+    virtual int getSelectedCellCustomIdx() = win 0x98e00, imac inline, m1 inline;
+    virtual bool allowsCustomSFXActions() = win 0x5a3a0, imac inline, m1 inline;
+    virtual bool isCustomIDSelected(int) = win 0x5a3a0, imac inline, m1 inline;
+    virtual bool inCustomSFXTree() = win 0x5a3a0, imac inline, m1 inline;
+    virtual bool showsSFXInfoButton() = win 0x5a3a0, imac inline, m1 inline;
     virtual bool shouldSnapToSelected() = inline;
     virtual int getCellDelegateType() = inline;
 }
@@ -25038,7 +25038,7 @@ class TeleportPortalObject : RingObject {
 
 [[link(android)]]
 class TextAlertPopup : cocos2d::CCNode {
-    virtual ~TextAlertPopup() = win 0x399b80;
+    virtual ~TextAlertPopup() = win 0x399b80, imac inline, m1 inline;
 
     static TextAlertPopup* create(std::string text, float delay, float scale, int opacity, std::string font) = win 0x3a8760, imac 0x29bfa0, m1 0x23f634, ios 0x37db74;
 
@@ -25145,7 +25145,7 @@ class TextInputDelegate {
 
 [[link(android)]]
 class TextStyleSection : cocos2d::CCObject {
-    virtual ~TextStyleSection() = win 0x78dd0;
+    virtual ~TextStyleSection() = win 0x78dd0, imac inline, m1 inline;
 
     static TextStyleSection* create(int start, int end, TextStyleType type) = win 0x7b1c0, imac 0x47e8e0, m1 0x3e8c3c;
     static TextStyleSection* createColoredSection(cocos2d::ccColor3B color, int start, int end) = win inline, imac 0x47e5e0, m1 0x3e8998, ios inline;
@@ -25519,7 +25519,7 @@ class TimerTriggerAction {
 [[link(android)]]
 class TimerTriggerGameObject : EffectGameObject {
     TimerTriggerGameObject() = inline;
-    virtual ~TimerTriggerGameObject() = win 0x6385c0;
+    virtual ~TimerTriggerGameObject() = win 0x6385c0, imac inline, m1 inline;
 
     static TimerTriggerGameObject* create(char const* frame) = win inline, imac 0x1c3e80, m1 0x17beb8;
 
@@ -25619,7 +25619,7 @@ class TopArtistsLayer : FLAlertLayer, OnlineListDelegate {
 [[link(android)]]
 class TOSPopup : FLAlertLayer {
     TOSPopup() = inline;
-    virtual ~TOSPopup() = win 0x399bc0, ios 0x37e72c;
+    virtual ~TOSPopup() = win 0x399bc0, imac inline, m1 inline, ios 0x37e72c;
 
     static TOSPopup* create() = win inline, imac 0x29d020, m1 0x240568;
 
@@ -25710,7 +25710,7 @@ class TouchToggleAction {
 [[link(android)]]
 class TransformTriggerGameObject : EffectGameObject {
     TransformTriggerGameObject() = inline;
-    virtual ~TransformTriggerGameObject() = win 0x637a40;
+    virtual ~TransformTriggerGameObject() = win 0x637a40, imac inline, m1 inline;
 
     static TransformTriggerGameObject* create(char const* frame) = win inline, imac 0x1ba470, m1 0x17465c;
 
@@ -25769,7 +25769,7 @@ class TriggerEffectDelegate {
 
 [[link(android)]]
 class TutorialLayer : FLAlertLayer {
-    virtual ~TutorialLayer() = win 0x66f030, ios 0x252c90;
+    virtual ~TutorialLayer() = win 0x66f030, imac inline, m1 inline, ios 0x252c90;
 
     static TutorialLayer* create() = win 0x66f0e0, imac 0x4d7630, m1 0x4383d4;
 
@@ -25900,7 +25900,7 @@ class UILayer : cocos2d::CCLayerColor, cocos2d::CCKeyboardDelegate {
 
 [[link(android)]]
 class UIObjectSettingsPopup : SetupTriggerPopup {
-    virtual ~UIObjectSettingsPopup() = win 0x60ac50;
+    virtual ~UIObjectSettingsPopup() = win 0x60ac50, imac inline, m1 inline;
 
     static UIObjectSettingsPopup* create(UISettingsGameObject* object, cocos2d::CCArray* objects) = win 0x5ffc10, imac 0x5a9a20, m1 0x4f7d24;
 
@@ -25982,7 +25982,7 @@ class UISaveLoadLayer : SetupTriggerPopup {
 [[link(android)]]
 class UISettingsGameObject : EffectGameObject {
     UISettingsGameObject() = inline;
-    virtual ~UISettingsGameObject() = win 0x637aa0;
+    virtual ~UISettingsGameObject() = win 0x637aa0, imac inline, m1 inline;
 
     static UISettingsGameObject* create() = win inline, imac 0x1bdb60, m1 0x1771f8;
 
@@ -26056,7 +26056,7 @@ class UploadActionDelegate {
 [[link(android)]]
 class UploadActionPopup : FLAlertLayer {
     UploadActionPopup() = win 0x399380;
-    virtual ~UploadActionPopup() = win 0x3a0ce0, ios 0x3770ec;
+    virtual ~UploadActionPopup() = win 0x3a0ce0, imac inline, m1 inline, ios 0x3770ec;
 
     static UploadActionPopup* create(UploadPopupDelegate* delegate, std::string str) = win 0x3a0d60, imac 0x290090, m1 0x234310;
 
@@ -26137,7 +26137,7 @@ class UploadPopupDelegate {
 [[link(android)]]
 class URLCell : TableViewCell {
     URLCell(char const* identifier, float width, float height) = win inline, imac 0x243410, m1 0x1edd4c, ios inline;
-    virtual ~URLCell() = win 0x89d10;
+    virtual ~URLCell() = win 0x89d10, imac inline, m1 inline;
 
     virtual bool init() = win 0x400c0, imac 0x243480, m1 0x1edd90, ios 0x13b914;
     virtual void draw() = win 0x1487a0, imac 0x2434f0, m1 0x1eddf8, ios 0x13b968;
@@ -26266,10 +26266,10 @@ class VirtualKeyboardNode : cocos2d::CCNode {
 
 [[link(android)]]
 class VirtualRowSource {
-    virtual int virtualRowCount() = win 0x9999999;
-    virtual float virtualRowHeight(int) = win 0x9999999;
-    virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x9999999;
-    virtual void unmountVirtualRow(int, cocos2d::CCNode*) = win 0x3f5c0;
+    virtual int virtualRowCount() = win 0x9999999, imac inline, m1 inline;
+    virtual float virtualRowHeight(int) = win 0x9999999, imac inline, m1 inline;
+    virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x9999999, imac inline, m1 inline;
+    virtual void unmountVirtualRow(int, cocos2d::CCNode*) = win 0x3f5c0, imac inline, m1 inline;
 }
 
 [[link(android)]]

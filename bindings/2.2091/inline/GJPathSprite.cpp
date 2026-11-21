@@ -5,6 +5,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJPathSprite::~GJPathSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void GJPathSprite::addRankLabel(int path) {
     auto rankLabel = cocos2d::CCLabelBMFont::create(GameToolbox::intToString(path).c_str(), "bigFont.fnt");

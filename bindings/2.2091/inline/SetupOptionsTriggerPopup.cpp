@@ -6,6 +6,10 @@ SetupOptionsTriggerPopup::SetupOptionsTriggerPopup() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupOptionsTriggerPopup::~SetupOptionsTriggerPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetupOptionsTriggerPopup* SetupOptionsTriggerPopup::create(GameOptionsTrigger* object, cocos2d::CCArray* objects) {
     auto ret = new SetupOptionsTriggerPopup();

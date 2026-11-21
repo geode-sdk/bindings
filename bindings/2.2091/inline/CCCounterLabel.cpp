@@ -44,6 +44,10 @@ int CCCounterLabel::getTargetCount() {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+CCCounterLabel::~CCCounterLabel() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CCCounterLabel* CCCounterLabel::create(int count, char const* font, FormatterType type) {
     auto ret = new CCCounterLabel();

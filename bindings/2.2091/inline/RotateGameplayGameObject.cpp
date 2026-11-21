@@ -17,6 +17,10 @@ RotateGameplayGameObject::RotateGameplayGameObject() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+RotateGameplayGameObject::~RotateGameplayGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 RotateGameplayGameObject* RotateGameplayGameObject::create() {
     auto ret = new RotateGameplayGameObject();

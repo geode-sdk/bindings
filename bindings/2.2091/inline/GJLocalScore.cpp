@@ -14,6 +14,10 @@ bool GJLocalScore::init(int points, int type) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJLocalScore::~GJLocalScore() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 GJLocalScore* GJLocalScore::create(int points, int type) {
     auto ret = new GJLocalScore();

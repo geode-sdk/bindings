@@ -14,6 +14,10 @@ float SetupMGTrigger::sliderValueFromPos(int pos) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetupMGTrigger::~SetupMGTrigger() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void SetupMGTrigger::updateMoveCommandEasing() {
     if (m_gameObject) m_gameObject->m_easingType = m_mgEasingType;

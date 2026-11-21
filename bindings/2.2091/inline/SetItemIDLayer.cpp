@@ -7,6 +7,10 @@ SetItemIDLayer::SetItemIDLayer() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+SetItemIDLayer::~SetItemIDLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SetItemIDLayer* SetItemIDLayer::create(EffectGameObject* object, cocos2d::CCArray* objects) {
     auto ret = new SetItemIDLayer();

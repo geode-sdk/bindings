@@ -18,6 +18,10 @@ cocos2d::ccColor3B GauntletSprite::colorForType(GauntletType type) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GauntletSprite::~GauntletSprite() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void GauntletSprite::addNormalSprite() {
     auto frame = GauntletNode::frameForType(m_gauntletType);

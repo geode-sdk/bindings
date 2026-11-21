@@ -18,6 +18,10 @@ bool TimerTriggerGameObject::init(char const* frame) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+TimerTriggerGameObject::~TimerTriggerGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 TimerTriggerGameObject* TimerTriggerGameObject::create(char const* frame) {
     auto ret = new TimerTriggerGameObject();

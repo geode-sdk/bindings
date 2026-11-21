@@ -10,6 +10,10 @@ PlayerControlGameObject::PlayerControlGameObject() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+PlayerControlGameObject::~PlayerControlGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 PlayerControlGameObject* PlayerControlGameObject::create() {
     auto ret = new PlayerControlGameObject();

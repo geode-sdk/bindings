@@ -8,6 +8,10 @@ SmartTemplateCell::SmartTemplateCell(char const* identifier, float width, float 
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SmartTemplateCell::~SmartTemplateCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

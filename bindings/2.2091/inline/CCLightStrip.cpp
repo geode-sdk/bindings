@@ -16,6 +16,10 @@ CCLightStrip::CCLightStrip() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+CCLightStrip::~CCLightStrip() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 CCLightStrip* CCLightStrip::create(float width, float toWidth, float toHeight, float duration, float delay) {
     auto ret = new CCLightStrip();

@@ -15,6 +15,10 @@ bool SliderThumb::init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selecto
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SliderThumb::~SliderThumb() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 SliderThumb* SliderThumb::create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) {
     auto ret = new SliderThumb();

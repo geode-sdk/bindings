@@ -7,6 +7,10 @@ void GJPathsLayer::darkenButtons(bool darken) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJPathsLayer::~GJPathsLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

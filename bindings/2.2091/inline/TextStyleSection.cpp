@@ -35,6 +35,10 @@ bool TextStyleSection::init(int start, int end, TextStyleType type) {
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+TextStyleSection::~TextStyleSection() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 #endif
 

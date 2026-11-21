@@ -49,6 +49,10 @@ void EnhancedGameObject::stateSensitiveOff(GJBaseGameLayer* layer) {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+EnhancedGameObject::~EnhancedGameObject() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 EnhancedGameObject* EnhancedGameObject::create(char const* frame) {
     auto ret = new EnhancedGameObject();

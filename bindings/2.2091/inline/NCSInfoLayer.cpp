@@ -5,6 +5,10 @@ NCSInfoLayer::NCSInfoLayer() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+NCSInfoLayer::~NCSInfoLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 NCSInfoLayer* NCSInfoLayer::create(CustomSongLayer* layer) {
     auto ret = new NCSInfoLayer();

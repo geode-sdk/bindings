@@ -7,6 +7,10 @@ ShareLevelSettingsLayer::ShareLevelSettingsLayer() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+ShareLevelSettingsLayer::~ShareLevelSettingsLayer() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 ShareLevelSettingsLayer* ShareLevelSettingsLayer::create(GJGameLevel* level, ShareLevelLayer* p1) {
     auto ret = new ShareLevelSettingsLayer();

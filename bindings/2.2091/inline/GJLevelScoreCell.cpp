@@ -8,6 +8,10 @@ GJLevelScoreCell::GJLevelScoreCell(char const* identifier, float width, float he
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+GJLevelScoreCell::~GJLevelScoreCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void GJLevelScoreCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });

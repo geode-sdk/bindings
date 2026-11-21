@@ -4,6 +4,10 @@
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+OBB2D::~OBB2D() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void OBB2D::computeAxes() {
     m_edges[0] = m_corners[1] - m_corners[0];

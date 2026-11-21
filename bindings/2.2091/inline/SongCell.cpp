@@ -8,6 +8,10 @@ SongCell::SongCell(char const* identifier, float width, float height) : TableVie
 }
 #endif
 
+#ifdef GEODE_IS_MACOS
+SongCell::~SongCell() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 void SongCell::updateBGColor(int index) {
     m_backgroundLayer->setColor(index % 2 == 0 ? cocos2d::ccColor3B { 161, 88, 44 } : cocos2d::ccColor3B { 194, 114, 62 });

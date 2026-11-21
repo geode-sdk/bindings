@@ -5,6 +5,10 @@ EditGameObjectPopup::EditGameObjectPopup() {}
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 #endif
 
+#ifdef GEODE_IS_MACOS
+EditGameObjectPopup::~EditGameObjectPopup() {}
+#endif
+
 #if defined(GEODE_IS_WINDOWS)
 EditGameObjectPopup* EditGameObjectPopup::create(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) {
     auto ret = new EditGameObjectPopup();
