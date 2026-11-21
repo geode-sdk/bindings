@@ -535,7 +535,8 @@ int GJBaseGameLayer::countCollectedUserCoins() {
 
 StartPosObject* GJBaseGameLayer::createLiveStartPosObject() {
     StartPosObject* object = static_cast<StartPosObject*>(GameObject::createWithKey(31));
-
+    object->firstSetup();
+    object->customSetup();
     object->setStartPos(m_player1->getPosition());
 
     if(m_player1->m_isShip) {
