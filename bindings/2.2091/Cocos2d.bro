@@ -1641,8 +1641,8 @@ class cocos2d::CCGrabber : cocos2d::CCObject {
     CCGrabber() = win 0x22460, imac 0x6d0fe0, m1 0x5e82b8, ios inline;
     virtual ~CCGrabber() = win inline, imac 0x6d1140, m1 0x5e8408, ios inline;
 
-    void afterRender(cocos2d::CCTexture2D*) = win 0x22510, imac 0x6d1100, m1 0x5e83d8, ios inline;
-    void beforeRender(cocos2d::CCTexture2D*) = win 0x22550, imac 0x6d10a0, m1 0x5e8380, ios inline;
+    void afterRender(cocos2d::CCTexture2D*) = win 0x22510, imac 0x6d1100, m1 0x5e83d8, ios 0x47994;
+    void beforeRender(cocos2d::CCTexture2D*) = win 0x22550, imac 0x6d10a0, m1 0x5e8380, ios 0x4793c;
     void grab(cocos2d::CCTexture2D*) = win 0x225b0, imac 0x6d1030, m1 0x5e8310, ios inline;
 }
 
@@ -1694,11 +1694,11 @@ class cocos2d::CCGridBase : cocos2d::CCObject {
     virtual void reuse() = imac 0x4deb00, m1 0x43e780;
     virtual void calculateVertexPoints() = imac 0x4deb10, m1 0x43e784;
 
-    void afterDraw(cocos2d::CCNode*) = imac 0x4dea30, m1 0x43e6ac;
-    void beforeDraw() = imac 0x4dea00, m1 0x43e678;
+    void afterDraw(cocos2d::CCNode*) = imac 0x4dea30, m1 0x43e6ac, ios 0x3e0c1c;
+    void beforeDraw() = imac 0x4dea00, m1 0x43e678, ios 0x3e0be8;
     bool initWithSize(cocos2d::CCSize const&) = imac 0x4de5b0, m1 0x43e258;
     bool initWithSize(cocos2d::CCSize const&, cocos2d::CCTexture2D*, bool) = imac 0x4de770, m1 0x43e408;
-    void set2DProjection() = imac 0x4de970, m1 0x43e5fc;
+    void set2DProjection() = imac 0x4de970, m1 0x43e5fc, ios 0x3e0b6c;
     void setActive(bool) = imac 0x4de920, m1 0x43e5b8;
     void setTextureFlipped(bool) = imac 0x4de950, m1 0x43e5dc;
 }
