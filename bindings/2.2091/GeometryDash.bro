@@ -1733,8 +1733,8 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     virtual void selected() = win 0x48bb0, imac 0x2634d0, m1 0x20ac34, ios 0x2b043c;
     virtual void unselected() = win 0x48e00, imac 0x2637a0, m1 0x20aec4, ios 0x2b0660;
 
-    TodoReturn applyLargeMobileTouch();
-    bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x48940, imac 0x2631c0, m1 0x20a950;
+    void applyLargeMobileTouch() = ios 0x2b0350;
+    bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x48940, imac 0x2631c0, m1 0x20a950, ios 0x2b01c4;
     void setClickColor(cocos2d::ccColor3B);
     void setSizeMult(float mult) = win inline, imac 0x30d250, m1 0x20aad4, ios 0x2b0348;
 
@@ -8226,7 +8226,7 @@ class GameManager : GManager {
     bool parentalOptionsActive() = win 0x27ed60, imac 0x36d940;
     void playMenuMusic() = win 0x2766c0, imac 0x360390, m1 0xc9b4, ios 0x3aeda8;
     int playSFXTrigger(SFXTriggerGameObject* object) = win 0x276b50, imac 0x360880, m1 0x2ef690;
-    void prepareDPadSettings() = win 0x282620, imac 0x372200;
+    void prepareDPadSettings() = win 0x282620, imac 0x372200, ios 0x3b844c;
     void printGJLog() = win inline, imac 0x370190, m1 0x2fd018;
     bool privacyPushWanted();
     void queueReloadMenu(bool) = win 0x287700, ios 0x3bb50c;
@@ -11026,9 +11026,9 @@ class GJEditorSoundConfig : cocos2d::CCNode {
 [[link(android), depends(DynamicMoveCalculation, PulseEffectAction, TouchToggleAction, CollisionTriggerAction, ToggleTriggerAction, SpawnTriggerAction, GroupCommandObject2, OpacityEffectAction, CountTriggerAction, TimerItem, TimerTriggerAction, EffectManagerState)]]
 class GJEffectManager : cocos2d::CCNode {
     virtual ~GJEffectManager() = win 0x364750, imac 0x2c6d00, m1 0x2668d4, ios 0xef30;
-
     // GJEffectManager();
-    static GJEffectManager* create() = win 0x364ef0, imac 0x2c7bd0, m1 0x26732c;
+
+    static GJEffectManager* create() = win 0x364ef0, imac 0x2c7bd0, m1 0x26732c, ios 0xef48;
     static cocos2d::ccColor3B getMixedColor(cocos2d::ccColor3B color1, cocos2d::ccColor3B color2, float ratio) = win inline, imac 0x2d89b0, m1 0x274848;
 
     virtual bool init() = win 0x364f50, imac 0x2c7f40, m1 0x267520, ios 0xefbc;
@@ -13542,8 +13542,9 @@ class GJTransformControlDelegate {
 [[link(android)]]
 class GJUINode : cocos2d::CCNode {
     virtual ~GJUINode() = win 0x1107a0;
+    GJUINode() = ios 0x53c38;
 
-    static GJUINode* create(UIButtonConfig& config) = win 0x673b50, imac 0x4c26d0, m1 0x425c30;
+    static GJUINode* create(UIButtonConfig& config) = win 0x673b50, imac 0x4c26d0, m1 0x425c30, ios 0x50ac0;
 
     virtual void draw() = win 0x6745b0, imac 0x4c6d80, m1 0x429c90, ios 0x5392c;
 
@@ -13552,7 +13553,7 @@ class GJUINode : cocos2d::CCNode {
     float getButtonScale() = win inline, imac 0x4c6710;
     uint8_t getOpacity() = win inline, imac 0x3e48e0;
     void highlightButton(int button) = win inline, imac 0x4c5b40, m1 0x428bf0;
-    bool init(UIButtonConfig& config) = win 0x673c30, imac 0x4c5e50, m1 0x428e7c;
+    bool init(UIButtonConfig& config) = win 0x673c30, imac 0x4c5e50, m1 0x428e7c, ios 0x531dc;
     void loadFromConfig(UIButtonConfig& config) = win inline, imac 0x4c6750, m1 0x4296d4;
     void resetState() = win inline, imac 0x4c35f0, m1 0x426ac4;
     void saveToConfig(UIButtonConfig& config) = win 0x673ee0, imac 0x4c6660, m1 0x42961c;
@@ -14236,11 +14237,11 @@ class IDNameInput : cocos2d::CCNode, TextInputDelegate, IDNameBrowserDelegate, D
 class InfoAlertButton : CCMenuItemSpriteExtra {
     virtual ~InfoAlertButton() = win 0x3cd5b0, imac 0x5a3300, m1 0x4f242c, ios 0x1f8ff4;
 
-    static InfoAlertButton* create(std::string title, std::string desc, float spriteScale) = win 0x3cd630, imac 0x5a2f20, m1 0x4f1fcc;
+    static InfoAlertButton* create(std::string title, std::string desc, float spriteScale) = win 0x3cd630, imac 0x5a2f20, m1 0x4f1fcc, ios 0x1f8d18;
 
     virtual void activate() = win 0x3cd830, imac 0x5a31a0, m1 0x4f225c, ios 0x1f8f2c;
 
-    bool init(std::string title, std::string desc, float spriteScale) = win inline, imac 0x5a3100, m1 0x4f21b8;
+    bool init(std::string title, std::string desc, float spriteScale) = win inline, imac 0x5a3100, m1 0x4f21b8, ios 0x1f8e88;
 
     std::string m_title;
     std::string m_description;
@@ -17831,7 +17832,7 @@ class NumberInputLayer : FLAlertLayer {
 class OBB2D : cocos2d::CCNode {
     virtual ~OBB2D() = win 0x7b440;
 
-    static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b2b0, imac 0x6c6240, m1 0x5de79c;
+    static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b2b0, imac 0x6c6240, m1 0x5de79c, ios 0x156624;
 
     void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b480, imac 0x6c6370, m1 0x5de920;
     void computeAxes() = win inline, imac 0x6c6520, m1 0x5dea98;
