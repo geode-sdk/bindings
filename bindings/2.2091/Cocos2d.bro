@@ -831,7 +831,7 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
     void setObjectUnSafe(cocos2d::CCObject*, intptr_t) = imac 0x2f9b40, m1 0x28e448, ios 0x4a5e78;
     void setObjectUnSafe(cocos2d::CCObject*, std::string const&) = imac 0x2f93c0, m1 0x28ddb8;
     cocos2d::CCString const* valueForKey(intptr_t) = imac 0x2f8f10, m1 0x28d8d0, ios 0x4a53bc;
-    cocos2d::CCString const* valueForKey(std::string const&) = imac 0x2f8990, m1 0x28d37c;
+    cocos2d::CCString const* valueForKey(std::string const&) = imac 0x2f8990, m1 0x28d37c, ios 0x4a4ee8;
     bool writeToFile(char const*) = imac 0x2fab50, m1 0x28f388, ios inline;
 
     cocos2d::CCDictElement* m_pElements;
