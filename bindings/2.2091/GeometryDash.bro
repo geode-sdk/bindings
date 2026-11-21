@@ -9292,7 +9292,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isSecretCoinValid(std::string key) = win 0x2e3a60, imac 0x35e60, m1 0x2fa5c;
     bool isSpecialChestLiteUnlockable(std::string key) = win inline, imac 0x3d8b0, m1 0x37468, ios inline;
     bool isSpecialChestUnlocked(std::string key) = win 0x2ee780, imac 0x3d460, m1 0x36fa4, ios 0x3d45e4;
-    bool isStoreItemUnlocked(int index) = win 0x2da140;
+    bool isStoreItemUnlocked(int index) = win 0x2da140, ios 0x3c9d4c;
     int keyCostForSecretChest(int id) = win inline, imac 0x3cf80, m1 0x36aac, ios 0x3d4264;
     void linkSpecialChestUnlocks(GJRewardItem* item, std::string key) = win 0x2ee220, imac 0x3df40, m1 0x37b30;
     void logCoins() = imac 0x55770, m1 0x4f358;
@@ -9303,7 +9303,7 @@ class GameStatsManager : cocos2d::CCNode {
     void preSaveGameStats() = win 0x2f87b0, imac 0x53ce0, m1 0x4db58, ios 0x3dd810;
     void processChallengeQueue(int position) = win 0x2e6390, imac 0x39520, m1 0x33398;
     void processOnlineChests() = win 0x2f8240, imac 0x55590, m1 0x4f198;
-    bool purchaseItem(int index) = win 0x2da220, imac 0x2c0f0, m1 0x26414;
+    bool purchaseItem(int index) = win 0x2da220, imac 0x2c0f0, m1 0x26414, ios 0x3c9dd4;
     void recountSpecialStats() = win 0x2e7ef0, imac 0x3bc00, m1 0x3586c, ios 0x3d3560;
     void recountUserCoins(bool force) = win 0x2e2d10, imac 0x34a20, m1 0x2e7f4;
     void registerRewardsFromItem(GJRewardItem* item) = win 0x2f60d0, imac 0x381c0, m1 0x31ec0, ios 0x3d16a8;
@@ -19748,8 +19748,8 @@ class PurchaseItemPopup : FLAlertLayer {
     virtual void keyBackClicked() = win 0x99f90, imac 0x313d70, m1 0x2a6344, ios 0x1cce74;
 
     bool init(GJStoreItem* item) = win 0x3b5040, imac 0x313140, m1 0x2a5834, ios 0x1cc484;
-    void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x313cd0, m1 0x2a6294;
-    void onPurchase(cocos2d::CCObject* sender) = win 0x3b5ef0, m1 0x2a62d0;
+    void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x313cd0, m1 0x2a6294, ios 0x1ccdc4;
+    void onPurchase(cocos2d::CCObject* sender) = win 0x3b5ef0, m1 0x2a62d0, ios 0x1cce00;
 
     GJStoreItem* m_storeItem;
     GJPurchaseDelegate* m_delegate;
