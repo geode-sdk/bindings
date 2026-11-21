@@ -17064,13 +17064,13 @@ class MPLobbyLayer : cocos2d::CCLayer, GJMPDelegate, UploadPopupDelegate, Upload
 [[link(android)]]
 class MultilineBitmapFont : cocos2d::CCSprite {
     MultilineBitmapFont() = inline;
-    ~MultilineBitmapFont() = win inline, ios 0x2d2280;
+    ~MultilineBitmapFont() = win inline, imac 0x47e8c0, m1 0x3e8c28, ios 0x2d2280;
 
-    static MultilineBitmapFont* createWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor, bool, int, float) = win inline, m1 0x5e694;
+    static MultilineBitmapFont* createWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor, bool, int, float) = win inline, imac 0x47ba10, m1 0x3e6134;
 
     virtual void setOpacity(unsigned char opacity) = win 0x79b00, imac 0x47e3d0, m1 0x3e87a0, ios 0x2d20fc;
 
-    bool initWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor, bool, int, float) = win 0x78e20, m1 0x4f9fe0;
+    bool initWithFont(char const* font, std::string text, float scale, float width, cocos2d::CCPoint anchor, int height, bool disableColor, bool, int, float) = win 0x78e20, imac 0x47bbc0, m1 0x3e62ec;
     void moveSpecialDescriptors(int index, int size) = win 0x7ad80, imac 0x47e550, m1 0x3e88fc;
     std::string readColorInfo(std::string text) = win 0x79dd0;
     std::string readEmoteInfo(std::string) = win 0x79b80;
