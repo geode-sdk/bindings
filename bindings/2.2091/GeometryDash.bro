@@ -18828,7 +18828,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void runBallRotation2() = win 0x4eb730, imac 0x3f1430, m1 0x36e498, ios 0x2bb2e8;
     void runNormalRotation() = win inline, imac 0x3f11e0, m1 0x36e290, ios inline;
     void runNormalRotation(bool notNormalMode, float speed) = win 0x4eb4d0, imac 0x3ed0a0, m1 0x36a6d8, ios 0x2b816c;
-    void runRotateAction(bool ground, int type) = win inline, imac 0x3ef890, m1 0x36cab4, 0x2b9f40;
+    void runRotateAction(bool ground, int type) = win inline, imac 0x3ef890, m1 0x36cab4, ios 0x2b9f40;
     void saveToCheckpoint(PlayerCheckpoint* checkpoint) = win 0x4ffd80, imac 0x408b40, m1 0x382eac;
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x4fb6c0, imac 0x3eb240, m1 0x368dc8, ios 0x2b6eb4;
     void setupStreak() = win 0x4e6a00, imac 0x3e99f0, m1 0x3677b8;
