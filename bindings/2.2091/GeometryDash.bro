@@ -24676,20 +24676,20 @@ class StartPosBrowserDelegate {
 [[link(android)]]
 class StartPosLayer : SetupTriggerPopup {
     StartPosLayer() = inline;
-    virtual ~StartPosLayer() = win 0x457a00, imac 0x25c150, m1 0x20445c, ios 0x20f7b8;
+    virtual ~StartPosLayer() = win inline, imac 0x25c150, m1 0x20445c, ios 0x20f7b8;
 
-    static StartPosLayer* create(StartPosObject*) = win inline, imac 0x25c430, m1 0x204464;
+    static StartPosLayer* create(StartPosObject*) = win inline, imac 0x25c430, m1 0x204464, ios 0x20f7f0;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x45ec30, imac 0x25d900, m1 0x205820, ios 0x21077c;
     virtual void updateInputNode(int, float) = win 0x45f000, imac 0x25db00, m1 0x205a48, ios 0x210938;
     virtual void valueDidChange(int, float) = win 0x45f420, imac 0x25dea0, m1 0x205d2c, ios 0x210be8;
     virtual float getValue(int) = win 0x45f210, imac 0x25dca0, m1 0x205bfc, ios 0x210ac4;
 
-    void addModeButtons() = win 0x45f710, imac 0x25d3f0, m1 0x2051d8;
-    void addSpeedButtons() = win 0x45f9f0, imac 0x25d660, m1 0x205544;
-    bool init(StartPosObject*) = win 0x45de00, imac 0x25c540, m1 0x204544;
-    void onSelectMode(cocos2d::CCObject* sender) = win 0x45f990, m1 0x205f74;
-    void onSelectSpeed(cocos2d::CCObject* sender) = win 0x45fc90, m1 0x206074;
+    void addModeButtons() = win 0x45f710, imac 0x25d3f0, m1 0x2051d8, ios 0x210398;
+    void addSpeedButtons() = win 0x45f9f0, imac 0x25d660, m1 0x205544, ios 0x2105a4;
+    bool init(StartPosObject*) = win 0x45de00, imac 0x25c540, m1 0x204544, ios 0x20f8c4;
+    void onSelectMode(cocos2d::CCObject* sender) = win 0x45f990, m1 0x205f74, ios 0x210e18;
+    void onSelectSpeed(cocos2d::CCObject* sender) = win 0x45fc90, m1 0x206074, ios 0x210e68;
 
     StartPosObject* m_startPosObject;
     int m_startMode;
