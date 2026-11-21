@@ -159,67 +159,6 @@ void CCGridBase::setTextureFlipped(bool bFlipped)
     }
 }
 
-void CCGridBase::set2DProjection()
-{
-    CCDirector *director = CCDirector::sharedDirector();
-
-    CCSize    size = director->getWinSizeInPixels();
-
-    glViewport(0, 0, (GLsizei)(size.width), (GLsizei)(size.height) );
-    kmGLMatrixMode(KM_GL_PROJECTION);
-    kmGLLoadIdentity();
-
-    kmMat4 orthoMatrix;
-    kmMat4OrthographicProjection(&orthoMatrix, 0, size.width, 0, size.height, -1, 1);
-    kmGLMultMatrix( &orthoMatrix );
-
-    kmGLMatrixMode(KM_GL_MODELVIEW);
-    kmGLLoadIdentity();
-
-
-    ccSetProjectionMatrixDirty();
-}
-
-void CCGridBase::beforeDraw(void)
-{
-    // save projection
-    CCDirector *director = CCDirector::sharedDirector();
-    m_directorProjection = director->getProjection();
-
-    // 2d projection
-    //    [director setProjection:kCCDirectorProjection2D];
-    set2DProjection();
-    m_pGrabber->beforeRender(m_pTexture);
-}
-
-void CCGridBase::afterDraw(cocos2d::CCNode *pTarget)
-{
-    m_pGrabber->afterRender(m_pTexture);
-
-    // restore projection
-    CCDirector *director = CCDirector::sharedDirector();
-    director->setProjection(m_directorProjection);
-
-    if (pTarget->getCamera()->isDirty())
-    {
-        CCPoint offset = pTarget->getAnchorPointInPoints();
-
-        //
-        // XXX: Camera should be applied in the AnchorPoint
-        //
-        kmGLTranslatef(offset.x, offset.y, 0);
-        pTarget->getCamera()->locate();
-        kmGLTranslatef(-offset.x, -offset.y, 0);
-    }
-
-    ccGLBindTexture2D(m_pTexture->getName());
-
-    // restore projection for default FBO .fixed bug #543 #544
-//TODO:         CCDirector::sharedDirector()->setProjection(CCDirector::sharedDirector()->getProjection());
-//TODO:         CCDirector::sharedDirector()->applyOrientation();
-    blit();
-}
-
 void CCGridBase::blit(void)
 {
     CCAssert(0, "");

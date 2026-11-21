@@ -16,19 +16,6 @@ cocos2d::CCGrabber::CCGrabber() {
     glGenFramebuffers(1, &m_FBO);
 }
 
-void cocos2d::CCGrabber::afterRender(cocos2d::CCTexture2D* p0) {
-    glBindFramebuffer(GL_FRAMEBUFFER, m_oldFBO);
-    glClearColor(m_oldClearColor[0], m_oldClearColor[1], m_oldClearColor[2], m_oldClearColor[3]);
-}
-
-void cocos2d::CCGrabber::beforeRender(cocos2d::CCTexture2D* p0) {
-    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_oldFBO);
-    glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);
-    glGetFloatv(GL_COLOR_CLEAR_VALUE, m_oldClearColor);
-    glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
 void cocos2d::CCGrabber::grab(cocos2d::CCTexture2D* p0) {
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &m_oldFBO);
     glBindFramebuffer(GL_FRAMEBUFFER, m_FBO);

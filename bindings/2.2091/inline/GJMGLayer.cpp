@@ -82,16 +82,6 @@ void GJMGLayer::updateGroundColor(cocos2d::ccColor3B color, bool ground1) {
     }
 }
 
-void GJMGLayer::updateGroundOpacity(unsigned char opacity, bool ground1) {
-    auto groundSprite = ground1 ? m_ground1Sprite : m_ground2Sprite;
-    if (!groundSprite) return;
-    if (auto children = groundSprite->getChildren()) {
-        for (int i = 0; i < children->count(); i++) {
-            static_cast<cocos2d::CCSprite*>(children->objectAtIndex(i))->setOpacity(opacity);
-        }
-    }
-}
-
 void GJMGLayer::updateGroundPos(cocos2d::CCPoint pos) {
     m_ground1Sprite->setPosition(pos);
     if (m_ground2Sprite) m_ground2Sprite->setPosition(pos);

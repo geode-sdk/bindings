@@ -74,6 +74,16 @@ void LevelInfoLayer::tryShowAd() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+LevelInfoLayer* LevelInfoLayer::create(GJGameLevel* level, bool challenge) {
+    auto ret = new LevelInfoLayer();
+    if (ret->init(level, challenge)) {
+        ret->autorelease();
+        return ret;
+    }
+    delete ret;
+    return nullptr;
+}
+
 LevelInfoLayer::~LevelInfoLayer() {
     CC_SAFE_RELEASE(m_level);
     CC_SAFE_RELEASE(m_circle);
