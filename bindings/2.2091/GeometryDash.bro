@@ -1185,7 +1185,7 @@ class BoomListView : cocos2d::CCLayer, TableViewDelegate, TableViewDataSource {
     bool init(cocos2d::CCArray* entries, BoomListType type, float width, float height) = inline;
     bool init(cocos2d::CCArray* entries, TableViewCellDelegate* delegate, float height, float width, int page, BoomListType type, float y) = win 0x3f760, imac 0x2f7090, m1 0x28bd74, ios 0x267da8;
     void lockList(bool locked) = win inline, imac 0x2f7240, m1 0x28befc, ios inline;
-    void restoreListOffset(float);
+    bool restoreListOffset(float offset) = win 0x3fae0;
 
     TableView* m_tableView;
     cocos2d::CCArray* m_entries;
@@ -9496,7 +9496,7 @@ class GameToolbox {
     static void stripNonBreakingSpaces(std::string&) = win 0x70150;
     static cocos2d::ccColor3B strongColor(cocos2d::ccColor3B color) = win inline, imac 0x4edd70, m1 0x44bf44;
     static std::string timestampToDateString(time_t timestamp) = win 0x744c0;
-    static std::string timestampToDayString(time_t timestamp) = ios 0x4f0cc;
+    static std::string timestampToDayString(time_t timestamp) = win 0xac260, ios 0x4f0cc;
     static std::string timestampToHumanReadable(time_t timestamp) = win 0x74180, imac 0x4f5850, m1 0x452af8, ios 0x4edec;
     static float touchUnitsForMM(float) = m1 0x447c38;
     static cocos2d::ccColor3B transformColor(cocos2d::ccColor3B const& color, cocos2d::ccHSVValue hsv) = win 0x6f4e0, imac 0x4ec410, m1 0x44a668;
@@ -10129,7 +10129,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void refreshCounterLabels() = win 0x33e280, imac 0x12bda0, m1 0x103c0c, ios 0x298800;
     void refreshKeyframeAnims() = win 0x33c9b0, imac 0xf9c30, m1 0xd89f0, ios 0x27c5dc;
     void regenerateEnterEasingBuffers() = win inline, imac 0xf38a0, m1 0xd410c, ios 0x27a350;
-    int registerSpawnRemap(std::vector<ChanceObject>& spawnRemap) = win inline, imac 0x1135f0, m1 0xee5fc, ios 0x2896bc;
+    int registerSpawnRemap(std::vector<ChanceObject>& spawnRemap) = win 0x3257a0, imac 0x1135f0, m1 0xee5fc, ios 0x2896bc;
     void registerStateObject(EffectGameObject* object) = win inline, imac 0x1086c0, m1 0xe63fc, ios 0x2863e0;
     void remapGroupParent(GameObject* object, int oldGroupID, int newGroupID) = win inline;
     void removeBackground() = win inline, imac 0xf07f0, m1 0xd150c, ios 0x2782b8;
@@ -12285,7 +12285,7 @@ class GJMGLayer : cocos2d::CCLayer {
     void toggleVisible01(bool visible) = win inline, imac 0x6bf4b0, m1 0x5d8140, ios inline;
     void toggleVisible02(bool visible) = win inline, imac 0x6bf4f0, m1 0x5d8180;
     void updateGroundColor(cocos2d::ccColor3B color, bool ground1) = win inline, imac 0x6bf420, m1 0x5d80b0;
-    void updateGroundOpacity(unsigned char opacity, bool ground1) = win inline, imac 0x6bf570, m1 0x5d81f8;
+    void updateGroundOpacity(unsigned char opacity, bool ground1) = win 0x388270, imac 0x6bf570, m1 0x5d81f8;
     void updateGroundPos(cocos2d::CCPoint pos) = win inline, imac 0x6bf520, m1 0x5d81a8;
     void updateGroundWidth(bool useThis) = win inline, imac 0x6bf680, m1 0x5d82fc;
     void updateMG01Blend(bool blend) = win inline, imac 0x6bf7a0, m1 0x5d8418;
@@ -17277,7 +17277,7 @@ class MusicDownloadDelegate {
 
 [[link(android), depends(cocos2d::extension::CCHttpRequest, GJLinkObject)]]
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
-    MusicDownloadManager() = ios 0x1da1a0;
+    MusicDownloadManager() = win 0x480540, ios 0x1da1a0;
     virtual ~MusicDownloadManager() = win 0x482350, ios 0x1d2b8c;
 
     static std::string customSFXPathDisplay(std::string const&) = win 0x486b20, imac 0x652b50, ios 0x1d729c;
@@ -25006,7 +25006,7 @@ class TextAlertPopup : cocos2d::CCNode {
     TodoReturn inheritOpacity(TextAlertPopup*);
     bool init(std::string text, float delay, float scale, int opacity, std::string font) = win 0x3a8890, imac 0x29c160, m1 0x23f7ec, ios 0x37dd00;
     static TextAlertPopup* replaceIn(cocos2d::CCNode*, int, TextAlertPopup*, int) = win 0x3a8c00, m1 0x23faf4;
-    void setAlertPosition(cocos2d::CCPoint windowOffset, cocos2d::CCPoint pointOffset) = win inline, imac 0x29c670, m1 0x23fce4;
+    void setAlertPosition(cocos2d::CCPoint windowOffset, cocos2d::CCPoint pointOffset) = win 0x3a8d30, imac 0x29c670, m1 0x23fce4;
     void setLabelColor(cocos2d::ccColor3B color) = win inline, imac 0x29c630, m1 0x23fca8;
 
     float m_width;
