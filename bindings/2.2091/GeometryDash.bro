@@ -8116,7 +8116,7 @@ class GameManager : GManager {
     int getIconRequestID() = win inline, imac 0x36c2f0, m1 0x2f95b8;
     int getIntGameVariable(char const* key) = win 0x27ec70, imac 0x36d690, m1 0x2faa90, ios 0x3b5f28;
     int getIntGameVariableDefault(const char* key, int defaultValue) = inline;
-    std::string getMenuMusicFile() = win 0x276540, imac 0x360100, m1 0x2eee08;
+    std::string getMenuMusicFile() = win 0x276540, imac 0x360100, m1 0x2eee08, ios 0x3aec18;
     const char* getMGTexture(int index) = win inline, imac 0x36cf50, m1 0x2fa270;
     int getNextUniqueObjectKey() = win inline, imac 0x36da90, m1 0x2faf00;
     int getNextUsedKey(int index, bool up) = win inline, imac 0x36db80, m1 0x2faff8;
