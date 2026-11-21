@@ -1,4 +1,3 @@
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -366,8 +365,12 @@ public class ScriptWrapper {
             }
         }
         // STL containers are fully known
-        else if (type.name.value.startsWith("gd::")) {
-            result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4), normalizedTemplate, platform);
+        else if (
+            type.name.value.startsWith("gd::") ||
+            type.name.value.matches("std::(string|vector|map|set|unordered_map|unordered_set)")
+        ) {
+            var stlName = type.name.value.substring(type.name.value.indexOf("::") + 2);
+            result = this.updateTypeDatabaseWithSTL(stlName, normalizedTemplate, platform);
         }
         // STL pair
         else if (type.name.value.startsWith("std::pair")) {
