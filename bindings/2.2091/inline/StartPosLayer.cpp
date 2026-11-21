@@ -1,4 +1,5 @@
 #include <Geode/binding/StartPosLayer.hpp>
+#include <Geode/binding/StartPosObject.hpp>
 
 StartPosLayer::StartPosLayer() {
     m_startPosObject = nullptr;
@@ -12,6 +13,12 @@ StartPosLayer::StartPosLayer() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+StartPosLayer::~StartPosLayer() {
+    CC_SAFE_RELEASE(m_startPosObject);
+    CC_SAFE_RELEASE(m_modeButtons);
+    CC_SAFE_RELEASE(m_speedButtons);
+}
+
 StartPosLayer* StartPosLayer::create(StartPosObject* startPos) {
     auto ret = new StartPosLayer();
     if (ret->init(startPos)) {

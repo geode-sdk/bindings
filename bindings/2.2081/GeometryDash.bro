@@ -6483,7 +6483,8 @@ class GameObject : CCSpritePlus {
     [[renamed_from(m_unk367)]]
     bool m_hasAnimatedChild;
     cocos2d::CCSprite* m_colorSprite;
-    bool m_unk370;
+    [[renamed_from(m_unk370)]]
+    bool m_skipVisibilityCulling;
     float m_objectRadius;
     bool m_isRotationAligned;
     float m_spriteWidthScale;
@@ -6510,7 +6511,8 @@ class GameObject : CCSpritePlus {
     float m_customScaleY;
     bool m_startFlipX;
     bool m_startFlipY;
-    bool m_unk3ee;
+    [[renamed_from(m_unk3ee)]]
+    bool m_isDeactivated;
     bool m_isInvisible;
     int m_unk3D8;
     short m_varianceIndex;

@@ -23,6 +23,7 @@ EditorUI* EditorUI::get() {
     return lel->m_editorUI;
 }
 
+#if !defined(GEODE_IS_IOS)
 void EditorUI::zoomGameLayer(bool zoomingIn) {
     auto scale = m_editorLayer->m_objectLayer->getScale();
     auto zoom = roundf((zoomingIn ? scale + .1f : scale - .1f) / .1f + .001f) * .1f;
@@ -30,6 +31,7 @@ void EditorUI::zoomGameLayer(bool zoomingIn) {
     else if (zoom < .1f) zoom = .1f;
     this->updateZoom(zoom);
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorUI::addSnapPosition(cocos2d::CCPoint position) {
@@ -39,10 +41,6 @@ void EditorUI::addSnapPosition(cocos2d::CCPoint position) {
 }
 
 void EditorUI::colorSelectClosed(cocos2d::ccColor3B color) {}
-
-void EditorUI::constrainGameLayerPosition() {
-    this->constrainGameLayerPosition(-100.f, -100.f);
-}
 
 void EditorUI::createGlow() {}
 
@@ -187,15 +185,6 @@ void EditorUI::showDeleteConfirmation() {
     )->show();
 }
 
-void EditorUI::updateDeleteMenu() {
-    m_deleteMenu->setVisible(m_selectedMode == 1);
-    this->updateDeleteButtons();
-}
-
-void EditorUI::updateViewMenu() {
-    m_viewMenu->setVisible(!m_uiHidden && m_selectedMode == 4);
-}
-
 /*void EditorUI::updateGridNodeSize(int objectID) {
     auto size = ObjectToolbox::sharedState()->gridNodeSizeForKey(objectID);
     m_gridSize = size;
@@ -209,6 +198,19 @@ void EditorUI::updateGroupIDBtn2() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
+void EditorUI::constrainGameLayerPosition() {
+    this->constrainGameLayerPosition(-100.f, -100.f);
+}
+
+void EditorUI::updateDeleteMenu() {
+    m_deleteMenu->setVisible(m_selectedMode == 1);
+    this->updateDeleteButtons();
+}
+
+void EditorUI::updateViewMenu() {
+    m_viewMenu->setVisible(!m_uiHidden && m_selectedMode == 4);
+}
+
 EditorUI* EditorUI::create(LevelEditorLayer* editorLayer) {
     auto ret = new EditorUI();
     if (ret->init(editorLayer)) {
@@ -642,7 +644,7 @@ EditorUI* EditorUI::getUI() { return this; }
 #endif
 
 #if defined(GEODE_IS_IOS)
-void EditorUI::updateSpecialUIElements() {
+/*void EditorUI::updateSpecialUIElements() {
     if (!m_selectedObject && m_selectedObjects->count() == 0) {
         this->deactivateRotationControl();
         this->deactivateScaleControl();
@@ -650,7 +652,7 @@ void EditorUI::updateSpecialUIElements() {
     }
     this->updateObjectInfoLabel();
     this->updateScaleControl();
-}
+}*/
 
 /*void EditorUI::updateEditMenu() {
     bool visible = !m_uiHidden && m_selectedMode == 3;

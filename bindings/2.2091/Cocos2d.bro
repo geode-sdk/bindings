@@ -2395,7 +2395,7 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
     void alignItemsInRowsWithArray(cocos2d::CCArray*) = imac 0x874dc0, ios inline;
     void alignItemsVertically() = imac 0x874090, ios inline;
     void alignItemsVerticallyWithPadding(float) = imac 0x8740b0, ios 0x270be0;
-    void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0;
+    void giveMenuTouchPriority(int) = imac 0x873bd0, m1 0x76a1c0, ios 0x270820;
     bool initWithArray(cocos2d::CCArray*) = imac 0x8738a0, m1 0x769e84, ios 0x270568;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*) = imac 0x873e40, m1 0x76a440, ios 0x270a3c;
     cocos2d::CCMenuItem* itemForTouch(cocos2d::CCTouch*, bool) = imac 0xd98c0, m1 0x76b5d4, ios 0x270fa8;
