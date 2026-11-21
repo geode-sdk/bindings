@@ -18798,7 +18798,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void postCollision(float dt, bool betweenSteps) = win 0x4eb830;
     void preCollision() = win inline, imac 0x3f1680;
     bool preSlopeCollision(float dt, GameObject* object) = win 0x4ed660, imac 0x3f87d0, m1 0x3740c0;
-    void propellPlayer(float yVelocity, bool noEffects, int objectType) = win 0x4fdc90, imac 0x407bd0, m1 0x382054;
+    void propellPlayer(float yVelocity, bool noEffects, int objectType) = win 0x4fdc90, imac 0x407bd0, m1 0x382054, ios 0x2c9a28;
     bool pushButton(PlayerButton button) = win 0x4f6200, imac 0x401090, m1 0x37bbd8;
     void pushDown() = win inline, imac 0x4082e0, m1 0x3826f4;
     void pushPlayer(float yVelocity) = win inline, imac 0x407dd0, m1 0x38227c, ios inline;
@@ -18824,11 +18824,11 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void rotateGameplayObject(GameObject* object) = win 0x4ef700, imac 0x3f3da0, m1 0x370868;
     void rotateGameplayOnly(bool sideways) = win inline, imac 0x402ee0, m1 0x37d71c;
     void rotatePreSlopeObjects() = win inline, imac 0x3f4090, m1 0x370abc, ios inline;
-    void runBallRotation(float speed) = win 0x4eb600, imac 0x3f12f0, m1 0x36e36c;
+    void runBallRotation(float speed) = win 0x4eb600, imac 0x3f12f0, m1 0x36e36c, ios 0x2bb1e8;
     void runBallRotation2() = win 0x4eb730, imac 0x3f1430, m1 0x36e498, ios 0x2bb2e8;
     void runNormalRotation() = win inline, imac 0x3f11e0, m1 0x36e290, ios inline;
     void runNormalRotation(bool notNormalMode, float speed) = win 0x4eb4d0, imac 0x3ed0a0, m1 0x36a6d8, ios 0x2b816c;
-    void runRotateAction(bool ground, int type) = win inline, imac 0x3ef890, m1 0x36cab4;
+    void runRotateAction(bool ground, int type) = win inline, imac 0x3ef890, m1 0x36cab4, 0x2b9f40;
     void saveToCheckpoint(PlayerCheckpoint* checkpoint) = win 0x4ffd80, imac 0x408b40, m1 0x382eac;
     void setSecondColor(cocos2d::ccColor3B const& color) = win 0x4fb6c0, imac 0x3eb240, m1 0x368dc8, ios 0x2b6eb4;
     void setupStreak() = win 0x4e6a00, imac 0x3e99f0, m1 0x3677b8;
