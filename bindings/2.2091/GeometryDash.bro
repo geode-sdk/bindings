@@ -9293,7 +9293,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isSpecialChestLiteUnlockable(std::string key) = win inline, imac 0x3d8b0, m1 0x37468, ios inline;
     bool isSpecialChestUnlocked(std::string key) = win 0x2ee780, imac 0x3d460, m1 0x36fa4, ios 0x3d45e4;
     bool isStoreItemUnlocked(int index) = win 0x2da140;
-    int keyCostForSecretChest(int id) = win inline, imac 0x3cf80, m1 0x36aac;
+    int keyCostForSecretChest(int id) = win inline, imac 0x3cf80, m1 0x36aac, ios 0x3d4264;
     void linkSpecialChestUnlocks(GJRewardItem* item, std::string key) = win 0x2ee220, imac 0x3df40, m1 0x37b30;
     void logCoins() = imac 0x55770, m1 0x4f358;
     void markLevelAsCompletedAndClaimed(GJGameLevel* level) = win 0x2e21a0, m1 0x2d568;
@@ -20737,19 +20737,19 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     virtual void dialogClosed(DialogLayer* layer) = win 0x56c350, imac 0x716da0, m1 0x626594, ios 0x389adc;
     virtual void scrollLayerMoved(cocos2d::CCPoint position) = win 0x56a7d0, imac 0x70f660, m1 0x620070, ios 0x385338;
 
-    void createSecondaryLayer(int chestType) = win 0x56ad10, imac 0x710250, m1 0x620c60;
+    void createSecondaryLayer(int chestType) = win 0x56ad10, imac 0x710250, m1 0x620c60, ios 0x385aec;
     void fadeInMusic() = win inline, imac 0x716ef0, m1 0x6266f8;
     void fadeInOutMusic() = win 0x56d520, imac 0x716f60, m1 0x626778;
-    cocos2d::CCArray* generateChestItems(int chestType) = win 0x56b170, imac 0x7106d0, m1 0x621094;
+    cocos2d::CCArray* generateChestItems(int chestType) = win 0x56b170, imac 0x7106d0, m1 0x621094, ios 0x385e94;
     cocos2d::ccColor3B getPageColor(int page) = win inline, imac 0x70f830, m1 0x620238, ios inline;
     void goToPage(int page) = win inline, imac 0x70f620, m1 0x62001c;
     bool init(bool fromShop) = win 0x568040, imac 0x70ccd0, m1 0x61d7dc, ios 0x383140;
     void moveToMainLayer(cocos2d::CCObject* sender) = win inline, imac 0x710100, m1 0x620b40;
-    void moveToSecondaryLayer(int page) = win inline, imac 0x70fc80, m1 0x620668;
+    void moveToSecondaryLayer(int page) = win inline, imac 0x70fc80, m1 0x620668, ios 0x3857b0;
     void onBack(cocos2d::CCObject* sender) = win 0x56d700, imac 0x70ed20, m1 0x61f6a4;
     void onChestType(cocos2d::CCObject* sender) = win 0x56aa80, imac 0x70ed80, m1 0x61f704;
     void onGoldChest(cocos2d::CCObject* sender) = win 0x56ce20, imac 0x707f20, m1 0x61fa64, ios 0x384e80;
-    void onSelectItem(cocos2d::CCObject* sender) = win 0x56bb80, imac 0x711450, m1 0x621bb0;
+    void onSelectItem(cocos2d::CCObject* sender) = win 0x56bb80, imac 0x711450, m1 0x621bb0, ios 0x3865bc;
     void onShop(cocos2d::CCObject* sender) = win 0x56c130, imac 0x70f460, m1 0x4fd128;
     void onSpecialItem(cocos2d::CCObject* sender) = win 0x56c540, imac 0x70f880, m1 0x620278;
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x56a710, imac 0x70f5b0, m1 0x61ff90;
@@ -20760,7 +20760,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void showLockedChest() = imac 0x70fd90, m1 0x620764;
     void showShop(int shop) = win inline, imac 0x716d30, m1 0x626524;
     void switchToOpenedState(CCMenuItemSpriteExtra* button) = win 0x56c960, imac 0x70edc0, m1 0x61f758;
-    void updateBackButton() = win 0x56abd0, imac 0x70ffd0, m1 0x620a14;
+    void updateBackButton() = win 0x56abd0, imac 0x70ffd0, m1 0x620a14, ios 0x3858ac;
     void updateUnlockedGoldLabel() = win 0x56d590, imac 0x70f3a0, m1 0x61fd70;
     void updateUnlockedLabel() = win 0x56ca40, imac 0x70ee80, m1 0x61f838;
 
