@@ -9,8 +9,10 @@ namespace {
         constexpr char const* modify_start = R"GEN(#pragma once
 #include <Geode/modify/Modify.hpp>
 #include <Geode/modify/Field.hpp>
+#include <Geode/modify/Codegen.hpp>
 {class_include}
 using namespace geode::modifier;
+
 namespace geode::modifier {{
     {statics}
     {concepts}
@@ -53,6 +55,9 @@ namespace geode::modifier {{
 
         constexpr char const* apply_error_inline = R"GEN(
 			GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR_INLINE({class_name}, {function_name}, {parameter_types}))GEN";
+
+        constexpr char const* apply_error_unhookable = R"GEN(
+			GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR_UNHOOKABLE({class_name}, {function_name}, {parameter_types}))GEN";
 
         constexpr char const* apply_error_defined = R"GEN(
             GEODE_APPLY_MODIFY_FOR_FUNCTION_ERROR_DEFINED({class_name}, {function_name}, {parameter_types}))GEN";
@@ -171,6 +176,9 @@ std::string generateModifyHeader(Root const& root, std::filesystem::path const& 
                 //TODO: this breaks cceglview i think thats why its commented out
                 //format_string = format_strings::apply_error;
                 continue;
+            }
+            else if (codegen::isUnhookable(*fn)) {
+                format_string = format_strings::apply_error_unhookable;
             }
             else if (status == BindStatus::Unbindable && fn->prototype.type == FunctionType::Normal) {
                 format_string = format_strings::apply_error_defined;
