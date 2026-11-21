@@ -16277,7 +16277,7 @@ class LevelTools {
     static std::string ngURLForArtist(int id) = win 0x4655c0, imac 0x4fe4d0, m1 0x45a8a4;
     static float offsetBPMForTrack(int id) = win inline, imac 0x4ff540, m1 0x45b8f0, ios inline;
     static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& rotateChannel) = win inline, imac 0x4fff10, m1 0x45c31c;
-    static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* objects, int speed, bool platformer, bool ignoreMinorAxis, bool ignoreWarp, int& rotateChannel, int unused) = win 0x4676d0, imac 0x4fff40, m1 0x45c32c, iOS 0x23d9e0;
+    static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* objects, int speed, bool platformer, bool ignoreMinorAxis, bool ignoreWarp, int& rotateChannel, int unused) = win 0x4676d0, imac 0x4fff40, m1 0x45c32c, ios 0x23d9e0;
     static void sortChannelOrderObjects(cocos2d::CCArray* objects, cocos2d::CCDictionary* objectsDict, bool moveObjects) = win 0x468200, imac 0x4be490, m1 0x45d1cc;
     static void sortSpeedObjects(cocos2d::CCArray* objects, GJBaseGameLayer* layer) = win 0x468480, imac 0x5013d0, m1 0x45d494;
     static float timeForPos(cocos2d::CCPoint position, cocos2d::CCArray* objects, int speed, int order, int channel, bool songTriggers, bool platformer, bool ignoreWarp, bool ignoreRotate, int id) = win 0x466cc0, imac 0x4ff590, m1 0x45b93c, ios 0x23d2d8;
