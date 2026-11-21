@@ -6796,7 +6796,7 @@ class FLAlertLayerProtocol {
 
 [[link(android), depends(FMODAudioState, FMODSoundState, FMODMusic, FMODSound, FMODQueuedEffect, FMODQueuedMusic, FMODSoundTween)]]
 class FMODAudioEngine : cocos2d::CCNode {
-    FMODAudioEngine() = win 0x5bf90, ios 0x1bb9dc;
+    FMODAudioEngine() = win 0x5bf90, ios 0x1bb9dc, inline;
     ~FMODAudioEngine() = win inline, imac 0x3c95c0, m1 0x34d7d8, ios 0x1b4bd0;
 
     static FMODAudioEngine* get() = inline;
