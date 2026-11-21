@@ -14273,7 +14273,7 @@ class InfoLayer : FLAlertLayer, LevelCommentDelegate, CommentUploadDelegate, FLA
 
     TodoReturn activeCommentID();
     TodoReturn activeCommentKeyType();
-    bool canBulkDelete() = win 0x3d2f00, imac 0x897080, m1 0x78aa38;
+    bool canBulkDelete() = win 0x3d2f00, imac 0x897080, m1 0x78aa38, ios inline;
     bool canToggleModRoom() = win 0x3d2b70, imac 0x8940a0, m1 0x787ccc, ios 0x3f0194;
     void clearBulkSelection() = win 0x3d3870;
     void confirmBulkDelete(std::string const&, std::vector<int> const&) = win 0x3d3e60;
