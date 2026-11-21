@@ -15283,7 +15283,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     cocos2d::CCArray* objectsAtPosition(cocos2d::CCPoint position) = win 0x3f15a0, imac 0xb1170, m1 0x9f388, ios 0x3fb1a8;
     cocos2d::CCArray* objectsInRect(cocos2d::CCRect rect, bool ignoreGroups) = win 0x3f1db0, imac 0xb0470, m1 0x9e728;
     void onPausePlaytest() = win 0x3ffb00, m1 0xb17d4;
-    void onPlaytest() = win 0x3fe7e0, imac 0xc5a00, m1 0xb0a30;
+    void onPlaytest() = win 0x3fe7e0, imac 0xc5a00, m1 0xb0a30, ios 0x4045e4;
     void onResumePlaytest() = win 0x3ffcb0, m1 0xb1980;
     void onStopPlaytest() = win 0x3ffeb0, imac 0xc6bf0, m1 0xb1ab4, ios 0x405240;
     void pasteAttributeState(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0xc7be0, m1 0xb2988;
@@ -18846,7 +18846,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void spiderTestJumpInternal(bool dynamic) = win 0x4f25f0, imac 0x3fa7b0, m1 0x375de4;
     void spiderTestJumpX(bool dynamic) = imac 0x3fbe80, m1 0x37720c;
     void spiderTestJumpY(bool dynamic) = imac 0x3fcd40, m1 0x377f24;
-    void startDashing(DashRingObject* object) = win 0x4f3b20, imac 0x3fe4a0, m1 0x379490;
+    void startDashing(DashRingObject* object) = win 0x4f3b20, imac 0x3fe4a0, m1 0x379490, ios 0x2c2f0c;
     void stopBurstEffect() = win 0x4f97b0, imac 0x405340, m1 0x37f9a4;
     void stopDashing() = win 0x4f4850, imac 0x3eec40, m1 0x36be40, ios 0x2b9548;
     void stopParticles() = win 0x4e9ae0, imac 0x3f0760, m1 inline;
