@@ -1912,8 +1912,8 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     virtual void postVisit() = win 0x4bda0, imac 0x41c470, m1 0x3945f8, ios 0x39e5b4;
     virtual bool touchInsideClip(cocos2d::CCPoint const&) = win 0x4bc20, imac 0x41c2e0, m1 0x39446c, ios 0x39e4b8;
 
-    void constraintContent() = win 0x4af70, imac 0x41b670, m1 0x393894;
-    void doConstraintContent(bool instant) = win 0x4af80, imac 0x41b680, m1 0x39389c;
+    void constraintContent() = win 0x4af70, imac 0x41b670, m1 0x393894, ios 0x39d9e8;
+    void doConstraintContent(bool instant) = win 0x4af80, imac 0x41b680, m1 0x39389c, ios 0x39d9f0;
     float getMaxY() = win inline, imac 0x41b110, m1 0x39343c, ios inline;
     float getMinY() = win inline, imac 0x41b120, m1 0x393444, ios inline;
     void moveToTop() = win 0x4ae30, imac 0x41b210, m1 0x393540, ios 0x39d898;
