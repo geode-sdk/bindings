@@ -10636,6 +10636,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     bool m_orbIndicators;
     cocos2d::CCArray* m_indicatorSprites;
     float m_unk3380;
+    float m_unk3384;
     std::vector<int> m_unk3388;
     std::vector<int> m_unk33a0;
     bool m_hideGround;
