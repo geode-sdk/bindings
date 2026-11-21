@@ -824,7 +824,7 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
     void removeAllObjects() = imac 0x2f8490, m1 0x28ce08, ios 0x4a4bf0;
     void removeObjectForElememt(cocos2d::CCDictElement*) = imac 0x2fa2d0, m1 0x28eaec, ios 0x4a64a4;
     void removeObjectForKey(intptr_t) = imac 0x2fa400, ios 0x4a65c0;
-    void removeObjectForKey(std::string const&) = imac 0x2f9eb0, m1 0x28e788;
+    void removeObjectForKey(std::string const&) = imac 0x2f9eb0, m1 0x28e788, ios 0x4a619c;
     void removeObjectsForKeys(cocos2d::CCArray*) = imac 0x2fa540, m1 0x28ed60, ios 0x4a66f4;
     void setObject(cocos2d::CCObject*, intptr_t) = imac 0x2f9990, m1 0x28e2b8, ios 0x4a5cf4;
     void setObject(cocos2d::CCObject*, std::string const&) = imac 0x2f8f90, m1 0x28d96c, ios 0x4a5450;

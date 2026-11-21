@@ -13,6 +13,10 @@ void Slider::sliderBegan() {
 void Slider::sliderEnded() {
     if (m_delegate) m_delegate->sliderEnded(this);
 }
+
+SliderThumb* Slider::getThumb() {
+    return m_touchLogic->m_thumb;
+}
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
@@ -53,10 +57,6 @@ void Slider::enableSlider() {
 
 bool Slider::getLiveDragging() {
     return m_touchLogic->m_activateThumb;
-}
-
-SliderThumb* Slider::getThumb() {
-    return m_touchLogic->m_thumb;
 }
 
 float Slider::getValue() {
