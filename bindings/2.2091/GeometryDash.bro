@@ -2207,11 +2207,11 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     TodoReturn emoteTokenStartingAt(int);
     void enableTextScroll() = win 0x54880;
     void forceOffset() = win inline, imac 0x6b5d0;
-    void getBoxRect();
+    cocos2d::CCRect getBoxRect();
     std::string getString() = win inline, imac 0x68a30, m1 0x62074, ios 0x1fca78;
     cocos2d::CCLabelBMFont* getTextLabel() = inline;
     int getTextRowCount() = win 0x54bc0;
-    void getWorldRect();
+    cocos2d::CCRect getWorldRect();
     void holdTimerFired(float) = win 0x59050, imac 0x6c830;
     bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x54510, imac 0x659e0, m1 0x5e694, ios 0x1fae4c;
     void insertAtCursor(std::string text) = win 0x54f50;
@@ -26291,7 +26291,7 @@ class WorldSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate {
 
 [[link(android)]]
 class WriteArchive {
-    void getString();
+    std::string getString();
     void process(GameObject*&);
     void process(bool&);
     void process(cocos2d::CCPoint&) = win 0x5213d0;
