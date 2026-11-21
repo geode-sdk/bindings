@@ -18896,7 +18896,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void updatePlayerForce(cocos2d::CCPoint velocity, bool additive) = win inline, imac 0x3fefb0, m1 0x379ea0, ios inline;
     void updatePlayerFrame(int frame) = win 0x4fbfa0, imac 0x404a20, m1 0x37f0f8, ios 0x2c7408;
     void updatePlayerGlow() = win 0x4fe840, imac 0x402950, m1 0x37d1e4, ios 0x2c5cec;
-    void updatePlayerJetpackFrame(int frame) = win 0x4fc410, imac 0x4037b0, m1 0x37df88;
+    void updatePlayerJetpackFrame(int frame) = win 0x4fc410, imac 0x4037b0, m1 0x37df88, ios 0x2c67a8;
     void updatePlayerRobotFrame(int frame) = win inline, imac 0x407450, m1 0x3818cc, ios 0x2c94ec;
     void updatePlayerRollFrame(int frame) = win 0x4fc8f0, imac 0x4054f0, m1 0x37fb3c, ios 0x2c7c24;
     void updatePlayerScale() = win 0x4fe7c0, imac 0x402f40, m1 0x37d758, ios inline;
