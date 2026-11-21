@@ -102,14 +102,16 @@ std::string generateAddressDocs(T const& f, PlatformNumber pn) {
 
         switch (status) {
             case BindStatus::NeedsBinding:
-                ret += fmt::format("     * @note[short] {}: 0x{:x}\n",
+                ret += fmt::format("     * @note[short] {}: 0x{:x}{}\n",
                     nameForPlatform(platform),
-                    num
+                    num,
+                    codegen::isUnhookableWithPlatform(platform, f) ? " (Unhookable)" : ""
                 );
                 break;
             case BindStatus::NeedsRebinding:
-                ret += fmt::format("     * @note[short] {}: Rebinded\n",
-                    nameForPlatform(platform)
+                ret += fmt::format("     * @note[short] {}: Rebinded{}\n",
+                    nameForPlatform(platform),
+                    codegen::isUnhookableWithPlatform(platform, f) ? " (Unhookable)" : ""
                 );
                 break;
             case BindStatus::Binded:
