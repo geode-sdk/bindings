@@ -872,7 +872,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     void checkSound() = win inline;
     void hideLoadingCircle() = win inline, imac 0x73be10;
     void loadingIsFinished() = win inline, ios 0x3070bc;
-    void pauseGame() = win 0x989f0;
+    void pauseGame() = win 0x989f0, m1 0x649414, imac 0x73b9b0;
     void pauseSound() = win inline;
     void platformShutdown() = win 0x97c90, imac 0x73b650, m1 0x6490f0, ios inline;
     void resumeSound() = win 0x9999999;
