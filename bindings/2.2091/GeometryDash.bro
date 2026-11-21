@@ -4307,7 +4307,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     DialogLayer() = inline;
     ~DialogLayer() = win inline, imac 0x3b0330, ios 0x8fc30;
 
-    static DialogLayer* create(DialogObject* object, int background) = win inline, imac 0x3b0680, m1 0x3376ec;
+    static DialogLayer* create(DialogObject* object, int background) = win inline, imac 0x3b0680, m1 0x3376ec, ios 0x8fc68;
     static DialogLayer* createDialogLayer(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0x174ae0, imac 0x3b0690, m1 0x3376f8;
     static DialogLayer* createWithObjects(cocos2d::CCArray* objects, int background) = win inline, imac 0x3b07d0, m1 0x337808;
 
@@ -4321,7 +4321,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x175c80, imac 0x3b1b70, m1 0x338af8, ios 0x90bc8;
     virtual void fadeInTextFinished(TextArea* textArea) = win 0x1757c0, imac 0x3b1810, m1 0x3387a8, ios 0x90910;
 
-    void addToMainScene() = win 0x175660, imac 0x3b1530, m1 0x3384fc;
+    void addToMainScene() = win 0x175660, imac 0x3b1530, m1 0x3384fc, ios 0x9078c;
     void animateIn(DialogAnimationType type) = win 0x175a20, imac 0x3b1950, m1 0x3388f0;
     void animateInDialog() = win inline, imac 0x3b1b60, m1 0x338af0, ios inline;
     void animateInRandomSide() = win 0x175830, imac 0x3b1900, m1 0x338898, ios 0x9098c;
@@ -4356,7 +4356,7 @@ class DialogObject : cocos2d::CCObject {
     DialogObject() = inline;
     virtual ~DialogObject() = win 0x1747e0;
 
-    static DialogObject* create(std::string character, std::string text, int characterFrame, float textScale, bool unskippable, cocos2d::ccColor3B nameColor) = win 0x174920, imac 0x3b0130, m1 0x33727c;
+    static DialogObject* create(std::string character, std::string text, int characterFrame, float textScale, bool unskippable, cocos2d::ccColor3B nameColor) = win 0x174920, imac 0x3b0130, m1 0x33727c, ios 0x8fa1c;
 
     bool init(std::string character, std::string text, int characterFrame, float textScale, bool unskippable, cocos2d::ccColor3B nameColor) = win inline, imac 0x3b02c0, m1 0x337434, ios inline;
 
@@ -6190,8 +6190,8 @@ class EndLevelLayer : GJDropDownLayer {
     virtual void enterAnimFinished() = win inline, imac 0x4bc110, m1 0x420380, ios 0x394cdc;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win inline, imac 0x4bca20, m1 0x420c44, ios 0x3954e8;
 
-    void coinEnterFinished(cocos2d::CCPoint position) = win 0x2071c0, imac 0x4bc5a0, m1 0x4207bc;
-    void coinEnterFinishedO(cocos2d::CCObject* sender) = win 0x207180, imac 0x103e0, m1 0xe994;
+    void coinEnterFinished(cocos2d::CCPoint position) = win 0x2071c0, imac 0x4bc5a0, m1 0x4207bc, ios 0x3950b8;
+    void coinEnterFinishedO(cocos2d::CCObject* sender) = win 0x207180, imac 0x103e0, m1 0xe994, ios 0x39506c;
     void currencyEnterFinished() = win 0x207830, m1 0x4209dc;
     void diamondEnterFinished() = win 0x207ce0, m1 0x420ad0;
     std::string getCoinString() = win 0x205c80, imac 0x4bab60, m1 0x41edc0;
@@ -6206,7 +6206,7 @@ class EndLevelLayer : GJDropDownLayer {
     void onMenu(cocos2d::CCObject* sender) = win 0x2063c0, imac 0x4baf40, m1 0x41f200;
     void onReplay(cocos2d::CCObject* sender) = win 0x2061b0, imac 0x4bae40, m1 0x41f0ec, ios 0x393ae8;
     void onRestartCheckpoint(cocos2d::CCObject* sender) = win 0x206800, imac 0x4bb0c0, m1 0x41f398, ios 0x393d70;
-    void playCoinEffect(float duration) = win 0x206f30, imac 0x4bb8b0, m1 0x41fb80;
+    void playCoinEffect(float duration) = win 0x206f30, imac 0x4bb8b0, m1 0x41fb80, ios 0x394500;
     void playCurrencyEffect(float duration) = win 0x2074a0, m1 0x41fd10;
     void playDiamondEffect(float duration) = win 0x207950, m1 0x420048;
     void playEndEffect() = win 0x207e00, imac 0x4bc350, m1 0x420554;
@@ -9346,7 +9346,7 @@ class GameStatsManager : cocos2d::CCNode {
     GJRewardItem* unlockGoldChest(int id) = win inline, imac 0x52d40, m1 0x4cd78;
     GJRewardItem* unlockOnlineChest(std::string key) = win 0x2eeb30, imac 0x3a3c0, m1 0x34204;
     GJRewardItem* unlockPathChest(int id) = win inline, imac 0x3e950;
-    GJRewardItem* unlockSecretChest(int id) = win 0x2eed40, imac 0x52b50, m1 0x4cba0;
+    GJRewardItem* unlockSecretChest(int id) = win 0x2eed40, imac 0x52b50, m1 0x4cba0, ios 0x3dca54;
     GJRewardItem* unlockSpecialChest(std::string key) = win 0x2ee890, imac 0x3e510, m1 0x380ec;
     void updateActivePath(StatKey key) = win inline, imac 0x31200, m1 0x2ad10;
     std::string usernameForAccountID(int id) = win inline, imac 0x316db0, m1 0x2a8d8c;
@@ -10810,7 +10810,7 @@ class GJChestSprite : cocos2d::CCSprite {
     virtual void setColor(cocos2d::ccColor3B const& color) = win 0x567020, imac 0x202fb0, m1 0x1b3efc, ios 0x25dd30;
 
     bool init(int chestType) = win inline, imac 0x202f60, m1 0x1b3ea0;
-    void switchToState(ChestSpriteState state, bool noGlow) = win 0x567150, imac 0x2019b0, m1 0x1b28e4;
+    void switchToState(ChestSpriteState state, bool noGlow) = win 0x567150, imac 0x2019b0, m1 0x1b28e4, ios 0x25c874;
 
     int m_chestType;
     ChestSpriteState m_spriteState;
@@ -20759,10 +20759,10 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void showDialogMechanic() = win 0x5704d0, imac 0x714a60, m1 0x6248c4;
     void showLockedChest() = imac 0x70fd90, m1 0x620764;
     void showShop(int shop) = win inline, imac 0x716d30, m1 0x626524;
-    void switchToOpenedState(CCMenuItemSpriteExtra* button) = win 0x56c960, imac 0x70edc0, m1 0x61f758;
+    void switchToOpenedState(CCMenuItemSpriteExtra* button) = win 0x56c960, imac 0x70edc0, m1 0x61f758, ios 0x384bf4;
     void updateBackButton() = win 0x56abd0, imac 0x70ffd0, m1 0x620a14, ios 0x3858ac;
     void updateUnlockedGoldLabel() = win 0x56d590, imac 0x70f3a0, m1 0x61fd70;
-    void updateUnlockedLabel() = win 0x56ca40, imac 0x70ee80, m1 0x61f838;
+    void updateUnlockedLabel() = win 0x56ca40, imac 0x70ee80, m1 0x61f838, ios 0x384cd4;
 
     cocos2d::CCLayer* m_mainLayer;
     cocos2d::CCLayer* m_secondaryLayer;
