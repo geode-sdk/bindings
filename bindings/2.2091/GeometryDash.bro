@@ -3368,11 +3368,11 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onAdventureMap(cocos2d::CCObject* sender) = win 0x138140, imac 0x2834b0, m1 0x228790, ios 0xdbb18;
     void onBack(cocos2d::CCObject* sender) = win 0x139780, imac 0x2846c0, m1 0x229974, ios 0xdc5c0;
     void onChallenge(cocos2d::CCObject* sender) = win 0x138460, imac 0x283520, m1 0x228824, ios 0xdbb90;
-    void onDailyLevel(cocos2d::CCObject* sender) = win 0x1382b0, ios 0xdbbc8;
-    void onEventLevel(cocos2d::CCObject* sender) = win 0x1383d0, imac 0x37cf30, ios 0xdbc60;
+    void onDailyLevel(cocos2d::CCObject* sender) = win 0x1382b0, ios 0xdbbc8, imac 0x283550;
+    void onEventLevel(cocos2d::CCObject* sender) = win 0x1383d0, imac 0x2835f0, ios 0xdbc60;
     void onFameLevels(cocos2d::CCObject* sender) = win inline, ios inline;
     void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x137740, imac 0x2836d0, m1 0x2289c0, ios 0xdbd2c;
-    void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50, ios 0xdbcac;
+    void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50, ios 0xdbcac, imac 0x283640;
     void onLeaderboards(cocos2d::CCObject* sender) = win 0x137550, imac 0x2830f0, m1 0x228388, ios 0xdb7a8;
     void onMapPacks(cocos2d::CCObject* sender) = win 0x137980, imac 0x2837b0, m1 0x228a88, ios 0xdbdf4;
     void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x2283d0, ios 0xdb7f0;
@@ -3380,11 +3380,11 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     void onOnlineLevels(cocos2d::CCObject* sender) = win 0x137900, imac 0x283810, m1 0x228ad4, ios 0xdbe40;
     void onOnlyFullVersion(cocos2d::CCObject* sender) = imac 0x283940, m1 0x228bec;
     void onPaths(cocos2d::CCObject* sender) = win 0x137810, imac 0x283730, m1 0x228a0c, ios 0xdbd78;
-    void onSavedLevels(cocos2d::CCObject* sender) = win 0x137000, ios 0xdb6d4;
+    void onSavedLevels(cocos2d::CCObject* sender) = win 0x137000, ios 0xdb6d4, imac 0x283010;
     void onSecretVault(cocos2d::CCObject* sender) = win 0x1384a0, imac 0x283ea0, m1 0x229194, ios 0xdbfdc;
     void onTopLists(cocos2d::CCObject* sender) = win 0x137830, imac 0x283750, m1 0x228a28, ios 0xdbd94;
     void onTreasureRoom(cocos2d::CCObject* sender) = win 0x138cd0, imac 0x2840c0, m1 0x2293e0, ios 0xdc1ac;
-    void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x138340, imac 0x37cf30, ios 0xdbc14;
+    void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x138340, imac 0x2835a0, ios 0xdbc14;
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
