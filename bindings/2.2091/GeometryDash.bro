@@ -5359,7 +5359,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     cocos2d::CCPoint getGridSnappedPos(cocos2d::CCPoint pos) = win 0x1bf900, imac 0x11b10, m1 0xfed8, ios 0x4779c4;
     cocos2d::CCPoint getGroupCenter(cocos2d::CCArray* objects, bool absolute) = win 0x2022c0, imac 0x60ff40, m1 0x54f0e0, ios 0x15e5c4;
     void getGroupInfo(GameObject* selectedObject, cocos2d::CCArray* selectedObjects, int& objectID, int& classType, int& objectType) = win inline, imac 0x185d0, m1 0x15550, ios 0x47bb24;
-    cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint position) = win 0x202550, imac 0x60ec00, m1 0x54dd9c;
+    cocos2d::CCPoint getLimitedPosition(cocos2d::CCPoint position) = win 0x202550, imac 0x60ec00, m1 0x54dd9c, ios 0x4779c4;
     cocos2d::CCNode* getNeighbor(int smartKey, cocos2d::CCPoint position, GJSmartDirection direction, cocos2d::CCArray* objects) = win 0x1b8120, imac 0x15660, m1 0x13328, ios 0x47a0ac;
     cocos2d::CCPoint getRelativeOffset(GameObject* object) = win inline, imac 0x611970, m1 0x550834, ios 0x15f970;
     cocos2d::CCArray* getSelectedObjects() = win 0x1c9630, imac 0x5b9cb0, m1 0x506918;
@@ -8753,7 +8753,7 @@ class GameObject : CCSpritePlus {
     void updateMainColor() = win inline, imac 0x69be30, m1 0x5b9d90;
     void updateMainColorOnly() = win inline, imac 0x69c1f0, m1 0x5ba148, ios inline;
     void updateMainOpacity() = win inline, imac 0x69c120, m1 0x5ba070, ios inline;
-    void updateObjectEditorColor() = win 0x29e1f0, imac 0x69ac10, m1 0x5b8fa4;
+    void updateObjectEditorColor() = win 0x29e1f0, imac 0x69ac10, m1 0x5b8fa4, ios 0x2fe8bc;
     void updateSecondaryColor() = win inline, imac 0x69c320, m1 0x5ba294;
     void updateSecondaryColorOnly() = win inline, imac 0x69c500, m1 0x5ba468, ios inline;
     void updateSecondaryOpacity() = win inline, imac 0x69c430, m1 0x5ba390, ios inline;
@@ -10932,7 +10932,7 @@ class GJDifficultySprite : cocos2d::CCSprite {
     static std::string getDifficultyFrame(int difficulty, GJDifficultyName name) = win 0x3ab000, imac 0x2a4c00, m1 0x247740;
 
     bool init(int difficulty, GJDifficultyName name) = win inline, imac 0x2a4b90, m1 0x2476a8;
-    void updateDifficultyFrame(int difficulty, GJDifficultyName name) = win 0x3ab0e0, imac 0x2a4d30, m1 0x247880;
+    void updateDifficultyFrame(int difficulty, GJDifficultyName name) = win 0x3ab0e0, imac 0x2a4d30, m1 0x247880, ios 0x38075c;
     void updateFeatureState(GJFeatureState state) = win 0x3ab1f0, imac 0x2a4eb0, m1 0x2479fc;
     void updateFeatureStateFromLevel(GJGameLevel* level) = win inline, imac 0x2a4e60, m1 0x2479c0, ios 0x38089c;
 
@@ -13472,7 +13472,7 @@ class GJTransformControl : cocos2d::CCLayer {
     void onToggleGridSnap(cocos2d::CCObject* sender) = win 0x1a5c10;
     void onToggleLockScale(cocos2d::CCObject* sender) = win 0x1a5a30;
     void onToggleOppositeAnchor(cocos2d::CCObject* sender) = win 0x1a5b20;
-    void refreshControl() = win 0x1a5880, imac 0x644660, m1 0x5803bc;
+    void refreshControl() = win 0x1a5880, imac 0x644660, m1 0x5803bc, ios 0x15a020;
     void saveToState(GJTransformState& state) = win inline, imac 0x645490, m1 0x580fb0;
     void scaleButtons(float scale) = win 0x1a5df0, m1 0x5802ec;
     TodoReturn snapAngleTo45(float);
@@ -15361,7 +15361,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updatePreviewParticle(ParticleGameObject* object) = win 0x4011a0, imac 0xbcc70, m1 0xa8eb0;
     void updatePreviewParticles() = win 0x401090, imac 0xc1f30, m1 0xad7bc;
     void updateToggledGroups() = imac 0xc3250, m1 0xae674;
-    bool validGroup(GameObject* object, bool checkLockedLayers) = win 0x3f4350, imac 0xb0220, m1 0x9e4e0;
+    bool validGroup(GameObject* object, bool checkLockedLayers) = win 0x3f4350, imac 0xb0220, m1 0x9e4e0, ios 0x3fa5c8;
     static void waitForAutoSave() = win 0x409d30;
 
     bool m_drawTriggerBoxes;
@@ -23874,7 +23874,7 @@ class ShareLevelLayer : FLAlertLayer {
     void onNotifyFriends(cocos2d::CCObject* sender) = win 0x631970;
     void onSettings(cocos2d::CCObject* sender) = win 0x631b60, imac 0x26db30;
     void onShare(cocos2d::CCObject* sender) = win 0x631ce0, imac 0x26d980, m1 0x214b54, ios 0x313c0c;
-    void selectRating(cocos2d::CCObject* sender) = win 0x6319b0, imac 0x26dd00, m1 0x214f14;
+    void selectRating(cocos2d::CCObject* sender) = win 0x6319b0, imac 0x26dd00, m1 0x214f14, ios 0x313f24;
     TodoReturn setupNotifyToggles(cocos2d::CCPoint, float, float);
     void setupStars() = win 0x631390, imac 0x26d580, m1 0x2143cc;
     void updateNotifyToggles() = win 0x631890;
