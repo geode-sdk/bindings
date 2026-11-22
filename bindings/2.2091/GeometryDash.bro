@@ -3546,8 +3546,8 @@ class CustomizeObjectLayer : FLAlertLayer, HSVWidgetDelegate, ColorSelectDelegat
     void onPaste(cocos2d::CCObject* sender) = win 0x142110, imac 0x1da780, m1 0x18e9c8, ios 0x587fc;
     void onSelectColor(cocos2d::CCObject* sender) = win 0x143e40, imac 0x1d9f20, m1 0x18e190, ios 0x58278;
     void onSelectMode(cocos2d::CCObject* sender) = win 0x143110, imac 0x1d9850, m1 0x18daf0, ios 0x57d04;
-    void onSettings(cocos2d::CCObject* sender) = win 0x142270;
-    void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x1436e0, imac 0x1d9fd0;
+    void onSettings(cocos2d::CCObject* sender) = win 0x142270, m1 0x18dcf4;
+    void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x1436e0, imac 0x1d9fd0, m1 0x18e258;
     void recreateLayer() = win inline, imac 0x1dac70, m1 0x18ee94;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x141f50, imac 0x1da2e0, m1 0x18e554;
     void toggleVisible() = win 0x143320, imac 0x1db5a0, m1 0x18f6f4, ios 0x59088;
@@ -6756,7 +6756,7 @@ class FLAlertLayer : cocos2d::CCLayerColor, TextInputDelegate {
     void addCloseButton() = win 0x5b3a0;
     void cancelKeyboardSlide();
     bool containsNode(cocos2d::CCNode* node);
-    void incrementForcePrio() = win 0x5bd10;
+    void incrementForcePrio() = win 0x5bd10, m1 0x3fd070;
     bool init(int opacity) = win 0x5a720, imac 0x494910, m1 0x3fcf78, ios 0x34b588;
     bool init(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2, float width, bool scroll, float height, float textScale) = win 0x5a810, imac 0x493e30, m1 0x3fc534, ios 0x34abb8;
     static float keyboardRaise(float popupHeight, float maxRaise) = win inline;
@@ -9150,8 +9150,8 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     TodoReturn didChangeGV(char const*, bool) = win 0x2c74a0;
     bool init(GJBaseGameLayer*, int) = win inline, imac 0x5fe4c0, m1 0x543c5c, ios 0x164394;
     cocos2d::CCPoint nextPosition(int page) = ios 0x1666bc;
-    void onButtonRows(cocos2d::CCObject* sender) = win 0x2c6690;
-    void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x2c6600;
+    void onButtonRows(cocos2d::CCObject* sender) = win 0x2c6690, m1 0x547ba0;
+    void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x2c6600, m1 0x547b18;
     void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74;
     void showPracticeMusicSyncUnlockInfo() = win 0x2c8460;
     TodoReturn toggleVisibility(bool);
@@ -12804,11 +12804,11 @@ class GJRotationControl : cocos2d::CCLayer {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1a2e20, imac 0x641730, m1 0x57d87c, ios 0x157b0c;
 
     TodoReturn applyFocusedInput();
-    void finishTouch() = win 0x1a29b0;
+    void finishTouch() = win 0x1a29b0, m1 0x57d3d8;
     TodoReturn hasActiveInput();
     void onApplyAngle(cocos2d::CCObject* sender) = win 0x1a2640;
     void onToggleLockRotation(cocos2d::CCObject* sender) = win 0x1a25b0;
-    TodoReturn releaseInputFocus();
+    TodoReturn releaseInputFocus() = m1 0x57d278;
     void setAngle(float angle) = win 0x1a28e0, imac 0x640f20, m1 0x57d0d8;
     void updateAngleInput(float) = win 0x1a2850;
     void updateSliderPosition(cocos2d::CCPoint position) = win inline, imac 0x641140, m1 0x57d2dc;
@@ -14127,7 +14127,7 @@ class IDNameBrowserDelegate {
 class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     virtual ~IDNameBrowserPopup() = win 0x3c1580, ios 0x4df7cc;
 
-    static IDNameBrowserPopup* create(int, int, IDNameBrowserDelegate*);
+    static IDNameBrowserPopup* create(int, int, IDNameBrowserDelegate*) = m1 0x7efdb0;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x3c4e00, ios 0x4e23a8, m1 0x7f3190, imac 0x90c9c0;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x3c4e70, ios 0x4e2414, m1 0x7f324c, imac 0x90ca70;
@@ -14142,14 +14142,14 @@ class IDNameBrowserPopup : FLAlertLayer, VirtualRowSource {
     virtual void mountVirtualRow(int, cocos2d::CCNode*, cocos2d::CCMenu*) = win 0x3c30d0, ios 0x4e17f4, m1 0x7f2418, imac 0x90bbd0;
 
     int getFormID() const = win 0x3c3a20;
-    bool init(int, int, IDNameBrowserDelegate*) = win 0x3c1650;
-    void onClose(cocos2d::CCObject* sender) = win 0x3c4ce0;
+    bool init(int, int, IDNameBrowserDelegate*) = win 0x3c1650, m1 0x7eff60;
+    void onClose(cocos2d::CCObject* sender) = win 0x3c4ce0, m1 0x7f120c;
     void onDeleteRow(cocos2d::CCObject* sender) = win 0x3c3870;
     void onEditRow(cocos2d::CCObject* sender) = win 0x3c3650;
-    void onFormAdd(cocos2d::CCObject* sender) = win 0x3c4880;
-    void onFormArrowLeft(cocos2d::CCObject* sender) = win 0x3c3f20;
-    void onFormArrowRight(cocos2d::CCObject* sender) = win 0x3c3f50;
-    void onFormNextFree(cocos2d::CCObject* sender) = win 0x3c3f90;
+    void onFormAdd(cocos2d::CCObject* sender) = win 0x3c4880, m1 0x7f18d0;
+    void onFormArrowLeft(cocos2d::CCObject* sender) = win 0x3c3f20, m1 0x7f13f0;
+    void onFormArrowRight(cocos2d::CCObject* sender) = win 0x3c3f50, m1 0x7f1498;
+    void onFormNextFree(cocos2d::CCObject* sender) = win 0x3c3f90, m1 0x7f15c0;
     void onSelectRow(cocos2d::CCObject* sender) = win 0x3c37a0;
     void onToggleSort(cocos2d::CCObject* sender) = win 0x3c4810;
     TodoReturn rebuildList() = win 0x3c2af0;
@@ -15249,7 +15249,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     float getLastObjectX() = win 0x3fd290, imac 0xc3fd0, m1 0xaf22c;
     std::string getLevelString() = win 0x3f30a0, imac 0xb3030, m1 0xa0f94, ios 0x3fc654;
     std::string getLockedLayers() = win inline, imac 0xbade0, m1 0xa74a8;
-    int getNextColorChannel() = win 0x3f98e0, imac 0xc0e00, ios 0x401c8c;
+    int getNextColorChannel() = win 0x3f98e0, imac 0xc0e00, ios 0x401c8c, m1 0xacae8;
     int getNextFreeAreaEffectID(const std::unordered_set<int>& exclude) = win 0x3f8f50, imac 0xc06a0;
     int getNextFreeBlockID(const std::unordered_set<int>& exclude) = win 0x3f81d0, imac 0xc06a0, m1 0xac434;
     int getNextFreeControlID(std::unordered_set<int> const&) = win 0x3f8630;
@@ -20878,16 +20878,16 @@ class SelectFontLayer : FLAlertLayer {
 class SelectFontLayer2 : FLAlertLayer, TableViewCellDelegate {
     virtual ~SelectFontLayer2() = win 0x58d8c0, ios 0x315f08;
 
-    static SelectFontLayer2* create(LevelEditorLayer*);
+    static SelectFontLayer2* create(LevelEditorLayer*) = m1 0x84c158;
 
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x970120, m1 0x84c120, ios 0x315f40;
     virtual void keyBackClicked() = win 0x99f90, imac 0x970970, m1 0x84c8e0, ios 0x316550;
     virtual bool cellPerformedAction(TableViewCell*, int, CellAction, cocos2d::CCNode*) = win 0x58e2d0, imac 0x970880, m1 0x84c804, ios 0x3164d4;
     virtual int getSelectedCellIdx() = win 0x58e330, imac 0x970950, m1 0x84c8d0, ios 0x316540;
 
-    bool init(LevelEditorLayer*) = win 0x58de50;
-    TodoReturn loadPreviewSheet();
-    void onClose(cocos2d::CCObject* sender) = win 0x99f60;
+    bool init(LevelEditorLayer*) = win 0x58de50, m1 0x84c2d8;
+    TodoReturn loadPreviewSheet() = m1 0x84c704;
+    void onClose(cocos2d::CCObject* sender) = win 0x99f60, m1 0x84c6c8;
     TodoReturn onSelectFont(int);
     TodoReturn unloadPreviewSheet();
 
@@ -21115,7 +21115,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void updateEditorLayerID2() = win 0x5936a0, imac 0x3019b0, m1 0x295b08;
     void updateEditorOrder() = win 0x594510, imac 0x301a30;
     void updateEditorOrderLabel() = win 0x5940d0;
-    void updateGroupIDButtons() = win 0x592230;
+    void updateGroupIDButtons() = win 0x592230, m1 0x294dec;
     void updateGroupIDLabel() = win 0x594030;
     void updateOrderChannel() = win 0x594440, imac 0x301ae0, m1 0x295c20;
     void updateOrderChannelLabel() = win 0x594180, m1 0x29461c;
@@ -24796,7 +24796,7 @@ class TabbedPopupLayer : SetupTriggerPopup {
     void createTabButtons() = win 0x66c5b0, imac 0x63f670, m1 0x57b904;
     void createTabButtons(float, float, float, float, float, float) = win 0x66c650;
     int ensurePopupPage(int tab, int page) = win inline;
-    int getPopupPage(int tab, int page) const = win inline;
+    int getPopupPage(int tab, int page) const = win inline, m1 0x57b888;
     void offsetToNextPage(int perPage) = win inline;
     void onTab(cocos2d::CCObject* sender) = win 0x66cfa0;
     void onTabPage(cocos2d::CCObject* sender) = win 0x66cfe0;
