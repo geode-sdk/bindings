@@ -20472,7 +20472,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
     virtual void textChanged(CCTextInputNode* node) = win 0x575570, imac 0x6d4870, m1 0x5eb62c, ios 0x46616c;
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win inline, imac 0x6d46b0, m1 0x5eb434, ios 0x465ff8;
 
-    std::string getBasicMessage() = win 0x576910, imac 0x6d4090, m1 0x5eade8;
+    std::string getBasicMessage() = win 0x576910, imac 0x6d4090, m1 0x5eade8, ios 0x4662a8;
     std::string getMessage() = win 0x575a00, imac 0x6d23d0, m1 0x5e94c8;
     std::string getThreadMessage() = win 0x575b80, imac 0x6d4a30, m1 0x5eb80c;
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, imac 0x6d2350, m1 0x5e943c, ios inline;
@@ -20512,7 +20512,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win inline, imac 0x49b0a0, m1 0x4030b8, ios 0x3a9de0;
     virtual void dialogClosed(DialogLayer* layer) = win 0x57a090, imac 0x499c10, m1 0x401c60, ios 0x3a91e8;
 
-    std::string getBasicMessage() = win 0x57d8b0, imac 0x49b420, m1 0x403490;
+    std::string getBasicMessage() = win 0x57d8b0, imac 0x49b420, m1 0x403490, ios 0x3aa090;
     std::string getErrorMessage() = win 0x57e3b0;
     std::string getMessage() = win 0x57d040;
     std::string getThreadMessage() = win 0x57d1b0, imac 0x49bb00, m1 0x403b90;
