@@ -5398,7 +5398,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onDeleteInfo(cocos2d::CCObject* sender) = win 0x1afe40, imac 0x50e640, m1 0xe180;
     void onDeleteSelected(cocos2d::CCObject* sender) = win 0x1b0990, imac 0x8260, m1 0x73e8, ios 0x471018;
     void onDeleteSelectedType(cocos2d::CCObject* sender) = win 0x1b0e60, ios 0x476568, m1 0xe540, imac 0xffa0;
-    void onDeleteStartPos(cocos2d::CCObject* sender) = win 0x1b0f30;
+    void onDeleteStartPos(cocos2d::CCObject* sender) = win 0x1b0f30, imac 0x10020, m1 0xe5c0, ios 0x4765e8;
     void onDeselectAll(cocos2d::CCObject* sender) = win 0x1c98d0, imac 0x5b9de0, m1 0x506a2c, ios 0x1a6d38;
     void onDpadStep(cocos2d::CCObject* sender) = win 0x1f3f90, imac 0x63af60, m1 0x577618, ios 0x186a64;
     void onDuplicate(cocos2d::CCObject* sender) = win 0x1c5520, imac 0x5b5da0, m1 0x5031e4, ios 0x189ae0;
@@ -15300,7 +15300,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void redoLastAction() = win 0x3f2fa0, imac 0x40a9e0, m1 0x7e690;
     void refreshSpecial(GameObject* object) = win inline, imac 0xbd3d0, m1 0xa9390;
     void removeAllObjects() = win inline, imac 0xb1f40, m1 0x9ffec;
-    void removeAllObjectsOfType(int objectID) = win 0x3f22f0, imac 0xb2060, m1 0xa00ec;
+    void removeAllObjectsOfType(int objectID) = win 0x3f22f0, imac 0xb2060, m1 0xa00ec, ios 0x3fb9f0;
     void removeObject(GameObject* object, bool noUndo) = win 0x3f21b0, imac 0xb1980, m1 0x9fa9c, ios 0x3fb46c;
     void removePlayerCollisionBlock() = win inline, imac 0xabb70, m1 0x9a7a4;
     void removeSpecial(GameObject* object) = win 0x3f5290, imac 0xb1a50, m1 0x9fb78, ios 0x3fb504;
