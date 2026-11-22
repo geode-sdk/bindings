@@ -20151,6 +20151,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 
 [[link(android)]]
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
+    [[missing(mac)]]
     virtual ~RewardUnlockLayer() = win 0x561b40, ios 0x25ab2c;
 
     static RewardUnlockLayer* create(int type, RewardsPage* page) = win 0x563580, imac 0x1fe9e0, m1 0x1afddc, ios 0x25a564;
