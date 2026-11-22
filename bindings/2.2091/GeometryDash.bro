@@ -6278,7 +6278,7 @@ class EndTriggerGameObject : EffectGameObject {
 [[link(android)]]
 class EnhancedGameObject : GameObject {
     EnhancedGameObject() = win 0x288660, inline;
-    virtual ~EnhancedGameObject() = win 0x288810, imac 0x66ea30, m1 0x5a63ac;
+    virtual ~EnhancedGameObject() = win 0x288810, imac 0x66ea30, m1 0x5a63ac, ios 0x3028ec;
 
     static EnhancedGameObject* create(char const* frame) = win inline, imac 0x673590, m1 0x5a6854;
 
@@ -14051,7 +14051,7 @@ class HardStreak : cocos2d::CCDrawNode {
     double normalizeAngle(double angle) = win inline, imac 0x65330, m1 0x5e0e4, ios inline;
     cocos2d::CCPoint quadCornerOffset(cocos2d::CCPoint start, cocos2d::CCPoint end, float width) = win inline, imac 0x65250, m1 0x5dfcc;
     void reset() = win inline, imac 0x64db0, m1 0x5db98;
-    void resumeStroke() = win inline, imac 0x64d50, m1 0x5db50;
+    void resumeStroke() = win inline, imac 0x64d50, m1 0x5db50, ios 0x667a4;
     void scheduleAutoUpdate() = win inline, imac 0x641b0, m1 0x5d1cc;
     void stopStroke() = win 0x3bfb20, imac 0x64d70, m1 0x5db5c, ios 0x667b0;
     callback void updateStroke(float dt) = win 0x3bfb60, imac 0x641d0, m1 0x5d1dc, ios 0x66074;
