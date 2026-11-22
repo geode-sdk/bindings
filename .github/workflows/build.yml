@@ -20,7 +20,8 @@ jobs:
       matrix:
         config:
         - name: Windows
-          os: windows-latest
+          # temporary
+          os: windows-2022
           id: win
           extra_flags: ''
         - name: macOS

@@ -258,6 +258,14 @@ namespace codegen {
         return BindStatus::Unbindable;
     }
 
+    inline bool isUnhookableWithPlatform(Platform p, Function const& f) {
+        return (f.prototype.attributes.unhookable & p) != Platform::None;
+    }
+
+    inline bool isUnhookableWithPlatform(Platform p, FunctionBindField const& f) {
+        return (f.prototype.attributes.unhookable & p) != Platform::None;
+    }
+
     inline BindStatus getStatusWithPlatform(Platform p, Function const& f) {
         if (
             codegen::sdkVersion < f.prototype.attributes.since ||
@@ -279,6 +287,14 @@ namespace codegen {
 
     inline BindStatus getStatus(Function const& f) {
         return getStatusWithPlatform(codegen::platform, f);
+    }
+
+    inline bool isUnhookable(Function const& f) {
+        return isUnhookableWithPlatform(codegen::platform, f);
+    }
+
+    inline bool isUnhookable(FunctionBindField const& f) {
+        return isUnhookableWithPlatform(codegen::platform, f);
     }
 
     inline std::string getParameters(FunctionProto const& f) { // int p0, float p1

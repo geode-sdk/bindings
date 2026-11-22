@@ -89,8 +89,8 @@ void GJBaseGameLayer::processCheckpoints() {}
 void GJBaseGameLayer::resetLevel() {}
 
 void GJBaseGameLayer::addToObjectsToShow(GameObject* object) {
-    if (m_activeObjectsCount < m_activeObjectsIndex) {
-        m_activeObjects[m_activeObjectsIndex] = object;
+    if (m_activeObjectsIndex > m_activeObjectsCount) {
+        m_activeObjects[m_activeObjectsCount] = object;
     }
     else {
         m_activeObjects.push_back(object);
@@ -776,7 +776,7 @@ cocos2d::CCPoint GJBaseGameLayer::getPortalTargetPos(TeleportPortalObject* objec
 }
 
 std::string GJBaseGameLayer::getRecordExtra() {
-    return cocos2d::CCString::createWithFormat("#%s,%i,%i,%i,%i,%s", std::to_string(m_unk32e0).c_str(), m_savedAttempts, 22, 47, m_level->m_levelVersion, m_savedPersistentStateString.c_str())->getCString();
+    return cocos2d::CCString::createWithFormat("#%s,%i,%i,%i,%i,%s", std::to_string(m_recordSeed).c_str(), m_savedAttempts, 22, 47, m_level->m_levelVersion, m_savedPersistentStateString.c_str())->getCString();
 }
 
 void GJBaseGameLayer::getRotateCommandTargets(EnhancedTriggerObject* object, GameObject*& centerObject, GameObject*& targetObject, GameObject*& rotateObject) {

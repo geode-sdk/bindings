@@ -745,6 +745,9 @@ public class SyncBromaScript extends GhidraScript {
                         }
                         for (var i = 0; i < paramCount; i += 1) {
                             var param = fun.getParameter(i);
+                            if (param == null) {
+                                continue tryMatchFun;
+                            }
                             var ghidraDataType = param.getDataType();
                             var ghidraPointerDataType = ghidraDataType;
                             if (ghidraDataType instanceof Pointer) {
@@ -819,6 +822,9 @@ public class SyncBromaScript extends GhidraScript {
                 int skipCount = 0;
                 for (var i = 0; i < fun.getParameterCount() && (i - skipCount) < bromaFun.params.size(); i += 1) {
                     var param = fun.getParameter(i);
+                    if (param == null) {
+                        continue;
+                    }
                     if (param.getName() != null && param.getName().matches("(this|__return)") || param.isAutoParameter()) {
                         skipCount += 1;
                         continue;
