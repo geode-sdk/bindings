@@ -5984,7 +5984,7 @@ class cocos2d::ZipUtils {
     // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     // static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     // static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey, int level) = imac 0x1e8350, m1 0x19a884, ios 0x2da590;
+    static std::string compressString(std::string const& data, bool encrypt, int level, int encryptionKey) = imac 0x1e8350, m1 0x19a884, ios 0x2da590;
     static std::string decompressString(std::string const& data, bool encrypt, int encryptionKey) = imac 0x1e8a00, m1 0x19afac, ios 0x2dab88;
     static std::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1e86e0, m1 0x19ac8c, ios 0x2da900;
     static std::string encryptDecrypt(std::string const& data, int encryptionKey) = inline;
