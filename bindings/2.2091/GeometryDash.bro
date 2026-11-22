@@ -22995,7 +22995,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     void createCustomEasingControls(std::string text, cocos2d::CCPoint position, float scale, int typeProperty, int rateProperty, int page, int group) = win 0x614df0, imac 0x224830, m1 0x1d1e14, ios 0x1b2760;
     cocos2d::CCArray* createCustomToggleValueControl(int property, bool toggled, bool notClickable, std::string text, cocos2d::CCPoint position, bool vertical, int page, int group) = win 0x60e7e0, imac 0x2201d0, m1 0x1ce29c;
     void createEasingControls(cocos2d::CCPoint position, float scale, int page, int group) = win 0x613b40, imac 0x223800, m1 0x1d0db0, ios 0x1b1934;
-    void createMultiTriggerItems(cocos2d::CCPoint touchPos, cocos2d::CCPoint spawnPos, cocos2d::CCPoint multiPos) = win 0x60c530, imac 0x21ac60, m1 0x1ca298;
+    void createMultiTriggerItems(cocos2d::CCPoint touchPos, cocos2d::CCPoint spawnPos, cocos2d::CCPoint multiPos) = win 0x60c530, imac 0x21ac60, m1 0x1ca298, ios 0x1acf54;
     void createMultiTriggerItemsCorner() = win 0x60c220;
     void createMultiTriggerItemsDefault() = win 0x60c110, m1 0x1ca1b0;
     void createMultiTriggerItemsDefaultHorizontal() = win 0x60c420;
