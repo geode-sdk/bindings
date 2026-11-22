@@ -2894,15 +2894,15 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     void incrementDislikes() = win inline, imac 0x23e550, m1 0x1e9ae4, ios inline;
     void incrementLikes() = win inline, imac 0x23e4a0, m1 0x1e9a30, ios inline;
     void loadFromComment(GJComment* comment) = win 0x151ea0, imac 0x22d440, m1 0x1d9f24, ios 0x12aeb0;
-    void onBulkSelectToggle(cocos2d::CCObject* sender) = win 0x154850;
-    void onConfirmDelete(cocos2d::CCObject* sender) = win 0x154b90, imac 0x23e0d0, m1 0x1e9690;
+    void onBulkSelectToggle(cocos2d::CCObject* sender) = win 0x154850, ios 0x1388bc;
+    void onConfirmDelete(cocos2d::CCObject* sender) = win 0x154b90, imac 0x23e0d0, m1 0x1e9690, ios 0x138800;
     void onDelete() = win inline;
-    void onGoToLevel(cocos2d::CCObject* sender) = win 0x1550d0;
-    void onLike(cocos2d::CCObject* sender) = win 0x1548c0;
-    void onMoreOptions(cocos2d::CCObject* sender) = win 0x154d10, imac 0x23e220;
+    void onGoToLevel(cocos2d::CCObject* sender) = win 0x1550d0, m1 0x1e93f0, imac 0x23de00, ios 0x138570;
+    void onLike(cocos2d::CCObject* sender) = win 0x1548c0, m1 0x1e9544, imac 0x23df70, ios 0x1386b4;
+    void onMoreOptions(cocos2d::CCObject* sender) = win 0x154d10, imac 0x23e220, m1 0x1e97cc, ios 0x138910;
     void onUndelete() = win inline, imac 0x23e780, m1 0x1e9cdc, ios inline;
-    void onUnhide(cocos2d::CCObject* sender) = win 0x1550b0, imac 0x23df50, m1 0x1e9538;
-    void onViewProfile(cocos2d::CCObject* sender) = win 0x154cd0, imac 0x23ddd0, m1 0x1e93c0;
+    void onUnhide(cocos2d::CCObject* sender) = win 0x1550b0, imac 0x23df50, m1 0x1e9538, ios 0x1386a8;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x154cd0, imac 0x23ddd0, m1 0x1e93c0, ios 0x138540;
     void updateBGColor(int index) = win inline, imac 0x22f7a0, m1 0x1dbe34, ios 0x12cbf4;
     void updateBulkToggle();
     void updateLabelValues() = win 0x154ad0, imac 0x23e620, m1 0x1e9ba0;
@@ -2920,12 +2920,12 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
 class CommentOptionsPopup : SetupTriggerPopup {
     virtual ~CommentOptionsPopup() = win 0xbe650, ios 0x522220;
 
-    static CommentOptionsPopup* create(GJComment*, bool) = imac 0x967a70;
+    static CommentOptionsPopup* create(GJComment*, bool) = imac 0x967a70, m1 0x844a64, ios 0x522258;
 
     virtual void keyBackClicked() = win 0xa6580, imac 0x9687a0, m1 0x8456a8, ios 0x522ce8;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x968770, m1 0x84566c, ios 0x522cac;
 
-    bool init(GJComment*, bool) = win 0xc1fc0, imac 0x967b80;
+    bool init(GJComment*, bool) = win 0xc1fc0, imac 0x967b80, m1 0x844b50, ios 0x522334;
     void onCopy(cocos2d::CCObject* sender) = win 0xc28d0;
     void onReport(cocos2d::CCObject* sender) = win 0xc2890;
 
