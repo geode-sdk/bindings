@@ -9912,7 +9912,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void addRemapTargets(std::set<int>& targets) = win 0x313c90, imac 0xf2e20, m1 0xd3834, ios 0x279fb4;
     void addToGroupParents(GameObject* object) = win 0x32c9d0, imac 0x11b3c0, ios 0x28e880;
     void addToGroups(GameObject* object, bool duplicateTrigger) = win 0x32bbc0, imac 0x11a3e0, m1 0xf4f98, ios 0x28ded0;
-    void addToObjectsToShow(GameObject* object) = inline;
+    void addToObjectsToShow(GameObject* object) = win inline;
     void addUIObject(GameObject* object) = win 0x32ec90, imac 0x11afa0, m1 0xf71bc, ios 0x28f3bc;
     void animateInDualGroundNew(GameObject* object, float height, bool instant, float duration) = win 0x31a690, imac 0x102780, m1 0xe0fa0, ios 0x28254c;
     void animateInGroundNew(bool unk1, float unk2, bool unk3) = win inline, imac 0x102fb0, m1 0xe1680, ios inline;

@@ -89,8 +89,8 @@ void GJBaseGameLayer::processCheckpoints() {}
 void GJBaseGameLayer::resetLevel() {}
 
 void GJBaseGameLayer::addToObjectsToShow(GameObject* object) {
-    if (m_activeObjectsCount < m_activeObjectsIndex) {
-        m_activeObjects[m_activeObjectsIndex] = object;
+    if (m_activeObjectsIndex > m_activeObjectsCount) {
+        m_activeObjects[m_activeObjectsCount] = object;
     }
     else {
         m_activeObjects.push_back(object);
