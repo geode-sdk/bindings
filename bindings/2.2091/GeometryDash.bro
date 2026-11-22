@@ -6822,7 +6822,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void fadeInBackgroundMusic(float value) = win inline, imac 0x2eece0, m1 0x355fc8;
     void fadeInMusic(float duration, int channel) = win 0x65360, imac 0x3d4620, m1 0x356680, ios 0x1ba090;
     void fadeMusic(float duration, int channel, float startVolume, float endVolume) = win 0x655e0, imac 0x3d7530, m1 0x358c10;
-    void fadeOutMusic(float duration, int channel) = win 0x654a0, imac 0x3d7450, m1 0x358b74;
+    void fadeOutMusic(float duration, int channel) = win 0x654a0, imac 0x3d7450, m1 0x358b74, ios 0x1bb6dc;
     std::string getActiveMusic(int id) = win inline, imac 0x3d41a0, m1 0x3562b0, ios 0x1b9e0c;
     FMOD::Channel* getActiveMusicChannel(int musicID) = win inline, imac 0x3cece0, m1 0x351cd8, ios 0x1b730c;
     float getBackgroundMusicVolume() = win inline, imac 0x3d3ed0, m1 0x356008, ios 0x1b9c08;
@@ -19390,7 +19390,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void setupHasCompleted() = win 0x504710, imac 0x7b210, m1 0x72824, ios 0x13f4bc;
     bool shouldBlend(int colorID) = win inline, imac 0x842d0, m1 0x7a858;
     bool shouldDebugDraw() = win inline, imac 0x80830, m1 0x772f8, ios inline;
-    void showCompleteEffect() = win 0x507800, imac 0x81ad0, m1 0x783d4;
+    void showCompleteEffect() = win 0x507800, imac 0x81ad0, m1 0x783d4, ios 0x14335c;
     void showCompleteText() = win 0x5071d0, imac 0x81f20, m1 0x78784, ios 0x1436a8;
     void showEndLayer() = win 0x50b000, imac 0x82b00, m1 0x7928c, ios 0x143dd8;
     void showHint() = win 0x5136e0, imac 0x883e0, m1 0x7e470;
