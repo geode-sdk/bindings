@@ -2345,7 +2345,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     virtual void challengeStatusFailed() = win 0x9e640, imac 0x387dd0, m1 0x312a04, ios 0x36454;
     virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x9f410, imac 0x388360, m1 0x313020, ios 0x368b8;
 
-    bool canCollectQuests() = win 0x9e380;
+    bool canCollectQuests() = win 0x9e380, ios 0x36194;
     void claimItem(ChallengeNode* node, GJChallengeItem* item, cocos2d::CCPoint position) = win 0x9f0f0, imac 0x388240, m1 0x312ef0, ios 0x36788;
     ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x9e790, imac 0x3877a0, m1 0x31243c, ios 0x35fbc;
     void exitNodeAtSlot(int position, float delay) = win 0x9eac0, imac 0x387cd0, m1 0x31291c, ios 0x36370;
@@ -3363,28 +3363,28 @@ class CreatorLayer : cocos2d::CCLayer, cocos2d::CCSceneTransitionDelegate, Dialo
     virtual void contentStatusFinished() = win 0x1396b0, imac 0x284790, m1 0x229a28, ios 0xdc6d4;
 
     bool canPlayOnlineLevels() = win inline, imac 0x284720, m1 0x2299d4, ios inline;
-    void checkQuestsStatus() = imac 0x3c18d0;
-    void checkTimedStatus() = win 0x139530;
-    void onAdventureMap(cocos2d::CCObject* sender) = win 0x138140, imac 0x2834b0, m1 0x228790;
-    void onBack(cocos2d::CCObject* sender) = win 0x139780, imac 0x2846c0, m1 0x229974;
-    void onChallenge(cocos2d::CCObject* sender) = win 0x138460, imac 0x283520, m1 0x228824;
-    void onDailyLevel(cocos2d::CCObject* sender) = win 0x1382b0;
-    void onEventLevel(cocos2d::CCObject* sender) = win 0x1383d0, imac 0x37cf30;
+    void checkQuestsStatus() = imac 0x3c18d0, ios inline;
+    void checkTimedStatus() = win 0x139530, ios 0xdbf58;
+    void onAdventureMap(cocos2d::CCObject* sender) = win 0x138140, imac 0x2834b0, m1 0x228790, ios 0xdbb18;
+    void onBack(cocos2d::CCObject* sender) = win 0x139780, imac 0x2846c0, m1 0x229974, ios 0xdc5c0;
+    void onChallenge(cocos2d::CCObject* sender) = win 0x138460, imac 0x283520, m1 0x228824, ios 0xdbb90;
+    void onDailyLevel(cocos2d::CCObject* sender) = win 0x1382b0, ios 0xdbbc8;
+    void onEventLevel(cocos2d::CCObject* sender) = win 0x1383d0, imac 0x37cf30, ios 0xdbc60;
     void onFameLevels(cocos2d::CCObject* sender) = win inline, ios inline;
-    void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x137740, imac 0x2836d0, m1 0x2289c0;
-    void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50;
+    void onFeaturedLevels(cocos2d::CCObject* sender) = win 0x137740, imac 0x2836d0, m1 0x2289c0, ios 0xdbd2c;
+    void onGauntlets(cocos2d::CCObject* sender) = win 0x137a50, ios 0xdbcac;
     void onLeaderboards(cocos2d::CCObject* sender) = win 0x137550, imac 0x2830f0, m1 0x228388, ios 0xdb7a8;
-    void onMapPacks(cocos2d::CCObject* sender) = win 0x137980, imac 0x2837b0, m1 0x228a88;
-    void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x2283d0;
-    void onMyLevels(cocos2d::CCObject* sender) = win 0x136aa0, imac 0x283850, m1 0x228b10;
+    void onMapPacks(cocos2d::CCObject* sender) = win 0x137980, imac 0x2837b0, m1 0x228a88, ios 0xdbdf4;
+    void onMultiplayer(cocos2d::CCObject* sender) = win 0x137b50, imac 0x283140, m1 0x2283d0, ios 0xdb7f0;
+    void onMyLevels(cocos2d::CCObject* sender) = win 0x136aa0, imac 0x283850, m1 0x228b10, ios 0xdbe7c;
     void onOnlineLevels(cocos2d::CCObject* sender) = win 0x137900, imac 0x283810, m1 0x228ad4, ios 0xdbe40;
     void onOnlyFullVersion(cocos2d::CCObject* sender) = imac 0x283940, m1 0x228bec;
-    void onPaths(cocos2d::CCObject* sender) = win 0x137810, imac 0x283730, m1 0x228a0c;
-    void onSavedLevels(cocos2d::CCObject* sender) = win 0x137000;
-    void onSecretVault(cocos2d::CCObject* sender) = win 0x1384a0, imac 0x283ea0, m1 0x229194;
-    void onTopLists(cocos2d::CCObject* sender) = win 0x137830, imac 0x283750, m1 0x228a28;
+    void onPaths(cocos2d::CCObject* sender) = win 0x137810, imac 0x283730, m1 0x228a0c, ios 0xdbd78;
+    void onSavedLevels(cocos2d::CCObject* sender) = win 0x137000, ios 0xdb6d4;
+    void onSecretVault(cocos2d::CCObject* sender) = win 0x1384a0, imac 0x283ea0, m1 0x229194, ios 0xdbfdc;
+    void onTopLists(cocos2d::CCObject* sender) = win 0x137830, imac 0x283750, m1 0x228a28, ios 0xdbd94;
     void onTreasureRoom(cocos2d::CCObject* sender) = win 0x138cd0, imac 0x2840c0, m1 0x2293e0, ios 0xdc1ac;
-    void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x138340, imac 0x37cf30;
+    void onWeeklyLevel(cocos2d::CCObject* sender) = win 0x138340, imac 0x37cf30, ios 0xdbc14;
 
     cocos2d::CCSprite* m_secretDoorSprite;
     cocos2d::CCSprite* m_questsSprite;
@@ -7519,7 +7519,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getGauntlets() = win 0x230cd0, imac 0x55d7c0, m1 0x4b1ab0;
     std::string getGauntletSearchKey(int id) = win inline, imac 0x55d700, m1 0x4b19f0;
     bool getGJChallenges() = win 0x25e270, imac 0x5768a0, m1 0x4d2254;
-    TodoReturn getGJContentStatus() = win 0x2313d0;
+    TodoReturn getGJContentStatus() = win 0x2313d0, ios 0xb8e3c;
     bool getGJDailyLevelState(GJTimedLevelType type) = win 0x25f690, imac 0x580a20;
     bool getGJRewards(int type) = win 0x25ce00, imac 0x57fe80, m1 0x4d1c68;
     bool getGJSecretReward(std::string key) = win 0x25be60, imac 0x57fb70;
