@@ -17964,7 +17964,7 @@ class OptionsLayer : GJDropDownLayer, FLAlertLayerProtocol, VolumeChangeDelegate
     void onSoundtracks(cocos2d::CCObject* sender) = win 0x93e20, m1 0x771634;
     void onSupport(cocos2d::CCObject* sender) = win 0x4cc450, imac 0x87b900, m1 0x77104c;
     void onVideo(cocos2d::CCObject* sender) = win 0x4cc430, imac 0x87b860, m1 0x770fcc, ios inline;
-    void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x87be00, m1 0x7715bc, ios 0x1c0070;
+    void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x87be00, m1 0x7715bc;
     void tryEnableRecord() = win inline, imac 0x87c550, ios inline;
 
     cocos2d::CCMenu* m_optionsMenu;
@@ -18264,7 +18264,7 @@ class PauseLayer : CCBlockLayer, FLAlertLayerProtocol, StartPosBrowserDelegate, 
     void setupPlatformerLabels(bool) = win 0x4da5d0, imac 0x3c2bf0, m1 0x347814, ios 0x1c0c0c;
     void setupProgressBars() = win inline, imac 0x3c0f70, m1 0x345d48, ios 0x1bf610;
     void setupSessionProgressBar() = win 0x4d9d60, imac 0x3c2870, m1 0x3474bc, ios 0x1c08b8;
-    void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x3c1b30, m1 0x3468d8;
+    void sfxSliderChanged(cocos2d::CCObject* sender) = win 0x182390, imac 0x3c1b30, m1 0x3468d8, ios 0x1c0070;
     void tryQuit(cocos2d::CCObject* sender) = win 0x4db520, imac 0x3c1390, m1 0x346140;
     void tryShowBanner(float dt) = imac 0x3c2300, m1 0x346f54;
 
