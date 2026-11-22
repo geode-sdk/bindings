@@ -2334,7 +2334,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     ChallengesPage() = inline;
     ~ChallengesPage() = win inline, ios 0x35544;
 
-    static ChallengesPage* create() = win 0x9d810, imac 0x3868e0, m1 0x311658;
+    static ChallengesPage* create() = win 0x9d810, imac 0x3868e0, m1 0x311658, ios 0x3557c;
 
     virtual bool init() = win 0x9d960, imac 0x386b00, m1 0x3117e4, ios 0x3565c;
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x388200, m1 0x312eb8, ios 0x36750;
@@ -7521,7 +7521,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool getGJChallenges() = win 0x25e270, imac 0x5768a0, m1 0x4d2254;
     TodoReturn getGJContentStatus() = win 0x2313d0, ios 0xb8e3c;
     bool getGJDailyLevelState(GJTimedLevelType type) = win 0x25f690, imac 0x580a20;
-    bool getGJRewards(int type) = win 0x25ce00, imac 0x57fe80, m1 0x4d1c68;
+    bool getGJRewards(int type) = win 0x25ce00, imac 0x57fe80, m1 0x4d1c68, ios 0xccc00;
     bool getGJSecretReward(std::string key) = win 0x25be60, imac 0x57fb70;
     void getGJUserInfo(int id) = win 0x23a610, imac 0x5673a0, m1 0x4ba528, ios 0xbe794;
     int getHighestLevelOrder() = win inline, imac 0x5469b0, m1 0x49ceb4;
@@ -12530,7 +12530,7 @@ class GJPathRewardPopup : FLAlertLayer {
 class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
     virtual ~GJPathsLayer() = win 0x3921c0, ios 0x45ebcc;
 
-    static GJPathsLayer* create() = win 0x392820, imac 0x2e8d00, m1 0x27f1ac;
+    static GJPathsLayer* create() = win 0x392820, imac 0x2e8d00, m1 0x27f1ac, ios 0x45ec04;
     static std::string nameForPath(int path) = win 0x3925b0, imac 0x2e8b20, m1 0x27ef9c;
 
     virtual bool init() = win 0x392930, imac 0x2e8f00, m1 0x27f320, ios 0x45ecc4;
@@ -12551,13 +12551,13 @@ class GJPathsLayer : FLAlertLayer, FLAlertLayerProtocol {
 class GJPathSprite : CCSpriteCOpacity {
     virtual ~GJPathSprite() = win 0x7e780;
 
-    static GJPathSprite* create(int path) = win 0x396e70, imac 0x2e9480, m1 0x27f888;
+    static GJPathSprite* create(int path) = win 0x396e70, imac 0x2e9480, m1 0x27f888, ios 0x45f190;
 
     void addRankLabel(int path) = win inline, imac 0x2edb70, m1 0x283aa0;
     void addShardSprite() = win 0x397500, imac 0x2ed640, m1 0x283538;
     void changeToLockedArt() = win 0x397210, imac 0x2ec5f0, m1 0x2826e0;
     bool init(int path) = win inline, imac 0x2eda50, m1 0x283968;
-    void updateState() = win 0x397020, imac 0x2e9520, m1 0x27f934;
+    void updateState() = win 0x397020, imac 0x2e9520, m1 0x27f934, ios 0x45f230;
 
     int m_pathNumber;
 }
@@ -20122,7 +20122,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
     RewardsPage() = inline;
     ~RewardsPage() = win inline, ios 0x2594d4;
 
-    static RewardsPage* create() = win inline, imac 0x1fd580, m1 0x1aea8c;
+    static RewardsPage* create() = win inline, imac 0x1fd580, m1 0x1aea8c, ios 0x25950c;
     static char const* getRewardFrame(int type, int state) = win inline, imac 0x1fe5d0, m1 0x1af938, ios inline;
 
     virtual bool init() = win 0x561c90, imac 0x1fd7a0, m1 0x1aec10, ios 0x2595e0;
@@ -20587,8 +20587,8 @@ class SecretLayer4 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     SecretLayer4() = inline;
     ~SecretLayer4() = win inline, m1 0x322930, ios 0x3f3624;
 
-    static SecretLayer4* create() = win inline, imac 0x399f70, m1 0x322bac;
-    static cocos2d::CCScene* scene() = win inline, m1 0x322b68;
+    static SecretLayer4* create() = win inline, imac 0x399f70, m1 0x322bac, ios 0x3f36a0;
+    static cocos2d::CCScene* scene() = win inline, m1 0x322b68, ios 0x3f365c;
 
     virtual bool init() = win 0x585340, m1 0x322c84, imac 0x39a080, ios 0x3f3714;
     virtual void onExit() = win 0x57f4f0, imac 0x39e540, m1 0x326efc, ios 0x3f5d98;
@@ -20747,7 +20747,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     bool init(bool fromShop) = win 0x568040, imac 0x70ccd0, m1 0x61d7dc, ios 0x383140;
     void moveToMainLayer(cocos2d::CCObject* sender) = win inline, imac 0x710100, m1 0x620b40;
     void moveToSecondaryLayer(int page) = win inline, imac 0x70fc80, m1 0x620668, ios 0x3857b0;
-    void onBack(cocos2d::CCObject* sender) = win 0x56d700, imac 0x70ed20, m1 0x61f6a4;
+    void onBack(cocos2d::CCObject* sender) = win 0x56d700, imac 0x70ed20, m1 0x61f6a4, ios 0x384b34;
     void onChestType(cocos2d::CCObject* sender) = win 0x56aa80, imac 0x70ed80, m1 0x61f704;
     void onGoldChest(cocos2d::CCObject* sender) = win 0x56ce20, imac 0x707f20, m1 0x61fa64, ios 0x384e80;
     void onSelectItem(cocos2d::CCObject* sender) = win 0x56bb80, imac 0x711450, m1 0x621bb0, ios 0x3865bc;
