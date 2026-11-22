@@ -3434,7 +3434,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
     virtual ~CurrencyRewardLayer() = win 0x1399d0, imac 0x888bd0, m1 0x77d56c, ios 0x3bc3ac;
 
     // CurrencyRewardLayer();
-    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float yOffset, float time) = win 0x139bb0, imac 0x888de0, m1 0x77d6e4;
+    static CurrencyRewardLayer* create(int orbs, int stars, int moons, int diamonds, CurrencySpriteType demonKey, int keyCount, CurrencySpriteType shardType, int shardsCount, cocos2d::CCPoint position, CurrencyRewardType rewardType, float yOffset, float time) = win 0x139bb0, imac 0x888de0, m1 0x77d6e4, ios 0x3bc3e4;
 
     virtual void update(float dt) = win 0x13c9e0, imac 0x88bdf0, m1 0x780568, ios 0x3beca0;
 
@@ -6313,7 +6313,7 @@ class EnhancedGameObject : GameObject {
     void triggerAnimation() = win inline, imac 0x247830, m1 0x1f11c8;
     void updateRotateAction(float dt) = win 0x2a42a0, imac 0x6a2d50, m1 0x5be2c8;
     void updateState(int state) = win inline, imac 0x69d8c0, m1 0x5bb2b8;
-    void updateUserCoin() = win 0x2a3970, imac 0x6931f0, m1 0x5b2cb8;
+    void updateUserCoin() = win 0x2a3970, imac 0x6931f0, m1 0x5b2cb8, ios 0x2fc80c;
     void waitForAnimationTrigger() = win inline, imac 0x247700, m1 0x1f106c;
 
     bool m_poweredOn;
@@ -8636,7 +8636,7 @@ class GameObject : CCSpritePlus {
     void createOpacityGroupContainer(int size) = win inline, ios inline;
     void createSpriteColor(int type) = win inline, imac 0x673990, m1 0x5a6c3c;
     void deselectObject() = win inline, imac 0x69abf0, m1 0x5b8f9c;
-    void destroyObject() = win inline, imac 0x68e960, m1 0x5ae99c;
+    void destroyObject() = win inline, imac 0x68e960, m1 0x5ae99c, ios 0x2f94fc;
     void determineSlopeDirection() = win 0x299320, imac 0x68f730, m1 0x5af938, ios 0x2fa1b8;
     bool didScaleXChange() = win inline, imac 0x68dcf0, m1 0x5ade10, ios inline;
     bool didScaleYChange() = win inline, imac 0x68dd20, m1 0x5ade40, ios inline;
@@ -8669,7 +8669,7 @@ class GameObject : CCSpritePlus {
     float getObjectRadius() = win inline, imac 0x69ce10, m1 0x5ba9dc;
     cocos2d::CCRect* getObjectRectPointer() = win inline, imac 0x68cd80, m1 0x5acf10, ios 0x2f7dcc;
     ZLayer getObjectZLayer() = win inline, imac 0x67b7a0, m1 0x5a86fc;
-    int getObjectZOrder() = win inline, imac 0x68f610, m1 0x5af82c;
+    int getObjectZOrder() = win inline, imac 0x68f610, m1 0x5af82c, ios 0x2fa0b0;
     cocos2d::CCRect getOuterObjectRect() = win inline, imac 0x68d0a0, m1 0x5ad1d8, ios inline;
     int getParentMode() = win 0x297b80, imac 0x68e870, m1 0x5ae8a4;
     GJSpriteColor* getRelativeSpriteColor(int type) = win 0x29e9c0, imac 0x69b7c0, m1 0x5b9864, ios 0x2ff050;
@@ -8707,7 +8707,7 @@ class GameObject : CCSpritePlus {
     cocos2d::CCNode* parentForZLayer(int zLayer, bool blending, int parentMode) = win 0x298f50, imac 0x67b740, m1 0x306b0;
     std::string perspectiveColorFrame(char const* prefix, int index) = win 0x2acb10, imac 0x4387f0, m1 0x3aeb48;
     std::string perspectiveFrame(char const* prefix, int index) = win 0x2aca00, imac 0x438480, m1 0x3ae850;
-    void playDestroyObjectAnim(GJBaseGameLayer* layer) = win 0x2a7830, imac 0x2484c0, m1 0x1f1afc;
+    void playDestroyObjectAnim(GJBaseGameLayer* layer) = win 0x2a7830, imac 0x2484c0, m1 0x1f1afc, ios 0x3e7ba4;
     void playPickupAnimation(cocos2d::CCSprite* target, float offset, float duration, float randomValue1, float randomValue2) = win 0x2a7260, imac 0x247fc0, m1 0x1f162c, ios inline;
     void playPickupAnimation(cocos2d::CCSprite* target, float xOffset, float yOffset, float controlYOffset1, float controlYOffset2, float endYOffset, float duration, float fadeDelay, float fadeDuration, bool rotate, float randomValue1, float randomValue2) = win 0x2a7350, imac 0x248050, m1 0x1f16b4;
     void playShineEffect() = win 0x296460, imac 0x68ea60, m1 0x305270, ios 0x2f95ac;
@@ -8737,13 +8737,13 @@ class GameObject : CCSpritePlus {
     bool shouldBlendColor(GJSpriteColor* color, bool mainColor) = win 0x28de70, m1 0x5af5c0;
     bool shouldLockX() = win 0x293fb0, imac 0x686d30, m1 0x5abb74;
     bool shouldNotHideAnimFreeze() = win inline, imac 0x247f50, m1 0x1f15d4, ios inline;
-    bool shouldShowPickupEffects() = win inline, imac 0x248290, m1 0x1f18b4;
+    bool shouldShowPickupEffects() = win inline, imac 0x248290, m1 0x1f18b4, ios 0x3e7960;
     bool slopeFloorTop() = win inline, imac 0x69b000, m1 0x5b90a0;
     bool slopeWallLeft() = win inline, imac 0x69afe0, m1 0x5b9084;
     double slopeYPos(GameObject* object) = win inline, imac 0x69b020, m1 0x5b90bc, ios inline;
     double slopeYPos(cocos2d::CCRect rect) = win inline, imac 0x69b090, m1 0x5b915c;
     double slopeYPos(float x) = win 0x29e2b0, imac 0x69b0e0, m1 0x5b91cc;
-    void spawnDefaultPickupParticle(GJBaseGameLayer* layer) = win 0x2a75f0, imac 0x2482f0, m1 0x1f1924;
+    void spawnDefaultPickupParticle(GJBaseGameLayer* layer) = win 0x2a75f0, imac 0x2482f0, m1 0x1f1924, ios 0x3e79d4;
     void updateBlendMode() = win 0x298da0, imac 0x2366e0;
     void updateCustomColorType(short type) = win inline, imac 0x69c6d0, m1 0x5ba624, ios inline;
     void updateCustomScaleX(float scaleX) = win inline, imac 0x67b3a0, m1 0x5a8394;
