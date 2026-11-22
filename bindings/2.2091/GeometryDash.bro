@@ -5390,7 +5390,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void onCopy(cocos2d::CCObject* sender) = win 0x1c5c50, imac 0x5b7cf0, m1 0x504a58, ios 0x18a928;
     void onCopyState(cocos2d::CCObject* sender) = win 0x1c7030, imac 0x5b85c0, m1 0x505364, ios 0x18af3c;
     bool onCreate() = win 0x1b2460, imac 0xce30, m1 0xb4d8, ios 0x474498;
-    void onCreateButton(cocos2d::CCObject* sender) = win 0x1b20f0, imac 0x10880, m1 0xee38;
+    void onCreateButton(cocos2d::CCObject* sender) = win 0x1b20f0, imac 0x10880, m1 0xee38, ios 0x476c88;
     GameObject* onCreateObject(int id) = win 0x1b2930, imac 0x10e30, m1 0xf3b0, ios 0x47709c;
     void onDelete(cocos2d::CCObject* sender) = win 0x1aff90, ios 0x474124;
     void onDeleteAll(cocos2d::CCObject* sender) = win 0x1b07f0, imac 0x64db0, ios inline;
@@ -14949,7 +14949,7 @@ class LevelBindingsLayer : KeybindingsLayer {
 [[link(android)]]
 class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLayerProtocol, SetIDPopupDelegate, SetTextPopupDelegate, TableViewCellDelegate, ShareCommentDelegate {
     LevelBrowserLayer() = win 0x3e1b10, ios 0x2e70b0, inline;
-    ~LevelBrowserLayer() = win 0x3e1d20, imac 0x480220, ios 0x494eec;
+    ~LevelBrowserLayer() = win 0x3e1d20, imac 0x480220, m1 0x3ea254, ios 0x494eec;
 
     static LevelBrowserLayer* create(GJSearchObject* object) = win 0x3e1f90, imac 0x4804a0, m1 0x3ea424, ios 0x494f70;
     static cocos2d::CCScene* scene(GJSearchObject* object) = win 0x3e1f40, imac 0x480460, m1 0x3ea3d8, ios 0x494f24;
