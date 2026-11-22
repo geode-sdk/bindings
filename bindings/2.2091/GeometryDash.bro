@@ -1059,7 +1059,7 @@ class AutoBackupPopup : PagedListPopup, FLAlertLayerProtocol, AutoBackupOptionsD
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0xcc350, ios 0x5323dc, m1 0x85b600, imac 0x9818d0;
 
     void assignRevs() = win 0xca220;
-    static std::string backupDirectory() = win 0xccb10;
+    static std::string backupDirectory() = win 0xccb10, ios 0x53008c, m1 0x857f80, imac 0x97dbc0;
     void buildRows() = win 0xcabe0;
     bool init(int) = win 0xc9910;
     // TodoReturn listBackups(std::string const&, std::vector<AutoBackupPopup::BackupFile>&, std::string const&);
