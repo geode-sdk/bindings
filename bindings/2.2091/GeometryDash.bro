@@ -3440,7 +3440,7 @@ class CurrencyRewardLayer : cocos2d::CCLayer {
 
     void createObjects(CurrencySpriteType type, int count, cocos2d::CCPoint position, float time) = win inline, imac 0x88aff0, m1 0x77f894;
     void createObjectsFull(CurrencySpriteType type, int count, cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win 0x13bc80, imac 0x88b090, m1 0x77f958;
-    void createUnlockObject(cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win inline, imac 0x88b040, m1 0x77f8fc;
+    void createUnlockObject(cocos2d::CCSprite* sprite, cocos2d::CCPoint position, float time) = win inline, imac 0x88b040, m1 0x77f8fc, ios 0x3be14c;
     void incrementCount(int count) = win inline;
     void incrementDiamondsCount(int count) = win inline;
     void incrementMoonsCount(int count) = win inline;
@@ -9347,7 +9347,7 @@ class GameStatsManager : cocos2d::CCNode {
     GJRewardItem* unlockOnlineChest(std::string key) = win 0x2eeb30, imac 0x3a3c0, m1 0x34204;
     GJRewardItem* unlockPathChest(int id) = win inline, imac 0x3e950;
     GJRewardItem* unlockSecretChest(int id) = win 0x2eed40, imac 0x52b50, m1 0x4cba0, ios 0x3dca54;
-    GJRewardItem* unlockSpecialChest(std::string key) = win 0x2ee890, imac 0x3e510, m1 0x380ec;
+    GJRewardItem* unlockSpecialChest(std::string key) = win 0x2ee890, imac 0x3e510, m1 0x380ec, ios 0x3d4d90;
     void updateActivePath(StatKey key) = win inline, imac 0x31200, m1 0x2ad10;
     std::string usernameForAccountID(int id) = win inline, imac 0x316db0, m1 0x2a8d8c;
     void verifyPathAchievements() = win 0x2daed0, imac 0x321f0, m1 0x2be00, ios 0x3ce314;
