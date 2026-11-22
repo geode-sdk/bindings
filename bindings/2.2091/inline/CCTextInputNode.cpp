@@ -1,6 +1,7 @@
 #include <Geode/binding/CCTextInputNode.hpp>
 #include <Geode/utils/general.hpp>
 
+#ifndef GEODE_IS_ARM_MAC
 CCTextInputNode::CCTextInputNode() {
     m_numberInput = false;
     m_keyboardOffset = 0.f;
@@ -47,6 +48,7 @@ CCTextInputNode::CCTextInputNode() {
     m_valueType = (InputValueType)0;
     m_kerningAmount = 0;
 }
+#endif
 
 CCTextInputNode* CCTextInputNode::create(float width, float height, char const* placeholder, char const* fontPath) {
     return CCTextInputNode::create(width, height, placeholder, 0x18, fontPath);

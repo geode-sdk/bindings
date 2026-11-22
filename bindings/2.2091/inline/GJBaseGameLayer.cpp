@@ -776,7 +776,7 @@ cocos2d::CCPoint GJBaseGameLayer::getPortalTargetPos(TeleportPortalObject* objec
 }
 
 std::string GJBaseGameLayer::getRecordExtra() {
-    return cocos2d::CCString::createWithFormat("#%s,%i,%i,%i,%i,%s", std::to_string(m_unk32e0).c_str(), m_savedAttempts, 22, 47, m_level->m_levelVersion, m_savedPersistentStateString.c_str())->getCString();
+    return cocos2d::CCString::createWithFormat("#%s,%i,%i,%i,%i,%s", std::to_string(m_recordSeed).c_str(), m_savedAttempts, 22, 47, m_level->m_levelVersion, m_savedPersistentStateString.c_str())->getCString();
 }
 
 void GJBaseGameLayer::getRotateCommandTargets(EnhancedTriggerObject* object, GameObject*& centerObject, GameObject*& targetObject, GameObject*& rotateObject) {
@@ -1067,15 +1067,6 @@ void GJBaseGameLayer::regenerateEnterEasingBuffers() {
             this->generateEnterEasingBuffers(object);
         }
     }
-}
-
-int GJBaseGameLayer::registerSpawnRemap(std::vector<ChanceObject>& spawnRemap) {
-    std::unordered_map<int, int> remap;
-    m_spawnRemapTriggers.push_back(remap);
-    for (auto& obj : spawnRemap) {
-        m_spawnRemapTriggers.back()[obj.m_groupID] = obj.m_chance;
-    }
-    return m_spawnRemapTriggers.size() - 1;
 }
 
 void GJBaseGameLayer::registerStateObject(EffectGameObject* object) {

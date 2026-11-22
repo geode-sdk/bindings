@@ -181,6 +181,18 @@ std::string GJGameLevel::getUnpackedLevelDescription() {
     }
     return LevelTools::base64DecodeString(m_levelDesc);
 }
+
+int GJGameLevel::getSessionBest() {
+    std::vector<int> expanded {};
+    GJGameLevel::dtExpandOrder(m_currentSessionAttempts, expanded);
+
+    int best = 0;
+    for (auto x: expanded)
+        if (x > best)
+            best = x;
+    
+    return best;
+}
 #endif
 
 #if defined(GEODE_IS_ANDROID)

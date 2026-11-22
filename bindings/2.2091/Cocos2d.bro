@@ -807,7 +807,7 @@ class cocos2d::CCDictionary : cocos2d::CCObject {
 
     static cocos2d::CCDictionary* create() = imac 0x2fa9a0, m1 0x28f1b4, ios 0x4a68b8;
     static cocos2d::CCDictionary* createWithContentsOfFile(char const*) = imac 0x2fab30, m1 0x28f360, ios 0x4a69d4;
-    static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*) = imac 0x2faa20, ios 0x4a693c;
+    static cocos2d::CCDictionary* createWithContentsOfFileThreadSafe(char const*) = imac 0x2faa20, m1 0x28f238, ios 0x4a693c;
     static cocos2d::CCDictionary* createWithDictionary(cocos2d::CCDictionary*) = imac 0x2faa00, m1 0x28f210, ios 0x4a6914;
 
     virtual cocos2d::CCObject* copyWithZone(cocos2d::CCZone*) = imac 0x2fa680, m1 0x28ee88, ios 0x4a6798;
