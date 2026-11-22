@@ -94,7 +94,7 @@ cocos2d::CCActionInterval* GameToolbox::getEasedAction(cocos2d::CCActionInterval
 }
 
 uint64_t GameToolbox::getfast_srand() {
-    return *reinterpret_cast<uint64_t*>(geode::base::get() + GEODE_WINDOWS(0x90bf68) GEODE_IOS(0x86a7e0));
+    return *reinterpret_cast<uint64_t*>(geode::base::get() + GEODE_WINDOWS(0x90bf68) GEODE_IOS(0x9f32f0));
 }
 
 int GameToolbox::getInvertedEasing(int easingType) {
@@ -250,5 +250,8 @@ cocos2d::ccColor3B GameToolbox::transformColor(cocos2d::ccColor3B const& color, 
 #endif
 
 #if defined(GEODE_IS_IOS)
+void GameToolbox::fast_srand(uint64_t seed) {
+    *reinterpret_cast<uint64_t*>(geode::base::get() + 0x9f32f0) = seed;
+}
 #endif
 
