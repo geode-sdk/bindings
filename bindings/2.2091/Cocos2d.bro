@@ -76,7 +76,7 @@ class cocos2d {
     static cocos2d::CCPoint ccpLerp(cocos2d::CCPoint const&, cocos2d::CCPoint const&, float) = imac 0x3418f0, m1 0x2d300c, ios 0x243a88;
     static bool ccpLineIntersect(cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, cocos2d::CCPoint const&, float*, float*) = imac 0x341bf0, m1 0x2d323c, ios 0x243b5c;
     static cocos2d::CCPoint ccpNormalize(cocos2d::CCPoint const&) = imac 0x341850, m1 0x2d2fa8, ios 0x243a2c;
-    static cocos2d::CCPoint CCPointFromString(char const*) = imac 0x5943f0, ios 0x23b6bc;
+    static cocos2d::CCPoint CCPointFromString(char const*) = imac 0x5943f0, m1 0x4e42dc, ios 0x23b6bc;
     static void ccPointSize(float) = imac 0x1ed1b0, m1 0x19f418;
     static void CCProfilingBeginTimingBlock(char const*) = imac 0x4e71e0, m1 0x445d0c;
     static void CCProfilingEndTimingBlock(char const*) = imac 0x4e7370, m1 0x445e90;
@@ -87,7 +87,7 @@ class cocos2d {
     static cocos2d::CCRect CCRectApplyAffineTransform(cocos2d::CCRect const&, cocos2d::CCAffineTransform const&) = imac 0x225750, m1 0x1d2d98, ios 0x493fd8;
     static cocos2d::CCRect CCRectFromString(char const*) = imac 0x5936b0, m1 0x4e36ec, ios 0x23b01c;
     static void ccSetProjectionMatrixDirty() = imac 0x346ee0, m1 0x2d7988, ios 0x221bbc;
-    static cocos2d::CCSize CCSizeFromString(char const*) = imac 0x5944f0, ios 0x23b790;
+    static cocos2d::CCSize CCSizeFromString(char const*) = imac 0x5944f0, m1 0x4e4408, ios 0x23b790;
     static bool ccVertexLineIntersect(float, float, float, float, float, float, float, float, float*) = imac 0x392de0, m1 0x31cb24, ios 0x47fc08;
     static void ccVertexLineToPolygon(cocos2d::CCPoint*, float, cocos2d::ccVertex2F*, unsigned int, unsigned int) = imac 0x392900, m1 0x31c7d0, ios 0x47f924;
     static float clampf(float, float, float) = imac 0x341960, m1 0x2d3070, ios 0x243aec;
@@ -2619,7 +2619,7 @@ class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     void addDelegate(cocos2d::CCMouseDelegate*) = imac 0x1e5d00, m1 0x4ed244, ios 0x39abf4;
     bool dispatchScrollMSG(float, float) = imac 0x59e010, m1 0x4ed2dc, ios inline;
     void forceAddDelegate(cocos2d::CCMouseDelegate*) = imac 0x1e5d50, m1 0x4ed2a0, ios inline;
-    void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = imac 0x59df00, ios 0x39ab60;
+    void forceRemoveDelegate(cocos2d::CCMouseDelegate*) = imac 0x59df00, ios 0x39ab60, m1 0x4ed1b0;
     void removeDelegate(cocos2d::CCMouseDelegate*) = imac 0x59de50, m1 0x4ed0e8, ios 0x39ab18;
 
     cocos2d::CCArray* m_pMouseHandlers;
@@ -2640,7 +2640,7 @@ class cocos2d::CCMouseHandler : cocos2d::CCObject {
 
     virtual bool initWithDelegate(cocos2d::CCMouseDelegate*) = imac 0x2715a0, m1 0x218204, ios 0x8e868;
 
-    cocos2d::CCMouseDelegate* getDelegate() = imac 0x271400, ios 0x8e7f4;
+    cocos2d::CCMouseDelegate* getDelegate() = imac 0x271400, ios 0x8e7f4, m1 0x218088;
     void setDelegate(cocos2d::CCMouseDelegate*) = imac 0x271530, ios inline;
 
     cocos2d::CCMouseDelegate* m_pDelegate;
@@ -5984,7 +5984,7 @@ class cocos2d::ZipUtils {
     // static int ccInflateMemoryWithHint(unsigned char*, unsigned int, unsigned char**, unsigned int) = imac 0x1f4720, m1 0x1aa2e0;
     // static void ccSetPvrEncryptionKey(unsigned int, unsigned int, unsigned int, unsigned int);
     // static void ccSetPvrEncryptionKeyPart(int, unsigned int);
-    static std::string compressString(std::string const& data, bool encrypt, int encryptionKey, int level) = imac 0x1e8350, m1 0x19a884, ios 0x2da590;
+    static std::string compressString(std::string const& data, bool encrypt, int level, int encryptionKey) = imac 0x1e8350, m1 0x19a884, ios 0x2da590;
     static std::string decompressString(std::string const& data, bool encrypt, int encryptionKey) = imac 0x1e8a00, m1 0x19afac, ios 0x2dab88;
     static std::string decompressString2(unsigned char* data, bool encrypt, int size, int encryptionKey) = imac 0x1e86e0, m1 0x19ac8c, ios 0x2da900;
     static std::string encryptDecrypt(std::string const& data, int encryptionKey) = inline;
