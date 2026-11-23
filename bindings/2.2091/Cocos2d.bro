@@ -2365,7 +2365,8 @@ class cocos2d::CCLiquid : cocos2d::CCGrid3DAction {
 
 [[link(win, android)]]
 class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
-    virtual ~CCMenu() = ios 0x189760;
+    // not having this commented out conflicts with the ccmenu header
+    // virtual ~CCMenu() = ios 0x189760;
 
     static cocos2d::CCMenu* create() = imac 0x8735d0, m1 0x769c74, ios 0x270410;
     static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = inline;

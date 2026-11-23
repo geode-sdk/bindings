@@ -4725,6 +4725,7 @@ class EditorBuildStats {
 
 [[link(android)]]
 class EditorCommandsPopup : EditorWindowPopup {
+    EditorCommandsPopup() = inline;
     virtual ~EditorCommandsPopup() = win 0x17d520, imac 0x8ddec0, m1 0x7ca74c, ios 0x4c54f0;
 
     static EditorCommandsPopup* create(EditorUI* editorUI) = win inline, imac 0x8ddf40, m1 0x7ca784, ios 0x4c5528;
