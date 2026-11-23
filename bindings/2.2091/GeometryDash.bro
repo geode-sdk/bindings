@@ -4827,7 +4827,7 @@ class EditorSFXActionConfigLayer : SetupTriggerPopup, SFXBrowserDelegate {
     virtual void rebuildContent() = win 0x184c40, imac 0x8e08e0, m1 0x7ccdb0, ios 0x4c7094;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x184c50, imac 0x8e08f0, m1 0x7ccdb4, ios 0x4c7098;
     virtual void valueDidChange(int, float) = win 0x3f5c0, imac 0x8e07a0, m1 0x7ccc74, ios 0x4c6fcc;
-    virtual float getValue(int) = win 0x184820, imac 0x8e0790, m1 0x7ccc70, ios 0x4c6fc8;
+    virtual float getValue(int tag) = win 0x184820, imac 0x8e0790, m1 0x7ccc70, ios 0x4c6fc8;
     virtual void sfxBrowserClosed(SFXBrowser* browser) = win 0x184990, imac 0x8e07b0, m1 0x7ccc78, ios 0x4c6fd0;
 
     bool init(int actionId, EditorSoundsLayer* layer) = win 0x183510, imac 0x8df300, ios 0x4c5e40;
@@ -5537,7 +5537,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     void updateSelectionUI() = win inline, imac 0x5b9c30, ios 0x1a6ba0;
     void updateSlider() = win 0x1ae100, imac 0x9200, m1 0x81e0, ios 0x471b7c;
     void updateSpecialUIElements() = win 0x1b3b60, imac 0xd540, ios 0x474830;
-    void updateStickyControls() = win inline, imac 0xb6b0, m1 0x9f68;
+    void updateStickyControls() = win inline, imac 0xb6b0, m1 0x9f68, ios 0x473540;
     void updateViewButtons() = win 0x1f80f0;
     void updateViewMenu() = win inline, ios 0x476264, m1 0xe148, imac 0xfc30;
     void updateZoom(float zoom) = win 0x1b4c00, m1 0x10334, imac 0x11f90, ios 0x477d9c;
@@ -8635,7 +8635,7 @@ class GameObject : CCSpritePlus {
     void createGroupContainer(int size) = win 0x299700, imac 0x68fb40, m1 0x5afd40, ios inline;
     void createOpacityGroupContainer(int size) = win inline, ios inline;
     void createSpriteColor(int type) = win inline, imac 0x673990, m1 0x5a6c3c;
-    void deselectObject() = win inline, imac 0x69abf0, m1 0x5b8f9c;
+    void deselectObject() = win inline, imac 0x69abf0, m1 0x5b8f9c, ios inline;
     void destroyObject() = win inline, imac 0x68e960, m1 0x5ae99c, ios 0x2f94fc;
     void determineSlopeDirection() = win 0x299320, imac 0x68f730, m1 0x5af938, ios 0x2fa1b8;
     bool didScaleXChange() = win inline, imac 0x68dcf0, m1 0x5ade10, ios inline;
@@ -8746,8 +8746,8 @@ class GameObject : CCSpritePlus {
     void spawnDefaultPickupParticle(GJBaseGameLayer* layer) = win 0x2a75f0, imac 0x2482f0, m1 0x1f1924, ios 0x3e79d4;
     void updateBlendMode() = win 0x298da0, imac 0x2366e0;
     void updateCustomColorType(short type) = win inline, imac 0x69c6d0, m1 0x5ba624, ios inline;
-    void updateCustomScaleX(float scaleX) = win inline, imac 0x67b3a0, m1 0x5a8394;
-    void updateCustomScaleY(float scaleY) = win inline, imac 0x67b420, m1 0x5a83f4;
+    void updateCustomScaleX(float scaleX) = win inline, imac 0x67b3a0, m1 0x5a8394, ios 0x2f3220;
+    void updateCustomScaleY(float scaleY) = win inline, imac 0x67b420, m1 0x5a83f4, ios 0x2f3280;
     void updateHSVState() = win inline, imac 0x6906c0, m1 0x5b09ac;
     void updateIsOriented() = win 0x29e640, imac 0x69b430, m1 0x5b94f0;
     void updateMainColor() = win inline, imac 0x69be30, m1 0x5b9d90, ios 0x2ff464;
@@ -15284,7 +15284,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void handleAction(bool undo, cocos2d::CCArray* undoObjects) = win 0x3f2580, m1 0x597c24;
     bool hasAction(bool undo) = win inline, imac 0xb23f0, m1 0xa0420;
     bool init(GJGameLevel* level, bool noUI) = win 0x3ed8e0, imac 0xa9d50, m1 0x98be0, ios 0x3f66c4;
-    bool isLayerLocked(int layer) = win inline, imac 0xbc400, m1 0xa8718;
+    bool isLayerLocked(int layer) = win inline, imac 0xbc400, m1 0xa8718, ios 0x3fee34;
     int lockedLayerForObject(int, int) = m1 0xa8798, ios 0x3feeb4;
     int lockedLayerForObjectString(std::string const& objectString) = win 0x3f4410, m1 0xa8800, ios 0x3fef1c;
     GameObject* objectAtPosition(cocos2d::CCPoint position) = win 0x3f11f0, imac 0xb09f0, m1 0x9ec9c, ios 0x3fab6c;
@@ -15339,7 +15339,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void toggleGround(bool enable) = win inline, imac 0xadd80, m1 0x9c384;
     void toggleGroupPreview(int id, bool enable) = win 0x3fcdd0, imac 0xc3580, m1 0xae99c;
     TodoReturn toggleLocalDeaths();
-    void toggleLockActiveLayer() = win inline, imac 0xbc390, m1 0xa86ac;
+    void toggleLockActiveLayer() = win inline, imac 0xbc390, m1 0xa86ac, ios 0x3fedc8;
     void transferDefaultColors(GJEffectManager* src, GJEffectManager* dest) = win 0x3fa630, imac 0xc20a0, m1 0xad910;
     void triggerFollowCommand(EffectGameObject* object) = win inline, imac 0xc5450, m1 0xb059c, ios inline;
     void triggerPlayerFollowCommand(EffectGameObject* object) = win inline, imac 0xc54a0, m1 0xb05c8, ios inline;
@@ -17900,7 +17900,7 @@ class ObjectToolbox : cocos2d::CCNode {
     virtual bool init() = win 0x4a1ca0, imac 0x7493c0, m1 0x655dfc, ios 0x316714;
 
     cocos2d::CCArray* allKeys() = win inline, imac 0x7f92b0, m1 0x6feac4, ios inline;
-    float gridNodeSizeForKey(int key) = win 0x4c9b00, imac 0x7f9390, m1 0x6febb0;
+    float gridNodeSizeForKey(int key) = win 0x4c9b00, imac 0x7f9390, m1 0x6febb0, ios 0x34a2e0;
     const char* intKeyToFrame(int key) = win 0x4c9ad0, imac 0x7f92c0, m1 0x6feacc, ios 0x34a28c;
     const char* perspectiveBlockFrame(int key) = win 0x4ca520, imac 0x7fcd50;
 
@@ -22142,7 +22142,7 @@ class SetupObjectOptionsPopup : FLAlertLayer {
 
     static SetupObjectOptionsPopup* create(GameObject* object, cocos2d::CCArray* objects) = win 0x5948e0;
 
-    virtual void keyDown(cocos2d::enumKeyCodes, double) = win 0x597690, imac 0x3061a0, m1 0x299858, ios 0x4534c;
+    virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x597690, imac 0x3061a0, m1 0x299858, ios 0x4534c;
     virtual void keyBackClicked() = win 0x597670, imac 0x306160, m1 0x299834, ios 0x45328;
     virtual void show() = win 0x1262f0, imac 0x306250, m1 0x2998f0, ios 0x453e4;
     virtual void determineStartValues() = win 0x5964b0, imac 0x305d50, m1 0x299584, ios 0x45144;
