@@ -8868,7 +8868,7 @@ class GameObject : CCSpritePlus {
     bool m_startFlipX;
     bool m_startFlipY;
     [[renamed_from(m_unk3ee)]]
-    bool m_isDeactivated;
+    bool m_shouldDeactivate;
     bool m_isInvisible;
     int m_unk3D8;
     short m_varianceIndex;

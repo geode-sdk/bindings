@@ -8098,7 +8098,7 @@ class GameObject : CCSpritePlus {
     float m_customScaleY;
     bool m_startFlipX;
     bool m_startFlipY;
-    bool m_isDeactivated;
+    bool m_shouldDeactivate;
     bool m_isInvisible;
     int m_unk3D8;
     short m_varianceIndex;

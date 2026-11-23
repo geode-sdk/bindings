@@ -1190,7 +1190,7 @@ void GJBaseGameLayer::restoreAllUIObjects() {
         object->m_isUIObject = false;
         this->addToSection(object);
         m_objectsToDeactivate->setObject(object, object->m_uniqueID);
-        object->m_isDeactivated = true;
+        object->m_shouldDeactivate = true;
     }
     m_uiObjects->removeAllObjects();
     m_uiObjectPositions.clear();
