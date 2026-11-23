@@ -20462,7 +20462,7 @@ class SecretGame01Layer : cocos2d::CCLayer {
     void resetGameTimer() = imac 0x474cd0, m1 0x3dfa64;
     void scaleOutGame(bool won) = imac 0x474d60, m1 0x3dfadc;
     void showGameOver() = imac 0x474d40, m1 0x3dfad0;
-    void showGameWon() = imac 0x379410, m1 0x3dfe88;
+    void showGameWon() = imac 0x475150, m1 0x3dfe88;
 
     cocos2d::CCArray* m_gameObjects;
     cocos2d::CCArray* m_requiredObjects;
@@ -21083,10 +21083,10 @@ class SetFolderPopup : SetIDPopup, SetTextPopupDelegate {
 
 [[link(android)]]
 class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
-    SetGroupIDLayer() = m1 0x299ea8, ios 0x458ac, inline;
+    SetGroupIDLayer() = imac 0x306890, m1 0x299ea8, ios 0x458ac, inline;
     ~SetGroupIDLayer() = win inline, imac 0x2fcd10, ios 0x3e7d8;
 
-    static SetGroupIDLayer* create(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x291440, ios 0x3e810;
+    static SetGroupIDLayer* create(GameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x2fce90, m1 0x291440, ios 0x3e810;
 
     virtual void keyBackClicked() = win 0x5948d0, imac 0x302d40, m1 0x296ca0, ios 0x42eac;
     virtual void valuePopupClosed(ConfigureValuePopup* popup, float value) = win 0x593d20, imac 0x302c40, m1 0x296bd0, ios 0x42e4c;
@@ -21098,16 +21098,16 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     virtual void ccTouchCancelled(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x592cf0, imac 0x302870, m1 0x296820, ios 0x42b30;
 
     void addGroupID(int id) = win inline, imac 0x302b50, m1 0x296ae4;
-    void callRemoveFromGroup(float dt) = win 0x592d90, imac 0x64d70;
-    CCTextInputNode* createTextInput(cocos2d::CCPoint position, int tag, int length, std::string placeholder, float width, int arrow) = win 0x590d90, imac 0x2ff6d0, m1 0x293a6c;
+    void callRemoveFromGroup(float dt) = win 0x592d90, imac 0x302950;
+    CCTextInputNode* createTextInput(cocos2d::CCPoint position, int tag, int length, std::string placeholder, float width, int arrow) = win 0x590d90, imac 0x2ff6d0, m1 0x293a6c, ios 0x40978;
     void determineStartValues() = win 0x5915c0, imac 0x2ffd90, m1 0x29412c;
     bool init(GameObject* obj, cocos2d::CCArray* objs) = win 0x58e630, imac 0x2fcf00, m1 0x2914d4, ios 0x3e894;
     void onAddGroup(cocos2d::CCObject* sender) = win 0x593190, imac 0x2ffbc0, m1 0x293f88;
     void onAddGroupParent(cocos2d::CCObject* sender) = win 0x593310, m1 0x293f90;
     void onAnim(cocos2d::CCObject* sender) = win 0x591ca0, imac 0x301330, m1 0x29552c;
-    void onArrow(int tag, int increment) = win 0x591290, m1 0x29567c;
-    void onArrowLeft(cocos2d::CCObject* sender) = win 0x591230, imac 0x301420, m1 0x29560c;
-    void onArrowRight(cocos2d::CCObject* sender) = win 0x591260, imac 0x21e5c0, m1 0x295644;
+    void onArrow(int tag, int increment) = win 0x591290, imac 0x301480, m1 0x29567c, ios 0x41f80;
+    void onArrowLeft(cocos2d::CCObject* sender) = win 0x591230, imac 0x301420, m1 0x29560c, ios 0x41f10;
+    void onArrowRight(cocos2d::CCObject* sender) = win 0x591260, imac 0x301450, m1 0x295644, ios 0x41f48;
     void onClose(cocos2d::CCObject* sender) = win 0x5945e0, imac 0x2ff0f0, m1 0x293500, ios 0x40564;
     void onCopy(cocos2d::CCObject* sender) = win 0x591920, imac 0x3010d0, m1 0x29532c;
     void onExtra(cocos2d::CCObject* sender) = win 0x591b30;
@@ -21118,7 +21118,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void onNextFreeOrderChannel(cocos2d::CCObject* sender) = win 0x594230, imac 0x300470, m1 0x294764;
     void onNextGroupID1(cocos2d::CCObject* sender) = imac 0x3023c0, m1 0x296384;
     void onPaste(cocos2d::CCObject* sender) = win 0x591980, imac 0x301100, m1 0x295354;
-    void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x5930b0, imac 0x37a320;
+    void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x5930b0, imac 0x302460;
     void onSmoothEase(cocos2d::CCObject* sender) = win inline, imac 0x302d20, ios inline;
     void onToggleGuide(cocos2d::CCObject* sender) = win 0x590b20, imac 0x301360, m1 0x29555c;
     void onToggleSelectedOrder(cocos2d::CCObject* sender) = win 0x590bb0, imac 0x301390, m1 0x295588;
@@ -21133,7 +21133,7 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void updateEditorLayerID2() = win 0x5936a0, imac 0x3019b0, m1 0x295b08;
     void updateEditorOrder() = win 0x594510, imac 0x301a30;
     void updateEditorOrderLabel() = win 0x5940d0;
-    void updateGroupIDButtons() = win 0x592230, m1 0x294dec, ios 0x41844;
+    void updateGroupIDButtons() = win 0x592230, imac 0x300b00, m1 0x294dec, ios 0x41844;
     void updateGroupIDLabel() = win 0x594030;
     void updateOrderChannel() = win 0x594440, imac 0x301ae0, m1 0x295c20;
     void updateOrderChannelLabel() = win 0x594180, m1 0x29461c;
@@ -22462,7 +22462,7 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
 class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     virtual ~SetupRandAdvTriggerPopup() = win 0x5d2820, ios 0x31d74;
 
-    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5d2920;
+    static SetupRandAdvTriggerPopup* create(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5d2920, imac 0x378610;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5d3770, imac 0x379e90, m1 0x305afc, ios 0x32f44;
     virtual void textChanged(CCTextInputNode* node) = win inline, imac 0x379e70, m1 0x305af4, ios 0x32f3c;
@@ -22470,14 +22470,14 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
     void addChance(int id, int chance) = win inline, imac 0x379f00, m1 0x305b68;
     void addChanceToObject(RandTriggerGameObject* object, int id, int chance) = win inline, imac 0x379fa0, m1 0x305c08;
     void callRemoveFromGroup(float dt) = win 0x5d43e0, imac 0x37a3e0;
-    bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5d2a80, m1 0x11673c, ios 0x31ea8;
+    bool init(RandTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5d2a80, imac 0x378740, m1 0x11673c, ios 0x31ea8;
     void onAddChance(cocos2d::CCObject* sender) = win 0x5d4630, imac 0x379320, m1 0x30514c;
-    void onGroupIDScrollDown(cocos2d::CCObject* sender) = win 0x5d43b0;
-    void onGroupIDScrollUp(cocos2d::CCObject* sender) = win 0x5d43d0;
+    void onGroupIDScrollDown(cocos2d::CCObject* sender) = win 0x5d43b0, imac 0x379410;
+    void onGroupIDScrollUp(cocos2d::CCObject* sender) = win 0x5d43d0, imac 0x3793f0;
     void onRemoveFromGroup(cocos2d::CCObject* sender) = win 0x5d4550, imac 0x37a320;
     void removeGroupID(int id) = win inline, imac 0x37a110, m1 0x305d54;
     void removeGroupIDFromObject(RandTriggerGameObject* object, int id) = win inline, imac 0x37a290, m1 0x305eac;
-    void updateGroupIDButtons() = win 0x5d3830, ios 0x32984;
+    void updateGroupIDButtons() = win 0x5d3830, imac 0x379420, ios 0x32984;
 
     bool m_performedAction;
     cocos2d::CCArray* m_groupButtons;
@@ -23071,9 +23071,9 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     TodoReturn toggleLimitArrowValue(int, bool);
     void toggleLimitValue(int property, bool limit) = win inline, imac 0x21e6b0, m1 0x1cc7d4;
     void togglePageArrows(bool visible) = win inline, imac 0x219dd0, m1 0x1c94ac;
-    void triggerArrowChanged(int property, bool isRight) = win 0x60d490, m1 0x1cc3e4;
-    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x60d430, m1 0x1cc3ac;
-    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x60d460, m1 0x1cc6dc;
+    void triggerArrowChanged(int property, bool isRight) = win 0x60d490, imac 0x21e290, m1 0x1cc3e4;
+    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x60d430, imac 0x21e260, m1 0x1cc3ac;
+    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x60d460, imac 0x21e5c0, m1 0x1cc6dc;
     void triggerSliderChanged(cocos2d::CCObject* sender) = win 0x60d340, m1 0x1cc3e4;
     void updateCustomEaseLabel(int property, int easingType) = win 0x615780, imac 0x2252c0, m1 0x1d2920;
     void updateCustomEaseRateLabel(int property, float easingRate) = win 0x615980, imac 0x2246e0, m1 0x1d1ce4;
