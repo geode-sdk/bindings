@@ -867,8 +867,10 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     virtual void applicationWillTerminate() = win 0x985c0, imac 0x73ba20, m1 0x64947c, ios 0x30715c;
     virtual void trySaveGame(bool force) = win 0x98ad0, imac 0x73bc70, m1 0x64969c, ios 0x3073b0;
     // virtual only on ios
-    [[missing(win, mac, android)]]
-    virtual void checkSound() = ios 0x30739c;
+    // not having this commented out breaks codegen lol
+    // TODO: fix
+    // [[missing(win, mac, android)]]
+    // virtual void checkSound() = ios 0x30739c;
     virtual void willSwitchToScene(cocos2d::CCScene* scene) = win 0x98cc0, imac 0x73bda0, m1 0x6497b0, ios 0x3074bc;
 
     float bgScale() = win inline, imac 0x73b8d0, ios 0x3070a4;
