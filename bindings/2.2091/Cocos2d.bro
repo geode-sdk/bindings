@@ -2388,8 +2388,8 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
 
     // CCMenu(cocos2d::CCMenu const&);
     // CCMenu();
-    void alignItemsHorizontally() = imac 0x874300, ios 0x270dc0;
-    void alignItemsHorizontallyWithPadding(float) = imac 0x874320, ios 0x270dc8;
+    void alignItemsHorizontally() = imac 0x874300, m1 0x76a8b0, ios 0x270dc0;
+    void alignItemsHorizontallyWithPadding(float) = imac 0x874320, m1 0x76a8b8, ios 0x270dc8;
     void alignItemsInColumns(unsigned int, ...) = inline;
     void alignItemsInColumns(unsigned int, va_list) = imac 0x874610, m1 0x76aad8, ios inline;
     void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x8746e0, m1 0x76ab8c, ios inline;
@@ -5976,8 +5976,8 @@ class cocos2d::extension::CCTableViewCell : cocos2d::CCNode, cocos2d::extension:
 class cocos2d::ZipUtils {
     static std::string base64DecodeEnc(std::string const&, std::string) = imac 0x1e8c80, m1 0x19b234, ios 0x2dadc8;
     static std::string base64EncodeEnc(std::string const&, std::string) = imac 0x1e8ec0, m1 0x19b4a8, ios 0x2dafec;
-    static std::string base64URLDecode(std::string const&) = imac 0x1e9100, ios 0x2db24c;
-    static std::string base64URLEncode(std::string const&) = imac 0x1e91e0, ios 0x2db33c;
+    static std::string base64URLDecode(std::string const&) = imac 0x1e9100, m1 0x19b718, ios 0x2db24c;
+    static std::string base64URLEncode(std::string const&) = imac 0x1e91e0, m1 0x19b824, ios 0x2db33c;
     // static void ccDecodeEncodedPvr(unsigned int*, int);
     static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out, int level) = imac 0x1e85c0, m1 0x19ab48, ios 0x2da7e8;
     // static int ccInflateCCZFile(char const*, unsigned char**);

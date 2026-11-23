@@ -7535,7 +7535,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool getGJSecretReward(std::string key) = win 0x25be60, imac 0x57fb70;
     void getGJUserInfo(int id) = win 0x23a610, imac 0x5673a0, m1 0x4ba528, ios 0xbe794;
     int getHighestLevelOrder() = win inline, imac 0x5469b0, m1 0x49ceb4;
-    int getIntForKey(char const* key) = win inline, imac 0x5822e0, ios 0xcdd64;
+    int getIntForKey(char const* key) = win inline, imac 0x5822e0, m1 0x4d3f68, ios 0xcdd64;
     std::string getLeaderboardKey(LeaderboardType type, LeaderboardStat stat) = win inline, imac 0x5628a0, m1 0x4b62a4, ios 0xbb9c8;
     void getLeaderboardScores(LeaderboardType type, LeaderboardStat stat) = win 0x2380b0, m1 0x4b88c4;
     std::string getLengthStr(bool isTiny, bool isShort, bool isMedium, bool isLong, bool isXL, bool isPlat) = win 0x22a660, imac 0x557890, m1 0x4ac1c0;
@@ -7811,7 +7811,7 @@ class GameLevelManager : cocos2d::CCNode {
     void setBoolForKey(bool value, char const* key) = win inline;
     void setDiffVal(int diff, bool value) = win 0x261420;
     void setFolderName(int id, std::string name, bool local) = win inline, imac 0x54ee10, m1 0x4a49c8;
-    void setIntForKey(int value, char const* key) = win inline;
+    void setIntForKey(int value, char const* key) = win inline, imac 0x5821e0, m1 0x4d3e58, ios 0xcdcd8;
     void setLenVal(int diff, bool value) = win 0x261520;
     void setLevelControlsTemplate(int, std::string const&, int);
     void setLevelFeatured(int id, int rank, bool epic) = win inline, imac 0x563490, m1 0x4b6e40, ios inline;
@@ -10094,7 +10094,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void playKeyframeAnimation(KeyframeAnimTriggerObject* object, std::vector<int> const& remapKeys) = win 0x31f270, imac 0x108250, m1 0xe6070, ios 0x286250;
     void playSpeedParticle(float timeMod) = win inline, imac 0x13c150, m1 0x110d48, ios 0x2a104c;
     cocos2d::CCPoint positionForShaderTarget(int groupID) = win 0x32b1f0, imac 0x119970, m1 0xf458c, ios 0x28d59c;
-    void positionUIObjects() = win 0x32edb0, m1 0xd7bc8, ios 0x27be44;
+    void positionUIObjects() = win 0x32edb0, imac 0xf8900, m1 0xd7bc8, ios 0x27be44;
     void prepareSavePositionObjects() = win 0x320d40, imac 0xf45e0, m1 0xd4d20, ios 0x27a918;
     void prepareTransformParent(bool rotateNode) = win inline, imac 0x1226d0, m1 0xfc020, ios 0x292f04;
     void preResumeGame() = win inline, imac 0x12f070, m1 0x1064d0, ios 0x29a5ac;
@@ -12874,7 +12874,7 @@ class GJScaleControl : cocos2d::CCLayer {
     void releaseInputFocus() = win 0x1a4cc0;
     float scaleFromValue(float value) = win inline, imac 0x642c60, m1 0x57ec40, ios inline;
     float skewFromValue(float value) = win inline, imac 0x642ca0, m1 0x57ec7c, ios inline;
-    void sliderChanged(cocos2d::CCObject* sender) = win 0x1a3c80;
+    void sliderChanged(cocos2d::CCObject* sender) = win 0x1a3c80, imac 0x642060, m1 0x57e0c0, ios 0x1582f8;
     void updateLabelX(float value) = win 0x1a4520, imac 0x642930, m1 0x57e8f8, ios 0x158a98;
     void updateLabelXY(float value) = win 0x1a4640, imac 0x642a40, m1 0x57ea10, ios 0x158bb0;
     void updateLabelY(float value) = win 0x1a45b0, imac 0x642b50, m1 0x57eb28, ios 0x158b24;
@@ -18888,7 +18888,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleRollMode(bool enable, bool noEffects) = win 0x4f9840, imac 0x405360, m1 0x37f9ac, ios 0x2c7ae8;
     void toggleSpiderMode(bool enable, bool noEffects) = win 0x4f9d80, imac 0x405ba0, m1 0x380198, ios 0x2c80d0;
     void toggleSwingMode(bool enable, bool noEffects) = win 0x4f8dd0, imac 0x404310, m1 0x37ea28, ios 0x2c6fa0;
-    void toggleVisibility(bool visible) = win 0x4e9680, imac 0x3f01c0, m1 0x36d330;
+    void toggleVisibility(bool visible) = win 0x4e9680, imac 0x3f01c0, m1 0x36d330, ios 0x2ba5c4;
     void touchedObject(GameObject* object) = win inline, imac 0x40a040, m1 0x383c28;
     void tryPlaceCheckpoint() = win 0x501880, imac 0x3eff10, m1 0x36d0d8;
     void unrotateGameplayObject(GameObject* object) = win 0x4ef9d0, imac 0x3f84f0, m1 0x373e84, ios 0x2bfd38;
@@ -24109,7 +24109,7 @@ class SliderDelegate {
 [[link(android)]]
 class SliderThumb : cocos2d::CCMenuItemImage {
     SliderThumb() = inline;
-    virtual ~SliderThumb() = win 0x83f10;
+    virtual ~SliderThumb() = win 0x83f10, imac 0x1f1b0, m1 0x1ae40, ios 0x55384;
 
     static SliderThumb* create(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* normalFrame, char const* selectedFrame) = win inline, imac 0x2ee300, m1 0x284268, ios 0x389d98;
 
