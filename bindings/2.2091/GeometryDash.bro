@@ -4327,10 +4327,10 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     void animateInRandomSide() = win 0x175830, imac 0x3b1900, m1 0x338898, ios 0x9098c;
     void displayDialogObject(DialogObject* object) = win 0x175110, imac 0x3b0d80, m1 0x337d90, ios 0x901a0;
     void displayNextObject() = win 0x1750b0, imac 0x3b0cd0, m1 0x337cf0, ios 0x90140;
-    void finishCurrentAnimation() = win inline, imac 0x3b13e0, m1 0x3383d4;
-    void handleDialogTap() = win 0x1754e0;
+    void finishCurrentAnimation() = win inline, imac 0x3b13e0, m1 0x3383d4, ios 0x906a4;
+    void handleDialogTap() = win 0x1754e0, ios 0x905e0;
     bool init(DialogObject* object, cocos2d::CCArray* objects, int background) = win 0x174c40, imac 0x3b07f0, m1 0x337818, ios 0x8fd10;
-    void onClose() = win 0x1756d0, imac 0x3b14a0, m1 0x33846c;
+    void onClose() = win 0x1756d0, imac 0x3b14a0, m1 0x33846c, ios 0x906fc;
     void updateChatPlacement(DialogChatPlacement placement) = win inline, imac 0x3b11e0, m1 0x3381c0, ios 0x90524;
     void updateNavButtonFrame() = win 0x175460, imac 0x3b1170, m1 0x338160, ios 0x904c4;
 
@@ -15080,7 +15080,7 @@ class LevelCell : TableViewCell {
     void loadCustomLevelCell() = win 0x149120, imac 0x2373e0, m1 0x1e34c4, ios 0x13362c;
     void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0, ios 0x127dd0;
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70, ios 0x132d0c;
-    void onClick(cocos2d::CCObject* sender) = win 0x14d200, imac 0x23ac60;
+    void onClick(cocos2d::CCObject* sender) = win 0x14d200, imac 0x23ac60, m1 0x1e6998, ios 0x136734;
     void onToggle(cocos2d::CCObject* sender) = win 0x148c70, imac 0x302d20;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10, ios 0x136938;
     void playRecallUnlock() = win 0x148d30, imac 0x23a990;
@@ -25041,8 +25041,8 @@ class TextArea : cocos2d::CCSprite {
     void setIgnoreColorCode(bool ignore) = win inline, imac 0x30d220, m1 0x2a0220, ios inline;
     void setParseEmotes(int);
     void setString(std::string text) = win 0x8a090, imac 0x30cf00, m1 0x29ff64, ios 0x11b148;
-    void showAll() = win inline, imac 0x30d760, m1 0x2a06e0;
-    void stopAllCharacterActions() = win 0x8a770, imac 0x30d6a0, m1 0x2a0620;
+    void showAll() = win inline, imac 0x30d760, m1 0x2a06e0, ios 0x906a4;
+    void stopAllCharacterActions() = win 0x8a770, imac 0x30d6a0, m1 0x2a0620, ios 0x11b6c0;
 
     bool m_disableColor;
     bool m_unk259;
