@@ -221,3 +221,7 @@ else()
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/geode/${GEODE_MEMBER_TEST_BINARY})
+
+if (NOT WIN32 AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+	target_compile_options(${PROJECT_NAME} PUBLIC -fdeclspec)
+endif()
