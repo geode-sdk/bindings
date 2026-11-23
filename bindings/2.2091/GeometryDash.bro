@@ -17853,7 +17853,7 @@ class OBB2D : cocos2d::CCNode {
 
     static OBB2D* create(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b2b0, imac 0x6c6240, m1 0x5de79c, ios 0x156624;
 
-    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b480, imac 0x6c6370, m1 0x5de920;
+    void calculateWithCenter(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win 0x7b480, imac 0x6c6370, m1 0x5de920, ios 0x156810;
     void computeAxes() = win inline, imac 0x6c6520, m1 0x5dea98;
     cocos2d::CCRect getBoundingRect() = win 0x7bd30, imac 0x6c6c20, m1 0x5df0b8;
     bool init(cocos2d::CCPoint center, float width, float height, float rotationAngle) = win inline, imac 0x6c6300, m1 0x5de8a0;
