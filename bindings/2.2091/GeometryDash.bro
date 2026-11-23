@@ -877,7 +877,7 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
     [[missing(ios)]]
     void checkSound() = win inline;
     void hideLoadingCircle() = win inline, imac 0x73be10;
-    void loadingIsFinished() = win inline, ios 0x3070bc;
+    void loadingIsFinished() = win inline, imac 0x73b900, ios 0x3070bc;
     void pauseGame() = win 0x989f0, imac 0x73b9b0, m1 0x649414, ios 0x3070f4;
     void pauseSound() = win inline;
     void platformShutdown() = win 0x97c90, imac 0x73b650, m1 0x6490f0, ios inline;
@@ -7777,7 +7777,7 @@ class GameLevelManager : cocos2d::CCNode {
     void removePlatformerSaveJournalEntry(GJGameLevel* level);
     void removeUserFromList(int id, UserListType type) = win 0x2571a0, imac 0x57c590, m1 0x4ce578;
     void replaceFollowedUsers(std::string const&) = win 0x251b10;
-    void replayPlatformerSaveJournal() = win 0x223740;
+    void replayPlatformerSaveJournal() = win 0x223740, imac 0x54cfc0;
     TodoReturn reportContent(int, int, int, std::vector<int> const&, long long) = win 0x261100;
     void reportLevel(int id) = imac 0x581320, m1 0x4d2fc8;
     bool requestThreadMembers(int) = win 0x252270;
@@ -7871,7 +7871,7 @@ class GameLevelManager : cocos2d::CCNode {
     static bool vaultTimedType(SearchType searchType, GJTimedLevelType& timedType) = win inline, imac 0x558500, m1 0x4acc70;
     bool verifyContainerOnlyHasLevels(cocos2d::CCDictionary* dict) = win 0x224e80, imac 0x54f750, m1 0x4a5210;
     void verifyLevelState(GJGameLevel* level) = win inline, imac 0x540760, m1 0x4975f4;
-    void writePlatformerSaveJournal(GJGameLevel* level) = win 0x223320, m1 0x4a2294;
+    void writePlatformerSaveJournal(GJGameLevel* level) = win 0x223320, imac 0x54c550, m1 0x4a2294;
     std::string writeSpecialFilters(GJSearchObject* object) = win 0x22a8b0, imac 0x558000, m1 0x4ac8a0;
     void adminQueueMute(int, std::string const&);
     void adminQueueUnmute(int, std::string const&);
