@@ -23,16 +23,6 @@ EditorUI* EditorUI::get() {
     return lel->m_editorUI;
 }
 
-#if !defined(GEODE_IS_IOS)
-void EditorUI::zoomGameLayer(bool zoomingIn) {
-    auto scale = m_editorLayer->m_objectLayer->getScale();
-    auto zoom = roundf((zoomingIn ? scale + .1f : scale - .1f) / .1f + .001f) * .1f;
-    if (zoom > 10.f) zoom = 10.f;
-    else if (zoom < .1f) zoom = .1f;
-    this->updateZoom(zoom);
-}
-#endif
-
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void EditorUI::addSnapPosition(cocos2d::CCPoint position) {
     auto node = cocos2d::CCNode::create();
@@ -194,6 +184,14 @@ void EditorUI::showDeleteConfirmation() {
 void EditorUI::updateGroupIDBtn2() {
     m_goToBaseBtn->setVisible(m_editorLayer->m_currentLayer >= 0);
     m_layerPlusBtn->setVisible(!(m_editorLayer->m_currentLayer >= 0));
+}
+
+void EditorUI::zoomGameLayer(bool zoomingIn) {
+    auto scale = m_editorLayer->m_objectLayer->getScale();
+    auto zoom = roundf((zoomingIn ? scale + .1f : scale - .1f) / .1f + .001f) * .1f;
+    if (zoom > 10.f) zoom = 10.f;
+    else if (zoom < .1f) zoom = .1f;
+    this->updateZoom(zoom);
 }
 #endif
 
@@ -685,4 +683,3 @@ void EditorUI::onAssignNewGroupID() {
     this->updateObjectInfoLabel();
 }
 #endif
-

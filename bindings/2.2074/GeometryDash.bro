@@ -12175,7 +12175,7 @@ class GameObject : CCSpritePlus {
     float m_customScaleY;
     bool m_startFlipX;
     bool m_startFlipY;
-    bool m_isDeactivated;
+    bool m_shouldDeactivate;
     bool m_isInvisible;
     int m_unk3D8;
     short m_varianceIndex;
@@ -15008,7 +15008,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
             object->m_isUIObject = false;
             this->addToSection(object);
             m_objectsToDeactivate->setObject(object, object->m_uniqueID);
-            object->m_isDeactivated = true;
+            object->m_shouldDeactivate = true;
         }
         m_uiObjects->removeAllObjects();
         m_uiObjectPositions.clear();
