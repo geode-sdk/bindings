@@ -3657,7 +3657,7 @@ class CustomSFXCell : TableViewCell, CustomSFXDelegate {
 
     void loadFromObject(SFXInfoObject* object) = win 0x150920, imac 0x22a130, m1 0x1d6a4c, ios 0x127b3c;
     bool shouldReload() = win inline, imac 0x2366e0, m1 0x1e2848, ios inline;
-    void updateBGColor(int index) = win 0x150c00, imac 0x22a290, m1 0x1e6998, ios 0x127c80;
+    void updateBGColor(int index) = win 0x150c00, imac 0x22a290, m1 0x1d6ba0, ios 0x127c80;
 
     SFXInfoObject* m_sfxObject;
     bool m_selected;
@@ -25041,7 +25041,7 @@ class TextArea : cocos2d::CCSprite {
     void setIgnoreColorCode(bool ignore) = win inline, imac 0x30d220, m1 0x2a0220, ios inline;
     void setParseEmotes(int);
     void setString(std::string text) = win 0x8a090, imac 0x30cf00, m1 0x29ff64, ios 0x11b148;
-    void showAll() = win inline, imac 0x30d760, m1 0x2a06e0, ios 0x906a4;
+    void showAll() = win inline, imac 0x30d760, m1 0x2a06e0, ios 0x11b778;
     void stopAllCharacterActions() = win 0x8a770, imac 0x30d6a0, m1 0x2a0620, ios 0x11b6c0;
 
     bool m_disableColor;
