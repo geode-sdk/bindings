@@ -14860,7 +14860,6 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     LevelAreaInnerLayer() = inline;
     virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, imac 0x266170, m1 0x20d7c4, ios 0x3e3da4;
-    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, imac 0x266170, m1 0x20d7c4, ios 0x3e3da4;
 
     static LevelAreaInnerLayer* create(bool returning) = win inline, imac 0x2661f0, m1 0x20d7fc, ios 0x3e3ddc;
     static cocos2d::CCScene* scene(bool returning) = win 0x3df700, imac 0x265f20, m1 0x20d5b4, ios 0x3e3cf8;
