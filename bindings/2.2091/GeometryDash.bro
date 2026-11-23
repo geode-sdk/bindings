@@ -16948,8 +16948,8 @@ class MoreSearchLayer : FLAlertLayer {
     virtual bool init() = win 0x43b9b0, imac 0x709d90, m1 0x61ac9c, ios 0x5dcbc;
     virtual void keyBackClicked() = win 0x440ba0, imac 0x70bda0, m1 0x61cb20, ios 0x5f8d8;
 
-    void audioNext(cocos2d::CCObject* sender) = win 0x43f970, imac 0x70b950, m1 0x61c6cc;
-    void audioPrevious(cocos2d::CCObject* sender) = win 0x43fab0, imac 0x70b8e0, m1 0x61c658;
+    void audioNext(cocos2d::CCObject* sender) = win 0x43f970, imac 0x70b950, m1 0x61c6cc, ios 0x5f580;
+    void audioPrevious(cocos2d::CCObject* sender) = win 0x43fab0, imac 0x70b8e0, m1 0x61c658, ios 0x5f53c;
     CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler callback, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) = win 0x4404e0;
     void onClose(cocos2d::CCObject* sender) = win 0x440750, imac 0x70b130, m1 0x61be5c;
     void onCoins(cocos2d::CCObject* sender) = win 0x43ed00, imac 0x70b4f0, m1 0x61c278;
@@ -18890,7 +18890,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void toggleSwingMode(bool enable, bool noEffects) = win 0x4f8dd0, imac 0x404310, m1 0x37ea28, ios 0x2c6fa0;
     void toggleVisibility(bool visible) = win 0x4e9680, imac 0x3f01c0, m1 0x36d330, ios 0x2ba5c4;
     void touchedObject(GameObject* object) = win inline, imac 0x40a040, m1 0x383c28;
-    void tryPlaceCheckpoint() = win 0x501880, imac 0x3eff10, m1 0x36d0d8;
+    void tryPlaceCheckpoint() = win 0x501880, imac 0x3eff10, m1 0x36d0d8, ios 0x2ba37c;
     void unrotateGameplayObject(GameObject* object) = win 0x4ef9d0, imac 0x3f84f0, m1 0x373e84, ios 0x2bfd38;
     void unrotatePreSlopeObjects() = win inline, imac 0x3f8790, m1 0x374088, ios inline;
     void updateCheckpointMode(bool enable) = win inline, imac 0x3e9d80, m1 0x367b4c, ios 0x2b5ee4;

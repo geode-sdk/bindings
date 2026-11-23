@@ -1818,8 +1818,8 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // bool getShiftKeyPressed() const;
     // void setBlockRepeat(bool);
     // CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
-    CCKeyboardDispatcher();
-    virtual ~CCKeyboardDispatcher();
+    CCKeyboardDispatcher() = ios 0x2d6404;
+    virtual ~CCKeyboardDispatcher() = ios 0x2d6514;
 
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = imac 0x1e6600;
 
