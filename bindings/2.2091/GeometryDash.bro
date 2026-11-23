@@ -24613,7 +24613,7 @@ class SpriteDescription : cocos2d::CCObject {
     static SpriteDescription* createDescription(DS_Dictionary* dict) = win inline, imac 0x599ab0, m1 0x4e91ec;
     static SpriteDescription* createDescription(cocos2d::CCDictionary* dict) = win inline, imac 0x599340, m1 0x4e8a98;
 
-    bool initDescription(DS_Dictionary* dict) = win 0x45930, imac 0x599c70, m1 0x4e93c0, ios 0x245840;
+    bool initDescription(DS_Dictionary* dict) = win 0x45930, imac 0x599c70, m1 0x4e93c0;
     bool initDescription(cocos2d::CCDictionary* dict) = win inline, imac 0x599ef0, m1 0x5fe2c, ios 0x245840;
 
     cocos2d::CCPoint m_position;
