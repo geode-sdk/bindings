@@ -1826,9 +1826,9 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     void addDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x6d04e0, m1 0x4ed244;
     bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool, double) = imac 0x1e5d80, m1 0x19947c;
     void forceAddDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x6d0530, m1 0x4ed2a0;
-    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5c70;
+    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5c70, ios 0x2d6574;
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x1e6ab0, m1 0x199fc4;
-    void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5bc0;
+    void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5bc0, m1 0x199288, ios 0x2d652c;
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x1e6a70, m1 0x199fac;
 
     [[renamed_from(m_pDelegates)]]
@@ -1853,7 +1853,7 @@ class cocos2d::CCKeyboardHandler : cocos2d::CCObject {
 
     virtual bool initWithDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x42bc80, m1 0x3a2f2c, ios 0x2b3484;
 
-    cocos2d::CCKeyboardDelegate* getDelegate() = imac 0x42bae0;
+    cocos2d::CCKeyboardDelegate* getDelegate() = imac 0x42bae0, m1 0x3a2db0, ios 0x2b3410;
     void setDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x42bc10;
 }
 
@@ -1867,7 +1867,7 @@ class cocos2d::CCKeypadDispatcher : cocos2d::CCObject {
     bool dispatchKeypadMSG(cocos2d::ccKeypadMSGType) = imac 0x6d0560, m1 0x5e78b8, ios 0x242550;
     void forceAddDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d0530, m1 0x5e787c, ios 0x242514;
     void forceRemoveDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d0450, ios 0x242438;
-    void removeDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d03a0, ios 0x2423f0;
+    void removeDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d03a0, m1 0x5e76c4, ios 0x2423f0;
 
     [[renamed_from(m_pDelegates)]]
     cocos2d::CCArray* m_pHandlers;
