@@ -6809,8 +6809,8 @@ class GameObject : CCSpritePlus {
 	bool m_startFlipX;
 	bool m_startFlipY;
 
-    	// m_isDeactivated Also has Invisable Behaviors 
-    	bool m_isDeactivated; 
+    	// m_shouldDeactivate Also has Invisable Behaviors 
+    	bool m_shouldDeactivate; 
 	bool m_isInvisible;
     	// NOTE: m_unk3D8 might be unused
 	int m_unk3D8;
