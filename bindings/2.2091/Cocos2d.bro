@@ -399,7 +399,7 @@ class cocos2d::CCApplication : cocos2d::CCApplicationProtocol {
 [[link(win, android)]]
 class cocos2d::CCArray : cocos2d::CCObject {
     // static cocos2d::CCArray* create(cocos2d::CCObject*, ...);
-    // static cocos2d::CCArray* create() = ios 0x249214;
+    // static cocos2d::CCArray* create() = ios 0x2e736c;
     // static cocos2d::CCArray* createWithArray(cocos2d::CCArray*);
     // static cocos2d::CCArray* createWithCapacity(unsigned int);
     // static cocos2d::CCArray* createWithContentsOfFile(char const*);
@@ -414,7 +414,7 @@ class cocos2d::CCArray : cocos2d::CCObject {
     // void addObjectsFromArray(cocos2d::CCArray*);
     // unsigned int capacity() const;
     // bool containsObject(cocos2d::CCObject*) const;
-    // unsigned int count() const;
+    // unsigned int count() const = ios 0x2e757c;
     // void exchangeObject(cocos2d::CCObject*, cocos2d::CCObject*);
     // void exchangeObjectAtIndex(unsigned int, unsigned int);
     // void fastRemoveObject(cocos2d::CCObject*);
@@ -2365,6 +2365,8 @@ class cocos2d::CCLiquid : cocos2d::CCGrid3DAction {
 
 [[link(win, android)]]
 class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
+    virtual ~CCMenu() = ios 0x189760;
+
     static cocos2d::CCMenu* create() = imac 0x8735d0, m1 0x769c74, ios 0x270410;
     static cocos2d::CCMenu* create(cocos2d::CCMenuItem*, ...) = inline;
     static cocos2d::CCMenu* createWithArray(cocos2d::CCArray*) = imac 0x8737d0, m1 0x769dcc, ios 0x2704bc;
@@ -2679,7 +2681,7 @@ class cocos2d::CCNode : cocos2d::CCObject {
     virtual ~CCNode() = imac 0x25e8b0, m1 0x2065a4, ios 0x2d7e60;
 
     static cocos2d::CCNode* create() = imac 0x25f300, m1 0x206e0c, ios 0x2d8698;
-    static void resetGlobalOrderOfArrival() = imac 0x25e6f0, m1 0x206408, ios 0x2f1314;
+    static void resetGlobalOrderOfArrival() = imac 0x25e6f0, m1 0x206408, ios 0x2d7cf4;
 
     virtual void update(float) = imac 0x260840, m1 0x2082bc, ios 0x2d9660;
     virtual bool init() = imac 0x25ea40, m1 0x2066f4, ios 0x2d7f90;
@@ -5659,10 +5661,10 @@ class cocos2d::extension::CCControlSlider : cocos2d::extension::CCControl {
     virtual void ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*) = imac 0x38a150, m1 0x314c24;
 
     cocos2d::CCPoint locationFromTouch(cocos2d::CCTouch*) = imac 0x389cc0, m1 0x3147c8;
-    void sliderBegan(cocos2d::CCPoint) = imac 0x389ed0, m1 0x10398;
+    void sliderBegan(cocos2d::CCPoint) = imac 0x389ed0, m1 0x3149d0;
     void sliderEnded(cocos2d::CCPoint) = imac 0x38a230, m1 0x314d10;
     void sliderMoved(cocos2d::CCPoint) = imac 0x38a0b0, m1 0x314b94;
-    float valueForLocation(cocos2d::CCPoint) = imac 0x38a450, m1 0xf7158;
+    float valueForLocation(cocos2d::CCPoint) = imac 0x38a450, m1 0x314ee4;
 }
 
 [[link(win, android)]]
