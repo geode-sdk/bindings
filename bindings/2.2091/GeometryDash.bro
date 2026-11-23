@@ -15558,7 +15558,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x424530, imac 0x2af220, m1 0x250590;
     void onLike(cocos2d::CCObject* sender) = win 0x423f90, imac 0x2ae5e0, m1 0x24f93c;
     void onOwnerDelete(cocos2d::CCObject* sender) = win inline, ios 0x2e2e0;
-    void onPlay(cocos2d::CCObject* sender) = win 0x421450, imac 0x2ac4a0, m1 0x24d880;
+    void onPlay(cocos2d::CCObject* sender) = win 0x421450, imac 0x2ac4a0, m1 0x24d880, ios 0x29cd4;
     void onPlayReplay(cocos2d::CCObject* sender) = win inline, ios inline;
     void onRate(cocos2d::CCObject* sender) = win 0x423360, imac 0x2b17f0, m1 0x252ab8, ios 0x2e418;
     void onRateDemon(cocos2d::CCObject* sender) = win 0x423e00, imac 0x2ae7c0, m1 0x24fafc;
@@ -25027,8 +25027,8 @@ class TextArea : cocos2d::CCSprite {
     virtual void draw() = win inline, imac 0x30dca0, m1 0x2a0c30, ios 0x11b974;
     virtual void setOpacity(unsigned char opacity) = win 0x8a850, imac 0x30db00, m1 0x2a0a8c, ios 0x11b7d8;
 
-    void colorAllCharactersTo(cocos2d::ccColor3B color) = win 0x8a890, imac 0x30db70, m1 0x2a0af8;
-    void colorAllLabels(cocos2d::ccColor3B color) = win inline, imac 0x30dc20, m1 0x2a0bbc;
+    void colorAllCharactersTo(cocos2d::ccColor3B color) = win 0x8a890, imac 0x30db70, m1 0x2a0af8, ios 0x11b844;
+    void colorAllLabels(cocos2d::ccColor3B color) = win inline, imac 0x30dc20, m1 0x2a0bbc, ios 0x11b900;
     float fadeIn(float duration, bool unused) = win inline, imac 0x30d840, m1 0x2a07bc, ios inline;
     float fadeInCharacters(float duration, float charDuration, bool fadeOut, TextFadeInStyle style) = win 0x8ab40, imac 0x30de50, m1 0x2a0d74;
     void fadeOut(float duration) = win inline, imac 0x30da00, m1 0x2a098c, ios inline;
