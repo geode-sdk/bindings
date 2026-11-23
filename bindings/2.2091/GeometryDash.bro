@@ -837,7 +837,7 @@ class AnimatedShopKeeper : CCAnimatedSprite {
 
     bool init(ShopType type) = win inline, imac 0x313e20, m1 0x2a63dc;
     void playReactAnimation() = win 0x3b5fa0, imac 0x312b20, m1 0x2a5370;
-    void startAnimating() = win 0x3b6240, imac 0x30ff40, m1 0x2a2c18;
+    void startAnimating() = win 0x3b6240, imac 0x30ff40, m1 0x2a2c18, ios 0x1ca3e0;
 
     ShopType m_type;
     int m_idleInt1;
@@ -1474,7 +1474,7 @@ class CCAnimatedSprite : cocos2d::CCSprite {
     bool initWithType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win 0x43a60, imac 0x33b600, m1 0x2cd730;
     void loadType(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win 0x43cd0, imac 0x33b7f0, m1 0x2cd920;
     void runAnimation(std::string animation) = win 0x447e0, imac 0x33c100, m1 0x2ce1b4, ios 0x39a408;
-    void runAnimationForced(std::string animation) = win inline, imac 0x33c180, m1 0x2ce24c;
+    void runAnimationForced(std::string animation) = win inline, imac 0x33c180, m1 0x2ce24c, ios 0x39a490;
     void stopTween() = win inline, imac 0x33c640, m1 0x2ce6f4;
     void switchToMode(spriteMode mode) = win 0x44670, imac 0x33bfe0, m1 0x2ce0a8;
     void tweenToAnimation(std::string animation, float duration) = win 0x44850, imac 0x33c240, m1 0x2ce320, ios 0x39a554;
@@ -11805,7 +11805,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void onSelect(cocos2d::CCObject* sender) = win 0x37fb60, imac 0x3572d0, m1 0x2e69d8, ios 0x3a2630;
     void onSelectTab(cocos2d::CCObject* sender) = win 0x37e880, imac 0x355ea0, m1 0x2e5674, ios 0x3a16cc;
     void onShards(cocos2d::CCObject* sender) = win 0x381670, imac 0x355500, m1 0x2e4c84;
-    void onShop(cocos2d::CCObject* sender) = win 0x381940, imac 0x3554a0, m1 0x2e4c24;
+    void onShop(cocos2d::CCObject* sender) = win 0x381940, imac 0x3554a0, m1 0x2e4c24, ios 0x3a120c;
     void onSpecial(cocos2d::CCObject* sender) = win 0x380400, imac 0x357200, m1 0x2e6924;
     void onToggleItem(cocos2d::CCObject* sender) = win 0x380210, imac 0x357b30, m1 0x2e7044;
     void playRainbowEffect() = win 0x381480, imac 0x357f10, m1 0x2e73dc;
@@ -20769,7 +20769,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void onChestType(cocos2d::CCObject* sender) = win 0x56aa80, imac 0x70ed80, m1 0x61f704;
     void onGoldChest(cocos2d::CCObject* sender) = win 0x56ce20, imac 0x707f20, m1 0x61fa64, ios 0x384e80;
     void onSelectItem(cocos2d::CCObject* sender) = win 0x56bb80, imac 0x711450, m1 0x621bb0, ios 0x3865bc;
-    void onShop(cocos2d::CCObject* sender) = win 0x56c130, imac 0x70f460, m1 0x4fd128;
+    void onShop(cocos2d::CCObject* sender) = win 0x56c130, imac 0x70f460, m1 0x4fd128, ios 0x385190;
     void onSpecialItem(cocos2d::CCObject* sender) = win 0x56c540, imac 0x70f880, m1 0x620278;
     void onSwitchPage(cocos2d::CCObject* sender) = win 0x56a710, imac 0x70f5b0, m1 0x61ff90;
     void showDialog01() = win 0x56d930, imac 0x7117b0, m1 0x621f4c;
@@ -20777,7 +20777,7 @@ class SecretRewardsLayer : cocos2d::CCLayer, DialogDelegate, BoomScrollLayerDele
     void showDialogDiamond() = win 0x571740, imac 0x716000, m1 0x625a30;
     void showDialogMechanic() = win 0x5704d0, imac 0x714a60, m1 0x6248c4;
     void showLockedChest() = imac 0x70fd90, m1 0x620764;
-    void showShop(int shop) = win inline, imac 0x716d30, m1 0x626524;
+    void showShop(int shop) = win inline, imac 0x716d30, m1 0x626524, ios 0x389a6c;
     void switchToOpenedState(CCMenuItemSpriteExtra* button) = win 0x56c960, imac 0x70edc0, m1 0x61f758, ios 0x384bf4;
     void updateBackButton() = win 0x56abd0, imac 0x70ffd0, m1 0x620a14, ios 0x3858ac;
     void updateUnlockedGoldLabel() = win 0x56d590, imac 0x70f3a0, m1 0x61fd70;
