@@ -8829,7 +8829,8 @@ class GameObject : CCSpritePlus {
     bool m_isMirroredByScale;
     // property 108
     int m_linkedGroup;
-    int m_unk35C;
+    [[renamed_from(m_unk35C)]]
+    int m_linkVisibleIndex;
     short m_colorType;
     short m_childColorType;
     bool m_shouldBlendBase;
@@ -10467,12 +10468,18 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     std::vector<GameObject*> m_areaObjects;
     std::vector<GameObject*> m_processedAreaObjects;
     std::unordered_map<int, std::vector<GameObject*>> m_visibilityGroups;
-    std::vector<GameObject*> m_visibleObjects;
-    int m_visibleObjectsCount;
-    int m_visibleObjectsIndex;
-    std::vector<GameObject*> m_visibleObjects2;
-    int m_visibleObjects2Count;
-    int m_visibleObjects2Index;
+    [[renamed_from(m_visibleObjects)]]
+    std::vector<GameObject*> m_linkedVisibleObjects;
+    [[renamed_from(m_visibleObjectsCount)]]
+    int m_linkedVisibleObjectsCount;
+    [[renamed_from(m_visibleObjectsIndex)]]
+    int m_linkedVisibleObjectsSize;
+    [[renamed_from(m_visibleObjects2)]]
+    std::vector<GameObject*> m_lastLinkedVisibleObjects;
+    [[renamed_from(m_visibleObjects2Count)]]
+    int m_lastLinkedVisibleObjectsCount;
+    [[renamed_from(m_visibleObjects2Index)]]
+    int m_lastLinkedVisibleObjectsSize;
     int m_unked0;
     int m_disabledObjectsCount;
     int m_unked8;
