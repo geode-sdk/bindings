@@ -4726,7 +4726,7 @@ class EditorCommandsPopup : EditorWindowPopup {
     virtual void onWindowResized() = win 0x17dae0, imac 0x8def30, m1 0x7cb6e8, ios 0x4c5bfc;
 
     void addCommandButton(char const*, EditorCommand) = win 0x17d7a0, imac 0x8dea60, m1 0x7cb2b4;
-    bool init(EditorUI*);
+    bool init(EditorUI* editorUI) = win inline, ios 0x4c55fc;
     void layoutCommandButtons() = win 0x17d8b0, imac 0x8deb00, m1 0x7cb364;
     void onCommand(cocos2d::CCObject* sender) = win 0x17daf0, imac 0x8decd0, m1 0x7cb4d8;
 }
