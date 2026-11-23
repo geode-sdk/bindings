@@ -16304,7 +16304,7 @@ class LevelTools {
     static void toggleDebugLogging(bool enabled) = win inline, imac 0x4fa450, m1 0x4570c8, ios inline;
     static std::string urlForAudio(int id) = win 0x464340, imac 0x4fda10, m1 0x45a244;
     static float valueForSpeedMod(int speed) = win inline, imac 0x4ff560, m1 0x45b910, ios inline;
-    static bool verifyLevelIntegrity(std::string str, int id) = win 0x467e80, imac 0x500a00, m1 0x45ca8c;
+    static bool verifyLevelIntegrity(std::string str, int id) = win 0x467e80, imac 0x500a00, m1 0x45ca8c, ios 0x23e0b8;
     static std::string ytURLForArtist(int id) = win 0x465a40, imac 0x4fe7d0, m1 0x45abe8;
 }
 
@@ -16967,7 +16967,7 @@ class MoreSearchLayer : FLAlertLayer {
     void onSongMode(cocos2d::CCObject* sender) = win 0x43fd50, imac 0x70b790, m1 0x61c508, ios 0x5f3e0;
     void onTwoPlayer(cocos2d::CCObject* sender) = win 0x43e880, imac 0x70b530, m1 0x61c2b8;
     void onUncompleted(cocos2d::CCObject* sender) = win 0x43d880;
-    void selectSong(int songID) = win 0x43fbf0, imac 0x70bc30, m1 0x61c988;
+    void selectSong(int songID) = win 0x43fbf0, imac 0x70bc30, m1 0x61c988, ios 0x5f758;
     void toggleSongNodes(bool custom, bool disable) = win 0x440250, imac 0x70baf0, m1 0x61c890, ios 0x5f660;
     void updateAudioLabel() = win 0x43f680, imac 0x70bc80, m1 0x61c9d0, ios 0x5f7a0;
 
