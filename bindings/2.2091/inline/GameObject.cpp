@@ -95,6 +95,11 @@ void GameObject::createOpacityGroupContainer(int size) {
     }
 }
 
+void GameObject::deselectObject() {
+    m_isSelected = false;
+    this->updateObjectEditorColor();
+}
+
 bool GameObject::didScaleXChange() {
     return (int)(m_scaleX * 10000) != (int)(m_customScaleX * 10000);
 }
@@ -301,11 +306,6 @@ void GameObject::createSpriteColor(int type) {
     else {
         if (!m_baseColor) m_baseColor = new GJSpriteColor();
     }
-}
-
-void GameObject::deselectObject() {
-    m_isSelected = false;
-    this->updateObjectEditorColor();
 }
 
 void GameObject::destroyObject() {
