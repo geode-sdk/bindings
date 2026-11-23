@@ -14858,7 +14858,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 [[link(android)]]
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     LevelAreaInnerLayer() = inline;
-    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, ios 0x3e3da4;
+    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, imac 0x266170, m1 0x20d7c4, ios 0x3e3da4;
 
     static LevelAreaInnerLayer* create(bool returning) = win inline, imac 0x2661f0, m1 0x20d7fc, ios 0x3e3ddc;
     static cocos2d::CCScene* scene(bool returning) = win 0x3df700, imac 0x265f20, m1 0x20d5b4, ios 0x3e3cf8;
@@ -14870,7 +14870,7 @@ class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     bool init(bool returning) = win 0x3df810, imac 0x2662d0, m1 0x20d8bc, ios 0x3e3e90;
     void onBack(cocos2d::CCObject* sender) = win 0x3e19e0, imac 0x267110, m1 0x20e688, ios 0x3e49bc;
     void onDoor(cocos2d::CCObject* sender) = win 0x3e14f0, imac 0x267160, m1 0x20e6d8, ios 0x3e4a0c;
-    void onInfo(cocos2d::CCObject* sender) = win 0x3e0f60, imac 0x2673f0, m1 0x20e990;
+    void onInfo(cocos2d::CCObject* sender) = win 0x3e0f60, imac 0x2673f0, m1 0x20e990, ios 0x3e4c74;
     void onNextFloor(cocos2d::CCObject* sender) = win 0x3e0800, imac 0x267290, m1 0x20e80c;
     void onOnlineVault(cocos2d::CCObject* sender) = win 0x3e1800, imac 0x267340, m1 0x20e8cc;
     bool playStep1() = win 0x3e16c0, imac 0x268060, m1 0x20f540;
@@ -15290,7 +15290,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void getSFXUsagePairs(std::vector<std::pair<int, int>>&) = win 0x3f39e0;
     std::string getSongIDs(bool& multipleSongs) = win 0x3f3600, imac 0xbb0b0, m1 0xa770c, ios 0x3fe470;
     cocos2d::CCArray* getTriggerGroup(int id) = win 0x3fd600, imac 0xc3c50, m1 0xaef74;
-    void handleAction(bool undo, cocos2d::CCArray* undoObjects) = win 0x3f2580, m1 0x597c24, ios 0x3fbc54;
+    void handleAction(bool undo, cocos2d::CCArray* undoObjects) = win 0x3f2580, m1 0xa0450, ios 0x3fbc54;
     bool hasAction(bool undo) = win inline, imac 0xb23f0, m1 0xa0420;
     bool init(GJGameLevel* level, bool noUI) = win 0x3ed8e0, imac 0xa9d50, m1 0x98be0, ios 0x3f66c4;
     bool isLayerLocked(int layer) = win inline, imac 0xbc400, m1 0xa8718, ios 0x3fee34;
@@ -15313,7 +15313,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void quickUpdateAllPositions() = win 0x3fe590, imac 0xc56d0, m1 0xb07b8;
     void rebuildDeathOverlay() = win 0x3f5a70, m1 0x9c3a0;
     void recreateGroups() = win 0x3fd660, imac 0xc4500, m1 0xaf768;
-    void redoLastAction() = win 0x3f2fa0, imac 0x40a9e0, m1 0x7e690, ios 0x3fc5a4;
+    void redoLastAction() = win 0x3f2fa0, imac 0x40a9e0, m1 0xa0ee4, ios 0x3fc5a4;
     void refreshSpecial(GameObject* object) = win inline, imac 0xbd3d0, m1 0xa9390;
     void removeAllObjects() = win inline, imac 0xb1f40, m1 0x9ffec;
     void removeAllObjectsOfType(int objectID) = win 0x3f22f0, imac 0xb2060, m1 0xa00ec, ios 0x3fb9f0;
@@ -17351,7 +17351,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void generateResourceAssetList() = win inline, imac 0x64b410, m1 0x5862d4, ios 0x1d2bf0;
     cocos2d::CCArray* getAllMusicArtists(OptionsObjectDelegate* delegate) = win inline, imac 0x65e6e0, m1 0x597f8c;
     cocos2d::CCArray* getAllMusicObjects(GJSongType type) = win inline, imac 0x65e2b0, m1 0x597b7c;
-    cocos2d::CCArray* getAllMusicObjectsSorted(GJSongType, AudioSortType) = win 0x48ed80;
+    cocos2d::CCArray* getAllMusicObjectsSorted(GJSongType, AudioSortType) = win 0x48ed80, m1 0x597c24;
     cocos2d::CCArray* getAllMusicTags(OptionsObjectDelegate* delegate) = win inline, imac 0x65e580, m1 0x597e38;
     cocos2d::CCArray* getAllSFXObjects(bool onlySFX) = win inline, imac 0x660f00, m1 0x59a354;
     cocos2d::CCArray* getAllSongs() = win inline, imac 0x64e820, m1 0x589330, ios 0x1d4a1c;
