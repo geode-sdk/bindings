@@ -11,6 +11,7 @@ namespace { namespace format_strings {
 #include <Geode/platform/platform.hpp>
 #include <Geode/GeneratedPredeclare.hpp>
 #include <Geode/Enums.hpp>
+#include <Geode/modify/Codegen.hpp>
 
 )GEN";
 
@@ -65,9 +66,9 @@ public:
     constexpr char const* member_definition = R"GEN({private}    {type} {member_name};{public}
 )GEN";
 
-    constexpr char const* renamed_member_definition = R"GEN({private}    union {{
-        {type} {member_name}{{}};
-{renamed_members}    }};{public}
+    constexpr char const* renamed_member_definition = R"GEN({private}    {type} {member_name};
+    GEODE_DEFINE_ALIAS_HELPERS({member_name});
+{renamed_members}{public}
 )GEN";
 
     constexpr char const* pad_definition = R"GEN(    GEODE_PAD({hardcode});
@@ -328,7 +329,7 @@ std::string generateBindingHeader(Root const& root, std::filesystem::path const&
                     } else {
                         std::string renamed_members;
                         for (auto& renamed : m->attributes.renamed_from) {
-                            renamed_members += fmt::format("        {} {};\n", m->type.name, renamed);
+                            renamed_members += fmt::format("    GEODE_DEFINE_ALIAS({}, {});\n", m->name, renamed);
                         }
                         single_output += fmt::format(format_strings::renamed_member_definition,
                             fmt::arg("private", unimplementedField ? "private:\n" : ""),

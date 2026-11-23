@@ -6829,7 +6829,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     FMOD::Sound* createStream(std::string path) = win 0x65b20, imac 0x3d7610, m1 0x358cb8, ios 0x1bb820;
     void disableMetering() = win inline, imac 0x3d0a00, m1 0x3533b0, ios 0x1b8104;
     void enableMetering() = win inline, imac 0x3d09d0, m1 0x353390, ios 0x1b80e4;
-    void fadeInBackgroundMusic(float value) = win inline, imac 0x2eece0, m1 0x355fc8;
+    void fadeInBackgroundMusic(float value) = win inline, imac 0x3d3e90, m1 0x355fc8;
     void fadeInMusic(float duration, int channel) = win 0x65360, imac 0x3d4620, m1 0x356680, ios 0x1ba090;
     void fadeMusic(float duration, int channel, float startVolume, float endVolume) = win 0x655e0, imac 0x3d7530, m1 0x358c10, ios 0x1bb778;
     void fadeOutMusic(float duration, int channel) = win 0x654a0, imac 0x3d7450, m1 0x358b74, ios 0x1bb6dc;
@@ -14860,6 +14860,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     LevelAreaInnerLayer() = inline;
     virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, imac 0x266170, m1 0x20d7c4, ios 0x3e3da4;
+    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, imac 0x266170, m1 0x20d7c4, ios 0x3e3da4;
 
     static LevelAreaInnerLayer* create(bool returning) = win inline, imac 0x2661f0, m1 0x20d7fc, ios 0x3e3ddc;
     static cocos2d::CCScene* scene(bool returning) = win 0x3df700, imac 0x265f20, m1 0x20d5b4, ios 0x3e3cf8;
@@ -15189,9 +15190,9 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     LevelEditorLayer() = win 0x3ec2f0, imac 0xde790, m1 0xc4258, ios 0x410b50;
     virtual ~LevelEditorLayer() = win 0x3ecff0, imac 0xa92f0, m1 0x9836c, ios 0x3f65a4;
 
-    static LevelEditorLayer* create(GJGameLevel* level, bool noUI) = win 0x3ed850, imac 0xa9ce0, ios 0x3f6640;
+    static LevelEditorLayer* create(GJGameLevel* level, bool noUI) = win 0x3ed850, m1 0x98b4c, imac 0xa9ce0, ios 0x3f6640;
     static LevelEditorLayer* get() = inline;
-    static cocos2d::CCScene* scene(GJGameLevel* level, bool noUI) = win inline, imac 0xa9c40, ios 0x3f65dc;
+    static cocos2d::CCScene* scene(GJGameLevel* level, bool noUI) = win inline, m1 0x98a9c, imac 0xa9c40, ios 0x3f65dc;
     static void updateObjectLabel(GameObject* object) = win 0x3f4650, imac 0xbc880, m1 0xa8ad4, ios 0x3ff12c;
 
     virtual void draw() = win 0x4089e0, imac 0xd5090, m1 0xbc048, ios 0x40b33c;
@@ -15944,8 +15945,8 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x437f00, imac 0x708bc0, m1 0x619bf4, ios 0x5d1d4;
     virtual void demonFilterSelectClosed(int filter) = win 0x436860, imac 0x708650, m1 0x619738, ios 0x5ce78;
 
-    bool checkDiff(int diff) = win 0x43aaf0, imac 0x7094b0, ios 0x5d8a8;
-    bool checkTime(int time) = win 0x43b120, imac 0x7095b0;
+    bool checkDiff(int diff) = win 0x43aaf0, m1 0x61a514, imac 0x7094b0, ios 0x5d8a8;
+    bool checkTime(int time) = win 0x43b120, m1 0x61a62c, imac 0x7095b0;
     void clearFilters() = win 0x436d90, m1 0x619064, ios 0x5dcbc;
     void confirmClearFilters(cocos2d::CCObject* sender) = win 0x436c70, imac 0x706bf0, m1 0x617d34, ios 0x5b908;
     char const* getDiffKey(int diff) = win inline, imac 0x708430, m1 0x61959c, ios inline;
@@ -20516,7 +20517,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 [[link(android)]]
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     SecretLayer2() = inline;
-    ~SecretLayer2() = win inline, ios 0x3a638c;
+    ~SecretLayer2() = win inline, imac 0x495d00, m1 0x3fe384, ios 0x3a638c;
 
     static SecretLayer2* create() = win inline, imac 0x496040, m1 0x3fe5c8;
     static cocos2d::CCScene* scene() = win 0x577ca0, imac 0x496000, m1 0x3fe584;
@@ -20536,7 +20537,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     std::string getThreadMessage() = win 0x57d1b0, imac 0x49bb00, m1 0x403b90;
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, imac 0x496ff0, m1 0x3ff4f0, ios inline;
     void onBack(cocos2d::CCObject* sender) = win 0x57f430, imac 0x497390, m1 0x3ff84c;
-    void onDoor(cocos2d::CCObject* sender) = win 0x57a3e0, imac 0x498ae0, m1 0x400d1c;
+    void onDoor(cocos2d::CCObject* sender) = win 0x57a3e0, imac 0x498ae0, m1 0x400d1c, ios 0x3a863c;
     void onSecretLevel(cocos2d::CCObject* sender) = win 0x57a130, imac 0x498d10, m1 0x400f78;
     void onSubmit(cocos2d::CCObject* sender) = win 0x57ad00, imac 0x497400, m1 0x3ff8c0, ios 0x3a747c;
     void playCoinEffect() = win 0x57ef90;
@@ -23071,10 +23072,10 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     TodoReturn toggleLimitArrowValue(int, bool);
     void toggleLimitValue(int property, bool limit) = win inline, imac 0x21e6b0, m1 0x1cc7d4;
     void togglePageArrows(bool visible) = win inline, imac 0x219dd0, m1 0x1c94ac;
-    void triggerArrowChanged(int property, bool isRight) = win 0x60d490, imac 0x21e290, m1 0x1cc3e4;
-    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x60d430, imac 0x21e260, m1 0x1cc3ac;
-    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x60d460, imac 0x21e5c0, m1 0x1cc6dc;
-    void triggerSliderChanged(cocos2d::CCObject* sender) = win 0x60d340, m1 0x1cc3e4;
+    void triggerArrowChanged(int property, bool isRight) = win 0x60d490, imac 0x21e290, m1 0x1cc3e4, ios 0x1aea48;
+    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x60d430, imac 0x21e260, m1 0x1cc3ac, ios 0x1aea10;
+    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x60d460, imac 0x21e5c0, m1 0x1cc6dc, ios 0x1aeba4;
+    void triggerSliderChanged(cocos2d::CCObject* sender) = win 0x60d340, imac 0x21e070, m1 0x1cc3e4, ios 0x1ae8e8;
     void updateCustomEaseLabel(int property, int easingType) = win 0x615780, imac 0x2252c0, m1 0x1d2920;
     void updateCustomEaseRateLabel(int property, float easingRate) = win 0x615980, imac 0x2246e0, m1 0x1d1ce4;
     void updateCustomToggleTrigger(int tag, bool toggled) = win inline, imac 0x220420, m1 0x1ce4f0;
@@ -23090,7 +23091,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     void updateTouchTriggered() = win 0x60cb20, imac 0x21b780, m1 0x1cac58;
     void updateValue(int property, float value) = win 0x6138f0, imac 0x21fbd0, m1 0x1cdc34;
     void updateValueControls(int property, float value) = win 0x60f340, imac 0x21e770, m1 0x1cc898;
-    void valueChanged(int property, float value) = win 0x60f990, imac 0x21bae0;
+    void valueChanged(int property, float value) = win 0x60f990, imac 0x21bae0, m1 0x1caf34, ios 0x1ad98c;
 
     EffectGameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;
@@ -24080,7 +24081,7 @@ class Slider : cocos2d::CCLayer {
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x84200, imac 0x2ef750, m1 0x2854a8, ios 0x38a7c0;
     void setBarVisibility(bool visibility) = win inline, imac 0x2efc70, m1 0x28594c;
     void setLiveDragging(bool activateThumb) = win inline, imac 0x2efcb0, m1 0x285968, ios inline;
-    void setMaxOffset(float offset) = win 0x84bd0, m1 0x285a24;
+    void setMaxOffset(float offset) = win 0x84bd0, m1 0x285a24, imac 0x2efde0;
     void setRotated(bool rotated) = win 0x84b30, imac 0x7208b0, m1 0x2859d4;
     void setSnap(float, float);
     void setSnapStep(float);
@@ -24141,7 +24142,7 @@ class SliderTouchLogic : cocos2d::CCMenu {
     virtual void registerWithTouchDispatcher() = win 0x846a0, imac 0x2ef3b0, m1 0x285148, ios 0x38a62c;
 
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler selector, char const* thumb, char const* thumbSel, float scale) = win inline, imac 0x2eeb30, m1 0x2849cc, ios 0x38a2b4;
-    void setMaxOffset(float offset) = win inline, m1 0x284b58, ios inline;
+    void setMaxOffset(float offset) = win inline, m1 0x284b58, imac 0x2eece0, ios inline;
     void setRotated(bool rotated) = win inline, m1 0x284ba0, ios inline;
 
     float m_unknownUnused;

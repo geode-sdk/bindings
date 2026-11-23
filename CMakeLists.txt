@@ -234,3 +234,7 @@ elseif (ANDROID)
 	target_compile_options(${PROJECT_NAME} PUBLIC -ffunction-sections -fdata-sections)
 	target_link_options(${PROJECT_NAME} PUBLIC -Wl,--gc-sections)
 endif()
+
+if (NOT WIN32 AND CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+	target_compile_options(${PROJECT_NAME} PUBLIC -fdeclspec)
+endif()

@@ -15,3 +15,28 @@
         );                                                                                                    \
     } while (0);
 #endif
+
+#ifndef GEODE_BINDINGS_CONCAT
+#define GEODE_BINDINGS_CONCAT_IMPL(x, y) x##y
+#define GEODE_BINDINGS_CONCAT(x, y) GEODE_BINDINGS_CONCAT_IMPL(x, y)
+#endif
+
+#ifndef GEODE_DEFINE_ALIAS_HELPERS
+#define GEODE_DEFINE_ALIAS_HELPERS(name) \
+    auto& GEODE_BINDINGS_CONCAT(_get_member_, name)() { return name; } \
+    void GEODE_BINDINGS_CONCAT(_set_member_, name)(decltype(name) _value_) { name = std::move(_value_); }
+#endif
+
+#ifndef __has_declspec_attribute
+#define __has_declspec_attribute(x) 0
+#endif
+
+#ifndef GEODE_DEFINE_ALIAS
+#if defined(_MSC_VER) || __has_declspec_attribute(property)
+#define GEODE_DEFINE_ALIAS(canonical, alias) \
+    __declspec(property(get = GEODE_BINDINGS_CONCAT(_get_member_, canonical), put = GEODE_BINDINGS_CONCAT(_set_member_, canonical))) \
+    decltype(canonical) alias;
+#else
+#error Geode requires -fdeclspec for member aliases
+#endif
+#endif
