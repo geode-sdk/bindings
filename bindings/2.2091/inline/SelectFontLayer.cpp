@@ -1,4 +1,4 @@
-#ifndef GEODE_IS_WINDOWS // unused in 2.209
+#if !defined(GEODE_IS_WINDOWS) && !defined(GEODE_IS_IOS) // unused in 2.209
 
 #include <Geode/binding/SelectFontLayer.hpp>
 
@@ -12,7 +12,7 @@ SelectFontLayer::SelectFontLayer() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS)
-SelectFontLayer::~SelectFontLayer() {
+/*SelectFontLayer::~SelectFontLayer() {
     CCNode::removeAllChildrenWithCleanup(true);
 }
 
@@ -24,7 +24,7 @@ SelectFontLayer* SelectFontLayer::create(LevelEditorLayer* editorLayer) {
     }
     delete ret;
     return nullptr;
-}
+}*/
 #endif
 
 #if defined(GEODE_IS_IOS)

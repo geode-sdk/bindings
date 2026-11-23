@@ -39,4 +39,3 @@ void CheckpointGameObject::resetCheckpoint() {
     this->updateCheckpointSpriteVisibility();
 }
 #endif
-
