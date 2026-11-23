@@ -1223,11 +1223,11 @@ class BoomScrollLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     int getTotalPages() = win inline, imac 0x38f0d0, m1 0x319608, ios 0x15546c;
     bool init(cocos2d::CCArray* pages, int offset, bool looped, cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x40b60, imac 0x38e230, m1 0x3187c8, ios 0x154a98;
     void instantMoveToPage(int page) = win 0x41750, imac 0x38fd20, m1 0x31a0f8, ios 0x155adc;
-    void moveToPage(int page) = win 0x41830, imac 0x38fe00, m1 0x31a1d0;
-    void moveToPageEnded() = win 0x415c0, imac 0x38fb90, m1 0x319f68;
-    int pageNumberForPosition(cocos2d::CCPoint position) = win 0x41650, imac 0x38f8c0, m1 0x319c6c;
+    void moveToPage(int page) = win 0x41830, imac 0x38fe00, m1 0x31a1d0, ios 0x155bb4;
+    void moveToPageEnded() = win 0x415c0, imac 0x38fb90, m1 0x319f68, ios 0x155a50;
+    int pageNumberForPosition(cocos2d::CCPoint position) = win 0x41650, imac 0x38f8c0, m1 0x319c6c, ios 0x1557d8;
     cocos2d::CCPoint positionForPageWithNumber(int page) = win inline, imac 0x38fcd0, m1 0x31a0a4, ios inline;
-    void quickUpdate() = win inline, imac 0x390060, ios 0x155e08;
+    void quickUpdate() = win inline, imac 0x390060, m1 0x31a42c, ios 0x155e08;
     void removePage(cocos2d::CCLayer* page) = win inline, imac 0x3901b0, m1 0x31a55c, ios inline;
     void removePageWithNumber(int page) = win inline, imac 0x390240, m1 0x31a5f0, ios inline;
     void repositionPagesLooped() = win 0x419f0, imac 0x38e810, m1 0x318d70, ios 0x154f14;
