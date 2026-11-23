@@ -14858,7 +14858,7 @@ class LeaderboardsLayer : cocos2d::CCLayer, LeaderboardManagerDelegate, FLAlertL
 [[link(android)]]
 class LevelAreaInnerLayer : cocos2d::CCLayer, DialogDelegate {
     LevelAreaInnerLayer() = inline;
-    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, ios 0x3e3da4;
+    virtual ~LevelAreaInnerLayer() = win 0x3dd4d0, imac 0x266170, m1 0x20d7c4, ios 0x3e3da4;
 
     static LevelAreaInnerLayer* create(bool returning) = win inline, imac 0x2661f0, m1 0x20d7fc, ios 0x3e3ddc;
     static cocos2d::CCScene* scene(bool returning) = win 0x3df700, imac 0x265f20, m1 0x20d5b4, ios 0x3e3cf8;
@@ -20515,7 +20515,7 @@ class SecretLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol {
 [[link(android)]]
 class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, DialogDelegate {
     SecretLayer2() = inline;
-    ~SecretLayer2() = win inline, ios 0x3a638c;
+    ~SecretLayer2() = win inline, imac 0x495d00, m1 0x3fe384, ios 0x3a638c;
 
     static SecretLayer2* create() = win inline, imac 0x496040, m1 0x3fe5c8;
     static cocos2d::CCScene* scene() = win 0x577ca0, imac 0x496000, m1 0x3fe584;
@@ -20535,7 +20535,7 @@ class SecretLayer2 : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol, 
     std::string getThreadMessage() = win 0x57d1b0, imac 0x49bb00, m1 0x403b90;
     cocos2d::CCNode* nodeWithTag(int tag) = win inline, imac 0x496ff0, m1 0x3ff4f0, ios inline;
     void onBack(cocos2d::CCObject* sender) = win 0x57f430, imac 0x497390, m1 0x3ff84c;
-    void onDoor(cocos2d::CCObject* sender) = win 0x57a3e0, imac 0x498ae0, m1 0x400d1c;
+    void onDoor(cocos2d::CCObject* sender) = win 0x57a3e0, imac 0x498ae0, m1 0x400d1c, ios 0x3a863c;
     void onSecretLevel(cocos2d::CCObject* sender) = win 0x57a130, imac 0x498d10, m1 0x400f78;
     void onSubmit(cocos2d::CCObject* sender) = win 0x57ad00, imac 0x497400, m1 0x3ff8c0, ios 0x3a747c;
     void playCoinEffect() = win 0x57ef90;
@@ -23070,10 +23070,10 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     TodoReturn toggleLimitArrowValue(int, bool);
     void toggleLimitValue(int property, bool limit) = win inline, imac 0x21e6b0, m1 0x1cc7d4;
     void togglePageArrows(bool visible) = win inline, imac 0x219dd0, m1 0x1c94ac;
-    void triggerArrowChanged(int property, bool isRight) = win 0x60d490, m1 0x1cc3e4, imac 0x21e290;
-    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x60d430, m1 0x1cc3ac, imac 0x21e260;
-    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x60d460, m1 0x1cc6dc, imac 0x21e5c0;
-    void triggerSliderChanged(cocos2d::CCObject* sender) = win 0x60d340, m1 0x1cc3e4, imac 0x21e070;
+    void triggerArrowChanged(int property, bool isRight) = win 0x60d490, m1 0x1cc3e4, imac 0x21e290, ios 0x1aea48;
+    void triggerArrowLeft(cocos2d::CCObject* sender) = win 0x60d430, m1 0x1cc3ac, imac 0x21e260, ios 0x1aea10;
+    void triggerArrowRight(cocos2d::CCObject* sender) = win 0x60d460, m1 0x1cc6dc, imac 0x21e5c0, ios 0x1aeba4;
+    void triggerSliderChanged(cocos2d::CCObject* sender) = win 0x60d340, m1 0x1cc3e4, imac 0x21e070, ios 0x1ae8e8;
     void updateCustomEaseLabel(int property, int easingType) = win 0x615780, imac 0x2252c0, m1 0x1d2920;
     void updateCustomEaseRateLabel(int property, float easingRate) = win 0x615980, imac 0x2246e0, m1 0x1d1ce4;
     void updateCustomToggleTrigger(int tag, bool toggled) = win inline, imac 0x220420, m1 0x1ce4f0;
@@ -23089,7 +23089,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     void updateTouchTriggered() = win 0x60cb20, imac 0x21b780, m1 0x1cac58;
     void updateValue(int property, float value) = win 0x6138f0, imac 0x21fbd0, m1 0x1cdc34;
     void updateValueControls(int property, float value) = win 0x60f340, imac 0x21e770, m1 0x1cc898;
-    void valueChanged(int property, float value) = win 0x60f990, imac 0x21bae0;
+    void valueChanged(int property, float value) = win 0x60f990, imac 0x21bae0, m1 0x1caf34, ios 0x1ad98c;
 
     EffectGameObject* m_gameObject;
     cocos2d::CCArray* m_gameObjects;

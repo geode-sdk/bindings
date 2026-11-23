@@ -4964,7 +4964,7 @@ class cocos2d::CCTransitionCrossFade : cocos2d::CCTransitionScene {
 [[link(win, android)]]
 class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
-    CCTransitionFade() = ios inline;
+    CCTransitionFade() = imac 0xa89d0, m1 0x96738, ios inline;
     virtual ~CCTransitionFade() = imac 0xa74d0, m1 0xa7520, ios inline;
 
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xa7660, m1 0x968d8, ios 0x266048;
