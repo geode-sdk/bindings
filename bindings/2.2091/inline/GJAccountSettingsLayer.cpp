@@ -1,6 +1,6 @@
 #include <Geode/binding/GJAccountSettingsLayer.hpp>
 
-#if !defined(GEODE_IS_MACOS)
+#if !defined(GEODE_IS_MACOS) && !defined(GEODE_IS_IOS)
 GJAccountSettingsLayer::GJAccountSettingsLayer() {
     m_accountID = 0;
     m_messageStatus = 0;

@@ -1,9 +1,11 @@
 #include <Geode/binding/PauseLayer.hpp>
 
+#if !defined(GEODE_IS_IOS)
 PauseLayer::PauseLayer() {
     m_unfocused = false;
     m_tryingQuit = false;
 }
+#endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void PauseLayer::createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool toggled, cocos2d::CCMenu* menu, cocos2d::CCPoint position) {

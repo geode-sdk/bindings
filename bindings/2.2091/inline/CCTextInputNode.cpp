@@ -1,7 +1,7 @@
 #include <Geode/binding/CCTextInputNode.hpp>
 #include <Geode/utils/general.hpp>
 
-#ifndef GEODE_IS_ARM_MAC
+#if defined(GEODE_IS_ANDROID) || defined(GEODE_IS_WINDOWS)
 CCTextInputNode::CCTextInputNode() {
     m_numberInput = false;
     m_keyboardOffset = 0.f;
