@@ -23,7 +23,7 @@
 
 #ifndef GEODE_DEFINE_ALIAS_HELPERS
 #define GEODE_DEFINE_ALIAS_HELPERS(name) \
-    auto& GEODE_BINDINGS_CONCAT(_get_member_, name)() { return name; } \
+    decltype(name)& GEODE_BINDINGS_CONCAT(_get_member_, name)() { return name; } \
     void GEODE_BINDINGS_CONCAT(_set_member_, name)(decltype(name) _value_) { name = std::move(_value_); }
 #endif
 
