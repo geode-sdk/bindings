@@ -6824,8 +6824,8 @@ class FMODAudioEngine : cocos2d::CCNode {
     void channelStopped(FMOD::Channel* channel, bool remove) = win 0x60b80, imac 0x3d28d0, m1 0x354d68;
     void channelUnlinkSound(int id) = win 0x609f0, imac 0x3d2670, m1 0x354b94;
     void clearAllAudio() = win 0x5e0d0, imac 0x3cb420, m1 0x34f0b8, ios 0x1b58b4;
-    int countActiveEffects() = win inline, imac 0x3d03b0, m1 0x352dbc;
-    int countActiveMusic() = win inline, imac 0x3d0490, m1 0x352e6c;
+    int countActiveEffects() = win inline, imac 0x3d03b0, m1 0x352dbc, ios 0x1b7d70;
+    int countActiveMusic() = win inline, imac 0x3d0490, m1 0x352e6c, ios 0x1b7d94;
     FMOD::Sound* createStream(std::string path) = win 0x65b20, imac 0x3d7610, m1 0x358cb8, ios 0x1bb820;
     void disableMetering() = win inline, imac 0x3d0a00, m1 0x3533b0, ios 0x1b8104;
     void enableMetering() = win inline, imac 0x3d09d0, m1 0x353390, ios 0x1b80e4;
@@ -6861,7 +6861,7 @@ class FMODAudioEngine : cocos2d::CCNode {
     void logLifecycleState(char const*) = win inline, ios 0x1b56ac;
     void logMixerProbe();
     void pauseAllAudio() = win inline, imac 0x3cb390, ios 0x1b582c;
-    void pauseAllMusic(bool force) = win inline, imac 0x3d3fb0, m1 0x3560d8;
+    void pauseAllMusic(bool force) = win inline, imac 0x3d3fb0, m1 0x3560d8, ios 0x1b9ccc;
     void pauseEffect(unsigned int effect) = win inline, ios inline;
     void pauseMusic(int musicChannel) = win inline, imac 0x3d7430, m1 0x358b50, ios inline;
     int playEffect(std::string path) = win 0x5f980, imac 0x3d1590, m1 0x353cd0, ios 0x1b85cc;
@@ -9228,14 +9228,14 @@ class GameStatsManager : cocos2d::CCNode {
     int getAwardedCurrencyForLevel(GJGameLevel* level, int dailyID) = win 0x2e4160;
     int getAwardedDiamondsForLevel(GJGameLevel* level) = win 0x2e48f0, imac 0x37130, m1 0x30e1c, ios 0x3d0c58;
     int getBaseCurrency(int stars, bool mainLevel, int levelID) = win inline, imac 0x364e0, m1 0x30190;
-    int getBaseCurrencyForLevel(GJGameLevel* level) = win 0x2e3e90, imac 0x36530, m1 0x301f0;
+    int getBaseCurrencyForLevel(GJGameLevel* level) = win 0x2e3e90, imac 0x36530, m1 0x301f0, ios 0x3d0500;
     int getBaseDiamonds(int stars) = win inline, imac 0x370d0, m1 0x30dd4;
     int getBonusDiamonds(int stars) = win inline, imac 0x370f0, m1 0x30de8;
     GJChallengeItem* getChallenge(int id) = win 0x2e5830, imac 0x38ea0, m1 0x32cc4, ios 0x3d1d94;
     std::string getChallengeKey(GJChallengeItem* chal) = win inline, imac 0x39200, m1 0x33074;
     int getCollectedCoinsForLevel(GJGameLevel* level) = win 0x2e1470, imac 0x328b0, m1 0x2c524, ios 0x3ce6b4;
     TodoReturn getCompletedDailyIDs(int, int);
-    cocos2d::CCArray* getCompletedMapPacks() = win 0x2e2a70, imac 0x34360, m1 0x2e0e4;
+    cocos2d::CCArray* getCompletedMapPacks() = win 0x2e2a70, imac 0x34360, m1 0x2e0e4, ios 0x3cf4b4;
     std::string getCurrencyKey(GJGameLevel* level) = win inline, imac 0x36410, m1 0x300bc;
     std::string getDailyLevelKey(int dailyID) = win inline, imac 0x39a10, m1 0x33890;
     const char* getDailyStarKey(int) = imac 0x32e90, m1 0x2cb18;
@@ -9347,7 +9347,7 @@ class GameStatsManager : cocos2d::CCNode {
     void storeSecretCoin(char const* key) = win 0x2e3980, imac 0x35d20, m1 0x2f91c;
     void storeUserCoin(char const* key) = win 0x2e3700, imac 0x35b20, ios 0x3cff54;
     void tempClear() = win inline, imac 0x36400, m1 0x300b8, ios inline;
-    void toggleEnableItem(UnlockType type, int id, bool enabled) = win 0x2e9810, imac 0x3d970, m1 0x3753c;
+    void toggleEnableItem(UnlockType type, int id, bool enabled) = win 0x2e9810, imac 0x3d970, m1 0x3753c, ios 0x3d47d0;
     void tryFixPathBug() = win 0x2da780, imac 0x316b0, m1 0x2b2d4, ios 0x3cdda0;
     void trySelectActivePath() = win 0x2da5f0, imac 0x31220, m1 0x2ad24;
     void uncompleteLevel(GJGameLevel* level) = win 0x2e2450, imac 0x33b70, m1 0x2d8b0;
@@ -19437,7 +19437,7 @@ class PlayLayer : GJBaseGameLayer, CCCircleWaveDelegate, CurrencyRewardDelegate,
     void updateDebugDrawSettings() = win 0x505c40, imac 0x7a220, ios 0x13ec40;
     void updateEffectPositions() = win inline, imac 0x88670, m1 0x7e6a8;
     void updateGameSettings() = win 0x504490, ios 0x13eac4;
-    void updateInfoLabel() = win 0x511520, m1 0x74460;
+    void updateInfoLabel() = win 0x511520, m1 0x74460, ios 0x14081c;
     void updateInvisibleBlock(GameObject* object, float rightFadeBound, float leftFadeBound, float rightFadeWidth, float leftFadeWidth, cocos2d::ccColor3B const& lbgColor) = win 0x50ee60, imac 0x85780, m1 0x7bb50;
     void updateProgressbar() = win 0x510e50, imac 0x7ef90, m1 0x75d74, ios 0x1411f8;
     void updateScreenRotation(int rotation, bool add, bool convert, float duration, int easingType, float easingRate, int uniqueID, int controlID) = win inline, imac 0x83710, m1 0x79de4, ios inline;
