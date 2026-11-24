@@ -17294,7 +17294,7 @@ class MusicDownloadDelegate {
     virtual void newsImageFailed(std::string imageKey) = inline;
 }
 
-[[link(android), depends(cocos2d::extension::CCHttpRequest, GJLinkObject)]]
+[[link(android), depends(cocos2d::extension::CCHttpRequest, GJLinkObject, NewsItem)]]
 class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     MusicDownloadManager() = win 0x480540, ios 0x1da1a0;
     virtual ~MusicDownloadManager() = win 0x482350, ios 0x1d2b8c;
@@ -17467,16 +17467,19 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::CCDictionary* m_MDLM003;
     int m_songPriority;
     std::string m_customContentURL;
+    int m_lastAudioFilesize;
+    int m_lastAudioUploadLimit;
     cocos2d::CCDictionary* m_sfxObjects;
     cocos2d::CCArray* m_sfxArtists;
-    cocos2d::CCObject* m_unk1a0;
-    cocos2d::CCObject* m_unk1a8;
+    [[renamed_from(m_unk1a0)]]
+    cocos2d::CCArray* m_sfxChangelogEntries;
     int m_sfxLibraryVersion;
     int m_sfxObjectCount;
     bool m_requestedSfxLibraryDownloaded;
     cocos2d::CCDictionary* m_musicObjects;
     cocos2d::CCDictionary* m_musicArtists;
-    cocos2d::CCObject* m_unk1d0;
+    [[renamed_from(m_unk1d0)]]
+    cocos2d::CCArray* m_musicChangelogEntries;
     std::map<int, std::string> m_musicTags;
     std::map<int, cocos2d::CCArray*> m_sortedMusicCache;
     int m_musicLibraryVersion;
@@ -17496,12 +17499,14 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     std::map<int, int> m_songUseCounts;
     cocos2d::CCDictionary* m_customSFXObjects;
     int m_nextCustomSFXID;
-    PAD = win 0x20;
-    int m_newsPages;
+    std::vector<NewsItem> m_newsItems;
+    int m_newsFeedVersion;
+    [[renamed_from(m_newsPages)]]
+    int m_latestNewsID;
     bool m_updatingNewsFeed;
-    bool m_unkBool2;
+    [[renamed_from(m_unkBool2)]]
+    bool m_triedToLoadNewsFeed;
     bool m_requestedNewsFeedUpdate;
-    int m_unkInt5;
 }
 
 [[link(android)]]
