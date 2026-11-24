@@ -13838,7 +13838,7 @@ class GManager : cocos2d::CCNode {
     std::string getCompressedSaveString() = win 0x77380, imac 0x4a4f70, m1 0x40c0dc, ios 0x2e7958;
     std::string getSaveString() = win inline, imac 0x4a4ee0, m1 0x40c058, ios 0x2e78d4;
     void load() = win inline, imac 0x4a4ec0, m1 0x40c050, ios inline;
-    void loadDataFromFile(std::string const& filename) = win 0x77850, imac 0x4a5570, m1 0x40c6dc;
+    void loadDataFromFile(std::string const& filename) = win 0x77850, imac 0x4a5570, m1 0x40c6dc, ios 0x2e7ed0;
     void loadFromCompressedString(std::string& str) = win 0x77450, imac 0x4a5090, m1 0x40c208, ios 0x2e7a74;
     void loadFromString(std::string& str) = win inline, imac 0x4a4fe0, m1 0x40c15c, ios 0x2e79c8;
     bool save(bool async) = win 0x77530, imac 0x4a5110, m1 0x40c2ac;
