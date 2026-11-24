@@ -18131,6 +18131,7 @@ class ParentalOptionsLayer : FLAlertLayer {
     int m_page;
     int m_toggleCount;
     int m_maxPage;
+    bool m_reloadMenu;
     cocos2d::CCDictionary* m_values;
     cocos2d::CCDictionary* m_variables;
     CCMenuItemToggler* m_safeModeToggler;
