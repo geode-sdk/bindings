@@ -1721,11 +1721,15 @@ class CCMenuExtra : cocos2d::CCMenu {
 
 	void disableRepeatPress();
 	void enableRepeatPress() = ios 0x2afe18;
-	void enableRepeatPress(float, float);
+	void enableRepeatPress(float delay, float interval);
 	void fireSelectedItem();
 	void repeatSelectionChanged();
-	void repeatTick(float) = ios 0x2afff4;
+	void repeatTick(float dt) = ios 0x2afff4;
 	void stopRepeat();
+
+	float m_repeatDelay;
+	float m_repeatInterval;
+	bool m_repeatActive;
 }
 
 [[link(android)]]
