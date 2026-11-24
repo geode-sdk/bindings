@@ -6,6 +6,7 @@ DailyLevelNode::DailyLevelNode() {
     m_level = nullptr;
     m_page = nullptr;
     m_timeLabel = nullptr;
+    m_skipButton = nullptr;
     m_unkBool = false;
     m_needsDownloading = false;
 }
@@ -36,4 +37,3 @@ DailyLevelNode* DailyLevelNode::create(GJGameLevel* level, DailyLevelPage* page,
 
 #if defined(GEODE_IS_IOS)
 #endif
-

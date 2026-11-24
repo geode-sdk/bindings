@@ -8,6 +8,17 @@
 #if defined(GEODE_IS_WINDOWS)
 #include <sys/types.h>
 #include <sys/timeb.h>
+DailyLevelPage::DailyLevelPage() {
+    m_timeLabel = nullptr;
+    m_timeCircle = nullptr;
+    m_nodeCircle = nullptr;
+    m_gettingDailyStatus = false;
+    m_dailyNode = nullptr;
+    m_downloadStarted = false;
+    m_type = GJTimedLevelType::Daily;
+    m_downloadLevelID = 0;
+}
+
 void DailyLevelPage::FLAlert_Clicked(FLAlertLayer* layer, bool btn2) {}
 
 int DailyLevelPage::getDailyTime() {
@@ -31,4 +42,3 @@ void DailyLevelPage::refreshDailyPage() {
 
 #if defined(GEODE_IS_IOS)
 #endif
-
