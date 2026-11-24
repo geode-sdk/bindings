@@ -11100,7 +11100,7 @@ class GJEffectManager : cocos2d::CCNode {
     float opacityForIndex(int index) = win inline, imac 0x2c8eb0, m1 0x268074, ios inline;
     float opacityModForGroup(int id) = win 0x36b2c0, imac 0x2d2c50, m1 0x26ffd4;
     void pauseTimer(int id) = win inline;
-    void playerButton(bool down, bool player1) = win 0x36c910, imac 0x2d43e0, m1 0x2713b4;
+    void playerButton(bool down, bool player1) = win 0x36c910, imac 0x2d43e0, m1 0x2713b4, ios 0x151c4;
     void playerDied() = win inline, imac 0x2d4750, m1 0x2716c4;
     void postCollisionCheck() = win 0x3665c0, imac 0x2cad10, m1 0x269b50, ios 0x10684;
     void postMoveActions() = win 0x36af30, imac 0x2d2170, m1 0x26f754;

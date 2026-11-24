@@ -9,7 +9,7 @@ extern "C" void kmGLScalef(float x, float y, float z) {
 }
 
 extern "C" kmMat4* const kmMat4Scaling(kmMat4* mat, float const x, float const y, float const z) {
-    mat->mat = {};
+    std::memset(mat, 0, sizeof(kmMat4));
     mat->mat[0] = x;
     mat->mat[5] = y;
     mat->mat[10] = z;

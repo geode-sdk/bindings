@@ -30,7 +30,7 @@ void kmGLPushMatrix() = imac 0x1eb2c0, m1 0x19d8d4, ios 0x1f1340;
 [[link(win, android)]]
 void kmGLRotatef(float, float, float, float) = imac 0x1eb470, m1 0x19da94;
 [[link(win, android)]]
-void kmGLScalef(float x, float y, float z) = imac 0x1eb4d0, m1 0x19daf8, ios inline;
+void kmGLScalef(float x, float y, float z) = imac 0x1eb4d0, m1 0x19daf8;
 [[link(win, android)]]
 void kmGLTranslatef(float, float, float) = imac 0x1eb430, m1 0x19da5c, ios 0x1f1498;
 [[link(win, android)]]
@@ -120,7 +120,7 @@ kmMat4* const kmMat4RotationY(kmMat4*, float const) = imac 0x3bd1e0, m1 0x342708
 [[link(win, android)]]
 kmMat4* const kmMat4RotationZ(kmMat4*, float const) = m1 0x342768;
 [[link(win, android)]]
-kmMat4* const kmMat4Scaling(kmMat4* mat, float const x, float const y, float const z) = imac 0x3bd550, m1 0x3429a4, ios inline;
+kmMat4* const kmMat4Scaling(kmMat4* mat, float const x, float const y, float const z) = imac 0x3bd550, m1 0x3429a4;
 [[link(win, android)]]
 kmMat4* const kmMat4Translation(kmMat4*, float const, float const, float const) = imac 0x3bd580, m1 0x3429c8, ios 0x459e48;
 [[link(win, android)]]
