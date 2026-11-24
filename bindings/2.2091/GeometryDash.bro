@@ -3890,7 +3890,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void updateSongInfo() = win 0x16c380, imac 0x6f9ad0, m1 0x60b8bc, ios 0x12049c;
     void updateSongObject(SongInfoObject* songInfo) = win inline, imac 0x6f9a30, m1 0x60b818, ios 0x120430;
     void updateUsageButton() = win 0x16acc0;
-    void updateWithMultiAssets(std::string songList, std::string sfxList, int bytes) = win 0x16d380, imac 0x6fb930, m1 0x60d534;
+    void updateWithMultiAssets(std::string songList, std::string sfxList, int bytes) = win 0x16d380, imac 0x6fb930, m1 0x60d534, ios 0x121e24;
     bool verifySongID(int id) = win inline, imac 0x6fc960, m1 0x60e4d8, ios inline;
 
     SongInfoObject* m_songInfoObject;
@@ -16295,7 +16295,7 @@ class LevelTools {
     static float getLastTimewarp() = win inline, imac 0x500510, m1 0x45c814;
     static GJGameLevel* getLevel(int id, bool noString) = win 0x45ffe0, imac 0x4fa7a0, m1 0x457480;
     static std::unordered_set<int> getLevelList() = win 0x9999999, imac 0x4fa460, m1 0x4570cc;
-    static SongInfoObject* getSongObject(int id) = win 0x467d40, imac 0x500540, m1 0x45c838;
+    static SongInfoObject* getSongObject(int id) = win 0x467d40, imac 0x500540, m1 0x45c838, ios 0x23dedc;
     static void moveTriggerObjectsToArray(cocos2d::CCArray* objects, cocos2d::CCDictionary* objectsDict, int index) = win 0x468130, imac 0x501040, m1 0x45d114;
     static std::string nameForArtist(int id) = win 0x464040, imac 0x4fd850, m1 0x459ff8;
     static std::string ngURLForArtist(int id) = win 0x4655c0, imac 0x4fe4d0, m1 0x45a8a4;
