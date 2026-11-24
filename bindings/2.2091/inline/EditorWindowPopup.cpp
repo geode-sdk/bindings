@@ -1,5 +1,7 @@
 #include <Geode/binding/EditorWindowPopup.hpp>
 
+void EditorWindowPopup::onBuildWindowContent() {}
+
 void EditorWindowPopup::onWindowResized() {}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
