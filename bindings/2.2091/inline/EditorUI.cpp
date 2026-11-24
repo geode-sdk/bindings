@@ -185,7 +185,9 @@ void EditorUI::updateGroupIDBtn2() {
     m_goToBaseBtn->setVisible(m_editorLayer->m_currentLayer >= 0);
     m_layerPlusBtn->setVisible(!(m_editorLayer->m_currentLayer >= 0));
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS)
 void EditorUI::zoomGameLayer(bool zoomingIn) {
     auto scale = m_editorLayer->m_objectLayer->getScale();
     auto zoom = roundf((zoomingIn ? scale + .1f : scale - .1f) / .1f + .001f) * .1f;
@@ -193,9 +195,7 @@ void EditorUI::zoomGameLayer(bool zoomingIn) {
     else if (zoom < .1f) zoom = .1f;
     this->updateZoom(zoom);
 }
-#endif
 
-#if defined(GEODE_IS_WINDOWS)
 void EditorUI::constrainGameLayerPosition() {
     this->constrainGameLayerPosition(-100.f, -100.f);
 }

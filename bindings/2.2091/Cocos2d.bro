@@ -1818,17 +1818,17 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // bool getShiftKeyPressed() const;
     // void setBlockRepeat(bool);
     // CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
-    CCKeyboardDispatcher();
-    virtual ~CCKeyboardDispatcher();
+    CCKeyboardDispatcher() = ios 0x2d6404;
+    virtual ~CCKeyboardDispatcher() = ios 0x2d6514;
 
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = imac 0x1e6600;
 
     void addDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x6d04e0, m1 0x4ed244;
     bool dispatchKeyboardMSG(cocos2d::enumKeyCodes, bool, bool, double) = imac 0x1e5d80, m1 0x19947c;
     void forceAddDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x6d0530, m1 0x4ed2a0;
-    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5c70;
+    void forceRemoveDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5c70, ios 0x2d6574;
     char const* keyToString(cocos2d::enumKeyCodes) = imac 0x1e6ab0, m1 0x199fc4;
-    void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5bc0;
+    void removeDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x1e5bc0, m1 0x199288, ios 0x2d652c;
     void updateModifierKeys(bool, bool, bool, bool) = imac 0x1e6a70, m1 0x199fac;
 
     [[renamed_from(m_pDelegates)]]
@@ -1853,7 +1853,7 @@ class cocos2d::CCKeyboardHandler : cocos2d::CCObject {
 
     virtual bool initWithDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x42bc80, m1 0x3a2f2c, ios 0x2b3484;
 
-    cocos2d::CCKeyboardDelegate* getDelegate() = imac 0x42bae0;
+    cocos2d::CCKeyboardDelegate* getDelegate() = imac 0x42bae0, m1 0x3a2db0, ios 0x2b3410;
     void setDelegate(cocos2d::CCKeyboardDelegate*) = imac 0x42bc10;
 }
 
@@ -1867,7 +1867,7 @@ class cocos2d::CCKeypadDispatcher : cocos2d::CCObject {
     bool dispatchKeypadMSG(cocos2d::ccKeypadMSGType) = imac 0x6d0560, m1 0x5e78b8, ios 0x242550;
     void forceAddDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d0530, m1 0x5e787c, ios 0x242514;
     void forceRemoveDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d0450, ios 0x242438;
-    void removeDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d03a0, ios 0x2423f0;
+    void removeDelegate(cocos2d::CCKeypadDelegate*) = imac 0x6d03a0, m1 0x5e76c4, ios 0x2423f0;
 
     [[renamed_from(m_pDelegates)]]
     cocos2d::CCArray* m_pHandlers;
@@ -2388,8 +2388,8 @@ class cocos2d::CCMenu : cocos2d::CCLayerRGBA {
 
     // CCMenu(cocos2d::CCMenu const&);
     // CCMenu();
-    void alignItemsHorizontally() = imac 0x874300, ios 0x270dc0;
-    void alignItemsHorizontallyWithPadding(float) = imac 0x874320, ios 0x270dc8;
+    void alignItemsHorizontally() = imac 0x874300, m1 0x76a8b0, ios 0x270dc0;
+    void alignItemsHorizontallyWithPadding(float) = imac 0x874320, m1 0x76a8b8, ios 0x270dc8;
     void alignItemsInColumns(unsigned int, ...) = inline;
     void alignItemsInColumns(unsigned int, va_list) = imac 0x874610, m1 0x76aad8, ios inline;
     void alignItemsInColumnsWithArray(cocos2d::CCArray*) = imac 0x8746e0, m1 0x76ab8c, ios inline;
@@ -4964,7 +4964,7 @@ class cocos2d::CCTransitionCrossFade : cocos2d::CCTransitionScene {
 [[link(win, android)]]
 class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
-    CCTransitionFade() = ios inline;
+    CCTransitionFade() = imac 0xa89d0, m1 0x96738, ios inline;
     virtual ~CCTransitionFade() = imac 0xa74d0, m1 0xa7520, ios inline;
 
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xa7660, m1 0x968d8, ios 0x266048;
@@ -5976,8 +5976,8 @@ class cocos2d::extension::CCTableViewCell : cocos2d::CCNode, cocos2d::extension:
 class cocos2d::ZipUtils {
     static std::string base64DecodeEnc(std::string const&, std::string) = imac 0x1e8c80, m1 0x19b234, ios 0x2dadc8;
     static std::string base64EncodeEnc(std::string const&, std::string) = imac 0x1e8ec0, m1 0x19b4a8, ios 0x2dafec;
-    static std::string base64URLDecode(std::string const&) = imac 0x1e9100, ios 0x2db24c;
-    static std::string base64URLEncode(std::string const&) = imac 0x1e91e0, ios 0x2db33c;
+    static std::string base64URLDecode(std::string const&) = imac 0x1e9100, m1 0x19b718, ios 0x2db24c;
+    static std::string base64URLEncode(std::string const&) = imac 0x1e91e0, m1 0x19b824, ios 0x2db33c;
     // static void ccDecodeEncodedPvr(unsigned int*, int);
     static int ccDeflateMemory(unsigned char* data, unsigned int size, unsigned char** out, int level) = imac 0x1e85c0, m1 0x19ab48, ios 0x2da7e8;
     // static int ccInflateCCZFile(char const*, unsigned char**);
