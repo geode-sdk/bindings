@@ -1,3 +1,5 @@
+#include <Geode/binding/CCMenuItemToggler.hpp>
+#include <Geode/mapping/CCLabelBMFont.hpp>
 #include <Geode/binding/CharacterColorPage.hpp>
 #include <Geode/binding/GameManager.hpp>
 

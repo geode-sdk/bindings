@@ -1,3 +1,4 @@
+#include <Geode/mapping/DS_Dictionary.hpp>
 #include <Geode/binding/GJRewardObject.hpp>
 
 

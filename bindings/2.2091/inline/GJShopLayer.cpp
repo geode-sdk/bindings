@@ -1,3 +1,4 @@
+#include <Geode/mapping/CCDirector.hpp>
 #include <Geode/binding/GJShopLayer.hpp>
 #include <Geode/binding/GameManager.hpp>
 #include <Geode/cocos/touch_dispatcher/CCTouchDispatcher.h>

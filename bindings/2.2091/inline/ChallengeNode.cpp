@@ -1,3 +1,4 @@
+#include <Geode/mapping/CCLabelBMFont.hpp>
 #include <Geode/binding/ChallengeNode.hpp>
 
 #if !defined(GEODE_IS_IOS)
