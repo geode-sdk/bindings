@@ -162,7 +162,7 @@ bool FMODAudioEngine::isAnyPersistentPlaying() {
 }
 
 void FMODAudioEngine::loadMusic(std::string path) {
-    this->loadMusic(path, 1.f, 0.f, 1.f, false, 0, 0, false);
+    this->loadMusic(std::move(path), 1.f, 0.f, 1.f, false, 0, 0, false);
 }
 
 void FMODAudioEngine::pauseAllAudio() {
@@ -182,7 +182,7 @@ void FMODAudioEngine::pauseAllMusic(bool force) {
 }
 
 int FMODAudioEngine::playEffectAsync(std::string path) {
-    return this->playEffectAdvanced(path, 1.f, 0.f, 1.f, 0.f, false, false, 0, 0, 0, 0, false, 0, false, true, 0, 0, 0.f, 0);
+    return this->playEffectAdvanced(std::move(path), 1.f, 0.f, 1.f, 0.f, false, false, 0, 0, 0, 0, false, 0, false, true, 0, 0, 0.f, 0);
 }
 
 void FMODAudioEngine::releaseRemovedSounds() {

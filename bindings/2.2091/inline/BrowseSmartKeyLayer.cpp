@@ -16,7 +16,7 @@ BrowseSmartKeyLayer::BrowseSmartKeyLayer() {
 #if defined(GEODE_IS_WINDOWS)
 BrowseSmartKeyLayer* BrowseSmartKeyLayer::create(GJSmartTemplate* smartTemplate, std::string prefabKey) {
     auto ret = new BrowseSmartKeyLayer();
-    if (ret->init(smartTemplate, prefabKey)) {
+    if (ret->init(smartTemplate, std::move(prefabKey))) {
         ret->autorelease();
         return ret;
     }

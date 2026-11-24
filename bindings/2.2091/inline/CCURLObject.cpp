@@ -3,8 +3,8 @@
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 bool CCURLObject::init(std::string name, std::string url) {
-    m_name = name;
-    m_url = url;
+    m_name = std::move(name);
+    m_url = std::move(url);
     return true;
 }
 #endif

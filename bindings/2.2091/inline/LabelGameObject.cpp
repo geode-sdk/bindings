@@ -35,7 +35,7 @@ LabelGameObject* LabelGameObject::create() {
 
 void LabelGameObject::queueUpdateLabel(std::string text) {
     if (!m_updateLabel) {
-        m_labelString = text;
+        m_labelString = std::move(text);
         m_labelDirty = true;
     }
 }

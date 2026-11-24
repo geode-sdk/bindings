@@ -91,7 +91,7 @@ void SetupTriggerPopup::closeInputNodes() {
 #endif
 
 void SetupTriggerPopup::createValueControlWArrows(int property, std::string label, cocos2d::CCPoint position, float scale) {
-    this->createValueControlAdvanced(property, label, position, scale, true, InputValueType::Int, 6, true, 0.f, 0.f, 0, 0, GJInputStyle::GoldLabel, 2, false);
+    this->createValueControlAdvanced(property, std::move(label), position, scale, true, InputValueType::Int, 6, true, 0.f, 0.f, 0, 0, GJInputStyle::GoldLabel, 2, false);
 }
 
 float SetupTriggerPopup::getMaxSliderValue(int property) {

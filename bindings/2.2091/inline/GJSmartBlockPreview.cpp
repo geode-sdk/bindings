@@ -21,7 +21,7 @@ void GJSmartBlockPreview::createInfoLabel() {
 bool GJSmartBlockPreview::init(std::string key) {
     if (!cocos2d::CCNode::init()) return false;
     this->setContentSize({ 90.f, 90.f });
-    m_prefabKey = key;
+    m_prefabKey = std::move(key);
     return true;
 }
 

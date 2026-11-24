@@ -388,7 +388,7 @@ void GameStatsManager::storeChallengeTime(int remaining) {
 }
 
 void GameStatsManager::storeOnlineChest(std::string key, GJRewardItem* item) {
-    if (item) m_allSpecialChests->setObject(item, key);
+    if (item) m_allSpecialChests->setObject(item, std::move(key));
 }
 
 void GameStatsManager::storePendingUserCoin(char const* key) {
@@ -442,7 +442,7 @@ std::string GameStatsManager::usernameForAccountID(int id) {
 
 #if defined(GEODE_IS_IOS)
 void GameStatsManager::addSpecialRewardDescription(std::string key, std::string description) {
-    m_specialRewardDescriptions[key] = description;
+    m_specialRewardDescriptions[std::move(key)] = std::move(description);
 }
 #endif
 

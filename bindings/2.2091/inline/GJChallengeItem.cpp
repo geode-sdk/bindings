@@ -48,7 +48,7 @@ bool GJChallengeItem::init(GJChallengeType challengeType, int goal, int reward, 
     m_goal = goal;
     m_reward = reward;
     m_timeLeft = timeLeft;
-    m_name = questName;
+    m_name = std::move(questName);
     return true;
 }
 #endif

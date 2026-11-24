@@ -23,8 +23,9 @@ void CCSpritePart::setBeingUsed(bool beingUsed) {
 }
 
 void CCSpritePart::updateDisplayFrame(std::string frame) {
-    this->frameChanged(frame);
-    this->setDisplayFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frame.c_str()));
+    auto spriteFrame = cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frame.c_str());
+    this->frameChanged(std::move(frame));
+    this->setDisplayFrame(spriteFrame);
 }
 #endif
 

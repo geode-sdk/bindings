@@ -244,9 +244,9 @@ void GJSmartTemplate::savePrefab(std::string key, std::string data) {
     }
     auto prefab = GJSmartPrefab::create();
     prefab->m_prefabKey = key;
-    prefab->m_prefabData = data;
+    prefab->m_prefabData = std::move(data);
     prefabArray->addObject(prefab);
-    this->saveRemap(key);
+    this->saveRemap(std::move(key));
 }
 #endif
 

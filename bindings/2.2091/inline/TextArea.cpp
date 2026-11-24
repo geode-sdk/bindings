@@ -68,7 +68,7 @@ bool TextArea::init(std::string str, char const* font, float scale, float width,
     m_maxEmoji = maxEmoji;
     m_height = lineHeight;
     m_disableColor = disableColor;
-    this->setString(str);
+    this->setString(std::move(str));
     return true;
 }
 

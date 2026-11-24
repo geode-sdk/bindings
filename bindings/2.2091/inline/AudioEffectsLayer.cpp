@@ -26,7 +26,7 @@ AudioEffectsLayer::~AudioEffectsLayer() {
 
 AudioEffectsLayer* AudioEffectsLayer::create(std::string audioString) {
     auto ret = new AudioEffectsLayer();
-    if (ret->init(audioString)) {
+    if (ret->init(std::move(audioString))) {
         ret->autorelease();
         return ret;
     }

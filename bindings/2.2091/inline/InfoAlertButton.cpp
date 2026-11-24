@@ -10,8 +10,8 @@ bool InfoAlertButton::init(std::string title, std::string desc, float spriteScal
     infoSprite->setScale(spriteScale);
     if (!CCMenuItemSpriteExtra::init(infoSprite, nullptr, nullptr, nullptr)) return false;
     this->setSizeMult(1.5f);
-    m_title = title;
-    m_description = desc;
+    m_title = std::move(title);
+    m_description = std::move(desc);
     return true;
 }
 #endif

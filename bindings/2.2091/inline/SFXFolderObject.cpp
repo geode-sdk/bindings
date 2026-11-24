@@ -13,7 +13,7 @@ SFXFolderObject::~SFXFolderObject() {
 }
 
 bool SFXFolderObject::init(int id, std::string name, int folderID) {
-    if (!SFXInfoObject::init(id, name, folderID, 0, 0)) return false;
+    if (!SFXInfoObject::init(id, std::move(name), folderID, 0, 0)) return false;
     m_sfxObjects = cocos2d::CCArray::create();
     m_sfxObjects->retain();
     return true;

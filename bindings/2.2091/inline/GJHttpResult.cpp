@@ -8,7 +8,7 @@ GJHttpResult::GJHttpResult() {
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 GJHttpResult* GJHttpResult::create(bool success, std::string response, std::string tag, GJHttpType type) {
     auto ret = new GJHttpResult();
-    if (ret->init(success, response, tag, type)) {
+    if (ret->init(success, std::move(response), std::move(tag), type)) {
         ret->autorelease();
         return ret;
     }
@@ -19,8 +19,8 @@ GJHttpResult* GJHttpResult::create(bool success, std::string response, std::stri
 bool GJHttpResult::init(bool success, std::string response, std::string tag, GJHttpType type) {
     if (!cocos2d::CCNode::init()) return false;
     m_success = success;
-    m_response = response;
-    m_requestTag = tag;
+    m_response = std::move(response);
+    m_requestTag = std::move(tag);
     m_httpType = type;
     return true;
 }

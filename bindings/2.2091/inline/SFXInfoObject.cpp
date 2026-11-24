@@ -15,7 +15,7 @@ SFXInfoObject::SFXInfoObject() {
 #if defined(GEODE_IS_IOS)
 bool SFXInfoObject::init(int id, std::string name, int folderID, int size, int duration) {
     m_sfxID = id;
-    m_name = name;
+    m_name = std::move(name);
     m_folderID = folderID;
     m_size = size;
     m_duration = duration;

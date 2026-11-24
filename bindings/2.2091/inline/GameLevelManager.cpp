@@ -218,7 +218,7 @@ cocos2d::CCArray* GameLevelManager::createAndGetAccountComments(std::string str,
 
 // TODO: 2.209
 cocos2d::CCArray* GameLevelManager::createAndGetLevelComments(std::string str, int levelID, CommentKeyType type) {
-    return this->createAndGetCommentsFull(str, levelID, false, type);
+    return this->createAndGetCommentsFull(std::move(str), levelID, false, type);
 }
 
 std::string GameLevelManager::createPageInfo(int total, int start, int count) {
@@ -473,7 +473,7 @@ const char* GameLevelManager::getTopArtistsKey(int page) {
 }
 
 void GameLevelManager::handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) {
-    auto result = GJHttpResult::create(true, response, tag, type);
+    auto result = GJHttpResult::create(true, std::move(response), std::move(tag), type);
     result->retain();
     m_pActionManager->addAction(cocos2d::CCSequence::create(
         cocos2d::CCDelayTime::create(.1f),
@@ -591,11 +591,11 @@ void GameLevelManager::onDeleteServerLevelListCompleted(std::string response, st
 }
 
 void GameLevelManager::onDownloadLevelCompleted(std::string response, std::string tag) {
-    this->processOnDownloadLevelCompleted(response, tag, false);
+    this->processOnDownloadLevelCompleted(std::move(response), std::move(tag), false);
 }
 
 void GameLevelManager::onReadFriendRequestCompleted(std::string response, std::string tag) {
-    m_friendReqAndUserBlocks->removeObjectForKey(tag);
+    m_friendReqAndUserBlocks->removeObjectForKey(std::move(tag));
 }
 
 void GameLevelManager::onSetLevelFeaturedCompleted(std::string response, std::string tag) {}
@@ -603,9 +603,9 @@ void GameLevelManager::onSetLevelFeaturedCompleted(std::string response, std::st
 void GameLevelManager::onSubmitUserInfoCompleted(std::string response, std::string tag) {}
 
 void GameLevelManager::onUpdateLevelCompleted(std::string response, std::string tag) {
-    this->processOnDownloadLevelCompleted(response, tag, true);
+    this->processOnDownloadLevelCompleted(std::move(response), std::move(tag), true);
 }
-
+    
 void GameLevelManager::onUploadLevelListCompleted(std::string response, std::string tag) {
     m_queuedLists.erase(tag);
     auto listID = atoi(response.c_str());
@@ -804,11 +804,11 @@ void GameLevelManager::updateUsernames() {
 }
 
 void GameLevelManager::uploadAccountComment(std::string content) {
-    this->uploadComment(content, CommentType::Account, 0, 0);
+    this->uploadComment(std::move(content), CommentType::Account, 0, 0);
 }
 
 void GameLevelManager::uploadLevelComment(int levelID, std::string content, int percent) {
-    this->uploadComment(content, CommentType::Level, levelID, percent);
+    this->uploadComment(std::move(content), CommentType::Level, levelID, percent);
 }
 
 int GameLevelManager::userIDForAccountID(int id) {

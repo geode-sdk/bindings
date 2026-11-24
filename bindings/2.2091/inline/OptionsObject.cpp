@@ -5,7 +5,7 @@
 bool OptionsObject::init(int id, bool enabled, std::string name, OptionsObjectDelegate* delegate) {
     m_optionID = id;
     m_enabled = enabled;
-    m_name = name;
+    m_name = std::move(name);
     m_delegate = delegate;
     return true;
 }
