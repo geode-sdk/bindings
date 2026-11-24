@@ -91,8 +91,8 @@ cocos2d::ccColor3B GJEffectManager::activeColorForIndex(int index) {
 }
 
 float GJEffectManager::activeOpacityForIndex(int index) {
-    if (auto sprite = this->getColorSprite(index)) return sprite->m_opacity;
-    else return 1.f;
+    ColorActionSprite* sprite = getColorSprite(index);
+    return sprite ? sprite->m_opacity / 255.f : 1.f;
 }
 
 void GJEffectManager::addCountToItem(int itemId, int value) {
