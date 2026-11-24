@@ -1243,7 +1243,7 @@ class BoomScrollLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void setupDynamicScrolling(cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x40ec0, imac 0x38ee80, m1 0x3193c0;
     void togglePageIndicators(bool visible) = imac 0x38f9f0, m1 0x319dac, ios 0x155918;
     void updateDots(float dt) = win 0x41290, imac 0x38f0f0, m1 0x319624, ios 0x155488;
-    void updatePages() = win 0x41170, imac 0x38e6f0, m1 0x318c50;
+    void updatePages() = win 0x41170, imac 0x38e6f0, m1 0x318c50, ios 0x154dfc;
 
     cocos2d::CCArray* m_dots;
     int m_slowPage;
