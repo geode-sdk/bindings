@@ -2193,10 +2193,10 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual void keyboardWillShow(cocos2d::CCIMEKeyboardNotificationInfo& info) = win 0x56f10, imac 0x696b0, m1 0x62b90, ios 0x1fd230;
     virtual void keyboardWillHide(cocos2d::CCIMEKeyboardNotificationInfo& info) = win 0x57030, imac 0x69880, m1 0x62d18, ios 0x1fd3f8;
     virtual bool onTextFieldInsertText(cocos2d::CCTextFieldTTF* pSender, char const* text, int nLen, cocos2d::enumKeyCodes keyCodes) = win 0x571f0, imac 0x69b70, m1 0x63008, ios 0x1fd5d0;
+    virtual bool onTextFieldDeleteBackward(cocos2d::CCTextFieldTTF*, char const*, int) = win 0x55810, imac 0x684c0, m1 0x6192c, ios 0x1fc7e8;
     virtual bool onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x57b70, imac 0x6aa60, m1 0x63f6c, ios 0x1fdefc;
     virtual bool onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF* tField) = win 0x57e50, imac 0x6ae00, m1 0x642bc, ios 0x1fe17c;
     virtual void onExit() = win 0x58fb0, imac 0x6c7c0, m1 0x65974, ios 0x1ff414;
-    virtual bool onTextFieldDeleteBackward(cocos2d::CCTextFieldTTF*, char const*, int) = win 0x55810, imac 0x684c0, m1 0x6192c, ios 0x1fc7e8;
     virtual bool scrollWheel(float, float) = win 0x595c0, imac 0x6d040, m1 0x661dc, ios 0x1ff8f0;
     virtual bool rightClick(float, float) = win 0x59150, imac 0x6c9b0, m1 0x65b60, ios 0x1ff590;
 
@@ -5265,6 +5265,7 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void colorSelectClosed(cocos2d::CCNode* popup) = win 0x1bed60, imac 0x19e00, m1 0x16ae4, ios 0x47cc48;
     virtual void keyUp(cocos2d::enumKeyCodes key, double timestamp) = win 0x3f5c0, imac 0x60b6e0, m1 0x54b76c, ios 0x16251c;
     virtual bool handleAction(int action, bool down, double timestamp) = win 0x1c1bf0, imac 0x60b700, m1 0x54b774, ios 0x162524;
+    virtual bool scrollWheel(float y, float x) = win 0x1c50b0, imac 0x60e190, m1 0x54d3f8, ios 0x164038;
     virtual void angleChangeBegin() = win 0x202790, imac 0x611c00, m1 0x550a78, ios 0x15fbb4;
     virtual void angleChangeEnded() = win inline, imac 0x611c40, m1 0x550a94, ios 0x15fbd0;
     virtual void angleChanged(float rotation, bool lock) = win 0x2027a0, imac 0x611c60, m1 0x550a9c, ios 0x15fbd8;
@@ -5275,7 +5276,6 @@ class EditorUI : cocos2d::CCLayer, FLAlertLayerProtocol, ColorSelectDelegate, GJ
     virtual void scaleXChanged(float scaleX, bool lock) = win 0x202ff0, imac 0x613110, m1 0x551c60, ios 0x160290;
     virtual void scaleYChanged(float scaleY, bool lock) = win 0x2030f0, imac 0x613250, m1 0x551d94, ios 0x160338;
     virtual void scaleXYChanged(float scaleX, float scaleY, bool lock) = win 0x2031f0, imac 0x613390, m1 0x551ec8, ios 0x1603e0;
-    virtual bool scrollWheel(float y, float x) = win 0x1c50b0, imac 0x60e190, m1 0x54d3f8, ios 0x164038;
 
     void activateRotationControl(cocos2d::CCObject* sender) = win 0x2025e0, imac 0x60ea80, m1 0x54dc4c, ios 0x15d298;
     void activateScaleControl(cocos2d::CCObject* sender) = win 0x202bc0, imac 0x612bc0, m1 0x55180c, ios 0x15fef0;
