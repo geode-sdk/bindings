@@ -1,3 +1,4 @@
+#include <Geode/binding/GJListLayer.hpp>
 #include <Geode/binding/GJSongBrowser.hpp>
 #include <Geode/binding/CCMenuItemSpriteExtra.hpp>
 #include <Geode/binding/CustomListView.hpp>
