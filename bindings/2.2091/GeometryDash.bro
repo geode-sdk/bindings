@@ -6143,7 +6143,7 @@ class EmotePickerPopup : EditorWindowPopup {
     bool canAddEmote() = win 0x124520, imac 0x903a70, m1 0x7eaa58, ios 0x4dbc54;
     bool init(CCTextInputNode* input, cocos2d::CCPoint position, int maxEmotes, int maxLength) = win 0x123970, imac 0x902680, m1 0x7e96b8, ios 0x4dae1c;
     void layoutEmoteGrid() = win 0x124050, imac 0x9034d0, m1 0x7ea548, ios 0x4db810;
-    void onPickEmote(cocos2d::CCObject* sender) = win 0x124780, ios 0x4dba40;
+    void onPickEmote(cocos2d::CCObject* sender) = win 0x124780, imac 0x9037c0, m1 0x7ea788, ios 0x4dba40;
     void refreshEnabled() = win 0x124640, imac 0x902d30, m1 0x7e9d00, ios 0x4db328;
 
     CCTextInputNode* m_input;
@@ -6164,7 +6164,7 @@ class EmoteSprite : cocos2d::CCSprite {
     static EmoteSprite* createWithName(std::string const&) = win 0x7f1e0, m1 0x7eb598, imac 0x904590, ios 0x4dc61c;
 
     static void attachToLabel(cocos2d::CCLabelBMFont* label, cocos2d::CCNode* parent, std::vector<EmoteToken> const& tokens, float heightFactor) = win 0x80140, ios 0x4dcfb8;
-    static EmoteDef* defForName(std::string const& name) = win 0x7EFA0, ios 0x4dc380;
+    static EmoteDef* defForName(std::string const& name) = win 0x7EFA0, imac 0x9042c0, m1 0x7eb1e0, ios 0x4dc380;
     static std::string translateUnicodeEmoji(std::string const& text) = win 0x7F330, ios 0x4dc788;
     static float heightFactor() = win inline;
     static float jumboMaxAspect() = win inline;
