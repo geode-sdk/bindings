@@ -8880,7 +8880,7 @@ class GameObject : CCSpritePlus {
     [[renamed_from(m_unk3ee)]]
     bool m_shouldDeactivate;
     bool m_isInvisible;
-    int m_unk3D8;
+    float m_unk3D8;
     short m_varianceIndex;
     bool m_unk3DE;
     short m_enterType;
@@ -18511,6 +18511,7 @@ class PlayerCheckpoint : cocos2d::CCNode {
     double m_yVelocityBeforeSlope;
     double m_slopeStartTime;
     bool m_justPlacedStreak;
+    bool m_wasCollidingTopOrBottom;
     int m_lastCollisionBottom;
     int m_lastCollisionTop;
     int m_lastCollisionLeft;
@@ -18615,8 +18616,8 @@ class PlayerCheckpoint : cocos2d::CCNode {
     bool m_switchDashFireColor;
     int m_stateOnGround;
     float m_unusedFloatA80;  // unused as of 2.2091
-    int m_stateBoostX;
     int m_stateBoostY;
+    int m_stateBoostX;
     int m_stateNoWallPush; // state counter
     int m_stateScale;
     double m_platformerXVelocity;
@@ -19199,11 +19200,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     int m_stateOnGround;
     [[renamed_from(m_stateUnk)]]
     float m_unusedFloatA80; // unused as of 2.2091
-    unsigned char m_stateNoStickX;
-    unsigned char m_stateNoStickY;
-    unsigned char m_stateUnk2;
-    int m_stateBoostX;
     int m_stateBoostY;
+    int m_stateBoostX;
     [[renamed_from(m_maybeStateForce2)]]
     int m_stateNoWallPush; // state counter
     int m_stateScale;
@@ -19227,6 +19225,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     double m_platformRideTime; // time spent on a moving platform
     [[renamed_from(m_isOnGround4)]]
     bool m_wasTouchingGround; // m_touchingGround of the previous step
+    bool m_wasCollidingTopOrBottom; // m_collidedTopMinY != 0 || m_collidedBottomMaxY != 0 of the previous step
     [[renamed_from(m_maybeSlidingTime)]]
     int m_slopeJumpCount; // jumps made while a steep slope forces a slide in platformer mode
     [[renamed_from(m_maybeSlidingStartTime)]]
