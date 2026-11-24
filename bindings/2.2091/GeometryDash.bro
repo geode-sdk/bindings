@@ -13843,7 +13843,7 @@ class GManager : cocos2d::CCNode {
     void loadFromString(std::string& str) = win inline, imac 0x4a4fe0, m1 0x40c15c, ios 0x2e79c8;
     bool save(bool async) = win 0x77530, imac 0x4a5110, m1 0x40c2ac;
     void saveGMTo(std::string filename, bool async) = win inline;
-    bool tryLoadData(DS_Dictionary* dict, std::string const& filename) = win inline, imac 0x4a57e0, m1 0x40c998;
+    bool tryLoadData(DS_Dictionary* dict, std::string const& filename) = win inline, imac 0x4a57e0, m1 0x40c998, ios 0x2e8060;
     void waitForSave(double seconds) = win 0x777c0, ios 0x2e7bcc;
 
     std::string m_fileName;

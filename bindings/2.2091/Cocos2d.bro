@@ -6029,7 +6029,7 @@ class DS_Dictionary {
     std::string getStringForKey(char const*) = imac 0x15d080, m1 0x128680, ios 0x1ea8d8;
     std::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*) = imac 0x15d800, m1 0x128d50;
     cocos2d::CCPoint getVec2ForKey(char const*) = imac 0x15d230, m1 0x128808;
-    bool loadRootSubDictFromCompressedFile(char const*, bool) = imac 0x159ee0, m1 0x125f14, ios 0xaf258;
+    bool loadRootSubDictFromCompressedFile(char const*, bool) = imac 0x159ee0;
     bool loadRootSubDictFromFile(char const*) = imac 0x159ee0, m1 0x125c08;
     bool loadRootSubDictFromString(std::string const&) = imac 0x15a5d0, m1 0x126248, ios 0x1e9d60;
     bool rectFromString(std::string const&, cocos2d::CCRect&) = imac 0x159740, m1 0x1254c0;
