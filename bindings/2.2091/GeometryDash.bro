@@ -21925,6 +21925,7 @@ class SetupGravityModPopup : FLAlertLayer {
     float m_minValue;
     float m_maxValue;
     CCTextInputNode* m_itemIDInput;
+    IDNameInput* m_idNameInput;
     int m_itemID;
     bool m_disableDelegate;
 }
@@ -22643,6 +22644,7 @@ class SetupSFXPopup : SetupAudioTriggerPopup, CustomSFXDelegate, SFXBrowserDeleg
     int m_sfxID;
     CustomSFXWidget* m_sfxWidget;
     int m_sfxLength;
+    int m_sfxMode;
 }
 
 [[link(android)]]
