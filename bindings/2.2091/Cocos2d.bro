@@ -1818,8 +1818,8 @@ class cocos2d::CCKeyboardDispatcher : cocos2d::CCObject {
     // bool getShiftKeyPressed() const;
     // void setBlockRepeat(bool);
     // CCKeyboardDispatcher(cocos2d::CCKeyboardDispatcher const&);
-    CCKeyboardDispatcher() = ios 0x2d6404;
-    virtual ~CCKeyboardDispatcher() = ios 0x2d6514;
+    CCKeyboardDispatcher() = imac 0x1e5a10, m1 0x199120, ios 0x2d6404;
+    virtual ~CCKeyboardDispatcher() = imac 0x1e5b90, m1 0x199270, ios 0x2d6514;
 
     static cocos2d::enumKeyCodes convertKeyCode(cocos2d::enumKeyCodes) = imac 0x1e6600;
 
@@ -3057,7 +3057,7 @@ class cocos2d::CCParticleBatchNode : cocos2d::CCNode, cocos2d::CCTextureProtocol
 [[link(win, android)]]
 class cocos2d::CCParticleExplosion : cocos2d::CCParticleSystemQuad {
     static cocos2d::CCParticleExplosion* create() = imac 0x47acf0, ios inline;
-    static cocos2d::CCParticleExplosion* createWithTotalParticles(unsigned int) = imac 0x47ad70, ios inline;
+    static cocos2d::CCParticleExplosion* createWithTotalParticles(unsigned int) = imac 0x47ad70, m1 0x3e54c0, ios inline;
 
     // CCParticleExplosion(cocos2d::CCParticleExplosion const&);
     // CCParticleExplosion();
@@ -4979,7 +4979,7 @@ class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
 [[link(win, android)]]
 class cocos2d::CCTransitionFadeBL : cocos2d::CCTransitionFadeTR {
     // CCTransitionFadeBL(cocos2d::CCTransitionFadeBL const&);
-    CCTransitionFadeBL();
+    CCTransitionFadeBL() = imac 0xa89d0, m1 0x97b64;
     virtual ~CCTransitionFadeBL() = imac 0xa8a80;
 
     static cocos2d::CCTransitionFadeBL* create(float, cocos2d::CCScene*) = imac 0xa8b20, m1 0x97c50;
@@ -5580,7 +5580,7 @@ class cocos2d::extension::CCControlColourPicker : cocos2d::extension::CCControl 
 [[link(win, android)]]
 class cocos2d::extension::CCControlHuePicker : cocos2d::extension::CCControl {
     CCControlHuePicker() = imac 0x341f20, ios 0x2447d4;
-    virtual ~CCControlHuePicker() = imac 0x342080, ios 0x244850;
+    virtual ~CCControlHuePicker() = imac 0x342130, m1 0x2d36ac, ios 0x244850;
 
     static cocos2d::extension::CCControlHuePicker* create(cocos2d::CCNode*, cocos2d::CCPoint) = imac 0x342370, m1 0x2d3828, ios 0x244900;
 
