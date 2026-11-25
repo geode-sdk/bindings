@@ -150,6 +150,12 @@ void BoomScrollLayer::setPagesIndicatorPosition(cocos2d::CCPoint pos) {
     m_dotPosition = pos;
     this->updateDots(0.f);
 }
+
+void BoomScrollLayer::togglePageIndicators(bool visible) {
+    for (int i = 0; i < m_dots->count(); i++) {
+        static_cast<cocos2d::CCSprite*>(m_dots->objectAtIndex(i))->setVisible(visible);
+    }
+}
 #endif
 
 #if defined(GEODE_IS_IOS)

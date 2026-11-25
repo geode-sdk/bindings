@@ -1242,7 +1242,7 @@ class BoomScrollLayer : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void setDotScale(float scale) = win inline, imac 0x38f390, m1 0x3198b0;
     void setPagesIndicatorPosition(cocos2d::CCPoint pos) = win inline, imac 0x38e6c0, m1 0x318c28, ios 0x154dd4;
     void setupDynamicScrolling(cocos2d::CCArray* dynamicObjects, DynamicScrollDelegate* delegate) = win 0x40ec0, imac 0x38ee80, m1 0x3193c0;
-    void togglePageIndicators(bool visible) = imac 0x38f9f0, m1 0x319dac, ios 0x155918;
+    void togglePageIndicators(bool visible) = win inline, imac 0x38f9f0, m1 0x319dac, ios 0x155918;
     void updateDots(float dt) = win 0x41290, imac 0x38f0f0, m1 0x319624, ios 0x155488;
     void updatePages() = win 0x41170, imac 0x38e6f0, m1 0x318c50, ios 0x154dfc;
 
@@ -2419,7 +2419,7 @@ class CharacterColorPage : FLAlertLayer {
     void onPlayerColor(cocos2d::CCObject* sender) = win 0xa2680, imac 0x67110, m1 0x64b3d0, ios 0x153ad8;
     void toggleGlow(cocos2d::CCObject* sender) = win 0xa16a0, imac 0x73d5b0, m1 0x64ae98, ios 0x153760;
     void toggleGlowItems(bool visible) = win inline, imac 0x73dab0, m1 0x64b35c, ios inline;
-    void toggleShip(cocos2d::CCObject* sender) = win 0xa1570, imac 0x73ce00, m1 0x64a6cc;
+    void toggleShip(cocos2d::CCObject* sender) = win 0xa1570, imac 0x73ce00, m1 0x64a6cc, ios 0x153084;
     void updateColorMode(int mode) = win 0xa20e0, imac 0x73d5f0, m1 0x64aed0, ios 0x153798;
     void updateIconColors() = win 0xa2e80, imac 0x73d070, m1 0x64a980, ios 0x1532cc;
 
@@ -6619,12 +6619,12 @@ class EventLinkTrigger : EffectGameObject {
 class ExplodeItemNode : cocos2d::CCNode {
     virtual ~ExplodeItemNode() = win 0x4dd0b0, ios 0x65a20;
 
-    static ExplodeItemNode* create(cocos2d::CCRenderTexture* texture) = win 0x4e2910, imac 0x1f6be0, m1 0x1a888c;
+    static ExplodeItemNode* create(cocos2d::CCRenderTexture* texture) = win 0x4e2910, imac 0x1f6be0, m1 0x1a888c, ios 0x64e24;
 
     virtual void update(float dt) = win 0x4e32c0, imac 0x1f7bb0, m1 0x1a9770, ios 0x65b28;
 
-    void createSprites(int countX, int countY, float xVel, float xVar, float yVel, float yVar, float dur, float durVar, cocos2d::ccColor4F startColor, cocos2d::ccColor4F endColor, bool noParticles) = win 0x4e29e0, imac 0x1f6c90, m1 0x1a8940;
-    bool init(cocos2d::CCRenderTexture* texture) = win inline, imac 0x1f7ad0, m1 0x1a9674;
+    void createSprites(int countX, int countY, float xVel, float xVar, float yVel, float yVar, float dur, float durVar, cocos2d::ccColor4F startColor, cocos2d::ccColor4F endColor, bool noParticles) = win 0x4e29e0, imac 0x1f6c90, m1 0x1a8940, ios 0x64eb0;
+    bool init(cocos2d::CCRenderTexture* texture) = win inline, imac 0x1f7ad0, m1 0x1a9674, ios 0x65a38;
 
     cocos2d::CCRenderTexture* m_renderTexture;
     cocos2d::CCArray* m_sprites;
@@ -8298,7 +8298,7 @@ class GameManager : GManager {
     void setPlayerUserID(int id) = inline;
     void setUGV(char const* key, bool value) = win 0x27e830, imac 0x36d350, m1 0x2fa6a4, ios 0x3b5cc0;
     void setupGameAnimations() = win 0x2a8a50, imac 0x249540, m1 0x1f2b60;
-    std::string sheetNameForIcon(int id, int type) = win 0x27d910, imac 0x36a7b0, m1 0x2f7b98;
+    std::string sheetNameForIcon(int id, int type) = win 0x27d910, imac 0x36a7b0, m1 0x2f7b98, ios 0x3b460c;
     void shortenAdTimer(float time) = win inline, imac 0x369410, m1 0x2f6a20, ios inline;
     bool shouldShowInterstitial(int unk1, int unk2, int unk3) = win inline, imac 0x369480, m1 0x2f6a8c, ios inline;
     bool showInterstitial() = win inline, imac 0x369490, m1 0x2f6a94, ios inline;
@@ -8317,7 +8317,7 @@ class GameManager : GManager {
     void tryShowInterstitial(int unk1, int unk2, int unk3) = win inline, imac 0x369470, m1 0x2f6a88, ios inline;
     void unloadBackground() = win inline, imac 0x36c640, m1 0x2f9918;
     void unloadIcon(int id, int type, int requestID) = win 0x27d490, imac 0x36b910, m1 0x2f8be0;
-    void unloadIcons(int requestID) = win 0x27d7c0, imac 0x36c060, m1 0x2f9334;
+    void unloadIcons(int requestID) = win 0x27d7c0, imac 0x36c060, m1 0x2f9334, ios 0x3b4da8;
     void unlockColor(int id, UnlockType type) = win inline;
     void unlockedPremium() = win inline, imac 0x368ec0, m1 0x2f6514, ios inline;
     void unlockIcon(int id, IconType type) = win inline;
@@ -11821,7 +11821,7 @@ class GJGarageLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtocol,
     void setupSpecialPage() = win 0x37f420, imac 0x3567e0, m1 0x2e5f68, ios 0x3a1e68;
     void showUnlockPopupNew(int id, UnlockType type) = win inline, imac 0x358270, m1 0x2e7714, ios inline;
     void toggleGlow() = win inline, imac 0x3580e0, ios inline;
-    void updatePlayerColors() = win 0x380480, imac 0x354230, m1 0x2e3948;
+    void updatePlayerColors() = win 0x380480, imac 0x354230, m1 0x2e3948, ios 0x3a005c;
     void updatePlayerName(char const* name) = win inline, imac 0x355c60, m1 0x2e540c, ios inline;
 
     CCTextInputNode* m_usernameInput;
@@ -12783,20 +12783,20 @@ class GJRobotSprite : CCAnimatedSprite {
     GJRobotSprite() = win 0x3ac550;
     virtual ~GJRobotSprite() = win 0x3ac690, imac 0x6ad450, m1 0x5c7924, ios 0x2dc2e0;
 
-    static GJRobotSprite* create(int frame) = win 0x3ac740, imac 0x6ad560, m1 0x5c798c;
+    static GJRobotSprite* create(int frame) = win 0x3ac740, imac 0x6ad560, m1 0x5c798c, ios 0x2dc2f8;
 
     virtual void setOpacity(unsigned char opacity) = win 0x3ad4c0, imac 0x6ae920, m1 0x5c8ae0, ios 0x2dd0fc;
     virtual void hideSecondary() = win 0x3adbb0, imac 0x6aea30, m1 0x5c8bc4, ios 0x2dd1e0;
 
-    void hideGlow() = win inline, imac 0x6ae530, m1 0x5c8798;
-    bool init(int frame) = win inline, imac 0x6ad6a0, m1 0x5c7ac4;
-    bool init(int frame, std::string animName) = win 0x3ac7f0, imac 0x6ad710, m1 0x5c7b54;
-    void showGlow() = win inline, imac 0x6ae510, m1 0x5c8784;
+    void hideGlow() = win inline, imac 0x6ae530, m1 0x5c8798, ios 0x2dcdb8;
+    bool init(int frame) = win inline, imac 0x6ad6a0, m1 0x5c7ac4, ios 0x2dc3c0;
+    bool init(int frame, std::string animName) = win 0x3ac7f0, imac 0x6ad710, m1 0x5c7b54, ios 0x2dc444;
+    void showGlow() = win inline, imac 0x6ae510, m1 0x5c8784, ios 0x2dcda4;
     void updateColor01(cocos2d::ccColor3B color) = win inline, imac 0x6ae550, m1 0x5c87ac, ios 0x2dcdcc;
-    void updateColor02(cocos2d::ccColor3B color) = win inline, imac 0x6ae880, m1 0x5c8a54;
+    void updateColor02(cocos2d::ccColor3B color) = win inline, imac 0x6ae880, m1 0x5c8a54, ios 0x2dd070;
     void updateColors() = win 0x3acfc0, imac 0x6ae570, m1 0x5c87c0, ios 0x2dcde0;
-    void updateFrame(int frame) = win 0x3ad5c0, imac 0x6adcb0, m1 0x5c8084;
-    void updateGlowColor(cocos2d::ccColor3B color, bool simple) = win inline, imac 0x6ae8a0, m1 0x5c8a64;
+    void updateFrame(int frame) = win 0x3ad5c0, imac 0x6adcb0, m1 0x5c8084, ios 0x2dc8f0;
+    void updateGlowColor(cocos2d::ccColor3B color, bool simple) = win inline, imac 0x6ae8a0, m1 0x5c8a64, ios 0x2dd080;
 
     cocos2d::CCArray* m_unkArray;
     bool m_hasExtra;
@@ -13400,9 +13400,9 @@ class GJSpecialColorSelectDelegate {
 class GJSpiderSprite : GJRobotSprite {
     virtual ~GJSpiderSprite() = win 0x3ac630, ios 0x2dd24c;
 
-    static GJSpiderSprite* create(int frame) = win 0x3adc30, imac 0x6aec30, m1 0x5c8d60;
+    static GJSpiderSprite* create(int frame) = win 0x3adc30, imac 0x6aec30, m1 0x5c8d60, ios 0x2dd264;
 
-    bool init(int frame) = win inline, imac 0x6aed80, m1 0x5c8e9c;
+    bool init(int frame) = win inline, imac 0x6aed80, m1 0x5c8e9c, ios 0x2dd32c;
 }
 
 [[link(android)]]
@@ -18747,8 +18747,8 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     float convertToClosestRotation(float rotation) = win 0x4eb3b0, imac 0x3efbf0, m1 0x36cdf8;
     void copyAttributes(PlayerObject* player) = win 0x4fea30, imac 0x4083e0, m1 0x3827a4, ios 0x2c9fc4;
     void createFadeOutDartStreak() = win 0x4f69a0, imac 0x402880, m1 0x37d108, ios 0x2c5c10;
-    void createRobot(int frame) = win 0x4e60d0, imac 0x3e9190, m1 0x367010;
-    void createSpider(int frame) = win 0x4e64c0, imac 0x3e9540, m1 0x367354;
+    void createRobot(int frame) = win 0x4e60d0, imac 0x3e9190, m1 0x367010, ios 0x2b54ac;
+    void createSpider(int frame) = win 0x4e64c0, imac 0x3e9540, m1 0x367354, ios 0x2b579c;
     void deactivateParticle() = win 0x4e9b40, imac 0x3ee9a0, m1 inline, ios 0x2b92f0;
     void deactivateStreak(bool stop) = win inline, imac 0x3e9f60, m1 0x367cf4, ios 0x2b608c;
     bool destroyFromHitHead() = win inline, imac 0x405ff0, m1 0x38059c;
@@ -24007,8 +24007,8 @@ class SimplePlayer : cocos2d::CCSprite {
     virtual void setColor(cocos2d::ccColor3B const& color) = win 0x382600, imac 0x359df0, m1 0x2e906c, ios 0x3a41dc;
 
     void asyncLoadIcon(int id, IconType type) = imac 0x359be0, m1 0x2e8e40;
-    void createRobotSprite(int frame) = win inline, imac 0x354160, m1 0x2e3864;
-    void createSpiderSprite(int frame) = win 0x382570, imac 0x3541b0, m1 0x2e38bc;
+    void createRobotSprite(int frame) = win inline, imac 0x354160, m1 0x2e3864, ios 0x39ff78;
+    void createSpiderSprite(int frame) = win 0x382570, imac 0x3541b0, m1 0x2e38bc, ios 0x39ffd0;
     void disableCustomGlowColor() = win inline, imac 0x358240, m1 0x2e76ec, ios 0x3a31bc;
     void disableGlowOutline() = inline;
     void enableCustomGlowColor(cocos2d::ccColor3B const& color) = win inline, imac 0x358210, m1 0x2e76cc, ios 0x3a319c;
