@@ -8135,7 +8135,7 @@ class GameManager : GManager {
     const char* getMGTexture(int index) = win inline, imac 0x36cf50, m1 0x2fa270;
     int getNextUniqueObjectKey() = win inline, imac 0x36da90, m1 0x2faf00;
     int getNextUsedKey(int index, bool up) = win inline, imac 0x36db80, m1 0x2faff8;
-    cocos2d::CCArray* getOrderedCustomObjectKeys() = win inline, imac 0x36db30, m1 0x2fafac, ios 0x3b62f;
+    cocos2d::CCArray* getOrderedCustomObjectKeys() = win inline, imac 0x36db30, m1 0x2fafac, ios 0x3b62f8;
 
     /// Gets the icon ID for the client's current ball icon.
     /// @returns Icon ID
