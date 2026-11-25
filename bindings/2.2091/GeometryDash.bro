@@ -11884,7 +11884,7 @@ class GJGroundLayer : cocos2d::CCLayer {
     bool init(int groundID, int lineType) = win 0x386d80, imac 0x6bdb20, m1 0x5d6818, ios 0x2f2ec;
     void loadGroundSprites(int count, bool ground1) = win 0x387320, imac 0x6be1c0, m1 0x5d6ec4;
     void positionGround(float y) = win inline, imac 0x6beb50, m1 0x5d7838;
-    float scaleGround(float scale) = win 0x3877c0, imac 0x6be5f0, m1 0x5d72fc;
+    float scaleGround(float scale) = win 0x3877c0, imac 0x6be5f0, m1 0x5d72fc, ios 0x2fc70;
     void toggleVisible01(bool visible) = win inline, imac 0x6be4a0, m1 0x5d71c0;
     void toggleVisible02(bool visible) = win inline, imac 0x6be4e0, m1 0x5d7200;
     void updateGround01Color(cocos2d::ccColor3B color) = win inline, imac 0x6be420, m1 0x5d7140, ios 0x2fac0;
@@ -12304,7 +12304,7 @@ class GJMGLayer : cocos2d::CCLayer {
     void deactivateGround() = win inline, imac 0x6bf770, m1 0x5d83f0, ios inline;
     bool init(int index) = win 0x387b80, imac 0x6bedf0, m1 0x5d7a78;
     void loadGroundSprites(int count, bool ground1) = win 0x3880b0, imac 0x6bf280, m1 0x5d7ef4;
-    float scaleGround(float scale) = win inline, imac 0x6bf5f0, m1 0x104d30;
+    float scaleGround(float scale) = win inline, imac 0x6bf5f0, m1 0x104d30, ios 0x30864;
     void toggleVisible01(bool visible) = win inline, imac 0x6bf4b0, m1 0x5d8140, ios inline;
     void toggleVisible02(bool visible) = win inline, imac 0x6bf4f0, m1 0x5d8180;
     void updateGroundColor(cocos2d::ccColor3B color, bool ground1) = win inline, imac 0x6bf420, m1 0x5d80b0;
@@ -15369,7 +15369,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateBlendValues() = win 0x3fcff0, imac 0xc3390, m1 0xae78c;
     void updateCustomSFXMappings() = win 0x3f3c30;
     void updateEditor(float dt) = win 0x3f5f00, imac 0xac550, m1 0x9af90, ios 0x3f7e88;
-    void updateEditorMode() = win 0x3fa010, imac 0xad9b0, m1 0x9bfd0;
+    void updateEditorMode() = win 0x3fa010, imac 0xad9b0, m1 0x9bfd0, ios 0x3f8b90;
     void updateGameObjects() = win 0x3fa960, imac 0xacab0, m1 0x9b4c0;
     void updateGridLayer() = win inline;
     void updateGridLayerParent() = win 0x3ef7a0, imac 0xae570, m1 0x9c9f0;
