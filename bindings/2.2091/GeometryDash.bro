@@ -21732,22 +21732,22 @@ class SetupCollisionStateTriggerPopup : SetupInstantCollisionTriggerPopup {
     SetupCollisionStateTriggerPopup() = inline;
     virtual ~SetupCollisionStateTriggerPopup() = win 0x60ac50;
 
-    static SetupCollisionStateTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b0fb0;
+    static SetupCollisionStateTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b0fb0, imac 0x381830, m1 0x30cd14;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b10c0;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b10c0, imac 0x381940, m1 0x30ce00;
 }
 
 [[link(android)]]
 class SetupCollisionTriggerPopup : SetupTriggerPopup {
-    virtual ~SetupCollisionTriggerPopup() = win 0x5af790, ios 0x2cc210;
+    virtual ~SetupCollisionTriggerPopup() = win 0x5af790, imac 0x3801f0, m1 0x30b878, ios 0x2cc210;
 
-    static SetupCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5af910;
+    static SetupCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5af910, imac 0x380270, m1 0x30b8b0;
 
     virtual void updateDefaultTriggerValues() = win 0x5b04d0, imac 0x380de0, m1 0x30c34c, ios 0x2ccbf0;
     virtual void valueDidChange(int, float) = win 0x5b0260, imac 0x380a60, m1 0x30bff4, ios 0x2cc8c0;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5afa20;
-    void updateSpecialNodes() = win 0x5b0280;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5afa20, imac 0x380380, m1 0x30b998;
+    void updateSpecialNodes() = win 0x5b0280, imac 0x380aa0, m1 0x30c024;
 }
 
 [[link(android)]]
@@ -21960,13 +21960,13 @@ class SetupInstantCollisionTriggerPopup : SetupTriggerPopup {
     SetupInstantCollisionTriggerPopup() = win 0x5af860, inline;
     virtual ~SetupInstantCollisionTriggerPopup() = win 0x60ac50;
 
-    static SetupInstantCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b04f0;
+    static SetupInstantCollisionTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b04f0, imac 0x380e00, m1 0x30c370;
 
     virtual void updateDefaultTriggerValues() = win 0x5b0f90, imac 0x381810, m1 0x30ccf0, ios 0x2cd4c8;
     virtual void valueDidChange(int tag, float value) = win 0x5b0d60, imac 0x381500, m1 0x30c9f4, ios 0x2cd1e0;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b0580, ios 0x2cccec;
-    void updateSpecialNodes() = win 0x5b0d80, imac 0x380aa0, m1 0x30c024;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b0580, imac 0x380f10, m1 0x30c458, ios 0x2cccec;
+    void updateSpecialNodes() = win 0x5b0d80, imac 0x381530, m1 0x30ca18;
 }
 
 [[link(android)]]
@@ -24790,9 +24790,9 @@ class StatsObject : cocos2d::CCObject {
 [[link(android)]]
 class SupportLayer : GJDropDownLayer, FLAlertLayerProtocol, UploadActionDelegate, UploadPopupDelegate {
     SupportLayer() = inline;
-    ~SupportLayer() = win inline, ios 0x2247c8;
+    ~SupportLayer() = win inline, imac 0x381fb0, m1 0x30d390, ios 0x2247c8;
 
-    static SupportLayer* create() = win inline, ios 0x224668;
+    static SupportLayer* create() = win inline, imac 0x381d00, m1 0x30d194, ios 0x224668;
 
     virtual void customSetup() = win 0x669ca0, imac 0x382330, m1 0x30d630, ios 0x224800;
     virtual void uploadActionFinished(int id, int response) = win 0x66b290, imac 0x384290, m1 0x30f48c, ios 0x226100;
