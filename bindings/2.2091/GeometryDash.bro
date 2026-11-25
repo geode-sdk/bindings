@@ -229,7 +229,7 @@ class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLay
     void disableNodes() = win 0x8efa0, imac 0x48ec90, m1 0x3f79cc;
     void hideLoadingUI() = win inline, imac 0x48e710, m1 0x3f73fc, ios inline;
     void onClose(cocos2d::CCObject* sender) = win 0x8ef30, imac 0x48d690, m1 0x3f65d4;
-    void onSubmit(cocos2d::CCObject* sender) = win 0x8e430, imac 0x48d720;
+    void onSubmit(cocos2d::CCObject* sender) = win 0x8e430, imac 0x48d720, m1 0x3f6678;
     void resetLabel(int tag) = win 0x8e290, m1 0x3f76ec;
     void resetLabels() = win inline, imac 0x48e8b0, m1 0x3f75a0;
     void showLoadingUI() = win inline, imac 0x48fdd0, m1 0x3f89c8;
@@ -5014,11 +5014,11 @@ class EditorSoundConfigCell : TableViewCell {
 
     virtual bool init() = win 0x3ff70, imac 0x8f2060, m1 0x7da7ac, ios 0x4ce558;
 
-    void loadFromConfig(GJEditorSoundConfig* config) = win 0x190730, ios 0x4ce5e0;
+    void loadFromConfig(GJEditorSoundConfig* config) = win 0x190730, ios 0x4ce5e0, m1 0x7da834;
     void onInfoPopup(cocos2d::CCObject* sender) = win 0x1919e0;
     void onView(cocos2d::CCObject* sender) = win 0x191970;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x1919a0;
-    void updateBGColor(int index) = ios 0x4ce560;
+    void updateBGColor(int index) = ios 0x4ce560, m1 0x7da7b4;
 
     GJEditorSoundConfig* m_config;
     EditorSoundConfigCellDelegate* m_delegate;
@@ -7105,9 +7105,9 @@ class FontPreviewCell : TableViewCell {
     virtual bool init() = win 0x3ff70, imac 0x96f8a0, m1 0x84ba00, ios 0x315a0c;
     virtual void draw() = win 0x58dd60, imac 0x96fc60, m1 0x84bd94, ios 0x315d98;
 
-    void loadFromIndex(int, int) = win 0x58d9c0, ios 0x315a14;
+    void loadFromIndex(int, int) = win 0x58d9c0, ios 0x315a14, m1 0x84ba08;
     void onSelectFont(cocos2d::CCObject* sender) = win 0x58dd20;
-    void updateBGColor(int index) = ios 0x315d78;
+    void updateBGColor(int index) = ios 0x315d78, m1 0x84bd74;
 
     int m_unk1a4;
     int m_index;
@@ -7689,7 +7689,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onDeleteServerLevelListCompleted(std::string response, std::string tag) = win inline, imac 0x52fc30, m1 0x4886f8;
     void onDeleteUserMessagesCompleted(std::string response, std::string tag) = win 0x23bdf0, imac 0x52ad30;
     void onDownloadEditorSoundCompleted(std::string, std::string) = win 0x22f720;
-    void onDownloadLevelCompleted(std::string response, std::string tag) = win inline, imac 0x524a50;
+    void onDownloadLevelCompleted(std::string response, std::string tag) = win inline, imac 0x524a50, m1 0x47de04;
     void onDownloadUserMessageCompleted(std::string response, std::string tag) = win 0x23b5e0, imac 0x52aef0, m1 0x483fac;
     void onFollowUserCompleted(std::string, std::string, bool) = win 0x250fb0;
     void onGetAccountCommentsCompleted(std::string response, std::string tag) = win 0x23d100;
@@ -7755,7 +7755,7 @@ class GameLevelManager : cocos2d::CCNode {
     TodoReturn onUploadDeathDataCompleted(std::string, std::string) = win 0x227360;
     TodoReturn onUploadEditorSoundCompleted(std::string, std::string);
     void onUploadFriendRequestCompleted(std::string response, std::string tag) = win 0x254f00, m1 0x481724;
-    void onUploadLevelCompleted(std::string response, std::string tag) = win 0x22a0b0;
+    void onUploadLevelCompleted(std::string response, std::string tag) = win 0x22a0b0, m1 0x47bf34;
     void onUploadLevelControlsCompleted(std::string, std::string) = win 0x259230;
     void onUploadLevelListCompleted(std::string response, std::string tag) = win inline, imac 0x52fa40, m1 0x488554;
     void onUploadUserMessageCompleted(std::string response, std::string tag) = win 0x23b760;
@@ -7797,7 +7797,7 @@ class GameLevelManager : cocos2d::CCNode {
     void resetStoredUserInfo(int id) = win inline, imac 0x567d40, m1 0x4bae88;
     void resetStoredUserList(UserListType type) = win 0x257e70;
     void resetTimerForKey(char const* key) = win 0x2220c0, imac 0x54ab80;
-    void restoreItems() = imac 0x581030, m1 0x90348;
+    void restoreItems() = imac 0x581030, m1 0x4d2cdc;
     TodoReturn rewardItemFromResponse(std::string const&, int&) = win 0x25c620;
     std::string rewardSessionToken() = win 0x25fa30;
     void saveFetchedLevelLists(cocos2d::CCArray* lists) = win inline, ios inline;
@@ -9691,7 +9691,7 @@ class GJAccountLoginDelegate {
 
 [[link(android)]]
 class GJAccountManager : cocos2d::CCNode {
-    virtual ~GJAccountManager() = win 0x3050d0, ios 0x446848;
+    virtual ~GJAccountManager() = win 0x3050d0, ios 0x446848, m1 0x8fa60;
 
     // GJAccountManager();
     static GJAccountManager* get() = inline;
@@ -9699,20 +9699,20 @@ class GJAccountManager : cocos2d::CCNode {
 
     virtual bool init() = win 0x3057d0, imac 0xa01b0, m1 0x8fb24, ios 0x446860;
 
-    void addDLToActive(char const* tag) = win 0x305810, ios inline;
-    void addDLToActive(char const* tag, cocos2d::CCObject* object) = win inline;
+    void addDLToActive(char const* tag) = win 0x305810, ios inline, m1 0x8fc7c;
+    void addDLToActive(char const* tag, cocos2d::CCObject* object) = win inline, m1 0x8fcac;
     bool backupAccount(std::string url) = win 0x3074d0, imac 0xa1800, m1 0x9116c, ios 0x447548;
     void dataLoaded(DS_Dictionary* dict) = win inline, imac 0xa2c10, m1 0x923a4, ios 0x448208;
     void encodeDataTo(DS_Dictionary* dict) = win inline, imac 0xa2bb0, m1 0x9234c, ios 0x4481b0;
     void firstSetup() = win inline, imac 0xa2ba0, m1 0x92348, ios 0x4481ac;
-    bool getAccountBackupURL() = win 0x306e70;
-    bool getAccountSyncURL() = win 0x307ef0;
-    cocos2d::CCObject* getDLObject(char const* tag) = win inline;
+    bool getAccountBackupURL() = win 0x306e70, m1 0x90e50;
+    bool getAccountSyncURL() = win 0x307ef0, m1 0x91624;
+    cocos2d::CCObject* getDLObject(char const* tag) = win inline, m1 0x8fb78;
     std::string getShaPassword(std::string password) = win 0x30a0b0, imac 0xa2dd0, m1 0x92578;
     void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x305500, imac 0x9d9d0, m1 0x8d800, ios 0x4451ec;
     void handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) = win inline, imac 0x9e320, m1 0x8df64, ios inline;
     void handleItND(cocos2d::CCNode* node, void* data) = win inline, imac 0x9e460, m1 0x8e0d0, ios inline;
-    bool isDLActive(char const* tag) = win inline, ios inline;
+    bool isDLActive(char const* tag) = win inline, ios inline, m1 0x8fb5c;
     void linkToAccount(std::string username, std::string gjp2, int accountID, int userID) = win 0x309590, m1 0x7ff8c0;
     void loginAccount(std::string username, std::string gjp2) = win 0x3065e0, imac 0xa0c90, m1 0x905d0;
     void onBackupAccountCompleted(std::string response, std::string tag) = win 0x307ab0, imac 0x9ea10, m1 0x8e654;
@@ -9724,14 +9724,14 @@ class GJAccountManager : cocos2d::CCNode {
     void onRegisterAccountCompleted(std::string response, std::string tag) = win 0x306190, imac 0x9e580, m1 0x8e1f4;
     void onSyncAccountCompleted(std::string response, std::string tag) = win 0x3087e0, imac 0x9ece0, m1 0x8e900, ios 0x445c8c;
     void onUpdateAccountSettingsCompleted(std::string response, std::string tag) = win 0x309f40, imac 0x9fc00, m1 0x8f540;
-    void openRegister() = win 0x306330;
+    void openRegister() = win 0x306330, m1 0x90348;
     void ProcessHttpRequest(std::string url, std::string params, std::string tag, GJHttpType type) = win 0x3052b0, imac 0x9d670, m1 0x8d4bc, ios 0x444f80;
-    void registerAccount(std::string response, std::string tag, std::string data) = win 0x305e50, imac 0xa04f0;
-    void removeDLFromActive(char const* tag) = win inline, imac 0xa0410;
+    void registerAccount(std::string response, std::string tag, std::string data) = win 0x305e50, imac 0xa04f0, m1 0x8fea4;
+    void removeDLFromActive(char const* tag) = win inline, imac 0xa0410, m1 0x8fdac;
     void showAccountNeededAlert(char const*) = win 0x309820;
     bool syncAccount(std::string url) = win 0x308550, imac 0xa20a0, m1 0x91948, ios 0x447a8c;
     void unlinkFromAccount() = win 0x309900, imac 0xa25b0, m1 0x91e3c;
-    bool updateAccountSettings(int, int, int, int, int, std::string, std::string, std::string, std::string, std::string, std::string, std::string) = win 0x309ab0, imac 0xa2670;
+    bool updateAccountSettings(int, int, int, int, int, std::string, std::string, std::string, std::string, std::string, std::string, std::string) = win 0x309ab0, imac 0xa2670, m1 0x91edc;
 
     cocos2d::CCDictionary* m_activeDownloads;
     std::string m_username;
@@ -10927,7 +10927,7 @@ class GJCompactUserCell : TableViewCell {
     static void addStat(int, char const*, cocos2d::CCNode*, float&, float, bool) = win 0x158990;
     static cocos2d::CCLabelBMFont* buildUserRow(GJUserScore* score, cocos2d::CCNode* mainLayer, cocos2d::CCNode* playerNameMenu, cocos2d::CCObject* selectorTarget, cocos2d::SEL_MenuHandler selector, float y, bool dimmed, bool showFriendIcon) = win 0x157e90, imac 0x23f400, m1 0x1ea62c, ios 0x1391f4;
     static void createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool);
-    void loadFromScore(GJUserScore* score) = win 0x157c60, ios 0x12edf4;
+    void loadFromScore(GJUserScore* score) = win 0x157c60, ios 0x12edf4, m1 0x1de220;
     void onSendMessage(cocos2d::CCObject* sender) = win 0x158c00;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x157b80;
     void updateBGColor(int index) = ios 0x12ed74;
@@ -12429,12 +12429,12 @@ class GJNotificationCell : TableViewCell, FLAlertLayerProtocol {
     virtual void draw() = win 0x1487a0, imac 0x241cd0, m1 0x1eca8c, ios 0x13ad28;
     virtual void FLAlert_Clicked(FLAlertLayer*, bool) = win 0x15c4c0, imac 0x241c50, m1 0x1eca14, ios 0x13acdc;
 
-    void loadFromNotification(GJNotification* notification) = win 0x15b0d0, imac 0x233e10, ios 0x130d24;
+    void loadFromNotification(GJNotification* notification) = win 0x15b0d0, imac 0x233e10, ios 0x130d24, m1 0x1e03d8;
     void onClaimReward(cocos2d::CCObject* sender) = win 0x15c810, imac 0x2416a0;
     void onMute(cocos2d::CCObject* sender) = win 0x15c1a0, imac 0x241990;
     void onShowBody(cocos2d::CCObject* sender) = win 0x15c890;
     void onViewTarget(cocos2d::CCObject* sender) = win 0x15c6e0;
-    void refreshChest() = win 0x15c530;
+    void refreshChest() = win 0x15c530, m1 0x1e241c;
     void updateBGColor(int index) = ios 0x131960;
 
     GJNotification* m_notification;
@@ -16501,7 +16501,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
     void reorderLists() = win inline, imac 0x6cac40, m1 0x5e2998;
     void tryLoadMainLevelString(int id) = win 0x46add0, imac 0x6c98e0, m1 0x5e18b4;
     bool tryRecoverAutoSaves() = win 0x46cc90, ios 0x25fb84;
-    int updateLevelOrder() = win 0x46b690, imac 0x6cabc0, m1 0x5e290c;
+    int updateLevelOrder() = win 0x46b690, m1 0x5e26a0;
     void updateLevelRevision() = win 0x46b2f0, imac 0x6ca400, m1 0x5e2200;
     int updateListOrder() = win inline, imac 0x6cabc0, m1 0x5e290c;
     void setLocalLists(cocos2d::CCArray*);
