@@ -9251,7 +9251,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x2e9730, imac 0x3d550, m1 0x370a4, ios 0x3d4660;
     int getItemUnlockStateLite(int id, UnlockType type) = imac 0x3d610, m1 0x371a0;
     std::string getLevelKey(GJGameLevel* level) = win inline, m1 0x2c6a4;
-    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x2e1530, imac 0x32aa0, m1 0x2c6e8;
+    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x2e1530, imac 0x32aa0, m1 0x2c6e8, ios 3ce7dc;
     std::string getListRewardKey(GJLevelList* list) = win inline, imac 0x395a0, m1 0x33430;
     const char* getMapPackKey(int id) = win inline, imac 0x33e80, m1 0x2dbdc, ios inline;
     int getNextGoldChestID() = win inline, imac 0x52820, m1 0x4c928;
