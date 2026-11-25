@@ -2,12 +2,13 @@
 #include <Geode/binding/GJUserScore.hpp>
 #include <Geode/binding/ProfilePage.hpp>
 
-
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#ifndef GEODE_IS_MACOS
 GJScoreCell::GJScoreCell(char const* identifier, float width, float height) : TableViewCell(identifier, width, height) {
     this->init();
 }
+#endif
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJScoreCell::onBan(cocos2d::CCObject* sender) {}
 
 void GJScoreCell::onCheck(cocos2d::CCObject* sender) {}

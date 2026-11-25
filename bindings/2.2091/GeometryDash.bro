@@ -901,14 +901,14 @@ class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
 [[link(android)]]
 class ArtistCell : TableViewCell {
     ArtistCell(char const* identifier, float width, float height) = win inline, imac 0x23d630, m1 0x1e8d9c, ios inline;
-    virtual ~ArtistCell() = win 0x151590, ios 0x138184;
+    virtual ~ArtistCell() = win 0x151590, imac 0x23d5b0, m1 0x1e8d64, ios 0x138184;
 
     virtual bool init() = win 0x400c0, imac 0x23d6a0, m1 0x1e8de0, ios 0x1381bc;
     virtual void draw() = win 0x1487a0, imac 0x23d8f0, m1 0x1e9078, ios 0x1383d4;
 
     void loadFromObject(SongInfoObject* object) = win 0x151620, imac 0x22ce90, m1 0x1d9924, ios 0x12a8cc;
-    void onNewgrounds(cocos2d::CCObject* sender) = win 0x151a40, imac 0x23d870, m1 0x1e8dec, ios 0x1381c8;
-    void onYouTube(cocos2d::CCObject* sender) = win 0x151ba0, ios 0x138340;
+    void onNewgrounds(cocos2d::CCObject* sender) = win 0x151a40, imac 0x23d6c0, m1 0x1e8dec, ios 0x1381c8;
+    void onYouTube(cocos2d::CCObject* sender) = win 0x151ba0, imac 0x23d870, m1 0x1e8fd4, ios 0x138340;
     void updateBGColor(int index) = win inline, imac 0x22d1b0, m1 0x1d9c4c, ios 0x12abe4;
 
     SongInfoObject* m_songInfo;
@@ -2343,7 +2343,7 @@ class ChallengeNode : cocos2d::CCNode {
 [[link(android)]]
 class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, CurrencyRewardDelegate {
     ChallengesPage() = inline;
-    ~ChallengesPage() = win inline, ios 0x35544;
+    ~ChallengesPage() = win inline, imac 0x386860, m1 0x311620, ios 0x35544;
 
     static ChallengesPage* create() = win 0x9d810, imac 0x3868e0, m1 0x311658, ios 0x3557c;
 
@@ -2356,7 +2356,7 @@ class ChallengesPage : FLAlertLayer, FLAlertLayerProtocol, GJChallengeDelegate, 
     virtual void challengeStatusFailed() = win 0x9e640, imac 0x387dd0, m1 0x312a04, ios 0x36454;
     virtual void currencyWillExit(CurrencyRewardLayer* layer) = win 0x9f410, imac 0x388360, m1 0x313020, ios 0x368b8;
 
-    bool canCollectQuests() = win 0x9e380, ios 0x36194;
+    bool canCollectQuests() = win 0x9e380, imac 0x387990, m1 0x312618, ios 0x36194;
     void claimItem(ChallengeNode* node, GJChallengeItem* item, cocos2d::CCPoint position) = win 0x9f0f0, imac 0x388240, m1 0x312ef0, ios 0x36788;
     ChallengeNode* createChallengeNode(int number, bool skipAnimation, float animLength, bool isNew) = win 0x9e790, imac 0x3877a0, m1 0x31243c, ios 0x35fbc;
     void exitNodeAtSlot(int position, float delay) = win 0x9eac0, imac 0x387cd0, m1 0x31291c, ios 0x36370;
@@ -2895,7 +2895,7 @@ class CommentAdminDelegate {
 
 [[link(android)]]
 class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
-    CommentCell(char const* identifier, float width, float height) = win 0x151dc0, ios inline;
+    CommentCell(char const* identifier, float width, float height) = win 0x151dc0, imac 0x23dcf0, m1 0x1e9340, ios inline;
     ~CommentCell() = win inline, m1 0x1e9124, imac 0x23d9c0, ios 0x1384ec;
 
     virtual bool init() = win 0x151e70, imac 0x23dda0, m1 0x1e93a4, ios 0x138524;
@@ -2906,9 +2906,9 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     void incrementDislikes() = win inline, imac 0x23e550, m1 0x1e9ae4, ios inline;
     void incrementLikes() = win inline, imac 0x23e4a0, m1 0x1e9a30, ios inline;
     void loadFromComment(GJComment* comment) = win 0x151ea0, imac 0x22d440, m1 0x1d9f24, ios 0x12aeb0;
-    void onBulkSelectToggle(cocos2d::CCObject* sender) = win 0x154850, ios 0x1388bc;
+    void onBulkSelectToggle(cocos2d::CCObject* sender) = win 0x154850, imac 0x23e1c0, m1 0x1e9778, ios 0x1388bc;
     void onConfirmDelete(cocos2d::CCObject* sender) = win 0x154b90, imac 0x23e0d0, m1 0x1e9690, ios 0x138800;
-    void onDelete() = win inline;
+    void onDelete() = win inline, imac 0x23e6d0, m1 0x1e9c50;
     void onGoToLevel(cocos2d::CCObject* sender) = win 0x1550d0, m1 0x1e93f0, imac 0x23de00, ios 0x138570;
     void onLike(cocos2d::CCObject* sender) = win 0x1548c0, m1 0x1e9544, imac 0x23df70, ios 0x1386b4;
     void onMoreOptions(cocos2d::CCObject* sender) = win 0x154d10, imac 0x23e220, m1 0x1e97cc, ios 0x138910;
@@ -2916,7 +2916,7 @@ class CommentCell : TableViewCell, LikeItemDelegate, FLAlertLayerProtocol {
     void onUnhide(cocos2d::CCObject* sender) = win 0x1550b0, imac 0x23df50, m1 0x1e9538, ios 0x1386a8;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x154cd0, imac 0x23ddd0, m1 0x1e93c0, ios 0x138540;
     void updateBGColor(int index) = win inline, imac 0x22f7a0, m1 0x1dbe34, ios 0x12cbf4;
-    void updateBulkToggle();
+    void updateBulkToggle() = imac 0x236400, m1 0x1e2574;
     void updateLabelValues() = win 0x154ad0, imac 0x23e620, m1 0x1e9ba0;
 
     cocos2d::CCSprite* m_iconSprite;
@@ -3644,7 +3644,7 @@ class CustomListView : BoomListView {
 [[link(android)]]
 class CustomMusicCell : CustomSongCell {
     CustomMusicCell(char const* identifier, float width, float height) = win inline, imac 0x23d3a0, m1 0x1e8c14, ios inline;
-    virtual ~CustomMusicCell() = win 0x150d50, ios 0x138050;
+    virtual ~CustomMusicCell() = win 0x150d50, imac 0x23d320, m1 0x1e8bdc, ios 0x138050;
 
     void loadFromObject(SongInfoObject* object) = win 0x150df0, imac 0x229b50, m1 0x1d63ec, ios 0x127500;
     void updateBGColor(int index) = win inline, imac 0x229c90, m1 0x1d6520, ios 0x127634;
@@ -3652,8 +3652,8 @@ class CustomMusicCell : CustomSongCell {
 
 [[link(android)]]
 class CustomSFXCell : TableViewCell, CustomSFXDelegate {
-    CustomSFXCell(char const* identifier, float width, float height) = win 0x150870, ios inline;
-    virtual ~CustomSFXCell() = win 0x1507d0, ios 0x137cd0;
+    CustomSFXCell(char const* identifier, float width, float height) = win 0x150870, imac 0x23cdb0, m1 0x1e883c, ios inline;
+    virtual ~CustomSFXCell() = win 0x1507d0, imac 0x23cd30, m1 0x1e8804, ios 0x137cd0;
 
     virtual bool init() = win 0x150900, imac 0x23ce40, m1 0x1e8890, ios 0x137d08;
     virtual void draw() = win 0x1487a0, imac 0x23d240, m1 0x1e8b2c, ios 0x137fa4;
@@ -3775,7 +3775,7 @@ class CustomSFXWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerProt
 [[link(android)]]
 class CustomSongCell : TableViewCell, CustomSongDelegate {
     CustomSongCell(char const* identifier, float width, float height) = win 0x1502e0, imac 0x23c9c0, m1 0x1e857c, ios inline;
-    virtual ~CustomSongCell() = win 0x150230, ios 0x137a60;
+    virtual ~CustomSongCell() = win 0x150230, imac 0x23c940, m1 0x1e8544, ios 0x137a60;
 
     virtual bool init() = win 0x150360, imac 0x23ca40, m1 0x1e85c8, ios 0x137a98;
     virtual void draw() = win 0x1487a0, imac 0x23cc50, m1 0x1e8754, ios 0x137c24;
@@ -7284,7 +7284,7 @@ class FriendRequestPopup : FLAlertLayer, UploadActionDelegate, UploadPopupDelega
     FriendRequestPopup() = ios 0x38166c;
     virtual ~FriendRequestPopup() = win 0x399480, ios 0x3779dc;
 
-    static FriendRequestPopup* create(GJFriendRequest* request, bool sent) = win 0x3a1590, ios 0x377a14;
+    static FriendRequestPopup* create(GJFriendRequest* request, bool sent) = win 0x3a1590, imac 0x291020, m1 0x2350cc, ios 0x377a14;
 
     virtual void keyBackClicked() = win 0x3a2f00, imac 0x2928b0, m1 0x236870, ios 0x378db8;
     virtual void uploadActionFinished(int id, int response) = win 0x3a2f10, imac 0x2929c0, m1 0x236960, ios 0x378dc4;
@@ -7411,7 +7411,7 @@ class GameEffectsManager : cocos2d::CCNode {
 [[link(android)]]
 class GameLevelManager : cocos2d::CCNode {
     GameLevelManager() = win 0x217310;
-    virtual ~GameLevelManager() = win 0x21b720, ios 0xa5ee0;
+    virtual ~GameLevelManager() = win 0x21b720, imac 0x53d980, m1 0x494ba8, ios 0xa5ee0;
 
     static GameLevelManager* get() = inline;
     static cocos2d::CCDictionary* responseToDict(std::string response, bool colon) = win 0x261840, imac 0x542920, m1 0x499334;
@@ -7471,7 +7471,7 @@ class GameLevelManager : cocos2d::CCNode {
     GJSmartTemplate* createSmartTemplate() = win inline, imac 0x54f030, m1 0x4a4bd8;
     void dataLoaded(DS_Dictionary* dict) = win 0x225150, imac 0x54f9d0, m1 0x4a5450, ios 0xb14b8;
     void deleteAccountComment(int id, int accountID) = win inline, imac 0x56e430, m1 0x4c1024;
-    void deleteComment(int id, CommentType type, int parentID) = win 0x240290;
+    void deleteComment(int id, CommentType type, int parentID) = win 0x240290, imac 0x56dbc0, m1 0x4c08d8;
     TodoReturn deleteComments(CommentType, std::vector<BulkCommentKey> const&, std::string const&, std::vector<int> const&) = win 0x240b30;
     bool deleteFriendRequests(int accountID, cocos2d::CCArray* accounts, bool sent) = win 0x2550e0, imac 0x57a610, m1 0x4cc79c;
     void deleteLevel(GJGameLevel* level) = win 0x21c870, imac 0x53ed90, m1 0x495d18, ios 0xa6a28;
@@ -7696,7 +7696,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onGetContentStatusCompleted(std::string, std::string) = win 0x2316e0;
     void onGetDeathDataCompleted(std::string, std::string) = win 0x228910;
     void onGetEditorSoundsCompleted(std::string, std::string) = win 0x22ee40;
-    void onGetFollowingCompleted(std::string, std::string) = win 0x2518e0;
+    void onGetFollowingCompleted(std::string, std::string) = win 0x2518e0, imac 0x53d280, m1 0x4945b4;
     void onGetFriendRequestsCompleted(std::string response, std::string tag) = win 0x254400, imac 0x529cc0, m1 0x482ea0;
     void onGetGauntletsCompleted(std::string response, std::string tag) = win 0x230ff0, imac 0x52e6a0, m1 0x487298, ios 0x9d9e4;
     void onGetGJChallengesCompleted(std::string response, std::string tag) = win 0x25e700;
@@ -10918,19 +10918,19 @@ class GJCommentListLayer : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class GJCompactUserCell : TableViewCell {
-    GJCompactUserCell(char const*, float, float);
-    virtual ~GJCompactUserCell() = win 0x157bc0, ios 0x1391b0;
+    GJCompactUserCell(char const*, float, float) = imac 0x23f370, m1 0x1ea5dc;
+    virtual ~GJCompactUserCell() = win 0x157bc0, imac 0x23f150, m1 0x1ea464, ios 0x1391b0;
 
     virtual bool init() = win 0x400c0, imac 0x23f3e0, m1 0x1ea620, ios 0x1391e8;
     virtual void draw() = win 0x1487a0, imac 0x240290, m1 0x1eb3c4, ios 0x139e1c;
 
-    static void addStat(int, char const*, cocos2d::CCNode*, float&, float, bool) = win 0x158990;
+    static void addStat(int, char const*, cocos2d::CCNode*, float&, float, bool) = win 0x158990, imac 0x240020, m1 0x1eb12c;
     static cocos2d::CCLabelBMFont* buildUserRow(GJUserScore* score, cocos2d::CCNode* mainLayer, cocos2d::CCNode* playerNameMenu, cocos2d::CCObject* selectorTarget, cocos2d::SEL_MenuHandler selector, float y, bool dimmed, bool showFriendIcon) = win 0x157e90, imac 0x23f400, m1 0x1ea62c, ios 0x1391f4;
-    static void createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool);
+    static void createStatStrip(GJUserScore*, cocos2d::CCNode*, float, float, bool) = imac 0x23ff60, m1 0x1eb060;
     void loadFromScore(GJUserScore* score) = win 0x157c60, imac 0x231b80, m1 0x1de220, ios 0x12edf4;
-    void onSendMessage(cocos2d::CCObject* sender) = win 0x158c00;
-    void onViewProfile(cocos2d::CCObject* sender) = win 0x157b80;
-    void updateBGColor(int index) = ios 0x12ed74;
+    void onSendMessage(cocos2d::CCObject* sender) = win 0x158c00, imac 0x23fec0, m1 0x1eafbc;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x157b80, imac 0x23fe90, m1 0x1eaf84;
+    void updateBGColor(int index) = imac 0x231b20, m1 0x1de1a0, ios 0x12ed74;
 
     GJUserScore* m_userScore;
 }
@@ -12067,7 +12067,7 @@ class GJLevelList : cocos2d::CCNode {
 [[link(android)]]
 class GJLevelScoreCell : TableViewCell {
     GJLevelScoreCell(char const* identifier, float width, float height) = win inline, imac 0x23ef40, m1 0x1ea2d4, ios inline;
-    virtual ~GJLevelScoreCell() = win 0x156ff0, ios 0x13902c;
+    virtual ~GJLevelScoreCell() = win 0x156ff0, imac 0x23eec0, m1 0x1ea29c, ios 0x13902c;
 
     virtual bool init() = win 0x400c0, imac 0x23efb0, m1 0x1ea318, ios 0x139064;
     virtual void draw() = win 0x1487a0, imac 0x23f000, m1 0x1ea35c, ios 0x1390a8;
@@ -12106,7 +12106,7 @@ class GJListLayer : cocos2d::CCLayerColor {
 [[link(android)]]
 class GJLocalLevelScoreCell : TableViewCell {
     GJLocalLevelScoreCell(char const* identifier, float width, float height) = win inline, imac 0x23ed50, m1 0x1ea19c, ios inline;
-    virtual ~GJLocalLevelScoreCell() = win 0x156b90, ios 0x138f3c;
+    virtual ~GJLocalLevelScoreCell() = win 0x156b90, imac 0x23ecd0, m1 0x1ea164, ios 0x138f3c;
 
     virtual bool init() = win 0x400c0, imac 0x23edc0, m1 0x1ea1e0, ios 0x138f74;
     virtual void draw() = win 0x1487a0, imac 0x23ede0, m1 0x1ea1ec, ios 0x138f80;
@@ -12422,8 +12422,8 @@ class GJNotification : cocos2d::CCObject {
 
 [[link(android)]]
 class GJNotificationCell : TableViewCell, FLAlertLayerProtocol {
-    GJNotificationCell(char const*, float, float);
-    virtual ~GJNotificationCell() = win 0x15ac70, ios 0x13a758;
+    GJNotificationCell(char const*, float, float) = imac 0x241410, m1 0x1ec208;
+    virtual ~GJNotificationCell() = win 0x15ac70, imac 0x2411b0, m1 0x1ec070, ios 0x13a758;
 
     virtual bool init() = win 0x3ff70, imac 0x241490, m1 0x1ec258, ios 0x13a790;
     virtual void draw() = win 0x1487a0, imac 0x241cd0, m1 0x1eca8c, ios 0x13ad28;
@@ -12433,9 +12433,9 @@ class GJNotificationCell : TableViewCell, FLAlertLayerProtocol {
     void onClaimReward(cocos2d::CCObject* sender) = win 0x15c810, imac 0x2416a0, m1 0x1ec420;
     void onMute(cocos2d::CCObject* sender) = win 0x15c1a0, imac 0x241990, m1 0x1ec740;
     void onShowBody(cocos2d::CCObject* sender) = win 0x15c890, imac 0x241860, m1 0x1ec5e4;
-    void onViewTarget(cocos2d::CCObject* sender) = win 0x15c6e0;
+    void onViewTarget(cocos2d::CCObject* sender) = win 0x15c6e0, imac 0x2416e0, m1 0x1ec460;
     void refreshChest() = win 0x15c530, imac 0x2362b0, m1 0x1e241c;
-    void updateBGColor(int index) = ios 0x131960;
+    void updateBGColor(int index) = imac 0x233db0, m1 0x1e0358, ios 0x131960;
 
     GJNotification* m_notification;
     CCMenuItemSpriteExtra* m_claimBtn;
@@ -12701,17 +12701,17 @@ class GJRateLevelListLayer : SetupTriggerPopup, UploadPopupDelegate, UploadActio
 [[link(android)]]
 class GJRequestCell : TableViewCell {
     GJRequestCell(char const* identifier, float width, float height) = win inline, imac 0x240600, m1 0x1eb644, ios inline;
-    ~GJRequestCell() = win inline, ios 0x139f24;
+    ~GJRequestCell() = win inline, imac 0x2403e0, m1 0x1eb4cc, ios 0x139f24;
 
     virtual bool init() = win 0x158d20, imac 0x240680, m1 0x1eb694, ios 0x139f5c;
     virtual void draw() = win 0x1487a0, imac 0x2408c0, m1 0x1eb8a4, ios 0x13a0f8;
 
     void loadFromScore(GJUserScore* score) = win 0x158d40, imac 0x231d80, m1 0x1de434, ios 0x12f000;
     void markAsRead() = imac 0x240820, m1 0x1eb810, ios 0x13a064;
-    void onToggle(cocos2d::CCObject* sender) = win 0x1592a0;
-    void onViewFriendRequest(cocos2d::CCObject* sender) = win 0x159100, ios 0x139fac;
+    void onToggle(cocos2d::CCObject* sender) = win 0x1592a0, imac 0x2407f0, m1 0x1eb7dc;
+    void onViewFriendRequest(cocos2d::CCObject* sender) = win 0x159100, imac 0x2406d0, m1 0x1eb6e4, ios 0x139fac;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x157b80, imac 0x2406a0, m1 0x1eb6ac, ios 0x139f74;
-    void updateBGColor(int index) = win inline, ios 0x12ef80;
+    void updateBGColor(int index) = win inline, imac 0x231d20, m1 0x1de3b4, ios 0x12ef80;
     void updateToggle() = win inline, imac 0x236440, m1 0x1e259c, ios inline;
 
     GJUserScore* m_score;
@@ -12929,8 +12929,8 @@ class GJScaleControlDelegate {
 
 [[link(android)]]
 class GJScoreCell : TableViewCell, FLAlertLayerProtocol {
-    GJScoreCell(char const* identifier, float width, float height) = win inline, imac 0x23e8b0, m1 0x1e9dc4, ios inline;
-    virtual ~GJScoreCell() = win 0x155270, ios 0x138cb4;
+    GJScoreCell(char const* identifier, float width, float height) = imac 0x23e8b0, m1 0x1e9dc4, inline;
+    virtual ~GJScoreCell() = win 0x155270, imac 0x23e830, m1 0x1e9d8c, ios 0x138cb4;
 
     virtual bool init() = win 0x150360, imac 0x23e930, m1 0x1e9e10, ios 0x138cec;
     virtual void draw() = win 0x1487a0, imac 0x23ebf0, m1 0x1ea0b4, ios 0x138e90;
@@ -13440,19 +13440,19 @@ class GJStoreItem : cocos2d::CCNode {
 
 [[link(android)]]
 class GJThreadCell : TableViewCell {
-    GJThreadCell(char const*, float, float);
-    virtual ~GJThreadCell() = win 0x1592e0, ios 0x13a200;
+    GJThreadCell(char const*, float, float) = imac 0x240c30, m1 0x1ebb24;
+    virtual ~GJThreadCell() = win 0x1592e0, imac 0x240a10, m1 0x1eb9ac, ios 0x13a200;
 
     virtual bool init() = win 0x3ff70, imac 0x240ca0, m1 0x1ebb70, ios 0x13a238;
     virtual void draw() = win 0x1487a0, imac 0x241050, m1 0x1ebf60, ios 0x13a648;
 
     void loadFromThread(GJMessageThread* thread) = win 0x1597d0, imac 0x232ab0, m1 0x1df140, ios 0x12fcb0;
-    void onShowMembers(cocos2d::CCObject* sender) = win 0x15ab80;
-    void onThreadOptions(cocos2d::CCObject* sender) = win 0x15ac30;
-    void onToggleSelect(cocos2d::CCObject* sender) = win 0x15abc0;
-    void onViewProfile(cocos2d::CCObject* sender) = win 0x15ab40;
+    void onShowMembers(cocos2d::CCObject* sender) = win 0x15ab80, imac 0x240f60, m1 0x1ebe90;
+    void onThreadOptions(cocos2d::CCObject* sender) = win 0x15ac30, imac 0x240ff0, m1 0x1ebf08;
+    void onToggleSelect(cocos2d::CCObject* sender) = win 0x15abc0, imac 0x240f90, m1 0x1ebec0;
+    void onViewProfile(cocos2d::CCObject* sender) = win 0x15ab40, imac 0x240df0, m1 0x1ebd08;
     void onViewThread(cocos2d::CCObject* sender) = win 0x15ab10, imac 0x241020, m1 0x1ebf38, ios 0x13a620;
-    void updateBGColor(int index) = ios 0x130ca4;
+    void updateBGColor(int index) = imac 0x232a50, m1 0x1df0c0, ios 0x130ca4;
 
     GJMessageThread* m_thread;
     CCMenuItemToggler* m_toggler;
@@ -16527,7 +16527,7 @@ class LocalLevelManager : GManager, PlatformFileDelegate {
 [[link(android)]]
 class MapPackCell : TableViewCell {
     MapPackCell(char const* identifier, float width, float height) = win inline, imac 0x23b2c0, m1 0x1e6f18;
-    ~MapPackCell() = win inline, ios 0x136a90;
+    ~MapPackCell() = win inline, imac 0x23b050, m1 0x1e6d68, ios 0x136a90;
 
     virtual bool init() = win 0x14d700, imac 0x23b380, m1 0x1e6fa4, ios 0x136b30;
     virtual void draw() = win 0x1487a0, imac 0x23b830, m1 0x1e7460, ios 0x136f1c;
@@ -16588,7 +16588,7 @@ class MapSelectLayer : cocos2d::CCLayer {
 class MemberListPopup : PagedListPopup, ThreadMessageDelegate, FriendPickerDelegate, FLAlertLayerProtocol {
     virtual ~MemberListPopup() = win 0xd3900, ios 0x506d80;
 
-    static MemberListPopup* create(GJMessageThread*, ThreadViewPopup*, bool) = win 0xeb970, ios 0x4fc80c;
+    static MemberListPopup* create(GJMessageThread*, ThreadViewPopup*, bool) = win 0xeb970, imac 0x933390, m1 0x8150ac, ios 0x4fc80c;
 
     virtual bool requestPage(int page) = win 0x5a3a0, ios 0x507cdc, m1 0x823338, imac 0x942850;
     virtual void friendPicked(GJUserScore*) = win 0xed9c0, ios 0x5083e4, m1 0x823d98, imac 0x9432f0;
@@ -17957,7 +17957,7 @@ class OpacityEffectAction {
 [[link(android)]]
 class OptionsCell : TableViewCell {
     OptionsCell(char const* identifier, float width, float height) = win inline, imac 0x23d4b0, m1 0x1e8c9c;
-    virtual ~OptionsCell() = win 0x151070, ios 0x138088;
+    virtual ~OptionsCell() = win 0x151070, imac 0x23d430, m1 0x1e8c64, ios 0x138088;
 
     void loadFromObject(OptionsObject* object) = win 0x151100, ios 0x1276b4;
     void onToggleOption(cocos2d::CCObject* sender) = win 0x151520, imac 0x23d540, m1 0x1e8d08;
@@ -20152,7 +20152,7 @@ class RewardedVideoDelegate {
 [[link(android)]]
 class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
     RewardsPage() = inline;
-    ~RewardsPage() = win inline, ios 0x2594d4;
+    ~RewardsPage() = win inline, imac 0x1fd200, m1 0x1ae7ec, ios 0x2594d4;
 
     static RewardsPage* create() = win inline, imac 0x1fd580, m1 0x1aea8c, ios 0x25950c;
     static char const* getRewardFrame(int type, int state) = win inline, imac 0x1fe5d0, m1 0x1af938, ios inline;
@@ -20183,7 +20183,7 @@ class RewardsPage : FLAlertLayer, FLAlertLayerProtocol, GJRewardDelegate {
 
 [[link(android)]]
 class RewardUnlockLayer : FLAlertLayer, CurrencyRewardDelegate {
-    virtual ~RewardUnlockLayer() = win 0x561b40, ios 0x25ab2c;
+    virtual ~RewardUnlockLayer() = win 0x561b40, imac 0x1ff290, m1 0x1b05a0, ios 0x25ab2c;
 
     static RewardUnlockLayer* create(int type, RewardsPage* page) = win 0x563580, imac 0x1fe9e0, m1 0x1afddc, ios 0x25a564;
 
@@ -24222,7 +24222,7 @@ class SocialLinksPopup : FLAlertLayer {
 [[link(android)]]
 class SongCell : TableViewCell {
     SongCell(char const* identifier, float width, float height) = win inline, imac 0x23c7b0, m1 0x1e8420, ios inline;
-    virtual ~SongCell() = win 0x14fd50, ios 0x13794c;
+    virtual ~SongCell() = win 0x14fd50, imac 0x23c730, m1 0x1e83e8, ios 0x13794c;
 
     virtual bool init() = win 0x400c0, imac 0x23c820, m1 0x1e8464, ios 0x137984;
     virtual void draw() = win 0x1487a0, imac 0x23c860, m1 0x1e8494, ios 0x1379b4;
@@ -25246,7 +25246,7 @@ class ThreadMessageOptionsPopup : SetupTriggerPopup, FLAlertLayerProtocol {
 
 [[link(android)]]
 class ThreadOpenHelper {
-    static void check(int, std::string const&) = win 0xf3e40;
+    static void check(int, std::string const&) = win 0xf3e40, imac 0x948ef0, m1 0x829384;
     static void showRulesOnce() = win 0xf3fd0;
 }
 
@@ -25254,7 +25254,7 @@ class ThreadOpenHelper {
 class ThreadOptionsPopup : SetupTriggerPopup, ThreadMessageDelegate, FLAlertLayerProtocol {
     virtual ~ThreadOptionsPopup() = win 0xd3c00, imac 0x9490c0, m1 0x8294f4, ios 0x50c844;
 
-    static ThreadOptionsPopup* create(GJMessageThread*, ThreadViewPopup*, bool) = win 0xf41d0, ios 0x4fbdb8;
+    static ThreadOptionsPopup* create(GJMessageThread*, ThreadViewPopup*, bool) = win 0xf41d0, imac 0x932330, m1 0x814184, ios 0x4fbdb8;
 
     virtual void keyBackClicked() = win 0xa6580, imac 0x94ba80, m1 0x82badc, ios 0x50e530;
     virtual void onClose(cocos2d::CCObject* sender) = win 0xf6b30, imac 0x94ba10, m1 0x82ba70, ios 0x50e4ec;
