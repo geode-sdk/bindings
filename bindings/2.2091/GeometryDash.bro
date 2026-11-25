@@ -2225,7 +2225,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     cocos2d::CCRect getWorldRect();
     void holdTimerFired(float) = win 0x59050, imac 0x6c830, m1 0x659dc;
     bool init(float width, float height, char const* placeholder, char const* textFont, int fontSize, char const* labelFont) = win 0x54510, imac 0x659e0, m1 0x5e694, ios 0x1fae4c;
-    void insertAtCursor(std::string text) = win 0x54f50, imac 0x67110, m1 0x5fe2c;
+    void insertAtCursor(std::string text) = win 0x54f50, imac 0x67110, m1 0x5fe2c, ios 0x1fbd54;
     bool isCoveredByPopup();
     bool isVisibleInTree() = win 0x58b60, ios 0x1feec4;
     void moveCursorToEnd();
