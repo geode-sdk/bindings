@@ -7825,7 +7825,7 @@ class GameLevelManager : cocos2d::CCNode {
     int specialFromLikeKey(char const* key) = win inline, ios inline;
     void storeCommentsResult(cocos2d::CCArray* comments, std::string pageInfo, char const* key) = win 0x23e010, imac 0x568aa0, m1 0x4bba74;
     void storeDailyLevelState(int id, int remaining, GJTimedLevelType type) = win inline, imac 0x580df0, m1 0x4d2a60;
-    GJUserScore* storedFriendForAccountID(int accountID) = ios 0xcb2a4;
+    GJUserScore* storedFriendForAccountID(int accountID) = win inline, imac 0x57ce50, m1 0x4cede0, ios 0xcb2a4;
     void storeFriendRequest(GJFriendRequest* request) = win inline, imac 0x567d10, m1 0x4bae6c, ios inline;
     void storeSearchResult(cocos2d::CCArray* levels, std::string pageInfo, char const* searchKey) = win 0x221580, imac 0x549f00, m1 0x49fda4;
     void storeThreadManifest(int, std::string const&) = win 0x24d420, ios 0xc6234;
