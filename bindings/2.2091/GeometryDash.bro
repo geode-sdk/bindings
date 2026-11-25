@@ -26058,7 +26058,7 @@ class UploadActionPopup : FLAlertLayer {
 
     virtual void keyBackClicked() = win 0x3a1540, imac 0x290b20, m1 0x234d30, ios 0x377928;
 
-    void closePopup() = win inline;
+    void closePopup() = win inline, ios 0x377820;
     bool init(UploadPopupDelegate* delegate, std::string str) = win 0x3a0e10, imac 0x2902e0, m1 0x2344fc;
     void onClose(cocos2d::CCObject* sender) = win 0x3a1460, imac 0x290730, m1 0x234910;
     void showFailMessage(std::string message) = win 0x3a1360, imac 0x2908f0, m1 0x234acc;
