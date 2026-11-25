@@ -2556,7 +2556,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     virtual ~CCMotionStreak() = imac 0x5a35f0, m1 0x4f265c, ios 0x2080e0;
 
     static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::ccColor3B const&, char const*) = imac 0x5a3710, m1 0x4f2710, ios 0x208194;
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x5a38e0, ios 0x20829c;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x5a38e0, m1 0x4f28b4, ios 0x20829c;
 
     virtual void update(float) = imac 0x5a3ea0, m1 0x4f2d6c, ios 0x208600;
     virtual void setPosition(cocos2d::CCPoint const&) = imac 0x5a3c00, m1 0x4f2b74, ios 0x2084d0;
@@ -4109,11 +4109,11 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
 
     static cocos2d::CCSprite* create() = imac 0x1b5b90, m1 0x21a63c, ios 0x2d409c;
     static cocos2d::CCSprite* create(char const*) = imac 0x2738a0, m1 0x21a32c, ios 0x2d409c;
-    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x273990, ios inline;
+    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x273990, m1 0x21a41c, ios inline;
     static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x273a90, m1 0x21a520, ios 0x2d4118;
     static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = imac 0x273b90, m1 0x21a614, ios 0x2d4198;
     static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x273610, m1 0x21a0b0, ios 0x2d3f90;
-    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x2737a0, ios 0x2d4010;
+    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x2737a0, m1 0x21a228, ios 0x2d4010;
 
     virtual bool init() = imac 0x273cb0, m1 0x21a724, ios 0x2d4234;
     virtual void setVertexZ(float) = imac 0x275780, m1 0x21bf5c, ios 0x2d5998;
