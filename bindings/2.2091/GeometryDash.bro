@@ -936,17 +936,17 @@ class AudioAssetsBrowser : FLAlertLayer, TableViewCellDelegate, MusicDownloadDel
     AudioAssetsBrowser() = inline;
     ~AudioAssetsBrowser() = win inline, ios 0x269460;
 
-    static AudioAssetsBrowser* create(std::vector<int>& songIds, std::vector<int>& sfxIds) = win inline;
+    static AudioAssetsBrowser* create(std::vector<int>& songIds, std::vector<int>& sfxIds) = win inline, imac 0x8991d0, m1 0x78c990, ios 0x269498;
 
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x89a470, m1 0x78d9e8, ios 0x26a340;
-    virtual void keyBackClicked() = win 0x99f90, ios 0x26a2c4, m1 0x78d96c, imac 0x89a400;
+    virtual void keyBackClicked() = win 0x99f90, imac 0x89a400, m1 0x78d96c, ios 0x26a2c4;
     virtual void musicActionFinished(GJMusicAction action) = win 0x99520, imac 0x89a320, m1 0x78d918, ios 0x26a278;
     virtual void musicActionFailed(GJMusicAction action) = win 0x995b0, imac 0x89a350, m1 0x78d924, ios 0x26a284;
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = win inline, imac 0x89a390, m1 0x78d938, ios 0x26a294;
     virtual int getSelectedCellIdx() = win inline, imac 0x89a3b0, m1 0x78d948, ios 0x26a2a4;
     virtual int getCellDelegateType() = win inline, imac 0x89a3d0, m1 0x78d958, ios 0x26a2b4;
 
-    bool init(std::vector<int>& songIds, std::vector<int>& sfxIds) = win 0x98f70, imac 0x899400, m1 0x78cb30;
+    bool init(std::vector<int>& songIds, std::vector<int>& sfxIds) = win 0x98f70, imac 0x899400, m1 0x78cb30, ios 0x269584;
     void onClose(cocos2d::CCObject* sender) = win 0x99f60, imac 0x899970, m1 0x78d068;
     void onInfo(cocos2d::CCObject* sender) = win 0x99810, imac 0x8999a0, m1 0x78d0a4;
     void onPage(cocos2d::CCObject* sender) = win inline, imac 0x89a380, m1 0x78d934, ios inline;
