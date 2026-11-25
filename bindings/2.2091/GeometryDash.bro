@@ -2114,7 +2114,7 @@ class CCSpritePlus : cocos2d::CCSprite {
 [[link(android)]]
 class CCSpriteWithHue : cocos2d::CCSprite {
     CCSpriteWithHue() = inline;
-    virtual ~CCSpriteWithHue() = win 0x4c570, imac 0x8e110, m1 0x83580, ios 0x17c0c;
+    virtual ~CCSpriteWithHue() = win 0x4c570, imac 0x8e100, m1 0x8357c, ios 0x17c08;
 
     static CCSpriteWithHue* create(std::string const& file) = win inline, ios inline;
     static CCSpriteWithHue* create(std::string const& file, cocos2d::CCRect const& rect) = win inline, ios inline;
