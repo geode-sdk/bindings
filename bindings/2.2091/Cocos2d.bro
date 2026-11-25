@@ -2556,7 +2556,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
     virtual ~CCMotionStreak() = imac 0x5a35f0, m1 0x4f265c, ios 0x2080e0;
 
     static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::ccColor3B const&, char const*) = imac 0x5a3710, m1 0x4f2710, ios 0x208194;
-    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x5a38e0, ios 0x20829c;
+    static cocos2d::CCMotionStreak* create(float, float, float, cocos2d::ccColor3B const&, cocos2d::CCTexture2D*) = imac 0x5a38e0, m1 0x4f28b4, ios 0x20829c;
 
     virtual void update(float) = imac 0x5a3ea0, m1 0x4f2d6c, ios 0x208600;
     virtual void setPosition(cocos2d::CCPoint const&) = imac 0x5a3c00, m1 0x4f2b74, ios 0x2084d0;
@@ -4109,11 +4109,11 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
 
     static cocos2d::CCSprite* create() = imac 0x1b5b90, m1 0x21a63c, ios 0x2d409c;
     static cocos2d::CCSprite* create(char const*) = imac 0x2738a0, m1 0x21a32c, ios 0x2d409c;
-    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x273990, ios inline;
+    static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x273990, m1 0x21a41c, ios inline;
     static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x273a90, m1 0x21a520, ios 0x2d4118;
     static cocos2d::CCSprite* createWithSpriteFrameName(char const*) = imac 0x273b90, m1 0x21a614, ios 0x2d4198;
     static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*) = imac 0x273610, m1 0x21a0b0, ios 0x2d3f90;
-    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x2737a0, ios 0x2d4010;
+    static cocos2d::CCSprite* createWithTexture(cocos2d::CCTexture2D*, cocos2d::CCRect const&) = imac 0x2737a0, m1 0x21a228, ios 0x2d4010;
 
     virtual bool init() = imac 0x273cb0, m1 0x21a724, ios 0x2d4234;
     virtual void setVertexZ(float) = imac 0x275780, m1 0x21bf5c, ios 0x2d5998;
@@ -4567,7 +4567,7 @@ class cocos2d::CCTextureCache : cocos2d::CCObject {
     void removeTextureForKey(char const*) = imac 0x6c1ef0, m1 0x5dab04, ios 0x13d3b4;
     void removeUnusedTextures() = imac 0x6c1d30, m1 0x5da93c, ios inline;
     cocos2d::CCDictionary* snapshotTextures() = imac 0x6bfbb0, m1 0x5d8800, ios inline;
-    cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x6c1970, m1 0x5dab94, ios 0x13d434;
+    cocos2d::CCTexture2D* textureForKey(char const*) = imac 0x6c1f70, m1 0x5dab94, ios 0x13d434;
 }
 
 [[link(win, android)]]
@@ -4965,7 +4965,7 @@ class cocos2d::CCTransitionCrossFade : cocos2d::CCTransitionScene {
 class cocos2d::CCTransitionFade : cocos2d::CCTransitionScene {
     // CCTransitionFade(cocos2d::CCTransitionFade const&);
     CCTransitionFade() = imac 0xa89d0, m1 0x96738, ios inline;
-    virtual ~CCTransitionFade() = imac 0xa74d0, m1 0xa7520, ios inline;
+    virtual ~CCTransitionFade() = imac 0xa74d0, m1 0x967b8, ios inline;
 
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*) = imac 0xa7660, m1 0x968d8, ios 0x266048;
     static cocos2d::CCTransitionFade* create(float, cocos2d::CCScene*, cocos2d::ccColor3B const&) = imac 0xa75c0, m1 0x9683c, ios 0x265fac;

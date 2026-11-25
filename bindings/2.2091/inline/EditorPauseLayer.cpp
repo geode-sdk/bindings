@@ -12,6 +12,10 @@ EditorPauseLayer::EditorPauseLayer() {
 #endif
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+void EditorPauseLayer::onKeybindings(cocos2d::CCObject* sender) {
+    KeybindingsLayer::create(nullptr)->show();
+}
+
 void EditorPauseLayer::toggleEditorBackground(cocos2d::CCObject* sender) {
     auto gameManager = GameManager::sharedState();
     gameManager->toggleGameVariable(GameVar::HideBackground);
@@ -56,10 +60,6 @@ EditorPauseLayer* EditorPauseLayer::create(LevelEditorLayer* layer) {
     return nullptr;
 }
 
-void EditorPauseLayer::onKeybindings(cocos2d::CCObject* sender) {
-    KeybindingsLayer::create(nullptr)->show();
-}
-
 void EditorPauseLayer::togglePreviewAnim(cocos2d::CCObject* sender) {
     GameManager::sharedState()->toggleGameVariable(GameVar::PreviewAnimations);
     m_editorLayer->updatePreviewAnim();
@@ -75,4 +75,3 @@ void EditorPauseLayer::saveLevel() {
 
 #if defined(GEODE_IS_IOS)
 #endif
-

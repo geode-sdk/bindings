@@ -1,3 +1,4 @@
+#include <Geode/mapping/CCDirector.hpp>
 #include <Geode/binding/GJUINode.hpp>
 #include <Geode/binding/UIButtonConfig.hpp>
 

@@ -200,6 +200,22 @@ void GameLevelManager::storeUserMessage(GJUserMessage* message) {
 #if defined(GEODE_IS_WINDOWS)
 #include <sys/types.h>
 #include <sys/timeb.h>
+#include <Geode/utils/cocos.hpp>
+GJUserScore* GameLevelManager::storedFriendForAccountID(int accountID) {
+    auto friends = this->getStoredUserList(UserListType::Friends);
+    if (!friends || accountID <= 0) {
+        return nullptr;
+    }
+
+    for (auto friendObj : geode::cocos::CCArrayExt<GJUserScore*, false>(friends)) {
+        if (friendObj->m_accountID == accountID) {
+            return friendObj;
+        }
+    }
+
+    return nullptr;
+}
+
 int GameLevelManager::accountIDForUserID(int userID) {
     return m_userIDtoAccountIDDict->valueForKey(userID)->intValue();
 }
