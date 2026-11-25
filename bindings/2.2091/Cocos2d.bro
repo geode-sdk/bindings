@@ -2617,7 +2617,7 @@ class cocos2d::CCMotionStreak : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol 
 class cocos2d::CCMouseDispatcher : cocos2d::CCObject {
     // CCMouseDispatcher(cocos2d::CCMouseDispatcher const&);
     CCMouseDispatcher() = imac 0x59dcc0, ios 0x39aa38;
-    virtual ~CCMouseDispatcher() = imac 0x495810, ios 0x39aaac;
+    virtual ~CCMouseDispatcher() = imac 0x59dd90, m1 0x4ed03c, ios 0x39aaac;
 
     void addDelegate(cocos2d::CCMouseDelegate*) = imac 0x59df90, m1 0x4ed244, ios 0x39abf4;
     bool dispatchScrollMSG(float, float) = imac 0x59e010, m1 0x4ed2dc, ios inline;
@@ -3310,7 +3310,7 @@ class cocos2d::CCParticleSystem : cocos2d::CCNode, cocos2d::CCTextureProtocol {
     // float getFrictionSize() const;
     // float getFrictionSizeVar() const;
     // bool getOrderSensitive() const;
-    int getParticleDrawCost() = m1 0x1ef13c;
+    int getParticleDrawCost() = imac 0x8b2600, m1 0x7a3f90;
     // float getRespawn() const;
     // float getRespawnVar() const;
     // bool getStartRGBVarSync() const;
@@ -3551,7 +3551,7 @@ class cocos2d::CCProfilingTimer : cocos2d::CCObject {
     virtual ~CCProfilingTimer() = win inline, imac 0x4e7080, m1 0x445b88;
 
     char const* description() = win inline, imac 0x4e7140, m1 0x445c64;
-    bool initWithName(char const*) = win inline, imac 0xd8e00, m1 0xbf040;
+    bool initWithName(char const*) = win inline, imac 0x4e6e50, m1 0x445970;
     void reset() = win inline, imac 0x4e71b0, m1 0x445ce8;
 }
 
@@ -4952,7 +4952,7 @@ class cocos2d::CCTouchScriptHandlerEntry : cocos2d::CCScriptHandlerEntry {
 class cocos2d::CCTransitionCrossFade : cocos2d::CCTransitionScene {
     // CCTransitionCrossFade(cocos2d::CCTransitionCrossFade const&);
     CCTransitionCrossFade();
-    virtual ~CCTransitionCrossFade() = imac 0xa8500;
+    virtual ~CCTransitionCrossFade() = imac 0xa7980, m1 0x96bf0;
 
     static cocos2d::CCTransitionCrossFade* create(float, cocos2d::CCScene*) = imac 0xa7a20, m1 0x96c74;
 
@@ -6029,7 +6029,7 @@ class DS_Dictionary {
     std::string getStringForKey(char const*) = imac 0x15d080, m1 0x128680, ios 0x1ea8d8;
     std::vector<cocos2d::CCPoint> getVec2ArrayForKey(char const*) = imac 0x15d800, m1 0x128d50;
     cocos2d::CCPoint getVec2ForKey(char const*) = imac 0x15d230, m1 0x128808;
-    bool loadRootSubDictFromCompressedFile(char const*, bool) = imac 0x159ee0;
+    bool loadRootSubDictFromCompressedFile(char const*, bool) = imac 0x15a240, m1 0x125f14;
     bool loadRootSubDictFromFile(char const*) = imac 0x159ee0, m1 0x125c08;
     bool loadRootSubDictFromString(std::string const&) = imac 0x15a5d0, m1 0x126248, ios 0x1e9d60;
     bool rectFromString(std::string const&, cocos2d::CCRect&) = imac 0x159740, m1 0x1254c0;
