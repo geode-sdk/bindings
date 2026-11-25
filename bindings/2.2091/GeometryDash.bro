@@ -425,12 +425,12 @@ class AchievementManager : cocos2d::CCNode {
     bool isAchievementAvailable(std::string id) = win inline, imac 0x864410, m1 0x759120, ios inline;
     bool isAchievementEarned(char const* ach) = win 0x3c230, imac 0x8641e0, m1 0x758ec8, ios 0x10e318;
     int limitForAchievement(std::string id) = win inline, imac 0x864490, m1 0x7591c8, ios 0x10e418;
-    void notifyAchievement(char const* title, char const* description, char const* icon) = win inline, imac 0x864cb0, m1 0x7598d8;
-    void notifyAchievementWithID(char const* id) = win 0x3ccb0, imac 0x864af0, m1 0x7596dc;
+    void notifyAchievement(char const* title, char const* description, char const* icon) = win inline, imac 0x864cb0, m1 0x7598d8, ios 0x10e878;
+    void notifyAchievementWithID(char const* id) = win 0x3ccb0, imac 0x864af0, m1 0x7596dc, ios 0x10e734;
     int percentageForCount(int count, int total) = win inline, imac 0x8642f0, m1 0x758fec, ios inline;
     int percentForAchievement(char const* id) = win 0x3c250, imac 0x864200, m1 0x758ee4, ios 0x10e334;
-    void reportAchievementWithID(char const* id, int percent, bool dontNotify) = win 0x3cff0, imac 0x864de0, m1 0x759a1c;
-    void reportPlatformAchievementWithID(char const* id, int percent) = imac 0x864f60, m1 0x759b78;
+    void reportAchievementWithID(char const* id, int percent, bool dontNotify) = win 0x3cff0, imac 0x864de0, m1 0x759a1c, ios 0x10e928;
+    void reportPlatformAchievementWithID(char const* id, int percent) = imac 0x864f60, m1 0x759b78, ios 0x1f9274;
     void resetAchievement(char const* id) = win inline, imac 0x864d00, m1 0x759924;
     void resetAchievements() = win inline, imac 0x864f70, m1 0x759b84, ios inline;
     void setup() = win inline, imac 0x864090, m1 0x758da8, ios inline;
