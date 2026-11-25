@@ -6172,7 +6172,7 @@ class EmoteSprite : cocos2d::CCSprite {
     static float jumboMultiScale() = win inline;
     static float jumboScale() = win inline;
     static int maxEmotesComment() = win inline, imac 0x9042a0, m1 0x7eb1b0, ios 0x4dc350;
-    static int maxEmotesMessage() = win inline, imac 0x9042b0;
+    static int maxEmotesMessage() = win inline, imac 0x9042b0, ios 0x4dc368;
     static int defCount() = win inline, imac 0x904420, m1 0x7eb418, ios 0x4dc4f4;
     static EmoteDef* defAtIndex(int index) = win inline, imac 0x9043d0, m1 0x7eb3b4, ios 0x4dc498;
     static int characterCount(std::string const& text) = win inline, ios 0x4dcbdc;
