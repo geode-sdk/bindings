@@ -7592,7 +7592,7 @@ class GameLevelManager : cocos2d::CCNode {
     int getSplitIntFromKey(char const* key, int index) = win 0x23dde0, imac 0x562e60, m1 0x4b6844;
     std::string getStarLevelsString() = win 0x21f760, imac 0x5471b0, m1 0x49d698, ios 0xabe08;
     cocos2d::CCArray* getStoredLevelComments(char const* key) = win 0x23e250, m1 0x4bf034;
-    cocos2d::CCArray* getStoredOnlineLevels(char const* key) = win 0x2217d0, m1 0x4a018c, ios 0xad980;
+    cocos2d::CCArray* getStoredOnlineLevels(char const* key) = win 0x2217d0, imac 0x54a2c0, m1 0x4a018c, ios 0xad980;
     cocos2d::CCArray* getStoredUserList(UserListType type) = win 0x257b80, ios 0xcaa9c;
     GJUserMessage* getStoredUserMessage(int id) = win inline, imac 0x567da0, m1 0x4baeb4, ios 0xbeda8;
     GJUserMessage* getStoredUserMessageReply(int id) = win inline, imac 0x567df0, m1 0x4baedc;
@@ -7633,7 +7633,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
     bool isFollowingUser(int id) = win 0x224320, imac 0x54e5f0, m1 0x4a41a4;
     bool isPastDailyCopy(GJGameLevel*) = win inline, imac 0x54b9a0, m1 0x4a17a8, ios inline;
-    bool isTimeValid(char const* key, float length) = win 0x221d40, ios 0xada10;
+    bool isTimeValid(char const* key, float length) = win 0x221d40, imac 0x54a3c0, m1 0x4a02a8, ios 0xada10;
     bool isUpdateValid(int id) = win inline, imac 0x561100, m1 0x4b4d5c, ios 0xbad38;
     int itemIDFromLikeKey(char const* key) = win inline;
     bool keyHasTimer(char const* key) = win 0x221ff0;
