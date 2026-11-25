@@ -21124,8 +21124,8 @@ class SetGroupIDLayer : FLAlertLayer, ConfigureValuePopupDelegate {
     void onArrowRight(cocos2d::CCObject* sender) = win 0x591260, imac 0x301450, m1 0x295644, ios 0x41f48;
     void onClose(cocos2d::CCObject* sender) = win 0x5945e0, imac 0x2ff0f0, m1 0x293500, ios 0x40564;
     void onCopy(cocos2d::CCObject* sender) = win 0x591920, imac 0x3010d0, m1 0x29532c;
-    void onExtra(cocos2d::CCObject* sender) = win 0x591b30;
-    void onExtra2(cocos2d::CCObject* sender) = win 0x591b60, m1 0x295434;
+    void onExtra(cocos2d::CCObject* sender) = win 0x591b30, m1 0x295434;
+    void onExtra2(cocos2d::CCObject* sender) = win 0x591b60, m1 0x29545c;
     void onGroupIDOptions(cocos2d::CCObject* sender) = win 0x593a20, imac 0x2ff510, m1 0x293890;
     void onNextFreeEditorLayer1(cocos2d::CCObject* sender) = win 0x593720, m1 0x2936b8;
     void onNextFreeEditorLayer2(cocos2d::CCObject* sender) = win 0x5938a0, m1 0x2937a4;
@@ -22154,11 +22154,11 @@ class SetupObjectOptions2Popup : SetupTriggerPopup {
     SetupObjectOptions2Popup() = inline;
     virtual ~SetupObjectOptions2Popup() = win 0x58e540, ios 0x454ac;
 
-    static SetupObjectOptions2Popup* create(GameObject* object, cocos2d::CCArray* objects) = win inline;
+    static SetupObjectOptions2Popup* create(GameObject* object, cocos2d::CCArray* objects) = win inline, m1 0x295ef4;
 
     virtual void onPlusButton(cocos2d::CCObject* sender) = win 0x597d30, imac 0x3067e0, m1 0x299e0c, ios 0x45838;
 
-    bool init(GameObject* object, cocos2d::CCArray* objects) = win 0x597810, ios 0x454e4;
+    bool init(GameObject* object, cocos2d::CCArray* objects) = win 0x597810, ios 0x454e4, m1 0x2999f4;
 }
 
 [[link(android)]]
@@ -22166,7 +22166,7 @@ class SetupObjectOptionsPopup : FLAlertLayer {
     SetupObjectOptionsPopup() = inline;
     ~SetupObjectOptionsPopup() = win 0x58e460, ios 0x42f40;
 
-    static SetupObjectOptionsPopup* create(GameObject* object, cocos2d::CCArray* objects) = win 0x5948e0;
+    static SetupObjectOptionsPopup* create(GameObject* object, cocos2d::CCArray* objects) = win 0x5948e0, m1 0x295d58;
 
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x597690, imac 0x3061a0, m1 0x299858, ios 0x4534c;
     virtual void keyBackClicked() = win 0x597670, imac 0x306160, m1 0x299834, ios 0x45328;
