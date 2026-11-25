@@ -3129,8 +3129,8 @@ class cocos2d::CCParticleSmoke : cocos2d::CCParticleSystemQuad {
 
 [[link(win, android)]]
 class cocos2d::CCParticleSnow : cocos2d::CCParticleSystemQuad {
-    static cocos2d::CCParticleSnow* create() = imac 0x47b290, m1 0x3e5aaC, ios inline;
-    static cocos2d::CCParticleSnow* createWithTotalParticles(unsigned int numberOfParticles) = imac 0x47b310, ios inline;
+    static cocos2d::CCParticleSnow* create() = imac 0x47b290, m1 0x3e5a1c, ios inline;
+    static cocos2d::CCParticleSnow* createWithTotalParticles(unsigned int numberOfParticles) = imac 0x47b310, m1 0x3e5aac, ios inline;
 
     // CCParticleSnow(cocos2d::CCParticleSnow const&);
     // CCParticleSnow();
