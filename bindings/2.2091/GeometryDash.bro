@@ -855,7 +855,7 @@ class AnimatedSpriteDelegate {
 
 [[link(android)]]
 class AppDelegate : cocos2d::CCApplication, cocos2d::CCSceneDelegate {
-    virtual ~AppDelegate() = imac 0x73b620, m1 0x6490d8, ios 0x306dec;
+    virtual ~AppDelegate() = win 0x97c40, imac 0x73b620, m1 0x6490d8, ios 0x306dec;
 
     static AppDelegate* get() = win inline, imac 0x73b8f0, m1 0x649374, ios 0x3070b8;
 
