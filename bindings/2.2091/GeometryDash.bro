@@ -6125,7 +6125,7 @@ class EmotePickerPopup : EditorWindowPopup {
     virtual ~EmotePickerPopup() = win 0x1236e0, m1 0x7ead00, imac 0x903d40, ios 0x4dbe6c;
 
     static EmotePickerPopup* create(CCTextInputNode* input, cocos2d::CCPoint position, int maxEmotes, int maxLength) = win inline, m1 0x7e9568, ios 0x4dad60;
-    static EmotePickerPopup* toggle(EmotePickerPopup* existingPopup, EmotePickerDelegate* delegate, cocos2d::CCNode* node, CCTextInputNode* input, int maxEmotes, int maxLength) = win inline, m1 0x7e9a38, ios 0x4db0f0;
+    static EmotePickerPopup* toggle(EmotePickerPopup* existingPopup, EmotePickerDelegate* delegate, cocos2d::CCNode* node, CCTextInputNode* input, int maxEmotes, int maxLength) = win inline, imac 0x902ab0, m1 0x7e9a38, ios 0x4db0f0;
 
     static cocos2d::CCPoint buttonAnchor(cocos2d::CCNode* node) = win 0x1237e0;
     static EmotePickerPopup* openAt(EmotePickerPopup* popup, EmotePickerDelegate* delegate, cocos2d::CCNode* node) = win 0x123840, imac 0x902b60, m1 0x7e9b08, ios 0x4db1ac;
@@ -24090,7 +24090,7 @@ class Slider : cocos2d::CCLayer {
     void disableTouch() = win inline;
     void enableSlider() = win inline, imac 0x2efaa0, m1 0x28579c;
     bool getLiveDragging() = win inline, imac 0x2efc90, m1 0x28595c;
-    SliderThumb* getThumb() = win inline, imac 0x2ef930, m1 0x285668, ios 0x38a980;
+    SliderThumb* getThumb() = win inline, imac 0x2ef930, m1 0x285668, ios inline;
     float getValue() = win inline, imac 0x2efb60, m1 0x285858, ios 0x38ab68;
     void hideGroove(bool visibility) = win inline, imac 0x2efe30, m1 0x285a6c, ios 0x38ac88;
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x84200, imac 0x2ef750, m1 0x2854a8, ios 0x38a7c0;
