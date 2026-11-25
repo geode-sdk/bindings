@@ -24945,11 +24945,11 @@ class TableViewCell : cocos2d::CCLayer {
 class TableViewCellDelegate {
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = inline;
     virtual int getSelectedCellIdx() = inline;
-    virtual int getSelectedCellCustomIdx() = win 0x98e00;
-    virtual bool allowsCustomSFXActions() = win 0x5a3a0;
-    virtual bool isCustomIDSelected(int) = win 0x5a3a0;
-    virtual bool inCustomSFXTree() = win 0x5a3a0;
-    virtual bool showsSFXInfoButton() = win 0x5a3a0;
+    virtual int getSelectedCellCustomIdx() = win 0x98e00, ios inline;
+    virtual bool allowsCustomSFXActions() = win 0x5a3a0, ios inline;
+    virtual bool isCustomIDSelected(int) = win 0x5a3a0, ios inline;
+    virtual bool inCustomSFXTree() = win 0x5a3a0, ios inline;
+    virtual bool showsSFXInfoButton() = win 0x5a3a0, ios inline;
     virtual bool shouldSnapToSelected() = inline;
     virtual int getCellDelegateType() = inline;
 }
