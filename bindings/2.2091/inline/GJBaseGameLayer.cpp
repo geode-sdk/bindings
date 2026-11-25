@@ -1688,7 +1688,7 @@ void GJBaseGameLayer::remapGroupParent(GameObject* object, int oldGroupID, int n
 }
 #endif
 
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_INTEL_MAC)
+#if defined(GEODE_IS_WINDOWS)
 void GJBaseGameLayer::switchToRobotMode(PlayerObject* player, GameObject* portal, bool noPortal) {
     player->switchedToMode(GameObjectType::RobotPortal);
     auto lastPortal = this->processCameraObject(portal, player);

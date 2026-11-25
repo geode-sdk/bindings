@@ -46,6 +46,43 @@ void GameObject::updateTextKerning(int kerning) {}
 
 int GameObject::getTextKerning() { return false; }
 
+#if defined(GEODE_IS_ANDROID)
+GameObject::GameObject() {
+    #if defined(__clang__)
+    # pragma clang diagnostic push
+    # pragma clang diagnostic ignored "-Winvalid-offsetof"
+    #endif
+    // Almost all members are initialized to zeros, so we can cheat here to avoid unnecessary code
+    auto selfSize = sizeof(GameObject) - offsetof(GameObject, m_someOtherIndex);
+    memset((void*)((uintptr_t)this + offsetof(GameObject, m_someOtherIndex)), 0, selfSize);
+
+    #if defined(__clang__)
+    # pragma clang diagnostic pop
+    #endif
+
+    m_someOtherIndex = -1;
+    m_innerSectionIndex = -1;
+    m_boxOffsetCalculated = true;
+    m_isUnmodifiedPosDirty = true;
+    m_unk390 = 7;
+    m_startScaleX = 1.f;
+    m_startScaleY = 1.f;
+    m_parentMode = -1;
+    m_targetColor = 1;
+    m_scaleX = 1.0f;
+    m_scaleY = 1.0f;
+    m_defaultZLayer = ZLayer::T1;
+    m_unk4C0 = -1;
+    m_unk4C4 = -1;
+    m_unk4C8 = -1;
+    m_unk4CC = -1;
+    m_unk50C = 1.0f;
+    m_pixelScaleX = 1.0f;
+    m_pixelScaleY = 1.0f;
+    m_areaOpacityRelated = 0xff;
+}
+#endif
+
 #if !defined(GEODE_IS_IOS)
 cocos2d::CCLabelBMFont* GameObject::getObjectLabel() { return nullptr; }
 #endif
