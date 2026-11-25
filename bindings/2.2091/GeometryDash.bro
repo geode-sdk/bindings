@@ -1933,7 +1933,7 @@ class CCScrollLayerExt : cocos2d::CCLayer, cocos2d::CCTouchClipper {
     void scrollingEnd() = win 0x4b140, imac 0x41b820;
     void scrollLayer(float offset) = win inline, imac 0x41bf90, m1 0x394110, ios 0x39e21c;
     void setContentLayerSize(cocos2d::CCSize size) = win inline, imac 0x41b870, m1 0x393a74, ios inline;
-    void setContentOffset(cocos2d::CCPoint offset, bool animate) = win inline, imac 0x41b890, m1 0x393a84;
+    void setContentOffset(cocos2d::CCPoint offset, bool animate) = win inline, imac 0x41b890, m1 0x393a84, ios 0x39dbc0;
     void updateIndicators(float dt) = win 0x4b180, imac 0x41aeb0, m1 0x3931f0;
     void updateScrollDecay(float dt) = win 0x4b9a0, m1 0x394174, imac 0x41bff0, ios 0x39e280;
 
