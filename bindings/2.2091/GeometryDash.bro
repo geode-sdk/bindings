@@ -6617,7 +6617,7 @@ class EventLinkTrigger : EffectGameObject {
 
 [[link(android)]]
 class ExplodeItemNode : cocos2d::CCNode {
-    virtual ~ExplodeItemNode() = win 0x4dd0b0, ios 0x65a20;
+    virtual ~ExplodeItemNode() = win 0x4dd0b0, imac 0x1f7a20, m1 0x1a95e0, ios 0x65a20;
 
     static ExplodeItemNode* create(cocos2d::CCRenderTexture* texture) = win 0x4e2910, imac 0x1f6be0, m1 0x1a888c, ios 0x64e24;
 
@@ -7607,9 +7607,9 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getTopArtistsKey(int page) = win inline, imac 0x566fa0, m1 0x4ba15c;
     const char* getUploadMessageKey(int accountID) = win inline, imac 0x569090, m1 0x4bc080, ios inline;
     const char* getUserInfoKey(int id) = win inline, imac 0x567380, m1 0x4ba500, ios inline;
-    void getUserList(UserListType type) = win 0x257250, imac 0x57cb10, m1 0x4ceaa4;
+    void getUserList(UserListType type) = win 0x257250, imac 0x57cb10, m1 0x4ceaa4, ios 0xcb0dc;
     void getUserMessages(bool sent, int page, int total) = win 0x23aac0, m1 0x4baee8;
-    void getUsers(GJSearchObject* object) = win 0x239f10, imac 0x566fc0;
+    void getUsers(GJSearchObject* object) = win 0x239f10, imac 0x566fc0, m1 0x4ba184, ios 0xbe568;
     TodoReturn getUserSearch(std::string const&);
     void gotoLevelPage(GJGameLevel* level) = win 0x221390, imac 0x549d70, m1 0x49fbf4, ios 0xad64c;
     void handleIt(bool success, std::string response, std::string tag, GJHttpType type) = win 0x219750, imac 0x51c4e0, m1 0x4770a8, ios 0x9166c;
@@ -7832,7 +7832,7 @@ class GameLevelManager : cocos2d::CCNode {
     void storeUserInfo(GJUserScore* score) = win inline, imac 0x567760, m1 0x4ba8d0, ios inline;
     void storeUserMessage(GJUserMessage* message) = win inline, imac 0x567d80, m1 0x4baea0, ios inline;
     void storeUserMessageReply(int id, GJUserMessage* message) = win inline, imac 0x567dc0, m1 0x4baec0;
-    void storeUserName(int userID, int accountID, std::string userName) = win 0x21d580, ios 0xa74d4;
+    void storeUserName(int userID, int accountID, std::string userName) = win 0x21d580, imac 0x53ffb0, m1 0x496ef0, ios 0xa74d4;
     void storeUserNames(std::string usernameString) = win 0x21d240, imac 0x53f7e0, m1 0x4966c4;
     void submitUserInfo() = win 0x260b20, imac 0x564c20, m1 0x4b8294;
     TodoReturn suggestLevelStars(int, int, int, bool, int) = win 0x2352d0;
@@ -8316,7 +8316,7 @@ class GameManager : GManager {
     void tryCacheAd();
     void tryShowInterstitial(int unk1, int unk2, int unk3) = win inline, imac 0x369470, m1 0x2f6a88, ios inline;
     void unloadBackground() = win inline, imac 0x36c640, m1 0x2f9918;
-    void unloadIcon(int id, int type, int requestID) = win 0x27d490, imac 0x36b910, m1 0x2f8be0;
+    void unloadIcon(int id, int type, int requestID) = win 0x27d490, imac 0x36b910, m1 0x2f8be0, ios 0x3b4aa0;
     void unloadIcons(int requestID) = win 0x27d7c0, imac 0x36c060, m1 0x2f9334, ios 0x3b4da8;
     void unlockColor(int id, UnlockType type) = win inline;
     void unlockedPremium() = win inline, imac 0x368ec0, m1 0x2f6514, ios inline;
@@ -9527,7 +9527,7 @@ class GameToolbox {
 [[link(android)]]
 class GauntletLayer : cocos2d::CCLayer, LevelManagerDelegate {
     GauntletLayer() = inline;
-    ~GauntletLayer() = win inline, imac 0x37d400, ios 0x2ce1f4;
+    ~GauntletLayer() = win inline, imac 0x37d400, m1 0x308cd0, ios 0x2ce1f4;
 
     static GauntletLayer* create(GauntletType type) = win inline, ios 0x2ce278;
     static cocos2d::CCScene* scene(GauntletType type) = win 0x2fab50, ios 0x2ce22c;
@@ -10948,7 +10948,7 @@ class GJDailyLevelDelegate {
 
 [[link(android)]]
 class GJDifficultySprite : cocos2d::CCSprite {
-    virtual ~GJDifficultySprite() = win 0x7e780;
+    virtual ~GJDifficultySprite() = win 0x7e780, imac 0x8e100, m1 0x8357c, ios 0x17c08;
 
     static GJDifficultySprite* create(int difficulty, GJDifficultyName name) = win 0x3aaf10, imac 0x2a4ab0, m1 0x247594, ios 0x380570;
     static std::string getDifficultyFrame(int difficulty, GJDifficultyName name) = win 0x3ab000, imac 0x2a4c00, m1 0x247740;
@@ -15091,7 +15091,7 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
 
 [[link(android)]]
 class LevelCell : TableViewCell {
-    LevelCell(char const* identifier, float width, float height) = win 0x148990, ios 0x132c64;
+    LevelCell(char const* identifier, float width, float height) = win 0x148990, imac 0x236a20, m1 0x1e2ac8, ios 0x132c64;
     virtual ~LevelCell() = win 0x148870, imac 0x236880, m1 0x1e2984, ios 0x132b98;
 
     static LevelCell* create(float width, float height) = win inline, imac 0x236900, m1 0x1e29bc, ios 0x132bd0;
@@ -15564,7 +15564,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void incrementDislikes() = win inline, imac 0x2b19d0, m1 0x252c8c, ios inline;
     void incrementLikes() = win inline, imac 0x2b19b0, m1 0x252c78, ios inline;
     bool init(GJGameLevel* level, bool challenge) = win 0x41be90, imac 0x2a9ea0, m1 0x24b504, ios 0x27920;
-    void loadLevelStep() = win 0x4224c0, imac 0x2b0fa0, m1 0x252288;
+    void loadLevelStep() = win 0x4224c0, imac 0x2b0fa0, m1 0x252288, ios 0x2def0;
     TodoReturn loadReplay();
     void onAddToList(cocos2d::CCObject* sender) = win 0x41e800, imac 0x2af380, m1 0x250704;
     void onBack(cocos2d::CCObject* sender) = win 0x4264d0, imac 0x2aeee0, m1 0x250258, ios 0x2c2fc;
@@ -15590,9 +15590,9 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onSetFolder(cocos2d::CCObject* sender) = win 0x41e990, imac 0x2af2e0, m1 0x250650;
     void onUpdate(cocos2d::CCObject* sender) = win 0x4243c0, imac 0x2ae420, m1 0x24f77c, ios 0x2b990;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x4245e0, imac 0x2ac420, m1 0x24d810, ios 0x29c5c;
-    void playStep2() = win 0x422310, imac 0x2b0e60, m1 0x25213c;
-    void playStep3() = win 0x4223f0, imac 0x2b0f20, m1 0x252200;
-    void playStep4() = win 0x422590, imac 0x2b1070, m1 0x252364;
+    void playStep2() = win 0x422310, imac 0x2b0e60, m1 0x25213c, ios 0x2dda4;
+    void playStep3() = win 0x4223f0, imac 0x2b0f20, m1 0x252200, ios 0x2de68;
+    void playStep4() = win 0x422590, imac 0x2b1070, m1 0x252364, ios 0x2dfcc;
     void setupLevelInfo() = win 0x41fd50, imac 0x2ad030, m1 0x24e424;
     void setupPlatformerStats() = win 0x41f3a0, imac 0x2adc20, m1 0x24ef24, ios 0x2b21c;
     void setupProgressBars() = win 0x41f820, imac 0x2ae000, m1 0x24f350, ios 0x2b604;
@@ -15715,7 +15715,7 @@ class LevelListDeleteDelegate {
 [[link(android)]]
 class LevelListLayer : LevelBrowserLayer, TextInputDelegate, SelectListIconDelegate, LikeItemDelegate, LevelListDeleteDelegate, AdminActionConfirmDelegate {
     LevelListLayer() = ios 0x2e6f94, inline;
-    ~LevelListLayer() = win inline, ios 0x2e0144;
+    ~LevelListLayer() = win inline, imac 0x347100, m1 0x2d7b28, ios 0x2e0144;
 
     static LevelListLayer* create(GJLevelList* list) = win inline, imac 0x347210, m1 0x2d7c00, ios 0x2e01c8;
     static cocos2d::CCScene* scene(GJLevelList* list) = win 0x42b070, imac 0x347180, m1 0x2d7b60, ios 0x2e017c;
@@ -24622,7 +24622,7 @@ class SpriteAnimationManager : cocos2d::CCNode {
     void runAnimation(std::string animation) = win 0x86d80, imac 0x8023f0, m1 0x702b38, ios 0x3c1ad8;
     void runQueuedAnimation() = win inline, imac 0x802eb0, m1 0x7034fc, ios inline;
     void stopAnimations() = win inline, imac 0x803000, m1 0x703644, ios 0x3c216c;
-    void storeAnimation(cocos2d::CCAnimate* action, cocos2d::CCAnimate* frames, std::string name, int priority, spriteMode type, cocos2d::CCSpriteFrame* first) = win 0x86ac0, imac 0x801ea0, m1 0x70265c;
+    void storeAnimation(cocos2d::CCAnimate* action, cocos2d::CCAnimate* frames, std::string name, int priority, spriteMode type, cocos2d::CCSpriteFrame* first) = win 0x86ac0, imac 0x801ea0, m1 0x70265c, ios 0x3c1828;
     void storeSoundForAnimation(cocos2d::CCString* sound, std::string animation, float delay) = win inline, imac 0x801de0, m1 0x702598;
     void switchToFirstFrameOfAnimation(std::string animation) = win inline, imac 0x8033d0, ios inline;
     void updateAnimationSpeed(float speed) = win inline, imac 0x802190, m1 0x702914;
