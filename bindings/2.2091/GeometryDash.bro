@@ -10217,9 +10217,9 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void swapGround(int ground) = win inline, imac 0xf0b50, m1 0xd1820, ios 0x2785cc;
     void swapMiddleground(int middleground) = win inline, imac 0xf0ca0, m1 0xd196c, ios 0x278718;
     void switchToFlyMode(PlayerObject* player, GameObject* object, bool noPortal, int type) = win inline, imac 0x101bb0, m1 0xe0474, ios 0x281cf8;
-    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac inline, imac 0x101da0, m1 0xe066c, ios 0x281e5c;
-    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac inline, imac 0x101cf0, m1 0xe05c0, ios 0x281df8;
-    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac inline, imac 0x101e50, m1 0xe0718, ios 0x281ec0;
+    void switchToRobotMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac 0x101da0, m1 0xe066c, ios 0x281e5c;
+    void switchToRollMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac 0x101cf0, m1 0xe05c0, ios 0x281df8;
+    void switchToSpiderMode(PlayerObject* player, GameObject* object, bool noPortal) = win inline, imac 0x101e50, m1 0xe0718, ios 0x281ec0;
     void syncBGTextures() = win 0x344f00, imac 0x1383e0, m1 0x10dbfc, ios 0x29eeb8;
     void syncDeathMarkerFlip() = win 0x32ec30, imac 0x11cab0, m1 0xf7158;
     void teleportPlayer(TeleportPortalObject* object, PlayerObject* player) = win 0x315f20, imac 0xfcdd0, m1 0xdbcc0, ios 0x27e3d8;
@@ -18749,7 +18749,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void createFadeOutDartStreak() = win 0x4f69a0, imac 0x402880, m1 0x37d108, ios 0x2c5c10;
     void createRobot(int frame) = win 0x4e60d0, imac 0x3e9190, m1 0x367010, ios 0x2b54ac;
     void createSpider(int frame) = win 0x4e64c0, imac 0x3e9540, m1 0x367354, ios 0x2b579c;
-    void deactivateParticle() = win 0x4e9b40, m1 inline, imac 0x3ee9a0, m1 0x36bbc4, ios 0x2b92f0;
+    void deactivateParticle() = win 0x4e9b40, imac 0x3ee9a0, m1 0x36bbc4, ios 0x2b92f0;
     void deactivateStreak(bool stop) = win inline, imac 0x3e9f60, m1 0x367cf4, ios 0x2b608c;
     bool destroyFromHitHead() = win inline, imac 0x405ff0, m1 0x38059c;
     void didHitHead() = win 0x4f1e30, imac 0x3fa4b0, m1 0x375b64;
@@ -18883,7 +18883,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void startDashing(DashRingObject* object) = win 0x4f3b20, imac 0x3fe4a0, m1 0x379490, ios 0x2c2f0c;
     void stopBurstEffect() = win 0x4f97b0, imac 0x405340, m1 0x37f9a4;
     void stopDashing() = win 0x4f4850, imac 0x3eec40, m1 0x36be40, ios 0x2b9548;
-    void stopParticles() = win 0x4e9ae0, m1 inline, imac 0x3f0760, m1 0x36d8b0;
+    void stopParticles() = win 0x4e9ae0, imac 0x3f0760, m1 0x36d8b0;
     void stopPlatformerJumpAnimation() = win 0x4eb320, imac 0x3f1130, m1 0x36e1f8, ios 0x2bb150;
     void stopRotation(bool ground, int type) = win inline, imac 0x3f11c0, m1 0x36e280;
     void stopStreak2() = win inline, imac 0x4081e0, m1 0x3825e4, ios 0x2c9ec0;
