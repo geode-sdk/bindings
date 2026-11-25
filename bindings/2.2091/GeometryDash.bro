@@ -1634,7 +1634,7 @@ class CCCounterLabel : cocos2d::CCLabelBMFont {
     void fastUpdateCounter() = win inline, imac 0x5127b0, m1 0x46d918, ios inline;
     int getTargetCount() = win inline, imac 0x512990, m1 0x46dab0, ios inline;
     bool init(int count, char const* font, FormatterType type) = win inline, imac 0x512730, m1 0x46d890;
-    void setTargetCount(int count) = win 0x46e50, imac 0x5128c0, m1 0x46da00;
+    void setTargetCount(int count) = win 0x46e50, imac 0x5128c0, m1 0x46da00, ios 0x3e55c;
     void updateCounter(float dt) = win 0x46ee0, imac 0x512810, m1 0x46d95c;
     void updateString() = win 0x46f60, imac 0x5129a0, m1 0x46dab8;
 
@@ -6214,7 +6214,7 @@ class EndLevelLayer : GJDropDownLayer {
     void goEdit() = win 0x206640, imac 0x4bc130, m1 0x420388;
     bool init(PlayLayer* playLayer) = win inline, imac 0x4b8bb0, m1 0x41d1c4, ios inline;
     void onDeathTracker(cocos2d::CCObject* sender) = win 0x205c40;
-    void onEdit(cocos2d::CCObject* sender) = win 0x206540, imac 0x4bb030, m1 0x41f304;
+    void onEdit(cocos2d::CCObject* sender) = win 0x206540, imac 0x4bb030, m1 0x41f304, ios 0x393ce0;
     void onEveryplay(cocos2d::CCObject* sender) = win inline, imac 0x4bc120, m1 0x420384, ios inline;
     void onHideLayer(cocos2d::CCObject* sender) = win 0x206710, imac 0x4bb2d0, m1 0x41f5ac, ios 0x393f7c;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x2059c0, imac 0x4bb220, m1 0x41f50c;
@@ -8095,7 +8095,7 @@ class GameManager : GManager {
     int colorForPos(int pos) = win inline, imac 0x3693c0, m1 0x2f69f4, ios inline;
     std::string colorKey(int id, UnlockType type) = win 0x277680, imac 0x3616b0, m1 0x2f00a0;
     bool commentsRestricted() = imac 0x36d760, m1 0x2fab7c;
-    void completedAchievement(std::string key) = win 0x278140, imac 0x362470, m1 0x2f0f5c;
+    void completedAchievement(std::string key) = win 0x278140, imac 0x362470, m1 0x2f0f5c, ios 0x3b03f0;
     int countForType(IconType type) = win 0x27d010, imac 0x36a1d0, m1 0x2f770c, ios 0x3b44d4;
     int defaultFrameForAnimation(int objectID) = win inline, imac 0x247950, m1 0x1f12f4, ios inline;
     void didExitPlayscene() = win inline, imac 0x376490, m1 0x3026f8;
@@ -8259,7 +8259,7 @@ class GameManager : GManager {
     int reorderKey(int index, bool up) = win 0x27f1f0, imac 0x36dfe0, m1 0x2fb444;
     void reportAchievementWithID(char const* key, int percent, bool dontNotify) = win 0x2790e0, imac 0x3631d0, m1 0x2f1c34, ios 0x3b0a00;
     void reportPercentageForLevel(int levelID, int percentage, bool isPlatformer) = win 0x278580, imac 0x362770, m1 0x2f12ac;
-    void resetAchievement(std::string key) = win 0x278300, imac 0x362600, m1 0x2f110c;
+    void resetAchievement(std::string key) = win 0x278300, imac 0x362600, m1 0x2f110c, ios 0x3b04d8;
     void resetAdTimer() = win inline, imac 0x3693f0, m1 0x2f6a18, ios inline;
     void resetAllIcons() = win 0x27f630, imac 0x36e490, m1 0x2fb8bc;
     void resetCoinUnlocks() = win 0x27be00, imac 0x367930, m1 0x2f4f18;
@@ -9489,8 +9489,8 @@ class GameToolbox {
     static void openAppPage() = win inline, imac 0x4e98d0, m1 0x447d64;
     static void openRateURL(std::string str1, std::string str2) = imac 0x4e97d0, m1 0x447c6c;
     static cocos2d::CCParticleSystemQuad* particleFromString(std::string const& str, cocos2d::CCParticleSystemQuad* system, bool dontUpdate) = win inline, imac 0x4f37e0, m1 0x450bb8, ios 0x4d9d8;
-    static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const& particleStruct, cocos2d::CCParticleSystemQuad* system, bool dontUpdate) = win 0x72700, imac 0x4f38f0, m1 0x3fdd0c;
-    static void particleStringToStruct(std::string const& str, cocos2d::ParticleStruct& particleStruct) = win 0x71a40, imac 0x4f2890, m1 0x44fd80;
+    static cocos2d::CCParticleSystemQuad* particleFromStruct(cocos2d::ParticleStruct const& particleStruct, cocos2d::CCParticleSystemQuad* system, bool dontUpdate) = win 0x72700, imac 0x4f38f0, m1 0x3fdd0c, ios 0x4daac;
+    static void particleStringToStruct(std::string const& str, cocos2d::ParticleStruct& particleStruct) = win 0x71a40, imac 0x4f2890, m1 0x44fd80, ios 0x4d038;
     static TodoReturn pathSegmentCount(std::string const&, char const*);
     static std::string pointsToString(int points) = win 0x748e0, imac 0x4f5fb0, m1 0x4532ec, ios 0x4f480;
     static void postClipVisit() = win inline, imac 0x4ead10, m1 0x448fe8;
@@ -15377,7 +15377,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void updateKeyframeVisibility(bool visible) = win inline, imac 0xc8550, m1 0xb3290, ios inline;
     void updateLevelFont(int index) = win 0x3fd9c0, imac 0xc4890, m1 0xafa60, ios 0x4039b4;
     void updateLevelSaveInfo() = win 0x3ff620, ios 0x404d9c;
-    void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x3f7460, imac 0xbe6e0, m1 0xaa6c0;
+    void updateObjectColors(cocos2d::CCArray* gameObjects) = win 0x3f7460, imac 0xbe6e0, m1 0xaa6c0, ios 0x400808;
     void updateOptions() = win 0x3eef70, imac 0xab1d0, m1 0x99e64, ios 0x3f747c;
     TodoReturn updatePlayerState(GJPlayerState);
     void updatePreviewAnim() = win 0x400e80, imac 0xc8240, m1 0xb2f70;
@@ -21277,7 +21277,7 @@ class SetTextPopup : FLAlertLayer, EmotePickerDelegate {
     SetTextPopup() = win 0x9999999, inline;
     ~SetTextPopup() = win 0x399820, ios 0x37c8f8;
 
-    static SetTextPopup* create(std::string, std::string, int, std::string, std::string, bool, float, bool, int, int) = win 0x3a6f70, imac 0x29a330;
+    static SetTextPopup* create(std::string, std::string, int, std::string, std::string, bool, float, bool, int, int) = win 0x3a6f70, imac 0x29a330, ios 0x37c588;
 
     virtual void keyBackClicked() = win 0x3a8740, imac 0x29c120, m1 0x23f7cc, ios 0x37dce0;
     virtual void show() = win 0x3a83c0, imac 0x29bef0, m1 0x23f580, ios 0x37dae4;

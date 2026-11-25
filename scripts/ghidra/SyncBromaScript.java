@@ -1062,14 +1062,21 @@ public class SyncBromaScript extends GhidraScript {
                         }
                     }
                     for (int i = length; i > 0; i -= 1) {
-                        classDataMembers.clearAtOffset(offset + i - 1);
+                        int target = offset + i - 1;
+                        if (target >= 0) {
+                            classDataMembers.clearAtOffset(offset + i - 1);
+                        }
                     }
-                    classDataMembers.replaceAtOffset(
-                        offset,
-                        memType instanceof FunctionDefinition ? new PointerDataType(memType) : memType, length,
-                        memName,
-                        mem.getComment().orElse(null)
-                    );
+                    if (offset >= 0) {
+                        classDataMembers.replaceAtOffset(
+                            offset,
+                            memType instanceof FunctionDefinition ? new PointerDataType(memType) : memType, length,
+                            memName,
+                            mem.getComment().orElse(null)
+                        );
+                    } else {
+                        wrapper.printfmt("skipped member {0} due to negative offset {1}", memName, offset);
+                    }
                     offset += length;
                 }
                 else {
