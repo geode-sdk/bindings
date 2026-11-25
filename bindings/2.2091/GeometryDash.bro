@@ -1349,7 +1349,7 @@ class BrowseSmartTemplateLayer : FLAlertLayer {
 [[link(android)]]
 class ButtonPage : cocos2d::CCLayer {
     ButtonPage() = inline;
-    virtual ~ButtonPage() = win 0x77c70;
+    virtual ~ButtonPage() = win 0x77c70, imac 0x78fa0, m1 0x70a84;
 
     static ButtonPage* create(cocos2d::CCArray* objects, cocos2d::CCPoint position, int rows, float spacing) = win 0x177dc0, imac 0x6b48e0, m1 0x5ce0bc;
 
@@ -1876,7 +1876,7 @@ class CCNodeContainer : cocos2d::CCNode {
 [[link(android)]]
 class CCPartAnimSprite : cocos2d::CCSprite {
     CCPartAnimSprite() = inline;
-    ~CCPartAnimSprite() = win inline, ios 0x87f1c;
+    ~CCPartAnimSprite() = win inline, imac 0x35ecc0, m1 0x2edbf0, ios 0x87f1c;
 
     static CCPartAnimSprite* createWithAnimDesc(char const* definition, cocos2d::CCTexture2D* texture, bool useTexture) = win inline, imac 0x35cf40, m1 0x2ebf94;
 
@@ -2155,7 +2155,7 @@ class CCSpriteWithHue : cocos2d::CCSprite {
 
 [[link(android)]]
 class CCTextInputMenu : cocos2d::CCLayer {
-    virtual ~CCTextInputMenu() = win 0x4d250;
+    virtual ~CCTextInputMenu() = win 0x4d250, imac 0x78fa0, m1 0x70a84;
 
     static CCTextInputMenu* create(CCTextInputNode*, cocos2d::CCPoint) = m1 0x70034;
 
@@ -12293,7 +12293,7 @@ class GJMessageThread : cocos2d::CCObject {
 [[link(android)]]
 class GJMGLayer : cocos2d::CCLayer {
     GJMGLayer() = inline;
-    virtual ~GJMGLayer() = win 0x386c60;
+    virtual ~GJMGLayer() = win 0x386c60, imac 0x78fa0, m1 0x70a84;
 
     static GJMGLayer* create(int index) = win inline, imac 0x6bece0;
     static float defaultYOffsetForBG2(int index) = win inline, imac 0x6becc0, m1 0x5d797c, ios inline;
@@ -13910,7 +13910,7 @@ class GradientTriggerObject : EffectGameObject {
 [[link(android), depends(cocos2d::CCDirector)]]
 class GraphicsReloadLayer : cocos2d::CCLayer {
     GraphicsReloadLayer() = inline;
-    virtual ~GraphicsReloadLayer() = win 0x4cad60;
+    virtual ~GraphicsReloadLayer() = win 0x4cad60, imac 0x78fa0, m1 0x70a84;
 
     static GraphicsReloadLayer* create(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool fullscreen, bool borderless, bool fix, bool changedResolution) = win inline, imac 0x888070, m1 0x77cb54, ios inline;
     static cocos2d::CCScene* scene(cocos2d::TextureQuality quality, cocos2d::CCSize resolution, bool fullscreen, bool borderless, bool fix, bool changedResolution) = win inline, imac 0x887ff0, m1 0x77cab4, ios inline;
@@ -16354,7 +16354,7 @@ class LikeItemLayer : FLAlertLayer {
 
 [[link(android)]]
 class ListButtonBar : cocos2d::CCNode {
-    virtual ~ListButtonBar() = win 0x77c10, ios 0x1f09b4;
+    virtual ~ListButtonBar() = win 0x77c10, imac 0x3dd110, m1 0x35bf88, ios 0x1f09b4;
 
     static ListButtonBar* create(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset, float arrowOffset, int arrowType) = win 0x77cb0, imac 0x3dd1a0, m1 0x35c004, ios 0x1f09cc;
 
@@ -16377,7 +16377,7 @@ class ListButtonBarDelegate {
 
 [[link(android)]]
 class ListButtonPage : cocos2d::CCLayer {
-    virtual ~ListButtonPage() = win 0x77c70;
+    virtual ~ListButtonPage() = win 0x77c70, imac 0x78fa0, m1 0x70a84, ios 0x30a54;
 
     static ListButtonPage* create(cocos2d::CCArray* items, cocos2d::CCPoint position, int columns, int rows, float columnOffset, float rowOffset, float offset) = win 0x783b0, imac 0x3dd6b0, m1 0x35c4e8, ios 0x1f0eb0;
 
