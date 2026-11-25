@@ -8516,7 +8516,7 @@ class GameManager : GManager {
 
 [[link(android), depends(cocos2d::CCParticleSystem)]]
 class GameObject : CCSpritePlus {
-    GameObject() = win 0x208980, imac 0x1d67f0, m1 0x18afb8, ios 0x2cbc70;
+    GameObject() = win 0x208980, imac 0x1d67f0, m1 0x18afb8, ios 0x2cbc70, inline;
     ~GameObject() = win 0x288810, imac 0x66ea30, m1 0x5a63ac, ios 0x2f13d4;
 
     static GameObject* createWithFrame(char const* name) = win 0x28ada0, imac 0x6736c0, m1 0x5a6958, ios 0x2f1c84;
