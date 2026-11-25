@@ -4921,7 +4921,7 @@ class EditorSFXManager {
     std::string serializeCompressed() = imac 0x8ecd60;
     void setActionMinInterval(int actionId, float interval);
     void setEditorLoading(bool isLoading) = ios 0x4c8564;
-    void setGlobalVolume(float volume) = ios 0x4c856c;
+    void setGlobalVolume(float volume) = win inline, m1 0x7cf59c, imac 0x8e3c40, ios 0x4c856c;
     void setPlayMode(int actionId, int playMode);
     int soundCountForAction(int actionId);
     cocos2d::CCArray* soundsForAction(int actionId) = imac 0x8e3140, ios 0x4c82e0;
@@ -16429,7 +16429,7 @@ class LoadingCircle : cocos2d::CCLayerColor {
 
 [[link(android)]]
 class LoadingCircleSprite : cocos2d::CCSprite {
-    virtual ~LoadingCircleSprite() = win 0x78730, ios 0x441958;
+    virtual ~LoadingCircleSprite() = win 0x78730, m1 0x41cba0, imac 0x4b8590, ios 0x441958;
 
     /// Create a Loading Circle Sprite with a spinning action
     /// @param spinSpeed A speed modifier, higher is faster and lower is slower
