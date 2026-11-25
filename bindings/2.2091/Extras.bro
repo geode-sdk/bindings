@@ -492,9 +492,9 @@ class EmoteDef {
 	float m_y;
 	cocos2d::ccColor3B m_color;
 	bool m_isAlias;
-	PAD = win 0xc, android 0xc;
+	PAD = win 0xc, android 0xc, mac 0xc, ios 0xc;
 	bool m_flipX;
-	PAD = win 0x7, android 0x7;
+	PAD = win 0x7, android 0x7, mac 0x7, ios 0x7;
 }
 
 class EmoteToken {
