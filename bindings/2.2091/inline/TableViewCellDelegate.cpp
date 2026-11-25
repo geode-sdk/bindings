@@ -8,6 +8,13 @@ bool TableViewCellDelegate::shouldSnapToSelected() { return true; }
 
 int TableViewCellDelegate::getCellDelegateType() { return 0; }
 
+#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
+#endif
+
+#if defined(GEODE_IS_WINDOWS)
+#endif
+
+#if defined(GEODE_IS_IOS)
 bool TableViewCellDelegate::allowsCustomSFXActions() { return false; }
 
 bool TableViewCellDelegate::inCustomSFXTree() { return false; }
@@ -17,13 +24,5 @@ bool TableViewCellDelegate::showsSFXInfoButton() { return false; }
 int TableViewCellDelegate::getSelectedCellCustomIdx() { return 0; }
 
 bool TableViewCellDelegate::isCustomIDSelected(int id) { return false; }
-
-#if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
-#endif
-
-#if defined(GEODE_IS_WINDOWS)
-#endif
-
-#if defined(GEODE_IS_IOS)
 #endif
 
