@@ -3877,8 +3877,8 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     void positionInfoObjects() = win 0x16a6f0, imac 0x6f9380, m1 0x60b184;
     void processNextMultiAsset() = win 0x16e4d0, imac 0x6fd7e0, m1 0x60f24c, ios 0x122e28;
     void setMultiAssetFilesize(int, int);
-    void showError(bool fast) = win 0x16ead0, imac 0x6fafe0, m1 0x60cd10;
-    void startDownload() = win 0x16bb10, imac 0x6fb6d0, m1 0x5d1a30;
+    void showError(bool fast) = win 0x16ead0, imac 0x6fafe0, m1 0x60cd10, ios 0x1217c8;
+    void startDownload() = win 0x16bb10, imac 0x6fb6d0, m1 0x5d1a30, ios 0x121cec;
     void startMonitorDownload() = win 0x16bb80, imac 0x6faaf0;
     void startMultiAssetDownload() = win 0x16e310, imac 0x6fb370, m1 0x60d074;
     void toggleUpdateButton(bool enabled) = win inline, imac 0x6fb320, m1 0x60d01c, ios inline;
