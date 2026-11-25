@@ -12018,7 +12018,7 @@ class GJLevelList : cocos2d::CCNode {
     void dataLoaded(DS_Dictionary* dict) = win 0x273a50, imac 0x58fd90, m1 0x4e0228, ios 0xd7060;
     void duplicateListLevels(GJLevelList* list) = win inline, imac 0x58ec30, m1 0x4df030;
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray* levels) = win 0x272e00, imac 0x58eca0, m1 0x4df09c;
-    std::string getUnpackedDescription() = win inline, imac 0x58eb90, m1 0x4def74;
+    std::string getUnpackedDescription() = win inline, imac 0x58eb90, m1 0x4def74, ios 0x0d6490;
     void handleStatsConflict(GJLevelList* list) = win inline, imac 0x58e9c0, m1 0x4dedb0;
     bool hasMatchingLevels(GJLevelList* list) = win 0x272690, imac 0x58e9e0, m1 0x4dedc8, ios 0xd6378;
     int orderForLevel(int id) = win inline, imac 0x58f690, m1 0x4df9b0;
