@@ -377,7 +377,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
     virtual void setOpacity(unsigned char opacity) = win 0x975b0, imac 0x6f6f90, m1 0x609000, ios 0x309840;
 
     bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x95ca0, imac 0x6f56f0, m1 0x607804;
-    void show() = win 0x97330, imac 0x6f6d40, m1 0x608dc0;
+    void show() = win 0x97330, imac 0x6f6d40, m1 0x608dc0, ios 0x309620;
 
     cocos2d::CCLayerColor* m_layerColor;
     float m_offsetUnused;
@@ -425,12 +425,12 @@ class AchievementManager : cocos2d::CCNode {
     bool isAchievementAvailable(std::string id) = win inline, imac 0x864410, m1 0x759120, ios inline;
     bool isAchievementEarned(char const* ach) = win 0x3c230, imac 0x8641e0, m1 0x758ec8, ios 0x10e318;
     int limitForAchievement(std::string id) = win inline, imac 0x864490, m1 0x7591c8, ios 0x10e418;
-    void notifyAchievement(char const* title, char const* description, char const* icon) = win inline, imac 0x864cb0, m1 0x7598d8;
-    void notifyAchievementWithID(char const* id) = win 0x3ccb0, imac 0x864af0, m1 0x7596dc;
+    void notifyAchievement(char const* title, char const* description, char const* icon) = win inline, imac 0x864cb0, m1 0x7598d8, ios 0x10e878;
+    void notifyAchievementWithID(char const* id) = win 0x3ccb0, imac 0x864af0, m1 0x7596dc, ios 0x10e734;
     int percentageForCount(int count, int total) = win inline, imac 0x8642f0, m1 0x758fec, ios inline;
     int percentForAchievement(char const* id) = win 0x3c250, imac 0x864200, m1 0x758ee4, ios 0x10e334;
-    void reportAchievementWithID(char const* id, int percent, bool dontNotify) = win 0x3cff0, imac 0x864de0, m1 0x759a1c;
-    void reportPlatformAchievementWithID(char const* id, int percent) = imac 0x864f60, m1 0x759b78;
+    void reportAchievementWithID(char const* id, int percent, bool dontNotify) = win 0x3cff0, imac 0x864de0, m1 0x759a1c, ios 0x10e928;
+    void reportPlatformAchievementWithID(char const* id, int percent) = imac 0x864f60, m1 0x759b78, ios 0x1f9274;
     void resetAchievement(char const* id) = win inline, imac 0x864d00, m1 0x759924;
     void resetAchievements() = win inline, imac 0x864f70, m1 0x759b84, ios inline;
     void setup() = win inline, imac 0x864090, m1 0x758da8, ios inline;
@@ -456,8 +456,8 @@ class AchievementNotifier : cocos2d::CCNode {
     virtual bool init() = win 0x3d610, imac 0x8aa480, m1 0x79cc3c, ios 0x2b30d8;
 
     void achievementDisplayFinished() = win 0x3d880, imac 0x8aa610, m1 0x79cdd4;
-    void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x3d640, imac 0x8aa4b0, m1 0x79cc68;
-    void showNextAchievement() = win 0x3d720, imac 0x8aa500, m1 0x79ccbc;
+    void notifyAchievement(char const* title, char const* desc, char const* icon, bool quest) = win 0x3d640, imac 0x8aa4b0, m1 0x79cc68, ios 0x2b3104;
+    void showNextAchievement() = win 0x3d720, imac 0x8aa500, m1 0x79ccbc, ios 0x2b3158;
     void willSwitchToScene(cocos2d::CCScene* scene) = win inline, imac 0x8aa660, m1 0x79ce18, ios 0x2b329c;
 
     cocos2d::CCScene* m_nextScene;
@@ -6172,7 +6172,7 @@ class EmoteSprite : cocos2d::CCSprite {
     static float jumboMultiScale() = win inline;
     static float jumboScale() = win inline;
     static int maxEmotesComment() = win inline, imac 0x9042a0, m1 0x7eb1b0, ios 0x4dc350;
-    static int maxEmotesMessage() = win inline, imac 0x9042b0;
+    static int maxEmotesMessage() = win inline, imac 0x9042b0, ios 0x4dc368;
     static int defCount() = win inline, imac 0x904420, m1 0x7eb418, ios 0x4dc4f4;
     static EmoteDef* defAtIndex(int index) = win inline, imac 0x9043d0, m1 0x7eb3b4, ios 0x4dc498;
     static int characterCount(std::string const& text) = win inline, ios 0x4dcbdc;
@@ -9251,7 +9251,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x2e9730, imac 0x3d550, m1 0x370a4, ios 0x3d4660;
     int getItemUnlockStateLite(int id, UnlockType type) = imac 0x3d610, m1 0x371a0;
     std::string getLevelKey(GJGameLevel* level) = win inline, m1 0x2c6a4;
-    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x2e1530, imac 0x32aa0, m1 0x2c6e8;
+    std::string getLevelKey(int levelID, bool isOnline, bool isDaily, bool isGauntlet, bool isEvent) = win 0x2e1530, imac 0x32aa0, m1 0x2c6e8, ios 0x3ce7dc;
     std::string getListRewardKey(GJLevelList* list) = win inline, imac 0x395a0, m1 0x33430;
     const char* getMapPackKey(int id) = win inline, imac 0x33e80, m1 0x2dbdc, ios inline;
     int getNextGoldChestID() = win inline, imac 0x52820, m1 0x4c928;
@@ -9282,11 +9282,11 @@ class GameStatsManager : cocos2d::CCNode {
     bool hasCompletedDailyLevel(int dailyID) = win 0x2e68b0, imac 0x39ad0, m1 0x33950;
     bool hasCompletedDailyStars(int) = win 0x2e7190, imac 0x3a0a0, m1 0x33ecc, ios 0x3d2890;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline;
-    bool hasCompletedGauntletLevel(int id) = win 0x2e1990, imac 0x33070, m1 0x2cd4c;
+    bool hasCompletedGauntletLevel(int id) = win 0x2e1990, imac 0x33070, m1 0x2cd4c, ios 0x3ceb78;
     bool hasCompletedLevel(GJGameLevel* level) = win 0x2e17a0, imac 0x32f40, m1 0x2cbe4, ios 0x3cea88;
     bool hasCompletedMainLevel(int levelID) = win 0x2e1660, imac 0x32ec0, m1 0x2cb48, ios 0x3cea08;
     bool hasCompletedMapPack(int id) = win 0x2e2890;
-    bool hasCompletedOnlineLevel(int id) = win 0x2e1850, imac 0x32ff0, m1 0x2ccb0;
+    bool hasCompletedOnlineLevel(int id) = win 0x2e1850, imac 0x32ff0, m1 0x2ccb0, ios 0x3ceaf8;
     bool hasCompletedStarLevel(GJGameLevel* level) = win 0x2e1ad0;
     bool hasPendingUserCoin(char const* key) = win 0x2e37d0, imac 0x35960, m1 0x2f50c, ios 0x3cfe74;
     bool hasRewardBeenCollected(GJRewardType type, int id) = win 0x2e5450, imac 0x38080, m1 0x31d4c;
@@ -12018,7 +12018,7 @@ class GJLevelList : cocos2d::CCNode {
     void dataLoaded(DS_Dictionary* dict) = win 0x273a50, imac 0x58fd90, m1 0x4e0228, ios 0xd7060;
     void duplicateListLevels(GJLevelList* list) = win inline, imac 0x58ec30, m1 0x4df030;
     cocos2d::CCArray* getListLevelsArray(cocos2d::CCArray* levels) = win 0x272e00, imac 0x58eca0, m1 0x4df09c;
-    std::string getUnpackedDescription() = win inline, imac 0x58eb90, m1 0x4def74;
+    std::string getUnpackedDescription() = win inline, imac 0x58eb90, m1 0x4def74, ios 0x0d6490;
     void handleStatsConflict(GJLevelList* list) = win inline, imac 0x58e9c0, m1 0x4dedb0;
     bool hasMatchingLevels(GJLevelList* list) = win 0x272690, imac 0x58e9e0, m1 0x4dedc8, ios 0xd6378;
     int orderForLevel(int id) = win inline, imac 0x58f690, m1 0x4df9b0;
@@ -24945,11 +24945,11 @@ class TableViewCell : cocos2d::CCLayer {
 class TableViewCellDelegate {
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = inline;
     virtual int getSelectedCellIdx() = inline;
-    virtual int getSelectedCellCustomIdx() = win 0x98e00;
-    virtual bool allowsCustomSFXActions() = win 0x5a3a0;
-    virtual bool isCustomIDSelected(int) = win 0x5a3a0;
-    virtual bool inCustomSFXTree() = win 0x5a3a0;
-    virtual bool showsSFXInfoButton() = win 0x5a3a0;
+    virtual int getSelectedCellCustomIdx() = win 0x98e00, ios inline;
+    virtual bool allowsCustomSFXActions() = win 0x5a3a0, ios inline;
+    virtual bool isCustomIDSelected(int) = win 0x5a3a0, ios inline;
+    virtual bool inCustomSFXTree() = win 0x5a3a0, ios inline;
+    virtual bool showsSFXInfoButton() = win 0x5a3a0, ios inline;
     virtual bool shouldSnapToSelected() = inline;
     virtual int getCellDelegateType() = inline;
 }
@@ -26054,16 +26054,16 @@ class UploadActionPopup : FLAlertLayer {
     UploadActionPopup() = win 0x399380;
     virtual ~UploadActionPopup() = win 0x3a0ce0, ios 0x3770ec;
 
-    static UploadActionPopup* create(UploadPopupDelegate* delegate, std::string str) = win 0x3a0d60, m1 0x234310;
+    static UploadActionPopup* create(UploadPopupDelegate* delegate, std::string str) = win 0x3a0d60, m1 0x234310, ios 0x009900;
 
     virtual void keyBackClicked() = win 0x3a1540, imac 0x290b20, m1 0x234d30, ios 0x377928;
 
-    void closePopup() = win inline;
+    void closePopup() = win inline, ios 0x377820;
     bool init(UploadPopupDelegate* delegate, std::string str) = win 0x3a0e10, imac 0x2902e0, m1 0x2344fc;
     void onClose(cocos2d::CCObject* sender) = win 0x3a1460, imac 0x290730, m1 0x234910;
-    void showFailMessage(std::string message) = win 0x3a1360, imac 0x2908f0, m1 0x234acc;
+    void showFailMessage(std::string message) = win 0x3a1360, imac 0x2908f0, m1 0x234acc, ios 0x377744;
     bool showFailMessageOrDismiss(std::string) = win 0x3a14b0;
-    void showSuccessMessage(std::string message) = win 0x3a1250, imac 0x290780, m1 0x234970;
+    void showSuccessMessage(std::string message) = win 0x3a1250, imac 0x290780, m1 0x234970, ios 0x377654;
 
     UploadPopupDelegate* m_delegate;
     TextArea* m_textArea;
