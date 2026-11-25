@@ -9449,7 +9449,7 @@ class GameToolbox {
     static CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, cocos2d::CCArray* container) = win 0x6e430, imac 0x4eb470, m1 0x4496b4, ios 0x4953c;
     static CCMenuItemToggler* createToggleButton(std::string label, cocos2d::SEL_MenuHandler selector, bool state, cocos2d::CCMenu* menu, cocos2d::CCPoint position, cocos2d::CCNode* parent, cocos2d::CCNode* labelParent, float buttonScale, float maxLabelScale, float maxLabelWidth, cocos2d::CCPoint labelOffset, char const* font, bool labelTop, int labelTag, cocos2d::CCArray* container) = win 0x6e5b0, imac 0x4eb5a0, m1 0x4497f0, ios 0x49670;
     static TodoReturn directoryExists(std::string const&);
-    static bool doWeHaveInternet() = win inline, imac 0x4e9640, m1 0x447ad0;
+    static bool doWeHaveInternet() = win inline, imac 0x4e9640, m1 0x447ad0, ios 0x47fe4;
     static std::string easeToText(int easingType) = win 0x72c70, imac 0x4f3e00, m1 0x451160;
     // the result is written back into response itself
     static bool extractServerPopup(std::string& response) = win 0x6d270, imac 0x4e9bc0, m1 0x448048, ios 0x483b0;
@@ -16294,7 +16294,7 @@ class LevelTools {
     static std::string getAudioTitle(int id) = win 0x462870, imac 0x4fcd00, m1 0x4591f8, ios 0x23d14c;
     static bool getLastGameplayReversed() = win inline, imac 0x500520, m1 0x448030, ios inline;
     static bool getLastGameplayRotated() = win inline, imac 0x500530, m1 0x45c82c, ios 0x23ded0;
-    static float getLastTimewarp() = win inline, imac 0x500510, m1 0x45c814;
+    static float getLastTimewarp() = win inline, imac 0x500510, m1 0x45c814, ios 0x23dec4;
     static GJGameLevel* getLevel(int id, bool noString) = win 0x45ffe0, imac 0x4fa7a0, m1 0x457480;
     static std::unordered_set<int> getLevelList() = win 0x9999999, imac 0x4fa460, m1 0x4570cc;
     static SongInfoObject* getSongObject(int id) = win 0x467d40, imac 0x500540, m1 0x45c838, ios 0x23dedc;
@@ -18734,7 +18734,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void addToTouchedRings(RingObject* object) = win inline, imac 0x402730, m1 0x37cfd8;
     void addToYVelocity(double yVelocity, int type) = win inline, imac 0x3ea0c0, m1 0x367e6c, ios inline;
     void animatePlatformerJump(float scale) = win 0x4eaf30, imac 0x3f0c50, m1 0x36dd5c, ios 0x2bae00;
-    void boostPlayer(float yVelocity) = win 0x4fe2f0, imac 0x3f36b0;
+    void boostPlayer(float yVelocity) = win 0x4fe2f0, imac 0x3f36b0, m1 0x37013c, ios 0x2bcb68;
     void bumpPlayer(float bumpMod, int objectType, bool noEffects, GameObject* object) = win 0x4fdae0, imac 0x8dae0, m1 0x381d78, ios 0x2c97d4;
     bool buttonDown(PlayerButton button) = win inline, imac 0x402710, m1 0x37cfbc, ios inline;
     bool canStickToGround() = win inline, imac 0x403080, m1 0x37d8b4;
@@ -18829,7 +18829,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void playingEndEffect() = win inline, imac 0x407840, m1 0x381cd8;
     void playSpawnEffect() = win 0x4f5710, imac 0x400480, m1 0x37b034, ios 0x2c428c;
     void playSpiderDashEffect(cocos2d::CCPoint from, cocos2d::CCPoint to) = win 0x4f3370, imac 0x3fb5b0, m1 0x376a20, ios 0x2c2200;
-    void postCollision(float dt, bool betweenSteps) = win 0x4eb830, ios 0x2bb558;
+    void postCollision(float dt, bool betweenSteps) = win 0x4eb830, m1 0x36e834, ios 0x2bb558;
     void preCollision() = win inline, imac 0x3f1680;
     bool preSlopeCollision(float dt, GameObject* object) = win 0x4ed660, imac 0x3f87d0, m1 0x3740c0;
     void propellPlayer(float yVelocity, bool noEffects, int objectType) = win 0x4fdc90, imac 0x407bd0, m1 0x382054, ios 0x2c9a28;
@@ -18847,7 +18847,7 @@ class PlayerObject : GameObject, AnimatedSpriteDelegate {
     void resetAllParticles() = win 0x4e9a60, imac 0x3f0360, m1 0x36d4c8, ios 0x2ba744;
     void resetCollisionLog(bool full) = win inline, imac 0x3f1550, m1 0x36e5c8, ios 0x2bb3ec;
     void resetCollisionValues() = win inline, imac 0x3fa790, ios inline;
-    void resetPlayerIcon() = win 0x4f95b0, imac 0x4039f0, m1 0x37e1b8;
+    void resetPlayerIcon() = win 0x4f95b0, imac 0x4039f0, m1 0x37e1b8, ios 0x2c695c;
     void resetStateVariables() = win inline, imac 0x3ffa00, m1 0x37a7b8;
     void resetStreak() = win 0x4e9840, imac 0x3f03d0, m1 0x36d52c, ios 0x2ba7a8;
     void resetTouchedRings(bool removeAll) = win 0x4f6600, imac 0x3ffa80, m1 0x37a81c, ios 0x2c3bdc;
