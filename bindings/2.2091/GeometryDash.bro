@@ -1747,7 +1747,7 @@ class CCMenuItemSpriteExtra : cocos2d::CCMenuItemSprite {
     void applyLargeMobileTouch() = ios 0x2b0350;
     bool init(cocos2d::CCNode* sprite, cocos2d::CCNode* selectedSprite, cocos2d::CCObject* target, cocos2d::SEL_MenuHandler callback) = win 0x48940, imac 0x2631c0, m1 0x20a950, ios 0x2b01c4;
     void setClickColor(cocos2d::ccColor3B);
-    void setSizeMult(float mult) = win inline, imac 0x30d250, m1 0x20aad4, ios 0x2b0348;
+    void setSizeMult(float mult) = win inline, imac 0x263330, m1 0x20aad4, ios 0x2b0348;
 
     /// Set a new image for this button
     /// Prefer using this over `setNormalImage` as the latter does not actually
@@ -2201,7 +2201,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     virtual bool scrollWheel(float, float) = win 0x595c0, imac 0x6d040, m1 0x661dc, ios 0x1ff8f0;
     virtual bool rightClick(float, float) = win 0x59150, imac 0x6c9b0, m1 0x65b60, ios 0x1ff590;
 
-    void addTextArea(TextArea* textArea) = win 0x54770, imac 0x65d50, m1 0x5e9e8;
+    void addTextArea(TextArea* textArea) = win 0x54770, imac 0x65d50, m1 0x5e9e8, ios 0x1fb0c0;
     void armHold(cocos2d::CCPoint) = ios 0x1ff160;
     bool canClearText();
     bool canCopyText() = win 0x59350;
@@ -2245,7 +2245,7 @@ class CCTextInputNode : cocos2d::CCLayer, cocos2d::CCIMEDelegate, cocos2d::CCTex
     void setMaxLabelScale(float v) = win inline, imac 0x68e10, m1 0x6244c, ios 0x1fccd4;
     void setMaxLabelWidth(float v) = win inline, imac 0x68e30, m1 0x62454, ios 0x1fccdc;
     void setMaxTextAreaHeight(float);
-    void setParseEmotes(int) = win 0x553e0, imac 0x67de0;
+    void setParseEmotes(int) = win 0x553e0, imac 0x67de0, m1 0x60eb8, ios 0x1fc47c;
     void setString(std::string text) = win 0x54ea0, imac 0x67040, m1 0x5fd44, ios 0x1fbc80;
     void setTextScrollViewSize(cocos2d::CCSize) = m1 0x5f948;
     void setUnicodeText(bool);
@@ -6171,14 +6171,14 @@ class EmoteSprite : cocos2d::CCSprite {
     static float jumboMaxAspect() = win inline;
     static float jumboMultiScale() = win inline;
     static float jumboScale() = win inline;
-    static int maxEmotesComment() = win inline, imac 0x9042a0;
+    static int maxEmotesComment() = win inline, imac 0x9042a0, m1 0x7eb1b0, ios 0x4dc350;
     static int maxEmotesMessage() = win inline, imac 0x9042b0;
     static int defCount() = win inline, imac 0x904420, m1 0x7eb418, ios 0x4dc4f4;
     static EmoteDef* defAtIndex(int index) = win inline, imac 0x9043d0, m1 0x7eb3b4, ios 0x4dc498;
     static int characterCount(std::string const& text) = win inline, ios 0x4dcbdc;
     static int charIndexForByte(std::string const& str, int byteIndex) = win inline, ios 0x4dcc2c;
-    static int effectiveLength(std::string const& text, int maxEmotes) = win 0x7FC10, ios 0x4dccac;
-    void fitToHeight(float height, float maxAspect) = win 0x7F200, ios 0x4dc63c;
+    static int effectiveLength(std::string const& text, int maxEmotes) = win 0x7FC10, imac 0x905070, m1 0x7ebe94, ios 0x4dccac;
+    void fitToHeight(float height, float maxAspect) = win 0x7F200, imac 0x9045b0, m1 0x7eb5b8, ios 0x4dc63c;
 
     virtual void setColor(cocos2d::ccColor3B const& color) = win 0x3f5c0, ios 0x4dc780, m1 0x7eb6fc, imac 0x904710;
 
@@ -8135,7 +8135,7 @@ class GameManager : GManager {
     const char* getMGTexture(int index) = win inline, imac 0x36cf50, m1 0x2fa270;
     int getNextUniqueObjectKey() = win inline, imac 0x36da90, m1 0x2faf00;
     int getNextUsedKey(int index, bool up) = win inline, imac 0x36db80, m1 0x2faff8;
-    cocos2d::CCArray* getOrderedCustomObjectKeys() = win inline, imac 0x11aa60, m1 0x2fafac;
+    cocos2d::CCArray* getOrderedCustomObjectKeys() = win inline, imac 0x36db30, m1 0x2fafac, ios 0x3b62f;
 
     /// Gets the icon ID for the client's current ball icon.
     /// @returns Icon ID
@@ -9473,7 +9473,7 @@ class GameToolbox {
     static std::string getTimeString(int seconds, bool noSeconds) = win 0x6ff30, imac 0x4eded0, m1 0x44c0ac;
     static int highestChildZ(cocos2d::CCNode*) = win 0x6da80;
     static cocos2d::ccHSVValue hsvFromString(std::string const& str, char const* delim) = win 0x6f700, imac 0x4ec910, m1 0x44aaf0; // on windows, 2nd param is ignored and assumed to be "a"
-    static std::string intToShortString(int, bool) = win 0x73ff0, imac 0x4f53d0, ios 0x4eb84;
+    static std::string intToShortString(int, bool) = win 0x73ff0, imac 0x4f53d0, m1 0x452700, ios 0x4eb84;
     static std::string intToString(int value) = win 0x73760, imac 0x4f4870, m1 0x451c88, ios 0x4e45c;
     static bool isIOS() = win inline, ios inline;
     static bool isRateEasing(int easingType) = win inline, imac 0x4eeff0, m1 0x44d080;
@@ -23863,7 +23863,7 @@ class ShareCommentLayer : FLAlertLayer, UploadActionDelegate, UploadPopupDelegat
     virtual void uploadActionFailed(int id, int response) = win 0x6300f0, imac 0x6b3940, m1 0x5cd2ac, ios 0x26e25c;
     virtual void onClosePopup(UploadActionPopup* popup) = win 0x6301b0, imac 0x6b3aa0, m1 0x5cd424, ios 0x26e2f8;
 
-    bool init(std::string title, int charLimit, CommentType type, int ID, std::string desc) = win 0x62de70, imac 0x6b1260, m1 0x5cbf24, ios 0x26c62c;
+    bool init(std::string title, int charLimit, CommentType type, int ID, std::string desc) = win 0x62de70, imac 0x6b1260, m1 0x5cae68, ios 0x26c62c;
     TodoReturn lockInput(std::string const&);
     void onClear(cocos2d::CCObject* sender) = win 0x62f300, imac 0x6b2930, m1 0x5cc304;
     void onClose(cocos2d::CCObject* sender) = win 0x62fa20, m1 0x5cc3bc;
@@ -24090,15 +24090,15 @@ class Slider : cocos2d::CCLayer {
     void disableTouch() = win inline;
     void enableSlider() = win inline, imac 0x2efaa0, m1 0x28579c;
     bool getLiveDragging() = win inline, imac 0x2efc90, m1 0x28595c;
-    SliderThumb* getThumb() = win inline, imac 0x2ef930, m1 0x5b9d84, ios inline;
+    SliderThumb* getThumb() = win inline, imac 0x2ef930, m1 0x285668, ios 0x38a980;
     float getValue() = win inline, imac 0x2efb60, m1 0x285858, ios 0x38ab68;
-    void hideGroove(bool visibility) = win inline, imac 0x2efe30, m1 0x285a6c;
+    void hideGroove(bool visibility) = win inline, imac 0x2efe30, m1 0x285a6c, ios 0x38ac88;
     bool init(cocos2d::CCNode* target, cocos2d::SEL_MenuHandler handler, char const* bar, char const* groove, char const* thumb, char const* thumbSel, float scale) = win 0x84200, imac 0x2ef750, m1 0x2854a8, ios 0x38a7c0;
-    void setBarVisibility(bool visibility) = win inline, imac 0x2efc70, m1 0x28594c;
+    void setBarVisibility(bool visibility) = win inline, imac 0x2efc70, m1 0x28594c, ios 0x38ab74;
     void setLiveDragging(bool activateThumb) = win inline, imac 0x2efcb0, m1 0x285968, ios inline;
-    void setMaxOffset(float offset) = win 0x84bd0, imac 0x2efde0, m1 0x285a24;
-    void setRotated(bool rotated) = win 0x84b30, imac 0x7208b0, m1 0x2859d4;
-    void setSnap(float, float);
+    void setMaxOffset(float offset) = win 0x84bd0, imac 0x2efde0, m1 0x285a24, ios 0x38ac40;
+    void setRotated(bool rotated) = win 0x84b30, imac 0x2efd90, m1 0x2859d4, ios 0x38abf0;
+    void setSnap(float, float) = imac 0x2ef900, m1 0x285654, ios 0x38a96c;
     void setSnapStep(float);
     void setSnapStepCalc(float, float, float);
     void setValue(float val) = win 0x849b0, imac 0x2efa70, m1 0x285770, ios 0x38aa84;
