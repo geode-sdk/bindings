@@ -7761,7 +7761,7 @@ class GameLevelManager : cocos2d::CCNode {
     void onUploadUserMessageCompleted(std::string response, std::string tag) = win 0x23b760;
     int pageFromCommentKey(char const* key) = win inline;
     GJRewardItem* parseEventReward(std::string, std::string) = win 0x25fc10;
-    void parseRestoreData(std::string str) = win inline, imac 0x581310, m1 0x3f9394, ios inline;
+    void parseRestoreData(std::string str) = win inline, imac 0x581310, m1 0x4d2fc4, ios inline;
     void performNetworkTest() = win inline, imac 0x51bde0, m1 0x4769a0;
     void ProcessHttpRequest(std::string endpoint, std::string params, std::string tag, GJHttpType httpType) = win 0x2192d0, imac 0x51c140, m1 0x476d14, ios 0x912e0;
     void processOnDownloadLevelCompleted(std::string response, std::string tag, bool update) = win 0x232220;
