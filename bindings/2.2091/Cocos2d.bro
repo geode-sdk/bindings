@@ -298,7 +298,7 @@ class cocos2d::CCAnimation : cocos2d::CCObject {
     // void setRestoreOriginalFrame(bool);
     // CCAnimation(cocos2d::CCAnimation const&);
     CCAnimation() = imac 0x281320, m1 0x226968, ios inline;
-    virtual ~CCAnimation() = imac 0x281370, m1 0x22699c, ios 0x245b34;
+    virtual ~CCAnimation() = imac 0x281370, m1 0x22699c, ios 0x239320;
 
     static cocos2d::CCAnimation* create() = imac 0x280e30, m1 0x2264b4, ios inline;
     static cocos2d::CCAnimation* create(cocos2d::CCArray*, float, unsigned int) = imac 0x281170, m1 0x2267b8, ios 0x2391cc;
@@ -318,7 +318,7 @@ class cocos2d::CCAnimation : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCAnimationCache : cocos2d::CCObject {
     CCAnimationCache() = imac 0x461570, m1 0x3cde60, ios inline;
-    virtual ~CCAnimationCache() = imac 0x4615a0, m1 0x3cde84, ios 0x306d10;
+    virtual ~CCAnimationCache() = imac 0x4615a0, m1 0x3cde84, ios 0x26c224;
 
     static void purgeSharedAnimationCache() = imac 0x461540, m1 0x3cde34, ios 0x26c1bc;
     static cocos2d::CCAnimationCache* sharedAnimationCache() = imac 0x461430, m1 0x3cdd24, ios 0x26c10c;
@@ -555,7 +555,7 @@ class cocos2d::CCBMFontConfiguration : cocos2d::CCObject {
 class cocos2d::CCCallFunc : cocos2d::CCActionInstant {
     // CCCallFunc(cocos2d::CCCallFunc const&);
     // CCCallFunc();
-    virtual ~CCCallFunc() = imac 0x8903f0, m1 0x78451c, ios 0x21ded8;
+    virtual ~CCCallFunc() = imac 0x8903f0, m1 0x78451c, ios 0x242b6c;
 
     static cocos2d::CCCallFunc* create(cocos2d::CCObject*, cocos2d::SEL_CallFunc) = imac 0x8902a0, m1 0x7843dc, ios 0x242a2c;
 
@@ -2908,7 +2908,7 @@ class cocos2d::CCNodeRGBA : cocos2d::CCNode, cocos2d::CCRGBAProtocol {
 [[link(win, android)]]
 class cocos2d::CCNotificationCenter : cocos2d::CCObject {
     CCNotificationCenter() = imac 0x272a20, m1 0x219474;
-    virtual ~CCNotificationCenter() = imac 0x272ac0, m1 0x219524;
+    virtual ~CCNotificationCenter() = imac 0x272ac0, m1 0x219524, ios 0x306810;
 
     static void purgeNotificationCenter() = imac 0x272c10, m1 0x219668, ios 0x306878;
     static cocos2d::CCNotificationCenter* sharedNotificationCenter() = imac 0x272b80, m1 0x2195d0;
@@ -2927,7 +2927,7 @@ class cocos2d::CCNotificationCenter : cocos2d::CCObject {
 [[link(win, android)]]
 class cocos2d::CCNotificationObserver : cocos2d::CCObject {
     CCNotificationObserver(cocos2d::CCObject*, cocos2d::SEL_CallFuncO, char const*, cocos2d::CCObject*) = win inline, imac 0x273320, m1 0x219de4;
-    virtual ~CCNotificationObserver() = imac 0x2734a0, m1 0x219f64;
+    virtual ~CCNotificationObserver() = imac 0x2734a0, m1 0x219f64, ios 0x306d4c;
 
     virtual cocos2d::CCObject* getTarget() = imac 0x273560, m1 0x21a024, ios 0x306d64;
     virtual cocos2d::SEL_CallFuncO getSelector() = imac 0x273570, m1 0x21a02c, ios 0x306d6c;
@@ -3899,9 +3899,9 @@ class cocos2d::CCScriptHandlerEntry : cocos2d::CCObject {
 class cocos2d::CCSequence : cocos2d::CCActionInterval {
     // CCSequence(cocos2d::CCSequence const&);
     // CCSequence();
-    virtual ~CCSequence() = imac 0x39f280, m1 0x3279d4, ios 0x242b10;
+    virtual ~CCSequence() = imac 0x39f280, m1 0x3279d4, ios 0x21d6a0;
 
-    static cocos2d::CCSequence* create(cocos2d::CCArray*) = imac 0x39eee0, m1 0x32769c, ios 0x21d420;
+    static cocos2d::CCSequence* create(cocos2d::CCArray*) = imac 0x39eee0, m1 0x32769c, ios 0x21d4c8;
     // static cocos2d::CCSequence* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3a2600, m1 0x327474, ios 0x18da90;
     static cocos2d::CCSequence* createWithTwoActions(cocos2d::CCFiniteTimeAction*, cocos2d::CCFiniteTimeAction*) = imac 0x39ea30, m1 0x327354, ios 0x21d32c;
     static cocos2d::CCSequence* createWithVariableList(cocos2d::CCFiniteTimeAction*, va_list) = imac 0x39ec10, m1 0x32749c, ios 0x21d448;
@@ -3943,7 +3943,7 @@ class cocos2d::CCSet : cocos2d::CCObject {
 class cocos2d::CCShaderCache : cocos2d::CCObject {
     // CCShaderCache(cocos2d::CCShaderCache const&);
     CCShaderCache() = imac 0x1e4ab0, m1 0x1980d0, ios inline;
-    virtual ~CCShaderCache() = imac 0x1e4ae0, m1 0x1980f4, ios 0x3067d8;
+    virtual ~CCShaderCache() = imac 0x1e4ae0, m1 0x1980f4, ios 0x151ea0;
 
     static void purgeSharedShaderCache() = imac 0x1e4a80, m1 0x1980a4, ios 0x151e3c;
     static cocos2d::CCShaderCache* sharedShaderCache() = imac 0x1e4960, m1 0x197f84, ios 0x151d84;
@@ -4038,7 +4038,7 @@ class cocos2d::CCSkewTo : cocos2d::CCActionInterval {
 class cocos2d::CCSpawn : cocos2d::CCActionInterval {
     // CCSpawn(cocos2d::CCSpawn const&);
     // CCSpawn();
-    virtual ~CCSpawn() = imac 0x3a09a0, m1 0x328f2c, ios 0x21d658;
+    virtual ~CCSpawn() = imac 0x3a09a0, m1 0x328f2c, ios 0x21df20;
 
     static cocos2d::CCSpawn* create(cocos2d::CCArray* arrayOfActions) = imac 0x3a02f0, m1 0x328930, ios inline;
     // static cocos2d::CCSpawn* create(cocos2d::CCFiniteTimeAction*, ...) = imac 0x3b9e30, m1 0x33e430;
@@ -4107,7 +4107,7 @@ class cocos2d::CCSprite : cocos2d::CCNodeRGBA, cocos2d::CCTextureProtocol {
     CCSprite() = imac 0x274060, m1 0x21aab4, ios 0x2d45c4;
     virtual ~CCSprite() = imac 0x274160, m1 0x21ab88, ios 0x2d464c;
 
-    static cocos2d::CCSprite* create() = imac 0x273bc0, m1 0x21a63c, ios 0x2d409c;
+    static cocos2d::CCSprite* create() = imac 0x273bc0, m1 0x21a63c, ios 0x2d41c0;
     static cocos2d::CCSprite* create(char const*) = imac 0x2738a0, m1 0x21a32c, ios 0x2d409c;
     static cocos2d::CCSprite* create(char const*, cocos2d::CCRect const&) = imac 0x273990, m1 0x21a41c, ios inline;
     static cocos2d::CCSprite* createWithSpriteFrame(cocos2d::CCSpriteFrame*) = imac 0x273a90, m1 0x21a520, ios 0x2d4118;
