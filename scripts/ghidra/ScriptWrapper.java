@@ -366,8 +366,15 @@ public class ScriptWrapper {
             }
         }
         // STL containers are fully known
-        else if (type.name.value.startsWith("gd::")) {
-            result = this.updateTypeDatabaseWithSTL(type.name.value.substring(4), normalizedTemplate, platform);
+        else if (
+            type.name.value.startsWith("std::string") ||
+            type.name.value.startsWith("std::vector") ||
+            type.name.value.startsWith("std::map") ||
+            type.name.value.startsWith("std::unordered_map") ||
+            type.name.value.startsWith("std::set") ||
+            type.name.value.startsWith("std::unordered_set")
+        ) {
+            result = this.updateTypeDatabaseWithSTL(type.name.value.substring(5), normalizedTemplate, platform);
         }
         // STL pair
         else if (type.name.value.startsWith("std::pair")) {
@@ -632,7 +639,7 @@ public class ScriptWrapper {
         final var category = new CategoryPath("/ClassDataTypes");
         CategoryPath cat;
 
-        // gd::string
+        // std::string
 
         var pointerSize = manager.getDataOrganization().getPointerSize();
         DataType sizeType = null;
@@ -657,13 +664,13 @@ public class ScriptWrapper {
         }
 
         if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) { // Microsoft Visual C++
-            cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
+            cat = this.createCategoryAll(category.extend("std", "string_data_union"));
             var stringDataUnion = new UnionDataType(cat, cat.getName());
             stringDataUnion.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "");
             stringDataUnion.add(new ArrayDataType(CharDataType.dataType, 0x10, 0x1), 0x10, "data", "SSO");
             stringDataUnion.setPackingEnabled(true);
 
-            cat = this.createCategoryAll(category.extend("gd", "string"));
+            cat = this.createCategoryAll(category.extend("std", "string"));
             var string = new StructureDataType(cat, cat.getName(), 0x0);
             string.add(stringDataUnion, 0x10, "data", "String data with SSO");
             string.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
@@ -672,61 +679,21 @@ public class ScriptWrapper {
 
             manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
         }
-        else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) { // libc++
-            cat = this.createCategoryAll(category.extend("gd", "string_long"));
-            var stringLong = new StructureDataType(cat, cat.getName(), 0x0);
-            if (platform == Platform.MAC_INTEL) {
-                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
-            } else {
-                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
-            }
-            stringLong.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
-            if (platform == Platform.MAC_INTEL) {
-                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
-            } else {
-                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
-            }
-            stringLong.setPackingEnabled(true);
-
-            cat = this.createCategoryAll(category.extend("gd", "string_short"));
-            var stringShort = new StructureDataType(cat, cat.getName(), 0x0);
-            if (platform == Platform.MAC_INTEL) {
-                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
-            }
-            stringShort.add(new ArrayDataType(CharDataType.dataType, pointerSize * 3 - 1, 0x1), pointerSize * 3 - 1, "data", "The string data");
-            if (platform != Platform.MAC_INTEL) {
-                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
-            }
-            stringShort.setPackingEnabled(true);
-
-            cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
-            var stringDataUnion = new UnionDataType(cat, cat.getName());
-            stringDataUnion.add(stringLong, pointerSize * 3, "long", "Long string data");
-            stringDataUnion.add(stringShort, pointerSize * 3, "short", "Short string data");
-            stringDataUnion.setPackingEnabled(true);
-
-            cat = this.createCategoryAll(category.extend("gd", "string"));
-            var string = new StructureDataType(cat, cat.getName(), 0x0);
-            string.add(stringDataUnion, pointerSize * 3, "data", "String data with SSO");
-            string.setPackingEnabled(true);
-
-            manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
-        }
-        else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) { // libstdc++
-            cat = this.createCategoryAll(category.extend("gd", "string_data"));
+        else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64 || platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) { // libstdc++
+            cat = this.createCategoryAll(category.extend("std", "string_data"));
             var stringData = new StructureDataType(cat, cat.getName(), 0x0);
             stringData.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
             stringData.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
             stringData.add(IntegerDataType.dataType, 0x4, "refcount", "Reference count for copy-on-write");
             stringData.setPackingEnabled(true);
 
-            cat = this.createCategoryAll(category.extend("gd", "string_data_union"));
+            cat = this.createCategoryAll(category.extend("std", "string_data_union"));
             var stringDataUnion = new UnionDataType(cat, cat.getName());
             stringDataUnion.add(new PointerDataType(stringData), pointerSize, "data", "Pointer to the string information");
             stringDataUnion.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
             stringDataUnion.setPackingEnabled(true);
 
-            cat = this.createCategoryAll(category.extend("gd", "string"));
+            cat = this.createCategoryAll(category.extend("std", "string"));
             var string = new StructureDataType(cat, cat.getName(), 0x0);
             string.add(stringDataUnion, pointerSize, "data", "String data");
             string.setPackingEnabled(true);
@@ -1123,7 +1090,7 @@ public class ScriptWrapper {
         final var manager = wrapped.getCurrentProgram().getDataTypeManager();
         final var category = new CategoryPath("/ClassDataTypes");
 
-        var cat = this.createCategoryAll(category.extend("gd", templated));
+        var cat = this.createCategoryAll(category.extend("std", templated));
         var structureName = this.fillStandardTypes || (templated.startsWith("vector") && template.startsWith("<bool>")) ? templated + template : cat.getName();
         var existing = manager.getDataType(cat, structureName);
         if (existing != null) {
