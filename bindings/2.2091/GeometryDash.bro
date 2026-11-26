@@ -13,6 +13,18 @@ cocos2d::CCPoint offsetForKey(int id) = win 0x19f3e0, imac 0x603db0, m1 0x548e74
 std::string serializeCheckpoint(CheckpointObject* checkpoint) = win 0x5302f0, imac 0x5f7d30, m1 0x53f178, ios 0x19ff9c;
 
 [[link(android)]]
+int scoreCompare(void const* a, void const* b) = win 0x218f50, imac 0x51b800, m1 0x476530, ios 0x90dac;
+
+[[link(android)]]
+int scoreCompareMoons(void const* a, void const* b) = win 0x218ff0, imac 0x51b890, m1 0x4765b4, ios 0x90e30;
+
+[[link(android)]]
+int scoreCompareDemons(void const* a, void const* b) = win 0x219020, imac 0x51b8c0, m1 0x4765d8, ios 0x90e54;
+
+[[link(android)]]
+int scoreCompareUserCoins(void const* a, void const* b) = win 0x219050, imac 0x51b8f0, m1 0x4765fc, ios 0x90e78;
+
+[[link(android)]]
 class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDelegate, DropdownDelegate, AdminActionConfirmDelegate {
 	virtual ~AccountBanPopup();
 
