@@ -1802,7 +1802,7 @@ class CCMenuItemToggler : cocos2d::CCMenuItem {
     void normalTouch(cocos2d::CCObject* sender) = win 0x492e0, imac 0x1ece0, m1 0x1a930;
     void selectedTouch(cocos2d::CCObject* sender) = win 0x49300, imac 0x1edc0, m1 0x1aa14;
     void setClickable(bool on) = inline;
-    void setSizeMult(float mult) = win 0x491a0, imac 0x1ef70, m1 0x1abcc;
+    void setSizeMult(float mult) = win 0x491a0, imac 0x1ef70, m1 0x1abcc, ios 0x224444;
     void setSpriteColor(cocos2d::ccColor3B const&);
     void toggle(bool on) = win 0x49320, imac 0x1eea0, m1 0x1aaf4, ios 0x22436c;
     void toggleWithCallback(bool on) = inline;
@@ -3858,7 +3858,7 @@ class CustomSongWidget : cocos2d::CCNode, MusicDownloadDelegate, FLAlertLayerPro
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x16ed20, imac 0x6fdba0, m1 0x60f614, ios 0x1230c0;
 
     void addExtraVisuals(bool newMusic, bool newLibraryMusic) = win inline, imac 0x6fac80, m1 0x60c984, ios 0x121464;
-    void deleteSong() = win 0x16b270, imac 0x6faea0, m1 0x60cbcc;
+    void deleteSong() = win 0x16b270, imac 0x6faea0, m1 0x60cbcc, ios 0x121690;
     void downloadAssetFailed(int id, GJAssetType type, GJSongError errorType) = win 0x16e8a0, imac 0x6fd5a0, m1 0x60f094;
     void downloadAssetFinished(int id, GJAssetType type) = win 0x16e7e0, imac 0x6fd1c0, m1 0x60ece4, ios 0x122bf4;
     void downloadFailed() = win inline, imac 0x6fb870, m1 0x60d494;
@@ -11313,7 +11313,7 @@ class GJGameLevel : cocos2d::CCNode {
     TodoReturn getExportSaveString();
     TodoReturn getFullSaveString();
     int getLastBuildPageForTab(int tab) = win 0x2646a0, imac 0x5840a0, m1 0x4d573c, ios 0xcf0ac;
-    GJGameLevel* getListSnapshot() = win 0x267680, imac 0x588b90, m1 0x4d9970;
+    GJGameLevel* getListSnapshot() = win 0x267680, imac 0x588b90, m1 0x4d9970, ios 0xd1b70;
     int getNormalPercent() = win inline, imac 0x53f070, m1 0x495ff8, ios 0xa6c20;
     int getSessionBest() = win inline, imac 0x586ae0, m1 0x4d7ce4, ios 0xd0b50;
     std::string getSongName() = win 0x264890, imac 0x5843e0, m1 0x4d5aa8;
@@ -12013,7 +12013,7 @@ class GJLevelList : cocos2d::CCNode {
     virtual bool canEncode() = win inline, imac 0x590340, m1 0x4e078c, ios 0xd7590;
     virtual bool init() = win 0x272610, imac 0x58e940, m1 0x4ded38, ios 0xd62c8;
 
-    void addLevelToList(GJGameLevel* level) = win 0x272b50, imac 0x58f180, m1 0x4df48c;
+    void addLevelToList(GJGameLevel* level) = win 0x272b50, imac 0x58f180, m1 0x4df48c, ios 0xd6848;
     int completedLevels() = win 0x273540, imac 0x58f8b0, m1 0x4dfd10;
     void dataLoaded(DS_Dictionary* dict) = win 0x273a50, imac 0x58fd90, m1 0x4e0228, ios 0xd7060;
     void duplicateListLevels(GJLevelList* list) = win inline, imac 0x58ec30, m1 0x4df030;
@@ -12028,7 +12028,7 @@ class GJLevelList : cocos2d::CCNode {
     void reorderLevelStep(int id, bool up) = win inline, imac 0x58f790, m1 0x4dfb38;
     void showListInfo() = win 0x2735e0, imac 0x58f900, m1 0x4dfd74;
     int totalLevels() = win inline, imac 0x58f890, m1 0x4dfd00;
-    void updateLevelsString() = win 0x273430, imac 0x58f350, m1 0x4df678;
+    void updateLevelsString() = win 0x273430, imac 0x58f350, m1 0x4df678, ios 0xd6924;
 
     std::vector<int> m_levels;
     int m_listID;
@@ -16017,9 +16017,9 @@ class LevelSelectLayer : cocos2d::CCLayer, BoomScrollLayerDelegate, DynamicScrol
     void onDeathTracker(cocos2d::CCObject* sender) = win 0x443010, imac 0x4202c0, m1 0x397e6c;
     void onDownload(cocos2d::CCObject* sender) = win 0x442550, imac 0x4201a0, m1 0x397d50, ios 0x482b7c;
     void onInfo(cocos2d::CCObject* sender) = win 0x442fa0, imac 0x4202a0, m1 0x397e50;
-    void onNext(cocos2d::CCObject* sender) = win 0x442d20, imac 0x420220, m1 0x397dd8;
-    void onPlay(cocos2d::CCObject* sender) = win inline, imac 0x422340, m1 0x399e7c;
-    void onPrev(cocos2d::CCObject* sender) = win 0x442da0, imac 0x4201f0, m1 0x397da8;
+    void onNext(cocos2d::CCObject* sender) = win 0x442d20, imac 0x420220, m1 0x397dd8, ios 0x482c04;
+    void onPlay(cocos2d::CCObject* sender) = win inline, imac 0x422340, m1 0x399e7c, ios 0x4842ac;
+    void onPrev(cocos2d::CCObject* sender) = win 0x442da0, imac 0x4201f0, m1 0x397da8, ios 0x482bd4;
     void tryShowAd() = win inline, imac 0x4203c0, m1 0x397f6c, ios inline;
     void updateDeathButton(int page) = win 0x4430b0, imac 0x420330, m1 0x397ed8;
 
