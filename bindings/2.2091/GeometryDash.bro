@@ -14922,17 +14922,17 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
     virtual ~LevelBadgePopup() = win 0xd3380, ios 0x502500;
 
-    static LevelBadgePopup* create(int, bool) = win 0xe5d70;
+    static LevelBadgePopup* create(int id, bool isList) = win 0xe5d70;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xe6890, imac 0x93c200, m1 0x81d24c, ios 0x502ce4;
     virtual void keyBackClicked() = win 0x99f90, imac 0x93c380, m1 0x81d414, ios 0x502e00;
     virtual void show() = win 0xe6930, imac 0x93c300, m1 0x81d390, ios 0x502d84;
-    virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0xe6120, imac 0x93bb70, m1 0x81cb88, ios 0x5026f4;
-    virtual void loadLevelsFailed(char const*, int) = win 0xe6350, imac 0x93c020, m1 0x81d058, ios 0x502b38;
+    virtual void loadLevelsFinished(cocos2d::CCArray* levels, char const* key, int type) = win 0xe6120, imac 0x93bb70, m1 0x81cb88, ios 0x5026f4;
+    virtual void loadLevelsFailed(char const* key, int type) = win 0xe6350, imac 0x93c020, m1 0x81d058, ios 0x502b38;
 
     // GJLevelList or GJGameLevel
     void buildCell(cocos2d::CCObject* levelContainer) = win 0xe6510, ios 0x502914;
-    bool init(int, bool) = win 0xe5ed0;
+    bool init(int id, bool isList) = win 0xe5ed0;
     void onClose(cocos2d::CCObject* sender);
 
     int m_id;
