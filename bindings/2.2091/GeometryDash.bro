@@ -9180,7 +9180,7 @@ class GameSettingsLayer : TabbedPopupLayer, GJDropDownLayerDelegate {
     cocos2d::CCPoint nextPosition(int page) = ios 0x1666bc;
     void onButtonRows(cocos2d::CCObject* sender) = win 0x2c6690, imac 0x6025c0, m1 0x547ba0, ios 0x1665ec;
     void onButtonsPerRow(cocos2d::CCObject* sender) = win 0x2c6600, imac 0x602540, m1 0x547b18, ios 0x166564;
-    void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74;
+    void setupTabs() = win 0x2c2920, imac 0x5fe5c0, m1 0x543d74, ios 0x1644ac;
     void showPracticeMusicSyncUnlockInfo() = win 0x2c8460;
     TodoReturn toggleVisibility(bool);
 
@@ -14565,7 +14565,7 @@ class KeybindingsLayer : TabbedPopupLayer {
     static KeybindingsLayer* create(GameSettingsLayer* settings) = win 0x3d5650, imac 0x6e1530, m1 0x5f6028, ios 0x235d8;
     // returns `count` {actionId, tabIndex} pairs
     static int const* getActionTable(int& count) = win inline;
-    static void tintGlyph(cocos2d::CCSprite* sprite, cocos2d::ccColor3B color) = win inline, imac 0x6e24c0, m1 0x5f6e10;
+    static void tintGlyph(cocos2d::CCSprite* sprite, cocos2d::ccColor3B color) = win inline, imac 0x6e24c0, m1 0x5f6e10, ios 0x241dc;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x3d8630, imac 0x6e4930, m1 0x5f8cec, ios 0x25ac8;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x3d8760, imac 0x6e4a50, m1 0x5f8dd4, ios 0x25bb0;
@@ -14585,9 +14585,9 @@ class KeybindingsLayer : TabbedPopupLayer {
 
     void buildContentForTab(int tab) = win 0x3d6750, imac 0x6e2550, m1 0x5f6ea0, ios 0x2426c;
     bool init(GameSettingsLayer* settings) = win 0x3d57f0, imac 0x6e16a0, m1 0x5f614c, ios 0x23658;
-    void onAddBinding(cocos2d::CCObject* sender) = win 0x3d7d50, imac 0x6e3a30, m1 0x5f7fa8;
+    void onAddBinding(cocos2d::CCObject* sender) = win 0x3d7d50, imac 0x6e3a30, m1 0x5f7fa8, ios 0x2505c;
     void onClearSearch(cocos2d::CCObject* sender) = win 0x3d8440, imac 0x6e1e80, m1 0x5f689c;
-    void onEditBinding(cocos2d::CCObject* sender) = win 0x3d7cb0, imac 0x6e3a80, m1 0x5f8004;
+    void onEditBinding(cocos2d::CCObject* sender) = win 0x3d7cb0, imac 0x6e3a80, m1 0x5f8004, ios 0x250b8;
     void onSettings(cocos2d::CCObject* sender) = win 0x3d8230, imac 0x6e1ee0, m1 0x5f6910;
 
     GameSettingsLayer* m_settingsLayer;
@@ -23027,7 +23027,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     virtual void valuePopupClosed(ConfigureValuePopup* popup, float value) = win 0x614d30, imac 0x224630, m1 0x1d1c20, ios 0x1b25e4;
     virtual void keyDown(cocos2d::enumKeyCodes key, double timestamp) = win 0x597690, imac 0x21dd80, m1 0x1cbf34, ios 0x1ae74c;
 
-    void addCloseButton(std::string text) = win 0x60bd40, imac 0x21a7f0, m1 0x1c9e48;
+    void addCloseButton(std::string text) = win 0x60bd40, imac 0x21a7f0, m1 0x1c9e48, ios 0x1a9ad4;
     void addCustomButton(int tag, ButtonSprite* sprite, cocos2d::CCPoint position, int page, int group) = imac 0x220b00, m1 0x1cebc8;
     void addEasePreviewButton(cocos2d::CCLabelBMFont*, float, int, int, int, int) = win 0x614a00;
     void addHelpButton(std::string title, std::string desc, float scale) = win 0x60be50, imac 0x21a870, m1 0x1c9ec8;
@@ -23087,7 +23087,7 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     void removeObjectFromGroup(cocos2d::CCObject* object, int group) = win inline, imac 0x21a6a0, m1 0x1c9d04, ios inline;
     void removeObjectFromPage(cocos2d::CCObject* object, int page) = win inline, imac 0x21a520, m1 0x1c9bb0;
     void resetDisabledValues() = win inline, imac 0x21fc40, m1 0x1cdcac;
-    void setCustomBGColor(cocos2d::ccColor3B const&) = imac 0x219a00, m1 0x1c90b8;
+    void setCustomBGColor(cocos2d::ccColor3B const&) = imac 0x219a00, m1 0x1c90b8, ios 0x1ac098;
     void setMaxSliderValue(float value, int property) = win inline, imac 0x21fae0, m1 0x1cdb2c;
     void setMinSliderValue(float value, int property) = win inline, imac 0x21fa60, m1 0x1cdaac, ios inline;
     TodoReturn shouldLimitArrowValue(int);
@@ -24837,10 +24837,10 @@ class TabbedPopupLayer : SetupTriggerPopup {
     virtual void showTab(int tab) = win 0x66cc10, imac 0x63fc00, m1 0x57be84, ios 0x1aa59c;
 
     void addCloseButton() = win 0x66c2a0, imac 0x63f020, m1 0x57b320;
-    int addTab(std::string const& name, char const* icon) = win 0x66c3a0, imac 0x63f120, m1 0x57b41c;
+    int addTab(std::string const& name, char const* icon) = win 0x66c3a0, imac 0x63f120, m1 0x57b41c, ios 0x1a9bc8;
     void beginTab(int tab) = win inline, imac 0x63f3e0, m1 0x57b68c;
-    void createTabButtons() = win 0x66c5b0, imac 0x63f670, m1 0x57b904;
-    void createTabButtons(float, float, float, float, float, float) = win 0x66c650;
+    void createTabButtons() = win 0x66c5b0, imac 0x63f670, m1 0x57b904, ios 0x1aa02c;
+    void createTabButtons(float, float, float, float, float, float) = win 0x66c650, ios 0x1aa0a0;
     int ensurePopupPage(int tab, int page) = win inline;
     int getPopupPage(int tab, int page) const = win inline, imac 0x63f600, m1 0x57b888;
     void offsetToNextPage(int perPage) = win inline;
