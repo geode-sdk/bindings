@@ -8686,7 +8686,7 @@ class GameObject : CCSpritePlus {
     ZLayer getObjectZLayer() = win inline, imac 0x67b7a0, m1 0x5a86fc;
     int getObjectZOrder() = win inline, imac 0x68f610, m1 0x5af82c, ios 0x2fa0b0;
     cocos2d::CCRect getOuterObjectRect() = win inline, imac 0x68d0a0, m1 0x5ad1d8, ios inline;
-    int getParentMode() = win 0x297b80, imac 0x68e870, m1 0x5ae8a4;
+    int getParentMode() = win 0x297b80, imac 0x68e870, m1 0x5ae8a4, ios 0x2f943c;
     GJSpriteColor* getRelativeSpriteColor(int type) = win 0x29e9c0, imac 0x69b7c0, m1 0x5b9864, ios 0x2ff050;
     cocos2d::CCPoint getScalePosDelta() = win 0x2995e0, imac 0x68f9d0, m1 0x5afbd8;
     GJSpriteColor* getSecondaryColor() = win inline, imac 0x69b740, m1 0x5b97f4;
