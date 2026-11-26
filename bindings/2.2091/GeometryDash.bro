@@ -511,7 +511,7 @@ class AdminAbuseEntry : cocos2d::CCObject {
     int m_category;
     std::string m_label;
     std::string m_text;
-    long long m_unk90;
+    int64_t m_unk90;
     std::string m_age;
     bool m_highlighted;
     int m_contentID;
@@ -560,7 +560,7 @@ class AdminLogEntry : cocos2d::CCObject {
     std::string m_note;
     std::string m_actionDetails;
     std::string m_actorName;
-    long long m_timestamp;
+    int64_t m_timestamp;
 }
 
 [[link(android)]]
@@ -576,10 +576,10 @@ class AdminReportedEntry : cocos2d::CCObject {
     bool m_contentExists;
     std::string m_title;
     std::string m_body;
-    long long m_contentTimestamp;
-    long long m_messageID;
+    int64_t m_contentTimestamp;
+    int64_t m_messageID;
     bool m_canOpenThread;
-    long long m_reportTimestamp;
+    int64_t m_reportTimestamp;
     int m_reporterCount;
     std::string m_reportAge;
 }
@@ -594,7 +594,7 @@ class AdminReportQueueEntry : cocos2d::CCObject {
     int m_unk64;
     int m_anonymousReporterCount;
     int m_topReason;
-    long long m_unk70;
+    int64_t m_unk70;
     std::string m_lastReportAge;
     int m_directReportCount;
     int m_lastViewedByAccountID;
@@ -605,7 +605,7 @@ class AdminReportQueueEntry : cocos2d::CCObject {
     int m_unke8;
     int m_unkec;
     int m_flagCount;
-    long long m_unkf8;
+    int64_t m_unkf8;
     int m_points;
     int m_reporterCount;
 }
@@ -7916,13 +7916,13 @@ class GameLevelManager : cocos2d::CCNode {
     int m_maxLoadedMessages;
     int m_threadMessagesIntIdx5;
     int m_threadMessagesIntIdx6;
-    long long m_threadMessagesLongLongIdx4;
-    long long m_threadMessagesLongLongIdx7;
+    int64_t m_threadMessagesLongLongIdx4;
+    int64_t m_threadMessagesLongLongIdx7;
     bool m_threadBool;
-    long long m_searchThreadMessagesLongLongIdx2;
+    int64_t m_searchThreadMessagesLongLongIdx2;
     std::string m_onUpdateThreadCompletedStringMaybeThreadName;
-    long long m_threadMessagesLongLongIdx2;
-    long long m_threadMessagesLongLongIdx3;
+    int64_t m_threadMessagesLongLongIdx2;
+    int64_t m_threadMessagesLongLongIdx3;
     int m_getThreadMessagesSetsThisTo5ButServerSetsItTo3;
     int m_getThreadMessagesAlsoSetsThisTo5ButServerSetsItTo1;
     int m_getThreadMessagesSetsThisTo30ButServerSetsItTo10;
@@ -12289,9 +12289,9 @@ class GJMessageThread : cocos2d::CCObject {
     bool m_isLocked;
     bool m_isIgnored;
     bool m_isPinned;
-    long long m_unk150;
+    int64_t m_unk150;
     int m_modBadge;
-    long long m_unk160;
+    int64_t m_unk160;
     bool m_isSelected;
     bool m_hasIcon;
     int m_iconID;
@@ -13474,10 +13474,10 @@ class GJThreadCell : TableViewCell {
 class GJThreadMessage : cocos2d::CCObject {
     virtual ~GJThreadMessage() = win 0xd2af0;
 
-    long long m_messageID;
+    int64_t m_messageID;
     int m_accountID;
     std::string m_body;
-    long long m_timestamp;
+    int64_t m_timestamp;
     bool m_deleted;
 }
 
@@ -20072,7 +20072,7 @@ class ReportPopupConfig {
     int m_special;
     std::string m_targetName;
     std::string m_preview;
-    long long m_messageID;
+    int64_t m_messageID;
     std::string m_previewTitle;
     std::vector<int> m_reasonIndices;
 }
@@ -25443,14 +25443,14 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     float m_unk2e0;
     GJMessageThread* m_thread;
     cocos2d::CCArray* m_messages;
-    long long m_unk2f8;
-    long long m_newestMessageID;
+    int64_t m_unk2f8;
+    int64_t m_newestMessageID;
     int m_unk308;
     bool m_unk30c;
     bool m_unk30d;
     bool m_sendPending;
     bool m_isModView;
-    long long m_modViewMessageID;
+    int64_t m_modViewMessageID;
     cocos2d::CCLabelBMFont* m_lockNoticeLabel;
     InfoAlertButton* m_lockInfoButton;
     bool m_refetchQueued;
@@ -25474,8 +25474,8 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     float m_unk3a8;
     float m_unk3ac;
     float m_unk3b0;
-    long long m_unreadLineMessageID;
-    long long m_unk3c0;
+    int64_t m_unreadLineMessageID;
+    int64_t m_unk3c0;
     std::string m_unk3c8;
     bool m_unk3e8;
     bool m_unk3e9;
@@ -25490,17 +25490,17 @@ class ThreadViewPopup : FLAlertLayer, VirtualRowSource, ThreadMessageDelegate, L
     float m_composeWidth;
     float m_messagesTopY;
     PAD = win 0x18, android32 0xc, android64 0x18, mac 0x18, ios 0x18;
-    long long m_pendingDeleteMessageID;
+    int64_t m_pendingDeleteMessageID;
     bool m_searchActive;
     std::string m_searchQuery;
     cocos2d::CCArray* m_savedMessages;
-    long long m_savedOldestMessageID;
-    long long m_savedNewestMessageID;
+    int64_t m_savedOldestMessageID;
+    int64_t m_savedNewestMessageID;
     bool m_savedHasEarlierMessages;
     float m_savedScrollY;
     bool m_viewingPastMessages;
-    long long m_jumpTargetMessageID;
-    long long m_highlightMessageID;
+    int64_t m_jumpTargetMessageID;
+    int64_t m_highlightMessageID;
     bool m_highlightShown;
     cocos2d::CCLabelBMFont* m_searchResultsLabel;
     CCMenuItemSpriteExtra* m_clearSearchButton;
