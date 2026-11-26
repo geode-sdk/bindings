@@ -9244,10 +9244,10 @@ class GameStatsManager : cocos2d::CCNode {
     int getAwardedCurrencyForLevel(GJGameLevel* level) = win inline, imac 0x36710, m1 0x30434, ios 0x3d0628;
     int getAwardedCurrencyForLevel(GJGameLevel* level, int dailyID) = win 0x2e4160, imac 0x36730, m1 0x30444;
     int getAwardedDiamondsForLevel(GJGameLevel* level) = win 0x2e48f0, imac 0x37130, m1 0x30e1c, ios 0x3d0c58;
-    int getBaseCurrency(int stars, bool mainLevel, int levelID) = win inline, imac 0x364e0, m1 0x30190;
+    int getBaseCurrency(int stars, bool mainLevel, int levelID) = win inline, imac 0x364e0, m1 0x30190, ios 0x3d04a0;
     int getBaseCurrencyForLevel(GJGameLevel* level) = win 0x2e3e90, imac 0x36530, m1 0x301f0, ios 0x3d0500;
-    int getBaseDiamonds(int stars) = win inline, imac 0x370d0, m1 0x30dd4;
-    int getBonusDiamonds(int stars) = win inline, imac 0x370f0, m1 0x30de8;
+    int getBaseDiamonds(int stars) = win inline, imac 0x370d0, m1 0x30dd4, ios 0x3d0c10;
+    int getBonusDiamonds(int stars) = win inline, imac 0x370f0, m1 0x30de8, ios 0x3d0c24;
     GJChallengeItem* getChallenge(int id) = win 0x2e5830, imac 0x38ea0, m1 0x32cc4, ios 0x3d1d94;
     std::string getChallengeKey(GJChallengeItem* chal) = win inline, imac 0x39200, m1 0x33074;
     int getCollectedCoinsForLevel(GJGameLevel* level) = win 0x2e1470, imac 0x328b0, m1 0x2c524, ios 0x3ce6b4;
