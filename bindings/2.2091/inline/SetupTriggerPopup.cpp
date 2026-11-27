@@ -1,6 +1,7 @@
 #include <Geode/mapping/CCObject.hpp>
 #include <Geode/binding/SetupTriggerPopup.hpp>
 #include <Geode/binding/CCTextInputNode.hpp>
+#include <Geode/binding/IDNameInput.hpp>
 #include <Geode/binding/EffectGameObject.hpp>
 #include <Geode/binding/GameToolbox.hpp>
 #include <Geode/binding/Slider.hpp>
@@ -61,6 +62,10 @@ void SetupTriggerPopup::onCustomButton(cocos2d::CCObject* sender) {}
 void SetupTriggerPopup::valueDidChange(int tag, float value) {}
 
 void SetupTriggerPopup::onCustomToggleTriggerValue(cocos2d::CCObject* sender) {}
+
+bool SetupTriggerPopup::shouldLimitArrowValue(int property) {
+    return m_shouldLimitArrowValues[property];
+}
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 SetupTriggerPopup* SetupTriggerPopup::create(float width, float height) {
@@ -169,6 +174,14 @@ void SetupTriggerPopup::postSetup() {
     m_disableTextDelegate = false;
 }
 
+void SetupTriggerPopup::registerIDNameInput(int property, IDNameInput* input) {
+    if (input) {
+        m_idNameInputs->setObject(input, property);
+    } else {
+        m_idNameInputs->removeObjectForKey(property);
+    }
+}
+
 void SetupTriggerPopup::removeObjectFromPage(cocos2d::CCObject* object, int page) {
     this->getPageContainer(page)->removeObject(object);
 }
@@ -189,6 +202,10 @@ void SetupTriggerPopup::setMaxSliderValue(float value, int property) {
 void SetupTriggerPopup::toggleBG(bool visible) {
     if (auto background = m_mainLayer->getChildByTag(1)) background->setVisible(visible);
     if (auto background = m_mainLayer->getChildByTag(3)) background->setVisible(visible);
+}
+
+void SetupTriggerPopup::toggleLimitArrowValue(int property, bool limit) {
+    m_shouldLimitArrowValues[property] = limit;
 }
 
 void SetupTriggerPopup::toggleLimitValue(int property, bool limit) {

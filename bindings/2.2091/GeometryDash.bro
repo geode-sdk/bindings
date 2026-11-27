@@ -23083,20 +23083,20 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     void postSetup() = win inline, imac 0x220c70, m1 0x1ced38, ios 0x1b06b0;
     void preSetup() = win 0x60eed0, imac 0x220c50, m1 0x1ced24, ios 0x1b069c;
     void refreshGroupVisibility() = win 0x60bae0, imac 0x21a0d0, m1 0x1c9794;
-    TodoReturn registerIDNameInput(int, IDNameInput*);
+    void registerIDNameInput(int property, IDNameInput* input) = win inline, imac 0x223580, m1 0x1d0b30, ios 0x1b17c0;
     void removeObjectFromGroup(cocos2d::CCObject* object, int group) = win inline, imac 0x21a6a0, m1 0x1c9d04, ios inline;
     void removeObjectFromPage(cocos2d::CCObject* object, int page) = win inline, imac 0x21a520, m1 0x1c9bb0;
     void resetDisabledValues() = win inline, imac 0x21fc40, m1 0x1cdcac;
     void setCustomBGColor(cocos2d::ccColor3B const&) = imac 0x219a00, m1 0x1c90b8;
     void setMaxSliderValue(float value, int property) = win inline, imac 0x21fae0, m1 0x1cdb2c;
     void setMinSliderValue(float value, int property) = win inline, imac 0x21fa60, m1 0x1cdaac, ios inline;
-    TodoReturn shouldLimitArrowValue(int);
+    bool shouldLimitArrowValue(int property) = inline;
     bool shouldLimitValue(int property) = win inline, imac 0x21e5f0, m1 0x1cc714, ios inline;
     void toggleBG(bool visible) = win inline, imac 0x219a50, m1 0x1c9104;
     void toggleCustomEaseRateVisibility(int property, int tag) = win 0x615aa0, imac 0x2253c0, m1 0x1d2a60;
     void toggleDisableButtons(bool visible) = win 0x60e340, imac 0x21fd00, m1 0x1cdd90;
     void toggleEaseRateVisibility() = win 0x6147a0;
-    TodoReturn toggleLimitArrowValue(int, bool);
+    void toggleLimitArrowValue(int property, bool limit) = win inline, imac 0x2235b0, m1 0x1d0b50, ios 0x1b17e0;
     void toggleLimitValue(int property, bool limit) = win inline, imac 0x21e6b0, m1 0x1cc7d4;
     void togglePageArrows(bool visible) = win inline, imac 0x219dd0, m1 0x1c94ac;
     void triggerArrowChanged(int property, bool isRight) = win 0x60d490, imac 0x21e290, m1 0x1cc3e4, ios 0x1aea48;
@@ -23162,7 +23162,8 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
     CCMenuItemSpriteExtra* m_prevButton;
     CCMenuItemSpriteExtra* m_nextButton;
     bool m_hideAll;
-    cocos2d::CCDictionary* m_unk3d8;
+    [[renamed_from(m_unk3d8)]]
+    cocos2d::CCDictionary* m_idNameInputs;
     int m_unk3e0;
 }
 
