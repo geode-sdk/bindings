@@ -4401,14 +4401,22 @@ class DownloadMessageDelegate {
 
 [[link(android)]]
 class DpadMenu : cocos2d::CCMenu {
-    virtual ~DpadMenu() = win 0x1f3370, ios 0x189760;
+    DpadMenu() = inline;
 
-    static DpadMenu* create(cocos2d::CCPoint, cocos2d::CCSize, cocos2d::CCSize) = ios 0x1868f8;
+    static DpadMenu* create(cocos2d::CCPoint point, cocos2d::CCSize size, cocos2d::CCSize gap) = win inline, android64 inline, imac 0x63ade0, m1 0x5774a0, ios 0x1868f8;
 
     virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1f3100, imac 0x63eca0, m1 0x57af7c, ios 0x189778;
     virtual void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0x1f31f0, imac 0x63ede0, m1 0x57b0c4, ios 0x1898c0;
 
-    CCMenuItemSpriteExtra* arrowForTouch(cocos2d::CCTouch* touch) = win 0x1f3250;
+    CCMenuItemSpriteExtra* arrowForTouch(cocos2d::CCTouch* touch) = win 0x1f3250, imac 0x63eea0, m1 0x57b198, ios 0x189968;
+
+    CCMenuItemSpriteExtra* m_leftArrow;
+    CCMenuItemSpriteExtra* m_rightArrow;
+    CCMenuItemSpriteExtra* m_upArrow;
+    CCMenuItemSpriteExtra* m_downArrow;
+    cocos2d::CCPoint m_dpadPoint;
+    cocos2d::CCSize m_dpadSize;
+    cocos2d::CCSize m_dpadGap;
 }
 
 [[link(android)]]
