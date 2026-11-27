@@ -1134,9 +1134,7 @@ public class SyncBromaScript extends GhidraScript {
         var currentList = basesMap.get(currentClass);
         baseList.add(currentList);
         while (
-            currentList != null && !currentList.isEmpty() &&
-            !currentList.get(0).equals("cocos2d::CCCopying") &&
-            !currentList.get(0).equals("cocos2d::CCApplicationProtocol")
+            currentList != null && !currentList.isEmpty()
         ) {
             currentClass = currentList.get(0);
             currentList = basesMap.get(currentClass);
@@ -1177,7 +1175,8 @@ public class SyncBromaScript extends GhidraScript {
             var bases = baseList.get(i);
             if (bases != null && !bases.isEmpty()) {
                 var baseName = bases.get(0);
-                var j = baseName.equals("cocos2d::CCCopying") || baseName.equals("cocos2d::CCApplicationProtocol") ? 0 : 1;
+
+                var j = 1;
                 if (j == 1) {
                     var subcategory = new CategoryPath("/ClassDataTypes");
                     String subname = null;
