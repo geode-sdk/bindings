@@ -207,6 +207,7 @@ enum class TableViewCellEditingStyle {
 enum class UserListType {
     Friends = 0,
     Blocked = 1,
+    Search = 2,
 };
 enum class GJErrorCode {
     NotFound = -2,

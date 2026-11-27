@@ -13923,16 +13923,16 @@ class LevelAreaLayer : cocos2d::CCLayer, DialogDelegate {
 class LevelBadgePopup : FLAlertLayer, LevelManagerDelegate {
     virtual ~LevelBadgePopup() = win 0xd24f0;
 
-    static LevelBadgePopup* create(int, bool);
+    static LevelBadgePopup* create(int id, bool isList);
 
-    virtual bool ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*) = win 0xe58a0;
+    virtual bool ccTouchBegan(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) = win 0xe58a0;
     virtual void keyBackClicked() = win 0x99e20;
     virtual void show() = win 0xe5940;
-    virtual void loadLevelsFinished(cocos2d::CCArray*, char const*, int) = win 0xe5130;
-    virtual void loadLevelsFailed(char const*, int) = win 0xe5360;
+    virtual void loadLevelsFinished(cocos2d::CCArray* levels, char const* key, int type) = win 0xe5130;
+    virtual void loadLevelsFailed(char const* key, int type) = win 0xe5360;
 
-    TodoReturn buildCell(cocos2d::CCObject*);
-    bool init(int, bool);
+    void buildCell(cocos2d::CCObject* levelContainer);
+    bool init(int id, bool isList);
     void onClose(cocos2d::CCObject* sender);
 }
 

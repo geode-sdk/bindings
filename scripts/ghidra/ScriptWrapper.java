@@ -63,6 +63,7 @@ public class ScriptWrapper {
     GhidraScript wrapped;
     Path bindingsDir;
     boolean fillStandardTypes;
+    double gameVersion;
 
     ScriptWrapper(GhidraScript script) throws CancelledException {
         this.wrapped = script;
@@ -78,11 +79,11 @@ public class ScriptWrapper {
             InputWithButtonsDialog.show(
                 this,
                 "Ghidra environment has not been set up",
-                "<html>It appears you have not run RecoverClassesFromRttiScript yet!<br>" + 
-                "It is highly recommended to run the script before doing any Broma " + 
-                "synchronization, as it makes decompilations much better by adding " + 
-                "vtables, and it is also required for importing/exporting members.<br>" + 
-                "If you would like to proceed anyway, you may do so, but note that " + 
+                "<html>It appears you have not run RecoverClassesFromRttiScript yet!<br>" +
+                "It is highly recommended to run the script before doing any Broma " +
+                "synchronization, as it makes decompilations much better by adding " +
+                "vtables, and it is also required for importing/exporting members.<br>" +
+                "If you would like to proceed anyway, you may do so, but note that " +
                 "some things may not work properly.</html>",
                 List.of("Proceed Anyway")
             );
@@ -109,7 +110,7 @@ public class ScriptWrapper {
     }
 
     /**
-     * Java {@code assert}s don't run in Ghidra scripts... so here's this function instead 
+     * Java {@code assert}s don't run in Ghidra scripts... so here's this function instead
      * to assert that the script code is running correctly!
      * @param cond Condition to require to be true
      * @param fmt Format string for error message
@@ -119,7 +120,7 @@ public class ScriptWrapper {
     static void rtassert(boolean cond, String fmt, Object... args) throws Error {
         if (!cond) {
             throw new Error(MessageFormat.format(
-                fmt + " - this is an error in SyncBromaScript itself, " + 
+                fmt + " - this is an error in SyncBromaScript itself, " +
                 "please report it to the Geode devs!", args
             ));
         }
@@ -403,7 +404,7 @@ public class ScriptWrapper {
             var nameIter = Arrays.asList(type.name.value.split("::")).listIterator();
             String name = null;
             DataTypePath typePath = null;
-    
+
             // Root category is the same as where RecoverClassesFromRTTIScript places them
             CategoryPath category = new CategoryPath("/ClassDataTypes");
 
@@ -431,7 +432,7 @@ public class ScriptWrapper {
                     typePath = new DataTypePath(category, ns);
                 }
             }
-        
+
             ScriptWrapper.rtassert(name != null, "Data type doesn't have a name (GRAB_TYPE regex is invalid)");
 
             // Try to get this type
@@ -631,7 +632,7 @@ public class ScriptWrapper {
             List.of("Continue")
         );
     }
-    
+
     void updateTypeDatabase(Platform platform) throws Exception {
         this.printfmt("Updating type database...");
 
@@ -680,22 +681,41 @@ public class ScriptWrapper {
             manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64 || platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) { // libstdc++
-            cat = this.createCategoryAll(category.extend("std", "string_data"));
-            var stringData = new StructureDataType(cat, cat.getName(), 0x0);
-            stringData.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
-            stringData.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
-            stringData.add(IntegerDataType.dataType, 0x4, "refcount", "Reference count for copy-on-write");
-            stringData.setPackingEnabled(true);
+            cat = this.createCategoryAll(category.extend("std", "string_long"));
+            var stringLong = new StructureDataType(cat, cat.getName(), 0x0);
+            if (platform == Platform.MAC_INTEL) {
+                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            } else {
+                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            }
+            stringLong.add(sizeType, pointerSize, "length", "The length of the string without the terminating null byte");
+            if (platform == Platform.MAC_INTEL) {
+                stringLong.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            } else {
+                stringLong.add(sizeType, pointerSize, "capacity", "The capacity of the string buffer");
+            }
+            stringLong.setPackingEnabled(true);
+
+            cat = this.createCategoryAll(category.extend("std", "string_short"));
+            var stringShort = new StructureDataType(cat, cat.getName(), 0x0);
+            if (platform == Platform.MAC_INTEL) {
+                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
+            }
+            stringShort.add(new ArrayDataType(CharDataType.dataType, pointerSize * 3 - 1, 0x1), pointerSize * 3 - 1, "data", "The string data");
+            if (platform != Platform.MAC_INTEL) {
+                stringShort.add(ByteDataType.dataType, 0x1, "size", "The size of the string data");
+            }
+            stringShort.setPackingEnabled(true);
 
             cat = this.createCategoryAll(category.extend("std", "string_data_union"));
             var stringDataUnion = new UnionDataType(cat, cat.getName());
-            stringDataUnion.add(new PointerDataType(stringData), pointerSize, "data", "Pointer to the string information");
-            stringDataUnion.add(new PointerDataType(CharDataType.dataType), pointerSize, "ptr", "Pointer to the string data");
+            stringDataUnion.add(stringLong, pointerSize * 3, "long", "Long string data");
+            stringDataUnion.add(stringShort, pointerSize * 3, "short", "Short string data");
             stringDataUnion.setPackingEnabled(true);
 
             cat = this.createCategoryAll(category.extend("std", "string"));
             var string = new StructureDataType(cat, cat.getName(), 0x0);
-            string.add(stringDataUnion, pointerSize, "data", "String data");
+            string.add(stringDataUnion, pointerSize * 3, "data", "String data with SSO");
             string.setPackingEnabled(true);
 
             manager.addDataType(string, DataTypeConflictHandler.REPLACE_HANDLER);
@@ -1006,7 +1026,7 @@ public class ScriptWrapper {
 
         cat = this.createCategoryAll(category.extend("UT_hash_table"));
         var utHashTable = new StructureDataType(cat, cat.getName(), 0x0);
-        
+
         utHashBucket.add(new PointerDataType(utHashHandle), pointerSize, "hh_head", "Pointer to the head of the hash handle linked list");
         utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "count", "Number of elements in the bucket");
         utHashBucket.add(UnsignedIntegerDataType.dataType, 0x4, "expand_mult", "Expansion multiplier for the bucket");
@@ -1093,7 +1113,7 @@ public class ScriptWrapper {
         var cat = this.createCategoryAll(category.extend("std", templated));
         var structureName = this.fillStandardTypes || (templated.startsWith("vector") && template.startsWith("<bool>")) ? templated + template : cat.getName();
         var existing = manager.getDataType(cat, structureName);
-        if (existing != null) {
+        if (!this.fillStandardTypes && existing != null) {
             return existing;
         }
 
@@ -1125,10 +1145,12 @@ public class ScriptWrapper {
             if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
                 point.add(uintptr, pointerSize, "last", "Pointer to one past the last element in the vector");
             }
-            else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+            else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS || (
+                (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion >= 2.209
+            )) {
                 point.add(sizeType, pointerSize, "size", "Size of the vector");
             }
-            else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+            else if ((platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion < 2.209) {
                 point.add(UnsignedIntegerDataType.dataType, 0x4, "startoff", "Offset from the start of the vector to the first element");
                 point.add(uintptr, pointerSize, "last", "Pointer to one past the last element in the vector");
                 point.add(UnsignedIntegerDataType.dataType, 0x4, "lastoff", "Offset from the start of the vector to one past the last element");
@@ -1161,14 +1183,16 @@ public class ScriptWrapper {
                 if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
                     node.add(new PointerDataType(node), pointerSize, "prev", "Pointer to the previous node in the bucket");
                 }
-                else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+                else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS || (
+                    (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion >= 2.209
+                )) {
                     node.add(sizeType, pointerSize, "hash", "Hash value of the node");
                 }
                 var dataType = isSet
                     ? this.addOrGetType(template.substring(1, template.length() - 1), platform)
                     : this.addOrGetPair("pair" + template, platform);
                 node.add(dataType, dataType.getLength(), "value", "The value of the node");
-                if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+                if ((platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion < 2.209) {
                     node.add(sizeType, pointerSize, "hash", "Hash value of the node");
                 }
                 node.setPackingEnabled(true);
@@ -1192,12 +1216,14 @@ public class ScriptWrapper {
                 point.add(sizeType, pointerSize, "mask", "");
                 point.add(sizeType, pointerSize, "max", "");
             }
-            else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+            else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS || (
+                (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion >= 2.209
+            )) {
                 point.add(nodePointer, pointerSize, "start", "");
                 point.add(sizeType, pointerSize, "size", "");
                 point.add(FloatDataType.dataType, 0x4, "factor", "");
             }
-            else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+            else if ((platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion < 2.209) {
                 point.add(nodePointer, pointerSize, "start", "");
                 point.add(sizeType, pointerSize, "size", "");
                 point.add(FloatDataType.dataType, 0x4, "factor", "");
@@ -1219,13 +1245,15 @@ public class ScriptWrapper {
                     node.add(new PointerDataType(node), pointerSize, "right", "Pointer to the right child of the node");
                     node.add(BooleanDataType.dataType, 0x1, "black", "Whether the node is black");
                 }
-                else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+                else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS || (
+                    (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion >= 2.209
+                )) {
                     node.add(new PointerDataType(node), pointerSize, "left", "Pointer to the left child of the node");
                     node.add(new PointerDataType(node), pointerSize, "right", "Pointer to the right child of the node");
                     node.add(new PointerDataType(node), pointerSize, "parent", "Pointer to the parent of the node");
                     node.add(BooleanDataType.dataType, 0x1, "black", "Whether the node is black");
                 }
-                else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+                else if ((platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion < 2.209) {
                     node.add(BooleanDataType.dataType, 0x1, "black", "Whether the node is black");
                     node.add(new PointerDataType(node), pointerSize, "parent", "Pointer to the parent of the node");
                     node.add(new PointerDataType(node), pointerSize, "left", "Pointer to the left child of the node");
@@ -1247,11 +1275,13 @@ public class ScriptWrapper {
             if (platform == Platform.WINDOWS32 || platform == Platform.WINDOWS64) {
                 point.add(nodePointer, pointerSize, "ptr", "The pointer to the main node of the " + className);
             }
-            else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS) {
+            else if (platform == Platform.MAC_ARM || platform == Platform.MAC_INTEL || platform == Platform.IOS || (
+                (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion >= 2.209
+            )) {
                 point.add(nodePointer, pointerSize, "start", "Pointer to the first element in the " + className);
                 point.add(nodePointer, pointerSize, "last", "Pointer to one past the last element in the " + className);
             }
-            else if (platform == Platform.ANDROID32 || platform == Platform.ANDROID64) {
+            else if ((platform == Platform.ANDROID32 || platform == Platform.ANDROID64) && gameVersion < 2.209) {
                 point.add(Undefined1DataType.dataType, 0x1, "comparator", "The comparator for the " + className);
                 for (var i = 1; i < pointerSize; i++) {
                     point.add(Undefined1DataType.dataType, 0x1);
@@ -1266,6 +1296,9 @@ public class ScriptWrapper {
             return manager.addDataType(point, DataTypeConflictHandler.REPLACE_HANDLER);
         }
         else {
+            if (existing != null) {
+                return existing;
+            }
             ScriptWrapper.rtassert(false, "{0} is an unhandled STL type!", templated);
             return null;
         }
@@ -1287,7 +1320,7 @@ public class ScriptWrapper {
         var org = wrapped.getLanguage(new LanguageID(langID))
             .getCompilerSpecByID(new CompilerSpecID(compID))
             .getDataOrganization();
-        
+
         if (type instanceof Pointer) {
             return org.getPointerSize();
         }
@@ -1308,13 +1341,13 @@ public class ScriptWrapper {
         }
         return type.getLength();
     }
-    
+
     static String formatType(DataType type) {
         try {
             return ScriptWrapper.formatType(((Pointer) type).getDataType()) + "*";
         }
         catch(ClassCastException ignore) {}
-        
+
         try {
             return String.join("::", ((Composite) type).getCategoryPath().asList()).replace("ClassDataTypes::", "");
         }

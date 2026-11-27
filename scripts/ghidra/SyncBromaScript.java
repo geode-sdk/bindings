@@ -62,6 +62,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean syncVirtuals;
         boolean syncEnums;
         boolean fillStandardTypes;
+        boolean skipManualOverloads;
 
         public Args(ScriptWrapper wrapper, Path bindingsDir) throws Exception {
             this.run(wrapper, bindingsDir);
@@ -117,6 +118,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Sync virtuals", b -> this.syncVirtuals = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
             this.bool("Fill standard types", b -> this.fillStandardTypes = b);
+            this.bool("Skip manual overloads", b-> this.skipManualOverloads = b);
 
             this.waitForAnswers();
 
@@ -157,6 +159,7 @@ public class SyncBromaScript extends GhidraScript {
         }
 
         wrapper.fillStandardTypes = this.args.fillStandardTypes;
+        wrapper.gameVersion = Double.parseDouble(this.args.gameVersion);
 
         // Read classes
         wrapper.classes.addAll(this.bromas.stream()
@@ -489,26 +492,28 @@ public class SyncBromaScript extends GhidraScript {
         // Fix the this parameter for member functions
         if (bromaSig.memberFunction && wrapper.offsets.get(addr.getOffset()) == null) {
             var firstParam = data.getParameter(0);
-            var firstType = firstParam.getDataType();
-            if (firstParam.getName().equals("this") && firstType instanceof Pointer && ((Pointer)firstType).getDataType() instanceof VoidDataType) {
-                var newConvention = "__cdecl";
-                if (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) {
-                    newConvention = "__fastcall";
-                }
-                else if (args.platform == Platform.MAC_INTEL) {
-                    newConvention = "__stdcall";
-                }
-                try {
-                    data.updateFunction(
-                        newConvention,
-                        returnType,
-                        updateType,
-                        true,
-                        SourceType.USER_DEFINED,
-                        bromaSig.parameters.toArray(Variable[]::new)
-                    );
-                } catch (Exception e) {
-                    throw new Error("Died on: " + fullName + " with " + e.getMessage());
+            if (firstParam != null) {
+                var firstType = firstParam.getDataType();
+                if (firstParam.getName().equals("this") && firstType instanceof Pointer && ((Pointer)firstType).getDataType() instanceof VoidDataType) {
+                    var newConvention = "__cdecl";
+                    if (args.platform == Platform.WINDOWS32 || args.platform == Platform.WINDOWS64) {
+                        newConvention = "__fastcall";
+                    }
+                    else if (args.platform == Platform.MAC_INTEL) {
+                        newConvention = "__stdcall";
+                    }
+                    try {
+                        data.updateFunction(
+                            newConvention,
+                            returnType,
+                            updateType,
+                            true,
+                            SourceType.USER_DEFINED,
+                            bromaSig.parameters.toArray(Variable[]::new)
+                        );
+                    } catch (Exception e) {
+                        throw new Error("Died on: " + fullName + " with " + e.getMessage());
+                    }
                 }
             }
         }
@@ -777,6 +782,10 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     // If no match found, ask for manual resolution
                     if (bromaFun == null) {
+                        if (args.skipManualOverloads) {
+                            wrapper.printfmt("Warning: function {0} overload not detected, skipping", fullName);
+                            continue;
+                        }
                         goTo(fun.getEntryPoint());
                         bromaFun = bromaFuns.get(askChoiceBetter(
                             "Select overload",
@@ -1132,9 +1141,7 @@ public class SyncBromaScript extends GhidraScript {
         var currentList = basesMap.get(currentClass);
         baseList.add(currentList);
         while (
-            currentList != null && !currentList.isEmpty() &&
-            !currentList.get(0).equals("cocos2d::CCCopying") &&
-            !currentList.get(0).equals("cocos2d::CCApplicationProtocol")
+            currentList != null && !currentList.isEmpty()
         ) {
             currentClass = currentList.get(0);
             currentList = basesMap.get(currentClass);
@@ -1175,7 +1182,8 @@ public class SyncBromaScript extends GhidraScript {
             var bases = baseList.get(i);
             if (bases != null && !bases.isEmpty()) {
                 var baseName = bases.get(0);
-                var j = baseName.equals("cocos2d::CCCopying") || baseName.equals("cocos2d::CCApplicationProtocol") ? 0 : 1;
+
+                var j = 1;
                 if (j == 1) {
                     var subcategory = new CategoryPath("/ClassDataTypes");
                     String subname = null;
