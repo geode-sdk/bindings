@@ -157,6 +157,7 @@ public class SyncBromaScript extends GhidraScript {
         }
 
         wrapper.fillStandardTypes = this.args.fillStandardTypes;
+        wrapper.gameVersion = Double.parseDouble(this.args.gameVersion);
 
         // Read classes
         wrapper.classes.addAll(this.bromas.stream()
