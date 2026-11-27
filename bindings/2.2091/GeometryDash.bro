@@ -8722,7 +8722,7 @@ class GameObject : CCSpritePlus {
     bool ignoreEnter() = win inline, imac 0x68cca0, m1 0x5ace44;
     bool ignoreFade() = win inline, imac 0x68cc90, m1 0x5ace3c;
     bool init(char const* frame) = win inline, imac 0x673730, m1 0x5a69e8, ios 0x2f1d08;
-    bool isBasicTrigger() = win 0x2a0590, imac 0x69d350, m1 0x5baf30;
+    bool isBasicTrigger() = win 0x2a0590, imac 0x69d350, m1 0x5baf30, ios 0x2fffa8;
     bool isColorObject() = win inline, imac 0x69b830, m1 0x5b98dc, ios 0x2ff0c0;
     bool isColorTrigger() = win inline, imac 0x69ccc0, m1 0x5ba874;
     bool isConfigurablePortal() = win inline, imac 0x69d3c0, m1 0x5bafa4;
@@ -8730,11 +8730,11 @@ class GameObject : CCSpritePlus {
     bool isFacingDown() = win 0x29e820, imac 0x69b610, m1 0x5b96ac, ios 0x2fee98;
     bool isFacingLeft() = win 0x29e8e0, imac 0x69b690, m1 0x5b973c, ios 0x2fef28;
     bool isSettingsObject() = win inline, imac 0x69d330, m1 0x5baf18;
-    bool isSpawnableTrigger() = win 0x29f650, imac 0x69c760, m1 0x5ba688;
+    bool isSpawnableTrigger() = win 0x29f650, imac 0x69c760, m1 0x5ba688, ios 0x2ff818;
     bool isSpecialObject() = win 0x29fa60, imac 0x69ce60, m1 0x5baa08;
     bool isSpeedObject() = win inline, imac 0x69cd90, m1 0x5ba954;
     bool isStoppableTrigger() = win inline, imac 0x6878e0, m1 0x5abf54;
-    bool isTrigger() = win 0x29f1e0, imac 0x687370, m1 0x5abd58;
+    bool isTrigger() = win 0x29f1e0, imac 0x687370, m1 0x5abd58, ios 0x2f6c10;
     void loadGroupsFromString(std::string groupList) = win 0x299b20, imac 0x690320, m1 0x5b04b8;
     void makeInvisible() = win inline, imac 0x68e9c0, m1 0x5ae9d0, ios 0x2f9530;
     void makeVisible() = win inline, imac 0x68e9f0, m1 0x5ae9ec, ios 0x2f954c;
@@ -8760,7 +8760,7 @@ class GameObject : CCSpritePlus {
     void resetSecondaryColorMode() = win inline, imac 0x69b920, m1 0x5b9980, ios inline;
     void setAreaOpacity(float step, float value, int index) = win 0x295830, imac 0x68dd50, m1 0x5ade70;
     void setCustomZLayer(int zLayer) = win inline, imac 0x68fb20, m1 0x5afd30;
-    void setDefaultMainColorMode(int id) = win 0x29ea30, imac 0x686b70, m1 0x5ab9c4;
+    void setDefaultMainColorMode(int id) = win 0x29ea30, imac 0x686b70, m1 0x5ab9c4, ios 0x2f689c;
     void setDefaultSecondaryColorMode(int id) = win 0x29ea70, imac 0x67adf0, m1 0x5a7eb4;
     void setGlowOpacity(unsigned char opacity) = win inline, imac 0x68e060, m1 0x5ae118;
     void setLastPosition(cocos2d::CCPoint const& position) = win inline, imac 0x69c740, m1 0x5ba680, ios 0x2ff810;
@@ -15249,7 +15249,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     bool activateTriggerEffect(EffectGameObject* object, float currentTime, float playTime, float boundTime, bool active) = win 0x3fb900, imac 0xc2ac0, m1 0xae18c;
     void addDelayedSpawn(EffectGameObject* object, float delay) = win 0x3fc210, ios inline;
     void addExclusionList(const std::unordered_set<int>& excludes, std::unordered_set<int>& groups) = win inline, imac 0xbef50, m1 0xaaf18, ios inline;
-    GameObject* addObjectFromVector(std::vector<std::string>& values, std::vector<void*>& exists) = win inline, imac 0xaea80, m1 0x9ceb8;
+    GameObject* addObjectFromVector(std::vector<std::string>& values, std::vector<void*>& exists) = win inline, imac 0xaea80, m1 0x9ceb8, ios 0x3f955c;
     void addObjectsAtPosition(cocos2d::CCPoint position, cocos2d::CCArray* objects, cocos2d::CCArray* result) = win inline, imac 0xb14c0, m1 0x9f6a0, ios inline;
     void addObjectsInRect(cocos2d::CCRect rect, bool ignoreGroups, cocos2d::CCArray* objects, cocos2d::CCArray* result) = win inline, imac 0xb16c0, m1 0x9f850, ios inline;
     void addObjectToGroup(GameObject* object, int group) = win inline, imac 0xc4380, m1 0xaf5b8;
