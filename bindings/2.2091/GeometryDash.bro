@@ -3626,7 +3626,7 @@ class CustomizeObjectLayer : FLAlertLayer, HSVWidgetDelegate, ColorSelectDelegat
 [[link(android)]]
 class CustomizeObjectSettingsPopup : SetupTriggerPopup {
     CustomizeObjectSettingsPopup() = inline;
-    virtual ~CustomizeObjectSettingsPopup() = win 0x60ac50, imac 0x1e730, m1 0x1a3f4, ios 0x31c40;
+    virtual ~CustomizeObjectSettingsPopup() = win 0x60ac50, imac 0x1e730, m1 0x1a3f4;
 
     static CustomizeObjectSettingsPopup* create(GameObject* object, cocos2d::CCArray* objects, CustomizeObjectLayer* layer) = win inline, imac 0x1dab50, m1 0x18ed9c;
 
@@ -22619,7 +22619,7 @@ class SetupRotateGameplayPopup : SetupTriggerPopup {
 
 [[link(android)]]
 class SetupRotatePopup : SetupTriggerPopup {
-    virtual ~SetupRotatePopup() = win 0x60ac50, imac 0x1e730, m1 0x1a3f4, ios 0x31c40;
+    virtual ~SetupRotatePopup() = win 0x60ac50, imac 0x1e730, m1 0x1a3f4;
 
     static SetupRotatePopup* create(EnhancedGameObject* object, cocos2d::CCArray* objects) = win 0x5d7ab0;
 
