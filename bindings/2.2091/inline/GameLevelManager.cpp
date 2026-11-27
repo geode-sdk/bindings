@@ -226,13 +226,10 @@ bool GameLevelManager::areGauntletsLoaded() {
 
 void GameLevelManager::banUser(int accountID) {}
 
-// TODO: 2.209
 cocos2d::CCArray* GameLevelManager::createAndGetAccountComments(std::string str, int accountID) {
-    return nullptr;
-    // return this->createAndGetCommentsFull(str, accountID, true);
+    return this->createAndGetCommentsFull(str, accountID, true, CommentKeyType::User);
 }
 
-// TODO: 2.209
 cocos2d::CCArray* GameLevelManager::createAndGetLevelComments(std::string str, int levelID, CommentKeyType type) {
     return this->createAndGetCommentsFull(str, levelID, false, type);
 }
