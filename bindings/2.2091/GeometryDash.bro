@@ -9299,7 +9299,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getStatFromKey(StatKey key) = win inline, imac 0x31f70, m1 0x2bbb8;
     GJStoreItem* getStoreItem(int index) = win inline, imac 0x2bfd0, m1 0x26304;
     GJStoreItem* getStoreItem(int id, int type) = win inline, imac 0x2ba00, m1 0x25d4c, ios 0x3c9960;
-    int getTotalCollectedCurrency() = win 0x2e7280, imac 0x3a7a0, m1 0x34614;
+    int getTotalCollectedCurrency() = win 0x2e7280, imac 0x3a7a0, m1 0x34614, ios 0x3d2d68;
     int getTotalCollectedDiamonds() = win 0x2e7be0, imac 0x3b560, m1 0x3525c;
     bool hasClaimedListReward(GJLevelList* list) = win 0x2e66c0, imac 0x39660, m1 0x334f4, ios 0x3d21f0;
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x2e62a0, imac 0x392c0, m1 0x3313c;
