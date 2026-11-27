@@ -14227,7 +14227,7 @@ class IDNameInput : cocos2d::CCNode, TextInputDelegate, IDNameBrowserDelegate, D
     bool commitTypedName() = win 0x3ca930;
     TodoReturn dismissAutocomplete();
     TodoReturn idNameTypeForItemValueType(int);
-    bool initCore(FLAlertLayer* parent, TextInputDelegate* delegate, int idType, int property, std::string const& label, cocos2d::CCPoint position, float scale, int maxDigits, int group, int page, bool horizontal) = win 0x3c7ab0, imac 0x913570, m1 0x7f8cac;
+    bool initCore(FLAlertLayer* parent, TextInputDelegate* delegate, int idType, int property, std::string const& label, cocos2d::CCPoint position, float scale, int maxDigits, int group, int page, bool horizontal) = win 0x3c7ab0, imac 0x913570, m1 0x7f8cac, ios 0x4e6d68;
     static bool nameLess(std::string const&, int, std::string const&, int) = win 0x3c7400;
     void onArrowLeft(cocos2d::CCObject* sender) = win 0x3c8ad0;
     void onArrowRight(cocos2d::CCObject* sender) = win 0x3c8ae0;
