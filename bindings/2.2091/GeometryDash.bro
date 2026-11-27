@@ -2780,7 +2780,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
 
     void closeColorSelect(cocos2d::CCObject* sender) = win 0x12a480, imac 0x806370, m1 0x706564;
     cocos2d::ccColor3B getColorValue() = win inline, imac 0x807eb0, m1 0x707db4, ios inline;
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action) = win 0x126b40, imac 0x803c80, m1 0x70418c;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, ColorAction* action) = win 0x126b40, imac 0x803c80, m1 0x70418c, ios 0x49e474;
     void onCopy(cocos2d::CCObject* sender) = win 0x129d50, imac 0x806980, m1 0x706acc;
     void onCopyOpacity(cocos2d::CCObject* sender) = win 0x129af0, imac 0x8070c0, m1 0x70712c;
     void onDefault(cocos2d::CCObject* sender) = win 0x129e50, imac 0x806a00, m1 0x706b4c;
@@ -2790,7 +2790,7 @@ class ColorSelectPopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDeleg
     void onPlayerColor2(cocos2d::CCObject* sender) = win 0x129c70, imac 0x806e80, m1 0x706f18;
     void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x12c470, imac 0x8071f0, m1 0x707234;
     void onTintGround(cocos2d::CCObject* sender) = win 0x129910, imac 0x806f40, m1 0x706fd0;
-    void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x12c4e0, imac 0x807080, m1 0x7070f0;
+    void onToggleHSVMode(cocos2d::CCObject* sender) = win 0x12c4e0, imac 0x807080, m1 0x7070f0, ios 0x4a0e78;
     void onToggleTintMode(cocos2d::CCObject* sender) = win 0x1299a0, imac 0x806fd0, m1 0x707048;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x12c400, imac 0x807510, m1 0x70753c;
     void onUpdateCustomColor(cocos2d::CCObject* sender) = win 0x12bbe0, imac 0x807240, m1 0x707298;
@@ -21631,7 +21631,7 @@ class SetupCameraOffsetTrigger : SetupTriggerPopup {
     virtual void textChanged(CCTextInputNode* node) = win 0x5aea20, imac 0x743080, m1 0x650510, ios 0x223dc8;
     virtual void valuePopupClosed(ConfigureValuePopup* popup, float value) = win 0x5adf40, imac 0x742c50, m1 0x650154, ios 0x223a98;
 
-    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5ac890, imac 0x740aa0, m1 0x64e150;
+    bool init(CameraTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5ac890, imac 0x740aa0, m1 0x64e150, ios 0x221f74;
     void onEasing(cocos2d::CCObject* sender) = win 0x5ae320;
     void onEasingRate(cocos2d::CCObject* sender) = win 0x5ade70;
     void onTargetMode(cocos2d::CCObject* sender) = win 0x5ae940, imac 0x7423d0, m1 0x64f918;
@@ -21991,7 +21991,7 @@ class SetupInstantCountPopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5b8d70, imac 0x6bd6a0, m1 0x5d6434, ios 0x252bbc;
     virtual void textChanged(CCTextInputNode* node) = win 0x5b87e0, imac 0x6bd290, m1 0x5d60e8, ios 0x25297c;
 
-    bool init(CountTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5b78a0, imac 0x6bc030, m1 0x5d5008;
+    bool init(CountTriggerGameObject* object, cocos2d::CCArray* objects) = win 0x5b78a0, imac 0x6bc030, m1 0x5d5008, ios 0x251b2c;
     void onCountType(cocos2d::CCObject* sender) = win 0x5b8ca0, imac 0x6bcfd0, m1 0x5d5e88;
     void onEnableGroup(cocos2d::CCObject* sender) = win 0x5b8710, imac 0x6bcf40, m1 0x5d5e10;
     void onTargetCountArrow(cocos2d::CCObject* sender) = win 0x5b87a0, imac 0x6bcb60, m1 0x5d5a74;
@@ -22404,17 +22404,17 @@ class SetupPulsePopup : SetupTriggerPopup, cocos2d::extension::ColorPickerDelega
     virtual void colorSelectClosed(GJSpecialColorSelect* select, int id) = win 0x5d1150, imac 0x398460, m1 0x3216a8, ios 0x45dcb4;
 
     cocos2d::ccColor3B getColorValue() = win inline, imac 0x398890, m1 0x321a48, ios inline;
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5ccf20, imac 0x3939d0, m1 0x31d450;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5ccf20, imac 0x3939d0, m1 0x31d450, ios 0x45a37c;
     void onCopy(cocos2d::CCObject* sender) = win 0x129d50, imac 0x397780, m1 0x320b14;
     void onExclusive(cocos2d::CCObject* sender) = win 0x5d0db0, imac 0x397400, m1 0x32085c;
     void onGroupMainOnly(cocos2d::CCObject* sender) = win 0x5d0e40;
     void onGroupSecondaryOnly(cocos2d::CCObject* sender) = win 0x5d0f30;
     void onHSVLegacyMode(cocos2d::CCObject* sender) = win 0x5d0f90, imac 0x3976f0, m1 0x320a9c;
     void onPaste(cocos2d::CCObject* sender) = win 0x129dd0, imac 0x3977c0, m1 0x320b48;
-    void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x5d04a0, imac 0x3971e0, m1 0x320678;
+    void onSelectPulseMode(cocos2d::CCObject* sender) = win 0x5d04a0, imac 0x3971e0, m1 0x320678, ios 0x45d094;
     void onSelectSpecialColor(cocos2d::CCObject* sender) = win 0x5d10b0, imac 0x397900, m1 0x320c7c;
     void onSelectSpecialTargetID(cocos2d::CCObject* sender) = win 0x5d1100, imac 0x3971a0, m1 0x32062c;
-    void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x5d06d0, imac 0x396ef0, m1 0x3203cc;
+    void onSelectTargetMode(cocos2d::CCObject* sender) = win 0x5d06d0, imac 0x396ef0, m1 0x3203cc, ios 0x45ce68;
     void onUpdateCopyColor(cocos2d::CCObject* sender) = win 0x5d1a40, imac 0x397830, m1 0x320bcc;
     void selectColor(cocos2d::ccColor3B color) = win inline, imac 0x397800, m1 0x320b94, ios inline;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x5d12f0, imac 0x3968d0, m1 0x31fdd8;
@@ -22726,7 +22726,7 @@ class SetupShakePopup : SetupTriggerPopup {
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5ebdb0, imac 0x744c80, m1 0x651e6c, ios 0x451168;
     virtual void textChanged(CCTextInputNode* node) = win 0x5eb9d0, imac 0x7448f0, m1 0x651b60, ios 0x450f30;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5ea5d0, imac 0x743650, m1 0x65097c;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5ea5d0, imac 0x743650, m1 0x65097c, ios 0x4500bc;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x5eb510, imac 0x743f30, m1 0x651228;
     void updateDuration() = win 0x5aefe0;
     void updateDurLabel(bool decimals) = win 0x5ae670;
@@ -22845,7 +22845,7 @@ class SetupSpawnPopup : SetupTriggerPopup {
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5b9920, imac 0x27c0f0, m1 0x221a3c, ios 0x11d6d0;
 
-    void addRemap(int oldID, int newID) = win 0x5f4d40, imac 0x27beb0, m1 0x221808;
+    void addRemap(int oldID, int newID) = win 0x5f4d40, imac 0x27beb0, m1 0x221808, ios 0x11d520;
     bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5f3eb0, imac 0x27a9a0, m1 0x2204cc, ios 0x11c56c;
     void onAddRemap(cocos2d::CCObject* sender) = win 0x5f4ce0, imac 0x27b590, m1 0x220f7c;
     void onDeleteRemap(cocos2d::CCObject* sender) = win 0x5f4e50, imac 0x27b5e0, m1 0x220fd8;
