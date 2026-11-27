@@ -3019,7 +3019,7 @@ class ConfigureHSVWidget : cocos2d::CCNode, TextInputDelegate {
     FLAlertLayer* hostPopup() = win 0x130770;
     bool init(cocos2d::ccHSVValue hsv, bool noBackground, bool addInputs) = win 0x12fbb0, imac 0x41d1c0, m1 0x395198, ios 0x123ce4;
     void onClose() = win inline, imac 0x41cee0, m1 0x394f1c, ios inline;
-    void onResetHSV(cocos2d::CCObject* sender) = win 0x130de0, imac 0x41df70, m1 0x395f24;
+    void onResetHSV(cocos2d::CCObject* sender) = win 0x130de0, imac 0x41df70, m1 0x395f24, ios 0x124954;
     void onToggleSConst(cocos2d::CCObject* sender) = win 0x130ce0, imac 0x41de90, m1 0x395e3c;
     void onToggleVConst(cocos2d::CCObject* sender) = win 0x130d60, imac 0x41df00, m1 0x395eb0;
     void setBaseColor(cocos2d::ccColor3B) = win 0x131600, ios 0x123ac0;
