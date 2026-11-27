@@ -9259,7 +9259,7 @@ class GameStatsManager : cocos2d::CCNode {
     const char* getDemonLevelKey(GJGameLevel* level) = win inline, imac 0x32dc0, m1 0x2c9f8;
     std::string getEventRewardKey(int id) = win inline, imac 0x3ea30, m1 0x386c4, ios inline;
     std::string getGauntletRewardKey(int id) = win 0x2ee460, imac 0x3dc30, m1 0x37844, ios 0x3d49a4;
-    std::string getItemKey(int id, int type) = win 0x2e5360, imac 0x2bb50, m1 0x25ed0;
+    std::string getItemKey(int id, int type) = win 0x2e5360, imac 0x2bb50, m1 0x25ed0, ios 0x3c9aa8;
     int getItemUnlockState(int itemID, UnlockType unlockType) = win 0x2e9730, imac 0x3d550, m1 0x370a4, ios 0x3d4660;
     int getItemUnlockStateLite(int id, UnlockType type) = imac 0x3d610, m1 0x371a0;
     std::string getLevelKey(GJGameLevel* level) = win inline, imac 0x32a30, m1 0x2c6a4;
@@ -9276,17 +9276,17 @@ class GameStatsManager : cocos2d::CCNode {
     GJRewardItem* getRewardItem(GJRewardType type) = win inline, imac 0x37db0, m1 0x31afc;
     std::string getRewardKey(GJRewardType type, int id) = win 0x2e5360, imac 0x37df0, m1 0x31b2c;
     GJChallengeItem* getSecondaryQueuedChallenge(int id) = win 0x2e59f0, imac 0x390a0, m1 0x32eec;
-    int getSecretChestForItem(int id, UnlockType type) = win 0x2eebf0, imac 0x2ba70, m1 0x25dcc;
+    int getSecretChestForItem(int id, UnlockType type) = win 0x2eebf0, imac 0x2ba70, m1 0x25dcc, ios 0x3c99cc;
     const char* getSecretCoinKey(char const* key) = win inline, imac 0x35d00, m1 0x2f8f4, ios inline;
     std::string getSecretOnlineRewardKey(int id) = win inline, imac 0x3ec20, m1 0x38870;
-    cocos2d::CCString* getSpecialChestKeyForItem(int id, UnlockType type) = win inline, imac 0x2bae0, m1 0x25e50;
+    cocos2d::CCString* getSpecialChestKeyForItem(int id, UnlockType type) = win inline, imac 0x2bae0, m1 0x25e50, ios 0x3c9a3c;
     std::string getSpecialRewardDescription(std::string key, bool unused) = win inline, imac 0x3e070, m1 0x37c48;
     std::string getSpecialUnlockDescription(int id, UnlockType type, bool unused) = win 0x2ee5d0, imac 0x3e0d0, m1 0x37cb0, ios 0x3d4ca4;
     char const* getStarLevelKey(GJGameLevel* level) = win inline, imac 0x32e20, m1 0x2ca84, ios 0x3ce98c;
     int getStat(char const* key) = win 0x2db160, imac 0x2c310, m1 0x26634, ios 0x3c9f78;
     int getStatFromKey(StatKey key) = win inline, imac 0x31f70, m1 0x2bbb8;
     GJStoreItem* getStoreItem(int index) = win inline, imac 0x2bfd0, m1 0x26304;
-    GJStoreItem* getStoreItem(int id, int type) = win inline, imac 0x2ba00, m1 0x25d4c;
+    GJStoreItem* getStoreItem(int id, int type) = win inline, imac 0x2ba00, m1 0x25d4c, ios 0x3c9960;
     int getTotalCollectedCurrency() = win 0x2e7280, imac 0x3a7a0, m1 0x34614;
     int getTotalCollectedDiamonds() = win 0x2e7be0, imac 0x3b560, m1 0x3525c;
     bool hasClaimedListReward(GJLevelList* list) = win 0x2e66c0, imac 0x39660, m1 0x334f4, ios 0x3d21f0;
@@ -9315,7 +9315,7 @@ class GameStatsManager : cocos2d::CCNode {
     bool isItemUnlocked(UnlockType type, int id) = win 0x2e9470, imac 0x30ff0, m1 0x2aaa8, ios 0x3cdb40;
     bool isPathChestUnlocked(int path) = win inline, imac 0x3e870, m1 0x384bc;
     bool isPathUnlocked(StatKey key) = win inline, imac 0x30fd0, m1 0x2aa80, ios inline;
-    bool isSecretChestUnlocked(int id) = win 0x2eec60, imac 0x3d360, m1 0x36ea0;
+    bool isSecretChestUnlocked(int id) = win 0x2eec60, imac 0x3d360, m1 0x36ea0, ios 0x3d455c;
     bool isSecretCoin(std::string key) = win inline, imac 0x35e30, m1 0x2fa2c, ios inline;
     bool isSecretCoinValid(std::string key) = win 0x2e3a60, imac 0x35e60, m1 0x2fa5c;
     bool isSpecialChestLiteUnlockable(std::string key) = win inline, imac 0x3d8b0, m1 0x37468, ios inline;
@@ -12483,15 +12483,15 @@ class GJOptionsLayer : SetupTriggerPopup {
     void addGVToggle(char const* title, char const* variable, char const* description) = win 0x39b040, imac 0x2871c0, m1 0x22bf08, ios 0x371d38;
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, imac 0x287820, m1 0x22c4f8, ios 0x372180;
     void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x39b1a0, ios 0x371e04;
-    int countForPage(int page) = win 0x39b760;
+    int countForPage(int page) = win 0x39b760, ios 0x37272c;
     CCMenuItemToggler* getToggleButton(int id) = win 0x39af90, ios inline;
     void goToPage(int page) = win 0x39bd20, imac 0x286bb0, m1 0x22b9f0, ios 0x371ab8;
     void incrementCountForPage(int page) = win 0x39b850, ios 0x372488;
     const char* infoKey(int index) = win inline, ios inline;
     bool init(int, float) = win 0x39ac30, imac 0x286850, m1 0x22b708, ios 0x3717c0;
-    cocos2d::CCLayer* layerForPage(int page) = win 0x39bb30;
-    const char* layerKey(int page) = win inline, imac 0x2882b0, m1 0x22cfb8, ios inline;
-    cocos2d::CCPoint nextPosition(int page) = win 0x39b640, imac 0x287830, m1 0x22c4fc;
+    cocos2d::CCLayer* layerForPage(int page) = win 0x39bb30, ios 0x372284;
+    const char* layerKey(int page) = win inline, imac 0x2882b0, m1 0x22cfb8, ios 0x3065b0;
+    cocos2d::CCPoint nextPosition(int page) = win 0x39b640, imac 0x287830, m1 0x22c4fc, ios 0x372184;
     const char* objectKey(int page) = win inline, imac 0x288290, m1 0x22cf90, ios inline;
     cocos2d::CCArray* objectsForPage(int page) = win 0x39b970, ios 0x372534;
     void offsetToNextPage() = win inline, imac 0x287020, m1 0x22be00, ios inline;
@@ -24265,7 +24265,7 @@ class SongInfoLayer : FLAlertLayer {
     void onMenuMusic(cocos2d::CCObject* sender) = win 0x636230, imac 0x6d9500, m1 0x5ef9e0;
     void onPracticeMusic(cocos2d::CCObject* sender) = win 0x636300, imac 0x6d9590, m1 0x5efa88;
     void onSongUsage(cocos2d::CCObject* sender) = win 0x636800;
-    void showCustomMusicUnlockInfo() = win 0x635c60, imac 0x6d9710, m1 0x5efc40;
+    void showCustomMusicUnlockInfo() = win 0x635c60, imac 0x6d9710, m1 0x5efc40, ios 0x44f9c4;
 
     std::string m_songName;
     std::string m_artistName;
