@@ -15262,7 +15262,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void checkAutoSave(float dt) = win 0x408b10, ios 0x3ffc3c;
     void clearPlayerPoints() = win inline, imac 0xc61c0, m1 0xb1174, ios inline;
     void clearTouchPoints() = win inline, imac 0xc6220, m1 0xb11dc, ios inline;
-    void copyObjectState(GameObject* object) = win 0x400c10, imac 0xc78b0, m1 0xb2634;
+    void copyObjectState(GameObject* object) = win 0x400c10, imac 0xc78b0, m1 0xb2634, ios 0x405a90;
     void copyParticleState(ParticleGameObject* object) = win inline, imac 0xc7e80, m1 0xb2c24;
     GameObject* createObject(int key, cocos2d::CCPoint position, bool noUndo) = win 0x3f0820, imac 0xafac0, m1 0x9ddfc, ios 0x3f9fd4;
     void createObjectsFromSetup(std::string& setup) = win 0x3ef940, imac 0xabbb0, m1 0x9a7e8, ios 0x3f79e8;
