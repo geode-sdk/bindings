@@ -15,6 +15,11 @@ bool LevelBrowserLayer::isSafeType() {
     return m_searchObject && (this->isVaultType() || m_searchObject->m_searchType == SearchType::DailySafe || m_searchObject->m_searchType == SearchType::WeeklySafe || m_searchObject->m_searchType == SearchType::EventSafe);
 }
 
+bool LevelBrowserLayer::isVaultType() {
+    GJTimedLevelType unused;
+    return m_searchObject && GameLevelManager::vaultTimedType(m_searchObject->m_searchType, unused);
+}
+
 void LevelBrowserLayer::onHelp(cocos2d::CCObject* sender) {}
 
 void LevelBrowserLayer::reloadAllObjects() {
@@ -86,11 +91,6 @@ void LevelBrowserLayer::updateLevelsLabel() {
     m_countText->setString(cocos2d::CCString::createWithFormat("%i to %i of %i", m_pageStartIdx + 1, end, count)->getCString());
     m_countText->limitLabelWidth(100.f, .6f, .0f);
     this->updatePageLabel();
-}
-
-bool LevelBrowserLayer::isVaultType() {
-    GJTimedLevelType unused;
-    return m_searchObject && GameLevelManager::vaultTimedType(m_searchObject->m_searchType, unused);
 }
 #endif
 
