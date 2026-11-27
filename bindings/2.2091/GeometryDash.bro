@@ -6904,8 +6904,8 @@ class FMODAudioEngine : cocos2d::CCNode {
     void queueStartMusic(std::string audioFilename, float pitch, float unknown, float volume, bool loop, int start, int end, int fadeIn, int fadeOut, int musicID, bool, int channelID, bool noPrepare, bool dontReset) = win 0x636f0, imac 0x3d51b0, m1 0x357094, ios 0x1ba81c;
     int registerChannel(FMOD::Channel* channel, int channelID, int effectID) = win 0x606d0, imac 0x3d1fa0, m1 0x3545d0, ios 0x1b8afc;
     void releaseRemovedSounds() = win inline, imac 0x3cc560, m1 0x34fec0;
-    void resumeAllAudio() = win inline, imac 0x3cb3e0, m1 0x34f070;
-    void resumeAllMusic() = win 0x62ab0, imac 0x3d4040, m1 0x356154;
+    void resumeAllAudio() = win inline, imac 0x3cb3e0, m1 0x34f070, ios 0x1b5870;
+    void resumeAllMusic() = win 0x62ab0, imac 0x3d4040, m1 0x356154, ios 0x1b9d28;
     void resumeAudio() = win inline, ios 0x1b5564;
     void resumeEffect(unsigned int effect) = win inline, imac 0x3d3bd0, m1 0x355d80, ios inline;
     void resumeMusic(int musicChannel) = win inline, imac 0x3cecc0, m1 0x351cb4, ios 0x1b72e8;
