@@ -10327,7 +10327,7 @@ class GJBaseGameLayer : cocos2d::CCLayer, TriggerEffectDelegate {
     void visitWithColorFlash() = win 0x352590, imac 0x1444d0, m1 0x117978, ios 0x2a604c;
     float volumeForProximityEffect(SFXTriggerInstance& instance) = win 0x34c740, imac 0x13e170, m1 0x112c60, ios 0x2a2524;
 
-    PAD = win 0x8, android 0x8, mac 0x8, ios 0x8;
+    PAD = win 0x8, android32 0x8, android64 0x8, mac 0x8, ios 0x8;
     GJGameState m_gameState;
     GJGameLevel* m_level;
     void* m_unk798;

@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import docking.DockingWindowManager;
@@ -23,6 +24,7 @@ import ghidra.program.model.data.AbstractFloatDataType;
 import ghidra.program.model.data.Category;
 import ghidra.program.model.data.CategoryPath;
 import ghidra.program.model.data.Composite;
+import ghidra.program.model.data.DataType;
 import ghidra.program.model.data.DataTypeConflictHandler;
 import ghidra.program.model.data.DataTypePath;
 import ghidra.program.model.data.DefaultDataType;
@@ -40,6 +42,7 @@ import ghidra.program.model.data.StructureDataType;
 import ghidra.program.model.data.TypeDef;
 import ghidra.program.model.data.Undefined;
 import ghidra.program.model.data.VoidDataType;
+import ghidra.program.model.listing.Function;
 import ghidra.program.model.listing.Function.FunctionUpdateType;
 import ghidra.program.model.listing.Parameter;
 import ghidra.program.model.listing.ParameterImpl;
@@ -199,6 +202,7 @@ public class SyncBromaScript extends GhidraScript {
         }
         if (this.args.syncMembers) {
             this.handleImportMembers();
+            this.replaceDemanglerTypesWithClassDataTypes();
         }
         if (this.args.syncVirtuals) {
             this.handleImportVirtuals();
@@ -581,6 +585,58 @@ public class SyncBromaScript extends GhidraScript {
         }
 
         return status;
+    }
+
+    // i am not ashamed of this its 1 am and i completely vibed this
+    private void replaceDemanglerTypesWithClassDataTypes() {
+        var dtm = currentProgram.getDataTypeManager();
+        var classCat = dtm.getCategory(new CategoryPath("/ClassDataTypes"));
+        var demanglerCat = dtm.getCategory(new CategoryPath("/Demangler"));
+        if (classCat == null || demanglerCat == null) return;
+
+        wrapper.printfmt("Updating /Demangler types from /ClassDataTypes...");
+
+        var classTypeMap = new HashMap<String, DataType>();
+        collectNamedTypes(classCat, classTypeMap);
+
+        var pairs = new ArrayList<DataType[]>();
+        collectDemanglerPairs(demanglerCat, classTypeMap, pairs);
+
+        int updated = 0;
+        for (var pair : pairs) {
+            var demanglerType = pair[0];
+            var classType = pair[1];
+            if (demanglerType instanceof Structure destStruct && classType instanceof Structure srcStruct) {
+                try {
+                    destStruct.replaceWith(srcStruct);
+                    updated++;
+                } catch (Exception e) {
+                    wrapper.printfmt("  Failed to update {0}: {1}", demanglerType.getName(), e.getMessage());
+                }
+            }
+        }
+        wrapper.printfmt("Updated {0}/{1} /Demangler types from /ClassDataTypes", updated, pairs.size());
+    }
+
+    private void collectNamedTypes(Category category, Map<String, DataType> map) {
+        for (var type : category.getDataTypes()) {
+            map.putIfAbsent(type.getName(), type);
+        }
+        for (var sub : category.getCategories()) {
+            collectNamedTypes(sub, map);
+        }
+    }
+
+    private void collectDemanglerPairs(Category category, Map<String, DataType> classTypeMap, ArrayList<DataType[]> pairs) {
+        for (var type : category.getDataTypes()) {
+            var match = classTypeMap.get(type.getName());
+            if (match != null) {
+                pairs.add(new DataType[]{type, match});
+            }
+        }
+        for (var sub : category.getCategories()) {
+            collectDemanglerPairs(sub, classTypeMap, pairs);
+        }
     }
 
     private void handleImport() throws Exception {
