@@ -2581,7 +2581,7 @@ class ColorAction : cocos2d::CCObject {
     ColorAction() = inline;
     virtual ~ColorAction() = win 0x3623d0;
 
-    static ColorAction* create() = win 0x363310, imac 0x2c3f90, m1 0x263a48;
+    static ColorAction* create() = win 0x363310, imac 0x2c3f90, m1 0x263a48, ios 0xf52c;
     static ColorAction* create(cocos2d::ccColor3B color, bool blending, int playerColor) = win inline, imac 0x2c4190, m1 0x263bf8, ios inline;
     static ColorAction* create(cocos2d::ccColor3B fromColor, cocos2d::ccColor3B toColor, float duration, double unused, bool blending) = win inline, imac 0x2c4280, m1 0x263cc0, ios inline;
     static ColorAction* create(cocos2d::ccColor3B fromColor, cocos2d::ccColor3B toColor, float duration, double unused, bool blending, int playerColor, float fromOpacity, float toOpacity) = win inline, imac 0x2c4070, m1 0x263b08;
@@ -11094,7 +11094,7 @@ class GJEffectManager : cocos2d::CCNode {
     void createTransformCommand(double scaleX, double scaleY, double property450, double property451, bool onlyMove, float duration, int targetID, int centerID, int easingType, float easingRate, bool, bool relativeRotation, int uniqueID, int controlID) = win inline, imac 0x2cb620, m1 0x26a348;
     cocos2d::CCArray* getAllColorActions() = win 0x3655d0, imac 0x2c8c20, m1 0x267e3c;
     cocos2d::CCArray* getAllColorSprites() = win inline, imac 0x2c8c80, m1 0x267e8c, ios inline;
-    ColorAction* getColorAction(int index) = win 0x365ef0, imac 0x2c8d60, m1 0x267f48;
+    ColorAction* getColorAction(int index) = win 0x365ef0, imac 0x2c8d60, m1 0x267f48, ios 0xffa4;
     ColorActionSprite* getColorSprite(int index) = win 0x365fb0, imac 0x2c8f10, m1 0x2680e8, ios 0xf5fc;
     void getLoadedMoveOffset(std::unordered_map<int, std::pair<double, double>>& offsets) = win 0x36b090, imac 0x2d2740, m1 0x26fbc8;
     CCMoveCNode* getMoveCommandNode(GroupCommandObject2* command) = win 0x3697c0, imac 0x2ccf00, m1 0x26b620;
