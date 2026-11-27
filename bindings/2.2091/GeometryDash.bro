@@ -4295,12 +4295,12 @@ class DemonFilterSelectLayer : FLAlertLayer {
     DemonFilterSelectLayer() = inline;
     ~DemonFilterSelectLayer() = win inline, ios 0x5f958;
 
-    static DemonFilterSelectLayer* create() = win inline;
+    static DemonFilterSelectLayer* create() = win inline, imac 0x708450, m1 0x6195c4, ios 0x5cdb4;
 
     virtual bool init() = win 0x440bb0, imac 0x70c140, m1 0x61cd78, ios 0x5f990;
     virtual void keyBackClicked() = win 0x441340, imac 0x70c720, m1 0x61d368, ios 0x5fef0;
 
-    void onClose(cocos2d::CCObject* sender) = win 0x4412f0, imac 0x70c6d0, m1 0x61d308;
+    void onClose(cocos2d::CCObject* sender) = win 0x4412f0, imac 0x70c6d0, m1 0x61d308, ios 0x5fe90;
     void selectRating(cocos2d::CCObject* sender) = win 0x441230, imac 0x70c610, m1 0x61d240, ios 0x5fdc8;
 
     cocos2d::CCArray* m_demons;
@@ -7833,7 +7833,7 @@ class GameLevelManager : cocos2d::CCNode {
     bool sendAdminAction(char const*, char const*, GJHttpType, int, std::string const&, std::string const&, std::vector<int> const&) = win 0x2412b0, imac 0x56e960, m1 0x4c152c;
     bool sendThreadMessage(int, int, std::string const&, std::string const&, uint64_t, std::string const&, bool, std::string const&, std::string const&) = win 0x249630, imac 0x572090, m1 0x4c4bc0;
     void setActiveSmartTemplate(GJSmartTemplate* smartTemplate) = win inline, imac 0x54ef50, m1 0x4a4b00, ios inline;
-    void setBoolForKey(bool value, char const* key) = win inline;
+    void setBoolForKey(bool value, char const* key) = win inline, imac 0x5823d0, m1 0x4d4070, ios 0xcddd4;
     void setDiffVal(int diff, bool value) = win 0x261420;
     void setFolderName(int id, std::string name, bool local) = win inline, imac 0x54ee10, m1 0x4a49c8;
     void setIntForKey(int value, char const* key) = win inline, imac 0x5821e0, m1 0x4d3e58, ios 0xcdcd8;
@@ -15971,12 +15971,12 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     virtual void demonFilterSelectClosed(int filter) = win 0x436860, imac 0x708650, m1 0x619738, ios 0x5ce78;
 
     bool checkDiff(int diff) = win 0x43aaf0, imac 0x7094b0, m1 0x61a514, ios 0x5d8a8;
-    bool checkTime(int time) = win 0x43b120, imac 0x7095b0, m1 0x61a62c;
+    bool checkTime(int time) = win 0x43b120, imac 0x7095b0, m1 0x61a62c, ios 0x5d930;
     void clearFilters() = win 0x436d90, imac 0x708960, m1 0x6199a0, ios 0x5d020;
     void confirmClearFilters(cocos2d::CCObject* sender) = win 0x436c70, imac 0x706bf0, m1 0x617d34, ios 0x5b908;
     char const* getDiffKey(int diff) = win inline, imac 0x708430, m1 0x61959c, ios inline;
-    std::string getLevelLenKey() = win inline, imac 0x709380, m1 0x61a3ec;
-    std::string getSearchDiffKey() = win inline, imac 0x709290, m1 0x61a2f4;
+    std::string getLevelLenKey() = win inline, imac 0x709380, m1 0x61a3ec, ios 0x5d7ec;
+    std::string getSearchDiffKey() = win inline, imac 0x709290, m1 0x61a2f4, ios 0x5d6f4;
     GJSearchObject* getSearchObject(SearchType type, std::string query) = win 0x438540, imac 0x708ed0, m1 0x619fa0, ios 0x5d458;
     char const* getTimeKey(int time) = win inline, imac 0x7096b0, m1 0x61a744, ios inline;
     bool init(int type) = win 0x434450, imac 0x704400, m1 0x6154b8, ios 0x59c24;
@@ -15999,11 +15999,11 @@ class LevelSearchLayer : cocos2d::CCLayer, TextInputDelegate, FLAlertLayerProtoc
     void onStarAward(cocos2d::CCObject* sender) = imac 0x707800, m1 0x618928;
     void onTrending(cocos2d::CCObject* sender) = win 0x439980, ios 0x5c1c4;
     void toggleDifficulty(cocos2d::CCObject* sender) = win 0x43abe0, imac 0x707870, m1 0x618994, ios 0x5c59c;
-    void toggleDifficultyNum(int diff, bool enabled) = win 0x43af60, imac 0x708120, m1 0x619288;
-    void toggleNoStar(cocos2d::CCObject* sender) = win 0x43a740;
-    void toggleStar(cocos2d::CCObject* sender) = win 0x43a380, imac 0x707f20, m1 0x619064;
-    void toggleTime(cocos2d::CCObject* sender) = win 0x43b210, imac 0x707d90, m1 0x618ec0;
-    void toggleTimeNum(int time, bool enabled) = win 0x43b3e0, imac 0x7082a0, m1 0x61940c;
+    void toggleDifficultyNum(int diff, bool enabled) = win 0x43af60, imac 0x708120, m1 0x619288, ios 0x5cba8;
+    void toggleNoStar(cocos2d::CCObject* sender) = win 0x43a740, imac 0x708000, m1 0x619150, ios 0x5ca70;
+    void toggleStar(cocos2d::CCObject* sender) = win 0x43a380, imac 0x707f20, m1 0x619064, ios 0x5c984;
+    void toggleTime(cocos2d::CCObject* sender) = win 0x43b210, imac 0x707d90, m1 0x618ec0, ios 0x5c864;
+    void toggleTimeNum(int time, bool enabled) = win 0x43b3e0, imac 0x7082a0, m1 0x61940c, ios 0x5cca8;
     void updateSearchLabel(char const* label) = win 0x438180, imac 0x706d40, m1 0x617e74;
 
     int m_type;
