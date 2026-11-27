@@ -4004,7 +4004,7 @@ class DailyLevelPage : FLAlertLayer, FLAlertLayerProtocol, GJDailyLevelDelegate,
     void onTheSafe(cocos2d::CCObject* sender) = win 0x172ab0, imac 0x215500, m1 0x1c4a74;
     void refreshDailyPage() = win inline, imac 0x216c60, m1 0x1c6384;
     void skipDailyLevel(DailyLevelNode* node, GJGameLevel* level) = win 0x172870, imac 0x216b60, m1 0x1c6290, ios 0x2508b8;
-    void tryGetDailyStatus() = win 0x170f70, imac 0x2163f0, m1 0x1c5b28;
+    void tryGetDailyStatus() = win 0x170f70, imac 0x2163f0, m1 0x1c5b28, ios 0x2502a4;
     callback void updateTimers(float dt) = win 0x172210, imac 0x2159b0, m1 0x1c50e4, ios 0x24fab0;
 
     cocos2d::CCLabelBMFont* m_timeLabel;
@@ -7555,7 +7555,7 @@ class GameLevelManager : cocos2d::CCNode {
     std::string getGauntletSearchKey(int id) = win inline, imac 0x55d700, m1 0x4b19f0;
     bool getGJChallenges() = win 0x25e270, imac 0x580570, m1 0x4d2254;
     void getGJContentStatus() = win 0x2313d0, ios 0xb8e3c;
-    bool getGJDailyLevelState(GJTimedLevelType type) = win 0x25f690, imac 0x580a20, m1 0x4d26b4;
+    bool getGJDailyLevelState(GJTimedLevelType type) = win 0x25f690, imac 0x580a20, m1 0x4d26b4, ios 0xcd2e8;
     bool getGJRewards(int type) = win 0x25ce00, imac 0x57fe80, m1 0x4d1c68, ios 0xccc00;
     bool getGJSecretReward(std::string key) = win 0x25be60, imac 0x57fb70, m1 0x4d196c;
     void getGJUserInfo(int id) = win 0x23a610, imac 0x5673a0, m1 0x4ba528, ios 0xbe794;
