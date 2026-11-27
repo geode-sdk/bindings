@@ -302,3 +302,8 @@ void MusicDownloadManager::tryLoadLibraries() {
 #if defined(GEODE_IS_IOS)
 #endif
 
+#ifndef GEODE_IS_ANDROID
+bool MusicDownloadManager::isNewsFeedLoaded() {
+    return this->m_newsFeedVersion != this->m_latestNewsID;
+}
+#endif
