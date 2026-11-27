@@ -16489,7 +16489,7 @@ class LoadingLayer : cocos2d::CCLayer {
 
 [[link(android)]]
 class LocalLevelManager : GManager, PlatformFileDelegate {
-    virtual ~LocalLevelManager() = win 0x46ab30, ios 0x25e2f0;
+    virtual ~LocalLevelManager() = win 0x46ab30, imac 0x6c9690, m1 0x5e1678, ios 0x25e218;
 
     static LocalLevelManager* get() = inline;
     static LocalLevelManager* sharedState() = win 0x46ac00, ios 0x25e134, m1 0x5e1588, imac 0x6c9560;
