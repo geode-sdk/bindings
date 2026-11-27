@@ -7603,7 +7603,7 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getReportKey(int levelID) = win inline, imac 0x581840, m1 0x4d34d8, ios inline;
     GJGameLevel* getSavedDailyLevel(int dailyID) = win 0x2207e0, imac 0x548fb0, m1 0x49f0a4, ios 0xace1c;
     GJGameLevel* getSavedDailyLevelFromLevelID(int id) = win inline, imac 0x5492b0, m1 0x49f3e0;
-    GJMapPack* getSavedGauntlet(int id) = win inline;
+    GJMapPack* getSavedGauntlet(int id) = win inline, imac 0x55e420, m1 0x4b2664, ios 0xb9308;
     GJGameLevel* getSavedGauntletLevel(int id) = win 0x2208c0, imac 0x5490b0, m1 0x49f1b8, ios 0xacea0;
     GJGameLevel* getSavedLevel(GJGameLevel* level) = win inline, imac 0x542e90, m1 0x4997ec, ios 0xa92cc;
     GJGameLevel* getSavedLevel(int id) = win 0x220700, imac 0x5491b0, m1 0x49f2cc, ios 0xacf24;
@@ -9653,12 +9653,12 @@ class GauntletSprite : cocos2d::CCNode {
     GauntletSprite() = inline;
     virtual ~GauntletSprite() = win 0x80dc0;
 
-    static GauntletSprite* create(GauntletType type, bool locked) = win inline, imac 0x37f480, m1 0x30a9f0;
+    static GauntletSprite* create(GauntletType type, bool locked) = win inline, imac 0x37f480, m1 0x30a9f0, ios 0x2cfa20;
 
     void addLockedSprite() = win 0x2fd2d0, imac 0x37fd90, m1 0x30b400;
     void addNormalSprite() = win inline, imac 0x37fcc0, m1 0x30b304;
     cocos2d::ccColor3B colorForType(GauntletType type) = win inline, imac 0x380150, m1 0x30b804, ios inline;
-    bool init(GauntletType type, bool locked) = win inline, imac 0x37fc30, m1 0x30b270;
+    bool init(GauntletType type, bool locked) = win inline, imac 0x37fc30, m1 0x30b270, ios 0x2cff28;
     float luminanceForType(GauntletType type) = win inline, imac 0x37fff0, m1 0x30b740;
     void toggleLockedSprite(bool locked) = win 0x2fd620, imac 0x37fb60, m1 0x30b19c;
 
@@ -12188,11 +12188,11 @@ class GJMapObject : cocos2d::CCNode {
 
 [[link(android)]]
 class GJMapPack : cocos2d::CCNode {
-    GJMapPack() = inline;
+    GJMapPack() = ios 0xd8bec, inline;
     ~GJMapPack() = win inline, ios 0xd4a4c;
 
-    static GJMapPack* create() = win inline, imac 0x58c470, m1 0x4dcd10;
-    static GJMapPack* create(cocos2d::CCDictionary* dict) = win 0x26af70, imac 0x543bd0, m1 0x49a4f4;
+    static GJMapPack* create() = win inline, imac 0x58c470, m1 0x4dcd10, ios 0xd4a64;
+    static GJMapPack* create(cocos2d::CCDictionary* dict) = win 0x26af70, imac 0x543bd0, m1 0x49a4f4, ios 0xa9ad0;
 
     virtual bool init() = win 0x26bb90, imac 0x58c8e0, m1 0x4dd12c, ios 0xd4cf0;
 
