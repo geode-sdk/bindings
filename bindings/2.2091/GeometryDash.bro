@@ -17358,12 +17358,12 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void deleteSong(int id) = win inline, imac 0x64e9c0, m1 0x5894b4, ios 0x1d4af4;
     void downloadCustomSong(int id) = win 0x48c430, imac 0x64f120, m1 0x589bf4, ios 0x1d5068;
     void downloadMusicLibrary() = win 0x48ca90, imac 0x65a1d0, m1 0x594228, ios 0x1db96c;
-    void downloadNewsFeed() = win 0x491b40, imac 0x661330, m1 0x59a748;
+    void downloadNewsFeed() = win 0x491b40, imac 0x661330, m1 0x59a748, ios 0x1e01ac;
     void downloadNewsImage(std::string imageKey) = win 0x493650, imac 0x663810, m1 0x59c6a0;
     void downloadSFX(int id) = win 0x48f030, imac 0x65ec30, m1 0x598410, ios 0x1de644;
     void downloadSFXFailed(int id, GJSongError errorCode) = win 0x493fb0, imac 0x65f170, m1 0x598920;
     void downloadSFXFinished(int id) = win inline, imac 0x65f1e0, m1 0x598994, ios 0x1dac00;
-    void downloadSFXLibrary() = win 0x48f820, imac 0x65f590, m1 0x598d50;
+    void downloadSFXLibrary() = win 0x48f820, imac 0x65f590, m1 0x598d50, ios 0x1ded8c;
     void downloadSong(int id) = win 0x483ce0, imac 0x64ed20, m1 0x589850, ios 0x1d4da4;
     void downloadSongFailed(int id, GJSongError errorCode) = win 0x493f30, imac 0x64f800, m1 0x58a298, ios 0x1d54d4;
     void downloadSongFinished(int id) = win inline, imac 0x64f870, m1 0x58a30c, ios 0x1d5548;
@@ -17420,7 +17420,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     bool isDLActive(char const* tag) = win inline, imac 0x64b6c0, m1 0x58657c, ios inline;
     bool isMusicFavorite(int);
     bool isMusicLibraryLoaded() = win inline, imac 0x65cb50, m1 0x596454, ios inline;
-    bool isNewsFeedLoaded();
+    bool isNewsFeedLoaded() = win inline, imac inline, m1 inline, ios inline;
     bool isNewsImageDownloaded(std::string imageKey) = win 0x493510;
     bool isResourceSFX(int id) = win inline, imac 0x650010, m1 0x58a9a8, ios inline;
     bool isResourceSong(int id) = win inline, imac 0x64f9c0, m1 0x58a474, ios inline;
@@ -17442,21 +17442,21 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void noteSFXUsed(int, int) = win 0x484d90;
     void noteSongUsed(int songID);
     void onDownloadMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48cd40, imac 0x65a3c0, m1 0x594428, ios 0x1dbb48;
-    void onDownloadNewsFeedCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x491d80, imac 0x6614d0, m1 0x59a90c;
+    void onDownloadNewsFeedCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x491d80, imac 0x6614d0, m1 0x59a90c, ios 0x1e0334;
     void onDownloadNewsImageCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x4938e0, imac 0x663b10, m1 0x59c98c;
     void onDownloadSFXCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f2b0, imac 0x65ef20, m1 0x5986e8, ios 0x1de8b4;
-    void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48fa90, imac 0x65f740, m1 0x598f2c;
+    void onDownloadSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48fa90, imac 0x65f740, m1 0x598f2c, ios 0x1def68;
     void onDownloadSongCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x484030, imac 0x64f460, m1 0x589f20, ios 0x1d52e4;
     void onGetAudioFilesizeCompleted(std::string response, std::string tag) = win 0x48c1c0, imac 0x64aca0, m1 0x585cb0, ios 0x1d2868;
     void onGetCustomContentURLCompleted(std::string response, std::string tag) = win 0x48b8c0, imac 0x64ab50, m1 0x585b6c, ios 0x1d27a8;
     void onGetSongInfoCompleted(std::string response, std::string tag) = win 0x482c30, imac 0x64a8b0, m1 0x5858dc;
     void onProcessHttpRequestCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x482110, imac 0x64a050, m1 0x58507c, ios 0x1d217c;
     void onTryUpdateMusicLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48c950, imac 0x65a080, m1 0x5940d8, ios 0x1db894;
-    void onTryUpdateNewsFeedCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x491a00, imac 0x6611e0, m1 0x59a5f8;
-    void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f6d0, imac 0x65f440, m1 0x598c00;
+    void onTryUpdateNewsFeedCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x491a00, imac 0x6611e0, m1 0x59a5f8, ios 0x1e00d4;
+    void onTryUpdateSFXLibraryCompleted(cocos2d::extension::CCHttpClient* client, cocos2d::extension::CCHttpResponse* response) = win 0x48f6d0, imac 0x65f440, m1 0x598c00, ios 0x1decb4;
     void parseMusicLibrary() = win 0x48cf00, imac 0x65a610, m1 0x594654, ios 0x1dbc84;
-    void parseNewsFeed() = win 0x492170, imac 0x661c20, m1 0x59b008;
-    void parseSFXLibrary() = win 0x48fc30, imac 0x65f910, m1 0x5990fc;
+    void parseNewsFeed() = win 0x492170, imac 0x661c20, m1 0x59b008, ios 0x1e0638;
+    void parseSFXLibrary() = win 0x48fc30, imac 0x65f910, m1 0x5990fc, ios 0x1df084;
     std::string pathForNewsFolder() = win 0x4933b0, imac 0x663510, m1 0x59c370;
     std::string pathForNewsImage(std::string imageKey) = win 0x493430, m1 inline;
     std::string pathForSFX(int id) = win 0x484b70, imac 0x650150, m1 0x58aa8c, ios 0x1d586c;
@@ -17466,7 +17466,7 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     cocos2d::extension::CCHttpRequest* ProcessHttpGetRequest(std::string url, std::string tag, cocos2d::extension::SEL_HttpResponse selector, int connectTimeout, int readTimeout) = win 0x481ff0, imac 0x64a210, m1 0x58526c, ios 0x1d2294;
     callback void ProcessHttpRequest(std::string url, std::string params, std::string tag, GJHttpType type) = win 0x481eb0, imac 0x649ec0, m1 0x584f3c, ios 0x1d203c;
     void rebuildCustomSFXMappings(std::vector<std::pair<int, int>> const&, std::map<std::pair<int, int>, std::string>&, std::set<int> const*) = win 0x4872c0;
-    void removeDLFromActive(char const* tag) = win 0x4843c0, imac 0x64b850, m1 0x586748;
+    void removeDLFromActive(char const* tag) = win 0x4843c0, imac 0x64b850, m1 0x586748, ios 0x1d2ee4;
     void removeMusicDownloadDelegate(MusicDownloadDelegate* delegate) = win 0x4827e0, imac 0x64b5c0, m1 0x586474, ios 0x1d2d20;
     void renameCustomSFXObject(int sfxID, std::string name);
     SFXInfoObject* resolveSFXPlacement(int, int, std::string const&) = win 0x486700;
@@ -17481,11 +17481,11 @@ class MusicDownloadManager : cocos2d::CCNode, PlatformDownloadDelegate {
     void toggleCustomSFXFavorite(int sfxID);
     void toggleMusicFavorite(int songID);
     void toggleSFXFavorite(int sfxID);
-    void tryLoadLibraries() = win inline, imac 0x660c80, m1 0x59a0e4;
-    void tryLoadNewsFeed() = imac 0x6611b0, m1 0x59a5d0;
+    void tryLoadLibraries() = win inline, imac 0x660c80, m1 0x59a0e4, ios 0x1dfc6c;
+    void tryLoadNewsFeed() = win inline, imac 0x6611b0, m1 0x59a5d0, ios 0x1e0638;
     void tryUpdateMusicLibrary() = win 0x48c6b0, imac 0x659e90, m1 0x593ed8, ios 0x1db6b8;
     void tryUpdateNewsFeed() = win 0x491720, imac 0x658ea0, m1 0x5930d0, ios 0x1dac6c;
-    void tryUpdateSFXLibrary() = win 0x48f410, imac 0x65f250, m1 0x598a00;
+    void tryUpdateSFXLibrary() = win 0x48f410, imac 0x65f250, m1 0x598a00, ios 0x1dead8;
 
     cocos2d::CCDictionary* m_activeDownloads;
     cocos2d::CCArray* m_musicDownloadDelegates;
@@ -17672,7 +17672,7 @@ class NewsPopup : FLAlertLayer, FLAlertLayerProtocol, MusicDownloadDelegate {
     void onPrevPage(cocos2d::CCObject* sender) = win 0x49fc30, imac 0x958f20, m1 0x837748;
     bool pageReferencesImage(int, std::string) = win 0x49fb10;
     void prefetchPageImages(int) = win 0x49f920;
-    void rebuildPage(int) = win 0x49e6c0, imac 0x959040, m1 0x837844;
+    void rebuildPage(int) = win 0x49e6c0, imac 0x959040, m1 0x837844, ios 0x518264;
     void refreshFromManager() = win 0x49e4c0, imac 0x958f80, m1 0x837794;
 
     std::vector<NewsItem> m_items;
@@ -23248,9 +23248,9 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void restoreListScroll(float) = win 0x61b7d0;
     TodoReturn searchSettingsChanged();
     void setupList(SFXSearchResult* result) = win 0x619900, imac 0x4307a0, m1 0x3a7598;
-    void setupSFXBrowser() = win 0x618a20, imac 0x42fcc0, m1 0x3a6bc4;
+    void setupSFXBrowser() = win 0x618a20, imac 0x42fcc0, m1 0x3a6bc4, ios 0x1f489c;
     void switchToView(AudioViewType) = win 0x61b3d0;
-    void trySetupSFXBrowser() = win 0x6189a0, imac 0x42fc50, m1 0x3a6b60;
+    void trySetupSFXBrowser() = win 0x6189a0, imac 0x42fc50, m1 0x3a6b60, ios 0x1f4840;
     void updatePageLabel() = win 0x6203b0, imac 0x432480, m1 0x3a8e98;
     void updateSelectionUI() = win 0x61a4b0;
     void updateShareItem() = win 0x61de90;
