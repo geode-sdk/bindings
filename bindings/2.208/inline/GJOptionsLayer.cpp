@@ -28,6 +28,10 @@ const char* GJOptionsLayer::infoKey(int index) {
     return cocos2d::CCString::createWithFormat("info_%i", index)->getCString();
 }
 
+const char* GJOptionsLayer::layerKey(int page) {
+    return cocos2d::CCString::createWithFormat("layer_%i", page)->getCString();
+}
+
 const char* GJOptionsLayer::objectKey(int page) {
     return cocos2d::CCString::createWithFormat("object_%i", page)->getCString();
 }
@@ -46,10 +50,6 @@ void GJOptionsLayer::setupOptions() {}
 
 void GJOptionsLayer::addToggle(char const* title, int id, bool initial, char const* description) {
     addToggleInternal(title, id, initial, description);
-}
-
-const char* GJOptionsLayer::layerKey(int page) {
-    return cocos2d::CCString::createWithFormat("layer_%i", page)->getCString();
 }
 
 cocos2d::CCPoint GJOptionsLayer::nextPosition(int page) {

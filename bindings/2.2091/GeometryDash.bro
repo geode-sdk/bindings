@@ -12490,7 +12490,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     const char* infoKey(int index) = win inline, ios inline;
     bool init(int, float) = win 0x39ac30, imac 0x286850, m1 0x22b708, ios 0x3717c0;
     cocos2d::CCLayer* layerForPage(int page) = win 0x39bb30, ios 0x372284;
-    const char* layerKey(int page) = win inline, imac 0x2882b0, m1 0x22cfb8, ios 0x3065b0;
+    const char* layerKey(int page) = win inline, imac 0x2882b0, m1 0x22cfb8, ios inline;
     cocos2d::CCPoint nextPosition(int page) = win 0x39b640, imac 0x287830, m1 0x22c4fc, ios 0x372184;
     const char* objectKey(int page) = win inline, imac 0x288290, m1 0x22cf90, ios inline;
     cocos2d::CCArray* objectsForPage(int page) = win 0x39b970, ios 0x372534;
