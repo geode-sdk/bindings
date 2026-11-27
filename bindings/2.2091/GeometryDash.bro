@@ -7543,7 +7543,7 @@ class GameLevelManager : cocos2d::CCNode {
     void getFriendRequests(bool, int, int, std::string const&, bool) = win 0x254070, imac 0x579ba0, m1 0x4cbe10;
     const char* getGauntletKey(int id) = win inline, imac 0x55e400, m1 0x4b263c, ios inline;
     void getGauntletLevels(int id) = win 0x2318f0, imac 0x55df00, m1 0x4b21e0;
-    void getGauntlets() = win 0x230cd0, imac 0x55d7c0, m1 0x4b1ab0, ios 0x0b8c0c;
+    void getGauntlets() = win 0x230cd0, imac 0x55d7c0, m1 0x4b1ab0, ios 0xb8c0c;
     std::string getGauntletSearchKey(int id) = win inline, imac 0x55d700, m1 0x4b19f0;
     bool getGJChallenges() = win 0x25e270, imac 0x580570, m1 0x4d2254;
     void getGJContentStatus() = win 0x2313d0, ios 0xb8e3c;
