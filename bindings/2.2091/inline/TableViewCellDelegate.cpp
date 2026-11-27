@@ -4,6 +4,16 @@ bool TableViewCellDelegate::cellPerformedAction(TableViewCell* cell, int listTyp
 
 int TableViewCellDelegate::getSelectedCellIdx() { return 0; }
 
+int TableViewCellDelegate::getSelectedCellCustomIdx() { return 0; }
+
+bool TableViewCellDelegate::allowsCustomSFXActions() { return false; }
+
+bool TableViewCellDelegate::isCustomIDSelected(int id) { return false; }
+
+bool TableViewCellDelegate::inCustomSFXTree() { return false; }
+
+bool TableViewCellDelegate::showsSFXInfoButton() { return false; }
+
 bool TableViewCellDelegate::shouldSnapToSelected() { return true; }
 
 int TableViewCellDelegate::getCellDelegateType() { return 0; }
@@ -15,14 +25,5 @@ int TableViewCellDelegate::getCellDelegateType() { return 0; }
 #endif
 
 #if defined(GEODE_IS_IOS)
-bool TableViewCellDelegate::allowsCustomSFXActions() { return false; }
-
-bool TableViewCellDelegate::inCustomSFXTree() { return false; }
-
-bool TableViewCellDelegate::showsSFXInfoButton() { return false; }
-
-int TableViewCellDelegate::getSelectedCellCustomIdx() { return 0; }
-
-bool TableViewCellDelegate::isCustomIDSelected(int id) { return false; }
 #endif
 

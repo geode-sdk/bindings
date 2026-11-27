@@ -7650,7 +7650,7 @@ class GameLevelManager : cocos2d::CCNode {
     void invalidateRequests(bool sent, bool reload) = win 0x2586c0;
     void invalidateUserList(UserListType type, bool reload) = win inline, imac 0x576120, m1 0x4c870c;
     bool isDeathDataFetched(int);
-    bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0;
+    bool isDLActive(char const* tag) = win 0x2219d0, imac 0x54a6a0, m1 0x4a05d0, ios 0xadbac;
     bool isFollowingUser(int id) = win 0x224320, imac 0x54e5f0, m1 0x4a41a4, ios 0xb06f4;
     bool isPastDailyCopy(GJGameLevel*) = win inline, imac 0x54b9a0, m1 0x4a17a8, ios inline;
     bool isTimeValid(char const* key, float length) = win 0x221d40, imac 0x54a3c0, m1 0x4a02a8, ios 0xada10;
@@ -15045,8 +15045,8 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void onLocalMode(cocos2d::CCObject* sender) = win 0x3e8220, imac 0x483330, m1 0x3ed094, ios 0x497630;
     void onMyOnlineLevels(cocos2d::CCObject* sender) = win 0x3e8420, imac 0x483010, m1 0x3ecd78, ios 0x497434;
     void onNew(cocos2d::CCObject* sender) = win 0x3e7d60, imac 0x482f20, m1 0x3ecc7c, ios 0x49740c;
-    void onNextPage(cocos2d::CCObject* sender) = win 0x3e6b50, ios 0x496e84;
-    void onPrevPage(cocos2d::CCObject* sender) = win 0x3e6bd0, ios 0x496e48;
+    void onNextPage(cocos2d::CCObject* sender) = win 0x3e6b50, imac 0x482800, m1 0x3ec5a4, ios 0x496e84;
+    void onPrevPage(cocos2d::CCObject* sender) = win 0x3e6bd0, imac 0x4827b0, m1 0x3ec568, ios 0x496e48;
     void onProcessSelected(cocos2d::CCObject* sender) = win 0x3e9560, imac 0x482c70, m1 0x3ec9fc, ios 0x497250;
     void onRefresh(cocos2d::CCObject* sender) = win 0x3e8c50, imac 0x483920, m1 0x3ed6cc, ios 0x497b30;
     void onRemoveAllFavorites(cocos2d::CCObject* sender) = win 0x3e8950, imac 0x483400, m1 0x3ed16c, ios 0x4976d8;
@@ -21231,7 +21231,7 @@ class SetIDPopup : FLAlertLayer {
     void onClose(cocos2d::CCObject* sender) = win 0x3a62a0, imac 0x298960, m1 0x23c464;
     void onItemIDArrow(cocos2d::CCObject* sender) = win 0x3a5ef0, imac 0x298a10, m1 0x23c508;
     void onResetValue(cocos2d::CCObject* sender) = win 0x3a5f50, imac 0x2989f0, m1 0x23c4fc;
-    void updateTextInputLabel() = win 0x3a60b0, imac 0x298b00, m1 0x23c604;
+    void updateTextInputLabel() = win 0x3a60b0, imac 0x298b00, m1 0x23c604, ios 0x37b99c;
 
     CCTextInputNode* m_inputNode;
     int m_value;
@@ -24965,11 +24965,11 @@ class TableViewCell : cocos2d::CCLayer {
 class TableViewCellDelegate {
     virtual bool cellPerformedAction(TableViewCell* cell, int listType, CellAction action, cocos2d::CCNode* parent) = inline;
     virtual int getSelectedCellIdx() = inline;
-    virtual int getSelectedCellCustomIdx() = win 0x98e00, ios inline;
-    virtual bool allowsCustomSFXActions() = win 0x5a3a0, ios inline;
-    virtual bool isCustomIDSelected(int) = win 0x5a3a0, ios inline;
-    virtual bool inCustomSFXTree() = win 0x5a3a0, ios inline;
-    virtual bool showsSFXInfoButton() = win 0x5a3a0, ios inline;
+    virtual int getSelectedCellCustomIdx() = inline;
+    virtual bool allowsCustomSFXActions() = inline;
+    virtual bool isCustomIDSelected(int) = inline;
+    virtual bool inCustomSFXTree() = inline;
+    virtual bool showsSFXInfoButton() = inline;
     virtual bool shouldSnapToSelected() = inline;
     virtual int getCellDelegateType() = inline;
 }
