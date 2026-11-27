@@ -21766,11 +21766,11 @@ class SetupCollisionTriggerPopup : SetupTriggerPopup {
 class SetupCountTriggerPopup : SetupTriggerPopup {
     virtual ~SetupCountTriggerPopup() = win 0x5b1500, ios 0x119120;
 
-    static SetupCountTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b15d0;
+    static SetupCountTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b15d0, imac 0x2a92e0, m1 0x24ab6c, ios 0x119158;
 
     virtual void valueDidChange(int, float) = win 0x5b1d30, imac 0x2a9970, m1 0x24b154, ios 0x11967c;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b16e0, imac 0x2a93f0, m1 0x24ac54;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5b16e0, imac 0x2a93f0, m1 0x24ac54, ios 0x119230;
 }
 
 [[link(android)]]
@@ -22248,12 +22248,12 @@ class SetupObjectOptionsPopup : FLAlertLayer {
 class SetupObjectTogglePopup : SetupTriggerPopup {
     virtual ~SetupObjectTogglePopup() = win 0x5beea0, ios 0x2379a8;
 
-    static SetupObjectTogglePopup* create(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x5bef70;
+    static SetupObjectTogglePopup* create(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x5bef70, imac 0x35efa0, m1 0x2ede28, ios 0x2379e0;
 
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5b9920, imac 0x35fbb0, m1 0x2ee8c4, ios 0x2382c4;
     virtual void valueDidChange(int tag, float value) = win 0x5bfa60, imac 0x35fb30, m1 0x2ee84c, ios 0x238254;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x5bf090, imac 0x35f0b0, m1 0x2edf18;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects, bool platformer) = win 0x5bf090, imac 0x35f0b0, m1 0x2edf18, ios 0x237ac0;
 }
 
 [[link(android)]]
@@ -22521,13 +22521,13 @@ class SetupRandAdvTriggerPopup : SetupTriggerPopup {
 class SetupRandTriggerPopup : SetupTriggerPopup {
     virtual ~SetupRandTriggerPopup() = win 0x5d4cc0, ios 0x261cb0;
 
-    static SetupRandTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5d4d90;
+    static SetupRandTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5d4d90, imac 0x6b8ce0, m1 0x5d2234, ios 0x261ce8;
 
     virtual void determineStartValues() = win 0x5d59c0, imac 0x6b9c80, m1 0x5d30e4, ios 0x2628b0;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x5d63e0, imac 0x6ba260, m1 0x5d35e0, ios 0x262cac;
     virtual void textChanged(CCTextInputNode* node) = win 0x5d5c20, imac 0x6b9e30, m1 0x5d3264, ios 0x262a20;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5d4ed0, imac 0x6b8e10, m1 0x5d2338;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x5d4ed0, imac 0x6b8e10, m1 0x5d2338, ios 0x261ddc;
     void sliderChanged(cocos2d::CCObject* sender) = win 0x5d5b10, imac 0x6b9a70, m1 0x5d2ee8;
     void updateChance() = win 0x5aefe0, imac 0x6b9db0, m1 0x5d31f4;
     void updateChanceLabel(bool decimals) = win 0x5d5b50;
@@ -23170,12 +23170,12 @@ class SetupTriggerPopup : FLAlertLayer, ConfigureValuePopupDelegate, SliderDeleg
 class SetupZoomTriggerPopup : SetupTriggerPopup {
     virtual ~SetupZoomTriggerPopup() = win 0x615c40, ios 0x24df8c;
 
-    static SetupZoomTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x615d10;
+    static SetupZoomTriggerPopup* create(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x615d10, imac 0x30c480, m1 0x29f5e4, ios 0x24dfc4;
 
     virtual void determineStartValues() = win 0x39a380, imac 0x30c9c0, m1 0x29fa68, ios 0x24e3b4;
     virtual void onClose(cocos2d::CCObject* sender) = win 0x39a390, imac 0x30c9d0, m1 0x29fa6c, ios 0x24e3b8;
 
-    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x615e20, imac 0x30c590, m1 0x29f6cc;
+    bool init(EffectGameObject* object, cocos2d::CCArray* objects) = win 0x615e20, imac 0x30c590, m1 0x29f6cc, ios 0x24e09c;
 }
 
 [[link(android)]]
