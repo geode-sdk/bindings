@@ -4351,7 +4351,7 @@ class DialogLayer : cocos2d::CCLayerColor, TextAreaDelegate {
     virtual void fadeInTextFinished(TextArea* textArea) = win 0x1757c0, imac 0x3b1810, m1 0x3387a8, ios 0x90910;
 
     void addToMainScene() = win 0x175660, imac 0x3b1530, m1 0x3384fc, ios 0x9078c;
-    void animateIn(DialogAnimationType type) = win 0x175a20, imac 0x3b1950, m1 0x3388f0;
+    void animateIn(DialogAnimationType type) = win 0x175a20, imac 0x3b1950, m1 0x3388f0, ios 0x909dc;
     void animateInDialog() = win inline, imac 0x3b1b60, m1 0x338af0, ios inline;
     void animateInRandomSide() = win 0x175830, imac 0x3b1900, m1 0x338898, ios 0x9098c;
     void displayDialogObject(DialogObject* object) = win 0x175110, imac 0x3b0d80, m1 0x337d90, ios 0x901a0;
