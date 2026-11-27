@@ -97,7 +97,6 @@ void LevelBrowserLayer::updateLevelsLabel() {
 #if defined(GEODE_IS_MACOS) || defined(GEODE_IS_ANDROID)
 LevelBrowserLayer::LevelBrowserLayer() {
     m_unk = false;
-    m_allSelected = false;
     m_noInternet = nullptr;
     m_list = nullptr;
     m_rightArrow = nullptr;
@@ -127,6 +126,11 @@ LevelBrowserLayer::LevelBrowserLayer() {
     m_initialListViewY = .0f;
     m_delegate = nullptr;
     m_cached = false;
+    m_background = nullptr;
+    m_safeModeNode = nullptr;
+    m_unk330 = nullptr;
+    m_unk338 = nullptr;
+    m_recalledLevel = nullptr;
 }
 #endif
 

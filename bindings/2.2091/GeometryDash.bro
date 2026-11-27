@@ -15079,7 +15079,6 @@ class LevelBrowserLayer : cocos2d::CCLayerColor, LevelManagerDelegate, FLAlertLa
     void updateSelectUI() = ios 0x4973ac;
 
     bool m_unk;
-    bool m_allSelected;
     TextArea* m_noInternet;
     GJListLayer* m_list;
     CCMenuItemSpriteExtra* m_rightArrow;
