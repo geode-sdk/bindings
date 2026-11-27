@@ -16664,7 +16664,7 @@ class MenuGameLayer : cocos2d::CCLayer {
     MenuGameLayer() = inline;
     virtual ~MenuGameLayer() = win 0x46f960, imac 0x4f8700, m1 0x4556a4, ios 0x441aa8;
 
-    static MenuGameLayer* create() = win inline, imac 0x4f8780, m1 0x4556dc;
+    static MenuGameLayer* create() = win inline, imac 0x4f8780, m1 0x4556dc, ios 0x441ae0;
 
     virtual void update(float dt) = win 0x470860, imac 0x4f9a60, m1 0x456798, ios 0x44297c;
     virtual bool init() = win 0x46f9f0, imac 0x4f8890, m1 0x4557c4, ios 0x441b54;
