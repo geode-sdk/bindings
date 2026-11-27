@@ -15124,7 +15124,7 @@ class LevelCell : TableViewCell {
     void loadFromLevel(GJGameLevel* level) = win 0x148a80, imac 0x22a390, m1 0x1d6cf0, ios 0x127dd0;
     void loadLocalLevelCell() = win 0x14c7f0, imac 0x236b10, m1 0x1e2b70, ios 0x132d0c;
     void onClick(cocos2d::CCObject* sender) = win 0x14d200, imac 0x23ac60, m1 0x1e6998, ios 0x136734;
-    void onToggle(cocos2d::CCObject* sender) = win 0x148c70, imac 0x23a800, m1 0x1e6508;
+    void onToggle(cocos2d::CCObject* sender) = win 0x148c70, imac 0x23a800, m1 0x1e6508, ios 0x13632c;
     void onViewProfile(cocos2d::CCObject* sender) = win 0x14d520, imac 0x23aeb0, m1 0x1e6c10, ios 0x136938;
     void playRecallUnlock() = win 0x148d30, imac 0x23a990, m1 0x1e6678;
     bool recallChestReady() = win inline, imac 0x23a920, m1 0x1e6608, ios 0x136418;
