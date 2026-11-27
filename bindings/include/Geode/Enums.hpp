@@ -337,7 +337,9 @@ enum class GauntletType {
     Future = 0x39,
     Utopia = 0x3A,
     Cinema = 0x3B,
-    Love = 0x3C
+    Love = 0x3C,
+    Duality = 0x3D,
+    Paradox = 0x3E
 };
 enum class GJMPErrorCode {
     Failed = 0
