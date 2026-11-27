@@ -6,7 +6,7 @@ FLAlertLayer* FLAlertLayer::create(char const* title, const std::string& desc, c
 
 #ifndef GEODE_IS_WINDOWS
 FLAlertLayer* FLAlertLayer::create(FLAlertLayerProtocol* delegate, char const* title, std::string desc, char const* btn1, char const* btn2) {
-    return FLAlertLayer::create(delegate, title, desc, btn1, btn2, 250.0);
+    return FLAlertLayer::create(delegate, title, std::move(desc), btn1, btn2, 250.0);
 }
 #endif
 

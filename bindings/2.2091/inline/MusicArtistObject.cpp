@@ -5,7 +5,7 @@
 // TODO: 2.209
 bool MusicArtistObject::init(int id, std::string name) {
     m_artistID = id;
-    m_artistName = name;
+    m_artistName = std::move(name);
     return true;
 }
 #endif

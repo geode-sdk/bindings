@@ -7,7 +7,7 @@ bool CommunityCreditNode::init(int unlockType, int iconID, int unknown, std::str
     m_unlockType = unlockType;
     m_iconID = iconID;
     m_unknown = unknown;
-    m_author = author;
+    m_author = std::move(author);
     return true;
 }
 #endif

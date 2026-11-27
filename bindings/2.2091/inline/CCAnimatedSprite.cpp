@@ -32,7 +32,7 @@ void CCAnimatedSprite::cleanupSprite() {
 
 void CCAnimatedSprite::runAnimationForced(std::string animation) {
     m_animationManager->overridePrio();
-    m_animationManager->runAnimation(animation);
+    m_animationManager->runAnimation(std::move(animation));
 }
 
 void CCAnimatedSprite::stopTween() {

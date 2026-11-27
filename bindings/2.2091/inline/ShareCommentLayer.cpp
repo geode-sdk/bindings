@@ -11,7 +11,7 @@ void ShareCommentLayer::textInputOpened(CCTextInputNode* node) {}
 
 #if defined(GEODE_IS_IOS)
 void ShareCommentLayer::updateDescText(std::string desc) {
-    m_descText = desc;
+    m_descText = std::move(desc);
     this->updateCharCountLabel();
 }
 #endif

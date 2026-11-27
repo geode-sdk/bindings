@@ -21,7 +21,7 @@ void GJAccountManager::addDLToActive(char const* tag) {
 
 #if defined(GEODE_IS_WINDOWS) || defined(GEODE_IS_IOS)
 void GJAccountManager::handleItDelayed(bool success, std::string response, std::string tag, GJHttpType type) {
-    auto result = GJHttpResult::create(true, response, tag, type);
+    auto result = GJHttpResult::create(true, std::move(response), std::move(tag), type);
     result->retain();
     m_pActionManager->addAction(cocos2d::CCSequence::create(
         cocos2d::CCDelayTime::create(.1f),

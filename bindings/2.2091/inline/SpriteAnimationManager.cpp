@@ -54,7 +54,7 @@ SpriteAnimationManager::~SpriteAnimationManager() {
 
 SpriteAnimationManager* SpriteAnimationManager::createWithOwner(CCAnimatedSprite* sprite, std::string definition) {
     auto ret = new SpriteAnimationManager();
-    if (ret->initWithOwner(sprite, definition)) {
+    if (ret->initWithOwner(sprite, std::move(definition))) {
         ret->autorelease();
         return ret;
     }
@@ -93,7 +93,7 @@ void SpriteAnimationManager::stopAnimations() {
 
 void SpriteAnimationManager::storeSoundForAnimation(cocos2d::CCString* sound, std::string animation, float delay) {
     m_soundDict->setObject(sound, animation);
-    m_soundDict->setObject(cocos2d::CCString::createWithFormat("%f", delay), animation);
+    m_soundDict->setObject(cocos2d::CCString::createWithFormat("%f", delay), std::move(animation));
 }
 
 void SpriteAnimationManager::updateAnimationSpeed(float speed) {
