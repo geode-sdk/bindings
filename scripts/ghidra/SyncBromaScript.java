@@ -62,6 +62,7 @@ public class SyncBromaScript extends GhidraScript {
         boolean syncVirtuals;
         boolean syncEnums;
         boolean fillStandardTypes;
+        boolean skipManualOverloads;
 
         public Args(ScriptWrapper wrapper, Path bindingsDir) throws Exception {
             this.run(wrapper, bindingsDir);
@@ -117,6 +118,7 @@ public class SyncBromaScript extends GhidraScript {
             this.bool("Sync virtuals", b -> this.syncVirtuals = b);
             this.bool("Sync enums", b -> this.syncEnums = b);
             this.bool("Fill standard types", b -> this.fillStandardTypes = b);
+            this.bool("Skip manual overloads", b-> this.skipManualOverloads = b);
 
             this.waitForAnswers();
 
@@ -780,6 +782,10 @@ public class SyncBromaScript extends GhidraScript {
                     }
                     // If no match found, ask for manual resolution
                     if (bromaFun == null) {
+                        if (args.skipManualOverloads) {
+                            wrapper.printfmt("Warning: function {0} overload not detected, skipping", fullName);
+                            continue;
+                        }
                         goTo(fun.getEntryPoint());
                         bromaFun = bromaFuns.get(askChoiceBetter(
                             "Select overload",
