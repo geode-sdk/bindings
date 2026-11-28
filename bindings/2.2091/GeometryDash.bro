@@ -7575,7 +7575,7 @@ class GameLevelManager : cocos2d::CCNode {
     const char* getLevelDownloadKey(int levelID, bool isGauntlet, int dailyID) = win inline, imac 0x55e560, m1 0x4b27a0, ios inline;
     const char* getLevelKey(int levelID) = win inline, imac 0x53e030, m1 0x4950d4, ios inline;
     void getLevelLeaderboard(GJGameLevel* level, LevelLeaderboardType type, LevelLeaderboardMode mode) = win 0x238790, imac 0x5659e0, m1 0x4b8ee4;
-    const char* getLevelLeaderboardKey(int levelID, LevelLeaderboardType type, LevelLeaderboardMode mode) = win inline, imac 0x566b40, m1 0x4b9cec;
+    const char* getLevelLeaderboardKey(int levelID, LevelLeaderboardType type, LevelLeaderboardMode mode) = win inline, imac 0x566b40, m1 0x4b9cec, ios inline;
     const char* getLevelListKey(int listID) = win inline, imac 0x53f7c0, m1 0x49669c, ios inline;
     void getLevelLists(GJSearchObject* object) = win 0x22db00, imac 0x55b030, m1 0x4af484;
     void getLevelRateInfo(int id) = win 0x2538d0;
@@ -7820,7 +7820,7 @@ class GameLevelManager : cocos2d::CCNode {
     void resetGauntlets() = win inline, imac 0x55e540, m1 0x4b2798;
     void resetStoredUserInfo(int id) = win inline, imac 0x567d40, m1 0x4bae88;
     void resetStoredUserList(UserListType type) = win 0x257e70;
-    void resetTimerForKey(char const* key) = win 0x2220c0, imac 0x54ab80, m1 0x4a0b08;
+    void resetTimerForKey(char const* key) = win 0x2220c0, imac 0x54ab80, m1 0x4a0b08, ios 0xade4c;
     void restoreItems() = imac 0x581030, m1 0x4d2cdc;
     GJRewardItem* rewardItemFromResponse(std::string const&, int&) = win 0x25c620;
     std::string rewardSessionToken() = win 0x25fa30;
@@ -15605,7 +15605,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onLevelInfo(cocos2d::CCObject* sender) = win 0x424690, imac 0x2aef60, m1 0x2502dc, ios 0x2c380;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x41eb50, imac 0x2ae570, m1 0x24f8d8;
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x424530, imac 0x2af220, m1 0x250590;
-    void onLike(cocos2d::CCObject* sender) = win 0x423f90, imac 0x2ae5e0, m1 0x24f93c;
+    void onLike(cocos2d::CCObject* sender) = win 0x423f90, imac 0x2ae5e0, m1 0x24f93c, ios 0x2badc;
     void onOwnerDelete(cocos2d::CCObject* sender) = win inline, ios 0x2e2e0;
     void onPlay(cocos2d::CCObject* sender) = win 0x421450, imac 0x2ac4a0, m1 0x24d880, ios 0x29cd4;
     void onPlayReplay(cocos2d::CCObject* sender) = win inline, ios inline;
