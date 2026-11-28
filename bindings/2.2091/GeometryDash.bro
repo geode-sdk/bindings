@@ -106,7 +106,7 @@ class AccountBanPopup : SetupTriggerPopup, CommentAdminDelegate, UploadPopupDele
 [[link(android)]]
 class AccountHelpLayer : GJDropDownLayer, GJAccountDelegate, FLAlertLayerProtocol {
     AccountHelpLayer() = inline;
-    ~AccountHelpLayer() = win inline, ios 0x1efd04;
+    ~AccountHelpLayer() = win inline, imac 0x9c4e0, m1 0x8c45c, ios 0x1efd04;
 
     static AccountHelpLayer* create() = win inline, imac 0x9c250, m1 0x8c270, ios 0x1efbb4;
 
@@ -151,11 +151,11 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
     void doSync() = win inline, imac 0x9b670, m1 0x8b71c;
     void exitLayer() = win inline, imac 0x9b6f0, m1 0x8b7a4, ios inline;
     void hideLoadingUI() = win inline, imac 0x9b880, m1 0x8b928, ios inline;
-    void onBackup(cocos2d::CCObject* sender) = win 0x936e0, imac 0x9a920, m1 0x8a9ac;
-    void onHelp(cocos2d::CCObject* sender) = win 0x93d00, imac 0x9ae30, m1 0x8ae9c;
-    void onLogin(cocos2d::CCObject* sender) = win 0x93520, imac 0x9a870, m1 0x8a8f4;
-    void onMore(cocos2d::CCObject* sender) = win 0x93e20, imac 0x9aef0, m1 0x8af74;
-    void onRegister(cocos2d::CCObject* sender) = win 0x93560, imac 0x9a900, m1 0x8a990;
+    void onBackup(cocos2d::CCObject* sender) = win 0x936e0, imac 0x9a920, m1 0x8a9ac, ios 0x1eeb58;
+    void onHelp(cocos2d::CCObject* sender) = win 0x93d00, imac 0x9ae30, m1 0x8ae9c, ios 0x1eee8c;
+    void onLogin(cocos2d::CCObject* sender) = win 0x93520, imac 0x9a870, m1 0x8a8f4, ios 0x1eeaa4;
+    void onMore(cocos2d::CCObject* sender) = win 0x93e20, imac 0x9aef0, m1 0x8af74, ios 0x1eef40;
+    void onRegister(cocos2d::CCObject* sender) = win 0x93560, imac 0x9a900, m1 0x8a990, ios 0x1eeb3c;
     void onSync(cocos2d::CCObject* sender) = win 0x93a70, imac 0x9ac50, m1 0x8aca4, ios 0x1eed40;
     void showLoadingUI() = win inline, imac 0x9b620, m1 0x8b6c8, ios inline;
     void toggleUI(bool enable) = win inline, imac 0x9c090, m1 0x8c094, ios inline;
@@ -176,9 +176,9 @@ class AccountLayer : GJDropDownLayer, GJAccountDelegate, GJAccountBackupDelegate
 
 [[link(android)]]
 class AccountLoginLayer : FLAlertLayer, GJAccountLoginDelegate, FLAlertLayerProtocol {
-    virtual ~AccountLoginLayer() = win 0x8c010, ios 0x8c660;
+    virtual ~AccountLoginLayer() = win 0x8c010, imac 0x490e00, m1 0x3f98c4, ios 0x8c660;
 
-    static AccountLoginLayer* create(std::string username) = win 0x90960;
+    static AccountLoginLayer* create(std::string username) = win 0x90960, imac 0x490e80, m1 0x3f98fc, ios 0x8c698;
 
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x492e60, m1 0x3fb848, ios 0x8db48;
     virtual void keyBackClicked() = win 0x92060, imac 0x492d20, m1 0x3fb6f8, ios 0x8da5c;
@@ -194,7 +194,7 @@ class AccountLoginLayer : FLAlertLayer, GJAccountLoginDelegate, FLAlertLayerProt
     cocos2d::CCLabelBMFont* createTextLabel(cocos2d::CCPoint position, char const* text, cocos2d::CCSize size) = win 0x91580, imac 0x4922c0, m1 0x3fabd4;
     void disableNodes() = win inline, imac 0x492c40, m1 0x3fb600, ios inline;
     void hideLoadingUI() = win inline, imac 0x492790, m1 0x3fb0c8, ios inline;
-    bool init(std::string username) = win 0x90b00, imac 0x491100, m1 0x3f9aec;
+    bool init(std::string username) = win 0x90b00, imac 0x491100, m1 0x3f9aec, ios 0x8c7d4;
     void onClose(cocos2d::CCObject* sender) = win 0x92010, imac 0x491d40, m1 0x3fa650;
     void onForgotPassword(cocos2d::CCObject* sender) = win 0x91480, imac 0x4924a0, m1 0x3fadcc;
     void onForgotUser(cocos2d::CCObject* sender) = win 0x91450, imac 0x492480, m1 0x3fada8;
@@ -217,9 +217,9 @@ class AccountLoginLayer : FLAlertLayer, GJAccountLoginDelegate, FLAlertLayerProt
 [[link(android)]]
 class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLayerProtocol {
     AccountRegisterLayer() = inline;
-    ~AccountRegisterLayer() = win 0x8bef0, ios 0x8970c;
+    ~AccountRegisterLayer() = win 0x8bef0, imac 0x48c030, m1 0x3f5338, ios 0x8970c;
 
-    static AccountRegisterLayer* create() = win inline, imac 0x48c350, m1 0x3f5548;
+    static AccountRegisterLayer* create() = win inline, imac 0x48c350, m1 0x3f5548, ios 0x89744;
 
     virtual bool init() = win 0x8cd00, imac 0x48c590, m1 0x3f56d4, ios 0x897b8;
     virtual void registerWithTouchDispatcher() = win 0x46290, imac 0x4900b0, m1 0x3f8cfc, ios 0x8bc78;
@@ -269,9 +269,9 @@ class AccountRegisterLayer : FLAlertLayer, GJAccountRegisterDelegate, FLAlertLay
 [[link(android), depends(AccountReviewCard)]]
 class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDelegate, UploadPopupDelegate, FLAlertLayerProtocol, DropdownDelegate, AdminActionConfirmDelegate, ReviewChoiceDelegate, ThreadMessageDelegate {
     AccountReviewPopup() = ios 0x54b8d4;
-    virtual ~AccountReviewPopup() = win 0xaedc0, ios 0x540bb8;
+    virtual ~AccountReviewPopup() = win 0xaedc0, imac 0x9944f0, m1 0x86f4f8, ios 0x540bb8;
 
-    static AccountReviewPopup* create(int, std::string const&, GJUserScore*) = win 0xaf0b0, ios 0x540c38;
+    static AccountReviewPopup* create(int, std::string const&, GJUserScore*) = win 0xaf0b0, imac 0x9945b0, m1 0x86f578, ios 0x540c38;
 
     virtual void rebuildContent() = win 0xb33c0, imac 0x99bc10, m1 0x876280, ios 0x545120;
     virtual bool requestPage(int page) = win 0xb3200, imac 0x99bb00, m1 0x876198, ios 0x545038;
@@ -312,7 +312,7 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
     bool deleteEntry(int index) = win 0xbb850;
     void deleteFailedTick(float) = win 0xbbbe0;
     bool deleteFilterEntry(int) = win 0xbc520;
-    bool init(int, std::string const&, GJUserScore*) = win 0xaf480, ios 0x540cc4;
+    bool init(int, std::string const&, GJUserScore*) = win 0xaf480, imac 0x9948b0, m1 0x86f778, ios 0x540cc4;
     void jumpTo(int, int) = win 0xbc0a0;
     void onBans(cocos2d::CCObject* sender) = win 0xb96d0;
     void onCommentHistory(cocos2d::CCObject* sender) = win 0xb9af0;
@@ -382,13 +382,13 @@ class AccountReviewPopup : PagedListPopup, CommentAdminDelegate, CommentUploadDe
 [[link(android)]]
 class AchievementBar : cocos2d::CCNodeRGBA {
     AchievementBar() = inline;
-    virtual ~AchievementBar() = win 0x95c50, ios 0x3084f8;
+    virtual ~AchievementBar() = win 0x95c50, imac 0x2435c0, m1 0x60771c, ios 0x3084f8;
 
-    static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest) = win inline, imac 0x6f5630, m1 0x607734;
+    static AchievementBar* create(char const* title, char const* desc, char const* icon, bool quest) = win inline, imac 0x6f5630, m1 0x607734, ios 0x308510;
 
     virtual void setOpacity(unsigned char opacity) = win 0x975b0, imac 0x6f6f90, m1 0x609000, ios 0x309840;
 
-    bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x95ca0, imac 0x6f56f0, m1 0x607804;
+    bool init(char const* title, char const* desc, char const* icon, bool quest) = win 0x95ca0, imac 0x6f56f0, m1 0x607804, ios 0x3085cc;
     void show() = win 0x97330, imac 0x6f6d40, m1 0x608dc0, ios 0x309620;
 
     cocos2d::CCLayerColor* m_layerColor;
@@ -405,7 +405,7 @@ class AchievementBar : cocos2d::CCNodeRGBA {
 [[link(android)]]
 class AchievementCell : TableViewCell {
     AchievementCell(char const* identifier, float width, float height) = win inline, imac 0x236720, m1 0x1e288c, ios inline;
-    virtual ~AchievementCell() = win 0x89d10;
+    virtual ~AchievementCell() = win 0x89d10, imac 0x2435c0, m1 0x1edea4, ios 0x13ba14;
 
     virtual bool init() = win inline, imac 0x236790, m1 0x1e28cc, ios 0x132ae4;
     virtual void draw() = win 0x1487a0, imac 0x2367a0, m1 0x1e28d4, ios 0x132aec;
@@ -416,7 +416,7 @@ class AchievementCell : TableViewCell {
 
 [[link(android)]]
 class AchievementManager : cocos2d::CCNode {
-    virtual ~AchievementManager() = win 0x9db0, ios 0x10e300;
+    virtual ~AchievementManager() = win 0x9db0, imac 0x864140, m1 0x758e24, ios 0x10e300;
 
     static AchievementManager* sharedState() = win 0xa000, imac 0x80a730, m1 0x70a524, ios 0xdc904;
 
@@ -461,7 +461,7 @@ class AchievementManager : cocos2d::CCNode {
 
 [[link(android)]]
 class AchievementNotifier : cocos2d::CCNode {
-    virtual ~AchievementNotifier() = win 0x3d4d0, ios 0x2b3394;
+    virtual ~AchievementNotifier() = win 0x3d4d0, imac 0x8aa760, m1 0x79cf10, ios 0x2b3394;
 
     static AchievementNotifier* sharedState() = win 0x3d560, imac 0x8aa3f0, m1 0x79cbc0, ios 0x2b3068;
 
@@ -480,7 +480,7 @@ class AchievementNotifier : cocos2d::CCNode {
 [[link(android)]]
 class AchievementsLayer : GJDropDownLayer {
     AchievementsLayer() = win inline, imac 0x35cd70, m1 0x2ebe28, ios 0x4a4aa0;
-    virtual ~AchievementsLayer() = win 0x97620, ios 0x4a4294;
+    virtual ~AchievementsLayer() = win 0x97620, imac 0x35c5f0, m1 0x2eb70c, ios 0x4a4294;
 
     static AchievementsLayer* create() = win inline, imac 0x35c580, m1 0x2eb688, ios 0x4a4220;
 
@@ -14810,7 +14810,7 @@ class LabelGameObject : EffectGameObject {
     virtual void updateTextKerning(int kerning) = win 0x654cc0, imac 0x1a1c20, m1 0x160244, ios 0x42f360;
     virtual int getTextKerning() = win 0x638040, imac 0x1d61e0, m1 0x18ab58, ios 0x440b48;
 
-    void createLabel(std::string text) = win 0x6549b0, imac 0x1a1890, m1 0x15fee4;
+    void createLabel(std::string text) = win 0x6549b0, imac 0x1a1890, m1 0x15fee4, ios 0x42f0cc;
     void queueUpdateLabel(std::string text) = win inline, imac 0x1a1b70, m1 0x16018c;
     void removeLabel() = win 0x654ba0, imac 0x1a19b0, m1 0x15fff4;
     void unlockLabelColor() = win inline, imac 0x1a34c0, m1 0x1616cc, ios inline;
@@ -23254,7 +23254,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void refreshLevelIDList(SFXSearchResult*) = win 0x61b8a0, imac 0x4304e0, m1 0x3a7308;
     void restoreListScroll(float) = win 0x61b7d0;
     TodoReturn searchSettingsChanged();
-    void setupList(SFXSearchResult* result) = win 0x619900, imac 0x4307a0, m1 0x3a7598;
+    void setupList(SFXSearchResult* result) = win 0x619900, imac 0x4307a0, m1 0x3a7598, ios 0x1f50bc;
     void setupSFXBrowser() = win 0x618a20, imac 0x42fcc0, m1 0x3a6bc4, ios 0x1f489c;
     void switchToView(AudioViewType) = win 0x61b3d0;
     void trySetupSFXBrowser() = win 0x6189a0, imac 0x42fc50, m1 0x3a6b60, ios 0x1f4840;
