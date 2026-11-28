@@ -7444,7 +7444,7 @@ class GameLevelManager : cocos2d::CCNode {
     virtual bool init() = win 0x21b9a0, imac 0x53d9b0, m1 0x494bc0, ios 0xa5ef8;
 
     bool acceptFriendRequest(int accountID, int requestID) = win 0x255710, imac 0x56f560, m1 0x4c2128;
-    int accountIDForUserID(int userID) = win inline, imac 0x540740, m1 0x4975d8;
+    int accountIDForUserID(int userID) = win inline, imac 0x540740, m1 0x4975d8, ios 0xa78ec;
     void addDLToActive(char const* key) = win 0x221aa0, imac 0x54a780, m1 0x4a06c4;
     bool addThreadMembers(int, cocos2d::CCArray*);
     bool adminClearReportedContent(int, std::string const&) = win 0x244390;
@@ -15137,7 +15137,7 @@ class LevelCell : TableViewCell {
     GJGameLevel* recallLevel() = win 0x148cc0, imac 0x23a8b0, m1 0x1e65ac, ios 0x1363bc;
     GJGameLevel* recallSavedLevel() = win inline, imac 0x23a850, m1 0x1e6554, ios 0x136364;
     void updateBGColor(int index) = win inline, imac 0x22a580, m1 0x1d6ec8, ios 0x127f7c;
-    void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4;
+    void updateCellMode(int mode) = win 0x14d050, imac 0x2364a0, m1 0x1e25d4, ios 0x132978;
     void updateToggle() = win inline, imac 0x236470, m1 0x1e25b8, ios inline;
 
     CCMenuItemSpriteExtra* m_button;
