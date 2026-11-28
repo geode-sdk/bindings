@@ -15605,7 +15605,7 @@ class LevelInfoLayer : cocos2d::CCLayer, LevelDownloadDelegate, LevelUpdateDeleg
     void onLevelInfo(cocos2d::CCObject* sender) = win 0x424690, imac 0x2aef60, m1 0x2502dc, ios 0x2c380;
     void onLevelLeaderboard(cocos2d::CCObject* sender) = win 0x41eb50, imac 0x2ae570, m1 0x24f8d8;
     void onLevelOptions(cocos2d::CCObject* sender) = win 0x424530, imac 0x2af220, m1 0x250590;
-    void onLike(cocos2d::CCObject* sender) = win 0x423f90, imac 0x2ae5e0, m1 0x24f93c;
+    void onLike(cocos2d::CCObject* sender) = win 0x423f90, imac 0x2ae5e0, m1 0x24f93c, ios 0x2badc;
     void onOwnerDelete(cocos2d::CCObject* sender) = win inline, ios 0x2e2e0;
     void onPlay(cocos2d::CCObject* sender) = win 0x421450, imac 0x2ac4a0, m1 0x24d880, ios 0x29cd4;
     void onPlayReplay(cocos2d::CCObject* sender) = win inline, ios inline;
