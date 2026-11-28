@@ -4446,7 +4446,7 @@ class DrawGridLayer : cocos2d::CCLayer {
     void removeFromGuides(GameObject* object) = win inline, imac 0xbd460, m1 0xa9418;
     void removeFromSpeedObjects(EffectGameObject* object) = win inline, imac 0xbd4c0, m1 0xa9464;
     void sortSpeedObjects() = win inline, imac 0xd6e80, m1 0xbd8ac, ios inline;
-    float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, bool ignoreWarp, bool ignoreRotate, int id) = win inline, imac 0xc2480, m1 0xadc68;
+    float timeForPos(cocos2d::CCPoint position, int order, int channel, bool songTriggers, bool ignoreWarp, bool ignoreRotate, int id) = win inline, imac 0xc2480, m1 0xadc68, ios 0x402398;
     void updateMusicGuideTime(float time) = win inline, imac 0xd70f0, m1 0xbda8c;
     void updateTimeMarkers() = win inline, imac 0xc23e0, m1 0xadbbc, ios 0x4022fc;
 
@@ -5881,8 +5881,8 @@ class EffectGameObject : EnhancedGameObject {
     bool init(char const* frame) = win 0x647650, imac 0x163ce0, m1 0x12eab4, ios inline;
     void playTriggerEffect() = win 0x647760, imac 0x199760, m1 0x159608, ios 0x42b3b8;
     void resetSpawnTrigger() = win inline, imac 0x19b8a0, m1 0x15ae70;
-    void setTargetID(int id) = win inline, imac 0x182b20, m1 0x146a0c;
-    void setTargetID2(int id) = win inline, imac 0x182b40, m1 0x146a24;
+    void setTargetID(int id) = win inline, imac 0x182b20, m1 0x146a0c, ios 0x42235c;
+    void setTargetID2(int id) = win inline, imac 0x182b40, m1 0x146a24, ios 0x422374;
     void triggerEffectFinished() = win 0x647ba0, imac 0x199b30, m1 0x15991c;
     void updateInteractiveHover(float offset) = win 0x64a170, imac 0x19b710, m1 0x15acec;
     void updateSpecialColor() = win 0x64a0f0, imac 0x19b6b0, m1 0x15ac74, ios 0x42c92c;
@@ -15258,7 +15258,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     GameObject* addObjectFromVector(std::vector<std::string>& values, std::vector<void*>& exists) = win inline, imac 0xaea80, m1 0x9ceb8, ios 0x3f955c;
     void addObjectsAtPosition(cocos2d::CCPoint position, cocos2d::CCArray* objects, cocos2d::CCArray* result) = win inline, imac 0xb14c0, m1 0x9f6a0, ios inline;
     void addObjectsInRect(cocos2d::CCRect rect, bool ignoreGroups, cocos2d::CCArray* objects, cocos2d::CCArray* result) = win inline, imac 0xb16c0, m1 0x9f850, ios inline;
-    void addObjectToGroup(GameObject* object, int group) = win inline, imac 0xc4380, m1 0xaf5b8;
+    void addObjectToGroup(GameObject* object, int group) = win inline, imac 0xc4380, m1 0xaf5b8, ios 0x40360c;
     void addPlayer2Point(cocos2d::CCPoint point, bool newGroup) = win inline, imac 0xc76d0, m1 0xb2498;
     void addPlayerCollisionBlock() = win inline, imac 0xc5370, m1 0xb04dc, ios inline;
     void addPlayerPoint(cocos2d::CCPoint point) = win inline, imac 0xc7670, m1 0xb2434, ios inline;
@@ -15281,7 +15281,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     GameObject* createObject(int key, cocos2d::CCPoint position, bool noUndo) = win 0x3f0820, imac 0xafac0, m1 0x9ddfc, ios 0x3f9fd4;
     void createObjectsFromSetup(std::string& setup) = win 0x3ef940, imac 0xabbb0, m1 0x9a7e8, ios 0x3f79e8;
     cocos2d::CCArray* createObjectsFromString(std::string const& str, bool noUndo, bool noLimit) = win 0x3f0150, imac 0xaeb00, m1 0x9cf6c, ios 0x3f95fc;
-    void dirtifyTriggers() = win inline, imac 0xc55f0, m1 0xb06f0;
+    void dirtifyTriggers() = win inline, imac 0xc55f0, m1 0xb06f0, ios 0x404378;
     void doAutoBackup() = win 0x409620, ios 0x40b7c0;
     void doAutoSave() = win 0x4091d0, ios 0x40b414;
     cocos2d::CCArray* duplicateKeyframeAnimation(int keyframeGroup) = imac 0xc8430, m1 0xb3178, ios 0x40634c;
@@ -15347,7 +15347,7 @@ class LevelEditorLayer : GJBaseGameLayer, LevelSettingsDelegate {
     void rebuildDeathOverlay() = win 0x3f5a70, imac 0xaddb0, m1 0x9c3a0;
     void recreateGroups() = win 0x3fd660, imac 0xc4500, m1 0xaf768, ios 0x403764;
     void redoLastAction() = win 0x3f2fa0, imac 0xb2f90, m1 0xa0ee4, ios 0x3fc5a4;
-    void refreshSpecial(GameObject* object) = win inline, imac 0xbd3d0, m1 0xa9390;
+    void refreshSpecial(GameObject* object) = win inline, imac 0xbd3d0, m1 0xa9390, ios 0x3ff8e0;
     void removeAllObjects() = win inline, imac 0xb1f40, m1 0x9ffec;
     void removeAllObjectsOfType(int objectID) = win 0x3f22f0, imac 0xb2060, m1 0xa00ec, ios 0x3fb9f0;
     void removeObject(GameObject* object, bool noUndo) = win 0x3f21b0, imac 0xb1980, m1 0x9fa9c, ios 0x3fb46c;
@@ -16328,7 +16328,7 @@ class LevelTools {
     static std::string nameForArtist(int id) = win 0x464040, imac 0x4fd850, m1 0x459ff8;
     static std::string ngURLForArtist(int id) = win 0x4655c0, imac 0x4fe4d0, m1 0x45a8a4;
     static float offsetBPMForTrack(int id) = win inline, imac 0x4ff540, m1 0x45b8f0, ios inline;
-    static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& rotateChannel) = win inline, imac 0x4fff10, m1 0x45c31c;
+    static cocos2d::CCPoint posForTime(float time, cocos2d::CCArray* objects, int speed, bool platformer, int& rotateChannel) = win inline, imac 0x4fff10, m1 0x45c31c, ios 0x23d9d0;
     static cocos2d::CCPoint posForTimeInternal(float time, cocos2d::CCArray* objects, int speed, bool platformer, bool ignoreMinorAxis, bool ignoreWarp, int& rotateChannel, int unused) = win 0x4676d0, imac 0x4fff40, m1 0x45c32c, ios 0x23d9e0;
     static void sortChannelOrderObjects(cocos2d::CCArray* objects, cocos2d::CCDictionary* objectsDict, bool moveObjects) = win 0x468200, imac 0x5010f0, m1 0x45d1cc;
     static void sortSpeedObjects(cocos2d::CCArray* objects, GJBaseGameLayer* layer) = win 0x468480, imac 0x5013d0, m1 0x45d494;
@@ -21010,8 +21010,8 @@ class SelectSettingLayer : FLAlertLayer {
     virtual ~SelectSettingLayer() = win 0x457830, ios 0x20e608;
 
     static SelectSettingLayer* create(SelectSettingType type, int value) = win 0x45c2e0;
-    static std::string frameForItem(SelectSettingType type, int index) = win 0x45cb30, imac 0x25aff0, m1 0x203254;
-    static std::string frameForValue(SelectSettingType type, int value) = win inline, imac 0x2585b0, m1 0x200d84;
+    static std::string frameForItem(SelectSettingType type, int index) = win 0x45cb30, imac 0x25aff0, m1 0x203254, ios 0x20eb5c;
+    static std::string frameForValue(SelectSettingType type, int value) = win inline, imac 0x2585b0, m1 0x200d84, ios 0x20d0c4;
     static int idxToValue(SelectSettingType type, int idx) = win inline, imac 0x25b300, m1 0x2035b8, ios inline;
     static int valueToIdx(SelectSettingType type, int value) = win inline, imac 0x25afc0, m1 0x203228, ios inline;
 
@@ -21536,14 +21536,13 @@ class SetupArtSwitchPopup : SetupTriggerPopup, SelectArtDelegate {
 [[link(android)]]
 class SetupAudioLineGuidePopup : SetupTriggerPopup, SelectSettingDelegate {
     SetupAudioLineGuidePopup() = inline;
-    virtual ~SetupAudioLineGuidePopup() = win 0x60ac50;
 
-    static SetupAudioLineGuidePopup* create(AudioLineGuideGameObject* object, cocos2d::CCArray* objects) = win inline;
+    static SetupAudioLineGuidePopup* create(AudioLineGuideGameObject* object, cocos2d::CCArray* objects) = win inline, imac 0x5b0020, m1 0x4fdd94, ios 0x4903d0;
 
     virtual void selectSettingClosed(SelectSettingLayer* layer) = win 0x6070e0, imac 0x5b08c0, m1 0x4fe530, ios 0x490aac;
 
-    bool init(AudioLineGuideGameObject* object, cocos2d::CCArray* objects) = win 0x606940, imac 0x5b0140, m1 0x4fde88;
-    void onSpeed(cocos2d::CCObject* sender) = win 0x607080, imac 0x5b0870, m1 0x4fe4e8;
+    bool init(AudioLineGuideGameObject* object, cocos2d::CCArray* objects) = win 0x606940, imac 0x5b0140, m1 0x4fde88, ios 0x4904b4;
+    void onSpeed(cocos2d::CCObject* sender) = win 0x607080, imac 0x5b0870, m1 0x4fe4e8, ios 0x490a64;
 
     cocos2d::CCSprite* m_speedSprite;
 }
