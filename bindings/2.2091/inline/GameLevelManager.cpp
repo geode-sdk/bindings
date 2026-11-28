@@ -112,7 +112,7 @@ const char* GameLevelManager::getUserInfoKey(int id) {
 }
 
 #if defined(GEODE_IS_IOS)
-const char* GameLevelManager::getLevelDownloadKey(int levelID, LevelLeaderboardType type, LevelLeaderboardMode mode) {
+const char* GameLevelManager::getLevelLeaderboardKey(int levelID, LevelLeaderboardType type, LevelLeaderboardMode mode) {
     return cocos2d::CCString::createWithFormat("%i_%i_%i", levelID, type, mode)->getCString();
 }
 /*void GameLevelManager::handleItND(cocos2d::CCNode* node, void* data) {
