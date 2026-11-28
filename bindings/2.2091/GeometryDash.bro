@@ -14810,7 +14810,7 @@ class LabelGameObject : EffectGameObject {
     virtual void updateTextKerning(int kerning) = win 0x654cc0, imac 0x1a1c20, m1 0x160244, ios 0x42f360;
     virtual int getTextKerning() = win 0x638040, imac 0x1d61e0, m1 0x18ab58, ios 0x440b48;
 
-    void createLabel(std::string text) = win 0x6549b0, imac 0x1a1890, m1 0x15fee4;
+    void createLabel(std::string text) = win 0x6549b0, imac 0x1a1890, m1 0x15fee4, ios 0x42f0cc;
     void queueUpdateLabel(std::string text) = win inline, imac 0x1a1b70, m1 0x16018c;
     void removeLabel() = win 0x654ba0, imac 0x1a19b0, m1 0x15fff4;
     void unlockLabelColor() = win inline, imac 0x1a34c0, m1 0x1616cc, ios inline;
@@ -23254,7 +23254,7 @@ class SFXBrowser : FLAlertLayer, MusicDownloadDelegate, TableViewCellDelegate, S
     void refreshLevelIDList(SFXSearchResult*) = win 0x61b8a0, imac 0x4304e0, m1 0x3a7308;
     void restoreListScroll(float) = win 0x61b7d0;
     TodoReturn searchSettingsChanged();
-    void setupList(SFXSearchResult* result) = win 0x619900, imac 0x4307a0, m1 0x3a7598;
+    void setupList(SFXSearchResult* result) = win 0x619900, imac 0x4307a0, m1 0x3a7598, ios 0x1f50bc;
     void setupSFXBrowser() = win 0x618a20, imac 0x42fcc0, m1 0x3a6bc4, ios 0x1f489c;
     void switchToView(AudioViewType) = win 0x61b3d0;
     void trySetupSFXBrowser() = win 0x6189a0, imac 0x42fc50, m1 0x3a6b60, ios 0x1f4840;
