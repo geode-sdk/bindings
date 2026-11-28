@@ -8063,7 +8063,7 @@ class GameLevelOptionsLayer : GJOptionsLayer, FLAlertLayerProtocol {
     virtual void FLAlert_Clicked(FLAlertLayer* layer, bool btn2) = win 0x3aa9b0, imac 0x2a0220, m1 0x243404, ios 0x37fcd8;
 
     bool init(GJGameLevel* level) = win inline, ios 0x37f81c;
-    TodoReturn toggleLDM();
+    TodoReturn toggleLDM() = imac 0x2a00c0, m1 0x243324;
 
     GJGameLevel* m_level;
 }
@@ -12486,7 +12486,7 @@ class GJOptionsLayer : SetupTriggerPopup {
     GJOptionsLayer() = win 0x1800b0, ios 0x1f8b64, inline;
     ~GJOptionsLayer() = win 0x39ab40, imac 0x286680, m1 0x22b5b8, ios 0x371788;
 
-    static GJOptionsLayer* create(int background) = win inline, ios inline;
+    static GJOptionsLayer* create(int background) = win inline, m1 0x22b5f0, imac 0x286700, ios inline;
 
     virtual void setupOptions() = win inline, imac 0x287050, m1 0x22be24, ios 0x371d34;
     virtual void didToggleGV(std::string variable) = win 0x98e10, inline;
@@ -12494,20 +12494,20 @@ class GJOptionsLayer : SetupTriggerPopup {
 
     void addGVToggle(char const* title, char const* variable, char const* description) = win 0x39b040, imac 0x2871c0, m1 0x22bf08, ios 0x371d38;
     void addToggle(char const* title, int id, bool initial, char const* description) = win inline, imac 0x287820, m1 0x22c4f8, ios 0x372180;
-    void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x39b1a0, ios 0x371e04;
-    int countForPage(int page) = win 0x39b760, ios 0x37272c;
-    CCMenuItemToggler* getToggleButton(int id) = win 0x39af90, ios inline;
+    void addToggleInternal(char const* title, int id, bool initial, char const* description) = win 0x39b1a0, imac 0x287300, m1 0x22c040, ios 0x371e04;
+    int countForPage(int page) = win 0x39b760, imac 0x288170, m1 0x22ce50, ios 0x37272c;
+    CCMenuItemToggler* getToggleButton(int id) = win 0x39af90, imac inline, m1 inline, ios inline;
     void goToPage(int page) = win 0x39bd20, imac 0x286bb0, m1 0x22b9f0, ios 0x371ab8;
-    void incrementCountForPage(int page) = win 0x39b850, ios 0x372488;
-    const char* infoKey(int index) = win inline, ios inline;
+    void incrementCountForPage(int page) = win 0x39b850, imac 0x287c80, m1 0x22c958, ios 0x372488;
+    const char* infoKey(int index) = win inline, imac 0x287f80, m1 0x22cc4c, ios inline;
     bool init(int, float) = win 0x39ac30, imac 0x286850, m1 0x22b708, ios 0x3717c0;
     cocos2d::CCLayer* layerForPage(int page) = win 0x39bb30, ios 0x372284;
     const char* layerKey(int page) = win inline, imac 0x2882b0, m1 0x22cfb8, ios inline;
     cocos2d::CCPoint nextPosition(int page) = win 0x39b640, imac 0x287830, m1 0x22c4fc, ios 0x372184;
     const char* objectKey(int page) = win inline, imac 0x288290, m1 0x22cf90, ios inline;
-    cocos2d::CCArray* objectsForPage(int page) = win 0x39b970, ios 0x372534;
+    cocos2d::CCArray* objectsForPage(int page) = win 0x39b970, imac 0x287da0, m1 0x22ca88, ios 0x372534;
     void offsetToNextPage() = win inline, imac 0x287020, m1 0x22be00, ios inline;
-    void onInfo(cocos2d::CCObject* sender) = win 0x39c280, ios 0x372628;
+    void onInfo(cocos2d::CCObject* sender) = win 0x39c280, imac 0x287fa0, m1 0x22cc74, ios 0x372628;
     void onNextPage(cocos2d::CCObject* sender) = win 0x39bd00, imac 0x286b90, m1 0x22b9e4, ios 0x371aac;
     void onPrevPage(cocos2d::CCObject* sender) = win 0x39bd10, imac 0x286b70, m1 0x22b9d8, ios 0x371aa0;
     void onToggle(cocos2d::CCObject* sender) = win 0x39c170, imac 0x287b30, m1 0x22c7d4, ios 0x37238c;
