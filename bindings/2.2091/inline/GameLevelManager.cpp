@@ -111,13 +111,16 @@ const char* GameLevelManager::getUserInfoKey(int id) {
     return cocos2d::CCString::createWithFormat("account_%i", id)->getCString();
 }
 
-/*#if defined(GEODE_IS_IOS)
-void GameLevelManager::handleItND(cocos2d::CCNode* node, void* data) {
+#if defined(GEODE_IS_IOS)
+const char* GameLevelManager::getLevelDownloadKey(int levelID, LevelLeaderboardType type, LevelLeaderboardMode mode) {
+    return cocos2d::CCString::createWithFormat("%i_%i_%i", levelID, type, mode)->getCString();
+}
+/*void GameLevelManager::handleItND(cocos2d::CCNode* node, void* data) {
     auto result = static_cast<GJHttpResult*>(data);
     this->handleIt(result->m_success, result->m_response, result->m_requestTag, result->m_httpType);
     result->release();
-}
-#endif*/
+}*/
+#endif
 
 bool GameLevelManager::hasDownloadedList(int id) {
     return this->hasDownloadedLevel(-id);
