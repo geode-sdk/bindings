@@ -55,7 +55,7 @@ void GJOptionsLayer::addToggle(char const* title, int id, bool initial, char con
 }
 #endif
 
-#if defined(GEODE_IS_IOS)
+#if defined(GEODE_IS_IOS) || defined(GEODE_IS_MACOS)
 CCMenuItemToggler* GJOptionsLayer::getToggleButton(int id) {
     auto it = m_toggleButtons.find(id);
     return it != m_toggleButtons.end() ? it->second : nullptr;
