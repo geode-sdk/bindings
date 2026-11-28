@@ -9303,7 +9303,7 @@ class GameStatsManager : cocos2d::CCNode {
     int getTotalCollectedDiamonds() = win 0x2e7be0, imac 0x3b560, m1 0x3525c;
     bool hasClaimedListReward(GJLevelList* list) = win 0x2e66c0, imac 0x39660, m1 0x334f4, ios 0x3d21f0;
     bool hasCompletedChallenge(GJChallengeItem* item) = win 0x2e62a0, imac 0x392c0, m1 0x3313c;
-    bool hasCompletedDailyLevel(int dailyID) = win 0x2e68b0, imac 0x39ad0, m1 0x33950;
+    bool hasCompletedDailyLevel(int dailyID) = win 0x2e68b0, imac 0x39ad0, m1 0x33950, ios 0x3d2428;
     bool hasCompletedDailyStars(int) = win 0x2e7190, imac 0x3a0a0, m1 0x33ecc, ios 0x3d2890;
     bool hasCompletedDemonLevel(GJGameLevel* level) = win inline, imac 0x330f0, m1 0x2cde8;
     bool hasCompletedGauntletLevel(int id) = win 0x2e1990, imac 0x33070, m1 0x2cd4c, ios 0x3ceb78;
