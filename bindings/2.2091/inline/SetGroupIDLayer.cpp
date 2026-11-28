@@ -76,6 +76,7 @@ void SetGroupIDLayer::addGroupID(int id) {
             }
         }
     }
+    this->updateGroupIDButtons();
 }
 
 void SetGroupIDLayer::removeGroupID(int id) {
